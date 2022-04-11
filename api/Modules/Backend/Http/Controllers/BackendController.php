@@ -23,7 +23,8 @@ class BackendController extends Controller
      */
     public function create()
     {
-       return response()->json('done');
+      $a = config('constants.version');
+       return response()->json($a);
     }
 
     /**

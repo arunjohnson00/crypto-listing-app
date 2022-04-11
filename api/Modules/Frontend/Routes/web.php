@@ -16,7 +16,7 @@
 //});
  
 
-Route::get('/{any}', 'FrontendController@index')->where('any', '^(?!api).*$');
+//Route::get('/{any}', 'FrontendController@index')->where('any', '^(?!api).*$');
 
 
 //Route::get( '/{any}', function () {

@@ -17,18 +17,52 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-// Auth Endpoints
+// Auth Endpoints config('constants.version')
 
+ 
 Route::prefix('b')->group(function() {
     
-    Route::group([ 'middleware' => 'api', 'prefix' => 'v1/auth' ], function ($router) 
+    Route::group([ 'middleware' => 'api', 'prefix' => config('constants.version') ], function ($router) 
     {
-        Route::post('login', 'Auth\LoginController@login'); 
+       
+        Route::post('auth/login', 'Auth\LoginController@login');  // login 
+        Route::any('check', 'BackendController@create');  // test api
         
         Route::group(['middleware' =>  'assign_guard:backend_api'], function()
         {
-            Route::post('logout', 'Auth\LoginController@logout');
+            Route::post('auth/logout', 'Auth\LoginController@logout'); // logout 
             Route::post('me', 'Auth\LoginController@me'); 
+           
+            /*
+            |--------------------------------------------------------------------------
+            | Exchange Routes  
+            |--------------------------------------------------------------------------
+            */
+            
+            /* List */
+            Route::get('exchange', 'Exchange\ExchangeController@index');                    
+            /* Create */
+            Route::post('exchange', 'Exchange\ExchangeController@store');                  
+            /* Edit */
+            Route::get('exchange/{exchange_id}/edit', 'Exchange\ExchangeController@edit');  
+            /* Show */
+            Route::get('exchange/{exchange_id}/show', 'Exchange\ExchangeController@show');  
+            /* Update */
+            Route::post('exchange/{exchange_id}', 'Exchange\ExchangeController@update');    
+            /* Destroy */
+            Route::delete('exchange/{exchange_id}', 'Exchange\ExchangeController@destroy'); 
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
         });
         
