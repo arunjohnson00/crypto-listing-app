@@ -18,8 +18,8 @@ class ExchangeController extends Controller
         $this->updateErrorMessage   =   'Exchange is not updated successfully.';
         $this->deleteMessage        =   'Exchange is deleted successfully.';
         $this->deleteErrorMessage   =   'Exchange is not deleted successfully.';  
-        $this->allowedfileExtension = ['jpg','png','jpeg','gif','JPG','PNG','JPEG','GIF'];
-        $this->FilePath = public_path().'/uploads/exchange_icons/';
+        $this->allowedfileExtension =   ['jpg','png','jpeg','gif','JPG','PNG','JPEG','GIF'];
+        $this->FilePath             =   public_path().'/uploads/exchange_icons/';
     }
     
     /**
@@ -28,7 +28,7 @@ class ExchangeController extends Controller
      */
     public function index()
     {
-        return response()->json('list');
+       return \DataTables::of(Exchange::orderBy('id','desc')->get())->make(true);    
     }
 
     
