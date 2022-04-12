@@ -1,5 +1,3 @@
-import { createTheme } from "@mui/material";
-
 export const ITEM_HEIGHT = 32;
 export const ITEM_PADDING_TOP = 8;
 export const MenuProps = {
