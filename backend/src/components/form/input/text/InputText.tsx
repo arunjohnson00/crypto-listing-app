@@ -10,7 +10,7 @@ const InputText = () => {
         id="outlined-basic"
         label=""
         size="small"
-        placeholder="placeholder here"
+        placeholder="Placeholder here"
       />
     </ThemeProvider>
   );
