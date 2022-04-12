@@ -10,6 +10,9 @@ import CoinUploader from "./components/form/input/file/coinlogo/CoinUploader";
 import ExchangeUploader from "./components/form/input/file/exchangeicon/ExchangeUploader";
 import BannerUploader from "./components/form/input/file/banner/BannerUploader";
 import DataTables from "./components/tables/datatables/DataTables";
+import LineChart from "./components/charts/linechart/LineChart";
+import PieChart from "./components/charts/piechart/PieChart";
+import LayoutView from "./layouts/common/view/LayoutView";
 
 function App() {
   return (
@@ -26,6 +29,9 @@ function App() {
       <ExchangeUploader />
       <BannerUploader />
       <DataTables />
+      <LineChart />
+      <PieChart />
+      <LayoutView />
     </div>
   );
 }
