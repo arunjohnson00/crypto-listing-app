@@ -10,7 +10,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
@@ -20,6 +19,7 @@ import StarBorder from "@mui/icons-material/StarBorder";
 import { Drawer, DrawerHeader } from "./style";
 import { sideBarMenu } from "./helper";
 import logoWhite from "../../../assets/logo/logowhite.png";
+import { Link } from "react-router-dom";
 
 const SideMenu = ({ handleDrawerClose, open }: any) => {
   const theme = useTheme();
@@ -67,10 +67,22 @@ const SideMenu = ({ handleDrawerClose, open }: any) => {
                 >
                   <InboxIcon />
                 </ListItemIcon>
-                <ListItemText
-                  primary={data.title}
-                  sx={{ color: "rgba(170, 174, 178, 1)" }}
-                />
+
+                {!data.subMenu ? (
+                  <Link to={"/" + data.title.toLowerCase().replace(/\s+/g, "")}>
+                    {" "}
+                    <ListItemText
+                      primary={data.title}
+                      sx={{ color: "rgba(170, 174, 178, 1)" }}
+                    />
+                  </Link>
+                ) : (
+                  <ListItemText
+                    primary={data.title}
+                    sx={{ color: "rgba(170, 174, 178, 1)" }}
+                  />
+                )}
+
                 {!data.subMenu ? (
                   <ArrowForwardIosSharpIcon
                     style={{ fontSize: 10, color: "rgba(170, 174, 178, 1)" }}
@@ -94,7 +106,12 @@ const SideMenu = ({ handleDrawerClose, open }: any) => {
                           <ListItemIcon>
                             <StarBorder />
                           </ListItemIcon>
-                          <ListItemText primary={sublist} />
+
+                          <Link
+                            to={"/" + sublist.toLowerCase().replace(/\s+/g, "")}
+                          >
+                            <ListItemText primary={sublist} />
+                          </Link>
                         </ListItemButton>
                       </List>
                     );
