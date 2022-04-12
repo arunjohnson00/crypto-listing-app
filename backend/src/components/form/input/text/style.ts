@@ -10,6 +10,7 @@ export const theme = createTheme({
           backgroundColor: "rgb(246, 246, 246)",
           // border: "1px solid rgb(200, 200, 200)",
           fontSize: "14px",
+          borderRadius: "8px",
           "&$focus": {
             border: "1px solid rgb(200, 200, 200)",
           },
