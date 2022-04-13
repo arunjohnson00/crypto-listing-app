@@ -6,9 +6,7 @@ import SideMenu from "../sidebar/SideMenu";
 import TopBar from "../appbar/TopBar";
 import { DrawerHeader } from "./style";
 
-import { ProtectedRoutes } from "../../../routes/AppRoutes";
-
-const LayoutView = () => {
+const LayoutView = ({ children }: any) => {
   const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
@@ -31,7 +29,7 @@ const LayoutView = () => {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
 
-        <ProtectedRoutes></ProtectedRoutes>
+        {children}
       </Box>
     </Box>
   );

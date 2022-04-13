@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 
@@ -40,77 +40,75 @@ const SideMenu = ({ open }: any) => {
       <List sx={{ padding: "7px" }}>
         {sideBarMenu.map((data: any, index: number) => {
           return (
-            <>
-              <ListItem
-                button
-                sx={{ height: "52px" }}
-                onClick={(e) => data.subMenu && handleExpand(e, data)}
-                key={index}
-                id={"main" + index}
+            <Fragment key={index}>
+              <Link
+                to={"/" + data.title.toLowerCase().replace(/\s+/g, "")}
+                style={{ textDecoration: "none" }}
               >
-                <ListItemIcon
-                  sx={{
-                    color: "rgba(170, 174, 178, 1)",
-                    margin: "0px 6px 0px 0px",
-                  }}
+                <ListItem
+                  button
+                  sx={{ height: "52px" }}
+                  onClick={(e) => data.subMenu && handleExpand(e, data)}
+                  id={"main" + index}
                 >
-                  <Icon>{data.icon}</Icon>
-                </ListItemIcon>
-
-                {!data.subMenu ? (
-                  <Link
-                    to={"/" + data.title.toLowerCase().replace(/\s+/g, "")}
-                    style={{ textDecoration: "none" }}
+                  <ListItemIcon
+                    sx={{
+                      color: "rgba(170, 174, 178, 1)",
+                      margin: "0px 6px 0px 0px",
+                    }}
                   >
-                    {" "}
+                    <Icon>{data.icon}</Icon>
+                  </ListItemIcon>
+
+                  {!data.subMenu ? (
                     <ListItemText
                       primary={data.title}
                       sx={{ color: "rgba(170, 174, 178, 1)" }}
                     />
-                  </Link>
-                ) : (
-                  <ListItemText
-                    primary={data.title}
-                    sx={{ color: "rgba(170, 174, 178, 1)" }}
-                  />
-                )}
+                  ) : (
+                    <ListItemText
+                      primary={data.title}
+                      sx={{ color: "rgba(170, 174, 178, 1)" }}
+                    />
+                  )}
 
-                {!data.subMenu ? null : expandMenu ? (
-                  <ExpandLess
-                    style={{ fontSize: 17, color: "rgba(170, 174, 178, 1)" }}
-                  />
-                ) : (
-                  <ExpandMore
-                    style={{ fontSize: 17, color: "rgba(170, 174, 178, 1)" }}
-                  />
-                )}
-              </ListItem>
+                  {!data.subMenu ? null : expandMenu ? (
+                    <ExpandLess
+                      style={{ fontSize: 17, color: "rgba(170, 174, 178, 1)" }}
+                    />
+                  ) : (
+                    <ExpandMore
+                      style={{ fontSize: 17, color: "rgba(170, 174, 178, 1)" }}
+                    />
+                  )}
+                </ListItem>
+              </Link>
               {data.title === title && (
                 <Collapse in={expandMenu} timeout="auto" unmountOnExit>
                   {data.subMenu.map((sublist: any, index: number) => {
                     return (
-                      <List component="div" key={index} disablePadding>
-                        <ListItemButton sx={{ pl: 4 }}>
-                          <ListItemIcon>
-                            <Icon>{sublist.icon}</Icon>
-                          </ListItemIcon>
+                      <Link
+                        to={
+                          "/" + sublist.title.toLowerCase().replace(/\s+/g, "")
+                        }
+                        style={{ textDecoration: "none" }}
+                        key={index}
+                      >
+                        <List component="div" disablePadding>
+                          <ListItemButton sx={{ pl: 4 }}>
+                            <ListItemIcon>
+                              <Icon>{sublist.icon}</Icon>
+                            </ListItemIcon>
 
-                          <Link
-                            to={
-                              "/" +
-                              sublist.title.toLowerCase().replace(/\s+/g, "")
-                            }
-                            style={{ textDecoration: "none" }}
-                          >
                             <ListItemText primary={sublist.title} />
-                          </Link>
-                        </ListItemButton>
-                      </List>
+                          </ListItemButton>
+                        </List>
+                      </Link>
                     );
                   })}
                 </Collapse>
-              )}{" "}
-            </>
+              )}
+            </Fragment>
           );
         })}
       </List>

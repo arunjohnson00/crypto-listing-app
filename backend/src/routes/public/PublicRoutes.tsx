@@ -1,12 +1,12 @@
-import { Routes, Route } from "react-router-dom";
-import Login from "../../pages/login/Login";
+import { Navigate, useLocation } from "react-router-dom";
 
-export const PublicRoutes: any = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<Login />} />
-    </Routes>
-  );
+export const PublicRoutes: any = ({ children }: { children: JSX.Element }) => {
+  const auth = sessionStorage.getItem("authToken");
+  let location = useLocation();
+  if (auth) {
+    return <Navigate replace to="/" state={{ from: location }} />;
+  }
+  return children;
 };
 
 export default PublicRoutes;
