@@ -34,7 +34,7 @@ class LoginController extends Controller
         }
         if (!$token = auth('backend_api')->attempt($validator->validated())) {
 //        if (!$token = auth()->guard('backend_api')->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'Invalid email or password, Please try again!'], 401);
         }
          
         return $this->createNewToken($token);
