@@ -1,19 +1,52 @@
 export const sideBarMenu = [
-  { title: "Dashboard" },
-  { title: "Coin Listings" },
-  { title: "Exchanges" },
-  { title: "NFT Listings", subMenu: ["1a", "1b", "1c", "1d", "1e"] },
-  { title: "NFT marketplaces" },
-  { title: "Airdrops" },
-  { title: "Networks" },
-  { title: "Users" },
-  { title: "Ads", subMenu: ["a", "b", "c", "d", "e"] },
-  { title: "Videos", subMenu: ["2a", "2b", "21c", "2d", "2e"] },
-  { title: "Menucards" },
-  { title: "Rating & Reviews", subMenu: ["3a", "3b", "3c", "3d", "3e"] },
-  { title: "Events" },
-  { title: "Affiliates" },
-  { title: "Badges" },
+  { title: "Dashboard", icon: "dashboard" },
+  { title: "Coin Listings", icon: "paid" },
+  { title: "Exchanges", icon: "currency_exchange" },
+  {
+    title: "NFT Listings",
+    icon: "fact_check",
+    subMenu: [
+      { title: "a", icon: "store" },
+      { title: "a", icon: "store" },
+      { title: "a", icon: "store" },
+    ],
+  },
+  { title: "NFT marketplaces", icon: "store" },
+  { title: "Airdrops", icon: "fact_check" },
+  { title: "Networks", icon: "hub" },
+  { title: "Users", icon: "people_alt" },
+  {
+    title: "Ads",
+    icon: "ads_click",
+    subMenu: [
+      { title: "a", icon: "store" },
+      { title: "a", icon: "store" },
+      { title: "a", icon: "store" },
+      { title: "a", icon: "store" },
+    ],
+  },
+  {
+    title: "Videos",
+    icon: "play_circle",
+    subMenu: [
+      { title: "a", icon: "store" },
+      { title: "a", icon: "store" },
+      { title: "a", icon: "store" },
+    ],
+  },
+  { title: "Menucards", icon: "fact_check" },
+  {
+    title: "Rating & Reviews",
+    icon: "view_carousel",
+    subMenu: [
+      { title: "a", icon: "store" },
+      { title: "a", icon: "store" },
+      { title: "a", icon: "store" },
+    ],
+  },
+  { title: "Events", icon: "event" },
+  { title: "Affiliates", icon: "stream" },
+  { title: "Badges", icon: "badge" },
 ];
 
 export const sideBarIcons = ["All mail", "Trash", "Spam"];
