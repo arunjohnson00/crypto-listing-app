@@ -1,29 +1,22 @@
 import { useState } from "react";
-import { useTheme } from "@mui/material/styles";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
-import StarBorder from "@mui/icons-material/StarBorder";
+import { Icon } from "@mui/material";
 
 import { Drawer, DrawerHeader } from "./style";
 import { sideBarMenu } from "./helper";
 import logoWhite from "../../../assets/logo/logowhite.png";
 import { Link } from "react-router-dom";
 
-const SideMenu = ({ handleDrawerClose, open }: any) => {
-  const theme = useTheme();
-
+const SideMenu = ({ open }: any) => {
   const [expandMenu, setOpen] = useState(false);
   const [title, setTitle] = useState([]);
   const handleExpand = (e: any, data: any) => {
@@ -42,16 +35,9 @@ const SideMenu = ({ handleDrawerClose, open }: any) => {
           alt="CoinXhigh logoWhite"
           style={{ width: "154px" }}
         />
-        <IconButton onClick={handleDrawerClose}>
-          {theme.direction === "rtl" ? (
-            <ChevronRightIcon />
-          ) : (
-            <ChevronLeftIcon />
-          )}
-        </IconButton>
       </DrawerHeader>
       <Divider />
-      <List sx={{ padding: "20px" }}>
+      <List sx={{ padding: "7px" }}>
         {sideBarMenu.map((data: any, index: number) => {
           return (
             <>
@@ -63,9 +49,12 @@ const SideMenu = ({ handleDrawerClose, open }: any) => {
                 id={"main" + index}
               >
                 <ListItemIcon
-                  sx={{ color: "rgba(170, 174, 178, 1)", minWidth: "40px" }}
+                  sx={{
+                    color: "rgba(170, 174, 178, 1)",
+                    margin: "0px 6px 0px 0px",
+                  }}
                 >
-                  <InboxIcon />
+                  <Icon>{data.icon}</Icon>
                 </ListItemIcon>
 
                 {!data.subMenu ? (
@@ -103,14 +92,17 @@ const SideMenu = ({ handleDrawerClose, open }: any) => {
                       <List component="div" key={index} disablePadding>
                         <ListItemButton sx={{ pl: 4 }}>
                           <ListItemIcon>
-                            <StarBorder />
+                            <Icon>{sublist.icon}</Icon>
                           </ListItemIcon>
 
                           <Link
-                            to={"/" + sublist.toLowerCase().replace(/\s+/g, "")}
+                            to={
+                              "/" +
+                              sublist.title.toLowerCase().replace(/\s+/g, "")
+                            }
                             style={{ textDecoration: "none" }}
                           >
-                            <ListItemText primary={sublist} />
+                            <ListItemText primary={sublist.title} />
                           </Link>
                         </ListItemButton>
                       </List>

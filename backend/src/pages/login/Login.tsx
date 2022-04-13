@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -13,28 +13,43 @@ import Container from "@mui/material/Container";
 import { loginRequest } from "../../utils/fetchhandler";
 import CoinxhighIcon from "../../assets/icon/coinxhighicon.jpg";
 import { useNavigate } from "react-router-dom";
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
 
 const theme = createTheme();
 
 const Login = () => {
   const [authCredentials, setAuth] = useState({});
+  const [loginAlrert, setAlert] = useState("");
 
   const loginHadler = () => {
-    loginRequest(authCredentials, reDirectHandler);
+    loginRequest(authCredentials, reDirectHandler, LoginError);
+  };
+
+  const sessionHandler = (event: any) => {
+    console.log(event);
   };
 
   const jwToken = sessionStorage.getItem("authToken");
-  const redirectPath = useNavigate();
+  const navigate = useNavigate();
 
-  const reDirectHandler = (authData: object) => {
+  useEffect(() => {
+    jwToken && navigate("/dashboard");
+  }, [navigate, jwToken]);
+
+  const reDirectHandler = (authData: any) => {
     if (
-      authData !== null ||
-      authData !== undefined ||
-      authData !== "" ||
+      authData.data.access_token !== null ||
+      authData.data.access_token !== undefined ||
+      authData.data.access_token !== "" ||
       jwToken
     ) {
-      redirectPath("/dashboard");
+      navigate("/dashboard");
     }
+  };
+  const LoginError = (error: any) => {
+    console.log(error);
+    setAlert("Unauthorized Username & Password " + error);
   };
 
   function Copyright(props: any) {
@@ -103,7 +118,15 @@ const Login = () => {
               }
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={
+                <Checkbox
+                  value="remember"
+                  color="primary"
+                  onClick={(e: any) => {
+                    sessionHandler(e.target.checked);
+                  }}
+                />
+              }
               label="Remember me"
             />
             <Button
@@ -115,6 +138,9 @@ const Login = () => {
             >
               Sign In
             </Button>
+            <Stack sx={{ width: "100%" }} spacing={2}>
+              {loginAlrert && <Alert severity="error"> {loginAlrert} !</Alert>}
+            </Stack>
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />

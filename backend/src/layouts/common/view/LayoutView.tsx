@@ -22,8 +22,12 @@ const LayoutView = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <TopBar handleDrawerOpen={handleDrawerOpen} open={open} />
-      <SideMenu handleDrawerClose={handleDrawerClose} open={open} />
+      <TopBar
+        handleDrawerOpen={handleDrawerOpen}
+        handleDrawerClose={handleDrawerClose}
+        open={open}
+      />
+      <SideMenu open={open} />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
 

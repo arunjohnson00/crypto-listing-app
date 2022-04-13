@@ -4,7 +4,8 @@ const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 export const loginRequest: any = async (
   authCredentials: object,
-  reDirectHandler: any
+  reDirectHandler: any,
+  LoginError: any
 ) => {
   await axios({
     method: "post",
@@ -17,7 +18,7 @@ export const loginRequest: any = async (
         "authToken",
         JSON.stringify(response.data.access_token)
       );
-      reDirectHandler(response.data.access_token);
+      reDirectHandler(response);
     })
-    .catch((error) => console.log(error));
+    .catch((error) => LoginError(error));
 };
