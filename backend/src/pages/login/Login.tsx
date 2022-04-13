@@ -26,11 +26,8 @@ const Login = () => {
     loginRequest(authCredentials, reDirectHandler, LoginError);
   };
 
-  const sessionHandler = (event: any) => {
-    console.log(event);
-  };
-
-  const jwToken = sessionStorage.getItem("authToken");
+  const jwToken =
+    sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -123,7 +120,7 @@ const Login = () => {
                   value="remember"
                   color="primary"
                   onClick={(e: any) => {
-                    sessionHandler(e.target.checked);
+                    setAuth({ ...authCredentials, remember: e.target.checked });
                   }}
                 />
               }
