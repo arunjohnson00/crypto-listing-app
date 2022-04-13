@@ -1,86 +1,125 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import {
-  Checkbox,
-  Grid,
-  TextField,
-  FormControlLabel,
-  Paper,
-  Button,
-} from "@mui/material";
+import { useState } from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { loginRequest } from "../../utils/fetchhandler";
+import CoinxhighIcon from "../../assets/icon/coinxhighicon.jpg";
+import { useNavigate } from "react-router-dom";
+
+const theme = createTheme();
 
 const Login = () => {
-  const [checked, setChecked] = useState(true);
+  const [authCredentials, setAuth] = useState({});
 
-  const handleChange = (event: any) => {
-    setChecked(event.target.checked);
+  const loginHadler = () => {
+    loginRequest(authCredentials, reDirectHandler);
   };
 
-  const serverAPIUrl = process.env.REACT_APP_API_URL;
+  const jwToken = sessionStorage.getItem("authToken");
+  const redirectPath = useNavigate();
 
-  useEffect(() => {
-    loginSend();
-  });
+  const reDirectHandler = (authData: object) => {
+    if (
+      authData !== null ||
+      authData !== undefined ||
+      authData !== "" ||
+      jwToken
+    ) {
+      redirectPath("/dashboard");
+    }
+  };
 
-  const loginSend: any = () =>
-    axios({
-      method: "post",
-      url: `${serverAPIUrl}api/b/v1/auth/login
-      `,
-      data: {
-        email: "admin@admin.com",
-        password: "password",
-      },
-    });
+  function Copyright(props: any) {
+    return (
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        align="center"
+        {...props}
+      >
+        {"Copyright © "}
+        <Link color="inherit" href="https:coinxhigh.com">
+          CoinXhigh
+        </Link>{" "}
+        {new Date().getFullYear()}
+        {"."}
+      </Typography>
+    );
+  }
 
   return (
-    <div style={{ padding: 30 }}>
-      <Paper>
-        <Grid
-          container
-          spacing={5}
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
           sx={{
+            marginTop: 8,
+            display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
             alignItems: "center",
           }}
-          p={5}
         >
-          <Grid item lg={12}>
-            <TextField
-              id="standard-basic"
-              label="Username"
-              variant="standard"
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <img
+              src={CoinxhighIcon}
+              alt="coinxhighicon"
+              style={{ width: "100%" }}
             />
-          </Grid>
-          <Grid item lg={12}>
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Box sx={{ mt: 1 }}>
             <TextField
-              id="standard-basic"
-              label="Password"
-              variant="standard"
-            />
-          </Grid>
-          <Grid item lg={12}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={checked}
-                  onChange={handleChange}
-                  //  label={"Keep me logged in"}
-                  inputProps={{ "aria-label": "primary checkbox" }}
-                />
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoFocus
+              onChange={(e) =>
+                setAuth({ ...authCredentials, email: e.target.value })
               }
-              label="Keep me logged in"
             />
-          </Grid>
-          <Grid item xs={12}>
-            <Button variant="contained" disableElevation>
-              Login
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              onChange={(e) =>
+                setAuth({ ...authCredentials, password: e.target.value })
+              }
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={loginHadler}
+            >
+              Sign In
             </Button>
-          </Grid>
-        </Grid>
-      </Paper>
-    </div>
+          </Box>
+        </Box>
+        <Copyright sx={{ mt: 8, mb: 4 }} />
+      </Container>
+    </ThemeProvider>
   );
 };
 
