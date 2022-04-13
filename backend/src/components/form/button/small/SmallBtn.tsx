@@ -8,7 +8,7 @@ const SmallBtn = () => {
         width: "78px",
         height: "30px",
         backgroundColor: "rgb(61, 56, 122)",
-        borderRadius: "6px",
+        borderRadius: "8px",
         fontSize: "14px",
         textTransform: "capitalize",
         fontWeight: "300",
