@@ -5,14 +5,13 @@ import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
-import PublicRoutes from "./routes/public/PublicRoutes";
+import { PublicRoutes } from "./routes/AppRoutes";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <PublicRoutes>
-        <App />
-      </PublicRoutes>
+      <PublicRoutes />
+      <App />
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

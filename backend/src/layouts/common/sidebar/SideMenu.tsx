@@ -69,7 +69,10 @@ const SideMenu = ({ handleDrawerClose, open }: any) => {
                 </ListItemIcon>
 
                 {!data.subMenu ? (
-                  <Link to={"/" + data.title.toLowerCase().replace(/\s+/g, "")}>
+                  <Link
+                    to={"/" + data.title.toLowerCase().replace(/\s+/g, "")}
+                    style={{ textDecoration: "none" }}
+                  >
                     {" "}
                     <ListItemText
                       primary={data.title}
@@ -83,11 +86,7 @@ const SideMenu = ({ handleDrawerClose, open }: any) => {
                   />
                 )}
 
-                {!data.subMenu ? (
-                  <ArrowForwardIosSharpIcon
-                    style={{ fontSize: 10, color: "rgba(170, 174, 178, 1)" }}
-                  />
-                ) : expandMenu ? (
+                {!data.subMenu ? null : expandMenu ? (
                   <ExpandLess
                     style={{ fontSize: 17, color: "rgba(170, 174, 178, 1)" }}
                   />
@@ -109,6 +108,7 @@ const SideMenu = ({ handleDrawerClose, open }: any) => {
 
                           <Link
                             to={"/" + sublist.toLowerCase().replace(/\s+/g, "")}
+                            style={{ textDecoration: "none" }}
                           >
                             <ListItemText primary={sublist} />
                           </Link>
