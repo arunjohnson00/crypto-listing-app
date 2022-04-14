@@ -26,10 +26,7 @@ const LayoutView = ({ children }: any) => {
         open={open}
       />
       <SideMenu open={open} />
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, p: 3, background: "rgb(234, 234, 234)" }}
-      >
+      <Box component="main" sx={{ flexGrow: 1, p: 3, background: "#F6F6F6" }}>
         <DrawerHeader />
 
         {children}

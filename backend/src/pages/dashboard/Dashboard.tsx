@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { Item } from "./style";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";

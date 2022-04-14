@@ -1,11 +1,16 @@
 import { Box } from "@mui/system";
 import Link from "@mui/material/Link";
 import { Typography } from "@mui/material";
-import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 
 const ComponentFooter = () => {
   return (
-    <Box sx={{ borderTop: "rgb(232, 232, 232) solid 2px", display: "flex" }}>
+    <Box
+      sx={{
+        borderTop: "rgb(232, 232, 232) solid 2px",
+        display: "flex",
+        justifyContent: "space-between",
+      }}
+    >
       <Typography
         variant="subtitle1"
         sx={{
