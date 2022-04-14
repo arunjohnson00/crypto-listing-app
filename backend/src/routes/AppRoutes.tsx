@@ -96,6 +96,14 @@ const AppRoutes = () => {
           }
         />
         <Route
+          path="/ads"
+          element={
+            <PrivateRoute>
+              <p>ads</p>
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/videos"
           element={
             <PrivateRoute>

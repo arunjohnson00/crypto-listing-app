@@ -18,13 +18,19 @@ import { Link } from "react-router-dom";
 
 const SideMenu = ({ open }: any) => {
   const [expandMenu, setOpen] = useState(false);
-  const [title, setTitle] = useState([]);
+  const [title, setTitle] = useState();
+  const [activeColorId, setActiveColorId] = useState();
+
+  const menuHandler = (e: any, data: any) => {
+    data.subMenu && handleExpand(e, data);
+
+    setActiveColorId(data.id);
+    console.log(activeColorId);
+  };
   const handleExpand = (e: any, data: any) => {
     setOpen(!expandMenu);
     console.log(e.currentTarget.id);
     setTitle(data.title);
-
-    console.log(title);
   };
 
   return (
@@ -48,8 +54,13 @@ const SideMenu = ({ open }: any) => {
                 <ListItem
                   button
                   sx={{ height: "52px" }}
-                  onClick={(e) => data.subMenu && handleExpand(e, data)}
+                  onClick={(e) => menuHandler(e, data)}
                   id={"main" + index}
+                  style={{
+                    background: `${
+                      activeColorId === data.id ? "#f4f4f4" : "none"
+                    }`,
+                  }}
                 >
                   <ListItemIcon
                     sx={{
