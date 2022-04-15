@@ -74,7 +74,10 @@ const SideMenu = ({ open }: any) => {
                   {!data.subMenu ? (
                     <ListItemText
                       primary={data.title}
-                      sx={{ color: "rgba(170, 174, 178, 1)" }}
+                      sx={{
+                        color: "rgba(170, 174, 178, 1)",
+                        fontSize: ".9rem",
+                      }}
                     />
                   ) : (
                     <ListItemText

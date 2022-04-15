@@ -2,30 +2,34 @@ import axios from "axios";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
-export const loginRequest: any = async (
+export const appRequest: any = async (
   authCredentials: any,
   reDirectHandler: any,
-  LoginError: any
+  LoginError: any,
+  storeData: any
 ) => {
-  console.log(authCredentials.remember);
   await axios({
     method: "post",
-    url: `${serverAPIUrl}api/b/v1/auth/login
+    url: `${serverAPIUrl}${storeData.pathExtention}
       `,
     data: authCredentials,
   })
     .then((response) => {
-      sessionStorage.setItem(
-        "authToken",
-        JSON.stringify(response.data.access_token)
-      );
-      reDirectHandler(response);
+      if (response.data.access_token) {
+        //  console.log(storeData.pathExtention);
 
-      if (authCredentials.remember === true) {
-        localStorage.setItem(
+        sessionStorage.setItem(
           "authToken",
           JSON.stringify(response.data.access_token)
         );
+        reDirectHandler(response);
+
+        if (authCredentials.remember === true) {
+          localStorage.setItem(
+            "authToken",
+            JSON.stringify(response.data.access_token)
+          );
+        }
       }
     })
     .catch((error) => LoginError(error));
