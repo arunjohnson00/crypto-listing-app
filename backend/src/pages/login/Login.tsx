@@ -10,7 +10,9 @@ import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { loginRequest } from "../../utils/fetchhandler";
+import { useDispatch, useSelector } from "react-redux";
+
+import { appRequest } from "../../utils/fetchhandler";
 import CoinxhighIcon from "../../assets/icon/coinxhighicon.jpg";
 import { useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
@@ -21,9 +23,14 @@ const theme = createTheme();
 const Login = () => {
   const [authCredentials, setAuth] = useState({});
   const [loginAlrert, setAlert] = useState("");
+  const dispatch = useDispatch();
+  const storeData = useSelector((store) => {
+    return store;
+  });
 
   const loginHadler = () => {
-    loginRequest(authCredentials, reDirectHandler, LoginError);
+    dispatch({ type: "loginpath" });
+    appRequest(authCredentials, reDirectHandler, LoginError, storeData);
   };
 
   const jwToken =

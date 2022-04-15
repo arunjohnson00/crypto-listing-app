@@ -31,9 +31,9 @@ const HtmlTables = () => {
         aria-label="a dense table"
       >
         <TableBody>
-          {rows.map((row) => (
+          {rows.map((row, index) => (
             <TableRow
-              key={row.year}
+              key={index}
               sx={{
                 "&:last-child td, &:last-child th": {
                   border: 0,
