@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 
-const LargeBtn = () => {
+const LargeBtn = ({ Title }: any) => {
   return (
     <Button
       variant="contained"
@@ -14,7 +14,7 @@ const LargeBtn = () => {
         fontWeight: "300",
       }}
     >
-      Large
+      {Title}
     </Button>
   );
 };

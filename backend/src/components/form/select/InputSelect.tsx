@@ -42,7 +42,7 @@ const InputSelect = () => {
     );
   };
   return (
-    <FormControl sx={{ m: 1, width: 300, mt: 3 }}>
+    <FormControl sx={{ m: 1, width: 300, mt: 0 }}>
       <Select
         multiple
         displayEmpty
