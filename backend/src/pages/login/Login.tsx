@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -10,49 +10,73 @@ import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { useSelector } from "react-redux";
-
-import { appRequest } from "../../utils/fetchhandler";
+import { useDispatch } from "react-redux";
 import CoinxhighIcon from "../../assets/icon/coinxhighicon.jpg";
 import { useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
+import { sendLoginCredentials } from "../../store/action";
 
 const theme = createTheme();
 
 const Login = () => {
-  const [authCredentials, setAuth] = useState({});
-  const [loginAlrert, setAlert] = useState("");
-  const storeData = useSelector((store) => {
-    return store;
-  });
-
-  const loginHadler = () => {
-    appRequest(authCredentials, reDirectHandler, LoginError, storeData);
-  };
-
-  const jwToken =
-    sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [authCredentials, setAuth] = useState({
+    email: "",
+    password: "",
+    remember: false,
+  });
+  const [loginAlrert, setAlert] = useState("");
 
-  useEffect(() => {
-    jwToken && navigate("/dashboard");
-  }, [navigate, jwToken]);
+  const loginHandler = () => {
+    //appRequest(authCredentials, reDirectHandler, LoginError, storeData);
+    const successHandler = (res: any) => {
+      if (res?.data?.access_token) {
+        sessionStorage.setItem(
+          "authToken",
+          JSON.stringify(res?.data?.access_token)
+        );
 
-  const reDirectHandler = (authData: any) => {
-    if (
-      authData.data.access_token !== null ||
-      authData.data.access_token !== undefined ||
-      authData.data.access_token !== "" ||
-      jwToken
-    ) {
+        if (authCredentials?.remember === true) {
+          localStorage.setItem(
+            "authToken",
+            JSON.stringify(res.data.access_token)
+          );
+        }
+      }
       navigate("/dashboard");
-    }
+    };
+    const errorHandler = (err: any) => {
+      // console.log();
+      setAlert(err.error.message.response.data.error);
+    };
+    dispatch(
+      sendLoginCredentials(authCredentials, successHandler, errorHandler)
+    );
   };
-  const LoginError = (error: any) => {
-    console.log(error);
-    setAlert("Unauthorized Username & Password " + error);
-  };
+  // const jwToken =
+  //   sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
+  // const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   jwToken && navigate("/dashboard");
+  // }, [navigate, jwToken]);
+
+  // const reDirectHandler = (authData: any) => {
+  //   if (
+  //     authData.data.access_token !== null ||
+  //     authData.data.access_token !== undefined ||
+  //     authData.data.access_token !== "" ||
+  //     jwToken
+  //   ) {
+  //     navigate("/dashboard");
+  //   }
+  // };
+  // const LoginError = (error: any) => {
+  //   console.log(error);
+  //   setAlert("Unauthorized Username & Password " + error);
+  // };
 
   function Copyright(props: any) {
     return (
@@ -103,7 +127,7 @@ const Login = () => {
               label="Email Address"
               name="email"
               autoFocus
-              onChange={(e) =>
+              onChange={(e: any) =>
                 setAuth({ ...authCredentials, email: e.target.value })
               }
             />
@@ -115,7 +139,7 @@ const Login = () => {
               label="Password"
               type="password"
               id="password"
-              onChange={(e) =>
+              onChange={(e: any) =>
                 setAuth({ ...authCredentials, password: e.target.value })
               }
             />
@@ -136,7 +160,7 @@ const Login = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={loginHadler}
+              onClick={loginHandler}
             >
               Sign In
             </Button>
