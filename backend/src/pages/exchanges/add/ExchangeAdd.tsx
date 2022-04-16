@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Grid, Typography, Box, Stack } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import ExchangeUploader from "../../../components/form/input/file/exchangeicon/ExchangeUploader";
@@ -6,6 +7,7 @@ import InputText from "../../../components/form/input/text/InputText";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 
 const ExchangeAdd = () => {
+  const [formData, setFormData] = useState({});
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -27,7 +29,11 @@ const ExchangeAdd = () => {
               Exchange Name
             </Typography>
 
-            <InputText placeholder="Enter Exchange Name" />
+            <InputText
+              placeholder="Enter Exchange Name"
+              setFormData={setFormData}
+              formData={formData}
+            />
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
@@ -35,7 +41,11 @@ const ExchangeAdd = () => {
               Exchange URL
             </Typography>
 
-            <InputText placeholder="Enter Exchange url" />
+            <InputText
+              placeholder="Enter Exchange url"
+              setFormData={setFormData}
+              formData={formData}
+            />
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>

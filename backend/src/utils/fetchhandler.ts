@@ -2,33 +2,64 @@ import axios from "axios";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
-export const appRequest: any = async (
-  authCredentials: any,
-  reDirectHandler: any,
-  LoginError: any
+const appRequest = (
+  {
+    url,
+    method = "GET",
+    actionType,
+    body,
+    secure = false,
+    fileUpload = false,
+  }: any,
+  successHandler: any = null,
+  errorHandler: any = null
 ) => {
-  await axios({
-    method: "post",
-    url: `${serverAPIUrl}api/b/v1/auth/login`,
-    data: authCredentials,
-  })
-    .then((response) => {
-      if (response.data.access_token) {
-        //  console.log(storeData.pathExtention);
+  const authToken =
+    sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
+  return (dispatch: any) => {
+    const triggerSuccessHandler = (response: any) => {
+      dispatch({
+        type: actionType,
+        payload: response,
+      });
+      return successHandler ? successHandler(response) : null;
+    };
 
-        sessionStorage.setItem(
-          "authToken",
-          JSON.stringify(response.data.access_token)
-        );
-        reDirectHandler(response);
+    const headersData = {
+      Accept: fileUpload ? "multipart/form-data" : "application/json",
+      "Content-Type": fileUpload ? "multipart/form-data" : "application/json",
+    };
 
-        if (authCredentials.remember === true) {
-          localStorage.setItem(
-            "authToken",
-            JSON.stringify(response.data.access_token)
-          );
-        }
-      }
+    let requestBody = body;
+    if (method === "POST" && body !== "" && !fileUpload) {
+      requestBody = JSON.stringify({
+        ...JSON.parse(body),
+      });
+    }
+
+    return axios({
+      method: method,
+      url: `${serverAPIUrl}${url}`,
+      headers: {
+        ...headersData,
+        ...(secure && { Authorization: `Bearer ${authToken}` }),
+        "Access-Control-Allow-Origin": "*",
+      },
+      ...(method !== "GET" && { data: requestBody }),
     })
-    .catch((error) => LoginError(error));
+      .then((res) => {
+        return triggerSuccessHandler(res);
+      })
+      .catch((err) => {
+        const errorObj = {
+          error: {
+            url: `${serverAPIUrl}${url}`,
+            code: "FETCH_FAILED",
+            message: err,
+          },
+        };
+        return errorHandler ? errorHandler(errorObj) : null;
+      });
+  };
 };
+export default appRequest;
