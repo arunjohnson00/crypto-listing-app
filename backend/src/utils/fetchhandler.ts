@@ -5,13 +5,11 @@ const serverAPIUrl = process.env.REACT_APP_API_URL;
 export const appRequest: any = async (
   authCredentials: any,
   reDirectHandler: any,
-  LoginError: any,
-  storeData: any
+  LoginError: any
 ) => {
   await axios({
     method: "post",
-    url: `${serverAPIUrl}${storeData.pathExtention}
-      `,
+    url: `${serverAPIUrl}api/b/v1/auth/login`,
     data: authCredentials,
   })
     .then((response) => {

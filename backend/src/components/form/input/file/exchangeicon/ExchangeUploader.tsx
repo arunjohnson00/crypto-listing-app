@@ -18,6 +18,7 @@ const ExchangeUploader = () => {
     </Typography>
   ));
 
+  console.log(acceptedFiles);
   const fileRejectionItems = fileRejections.map(({ file, errors }: any) => (
     <Typography variant="caption" key={file.path}>
       {file.size} bytes -

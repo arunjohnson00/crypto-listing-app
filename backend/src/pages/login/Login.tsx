@@ -10,7 +10,7 @@ import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { appRequest } from "../../utils/fetchhandler";
 import CoinxhighIcon from "../../assets/icon/coinxhighicon.jpg";
@@ -23,13 +23,11 @@ const theme = createTheme();
 const Login = () => {
   const [authCredentials, setAuth] = useState({});
   const [loginAlrert, setAlert] = useState("");
-  const dispatch = useDispatch();
   const storeData = useSelector((store) => {
     return store;
   });
 
   const loginHadler = () => {
-    dispatch({ type: "loginpath" });
     appRequest(authCredentials, reDirectHandler, LoginError, storeData);
   };
 
