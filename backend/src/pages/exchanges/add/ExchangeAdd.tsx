@@ -3,11 +3,42 @@ import { Grid, Typography, Box, Stack } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import ExchangeUploader from "../../../components/form/input/file/exchangeicon/ExchangeUploader";
 import InputText from "../../../components/form/input/text/InputText";
+import { useDispatch } from "react-redux";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
+import { addExchangeRequest } from "../../../store/action/addExchangeAction";
 
 const ExchangeAdd = () => {
-  const [formData, setFormData] = useState({});
+  const dispatch = useDispatch();
+  const [addExchangeData, setAddExchange] = useState({
+    name: "",
+    status: 1,
+    url: "",
+    thumb_icon: "",
+  });
+
+  const exchangeAddHandler = () => {
+    const successHandler = (res: any) => {
+      console.log(res);
+    };
+
+    const errorHandler = (err: any) => {
+      console.log(err);
+    };
+
+    dispatch(addExchangeRequest(addExchangeData, successHandler, errorHandler));
+  };
+
+  const exchageNameHandler = (e: any) => {
+    //console.log(e);
+    setAddExchange({ ...addExchangeData, name: e });
+  };
+
+  const exchageURLHandler = (e: any) => {
+    //console.log(e);
+    setAddExchange({ ...addExchangeData, url: e });
+  };
+
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -31,8 +62,7 @@ const ExchangeAdd = () => {
 
             <InputText
               placeholder="Enter Exchange Name"
-              setFormData={setFormData}
-              formData={formData}
+              inputTextHandler={(e: any) => exchageNameHandler(e)}
             />
           </Grid>
 
@@ -43,8 +73,7 @@ const ExchangeAdd = () => {
 
             <InputText
               placeholder="Enter Exchange url"
-              setFormData={setFormData}
-              formData={formData}
+              inputTextHandler={(e: any) => exchageURLHandler(e)}
             />
           </Grid>
 
@@ -53,12 +82,18 @@ const ExchangeAdd = () => {
               Exchange Icon
             </Typography>
 
-            <ExchangeUploader />
+            <ExchangeUploader
+              setAddExchange={setAddExchange}
+              addExchangeData={addExchangeData}
+            />
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Stack spacing={2} sx={{ alignItems: "flex-end" }} pb={5} mr={5}>
-              <LargeBtn Title="Add new exchange" />
+              <LargeBtn
+                Title="Add new exchange"
+                lgBtnHandler={exchangeAddHandler}
+              />
             </Stack>
           </Grid>
         </Box>

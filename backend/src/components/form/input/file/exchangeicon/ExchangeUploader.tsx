@@ -1,16 +1,20 @@
+import { useCallback } from "react";
 import { Typography, Box } from "@mui/material";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import Link from "@mui/material/Link";
 import { useDropzone } from "react-dropzone";
 import { useStyles } from "./style";
 
-const ExchangeUploader = () => {
+const ExchangeUploader = ({ addExchangeData, setAddExchange }: any) => {
   const classes = useStyles();
-
+  const onDrop = useCallback(
+    (acceptedFiles: any) => {
+      setAddExchange({ ...addExchangeData, thumb_icon: acceptedFiles[0] });
+    },
+    [addExchangeData, setAddExchange]
+  );
   const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
-    useDropzone({
-      accept: "image/jpeg,image/png,image/gif",
-    });
+    useDropzone({ onDrop, accept: "image/jpeg,image/png,image/gif" });
 
   const acceptedFileItems = acceptedFiles.map((file: any) => (
     <Typography variant="caption" key={file.path}>
@@ -18,7 +22,6 @@ const ExchangeUploader = () => {
     </Typography>
   ));
 
-  console.log(acceptedFiles);
   const fileRejectionItems = fileRejections.map(({ file, errors }: any) => (
     <Typography variant="caption" key={file.path}>
       {file.size} bytes -
