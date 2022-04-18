@@ -53,6 +53,24 @@ Route::prefix('b')->group(function() {
             Route::delete('exchange/{exchange_id}', 'Exchange\ExchangeController@destroy'); 
             
             
+            /*
+            |--------------------------------------------------------------------------
+            | Networks Routes  
+            |--------------------------------------------------------------------------
+            */
+            
+            /* List */
+            Route::get('networks', 'Networks\NetworksController@index');                    
+            /* Create */
+            Route::post('networks', 'Networks\NetworksController@store');                  
+            /* Edit */
+            Route::get('networks/{networks_id}/edit', 'Networks\NetworksController@edit');  
+            /* Show */
+            Route::get('networks/{networks_id}/show', 'Networks\NetworksController@show');  
+            /* Update */
+            Route::post('networks/{networks_id}', 'Networks\NetworksController@update');    
+            /* Destroy */
+            Route::delete('networks/{networks_id}', 'Networks\NetworksController@destroy'); 
             
             
             
