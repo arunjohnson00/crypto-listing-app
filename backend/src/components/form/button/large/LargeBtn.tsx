@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 
-const LargeBtn = () => {
+const LargeBtn = ({ Title, lgBtnHandler }: any) => {
   return (
     <Button
       variant="contained"
@@ -13,8 +13,9 @@ const LargeBtn = () => {
         textTransform: "capitalize",
         fontWeight: "300",
       }}
+      onClick={lgBtnHandler}
     >
-      Large
+      {Title}
     </Button>
   );
 };

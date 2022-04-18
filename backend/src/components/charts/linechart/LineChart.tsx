@@ -1,40 +1,71 @@
-import React from "react";
+import { Typography } from "@mui/material";
+import { Fragment } from "react";
 import { Chart } from "react-google-charts";
+import { Grid } from "@mui/material";
+import { NativeSelect } from "@mui/material";
+import { FormControl } from "@mui/material";
 
 const LineChart = () => {
   const data = [
-    ["Day", "Guardians of the Galaxy"],
-    [1, 37.8],
-    [2, 30.9],
-    [3, 25.4],
-    [4, 11.7],
-    [5, 11.9],
-    [6, 8.8],
-    [7, 7.6],
-    [8, 12.3],
-    [9, 16.9],
-    [10, 12.8],
-    [11, 5.3],
-    [12, 6.6],
-    [13, 4.8],
-    [14, 4.2],
+    ["Day", "CoinListing"],
+    ["1", 1000],
+    ["2", 1170],
+    ["3", 660],
+    ["4", 1030],
   ];
 
   const options = {
-    chart: {
-      title: "Box Office Earnings in First Two Weeks of Opening",
-      subtitle: "in millions of dollars (USD)",
-    },
+    // title: "Coin Listing Request / Day",
+    legend: { position: "bottom" },
+    tooltip: { trigger: "selection" },
+    chartArea: { width: "85%" },
   };
 
   return (
-    <Chart
-      chartType="Line"
-      width="100%"
-      height="400px"
-      data={data}
-      options={options}
-    />
+    <Fragment>
+      <Grid container spacing={2}>
+        <Grid item xs={8}>
+          <Typography
+            sx={{
+              fontWeight: "600",
+              textAlign: "left",
+              color: "#363062",
+              paddingTop: "7px",
+              paddingLeft: "4px",
+            }}
+          >
+            Coin Listing Request / Day
+          </Typography>
+        </Grid>
+
+        <Grid item xs={4}>
+          <FormControl fullWidth>
+            <NativeSelect
+              defaultValue={30}
+              inputProps={{
+                name: "age",
+                id: "uncontrolled-native",
+              }}
+              sx={{ fontSize: "13px", color: "#9C9FA0" }}
+            >
+              <option value={7}>Last 7 days</option>
+              <option value={15}>Last 15 days</option>
+              <option value={20}>Last 20 days</option>
+            </NativeSelect>
+          </FormControl>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Chart
+            chartType="LineChart"
+            width="auto"
+            height="auto"
+            data={data}
+            options={options}
+          />
+        </Grid>
+      </Grid>
+    </Fragment>
   );
 };
 

@@ -1,29 +1,92 @@
+import { useState } from "react";
+import { useTheme } from "@mui/material/styles";
+import { Divider, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
-
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { useNavigate } from "react-router-dom";
 import { AppBar } from "./style";
+import { logoutHandler } from "../../../utils/logoutHandler";
+import SettingsBtn from "../../../components/button/settings/SettingsBtn";
+import NotificationBtn from "../../../components/button/notification/NotificationBtn";
+import ProfileBtn from "../../../components/button/profile/ProfileBtn";
+import ProfileMenu from "../../../components/dropdowns/profile/ProfileMenu";
 
-const TopBar = ({ handleDrawerOpen, open }: any) => {
+const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const openSettings = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const navigate: any = useNavigate();
+  const loginControll = () => {
+    logoutHandler(navigate);
+  };
+  const theme = useTheme();
   return (
-    <AppBar position="fixed" open={open}>
+    <AppBar
+      position="fixed"
+      sx={{
+        height: "68px",
+        backgroundColor: "rgba(255, 255, 255, 1)",
+        color: "rgba(0, 0, 0, 1)",
+        boxShadow: "rgb(244, 244, 244) 0px 12px 1px ",
+      }}
+      open={open}
+    >
       <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={handleDrawerOpen}
-          edge="start"
-          sx={{
-            marginRight: 5,
-            ...(open && { display: "none" }),
-          }}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" noWrap component="div">
-          Mini variant drawer
+        {!open ? (
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            sx={{
+              marginRight: 5,
+              ...(open && { display: "none" }),
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
+        ) : (
+          <IconButton onClick={handleDrawerClose} sx={{ marginRight: "20px" }}>
+            {theme.direction === "rtl" ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
+          </IconButton>
+        )}
+
+        <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+          Dashboard
         </Typography>
+        <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+          <SettingsBtn />
+
+          <NotificationBtn />
+          <Divider orientation="vertical" flexItem />
+          <ProfileBtn
+            handleClick={handleClick}
+            handleClose={handleClose}
+            open={openSettings}
+            anchorEl={anchorEl}
+          />
+          <ProfileMenu
+            handleClick={handleClick}
+            handleClose={handleClose}
+            open={openSettings}
+            anchorEl={anchorEl}
+            loginControll={loginControll}
+          />
+        </Stack>
       </Toolbar>
     </AppBar>
   );
