@@ -56,7 +56,7 @@ class LoginController extends Controller
         ]);
     }
      
-     /**
+    /**
      * Refresh a token.
      *
      * @return \Illuminate\Http\JsonResponse
