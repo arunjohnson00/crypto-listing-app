@@ -9,7 +9,7 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import Events from "../pages/events/view/Events";
 import Exchanges from "../pages/exchanges/Exchanges";
 import MenuCard from "../pages/menucards/view/MenuCard";
-import Networks from "../pages/networks/view/Networks";
+import Networks from "../pages/networks/Networks";
 import NFTListing from "../pages/nftlisting/view/NFTListing";
 import NFTMarketPlaces from "../pages/nftmarketplaces/view/NFTMarketPlaces";
 import ReviewsRating from "../pages/reviews/view/ReviewsRating";
@@ -17,6 +17,7 @@ import Users from "../pages/users/view/Users";
 import Videos from "../pages/videos/view/Videos";
 import ExchangeAdd from "../pages/exchanges/add/ExchangeAdd";
 import CoinListingAdd from "../pages/coinlisting/add/CoinListingAdd";
+import NetworkAdd from "../pages/networks/add/NetworkAdd";
 import PrivateRoute from "./private/PrivateRoute";
 import PublicRoutes from "./public/PublicRoutes";
 
@@ -105,6 +106,15 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <Networks />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/networks/add"
+          element={
+            <PrivateRoute>
+              <NetworkAdd />
             </PrivateRoute>
           }
         />
