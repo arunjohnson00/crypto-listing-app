@@ -14,7 +14,7 @@ const appRequest = (
   successHandler: any = null,
   errorHandler: any = null
 ) => {
-  const authToken =
+  const authToken: any =
     sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
   return (dispatch: any) => {
     const triggerSuccessHandler = (response: any) => {
@@ -42,7 +42,9 @@ const appRequest = (
       url: `${serverAPIUrl}${url}`,
       headers: {
         ...headersData,
-        ...(secure && { Authorization: `Bearer ${authToken}` }),
+        ...(secure && {
+          Authorization: `Bearer ${authToken.replace(/['"]+/g, "")}`,
+        }),
         "Access-Control-Allow-Origin": "*",
       },
       ...(method !== "GET" && { data: requestBody }),

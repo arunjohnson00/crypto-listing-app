@@ -7,4 +7,10 @@ export const COMMON = {
 
 export const EXCHANGE = {
   ADD_EXCHANGE: "ADD_EXCHANGE",
+  LIST_EXCHANGE: "LIST_EXCHANGE",
+};
+
+export const NETWORK = {
+  ADD_NETWORK: "ADD_NETWORK",
+  LIST_NETWORK: "LIST_NETWORK",
 };

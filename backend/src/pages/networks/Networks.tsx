@@ -6,14 +6,14 @@ import LargeBtn from "../../components/form/button/large/LargeBtn";
 
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
-import { listExchangeRequest } from "../../store/action";
+import { listNetworkRequest } from "../../store/action/listNetworkAction";
 
-const Exchanges = () => {
-  const exchangeList = useSelector((exList: any) => {
-    return exList.listExchangeReducer.exchangeListAll.data;
+const Networks = () => {
+  const networkList = useSelector((ntList: any) => {
+    return ntList.listNetworkReducer.natworkListAll.data;
   });
 
-  console.log(exchangeList);
+  console.log(networkList);
   const [pageData, setPageData] = useState({
     page: 0,
     count: 1,
@@ -32,13 +32,40 @@ const Exchanges = () => {
     console.log(err);
   };
   useEffect(() => {
-    dispatch(listExchangeRequest(pageData, successHandler, errorHandler));
+    dispatch(listNetworkRequest(pageData, successHandler, errorHandler));
   }, [dispatch, pageData]);
 
   const tableColumn = [
     {
       name: "name",
       label: "Name",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+
+    {
+      name: "chain_id",
+      label: "Chain Id",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+
+    {
+      name: "explorer_url",
+      label: "Explorer URL",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+
+    {
+      name: "currency_symbol",
+      label: "Currency Symbol",
       options: {
         filter: true,
         sort: true,
@@ -69,12 +96,11 @@ const Exchanges = () => {
       },
     },
   ];
-
   return (
     <Grid container spacing={2}>
       <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
         <Typography variant="h5" sx={{ textAlign: "left" }}>
-          Exchanges
+          Networks
         </Typography>
       </Grid>
 
@@ -84,15 +110,15 @@ const Exchanges = () => {
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Stack spacing={2} sx={{ alignItems: "flex-end" }}>
           {" "}
-          <Link to="/exchanges/add">
-            <LargeBtn Title="Add new exchange" />
+          <Link to="/networks/add">
+            <LargeBtn Title="Add new network" />
           </Link>
         </Stack>
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
           tableColumn={tableColumn}
-          tableData={exchangeList}
+          tableData={networkList}
           setPageData={setPageData}
           pageData={pageData}
         />
@@ -100,8 +126,8 @@ const Exchanges = () => {
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Stack spacing={2} sx={{ alignItems: "flex-end" }}>
           {" "}
-          <Link to="/exchanges/add">
-            <LargeBtn Title="Add new exchange" />
+          <Link to="/networks/add">
+            <LargeBtn Title="Add new network" />
           </Link>
         </Stack>
       </Grid>
@@ -109,4 +135,4 @@ const Exchanges = () => {
   );
 };
 
-export default Exchanges;
+export default Networks;
