@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
+import Avatar from "@mui/material/Avatar";
 
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import { listNetworkRequest } from "../../store/action/listNetworkAction";
+
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const Networks = () => {
   const networkList = useSelector((ntList: any) => {
@@ -37,63 +40,51 @@ const Networks = () => {
 
   const tableColumn = [
     {
-      name: "name",
-      label: "Name",
-      options: {
-        filter: true,
-        sort: true,
-      },
+      field: "thumb_icon",
+      headerName: "Icon",
+      width: 140,
+      sortable: false,
+      disableClickEventBubbling: true,
+      renderCell: (params: any) => (
+        <Avatar
+          src={`${serverAPIUrl}public/uploads/network_icons/t/${params.row.thumb_icon}`}
+          alt={params.thumb_icon}
+        />
+      ),
+    },
+    {
+      field: "name",
+      headerName: "Name",
+      width: 140,
     },
 
     {
-      name: "chain_id",
-      label: "Chain Id",
-      options: {
-        filter: true,
-        sort: true,
-      },
+      field: "chain_id",
+      headerName: "Chain Id",
+      width: 140,
     },
 
     {
-      name: "explorer_url",
-      label: "Explorer URL",
-      options: {
-        filter: true,
-        sort: true,
-      },
+      field: "explorer_url",
+      headerName: "Explorer URL",
+      width: 140,
     },
 
     {
-      name: "currency_symbol",
-      label: "Currency Symbol",
-      options: {
-        filter: true,
-        sort: true,
-      },
+      field: "currency_symbol",
+      headerName: "Currency Symbol",
+      width: 140,
     },
     {
-      name: "url",
-      label: "Url",
-      options: {
-        filter: true,
-        sort: false,
-      },
+      field: "url",
+      headerName: "Url",
+      width: 140,
     },
+
     {
-      name: "thumb_icon",
-      label: "Icon",
-      options: {
-        filter: true,
-        sort: false,
-      },
-    },
-    {
-      name: "slug",
-      label: "Slug",
-      options: {
-        filter: true,
-        sort: false,
-      },
+      field: "slug",
+      headerName: "Slug",
+      width: 140,
     },
   ];
   return (
