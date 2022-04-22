@@ -8,11 +8,11 @@ class CreateBannerCouponCodeTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * 
      * @return void
      */
     public function up()
-    {
+    { 
         Schema::create('banner_coupon_code', function (Blueprint $table) {
             $table->increments('id');   
             $table->string('coupon_name',255)->unique()->nullable(false);

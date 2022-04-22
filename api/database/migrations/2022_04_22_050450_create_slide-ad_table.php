@@ -10,7 +10,7 @@ class CreateSlideAdTable extends Migration
      * Run the migrations.
      *
      * @return void
-     */
+     */ 
     public function up()
     {
         Schema::create('slide-ads', function (Blueprint $table) {

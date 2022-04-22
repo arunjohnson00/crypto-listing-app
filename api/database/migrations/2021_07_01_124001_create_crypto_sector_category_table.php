@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCryptoSectorCategoryTable extends Migration
 {
-    /**
+    /** 
      * Run the migrations.
      *
      * @return void
-     */
+     */ 
     public function up()
     {
         Schema::create('crypto_sector_category', function (Blueprint $table) {

@@ -10,7 +10,7 @@ class CreatePivotExchangeTable extends Migration
      * Run the migrations.
      *
      * @return void
-     */
+     */ 
     public function up()
     {
         Schema::create('pivot_exchange', function (Blueprint $table) {
