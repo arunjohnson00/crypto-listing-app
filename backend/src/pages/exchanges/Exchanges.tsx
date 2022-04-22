@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
+import Avatar from "@mui/material/Avatar";
 
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import { listExchangeRequest } from "../../store/action";
+
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const Exchanges = () => {
   const exchangeList = useSelector((exList: any) => {
@@ -37,39 +40,36 @@ const Exchanges = () => {
 
   const tableColumn = [
     {
-      name: "name",
-      label: "Name",
-      options: {
-        filter: true,
-        sort: true,
-      },
+      field: "thumb_icon",
+      headerName: "Icon",
+      width: 140,
+      sortable: false,
+      disableClickEventBubbling: true,
+      renderCell: (params: any) => (
+        <Avatar
+          src={`${serverAPIUrl}public/uploads/exchange_icons/${params.row.thumb_icon}`}
+          alt={params.thumb_icon}
+        />
+      ),
     },
     {
-      name: "url",
-      label: "Url",
-      options: {
-        filter: true,
-        sort: false,
-      },
+      field: "name",
+      headerName: "Name",
+      width: 140,
     },
+
     {
-      name: "thumb_icon",
-      label: "Icon",
-      options: {
-        filter: true,
-        sort: false,
-      },
+      field: "url",
+      headerName: "Url",
+      width: 140,
     },
+
     {
-      name: "slug",
-      label: "Slug",
-      options: {
-        filter: true,
-        sort: false,
-      },
+      field: "slug",
+      headerName: "Slug",
+      width: 140,
     },
   ];
-
   return (
     <Grid container spacing={2}>
       <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>

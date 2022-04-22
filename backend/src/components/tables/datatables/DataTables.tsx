@@ -1,54 +1,74 @@
-import MUIDataTable from "mui-datatables";
+import { DataGrid } from "@mui/x-data-grid";
 import { Fragment } from "react";
+import TableActionBtn from "../../button/tableaction/TableActionBtn";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const DataTables = ({ tableData, pageData, setPageData, tableColumn }: any) => {
-  // const columns = ["Name", "Title", "Location"];
-  // const columns: any = [
-  //   { id: "ID" },
-  //   { name: "Name" },
-  //   { slug: "URL" },
-  //   { thumb_icon: "Icon" },
-  // ];
+const GridEdit = ({ index, navigate, location }: any) => {
+  console.log(location);
+  const handleEditClick = () => {
+    alert("helloEdit" + index);
+    navigate(`${location.pathname}/edit`, { id: index });
+  };
 
-  // const data = [
-  //   { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  //   { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  //   { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  //   {
-  //     name: "James Houston",
-  //     company: "Test Corp",
-  //     city: "Dallas",
-  //     state: "TX",
-  //   },
-  // ];
+  const handleDeleteClick = () => {
+    alert("hellodelete" + index);
+    navigate(`${location.pathname}/Delete`, { id: index });
+  };
 
-  const options: any = {
-    filterType: "dropdown",
-    caseSensitive: false,
-
-    //serverSide: true,
-
-    onTableChange: (action: any, tableState: any) => {
-      // console.log(action, tableState);
-      if (action === "changePage") {
-        console.log("Go to page", tableState.page);
-        console.log("Go to page", tableState.rowsPerPage);
-        setPageData({
-          page: tableState.page,
-          rowPerPage: tableState.rowsPerPage,
-        });
-      }
-    },
+  const handleViewClick = () => {
+    alert("helloview" + index);
+    navigate(`${location.pathname}/View`, { id: index });
   };
 
   return (
     <Fragment>
-      <MUIDataTable
-        title={""}
-        data={tableData}
-        columns={tableColumn}
-        options={options}
+      <TableActionBtn
+        tableEdit={handleEditClick}
+        tableDelete={handleDeleteClick}
+        tableView={handleViewClick}
       />
+    </Fragment>
+  );
+};
+
+const DataTables = ({ tableData, pageData, setPageData, tableColumn }: any) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const addtitionalColumns = [
+    {
+      field: "actions",
+      headerName: "Actions",
+      sortable: false,
+      width: "100%",
+      disableClickEventBubbling: true,
+      renderCell: (params: any) => {
+        return (
+          <div
+            className="d-flex justify-content-between align-items-center"
+            style={{ cursor: "pointer" }}
+          >
+            <GridEdit
+              index={params.row.id}
+              navigate={navigate}
+              location={location}
+            />
+          </div>
+        );
+      },
+    },
+  ];
+
+  return (
+    <Fragment>
+      <div style={{ height: "100vh", width: "100%" }}>
+        <DataGrid
+          rows={tableData}
+          columns={[...tableColumn, ...addtitionalColumns]}
+          filterMode="server"
+          autoHeight={false}
+          rowsPerPageOptions={[5, 10, 20]}
+        />
+      </div>
     </Fragment>
   );
 };
