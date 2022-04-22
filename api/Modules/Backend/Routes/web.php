@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('coinx-admin')->group(function() {
-    Route::get('/', 'BackendController@index');
-});
+//Route::prefix('coinx-admin')->group(function() {
+//    Route::get('/', 'BackendController@index');
+//});

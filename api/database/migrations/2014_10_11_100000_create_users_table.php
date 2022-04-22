@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique(); 
             $table->string('password'); 
+            $table->string('avatar')->nullable(true); 
             $table->tinyInteger('email_verified')->default(0)->comment('1-yes,0-no');
             $table->timestamp('email_verified_at')->nullable();
             $table->tinyInteger('receive_newsletter')->default(0)->comment('1-yes,0-no');

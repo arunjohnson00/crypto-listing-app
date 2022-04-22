@@ -20,6 +20,7 @@ class NetworksController extends Controller
         $this->deleteErrorMessage   =   'Network is not deleted successfully.';  
         $this->allowedfileExtension =   ['jpg','png','jpeg','gif','JPG','PNG','JPEG','GIF'];
         $this->FilePath             =   public_path().'/uploads/network_icons/';
+        $this->NotFoundMessage      =   'Network not found!'; 
     }
     
     /**
@@ -40,7 +41,6 @@ class NetworksController extends Controller
      */
     public function store(Request $request)
     {
-        
         $error = null;
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255', "status" => "required|numeric", 
@@ -77,11 +77,11 @@ class NetworksController extends Controller
      */
     public function show($networks_id)
     {       
-        $network = Networks::where('id',$networks_id)->first()->makeHidden('created_at','updated_at','deleted_at');  
+        $network = Networks::where('id',$networks_id)->first();  
         if($network):
             return response()->json(['response'=>true,'data'=>$network]);
         else:
-             return response()->json(['response'=>false,'message'=>'Network not found!'],422);
+             return response()->json(['response'=>false,'message'=>$this->NotFoundMessage],422);
         endif; 
     }
 
@@ -92,11 +92,11 @@ class NetworksController extends Controller
      */
     public function edit($networks_id)
     { 
-        $network = Networks::where('id',$networks_id)->first()->makeHidden('created_at','updated_at','deleted_at');  
+        $network = Networks::where('id',$networks_id)->first();  
         if($network):
             return response()->json(['response'=>true,'data'=>$network]);
         else:
-             return response()->json(['response'=>false,'message'=>'Network not found!'],422);
+             return response()->json(['response'=>false,'message'=>$this->NotFoundMessage],422);
         endif; 
     }
 
@@ -136,7 +136,7 @@ class NetworksController extends Controller
                 if($error == null): /* no error, true response*/  return response()->json(['response'=>true,'message'=>$this->updateMessage],200);
                 else: /* have error, false response*/  return response()->json(['response'=>false,'message'=>$this->updateErrorMessage.'<br/> '.$error],200);  endif;
             endif; 
-        else:  return response()->json(['response'=>false,'message'=>'Network not found!'],422); endif; 
+        else:  return response()->json(['response'=>false,'message'=>$this->NotFoundMessage],422); endif; 
     }
 
     /**

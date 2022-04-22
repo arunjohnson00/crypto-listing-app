@@ -20,6 +20,7 @@ class ExchangeController extends Controller
         $this->deleteErrorMessage   =   'Exchange is not deleted successfully.';  
         $this->allowedfileExtension =   ['jpg','png','jpeg','gif','JPG','PNG','JPEG','GIF'];
         $this->FilePath             =   public_path().'/uploads/exchange_icons/';
+        $this->NotFoundMessage      =   'Exchange not found!'; 
     }
     
     /**
@@ -68,11 +69,11 @@ class ExchangeController extends Controller
      */
     public function show($exchange_id)
     {       
-        $exchange = Exchange::where('id',$exchange_id)->first()->makeHidden('created_at','updated_at','deleted_at');  
+        $exchange = Exchange::where('id',$exchange_id)->first();  
         if($exchange):
             return response()->json(['response'=>true,'data'=>$exchange]);
         else:
-             return response()->json(['response'=>false,'message'=>'Exchange not found!'],422);
+             return response()->json(['response'=>false,'message'=>$this->NotFoundMessage],422);
         endif; 
     }
 
@@ -83,11 +84,11 @@ class ExchangeController extends Controller
      */
     public function edit($exchange_id)
     { 
-        $exchange = Exchange::where('id',$exchange_id)->first()->makeHidden('created_at','updated_at','deleted_at');  
+        $exchange = Exchange::where('id',$exchange_id)->first();  
         if($exchange):
             return response()->json(['response'=>true,'data'=>$exchange]);
         else:
-             return response()->json(['response'=>false,'message'=>'Exchange not found!'],422);
+             return response()->json(['response'=>false,'message'=>$this->NotFoundMessage],422);
         endif; 
     }
 
@@ -116,7 +117,7 @@ class ExchangeController extends Controller
                 if($error == null): /* no error, true response*/  return response()->json(['response'=>true,'message'=>$this->updateMessage],200);
                 else: /* have error, false response*/  return response()->json(['response'=>false,'message'=>$this->updateErrorMessage.'<br/> '.$error],200);  endif;
             endif; 
-        else:  return response()->json(['response'=>false,'message'=>'Exchange not found!'],422); endif; 
+        else:  return response()->json(['response'=>false,'message'=>$this->NotFoundMessage],422); endif; 
     }
 
     /**
