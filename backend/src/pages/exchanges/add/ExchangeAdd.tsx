@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Grid, Typography, Box, Stack } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
-import ExchangeUploader from "../../../components/form/input/file/exchangeicon/ExchangeUploader";
+import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 import InputText from "../../../components/form/input/text/InputText";
 import { useDispatch } from "react-redux";
 
@@ -17,6 +17,8 @@ const ExchangeAdd = () => {
     thumb_icon: "",
   });
 
+  // Display the key/value pairs
+
   const exchangeAddHandler = () => {
     const successHandler = (res: any) => {
       console.log(res);
@@ -26,16 +28,25 @@ const ExchangeAdd = () => {
       console.log(err);
     };
 
-    dispatch(addExchangeRequest(addExchangeData, successHandler, errorHandler));
+    const formData = new FormData();
+    formData.append("thumb_icon", addExchangeData.thumb_icon);
+    formData.append("name", addExchangeData.name);
+    formData.append("url", addExchangeData.url);
+
+    formData.append("status", "1");
+
+    dispatch(addExchangeRequest(formData, successHandler, errorHandler));
   };
 
   const exchageNameHandler = (e: any) => {
     //console.log(e);
+
     setAddExchange({ ...addExchangeData, name: e });
   };
 
   const exchageURLHandler = (e: any) => {
     //console.log(e);
+
     setAddExchange({ ...addExchangeData, url: e });
   };
 
@@ -82,9 +93,9 @@ const ExchangeAdd = () => {
               Exchange Icon
             </Typography>
 
-            <ExchangeUploader
-              setAddExchange={setAddExchange}
-              addExchangeData={addExchangeData}
+            <IconUploader
+              setAddIcon={setAddExchange}
+              addIconData={addExchangeData}
             />
           </Grid>
 

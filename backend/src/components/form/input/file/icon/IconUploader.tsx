@@ -5,16 +5,23 @@ import Link from "@mui/material/Link";
 import { useDropzone } from "react-dropzone";
 import { useStyles } from "./style";
 
-const ExchangeUploader = ({ addExchangeData, setAddExchange }: any) => {
+const IconUploader = ({ addIconData, setAddIcon }: any) => {
   const classes = useStyles();
+
   const onDrop = useCallback(
     (acceptedFiles: any) => {
-      setAddExchange({ ...addExchangeData, thumb_icon: acceptedFiles[0] });
+      setAddIcon({
+        ...addIconData,
+        thumb_icon: acceptedFiles[0],
+      });
     },
-    [addExchangeData, setAddExchange]
+    [addIconData, setAddIcon]
   );
+
   const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
     useDropzone({ onDrop, accept: "image/jpeg,image/png,image/gif" });
+
+  //console.log(acceptedFiles[0]);
 
   const acceptedFileItems = acceptedFiles.map((file: any) => (
     <Typography variant="caption" key={file.path}>
@@ -75,4 +82,4 @@ const ExchangeUploader = ({ addExchangeData, setAddExchange }: any) => {
   );
 };
 
-export default ExchangeUploader;
+export default IconUploader;
