@@ -16,10 +16,15 @@ import ReviewsRating from "../pages/reviews/view/ReviewsRating";
 import Users from "../pages/users/view/Users";
 import Videos from "../pages/videos/view/Videos";
 import ExchangeAdd from "../pages/exchanges/add/ExchangeAdd";
+import ExchangeEdit from "../pages/exchanges/edit/ExchangeEdit";
 import CoinListingAdd from "../pages/coinlisting/add/CoinListingAdd";
 import NetworkAdd from "../pages/networks/add/NetworkAdd";
+
 import PrivateRoute from "./private/PrivateRoute";
 import PublicRoutes from "./public/PublicRoutes";
+import ExchangeView from "../pages/exchanges/view/ExchangeView";
+import NetworkEdit from "../pages/networks/edit/NetworkEdit";
+import NetworkView from "../pages/networks/view/NetworkView";
 
 const AppRoutes = () => {
   return (
@@ -59,7 +64,7 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/exchanges"
+          path="/exchange"
           element={
             <PrivateRoute>
               <Exchanges />
@@ -68,10 +73,26 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/exchanges/add"
+          path="/exchange/add"
           element={
             <PrivateRoute>
               <ExchangeAdd />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/exchange/edit"
+          element={
+            <PrivateRoute>
+              <ExchangeEdit />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/exchange/view"
+          element={
+            <PrivateRoute>
+              <ExchangeView />
             </PrivateRoute>
           }
         />
@@ -115,6 +136,23 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <NetworkAdd />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/networks/edit"
+          element={
+            <PrivateRoute>
+              <NetworkEdit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/networks/view"
+          element={
+            <PrivateRoute>
+              <NetworkView />
             </PrivateRoute>
           }
         />

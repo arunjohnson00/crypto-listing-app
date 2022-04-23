@@ -3,29 +3,41 @@ import { Grid, Typography, Box, Stack } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 import InputText from "../../../components/form/input/text/InputText";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { addNetworkRequest } from "../../../store/action/addNetworkAction";
+import { updateNetworkRequest } from "../../../store/action";
 
-const NetworkAdd = () => {
-  const dispatch = useDispatch();
-
+const NetworkEdit = () => {
+  const networkList = useSelector((ntList: any) => {
+    return ntList.listNetworkReducer.natworkListAll.data;
+  });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const location: any = useLocation();
+
+  console.log(location.state.id);
+
+  let newArrList = networkList.filter(
+    (listData: any) => listData.id === location.state.id
+  );
+  console.log(newArrList[0].id);
+
   const [addNetworkData, setAddNetwork] = useState({
-    name: "",
+    id: newArrList[0].id,
+    name: newArrList[0].name,
     status: 1,
-    url: "",
+    url: newArrList[0].url,
     thumb_icon: "",
-    chain_id: "",
-    explorer_url: "",
-    currency_symbol: "",
+    chain_id: newArrList[0].chain_id,
+    explorer_url: newArrList[0].explorer_url,
+    currency_symbol: newArrList[0].currency_symbol,
   });
 
   // Display the key/value pairs
 
-  const networkAddHandler = () => {
+  const networkEditHandler = () => {
     const successHandler = (res: any) => {
       console.log(res);
     };
@@ -35,7 +47,9 @@ const NetworkAdd = () => {
     };
 
     const formData = new FormData();
-    formData.append("thumb_icon", addNetworkData.thumb_icon);
+    addNetworkData.thumb_icon !== "" &&
+      formData.append("thumb_icon", addNetworkData.thumb_icon);
+    formData.append("id", addNetworkData.id);
     formData.append("name", addNetworkData.name);
     formData.append("url", addNetworkData.url);
     formData.append("chain_id", addNetworkData.chain_id);
@@ -44,7 +58,7 @@ const NetworkAdd = () => {
 
     formData.append("status", "1");
 
-    dispatch(addNetworkRequest(formData, successHandler, errorHandler));
+    dispatch(updateNetworkRequest(formData, successHandler, errorHandler));
     navigate("/networks");
   };
 
@@ -85,7 +99,7 @@ const NetworkAdd = () => {
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Typography variant="h5" sx={{ textAlign: "left" }}>
-          Add Networks
+          Edit Networks
         </Typography>
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -102,6 +116,7 @@ const NetworkAdd = () => {
             <InputText
               placeholder="Enter network Name"
               inputTextHandler={(e: any) => networkNameHandler(e)}
+              value={newArrList[0].name}
             />
           </Grid>
 
@@ -113,6 +128,7 @@ const NetworkAdd = () => {
             <InputText
               placeholder="Enter network url"
               inputTextHandler={(e: any) => networkURLHandler(e)}
+              value={newArrList[0].url}
             />
           </Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
@@ -123,6 +139,7 @@ const NetworkAdd = () => {
             <InputText
               placeholder="Enter Chain id"
               inputTextHandler={(e: any) => networkChainIdHandler(e)}
+              value={newArrList[0].chain_id}
             />
           </Grid>
 
@@ -134,6 +151,7 @@ const NetworkAdd = () => {
             <InputText
               placeholder="Enter explorer URL"
               inputTextHandler={(e: any) => networkExplURLHandler(e)}
+              value={newArrList[0].explorer_url}
             />
           </Grid>
 
@@ -145,6 +163,7 @@ const NetworkAdd = () => {
             <InputText
               placeholder="Enter currency symbol"
               inputTextHandler={(e: any) => networkCurrencySymbolHandler(e)}
+              value={newArrList[0].currency_symbol}
             />
           </Grid>
 
@@ -161,7 +180,10 @@ const NetworkAdd = () => {
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Stack spacing={2} sx={{ alignItems: "flex-end" }} pb={5} mr={5}>
-              <LargeBtn Title="Add network" lgBtnHandler={networkAddHandler} />
+              <LargeBtn
+                Title="Update network"
+                lgBtnHandler={networkEditHandler}
+              />
             </Stack>
           </Grid>
         </Box>
@@ -170,4 +192,4 @@ const NetworkAdd = () => {
   );
 };
 
-export default NetworkAdd;
+export default NetworkEdit;

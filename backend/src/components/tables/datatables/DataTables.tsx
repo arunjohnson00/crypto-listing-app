@@ -1,23 +1,37 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
+import { useDispatch } from "react-redux";
 import TableActionBtn from "../../button/tableaction/TableActionBtn";
 import { useNavigate, useLocation } from "react-router-dom";
+import { deleteRowRequest } from "../../../store/action";
 
-const GridEdit = ({ index, navigate, location }: any) => {
+const GridEdit = ({ index, navigate, location, dispatch }: any) => {
   console.log(location);
   const handleEditClick = () => {
-    alert("helloEdit" + index);
-    navigate(`${location.pathname}/edit`, { id: index });
+    navigate(`${location.pathname}/edit`, { state: { id: index } });
+  };
+
+  const successHandler = (res: any) => {
+    console.log(res);
+    navigate(`${location.pathname}`);
+  };
+
+  const errorHandler = (err: any) => {
+    console.log(err);
   };
 
   const handleDeleteClick = () => {
-    alert("hellodelete" + index);
-    navigate(`${location.pathname}/Delete`, { id: index });
+    dispatch(
+      deleteRowRequest(
+        { pathname: location.pathname, id: index },
+        successHandler,
+        errorHandler
+      )
+    );
   };
 
   const handleViewClick = () => {
-    alert("helloview" + index);
-    navigate(`${location.pathname}/View`, { id: index });
+    navigate(`${location.pathname}/view`, { state: { id: index } });
   };
 
   return (
@@ -26,14 +40,17 @@ const GridEdit = ({ index, navigate, location }: any) => {
         tableEdit={handleEditClick}
         tableDelete={handleDeleteClick}
         tableView={handleViewClick}
+        id={index}
       />
     </Fragment>
   );
 };
 
 const DataTables = ({ tableData, pageData, setPageData, tableColumn }: any) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const [pageSize, setPageSize] = useState<number>(10);
   const addtitionalColumns = [
     {
       field: "actions",
@@ -51,6 +68,7 @@ const DataTables = ({ tableData, pageData, setPageData, tableColumn }: any) => {
               index={params.row.id}
               navigate={navigate}
               location={location}
+              dispatch={dispatch}
             />
           </div>
         );
@@ -66,7 +84,10 @@ const DataTables = ({ tableData, pageData, setPageData, tableColumn }: any) => {
           columns={[...tableColumn, ...addtitionalColumns]}
           filterMode="server"
           autoHeight={false}
-          rowsPerPageOptions={[5, 10, 20]}
+          pageSize={pageSize}
+          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+          rowsPerPageOptions={[10, 25, 50]}
+          pagination
         />
       </div>
     </Fragment>

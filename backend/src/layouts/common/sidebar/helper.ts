@@ -1,7 +1,7 @@
 export const sideBarMenu = [
   { id: "1", title: "Dashboard", icon: "dashboard" },
   { id: "2", title: "Coin Listings", icon: "paid" },
-  { id: "3", title: "Exchanges", icon: "currency_exchange" },
+  { id: "3", title: "Exchange", icon: "currency_exchange" },
   {
     id: "4",
     title: "NFT Listings",
