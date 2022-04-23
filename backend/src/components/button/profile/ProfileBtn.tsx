@@ -2,6 +2,12 @@ import { Box, Typography, Stack } from "@mui/material";
 import { Avatar, Tooltip } from "@mui/material";
 
 const ProfileBtn = ({ handleClick }: any) => {
+  // const userData = useSelector((userData: any) => {
+  //   return userData;
+  // });
+  const authUser: any =
+    sessionStorage.getItem("authUser") || localStorage.getItem("authUser");
+
   return (
     <Box
       sx={{
@@ -27,13 +33,13 @@ const ProfileBtn = ({ handleClick }: any) => {
             variant="subtitle1"
             sx={{ fontWeight: 600, fontSize: "13px", lineHeight: 0 }}
           >
-            JohnDoe
+            {JSON.parse(authUser).name}
           </Typography>
           <Typography
             variant="caption"
             sx={{ fontWeight: 500, fontSize: "10px" }}
           >
-            JohnDoe
+            {JSON.parse(authUser).email}
           </Typography>
         </Box>
       </Stack>

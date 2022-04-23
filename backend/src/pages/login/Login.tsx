@@ -37,12 +37,15 @@ const Login = () => {
           "authToken",
           JSON.stringify(res?.data?.access_token)
         );
+        sessionStorage.setItem("authUser", JSON.stringify(res?.data?.user));
 
         if (authCredentials?.remember === true) {
           localStorage.setItem(
             "authToken",
             JSON.stringify(res.data.access_token)
           );
+
+          localStorage.setItem("authUser", JSON.stringify(res?.data?.user));
         }
       }
       navigate("/dashboard");

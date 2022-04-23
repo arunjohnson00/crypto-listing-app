@@ -3,3 +3,7 @@ export { addExchangeRequest } from "./addExchangeAction";
 export { listExchangeRequest } from "./listExchangeAction";
 export { addNetworkRequest } from "./addNetworkAction";
 export { listNetworkRequest } from "./listNetworkAction";
+export { updateExchangeRequest } from "./updateExchangeAction";
+export { viewExchangeRequest } from "./viewExchangeAction";
+export { deleteRowRequest } from "./deleteRowAction";
+export { updateNetworkRequest } from "./updateNetworkAction";

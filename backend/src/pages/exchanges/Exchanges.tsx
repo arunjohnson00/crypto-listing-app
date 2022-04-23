@@ -84,7 +84,7 @@ const Exchanges = () => {
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Stack spacing={2} sx={{ alignItems: "flex-end" }}>
           {" "}
-          <Link to="/exchanges/add">
+          <Link to="/exchange/add">
             <LargeBtn Title="Add new exchange" />
           </Link>
         </Stack>
@@ -100,7 +100,7 @@ const Exchanges = () => {
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Stack spacing={2} sx={{ alignItems: "flex-end" }}>
           {" "}
-          <Link to="/exchanges/add">
+          <Link to="/exchange/add">
             <LargeBtn Title="Add new exchange" />
           </Link>
         </Stack>
