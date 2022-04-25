@@ -73,10 +73,10 @@ const Users = () => {
       field: "created_at",
       headerName: "Careated at",
       width: 140,
-      renderCell: (params: any) => {
-        console.log(params);
-        <span>{moment(`"${params.row.created_at}"`).fromNow()}</span>;
-      },
+      renderCell: (params: any) => (
+        <span>{moment(params.row.created_at).fromNow()}</span>
+        //<span>{moment("2022-04-25T09:51:52.000000Z").fromNow()}</span>
+      ),
     },
 
     {
