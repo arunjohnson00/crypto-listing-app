@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
 //import Avatar from "@mui/material/Avatar";
+import moment from "moment";
 
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
@@ -62,12 +63,20 @@ const Videos = () => {
       field: "approved_at",
       headerName: "Approved",
       width: 140,
+      renderCell: (params: any) => (
+        <span>{moment(params.row.approved_at).fromNow()}</span>
+        //<span>{moment("2022-04-25T09:51:52.000000Z").fromNow()}</span>
+      ),
     },
 
     {
       field: "created_at",
       headerName: "Careated",
       width: 140,
+      renderCell: (params: any) => (
+        <span>{moment(params.row.created_at).fromNow()}</span>
+        //<span>{moment("2022-04-25T09:51:52.000000Z").fromNow()}</span>
+      ),
     },
 
     {

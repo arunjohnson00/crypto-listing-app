@@ -26,15 +26,6 @@ const InputSelect = ({
         displayEmpty
         value={getInputSelectvalue.status}
         onChange={handleChange}
-        input={<OutlinedInput />}
-        renderValue={(selected) => {
-          if (selected.length === 0) {
-            return <span>Select Network</span>;
-          }
-
-          return selected;
-        }}
-        MenuProps={MenuProps}
         inputProps={{ "aria-label": "Without label" }}
         sx={{
           height: "35px",
