@@ -13,6 +13,12 @@ import listNetworkReducer from "./listNetwork";
 import viewExchangeReducer from "./viewExchange";
 import updateNetworkReducer from "./updateNetwork";
 import deleteRowReducer from "./deleteRow";
+import listVideoReducer from "./listVideos";
+import addVideoReducer from "./addVideos";
+import updateVideosReducer from "./updateVideo";
+import listUsersReducer from "./listUsers";
+import addUserReducer from "./addUsers";
+import updateUsersReducer from "./updateUser";
 
 const allReducers = combineReducers({
   Auth,
@@ -24,6 +30,12 @@ const allReducers = combineReducers({
   addNetworkReducer,
   listNetworkReducer,
   updateNetworkReducer,
+  listVideoReducer,
+  addVideoReducer,
+  updateVideosReducer,
+  listUsersReducer,
+  addUserReducer,
+  updateUsersReducer,
 });
 
 const rootReducer = (state: any, action: any) => {
