@@ -13,8 +13,8 @@ import Networks from "../pages/networks/Networks";
 import NFTListing from "../pages/nftlisting/view/NFTListing";
 import NFTMarketPlaces from "../pages/nftmarketplaces/view/NFTMarketPlaces";
 import ReviewsRating from "../pages/reviews/view/ReviewsRating";
-import Users from "../pages/users/view/Users";
-import Videos from "../pages/videos/view/Videos";
+import Users from "../pages/users/Users";
+import Videos from "../pages/videos/Videos";
 import ExchangeAdd from "../pages/exchanges/add/ExchangeAdd";
 import ExchangeEdit from "../pages/exchanges/edit/ExchangeEdit";
 import CoinListingAdd from "../pages/coinlisting/add/CoinListingAdd";
@@ -25,6 +25,12 @@ import PublicRoutes from "./public/PublicRoutes";
 import ExchangeView from "../pages/exchanges/view/ExchangeView";
 import NetworkEdit from "../pages/networks/edit/NetworkEdit";
 import NetworkView from "../pages/networks/view/NetworkView";
+import VideosAdd from "../pages/videos/add/VideosAdd";
+import VideoEdit from "../pages/videos/edit/VideoEdit";
+import VideosView from "../pages/videos/view/VideosView";
+import UserEdit from "../pages/users/edit/UserEdit";
+import UserAdd from "../pages/users/add/UserAdd";
+import UserView from "../pages/users/view/UserView";
 
 const AppRoutes = () => {
   return (
@@ -165,6 +171,30 @@ const AppRoutes = () => {
           }
         />
         <Route
+          path="/users/add"
+          element={
+            <PrivateRoute>
+              <UserAdd />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/users/edit"
+          element={
+            <PrivateRoute>
+              <UserEdit />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/users/view"
+          element={
+            <PrivateRoute>
+              <UserView />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/ads"
           element={
             <PrivateRoute>
@@ -177,6 +207,32 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <Videos />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/videos/add"
+          element={
+            <PrivateRoute>
+              <VideosAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/videos/edit"
+          element={
+            <PrivateRoute>
+              <VideoEdit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/videos/view"
+          element={
+            <PrivateRoute>
+              <VideosView />
             </PrivateRoute>
           }
         />

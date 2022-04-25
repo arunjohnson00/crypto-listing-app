@@ -1,52 +1,30 @@
-import { useState } from "react";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
-import { Theme, useTheme } from "@mui/material/styles";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 import { MenuProps } from "./style";
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
 
-function getStyles(name: string, personName: readonly string[], theme: Theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
+const InputSelect = ({
+  selectOptions,
+  currentStatus,
+  setInputSelectValue,
+  getInputSelectvalue,
+}: any) => {
+  let optionSelected = selectOptions.filter(
+    (optionData: any) => optionData.value === currentStatus
+  );
+
+  console.log(optionSelected);
+  const handleChange = (event: SelectChangeEvent) => {
+    setInputSelectValue({ ...getInputSelectvalue, status: event.target.value });
   };
-}
 
-const InputSelect = () => {
-  const theme = useTheme();
-  const [personName, setPersonName] = useState<string[]>([]);
-
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
-  };
   return (
     <FormControl sx={{ m: 1, width: 300, mt: 0 }}>
       <Select
-        multiple
         displayEmpty
-        value={personName}
+        value={getInputSelectvalue.status}
         onChange={handleChange}
         input={<OutlinedInput />}
         renderValue={(selected) => {
@@ -54,7 +32,7 @@ const InputSelect = () => {
             return <span>Select Network</span>;
           }
 
-          return selected.join(", ");
+          return selected;
         }}
         MenuProps={MenuProps}
         inputProps={{ "aria-label": "Without label" }}
@@ -70,17 +48,15 @@ const InputSelect = () => {
         }}
       >
         <MenuItem disabled value="">
-          <span>select Network</span>
+          <span>{optionSelected[0].title}</span>
         </MenuItem>
-        {names.map((name) => (
-          <MenuItem
-            key={name}
-            value={name}
-            style={getStyles(name, personName, theme)}
-          >
-            {name}
-          </MenuItem>
-        ))}
+        {selectOptions.map((option: any, index: number) => {
+          return (
+            <MenuItem key={index} value={option.value}>
+              {option.title}{" "}
+            </MenuItem>
+          );
+        })}
       </Select>
     </FormControl>
   );
