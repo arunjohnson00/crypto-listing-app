@@ -108,6 +108,7 @@ class VideosController extends Controller
                     'v_name'     => $request->name,           'v_title'   => $request->title,         'v_sub_title' => $request->sub_title,   'v_url'=>$request->url, 
                     'v_btn_name' => $request->button_name,    'v_btn_url' => $request->button_url,    'status'      => $request->status, 
                 ];
+                if($request->status==1){ $data['approved_at']=\Carbon\Carbon::now()->toDateTimeString();  }
                 try{ if(!empty($data)){$video->update($data);} } catch (Exception $ex) { $error = $ex->getMessage(); }
                 if($error == null): /* no error, true response*/  return response()->json(['response'=>true,'message'=>$this->updateMessage],200);
                 else: /* have error, false response*/  return response()->json(['response'=>false,'message'=>$this->updateErrorMessage.'<br/> '.$error],200);  endif;
