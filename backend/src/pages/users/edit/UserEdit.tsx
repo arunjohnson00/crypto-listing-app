@@ -6,6 +6,9 @@ import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import InputText from "../../../components/form/input/text/InputText";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
+import { toast } from "material-react-toastify";
+import LoadingButton from "@mui/lab/LoadingButton";
+import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import { updateUserRequest } from "../../../store/action";
@@ -26,6 +29,7 @@ const UserEdit = () => {
   let newArrList = userList.filter(
     (userData: any) => userData.id === location.state.id
   );
+  const [loading, setLoading] = useState(false);
   const [updateUsersData, setUpdateUser] = useState({
     id: newArrList[0].id,
     name: newArrList[0].name,
@@ -42,6 +46,15 @@ const UserEdit = () => {
   const userUpdateHandler = () => {
     const successHandler = (res: any) => {
       console.log(res);
+      setLoading(true);
+      toast.success("Users Updated Successfully", {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     };
 
     const errorHandler = (err: any) => {
@@ -59,7 +72,10 @@ const UserEdit = () => {
     formData.append("status", updateUsersData.status);
 
     dispatch(updateUserRequest(formData, successHandler, errorHandler));
-    navigate("/users");
+
+    setTimeout(() => {
+      navigate("/users");
+    }, 3000);
   };
 
   const userNameHandler = (e: any) => {
@@ -171,7 +187,31 @@ const UserEdit = () => {
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Stack spacing={2} sx={{ alignItems: "flex-end" }} pb={5} mr={5}>
-              <LargeBtn Title="Update User" lgBtnHandler={userUpdateHandler} />
+              {loading ? (
+                <LoadingButton
+                  color="secondary"
+                  loading={loading}
+                  loadingPosition="center"
+                  // startIcon={<SaveIcon />}
+                  variant="contained"
+                  sx={{
+                    width: "173px",
+                    height: "41px",
+                    backgroundColor: "rgb(61, 56, 122)",
+                    borderRadius: "8px",
+                    fontSize: "14px",
+                    textTransform: "capitalize",
+                    fontWeight: "300",
+                  }}
+                >
+                  Saving...Wait
+                </LoadingButton>
+              ) : (
+                <LargeBtn
+                  Title="Update User"
+                  lgBtnHandler={userUpdateHandler}
+                />
+              )}
             </Stack>
           </Grid>
         </Box>
