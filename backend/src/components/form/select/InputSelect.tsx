@@ -1,6 +1,7 @@
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { toast } from "material-react-toastify";
 
 const InputSelect = ({
   selectOptions,
@@ -15,6 +16,14 @@ const InputSelect = ({
   console.log(optionSelected);
   const handleChange = (event: SelectChangeEvent) => {
     setInputSelectValue({ ...getInputSelectvalue, status: event.target.value });
+    toast.warn(`Status changed from ${optionSelected[0].title}`, {
+      position: "top-right",
+      autoClose: 7000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
   };
   console.log(optionSelected[0].value);
   return (

@@ -19,6 +19,7 @@ import updateVideosReducer from "./updateVideo";
 import listUsersReducer from "./listUsers";
 import addUserReducer from "./addUsers";
 import updateUsersReducer from "./updateUser";
+import logoutReducer from "./logout";
 
 const allReducers = combineReducers({
   Auth,
@@ -36,6 +37,7 @@ const allReducers = combineReducers({
   listUsersReducer,
   addUserReducer,
   updateUsersReducer,
+  logoutReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

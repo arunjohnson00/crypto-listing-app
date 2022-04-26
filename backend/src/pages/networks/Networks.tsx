@@ -25,7 +25,7 @@ const Networks = () => {
 
   var filteredData = searchValue
     ? networkList.filter((flData: any) => {
-        return flData.name.includes(searchValue);
+        return flData.name.toLowerCase().includes(searchValue.toLowerCase());
       })
     : networkList;
 

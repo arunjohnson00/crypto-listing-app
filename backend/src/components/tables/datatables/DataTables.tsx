@@ -1,19 +1,47 @@
-import { DataGrid } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridToolbarContainer,
+  GridToolbarExport,
+} from "@mui/x-data-grid";
+import { makeStyles } from "@mui/styles";
 import { Fragment, useState } from "react";
 import { useDispatch } from "react-redux";
 import TableActionBtn from "../../button/tableaction/TableActionBtn";
 import { useNavigate, useLocation } from "react-router-dom";
 import { deleteRowRequest } from "../../../store/action";
+import { toast } from "material-react-toastify";
+
+const useStyles = makeStyles({
+  grid: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  gridToolbarCotainer: {
+    justifyContent: "flex-end",
+    borderBottom: "1px solid #ebebeb",
+  },
+});
 
 const GridEdit = ({ index, navigate, location, dispatch }: any) => {
-  console.log(location);
   const handleEditClick = () => {
     navigate(`${location.pathname}/edit`, { state: { id: index } });
   };
 
   const successHandler = (res: any) => {
     console.log(res);
-    navigate(`${location.pathname}`);
+
+    toast.error(`${res.data.message}`, {
+      position: "top-right",
+      autoClose: 7000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+    setTimeout(() => {
+      navigate(`${location.pathname}`);
+      console.log("hi");
+    }, 3000);
   };
 
   const errorHandler = (err: any) => {
@@ -46,11 +74,25 @@ const GridEdit = ({ index, navigate, location, dispatch }: any) => {
   );
 };
 
-const DataTables = ({ tableData, pageData, setPageData, tableColumn }: any) => {
+const DataTables = ({ tableData, tableColumn }: any) => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const [pageSize, setPageSize] = useState<number>(10);
+
+  const CustomToolbar = () => {
+    return (
+      <GridToolbarContainer className={classes.gridToolbarCotainer}>
+        <GridToolbarExport
+          printOptions={{
+            hideFooter: true,
+            hideToolbar: true,
+          }}
+        />
+      </GridToolbarContainer>
+    );
+  };
   const addtitionalColumns = [
     {
       field: "actions",
@@ -88,6 +130,8 @@ const DataTables = ({ tableData, pageData, setPageData, tableColumn }: any) => {
           onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
           rowsPerPageOptions={[10, 25, 50]}
           pagination
+          components={{ Toolbar: CustomToolbar }}
+          className={classes.grid}
         />
       </div>
     </Fragment>

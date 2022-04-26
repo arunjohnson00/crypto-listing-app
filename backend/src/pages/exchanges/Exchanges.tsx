@@ -25,7 +25,7 @@ const Exchanges = () => {
 
   var filteredData = searchValue
     ? exchangeList.filter((flData: any) => {
-        return flData.name.includes(searchValue);
+        return flData.name.toLowerCase().includes(searchValue.toLowerCase());
       })
     : exchangeList;
 

@@ -24,7 +24,7 @@ const Users = () => {
 
   var filteredData = searchValue
     ? userList.filter((flData: any) => {
-        return flData.name.includes(searchValue);
+        return flData.name.toLowerCase().includes(searchValue.toLowerCase());
       })
     : userList;
 

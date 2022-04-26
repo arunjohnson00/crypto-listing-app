@@ -16,6 +16,8 @@ import { useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import { sendLoginCredentials } from "../../store/action";
+import { toast } from "material-react-toastify";
+import "material-react-toastify/dist/ReactToastify.css";
 
 const theme = createTheme();
 
@@ -32,6 +34,16 @@ const Login = () => {
   const loginHandler = () => {
     //appRequest(authCredentials, reDirectHandler, LoginError, storeData);
     const successHandler = (res: any) => {
+      console.log(res);
+      toast.success(`Welcome ${res.data.user.name}`, {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+
       if (res?.data?.access_token) {
         sessionStorage.setItem(
           "authToken",
@@ -48,6 +60,7 @@ const Login = () => {
           localStorage.setItem("authUser", JSON.stringify(res?.data?.user));
         }
       }
+
       navigate("/dashboard");
     };
     const errorHandler = (err: any) => {
