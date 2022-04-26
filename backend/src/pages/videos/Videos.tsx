@@ -9,6 +9,7 @@ import moment from "moment";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import { listVideoRequest } from "../../store/action";
+import InputSearch from "../../components/form/input/search/InputSearch";
 
 //const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -17,15 +18,20 @@ const Videos = () => {
     return vdList.listVideoReducer.videoListAll.data;
   });
 
-  console.log(videoList);
-  const [pageData, setPageData] = useState({
-    page: 0,
-    count: 1,
-    rowPerPage: 100,
-    data: [["Loading Data..."]],
-    isLoading: false,
-  });
-  console.log(pageData);
+  const [searchValue, setSearchValue] = useState("");
+
+  const searchHandler = (searchVal: any) => {
+    setSearchValue(searchVal);
+  };
+
+  var filteredData = searchValue
+    ? videoList.filter((flData: any) => {
+        return flData.v_name.includes(searchValue);
+      })
+    : videoList;
+
+  console.log(filteredData);
+
   const dispatch = useDispatch();
 
   const successHandler = (res: any) => {
@@ -36,8 +42,8 @@ const Videos = () => {
     console.log(err);
   };
   useEffect(() => {
-    dispatch(listVideoRequest(pageData, successHandler, errorHandler));
-  }, [dispatch, pageData]);
+    dispatch(listVideoRequest("emptyData", successHandler, errorHandler));
+  }, [dispatch]);
 
   const tableColumn = [
     // {
@@ -118,30 +124,56 @@ const Videos = () => {
   ];
   return (
     <Grid container spacing={2}>
-      <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
-        <Typography variant="h5" sx={{ textAlign: "left" }}>
-          Videos
-        </Typography>
-      </Grid>
-
-      <Grid item xl={8} lg={8} md={8} sm={12} xs={12}>
+      <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <HorizonatalList />
       </Grid>
+
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-        <Stack spacing={2} sx={{ alignItems: "flex-end" }}>
-          {" "}
-          <Link to="/videos/add">
-            <LargeBtn Title="Add new video" />
-          </Link>
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{ justifyContent: "space-between", alignItems: "center" }}
+          pt={3}
+          pb={1}
+        >
+          <Grid item xl={10} lg={10} md={10} sm={12} xs={12}>
+            <Stack
+              direction="row"
+              spacing={2}
+              sx={{ justifyContent: "flex-start" }}
+            >
+              <Grid item xl={2} lg={2} md={2} sm={12} xs={12}>
+                <Typography variant="h5" sx={{ textAlign: "left" }}>
+                  Videos
+                </Typography>
+              </Grid>
+              <Grid item xl={10} lg={10} md={10} sm={12} xs={12}>
+                <InputSearch
+                  placeholder="Search Videos"
+                  searchValue={searchValue}
+                  searchHandler={searchHandler}
+                />
+              </Grid>
+            </Stack>
+          </Grid>
+
+          <Grid
+            item
+            xl={2}
+            lg={2}
+            md={2}
+            sm={12}
+            xs={12}
+            sx={{ display: "flex", justifyContent: "flex-end" }}
+          >
+            <Link to="/videos/add">
+              <LargeBtn Title="Add Videos" />
+            </Link>
+          </Grid>
         </Stack>
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-        <DataTables
-          tableColumn={tableColumn}
-          tableData={videoList}
-          setPageData={setPageData}
-          pageData={pageData}
-        />
+        <DataTables tableColumn={tableColumn} tableData={filteredData} />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Stack spacing={2} sx={{ alignItems: "flex-end" }}>

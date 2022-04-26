@@ -8,7 +8,7 @@ export const listExchangeRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/exchange?start=${pageData.page}&length=${pageData.rowPerPage}`,
+    url: `api/b/v1/exchange`,
     method: "GET",
     secure: true,
     actionType: EXCHANGE.LIST_EXCHANGE,
