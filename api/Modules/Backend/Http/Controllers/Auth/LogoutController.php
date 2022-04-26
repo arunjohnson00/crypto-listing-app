@@ -29,7 +29,7 @@ class LogoutController extends Controller
     public function logout(Request $request)
     {
  
-        auth()->logout();
+        auth('backend_api')->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
     }
