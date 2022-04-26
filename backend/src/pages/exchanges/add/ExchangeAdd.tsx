@@ -33,7 +33,7 @@ const ExchangeAdd = () => {
       console.log(res);
 
       setLoading(true);
-      toast.success("Exchange Successfully Added", {
+      toast.success(`${res.data.message}`, {
         position: "top-right",
         autoClose: 7000,
         hideProgressBar: false,

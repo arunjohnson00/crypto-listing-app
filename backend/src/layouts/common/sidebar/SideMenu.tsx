@@ -25,6 +25,7 @@ const SideMenu = ({ open }: any) => {
     data.subMenu && handleExpand(e, data);
 
     setActiveColorId(data.id);
+
     console.log(activeColorId);
   };
   const handleExpand = (e: any, data: any) => {

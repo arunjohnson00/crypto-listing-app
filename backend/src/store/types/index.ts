@@ -4,6 +4,7 @@ export const SESSION = {
 export const COMMON = {
   RESET_FIELD: "RESET_FIELD",
   DELETE_ROW: "DELETE_ROW",
+  LOG_OUT: "LOG_OUT",
 };
 
 export const EXCHANGE = {

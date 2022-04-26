@@ -8,6 +8,8 @@ import Toolbar from "@mui/material/Toolbar";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import { AppBar } from "./style";
 import { logoutHandler } from "../../../utils/logoutHandler";
 import SettingsBtn from "../../../components/button/settings/SettingsBtn";
@@ -16,6 +18,7 @@ import ProfileBtn from "../../../components/button/profile/ProfileBtn";
 import ProfileMenu from "../../../components/dropdowns/profile/ProfileMenu";
 
 const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const openSettings = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -27,7 +30,7 @@ const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
 
   const navigate: any = useNavigate();
   const loginControll = () => {
-    logoutHandler(navigate);
+    logoutHandler(navigate, dispatch);
   };
   const theme = useTheme();
   return (

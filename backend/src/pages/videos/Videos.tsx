@@ -26,7 +26,7 @@ const Videos = () => {
 
   var filteredData = searchValue
     ? videoList.filter((flData: any) => {
-        return flData.v_name.includes(searchValue);
+        return flData.v_name.toLowerCase().includes(searchValue.toLowerCase());
       })
     : videoList;
 
@@ -70,9 +70,10 @@ const Videos = () => {
       headerName: "Approved",
       width: 140,
       renderCell: (params: any) => (
+        // <span>{moment(params.row.created_at).fromNow()}</span>
         <span>{moment(params.row.approved_at).fromNow()}</span>
-        //<span>{moment("2022-04-25T09:51:52.000000Z").fromNow()}</span>
       ),
+      //<span>{moment("2022-04-25T09:51:52.000000Z").fromNow()}</span>
     },
 
     {
@@ -80,9 +81,10 @@ const Videos = () => {
       headerName: "Careated",
       width: 140,
       renderCell: (params: any) => (
+        //params.row.approved_at,
         <span>{moment(params.row.created_at).fromNow()}</span>
-        //<span>{moment("2022-04-25T09:51:52.000000Z").fromNow()}</span>
       ),
+      //<span>{moment("2022-04-25T09:51:52.000000Z").fromNow()}</span>
     },
 
     {

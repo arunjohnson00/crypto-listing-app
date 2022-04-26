@@ -13,3 +13,4 @@ export { updateVideosRequest } from "./updateVideoAction";
 export { listUsersRequest } from "./listUsersAction";
 export { addUsersRequest } from "./addUsersAction";
 export { updateUserRequest } from "./updateUserAction";
+export { logOutRequest } from "./logoutAction";

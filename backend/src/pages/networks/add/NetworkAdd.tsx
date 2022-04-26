@@ -35,7 +35,7 @@ const NetworkAdd = () => {
       console.log(res);
 
       setLoading(true);
-      toast.success("Network Successfully Added", {
+      toast.success(`${res.data.message}`, {
         position: "top-right",
         autoClose: 7000,
         hideProgressBar: false,

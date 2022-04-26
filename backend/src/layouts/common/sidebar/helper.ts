@@ -30,21 +30,16 @@ export const sideBarMenu = [
     id: "10",
     title: "Videos",
     icon: "play_circle",
-    subMenu: [
-      { id: "101", title: "a", icon: "store" },
-      { id: "102", title: "a", icon: "store" },
-      { id: "103", title: "a", icon: "store" },
-    ],
+    // subMenu: [
+    //   { id: "101", title: "a", icon: "store" },
+    //   { id: "102", title: "a", icon: "store" },
+    //   { id: "103", title: "a", icon: "store" },
+    // ],
   },
   { id: "11", title: "Menucards", icon: "fact_check" },
   {
     title: "Rating & Reviews",
     icon: "view_carousel",
-    subMenu: [
-      { id: "111", title: "a", icon: "store" },
-      { id: "112", title: "a", icon: "store" },
-      { id: "113", title: "a", icon: "store" },
-    ],
   },
   { id: "12", title: "Events", icon: "event" },
   { id: "13", title: "Affiliates", icon: "stream" },

@@ -47,7 +47,7 @@ const UserEdit = () => {
     const successHandler = (res: any) => {
       console.log(res);
       setLoading(true);
-      toast.success("Users Updated Successfully", {
+      toast.success(`${res.data.message}`, {
         position: "top-right",
         autoClose: 7000,
         hideProgressBar: false,

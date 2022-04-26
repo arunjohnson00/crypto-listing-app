@@ -21,8 +21,6 @@ const VideoEdit = () => {
   const dispatch = useDispatch();
   const location: any = useLocation();
 
-  console.log(location.state.id);
-
   let newArrList = videoList.filter(
     (listData: any) => listData.id === location.state.id
   );
@@ -45,7 +43,7 @@ const VideoEdit = () => {
     const successHandler = (res: any) => {
       console.log(res);
       setLoading(true);
-      toast.success("Video Updated Successfully", {
+      toast.success(`${res.data.message}`, {
         position: "top-right",
         autoClose: 7000,
         hideProgressBar: false,
