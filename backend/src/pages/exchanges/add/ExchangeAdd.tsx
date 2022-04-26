@@ -6,6 +6,9 @@ import InputText from "../../../components/form/input/text/InputText";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
+import { toast } from "material-react-toastify";
+import LoadingButton from "@mui/lab/LoadingButton";
+import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import { addExchangeRequest } from "../../../store/action/addExchangeAction";
@@ -21,12 +24,23 @@ const ExchangeAdd = () => {
     thumb_icon: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   // Display the key/value pairs
 
   const exchangeAddHandler = () => {
     const successHandler = (res: any) => {
       console.log(res);
-      alert(res);
+
+      setLoading(true);
+      toast.success("Exchange Successfully Added", {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     };
 
     const errorHandler = (err: any) => {
@@ -41,7 +55,10 @@ const ExchangeAdd = () => {
     formData.append("status", "1");
 
     dispatch(addExchangeRequest(formData, successHandler, errorHandler));
-    navigate("/exchange");
+
+    setTimeout(() => {
+      navigate("/exchange");
+    }, 3000);
   };
 
   const exchageNameHandler = (e: any) => {
@@ -117,10 +134,31 @@ const ExchangeAdd = () => {
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Stack spacing={2} sx={{ alignItems: "flex-end" }} pb={5} mr={5}>
-              <LargeBtn
-                Title="Add new exchange"
-                lgBtnHandler={exchangeAddHandler}
-              />
+              {loading ? (
+                <LoadingButton
+                  color="secondary"
+                  loading={loading}
+                  loadingPosition="center"
+                  // startIcon={<SaveIcon />}
+                  variant="contained"
+                  sx={{
+                    width: "173px",
+                    height: "41px",
+                    backgroundColor: "rgb(61, 56, 122)",
+                    borderRadius: "8px",
+                    fontSize: "14px",
+                    textTransform: "capitalize",
+                    fontWeight: "300",
+                  }}
+                >
+                  Saving...Wait
+                </LoadingButton>
+              ) : (
+                <LargeBtn
+                  Title="Add new exchange"
+                  lgBtnHandler={exchangeAddHandler}
+                />
+              )}
             </Stack>
           </Grid>
         </Box>
