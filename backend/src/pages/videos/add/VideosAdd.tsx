@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Grid, Typography, Box, Stack } from "@mui/material";
+import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import InputText from "../../../components/form/input/text/InputText";
+import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -89,9 +90,19 @@ const VideosAdd = () => {
         <HorizonatalList />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-        <Typography variant="h5" sx={{ textAlign: "left" }}>
-          Add Videos
-        </Typography>
+        <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+          <IconButton>
+            <ArrowBackIosTwoToneIcon
+              onClick={() => {
+                navigate("/videos");
+              }}
+            />
+          </IconButton>
+
+          <Typography variant="h5" sx={{ textAlign: "left" }}>
+            Add Videos
+          </Typography>
+        </Stack>
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Box

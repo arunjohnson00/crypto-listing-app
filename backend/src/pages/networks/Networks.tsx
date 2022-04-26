@@ -8,6 +8,7 @@ import Avatar from "@mui/material/Avatar";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import { listNetworkRequest } from "../../store/action/listNetworkAction";
+import InputSearch from "../../components/form/input/search/InputSearch";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -16,15 +17,20 @@ const Networks = () => {
     return ntList.listNetworkReducer.natworkListAll.data;
   });
 
-  console.log(networkList);
-  const [pageData, setPageData] = useState({
-    page: 0,
-    count: 1,
-    rowPerPage: 100,
-    data: [["Loading Data..."]],
-    isLoading: false,
-  });
-  console.log(pageData);
+  const [searchValue, setSearchValue] = useState("");
+
+  const searchHandler = (searchVal: any) => {
+    setSearchValue(searchVal);
+  };
+
+  var filteredData = searchValue
+    ? networkList.filter((flData: any) => {
+        return flData.name.includes(searchValue);
+      })
+    : networkList;
+
+  console.log(filteredData);
+
   const dispatch = useDispatch();
 
   const successHandler = (res: any) => {
@@ -35,8 +41,8 @@ const Networks = () => {
     console.log(err);
   };
   useEffect(() => {
-    dispatch(listNetworkRequest(pageData, successHandler, errorHandler));
-  }, [dispatch, pageData]);
+    dispatch(listNetworkRequest("emptyData", successHandler, errorHandler));
+  }, [dispatch]);
 
   const tableColumn = [
     {
@@ -89,30 +95,56 @@ const Networks = () => {
   ];
   return (
     <Grid container spacing={2}>
-      <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
-        <Typography variant="h5" sx={{ textAlign: "left" }}>
-          Networks
-        </Typography>
-      </Grid>
-
-      <Grid item xl={8} lg={8} md={8} sm={12} xs={12}>
+      <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <HorizonatalList />
       </Grid>
+
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-        <Stack spacing={2} sx={{ alignItems: "flex-end" }}>
-          {" "}
-          <Link to="/networks/add">
-            <LargeBtn Title="Add new network" />
-          </Link>
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{ justifyContent: "space-between", alignItems: "center" }}
+          pt={3}
+          pb={1}
+        >
+          <Grid item xl={10} lg={10} md={10} sm={12} xs={12}>
+            <Stack
+              direction="row"
+              spacing={2}
+              sx={{ justifyContent: "flex-start" }}
+            >
+              <Grid item xl={2} lg={2} md={2} sm={12} xs={12}>
+                <Typography variant="h5" sx={{ textAlign: "left" }}>
+                  Networks
+                </Typography>
+              </Grid>
+              <Grid item xl={10} lg={10} md={10} sm={12} xs={12}>
+                <InputSearch
+                  placeholder="Search Networks"
+                  searchValue={searchValue}
+                  searchHandler={searchHandler}
+                />
+              </Grid>
+            </Stack>
+          </Grid>
+
+          <Grid
+            item
+            xl={2}
+            lg={2}
+            md={2}
+            sm={12}
+            xs={12}
+            sx={{ display: "flex", justifyContent: "flex-end" }}
+          >
+            <Link to="/networks/add">
+              <LargeBtn Title="Add new network" />
+            </Link>
+          </Grid>
         </Stack>
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-        <DataTables
-          tableColumn={tableColumn}
-          tableData={networkList}
-          setPageData={setPageData}
-          pageData={pageData}
-        />
+        <DataTables tableColumn={tableColumn} tableData={filteredData} />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Stack spacing={2} sx={{ alignItems: "flex-end" }}>

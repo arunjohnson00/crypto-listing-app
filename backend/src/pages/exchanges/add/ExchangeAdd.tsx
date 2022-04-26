@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Grid, Typography, Box, Stack } from "@mui/material";
+import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 import InputText from "../../../components/form/input/text/InputText";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import { addExchangeRequest } from "../../../store/action/addExchangeAction";
@@ -25,6 +26,7 @@ const ExchangeAdd = () => {
   const exchangeAddHandler = () => {
     const successHandler = (res: any) => {
       console.log(res);
+      alert(res);
     };
 
     const errorHandler = (err: any) => {
@@ -60,9 +62,19 @@ const ExchangeAdd = () => {
         <HorizonatalList />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-        <Typography variant="h5" sx={{ textAlign: "left" }}>
-          Add Exchanges
-        </Typography>
+        <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+          <IconButton>
+            <ArrowBackIosTwoToneIcon
+              onClick={() => {
+                navigate("/exchange");
+              }}
+            />
+          </IconButton>
+
+          <Typography variant="h5" sx={{ textAlign: "left" }}>
+            Add Exchanges
+          </Typography>
+        </Stack>
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Box

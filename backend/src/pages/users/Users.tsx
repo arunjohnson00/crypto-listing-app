@@ -9,22 +9,30 @@ import moment from "moment";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import { listUsersRequest } from "../../store/action";
+import InputSearch from "../../components/form/input/search/InputSearch";
 
 const Users = () => {
   const userList = useSelector((usrList: any) => {
     return usrList.listUsersReducer.userListAll.data;
   });
 
+  const [searchValue, setSearchValue] = useState("");
+
+  const searchHandler = (searchVal: any) => {
+    setSearchValue(searchVal);
+  };
+
+  var filteredData = searchValue
+    ? userList.filter((flData: any) => {
+        return flData.name.includes(searchValue);
+      })
+    : userList;
+
+  console.log(filteredData);
+
   const serverAPIUrl = process.env.REACT_APP_API_URL;
   console.log(userList);
-  const [pageData, setPageData] = useState({
-    page: 0,
-    count: 1,
-    rowPerPage: 100,
-    data: [["Loading Data..."]],
-    isLoading: false,
-  });
-  console.log(pageData);
+
   const dispatch = useDispatch();
 
   const successHandler = (res: any) => {
@@ -35,8 +43,8 @@ const Users = () => {
     console.log(err);
   };
   useEffect(() => {
-    dispatch(listUsersRequest(pageData, successHandler, errorHandler));
-  }, [dispatch, pageData]);
+    dispatch(listUsersRequest("emptyData", successHandler, errorHandler));
+  }, [dispatch]);
 
   const tableColumn = [
     {
@@ -108,30 +116,56 @@ const Users = () => {
   ];
   return (
     <Grid container spacing={2}>
-      <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
-        <Typography variant="h5" sx={{ textAlign: "left" }}>
-          Users
-        </Typography>
-      </Grid>
-
-      <Grid item xl={8} lg={8} md={8} sm={12} xs={12}>
+      <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <HorizonatalList />
       </Grid>
+
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-        <Stack spacing={2} sx={{ alignItems: "flex-end" }}>
-          {" "}
-          <Link to="/users/add">
-            <LargeBtn Title="Add new User" />
-          </Link>
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{ justifyContent: "space-between", alignItems: "center" }}
+          pt={3}
+          pb={1}
+        >
+          <Grid item xl={10} lg={10} md={10} sm={12} xs={12}>
+            <Stack
+              direction="row"
+              spacing={2}
+              sx={{ justifyContent: "flex-start" }}
+            >
+              <Grid item xl={2} lg={2} md={2} sm={12} xs={12}>
+                <Typography variant="h5" sx={{ textAlign: "left" }}>
+                  Users
+                </Typography>
+              </Grid>
+              <Grid item xl={10} lg={10} md={10} sm={12} xs={12}>
+                <InputSearch
+                  placeholder="Search User"
+                  searchValue={searchValue}
+                  searchHandler={searchHandler}
+                />
+              </Grid>
+            </Stack>
+          </Grid>
+
+          <Grid
+            item
+            xl={2}
+            lg={2}
+            md={2}
+            sm={12}
+            xs={12}
+            sx={{ display: "flex", justifyContent: "flex-end" }}
+          >
+            <Link to="/users/add">
+              <LargeBtn Title="Add Users" />
+            </Link>
+          </Grid>
         </Stack>
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-        <DataTables
-          tableColumn={tableColumn}
-          tableData={userList}
-          setPageData={setPageData}
-          pageData={pageData}
-        />
+        <DataTables tableColumn={tableColumn} tableData={filteredData} />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Stack spacing={2} sx={{ alignItems: "flex-end" }}>

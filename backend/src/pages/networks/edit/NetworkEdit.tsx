@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Grid, Typography, Box, Stack } from "@mui/material";
+import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 import InputText from "../../../components/form/input/text/InputText";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import { updateNetworkRequest } from "../../../store/action";
@@ -98,9 +99,19 @@ const NetworkEdit = () => {
         <HorizonatalList />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-        <Typography variant="h5" sx={{ textAlign: "left" }}>
-          Edit Networks
-        </Typography>
+        <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+          <IconButton>
+            <ArrowBackIosTwoToneIcon
+              onClick={() => {
+                navigate("/networks");
+              }}
+            />
+          </IconButton>
+
+          <Typography variant="h5" sx={{ textAlign: "left" }}>
+            Edit Networks
+          </Typography>
+        </Stack>
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Box

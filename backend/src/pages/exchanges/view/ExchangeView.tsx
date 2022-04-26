@@ -1,14 +1,15 @@
-import { Grid, Typography, Box } from "@mui/material";
+import { Grid, Typography, Box, IconButton, Stack } from "@mui/material";
 import InputText from "../../../components/form/input/text/InputText";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
+import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const ExchangeView = () => {
   const location: any = useLocation();
-
+  const navigate: any = useNavigate();
   const exchangeList = useSelector((exList: any) => {
     return exList.listExchangeReducer.exchangeListAll.data;
   });
@@ -23,9 +24,19 @@ const ExchangeView = () => {
         <HorizonatalList />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-        <Typography variant="h5" sx={{ textAlign: "left" }}>
-          View Exchanges
-        </Typography>
+        <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+          <IconButton>
+            <ArrowBackIosTwoToneIcon
+              onClick={() => {
+                navigate("/exchange");
+              }}
+            />
+          </IconButton>
+
+          <Typography variant="h5" sx={{ textAlign: "left" }}>
+            View Exchanges
+          </Typography>
+        </Stack>
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Box
