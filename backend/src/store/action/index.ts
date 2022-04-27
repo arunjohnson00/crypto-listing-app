@@ -14,3 +14,5 @@ export { listUsersRequest } from "./listUsersAction";
 export { addUsersRequest } from "./addUsersAction";
 export { updateUserRequest } from "./updateUserAction";
 export { logOutRequest } from "./logoutAction";
+export { listCoinRequest } from "./listCoinAction";
+export { addCoinRequest } from "./addCoinAction";
