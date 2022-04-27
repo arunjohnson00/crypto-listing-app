@@ -1,6 +1,6 @@
 export const sideBarMenu = [
   { id: "1", title: "Dashboard", icon: "dashboard" },
-  { id: "2", title: "Coin Listings", icon: "paid" },
+  { id: "2", title: "Coins", icon: "paid" },
   { id: "3", title: "Exchange", icon: "currency_exchange" },
   {
     id: "4",

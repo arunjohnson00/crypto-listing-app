@@ -20,6 +20,8 @@ import listUsersReducer from "./listUsers";
 import addUserReducer from "./addUsers";
 import updateUsersReducer from "./updateUser";
 import logoutReducer from "./logout";
+import listCoinReducer from "./listCoin";
+import addCoinReducer from "./addCoin";
 
 const allReducers = combineReducers({
   Auth,
@@ -38,6 +40,8 @@ const allReducers = combineReducers({
   addUserReducer,
   updateUsersReducer,
   logoutReducer,
+  listCoinReducer,
+  addCoinReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

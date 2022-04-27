@@ -54,7 +54,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/coinlistings"
+          path="/coins"
           element={
             <PrivateRoute>
               <CoinListing />
@@ -62,7 +62,7 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/coinlisting/add"
+          path="/coins/add"
           element={
             <PrivateRoute>
               <CoinListingAdd />
