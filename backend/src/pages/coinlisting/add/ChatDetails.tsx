@@ -12,13 +12,20 @@ const ChatDetails = ({ chatCount, index, chatremoveHandle }: any) => {
           <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
             Chat Platform {index + 2}
           </Typography>
-          <InputSelectCoin />
+          <InputSelectCoin
+            name={`chat_platform[${index + 2}]`}
+            id={`chat_platform_${index + 2}`}
+          />
         </Grid>
         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
           <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
             Chat URL {index + 2}
           </Typography>
-          <InputText placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf" />
+          <InputText
+            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            name={`chat_url[${index + 2}]`}
+            id={`chat_url_${index + 2}`}
+          />
         </Grid>
         {chatCount.length && (
           <Grid

@@ -1,19 +1,20 @@
-import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 
-const InputDateTime = () => {
-  const [value, setValue] = useState<Date | null>(new Date());
+const InputDateTime = ({ dateTime, setDateTime, start_date }: any) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateTimePicker
         renderInput={(props: any) => <TextField {...props} />}
-        label="DateTimePicker"
-        value={value}
+        label={start_date === true ? "Select Start Date" : "Select End Date"}
+        value={start_date === true ? dateTime.start_date : dateTime.end_date}
         onChange={(newValue: any) => {
-          setValue(newValue);
+          start_date === true &&
+            setDateTime({ ...dateTime, start_date: newValue });
+          start_date === false &&
+            setDateTime({ ...dateTime, end_date: newValue });
         }}
       />
     </LocalizationProvider>

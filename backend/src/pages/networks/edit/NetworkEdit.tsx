@@ -53,10 +53,21 @@ const NetworkEdit = () => {
         pauseOnHover: true,
         draggable: true,
       });
+      setTimeout(() => {
+        navigate("/networks");
+      }, 3000);
     };
 
     const errorHandler = (err: any) => {
       console.log(err);
+      toast.error(`${err.error.message.response.request.responseText}`, {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     };
 
     const formData = new FormData();
@@ -72,9 +83,6 @@ const NetworkEdit = () => {
     formData.append("status", "1");
 
     dispatch(updateNetworkRequest(formData, successHandler, errorHandler));
-    setTimeout(() => {
-      navigate("/networks");
-    }, 3000);
   };
 
   const networkNameHandler = (e: any) => {

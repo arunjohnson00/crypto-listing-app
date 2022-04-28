@@ -51,10 +51,21 @@ const VideoEdit = () => {
         pauseOnHover: true,
         draggable: true,
       });
+      setTimeout(() => {
+        navigate("/videos");
+      }, 3000);
     };
 
     const errorHandler = (err: any) => {
       console.log(err);
+      toast.error(`${err.error.message.response.request.responseText}`, {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     };
 
     const formData = new FormData();
@@ -69,9 +80,6 @@ const VideoEdit = () => {
     formData.append("status", editVideosData.status);
 
     dispatch(updateVideosRequest(formData, successHandler, errorHandler));
-    setTimeout(() => {
-      navigate("/videos");
-    }, 3000);
   };
 
   const videoNameHandler = (e: any) => {

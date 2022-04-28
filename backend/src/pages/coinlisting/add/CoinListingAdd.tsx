@@ -43,7 +43,20 @@ const CoinListingAdd = () => {
   ];
 
   const [coinStatus, setCoinStatus] = useState("Presale");
+  const [addCoinLogo, setCoinLogo] = useState({ coinLogo: "" });
+  const [dateTime, setDateTime] = useState<any>({
+    start_date: new Date(),
+    end_date: new Date(),
+  });
 
+  const [checked, setChecked] = useState<any>({
+    is_listed_market_cap: false,
+    is_listed_coingecko: false,
+    i_agree: false,
+    i_declare: false,
+  });
+
+  console.log(coinStatus);
   const [networkCount, setNetworkCount] = useState<any[]>([]);
 
   const networkaddHandle = () => {
@@ -133,7 +146,15 @@ const CoinListingAdd = () => {
 
   const coinAddHandler = (e: any) => {
     var formData = new FormData(document.querySelector("#coinForm") as any);
-    console.log(...formData);
+    //var formData = new FormData();
+    formData.append("logo", addCoinLogo.coinLogo);
+    formData.append("presale_start_date", dateTime.start_date);
+    formData.append("presale_end_date", dateTime.end_date);
+
+    const presaleStatus: any = coinStatus === "Presale" ? 1 : 0;
+    formData.append("is_presale", presaleStatus);
+
+    //console.log(...formData);
     const successHandler = (res: any) => {
       //console.log(res);
 
@@ -146,22 +167,32 @@ const CoinListingAdd = () => {
         pauseOnHover: true,
         draggable: true,
       });
+
+      setTimeout(() => {
+        navigate("/coins");
+      }, 3000);
     };
 
     const errorHandler = (err: any) => {
-      //console.log(err);
+      console.log(err);
+
+      toast.error(`${err.error.message.message}`, {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     };
 
     dispatch(addCoinRequest(formData, successHandler, errorHandler));
-    setTimeout(() => {
-      //  navigate("/networks");
-    }, 3000);
   };
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={0}>
       <form id="coinForm">
-        <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={2}>
+        <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={2} ml={2}>
           <HorizonatalList />
         </Grid>
 
@@ -198,10 +229,14 @@ const CoinListingAdd = () => {
               </Typography>
               <Stack direction="row" spacing={3}>
                 <Grid item xl={4} lg={4} md={4} sm={6} xs={12}>
-                  <InputText placeholder="Eg: 09s8jgggffffay63733773" />
+                  <InputText
+                    placeholder="Eg: 09s8jgggffffay63733773"
+                    id="address"
+                    name="address"
+                  />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={6} xs={12}>
-                  <InputSelectCoin />
+                  <InputSelectCoin name="network_id" id="network_id" />
                 </Grid>
               </Stack>
             </Grid>
@@ -217,7 +252,7 @@ const CoinListingAdd = () => {
                     Coin Name
                   </Typography>
 
-                  <InputText placeholder="Eg: Bitcoin" />
+                  <InputText placeholder="Eg: Bitcoin" name="name" id="name" />
                 </Grid>
 
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
@@ -236,7 +271,11 @@ const CoinListingAdd = () => {
                     </Typography>
                   </Typography>
 
-                  <InputText placeholder="Enter Exchange url" />
+                  <InputText
+                    placeholder="Enter Exchange url"
+                    name="symbol"
+                    id="symbol"
+                  />
                 </Grid>
 
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
@@ -248,12 +287,17 @@ const CoinListingAdd = () => {
                     Logo
                   </Typography>
 
-                  <CoinUploader />
+                  <CoinUploader
+                    name="logo"
+                    id="logo"
+                    setAddIcon={setCoinLogo}
+                    addIconData={addCoinLogo}
+                  />
                 </Grid>
               </Grid>
               <Grid item xl={7} lg={7} md={7} sm={7} xs={12}>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-                  <InputTextArea />
+                  <InputTextArea name="description" id="description" />
                 </Grid>
               </Grid>
 
@@ -272,60 +316,6 @@ const CoinListingAdd = () => {
 
               {coinStatus === "Presale" ? (
                 <Grid container mb={5} mt={1}>
-                  <Stack direction="row" spacing={3} mb={1}>
-                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                      <Typography
-                        variant="subtitle1"
-                        sx={{ textAlign: "left" }}
-                        mb={1}
-                      >
-                        Price
-                      </Typography>
-
-                      <InputText placeholder="Enter Price(Eg: $5.89)" />
-                    </Grid>
-
-                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                      <Typography
-                        variant="subtitle1"
-                        sx={{ textAlign: "left" }}
-                        mb={1}
-                      >
-                        Circularity Supply (Optional)
-                      </Typography>
-
-                      <InputText placeholder="Enter ircularity Supply(Eg: 100,0000)" />
-                    </Grid>
-                  </Stack>
-
-                  <Stack direction="row" spacing={3} mb={1}>
-                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                      <Typography
-                        variant="subtitle1"
-                        sx={{ textAlign: "left" }}
-                        mb={1}
-                      >
-                        Max/Total Supply
-                      </Typography>
-
-                      <InputText placeholder="Enter Max/Total Supply(Eg: 100,000000)" />
-                    </Grid>
-
-                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                      <Typography
-                        variant="subtitle1"
-                        sx={{ textAlign: "left" }}
-                        mb={1}
-                      >
-                        Marketap (Optional)
-                      </Typography>
-
-                      <InputText placeholder="Enter marketcap(Eg: $100,0000)" />
-                    </Grid>
-                  </Stack>
-                </Grid>
-              ) : (
-                <Grid container mb={5} mt={1}>
                   <Stack direction="row" spacing={3} mb={2}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                       <Typography
@@ -336,7 +326,11 @@ const CoinListingAdd = () => {
                         Presale start Date & Time (UTC)
                       </Typography>
 
-                      <InputDateTime />
+                      <InputDateTime
+                        dateTime={dateTime}
+                        setDateTime={setDateTime}
+                        start_date={true}
+                      />
                     </Grid>
 
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -348,7 +342,11 @@ const CoinListingAdd = () => {
                         Presale end Date & Time (UTC)
                       </Typography>
 
-                      <InputDateTime />
+                      <InputDateTime
+                        dateTime={dateTime}
+                        setDateTime={setDateTime}
+                        start_date={false}
+                      />
                     </Grid>
                   </Stack>
 
@@ -362,7 +360,11 @@ const CoinListingAdd = () => {
                         Presale address (Optional)
                       </Typography>
 
-                      <InputText placeholder="Eg: faffhaafasgdasdsafdywdtdw" />
+                      <InputText
+                        placeholder="Eg: faffhaafasgdasdsafdywdtdw"
+                        id="presale_address"
+                        name="presale_address"
+                      />
                     </Grid>
 
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -374,7 +376,81 @@ const CoinListingAdd = () => {
                         Presale Link
                       </Typography>
 
-                      <InputText placeholder="Enter presale address" />
+                      <InputText
+                        placeholder="Enter presale address"
+                        name="presale_link"
+                        id="presale_link"
+                      />
+                    </Grid>
+                  </Stack>
+                </Grid>
+              ) : (
+                <Grid container mb={5} mt={1}>
+                  <Stack direction="row" spacing={3} mb={1}>
+                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                      <Typography
+                        variant="subtitle1"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        Price
+                      </Typography>
+
+                      <InputText
+                        placeholder="Enter Price(Eg: $5.89)"
+                        id="price"
+                        name="price"
+                      />
+                    </Grid>
+
+                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                      <Typography
+                        variant="subtitle1"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        Circularity Supply (Optional)
+                      </Typography>
+
+                      <InputText
+                        placeholder="Enter ircularity Supply(Eg: 100,0000)"
+                        id="circulating_supply"
+                        name="circulating_supply"
+                      />
+                    </Grid>
+                  </Stack>
+
+                  <Stack direction="row" spacing={3} mb={1}>
+                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                      <Typography
+                        variant="subtitle1"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        Max/Total Supply
+                      </Typography>
+
+                      <InputText
+                        placeholder="Enter Max/Total Supply(Eg: 100,000000)"
+                        id="max_supply"
+                        name="max_supply"
+                      />
+                    </Grid>
+
+                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                      <Typography
+                        variant="subtitle1"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        Marketap (Optional)
+                      </Typography>
+
+                      <InputText
+                        placeholder="Enter marketcap(Eg: $100,0000)"
+                        id="market_cap"
+                        name="market_cap"
+                      />
                     </Grid>
                   </Stack>
                 </Grid>
@@ -433,7 +509,11 @@ const CoinListingAdd = () => {
                   >
                     Block explorer URL 1
                   </Typography>
-                  <InputText placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf" />
+                  <InputText
+                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    name={`network_explorer_link[1]`}
+                    id={`network_explorer_link_1`}
+                  />
                 </Grid>
 
                 <Grid
@@ -484,7 +564,10 @@ const CoinListingAdd = () => {
                   >
                     Exchange 1
                   </Typography>
-                  <InputSelectCoin />
+                  <InputSelectCoin
+                    name={`exchange_id[1]`}
+                    id={`exchange_id_1`}
+                  />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
@@ -494,7 +577,11 @@ const CoinListingAdd = () => {
                   >
                     Exchange URL
                   </Typography>
-                  <InputText placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf" />
+                  <InputText
+                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    name={`url[1]`}
+                    id={`url_1`}
+                  />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
@@ -504,7 +591,11 @@ const CoinListingAdd = () => {
                   >
                     Block explorer URL 1
                   </Typography>
-                  <InputText placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf" />
+                  <InputText
+                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    name={`exchange_explorer_link[1]`}
+                    id={`exchange_explorer_link_1`}
+                  />
                 </Grid>
                 <Grid
                   item
@@ -562,7 +653,11 @@ const CoinListingAdd = () => {
                   >
                     Github URL
                   </Typography>
-                  <InputText placeholder="Enter github url" />
+                  <InputText
+                    placeholder="Enter github url"
+                    id="github_link"
+                    name="github_link"
+                  />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
@@ -572,7 +667,11 @@ const CoinListingAdd = () => {
                   >
                     Medium URL
                   </Typography>
-                  <InputText placeholder="Enter Medium URL" />
+                  <InputText
+                    placeholder="Enter Medium URL"
+                    id="medium_link"
+                    name="medium_link"
+                  />
                 </Grid>
               </Stack>
             </Grid>
@@ -586,7 +685,11 @@ const CoinListingAdd = () => {
                   >
                     Whitepaper URL
                   </Typography>
-                  <InputText placeholder="Enter whitepaper URL" />
+                  <InputText
+                    placeholder="Enter whitepaper URL"
+                    id="whitepaper_link"
+                    name="whitepaper_link"
+                  />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
@@ -596,7 +699,11 @@ const CoinListingAdd = () => {
                   >
                     Docs URL 1
                   </Typography>
-                  <InputText placeholder="Enter docs URL" />
+                  <InputText
+                    placeholder="Enter docs URL"
+                    id="docs_link"
+                    name="docs_link"
+                  />
                 </Grid>
               </Stack>
             </Grid>
@@ -618,7 +725,7 @@ const CoinListingAdd = () => {
                   >
                     Audited By
                   </Typography>
-                  <InputSelectCoin />
+                  <InputSelectCoin name="audited_by[1]" id="audited_by_1" />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
@@ -628,7 +735,11 @@ const CoinListingAdd = () => {
                   >
                     Audit URL
                   </Typography>
-                  <InputText placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf" />
+                  <InputText
+                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    name="audit_link[1]"
+                    id="audit_link_1"
+                  />
                 </Grid>
                 <Grid
                   item
@@ -676,7 +787,10 @@ const CoinListingAdd = () => {
                   >
                     Chart Provider
                   </Typography>
-                  <InputSelectCoin />
+                  <InputSelectCoin
+                    name="chart_provider[1]"
+                    id="chart_provider_1"
+                  />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
@@ -686,7 +800,11 @@ const CoinListingAdd = () => {
                   >
                     Chart URL
                   </Typography>
-                  <InputText placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf" />
+                  <InputText
+                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    name="chart_link[1]"
+                    id="chart_link_1"
+                  />
                 </Grid>
                 <Grid
                   item
@@ -739,7 +857,11 @@ const CoinListingAdd = () => {
                       >
                         Website URL
                       </Typography>
-                      <InputText placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf" />
+                      <InputText
+                        placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                        name="community_website_url[1]"
+                        id="community_website_url_1"
+                      />
                     </Grid>
                     <Grid
                       item
@@ -781,24 +903,52 @@ const CoinListingAdd = () => {
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                       <Stack direction="row" spacing={3}>
                         <FormControlLabel
-                          control={<InputCheckbox />}
+                          control={
+                            <InputCheckbox
+                              name="is_listed_market_cap"
+                              id="is_listed_market_cap"
+                              checked={checked}
+                              setChecked={setChecked}
+                              condition="is_listed_market_cap"
+                              value={checked.is_listed_market_cap}
+                            />
+                          }
                           label="Coin marketcap"
                           sx={{ fontSize: "10px" }}
                         />
 
-                        <InputText placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf" />
+                        <InputText
+                          placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                          checkboxStatus={!checked.is_listed_market_cap}
+                          id="coin_market_cap_url"
+                          name="coin_market_cap_url"
+                        />
                       </Stack>
                     </Grid>
 
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                       <Stack direction="row" spacing={3}>
                         <FormControlLabel
-                          control={<InputCheckbox />}
+                          control={
+                            <InputCheckbox
+                              id="is_listed_coingecko"
+                              name="is_listed_coingecko"
+                              checked={checked}
+                              setChecked={setChecked}
+                              condition="is_listed_coingecko"
+                              value={checked.is_listed_coingecko}
+                            />
+                          }
                           label="Coingecko"
                           sx={{ fontSize: "10px" }}
                         />
 
-                        <InputText placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf" />
+                        <InputText
+                          placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                          checkboxStatus={!checked.is_listed_coingecko}
+                          name="coingecko_url"
+                          id="coingecko_url"
+                        />
                       </Stack>
                     </Grid>
                   </Stack>
@@ -829,7 +979,10 @@ const CoinListingAdd = () => {
                       >
                         Chat Platform
                       </Typography>
-                      <InputSelectCoin />
+                      <InputSelectCoin
+                        name="chat_platform[1]"
+                        id="chat_platform_1"
+                      />
                     </Grid>
                     <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                       <Typography
@@ -839,7 +992,11 @@ const CoinListingAdd = () => {
                       >
                         Chat URL
                       </Typography>
-                      <InputText placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf" />
+                      <InputText
+                        placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                        name="chat_url[1]"
+                        id="chat_url_1"
+                      />
                     </Grid>
 
                     <Grid
@@ -892,7 +1049,10 @@ const CoinListingAdd = () => {
                       >
                         Select Platform
                       </Typography>
-                      <InputSelectCoin />
+                      <InputSelectCoin
+                        name="social_platform[1]"
+                        id="social_platform_1"
+                      />
                     </Grid>
                     <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                       <Typography
@@ -902,7 +1062,11 @@ const CoinListingAdd = () => {
                       >
                         Social URL
                       </Typography>
-                      <InputText placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf" />
+                      <InputText
+                        placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                        name="social_url[1]"
+                        id="social_url_1"
+                      />
                     </Grid>
                     <Grid
                       item
@@ -943,7 +1107,7 @@ const CoinListingAdd = () => {
                   >
                     Random Vote
                   </Typography>
-                  <InputText placeholder="Eg:1" />
+                  <InputText placeholder="Eg:1" name="vote" id="vote" />
                 </Grid>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={4}>
                   <Typography
@@ -953,7 +1117,7 @@ const CoinListingAdd = () => {
                   >
                     Publishing Status
                   </Typography>
-                  <InputSelectCoin />
+                  <InputSelectCoin name="status" id="status" />
                 </Grid>
               </Grid>
             </Stack>
@@ -962,14 +1126,32 @@ const CoinListingAdd = () => {
                 <Grid item xl={7} lg={7} md={7} sm={7} xs={12}>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                     <FormControlLabel
-                      control={<InputCheckbox />}
+                      control={
+                        <InputCheckbox
+                          name="i_agree"
+                          id="i_agree"
+                          value={checked.i_agree}
+                          checked={checked}
+                          setChecked={setChecked}
+                          condition="i_agree"
+                        />
+                      }
                       label="I agree terms and conditions"
                       sx={{ fontSize: "10px" }}
                     />
                   </Grid>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={3}>
                     <FormControlLabel
-                      control={<InputCheckbox />}
+                      control={
+                        <InputCheckbox
+                          name="i_declare"
+                          id="i_declare"
+                          value={checked.i_declare}
+                          checked={checked}
+                          setChecked={setChecked}
+                          condition="i_declare"
+                        />
+                      }
                       label="I declare the information provided on this form is accurate and complete to the best of my knowledge and the failure to fullfill the requirements may render my request in admissible"
                       sx={{ fontSize: "10px" }}
                     />

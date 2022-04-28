@@ -22,7 +22,7 @@ function BpRadio(props: RadioProps) {
   );
 }
 
-const InputRadio = ({ coinStatus, setCoinStatus }: any) => {
+const InputRadio = ({ coinStatus, setCoinStatus, name }: any) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCoinStatus((event.target as HTMLInputElement).value);
   };
@@ -32,13 +32,12 @@ const InputRadio = ({ coinStatus, setCoinStatus }: any) => {
       <RadioGroup
         row
         aria-labelledby="demo-controlled-radio-buttons-group"
-        name="controlled-radio-buttons-group"
         value={coinStatus}
         onChange={handleChange}
         sx={{ paddingTop: "20px" }}
       >
         <FormControlLabel
-          value="Presale"
+          value={"Presale"}
           control={<BpRadio />}
           label="Presale"
         />

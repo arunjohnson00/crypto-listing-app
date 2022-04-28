@@ -12,13 +12,20 @@ const SocialDetails = ({ socialCount, index, socialremoveHandle }: any) => {
           <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
             Select Platform {index + 2}
           </Typography>
-          <InputSelectCoin />
+          <InputSelectCoin
+            name={`social_platform[${index + 2}]`}
+            id={`social_platform_${index + 2}`}
+          />
         </Grid>
         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
           <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
             Social URL {index + 2}
           </Typography>
-          <InputText placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf" />
+          <InputText
+            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            name={`social_url[${index + 2}]`}
+            id={`social_url_${index + 2}`}
+          />
         </Grid>
         {socialCount.length && (
           <Grid

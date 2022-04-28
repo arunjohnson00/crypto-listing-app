@@ -1,13 +1,15 @@
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { textareaStyle, rowCount } from "./style";
 
-const InputTextArea = () => {
+const InputTextArea = ({ name, id }: any) => {
   return (
     <TextareaAutosize
       aria-label="minimum height"
       minRows={rowCount}
       placeholder="Detailed project description"
       style={textareaStyle}
+      name={name}
+      id={id}
     />
   );
 };
