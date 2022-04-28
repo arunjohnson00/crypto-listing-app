@@ -51,10 +51,21 @@ const ExchangeEdit = () => {
         pauseOnHover: true,
         draggable: true,
       });
+      setTimeout(() => {
+        navigate("/exchange");
+      }, 3000);
     };
 
     const errorHandler = (err: any) => {
       console.log(err);
+      toast.error(`${err.error.message.response.request.responseText}`, {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     };
 
     const formData = new FormData();
@@ -69,9 +80,6 @@ const ExchangeEdit = () => {
     formData.append("status", "1");
 
     dispatch(updateExchangeRequest(formData, successHandler, errorHandler));
-    setTimeout(() => {
-      navigate("/exchange");
-    }, 3000);
   };
 
   const exchageNameHandler = (e: any) => {

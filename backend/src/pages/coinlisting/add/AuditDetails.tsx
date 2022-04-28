@@ -12,13 +12,20 @@ const AuditDetails = ({ auditCount, index, auditremoveHandle }: any) => {
           <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
             Audited By {index + 2}
           </Typography>
-          <InputSelectCoin />
+          <InputSelectCoin
+            name={`audited_by[${index + 2}]`}
+            id={`audited_by_${index + 2}`}
+          />
         </Grid>
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
           <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
             Audit URL {index + 2}
           </Typography>
-          <InputText placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf" />
+          <InputText
+            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            name={`audit_link[${index + 2}]`}
+            id={`audit_link_${index + 2}`}
+          />
         </Grid>
         {auditCount.length && (
           <Grid

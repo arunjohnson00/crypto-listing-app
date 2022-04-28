@@ -1,14 +1,26 @@
+import { useCallback } from "react";
 import { Typography, Box } from "@mui/material";
 import UploadFileOutlinedIcon from "@mui/icons-material/UploadFileOutlined";
 import Link from "@mui/material/Link";
 import { useDropzone } from "react-dropzone";
 import { useStyles } from "./style";
 
-const CoinUploader = () => {
+const CoinUploader = ({ addIconData, setAddIcon }: any) => {
   const classes = useStyles();
+
+  const onDrop = useCallback(
+    (acceptedFiles: any) => {
+      setAddIcon({
+        ...addIconData,
+        coinLogo: acceptedFiles[0],
+      });
+    },
+    [addIconData, setAddIcon]
+  );
 
   const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
     useDropzone({
+      onDrop,
       accept: "image/jpeg,image/png,image/gif",
     });
 

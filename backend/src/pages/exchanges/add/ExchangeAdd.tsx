@@ -41,10 +41,23 @@ const ExchangeAdd = () => {
         pauseOnHover: true,
         draggable: true,
       });
+
+      setTimeout(() => {
+        navigate("/exchange");
+      }, 3000);
     };
 
     const errorHandler = (err: any) => {
       console.log(err);
+
+      toast.error(`${err.error.message.response.request.responseText}`, {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     };
 
     const formData = new FormData();
@@ -55,10 +68,6 @@ const ExchangeAdd = () => {
     formData.append("status", "1");
 
     dispatch(addExchangeRequest(formData, successHandler, errorHandler));
-
-    setTimeout(() => {
-      navigate("/exchange");
-    }, 3000);
   };
 
   const exchageNameHandler = (e: any) => {

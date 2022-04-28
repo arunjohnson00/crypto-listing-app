@@ -16,7 +16,11 @@ const CommunityDetails = ({
           <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
             Website URL {index + 2}
           </Typography>
-          <InputText placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf" />
+          <InputText
+            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            name={`community_website_url[${index + 2}]`}
+            id={`community_website_url_${index + 2}`}
+          />
         </Grid>
         {communityCount.length && (
           <Grid

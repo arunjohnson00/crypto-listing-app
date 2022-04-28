@@ -16,19 +16,30 @@ const ExchangeDetails = ({
           <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
             Exchange {index + 2}
           </Typography>
-          <InputSelectCoin />
+          <InputSelectCoin
+            name={`exchange_id[${index + 2}]`}
+            id={`exchange_id_${index + 2}`}
+          />
         </Grid>
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
           <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
             Exchange URL {index + 2}
           </Typography>
-          <InputText placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf" />
+          <InputText
+            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            name={`url[${index + 2}]`}
+            id={`url_${index + 2}`}
+          />
         </Grid>
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
           <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
             Block explorer URL {index + 2}
           </Typography>
-          <InputText placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf" />
+          <InputText
+            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            name={`exchange_explorer_link[${index + 2}]`}
+            id={`exchange_explorer_link_${index + 2}`}
+          />
         </Grid>
         {exchangeCount.length && (
           <Grid

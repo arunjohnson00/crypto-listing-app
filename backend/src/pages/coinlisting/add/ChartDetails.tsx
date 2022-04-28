@@ -12,13 +12,20 @@ const ChartDetails = ({ chartCount, chartremoveHandle, index }: any) => {
           <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
             Chart Provider {index + 2}
           </Typography>
-          <InputSelectCoin />
+          <InputSelectCoin
+            name={`chart_provider[${index + 2}]`}
+            id={`chart_provider_${index + 2}`}
+          />
         </Grid>
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
           <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
             Chart URL {index + 2}
           </Typography>
-          <InputText placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf" />
+          <InputText
+            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            name={`chart_link[${index + 2}]`}
+            id={`chart_link_${index + 2}`}
+          />
         </Grid>
         {chartCount.length && (
           <Grid
