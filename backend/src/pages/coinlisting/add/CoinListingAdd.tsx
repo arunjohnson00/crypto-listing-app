@@ -154,6 +154,9 @@ const CoinListingAdd = () => {
     const presaleStatus: any = coinStatus === "Presale" ? 1 : 0;
     formData.append("is_presale", presaleStatus);
 
+    const launchedStatus: any = coinStatus === "Launched" ? 1 : 0;
+    formData.append("is_launched", launchedStatus);
+
     //console.log(...formData);
     const successHandler = (res: any) => {
       //console.log(res);
@@ -176,7 +179,7 @@ const CoinListingAdd = () => {
     const errorHandler = (err: any) => {
       console.log(err);
 
-      toast.error(`${err.error.message.message}`, {
+      toast.error(`${err.error.message.response.request.responseText}`, {
         position: "top-right",
         autoClose: 7000,
         hideProgressBar: false,

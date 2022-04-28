@@ -13,7 +13,8 @@ import { Icon } from "@mui/material";
 
 import { Drawer, DrawerHeader } from "./style";
 import { sideBarMenu } from "./helper";
-import logoWhite from "../../../assets/logo/logowhite.png";
+//import logoWhite from "../../../assets/logo/logowhite.png";
+import darkLogo from "../../../assets/logo/logodark.png";
 import { Link } from "react-router-dom";
 
 const SideMenu = ({ open }: any) => {
@@ -36,14 +37,23 @@ const SideMenu = ({ open }: any) => {
 
   return (
     <Drawer variant="permanent" open={open}>
-      <DrawerHeader style={{ background: "black" }}>
+      <DrawerHeader
+        style={{
+          background: "white",
+          justifyContent: "flex-start",
+          paddingLeft: "26px",
+          paddingTop: "18px",
+        }}
+      >
         <img
-          src={logoWhite}
+          src={darkLogo}
           alt="CoinXhigh logoWhite"
           style={{ width: "154px" }}
         />
       </DrawerHeader>
-      <Divider />
+      {
+        //<Divider />
+      }
       <List sx={{ padding: "7px" }}>
         {sideBarMenu.map((data: any, index: number) => {
           return (
