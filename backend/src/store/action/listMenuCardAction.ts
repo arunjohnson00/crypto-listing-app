@@ -8,7 +8,7 @@ export const listMenuCardRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/menucard`,
+    url: `api/b/v1/menu-cards`,
     method: "GET",
     secure: true,
     actionType: MENUCARD.LIST_MENUCARD,

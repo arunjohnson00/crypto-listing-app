@@ -36,7 +36,7 @@ export const sideBarMenu = [
     //   { id: "103", title: "a", icon: "store" },
     // ],
   },
-  { id: "11", title: "Menucards", icon: "fact_check" },
+  { id: "11", title: "Menu-cards", icon: "fact_check" },
   {
     title: "Rating & Reviews",
     icon: "view_carousel",

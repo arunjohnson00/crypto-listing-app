@@ -7,7 +7,7 @@ export const addMenuCardRequest = (
 ) => {
   //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/menucard`,
+    url: `api/b/v1/menu-cards`,
     method: "POST",
     secure: true,
     body: values,

@@ -29,6 +29,7 @@ const SideMenu = ({ open }: any) => {
 
     console.log(activeColorId);
   };
+
   const handleExpand = (e: any, data: any) => {
     setOpen(!expandMenu);
     console.log(e.currentTarget.id);
@@ -36,7 +37,16 @@ const SideMenu = ({ open }: any) => {
   };
 
   return (
-    <Drawer variant="permanent" open={open}>
+    <Drawer
+      variant="permanent"
+      open={open}
+      sx={{
+        "& .MuiDrawer-paper": {
+          borderRight: 0,
+          boxShadow: "rgb(255 255 255 / 55%) 11px 12px 1px",
+        },
+      }}
+    >
       <DrawerHeader
         style={{
           background: "white",
@@ -79,21 +89,48 @@ const SideMenu = ({ open }: any) => {
                       margin: "0px 6px 0px 0px",
                     }}
                   >
-                    <Icon>{data.icon}</Icon>
+                    <Icon
+                      sx={{
+                        color: `${
+                          activeColorId === data.id
+                            ? "#3D387A "
+                            : "rgba(170, 174, 178, 1)"
+                        }`,
+                      }}
+                    >
+                      {data.icon}
+                    </Icon>
                   </ListItemIcon>
 
                   {!data.subMenu ? (
                     <ListItemText
                       primary={data.title}
+                      primaryTypographyProps={{
+                        fontSize: ".93rem",
+                        fontWeight: `${activeColorId === data.id ? 500 : 400}`,
+                      }}
                       sx={{
-                        color: "rgba(170, 174, 178, 1)",
-                        fontSize: ".9rem",
+                        color: `${
+                          activeColorId === data.id
+                            ? "#3D387A "
+                            : "rgba(170, 174, 178, 1)"
+                        }`,
                       }}
                     />
                   ) : (
                     <ListItemText
                       primary={data.title}
-                      sx={{ color: "rgba(170, 174, 178, 1)" }}
+                      primaryTypographyProps={{
+                        fontSize: ".93rem",
+                        fontWeight: `${activeColorId === data.id ? 500 : 400}`,
+                      }}
+                      sx={{
+                        color: `${
+                          activeColorId === data.id
+                            ? "#3D387A "
+                            : "rgba(170, 174, 178, 1)"
+                        }`,
+                      }}
                     />
                   )}
 

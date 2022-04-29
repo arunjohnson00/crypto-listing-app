@@ -11,7 +11,7 @@ const InputText = ({
   id,
   checkboxStatus,
 }: any) => {
-  console.log(checkboxStatus);
+  // console.log(checkboxStatus);
 
   const [inputValue, setinputValue] = useState(value);
   return (
@@ -25,8 +25,17 @@ const InputText = ({
         placeholder={placeholder}
         value={inputValue}
         onChange={(e: any) => {
-          inputTextHandler(e.target.value);
+          inputTextHandler && inputTextHandler(e.target.value);
           setinputValue(e.target.value);
+        }}
+        sx={{
+          "& .MuiOutlinedInput-root": {
+            background: "white",
+            height: "39px",
+          },
+          // "& .MuiInputAdornment-root": {
+          //   color: "rgb(61 56 122)",
+          // },
         }}
       />
     </ThemeProvider>

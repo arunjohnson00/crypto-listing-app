@@ -39,18 +39,23 @@ const AvatarUploder = ({ addIconData, setAddIcon }: any) => {
   ));
   return (
     <Box className={classes.mainWrapper}>
-      <div {...getRootProps({ className: "dropzone" })}>
+      <div
+        {...getRootProps({ className: "dropzone" })}
+        style={{ background: "white" }}
+      >
         <input {...getInputProps()} />
 
         <Box className={classes.outerWrapper}>
           <Box className={classes.iconWrapper}>
             <FileUploadOutlinedIcon />
           </Box>
-          <Box className={classes.innerWrapper}>
+          <Box className={classes.innerWrapper} sx={{ paddingTop: 0 }}>
             {acceptedFileItems.length === 0 &&
             fileRejectionItems.length === 0 ? (
               <>
-                <Typography variant="h6">Choose file</Typography>
+                <Typography variant="h6" sx={{ fontSize: "1rem" }}>
+                  Choose file
+                </Typography>
               </>
             ) : (
               acceptedFileItems.length > 0 && (

@@ -47,7 +47,7 @@ const CoinListing = () => {
     {
       field: "thumb_icon",
       headerName: "Icon",
-      width: 140,
+      flex: 1,
       sortable: false,
       disableClickEventBubbling: true,
       renderCell: (params: any) => (
@@ -60,19 +60,19 @@ const CoinListing = () => {
     {
       field: "name",
       headerName: "Name",
-      width: 140,
+      flex: 1,
     },
 
     {
       field: "url",
       headerName: "Url",
-      width: 140,
+      flex: 1,
     },
 
     {
       field: "slug",
       headerName: "Slug",
-      width: 140,
+      flex: 1,
     },
   ];
   return (

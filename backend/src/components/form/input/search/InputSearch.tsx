@@ -23,6 +23,15 @@ const InputSearch = ({ placeholder, searchHandler, searchValue }: any) => {
         onChange={(e: any) => {
           searchHandler(e.target.value);
         }}
+        sx={{
+          "& .MuiOutlinedInput-root": {
+            background: "white",
+            height: "39px",
+          },
+          "& .MuiInputAdornment-root": {
+            color: "rgb(61 56 122)",
+          },
+        }}
       />
     </ThemeProvider>
   );

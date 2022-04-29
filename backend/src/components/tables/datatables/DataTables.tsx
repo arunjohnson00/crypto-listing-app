@@ -153,6 +153,24 @@ const DataTables = ({ tableData, tableColumn }: any) => {
           pagination
           components={{ Toolbar: CustomToolbar }}
           className={classes.grid}
+          sx={{
+            boxShadow: 0,
+            border: "none",
+            padding: "8px",
+            borderRadius: "12px",
+            backgroundColor: "white",
+            borderColor: "primary.light",
+            "& .MuiDataGrid-cell:hover": {
+              color: "black",
+            },
+            "& .MuiDataGrid-columnHeaders": {
+              borderTop: "none",
+              fontSize: 14,
+            },
+            "& .MuiDataGrid-columnHeaderTitle": {
+              fontWeight: 600,
+            },
+          }}
         />
       </div>
     </Fragment>
