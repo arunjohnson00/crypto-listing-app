@@ -21,6 +21,7 @@ const SideMenu = ({ open }: any) => {
   const [expandMenu, setOpen] = useState(false);
   const [title, setTitle] = useState();
   const [activeColorId, setActiveColorId] = useState();
+  const [subActiveColorId, setSubActiveColorId] = useState();
 
   const menuHandler = (e: any, data: any) => {
     data.subMenu && handleExpand(e, data);
@@ -30,9 +31,15 @@ const SideMenu = ({ open }: any) => {
     console.log(activeColorId);
   };
 
+  const subMenuHandler = (e: any, sublist: any) => {
+    setSubActiveColorId(sublist.id);
+    console.log(sublist.id);
+    console.log(subActiveColorId);
+  };
+
   const handleExpand = (e: any, data: any) => {
     setOpen(!expandMenu);
-    console.log(e.currentTarget.id);
+    // console.log(e.currentTarget.id);
     setTitle(data.title);
   };
 
@@ -104,7 +111,7 @@ const SideMenu = ({ open }: any) => {
 
                   {!data.subMenu ? (
                     <ListItemText
-                      primary={data.title}
+                      primary={data.title.replace(/[^a-zA-Z ]/g, " ")}
                       primaryTypographyProps={{
                         fontSize: ".93rem",
                         fontWeight: `${activeColorId === data.id ? 500 : 400}`,
@@ -119,7 +126,7 @@ const SideMenu = ({ open }: any) => {
                     />
                   ) : (
                     <ListItemText
-                      primary={data.title}
+                      primary={data.title.replace(/[^a-zA-Z ]/g, " ")}
                       primaryTypographyProps={{
                         fontSize: ".93rem",
                         fontWeight: `${activeColorId === data.id ? 500 : 400}`,
@@ -157,12 +164,50 @@ const SideMenu = ({ open }: any) => {
                         key={index}
                       >
                         <List component="div" disablePadding>
-                          <ListItemButton sx={{ pl: 4 }}>
+                          <ListItemButton
+                            sx={{ pl: 2 }}
+                            onClick={(e) => subMenuHandler(e, sublist)}
+                            id={`${data.title
+                              .toLowerCase()
+                              .replace(/\s+/g, "")}sub${index}`}
+                            style={{
+                              background: `${
+                                subActiveColorId === sublist.id
+                                  ? "#f4f4f4"
+                                  : "none"
+                              }`,
+                            }}
+                          >
                             <ListItemIcon>
-                              <Icon>{sublist.icon}</Icon>
+                              <Icon
+                                sx={{
+                                  color: `${
+                                    subActiveColorId === sublist.id
+                                      ? "#3D387A "
+                                      : "rgba(170, 174, 178, 1)"
+                                  }`,
+                                }}
+                              >
+                                {sublist.icon}
+                              </Icon>
                             </ListItemIcon>
 
-                            <ListItemText primary={sublist.title} />
+                            <ListItemText
+                              primary={sublist.title}
+                              primaryTypographyProps={{
+                                fontSize: ".93rem",
+                                fontWeight: `${
+                                  subActiveColorId === sublist.id ? 500 : 400
+                                }`,
+                              }}
+                              sx={{
+                                color: `${
+                                  subActiveColorId === sublist.id
+                                    ? "#3D387A "
+                                    : "rgba(170, 174, 178, 1)"
+                                }`,
+                              }}
+                            />
                           </ListItemButton>
                         </List>
                       </Link>
