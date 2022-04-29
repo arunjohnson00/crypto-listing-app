@@ -4,7 +4,12 @@ import InputSelectCoin from "../../../components/form/selectcoin/InputSelectCoin
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const NetworkDetails = ({ networkCount, networkremoveHandle, index }: any) => {
+const NetworkDetails = ({
+  networkCount,
+  networkremoveHandle,
+  index,
+  data,
+}: any) => {
   ///console.log(arrayCount);
   return (
     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -16,6 +21,7 @@ const NetworkDetails = ({ networkCount, networkremoveHandle, index }: any) => {
           <InputSelectCoin
             name={`network[${index + 2}]`}
             id={`network_${index + 2}`}
+            data={data}
           />
         </Grid>
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>

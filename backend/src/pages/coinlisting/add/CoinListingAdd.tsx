@@ -19,7 +19,7 @@ import InputCheckbox from "../../../components/form/input/checkbox/InputCheckbox
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 
 //import IconUploader from "../../../components/form/input/file/icon/IconUploader";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -36,6 +36,15 @@ import ChatDetails from "./ChatDetails";
 import SocialDetails from "./SocialDetails";
 
 const CoinListingAdd = () => {
+  const exchangeList = useSelector((exList: any) => {
+    return exList.listExchangeReducer.exchangeListAll.data;
+  });
+
+  const networkList = useSelector((ntList: any) => {
+    return ntList.listNetworkReducer.natworkListAll.data;
+  });
+
+  console.log(exchangeList);
   const selectOptions = [
     { title: "Approved", value: 1 },
     { title: "Processing", value: 2 },
@@ -488,7 +497,11 @@ const CoinListingAdd = () => {
                   >
                     Network 1
                   </Typography>
-                  <InputSelectCoin name={`network[1]`} id={`network_1`} />
+                  <InputSelectCoin
+                    name={`network[1]`}
+                    id={`network_1`}
+                    data={networkList}
+                  />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
@@ -542,6 +555,7 @@ const CoinListingAdd = () => {
                     index={index}
                     key={index}
                     networkremoveHandle={networkremoveHandle}
+                    data={networkList}
                   />
                   {
                     // networkCount.length - 1
@@ -570,6 +584,7 @@ const CoinListingAdd = () => {
                   <InputSelectCoin
                     name={`exchange_id[1]`}
                     id={`exchange_id_1`}
+                    data={exchangeList}
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -624,6 +639,7 @@ const CoinListingAdd = () => {
                     index={index}
                     key={index}
                     exchangeremoveHandle={exchangeremoveHandle}
+                    data={exchangeList}
                   />
                 </div>
               );

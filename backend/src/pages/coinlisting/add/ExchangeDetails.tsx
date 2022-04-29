@@ -8,7 +8,9 @@ const ExchangeDetails = ({
   exchangeCount,
   exchangeremoveHandle,
   index,
+  data,
 }: any) => {
+  console.log(data);
   return (
     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
       <Stack direction="row" spacing={3} pt={3}>
@@ -19,6 +21,7 @@ const ExchangeDetails = ({
           <InputSelectCoin
             name={`exchange_id[${index + 2}]`}
             id={`exchange_id_${index + 2}`}
+            data={data}
           />
         </Grid>
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
