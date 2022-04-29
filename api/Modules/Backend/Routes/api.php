@@ -30,6 +30,30 @@ Route::prefix('b')->group(function() {
         
         Route::group(['middleware' =>  'assign_guard:backend_api'], function()
         {
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            /*
+            |--------------------------------------------------------------------------
+            | Menu Cards Routes   http://localhost/coinxhigh/api/api/b/v1/menu-cards
+            |--------------------------------------------------------------------------
+            */  
+            Route::get('menu-cards', 'MenuCards\MenuCardsController@index');                     /*  List    */     
+            Route::post('menu-cards', 'MenuCards\MenuCardsController@store');                    /*  Create  */   
+            Route::get('menu-cards/{menu_card_id}/edit', 'MenuCards\MenuCardsController@edit');  /*  Edit    */ 
+            Route::get('menu-cards/{menu_card_id}/show', 'MenuCards\MenuCardsController@show');  /*  Show    */  
+            Route::post('menu-cards/{menu_card_id}', 'MenuCards\MenuCardsController@update');    /*  Update  */  
+            Route::delete('menu-cards/{menu_card_id}', 'MenuCards\MenuCardsController@destroy'); /*  Destroy */
+            
             /*
             |--------------------------------------------------------------------------
             | Coins Routes  
