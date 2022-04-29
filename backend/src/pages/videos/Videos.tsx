@@ -62,13 +62,13 @@ const Videos = () => {
     {
       field: "v_name",
       headerName: "Video Name",
-      width: 140,
+      flex: 1,
     },
 
     {
       field: "approved_at",
       headerName: "Approved",
-      width: 140,
+      flex: 1,
       renderCell: (params: any) => (
         // <span>{moment(params.row.created_at).fromNow()}</span>
         <span>{moment(params.row.approved_at).fromNow()}</span>
@@ -79,7 +79,7 @@ const Videos = () => {
     {
       field: "created_at",
       headerName: "Careated",
-      width: 140,
+      flex: 1,
       renderCell: (params: any) => (
         //params.row.approved_at,
         <span>{moment(params.row.created_at).fromNow()}</span>
@@ -90,23 +90,23 @@ const Videos = () => {
     {
       field: "v_title",
       headerName: "Video Title",
-      width: 140,
+      flex: 1,
     },
     {
       field: "v_sub_title",
       headerName: "Video subtitle",
-      width: 140,
+      flex: 1,
     },
 
     {
       field: "v_url",
       headerName: "Video URL",
-      width: 140,
+      flex: 1,
     },
     {
       field: "status",
       headerName: "Status",
-      width: 140,
+      flex: 1,
       renderCell: (params: any) => (
         <span>
           {params.row.status === 1 && (

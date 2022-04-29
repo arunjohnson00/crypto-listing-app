@@ -16,16 +16,40 @@ import SettingsBtn from "../../../components/button/settings/SettingsBtn";
 import NotificationBtn from "../../../components/button/notification/NotificationBtn";
 import ProfileBtn from "../../../components/button/profile/ProfileBtn";
 import ProfileMenu from "../../../components/dropdowns/profile/ProfileMenu";
+import NotificationMenu from "../../../components/dropdowns/notification/NotificationMenu";
+import SettingsMenu from "../../../components/dropdowns/settings/SettingsMenu";
 
 const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const openSettings = Boolean(anchorEl);
+  const openProfile = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const [anchorNotification, setAnchorNotification] = useState<any>(null);
+
+  const openNotification = Boolean(anchorNotification);
+  const handleNotificationClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorNotification(event.currentTarget);
+  };
+
+  const handleNotificationClose = () => {
+    setAnchorNotification(null);
+  };
+
+  const [anchorSettings, setAnchorSettings] = useState<any>(null);
+
+  const openSettings = Boolean(anchorSettings);
+  const handleSettingsClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorSettings(event.currentTarget);
+  };
+
+  const handleSettingsClose = () => {
+    setAnchorSettings(null);
   };
 
   const navigate: any = useNavigate();
@@ -72,20 +96,30 @@ const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
           Dashboard
         </Typography>
         <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-          <SettingsBtn />
+          <SettingsBtn handleSettingsClick={handleSettingsClick} />
+          <SettingsMenu
+            anchorSettings={anchorSettings}
+            openSettings={openSettings}
+            handleSettingsClose={handleSettingsClose}
+          />
 
-          <NotificationBtn />
+          <NotificationBtn handleNotificationClick={handleNotificationClick} />
+          <NotificationMenu
+            anchorNotification={anchorNotification}
+            openNotification={openNotification}
+            handleNotificationClose={handleNotificationClose}
+          />
           <Divider orientation="vertical" flexItem />
           <ProfileBtn
             handleClick={handleClick}
             handleClose={handleClose}
-            open={openSettings}
+            open={openProfile}
             anchorEl={anchorEl}
           />
           <ProfileMenu
             handleClick={handleClick}
             handleClose={handleClose}
-            open={openSettings}
+            open={openProfile}
             anchorEl={anchorEl}
             loginControll={loginControll}
           />

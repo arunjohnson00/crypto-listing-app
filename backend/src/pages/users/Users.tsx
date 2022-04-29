@@ -50,12 +50,12 @@ const Users = () => {
     {
       field: "name",
       headerName: "User Name",
-      width: 140,
+      flex: 1,
     },
     {
       field: "avatar",
       headerName: "Avatar",
-      width: 140,
+      flex: 1,
       sortable: false,
       disableClickEventBubbling: true,
       renderCell: (params: any) => (
@@ -69,18 +69,18 @@ const Users = () => {
     {
       field: "email",
       headerName: "Email Id",
-      width: 140,
+      flex: 1,
     },
     {
       field: "dname",
       headerName: "Display Name",
-      width: 140,
+      flex: 1,
     },
 
     {
       field: "created_at",
       headerName: "Careated at",
-      width: 140,
+      flex: 1,
       renderCell: (params: any) => (
         <span>{moment(params.row.created_at).fromNow()}</span>
         //<span>{moment("2022-04-25T09:51:52.000000Z").fromNow()}</span>
@@ -90,13 +90,13 @@ const Users = () => {
     {
       field: "rating",
       headerName: "Rating",
-      width: 140,
+      flex: 1,
     },
 
     {
       field: "status",
       headerName: "Status",
-      width: 140,
+      flex: 1,
       renderCell: (params: any) => (
         <span>
           {params.row.status === 1 && (

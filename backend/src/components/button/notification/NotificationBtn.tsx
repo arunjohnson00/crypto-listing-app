@@ -2,10 +2,11 @@ import { Box } from "@mui/material";
 import { StyledBadge } from "./style";
 import { Icon } from "@mui/material";
 
-const NotificationBtn = () => {
+const NotificationBtn = ({ handleNotificationClick }: any) => {
   return (
     <StyledBadge variant="dot" color={"success"}>
       <Box
+        onClick={handleNotificationClick}
         component="span"
         sx={{
           width: 45,
