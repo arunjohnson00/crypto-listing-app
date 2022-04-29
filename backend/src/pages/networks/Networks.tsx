@@ -48,7 +48,7 @@ const Networks = () => {
     {
       field: "thumb_icon",
       headerName: "Icon",
-      width: 140,
+      flex: 1,
       sortable: false,
       disableClickEventBubbling: true,
       renderCell: (params: any) => (
@@ -61,36 +61,36 @@ const Networks = () => {
     {
       field: "name",
       headerName: "Name",
-      width: 140,
+      flex: 1,
     },
 
     {
       field: "chain_id",
       headerName: "Chain Id",
-      width: 140,
+      flex: 1,
     },
 
     {
       field: "explorer_url",
       headerName: "Explorer URL",
-      width: 140,
+      flex: 1,
     },
 
     {
       field: "currency_symbol",
       headerName: "Currency Symbol",
-      width: 140,
+      flex: 1,
     },
     {
       field: "url",
       headerName: "Url",
-      width: 140,
+      flex: 1,
     },
 
     {
       field: "slug",
       headerName: "Slug",
-      width: 140,
+      flex: 1,
     },
   ];
   return (

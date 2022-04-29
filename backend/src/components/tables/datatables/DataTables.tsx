@@ -118,7 +118,8 @@ const DataTables = ({ tableData, tableColumn }: any) => {
       field: "actions",
       headerName: "Actions",
       sortable: false,
-      width: "100%",
+
+      flex: 2,
       disableClickEventBubbling: true,
       renderCell: (params: any) => {
         return (
