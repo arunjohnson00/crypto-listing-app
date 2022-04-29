@@ -24,6 +24,16 @@ class ExchangeController extends Controller
     }
     
     /**
+     * All listing of the resource.
+     * @return Renderable
+     */
+    public function All()
+    {
+       return response()->json([ 'data' => Exchange::orderBy('id','desc')->get() ]);    
+    }
+
+    
+    /**
      * Display a listing of the resource.
      * @return Renderable
      */

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Backend\Entities\MenuCards;
+use Validator; use \Exception;
 
 class MenuCardsController extends Controller
 {

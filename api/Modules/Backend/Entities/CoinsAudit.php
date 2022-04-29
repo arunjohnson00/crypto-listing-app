@@ -4,20 +4,17 @@ namespace Modules\Backend\Entities;
 
 use Illuminate\Database\Eloquent\Model; 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Cviebrock\EloquentSluggable\Sluggable;
 
-
-
-class MenuCards extends Model
+class CoinsAudit extends Model
 {
-    use SoftDeletes, Sluggable;
+    use SoftDeletes;
     
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = "menu_cards";
+    protected $table = "coins_audit";
     
     /**
      * The attributes that are mass assignable.
@@ -43,18 +40,6 @@ class MenuCards extends Model
     protected $dates = ['deleted_at'];
    
     
-    /**
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
-     */
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
-    }
+     
     
 }

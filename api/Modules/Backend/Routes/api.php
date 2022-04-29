@@ -44,7 +44,7 @@ Route::prefix('b')->group(function() {
             
             /*
             |--------------------------------------------------------------------------
-            | Menu Cards Routes   http://localhost/coinxhigh/api/api/b/v1/menu-cards
+            | Menu Cards Routes   
             |--------------------------------------------------------------------------
             */  
             Route::get('menu-cards', 'MenuCards\MenuCardsController@index');                     /*  List    */     
@@ -59,13 +59,28 @@ Route::prefix('b')->group(function() {
             | Coins Routes  
             |--------------------------------------------------------------------------
             */
-            Route::get('coins', 'Coins\CoinsController@index');                /*  List    */      
-            Route::post('coins', 'Coins\CoinsController@store');               /*  Create  */  
-            Route::get('coins/{coin_id}/edit', 'Coins\CoinsController@edit');  /*  Edit    */ 
-            Route::get('coins/{coin_id}/show', 'Coins\CoinsController@show');  /*  Show    */ 
-            Route::post('coins/{coin_id}', 'Coins\CoinsController@update');    /*  Update  */   
-            Route::delete('coins/{coin_id}', 'Coins\CoinsController@destroy'); /*  Destroy */
+                Route::get('coins', 'Coins\CoinsController@index');                /*  List    */      
+                Route::post('coins', 'Coins\CoinsController@store');               /*  Create  */  
+                Route::get('coins/{coin_id}/edit', 'Coins\CoinsController@edit');  /*  Edit    */ 
+                Route::get('coins/{coin_id}/show', 'Coins\CoinsController@show');  /*  Show    */ 
+                Route::post('coins/{coin_id}', 'Coins\CoinsController@update');    /*  Update  */   
+                Route::delete('coins/{coin_id}', 'Coins\CoinsController@destroy'); /*  Destroy */
             
+                
+                /*
+                |--------------------------------------------------------------------------
+                | Coins Audit Routes  
+                |--------------------------------------------------------------------------
+                */
+                Route::get('coins-audit-all', 'Coins\CoinsAuditController@All');                    /*  All     */ 
+                Route::get('coins-audit', 'Coins\CoinsAuditController@index');                      /*  List    */      
+                Route::post('coins-audit', 'Coins\CoinsAuditController@store');                     /*  Create  */  
+                Route::get('coins-audit/{coin_audit_id}/edit', 'Coins\CoinsAuditController@edit');  /*  Edit    */ 
+                Route::get('coins-audit/{coin_audit_id}/show', 'Coins\CoinsAuditController@show');  /*  Show    */ 
+                Route::post('coins-audit/{coin_audit_id}', 'Coins\CoinsAuditController@update');    /*  Update  */   
+                Route::delete('coins-audit/{coin_audit_id}', 'Coins\CoinsAuditController@destroy'); /*  Destroy */
+            
+                
             /*
             |--------------------------------------------------------------------------
             | Videos Routes  
@@ -96,6 +111,7 @@ Route::prefix('b')->group(function() {
             | Networks Routes  
             |--------------------------------------------------------------------------
             */  
+            Route::get('networks-all', 'Networks\NetworksController@All');                  /*  All     */ 
             Route::get('networks', 'Networks\NetworksController@index');                    /*  List    */     
             Route::post('networks', 'Networks\NetworksController@store');                   /*  Create  */   
             Route::get('networks/{networks_id}/edit', 'Networks\NetworksController@edit');  /*  Edit    */ 
@@ -108,6 +124,7 @@ Route::prefix('b')->group(function() {
             | Exchange Routes  
             |--------------------------------------------------------------------------
             */ 
+            Route::get('exchange-all', 'Exchange\ExchangeController@All');                  /*  All     */ 
             Route::get('exchange', 'Exchange\ExchangeController@index');                    /*  List     */   
             Route::post('exchange', 'Exchange\ExchangeController@store');                   /*  Create   */   
             Route::get('exchange/{exchange_id}/edit', 'Exchange\ExchangeController@edit');  /*  Edit     */ 
