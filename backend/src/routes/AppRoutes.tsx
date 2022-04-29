@@ -8,7 +8,7 @@ import CoinListing from "../pages/coinlisting/CoinListing";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Events from "../pages/events/view/Events";
 import Exchanges from "../pages/exchanges/Exchanges";
-import MenuCard from "../pages/menucards/view/MenuCard";
+import MenuCard from "../pages/menucards/MenuCard";
 import Networks from "../pages/networks/Networks";
 import NFTListing from "../pages/nftlisting/view/NFTListing";
 import NFTMarketPlaces from "../pages/nftmarketplaces/view/NFTMarketPlaces";
@@ -31,6 +31,9 @@ import VideosView from "../pages/videos/view/VideosView";
 import UserEdit from "../pages/users/edit/UserEdit";
 import UserAdd from "../pages/users/add/UserAdd";
 import UserView from "../pages/users/view/UserView";
+import MenuCardAdd from "../pages/menucards/add/MenuCardAdd";
+
+import NotFound from "../pages/notfound/NotFound";
 
 const AppRoutes = () => {
   return (
@@ -245,6 +248,14 @@ const AppRoutes = () => {
           }
         />
         <Route
+          path="/menucards/add"
+          element={
+            <PrivateRoute>
+              <MenuCardAdd />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/rating&reviews"
           element={
             <PrivateRoute>
@@ -273,6 +284,14 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <Badges />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/*"
+          element={
+            <PrivateRoute>
+              <NotFound />
             </PrivateRoute>
           }
         />
