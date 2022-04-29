@@ -6,7 +6,7 @@ export const updateMenuCardRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/menucard/${values.get("id")}`,
+    url: `api/b/v1/menu-cards/${values.get("id")}`,
     method: "POST",
     secure: true,
     body: values,

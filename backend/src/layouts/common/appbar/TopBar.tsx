@@ -64,7 +64,7 @@ const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
         height: "68px",
         backgroundColor: "rgba(255, 255, 255, 1)",
         color: "rgba(0, 0, 0, 1)",
-        boxShadow: "rgb(244, 244, 244) 0px 12px 1px ",
+        boxShadow: "rgb(255 255 255 / 55%) 0px 12px 1px ",
       }}
       open={open}
     >

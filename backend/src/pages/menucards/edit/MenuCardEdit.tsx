@@ -3,33 +3,47 @@ import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 import InputText from "../../../components/form/input/text/InputText";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useLocation } from "react-router-dom";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
+import InputSelect from "../../../components/form/select/InputSelect";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { addMenuCardRequest } from "../../../store/action/addMenuCardAction";
+import { updateMenuCardRequest } from "../../../store/action";
 
-const MenuCardAdd = () => {
+const MenuCardEdit = () => {
+  const menuCardList = useSelector((menuList: any) => {
+    return menuList.listMenuCardReducer.menuCardListAll.data;
+  });
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+  const location: any = useLocation();
+
+  console.log(location.state.id);
+
+  let newArrList = menuCardList.filter(
+    (listData: any) => listData.id === location.state.id
+  );
+  console.log(newArrList[0].id);
+
   const [addMenuCardData, setAddMenuCard] = useState({
-    title: "",
-    status: 1,
-    sub_title: "",
+    id: newArrList[0].id,
+    title: newArrList[0].title,
+    status: newArrList[0].status,
+    sub_title: newArrList[0].sub_title,
     thumb_icon: "",
-    url: "",
+    url: newArrList[0].url,
   });
 
   const [loading, setLoading] = useState(false);
 
   // Display the key/value pairs
 
-  const menuCardAddHandler = () => {
+  const menuCardEditHandler = () => {
     const successHandler = (res: any) => {
       console.log(res);
 
@@ -62,33 +76,41 @@ const MenuCardAdd = () => {
     };
 
     const formData = new FormData();
-    formData.append("icon", addMenuCardData.thumb_icon);
+    addMenuCardData.thumb_icon !== "" &&
+      formData.append("icon", addMenuCardData.thumb_icon);
+    formData.append("id", addMenuCardData.id);
     formData.append("title", addMenuCardData.title);
     formData.append("sub_title", addMenuCardData.sub_title);
     formData.append("url", addMenuCardData.url);
 
-    formData.append("status", "1");
+    formData.append("status", addMenuCardData.status);
 
-    dispatch(addMenuCardRequest(formData, successHandler, errorHandler));
+    dispatch(updateMenuCardRequest(formData, successHandler, errorHandler));
   };
 
-  const menuCardTitleHandler = (e: any) => {
+  const menuCardTitleEditHandler = (e: any) => {
     //console.log(e);
 
     setAddMenuCard({ ...addMenuCardData, title: e });
   };
 
-  const menuCardSubTitleHandler = (e: any) => {
+  const menuCardSubTitleEditHandler = (e: any) => {
     //console.log(e);
 
     setAddMenuCard({ ...addMenuCardData, sub_title: e });
   };
 
-  const menuCardURLHandler = (e: any) => {
+  const menuCardURLEditHandler = (e: any) => {
     //console.log(e);
 
     setAddMenuCard({ ...addMenuCardData, url: e });
   };
+
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Processing", value: 2 },
+    { title: "Rejected/Blocked", value: 3 },
+  ];
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -122,7 +144,8 @@ const MenuCardAdd = () => {
 
             <InputText
               placeholder="Enter MenuCard Title"
-              inputTextHandler={(e: any) => menuCardTitleHandler(e)}
+              inputTextHandler={(e: any) => menuCardTitleEditHandler(e)}
+              value={newArrList[0].title}
             />
           </Grid>
 
@@ -133,7 +156,8 @@ const MenuCardAdd = () => {
 
             <InputText
               placeholder="Enter MenuCard Subtitle"
-              inputTextHandler={(e: any) => menuCardSubTitleHandler(e)}
+              inputTextHandler={(e: any) => menuCardSubTitleEditHandler(e)}
+              value={newArrList[0].sub_title}
             />
           </Grid>
 
@@ -144,7 +168,8 @@ const MenuCardAdd = () => {
 
             <InputText
               placeholder="Enter URL"
-              inputTextHandler={(e: any) => menuCardURLHandler(e)}
+              inputTextHandler={(e: any) => menuCardURLEditHandler(e)}
+              value={newArrList[0].url}
             />
           </Grid>
 
@@ -156,6 +181,19 @@ const MenuCardAdd = () => {
             <IconUploader
               setAddIcon={setAddMenuCard}
               addIconData={addMenuCardData}
+            />
+          </Grid>
+
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              Status
+            </Typography>
+
+            <InputSelect
+              selectOptions={selectOptions}
+              currentStatus={newArrList[0].status}
+              setInputSelectValue={setAddMenuCard}
+              getInputSelectvalue={addMenuCardData}
             />
           </Grid>
 
@@ -183,7 +221,7 @@ const MenuCardAdd = () => {
               ) : (
                 <LargeBtn
                   Title="Add new MenuCard"
-                  lgBtnHandler={menuCardAddHandler}
+                  lgBtnHandler={menuCardEditHandler}
                 />
               )}
             </Stack>
@@ -194,4 +232,4 @@ const MenuCardAdd = () => {
   );
 };
 
-export default MenuCardAdd;
+export default MenuCardEdit;

@@ -34,6 +34,8 @@ import UserView from "../pages/users/view/UserView";
 import MenuCardAdd from "../pages/menucards/add/MenuCardAdd";
 
 import NotFound from "../pages/notfound/NotFound";
+import MenuCardEdit from "../pages/menucards/edit/MenuCardEdit";
+import MenuCardView from "../pages/menucards/view/MenuCardView";
 
 const AppRoutes = () => {
   return (
@@ -240,7 +242,7 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/menucards"
+          path="/menu-cards"
           element={
             <PrivateRoute>
               <MenuCard />
@@ -248,10 +250,27 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/menucards/add"
+          path="/menu-cards/add"
           element={
             <PrivateRoute>
               <MenuCardAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/menu-cards/edit"
+          element={
+            <PrivateRoute>
+              <MenuCardEdit />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/menu-cards/view"
+          element={
+            <PrivateRoute>
+              <MenuCardView />
             </PrivateRoute>
           }
         />

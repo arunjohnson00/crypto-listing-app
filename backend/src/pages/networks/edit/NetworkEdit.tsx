@@ -31,7 +31,7 @@ const NetworkEdit = () => {
   const [addNetworkData, setAddNetwork] = useState({
     id: newArrList[0].id,
     name: newArrList[0].name,
-    status: 1,
+    status: newArrList[0].status,
     url: newArrList[0].url,
     thumb_icon: "",
     chain_id: newArrList[0].chain_id,

@@ -5,7 +5,7 @@ export const useStyles = makeStyles({
   mainWrapper: {
     width: "319px",
     height: "89px",
-    background: "rgb(246, 246, 246)",
+    background: "white",
     borderRadius: "8px",
     color: "rgb(168 168 168)",
     padding: "5px",
@@ -28,7 +28,7 @@ export const useStyles = makeStyles({
 
   iconWrapper: {
     display: "flex",
-    marginTop: "7px",
+    // marginTop: "7px",
     "& svg": {
       fontSize: "4.2rem",
     },
