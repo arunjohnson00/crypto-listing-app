@@ -38,6 +38,7 @@ import SocialDetails from "./SocialDetails";
 import { listExchangeRequest } from "../../../store/action";
 import { listNetworkRequest } from "../../../store/action";
 import { listCoinAuditRequest } from "../../../store/action";
+import { listChartProviderRequest } from "../../../store/action";
 
 const CoinListingAdd = () => {
   const exchangeList = useSelector((exList: any) => {
@@ -50,6 +51,13 @@ const CoinListingAdd = () => {
   const coinAuditList = useSelector((auditList: any) => {
     return auditList.listCoinAuditReducer.auditListAll.data;
   });
+  const coinChartProviderList = useSelector((chartProviderList: any) => {
+    return chartProviderList.listCoinChartProviderReducer.chartProviderListAll
+      .data;
+  });
+  // const coinCommunityList = useSelector((CommunityList: any) => {
+  //   return CommunityList.listCoinCommunityReducer.coinCommunityListAll.data;
+  // });
 
   console.log(exchangeList);
   const selectOptions = [
@@ -221,6 +229,9 @@ const CoinListingAdd = () => {
     dispatch(listNetworkRequest("emptyformData", successHandler, errorHandler));
     dispatch(
       listCoinAuditRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(
+      listChartProviderRequest("emptyformData", successHandler, errorHandler)
     );
   }, [dispatch]);
   return (
@@ -840,6 +851,7 @@ const CoinListingAdd = () => {
                   <InputSelectCoin
                     name="chart_provider[1]"
                     id="chart_provider_1"
+                    data={coinChartProviderList}
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -879,6 +891,7 @@ const CoinListingAdd = () => {
                     index={index}
                     key={index}
                     chartremoveHandle={chartremoveHandle}
+                    data={coinChartProviderList}
                   />
                 </div>
               );

@@ -4,7 +4,7 @@ import InputSelectCoin from "../../../components/form/selectcoin/InputSelectCoin
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const ChartDetails = ({ chartCount, chartremoveHandle, index }: any) => {
+const ChartDetails = ({ chartCount, chartremoveHandle, index, data }: any) => {
   return (
     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
       <Stack direction="row" spacing={3} pt={3}>
@@ -15,6 +15,7 @@ const ChartDetails = ({ chartCount, chartremoveHandle, index }: any) => {
           <InputSelectCoin
             name={`chart_provider[${index + 2}]`}
             id={`chart_provider_${index + 2}`}
+            data={data}
           />
         </Grid>
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
