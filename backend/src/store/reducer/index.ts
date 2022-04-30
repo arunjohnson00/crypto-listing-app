@@ -28,6 +28,12 @@ import updateMenuCardReducer from "./updateMenuCard";
 import listCoinAuditReducer from "./listCoinAudit";
 import addCoinAuditReducer from "./addCoinAudit";
 import updateCoinAuditReducer from "./updateCoinAudit";
+import listCoinChartProviderReducer from "./listCoinChartProvider";
+import addCoinChartProviderReducer from "./addCoinChartProvider";
+import updateCoinChartProviderReducer from "./updateCoinChartProvider";
+import listCoinCommunityReducer from "./listCoinCommunity";
+import addCoinCommunityReducer from "./addCoinCommunity";
+import updateCoinCommunityReducer from "./updateCoinCommunity";
 
 const allReducers = combineReducers({
   Auth,
@@ -54,6 +60,12 @@ const allReducers = combineReducers({
   listCoinAuditReducer,
   addCoinAuditReducer,
   updateCoinAuditReducer,
+  listCoinChartProviderReducer,
+  addCoinChartProviderReducer,
+  updateCoinChartProviderReducer,
+  listCoinCommunityReducer,
+  addCoinCommunityReducer,
+  updateCoinCommunityReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

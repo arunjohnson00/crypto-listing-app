@@ -41,6 +41,14 @@ import CoinsAuditAdd from "../pages/coinsaudit/add/CoinsAuditAdd";
 import CoinsAuditEdit from "../pages/coinsaudit/edit/CoinsAuditEdit";
 import CoinsAuditView from "../pages/coinsaudit/view/CoinsAuditView";
 import Settings from "../pages/settings/Settings";
+import CoinsChartProviderAdd from "../pages/coinschartprovider/add/CoinsChartProviderAdd";
+import CoinsChartProvider from "../pages/coinschartprovider/CoinsChartProvider";
+import CoinsChartProviderView from "../pages/coinschartprovider/view/CoinsChartProviderView";
+import CoinsChartProviderEdit from "../pages/coinschartprovider/edit/CoinsChartProviderEdit";
+import CoinsCommunity from "../pages/coincommunity/CoinsCommunity";
+import CoinsCommunityAdd from "../pages/coincommunity/add/CoinsCommunityAdd";
+import CoinsCommunityEdit from "../pages/coincommunity/edit/CoinsCommunityEdit";
+import CoinsCommunityView from "../pages/coincommunity/view/CoinsCommunityView";
 
 const AppRoutes = () => {
   return (
@@ -111,6 +119,75 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <CoinsAuditView />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/coins-chart-provider"
+          element={
+            <PrivateRoute>
+              <CoinsChartProvider />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/coins-chart-provider/add"
+          element={
+            <PrivateRoute>
+              <CoinsChartProviderAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/coins-chart-provider/edit"
+          element={
+            <PrivateRoute>
+              <CoinsChartProviderEdit />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/coins-chart-provider/view"
+          element={
+            <PrivateRoute>
+              <CoinsChartProviderView />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/coins-community"
+          element={
+            <PrivateRoute>
+              <CoinsCommunity />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/coins-community/add"
+          element={
+            <PrivateRoute>
+              <CoinsCommunityAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/coins-community/edit"
+          element={
+            <PrivateRoute>
+              <CoinsCommunityEdit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/coins-community/view"
+          element={
+            <PrivateRoute>
+              <CoinsCommunityView />
             </PrivateRoute>
           }
         />

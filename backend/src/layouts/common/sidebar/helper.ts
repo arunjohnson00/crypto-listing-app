@@ -4,7 +4,11 @@ export const sideBarMenu = [
     id: "2",
     title: "Coins",
     icon: "paid",
-    subMenu: [{ id: "21", title: "coins-audit", icon: "receipt" }],
+    subMenu: [
+      { id: "21", title: "coins-audit", icon: "receipt" },
+      { id: "22", title: "coins-chart-provider", icon: "receipt" },
+      { id: "23", title: "coins-community", icon: "receipt" },
+    ],
   },
   { id: "3", title: "Exchange", icon: "currency_exchange" },
   {
