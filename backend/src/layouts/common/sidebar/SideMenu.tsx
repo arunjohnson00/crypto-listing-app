@@ -86,7 +86,10 @@ const SideMenu = ({ open }: any) => {
                   id={"main" + index}
                   style={{
                     background: `${
-                      activeColorId === data.id ? "#f4f4f4" : "none"
+                      activeColorId === data.id ? "rgb(61 56 122)" : "none"
+                    }`,
+                    borderRadius: `${
+                      activeColorId === data.id ? "7px" : "0px"
                     }`,
                   }}
                 >
@@ -100,7 +103,7 @@ const SideMenu = ({ open }: any) => {
                       sx={{
                         color: `${
                           activeColorId === data.id
-                            ? "#3D387A "
+                            ? "white "
                             : "rgba(170, 174, 178, 1)"
                         }`,
                       }}
@@ -119,7 +122,7 @@ const SideMenu = ({ open }: any) => {
                       sx={{
                         color: `${
                           activeColorId === data.id
-                            ? "#3D387A "
+                            ? "white"
                             : "rgba(170, 174, 178, 1)"
                         }`,
                       }}
@@ -134,20 +137,27 @@ const SideMenu = ({ open }: any) => {
                       sx={{
                         color: `${
                           activeColorId === data.id
-                            ? "#3D387A "
+                            ? "white "
                             : "rgba(170, 174, 178, 1)"
                         }`,
                       }}
                     />
                   )}
 
-                  {!data.subMenu ? null : expandMenu ? (
+                  {!data.subMenu ? null : activeColorId === data.id &&
+                    expandMenu ? (
                     <ExpandLess
-                      style={{ fontSize: 17, color: "rgba(170, 174, 178, 1)" }}
+                      style={{
+                        fontSize: 17,
+                        color: "rgba(170, 174, 178, 1)",
+                      }}
                     />
                   ) : (
                     <ExpandMore
-                      style={{ fontSize: 17, color: "rgba(170, 174, 178, 1)" }}
+                      style={{
+                        fontSize: 17,
+                        color: "rgba(170, 174, 178, 1)",
+                      }}
                     />
                   )}
                 </ListItem>
