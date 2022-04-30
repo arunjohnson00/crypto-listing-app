@@ -25,6 +25,7 @@ import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
+
 import { addCoinRequest } from "../../../store/action";
 import Link from "@mui/material/Link";
 import NetworkDetails from "./NetworkDetails";
@@ -330,7 +331,11 @@ const CoinListingAdd = () => {
               </Grid>
               <Grid item xl={7} lg={7} md={7} sm={7} xs={12}>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-                  <InputTextArea name="description" id="description" />
+                  <InputTextArea
+                    name="description"
+                    id="description"
+                    placeholder="Detailed project description"
+                  />
                 </Grid>
               </Grid>
 
@@ -684,7 +689,7 @@ const CoinListingAdd = () => {
               </Typography>
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-              <Stack direction="row" spacing={3}>
+              <Stack direction="row" spacing={3} pb={2}>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
                     variant="subtitle1"

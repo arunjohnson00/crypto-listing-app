@@ -1,10 +1,21 @@
 import { Box } from "@mui/material";
+import { useCallback } from "react";
 import { Button } from "@mui/material";
 import { useDropzone } from "react-dropzone";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 
-const BannerUploader = () => {
-  const { getRootProps, getInputProps } = useDropzone({
+const BannerUploader = ({ addIconData, setAddIcon }: any) => {
+  const onDrop = useCallback(
+    (acceptedFiles: any) => {
+      setAddIcon({
+        ...addIconData,
+        image: acceptedFiles[0],
+      });
+    },
+    [addIconData, setAddIcon]
+  );
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+    onDrop,
     accept: "image/jpeg,image/png,image/gif",
   });
 
@@ -31,12 +42,18 @@ const BannerUploader = () => {
           variant="outlined"
           startIcon={<FileUploadOutlinedIcon />}
           sx={{
-            background: "rgb(239, 235, 255)",
-            border: "1px solid rgb(174 159 231)",
+            background: `${
+              acceptedFiles.length === 0 ? "rgb(239, 235, 255)" : "#d5ffd3"
+            }`,
+            border: `${
+              acceptedFiles.length === 0
+                ? "1px solid rgb(174 159 231)"
+                : "1px solid rgb(58 255 30)"
+            }`,
             color: "rgb(129 117 173)",
           }}
         >
-          Delete
+          {acceptedFiles.length === 0 ? "Upload" : "Selected"}
         </Button>
       </div>
     </Box>

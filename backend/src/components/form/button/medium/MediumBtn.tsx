@@ -1,11 +1,12 @@
 import Button from "@mui/material/Button";
 
-const MediumBtn = () => {
+const MediumBtn = ({ Title, mdBtnHandler }: any) => {
   return (
     <Button
       variant="contained"
       sx={{
-        width: "104px",
+        minWidth: "104px",
+        maxWidth: "104px",
         height: "32px",
         backgroundColor: "rgb(61, 56, 122)",
         borderRadius: "8px",
@@ -13,8 +14,9 @@ const MediumBtn = () => {
         textTransform: "capitalize",
         fontWeight: "300",
       }}
+      onClick={mdBtnHandler}
     >
-      Medium
+      {Title}
     </Button>
   );
 };
