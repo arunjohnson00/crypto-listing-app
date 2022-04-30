@@ -7,7 +7,17 @@ const InputDateTime = ({ dateTime, setDateTime, start_date }: any) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateTimePicker
-        renderInput={(props: any) => <TextField {...props} />}
+        renderInput={(props: any) => (
+          <TextField
+            {...props}
+            sx={{
+              "& .MuiInputBase-root": {
+                borderRadius: "7px",
+                height: "43px",
+              },
+            }}
+          />
+        )}
         label={start_date === true ? "Select Start Date" : "Select End Date"}
         value={start_date === true ? dateTime.start_date : dateTime.end_date}
         onChange={(newValue: any) => {

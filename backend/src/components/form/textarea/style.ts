@@ -1,5 +1,5 @@
 export const textareaStyle = {
-  width: "500px",
+  width: "100%",
   background: "#f6f6f6",
   borderRadius: "8px",
   color: "rgb(200, 200, 200)",

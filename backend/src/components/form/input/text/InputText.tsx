@@ -10,6 +10,7 @@ const InputText = ({
   name,
   id,
   checkboxStatus,
+  width,
 }: any) => {
   // console.log(checkboxStatus);
 
@@ -30,8 +31,7 @@ const InputText = ({
         }}
         sx={{
           "& .MuiOutlinedInput-root": {
-            background: "white",
-            height: "39px",
+            width: `${!width && "312px"}`,
           },
           // "& .MuiInputAdornment-root": {
           //   color: "rgb(61 56 122)",

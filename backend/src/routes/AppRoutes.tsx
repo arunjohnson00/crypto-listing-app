@@ -40,6 +40,7 @@ import CoinsAudit from "../pages/coinsaudit/CoinsAudit";
 import CoinsAuditAdd from "../pages/coinsaudit/add/CoinsAuditAdd";
 import CoinsAuditEdit from "../pages/coinsaudit/edit/CoinsAuditEdit";
 import CoinsAuditView from "../pages/coinsaudit/view/CoinsAuditView";
+import Settings from "../pages/settings/Settings";
 
 const AppRoutes = () => {
   return (
@@ -343,6 +344,14 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <Badges />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <PrivateRoute>
+              <Settings />
             </PrivateRoute>
           }
         />
