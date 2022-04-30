@@ -22,7 +22,7 @@ export const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    paddingTop: "14px",
+    paddingTop: "3px",
     marginLeft: "5px",
   },
 

@@ -36,6 +36,10 @@ import MenuCardAdd from "../pages/menucards/add/MenuCardAdd";
 import NotFound from "../pages/notfound/NotFound";
 import MenuCardEdit from "../pages/menucards/edit/MenuCardEdit";
 import MenuCardView from "../pages/menucards/view/MenuCardView";
+import CoinsAudit from "../pages/coinsaudit/CoinsAudit";
+import CoinsAuditAdd from "../pages/coinsaudit/add/CoinsAuditAdd";
+import CoinsAuditEdit from "../pages/coinsaudit/edit/CoinsAuditEdit";
+import CoinsAuditView from "../pages/coinsaudit/view/CoinsAuditView";
 
 const AppRoutes = () => {
   return (
@@ -74,6 +78,42 @@ const AppRoutes = () => {
             </PrivateRoute>
           }
         />
+
+        <Route
+          path="/coins-audit"
+          element={
+            <PrivateRoute>
+              <CoinsAudit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/coins-audit/add"
+          element={
+            <PrivateRoute>
+              <CoinsAuditAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/coins-audit/edit"
+          element={
+            <PrivateRoute>
+              <CoinsAuditEdit />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/coins-audit/view"
+          element={
+            <PrivateRoute>
+              <CoinsAuditView />
+            </PrivateRoute>
+          }
+        />
+
         <Route
           path="/exchange"
           element={

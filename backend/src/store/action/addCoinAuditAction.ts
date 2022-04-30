@@ -1,17 +1,18 @@
 import appRequest from "../../utils/fetchhandler";
 import { AUDIT } from "../types";
-
-export const listCoinAuditRequest = (
-  pageData: any,
+export const addCoinAuditRequest = (
+  values: any,
   successHandler: any,
   errorHandler: any
 ) => {
+  //console.log(JSON.stringify(values));
   const fetchOptions = {
-    //url: `api/b/v1/exchange`,
     url: `api/b/v1/coins-audit`,
-    method: "GET",
+    method: "POST",
     secure: true,
-    actionType: AUDIT.LIST_AUDIT,
+    body: values,
+    fileUpload: true,
+    actionType: AUDIT.ADD_AUDIT,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
