@@ -13,6 +13,18 @@ const InputSelectCoin = ({ name, id, data }: any) => {
           name: `${name}`,
           id: `${id}`,
         }}
+        sx={{
+          background: "white",
+          borderRadius: "7px",
+          border: "1px solid black",
+          "&::before": {
+            border: "none",
+          },
+          "&::after": {
+            border: "none",
+          },
+          paddingLeft: "10px",
+        }}
       >
         {data &&
           data.map((list: any) => {

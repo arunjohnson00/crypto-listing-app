@@ -25,7 +25,9 @@ import addCoinReducer from "./addCoin";
 import listMenuCardReducer from "./listMenuCard";
 import addMenuCardReducer from "./addMenuCard";
 import updateMenuCardReducer from "./updateMenuCard";
-import listAuditReducer from "./listCoinAudit";
+import listCoinAuditReducer from "./listCoinAudit";
+import addCoinAuditReducer from "./addCoinAudit";
+import updateCoinAuditReducer from "./updateCoinAudit";
 
 const allReducers = combineReducers({
   Auth,
@@ -49,7 +51,9 @@ const allReducers = combineReducers({
   listMenuCardReducer,
   addMenuCardReducer,
   updateMenuCardReducer,
-  listAuditReducer,
+  listCoinAuditReducer,
+  addCoinAuditReducer,
+  updateCoinAuditReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

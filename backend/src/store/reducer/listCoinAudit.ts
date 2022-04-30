@@ -3,7 +3,7 @@ import { AUDIT } from "../types";
 const initialState = {
   auditListAll: "",
 };
-const listAuditReducer = (state: any = initialState, action: any) => {
+const listCoinAuditReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
     case AUDIT.LIST_AUDIT:
       return {
@@ -16,4 +16,4 @@ const listAuditReducer = (state: any = initialState, action: any) => {
   }
 };
 
-export default listAuditReducer;
+export default listCoinAuditReducer;

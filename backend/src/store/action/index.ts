@@ -19,4 +19,6 @@ export { addCoinRequest } from "./addCoinAction";
 export { addMenuCardRequest } from "./addMenuCardAction";
 export { listMenuCardRequest } from "./listMenuCardAction";
 export { updateMenuCardRequest } from "./updateMenuCardAction";
-export { listcoinAuditRequest } from "./listCoinAuditAction";
+export { listCoinAuditRequest } from "./listCoinAuditAction";
+export { addCoinAuditRequest } from "./addCoinAuditAction";
+export { updateCoinAuditRequest } from "./updateCoinAuditAction";

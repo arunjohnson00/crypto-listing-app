@@ -193,7 +193,10 @@ const SideMenu = ({ open }: any) => {
                             </ListItemIcon>
 
                             <ListItemText
-                              primary={sublist.title}
+                              primary={sublist.title.replace(
+                                /[^a-zA-Z ]/g,
+                                " "
+                              )}
                               primaryTypographyProps={{
                                 fontSize: ".93rem",
                                 fontWeight: `${

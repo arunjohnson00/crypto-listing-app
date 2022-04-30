@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Grid,
   Typography,
@@ -34,6 +34,9 @@ import ChartDetails from "./ChartDetails";
 import CommunityDetails from "./CommunityDetails";
 import ChatDetails from "./ChatDetails";
 import SocialDetails from "./SocialDetails";
+import { listExchangeRequest } from "../../../store/action";
+import { listNetworkRequest } from "../../../store/action";
+import { listCoinAuditRequest } from "../../../store/action";
 
 const CoinListingAdd = () => {
   const exchangeList = useSelector((exList: any) => {
@@ -42,6 +45,9 @@ const CoinListingAdd = () => {
 
   const networkList = useSelector((ntList: any) => {
     return ntList.listNetworkReducer.natworkListAll.data;
+  });
+  const coinAuditList = useSelector((auditList: any) => {
+    return auditList.listCoinAuditReducer.auditListAll.data;
   });
 
   console.log(exchangeList);
@@ -200,7 +206,22 @@ const CoinListingAdd = () => {
 
     dispatch(addCoinRequest(formData, successHandler, errorHandler));
   };
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      //console.log(res);
+    };
 
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(
+      listExchangeRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(listNetworkRequest("emptyformData", successHandler, errorHandler));
+    dispatch(
+      listCoinAuditRequest("emptyformData", successHandler, errorHandler)
+    );
+  }, [dispatch]);
   return (
     <Grid container spacing={0}>
       <form id="coinForm">
@@ -744,7 +765,11 @@ const CoinListingAdd = () => {
                   >
                     Audited By
                   </Typography>
-                  <InputSelectCoin name="audited_by[1]" id="audited_by_1" />
+                  <InputSelectCoin
+                    name="audited_by[1]"
+                    id="audited_by_1"
+                    data={coinAuditList}
+                  />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
@@ -783,6 +808,7 @@ const CoinListingAdd = () => {
                     index={index}
                     key={index}
                     auditremoveHandle={auditremoveHandle}
+                    data={coinAuditList}
                   />
                 </div>
               );
