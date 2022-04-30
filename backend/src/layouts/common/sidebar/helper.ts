@@ -4,7 +4,7 @@ export const sideBarMenu = [
     id: "2",
     title: "Coins",
     icon: "paid",
-    subMenu: [{ id: "21", title: "coins-audit", icon: "store" }],
+    subMenu: [{ id: "21", title: "coins-audit", icon: "receipt" }],
   },
   { id: "3", title: "Exchange", icon: "currency_exchange" },
   {

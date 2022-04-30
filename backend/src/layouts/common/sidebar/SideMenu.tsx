@@ -182,6 +182,7 @@ const SideMenu = ({ open }: any) => {
                               .replace(/\s+/g, "")}sub${index}`}
                             style={{
                               background: `${
+                                activeColorId === data.id &&
                                 subActiveColorId === sublist.id
                                   ? "#f4f4f4"
                                   : "none"
@@ -192,6 +193,7 @@ const SideMenu = ({ open }: any) => {
                               <Icon
                                 sx={{
                                   color: `${
+                                    activeColorId === data.id &&
                                     subActiveColorId === sublist.id
                                       ? "#3D387A "
                                       : "rgba(170, 174, 178, 1)"
@@ -210,11 +212,15 @@ const SideMenu = ({ open }: any) => {
                               primaryTypographyProps={{
                                 fontSize: ".93rem",
                                 fontWeight: `${
-                                  subActiveColorId === sublist.id ? 500 : 400
+                                  activeColorId === data.id &&
+                                  subActiveColorId === sublist.id
+                                    ? 500
+                                    : 400
                                 }`,
                               }}
                               sx={{
                                 color: `${
+                                  activeColorId === data.id &&
                                   subActiveColorId === sublist.id
                                     ? "#3D387A "
                                     : "rgba(170, 174, 178, 1)"
