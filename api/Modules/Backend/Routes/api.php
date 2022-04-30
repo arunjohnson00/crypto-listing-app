@@ -80,7 +80,58 @@ Route::prefix('b')->group(function() {
                 Route::post('coins-audit/{coin_audit_id}', 'Coins\CoinsAuditController@update');    /*  Update  */   
                 Route::delete('coins-audit/{coin_audit_id}', 'Coins\CoinsAuditController@destroy'); /*  Destroy */
             
-                
+                /*
+                |--------------------------------------------------------------------------
+                | Coins Chart Provider Routes  
+                |--------------------------------------------------------------------------
+                */
+                Route::get('coins-chart-provider-all', 'Coins\CoinsChartProviderController@All');                    /*  All     */ 
+                Route::get('coins-chart-provider', 'Coins\CoinsChartProviderController@index');                      /*  List    */      
+                Route::post('coins-chart-provider', 'Coins\CoinsChartProviderController@store');                     /*  Create  */  
+                Route::get('coins-chart-provider/{coin_chart_id}/edit', 'Coins\CoinsChartProviderController@edit');  /*  Edit    */ 
+                Route::get('coins-chart-provider/{coin_chart_id}/show', 'Coins\CoinsChartProviderController@show');  /*  Show    */ 
+                Route::post('coins-chart-provider/{coin_chart_id}', 'Coins\CoinsChartProviderController@update');    /*  Update  */   
+                Route::delete('coins-chart-provider/{coin_chart_id}', 'Coins\CoinsChartProviderController@destroy'); /*  Destroy */
+            
+                /*
+                |--------------------------------------------------------------------------
+                | Coins Community Routes  
+                |--------------------------------------------------------------------------
+                */
+                Route::get('coins-community-all', 'Coins\CoinsCommunityController@All');                        /*  All     */ 
+                Route::get('coins-community', 'Coins\CoinsCommunityController@index');                          /*  List    */      
+                Route::post('coins-community', 'Coins\CoinsCommunityController@store');                         /*  Create  */  
+                Route::get('coins-community/{coin_community_id}/edit', 'Coins\CoinsCommunityController@edit');  /*  Edit    */ 
+                Route::get('coins-community/{coin_community_id}/show', 'Coins\CoinsCommunityController@show');  /*  Show    */ 
+                Route::post('coins-community/{coin_community_id}', 'Coins\CoinsCommunityController@update');    /*  Update  */   
+                Route::delete('coins-community/{coin_community_id}', 'Coins\CoinsCommunityController@destroy'); /*  Destroy */
+            
+                /*
+                |--------------------------------------------------------------------------
+                | Coins Chat Routes  
+                |--------------------------------------------------------------------------
+                */
+                Route::get('coins-chat-all', 'Coins\CoinsChatController@All');                   /*  All     */ 
+                Route::get('coins-chat', 'Coins\CoinsChatController@index');                     /*  List    */      
+                Route::post('coins-chat', 'Coins\CoinsChatController@store');                    /*  Create  */  
+                Route::get('coins-chat/{coin_chat_id}/edit', 'Coins\CoinsChatController@edit');  /*  Edit    */ 
+                Route::get('coins-chat/{coin_chat_id}/show', 'Coins\CoinsChatController@show');  /*  Show    */ 
+                Route::post('coins-chat/{coin_chat_id}', 'Coins\CoinsChatController@update');    /*  Update  */   
+                Route::delete('coins-chat/{coin_chat_id}', 'Coins\CoinsChatController@destroy'); /*  Destroy */
+            
+                /*
+                |--------------------------------------------------------------------------
+                | Coins Socials Routes  
+                |--------------------------------------------------------------------------
+                */
+                Route::get('coins-socials-all', 'Coins\CoinsSocialsController@All');                        /*  All     */ 
+                Route::get('coins-socials', 'Coins\CoinsSocialsController@index');                          /*  List    */      
+                Route::post('coins-socials', 'Coins\CoinsSocialsController@store');                         /*  Create  */  
+                Route::get('coins-socials/{coin_socials_id}/edit', 'Coins\CoinsSocialsController@edit');    /*  Edit    */ 
+                Route::get('coins-socials/{coin_socials_id}/show', 'Coins\CoinsSocialsController@show');    /*  Show    */ 
+                Route::post('coins-socials/{coin_socials_id}', 'Coins\CoinsSocialsController@update');      /*  Update  */   
+                Route::delete('coins-socials/{coin_socials_id}', 'Coins\CoinsSocialsController@destroy');   /*  Destroy */
+            
             /*
             |--------------------------------------------------------------------------
             | Videos Routes  
