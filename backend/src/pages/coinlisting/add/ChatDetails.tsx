@@ -4,7 +4,7 @@ import InputSelectCoin from "../../../components/form/selectcoin/InputSelectCoin
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const ChatDetails = ({ chatCount, index, chatremoveHandle }: any) => {
+const ChatDetails = ({ chatCount, index, chatremoveHandle, data }: any) => {
   return (
     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
       <Stack direction="row" spacing={3} pt={3}>
@@ -15,6 +15,7 @@ const ChatDetails = ({ chatCount, index, chatremoveHandle }: any) => {
           <InputSelectCoin
             name={`chat_platform[${index + 2}]`}
             id={`chat_platform_${index + 2}`}
+            data={data}
           />
         </Grid>
         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>

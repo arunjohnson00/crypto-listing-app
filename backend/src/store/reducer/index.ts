@@ -34,6 +34,12 @@ import updateCoinChartProviderReducer from "./updateCoinChartProvider";
 import listCoinCommunityReducer from "./listCoinCommunity";
 import addCoinCommunityReducer from "./addCoinCommunity";
 import updateCoinCommunityReducer from "./updateCoinCommunity";
+import listCoinChatReducer from "./listCoinChat";
+import addCoinChatReducer from "./addCoinChat";
+import updateCoinChatReducer from "./updateCoinChat";
+import listCoinSocialReducer from "./listCoinSocials";
+import addCoinSocialReducer from "./addCoinSocials";
+import updateCoinSocialReducer from "./updateCoinSocial";
 
 const allReducers = combineReducers({
   Auth,
@@ -66,6 +72,12 @@ const allReducers = combineReducers({
   listCoinCommunityReducer,
   addCoinCommunityReducer,
   updateCoinCommunityReducer,
+  listCoinChatReducer,
+  addCoinChatReducer,
+  updateCoinChatReducer,
+  listCoinSocialReducer,
+  addCoinSocialReducer,
+  updateCoinSocialReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

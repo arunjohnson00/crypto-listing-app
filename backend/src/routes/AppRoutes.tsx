@@ -49,6 +49,14 @@ import CoinsCommunity from "../pages/coincommunity/CoinsCommunity";
 import CoinsCommunityAdd from "../pages/coincommunity/add/CoinsCommunityAdd";
 import CoinsCommunityEdit from "../pages/coincommunity/edit/CoinsCommunityEdit";
 import CoinsCommunityView from "../pages/coincommunity/view/CoinsCommunityView";
+import CoinsChat from "../pages/coinschat/CoinsChat";
+import CoinsChatAdd from "../pages/coinschat/add/CoinsChatAdd";
+import CoinsChatEdit from "../pages/coinschat/edit/CoinsChatEdit";
+import CoinsChatView from "../pages/coinschat/view/CoinsChatView";
+import CoinsSocials from "../pages/coinssocials/CoinsSocials";
+import CoinsSocialsAdd from "../pages/coinssocials/add/CoinsSocialsAdd";
+import CoinsSocialsEdit from "../pages/coinssocials/edit/CoinsSocialsEdit";
+import CoinsSocialsView from "../pages/coinssocials/view/CoinsSocialsView";
 
 const AppRoutes = () => {
   return (
@@ -188,6 +196,77 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <CoinsCommunityView />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/coins-chat"
+          element={
+            <PrivateRoute>
+              <CoinsChat />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/coins-chat/add"
+          element={
+            <PrivateRoute>
+              <CoinsChatAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/coins-chat/edit"
+          element={
+            <PrivateRoute>
+              <CoinsChatEdit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/coins-chat/view"
+          element={
+            <PrivateRoute>
+              <CoinsChatView />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/coins-socials"
+          element={
+            <PrivateRoute>
+              <CoinsSocials />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/coins-socials/add"
+          element={
+            <PrivateRoute>
+              <CoinsSocialsAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/coins-socials/edit"
+          element={
+            <PrivateRoute>
+              <CoinsSocialsEdit />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/coins-socials/view"
+          element={
+            <PrivateRoute>
+              <CoinsSocialsView />
             </PrivateRoute>
           }
         />

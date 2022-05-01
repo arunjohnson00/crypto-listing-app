@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 const SideMenu = ({ open }: any) => {
   const [expandMenu, setOpen] = useState(false);
   const [title, setTitle] = useState();
-  const [activeColorId, setActiveColorId] = useState();
+  const [activeColorId, setActiveColorId] = useState<number>();
   const [subActiveColorId, setSubActiveColorId] = useState();
 
   const menuHandler = (e: any, data: any) => {

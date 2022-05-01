@@ -27,6 +27,11 @@ export { listChartProviderRequest } from "./listCoinChartProviderAction";
 export { addChartProviderRequest } from "./addCoinChartProviderAction";
 export { updateChartProviderRequest } from "./updateCoinChartProviderAction";
 export { listCoinChatRequest } from "./listCoinChatAction";
-export { listCoinSocialRequest } from "./listCoinSocialAction";
+export { updateCoinChatRequest } from "./updateCoinChatAction";
+export { addCoinChatRequest } from "./addCoinChatAction";
+
 export { addCoinCommunityRequest } from "./addCoinCommunityAction";
 export { updateCoinCommunityRequest } from "./updateCoinCommunityAction";
+export { listCoinSocialRequest } from "./listCoinSocialAction";
+export { addCoinSocialRequest } from "./addCoinSocialAction";
+export { updateCoinSocialRequest } from "./updateCoinSocialAction";
