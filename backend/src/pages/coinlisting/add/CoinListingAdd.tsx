@@ -39,6 +39,7 @@ import { listExchangeRequest } from "../../../store/action";
 import { listNetworkRequest } from "../../../store/action";
 import { listCoinAuditRequest } from "../../../store/action";
 import { listChartProviderRequest } from "../../../store/action";
+import { listCoinChatRequest } from "../../../store/action";
 
 const CoinListingAdd = () => {
   const exchangeList = useSelector((exList: any) => {
@@ -54,6 +55,10 @@ const CoinListingAdd = () => {
   const coinChartProviderList = useSelector((chartProviderList: any) => {
     return chartProviderList.listCoinChartProviderReducer.chartProviderListAll
       .data;
+  });
+
+  const coinChatList = useSelector((chatList: any) => {
+    return chatList.listCoinChatReducer.coinChatListAll.data;
   });
   // const coinCommunityList = useSelector((CommunityList: any) => {
   //   return CommunityList.listCoinCommunityReducer.coinCommunityListAll.data;
@@ -232,6 +237,9 @@ const CoinListingAdd = () => {
     );
     dispatch(
       listChartProviderRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(
+      listCoinChatRequest("emptyformData", successHandler, errorHandler)
     );
   }, [dispatch]);
   return (
@@ -1045,6 +1053,7 @@ const CoinListingAdd = () => {
                       <InputSelectCoin
                         name="chat_platform[1]"
                         id="chat_platform_1"
+                        data={coinChatList}
                       />
                     </Grid>
                     <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -1086,6 +1095,7 @@ const CoinListingAdd = () => {
                         index={index}
                         key={index}
                         chatremoveHandle={chatremoveHandle}
+                        data={coinChatList}
                       />
                     </div>
                   );

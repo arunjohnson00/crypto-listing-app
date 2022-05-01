@@ -8,6 +8,8 @@ export const sideBarMenu = [
       { id: "21", title: "coins-audit", icon: "receipt" },
       { id: "22", title: "coins-chart-provider", icon: "receipt" },
       { id: "23", title: "coins-community", icon: "receipt" },
+      { id: "24", title: "coins-chat", icon: "receipt" },
+      { id: "25", title: "coins-socials", icon: "receipt" },
     ],
   },
   { id: "3", title: "Exchange", icon: "currency_exchange" },
