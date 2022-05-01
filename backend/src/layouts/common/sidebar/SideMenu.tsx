@@ -10,6 +10,7 @@ import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Icon } from "@mui/material";
+import { useLocation } from "react-router-dom";
 
 import { Drawer, DrawerHeader } from "./style";
 import { sideBarMenu } from "./helper";
@@ -18,6 +19,9 @@ import darkLogo from "../../../assets/logo/logodark.png";
 import { Link } from "react-router-dom";
 
 const SideMenu = ({ open }: any) => {
+  const location = useLocation();
+
+  console.log(location.pathname.replace(/[^a-zA-Z ]/g, ""));
   const [expandMenu, setOpen] = useState(false);
   const [title, setTitle] = useState();
   const [activeColorId, setActiveColorId] = useState<number>();
@@ -28,7 +32,12 @@ const SideMenu = ({ open }: any) => {
 
     setActiveColorId(data.id);
 
-    console.log(activeColorId);
+    console.log(
+      data.title
+        .toLowerCase()
+        .replace(/\s+/g, "")
+        .replace(/[^a-zA-Z ]/g, "")
+    );
   };
 
   const subMenuHandler = (e: any, sublist: any) => {
@@ -86,10 +95,24 @@ const SideMenu = ({ open }: any) => {
                   id={"main" + index}
                   style={{
                     background: `${
-                      activeColorId === data.id ? "rgb(61 56 122)" : "none"
+                      activeColorId === data.id ||
+                      location.pathname.replace(/[^a-zA-Z ]/g, "") ===
+                        data.title
+                          .toLowerCase()
+                          .replace(/\s+/g, "")
+                          .replace(/[^a-zA-Z ]/g, "")
+                        ? "rgb(61 56 122)"
+                        : "none"
                     }`,
                     borderRadius: `${
-                      activeColorId === data.id ? "7px" : "0px"
+                      activeColorId === data.id ||
+                      location.pathname.replace(/[^a-zA-Z ]/g, "") ===
+                        data.title
+                          .toLowerCase()
+                          .replace(/\s+/g, "")
+                          .replace(/[^a-zA-Z ]/g, "")
+                        ? "7px"
+                        : "0px"
                     }`,
                   }}
                 >
@@ -102,7 +125,12 @@ const SideMenu = ({ open }: any) => {
                     <Icon
                       sx={{
                         color: `${
-                          activeColorId === data.id
+                          activeColorId === data.id ||
+                          location.pathname.replace(/[^a-zA-Z ]/g, "") ===
+                            data.title
+                              .toLowerCase()
+                              .replace(/\s+/g, "")
+                              .replace(/[^a-zA-Z ]/g, "")
                             ? "white "
                             : "rgba(170, 174, 178, 1)"
                         }`,
@@ -117,11 +145,25 @@ const SideMenu = ({ open }: any) => {
                       primary={data.title.replace(/[^a-zA-Z ]/g, " ")}
                       primaryTypographyProps={{
                         fontSize: ".93rem",
-                        fontWeight: `${activeColorId === data.id ? 500 : 400}`,
+                        fontWeight: `${
+                          activeColorId === data.id ||
+                          location.pathname.replace(/[^a-zA-Z ]/g, "") ===
+                            data.title
+                              .toLowerCase()
+                              .replace(/\s+/g, "")
+                              .replace(/[^a-zA-Z ]/g, "")
+                            ? 500
+                            : 400
+                        }`,
                       }}
                       sx={{
                         color: `${
-                          activeColorId === data.id
+                          activeColorId === data.id ||
+                          location.pathname.replace(/[^a-zA-Z ]/g, "") ===
+                            data.title
+                              .toLowerCase()
+                              .replace(/\s+/g, "")
+                              .replace(/[^a-zA-Z ]/g, "")
                             ? "white"
                             : "rgba(170, 174, 178, 1)"
                         }`,
@@ -132,11 +174,25 @@ const SideMenu = ({ open }: any) => {
                       primary={data.title.replace(/[^a-zA-Z ]/g, " ")}
                       primaryTypographyProps={{
                         fontSize: ".93rem",
-                        fontWeight: `${activeColorId === data.id ? 500 : 400}`,
+                        fontWeight: `${
+                          activeColorId === data.id ||
+                          location.pathname.replace(/[^a-zA-Z ]/g, "") ===
+                            data.title
+                              .toLowerCase()
+                              .replace(/\s+/g, "")
+                              .replace(/[^a-zA-Z ]/g, "")
+                            ? 500
+                            : 400
+                        }`,
                       }}
                       sx={{
                         color: `${
-                          activeColorId === data.id
+                          activeColorId === data.id ||
+                          location.pathname.replace(/[^a-zA-Z ]/g, "") ===
+                            data.title
+                              .toLowerCase()
+                              .replace(/\s+/g, "")
+                              .replace(/[^a-zA-Z ]/g, "")
                             ? "white "
                             : "rgba(170, 174, 178, 1)"
                         }`,
@@ -175,7 +231,7 @@ const SideMenu = ({ open }: any) => {
                       >
                         <List component="div" disablePadding>
                           <ListItemButton
-                            sx={{ pl: 2 }}
+                            sx={{ pl: open ? 4 : 2 }}
                             onClick={(e) => subMenuHandler(e, sublist)}
                             id={`${data.title
                               .toLowerCase()
