@@ -472,7 +472,7 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/rating&reviews"
+          path="/rating-reviews"
           element={
             <PrivateRoute>
               <ReviewsRating />
