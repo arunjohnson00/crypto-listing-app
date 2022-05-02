@@ -123,7 +123,7 @@ class CoinsSocialsController extends Controller
         $CoinsSocials = CoinsSocials::where('id',$coin_socials_id)->first();
         if($CoinsSocials):
             $CoinsSocials->delete();
-            return response()->json(['response'=>true,'message'=> $this->deleteErrorMessage]);
+            return response()->json(['response'=>true,'message'=> $this->deleteMessage]);
         else:
             return response()->json(['response'=>false,'message'=>$this->deleteErrorMessage]);
         endif; 

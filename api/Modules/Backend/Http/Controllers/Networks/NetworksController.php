@@ -158,7 +158,7 @@ class NetworksController extends Controller
         $network = Networks::where('id',$networks_id)->first();  
         if($network):
             $network->delete();
-            return response()->json(['response'=>true,'message'=> $this->deleteErrorMessage]);
+            return response()->json(['response'=>true,'message'=> $this->deleteMessage]);
         else:
             return response()->json(['response'=>false,'message'=>$this->deleteErrorMessage]);
         endif; 

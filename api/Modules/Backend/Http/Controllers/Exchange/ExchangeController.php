@@ -140,7 +140,7 @@ class ExchangeController extends Controller
         $exchange = Exchange::where('id',$exchange_id)->first();  
         if($exchange):
             $exchange->delete();
-            return response()->json(['response'=>true,'message'=> $this->deleteErrorMessage]);
+            return response()->json(['response'=>true,'message'=> $this->deleteMessage]);
         else:
             return response()->json(['response'=>false,'message'=>$this->deleteErrorMessage]);
         endif; 

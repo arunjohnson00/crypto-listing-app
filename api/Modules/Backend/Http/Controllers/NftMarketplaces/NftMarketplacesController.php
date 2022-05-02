@@ -141,7 +141,7 @@ class NftMarketplacesController extends Controller
         $nft_marketplace = NftMarketplaces::where('id',$nft_marketplace_id)->first();  
         if($nft_marketplace):
             $nft_marketplace->delete();
-            return response()->json(['response'=>true,'message'=> $this->deleteErrorMessage]);
+            return response()->json(['response'=>true,'message'=> $this->deleteMessage]);
         else:
             return response()->json(['response'=>false,'message'=>$this->deleteErrorMessage]);
         endif; 

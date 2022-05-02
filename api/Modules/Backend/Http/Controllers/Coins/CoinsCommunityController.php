@@ -123,7 +123,7 @@ class CoinsCommunityController extends Controller
 //        $CoinsCommunity = CoinsCommunity::where('id',$coin_community_id)->first();
 //        if($CoinsCommunity):
 //            $CoinsCommunity->delete();
-//            return response()->json(['response'=>true,'message'=> $this->deleteErrorMessage]);
+//            return response()->json(['response'=>true,'message'=> $this->deleteMessage]);
 //        else:
 //            return response()->json(['response'=>false,'message'=>$this->deleteErrorMessage]);
 //        endif; 

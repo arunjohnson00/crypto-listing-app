@@ -42,13 +42,13 @@ Route::prefix('b')->group(function() {
             | NftMarketplaces Routes  
             |--------------------------------------------------------------------------
             */ 
-            Route::get('nft-marketplaces-all', 'NftMarketplaces\NftMarketplacesController@All');                  /*  All     */ 
-            Route::get('nft-marketplaces', 'NftMarketplaces\NftMarketplacesController@index');                    /*  List     */   
-            Route::post('nft-marketplaces', 'NftMarketplaces\NftMarketplacesController@store');                   /*  Create   */   
-            Route::get('nft-marketplaces/{nft_marketplace_id}/edit', 'NftMarketplaces\NftMarketplacesController@edit');  /*  Edit     */ 
-            Route::get('nft-marketplaces/{nft_marketplace_id}/show', 'NftMarketplaces\NftMarketplacesController@show');  /*  Show     */ 
-            Route::post('nft-marketplaces/{nft_marketplace_id}', 'NftMarketplaces\NftMarketplacesController@update');    /*  Update   */ 
-            Route::delete('nft-marketplaces/{nft_marketplace_id}', 'NftMarketplaces\NftMarketplacesController@destroy'); /*  Destroy  */
+            Route::get('nft-marketplaces-all', 'NftMarketplaces\NftMarketplacesController@All');                            /*  All     */ 
+            Route::get('nft-marketplaces', 'NftMarketplaces\NftMarketplacesController@index');                              /*  List    */   
+            Route::post('nft-marketplaces', 'NftMarketplaces\NftMarketplacesController@store');                             /*  Create  */   
+            Route::get('nft-marketplaces/{nft_marketplace_id}/edit', 'NftMarketplaces\NftMarketplacesController@edit');     /*  Edit    */ 
+            Route::get('nft-marketplaces/{nft_marketplace_id}/show', 'NftMarketplaces\NftMarketplacesController@show');     /*  Show    */ 
+            Route::post('nft-marketplaces/{nft_marketplace_id}', 'NftMarketplaces\NftMarketplacesController@update');       /*  Update  */ 
+            Route::delete('nft-marketplaces/{nft_marketplace_id}', 'NftMarketplaces\NftMarketplacesController@destroy');    /*  Destroy */
             
             
             

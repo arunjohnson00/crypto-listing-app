@@ -123,7 +123,7 @@ class CoinsChartProviderController extends Controller
         $CoinsChartProvider = CoinsChart::where('id',$coin_chart_id)->first();
         if($CoinsChartProvider):
             $CoinsChartProvider->delete();
-            return response()->json(['response'=>true,'message'=> $this->deleteErrorMessage]);
+            return response()->json(['response'=>true,'message'=> $this->deleteMessage]);
         else:
             return response()->json(['response'=>false,'message'=>$this->deleteErrorMessage]);
         endif; 

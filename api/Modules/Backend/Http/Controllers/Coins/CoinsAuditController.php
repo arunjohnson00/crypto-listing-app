@@ -123,7 +123,7 @@ class CoinsAuditController extends Controller
         $CoinsAudit = CoinsAudit::where('id',$coin_audit_id)->first();
         if($CoinsAudit):
             $CoinsAudit->delete();
-            return response()->json(['response'=>true,'message'=> $this->deleteErrorMessage]);
+            return response()->json(['response'=>true,'message'=> $this->deleteMessage]);
         else:
             return response()->json(['response'=>false,'message'=>$this->deleteErrorMessage]);
         endif; 

@@ -132,7 +132,7 @@ class MenuCardsController extends Controller
         $MenuCard = MenuCards::where('id',$menu_card_id)->first();  
         if($MenuCard):
             $MenuCard->delete();
-            return response()->json(['response'=>true,'message'=> $this->deleteErrorMessage]);
+            return response()->json(['response'=>true,'message'=> $this->deleteMessage]);
         else:
             return response()->json(['response'=>false,'message'=>$this->deleteErrorMessage]);
         endif; 

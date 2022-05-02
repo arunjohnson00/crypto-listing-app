@@ -123,7 +123,7 @@ class CoinsChatController extends Controller
         $CoinsChat = CoinsChat::where('id',$coin_chat_id)->first();
         if($CoinsChat):
             $CoinsChat->delete();
-            return response()->json(['response'=>true,'message'=> $this->deleteErrorMessage]);
+            return response()->json(['response'=>true,'message'=> $this->deleteMessage]);
         else:
             return response()->json(['response'=>false,'message'=>$this->deleteErrorMessage]);
         endif; 
