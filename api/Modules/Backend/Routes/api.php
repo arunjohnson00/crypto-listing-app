@@ -98,14 +98,14 @@ Route::prefix('b')->group(function() {
                 | Coins Community Routes  
                 |--------------------------------------------------------------------------
                 */
-                Route::get('coins-community-all', 'Coins\CoinsCommunityController@All');                        /*  All     */ 
-                Route::get('coins-community', 'Coins\CoinsCommunityController@index');                          /*  List    */      
-                Route::post('coins-community', 'Coins\CoinsCommunityController@store');                         /*  Create  */  
-                Route::get('coins-community/{coin_community_id}/edit', 'Coins\CoinsCommunityController@edit');  /*  Edit    */ 
-                Route::get('coins-community/{coin_community_id}/show', 'Coins\CoinsCommunityController@show');  /*  Show    */ 
-                Route::post('coins-community/{coin_community_id}', 'Coins\CoinsCommunityController@update');    /*  Update  */   
-                Route::delete('coins-community/{coin_community_id}', 'Coins\CoinsCommunityController@destroy'); /*  Destroy */
-            
+//                Route::get('coins-community-all', 'Coins\CoinsCommunityController@All');                        /*  All     */ 
+//                Route::get('coins-community', 'Coins\CoinsCommunityController@index');                          /*  List    */      
+//                Route::post('coins-community', 'Coins\CoinsCommunityController@store');                         /*  Create  */  
+//                Route::get('coins-community/{coin_community_id}/edit', 'Coins\CoinsCommunityController@edit');  /*  Edit    */ 
+//                Route::get('coins-community/{coin_community_id}/show', 'Coins\CoinsCommunityController@show');  /*  Show    */ 
+//                Route::post('coins-community/{coin_community_id}', 'Coins\CoinsCommunityController@update');    /*  Update  */   
+//                Route::delete('coins-community/{coin_community_id}', 'Coins\CoinsCommunityController@destroy'); /*  Destroy */
+//            
                 /*
                 |--------------------------------------------------------------------------
                 | Coins Chat Routes  
