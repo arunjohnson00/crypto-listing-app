@@ -15,8 +15,10 @@ class CreateCoinsCommunityTable extends Migration
     {
         Schema::create('coins_community', function (Blueprint $table) {
             $table->increments('id');   
-            $table->string('name')->nullable(false); 
-            $table->tinyInteger('status')->default(1)->comment('1-Approved,2-Blocked'); 
+            $table->string('url')->nullable(false); 
+            $table->foreign('coin_id')->references('id')->on('coins')->onDelete('cascade');
+            $table->integer('coin_id')->unsigned();
+//            $table->tinyInteger('status')->default(1)->comment('1-Approved,2-Blocked'); 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('approved_at')->nullable();
             $table->timestamp('updated_at')->nullable();
