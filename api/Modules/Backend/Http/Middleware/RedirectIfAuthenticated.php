@@ -34,11 +34,11 @@ class RedirectIfAuthenticated extends BaseMiddleware
                   
             } catch (Exception $e) {
                 if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
-                    return response()->json(['status' =>0,'message' => 'Token is Invalid']);
+                    return response()->json(['token_status' =>0,'message' => 'Token is Invalid']);
                 }else if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
-                    return response()->json(['status' =>1,'message' => 'Token is Expired']);
+                    return response()->json(['token_status' =>1,'message' => 'Token is Expired']);
                 }else{
-                    return response()->json(['status' =>2,'message' => 'Authorization Token not found']);
+                    return response()->json(['token_status' =>2,'message' => 'Authorization Token not found']);
                 }
             }
             return $next($request);
