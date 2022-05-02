@@ -23,7 +23,7 @@ export const sideBarMenu = [
       { id: "43", title: "a", icon: "store" },
     ],
   },
-  { id: "5", title: "NFT marketplaces", icon: "store" },
+  { id: "5", title: "nft-marketplaces", icon: "store" },
   { id: "6", title: "Airdrops", icon: "fact_check" },
   { id: "7", title: "Networks", icon: "hub" },
   { id: "8", title: "Users", icon: "people_alt" },

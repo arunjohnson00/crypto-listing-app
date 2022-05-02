@@ -9,8 +9,11 @@ const InputCoinStatusSelect = ({
   setInputSelectValue,
   getInputSelectvalue,
 }: any) => {
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleChange = (event: SelectChangeEvent | any) => {
     setInputSelectValue({ ...getInputSelectvalue, status: event.target.value });
+    getInputSelectvalue.status === 2
+      ? setInputSelectValue({ ...getInputSelectvalue, is_scheduled: 1 })
+      : setInputSelectValue({ ...getInputSelectvalue, is_scheduled: 0 });
     toast.warn(`Status Selected`, {
       position: "top-right",
       autoClose: 7000,
@@ -19,9 +22,6 @@ const InputCoinStatusSelect = ({
       pauseOnHover: true,
       draggable: true,
     });
-
-    getInputSelectvalue.status === 2 &&
-      setInputSelectValue({ ...getInputSelectvalue, is_scheduled: 1 });
   };
 
   return (

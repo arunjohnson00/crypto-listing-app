@@ -11,7 +11,7 @@ import Exchanges from "../pages/exchanges/Exchanges";
 import MenuCard from "../pages/menucards/MenuCard";
 import Networks from "../pages/networks/Networks";
 import NFTListing from "../pages/nftlisting/view/NFTListing";
-import NFTMarketPlaces from "../pages/nftmarketplaces/view/NFTMarketPlaces";
+
 import ReviewsRating from "../pages/reviews/view/ReviewsRating";
 import Users from "../pages/users/Users";
 import Videos from "../pages/videos/Videos";
@@ -57,6 +57,10 @@ import CoinsSocials from "../pages/coinssocials/CoinsSocials";
 import CoinsSocialsAdd from "../pages/coinssocials/add/CoinsSocialsAdd";
 import CoinsSocialsEdit from "../pages/coinssocials/edit/CoinsSocialsEdit";
 import CoinsSocialsView from "../pages/coinssocials/view/CoinsSocialsView";
+import NftMarketPlaces from "../pages/nftmarketplaces/NftMarketPlaces";
+import NftMarketPlaceAdd from "../pages/nftmarketplaces/add/NftMarketPlaceAdd";
+import NftMarketPlaceEdit from "../pages/nftmarketplaces/edit/NftMarketPlaceEdit";
+import NftMarketPlaceView from "../pages/nftmarketplaces/view/NftMarketPlaceView";
 
 const AppRoutes = () => {
   return (
@@ -315,10 +319,37 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/nftmarketplaces"
+          path="/nft-marketplaces"
           element={
             <PrivateRoute>
-              <NFTMarketPlaces />
+              <NftMarketPlaces />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/nft-marketplaces/add"
+          element={
+            <PrivateRoute>
+              <NftMarketPlaceAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/nft-marketplaces/edit"
+          element={
+            <PrivateRoute>
+              <NftMarketPlaceEdit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/nft-marketplaces/view"
+          element={
+            <PrivateRoute>
+              <NftMarketPlaceView />
             </PrivateRoute>
           }
         />
