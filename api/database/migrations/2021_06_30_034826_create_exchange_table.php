@@ -15,9 +15,9 @@ class CreateExchangeTable extends Migration
     {
         Schema::create('exchange', function (Blueprint $table) {
             $table->increments('id');  
-            $table->string('name',255)->nullable(false);
-            $table->string('slug',255)->unique()->nullable(false); 
-            $table->string('thumb_icon',255)->unique()->nullable(false); 
+            $table->string('name')->nullable(false);
+            $table->string('slug')->unique()->nullable(false); 
+            $table->string('thumb_icon')->unique()->nullable(false); 
             $table->tinyInteger('status')->default(1)->comment('1-Approved,2-Suspended	');
             $table->text('url')->nullable(); 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

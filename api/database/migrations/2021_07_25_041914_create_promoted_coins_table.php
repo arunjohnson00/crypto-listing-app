@@ -25,20 +25,20 @@ class CreatePromotedCoinsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('user_id')->nullable()->unsigned();
 
-            $table->string('no_of_days',255)->nullable(false);
+            $table->string('no_of_days')->nullable(false);
 
             $table->tinyInteger('status')->default(1)->comment('1-Approved, 2-Processing, 3-Suspended, 4-Blocked, 5-expired');
 
             $table->tinyInteger('accept_terms')->default(1)->comment('1-yes,0-no');
 
-            $table->string('paid_amount',255)->nullable();
+            $table->string('paid_amount')->nullable();
             $table->tinyInteger('is_coupon_applied')->default(0)->comment('1-yes,0-no');
 
 
             $table->foreign('applied_coupon_id')->references('id')->on('coin_coupon_code');
             $table->integer('applied_coupon_id')->unsigned()->nullable();
 
-            $table->string('reduced_amount',255)->nullable();
+            $table->string('reduced_amount')->nullable();
             $table->text('payment_address')->nullable();
 
             $table->timestamp('approved_at')->default(null)->nullable();

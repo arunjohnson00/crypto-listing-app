@@ -15,7 +15,7 @@ class CreateCoinSettingsTable extends Migration
     {
         Schema::create('coin_settings', function (Blueprint $table) {
             $table->increments('id');  
-            $table->string('amount',255)->nullable(); 
+            $table->string('amount')->nullable(); 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->nullable();
             $table->softDeletesTz(); 

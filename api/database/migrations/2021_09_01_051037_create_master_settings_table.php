@@ -15,8 +15,8 @@ class CreateMasterSettingsTable extends Migration
     {
         Schema::create('master_settings', function (Blueprint $table) {
             $table->increments('id');  
-            $table->string('setting',255)->nullable(false);
-            $table->string('slug',255)->unique()->nullable(false); 
+            $table->string('setting')->nullable(false);
+            $table->string('slug')->unique()->nullable(false); 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->nullable();
             $table->softDeletesTz(); 

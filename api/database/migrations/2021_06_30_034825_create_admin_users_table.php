@@ -15,10 +15,10 @@ class CreateAdminUsersTable extends Migration
     {
         Schema::create('admin_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',255)->collation('utf8mb4_unicode_ci')->nullable(false);
-            $table->string('email',255)->collation('utf8mb4_unicode_ci')->nullable(false);
-            $table->string('password',255)->collation('utf8mb4_unicode_ci')->nullable(false);
-            $table->string('image',255)->collation('utf8mb4_unicode_ci')->nullable();
+            $table->string('name')->collation('utf8mb4_unicode_ci')->nullable(false);
+            $table->string('email')->collation('utf8mb4_unicode_ci')->nullable(false);
+            $table->string('password')->collation('utf8mb4_unicode_ci')->nullable(false);
+            $table->string('image')->collation('utf8mb4_unicode_ci')->nullable();
             $table->tinyInteger('status')->comment('0-inactive , 1-active')->nullable(false);
            
             $table->rememberToken();
