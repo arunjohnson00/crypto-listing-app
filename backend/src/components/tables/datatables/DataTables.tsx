@@ -31,7 +31,7 @@ const GridEdit = ({ index, navigate, location, dispatch }: any) => {
   const successHandler = (res: any) => {
     console.log(res);
 
-    toast.error(`${res.data.message}`, {
+    toast.success(`${res.data.message}`, {
       position: "top-right",
       autoClose: 7000,
       hideProgressBar: false,

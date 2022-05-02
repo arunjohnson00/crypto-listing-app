@@ -175,11 +175,12 @@ const CoinListingAdd = () => {
   };
 
   const [coinPublishStatus, setPublishCoinStatus] = useState<any>({
-    status: 1,
+    status: "",
     statusDateTime: new Date(),
     is_scheduled: 0,
   });
-  console.log(coinPublishStatus);
+
+  //console.log(coinPublishStatus);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -190,9 +191,16 @@ const CoinListingAdd = () => {
     var formData = new FormData(document.querySelector("#coinForm") as any);
     //var formData = new FormData();
     formData.append("logo", addCoinLogo.coinLogo);
-    formData.append("presale_start_date", dateTime.start_date);
-    formData.append("presale_end_date", dateTime.end_date);
-    formData.append("staus", coinPublishStatus.status);
+
+    formData.append(
+      "presale_start_date",
+      dateFormat(dateTime.start_date, "yyyy-mm-dd")
+    );
+    formData.append(
+      "presale_end_date",
+      dateFormat(dateTime.end_date, "yyyy-mm-dd")
+    );
+    formData.append("status", coinPublishStatus.status);
     formData.append(
       "schedule_date",
       dateFormat(coinPublishStatus.statusDateTime, "dd-mm-yyyy H:MM:ss")
@@ -208,7 +216,6 @@ const CoinListingAdd = () => {
     //console.log(...formData);
     const successHandler = (res: any) => {
       //console.log(res);
-
       setLoading(true);
       toast.success(`${res.data.message}`, {
         position: "top-right",
@@ -218,7 +225,6 @@ const CoinListingAdd = () => {
         pauseOnHover: true,
         draggable: true,
       });
-
       setTimeout(() => {
         navigate("/coins");
       }, 3000);

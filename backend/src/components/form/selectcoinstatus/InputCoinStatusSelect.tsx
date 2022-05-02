@@ -10,10 +10,14 @@ const InputCoinStatusSelect = ({
   getInputSelectvalue,
 }: any) => {
   const handleChange = (event: SelectChangeEvent | any) => {
-    setInputSelectValue({ ...getInputSelectvalue, status: event.target.value });
-    getInputSelectvalue.status === 2
-      ? setInputSelectValue({ ...getInputSelectvalue, is_scheduled: 1 })
-      : setInputSelectValue({ ...getInputSelectvalue, is_scheduled: 0 });
+    // console.log(getInputSelectvalue);
+    setInputSelectValue({
+      ...getInputSelectvalue,
+      status: event.target.value,
+
+      is_scheduled: event.target.value === 2 ? 1 : 0,
+    });
+
     toast.warn(`Status Selected`, {
       position: "top-right",
       autoClose: 7000,
