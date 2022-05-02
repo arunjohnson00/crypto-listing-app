@@ -72,11 +72,21 @@ class Coins extends Model
     }
     
     /**
-     * Sync the network exchanges with the coin.
-     */
+     * Sync the exchanges with the coin.
+      
     public function pivot_exchanges()
     {
         return $this->belongsToMany('Modules\Backend\Entities\PivotExchange','pivot_exchange','coin_id','id') ;
       
-    }
+    }*/
+
+
+    /**
+     * Sync the Network with the coin.
+     
+    public function pivot_networks()
+    {
+        return $this->belongsToMany('Modules\Backend\Entities\PivotNetwork','pivot_network','coin_id','id') ;
+      
+    }*/
 }
