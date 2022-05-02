@@ -38,7 +38,7 @@ class CreateCoinsTable extends Migration
             $table->string('market_cap_url')->nullable();
             $table->string('official_email')->nullable();
             $table->string('description')->nullable();
-            $table->text('details');
+            $table->text('details')->nullable();
             $table->string('website_url')->nullable();
             $table->string('telegram_link')->nullable();
             $table->string('twitter_link')->nullable();
@@ -48,13 +48,16 @@ class CreateCoinsTable extends Migration
             $table->string('medium_link')->nullable();
             $table->string('github_link')->nullable();
             $table->string('whitepaper_link')->nullable();
-            
+            $table->string('docs_url')->nullable();
             $table->string('youtube_link')->nullable();
             $table->string('tiktok_link')->nullable();
             $table->string('chart_link')->nullable();
             $table->string('audit_report_link')->nullable();
             $table->string('docs_link')->nullable();
             
+
+            
+
             $table->string('discord_url')->nullable();
             $table->tinyInteger('i_agree')->default(1)->comment('1-yes,2-no');
             $table->tinyInteger('i_declare')->default(1)->comment('1-yes,2-no');
@@ -70,7 +73,13 @@ class CreateCoinsTable extends Migration
             $table->string('promote_amount')->nullable(); 
 
             $table->tinyInteger('is_presale')->default(2)->comment('1-yes,2-no');
+            $table->tinyInteger('is_launched')->default(2)->comment('1-yes,2-no');
 
+            $table->text('presale_address')->nullable();
+            $table->date('presale_end_date')->nullable();
+            $table->date('presale_start_date')->nullable();
+            $table->text('circulating_supply')->nullable();
+ 
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('user_id')->nullable()->unsigned();
             
