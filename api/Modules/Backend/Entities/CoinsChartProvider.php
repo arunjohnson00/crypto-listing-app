@@ -14,7 +14,7 @@ class CoinsChartProvider extends Model
      *
      * @var string
      */
-    protected $table = "coins_chart";
+    protected $table = "coins_chart_provider";
     
     /**
      * The attributes that are mass assignable.
