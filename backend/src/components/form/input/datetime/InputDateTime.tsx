@@ -3,7 +3,12 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 
-const InputDateTime = ({ dateTime, setDateTime, start_date }: any) => {
+const InputDateTime = ({
+  dateTime,
+  setDateTime,
+  start_date,
+  statusTime,
+}: any) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateTimePicker
@@ -18,11 +23,25 @@ const InputDateTime = ({ dateTime, setDateTime, start_date }: any) => {
             }}
           />
         )}
-        label={start_date === true ? "Select Start Date" : "Select End Date"}
-        value={start_date === true ? dateTime.start_date : dateTime.end_date}
+        label={
+          start_date === true
+            ? "Select Start Date"
+            : statusTime === true
+            ? "Status Time"
+            : "Select End Date"
+        }
+        value={
+          statusTime === true
+            ? dateTime.statusDateTime
+            : start_date === true
+            ? dateTime.start_date
+            : dateTime.end_date
+        }
         onChange={(newValue: any) => {
-          start_date === true &&
-            setDateTime({ ...dateTime, start_date: newValue });
+          statusTime === true
+            ? setDateTime({ ...dateTime, statusDateTime: newValue })
+            : start_date === true &&
+              setDateTime({ ...dateTime, start_date: newValue });
           start_date === false &&
             setDateTime({ ...dateTime, end_date: newValue });
         }}

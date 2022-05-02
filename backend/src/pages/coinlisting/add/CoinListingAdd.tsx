@@ -17,6 +17,8 @@ import InputRadio from "../../../components/form/input/radio/InputRadio";
 import InputDateTime from "../../../components/form/input/datetime/InputDateTime";
 import InputCheckbox from "../../../components/form/input/checkbox/InputCheckbox";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
+import InputCoinStatusSelect from "../../../components/form/selectcoinstatus/InputCoinStatusSelect";
+import dateFormat, { masks } from "dateformat";
 
 //import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 import { useDispatch, useSelector } from "react-redux";
@@ -70,11 +72,6 @@ const CoinListingAdd = () => {
   // });
 
   console.log(exchangeList);
-  const selectOptions = [
-    { title: "Approved", value: 1 },
-    { title: "Processing", value: 2 },
-    { title: "Rejected/Blocked", value: 3 },
-  ];
 
   const [coinStatus, setCoinStatus] = useState("Presale");
   const [addCoinLogo, setCoinLogo] = useState({ coinLogo: "" });
@@ -89,6 +86,12 @@ const CoinListingAdd = () => {
     i_agree: false,
     i_declare: false,
   });
+
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Scheduled", value: 2 },
+    { title: "Rejected/Blocked", value: 3 },
+  ];
 
   console.log(coinStatus);
   const [networkCount, setNetworkCount] = useState<any[]>([]);
@@ -171,7 +174,12 @@ const CoinListingAdd = () => {
     setsocialCount(socialList);
   };
 
-  //console.log(coinStatus);
+  const [coinPublishStatus, setPublishCoinStatus] = useState<any>({
+    status: 1,
+    statusDateTime: new Date(),
+    is_scheduled: 0,
+  });
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -184,6 +192,12 @@ const CoinListingAdd = () => {
     formData.append("logo", addCoinLogo.coinLogo);
     formData.append("presale_start_date", dateTime.start_date);
     formData.append("presale_end_date", dateTime.end_date);
+    formData.append("staus", coinPublishStatus.status);
+    formData.append(
+      "schedule_date",
+      dateFormat(coinPublishStatus.statusDateTime, "dd-mm-yyyy H:MM:ss")
+    );
+    formData.append("is_scheduled", coinPublishStatus.is_scheduled);
 
     const presaleStatus: any = coinStatus === "Presale" ? 1 : 0;
     formData.append("is_presale", presaleStatus);
@@ -297,7 +311,11 @@ const CoinListingAdd = () => {
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={6} xs={12}>
-                  <InputSelectCoin name="network_id" id="network_id" />
+                  <InputSelectCoin
+                    name="network_id"
+                    id="network_id"
+                    data={networkList}
+                  />
                 </Grid>
               </Stack>
             </Grid>
@@ -1200,7 +1218,23 @@ const CoinListingAdd = () => {
                   >
                     Publishing Status
                   </Typography>
-                  <InputSelectCoin name="status" id="status" />
+                  <Stack direction="row" spacing={3}>
+                    <InputCoinStatusSelect
+                      name="status"
+                      id="status"
+                      selectOptions={selectOptions}
+                      setInputSelectValue={setPublishCoinStatus}
+                      getInputSelectvalue={coinPublishStatus}
+                    />
+
+                    {coinPublishStatus.status === 2 && (
+                      <InputDateTime
+                        dateTime={coinPublishStatus}
+                        setDateTime={setPublishCoinStatus}
+                        statusTime={true}
+                      />
+                    )}
+                  </Stack>
                 </Grid>
               </Grid>
             </Stack>

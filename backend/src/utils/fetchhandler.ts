@@ -1,4 +1,6 @@
 import axios from "axios";
+import { toast } from "material-react-toastify";
+import "material-react-toastify/dist/ReactToastify.css";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -22,6 +24,25 @@ const appRequest = (
         type: actionType,
         payload: response,
       });
+
+      if (
+        response.data.token_status === 1 ||
+        response.data.token_status === 2 ||
+        response.data.token_status === 3
+      ) {
+        sessionStorage.clear();
+        localStorage.clear();
+        toast.warn(`${response.data.message}`, {
+          position: "top-right",
+          autoClose: 7000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        window.location.replace("/");
+      }
+
       return successHandler ? successHandler(response) : null;
     };
 
