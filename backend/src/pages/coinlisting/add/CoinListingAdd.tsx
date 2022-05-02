@@ -179,7 +179,7 @@ const CoinListingAdd = () => {
     statusDateTime: new Date(),
     is_scheduled: 0,
   });
-
+  console.log(coinPublishStatus);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();

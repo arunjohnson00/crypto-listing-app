@@ -40,6 +40,7 @@ import updateCoinChatReducer from "./updateCoinChat";
 import listCoinSocialReducer from "./listCoinSocials";
 import addCoinSocialReducer from "./addCoinSocials";
 import updateCoinSocialReducer from "./updateCoinSocial";
+import listNftMarketPlcesReducer from "./listNftMaketPlaces";
 
 const allReducers = combineReducers({
   Auth,
@@ -78,6 +79,7 @@ const allReducers = combineReducers({
   listCoinSocialReducer,
   addCoinSocialReducer,
   updateCoinSocialReducer,
+  listNftMarketPlcesReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

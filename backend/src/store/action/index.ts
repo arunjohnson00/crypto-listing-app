@@ -35,3 +35,6 @@ export { updateCoinCommunityRequest } from "./updateCoinCommunityAction";
 export { listCoinSocialRequest } from "./listCoinSocialAction";
 export { addCoinSocialRequest } from "./addCoinSocialAction";
 export { updateCoinSocialRequest } from "./updateCoinSocialAction";
+export { listNftMarketPlacesRequest } from "./listNftMaketPlacesAction";
+export { addNftMarketPlacesRequest } from "./addNftMaketPlacesAction";
+export { updateNftMarketPlacesRequest } from "./updateNftMarketPlacesAction";
