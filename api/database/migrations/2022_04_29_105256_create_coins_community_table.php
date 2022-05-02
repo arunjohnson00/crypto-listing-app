@@ -14,7 +14,7 @@ class CreateCoinsCommunityTable extends Migration
     public function up()
     {
         Schema::create('coins_community', function (Blueprint $table) {
-            $table->increments('id');   
+            $table->increments('id');    
             $table->string('url')->nullable(false); 
             $table->foreign('coin_id')->references('id')->on('coins')->onDelete('cascade');
             $table->integer('coin_id')->unsigned();
