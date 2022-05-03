@@ -38,3 +38,6 @@ export { updateCoinSocialRequest } from "./updateCoinSocialAction";
 export { listNftMarketPlacesRequest } from "./listNftMaketPlacesAction";
 export { addNftMarketPlacesRequest } from "./addNftMaketPlacesAction";
 export { updateNftMarketPlacesRequest } from "./updateNftMarketPlacesAction";
+export { listNftListingsRequest } from "./listNftListingAction";
+export { addNftListingsRequest } from "./addNftListingAction";
+export { updateNftListingsRequest } from "./updateNftListingAction";

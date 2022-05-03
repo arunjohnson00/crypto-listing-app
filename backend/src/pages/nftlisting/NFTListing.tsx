@@ -3,17 +3,17 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
+import Avatar from "@mui/material/Avatar";
 
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
-
 import InputSearch from "../../components/form/input/search/InputSearch";
 
-//const serverAPIUrl = process.env.REACT_APP_API_URL;
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 
-const CoinsCommunity = () => {
-  const coinCommunityList = useSelector((CommunityList: any) => {
-    return CommunityList.listCoinCommunityReducer.coinCommunityListAll.data;
+const NFTListing = () => {
+  const nftListingsList = useSelector((nftList: any) => {
+    return nftList.listNftLisingsReducer.nftListingsListAll.data;
   });
 
   const [searchValue, setSearchValue] = useState("");
@@ -23,39 +23,43 @@ const CoinsCommunity = () => {
   };
 
   var filteredData = searchValue
-    ? coinCommunityList.filter((flData: any) => {
+    ? nftListingsList.filter((flData: any) => {
         return flData.name.toLowerCase().includes(searchValue.toLowerCase());
       })
-    : coinCommunityList;
+    : nftListingsList;
 
   const tableColumn = [
+    {
+      field: "thumb_icon",
+      headerName: "Icon",
+      flex: 1,
+      sortable: false,
+      disableClickEventBubbling: true,
+      renderCell: (params: any) => (
+        <Avatar
+          src={`${serverAPIUrl}public/uploads/nft_marketplace_icons/${params.row.thumb_icon}`}
+          alt={params.thumb_icon}
+        />
+      ),
+    },
     {
       field: "name",
       headerName: "Name",
       flex: 1,
     },
+
     {
-      field: "status",
-      headerName: "Status",
+      field: "url",
+      headerName: "Url",
       flex: 1,
-      renderCell: (params: any) => (
-        <span>
-          {params.row.status === 1 && (
-            <span style={{ color: "#64dd17" }}>Approved</span>
-          )}
+    },
 
-          {params.row.status === 2 && (
-            <span style={{ color: "#d50000" }}>Pending</span>
-          )}
-
-          {params.row.status === 3 && (
-            <span style={{ color: "#6a1b9a" }}>Suspended</span>
-          )}
-        </span>
-      ),
+    {
+      field: "slug",
+      headerName: "Slug",
+      flex: 1,
     },
   ];
-
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -78,12 +82,12 @@ const CoinsCommunity = () => {
             >
               <Grid item xl={2} lg={2} md={2} sm={12} xs={12}>
                 <Typography variant="h5" sx={{ textAlign: "left" }}>
-                  Coin Community
+                  Nft Listings
                 </Typography>
               </Grid>
               <Grid item xl={10} lg={10} md={10} sm={12} xs={12}>
                 <InputSearch
-                  placeholder="Search Community"
+                  placeholder="Search Nft"
                   searchValue={searchValue}
                   searchHandler={searchHandler}
                 />
@@ -100,8 +104,8 @@ const CoinsCommunity = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/coins-community/add">
-              <LargeBtn Title="Add Community" />
+            <Link to="/nft-listings/add">
+              <LargeBtn Title="Add NFT" />
             </Link>
           </Grid>
         </Stack>
@@ -117,8 +121,8 @@ const CoinsCommunity = () => {
           sx={{ display: "flex", justifyContent: "flex-end" }}
         >
           {" "}
-          <Link to="/coins-community/add">
-            <LargeBtn Title="Add Community" />
+          <Link to="/nft-listings/add">
+            <LargeBtn Title="Add NFT" />
           </Link>
         </Stack>
       </Grid>
@@ -126,4 +130,4 @@ const CoinsCommunity = () => {
   );
 };
 
-export default CoinsCommunity;
+export default NFTListing;

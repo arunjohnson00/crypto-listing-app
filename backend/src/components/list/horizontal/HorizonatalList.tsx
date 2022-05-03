@@ -1,15 +1,9 @@
-import { useEffect } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
-import { useSelector, useDispatch } from "react-redux";
-import { listUsersRequest } from "../../../store/action";
-import { listExchangeRequest } from "../../../store/action";
-import { listNetworkRequest } from "../../../store/action";
-import { listNftMarketPlacesRequest } from "../../../store/action";
+import { useSelector } from "react-redux";
 
 const HorizonatalList = () => {
-  const dispatch = useDispatch();
   const coinList: any = useSelector((cnList: any) => {
     return cnList.listCoinReducer.coinListAll.data;
   });
@@ -29,24 +23,6 @@ const HorizonatalList = () => {
   const userList = useSelector((usrList: any) => {
     return usrList.listUsersReducer.userListAll.data;
   });
-
-  useEffect(() => {
-    const successHandler = (res: any) => {
-      //console.log(res);
-    };
-
-    const errorHandler = (err: any) => {
-      //console.log(err);
-    };
-    dispatch(
-      listExchangeRequest("emptyformData", successHandler, errorHandler)
-    );
-    dispatch(listNetworkRequest("emptyformData", successHandler, errorHandler));
-    dispatch(listUsersRequest("emptyformData", successHandler, errorHandler));
-    dispatch(
-      listNftMarketPlacesRequest("emptyformData", successHandler, errorHandler)
-    );
-  }, [dispatch]);
 
   return (
     <Box>

@@ -10,7 +10,7 @@ import Events from "../pages/events/view/Events";
 import Exchanges from "../pages/exchanges/Exchanges";
 import MenuCard from "../pages/menucards/MenuCard";
 import Networks from "../pages/networks/Networks";
-import NFTListing from "../pages/nftlisting/view/NFTListing";
+import NFTListing from "../pages/nftlisting/NFTListing";
 
 import ReviewsRating from "../pages/reviews/view/ReviewsRating";
 import Users from "../pages/users/Users";
@@ -61,6 +61,9 @@ import NftMarketPlaces from "../pages/nftmarketplaces/NftMarketPlaces";
 import NftMarketPlaceAdd from "../pages/nftmarketplaces/add/NftMarketPlaceAdd";
 import NftMarketPlaceEdit from "../pages/nftmarketplaces/edit/NftMarketPlaceEdit";
 import NftMarketPlaceView from "../pages/nftmarketplaces/view/NftMarketPlaceView";
+import NFTListingAdd from "../pages/nftlisting/add/NFTListingAdd";
+import NFTListingEdit from "../pages/nftlisting/edit/NFTListingEdit";
+import NFTListingView from "../pages/nftlisting/view/NFTListingView";
 
 const AppRoutes = () => {
   return (
@@ -310,10 +313,37 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/nftlistings"
+          path="/nft-listings"
           element={
             <PrivateRoute>
               <NFTListing />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/nft-listings/add"
+          element={
+            <PrivateRoute>
+              <NFTListingAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/nft-listings/edit"
+          element={
+            <PrivateRoute>
+              <NFTListingEdit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/nft-listings/view"
+          element={
+            <PrivateRoute>
+              <NFTListingView />
             </PrivateRoute>
           }
         />

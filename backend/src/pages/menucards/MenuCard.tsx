@@ -1,14 +1,13 @@
 import { Grid, Typography, Stack } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
 import Avatar from "@mui/material/Avatar";
 import moment from "moment";
 
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
-import { listMenuCardRequest } from "../../store/action";
 import InputSearch from "../../components/form/input/search/InputSearch";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
@@ -30,20 +29,6 @@ const MenuCard = () => {
         return flData.title.toLowerCase().includes(searchValue.toLowerCase());
       })
     : menuCardList;
-
-  //console.log(filteredData);
-  const dispatch = useDispatch();
-
-  const successHandler = (res: any) => {
-    console.log(res);
-  };
-
-  const errorHandler = (err: any) => {
-    console.log(err);
-  };
-  useEffect(() => {
-    dispatch(listMenuCardRequest("emptyData", successHandler, errorHandler));
-  }, [dispatch]);
 
   const tableColumn = [
     {
