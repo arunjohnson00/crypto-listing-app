@@ -7,7 +7,7 @@ export const sideBarMenu = [
     subMenu: [
       { id: "21", title: "coins-audit", icon: "receipt" },
       { id: "22", title: "coins-chart-provider", icon: "receipt" },
-      { id: "23", title: "coins-community", icon: "receipt" },
+      //  { id: "23", title: "coins-community", icon: "receipt" },
       { id: "24", title: "coins-chat", icon: "receipt" },
       { id: "25", title: "coins-socials", icon: "receipt" },
     ],
