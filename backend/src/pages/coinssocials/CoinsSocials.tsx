@@ -1,12 +1,11 @@
 import { Grid, Typography, Stack } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
 
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
-import { listCoinSocialRequest } from "../../store/action";
 import InputSearch from "../../components/form/input/search/InputSearch";
 
 //const serverAPIUrl = process.env.REACT_APP_API_URL;
@@ -28,20 +27,6 @@ const CoinsSocials = () => {
         return flData.name.toLowerCase().includes(searchValue.toLowerCase());
       })
     : coinSocialList;
-
-  console.log(filteredData);
-  const dispatch = useDispatch();
-
-  const successHandler = (res: any) => {
-    console.log(res);
-  };
-
-  const errorHandler = (err: any) => {
-    console.log(err);
-  };
-  useEffect(() => {
-    dispatch(listCoinSocialRequest("emptyData", successHandler, errorHandler));
-  }, [dispatch]);
 
   const tableColumn = [
     {

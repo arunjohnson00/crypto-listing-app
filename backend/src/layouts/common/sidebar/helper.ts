@@ -15,13 +15,13 @@ export const sideBarMenu = [
   { id: "3", title: "Exchange", icon: "currency_exchange" },
   {
     id: "4",
-    title: "NFT Listings",
+    title: "nft-listings",
     icon: "fact_check",
-    subMenu: [
-      { id: "41", title: "a", icon: "store" },
-      { id: "42", title: "a", icon: "store" },
-      { id: "43", title: "a", icon: "store" },
-    ],
+    // subMenu: [
+    //   { id: "41", title: "a", icon: "store" },
+    //   { id: "42", title: "a", icon: "store" },
+    //   { id: "43", title: "a", icon: "store" },
+    // ],
   },
   { id: "5", title: "nft-marketplaces", icon: "store" },
   { id: "6", title: "Airdrops", icon: "fact_check" },

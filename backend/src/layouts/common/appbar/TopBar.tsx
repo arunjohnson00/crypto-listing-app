@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
 import { Divider, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -18,6 +18,18 @@ import ProfileBtn from "../../../components/button/profile/ProfileBtn";
 import ProfileMenu from "../../../components/dropdowns/profile/ProfileMenu";
 import NotificationMenu from "../../../components/dropdowns/notification/NotificationMenu";
 import SettingsMenu from "../../../components/dropdowns/settings/SettingsMenu";
+import { listExchangeRequest } from "../../../store/action";
+import { listNetworkRequest } from "../../../store/action";
+import { listCoinAuditRequest } from "../../../store/action";
+import { listCoinChatRequest } from "../../../store/action";
+import { listUsersRequest } from "../../../store/action";
+import { listVideoRequest } from "../../../store/action";
+import { listCoinRequest } from "../../../store/action";
+import { listCoinSocialRequest } from "../../../store/action";
+import { listMenuCardRequest } from "../../../store/action";
+import { listNftMarketPlacesRequest } from "../../../store/action";
+import { listChartProviderRequest } from "../../../store/action";
+import { listNftListingsRequest } from "../../../store/action";
 
 const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
   const dispatch = useDispatch();
@@ -57,6 +69,47 @@ const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
     logoutHandler(navigate, dispatch);
   };
   const theme = useTheme();
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      //console.log(res);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+
+    dispatch(
+      listExchangeRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(listNetworkRequest("emptyformData", successHandler, errorHandler));
+    dispatch(listUsersRequest("emptyformData", successHandler, errorHandler));
+    dispatch(
+      listNftMarketPlacesRequest("emptyformData", successHandler, errorHandler)
+    );
+
+    dispatch(listCoinRequest("emptyformData", successHandler, errorHandler));
+    dispatch(
+      listMenuCardRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(
+      listCoinAuditRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(
+      listChartProviderRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(
+      listCoinChatRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(
+      listCoinSocialRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(listVideoRequest("emptyformData", successHandler, errorHandler));
+    dispatch(
+      listNftListingsRequest("emptyformData", successHandler, errorHandler)
+    );
+  }, [dispatch]);
+
   return (
     <AppBar
       position="fixed"

@@ -1,14 +1,14 @@
 import { Grid, Typography, Stack } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
 //import Avatar from "@mui/material/Avatar";
 import moment from "moment";
 
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
-import { listVideoRequest } from "../../store/action";
+
 import InputSearch from "../../components/form/input/search/InputSearch";
 
 //const serverAPIUrl = process.env.REACT_APP_API_URL;
@@ -29,21 +29,6 @@ const Videos = () => {
         return flData.v_name.toLowerCase().includes(searchValue.toLowerCase());
       })
     : videoList;
-
-  console.log(filteredData);
-
-  const dispatch = useDispatch();
-
-  const successHandler = (res: any) => {
-    console.log(res);
-  };
-
-  const errorHandler = (err: any) => {
-    console.log(err);
-  };
-  useEffect(() => {
-    dispatch(listVideoRequest("emptyData", successHandler, errorHandler));
-  }, [dispatch]);
 
   const tableColumn = [
     // {
@@ -71,7 +56,14 @@ const Videos = () => {
       flex: 1,
       renderCell: (params: any) => (
         // <span>{moment(params.row.created_at).fromNow()}</span>
-        <span>{moment(params.row.approved_at).fromNow()}</span>
+        <span>
+          {
+            //console.log(new Date(params.row.approved_at).toISOString())
+          }
+          {params.row.approved_at !== null
+            ? moment(params.row.approved_at).fromNow()
+            : "Waiting"}
+        </span>
       ),
       //<span>{moment("2022-04-25T09:51:52.000000Z").fromNow()}</span>
     },
@@ -82,7 +74,10 @@ const Videos = () => {
       flex: 1,
       renderCell: (params: any) => (
         //params.row.approved_at,
-        <span>{moment(params.row.created_at).fromNow()}</span>
+        <span>
+          {console.log(params.row.created_at)}
+          {moment(params.row.created_at).fromNow()}
+        </span>
       ),
       //<span>{moment("2022-04-25T09:51:52.000000Z").fromNow()}</span>
     },
@@ -114,7 +109,7 @@ const Videos = () => {
           )}
 
           {params.row.status === 2 && (
-            <span style={{ color: "#d50000" }}>Pending</span>
+            <span style={{ color: "#d50000" }}>Processing</span>
           )}
 
           {params.row.status === 3 && (

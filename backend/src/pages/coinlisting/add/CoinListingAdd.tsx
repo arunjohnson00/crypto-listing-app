@@ -37,14 +37,14 @@ import ChartDetails from "./ChartDetails";
 import CommunityDetails from "./CommunityDetails";
 import ChatDetails from "./ChatDetails";
 import SocialDetails from "./SocialDetails";
-import { listExchangeRequest } from "../../../store/action";
-import { listNetworkRequest } from "../../../store/action";
-import { listCoinAuditRequest } from "../../../store/action";
-import { listChartProviderRequest } from "../../../store/action";
-import { listCoinChatRequest } from "../../../store/action";
-import { listCoinSocialRequest } from "../../../store/action";
 
 const CoinListingAdd = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Scheduled", value: 2 },
+    { title: "Rejected/Blocked", value: 3 },
+  ];
+
   const exchangeList = useSelector((exList: any) => {
     return exList.listExchangeReducer.exchangeListAll.data;
   });
@@ -67,14 +67,11 @@ const CoinListingAdd = () => {
   const coinSocialList = useSelector((socialList: any) => {
     return socialList.listCoinSocialReducer.coinSocialListAll.data;
   });
-  // const coinCommunityList = useSelector((CommunityList: any) => {
-  //   return CommunityList.listCoinCommunityReducer.coinCommunityListAll.data;
-  // });
-
-  console.log(exchangeList);
 
   const [coinStatus, setCoinStatus] = useState("Presale");
+
   const [addCoinLogo, setCoinLogo] = useState({ coinLogo: "" });
+
   const [dateTime, setDateTime] = useState<any>({
     start_date: new Date(),
     end_date: new Date(),
@@ -87,13 +84,6 @@ const CoinListingAdd = () => {
     i_declare: false,
   });
 
-  const selectOptions = [
-    { title: "Approved", value: 1 },
-    { title: "Scheduled", value: 2 },
-    { title: "Rejected/Blocked", value: 3 },
-  ];
-
-  console.log(coinStatus);
   const [networkCount, setNetworkCount] = useState<any[]>([]);
 
   const networkaddHandle = () => {
@@ -245,31 +235,7 @@ const CoinListingAdd = () => {
 
     dispatch(addCoinRequest(formData, successHandler, errorHandler));
   };
-  useEffect(() => {
-    const successHandler = (res: any) => {
-      //console.log(res);
-    };
 
-    const errorHandler = (err: any) => {
-      //console.log(err);
-    };
-    dispatch(
-      listExchangeRequest("emptyformData", successHandler, errorHandler)
-    );
-    dispatch(listNetworkRequest("emptyformData", successHandler, errorHandler));
-    dispatch(
-      listCoinAuditRequest("emptyformData", successHandler, errorHandler)
-    );
-    dispatch(
-      listChartProviderRequest("emptyformData", successHandler, errorHandler)
-    );
-    dispatch(
-      listCoinChatRequest("emptyformData", successHandler, errorHandler)
-    );
-    dispatch(
-      listCoinSocialRequest("emptyformData", successHandler, errorHandler)
-    );
-  }, [dispatch]);
   return (
     <Grid container spacing={0}>
       <form id="coinForm">

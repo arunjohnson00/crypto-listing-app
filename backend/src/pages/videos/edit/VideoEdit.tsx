@@ -11,25 +11,28 @@ import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import { updateVideosRequest } from "../../../store/action";
+
 import InputSelect from "../../../components/form/select/InputSelect";
 
 const VideoEdit = () => {
-  const videoList = useSelector((vdList: any) => {
-    return vdList.listVideoReducer.videoListAll.data;
-  });
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location: any = useLocation();
 
+  const videoList = useSelector((vdList: any) => {
+    return vdList.listVideoReducer.videoListAll.data;
+  });
+
+  console.log(videoList);
   let newArrList = videoList.filter(
     (listData: any) => listData.id === location.state.id
   );
-  console.log(newArrList[0].id);
+
   const [loading, setLoading] = useState(false);
   const [editVideosData, setEditVideos] = useState({
     id: newArrList[0].id,
     name: newArrList[0].v_name,
-    status: "1",
+    status: newArrList[0].status,
     url: newArrList[0].v_url,
     button_name: newArrList[0].v_btn_name,
     button_url: newArrList[0].v_btn_url,
@@ -119,9 +122,9 @@ const VideoEdit = () => {
   };
 
   const selectOptions = [
-    { title: "Approved", value: 1 },
-    { title: "Processing", value: 2 },
-    { title: "Rejected/Blocked", value: 3 },
+    { title: "Approved", value: 1, color: "#6FDF27" },
+    { title: "Processing", value: 2, color: "#DC3434" },
+    { title: "Rejected/Blocked", value: 3, color: "#8D52B1" },
   ];
 
   return (
