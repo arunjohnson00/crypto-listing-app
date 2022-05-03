@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
 import Avatar from "@mui/material/Avatar";
-
+import moment from "moment";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import { listCoinRequest } from "../../store/action";
@@ -45,34 +45,78 @@ const CoinListing = () => {
 
   const tableColumn = [
     {
-      field: "thumb_icon",
+      field: "name",
+      headerName: "Name",
+      flex: 1,
+    },
+    {
+      field: "logo",
       headerName: "Icon",
       flex: 1,
       sortable: false,
       disableClickEventBubbling: true,
       renderCell: (params: any) => (
         <Avatar
-          src={`${serverAPIUrl}public/uploads/exchange_icons/${params.row.thumb_icon}`}
-          alt={params.thumb_icon}
+          src={`${serverAPIUrl}public/uploads/coin_logo/${params.row.logo}`}
+          alt={params.logo}
         />
       ),
     },
     {
-      field: "name",
-      headerName: "Name",
+      field: "is_presale",
+      headerName: "Is Presale",
+      flex: 1,
+      renderCell: (params: any) =>
+        params.row.is_presale === 1 ? (
+          <span style={{ color: "green" }}>yes</span>
+        ) : (
+          <span style={{ color: "red" }}>No</span>
+        ),
+    },
+
+    {
+      field: "created_at",
+      headerName: "Submitted",
+      flex: 1,
+      renderCell: (params: any) => (
+        <span>{moment(params.row.created_at).fromNow()}</span>
+      ),
+    },
+
+    {
+      field: "network_id",
+      headerName: "Network Id",
       flex: 1,
     },
 
     {
-      field: "url",
-      headerName: "Url",
+      field: "explorer_link",
+      headerName: "Block explorer url",
       flex: 1,
+      renderCell: (params: any) => (
+        <span style={{ color: "blue" }}>{params.row.explorer_link}</span>
+      ),
     },
 
     {
-      field: "slug",
-      headerName: "Slug",
+      field: "status",
+      headerName: "Status",
       flex: 1,
+      renderCell: (params: any) => (
+        <span>
+          {params.row.status === 1 && (
+            <span style={{ color: "#64dd17" }}>Approved</span>
+          )}
+
+          {params.row.status === 2 && (
+            <span style={{ color: "#d50000" }}>Scheduled</span>
+          )}
+
+          {params.row.status === 3 && (
+            <span style={{ color: "#6a1b9a" }}>Suspended</span>
+          )}
+        </span>
+      ),
     },
   ];
   return (
@@ -102,7 +146,7 @@ const CoinListing = () => {
               </Grid>
               <Grid item xl={10} lg={10} md={10} sm={12} xs={12}>
                 <InputSearch
-                  placeholder="Search Exchanges"
+                  placeholder="Search Coin"
                   searchValue={searchValue}
                   searchHandler={searchHandler}
                 />
