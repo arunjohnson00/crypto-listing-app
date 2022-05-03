@@ -92,8 +92,9 @@ class CoinsController extends Controller
         $data = $this->ArrayCreation($request);
         $error = null;
         
-        //return response()->json($request->all());
+       // return response()->json($request->all());
         //return response()->json($data);
+      //  return response()->json($data['pivot_exchange']);
         //die();
 
         try{ 
@@ -106,7 +107,50 @@ class CoinsController extends Controller
                         $makeArraySyncNetwork = array_map(function($makeArraySyncNetwork) use($coin){ return $makeArraySyncNetwork + ['coin_id' => $coin->id]; }, $makeArraySyncNetwork); 
                         \Modules\Backend\Entities\PivotNetwork::insert($makeArraySyncNetwork);
                     endif;
+
+
+                    if(isset($data['pivot_exchange'])):
+                        $makeArraySyncExchange = $data['pivot_exchange'];
+                        $makeArraySyncExchange = array_map(function($makeArraySyncExchange) use($coin){ return $makeArraySyncExchange + ['coin_id' => $coin->id]; }, $makeArraySyncExchange); 
+                        \Modules\Backend\Entities\PivotExchange::insert($makeArraySyncExchange);
+                    endif;
+
+
+                    if(isset($data['pivot_audit'])):
+                        $makeArraySyncAudit = $data['pivot_audit'];
+                        $makeArraySyncAudit = array_map(function($makeArraySyncAudit) use($coin){ return $makeArraySyncAudit + ['coin_id' => $coin->id]; }, $makeArraySyncAudit); 
+                        \Modules\Backend\Entities\PivotAudit::insert($makeArraySyncAudit);
+                    endif;
+
+
+                    if(isset($data['pivot_chart'])):
+                        $makeArraySyncChart = $data['pivot_chart'];
+                        $makeArraySyncChart = array_map(function($makeArraySyncChart) use($coin){ return $makeArraySyncChart + ['coin_id' => $coin->id]; }, $makeArraySyncChart); 
+                        \Modules\Backend\Entities\PivotChart::insert($makeArraySyncChart);
+                    endif;
+
+
+
+                    if(isset($data['pivot_community'])):
+                        $makeArraySyncCommunity = $data['pivot_community'];
+                        $makeArraySyncCommunity = array_map(function($makeArraySyncCommunity) use($coin){ return $makeArraySyncCommunity + ['coin_id' => $coin->id]; }, $makeArraySyncCommunity); 
+                        \Modules\Backend\Entities\PivotCommunity::insert($makeArraySyncCommunity);
+                    endif;
                 
+                    if(isset($data['pivot_chat'])):
+                        $makeArraySyncChat = $data['pivot_chat'];
+                        $makeArraySyncChat = array_map(function($makeArraySyncChat) use($coin){ return $makeArraySyncChat + ['coin_id' => $coin->id]; }, $makeArraySyncChat); 
+                        \Modules\Backend\Entities\PivotChat::insert($makeArraySyncChat);
+                    endif;
+
+                    if(isset($data['pivot_social'])):
+                        $makeArraySyncSocial = $data['pivot_social'];
+                        $makeArraySyncSocial = array_map(function($makeArraySyncSocial) use($coin){ return $makeArraySyncSocial + ['coin_id' => $coin->id]; }, $makeArraySyncSocial); 
+                        \Modules\Backend\Entities\PivotSocial::insert($makeArraySyncSocial);
+                    endif;
+
+
+                    //PivotCommunity
                 endif;
             
                 
@@ -170,7 +214,7 @@ class CoinsController extends Controller
 
         if($request->exists('logo')):  
             $logo = \App\Helpers\FileHelper::upload($request->logo, $this->FilePath, $this->allowedfileExtension); 
-            if(isset($thumb_icon['file_name'])): $return['logo'] = $logo['file_name']; endif; 
+            if(isset($logo['file_name'])): $return['logo'] = $logo['file_name']; endif; 
         endif; 
 
 
@@ -214,11 +258,153 @@ class CoinsController extends Controller
             endforeach;   
         endif;
 
+
+
+        $pivot_exchange =  [] ;
+        if(
+             ($request->exists('exchange_id') && $request->exists('url') && $request->exists('exchange_explorer_link')) 
+        //     /*&&
+        //     (
+        //         count($request['network']) == count($request['network_address']) &&
+        //         count($request['network_address']) == count($request['network_explorer_link']) &&
+        //         count($request['network_explorer_link']) == count($request['network'])  
+        //     )  */      
+         ):
+            $e=1;
+            foreach ($request['exchange_id'] as $key_e => $value_e):
+                $pivot_exchange[$e]['exchange_id'] = $value_e;
+                $pivot_exchange[$e]['url'] = (isset($request['url'][$key_e])) ? $request['url'][$key_e] : '';
+                $pivot_exchange[$e]['explorer_link'] = (isset($request['exchange_explorer_link'][$key_e])) ? $request['exchange_explorer_link'][$key_e] : '';
+                $e++;
+            endforeach;   
+        endif;
+
+
+
+
+
+        $pivot_audit =  [] ;
+        if(
+             ($request->exists('audited_by') && $request->exists('audit_link')) 
+        //     /*&&
+        //     (
+        //         count($request['network']) == count($request['network_address']) &&
+        //         count($request['network_address']) == count($request['network_explorer_link']) &&
+        //         count($request['network_explorer_link']) == count($request['network'])  
+        //     )  */      
+         ):
+            $a=1;
+            foreach ($request['audited_by'] as $key_a => $value_a):
+            
+                $pivot_audit[$a]['audited_by'] = (isset($request['audited_by'][$key_a])) ? $request['audited_by'][$key_a] : '';
+                $pivot_audit[$a]['audit_link'] = (isset($request['audit_link'][$key_a])) ? $request['audit_link'][$key_a] : '';
+                $a++;
+            endforeach;   
+        endif;
+
+
+
+
+        $pivot_chart =  [] ;
+        if(
+             ($request->exists('chart_provider') && $request->exists('chart_link')) 
+        //     /*&&
+        //     (
+        //         count($request['network']) == count($request['network_address']) &&
+        //         count($request['network_address']) == count($request['network_explorer_link']) &&
+        //         count($request['network_explorer_link']) == count($request['network'])  
+        //     )  */      
+         ):
+            $cr=1;
+            foreach ($request['chart_provider'] as $key_cr => $value_cr):
+            
+                $pivot_chart[$cr]['chart_provider'] = (isset($request['chart_provider'][$key_cr])) ? $request['chart_provider'][$key_cr] : '';
+                $pivot_chart[$cr]['chart_link'] = (isset($request['chart_link'][$key_cr])) ? $request['chart_link'][$key_cr] : '';
+                $cr++;
+            endforeach;   
+        endif;
+
+
+
+
+        $pivot_community =  [] ;
+        if(
+             ($request->exists('community_website_url') )
+        //     /*&&
+        //     (
+        //         count($request['network']) == count($request['network_address']) &&
+        //         count($request['network_address']) == count($request['network_explorer_link']) &&
+        //         count($request['network_explorer_link']) == count($request['network'])  
+        //     )  */      
+         ):
+            $co=1;
+            foreach ($request['community_website_url'] as $key_co => $value_co):
+             $pivot_community[$co]['community_website_url'] = (isset($request['community_website_url'][$key_co])) ? $request['community_website_url'][$key_co] : '';
+                $co++;
+            endforeach;   
+        endif;
+
+
+
+
+
+        $pivot_chat =  [] ;
+        if(
+             ($request->exists('chat_platform') && $request->exists('chat_url')) 
+        //     /*&&
+        //     (
+        //         count($request['network']) == count($request['network_address']) &&
+        //         count($request['network_address']) == count($request['network_explorer_link']) &&
+        //         count($request['network_explorer_link']) == count($request['network'])  
+        //     )  */      
+         ):
+            $ch=1;
+            foreach ($request['chat_platform'] as $key_ch => $value_ch):
+            
+                $pivot_chat[$ch]['chat_platform'] = (isset($request['chat_platform'][$key_ch])) ? $request['chat_platform'][$key_ch] : '';
+                $pivot_chat[$ch]['chat_url'] = (isset($request['chat_url'][$key_ch])) ? $request['chat_url'][$key_ch] : '';
+                $ch++;
+            endforeach;   
+        endif;
+
+
+
+
+        $pivot_social =  [] ;
+        if(
+             ($request->exists('social_platform') && $request->exists('social_url')) 
+        //     /*&&
+        //     (
+        //         count($request['network']) == count($request['network_address']) &&
+        //         count($request['network_address']) == count($request['network_explorer_link']) &&
+        //         count($request['network_explorer_link']) == count($request['network'])  
+        //     )  */      
+         ):
+            $so=1;
+            foreach ($request['social_platform'] as $key_so => $value_so):
+            
+                $pivot_social[$so]['social_platform'] = (isset($request['social_platform'][$key_so])) ? $request['social_platform'][$key_so] : '';
+                $pivot_social[$so]['social_url'] = (isset($request['social_url'][$key_so])) ? $request['social_url'][$key_so] : '';
+                $so++;
+            endforeach;   
+        endif;
+
+
+
+
+
+
   
         $array =
         [
             'coin_data' =>$return,
-            'pivot_network'=> $pivot_network
+            'pivot_network'=> $pivot_network,
+            'pivot_exchange'=> $pivot_exchange,
+            'pivot_audit'=> $pivot_audit,
+            'pivot_chart'=> $pivot_chart,
+            'pivot_community'=>$pivot_community,
+            'pivot_chat'=>$pivot_chat,
+            'pivot_social'=>$pivot_social
         ];
 
 
