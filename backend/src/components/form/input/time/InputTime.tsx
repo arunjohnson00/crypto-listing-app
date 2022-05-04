@@ -12,6 +12,7 @@ const InputTime = ({
   presaleEnd,
   publicMintStart,
   publicMintEnd,
+  disabled,
 }: any | number) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -45,6 +46,7 @@ const InputTime = ({
             }}
           />
         )}
+        disabled={disabled}
       />
     </LocalizationProvider>
   );

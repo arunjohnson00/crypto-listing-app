@@ -11,7 +11,9 @@ const InputDate = ({
   presaleEnd,
   publicMintStart,
   publicMintEnd,
+  disabled,
 }: any) => {
+  console.log(disabled);
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
@@ -44,6 +46,7 @@ const InputDate = ({
             setDate({ ...date, start_date: newValue });
           publicMintEnd === true && setDate({ ...date, end_date: newValue });
         }}
+        disabled={disabled}
       />
     </LocalizationProvider>
   );

@@ -83,6 +83,7 @@ const NFTListingAdd = () => {
   const [eventCategoryMultiple, setEventCategoryMultiple] = useState<string[]>(
     []
   );
+
   const [coinPublishStatus, setPublishCoinStatus] = useState<any>({
     status: "",
     statusDateTime: new Date(),
@@ -208,6 +209,8 @@ const NFTListingAdd = () => {
     socialList.splice(index, 1);
     setsocialCount(socialList);
   };
+
+  const [launchDate, setLaunchDate] = useState<boolean>(false);
 
   useEffect(() => {
     const successHandler = (res: any) => {
@@ -454,6 +457,7 @@ const NFTListingAdd = () => {
                         name="presale_start_date[1]"
                         id="presale_start_date_1"
                         presaleStart={true}
+                        disabled={launchDate}
                       />
                     </Grid>
                     <Grid item xl={4} lg={4} md={4} sm={4} xs={12} pt={0}>
@@ -463,15 +467,18 @@ const NFTListingAdd = () => {
                         name="presale_start_time[1]"
                         id="presale_start_time_1"
                         presaleStart={true}
+                        disabled={launchDate}
                       />
                     </Grid>
                     <Grid item xl={4} lg={4} md={4} sm={4} xs={12} pt={0}>
-                      <Link
-                        onClick={presaleEndTimeOpenHandler}
-                        underline="none"
-                      >
-                        Add End Time +
-                      </Link>
+                      {!presaleEndDateTime && (
+                        <Link
+                          onClick={presaleEndTimeOpenHandler}
+                          underline="none"
+                        >
+                          Add End Time +
+                        </Link>
+                      )}
                     </Grid>
                   </Stack>
                 </Grid>
@@ -493,6 +500,7 @@ const NFTListingAdd = () => {
                           name="presale_end_date[1]"
                           id="presale_end_date_1"
                           presaleEnd={true}
+                          disabled={launchDate}
                         />
                       </Grid>
                       <Grid item xl={4} lg={4} md={4} sm={4} xs={12} pt={0}>
@@ -502,6 +510,7 @@ const NFTListingAdd = () => {
                           name="presale_end_time[1]"
                           id="presale_end_time_1"
                           presaleEnd={true}
+                          disabled={launchDate}
                         />
                       </Grid>
                       <Grid item xl={4} lg={4} md={4} sm={4} xs={12} pt={0}>
@@ -535,6 +544,7 @@ const NFTListingAdd = () => {
                         name="public_mint_start_date[1]"
                         id="public_mint_start_date_1"
                         publicMintStart={true}
+                        disabled={launchDate}
                       />
                     </Grid>
                     <Grid item xl={4} lg={4} md={4} sm={4} xs={12} pt={0}>
@@ -544,15 +554,18 @@ const NFTListingAdd = () => {
                         name="public_mint_start_time[1]"
                         id="public_mint_start_time_1"
                         publicMintStart={true}
+                        disabled={launchDate}
                       />
                     </Grid>
                     <Grid item xl={4} lg={4} md={4} sm={4} xs={12} pt={0}>
-                      <Link
-                        onClick={publicMintEndTimeOpenHandler}
-                        underline="none"
-                      >
-                        Add End Time +
-                      </Link>
+                      {!publicMintEndDateTime && (
+                        <Link
+                          onClick={publicMintEndTimeOpenHandler}
+                          underline="none"
+                        >
+                          Add End Time +
+                        </Link>
+                      )}
                     </Grid>
                   </Stack>
                 </Grid>
@@ -574,6 +587,7 @@ const NFTListingAdd = () => {
                           name="public_mint_end_date[1]"
                           id="public_mint_end_date_1"
                           publicMintEnd={true}
+                          disabled={launchDate}
                         />
                       </Grid>
                       <Grid item xl={4} lg={4} md={4} sm={4} xs={12} pt={0}>
@@ -583,6 +597,7 @@ const NFTListingAdd = () => {
                           name="public_mint_end_time[1]"
                           id="public_mint_end_time_1"
                           publicMintEnd={true}
+                          disabled={launchDate}
                         />
                       </Grid>
                       <Grid item xl={4} lg={4} md={4} sm={4} xs={12} pt={0}>
@@ -608,7 +623,12 @@ const NFTListingAdd = () => {
                     mt={0}
                     sx={{ alignItems: "center" }}
                   >
-                    <InputCheckbox name="date" />
+                    <InputCheckbox
+                      name="launch_date"
+                      checked={launchDate}
+                      setChecked={setLaunchDate}
+                      condition="launch_date"
+                    />
                     <Typography
                       variant="subtitle1"
                       sx={{ textAlign: "left", marginleft: 0 }}

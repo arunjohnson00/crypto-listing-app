@@ -9,6 +9,8 @@ const InputCheckbox = ({
   value,
 }: any) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    condition === "launch_date" && setChecked(event.target.checked);
+
     condition === "is_listed_coingecko" &&
       setChecked({
         ...checked,
