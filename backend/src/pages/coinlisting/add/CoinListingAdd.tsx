@@ -38,6 +38,20 @@ import CommunityDetails from "./CommunityDetails";
 import ChatDetails from "./ChatDetails";
 import SocialDetails from "./SocialDetails";
 
+import { listExchangeRequest } from "../../../store/action";
+import { listNetworkRequest } from "../../../store/action";
+import { listCoinAuditRequest } from "../../../store/action";
+import { listCoinChatRequest } from "../../../store/action";
+import { listCoinSocialRequest } from "../../../store/action";
+import { listChartProviderRequest } from "../../../store/action";
+
+// import { listUsersRequest } from "../../../store/action";
+// import { listVideoRequest } from "../../../store/action";
+// import { listCoinRequest } from "../../../store/action";
+// import { listMenuCardRequest } from "../../../store/action";
+// import { listNftMarketPlacesRequest } from "../../../store/action";
+// import { listNftListingsRequest } from "../../../store/action";
+
 const CoinListingAdd = () => {
   const selectOptions = [
     { title: "Approved", value: 1 },
@@ -236,6 +250,33 @@ const CoinListingAdd = () => {
     dispatch(addCoinRequest(formData, successHandler, errorHandler));
   };
 
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      //console.log(res);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+
+    dispatch(
+      listExchangeRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(listNetworkRequest("emptyformData", successHandler, errorHandler));
+
+    dispatch(
+      listCoinAuditRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(
+      listChartProviderRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(
+      listCoinChatRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(
+      listCoinSocialRequest("emptyformData", successHandler, errorHandler)
+    );
+  }, [dispatch]);
   return (
     <Grid container spacing={0}>
       <form id="coinForm">

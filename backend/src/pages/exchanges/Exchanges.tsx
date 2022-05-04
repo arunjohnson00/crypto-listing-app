@@ -1,9 +1,10 @@
 import { Grid, Typography, Stack } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
 import Avatar from "@mui/material/Avatar";
+import { listExchangeRequest } from "../../store/action";
 
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
@@ -28,6 +29,18 @@ const Exchanges = () => {
         return flData.name.toLowerCase().includes(searchValue.toLowerCase());
       })
     : exchangeList;
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+    };
+
+    const errorHandler = (err: any) => {
+      console.log(err);
+    };
+    dispatch(listExchangeRequest("emptyData", successHandler, errorHandler));
+  }, [dispatch]);
 
   const tableColumn = [
     {

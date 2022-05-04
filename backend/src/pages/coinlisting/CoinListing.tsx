@@ -29,17 +29,16 @@ const CoinListing = () => {
       })
     : coinList;
 
-  console.log(filteredData);
   const dispatch = useDispatch();
 
-  const successHandler = (res: any) => {
-    console.log(res);
-  };
-
-  const errorHandler = (err: any) => {
-    console.log(err);
-  };
   useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+    };
+
+    const errorHandler = (err: any) => {
+      console.log(err);
+    };
     dispatch(listCoinRequest("emptyData", successHandler, errorHandler));
   }, [dispatch]);
 

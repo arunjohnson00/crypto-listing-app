@@ -1,13 +1,14 @@
 import { Grid, Typography, Stack } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
 //import Avatar from "@mui/material/Avatar";
 import moment from "moment";
 
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
+import { listVideoRequest } from "../../store/action";
 
 import InputSearch from "../../components/form/input/search/InputSearch";
 
@@ -29,6 +30,18 @@ const Videos = () => {
         return flData.v_name.toLowerCase().includes(searchValue.toLowerCase());
       })
     : videoList;
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+    };
+
+    const errorHandler = (err: any) => {
+      console.log(err);
+    };
+    dispatch(listVideoRequest("emptyData", successHandler, errorHandler));
+  }, [dispatch]);
 
   const tableColumn = [
     // {
