@@ -11,6 +11,7 @@ const InputText = ({
   id,
   checkboxStatus,
   width,
+  InputProps,
 }: any) => {
   // console.log(checkboxStatus);
 
@@ -32,11 +33,13 @@ const InputText = ({
         sx={{
           "& .MuiOutlinedInput-root": {
             width: `${!width && "312px"}`,
+            paddingRight: `${InputProps && 0}`,
           },
           // "& .MuiInputAdornment-root": {
           //   color: "rgb(61 56 122)",
           // },
         }}
+        InputProps={InputProps && InputProps}
       />
     </ThemeProvider>
   );

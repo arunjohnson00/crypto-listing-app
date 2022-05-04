@@ -1,7 +1,7 @@
 import { Grid, Typography, Stack } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
 import Avatar from "@mui/material/Avatar";
 import moment from "moment";
@@ -9,6 +9,7 @@ import moment from "moment";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
+import { listUsersRequest } from "../../store/action";
 
 const Users = () => {
   const userList = useSelector((usrList: any) => {
@@ -27,7 +28,17 @@ const Users = () => {
       })
     : userList;
 
-  console.log(filteredData);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+    };
+
+    const errorHandler = (err: any) => {
+      console.log(err);
+    };
+    dispatch(listUsersRequest("emptyData", successHandler, errorHandler));
+  }, [dispatch]);
 
   const serverAPIUrl = process.env.REACT_APP_API_URL;
 

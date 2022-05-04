@@ -1,12 +1,13 @@
 import { Grid, Typography, Stack } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
 
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
+import { listCoinAuditRequest } from "../../store/action";
 
 //const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -27,6 +28,19 @@ const CoinsAudit = () => {
         return flData.name.toLowerCase().includes(searchValue.toLowerCase());
       })
     : coinAuditList;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+    };
+
+    const errorHandler = (err: any) => {
+      console.log(err);
+    };
+    dispatch(listCoinAuditRequest("emptyData", successHandler, errorHandler));
+  }, [dispatch]);
 
   const tableColumn = [
     {

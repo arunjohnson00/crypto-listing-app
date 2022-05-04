@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Box, Grid, Typography } from "@mui/material";
 import { Item } from "./style";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
@@ -7,8 +9,37 @@ import HtmlTables from "../../components/tables/htmltable/HtmlTables";
 import TablesWithHead from "../../components/tables/htmltable/TablesWithHead";
 import CellTowerOutlinedIcon from "@mui/icons-material/CellTowerOutlined";
 import ComponentFooter from "../../components/footer/compfooter/ComponentFooter";
+import { listExchangeRequest } from "../../store/action";
+import { listNetworkRequest } from "../../store/action";
+import { listNftMarketPlacesRequest } from "../../store/action";
+import { listUsersRequest } from "../../store/action";
+
+import { listCoinRequest } from "../../store/action";
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      //console.log(res);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+
+    dispatch(
+      listExchangeRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(listNetworkRequest("emptyformData", successHandler, errorHandler));
+    dispatch(listUsersRequest("emptyformData", successHandler, errorHandler));
+    dispatch(
+      listNftMarketPlacesRequest("emptyformData", successHandler, errorHandler)
+    );
+
+    dispatch(listCoinRequest("emptyformData", successHandler, errorHandler));
+  }, [dispatch]);
+
   return (
     <Grid container spacing={2}>
       <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
