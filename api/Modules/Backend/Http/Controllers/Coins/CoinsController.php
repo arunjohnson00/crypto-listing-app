@@ -81,12 +81,99 @@ class CoinsController extends Controller
         endif;
     }
 
+    
+    /**
+     * Show the specified resource.
+     * @param int $coin_id
+     * @return Renderable
+     */
+    public function show($coin_id)
+    {    
+        $coin = Coins::where('id',$coin_id)->first();  
+        if($coin):
+            return response()->json(['response'=>true,'data'=>$coin]);
+        else:
+             return response()->json(['response'=>false,'message'=>$this->NotFoundMessage],422);
+        endif; 
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     * @param int $coin_id
+     * @return Renderable
+     */
+    public function edit($coin_id)
+    {
+        $coin = Coins::where('id',$coin_id)->first();  
+        if($coin):
+            return response()->json(['response'=>true,'data'=>$coin]);
+        else:
+             return response()->json(['response'=>false,'message'=>$this->NotFoundMessage],422);
+        endif;
+    }
+
+    /**
+     * Update the specified resource in storage.
+     * @param Request $request
+     * @param int $coin_id
+     * @return Renderable
+     */
+    public function update(Request $request, $coin_id)
+    {
+        if(!$request->exists('is_presale') &&  !$request->exists('is_launched') ):
+            return response()->json(['response'=>false,'message'=>'Coin have issue, please select presale or launched only'],422);
+        elseif($request->exists('is_presale') && $request->is_presale==1):
+           
+                $validator = Validator::make($request->all(), [
+                    "logo"                     => 'mimes:jpg,png,jpeg,gif,JPG,PNG,JPEG,GIF|max:3000', // max 3mb,
+                    'address'                   =>  "unique:coins,address,NULL,id,deleted_at,NULL|max:255",                   'network_id'        =>  "numeric", 
+                    'name'                      =>  'required|max:255',           'symbol'            =>  "required|max:255",    
+                    'presale_start_date'        =>  "required",                  'presale_end_date'  =>  "required",  
+                    "status"                    =>  "required|numeric",         "schedule_date"     =>  "required_if:is_scheduled,==,1"
+                ],
+                [
+                    'schedule_date.required_if'  =>  'The schedule date field is required when is scheduled is selected'
+                ]);
+            
+        elseif($request->exists('is_launched') && $request->is_launched==1):
+            
+            $validator = Validator::make($request->all(), [
+               "logo"                      =>  'mimes:jpg,png,jpeg,gif,JPG,PNG,JPEG,GIF|max:3000', // max 3mb,
+               'address'                   =>  "unique:coins,address,NULL,id,deleted_at,NULL|max:255",                   'network_id'        =>  "numeric", 
+               'name'                      =>  'required|max:255',          'symbol'            =>  "required|max:255",    
+               'price'                     =>  "required",                  'max_supply'  =>  "required",  
+               "status"                    =>  "required|numeric",          "schedule_date"     =>  "required_if:is_scheduled,==,1"
+           ],
+           [
+               'schedule_date.required_if'  =>  'The schedule date field is required when is scheduled is selected'
+           ]);
+
+        else:
+            return response()->json(['message' => 'Page not found!'], 404);
+        endif;
+         
+
+        if ($validator->fails()) : /* validation failed */ return response()->json($validator->errors(), 422);
+        else:  /*validation passed */
+            $coin = Coins::find($coin_id);
+            if($coin):
+                $is_update=true;
+                return $this->DataStore($request,$coin,$is_update); 
+            else:
+                 return response()->json(['message' => 'Coin not found!'], 404);
+            endif;
+           
+        endif;
+    }
+
+     
+    
      /**
      * Store a newly created resource in storage.
      * @param Request $request
      * @return Renderable
      */
-    public function DataStore($request)
+    public function DataStore($request,$coin=null,$is_update=false)
     {
         
         $data = $this->ArrayCreation($request);
@@ -99,10 +186,15 @@ class CoinsController extends Controller
 
         try{ 
             if(isset($data['coin_data'])): 
-                $coin = Coins::create($data['coin_data']);
+                if($is_update==false &&  $coin==null):
+                    $coin = Coins::create($data['coin_data']);
+                elseif($is_update==true &&  $coin!=null):
+                    $coin->update($data['coin_data']);
+                endif;
+               
                 if($coin): 
-
-                     if(isset($data['pivot_network'])):
+                    if(isset($data['pivot_network'])):
+                        if($is_update==true): \Modules\Backend\Entities\PivotNetwork::where('coin_id',$coin->id)->delete(); endif;
                         $makeArraySyncNetwork = $data['pivot_network'];
                         $makeArraySyncNetwork = array_map(function($makeArraySyncNetwork) use($coin){ return $makeArraySyncNetwork + ['coin_id' => $coin->id]; }, $makeArraySyncNetwork); 
                         \Modules\Backend\Entities\PivotNetwork::insert($makeArraySyncNetwork);
@@ -110,6 +202,7 @@ class CoinsController extends Controller
 
 
                     if(isset($data['pivot_exchange'])):
+                        if($is_update==true): \Modules\Backend\Entities\PivotExchange::where('coin_id',$coin->id)->delete(); endif;
                         $makeArraySyncExchange = $data['pivot_exchange'];
                         $makeArraySyncExchange = array_map(function($makeArraySyncExchange) use($coin){ return $makeArraySyncExchange + ['coin_id' => $coin->id]; }, $makeArraySyncExchange); 
                         \Modules\Backend\Entities\PivotExchange::insert($makeArraySyncExchange);
@@ -117,6 +210,7 @@ class CoinsController extends Controller
 
 
                     if(isset($data['pivot_audit'])):
+                        if($is_update==true): \Modules\Backend\Entities\PivotAudit::where('coin_id',$coin->id)->delete(); endif;
                         $makeArraySyncAudit = $data['pivot_audit'];
                         $makeArraySyncAudit = array_map(function($makeArraySyncAudit) use($coin){ return $makeArraySyncAudit + ['coin_id' => $coin->id]; }, $makeArraySyncAudit); 
                         \Modules\Backend\Entities\PivotAudit::insert($makeArraySyncAudit);
@@ -124,40 +218,58 @@ class CoinsController extends Controller
 
 
                     if(isset($data['pivot_chart'])):
+                        if($is_update==true): \Modules\Backend\Entities\PivotChart::where('coin_id',$coin->id)->delete(); endif;
                         $makeArraySyncChart = $data['pivot_chart'];
                         $makeArraySyncChart = array_map(function($makeArraySyncChart) use($coin){ return $makeArraySyncChart + ['coin_id' => $coin->id]; }, $makeArraySyncChart); 
                         \Modules\Backend\Entities\PivotChart::insert($makeArraySyncChart);
                     endif;
-
-
-
+ 
                     if(isset($data['pivot_community'])):
+                        if($is_update==true): \Modules\Backend\Entities\PivotCommunity::where('coin_id',$coin->id)->delete(); endif;
                         $makeArraySyncCommunity = $data['pivot_community'];
                         $makeArraySyncCommunity = array_map(function($makeArraySyncCommunity) use($coin){ return $makeArraySyncCommunity + ['coin_id' => $coin->id]; }, $makeArraySyncCommunity); 
                         \Modules\Backend\Entities\PivotCommunity::insert($makeArraySyncCommunity);
                     endif;
                 
                     if(isset($data['pivot_chat'])):
+                        if($is_update==true): \Modules\Backend\Entities\PivotChat::where('coin_id',$coin->id)->delete(); endif;
                         $makeArraySyncChat = $data['pivot_chat'];
                         $makeArraySyncChat = array_map(function($makeArraySyncChat) use($coin){ return $makeArraySyncChat + ['coin_id' => $coin->id]; }, $makeArraySyncChat); 
                         \Modules\Backend\Entities\PivotChat::insert($makeArraySyncChat);
                     endif;
 
                     if(isset($data['pivot_social'])):
+                        if($is_update==true): \Modules\Backend\Entities\PivotSocial::where('coin_id',$coin->id)->delete(); endif;
                         $makeArraySyncSocial = $data['pivot_social'];
                         $makeArraySyncSocial = array_map(function($makeArraySyncSocial) use($coin){ return $makeArraySyncSocial + ['coin_id' => $coin->id]; }, $makeArraySyncSocial); 
                         \Modules\Backend\Entities\PivotSocial::insert($makeArraySyncSocial);
                     endif;
 
 
-                    //PivotCommunity
+                   
                 endif;
             
                 
-            else: $error ='Coin array not created'; endif;  
+            else: 
+                if($is_update==false &&  $coin==null): $error ='Coin array not created'; elseif($is_update==true &&  $coin!=null): $error ='Coin array not update'; endif;
+                
+            endif;  
         } catch (Exception $ex) { $error = $ex->getMessage(); }
-        if($error == null): /* no error, true response*/  return response()->json(['response'=>true,'message'=>$this->createMessage],200);
-        else: /* have error, false response*/  return response()->json(['response'=>false,'message'=>$this->createErrorMessage.'<br/> '.$error],200);  endif;
+        if($error == null): 
+            if($is_update==true &&  $coin!=null):
+                 /* no error, true response for update*/  return response()->json(['response'=>true,'message'=>$this->updateMessage],200);
+            else:
+                /* no error, true response for create */  return response()->json(['response'=>true,'message'=>$this->createMessage],200);
+            endif;
+            
+        else: 
+            if($is_update==true &&  $coin!=null):
+                /* have error, false response for update */  return response()->json(['response'=>false,'message'=>$this->updateErrorMessage.'<br/> '.$error],200);  
+        
+            else:
+                /* have error, false response for create */  return response()->json(['response'=>false,'message'=>$this->createErrorMessage.'<br/> '.$error],200);  
+            endif;
+        endif;
     }
     
     /**
@@ -265,9 +377,9 @@ class CoinsController extends Controller
              ($request->exists('exchange_id') && $request->exists('url') && $request->exists('exchange_explorer_link')) 
         //     /*&&
         //     (
-        //         count($request['network']) == count($request['network_address']) &&
-        //         count($request['network_address']) == count($request['network_explorer_link']) &&
-        //         count($request['network_explorer_link']) == count($request['network'])  
+        //         count($request['exchange_id']) == count($request['url']) &&
+        //         count($request['url']) == count($request['exchange_explorer_link']) &&
+        //         count($request['exchange_explorer_link']) == count($request['exchange_id'])  
         //     )  */      
          ):
             $e=1;
@@ -288,8 +400,8 @@ class CoinsController extends Controller
              ($request->exists('audited_by') && $request->exists('audit_link')) 
         //     /*&&
         //     (
-        //         count($request['network']) == count($request['network_address']) &&
-        //         count($request['network_address']) == count($request['network_explorer_link']) &&
+        //         count($request['audited_by']) == count($request['audit_link']) &&
+        //         count($request['audit_link']) == count($request['audited_by']) &&
         //         count($request['network_explorer_link']) == count($request['network'])  
         //     )  */      
          ):
@@ -310,8 +422,8 @@ class CoinsController extends Controller
              ($request->exists('chart_provider') && $request->exists('chart_link')) 
         //     /*&&
         //     (
-        //         count($request['network']) == count($request['network_address']) &&
-        //         count($request['network_address']) == count($request['network_explorer_link']) &&
+        //         count($request['chart_provider']) == count($request['chart_link']) &&
+        //         count($request['chart_link']) == count($request['network_explorer_link']) &&
         //         count($request['network_explorer_link']) == count($request['network'])  
         //     )  */      
          ):
@@ -407,57 +519,35 @@ class CoinsController extends Controller
             'pivot_social'=>$pivot_social
         ];
 
-
-
-
-
-
-
-    
-
+ 
 
 
       return $array;
     }
     
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('backend::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('backend::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * Remove the specified resource from storage.
-     * @param int $id
+     * @param int $coin_id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy($coin_id)
     {
-        //
+        $coin = Coins::where('id',$coin_id)->first();  
+        if($coin):
+            $coin->delete();
+            return response()->json(['response'=>true,'message'=> $this->deleteMessage]);
+        else:
+            return response()->json(['response'=>false,'message'=>$this->deleteErrorMessage]);
+        endif; 
     }
 }
