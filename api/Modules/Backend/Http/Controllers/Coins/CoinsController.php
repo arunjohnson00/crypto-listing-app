@@ -30,7 +30,17 @@ class CoinsController extends Controller
      */
     public function index()
     {
-        return  \DataTables::of(Coins::orderBy('id','desc')->get())
+        return  \DataTables::of(
+                Coins::orderBy('id','desc') /* only use if emergency coins*/
+                ->with('hasManyNetworks')
+                ->with('hasManyExchanges')
+                ->with('hasManyAudits')
+                ->with('hasManyCharts')
+                ->with('hasManyCommunitys')
+                ->with('hasManyChats')
+                ->with('hasManySocials')
+                ->get()
+                )
                 ->editColumn('created_at', function ($coin){ if($coin->created_at != null): return date('d-M-Y h:i a', strtotime($coin->created_at) ); else: return null; endif; })
                 ->make(true); 
     }
