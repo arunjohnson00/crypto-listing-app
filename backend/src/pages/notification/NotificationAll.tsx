@@ -72,7 +72,7 @@ const NotificationAll = () => {
           pb={4}
         >
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pl={3}>
-            {userNotificationList &&
+            {userNotificationList !== undefined &&
               userNotificationList.map((notification: any, index: number) => {
                 return (
                   <Stack direction="column" spacing={1} key={index} mb={3}>

@@ -7,6 +7,8 @@ import {
   Divider,
   IconButton,
 } from "@mui/material";
+
+import DeleteIcon from "@mui/icons-material/Delete";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import InputText from "../../../components/form/input/text/InputText";
@@ -44,7 +46,6 @@ import { listCoinAuditRequest } from "../../../store/action";
 import { listCoinChatRequest } from "../../../store/action";
 import { listCoinSocialRequest } from "../../../store/action";
 import { listChartProviderRequest } from "../../../store/action";
-import { editCoinRequest } from "../../../store/action";
 
 // import { listUsersRequest } from "../../../store/action";
 // import { listVideoRequest } from "../../../store/action";
@@ -58,41 +59,15 @@ const CoinListingEdit = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  useEffect(() => {
-    const successHandler = (res: any) => {
-      //console.log(res);
-    };
 
-    const errorHandler = (err: any) => {
-      //console.log(err);
-    };
-
-    dispatch(
-      listExchangeRequest("emptyformData", successHandler, errorHandler)
-    );
-    dispatch(listNetworkRequest("emptyformData", successHandler, errorHandler));
-
-    dispatch(
-      listCoinAuditRequest("emptyformData", successHandler, errorHandler)
-    );
-    dispatch(
-      listChartProviderRequest("emptyformData", successHandler, errorHandler)
-    );
-    dispatch(
-      listCoinChatRequest("emptyformData", successHandler, errorHandler)
-    );
-    dispatch(
-      listCoinSocialRequest("emptyformData", successHandler, errorHandler)
-    );
-
-    dispatch(
-      editCoinRequest({ id: location.state.id }, successHandler, errorHandler)
-    );
-  }, [dispatch, location]);
-  const coinEditList = useSelector((coinEditList: any) => {
-    return coinEditList.editCoinReducer.editCoinAllDetails.data;
+  const coinList = useSelector((cnList: any) => {
+    return cnList.listCoinReducer.coinListAll.data;
   });
+  let newArrList = coinList.filter(
+    (userData: any) => userData.id === location.state.id
+  );
 
+  console.log(newArrList);
   const selectOptions = [
     { title: "Approved", value: 1 },
     { title: "Scheduled", value: 2 },
@@ -144,10 +119,12 @@ const CoinListingEdit = () => {
     setNetworkCount([...networkCount, { network: "" }]);
   };
   const networkremoveHandle = (index: any) => {
-    let networkList = [...networkCount];
-    networkList.splice(index, 1);
-    setNetworkCount(networkList);
+    let networkListDlt = [...networkCount];
+    networkListDlt.splice(-1, 1);
+    setNetworkCount(networkListDlt);
+    console.log(networkCount);
   };
+
   const [exchangeCount, setExchangeCount] = useState<any[]>([]);
   const exchangeaddHandle = () => {
     setExchangeCount([...exchangeCount, { exchange: "" }]);
@@ -287,11 +264,34 @@ const CoinListingEdit = () => {
     dispatch(addCoinRequest(formData, successHandler, errorHandler));
   };
 
-  // let newArrList = coinEditList.filter(
-  //   (listData: any) => listData.id === location.state.id
-  // );
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      //console.log(res);
+    };
 
-  console.log(coinEditList.id);
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+
+    dispatch(
+      listExchangeRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(listNetworkRequest("emptyformData", successHandler, errorHandler));
+
+    dispatch(
+      listCoinAuditRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(
+      listChartProviderRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(
+      listCoinChatRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(
+      listCoinSocialRequest("emptyformData", successHandler, errorHandler)
+    );
+  }, [dispatch, location]);
+
   return (
     <Grid container spacing={0}>
       <form id="coinForm">
@@ -310,8 +310,13 @@ const CoinListingEdit = () => {
             </IconButton>
 
             <Typography variant="h5" sx={{ textAlign: "left" }}>
-              Add new coin
-              <Typography variant="caption">({coinStatus})</Typography>
+              Edit coin
+              <Typography variant="caption">
+                {newArrList[0].is_presale === 1 &&
+                newArrList[0].is_presale !== 0
+                  ? " (Presale)"
+                  : "(Launched)"}
+              </Typography>
             </Typography>
           </Stack>
         </Grid>
@@ -336,7 +341,7 @@ const CoinListingEdit = () => {
                     placeholder="Eg: 09s8jgggffffay63733773"
                     id="address"
                     name="address"
-                    // value={coinEditList.address}
+                    value={newArrList[0].address}
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={6} xs={12}>
@@ -360,7 +365,12 @@ const CoinListingEdit = () => {
                     Coin Name
                   </Typography>
 
-                  <InputText placeholder="Eg: Bitcoin" name="name" id="name" />
+                  <InputText
+                    placeholder="Eg: Bitcoin"
+                    name="name"
+                    id="name"
+                    value={newArrList[0].name}
+                  />
                 </Grid>
 
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
@@ -383,6 +393,7 @@ const CoinListingEdit = () => {
                     placeholder="Enter Exchange url"
                     name="symbol"
                     id="symbol"
+                    value={newArrList[0].symbol}
                   />
                 </Grid>
 
@@ -409,6 +420,7 @@ const CoinListingEdit = () => {
                     name="description"
                     id="description"
                     placeholder="Detailed project description"
+                    value={newArrList[0].description}
                   />
                 </Grid>
               </Grid>
@@ -587,72 +599,168 @@ const CoinListingEdit = () => {
                 Chain, Etherieum, Heco)
               </Typography>
             </Grid>
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-              <Stack direction="row" spacing={3}>
-                <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
-                  <Typography
-                    variant="subtitle1"
-                    sx={{ textAlign: "left" }}
-                    mb={1}
-                  >
-                    Network 1
-                  </Typography>
-                  <InputSelectCoin
-                    name={`network[1]`}
-                    id={`network_1`}
-                    data={networkList}
-                  />
-                </Grid>
-                <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
-                  <Typography
-                    variant="subtitle1"
-                    sx={{ textAlign: "left" }}
-                    mb={1}
-                  >
-                    Contract address 1
-                  </Typography>
-                  <InputText
-                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
-                    name={`network_address[1]`}
-                    id={`network_address_1`}
-                  />
-                </Grid>
-                <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
-                  <Typography
-                    variant="subtitle1"
-                    sx={{ textAlign: "left" }}
-                    mb={1}
-                  >
-                    Block explorer URL 1
-                  </Typography>
-                  <InputText
-                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
-                    name={`network_explorer_link[1]`}
-                    id={`network_explorer_link_1`}
-                  />
-                </Grid>
 
-                <Grid
-                  item
-                  xl={2}
-                  lg={2}
-                  md={2}
-                  sm={2}
-                  xs={12}
-                  sx={{ paddingTop: "37px" }}
-                >
-                  <Link onClick={networkaddHandle} underline="none">
-                    Add more +
-                  </Link>
-                </Grid>
-              </Stack>
-            </Grid>
+            {newArrList[0].has_many_networks.length !== 0 &&
+            newArrList[0].has_many_networks !== undefined ? (
+              newArrList[0].has_many_networks.map(
+                (networks: any, index: number) => {
+                  return (
+                    <Grid
+                      item
+                      xl={12}
+                      lg={12}
+                      md={12}
+                      sm={12}
+                      xs={12}
+                      key={index}
+                    >
+                      <Stack
+                        direction="row"
+                        spacing={3}
+                        sx={{ alignItems: "center" }}
+                        id={`network${index}`}
+                      >
+                        <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
+                          <Typography
+                            variant="subtitle1"
+                            sx={{ textAlign: "left" }}
+                            mb={1}
+                          >
+                            Network {index + 1}
+                          </Typography>
+                          <InputSelectCoin
+                            name={`network[${index + 1}]`}
+                            id={`network_${index + 1}`}
+                            data={networkList}
+                            selectedValue={networks.network_id}
+                          />
+                        </Grid>
+                        <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
+                          <Typography
+                            variant="subtitle1"
+                            sx={{ textAlign: "left" }}
+                            mb={1}
+                          >
+                            Contract address {index + 1}
+                          </Typography>
+                          <InputText
+                            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                            name={`network_address[${index + 1}]`}
+                            id={`network_address_${index + 1}`}
+                            value={networks.explorer_link}
+                          />
+                        </Grid>
+                        <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
+                          <Typography
+                            variant="subtitle1"
+                            sx={{ textAlign: "left" }}
+                            mb={1}
+                          >
+                            Block explorer URL {index + 1}
+                          </Typography>
+                          <InputText
+                            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                            name={`network_explorer_link[${index + 1}]`}
+                            id={`network_explorer_link_${index + 1}`}
+                            value={networks.explorer_link}
+                          />
+                        </Grid>
+
+                        <Grid
+                          item
+                          xl={2}
+                          lg={2}
+                          md={2}
+                          sm={2}
+                          xs={12}
+                          sx={{ paddingTop: "37px" }}
+                        >
+                          {newArrList[0].has_many_networks.length - 1 ===
+                            index && (
+                            <Link onClick={networkaddHandle} underline="none">
+                              Add more +
+                            </Link>
+                          )}
+                        </Grid>
+                      </Stack>
+                    </Grid>
+                  );
+                }
+              )
+            ) : (
+              <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                <Stack direction="row" spacing={3}>
+                  <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{ textAlign: "left" }}
+                      mb={1}
+                    >
+                      Network 1
+                    </Typography>
+                    <InputSelectCoin
+                      name={`network[1]`}
+                      id={`network_1`}
+                      data={networkList}
+                    />
+                  </Grid>
+                  <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{ textAlign: "left" }}
+                      mb={1}
+                    >
+                      Contract address 1
+                    </Typography>
+                    <InputText
+                      placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                      name={`network_address[1]`}
+                      id={`network_address_1`}
+                    />
+                  </Grid>
+                  <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{ textAlign: "left" }}
+                      mb={1}
+                    >
+                      Block explorer URL 1
+                    </Typography>
+                    <InputText
+                      placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                      name={`network_explorer_link[1]`}
+                      id={`network_explorer_link_1`}
+                    />
+                  </Grid>
+
+                  <Grid
+                    item
+                    xl={2}
+                    lg={2}
+                    md={2}
+                    sm={2}
+                    xs={12}
+                    sx={{ paddingTop: "37px" }}
+                  >
+                    <Link onClick={networkaddHandle} underline="none">
+                      Add more +
+                    </Link>
+                  </Grid>
+                </Stack>
+              </Grid>
+            )}
+
             {networkCount.map((network, index) => {
               return (
                 <div>
                   <NetworkDetails
                     networkCount={networkCount}
-                    index={index}
+                    index={
+                      newArrList[0].has_many_networks &&
+                      newArrList[0].has_many_networks !== undefined
+                        ? newArrList[0].has_many_networks.length - 1 + index
+                        : index
+                    }
                     key={index}
                     networkremoveHandle={networkremoveHandle}
                     data={networkList}
