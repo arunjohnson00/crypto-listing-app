@@ -234,7 +234,7 @@ const NFTListingAdd = () => {
   }, [dispatch]);
 
   return (
-    <Grid container spacing={2} pt={2}>
+    <Grid container spacing={2} pt={2} pl={2}>
       <form id="coinForm">
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
           <HorizonatalList />
@@ -254,7 +254,7 @@ const NFTListingAdd = () => {
             </Typography>
           </Stack>
         </Grid>
-        <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+        <Grid item xl={12} lg={12} md={12} sm={12} xs={12} spacing={0}>
           <Box
             sx={{ width: "100%", background: "white", borderRadius: "5px" }}
             pt={3}

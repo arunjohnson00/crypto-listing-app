@@ -64,6 +64,8 @@ import NftMarketPlaceView from "../pages/nftmarketplaces/view/NftMarketPlaceView
 import NFTListingAdd from "../pages/nftlisting/add/NFTListingAdd";
 import NFTListingEdit from "../pages/nftlisting/edit/NFTListingEdit";
 import NFTListingView from "../pages/nftlisting/view/NFTListingView";
+import CoinListingEdit from "../pages/coinlisting/edit/CoinListingEdit";
+import NotificationAll from "../pages/notification/NotificationAll";
 
 const AppRoutes = () => {
   return (
@@ -99,6 +101,15 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <CoinListingAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/coins/edit"
+          element={
+            <PrivateRoute>
+              <CoinListingEdit />
             </PrivateRoute>
           }
         />
@@ -572,6 +583,16 @@ const AppRoutes = () => {
             </PrivateRoute>
           }
         />
+
+        <Route
+          path="/user-notifications-all"
+          element={
+            <PrivateRoute>
+              <NotificationAll />
+            </PrivateRoute>
+          }
+        />
+
         <Route
           path="/*"
           element={

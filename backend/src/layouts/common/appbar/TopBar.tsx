@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 import { useTheme } from "@mui/material/styles";
 import { Divider, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -19,8 +20,13 @@ import ProfileMenu from "../../../components/dropdowns/profile/ProfileMenu";
 import NotificationMenu from "../../../components/dropdowns/notification/NotificationMenu";
 import SettingsMenu from "../../../components/dropdowns/settings/SettingsMenu";
 
+import { listExchangeRequest } from "../../../store/action";
+import { listNetworkRequest } from "../../../store/action";
+import { listNftMarketPlacesRequest } from "../../../store/action";
+import { listUsersRequest } from "../../../store/action";
+import { listCoinRequest } from "../../../store/action";
+
 const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
-  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const openProfile = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -57,6 +63,29 @@ const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
     logoutHandler(navigate, dispatch);
   };
   const theme = useTheme();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      //console.log(res);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+
+    dispatch(
+      listExchangeRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(listNetworkRequest("emptyformData", successHandler, errorHandler));
+    dispatch(listUsersRequest("emptyformData", successHandler, errorHandler));
+    dispatch(
+      listNftMarketPlacesRequest("emptyformData", successHandler, errorHandler)
+    );
+
+    dispatch(listCoinRequest("emptyformData", successHandler, errorHandler));
+  }, [dispatch]);
 
   return (
     <AppBar
