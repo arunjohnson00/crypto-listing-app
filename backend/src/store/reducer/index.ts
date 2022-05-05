@@ -44,6 +44,8 @@ import listNftMarketPlcesReducer from "./listNftMaketPlaces";
 import listNftLisingsReducer from "./listNftListing";
 import addNftListingsReducer from "./addNftListing";
 import updateNftListingsReducer from "./updateNftListing";
+import editCoinReducer from "./editCoin";
+import userNotificationReducer from "./usersNotification";
 
 const allReducers = combineReducers({
   Auth,
@@ -86,6 +88,8 @@ const allReducers = combineReducers({
   listNftLisingsReducer,
   addNftListingsReducer,
   updateNftListingsReducer,
+  editCoinReducer,
+  userNotificationReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

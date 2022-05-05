@@ -13,7 +13,7 @@ const InputDate = ({
   publicMintEnd,
   disabled,
 }: any) => {
-  console.log(disabled);
+  //console.log(disabled);
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
