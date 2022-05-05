@@ -104,7 +104,15 @@ class CoinsController extends Controller
      */
     public function edit($coin_id)
     {
-        $coin = Coins::where('id',$coin_id)->first();  
+        $coin = Coins::where('id',$coin_id)
+                ->with('hasManyNetworks')
+                ->with('hasManyExchanges')
+                ->with('hasManyAudits')
+                ->with('hasManyCharts')
+                ->with('hasManyCommunitys')
+                ->with('hasManyChats')
+                ->with('hasManySocials')
+                ->first();  
         if($coin):
             return response()->json(['response'=>true,'data'=>$coin]);
         else:

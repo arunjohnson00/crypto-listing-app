@@ -89,4 +89,62 @@ class Coins extends Model
         return $this->belongsToMany('Modules\Backend\Entities\PivotNetwork','pivot_network','coin_id','id') ;
       
     }*/
+    
+    /**
+    * Get the Networks for the coin.
+    */ 
+    public function hasManyNetworks()
+    {
+        return $this->hasMany(PivotNetwork::class,  'coin_id');
+    }
+    
+    /**
+    * Get the exchanges for the coin.
+    */ 
+    public function hasManyExchanges()
+    {
+        return $this->hasMany(PivotExchange::class,  'coin_id');
+    }
+    
+    
+    /**
+    * Get the Audits for the coin.
+    */ 
+    public function hasManyAudits()
+    {
+        return $this->hasMany(PivotAudit::class,  'coin_id');
+    }
+    
+    /**
+    * Get the Charts for the coin.
+    */ 
+    public function hasManyCharts()
+    {
+        return $this->hasMany(PivotChart::class,  'coin_id');
+    }
+    
+    /**
+    * Get the PivotCommunitys for the coin.
+    */ 
+    public function hasManyCommunitys()
+    {
+        return $this->hasMany(PivotCommunity::class,  'coin_id');
+    }
+    
+    /**
+    * Get the Chats for the coin.
+    */ 
+    public function hasManyChats()
+    {
+        return $this->hasMany(PivotChat::class,  'coin_id');
+    } 
+    
+    
+    /**
+    * Get the Socials for the coin.
+    */ 
+    public function hasManySocials()
+    {
+        return $this->hasMany(PivotSocial::class,  'coin_id');
+    } 
 }
