@@ -31,10 +31,14 @@ Route::prefix('b')->group(function() {
         Route::group(['middleware' =>  'assign_guard:backend_api'], function()
         {
             
+            /*
+            |--------------------------------------------------------------------------
+            | show user notifications Routes  
+            |--------------------------------------------------------------------------
+            */
             
-            
-            
-            
+            Route::get('user-notifications-all', 'NftMarketplaces\UserNotificationsController@All');
+             
             
             
             /*
@@ -49,9 +53,6 @@ Route::prefix('b')->group(function() {
             Route::get('nft-marketplaces/{nft_marketplace_id}/show', 'NftMarketplaces\NftMarketplacesController@show');     /*  Show    */ 
             Route::post('nft-marketplaces/{nft_marketplace_id}', 'NftMarketplaces\NftMarketplacesController@update');       /*  Update  */ 
             Route::delete('nft-marketplaces/{nft_marketplace_id}', 'NftMarketplaces\NftMarketplacesController@destroy');    /*  Destroy */
-            
-            
-            
             
             
             /*
