@@ -37,7 +37,7 @@ Route::prefix('b')->group(function() {
             |--------------------------------------------------------------------------
             */
             
-            Route::get('user-notifications-all', 'NftMarketplaces\UserNotificationsController@All');
+            Route::get('user-notifications-all', 'UserNotifications\UserNotificationsController@All');
              
             
             
