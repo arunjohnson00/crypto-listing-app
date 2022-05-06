@@ -66,6 +66,7 @@ import NFTListingEdit from "../pages/nftlisting/edit/NFTListingEdit";
 import NFTListingView from "../pages/nftlisting/view/NFTListingView";
 import CoinListingEdit from "../pages/coinlisting/edit/CoinListingEdit";
 import NotificationAll from "../pages/notification/NotificationAll";
+import CoinListingView from "../pages/coinlisting/view/CoinListingView";
 
 const AppRoutes = () => {
   return (
@@ -110,6 +111,14 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <CoinListingEdit />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/coins/view"
+          element={
+            <PrivateRoute>
+              <CoinListingView />
             </PrivateRoute>
           }
         />

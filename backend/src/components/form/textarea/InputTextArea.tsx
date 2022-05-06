@@ -1,7 +1,9 @@
+import { useState } from "react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { textareaStyle, rowCount } from "./style";
 
 const InputTextArea = ({ name, id, placeholder, value }: any) => {
+  const [textAreaValue, setTextAreaValue] = useState(value);
   return (
     <TextareaAutosize
       aria-label="minimum height"
@@ -10,7 +12,10 @@ const InputTextArea = ({ name, id, placeholder, value }: any) => {
       style={textareaStyle}
       name={name}
       id={id}
-      value={value}
+      value={textAreaValue}
+      onChange={(e: any) => {
+        setTextAreaValue(e.target.value);
+      }}
     />
   );
 };

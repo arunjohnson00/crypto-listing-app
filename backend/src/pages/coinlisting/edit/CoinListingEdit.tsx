@@ -28,7 +28,6 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 
-import { addCoinRequest } from "../../../store/action";
 import Link from "@mui/material/Link";
 import NetworkDetails from "./NetworkDetails";
 import ExchangeDetails from "./ExchangeDetails";
@@ -201,7 +200,7 @@ const CoinListingEdit = () => {
   };
 
   const [coinPublishStatus, setPublishCoinStatus] = useState<any>({
-    status: newArrList[0].status ? newArrList[0].status : "",
+    status: newArrList[0].status && newArrList[0].status,
     statusDateTime: new Date(),
     is_scheduled: 0,
   });
