@@ -3,7 +3,10 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "../pages/login/Login";
 import Affiliates from "../pages/affiliates/view/Affiliates";
 import AirDrops from "../pages/airdrops/view/AirDrops";
-import Badges from "../pages/badges/view/Badges";
+import Badges from "../pages/badges/Badges";
+import BadgesAdd from "../pages/badges/add/BadgesAdd";
+import BadgesEdit from "../pages/badges/edit/BadgesEdit";
+import BadgesView from "../pages/badges/view/BadgesView";
 import CoinListing from "../pages/coinlisting/CoinListing";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Events from "../pages/events/view/Events";
@@ -581,6 +584,33 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <Badges />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/badges/add"
+          element={
+            <PrivateRoute>
+              <BadgesAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/badges/edit"
+          element={
+            <PrivateRoute>
+              <BadgesEdit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/badges/view"
+          element={
+            <PrivateRoute>
+              <BadgesView />
             </PrivateRoute>
           }
         />
