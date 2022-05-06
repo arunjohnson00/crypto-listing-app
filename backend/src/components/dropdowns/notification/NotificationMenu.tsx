@@ -77,7 +77,7 @@ const NotificationMenu = ({
         </Typography>
 
         <Divider sx={{ borderBottomWidth: 2, backgroundColor: "white" }} />
-        {userNotificationList &&
+        {userNotificationList !== undefined &&
           userNotificationList.map((notification: any, index: number) => {
             return (
               <MenuItem

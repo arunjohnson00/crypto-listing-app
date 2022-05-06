@@ -13,7 +13,7 @@ const NetworkDetails = ({
   ///console.log(arrayCount);
   return (
     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-      <Stack direction="row" spacing={3} pt={3}>
+      <Stack direction="row" spacing={3} pt={1}>
         <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
           <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
             Network {index + 2}

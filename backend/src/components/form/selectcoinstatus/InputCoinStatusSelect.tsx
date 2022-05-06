@@ -8,6 +8,7 @@ const InputCoinStatusSelect = ({
   currentStatus,
   setInputSelectValue,
   getInputSelectvalue,
+  serverStatus,
 }: any) => {
   const handleChange = (event: SelectChangeEvent | any) => {
     // console.log(getInputSelectvalue);
@@ -31,8 +32,9 @@ const InputCoinStatusSelect = ({
   return (
     <FormControl sx={{ m: 1, width: 300, mt: 0 }}>
       <Select
+        defaultValue={serverStatus && serverStatus}
         displayEmpty
-        value={getInputSelectvalue.status}
+        value={serverStatus ? serverStatus : getInputSelectvalue.status}
         onChange={handleChange}
         inputProps={{ "aria-label": "Without label" }}
         sx={{
@@ -51,7 +53,11 @@ const InputCoinStatusSelect = ({
         </MenuItem>
         {selectOptions.map((option: any, index: number) => {
           return (
-            <MenuItem key={index} value={option.value}>
+            <MenuItem
+              key={index}
+              value={option.value}
+              selected={serverStatus && serverStatus === option.value && true}
+            >
               {option.title}
             </MenuItem>
           );

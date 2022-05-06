@@ -7,6 +7,7 @@ const InputCheckbox = ({
   name,
   id,
   value,
+  serverCheckedRef,
 }: any) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     condition === "launch_date" && setChecked(event.target.checked);
@@ -31,8 +32,8 @@ const InputCheckbox = ({
 
   return (
     <Checkbox
-      checked={value}
-      value={value === true ? 1 : 0}
+      checked={serverCheckedRef && serverCheckedRef === 1 ? !value : value}
+      value={value === true || serverCheckedRef === 1 ? 1 : 0}
       name={name}
       id={id}
       onChange={handleChange}
