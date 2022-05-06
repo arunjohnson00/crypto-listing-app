@@ -34,7 +34,7 @@ const InputCoinStatusSelect = ({
       <Select
         defaultValue={serverStatus && serverStatus}
         displayEmpty
-        value={serverStatus ? serverStatus : getInputSelectvalue.status}
+        value={getInputSelectvalue.status}
         onChange={handleChange}
         inputProps={{ "aria-label": "Without label" }}
         sx={{
