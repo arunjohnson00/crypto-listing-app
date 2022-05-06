@@ -1,7 +1,7 @@
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { textareaStyle, rowCount } from "./style";
 
-const InputTextArea = ({ name, id, placeholder }: any) => {
+const InputTextArea = ({ name, id, placeholder, value }: any) => {
   return (
     <TextareaAutosize
       aria-label="minimum height"
@@ -10,6 +10,7 @@ const InputTextArea = ({ name, id, placeholder }: any) => {
       style={textareaStyle}
       name={name}
       id={id}
+      value={value}
     />
   );
 };

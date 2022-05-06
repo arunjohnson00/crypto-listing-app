@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Radio, { RadioProps } from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -22,9 +23,20 @@ function BpRadio(props: RadioProps) {
   );
 }
 
-const InputRadio = ({ coinStatus, setCoinStatus, name }: any) => {
+const InputRadio = ({
+  coinStatus,
+  setCoinStatus,
+  name,
+  serverIsLanuched,
+  serverIsPresale,
+}: any) => {
+  console.log(coinStatus);
+  const [launched, setLaunched] = useState(serverIsLanuched);
+  const [presale, setPresale] = useState(serverIsPresale);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCoinStatus((event.target as HTMLInputElement).value);
+    setLaunched(0);
+    setPresale(0);
   };
 
   return (
@@ -32,7 +44,9 @@ const InputRadio = ({ coinStatus, setCoinStatus, name }: any) => {
       <RadioGroup
         row
         aria-labelledby="demo-controlled-radio-buttons-group"
-        value={coinStatus}
+        value={
+          launched === 1 ? "Launched" : presale === 1 ? "Presale" : coinStatus
+        }
         onChange={handleChange}
         sx={{ paddingTop: "20px" }}
       >

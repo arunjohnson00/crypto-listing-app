@@ -43,3 +43,4 @@ export { addNftListingsRequest } from "./addNftListingAction";
 export { updateNftListingsRequest } from "./updateNftListingAction";
 export { editCoinRequest } from "./editCoinAction";
 export { listUsersNotificationRequest } from "./usersNotificationAction";
+export { updateCoinsRequest } from "./updateCoinAction";

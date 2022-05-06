@@ -1,3 +1,4 @@
+import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -8,7 +9,9 @@ const InputDateTime = ({
   setDateTime,
   start_date,
   statusTime,
+  ServerValue,
 }: any) => {
+  const [timeUpdate, setTimeUpdate] = useState<any>(ServerValue);
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateTimePicker
@@ -31,19 +34,22 @@ const InputDateTime = ({
             : "Select End Date"
         }
         value={
-          statusTime === true
+          timeUpdate
+            ? timeUpdate
+            : statusTime === true
             ? dateTime.statusDateTime
             : start_date === true
             ? dateTime.start_date
             : dateTime.end_date
         }
         onChange={(newValue: any) => {
-          statusTime === true
+          statusTime === true || ServerValue
             ? setDateTime({ ...dateTime, statusDateTime: newValue })
             : start_date === true &&
               setDateTime({ ...dateTime, start_date: newValue });
           start_date === false &&
             setDateTime({ ...dateTime, end_date: newValue });
+          timeUpdate && setTimeUpdate(newValue);
         }}
       />
     </LocalizationProvider>
