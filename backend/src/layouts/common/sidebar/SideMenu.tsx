@@ -29,7 +29,7 @@ const SideMenu = ({ open }: any) => {
 
   const menuHandler = (e: any, data: any) => {
     data.subMenu && handleExpand(e, data);
-
+    !data.subMenu && setOpen(false);
     setActiveColorId(data.id);
 
     console.log(
@@ -40,10 +40,11 @@ const SideMenu = ({ open }: any) => {
     );
   };
 
-  const subMenuHandler = (e: any, sublist: any) => {
+  const subMenuHandler = (e: any, sublist: any, data: any) => {
     setSubActiveColorId(sublist.id);
     console.log(sublist.id);
     console.log(subActiveColorId);
+    setActiveColorId(data.id);
   };
 
   const handleExpand = (e: any, data: any) => {
@@ -232,7 +233,7 @@ const SideMenu = ({ open }: any) => {
                         <List component="div" disablePadding>
                           <ListItemButton
                             sx={{ pl: open ? 4 : 2 }}
-                            onClick={(e) => subMenuHandler(e, sublist)}
+                            onClick={(e) => subMenuHandler(e, sublist, data)}
                             id={`${data.title
                               .toLowerCase()
                               .replace(/\s+/g, "")}sub${index}`}
