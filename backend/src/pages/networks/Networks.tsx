@@ -14,7 +14,7 @@ const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const Networks = () => {
   const networkList = useSelector((ntList: any) => {
-    return ntList.listNetworkReducer.natworkListAll.data;
+    return ntList.networksReducer.listNetworks.data;
   });
 
   const [searchValue, setSearchValue] = useState("");

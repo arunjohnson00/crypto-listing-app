@@ -15,7 +15,7 @@ import InputSelect from "../../../components/form/select/InputSelect";
 
 const CoinsAuditEdit = () => {
   const coinAuditList = useSelector((auditList: any) => {
-    return auditList.listCoinAuditReducer.auditListAll.data;
+    return auditList.auditReducer.listAudit.data;
   });
 
   const navigate = useNavigate();
@@ -138,6 +138,7 @@ const CoinsAuditEdit = () => {
                 currentStatus={newArrList[0].status}
                 setInputSelectValue={setUpdateCoinAudit}
                 getInputSelectvalue={updateCoinAuditData}
+                serverStatus={newArrList[0].status}
               />
             </Grid>
 

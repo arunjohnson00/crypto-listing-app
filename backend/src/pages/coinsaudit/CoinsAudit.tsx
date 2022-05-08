@@ -13,7 +13,7 @@ import { listCoinAuditRequest } from "../../store/action";
 
 const CoinsAudit = () => {
   const coinAuditList = useSelector((auditList: any) => {
-    return auditList.listCoinAuditReducer.auditListAll.data;
+    return auditList.auditReducer.listAudit.data;
   });
 
   console.log(coinAuditList);

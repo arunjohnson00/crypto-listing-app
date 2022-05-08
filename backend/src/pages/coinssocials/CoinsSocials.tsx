@@ -13,7 +13,7 @@ import { listCoinSocialRequest } from "../../store/action";
 
 const CoinsSocials = () => {
   const coinSocialList = useSelector((socialList: any) => {
-    return socialList.listCoinSocialReducer.coinSocialListAll.data;
+    return socialList.socialsReducer.listSocials.data;
   });
 
   console.log(coinSocialList);

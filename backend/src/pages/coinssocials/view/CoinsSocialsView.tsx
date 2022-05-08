@@ -11,7 +11,7 @@ import HorizonatalList from "../../../components/list/horizontal/HorizonatalList
 
 const CoinsSocialsView = () => {
   const coinSocialList = useSelector((socialList: any) => {
-    return socialList.listCoinSocialReducer.coinSocialListAll.data;
+    return socialList.socialsReducer.listSocials.data;
   });
 
   const navigate = useNavigate();

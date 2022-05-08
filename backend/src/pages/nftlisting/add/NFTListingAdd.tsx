@@ -21,7 +21,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { FormControlLabel } from "@mui/material";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { addNftListingsRequest } from "../../../store/action";
+import { addNftListingRequest } from "../../../store/action";
 import InputTextArea from "../../../components/form/textarea/InputTextArea";
 import InputSelectCoin from "../../../components/form/selectcoin/InputSelectCoin";
 import EventMarketPlace from "./EventMarketPlace";
@@ -36,7 +36,7 @@ import ChatNFTDetails from "./ChatNFTDetails";
 
 import { listCoinChatRequest } from "../../../store/action";
 import { listCoinSocialRequest } from "../../../store/action";
-import { listNftMarketPlacesRequest } from "../../../store/action";
+import { listNftMarketPlaceRequest } from "../../../store/action";
 import InputCoinStatusSelect from "../../../components/form/selectcoinstatus/InputCoinStatusSelect";
 import InputDateTime from "../../../components/form/input/datetime/InputDateTime";
 
@@ -47,15 +47,15 @@ const NFTListingAdd = () => {
     { title: "Rejected/Blocked", value: 3 },
   ];
   const nftMarketPlaceList = useSelector((nftList: any) => {
-    return nftList.listNftMarketPlcesReducer.nftMarketPlcesListAll.data;
+    return nftList.nftMarketPlacesReducer.listNftMarketPlaces.data;
   });
 
   const nftChatList = useSelector((chatList: any) => {
-    return chatList.listCoinChatReducer.coinChatListAll.data;
+    return chatList.chatReducer.listChat.data;
   });
 
   const nftSocialList = useSelector((socialList: any) => {
-    return socialList.listCoinSocialReducer.coinSocialListAll.data;
+    return socialList.socialsReducer.listSocials.data;
   });
 
   const dispatch = useDispatch();
@@ -139,7 +139,7 @@ const NFTListingAdd = () => {
       });
     };
 
-    dispatch(addNftListingsRequest(formData, successHandler, errorHandler));
+    dispatch(addNftListingRequest(formData, successHandler, errorHandler));
   };
 
   const [eventMarketCount, setEventMarketCount] = useState<any[]>([]);
@@ -229,7 +229,7 @@ const NFTListingAdd = () => {
     );
 
     dispatch(
-      listNftMarketPlacesRequest("emptyformData", successHandler, errorHandler)
+      listNftMarketPlaceRequest("emptyformData", successHandler, errorHandler)
     );
   }, [dispatch]);
 

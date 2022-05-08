@@ -8,15 +8,16 @@ const InputSelect = ({
   currentStatus,
   setInputSelectValue,
   getInputSelectvalue,
+  serverStatus,
 }: any) => {
-  let optionSelected = selectOptions.filter(
-    (optionData: any) => optionData.value === currentStatus
-  );
+  // let optionSelected = selectOptions.filter(
+  //   (optionData: any) => optionData.value === currentStatus
+  // );
 
-  console.log(optionSelected);
+  //  console.log(optionSelected);
   const handleChange = (event: SelectChangeEvent) => {
     setInputSelectValue({ ...getInputSelectvalue, status: event.target.value });
-    toast.warn(`Status changed from ${optionSelected[0].title}`, {
+    toast.warn(`Status changed`, {
       position: "top-right",
       autoClose: 7000,
       hideProgressBar: false,
@@ -25,7 +26,7 @@ const InputSelect = ({
       draggable: true,
     });
   };
-  console.log(optionSelected[0].value);
+  //  console.log(optionSelected[0].value);
   return (
     <FormControl sx={{ m: 1, width: 300, mt: 0 }}>
       <Select
@@ -45,11 +46,15 @@ const InputSelect = ({
         }}
       >
         <MenuItem disabled value="">
-          <span>{optionSelected[0].title}</span>
+          <span>Select Status</span>
         </MenuItem>
         {selectOptions.map((option: any, index: number) => {
           return (
-            <MenuItem key={index} value={option.value}>
+            <MenuItem
+              key={index}
+              value={option.value}
+              selected={serverStatus && serverStatus === option.value && true}
+            >
               {option.title}
             </MenuItem>
           );

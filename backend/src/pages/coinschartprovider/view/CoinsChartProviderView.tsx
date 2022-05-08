@@ -11,10 +11,8 @@ import HorizonatalList from "../../../components/list/horizontal/HorizonatalList
 
 const CoinsChartProviderView = () => {
   const coinChartProviderList = useSelector((chartProviderList: any) => {
-    return chartProviderList.listCoinChartProviderReducer.chartProviderListAll
-      .data;
+    return chartProviderList.chartProviderReducer.listChartProvider.data;
   });
-
   const navigate = useNavigate();
 
   const location: any = useLocation();

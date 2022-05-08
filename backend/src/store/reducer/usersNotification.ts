@@ -1,14 +1,14 @@
 import { COMMON } from "../types";
 
 const initialState = {
-  notificationListAll: "",
+  userNotifications: "",
 };
 const userNotificationReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
     case COMMON.NOTIFICATION_LIST:
       return {
         ...state,
-        notificationListAll: action?.payload.data,
+        userNotifications: action?.payload.data,
       };
 
     default:

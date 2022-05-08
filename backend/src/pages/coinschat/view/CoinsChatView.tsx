@@ -11,7 +11,7 @@ import HorizonatalList from "../../../components/list/horizontal/HorizonatalList
 
 const CoinsChatView = () => {
   const coinChatList = useSelector((chatList: any) => {
-    return chatList.listCoinChatReducer.coinChatListAll.data;
+    return chatList.chatReducer.listChat.data;
   });
 
   const navigate = useNavigate();

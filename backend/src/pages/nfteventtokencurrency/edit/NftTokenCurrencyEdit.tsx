@@ -13,7 +13,7 @@ import HorizonatalList from "../../../components/list/horizontal/HorizonatalList
 import { updateCoinAuditRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
 
-const NftEventCategoryEdit = () => {
+const NftTokenCurrencyEdit = () => {
   const coinAuditList = useSelector((auditList: any) => {
     return auditList.listCoinAuditReducer.auditListAll.data;
   });
@@ -177,4 +177,4 @@ const NftEventCategoryEdit = () => {
   );
 };
 
-export default NftEventCategoryEdit;
+export default NftTokenCurrencyEdit;

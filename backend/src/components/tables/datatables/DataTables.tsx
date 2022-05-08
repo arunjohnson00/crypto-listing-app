@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 
 const GridEdit = ({ index, navigate, location, dispatch }: any) => {
   const handleEditClick = () => {
-    navigate(`${location.pathname}/edit`, { state: { id: index } });
+    navigate(`${location.pathname}/edit/${index}`, { state: { id: index } });
   };
 
   const successHandler = (res: any) => {

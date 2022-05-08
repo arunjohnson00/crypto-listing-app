@@ -60,26 +60,25 @@ const CoinListingAdd = () => {
   ];
 
   const exchangeList = useSelector((exList: any) => {
-    return exList.listExchangeReducer.exchangeListAll.data;
+    return exList.exchangesReducer.listExchanges.data;
   });
 
   const networkList = useSelector((ntList: any) => {
-    return ntList.listNetworkReducer.natworkListAll.data;
+    return ntList.networksReducer.listNetworks.data;
   });
   const coinAuditList = useSelector((auditList: any) => {
-    return auditList.listCoinAuditReducer.auditListAll.data;
+    return auditList.auditReducer.listAudit.data;
   });
   const coinChartProviderList = useSelector((chartProviderList: any) => {
-    return chartProviderList.listCoinChartProviderReducer.chartProviderListAll
-      .data;
+    return chartProviderList.chartProviderReducer.listChartProvider.data;
   });
 
   const coinChatList = useSelector((chatList: any) => {
-    return chatList.listCoinChatReducer.coinChatListAll.data;
+    return chatList.chatReducer.listChat.data;
   });
 
   const coinSocialList = useSelector((socialList: any) => {
-    return socialList.listCoinSocialReducer.coinSocialListAll.data;
+    return socialList.socialsReducer.listSocials.data;
   });
 
   const [coinStatus, setCoinStatus] = useState("Presale");

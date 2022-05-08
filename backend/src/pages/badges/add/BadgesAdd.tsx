@@ -11,7 +11,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { addBadgesRequest } from "../../../store/action";
+import { addBadgeRequest } from "../../../store/action";
 
 const BadgesAdd = () => {
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ const BadgesAdd = () => {
 
     formData.append("status", "1");
 
-    dispatch(addBadgesRequest(formData, successHandler, errorHandler));
+    dispatch(addBadgeRequest(formData, successHandler, errorHandler));
   };
 
   const badgeNameHandler = (e: any) => {

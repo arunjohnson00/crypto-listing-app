@@ -40,7 +40,10 @@ const appRequest = (
           pauseOnHover: true,
           draggable: true,
         });
-        window.location.replace("/");
+
+        setTimeout(function () {
+          window.location.replace("/");
+        }, 3000);
       }
 
       return successHandler ? successHandler(response) : null;

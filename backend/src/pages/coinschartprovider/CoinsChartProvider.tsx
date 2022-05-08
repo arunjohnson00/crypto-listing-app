@@ -13,8 +13,7 @@ import { listChartProviderRequest } from "../../store/action";
 
 const CoinsChartProvider = () => {
   const coinChartProviderList = useSelector((chartProviderList: any) => {
-    return chartProviderList.listCoinChartProviderReducer.chartProviderListAll
-      .data;
+    return chartProviderList.chartProviderReducer.listChartProvider.data;
   });
 
   const [searchValue, setSearchValue] = useState("");

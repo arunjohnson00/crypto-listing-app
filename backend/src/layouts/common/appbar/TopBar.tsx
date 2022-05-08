@@ -22,8 +22,8 @@ import SettingsMenu from "../../../components/dropdowns/settings/SettingsMenu";
 
 import { listExchangeRequest } from "../../../store/action";
 import { listNetworkRequest } from "../../../store/action";
-import { listNftMarketPlacesRequest } from "../../../store/action";
-import { listUsersRequest } from "../../../store/action";
+import { listNftMarketPlaceRequest } from "../../../store/action";
+import { listUserRequest } from "../../../store/action";
 import { listCoinRequest } from "../../../store/action";
 
 const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
@@ -79,9 +79,9 @@ const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
       listExchangeRequest("emptyformData", successHandler, errorHandler)
     );
     dispatch(listNetworkRequest("emptyformData", successHandler, errorHandler));
-    dispatch(listUsersRequest("emptyformData", successHandler, errorHandler));
+    dispatch(listUserRequest("emptyformData", successHandler, errorHandler));
     dispatch(
-      listNftMarketPlacesRequest("emptyformData", successHandler, errorHandler)
+      listNftMarketPlaceRequest("emptyformData", successHandler, errorHandler)
     );
 
     dispatch(listCoinRequest("emptyformData", successHandler, errorHandler));

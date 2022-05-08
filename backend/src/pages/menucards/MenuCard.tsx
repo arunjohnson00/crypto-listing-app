@@ -15,7 +15,7 @@ const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const MenuCard = () => {
   const menuCardList = useSelector((menuList: any) => {
-    return menuList.listMenuCardReducer.menuCardListAll.data;
+    return menuList.menuCardsReducer.listMenuCards.data;
   });
 
   //console.log(menuCardList);

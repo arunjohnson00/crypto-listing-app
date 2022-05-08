@@ -14,7 +14,7 @@ import { listCoinChatRequest } from "../../store/action";
 
 const CoinsChat = () => {
   const coinChatList = useSelector((chatList: any) => {
-    return chatList.listCoinChatReducer.coinChatListAll.data;
+    return chatList.chatReducer.listChat.data;
   });
 
   console.log(coinChatList);

@@ -21,7 +21,7 @@ const BadgesEdit = () => {
 
   const [loading, setLoading] = useState(false);
   const badgesList = useSelector((bdgList: any) => {
-    return bdgList.listBadgesReducer.badgesListAll.data;
+    return bdgList.badgesReducer.listBadges.data;
   });
 
   let newArrList = badgesList.filter(

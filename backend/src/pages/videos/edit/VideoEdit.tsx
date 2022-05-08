@@ -10,7 +10,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { updateVideosRequest } from "../../../store/action";
+import { updateVideoRequest } from "../../../store/action";
 
 import InputSelect from "../../../components/form/select/InputSelect";
 
@@ -20,7 +20,7 @@ const VideoEdit = () => {
   const location: any = useLocation();
 
   const videoList = useSelector((vdList: any) => {
-    return vdList.listVideoReducer.videoListAll.data;
+    return vdList.videosReducer.listVideos.data;
   });
 
   console.log(videoList);
@@ -82,7 +82,7 @@ const VideoEdit = () => {
 
     formData.append("status", editVideosData.status);
 
-    dispatch(updateVideosRequest(formData, successHandler, errorHandler));
+    dispatch(updateVideoRequest(formData, successHandler, errorHandler));
   };
 
   const videoNameHandler = (e: any) => {
@@ -234,6 +234,7 @@ const VideoEdit = () => {
               currentStatus={newArrList[0].status}
               setInputSelectValue={setEditVideos}
               getInputSelectvalue={editVideosData}
+              serverStatus={newArrList[0].status}
             />
           </Grid>
 

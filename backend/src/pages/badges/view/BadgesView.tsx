@@ -10,7 +10,7 @@ const BadgesView = () => {
   const location: any = useLocation();
   const navigate: any = useNavigate();
   const badgesList = useSelector((bdgList: any) => {
-    return bdgList.listBadgesReducer.badgesListAll.data;
+    return bdgList.badgesReducer.listBadges.data;
   });
 
   let newArrList = badgesList.filter(

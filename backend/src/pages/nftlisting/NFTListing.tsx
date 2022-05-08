@@ -8,13 +8,13 @@ import Avatar from "@mui/material/Avatar";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
-import { listNftListingsRequest } from "../../store/action";
+import { listNftListingRequest } from "../../store/action";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const NFTListing = () => {
   const nftListingsList = useSelector((nftList: any) => {
-    return nftList.listNftLisingsReducer.nftListingsListAll.data;
+    return nftList.nftListingsReducer.listNftListings.data;
   });
 
   const [searchValue, setSearchValue] = useState("");
@@ -38,7 +38,7 @@ const NFTListing = () => {
     const errorHandler = (err: any) => {
       console.log(err);
     };
-    dispatch(listNftListingsRequest("emptyData", successHandler, errorHandler));
+    dispatch(listNftListingRequest("emptyData", successHandler, errorHandler));
   }, [dispatch]);
 
   const tableColumn = [

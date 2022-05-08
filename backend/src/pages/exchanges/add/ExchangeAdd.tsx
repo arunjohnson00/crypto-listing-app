@@ -11,7 +11,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { addExchangeRequest } from "../../../store/action/addExchangeAction";
+import { addExchangeRequest } from "../../../store/action";
 
 const ExchangeAdd = () => {
   const dispatch = useDispatch();

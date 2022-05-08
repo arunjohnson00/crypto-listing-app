@@ -15,7 +15,7 @@ import { updateNetworkRequest } from "../../../store/action";
 
 const NetworkEdit = () => {
   const networkList = useSelector((ntList: any) => {
-    return ntList.listNetworkReducer.natworkListAll.data;
+    return ntList.networksReducer.listNetworks.data;
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
