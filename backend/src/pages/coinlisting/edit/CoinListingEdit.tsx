@@ -95,11 +95,11 @@ const CoinListingEdit = () => {
   });
 
   const [coinStatus, setCoinStatus] = useState(
-    newArrList[0].is_presale === 1 ||
-      newArrList[0].is_launched !== 2 ||
-      newArrList[0].is_launched !== 0
+    parseInt(newArrList[0].is_presale) === 1 ||
+      parseInt(newArrList[0].is_launched) !== 2 ||
+      parseInt(newArrList[0].is_launched) !== 0
       ? "Presale"
-      : newArrList[0].is_launched === 1
+      : parseInt(newArrList[0].is_launched) === 1
       ? "Launched"
       : "Presale"
   );
@@ -442,8 +442,8 @@ const CoinListingEdit = () => {
                   <InputRadio
                     coinStatus={coinStatus}
                     setCoinStatus={setCoinStatus}
-                    serverIsLanuched={newArrList[0].is_launched}
-                    serverIsPresale={newArrList[0].is_presale}
+                    serverIsLanuched={parseInt(newArrList[0].is_launched)}
+                    serverIsPresale={parseInt(newArrList[0].is_presale)}
                   />
                 </Grid>
               </Grid>
