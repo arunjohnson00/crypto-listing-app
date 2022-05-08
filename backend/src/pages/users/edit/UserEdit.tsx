@@ -16,7 +16,7 @@ import InputSelect from "../../../components/form/select/InputSelect";
 
 const UserEdit = () => {
   const userList = useSelector((usrList: any) => {
-    return usrList.listUsersReducer.userListAll.data;
+    return usrList.usersReducer.listUsers.data;
   });
 
   console.log(userList);
@@ -190,6 +190,7 @@ const UserEdit = () => {
               currentStatus={newArrList[0].status}
               setInputSelectValue={setUpdateUser}
               getInputSelectvalue={updateUsersData}
+              serverStatus={newArrList[0].status}
             />
           </Grid>
 

@@ -11,7 +11,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { addMenuCardRequest } from "../../../store/action/addMenuCardAction";
+import { addMenuCardRequest } from "../../../store/action";
 
 const MenuCardAdd = () => {
   const dispatch = useDispatch();

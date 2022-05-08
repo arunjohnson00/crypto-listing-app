@@ -11,7 +11,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { updateNftMarketPlacesRequest } from "../../../store/action";
+import { updateNftMarketPlaceRequest } from "../../../store/action";
 
 const NftMarketPlaceEdit = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const NftMarketPlaceEdit = () => {
 
   const [loading, setLoading] = useState(false);
   const nftMarketPlaceList = useSelector((nftList: any) => {
-    return nftList.listNftMarketPlcesReducer.nftMarketPlcesListAll.data;
+    return nftList.nftMarketPlacesReducer.listNftMarketPlaces.data;
   });
 
   let newArrList = nftMarketPlaceList.filter(
@@ -80,7 +80,7 @@ const NftMarketPlaceEdit = () => {
     formData.append("status", "1");
 
     dispatch(
-      updateNftMarketPlacesRequest(formData, successHandler, errorHandler)
+      updateNftMarketPlaceRequest(formData, successHandler, errorHandler)
     );
   };
 

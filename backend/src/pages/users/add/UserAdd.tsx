@@ -11,7 +11,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { addUsersRequest } from "../../../store/action";
+import { addUserRequest } from "../../../store/action";
 
 const UserAdd = () => {
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ const UserAdd = () => {
 
     formData.append("status", "1");
 
-    dispatch(addUsersRequest(formData, successHandler, errorHandler));
+    dispatch(addUserRequest(formData, successHandler, errorHandler));
   };
 
   const userNameHandler = (e: any) => {

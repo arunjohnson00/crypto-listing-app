@@ -70,6 +70,7 @@ const SideMenu = ({ open }: any) => {
           justifyContent: "flex-start",
           paddingLeft: "26px",
           paddingTop: "18px",
+          marginBottom: "20px",
         }}
       >
         <img

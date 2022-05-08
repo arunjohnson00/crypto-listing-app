@@ -1,79 +1,81 @@
-import { Grid, Typography, Stack } from "@mui/material";
+import { Grid, Typography, Stack, Avatar } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import LargeBtn from "../../components/form/button/large/LargeBtn";
-import Avatar from "@mui/material/Avatar";
-import { listExchangeRequest } from "../../store/action";
 
+import LargeBtn from "../../components/form/button/large/LargeBtn";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
-
 import InputSearch from "../../components/form/input/search/InputSearch";
 
+import { listExchangeRequest } from "../../store/action";
+
+//Server URL
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
-const Exchanges = () => {
-  const exchangeList = useSelector((exList: any) => {
-    return exList.listExchangeReducer.exchangeListAll.data;
-  });
+//Table Data
 
+const tableColumn = [
+  {
+    field: "thumb_icon",
+    headerName: "Icon",
+    flex: 1,
+    sortable: false,
+    disableClickEventBubbling: true,
+    renderCell: (params: any) => (
+      <Avatar
+        src={`${serverAPIUrl}public/uploads/exchange_icons/${params.row.thumb_icon}`}
+        alt={params.thumb_icon}
+      />
+    ),
+  },
+  {
+    field: "name",
+    headerName: "Name",
+    flex: 1,
+  },
+
+  {
+    field: "url",
+    headerName: "Url",
+    flex: 1,
+  },
+
+  {
+    field: "slug",
+    headerName: "Slug",
+    flex: 1,
+  },
+];
+
+const Exchanges = () => {
+  const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
+
+  const exchangeList = useSelector((exList: any) => {
+    return exList.exchangesReducer.listExchanges.data;
+  });
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
   };
 
-  var filteredData = searchValue
+  const filteredData = searchValue
     ? exchangeList.filter((flData: any) => {
         return flData.name.toLowerCase().includes(searchValue.toLowerCase());
       })
     : exchangeList;
 
-  const dispatch = useDispatch();
   useEffect(() => {
     const successHandler = (res: any) => {
-      console.log(res);
+      //console.log(res);
     };
-
     const errorHandler = (err: any) => {
-      console.log(err);
+      //console.log(err);
     };
     dispatch(listExchangeRequest("emptyData", successHandler, errorHandler));
   }, [dispatch]);
 
-  const tableColumn = [
-    {
-      field: "thumb_icon",
-      headerName: "Icon",
-      flex: 1,
-      sortable: false,
-      disableClickEventBubbling: true,
-      renderCell: (params: any) => (
-        <Avatar
-          src={`${serverAPIUrl}public/uploads/exchange_icons/${params.row.thumb_icon}`}
-          alt={params.thumb_icon}
-        />
-      ),
-    },
-    {
-      field: "name",
-      headerName: "Name",
-      flex: 1,
-    },
-
-    {
-      field: "url",
-      headerName: "Url",
-      flex: 1,
-    },
-
-    {
-      field: "slug",
-      headerName: "Slug",
-      flex: 1,
-    },
-  ];
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -119,7 +121,7 @@ const Exchanges = () => {
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
             <Link to="/exchange/add">
-              <LargeBtn Title="Add new exchange" />
+              <LargeBtn Title="Add Exchange" />
             </Link>
           </Grid>
         </Stack>
@@ -136,7 +138,7 @@ const Exchanges = () => {
         >
           {" "}
           <Link to="/exchange/add">
-            <LargeBtn Title="Add new exchange" />
+            <LargeBtn Title="Add Exchange" />
           </Link>
         </Stack>
       </Grid>

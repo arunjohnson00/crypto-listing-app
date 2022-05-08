@@ -5,23 +5,23 @@ import { useSelector } from "react-redux";
 
 const HorizonatalList = () => {
   const coinList: any = useSelector((cnList: any) => {
-    return cnList.listCoinReducer.coinListAll.data;
+    return cnList.coinReducer.listCoins.data;
   });
 
   const exchangeList = useSelector((exList: any) => {
-    return exList.listExchangeReducer.exchangeListAll.data;
+    return exList.exchangesReducer.listExchanges.data;
   });
 
   const networkList = useSelector((ntList: any) => {
-    return ntList.listNetworkReducer.natworkListAll.data;
+    return ntList.networksReducer.listNetworks.data;
   });
 
   const nftMarketPlaceList = useSelector((nftList: any) => {
-    return nftList.listNftMarketPlcesReducer.nftMarketPlcesListAll.data;
+    return nftList.nftMarketPlacesReducer.listNftMarketPlaces.data;
   });
 
   const userList = useSelector((usrList: any) => {
-    return usrList.listUsersReducer.userListAll.data;
+    return usrList.usersReducer.listUsers.data;
   });
 
   return (

@@ -21,7 +21,7 @@ const ExchangeEdit = () => {
 
   const [loading, setLoading] = useState(false);
   const exchangeList = useSelector((exList: any) => {
-    return exList.listExchangeReducer.exchangeListAll.data;
+    return exList.exchangesReducer.listExchanges.data;
   });
 
   let newArrList = exchangeList.filter(

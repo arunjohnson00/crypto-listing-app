@@ -10,7 +10,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { addVideosRequest } from "../../../store/action";
+import { addVideoRequest } from "../../../store/action";
 const VideosAdd = () => {
   const dispatch = useDispatch();
 
@@ -68,7 +68,7 @@ const VideosAdd = () => {
 
     formData.append("status", "1");
 
-    dispatch(addVideosRequest(formData, successHandler, errorHandler));
+    dispatch(addVideoRequest(formData, successHandler, errorHandler));
   };
 
   const videoNameHandler = (e: any) => {

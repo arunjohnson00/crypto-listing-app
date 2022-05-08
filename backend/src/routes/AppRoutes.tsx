@@ -110,7 +110,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/coins/edit"
+          path="/coins/edit/:id"
           element={
             <PrivateRoute>
               <CoinListingEdit />
@@ -145,7 +145,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/coins-audit/edit"
+          path="/coins-audit/edit/:id"
           element={
             <PrivateRoute>
               <CoinsAuditEdit />
@@ -178,7 +178,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/coins-chart-provider/edit"
+          path="/coins-chart-provider/edit/:id"
           element={
             <PrivateRoute>
               <CoinsChartProviderEdit />
@@ -213,7 +213,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/coins-community/edit"
+          path="/coins-community/edit/:id"
           element={
             <PrivateRoute>
               <CoinsCommunityEdit />
@@ -249,7 +249,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/coins-chat/edit"
+          path="/coins-chat/edit/:id"
           element={
             <PrivateRoute>
               <CoinsChatEdit />
@@ -285,7 +285,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/coins-socials/edit"
+          path="/coins-socials/edit/:id"
           element={
             <PrivateRoute>
               <CoinsSocialsEdit />
@@ -319,7 +319,7 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/exchange/edit"
+          path="/exchange/edit/:id"
           element={
             <PrivateRoute>
               <ExchangeEdit />
@@ -354,7 +354,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/nft-listings/edit"
+          path="/nft-listings/edit/:id"
           element={
             <PrivateRoute>
               <NFTListingEdit />
@@ -390,7 +390,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/nft-marketplaces/edit"
+          path="/nft-marketplaces/edit/:id"
           element={
             <PrivateRoute>
               <NftMarketPlaceEdit />
@@ -432,7 +432,7 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/networks/edit"
+          path="/networks/edit/:id"
           element={
             <PrivateRoute>
               <NetworkEdit />
@@ -465,7 +465,7 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/users/edit"
+          path="/users/edit/:id"
           element={
             <PrivateRoute>
               <UserEdit />
@@ -506,7 +506,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/videos/edit"
+          path="/videos/edit/:id"
           element={
             <PrivateRoute>
               <VideoEdit />
@@ -540,7 +540,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/menu-cards/edit"
+          path="/menu-cards/edit/:id"
           element={
             <PrivateRoute>
               <MenuCardEdit />
@@ -598,7 +598,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/badges/edit"
+          path="/badges/edit/:id"
           element={
             <PrivateRoute>
               <BadgesEdit />

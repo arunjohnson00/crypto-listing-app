@@ -33,7 +33,7 @@ const NotificationMenu = ({
 }: any) => {
   const navigate = useNavigate();
   const userNotificationList = useSelector((notificationList: any) => {
-    return notificationList.userNotificationReducer.notificationListAll.data;
+    return notificationList.userNotificationReducer.userNotifications.data;
   });
 
   const dispatch = useDispatch();

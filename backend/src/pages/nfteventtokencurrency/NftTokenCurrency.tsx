@@ -11,7 +11,7 @@ import { listCoinAuditRequest } from "../../store/action";
 
 //const serverAPIUrl = process.env.REACT_APP_API_URL;
 
-const NftEventCategory = () => {
+const NftTokenCurrency = () => {
   const coinAuditList = useSelector((auditList: any) => {
     return auditList.listCoinAuditReducer.auditListAll.data;
   });
@@ -140,4 +140,4 @@ const NftEventCategory = () => {
   );
 };
 
-export default NftEventCategory;
+export default NftTokenCurrency;

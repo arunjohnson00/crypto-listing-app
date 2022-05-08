@@ -9,11 +9,11 @@ import moment from "moment";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
-import { listUsersRequest } from "../../store/action";
+import { listUserRequest } from "../../store/action";
 
 const Users = () => {
   const userList = useSelector((usrList: any) => {
-    return usrList.listUsersReducer.userListAll.data;
+    return usrList.usersReducer.listUsers.data;
   });
 
   const [searchValue, setSearchValue] = useState("");
@@ -37,7 +37,7 @@ const Users = () => {
     const errorHandler = (err: any) => {
       console.log(err);
     };
-    dispatch(listUsersRequest("emptyData", successHandler, errorHandler));
+    dispatch(listUserRequest("emptyData", successHandler, errorHandler));
   }, [dispatch]);
 
   const serverAPIUrl = process.env.REACT_APP_API_URL;

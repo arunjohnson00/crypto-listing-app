@@ -14,7 +14,7 @@ const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const CoinListing = () => {
   const coinList = useSelector((cnList: any) => {
-    return cnList.listCoinReducer.coinListAll.data;
+    return cnList.coinReducer.listCoins.data;
   });
 
   const [searchValue, setSearchValue] = useState("");

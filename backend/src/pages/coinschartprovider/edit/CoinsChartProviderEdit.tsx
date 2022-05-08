@@ -15,8 +15,7 @@ import InputSelect from "../../../components/form/select/InputSelect";
 
 const CoinsChartProviderEdit = () => {
   const coinChartProviderList = useSelector((chartProviderList: any) => {
-    return chartProviderList.listCoinChartProviderReducer.chartProviderListAll
-      .data;
+    return chartProviderList.chartProviderReducer.listChartProvider.data;
   });
 
   const navigate = useNavigate();
@@ -141,6 +140,7 @@ const CoinsChartProviderEdit = () => {
                 currentStatus={newArrList[0].status}
                 setInputSelectValue={setUpdateCoinChartProvider}
                 getInputSelectvalue={updateCoinChartProviderData}
+                serverStatus={newArrList[0].status}
               />
             </Grid>
 

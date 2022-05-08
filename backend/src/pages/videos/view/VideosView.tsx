@@ -8,9 +8,8 @@ import HorizonatalList from "../../../components/list/horizontal/HorizonatalList
 
 const VideosView = () => {
   const videoList = useSelector((vdList: any) => {
-    return vdList.listVideoReducer.videoListAll.data;
+    return vdList.videosReducer.listVideos.data;
   });
-
   const location: any = useLocation();
 
   const navigate: any = useNavigate();

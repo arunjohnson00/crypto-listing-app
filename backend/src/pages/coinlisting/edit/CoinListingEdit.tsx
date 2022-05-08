@@ -43,7 +43,7 @@ import { listCoinAuditRequest } from "../../../store/action";
 import { listCoinChatRequest } from "../../../store/action";
 import { listCoinSocialRequest } from "../../../store/action";
 import { listChartProviderRequest } from "../../../store/action";
-import { updateCoinsRequest } from "../../../store/action";
+import { updateCoinRequest } from "../../../store/action";
 
 // import { listUsersRequest } from "../../../store/action";
 // import { listVideoRequest } from "../../../store/action";
@@ -59,7 +59,7 @@ const CoinListingEdit = () => {
   const navigate = useNavigate();
 
   const coinList = useSelector((cnList: any) => {
-    return cnList.listCoinReducer.coinListAll.data;
+    return cnList.coinReducer.listCoins.data;
   });
   let newArrList = coinList.filter(
     (userData: any) => userData.id === location.state.id
@@ -73,30 +73,31 @@ const CoinListingEdit = () => {
   ];
 
   const exchangeList = useSelector((exList: any) => {
-    return exList.listExchangeReducer.exchangeListAll.data;
+    return exList.exchangesReducer.listExchanges.data;
   });
 
   const networkList = useSelector((ntList: any) => {
-    return ntList.listNetworkReducer.natworkListAll.data;
+    return ntList.networksReducer.listNetworks.data;
   });
   const coinAuditList = useSelector((auditList: any) => {
-    return auditList.listCoinAuditReducer.auditListAll.data;
+    return auditList.auditReducer.listAudit.data;
   });
   const coinChartProviderList = useSelector((chartProviderList: any) => {
-    return chartProviderList.listCoinChartProviderReducer.chartProviderListAll
-      .data;
+    return chartProviderList.chartProviderReducer.listChartProvider.data;
   });
 
   const coinChatList = useSelector((chatList: any) => {
-    return chatList.listCoinChatReducer.coinChatListAll.data;
+    return chatList.chatReducer.listChat.data;
   });
 
   const coinSocialList = useSelector((socialList: any) => {
-    return socialList.listCoinSocialReducer.coinSocialListAll.data;
+    return socialList.socialsReducer.listSocials.data;
   });
 
   const [coinStatus, setCoinStatus] = useState(
-    newArrList[0].is_presale === 1
+    newArrList[0].is_presale === 1 ||
+      newArrList[0].is_launched !== 2 ||
+      newArrList[0].is_launched !== 0
       ? "Presale"
       : newArrList[0].is_launched === 1
       ? "Launched"
@@ -267,7 +268,7 @@ const CoinListingEdit = () => {
       });
     };
 
-    dispatch(updateCoinsRequest(formData, successHandler, errorHandler));
+    dispatch(updateCoinRequest(formData, successHandler, errorHandler));
   };
 
   useEffect(() => {

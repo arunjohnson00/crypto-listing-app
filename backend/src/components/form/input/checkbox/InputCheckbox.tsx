@@ -32,7 +32,13 @@ const InputCheckbox = ({
 
   return (
     <Checkbox
-      checked={serverCheckedRef && serverCheckedRef === 1 ? !value : value}
+      checked={
+        serverCheckedRef && serverCheckedRef === 1
+          ? !value
+          : serverCheckedRef === 2
+          ? !value
+          : value
+      }
       value={value === true || serverCheckedRef === 1 ? 1 : 0}
       name={name}
       id={id}

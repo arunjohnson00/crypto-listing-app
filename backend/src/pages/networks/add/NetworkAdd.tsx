@@ -11,7 +11,7 @@ import "material-react-toastify/dist/ReactToastify.css";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { addNetworkRequest } from "../../../store/action/addNetworkAction";
+import { addNetworkRequest } from "../../../store/action";
 
 const NetworkAdd = () => {
   const dispatch = useDispatch();

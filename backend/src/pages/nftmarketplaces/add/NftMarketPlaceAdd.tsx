@@ -11,7 +11,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { addNftMarketPlacesRequest } from "../../../store/action";
+import { addNftMarketPlaceRequest } from "../../../store/action";
 
 const NftMarketPlaceAdd = () => {
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ const NftMarketPlaceAdd = () => {
 
     formData.append("status", "1");
 
-    dispatch(addNftMarketPlacesRequest(formData, successHandler, errorHandler));
+    dispatch(addNftMarketPlaceRequest(formData, successHandler, errorHandler));
   };
 
   const addNftMarketPlacesNameHandler = (e: any) => {

@@ -16,7 +16,7 @@ import { updateMenuCardRequest } from "../../../store/action";
 
 const MenuCardEdit = () => {
   const menuCardList = useSelector((menuList: any) => {
-    return menuList.listMenuCardReducer.menuCardListAll.data;
+    return menuList.menuCardsReducer.listMenuCards.data;
   });
   const dispatch = useDispatch();
 
@@ -194,6 +194,7 @@ const MenuCardEdit = () => {
               currentStatus={newArrList[0].status}
               setInputSelectValue={setAddMenuCard}
               getInputSelectvalue={addMenuCardData}
+              serverStatus={newArrList[0].status}
             />
           </Grid>
 

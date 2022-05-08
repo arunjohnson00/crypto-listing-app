@@ -15,7 +15,7 @@ import InputSelect from "../../../components/form/select/InputSelect";
 
 const CoinsSocialsEdit = () => {
   const coinSocialList = useSelector((socialList: any) => {
-    return socialList.listCoinSocialReducer.coinSocialListAll.data;
+    return socialList.socialsReducer.listSocials.data;
   });
 
   const navigate = useNavigate();
@@ -138,6 +138,7 @@ const CoinsSocialsEdit = () => {
                 currentStatus={newArrList[0].status}
                 setInputSelectValue={setUpdateCoinSocial}
                 getInputSelectvalue={updateCoinSocialData}
+                serverStatus={newArrList[0].status}
               />
             </Grid>
 

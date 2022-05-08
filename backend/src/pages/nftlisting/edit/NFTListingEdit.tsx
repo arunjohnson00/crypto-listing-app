@@ -11,7 +11,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { updateNftListingsRequest } from "../../../store/action";
+import { updateNftListingRequest } from "../../../store/action";
 
 const NFTListingEdit = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const NFTListingEdit = () => {
 
   const [loading, setLoading] = useState(false);
   const nftListingsList = useSelector((nftList: any) => {
-    return nftList.listNftLisingsReducer.nftListingsListAll.data;
+    return nftList.nftListingsReducer.listNftListings.data;
   });
 
   let newArrList = nftListingsList.filter(
@@ -79,7 +79,7 @@ const NFTListingEdit = () => {
 
     formData.append("status", "1");
 
-    dispatch(updateNftListingsRequest(formData, successHandler, errorHandler));
+    dispatch(updateNftListingRequest(formData, successHandler, errorHandler));
   };
 
   const nftListingNameHandler = (e: any) => {

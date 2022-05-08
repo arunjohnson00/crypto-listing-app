@@ -11,7 +11,7 @@ import HorizonatalList from "../../../components/list/horizontal/HorizonatalList
 
 const CoinsAuditView = () => {
   const coinAuditList = useSelector((auditList: any) => {
-    return auditList.listCoinAuditReducer.auditListAll.data;
+    return auditList.auditReducer.listAudit.data;
   });
 
   const navigate = useNavigate();

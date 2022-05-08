@@ -16,7 +16,7 @@ import InputSearch from "../../components/form/input/search/InputSearch";
 
 const Videos = () => {
   const videoList = useSelector((vdList: any) => {
-    return vdList.listVideoReducer.videoListAll.data;
+    return vdList.videosReducer.listVideos.data;
   });
 
   const [searchValue, setSearchValue] = useState("");

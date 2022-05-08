@@ -8,13 +8,13 @@ import Avatar from "@mui/material/Avatar";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
-import { listNftMarketPlacesRequest } from "../../store/action";
+import { listNftMarketPlaceRequest } from "../../store/action";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const NftMarketPlaces = () => {
   const nftMarketPlaceList = useSelector((nftList: any) => {
-    return nftList.listNftMarketPlcesReducer.nftMarketPlcesListAll.data;
+    return nftList.nftMarketPlacesReducer.listNftMarketPlaces.data;
   });
 
   const [searchValue, setSearchValue] = useState("");
@@ -39,7 +39,7 @@ const NftMarketPlaces = () => {
       console.log(err);
     };
     dispatch(
-      listNftMarketPlacesRequest("emptyData", successHandler, errorHandler)
+      listNftMarketPlaceRequest("emptyData", successHandler, errorHandler)
     );
   }, [dispatch]);
 

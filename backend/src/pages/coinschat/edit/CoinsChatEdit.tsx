@@ -15,9 +15,8 @@ import InputSelect from "../../../components/form/select/InputSelect";
 
 const CoinsChatEdit = () => {
   const coinChatList = useSelector((chatList: any) => {
-    return chatList.listCoinChatReducer.coinChatListAll.data;
+    return chatList.chatReducer.listChat.data;
   });
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location: any = useLocation();
@@ -138,6 +137,7 @@ const CoinsChatEdit = () => {
                 currentStatus={newArrList[0].status}
                 setInputSelectValue={setUpdateCoinChat}
                 getInputSelectvalue={updateCoinChatData}
+                serverStatus={newArrList[0].status}
               />
             </Grid>
 

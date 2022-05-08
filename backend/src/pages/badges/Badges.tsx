@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
 import Avatar from "@mui/material/Avatar";
-import { listBadgesRequest } from "../../store/action";
+import { listBadgeRequest } from "../../store/action";
 
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
@@ -15,7 +15,7 @@ const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const Badges = () => {
   const badgesList = useSelector((bdgList: any) => {
-    return bdgList.listBadgesReducer.badgesListAll.data;
+    return bdgList.badgesReducer.listBadges.data;
   });
 
   const [searchValue, setSearchValue] = useState("");
@@ -39,7 +39,7 @@ const Badges = () => {
     const errorHandler = (err: any) => {
       console.log(err);
     };
-    dispatch(listBadgesRequest("emptyData", successHandler, errorHandler));
+    dispatch(listBadgeRequest("emptyData", successHandler, errorHandler));
   }, [dispatch]);
 
   const tableColumn = [
