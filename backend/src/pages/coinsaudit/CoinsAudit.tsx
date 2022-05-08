@@ -54,15 +54,15 @@ const CoinsAudit = () => {
       flex: 1,
       renderCell: (params: any) => (
         <span>
-          {params.row.status === 1 && (
+          {parseInt(params.row.status) === 1 && (
             <span style={{ color: "#64dd17" }}>Approved</span>
           )}
 
-          {params.row.status === 2 && (
+          {parseInt(params.row.status) === 2 && (
             <span style={{ color: "#d50000" }}>Pending</span>
           )}
 
-          {params.row.status === 3 && (
+          {parseInt(params.row.status) === 3 && (
             <span style={{ color: "#6a1b9a" }}>Suspended</span>
           )}
         </span>

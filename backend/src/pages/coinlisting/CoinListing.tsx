@@ -66,7 +66,7 @@ const CoinListing = () => {
       headerName: "Is Presale",
       flex: 1,
       renderCell: (params: any) =>
-        params.row.is_presale === 1 ? (
+        parseInt(params.row.is_presale) === 1 ? (
           <span style={{ color: "green" }}>yes</span>
         ) : (
           <span style={{ color: "red" }}>No</span>
@@ -103,15 +103,15 @@ const CoinListing = () => {
       flex: 1,
       renderCell: (params: any) => (
         <span>
-          {params.row.status === 1 && (
+          {parseInt(params.row.status) === 1 && (
             <span style={{ color: "#64dd17" }}>Approved</span>
           )}
 
-          {params.row.status === 2 && (
+          {parseInt(params.row.status) === 2 && (
             <span style={{ color: "#d50000" }}>Scheduled</span>
           )}
 
-          {params.row.status === 3 && (
+          {parseInt(params.row.status) === 3 && (
             <span style={{ color: "#6a1b9a" }}>Suspended</span>
           )}
         </span>

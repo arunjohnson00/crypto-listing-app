@@ -13,7 +13,7 @@ import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 const NotificationAll = () => {
   const navigate = useNavigate();
   const userNotificationList = useSelector((notificationList: any) => {
-    return notificationList.userNotificationReducer.notificationListAll.data;
+    return notificationList.userNotificationReducer.userNotifications.data;
   });
 
   const dispatch = useDispatch();
@@ -30,7 +30,6 @@ const NotificationAll = () => {
     );
   }, [dispatch]);
 
-  console.log(userNotificationList.data);
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
