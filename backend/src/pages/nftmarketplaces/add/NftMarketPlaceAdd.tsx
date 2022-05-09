@@ -11,15 +11,21 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
+import InputSelect from "../../../components/form/select/InputSelect";
 import { addNftMarketPlaceRequest } from "../../../store/action";
 
 const NftMarketPlaceAdd = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Processing", value: 2 },
+    { title: "Rejected/Blocked", value: 3 },
+  ];
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const [addNftMarketPlaceData, setAddNftMarketPlace] = useState({
     name: "",
-    status: 1,
+    status: "",
     url: "",
     thumb_icon: "",
   });
@@ -64,8 +70,7 @@ const NftMarketPlaceAdd = () => {
     formData.append("thumb_icon", addNftMarketPlaceData.thumb_icon);
     formData.append("name", addNftMarketPlaceData.name);
     formData.append("url", addNftMarketPlaceData.url);
-
-    formData.append("status", "1");
+    formData.append("status", addNftMarketPlaceData.status);
 
     dispatch(addNftMarketPlaceRequest(formData, successHandler, errorHandler));
   };
@@ -138,6 +143,19 @@ const NftMarketPlaceAdd = () => {
             <IconUploader
               setAddIcon={setAddNftMarketPlace}
               addIconData={addNftMarketPlaceData}
+            />
+          </Grid>
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              Status
+            </Typography>
+
+            <InputSelect
+              selectOptions={selectOptions}
+              // currentStatus={newArrList[0].status}
+              setInputSelectValue={setAddNftMarketPlace}
+              getInputSelectvalue={addNftMarketPlaceData}
+              // serverStatus={newArrList[0].status}
             />
           </Grid>
 

@@ -12,10 +12,17 @@ import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import { updateExchangeRequest } from "../../../store/action";
+import InputSelect from "../../../components/form/select/InputSelect";
 
 const ExchangeEdit = () => {
   const dispatch = useDispatch();
   const location: any = useLocation();
+
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Processing", value: 2 },
+    { title: "Rejected/Blocked", value: 3 },
+  ];
 
   const navigate = useNavigate();
 
@@ -31,7 +38,7 @@ const ExchangeEdit = () => {
   const [editExchangeData, setEditExchange] = useState({
     id: newArrList[0].id,
     name: newArrList[0].name,
-    status: 1,
+    status: newArrList[0].status,
     url: newArrList[0].url,
     thumb_icon: "",
   });
@@ -72,12 +79,10 @@ const ExchangeEdit = () => {
 
     editExchangeData.thumb_icon !== "" &&
       formData.append("thumb_icon", editExchangeData.thumb_icon);
-
     formData.append("name", editExchangeData.name);
     formData.append("url", editExchangeData.url);
     formData.append("id", editExchangeData.id);
-
-    formData.append("status", "1");
+    formData.append("status", editExchangeData.status);
 
     dispatch(updateExchangeRequest(formData, successHandler, errorHandler));
   };
@@ -151,6 +156,19 @@ const ExchangeEdit = () => {
             <IconUploader
               setAddIcon={setEditExchange}
               addIconData={editExchangeData}
+            />
+          </Grid>
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              Status
+            </Typography>
+
+            <InputSelect
+              selectOptions={selectOptions}
+              // currentStatus={newArrList[0].status}
+              setInputSelectValue={setEditExchange}
+              getInputSelectvalue={editExchangeData}
+              serverStatus={newArrList[0].status}
             />
           </Grid>
 

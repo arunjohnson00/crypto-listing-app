@@ -11,9 +11,16 @@ import "material-react-toastify/dist/ReactToastify.css";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
+import InputSelect from "../../../components/form/select/InputSelect";
 import { updateNetworkRequest } from "../../../store/action";
 
 const NetworkEdit = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Processing", value: 2 },
+    { title: "Rejected/Blocked", value: 3 },
+  ];
+
   const networkList = useSelector((ntList: any) => {
     return ntList.networksReducer.listNetworks.data;
   });
@@ -28,7 +35,7 @@ const NetworkEdit = () => {
   );
   console.log(newArrList[0].id);
   const [loading, setLoading] = useState(false);
-  const [addNetworkData, setAddNetwork] = useState({
+  const [editNetworkData, setEditNetwork] = useState({
     id: newArrList[0].id,
     name: newArrList[0].name,
     status: newArrList[0].status,
@@ -71,16 +78,16 @@ const NetworkEdit = () => {
     };
 
     const formData = new FormData();
-    addNetworkData.thumb_icon !== "" &&
-      formData.append("thumb_icon", addNetworkData.thumb_icon);
-    formData.append("id", addNetworkData.id);
-    formData.append("name", addNetworkData.name);
-    formData.append("url", addNetworkData.url);
-    formData.append("chain_id", addNetworkData.chain_id);
-    formData.append("explorer_url", addNetworkData.explorer_url);
-    formData.append("currency_symbol", addNetworkData.currency_symbol);
+    editNetworkData.thumb_icon !== "" &&
+      formData.append("thumb_icon", editNetworkData.thumb_icon);
+    formData.append("id", editNetworkData.id);
+    formData.append("name", editNetworkData.name);
+    formData.append("url", editNetworkData.url);
+    formData.append("chain_id", editNetworkData.chain_id);
+    formData.append("explorer_url", editNetworkData.explorer_url);
+    formData.append("currency_symbol", editNetworkData.currency_symbol);
 
-    formData.append("status", "1");
+    formData.append("status", editNetworkData.status);
 
     dispatch(updateNetworkRequest(formData, successHandler, errorHandler));
   };
@@ -88,31 +95,31 @@ const NetworkEdit = () => {
   const networkNameHandler = (e: any) => {
     //console.log(e);
 
-    setAddNetwork({ ...addNetworkData, name: e });
+    setEditNetwork({ ...editNetworkData, name: e });
   };
 
   const networkURLHandler = (e: any) => {
     //console.log(e);
 
-    setAddNetwork({ ...addNetworkData, url: e });
+    setEditNetwork({ ...editNetworkData, url: e });
   };
 
   const networkChainIdHandler = (e: any) => {
     //console.log(e);
 
-    setAddNetwork({ ...addNetworkData, chain_id: e });
+    setEditNetwork({ ...editNetworkData, chain_id: e });
   };
 
   const networkExplURLHandler = (e: any) => {
     //console.log(e);
 
-    setAddNetwork({ ...addNetworkData, explorer_url: e });
+    setEditNetwork({ ...editNetworkData, explorer_url: e });
   };
 
   const networkCurrencySymbolHandler = (e: any) => {
     //console.log(e);
 
-    setAddNetwork({ ...addNetworkData, currency_symbol: e });
+    setEditNetwork({ ...editNetworkData, currency_symbol: e });
   };
 
   return (
@@ -206,8 +213,22 @@ const NetworkEdit = () => {
             </Typography>
 
             <IconUploader
-              setAddIcon={setAddNetwork}
-              addIconData={addNetworkData}
+              setAddIcon={setEditNetwork}
+              addIconData={editNetworkData}
+            />
+          </Grid>
+
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              Status
+            </Typography>
+
+            <InputSelect
+              selectOptions={selectOptions}
+              // currentStatus={newArrList[0].status}
+              setInputSelectValue={setEditNetwork}
+              getInputSelectvalue={editNetworkData}
+              serverStatus={newArrList[0].status}
             />
           </Grid>
 

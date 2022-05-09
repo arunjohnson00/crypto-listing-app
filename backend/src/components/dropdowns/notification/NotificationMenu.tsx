@@ -78,6 +78,7 @@ const NotificationMenu = ({
 
         <Divider sx={{ borderBottomWidth: 2, backgroundColor: "white" }} />
         {userNotificationList !== undefined &&
+        userNotificationList.length !== 0 ? (
           userNotificationList.map((notification: any, index: number) => {
             return (
               <MenuItem
@@ -127,7 +128,17 @@ const NotificationMenu = ({
                 </Stack>
               </MenuItem>
             );
-          })}
+          })
+        ) : (
+          <Stack
+            direction="column"
+            spacing={1}
+            mb={3}
+            sx={{ color: "white", fontSize: ".8rem", padding: "11px" }}
+          >
+            <Typography>Not Data Found</Typography>
+          </Stack>
+        )}
         <Divider sx={{ borderBottomWidth: 1, backgroundColor: "white" }} />
         <Stack
           direction="row"

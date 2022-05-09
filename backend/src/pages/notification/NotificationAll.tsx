@@ -72,6 +72,7 @@ const NotificationAll = () => {
         >
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pl={3}>
             {userNotificationList !== undefined &&
+            userNotificationList.length !== 0 ? (
               userNotificationList.map((notification: any, index: number) => {
                 return (
                   <Stack direction="column" spacing={1} key={index} mb={3}>
@@ -89,7 +90,12 @@ const NotificationAll = () => {
                     </span>
                   </Stack>
                 );
-              })}
+              })
+            ) : (
+              <Stack direction="column" spacing={1} mb={3}>
+                <Typography>Not Data Found</Typography>
+              </Stack>
+            )}
           </Grid>
         </Box>
       </Grid>

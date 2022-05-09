@@ -11,9 +11,15 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
+import InputSelect from "../../../components/form/select/InputSelect";
 import { updateNftMarketPlaceRequest } from "../../../store/action";
 
 const NftMarketPlaceEdit = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Processing", value: 2 },
+    { title: "Rejected/Blocked", value: 3 },
+  ];
   const dispatch = useDispatch();
   const location: any = useLocation();
 
@@ -31,7 +37,7 @@ const NftMarketPlaceEdit = () => {
   const [editNftMarketPlaceData, setEditNftMarketPlace] = useState({
     id: newArrList[0].id,
     name: newArrList[0].name,
-    status: 1,
+    status: newArrList[0].status,
     url: newArrList[0].url,
     thumb_icon: "",
   });
@@ -76,8 +82,7 @@ const NftMarketPlaceEdit = () => {
     formData.append("name", editNftMarketPlaceData.name);
     formData.append("url", editNftMarketPlaceData.url);
     formData.append("id", editNftMarketPlaceData.id);
-
-    formData.append("status", "1");
+    formData.append("status", editNftMarketPlaceData.status);
 
     dispatch(
       updateNftMarketPlaceRequest(formData, successHandler, errorHandler)
@@ -153,6 +158,19 @@ const NftMarketPlaceEdit = () => {
             <IconUploader
               setAddIcon={setEditNftMarketPlace}
               addIconData={editNftMarketPlaceData}
+            />
+          </Grid>
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              Status
+            </Typography>
+
+            <InputSelect
+              selectOptions={selectOptions}
+              // currentStatus={newArrList[0].status}
+              setInputSelectValue={setEditNftMarketPlace}
+              getInputSelectvalue={editNftMarketPlaceData}
+              serverStatus={newArrList[0].status}
             />
           </Grid>
 
