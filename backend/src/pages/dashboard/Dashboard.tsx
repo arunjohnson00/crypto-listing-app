@@ -1,4 +1,5 @@
 import { Box, Grid, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 import { Item } from "./style";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import LineChart from "../../components/charts/linechart/LineChart";
@@ -9,6 +10,10 @@ import CellTowerOutlinedIcon from "@mui/icons-material/CellTowerOutlined";
 import ComponentFooter from "../../components/footer/compfooter/ComponentFooter";
 
 const Dashboard = () => {
+  const coinList = useSelector((cnList: any) => {
+    return cnList.coinReducer.listCoins.data;
+  });
+
   return (
     <Grid container spacing={2}>
       <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
@@ -31,7 +36,7 @@ const Dashboard = () => {
       <Grid item xl={4} lg={4} md={4} sm={6} xs={12}>
         <Item>
           <Box pt={3}>
-            <PieChart />
+            <PieChart piData={coinList} />
             <ComponentFooter />
           </Box>
         </Item>

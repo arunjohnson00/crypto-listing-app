@@ -95,13 +95,11 @@ const CoinListingEdit = () => {
   });
 
   const [coinStatus, setCoinStatus] = useState(
-    parseInt(newArrList[0].is_presale) === 1 ||
-      parseInt(newArrList[0].is_launched) !== 2 ||
-      parseInt(newArrList[0].is_launched) !== 0
+    parseInt(newArrList[0].is_presale) === 1
       ? "Presale"
       : parseInt(newArrList[0].is_launched) === 1
       ? "Launched"
-      : "Presale"
+      : null
   );
 
   const [addCoinLogo, setCoinLogo] = useState({ coinLogo: "" });
