@@ -11,6 +11,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
+import InputSelect from "../../../components/form/select/InputSelect";
 import { addExchangeRequest } from "../../../store/action";
 
 const ExchangeAdd = () => {
@@ -19,12 +20,18 @@ const ExchangeAdd = () => {
   const navigate = useNavigate();
   const [addExchangeData, setAddExchange] = useState({
     name: "",
-    status: 1,
+    status: "",
     url: "",
     thumb_icon: "",
   });
 
   const [loading, setLoading] = useState(false);
+
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Processing", value: 2 },
+    { title: "Rejected/Blocked", value: 3 },
+  ];
 
   // Display the key/value pairs
 
@@ -65,7 +72,7 @@ const ExchangeAdd = () => {
     formData.append("name", addExchangeData.name);
     formData.append("url", addExchangeData.url);
 
-    formData.append("status", "1");
+    formData.append("status", addExchangeData.status);
 
     dispatch(addExchangeRequest(formData, successHandler, errorHandler));
   };
@@ -138,6 +145,20 @@ const ExchangeAdd = () => {
             <IconUploader
               setAddIcon={setAddExchange}
               addIconData={addExchangeData}
+            />
+          </Grid>
+
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              Status
+            </Typography>
+
+            <InputSelect
+              selectOptions={selectOptions}
+              // currentStatus={newArrList[0].status}
+              setInputSelectValue={setAddExchange}
+              getInputSelectvalue={addExchangeData}
+              //  serverStatus={newArrList[0].status}
             />
           </Grid>
 

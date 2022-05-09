@@ -73,6 +73,26 @@ const Badges = () => {
       headerName: "Slug",
       flex: 1,
     },
+    {
+      field: "status",
+      headerName: "Status",
+      flex: 1,
+      renderCell: (params: any) => (
+        <span>
+          {parseInt(params.row.status) === 1 && (
+            <span style={{ color: "#64dd17" }}>Approved</span>
+          )}
+
+          {parseInt(params.row.status) === 2 && (
+            <span style={{ color: "#d50000" }}>Pending</span>
+          )}
+
+          {parseInt(params.row.status) === 3 && (
+            <span style={{ color: "#6a1b9a" }}>Suspended</span>
+          )}
+        </span>
+      ),
+    },
   ];
   return (
     <Grid container spacing={2}>

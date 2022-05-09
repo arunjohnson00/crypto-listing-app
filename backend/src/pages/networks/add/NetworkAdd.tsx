@@ -11,16 +11,23 @@ import "material-react-toastify/dist/ReactToastify.css";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
+import InputSelect from "../../../components/form/select/InputSelect";
 import { addNetworkRequest } from "../../../store/action";
 
 const NetworkAdd = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Processing", value: 2 },
+    { title: "Rejected/Blocked", value: 3 },
+  ];
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [addNetworkData, setAddNetwork] = useState({
     name: "",
-    status: 1,
+    status: "",
     url: "",
     thumb_icon: "",
     chain_id: "",
@@ -67,8 +74,7 @@ const NetworkAdd = () => {
     formData.append("chain_id", addNetworkData.chain_id);
     formData.append("explorer_url", addNetworkData.explorer_url);
     formData.append("currency_symbol", addNetworkData.currency_symbol);
-
-    formData.append("status", "1");
+    formData.append("status", addNetworkData.status);
 
     dispatch(addNetworkRequest(formData, successHandler, errorHandler));
   };
@@ -191,6 +197,20 @@ const NetworkAdd = () => {
             <IconUploader
               setAddIcon={setAddNetwork}
               addIconData={addNetworkData}
+            />
+          </Grid>
+
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              Status
+            </Typography>
+
+            <InputSelect
+              selectOptions={selectOptions}
+              // currentStatus={newArrList[0].status}
+              setInputSelectValue={setAddNetwork}
+              getInputSelectvalue={addNetworkData}
+              //serverStatus={newArrList[0].status}
             />
           </Grid>
 

@@ -11,15 +11,21 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
+import InputSelect from "../../../components/form/select/InputSelect";
 import { addBadgeRequest } from "../../../store/action";
 
 const BadgesAdd = () => {
-  const dispatch = useDispatch();
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Processing", value: 2 },
+    { title: "Rejected/Blocked", value: 3 },
+  ];
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [addBadgeData, setAddBadge] = useState({
     name: "",
-    status: 1,
+    status: "",
     url: "",
     thumb_icon: "",
   });
@@ -64,8 +70,7 @@ const BadgesAdd = () => {
     formData.append("thumb_icon", addBadgeData.thumb_icon);
     formData.append("name", addBadgeData.name);
     formData.append("url", addBadgeData.url);
-
-    formData.append("status", "1");
+    formData.append("status", addBadgeData.status);
 
     dispatch(addBadgeRequest(formData, successHandler, errorHandler));
   };
@@ -136,6 +141,20 @@ const BadgesAdd = () => {
             </Typography>
 
             <IconUploader setAddIcon={setAddBadge} addIconData={addBadgeData} />
+          </Grid>
+
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              Status
+            </Typography>
+
+            <InputSelect
+              selectOptions={selectOptions}
+              // currentStatus={newArrList[0].status}
+              setInputSelectValue={setAddBadge}
+              getInputSelectvalue={addBadgeData}
+              // serverStatus={newArrList[0].status}
+            />
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
