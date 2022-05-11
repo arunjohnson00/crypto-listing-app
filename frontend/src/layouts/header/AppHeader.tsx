@@ -10,7 +10,7 @@ import AppBarNavBtn from "../../components/button/navbutton/AppBarNavBtn";
 
 const AppHeader = () => {
   return (
-    <Grid container spacing={3}>
+    <Grid spacing={3}>
       <Box sx={{ width: "100%", backgroundColor: "#01061A" }}>
         <AppBar
           position="static"
@@ -29,7 +29,7 @@ const AppHeader = () => {
               paddingBottom: "40px",
             }}
           >
-            <Grid item xl={8} lg={8} md={8} sm={12} xs={12}>
+            <Grid xs={12}>
               <img
                 src="https://coinxhigh.com/public/assets/images/logo.png"
                 alt="coinxhigh"
@@ -38,10 +38,6 @@ const AppHeader = () => {
             </Grid>
             <Grid
               item
-              xl={6}
-              lg={6}
-              md={6}
-              sm={12}
               xs={12}
               sx={{
                 display: "flex",
