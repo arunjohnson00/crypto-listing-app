@@ -22,8 +22,11 @@ import ViewMoreBtn from "../../components/button/viewmorebtn/ViewMoreBtn";
 import NftCollectionCard from "../../components/cards/nftcollection/NftCollectionCard";
 import NewsCard from "../../components/cards/newscard/NewsCard";
 import AdsCardHome from "../../components/cards/adscard/AdsCardHome";
-import { fontWeight } from "@mui/system";
+
 import CardDeal from "../../components/banner/carddeal/CardDeal";
+import BannerCardsHome from "../../components/banner/bannercardshome/BannerCardsHome";
+import BannerMap from "../../components/banner/bannermap/BannerMap";
+import AppFooter from "../../layouts/footer/AppFooter";
 
 const HomePage = () => {
   return (
@@ -33,7 +36,7 @@ const HomePage = () => {
         spacing={5}
         sx={{
           dispaly: "flex",
-          backgroundColor: "#01061A",
+          //
           paddingTop: "40px",
           paddingBottom: "22px",
         }}
@@ -48,7 +51,6 @@ const HomePage = () => {
         spacing={5}
         sx={{
           dispaly: "flex",
-          backgroundColor: "#01061A",
         }}
       >
         <Grid xs={12} sx={{ paddingTop: 3 }}>
@@ -82,8 +84,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -95,7 +95,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "0px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
@@ -108,7 +107,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
             alignItems: "center",
           }}
         >
@@ -120,7 +118,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
@@ -147,7 +144,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
             alignItems: "center",
           }}
         >
@@ -159,7 +155,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
@@ -172,8 +167,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -185,7 +178,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
@@ -209,8 +201,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -222,7 +212,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
@@ -236,8 +225,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -249,7 +236,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               // alignItems: "flex-start",
               // flexWrap: "wrap",
@@ -259,8 +245,6 @@ const HomePage = () => {
             <Grid
               xs={1}
               sx={{
-                backgroundColor: "#01061A",
-
                 alignItems: "center",
               }}
             >
@@ -281,8 +265,6 @@ const HomePage = () => {
             <Grid
               xs={11}
               sx={{
-                backgroundColor: "#01061A",
-
                 alignItems: "center",
               }}
             >
@@ -311,8 +293,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -324,7 +304,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
@@ -348,8 +327,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -361,7 +338,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
@@ -388,8 +364,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -401,7 +375,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               marginTop: "30px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
               justifyContent: " space-between",
@@ -415,8 +388,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -428,7 +399,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
@@ -440,8 +410,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -453,7 +421,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               marginTop: "0px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
               justifyContent: " flex-end",
@@ -466,8 +433,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -479,7 +444,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
@@ -503,8 +467,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -516,7 +478,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
@@ -543,8 +504,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -556,7 +515,7 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
+
               justifyContent: "space-between",
               alignItems: "center",
             }}
@@ -573,8 +532,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -586,7 +543,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               marginTop: "0px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
               justifyContent: " flex-end",
@@ -599,8 +555,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -612,7 +566,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "0px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
@@ -635,8 +588,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -648,7 +599,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
@@ -675,8 +625,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -688,7 +636,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
@@ -700,8 +647,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -713,7 +658,7 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "0px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
+
               justifyContent: "space-between",
               alignItems: "center",
             }}
@@ -738,8 +683,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -751,7 +694,7 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
+
               justifyContent: "space-between",
               alignItems: "center",
             }}
@@ -763,8 +706,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -776,12 +717,80 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "50px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
+
               justifyContent: "space-between",
               alignItems: "center",
             }}
           >
             <CardDeal />
+          </Stack>
+        </Grid>
+        <Grid
+          xs={12}
+          sx={{
+            alignItems: "center",
+          }}
+        >
+          <Stack
+            direction="row"
+            spacing={3}
+            sx={{
+              //borderTop: "1px solid #1a1545",
+              // borderBottom: "1px solid #1a1545",
+              paddingTop: "50px",
+              paddingBottom: "23px",
+
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <BannerCardsHome />
+          </Stack>
+        </Grid>
+
+        <Grid
+          xs={12}
+          sx={{
+            alignItems: "center",
+          }}
+        >
+          <Stack
+            direction="row"
+            spacing={3}
+            sx={{
+              //borderTop: "1px solid #1a1545",
+              // borderBottom: "1px solid #1a1545",
+              paddingTop: "50px",
+              paddingBottom: "23px",
+
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <BannerMap />
+          </Stack>
+        </Grid>
+
+        <Grid
+          xs={12}
+          sx={{
+            alignItems: "center",
+          }}
+        >
+          <Stack
+            direction="row"
+            spacing={3}
+            sx={{
+              //borderTop: "1px solid #1a1545",
+              // borderBottom: "1px solid #1a1545",
+              paddingTop: "50px",
+              paddingBottom: "23px",
+
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <AppFooter />
           </Stack>
         </Grid>
       </Grid>

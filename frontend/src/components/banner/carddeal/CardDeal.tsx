@@ -1,10 +1,11 @@
 import { Grid, Stack, Typography } from "@mui/material";
 import BannerBtn from "../../button/bannerbutton/BannerBtn";
+import BannerPespectiveWidget from "../../widget/bannerpespective/BannerPespectiveWidget";
 
 const CardDeal = () => {
   return (
     <Grid item xs={12}>
-      <Stack direction="column" spacing={3} px={3} py={3}>
+      <Stack direction="row" spacing={3} px={3} py={3}>
         <Grid item xs={6}>
           <Stack direction="column" spacing={5} px={3} py={3}>
             <Typography
@@ -26,8 +27,10 @@ const CardDeal = () => {
             <BannerBtn title="Get Started" width="145" />
           </Stack>
         </Grid>
+        <Grid item xs={6}>
+          <BannerPespectiveWidget />
+        </Grid>
       </Stack>
-      <Grid item xs={6}></Grid>
     </Grid>
   );
 };
