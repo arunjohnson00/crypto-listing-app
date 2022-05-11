@@ -1,7 +1,7 @@
 import { Grid, CardMedia, Typography } from "@mui/material";
 import React from "react";
 
-const VideoSlider = () => {
+const VideoCard = () => {
   return (
     <Grid item xs={2.5}>
       <CardMedia
@@ -23,4 +23,4 @@ const VideoSlider = () => {
   );
 };
 
-export default VideoSlider;
+export default VideoCard;

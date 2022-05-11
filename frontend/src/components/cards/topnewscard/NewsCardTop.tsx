@@ -2,7 +2,7 @@ import { Stack, Divider, Grid, Typography } from "@mui/material";
 import { Fragment } from "react";
 import Marquee from "react-fast-marquee";
 
-const NewsSlider = () => {
+const NewsCardTop = () => {
   const text = `The CEO of Mining Capital Coin is Allegedly Involved in Investment
   Fraud Scheme of $62M`;
 
@@ -24,4 +24,4 @@ const NewsSlider = () => {
   );
 };
 
-export default NewsSlider;
+export default NewsCardTop;
