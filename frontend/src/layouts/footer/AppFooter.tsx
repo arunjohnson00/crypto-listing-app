@@ -5,7 +5,13 @@ const AppFooter = () => {
   return (
     <Grid item xs={12}>
       <Box pt={5}>
-        <Stack direction="row" py={10} px={0}>
+        <Stack
+          direction={{ xs: "column", sm: "column", md: "row" }}
+          py={10}
+          px={0}
+          sx={{ alignItems: "center" }}
+          spacing={3}
+        >
           <Grid item xs={4}>
             <Stack direction="column" spacing={1.5}>
               <img

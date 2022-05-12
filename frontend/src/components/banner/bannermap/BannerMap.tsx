@@ -57,13 +57,15 @@ const BannerMap = () => {
     shape: "circle",
     backgroundColor: "#00030A",
   });
+
   return (
     <Grid item xs={12} px={10} py={4}>
-      <Stack direction="row">
+      <Stack direction={{ xs: "column", sm: "column", md: "row" }}>
         <Grid item xs={12} py={3} px={3}>
           <div>
             <img
               src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
+              width="100%"
               alt=""
             />
           </div>

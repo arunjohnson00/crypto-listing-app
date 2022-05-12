@@ -1,38 +1,64 @@
 import { Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import MenuCards from "../../cards/menucards/MenuCards";
-
+const windowInnerWidth = window.innerWidth;
 const BannerCardsHome = () => {
   return (
-    <Grid item xs={12} px={10} py={4}>
-      <Grid item xs={12}>
-        <Stack direction="row">
-          <Grid item xs={6}>
+    <Grid container xs={12} px={10} py={4}>
+      <Grid container xs={12}>
+        <Stack
+          direction={{ xs: "column-reverse", sm: "column-reverse", md: "row" }}
+        >
+          <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <Stack direction="column" spacing={3}>
               <Stack
                 direction="column"
                 spacing={0}
-                sx={{ alignItems: "flex-end" }}
+                sx={{
+                  alignItems: `${
+                    windowInnerWidth && windowInnerWidth >= 600 && "flex-end"
+                  }`,
+                }}
               >
-                <MenuCards width={9} />
+                <MenuCards
+                  width={`${
+                    windowInnerWidth && windowInnerWidth <= 600 ? "Auto" : 11
+                  } `}
+                />
               </Stack>
               <Stack
                 direction="column"
                 spacing={0}
-                sx={{ alignItems: "flex-start" }}
+                sx={{
+                  alignItems: `${
+                    windowInnerWidth && windowInnerWidth >= 600 && "flex-start"
+                  }`,
+                }}
               >
-                <MenuCards width={9} />
+                <MenuCards
+                  width={`${
+                    windowInnerWidth && windowInnerWidth <= 600 ? "Auto" : 11
+                  } `}
+                />
               </Stack>
               <Stack
                 direction="column"
                 spacing={0}
-                sx={{ alignItems: "flex-end" }}
+                sx={{
+                  alignItems: `${
+                    windowInnerWidth && windowInnerWidth >= 600 && "flex-end"
+                  }`,
+                }}
               >
-                <MenuCards width={9} />
+                <MenuCards
+                  width={`${
+                    windowInnerWidth && windowInnerWidth <= 600 ? "Auto" : 11
+                  } `}
+                />
               </Stack>
             </Stack>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <Stack direction="column" spacing={3} px={5} py={3}>
               <Typography
                 variant="body2"
@@ -59,10 +85,10 @@ const BannerCardsHome = () => {
         </Stack>
       </Grid>
 
-      <Grid item xs={12}>
+      <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
         <Stack
-          direction="row"
-          spacing={3}
+          direction={{ xs: "column", sm: "column", md: "row" }}
+          spacing={1}
           sx={{
             alignItems: "center",
             flexWrap: "wrap",
@@ -70,11 +96,11 @@ const BannerCardsHome = () => {
           }}
           py={5}
         >
-          <MenuCards width={3.8} marginBottom={3} />
-          <MenuCards width={3.8} marginBottom={3} />
-          <MenuCards width={3.8} marginBottom={3} />
-          <MenuCards width={3.8} marginBottom={3} />
-          <MenuCards width={3.8} marginBottom={3} />
+          <MenuCards width="auto" marginBottom={3} />
+          <MenuCards width="auto" marginBottom={3} />
+          <MenuCards width="auto" marginBottom={3} />
+          <MenuCards width="auto" marginBottom={3} />
+          <MenuCards width="auto" marginBottom={3} />
         </Stack>
       </Grid>
     </Grid>

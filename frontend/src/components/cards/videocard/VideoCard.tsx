@@ -3,7 +3,7 @@ import React from "react";
 
 const VideoCard = () => {
   return (
-    <Grid item xs={2.5}>
+    <Grid item xs={11}>
       <CardMedia
         component="img"
         height="180"
