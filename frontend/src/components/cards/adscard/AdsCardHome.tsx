@@ -20,8 +20,13 @@ const AdsCardHome = () => {
           background: "linear-gradient(0deg, #01061c 10%, #0B1A51)",
         }}
       >
-        <Stack direction="row" spacing={1} py={5} sx={{ alignItems: "center" }}>
-          <Grid item xs={6} px={10} py={2}>
+        <Stack
+          direction={{ xs: "column", sm: "column", md: "row" }}
+          spacing={1}
+          py={5}
+          sx={{ alignItems: "center" }}
+        >
+          <Grid container xs={12} sm={12} md={12} lg={6} xl={6} px={10} py={2}>
             <Stack direction="column" spacing={5} sx={{ alignItems: "center" }}>
               <Typography
                 variant="h6"
@@ -80,7 +85,7 @@ const AdsCardHome = () => {
             sx={{ borderColor: "#3D444D" }}
           />
 
-          <Grid item xs={6} px={2}>
+          <Grid item xs={12} sm={12} md={12} lg={6} xl={6} px={2}>
             <Grid item xs={12} px={4} pt={1} pb={4}>
               <Stack
                 direction="column"

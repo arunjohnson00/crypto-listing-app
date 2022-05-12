@@ -7,7 +7,7 @@ import AddAsset from "../../components/button/addasset/AddAsset";
 import LoginHeaderBtn from "../../components/button/loginheader/LoginHeaderBtn";
 import { Stack, Box, Grid } from "@mui/material";
 import AppBarNavBtn from "../../components/button/navbutton/AppBarNavBtn";
-
+const windowInnerWidth = window.innerWidth;
 const AppHeader = () => {
   return (
     <Grid spacing={3}>
@@ -22,14 +22,14 @@ const AppHeader = () => {
           }}
         >
           <Stack
-            direction="row"
+            direction={{ xs: "column", sm: "row" }}
             sx={{
               alignItems: "center",
               justifyContent: "space-around",
               paddingBottom: "40px",
             }}
           >
-            <Grid xs={12}>
+            <Grid xs={12} sm={4.5} md={3.9} lg={12} xl={12}>
               <img
                 src="https://coinxhigh.com/public/assets/images/logo.png"
                 alt="coinxhigh"
@@ -39,6 +39,10 @@ const AppHeader = () => {
             <Grid
               item
               xs={12}
+              sm={7.5}
+              md={8.1}
+              lg={12}
+              xl={12}
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -51,23 +55,25 @@ const AppHeader = () => {
               <LoginHeaderBtn />
             </Grid>
           </Stack>
-          <Stack
-            direction="row"
-            sx={{ alignItems: "center", justifyContent: "space-between" }}
-          >
-            <AppBarNavBtn title="Coins" iconStatus={true} />
-            <AppBarNavBtn title="NFT" iconStatus={true} />
-            <AppBarNavBtn title="Airdrops" iconStatus={true} />
-            <AppBarNavBtn title="AMA" iconStatus={true} />
-            <AppBarNavBtn title="KYC" iconStatus={true} />
-            <AppBarNavBtn title="Audit" iconStatus={true} />
-            <AppBarNavBtn title="Presales" />
-            <AppBarNavBtn title="News" />
-            <AppBarNavBtn title="Upcoming Events" />
-            <AppBarNavBtn title="Leader Board" />
-            <AppBarNavBtn title="Chart" />
-            <AppBarNavBtn title="Promote" iconStatus={true} />
-          </Stack>
+          {windowInnerWidth >= 1200 && (
+            <Stack
+              direction="row"
+              sx={{ alignItems: "center", justifyContent: "space-between" }}
+            >
+              <AppBarNavBtn title="Coins" iconStatus={true} />
+              <AppBarNavBtn title="NFT" iconStatus={true} />
+              <AppBarNavBtn title="Airdrops" iconStatus={true} />
+              <AppBarNavBtn title="AMA" iconStatus={true} />
+              <AppBarNavBtn title="KYC" iconStatus={true} />
+              <AppBarNavBtn title="Audit" iconStatus={true} />
+              <AppBarNavBtn title="Presales" />
+              <AppBarNavBtn title="News" />
+              <AppBarNavBtn title="Upcoming Events" />
+              <AppBarNavBtn title="Leader Board" />
+              <AppBarNavBtn title="Chart" />
+              <AppBarNavBtn title="Promote" iconStatus={true} />
+            </Stack>
+          )}
         </AppBar>
       </Box>
     </Grid>

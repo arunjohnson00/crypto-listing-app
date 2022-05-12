@@ -15,7 +15,7 @@ const NftCollectionCard = () => {
     },
   });
   return (
-    <Grid item xs={1.85}>
+    <Grid item xs={11}>
       <Stack direction="column">
         <Box sx={{ flexGrow: 1, background: "#0B1643" }} px={2} py={2}>
           <CardMedia

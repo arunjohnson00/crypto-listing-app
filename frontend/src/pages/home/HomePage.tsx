@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 import {
   Grid,
   Stack,
@@ -8,6 +8,7 @@ import {
   Divider,
   Avatar,
 } from "@mui/material";
+import Marquee from "react-fast-marquee";
 import AppHeader from "../../layouts/header/AppHeader";
 import LatestNewsHeading from "../../components/Typography/headings/latestnews/LatestNewsHeading";
 import NewsCardTop from "../../components/cards/topnewscard/NewsCardTop";
@@ -22,10 +23,51 @@ import ViewMoreBtn from "../../components/button/viewmorebtn/ViewMoreBtn";
 import NftCollectionCard from "../../components/cards/nftcollection/NftCollectionCard";
 import NewsCard from "../../components/cards/newscard/NewsCard";
 import AdsCardHome from "../../components/cards/adscard/AdsCardHome";
-import { fontWeight } from "@mui/system";
+
 import CardDeal from "../../components/banner/carddeal/CardDeal";
+import BannerCardsHome from "../../components/banner/bannercardshome/BannerCardsHome";
+import BannerMap from "../../components/banner/bannermap/BannerMap";
+import AppFooter from "../../layouts/footer/AppFooter";
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en.json";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
+const { parse } = require("rss-to-json");
+
+const windowInnerWidth = window.innerWidth;
+
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 5,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 3,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
 
 const HomePage = () => {
+  TimeAgo.addDefaultLocale(en);
+  const timeAgo = new TimeAgo("en");
+  const [feed, setFeed] = useState<any>();
+  useEffect(() => {
+    (async () => {
+      var rss = await parse("https://news.coinxhigh.com/feed/");
+
+      setFeed(rss);
+    })();
+  }, []);
   return (
     <Fragment>
       <Grid
@@ -33,7 +75,7 @@ const HomePage = () => {
         spacing={5}
         sx={{
           dispaly: "flex",
-          backgroundColor: "#01061A",
+          //
           paddingTop: "40px",
           paddingBottom: "22px",
         }}
@@ -48,7 +90,6 @@ const HomePage = () => {
         spacing={5}
         sx={{
           dispaly: "flex",
-          backgroundColor: "#01061A",
         }}
       >
         <Grid xs={12} sx={{ paddingTop: 3 }}>
@@ -65,15 +106,29 @@ const HomePage = () => {
               alignItems: "center",
             }}
           >
-            <Grid xs={2}>
+            <Grid xs={4} sm={4} md={3} lg={2} xl={2}>
               <LatestNewsHeading />
             </Grid>
-            <Grid xs={10}>
+            <Grid xs={8} sm={8} md={9} lg={10} xl={10}>
               <Stack direction="row" spacing={3}>
-                <NewsCardTop />
-                <NewsCardTop />
-                <NewsCardTop />
-                <NewsCardTop />
+                <Marquee
+                  style={{ background: "none" }}
+                  pauseOnHover={true}
+                  gradient={false}
+                  loop={0}
+                  delay={0}
+                  speed={70}
+                >
+                  {feed?.items?.map((rssFeed: any, index: number) => {
+                    return (
+                      <NewsCardTop
+                        rssFeed={rssFeed}
+                        timeAgo={timeAgo}
+                        key={index}
+                      />
+                    );
+                  })}
+                </Marquee>
               </Stack>
             </Grid>
           </Stack>
@@ -82,8 +137,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -95,12 +148,10 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "0px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
           >
-            <CoinSlider /> <CoinSlider /> <CoinSlider /> <CoinSlider />{" "}
             <CoinSlider />
           </Stack>
         </Grid>
@@ -108,7 +159,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
             alignItems: "center",
           }}
         >
@@ -120,7 +170,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
@@ -147,33 +196,41 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
             alignItems: "center",
+            paddingTop: "23px",
+            paddingBottom: "23px",
           }}
         >
-          <Stack
-            direction="row"
-            spacing={3}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
-              paddingBottom: "23px",
-              backgroundColor: "#01061A",
-
-              alignItems: "center",
-            }}
+          <Carousel
+            responsive={responsive}
+            infinite={true}
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            arrows={true}
           >
-            <VideoCard /> <VideoCard /> <VideoCard />
-            <VideoCard /> <VideoCard />
-          </Stack>
+            <Box>
+              <VideoCard />
+            </Box>
+            <Box>
+              <VideoCard />
+            </Box>
+            <Box>
+              <VideoCard />
+            </Box>
+            <Box>
+              <VideoCard />
+            </Box>
+            <Box>
+              <VideoCard />
+            </Box>
+            <Box>
+              <VideoCard />
+            </Box>
+          </Carousel>
         </Grid>
 
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -185,12 +242,11 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
           >
-            <Grid item xs={1.5}>
+            <Grid item xs="auto">
               <Typography
                 variant="h4"
                 sx={{ color: "white", fontWeight: "bold" }}
@@ -207,112 +263,115 @@ const HomePage = () => {
         </Grid>
 
         <Grid
+          container
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
+            paddingTop: "0px",
+            paddingBottom: "23px",
           }}
         >
-          <Stack
-            direction="row"
-            spacing={4}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
-              paddingBottom: "23px",
-              backgroundColor: "#01061A",
+          <Grid xs={12} sm={6} md={4} lg={4} xl={4}>
+            <HighlightCards />
+          </Grid>
+          <Grid xs={12} sm={6} md={4} lg={4} xl={4}>
+            <HighlightCards />
+          </Grid>
+          <Grid xs={12} sm={6} md={4} lg={4} xl={4}>
+            <HighlightCards />
+          </Grid>
+        </Grid>
 
+        <Grid
+          container
+          xs={12}
+          sx={{
+            alignItems: "center",
+            paddingTop: "0px",
+            paddingBottom: "23px",
+          }}
+        >
+          <Grid
+            xs={12}
+            sm={12}
+            md={12}
+            lg={1}
+            xl={1}
+            sx={{
               alignItems: "center",
             }}
           >
-            <HighlightCards />
-            <HighlightCards />
-            <HighlightCards />
-          </Stack>
-        </Grid>
-
-        <Grid
-          xs={12}
-          sx={{
-            backgroundColor: "#01061A",
-
-            alignItems: "center",
-          }}
-        >
-          <Stack
-            direction="row"
-            spacing={0}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
-              paddingBottom: "23px",
-              backgroundColor: "#01061A",
-
-              // alignItems: "flex-start",
-              // flexWrap: "wrap",
-              // justifyContent: "space-between",
-            }}
-          >
-            <Grid
-              xs={1}
-              sx={{
-                backgroundColor: "#01061A",
-
-                alignItems: "center",
-              }}
+            <Stack
+              direction="column"
+              sx={{ alignItems: "center" }}
+              py={windowInnerWidth >= 1200 ? 0 : 3}
             >
-              <Stack direction="column" sx={{ alignItems: "center" }}>
-                <Typography
-                  variant="h3"
-                  sx={{
-                    color: "white",
-                    writingMode: "vertical-lr",
-                    textOrientation: "mixed",
-                    transform: "rotate(180deg)",
-                  }}
-                >
-                  Featured Coins
-                </Typography>
-              </Stack>
-            </Grid>
-            <Grid
-              xs={11}
-              sx={{
-                backgroundColor: "#01061A",
-
-                alignItems: "center",
-              }}
-            >
-              <Stack
-                direction="row"
-                spacing={0}
+              <Typography
+                variant="h3"
                 sx={{
-                  alignItems: "flex-start",
-                  flexWrap: "wrap",
-                  justifyContent: "space-between",
+                  color: "white",
+                  writingMode: `${
+                    windowInnerWidth &&
+                    windowInnerWidth >= 1200 &&
+                    "vertical-lr"
+                  }`,
+                  textOrientation: `${
+                    windowInnerWidth && windowInnerWidth >= 1200 && "mixed"
+                  }`,
+                  transform: `${
+                    windowInnerWidth &&
+                    windowInnerWidth >= 1200 &&
+                    "rotate(180deg)"
+                  }`,
                 }}
               >
-                <FeaturedCoinCards />
-                <FeaturedCoinCards />
-                <FeaturedCoinCards />
-                <FeaturedCoinCards />
-                <FeaturedCoinCards />
-                <FeaturedCoinCards />
-                <FeaturedCoinCards />
-                <FeaturedCoinCards />
-              </Stack>
+                Featured Coins
+              </Typography>
+            </Stack>
+          </Grid>
+          <Grid
+            container
+            xs={12}
+            sm={12}
+            md={12}
+            lg={11}
+            xl={11}
+            sx={{
+              alignItems: "flex-start",
+              flexWrap: "wrap",
+              justifyContent: "space-between",
+            }}
+          >
+            <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
+              <FeaturedCoinCards />
             </Grid>
-          </Stack>
+            <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
+              <FeaturedCoinCards />
+            </Grid>
+            <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
+              <FeaturedCoinCards />
+            </Grid>
+            <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
+              <FeaturedCoinCards />
+            </Grid>
+            <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
+              <FeaturedCoinCards />
+            </Grid>
+            <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
+              <FeaturedCoinCards />
+            </Grid>
+            <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
+              <FeaturedCoinCards />
+            </Grid>
+            <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
+              <FeaturedCoinCards />
+            </Grid>
+          </Grid>
         </Grid>
 
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -323,13 +382,12 @@ const HomePage = () => {
               //borderTop: "1px solid #1a1545",
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
-              paddingBottom: "23px",
-              backgroundColor: "#01061A",
+              paddingBottom: "0px",
 
               alignItems: "center",
             }}
           >
-            <Grid item xs={3}>
+            <Grid item xs="auto">
               <Typography
                 variant="h4"
                 sx={{ color: "white", fontWeight: "bold" }}
@@ -346,63 +404,46 @@ const HomePage = () => {
         </Grid>
 
         <Grid
+          container
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
+            paddingTop: "13px",
+            paddingBottom: "13px",
           }}
         >
-          <Stack
-            direction="row"
-            spacing={3}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
-              paddingBottom: "23px",
-              backgroundColor: "#01061A",
+          <Grid item xs={12} sm={6} md={5} lg={5} xl={5} pb={2}>
+            <Typography sx={{ color: "white" }}>
+              Subscribe to our newsletters and get business news delivered
+              straight into your inbox ; Daily Newsletter. Your daily dose of
+              business news, views and updates.
+            </Typography>
+          </Grid>
 
-              alignItems: "center",
-            }}
-          >
-            <Grid item xs={5}>
-              <Typography sx={{ color: "white" }}>
-                Subscribe to our newsletters and get business news delivered
-                straight into your inbox ; Daily Newsletter. Your daily dose of
-                business news, views and updates.
-              </Typography>
-            </Grid>
-
-            <Grid item xs={7}>
-              <CardMedia
-                component="img"
-                height="95"
-                image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                alt="green iguana"
-              />
-            </Grid>
-          </Stack>
+          <Grid item xs={12} sm={6} md={7} lg={7} xl={7} pb={2}>
+            <CardMedia
+              component="img"
+              height="95"
+              image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+              alt="green iguana"
+            />
+          </Grid>
         </Grid>
 
         <Grid
+          container
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
+            marginTop: "30px",
+            paddingBottom: "23px",
           }}
         >
           <Stack
-            direction="row"
+            direction={{ xs: "column", sm: "column", md: "row" }}
             spacing={3}
             sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              marginTop: "30px",
-              paddingBottom: "23px",
-              backgroundColor: "#01061A",
-
+              flexGrow: 1,
               alignItems: "center",
               justifyContent: " space-between",
             }}
@@ -415,8 +456,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -428,7 +467,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
@@ -440,8 +478,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -453,7 +489,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               marginTop: "0px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
               justifyContent: " flex-end",
@@ -466,8 +501,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -479,12 +512,11 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
           >
-            <Grid item xs={3}>
+            <Grid item xs="auto">
               <Typography
                 variant="h4"
                 sx={{ color: "white", fontWeight: "bold" }}
@@ -501,80 +533,78 @@ const HomePage = () => {
         </Grid>
 
         <Grid
+          container
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
+            paddingTop: "13px",
+            paddingBottom: "13px",
           }}
         >
-          <Stack
-            direction="row"
-            spacing={3}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
-              paddingBottom: "23px",
-              backgroundColor: "#01061A",
+          <Grid item xs={12} sm={6} md={5} lg={5} xl={5} pb={2}>
+            <Typography sx={{ color: "white" }}>
+              Subscribe to our newsletters and get business news delivered
+              straight into your inbox ; Daily Newsletter. Your daily dose of
+              business news, views and updates.
+            </Typography>
+          </Grid>
 
-              alignItems: "center",
-            }}
-          >
-            <Grid item xs={5}>
-              <Typography sx={{ color: "white" }}>
-                Subscribe to our newsletters and get business news delivered
-                straight into your inbox ; Daily Newsletter. Your daily dose of
-                business news, views and updates.
-              </Typography>
-            </Grid>
-
-            <Grid item xs={7}>
-              <CardMedia
-                component="img"
-                height="95"
-                image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                alt="green iguana"
-              />
-            </Grid>
-          </Stack>
+          <Grid item xs={12} sm={6} md={7} lg={7} xl={7} pb={2}>
+            <CardMedia
+              component="img"
+              height="95"
+              image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+              alt="green iguana"
+            />
+          </Grid>
         </Grid>
 
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
+            paddingTop: "23px",
+            paddingBottom: "23px",
+
+            justifyContent: "space-between",
           }}
         >
-          <Stack
-            direction="row"
-            spacing={0}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
-              paddingBottom: "23px",
-              backgroundColor: "#01061A",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
+          <Carousel
+            responsive={responsive}
+            infinite={true}
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            arrows={true}
           >
-            <NftCollectionCard />
-            <NftCollectionCard />
-            <NftCollectionCard />
-            <NftCollectionCard />
-            <NftCollectionCard />
-            <NftCollectionCard />
-          </Stack>
+            <Box>
+              <NftCollectionCard />
+            </Box>
+            <Box>
+              <NftCollectionCard />
+            </Box>
+            <Box>
+              <NftCollectionCard />
+            </Box>
+            <Box>
+              <NftCollectionCard />
+            </Box>
+            <Box>
+              <NftCollectionCard />
+            </Box>
+            <Box>
+              <NftCollectionCard />
+            </Box>
+            <Box>
+              <NftCollectionCard />
+            </Box>
+            <Box>
+              <NftCollectionCard />
+            </Box>
+          </Carousel>
         </Grid>
 
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -586,7 +616,6 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               marginTop: "0px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
               justifyContent: " flex-end",
@@ -599,8 +628,6 @@ const HomePage = () => {
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -612,12 +639,11 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "0px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
           >
-            <Grid item xs={4}>
+            <Grid item xs="auto">
               <Typography
                 variant="h4"
                 sx={{ color: "white", fontWeight: "bold" }}
@@ -633,75 +659,70 @@ const HomePage = () => {
           </Stack>
         </Grid>
         <Grid
+          container
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
+            alignItems: "center",
+            paddingTop: "13px",
+            paddingBottom: "13px",
+          }}
+        >
+          <Grid item xs={12} sm={6} md={5} lg={5} xl={5} pb={2}>
+            <Typography sx={{ color: "white" }}>
+              Subscribe to our newsletters and get business news delivered
+              straight into your inbox ; Daily Newsletter. Your daily dose of
+              business news, views and updates.
+            </Typography>
+          </Grid>
 
+          <Grid item xs={12} sm={6} md={7} lg={7} xl={7} pb={2}>
+            <CardMedia
+              component="img"
+              height="95"
+              image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+              alt="green iguana"
+            />
+          </Grid>
+        </Grid>
+
+        <Grid
+          xs={12}
+          sx={{
             alignItems: "center",
           }}
         >
           <Stack
             direction="row"
-            spacing={3}
+            spacing={0}
             sx={{
               //borderTop: "1px solid #1a1545",
               // borderBottom: "1px solid #1a1545",
               paddingTop: "23px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
 
               alignItems: "center",
             }}
           >
-            <Grid item xs={7}>
-              <Typography sx={{ color: "white" }}>
-                Subscribe to our newsletters and get business news delivered
-                straight into your inbox ; Daily Newsletter. Your daily dose of
-                business news, views and updates.
-              </Typography>
-            </Grid>
-
-            <Grid item xs={5}>
-              <CardMedia
-                component="img"
-                height="95"
-                image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                alt="green iguana"
-              />
-            </Grid>
+            <Marquee
+              style={{ background: "none" }}
+              pauseOnHover={true}
+              gradient={false}
+              loop={0}
+              delay={0}
+              speed={70}
+            >
+              {feed?.items?.map((rssFeed: any, index: number) => {
+                return (
+                  <NewsCard rssFeed={rssFeed} timeAgo={timeAgo} key={index} />
+                );
+              })}
+            </Marquee>
           </Stack>
         </Grid>
 
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
-            alignItems: "center",
-          }}
-        >
-          <Stack
-            direction="row"
-            spacing={3}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
-              paddingBottom: "23px",
-              backgroundColor: "#01061A",
-
-              alignItems: "center",
-            }}
-          >
-            <NewsCard /> <NewsCard /> <NewsCard /> <NewsCard />
-          </Stack>
-        </Grid>
-
-        <Grid
-          xs={12}
-          sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -713,7 +734,7 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "0px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
+
               justifyContent: "space-between",
               alignItems: "center",
             }}
@@ -736,35 +757,20 @@ const HomePage = () => {
         </Grid>
 
         <Grid
+          container
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
+            paddingTop: "23px",
+            paddingBottom: "23px",
           }}
         >
-          <Stack
-            direction="row"
-            spacing={3}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
-              paddingBottom: "23px",
-              backgroundColor: "#01061A",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <AdsCardHome />
-          </Stack>
+          <AdsCardHome />
         </Grid>
 
         <Grid
           xs={12}
           sx={{
-            backgroundColor: "#01061A",
-
             alignItems: "center",
           }}
         >
@@ -776,13 +782,46 @@ const HomePage = () => {
               // borderBottom: "1px solid #1a1545",
               paddingTop: "50px",
               paddingBottom: "23px",
-              backgroundColor: "#01061A",
+
               justifyContent: "space-between",
               alignItems: "center",
             }}
           >
             <CardDeal />
           </Stack>
+        </Grid>
+        <Grid
+          xs={12}
+          sx={{
+            alignItems: "center",
+            paddingTop: "50px",
+            paddingBottom: "23px",
+            marginTop: 10,
+          }}
+        >
+          <BannerCardsHome />
+        </Grid>
+
+        <Grid
+          xs={12}
+          sx={{
+            alignItems: "center",
+            paddingTop: "50px",
+            paddingBottom: "23px",
+          }}
+        >
+          <BannerMap />
+        </Grid>
+
+        <Grid
+          xs={12}
+          sx={{
+            alignItems: "center",
+            paddingTop: "50px",
+            paddingBottom: "23px",
+          }}
+        >
+          <AppFooter />
         </Grid>
       </Grid>
     </Fragment>

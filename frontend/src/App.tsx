@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <Grid
         sx={{
-          backgroundColor: "#01061A",
+          background: "linear-gradient(180deg, #01061A 60%, #00030A)",
         }}
       >
         <Container fixed>

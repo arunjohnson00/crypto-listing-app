@@ -12,7 +12,7 @@ import { fontSize } from "@mui/system";
 
 const FeaturedCoinCards = () => {
   return (
-    <Grid item xs={2.9} mb={3}>
+    <Grid item xs={12} sm={11} md={11} lg={11} xl={11} mb={3}>
       <Box
         sx={{
           borderRadius: "6px",
