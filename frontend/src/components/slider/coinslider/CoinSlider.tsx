@@ -1,36 +1,21 @@
 import React from "react";
 import { Stack, Grid, Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
+import Parser from "html-react-parser";
+import { Helmet } from "react-helmet";
+
+const cryptoSlider = `<div class="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#abb8c3" lcw-marquee-1="coins" lcw-marquee-2="movers" lcw-marquee-items="30" ></div>`;
 
 const CoinSlider = () => {
   return (
     <Grid container xs={12}>
-      <Stack direction="row" spacing={1}>
-        <Grid item xs={2} sx={{ height: "auto" }}>
-          <Stack
-            direction="row"
-            spacing={1}
-            sx={{ color: "white", alignItems: "center" }}
-          >
-            <Avatar
-              alt="Remy Sharp"
-              src="https://mui.com/static/images/avatar/1.jpg"
-              sx={{ width: 24, height: 24 }}
-            />
-            <Typography variant="subtitle2" sx={{ fontSize: "0.775rem" }}>
-              Solana(SQL)
-            </Typography>
-            <Typography variant="caption">$88.47</Typography>
-
-            <Typography
-              variant="caption"
-              sx={{ color: "red", marginLeft: "0px" }}
-            >
-              ↓$2.85
-            </Typography>
-          </Stack>
-        </Grid>
-      </Stack>
+      <Helmet>
+        <script
+          defer
+          src="https://www.livecoinwatch.com/static/lcw-widget.js"
+        ></script>
+      </Helmet>
+      {Parser(cryptoSlider)}
     </Grid>
   );
 };

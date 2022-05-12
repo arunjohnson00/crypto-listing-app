@@ -13,7 +13,11 @@ const AppFooter = () => {
           spacing={3}
         >
           <Grid item xs={4}>
-            <Stack direction="column" spacing={1.5}>
+            <Stack
+              direction="column"
+              spacing={1.5}
+              //  sx={{ alignItems: "center" }}
+            >
               <img
                 src="https://coinxhigh.com/public/assets/images/logo.png"
                 alt="coinxhigh"
@@ -29,7 +33,7 @@ const AppFooter = () => {
               >
                 A new way to payment easy. reliable and 100% secure
               </Typography>
-              <Stack direction="row" spacing={1}>
+              <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
                 <Avatar
                   alt="Remy Sharp"
                   src="https://mui.com/static/images/avatar/1.jpg"
@@ -54,7 +58,11 @@ const AppFooter = () => {
             </Stack>
           </Grid>
           <Grid item xs={4}>
-            <Stack direction="column" spacing={1.5}>
+            <Stack
+              direction="column"
+              spacing={1.5}
+              //  sx={{ alignItems: "center" }}
+            >
               <Typography
                 variant="body2"
                 sx={{ color: "#D0CFD3", fontWeight: "600" }}
@@ -114,7 +122,11 @@ const AppFooter = () => {
             </Stack>
           </Grid>
           <Grid item xs={4}>
-            <Stack direction="column" spacing={1.5}>
+            <Stack
+              direction="column"
+              spacing={1.5}
+              //  sx={{ alignItems: "center" }}
+            >
               <Typography
                 variant="body2"
                 sx={{ color: "#D0CFD3", fontWeight: "600" }}
@@ -174,7 +186,11 @@ const AppFooter = () => {
             </Stack>
           </Grid>
           <Grid item xs={4}>
-            <Stack direction="column" spacing={1.5}>
+            <Stack
+              direction="column"
+              spacing={1.5}
+              // sx={{ alignItems: "center" }}
+            >
               <Typography
                 variant="body2"
                 sx={{ color: "#D0CFD3", fontWeight: "600" }}
@@ -212,10 +228,11 @@ const AppFooter = () => {
         />
 
         <Stack
-          direction="row"
+          direction={{ xs: "column", sm: "column", md: "row" }}
           py={2}
           sx={{ alignItems: "center", justifyContent: "space-between" }}
           px={0}
+          spacing={2}
         >
           <Typography
             variant="body2"

@@ -4,7 +4,7 @@ import MenuCards from "../../cards/menucards/MenuCards";
 const windowInnerWidth = window.innerWidth;
 const BannerCardsHome = () => {
   return (
-    <Grid container xs={12} px={10} py={4}>
+    <Grid container xs={12} px={3} py={4}>
       <Grid container xs={12}>
         <Stack
           direction={{ xs: "column-reverse", sm: "column-reverse", md: "row" }}
@@ -59,7 +59,7 @@ const BannerCardsHome = () => {
             </Stack>
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-            <Stack direction="column" spacing={3} px={5} py={3}>
+            <Stack direction="column" spacing={3} px={3} py={3}>
               <Typography
                 variant="body2"
                 sx={{ fontWeight: "700", color: "#59B9BC", letterSpacing: 3 }}
