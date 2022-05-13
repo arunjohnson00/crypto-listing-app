@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { Grid } from "@mui/material";
 import AppHeader from "../desktop/header/AppHeader";
 import AppFooter from "../desktop/footer/AppFooter";
 import MobileAppHeader from "../mobile/header/MobileAppHeader";
 import MobileAppFooter from "../mobile/footer/MobileAppFooter";
+import MobileBottomNav from "../../components/mobile/bottomnavigation/MobileBottomNav";
 
 const AppView = ({ children }: any) => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -40,7 +41,14 @@ const AppView = ({ children }: any) => {
           paddingBottom: "23px",
         }}
       >
-        {windowInnerWidth >= 900 ? <AppFooter /> : <MobileAppFooter />}
+        {windowInnerWidth >= 900 ? (
+          <AppFooter />
+        ) : (
+          <Fragment>
+            <MobileAppFooter />
+            <MobileBottomNav />
+          </Fragment>
+        )}
       </Grid>
     </Grid>
   );

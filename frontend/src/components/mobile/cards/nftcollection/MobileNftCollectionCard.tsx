@@ -28,7 +28,8 @@ const MobileNftCollectionCard = () => {
         <Box
           sx={{ flexGrow: 1, background: "#282760", height: "73px" }}
           px={2}
-          py={2}
+          pt={2}
+          pb={3}
         >
           <Typography
             variant="body2"

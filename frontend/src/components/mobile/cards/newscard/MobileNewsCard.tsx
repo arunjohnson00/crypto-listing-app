@@ -11,7 +11,7 @@ const MobileNewsCard = ({ rssFeed, timeAgo }: any) => {
           backgroundColor: "#020822",
           borderRadius: "6px",
           border: "1px solid #243464",
-          maxHeight: 170,
+          maxHeight: 200,
           minHeight: 170,
         }}
         px={2}

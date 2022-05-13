@@ -12,7 +12,7 @@ import { fontSize } from "@mui/system";
 
 const MobileFeaturedCoinCards = () => {
   return (
-    <Grid xs={12} sm={12} md={12} lg={12} xl={12} mb={3} mx={2}>
+    <Grid xs={12} sm={12} md={12} lg={12} xl={12} mb={3} mx={0.7}>
       <Box
         sx={{
           borderRadius: "6px",
@@ -70,7 +70,7 @@ const MobileFeaturedCoinCards = () => {
                 defaultValue={5}
                 size="small"
                 readOnly
-                sx={{ fontSize: ".9rem" }}
+                sx={{ fontSize: ".7rem" }}
               />
             </Stack>
           </Stack>

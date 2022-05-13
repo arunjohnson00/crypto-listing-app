@@ -141,7 +141,7 @@ const MobileAppFooter = () => {
             </Stack>
           </Grid>
         </Stack>
-        <Grid item xs={12} pb={4}>
+        <Grid item xs={12} pb={10}>
           <Stack direction="column" spacing={1.5} sx={{ alignItems: "center" }}>
             <img
               src="https://coinxhigh.com/public/assets/images/logo.png"
