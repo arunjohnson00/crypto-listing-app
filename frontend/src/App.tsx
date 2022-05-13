@@ -1,7 +1,8 @@
 import "./App.css";
-import HomePage from "./pages/home/HomePage";
 import Container from "@mui/material/Container";
 import { Grid } from "@mui/material";
+import AppView from "./layouts/view/AppView";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         }}
       >
         <Container fixed>
-          <HomePage />
+          <AppRoutes />
         </Container>
       </Grid>
     </div>
