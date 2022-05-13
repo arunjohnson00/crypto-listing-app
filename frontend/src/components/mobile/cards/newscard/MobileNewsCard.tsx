@@ -2,9 +2,9 @@ import { Grid, Box, Typography, Stack } from "@mui/material";
 import React from "react";
 import Parser from "html-react-parser";
 
-const NewsCard = ({ rssFeed, timeAgo }: any) => {
+const MobileNewsCard = ({ rssFeed, timeAgo }: any) => {
   return (
-    <Grid item xs={11} px={2}>
+    <Grid xs={12} mx={2} mb={1}>
       <Box
         sx={{
           flexGrow: 1,
@@ -13,7 +13,6 @@ const NewsCard = ({ rssFeed, timeAgo }: any) => {
           border: "1px solid #243464",
           maxHeight: 170,
           minHeight: 170,
-          maxWidth: 370,
         }}
         px={2}
         py={2}
@@ -56,4 +55,4 @@ const NewsCard = ({ rssFeed, timeAgo }: any) => {
   );
 };
 
-export default NewsCard;
+export default MobileNewsCard;

@@ -11,7 +11,6 @@ import {
 import Marquee from "react-fast-marquee";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
-import Carousel from "react-multi-carousel";
 
 import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
 import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
@@ -29,7 +28,7 @@ import AdsCardHome from "../../../components/desktop/cards/adscard/AdsCardHome";
 import CardDeal from "../../../components/desktop/banner/carddeal/CardDeal";
 import BannerCardsHome from "../../../components/desktop/banner/bannercardshome/BannerCardsHome";
 import BannerMap from "../../../components/desktop/banner/bannermap/BannerMap";
-
+import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import TrendingCoins from "../../../components/desktop/cards/trendingcoins/TrendingCoins";
 

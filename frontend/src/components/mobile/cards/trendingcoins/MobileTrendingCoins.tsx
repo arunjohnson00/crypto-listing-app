@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Grid, Box, Stack, Avatar, Typography } from "@mui/material";
 import Chart from "react-apexcharts";
 
-const TrendingCoins = () => {
+const MobileTrendingCoins = () => {
   const [data, updateData] = useState([1, 2, 3, 4, 5, 6]);
 
   useEffect(() => {
@@ -124,7 +124,7 @@ const TrendingCoins = () => {
     },
   };
   return (
-    <Grid xs={12} sm={11} md={11} lg={11} xl={11} mb={2}>
+    <Grid xs={12} sm={11} md={11} lg={11} xl={11} mb={2} mx={1}>
       <Box
         sx={{
           backgroundColor: "#01061C",
@@ -192,4 +192,4 @@ const TrendingCoins = () => {
   );
 };
 
-export default TrendingCoins;
+export default MobileTrendingCoins;

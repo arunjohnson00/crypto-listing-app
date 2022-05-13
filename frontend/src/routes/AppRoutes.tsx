@@ -15,14 +15,25 @@ const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <PublicRoutes>
-              <HomePage windowInnerWidth={windowInnerWidth} />
-            </PublicRoutes>
-          }
-        />
+        {windowInnerWidth >= 900 ? (
+          <Route
+            path="/"
+            element={
+              <PublicRoutes>
+                <HomePage windowInnerWidth={windowInnerWidth} />
+              </PublicRoutes>
+            }
+          />
+        ) : (
+          <Route
+            path="/"
+            element={
+              <PublicRoutes>
+                <MobileHomePage />
+              </PublicRoutes>
+            }
+          />
+        )}
         <Route
           path="/mobile"
           element={

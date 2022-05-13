@@ -5,7 +5,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import React from "react";
 
-const NftCollectionCard = () => {
+const MobileNftCollectionCard = () => {
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
       color: "#ff6d75",
@@ -15,7 +15,7 @@ const NftCollectionCard = () => {
     },
   });
   return (
-    <Grid item xs={11}>
+    <Grid item xs={12} mx={1}>
       <Stack direction="column">
         <Box sx={{ flexGrow: 1, background: "#0B1643" }} px={2} py={2}>
           <CardMedia
@@ -74,4 +74,4 @@ const NftCollectionCard = () => {
   );
 };
 
-export default NftCollectionCard;
+export default MobileNftCollectionCard;
