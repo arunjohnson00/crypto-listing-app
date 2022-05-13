@@ -1,21 +1,16 @@
 import { Box, Grid, Stack, Avatar, Typography } from "@mui/material";
 import React from "react";
 
-const MenuCards = ({ width, marginBottom }: any) => {
+const MobileMenuCards = ({ width, marginBottom }: any) => {
   return (
-    <Grid item xs={width && width}>
+    <Grid item xs={width && width} mx={2}>
       <Box
         sx={{ backgroundColor: "#12122C", borderRadius: 2 }}
-        px={2}
         py={2}
+        px={2}
         mb={marginBottom && marginBottom}
       >
         <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-          <Avatar
-            alt="Remy Sharp"
-            src="https://mui.com/static/images/avatar/3.jpg"
-            sx={{ marginBottom: 0, borderRadius: 2 }}
-          />
           <Stack
             direction="column"
             spacing={0}
@@ -40,4 +35,4 @@ const MenuCards = ({ width, marginBottom }: any) => {
   );
 };
 
-export default MenuCards;
+export default MobileMenuCards;

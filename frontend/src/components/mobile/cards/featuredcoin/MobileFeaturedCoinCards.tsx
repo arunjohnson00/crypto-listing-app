@@ -10,9 +10,9 @@ import {
 import Rating from "@mui/material/Rating";
 import { fontSize } from "@mui/system";
 
-const FeaturedCoinCards = () => {
+const MobileFeaturedCoinCards = () => {
   return (
-    <Grid item xs={12} sm={11} md={11} lg={11} xl={11} mb={3}>
+    <Grid xs={12} sm={12} md={12} lg={12} xl={12} mb={3} mx={2}>
       <Box
         sx={{
           borderRadius: "6px",
@@ -316,4 +316,4 @@ const FeaturedCoinCards = () => {
   );
 };
 
-export default FeaturedCoinCards;
+export default MobileFeaturedCoinCards;

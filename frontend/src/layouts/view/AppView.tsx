@@ -3,6 +3,7 @@ import { Grid } from "@mui/material";
 import AppHeader from "../desktop/header/AppHeader";
 import AppFooter from "../desktop/footer/AppFooter";
 import MobileAppHeader from "../mobile/header/MobileAppHeader";
+import MobileAppFooter from "../mobile/footer/MobileAppFooter";
 
 const AppView = ({ children }: any) => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -35,12 +36,11 @@ const AppView = ({ children }: any) => {
       <Grid
         xs={12}
         sx={{
-          alignItems: "center",
           paddingTop: "50px",
           paddingBottom: "23px",
         }}
       >
-        <AppFooter />
+        {windowInnerWidth >= 900 ? <AppFooter /> : <MobileAppFooter />}
       </Grid>
     </Grid>
   );
