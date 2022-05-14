@@ -5,6 +5,7 @@ import HomePage from "../pages/desktop/home/HomePage";
 import PublicRoutes from "./public/PublicRoutes";
 import PrivateRoute from "./private/PrivateRoute";
 import MobileHomePage from "../pages/mobile/MobileHomePage";
+import SingleCoinPage from "../pages/desktop/singlecoinpage/SingleCoinPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -35,10 +36,10 @@ const AppRoutes = () => {
           />
         )}
         <Route
-          path="/mobile"
+          path="/coin"
           element={
             <PublicRoutes>
-              <MobileHomePage />
+              <SingleCoinPage />
             </PublicRoutes>
           }
         />
