@@ -6,6 +6,7 @@ import PublicRoutes from "./public/PublicRoutes";
 import PrivateRoute from "./private/PrivateRoute";
 import MobileHomePage from "../pages/mobile/MobileHomePage";
 import SingleCoinPage from "../pages/desktop/singlecoinpage/SingleCoinPage";
+import SingleNftPage from "../pages/desktop/singlenftpage/SingleNftPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -40,6 +41,14 @@ const AppRoutes = () => {
           element={
             <PublicRoutes>
               <SingleCoinPage />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path="/nft"
+          element={
+            <PublicRoutes>
+              <SingleNftPage />
             </PublicRoutes>
           }
         />

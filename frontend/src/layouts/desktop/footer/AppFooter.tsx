@@ -9,7 +9,7 @@ const AppFooter = () => {
           direction={{ xs: "column", sm: "column", md: "row" }}
           py={10}
           px={0}
-          sx={{ alignItems: "center", justifyContent: "space-between" }}
+          sx={{ justifyContent: "space-between" }}
           spacing={3}
         >
           <Grid item xs={4}>
