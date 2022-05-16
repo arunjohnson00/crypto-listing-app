@@ -55,7 +55,7 @@ const BannerMap = () => {
     radius: 0.35,
     color: "#2D2E35",
     shape: "circle",
-    backgroundColor: "#00030A",
+    backgroundColor: "#00030D",
   });
 
   return (

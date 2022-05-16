@@ -11,7 +11,7 @@ const SingleCoinChip = ({ src, title }: any) => {
         borderRadius: "4px",
         backgroundColor: "#111138",
         padding: 0.5,
-        // marginBottom: 1,
+        marginBottom: ".5em",
         marginRight: 1,
         fontSize: "0.6125rem",
         "&.MuiChip-root .MuiChip-avatar": {

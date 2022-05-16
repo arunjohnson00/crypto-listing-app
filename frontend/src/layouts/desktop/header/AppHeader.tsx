@@ -10,14 +10,15 @@ import AppBarNavBtn from "../../../components/desktop/button/navbutton/AppBarNav
 const AppHeader = ({ windowInnerWidth }: any) => {
   return (
     <Grid spacing={3}>
-      <Box sx={{ width: "100%", backgroundColor: "#01061A" }}>
+      <Box sx={{ width: "100%", backgroundColor: "transparent" }}>
         <AppBar
           position="static"
           sx={{
             dispaly: "flex",
-            backgroundColor: "#01061A",
+            backgroundColor: "transparent",
             paddingTop: "22px",
             paddingBottom: "0px",
+            boxShadow: 0,
           }}
         >
           <Stack

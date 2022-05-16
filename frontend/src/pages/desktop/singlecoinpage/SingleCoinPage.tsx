@@ -16,6 +16,7 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
 import SingleCoinHeader from "../../../components/desktop/singlecoinheader/SingleCoinHeader";
+import SinglePageTab from "../../../components/desktop/singlepagetab/SinglePageTab";
 
 const SingleCoinPage = () => {
   const { parse } = require("rss-to-json");
@@ -153,6 +154,17 @@ const SingleCoinPage = () => {
           }}
         >
           <SingleCoinHeader />
+        </Grid>
+
+        <Grid
+          container
+          xs={12}
+          sx={{
+            alignItems: "center",
+            paddingTop: 2,
+          }}
+        >
+          <SinglePageTab />
         </Grid>
       </Grid>
     </Fragment>
