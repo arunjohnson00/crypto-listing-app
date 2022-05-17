@@ -134,8 +134,8 @@ const AppRegisterPage = () => {
             <CoinSlider />
           </Stack>
         </Grid>
-        <Grid container xs={12} pt={3} pb={15}>
-          <Grid xs={12} sm={12} md={6} lg={6} xl={6} pt={3}>
+        <Grid container xs={12} pt={3}>
+          <Grid xs={12} sm={12} md={6} lg={6} xl={6} pt={3} mb={18}>
             <Stack direction="column" spacing={3} sx={{ alignItems: "center" }}>
               <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
                 <Stack
@@ -547,6 +547,7 @@ I agree to platform terms and Conditions & Privacy Policy"
             xl={6}
             pl={{ sx: 0, sm: 0, md: 4 }}
             mt={{ xs: 7, sm: 7, md: 3 }}
+            mb={18}
           >
             <Stack
               direction="column"

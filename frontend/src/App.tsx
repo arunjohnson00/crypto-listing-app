@@ -14,8 +14,9 @@ function App() {
           sx={{
             background: "linear-gradient(180deg, #01061A 60%, #00030A)",
           }}
+          px={{ xs: 0, sm: 0, md: 7 }}
         >
-          <Container fixed>
+          <Container maxWidth={false}>
             <AppRoutes />
           </Container>
         </Grid>
