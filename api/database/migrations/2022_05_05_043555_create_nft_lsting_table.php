@@ -28,19 +28,18 @@ class CreateNftLstingTable extends Migration
             $table->date('public_mint_end_date')->nullable(true);
             $table->date('public_mint_end_time')->nullable(true);
             
-            $table->string('pre_sale_price')->nullable(true);
+            $table->string('pre_sale_mint_price')->nullable(true);
             $table->string('public_mint_price')->nullable(true);
             
             $table->tinyInteger('is_launch')->default(1)->comment('1-yes,2-No'); 
             $table->tinyInteger('i_agree')->default(1)->comment('1-yes,2-No'); 
             $table->tinyInteger('i_declare')->default(1)->comment('1-yes,2-No'); 
             
-            $table->string('max_num_items')->nullable(true);
             $table->text('image')->nullable(true);
-            
-            //currancy_id 
+            $table->foreign('currancy_id')->references('id')->on('nft_lsting_currency');
+            $table->integer('currancy_id')->unsigned()->nullable(); 
+            $table->string('max_num_items')->nullable(true);
              
-            
             $table->tinyInteger('status')->default(1)->comment('1-Approved,2-Blocked'); 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('approved_at')->nullable();

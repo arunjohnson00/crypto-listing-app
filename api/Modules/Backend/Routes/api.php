@@ -40,6 +40,43 @@ Route::prefix('b')->group(function() {
             Route::get('user-notifications-all', 'UserNotifications\UserNotificationsController@All');
              
             
+            /*
+            |--------------------------------------------------------------------------
+            | Nft Listing Routes   
+            |--------------------------------------------------------------------------
+            */  
+            Route::get('nft-listing', 'NftListing\NftListingController@index');                         /*  List    */     
+            Route::post('nft-listing', 'NftListing\NftListingController@store');                        /*  Create  */   
+            Route::get('nft-listing/{nft_listing_id}/edit', 'NftListing\NftListingController@edit');    /*  Edit    */ 
+            Route::get('nft-listing/{nft_listing_id}/show', 'NftListing\NftListingController@show');    /*  Show    */  
+            Route::post('nft-listing/{nft_listing_id}', 'NftListing\NftListingController@update');      /*  Update  */  
+            Route::delete('nft-listing/{nft_listing_id}', 'NftListing\NftListingController@destroy');   /*  Destroy */
+                /*
+                |--------------------------------------------------------------------------
+                | Nft Listing Category Routes   
+                |--------------------------------------------------------------------------
+                */
+                Route::get('nft-listing-category-all', 'NftListing\NftListingCategoryController@All');   
+                Route::get('nft-listing-category', 'NftListing\NftListingCategoryController@index');                                    /*  List    */     
+                Route::post('nft-listing-category', 'NftListing\NftListingCategoryController@store');                                   /*  Create  */   
+                Route::get('nft-listing-category/{nft_listing_category_id}/edit', 'NftListing\NftListingCategoryController@edit');      /*  Edit    */ 
+                Route::get('nft-listing-category/{nft_listing_category_id}/show', 'NftListing\NftListingCategoryController@show');      /*  Show    */  
+                Route::post('nft-listing-category/{nft_listing_category_id}', 'NftListing\NftListingCategoryController@update');        /*  Update  */  
+                Route::delete('nft-listing-category/{nft_listing_category_id}', 'NftListing\NftListingCategoryController@destroy');     /*  Destroy */
+            
+                /*
+                |--------------------------------------------------------------------------
+                | Nft Listing Currency Routes   
+                |--------------------------------------------------------------------------
+                */
+                Route::get('nft-listing-currency-all', 'NftListing\NftListingCurrencyController@All');   
+                Route::get('nft-listing-currency', 'NftListing\NftListingCurrencyController@index');                                    /*  List    */     
+                Route::post('nft-listing-currency', 'NftListing\NftListingCurrencyController@store');                                   /*  Create  */   
+                Route::get('nft-listing-currency/{nft_listing_currency_id}/edit', 'NftListing\NftListingCurrencyController@edit');      /*  Edit    */ 
+                Route::get('nft-listing-currency/{nft_listing_currency_id}/show', 'NftListing\NftListingCurrencyController@show');      /*  Show    */  
+                Route::post('nft-listing-currency/{nft_listing_currency_id}', 'NftListing\NftListingCurrencyController@update');        /*  Update  */  
+                Route::delete('nft-listing-currency/{nft_listing_currency_id}', 'NftListing\NftListingCurrencyController@destroy');     /*  Destroy */
+            
             
             /*
             |--------------------------------------------------------------------------

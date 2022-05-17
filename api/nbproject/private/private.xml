@@ -3,7 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/xampp/htdocs/coinxhigh/api/database/migrations/2022_04_29_110614_create_coins_socials_table.php</file>
+            <file>file:/F:/xampp/htdocs/coinxhigh/api/database/migrations/2022_05_17_053213_create_pivot_nft_lst_chat_table.php</file>
         </group>
     </open-files>
 </project-private>
