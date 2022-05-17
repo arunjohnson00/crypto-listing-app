@@ -11,9 +11,10 @@ const NewsCardNewsPage = ({ rssFeed, timeAgo }: any) => {
           backgroundColor: "#020822",
           borderRadius: "6px",
           border: "1px solid #243464",
-          maxHeight: 300,
+
           minHeight: 170,
           height: "auto",
+          maxHeight: 400,
           // maxWidth: 370,
         }}
         px={2}
