@@ -16,7 +16,11 @@ const ConnectWalletBtn = () => {
     >
       <Typography
         variant="subtitle2"
-        sx={{ textTransform: "capitalize", color: "white" }}
+        sx={{
+          textTransform: "capitalize",
+          color: "white",
+          fontSize: ".775rem",
+        }}
       >
         Connect Wallet
       </Typography>
