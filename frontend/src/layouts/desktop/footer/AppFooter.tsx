@@ -3,7 +3,7 @@ import React from "react";
 
 const AppFooter = () => {
   return (
-    <Grid item xs={12}>
+    <Grid xs={12}>
       <Box pt={5}>
         <Stack
           direction={{ xs: "column", sm: "column", md: "row" }}
@@ -12,7 +12,7 @@ const AppFooter = () => {
           sx={{ justifyContent: "space-between" }}
           spacing={3}
         >
-          <Grid item xs={4}>
+          <Grid xs={4}>
             <Stack
               direction="column"
               spacing={1.5}

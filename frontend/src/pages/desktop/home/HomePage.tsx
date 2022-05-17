@@ -149,7 +149,6 @@ const HomePage = ({ windowInnerWidth }: any) => {
           container
           xs={12}
           sx={{
-            display: "flex",
             alignItems: "center",
             paddingTop: "0px",
             paddingBottom: "23px",
@@ -251,14 +250,15 @@ const HomePage = ({ windowInnerWidth }: any) => {
             paddingTop: "0px",
             paddingBottom: "23px",
           }}
+          spacing={2}
         >
-          <Grid xs={12} sm={6} md={4} lg={4} xl={4}>
+          <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
             <HighlightCards />
           </Grid>
-          <Grid xs={12} sm={6} md={4} lg={4} xl={4}>
+          <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
             <HighlightCards />
           </Grid>
-          <Grid xs={12} sm={6} md={4} lg={4} xl={4}>
+          <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
             <HighlightCards />
           </Grid>
         </Grid>

@@ -5,7 +5,7 @@ import Avatar from "@mui/material/Avatar";
 
 const HighlightCards = () => {
   return (
-    <Grid item xs={12} sm={11} md={11} lg={11} xl={11} mt={2} mb={2}>
+    <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
       <Box sx={{ backgroundColor: "#010822" }} px={2} pb={3} pt={2}>
         <Stack
           direction="row"

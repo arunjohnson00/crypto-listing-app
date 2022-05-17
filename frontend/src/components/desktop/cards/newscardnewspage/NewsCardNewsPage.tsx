@@ -13,7 +13,7 @@ const NewsCardNewsPage = ({ rssFeed, timeAgo }: any) => {
           border: "1px solid #243464",
 
           minHeight: 170,
-          height: "auto",
+          height: 250,
           maxHeight: 400,
           // maxWidth: 370,
         }}
