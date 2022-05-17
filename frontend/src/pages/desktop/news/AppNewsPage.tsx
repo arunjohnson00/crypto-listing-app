@@ -228,7 +228,7 @@ const AppNewsPage = () => {
             pt={1}
             px={{ xs: 0, sm: 0, md: 0 }}
           >
-            {feed?.items?.map((rssFeed: any, index: number) => {
+            {feed?.items?.slice(3).map((rssFeed: any, index: number) => {
               return (
                 <Grid
                   xs={12}

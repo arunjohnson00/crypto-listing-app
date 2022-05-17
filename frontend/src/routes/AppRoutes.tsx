@@ -9,6 +9,7 @@ import SingleCoinPage from "../pages/desktop/singlecoinpage/SingleCoinPage";
 import SingleNftPage from "../pages/desktop/singlenftpage/SingleNftPage";
 import AppLoginPage from "../pages/desktop/login/AppLoginPage";
 import AppNewsPage from "../pages/desktop/news/AppNewsPage";
+import AppRegisterPage from "../pages/desktop/register/AppRegisterPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -67,6 +68,14 @@ const AppRoutes = () => {
           element={
             <PublicRoutes>
               <AppNewsPage />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoutes>
+              <AppRegisterPage />
             </PublicRoutes>
           }
         />

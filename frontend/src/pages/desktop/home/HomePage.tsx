@@ -61,7 +61,13 @@ const HomePage = ({ windowInnerWidth }: any) => {
 
   useEffect(() => {
     (async () => {
-      var rss = await parse("https://news.coinxhigh.com/feed/");
+      var rss = await parse("https://news.coinxhigh.com/feed/", {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,PATCH,OPTIONS",
+        },
+      });
 
       setFeed(rss);
     })();
