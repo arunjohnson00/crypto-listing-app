@@ -1,7 +1,8 @@
 import { Button, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 import KeyboardArrowDownTwoToneIcon from "@mui/icons-material/KeyboardArrowDownTwoTone";
 
-const AppBarNavBtn = ({ title, iconStatus }: any) => {
+const AppBarNavBtn = ({ title, iconStatus, path }: any) => {
   return (
     <Button
       variant="text"
@@ -12,12 +13,19 @@ const AppBarNavBtn = ({ title, iconStatus }: any) => {
         )
       }
     >
-      <Typography
-        variant="subtitle2"
-        sx={{ textTransform: "capitalize", color: "white" }}
+      <Link
+        to={{
+          pathname: path,
+        }}
+        style={{ textDecoration: "none" }}
       >
-        {title && title}
-      </Typography>
+        <Typography
+          variant="subtitle2"
+          sx={{ textTransform: "capitalize", color: "white" }}
+        >
+          {title && title}
+        </Typography>
+      </Link>
     </Button>
   );
 };

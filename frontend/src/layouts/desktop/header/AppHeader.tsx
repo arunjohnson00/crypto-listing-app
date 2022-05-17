@@ -65,8 +65,8 @@ const AppHeader = ({ windowInnerWidth }: any) => {
               direction="row"
               sx={{ alignItems: "center", justifyContent: "space-between" }}
             >
-              <AppBarNavBtn title="Coins" iconStatus={true} />
-              <AppBarNavBtn title="NFT" iconStatus={true} />
+              <AppBarNavBtn title="Coins" iconStatus={true} path="/coin" />
+              <AppBarNavBtn title="NFT" iconStatus={true} path="/nft" />
               <AppBarNavBtn title="Airdrops" iconStatus={true} />
               <AppBarNavBtn title="AMA" iconStatus={true} />
               <AppBarNavBtn title="KYC" iconStatus={true} />

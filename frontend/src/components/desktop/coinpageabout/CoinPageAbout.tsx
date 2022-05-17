@@ -9,6 +9,7 @@ import {
   Divider,
   CardMedia,
 } from "@mui/material";
+import Iframe from "react-iframe";
 
 const CoinPageAbout = () => {
   return (
@@ -78,11 +79,15 @@ const CoinPageAbout = () => {
         />
 
         <Grid xs={12} pt={4}>
-          <CardMedia
-            component="img"
-            height="500"
-            image="https://img.phemex.com/wp-content/uploads/2019/12/21041957/EMN5mGoU8AAcn-Y.jpeg"
-            alt="green iguana"
+          <Iframe
+            url="https://coinbrain.com/embed/0x55d398326f99059ff775485246999027b3197955?theme=dark&chart=1&trades=1"
+            width="100%"
+            height="1190"
+            id="myId"
+            className="myClassname"
+            display="block"
+            position="relative"
+            frameBorder={0}
           />
         </Grid>
         <Grid xs={12} pt={4}></Grid>
