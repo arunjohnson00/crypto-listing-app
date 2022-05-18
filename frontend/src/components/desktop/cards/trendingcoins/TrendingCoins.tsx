@@ -124,7 +124,7 @@ const TrendingCoins = () => {
     },
   };
   return (
-    <Grid xs={12} sm={11} md={11} lg={11} xl={11} mb={2}>
+    <Grid xs={12} sm={12} md={12} lg={12} xl={12} mb={2}>
       <Box
         sx={{
           backgroundColor: "#01061C",
