@@ -144,7 +144,7 @@ class CoinsController extends Controller
            
                 $validator = Validator::make($request->all(), [
                     "logo"                     => 'mimes:jpg,png,jpeg,gif,JPG,PNG,JPEG,GIF|max:3000', // max 3mb,
-                    'address'                   =>  "unique:coins,address,NULL,id,deleted_at,NULL|max:255",                   'network_id'        =>  "numeric", 
+                    'address'                   =>  "unique:coins,address,$coin_id,id,deleted_at,NULL|max:255",                   'network_id'        =>  "numeric", 
                     'name'                      =>  'required|max:255',           'symbol'            =>  "required|max:255",    
                     'presale_start_date'        =>  "required",                  'presale_end_date'  =>  "required",  
                     "status"                    =>  "required|numeric",         "schedule_date"     =>  "required_if:is_scheduled,==,1"
@@ -157,7 +157,7 @@ class CoinsController extends Controller
             
             $validator = Validator::make($request->all(), [
                "logo"                      =>  'mimes:jpg,png,jpeg,gif,JPG,PNG,JPEG,GIF|max:3000', // max 3mb,
-               'address'                   =>  "unique:coins,address,NULL,id,deleted_at,NULL|max:255",                   'network_id'        =>  "numeric", 
+               'address'                   =>  "unique:coins,address,$coin_id,id,deleted_at,NULL|max:255",                   'network_id'        =>  "numeric", 
                'name'                      =>  'required|max:255',          'symbol'            =>  "required|max:255",    
                'price'                     =>  "required",                  'max_supply'  =>  "required",  
                "status"                    =>  "required|numeric",          "schedule_date"     =>  "required_if:is_scheduled,==,1"
