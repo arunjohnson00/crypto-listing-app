@@ -108,7 +108,10 @@ const NFTListingAdd = () => {
   const nftListingAddHandler = () => {
     var formData = new FormData(document.querySelector("#coinForm") as any);
 
-    console.log();
+    for (var i = 0; i < eventCategoryMultiple.length; i++) {
+      formData.append(`category_id[${i}]`, eventCategoryMultiple[i]);
+    }
+
     formData.append(
       "pre_sale_start_date",
       dateFormat(new Date(presaleDate.start_date), "yyyy-mm-dd")
@@ -143,10 +146,10 @@ const NFTListingAdd = () => {
       dateFormat(new Date(publicMintDate.end_time), " h:MM:ss TT")
     );
     formData.append("image", addCoinLogo.coinLogo);
-    formData.append("category_id", eventCategoryMultiple);
+
     const successHandler = (res: any) => {
       console.log(res);
-      setLoading(true);
+      //setLoading(true);
       toast.success(`${res.data.message}`, {
         position: "top-right",
         autoClose: 7000,
@@ -156,9 +159,9 @@ const NFTListingAdd = () => {
         draggable: true,
       });
 
-      setTimeout(() => {
-        navigate("/nft-listing");
-      }, 3000);
+      // setTimeout(() => {
+      //   navigate("/nft-listing");
+      // }, 3000);
     };
 
     const errorHandler = (err: any) => {
@@ -486,7 +489,7 @@ const NFTListingAdd = () => {
                         setInputSelectMultipleValue={setEventCategoryMultiple}
                         getInputSelectMultiplevalue={eventCategoryMultiple}
                         selectOptions={nftListingCategoryList}
-                        name="category_id "
+                        // name="category_id "
                       />
                     </Grid>
                   </Grid>
@@ -511,7 +514,6 @@ const NFTListingAdd = () => {
                       <InputDate
                         date={presaleDate}
                         setDate={setPresaleDate}
-                        name="pre_sale_start_date"
                         id="pre_sale_start_date"
                         presaleStart={true}
                         disabled={launchDate}
@@ -521,7 +523,6 @@ const NFTListingAdd = () => {
                       <InputTime
                         time={presaleDate}
                         setTime={setPresaleDate}
-                        name="pre_sale_start_time"
                         id="pre_sale_start_time"
                         presaleStart={true}
                         disabled={launchDate}
@@ -554,7 +555,6 @@ const NFTListingAdd = () => {
                         <InputDate
                           date={presaleDate}
                           setDate={setPresaleDate}
-                          name="pre_sale_end_date"
                           id="pre_sale_end_date"
                           presaleEnd={true}
                           disabled={launchDate}
@@ -564,7 +564,6 @@ const NFTListingAdd = () => {
                         <InputTime
                           time={presaleDate}
                           setTime={setPresaleDate}
-                          name="pre_sale_end_time"
                           id="pre_sale_end_time"
                           presaleEnd={true}
                           disabled={launchDate}
@@ -598,7 +597,6 @@ const NFTListingAdd = () => {
                       <InputDate
                         date={publicMintDate}
                         setDate={setPublicMintDate}
-                        name="public_mint_start_date"
                         id="public_mint_start_date"
                         publicMintStart={true}
                         disabled={launchDate}
@@ -608,7 +606,6 @@ const NFTListingAdd = () => {
                       <InputTime
                         time={publicMintDate}
                         setTime={setPublicMintDate}
-                        name="public_mint_start_time"
                         id="public_mint_start_time"
                         publicMintStart={true}
                         disabled={launchDate}
@@ -641,7 +638,6 @@ const NFTListingAdd = () => {
                         <InputDate
                           date={publicMintDate}
                           setDate={setPublicMintDate}
-                          name="public_mint_end_date"
                           id="public_mint_end_date"
                           publicMintEnd={true}
                           disabled={launchDate}
@@ -651,7 +647,6 @@ const NFTListingAdd = () => {
                         <InputTime
                           time={publicMintDate}
                           setTime={setPublicMintDate}
-                          name="public_mint_end_time"
                           id="public_mint_end_time"
                           publicMintEnd={true}
                           disabled={launchDate}
