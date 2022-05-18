@@ -59,7 +59,11 @@ const CoinPageMarket = () => {
               my={2}
               sx={{ justifyContent: "space-between" }}
             >
-              <Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "row" }}
+                spacing={1}
+                sx={{ alignItems: "center" }}
+              >
                 <Avatar
                   alt="Remy Sharp"
                   src="https://mui.com/static/images/avatar/1.jpg"
@@ -80,7 +84,7 @@ const CoinPageMarket = () => {
               <Button
                 variant="contained"
                 startIcon={<MoodIcon />}
-                sx={{ backgroundColor: "#6252E7" }}
+                sx={{ backgroundColor: "#6252E7", textTransform: "capitalize" }}
               >
                 By on pancakeswap
               </Button>
@@ -92,7 +96,11 @@ const CoinPageMarket = () => {
               my={2}
               sx={{ justifyContent: "space-between" }}
             >
-              <Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "row" }}
+                spacing={1}
+                sx={{ alignItems: "center" }}
+              >
                 <Avatar
                   alt="Remy Sharp"
                   src="https://mui.com/static/images/avatar/1.jpg"
@@ -113,18 +121,23 @@ const CoinPageMarket = () => {
               <Button
                 variant="contained"
                 startIcon={<MoodIcon />}
-                sx={{ backgroundColor: "#6252E7" }}
+                sx={{ backgroundColor: "#6252E7", textTransform: "capitalize" }}
               >
                 By on pancakeswap
               </Button>
             </Stack>
+
             <Stack
               direction="row"
               spacing={3}
               my={2}
               sx={{ justifyContent: "space-between" }}
             >
-              <Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "row" }}
+                spacing={1}
+                sx={{ alignItems: "center" }}
+              >
                 <Avatar
                   alt="Remy Sharp"
                   src="https://mui.com/static/images/avatar/1.jpg"
@@ -145,18 +158,23 @@ const CoinPageMarket = () => {
               <Button
                 variant="contained"
                 startIcon={<MoodIcon />}
-                sx={{ backgroundColor: "#6252E7" }}
+                sx={{ backgroundColor: "#6252E7", textTransform: "capitalize" }}
               >
                 By on pancakeswap
               </Button>
             </Stack>
+
             <Stack
               direction="row"
               spacing={3}
               my={2}
               sx={{ justifyContent: "space-between" }}
             >
-              <Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "row" }}
+                spacing={1}
+                sx={{ alignItems: "center" }}
+              >
                 <Avatar
                   alt="Remy Sharp"
                   src="https://mui.com/static/images/avatar/1.jpg"
@@ -177,50 +195,23 @@ const CoinPageMarket = () => {
               <Button
                 variant="contained"
                 startIcon={<MoodIcon />}
-                sx={{ backgroundColor: "#6252E7" }}
+                sx={{ backgroundColor: "#6252E7", textTransform: "capitalize" }}
               >
                 By on pancakeswap
               </Button>
             </Stack>
+
             <Stack
               direction="row"
               spacing={3}
               my={2}
               sx={{ justifyContent: "space-between" }}
             >
-              <Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="https://mui.com/static/images/avatar/1.jpg"
-                  sx={{ height: 32, width: 32 }}
-                />
-
-                <Typography
-                  variant="h6"
-                  sx={{
-                    color: "#FFFFF5",
-                    fontWeight: 400,
-                    lineHeight: 1,
-                  }}
-                >
-                  Pancakeswap
-                </Typography>
-              </Stack>
-              <Button
-                variant="contained"
-                startIcon={<MoodIcon />}
-                sx={{ backgroundColor: "#6252E7" }}
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "row" }}
+                spacing={1}
+                sx={{ alignItems: "center" }}
               >
-                By on pancakeswap
-              </Button>
-            </Stack>
-            <Stack
-              direction="row"
-              spacing={3}
-              my={2}
-              sx={{ justifyContent: "space-between" }}
-            >
-              <Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
                 <Avatar
                   alt="Remy Sharp"
                   src="https://mui.com/static/images/avatar/1.jpg"
@@ -241,71 +232,7 @@ const CoinPageMarket = () => {
               <Button
                 variant="contained"
                 startIcon={<MoodIcon />}
-                sx={{ backgroundColor: "#6252E7" }}
-              >
-                By on pancakeswap
-              </Button>
-            </Stack>
-            <Stack
-              direction="row"
-              spacing={3}
-              my={2}
-              sx={{ justifyContent: "space-between" }}
-            >
-              <Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="https://mui.com/static/images/avatar/1.jpg"
-                  sx={{ height: 32, width: 32 }}
-                />
-
-                <Typography
-                  variant="h6"
-                  sx={{
-                    color: "#FFFFF5",
-                    fontWeight: 400,
-                    lineHeight: 1,
-                  }}
-                >
-                  Pancakeswap
-                </Typography>
-              </Stack>
-              <Button
-                variant="contained"
-                startIcon={<MoodIcon />}
-                sx={{ backgroundColor: "#6252E7" }}
-              >
-                By on pancakeswap
-              </Button>
-            </Stack>
-            <Stack
-              direction="row"
-              spacing={3}
-              my={2}
-              sx={{ justifyContent: "space-between" }}
-            >
-              <Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="https://mui.com/static/images/avatar/1.jpg"
-                  sx={{ height: 32, width: 32 }}
-                />
-
-                <Typography
-                  variant="h6"
-                  sx={{
-                    color: "#FFFFF5",
-                    fontWeight: 400,
-                    lineHeight: 1,
-                  }}
-                >
-                  Pancakeswap
-                </Typography>
-              </Stack>
-              <Button
-                variant="contained"
-                startIcon={<MoodIcon />}
-                sx={{ backgroundColor: "#6252E7" }}
+                sx={{ backgroundColor: "#6252E7", textTransform: "capitalize" }}
               >
                 By on pancakeswap
               </Button>

@@ -168,7 +168,10 @@ const SingleCoinHeader = () => {
                   <Button
                     variant="contained"
                     startIcon={<MoodIcon />}
-                    sx={{ backgroundColor: "#6252E7" }}
+                    sx={{
+                      backgroundColor: "#6252E7",
+                      textTransform: "capitalize",
+                    }}
                   >
                     By on pancakeswap
                   </Button>
@@ -243,7 +246,7 @@ const SingleCoinHeader = () => {
           <Stack
             direction={{ xs: "column", sm: "column", md: "column", lg: "row" }}
             spacing={1}
-            sx={{ alignItems: "center" }}
+            sx={{ alignItems: "center", justifyContent: "space-between" }}
           >
             <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
               <Stack
@@ -367,7 +370,11 @@ const SingleCoinHeader = () => {
               >
                 {" "}
                 <Typography variant="subtitle2" sx={{ color: "#FFFFF5" }}>
-                  0xED3F52c46280ad96485323Fb6a51242cb4CA45F5
+                  {"0xED3F52c46280ad96485323Fb6a51242cb4CA45F5".substring(
+                    0,
+                    28
+                  )}
+                  ...
                 </Typography>
                 <CopyToClipboard
                   options={{ message: "" }}
@@ -560,7 +567,7 @@ const SingleCoinHeader = () => {
           <Stack
             direction={{ xs: "column", sm: "column", md: "column", lg: "row" }}
             spacing={1}
-            sx={{ alignItems: "center" }}
+            sx={{ alignItems: "center", justifyContent: "space-between" }}
           >
             <Stack
               direction={{ xs: "column", sm: "column", md: "column" }}

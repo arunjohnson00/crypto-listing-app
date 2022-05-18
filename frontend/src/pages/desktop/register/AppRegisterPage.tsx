@@ -165,7 +165,7 @@ const AppRegisterPage = () => {
                 lg={12}
                 xl={12}
                 sx={{ width: "100%" }}
-                px={{ xs: 2, sm: 0, md: 8 }}
+                px={{ xs: 0, sm: 0, md: 8 }}
                 py={{ xs: 0, sm: 0, md: 1 }}
               >
                 <Box
@@ -174,9 +174,9 @@ const AppRegisterPage = () => {
                     background: "linear-gradient(180deg, #020822, #030619)",
                     borderRadius: 4,
                     height: 363,
-                    paddingX: 7,
-                    paddingY: 7,
                   }}
+                  px={{ xs: 2, sm: 2, md: 7 }}
+                  py={{ xs: 5, sm: 5, md: 7 }}
                 >
                   <Stack
                     direction="column"
@@ -562,19 +562,21 @@ I agree to platform terms and Conditions & Privacy Policy"
               />
               <Stack
                 direction="column"
-                sx={{ alignItems: "flex-start" }}
                 spacing={0}
                 pt={3}
+                alignItems={{ xs: "center", sm: "center", md: "flex-start" }}
               >
                 <Typography
                   variant="h4"
                   sx={{ color: "#FFFFF5", fontWeight: 700 }}
+                  textAlign={{ xs: "center", sm: "center", md: "left" }}
                 >
                   Words fast emerging
                 </Typography>
                 <Typography
                   variant="subtitle1"
                   sx={{ color: "#5A5B63", fontWeight: 600 }}
+                  textAlign={{ xs: "center", sm: "center", md: "left" }}
                 >
                   Crypto Listing & News Platform
                 </Typography>

@@ -15,7 +15,7 @@ function App() {
             background: "linear-gradient(180deg, #01061A 60%, #00030A)",
           }}
         >
-          <Container maxWidth="lg">
+          <Container maxWidth="xl">
             <AppRoutes />
           </Container>
         </Grid>

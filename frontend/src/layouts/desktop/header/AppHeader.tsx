@@ -9,8 +9,8 @@ import AppBarNavBtn from "../../../components/desktop/button/navbutton/AppBarNav
 
 const AppHeader = ({ windowInnerWidth }: any) => {
   return (
-    <Grid>
-      <Box sx={{ width: "100%", backgroundColor: "transparent" }} mt={4}>
+    <Grid xs={12}>
+      <Box sx={{ flexGrow: 1, backgroundColor: "transparent" }} mt={4}>
         <AppBar
           position="static"
           sx={{
@@ -29,35 +29,21 @@ const AppHeader = ({ windowInnerWidth }: any) => {
               paddingBottom: "40px",
             }}
           >
-            <Grid xs={12} sm={4.5} md={5} lg={6} xl={6}>
-              <img
-                src="https://coinxhigh.com/public/assets/images/logo.png"
-                alt="coinxhigh"
-                width="200px"
-              />
-            </Grid>
-            <Grid
-              xs={12}
-              sm={7.5}
-              md={7}
-              lg={6}
-              xl={6}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
+            <img
+              src="https://coinxhigh.com/public/assets/images/logo.png"
+              alt="coinxhigh"
+              width="200px"
+            />
+
+            <Stack
+              direction={{ xs: "column", sm: "column", md: "row" }}
+              spacing={1}
             >
-              <Stack
-                direction={{ xs: "column", sm: "column", md: "row" }}
-                spacing={1}
-              >
-                <AppBarSearch />
-                <ConnectWalletBtn />
-                <AddAsset />
-                <LoginHeaderBtn />
-              </Stack>
-            </Grid>
+              <AppBarSearch />
+              <ConnectWalletBtn />
+              <AddAsset />
+              <LoginHeaderBtn />
+            </Stack>
           </Stack>
           {windowInnerWidth >= 900 && (
             <Stack
