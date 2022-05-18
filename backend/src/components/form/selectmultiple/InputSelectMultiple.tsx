@@ -29,7 +29,9 @@ const InputSelectMultiple = ({
   currentStatus,
   setInputSelectMultipleValue,
   getInputSelectMultiplevalue,
+  name,
 }: any) => {
+  console.log(selectOptions);
   const theme = useTheme();
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
@@ -59,14 +61,14 @@ const InputSelectMultiple = ({
     );
     //${optionSelected[0].title}
 
-    toast.success(`Event Category Selected  `, {
-      position: "top-right",
-      autoClose: 7000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    });
+    // toast.warn(`Category Selected  `, {
+    //   position: "top-right",
+    //   autoClose: 7000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   draggable: true,
+    // });
   };
 
   //console.log(optionSelected[0].value);
@@ -80,6 +82,7 @@ const InputSelectMultiple = ({
         onChange={handleChange}
         //  input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
         inputProps={{ "aria-label": "Without label" }}
+        name={name}
         sx={{
           height: "auto",
           width: "auto",
@@ -106,17 +109,17 @@ const InputSelectMultiple = ({
             }
           </span>
         </MenuItem>
-        {selectOptions.map((option: any, index: number) => {
+        {selectOptions?.map((option: any, index: number) => {
           return (
             <MenuItem
               key={index}
-              value={option}
+              value={option.id}
               style={getStyles(option, getInputSelectMultiplevalue, theme)}
             >
               <Checkbox
-                checked={getInputSelectMultiplevalue.indexOf(option) > -1}
+                checked={getInputSelectMultiplevalue.indexOf(option.id) > -1}
               />
-              <ListItemText primary={option} />
+              <ListItemText primary={option.name} />
             </MenuItem>
           );
         })}

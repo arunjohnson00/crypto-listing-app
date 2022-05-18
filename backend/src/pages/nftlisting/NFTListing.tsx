@@ -50,7 +50,7 @@ const NFTListing = () => {
       disableClickEventBubbling: true,
       renderCell: (params: any) => (
         <Avatar
-          src={`${serverAPIUrl}public/uploads/nft_marketplace_icons/${params.row.thumb_icon}`}
+          src={`${serverAPIUrl}public/uploads/nft_listing_image/${params.row.image}`}
           alt={params.thumb_icon}
         />
       ),
@@ -117,7 +117,7 @@ const NFTListing = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/nft-listings/add">
+            <Link to="/nft-listing/add">
               <LargeBtn Title="Add NFT" />
             </Link>
           </Grid>
@@ -134,7 +134,7 @@ const NFTListing = () => {
           sx={{ display: "flex", justifyContent: "flex-end" }}
         >
           {" "}
-          <Link to="/nft-listings/add">
+          <Link to="/nft-listing/add">
             <LargeBtn Title="Add NFT" />
           </Link>
         </Stack>

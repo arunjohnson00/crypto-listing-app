@@ -18,8 +18,8 @@ const SocialNFTDetails = ({
             Select Platform {index + 2}
           </Typography>
           <InputSelectCoin
-            name={`social_platform[${index + 2}]`}
-            id={`social_platform_${index + 2}`}
+            name={`social_platform_id[${index + 2}]`}
+            id={`social_platform_id_${index + 2}`}
             data={data}
           />
         </Grid>

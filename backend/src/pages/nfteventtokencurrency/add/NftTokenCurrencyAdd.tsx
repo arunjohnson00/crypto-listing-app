@@ -11,7 +11,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { addCoinAuditRequest } from "../../../store/action";
+import { addNftListingCurrencyRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
 
 const NftTokenCurrencyAdd = () => {
@@ -19,16 +19,17 @@ const NftTokenCurrencyAdd = () => {
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(false);
-  const [addCoinAuditData, setAddCoinAudit] = useState<any>({
+  const [addNFTListingCurrencyData, setAddNFTListingCurrency] = useState<any>({
     name: "",
-    status: 1,
+    status: "",
+    symbol: "",
   });
 
-  console.log(addCoinAuditData);
+  console.log(addNFTListingCurrencyData);
 
   // Display the key/value pairs
 
-  const coinAuditAddHandler = () => {
+  const nftListingCurrencyAddHandler = () => {
     const successHandler = (res: any) => {
       console.log(res);
       setLoading(true);
@@ -42,7 +43,7 @@ const NftTokenCurrencyAdd = () => {
       });
 
       setTimeout(() => {
-        navigate("/coins-audit");
+        navigate("/nft-listing-currency");
       }, 3000);
     };
 
@@ -60,17 +61,26 @@ const NftTokenCurrencyAdd = () => {
 
     const formData = new FormData();
 
-    formData.append("name", addCoinAuditData.name);
+    formData.append("name", addNFTListingCurrencyData.name);
+    formData.append("symbol", addNFTListingCurrencyData.symbol);
 
-    formData.append("status", addCoinAuditData.status);
+    formData.append("status", addNFTListingCurrencyData.status);
 
-    dispatch(addCoinAuditRequest(formData, successHandler, errorHandler));
+    dispatch(
+      addNftListingCurrencyRequest(formData, successHandler, errorHandler)
+    );
   };
 
-  const coinAuditNameHandler = (e: any) => {
+  const nftListingCurrencyNameHandler = (e: any) => {
     //console.log(e);
 
-    setAddCoinAudit({ ...addCoinAuditData, name: e });
+    setAddNFTListingCurrency({ ...addNFTListingCurrencyData, name: e });
+  };
+
+  const nftListingCurrencySymbolHandler = (e: any) => {
+    //console.log(e);
+
+    setAddNFTListingCurrency({ ...addNFTListingCurrencyData, symbol: e });
   };
 
   const selectOptions = [
@@ -90,13 +100,13 @@ const NftTokenCurrencyAdd = () => {
             <IconButton>
               <ArrowBackIosTwoToneIcon
                 onClick={() => {
-                  navigate("/coins-audit");
+                  navigate("/nft-listing-currency");
                 }}
               />
             </IconButton>
 
             <Typography variant="h5" sx={{ textAlign: "left" }}>
-              Add Audit
+              Add NFT Currency
             </Typography>
           </Stack>
         </Grid>
@@ -108,12 +118,24 @@ const NftTokenCurrencyAdd = () => {
           >
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
-                Audit Name
+                Currency Name
               </Typography>
 
               <InputText
-                placeholder="Enter audit Name"
-                inputTextHandler={(e: any) => coinAuditNameHandler(e)}
+                placeholder="Enter Currency Name"
+                inputTextHandler={(e: any) => nftListingCurrencyNameHandler(e)}
+              />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Currency Symbol
+              </Typography>
+
+              <InputText
+                placeholder="Enter Currency Symbol"
+                inputTextHandler={(e: any) =>
+                  nftListingCurrencySymbolHandler(e)
+                }
               />
             </Grid>
 
@@ -124,9 +146,9 @@ const NftTokenCurrencyAdd = () => {
 
               <InputSelect
                 selectOptions={selectOptions}
-                currentStatus={addCoinAuditData.status}
-                setInputSelectValue={setAddCoinAudit}
-                getInputSelectvalue={addCoinAuditData}
+                currentStatus={addNFTListingCurrencyData.status}
+                setInputSelectValue={setAddNFTListingCurrency}
+                getInputSelectvalue={addNFTListingCurrencyData}
               />
             </Grid>
 
@@ -153,8 +175,8 @@ const NftTokenCurrencyAdd = () => {
                   </LoadingButton>
                 ) : (
                   <LargeBtn
-                    Title="Update User"
-                    lgBtnHandler={coinAuditAddHandler}
+                    Title="Add Currency Symbol"
+                    lgBtnHandler={nftListingCurrencyAddHandler}
                   />
                 )}
               </Stack>

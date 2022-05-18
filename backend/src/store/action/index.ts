@@ -116,3 +116,21 @@ export { addVideoRequest } from "./videosAction";
 export { editVideoRequest } from "./videosAction";
 export { updateVideoRequest } from "./videosAction";
 export { viewVideoRequest } from "./videosAction";
+
+//Common Nft Listing CategoryActions
+
+export { listNftListingCategoryRequest } from "./nftListingCategoryAction";
+export { addNftListingCategoryRequest } from "./nftListingCategoryAction";
+export { editNftListingCategoryRequest } from "./nftListingCategoryAction";
+export { updateNftListingCategoryRequest } from "./nftListingCategoryAction";
+export { viewNftListingCategoryRequest } from "./nftListingCategoryAction";
+export { allNftListingCategoryRequest } from "./nftListingCategoryAction";
+
+//Common Nft Listing Currency Actions
+
+export { listNftListingCurrencyRequest } from "./nftListingCurrencyAction";
+export { addNftListingCurrencyRequest } from "./nftListingCurrencyAction";
+export { editNftListingCurrencyRequest } from "./nftListingCurrencyAction";
+export { updateNftListingCurrencyRequest } from "./nftListingCurrencyAction";
+export { viewNftListingCurrencyRequest } from "./nftListingCurrencyAction";
+export { allNftListingCurrencyRequest } from "./nftListingCurrencyAction";

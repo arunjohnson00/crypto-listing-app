@@ -79,7 +79,7 @@ const GridEdit = ({ index, navigate, location, dispatch }: any) => {
   };
 
   const handleViewClick = () => {
-    navigate(`${location.pathname}/view`, { state: { id: index } });
+    navigate(`${location.pathname}/view/${index}`, { state: { id: index } });
   };
 
   return (

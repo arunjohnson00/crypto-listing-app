@@ -13,8 +13,8 @@ const ChatNFTDetails = ({ chatCount, index, chatremoveHandle, data }: any) => {
             Chat Platform {index + 2}
           </Typography>
           <InputSelectCoin
-            name={`chat_platform[${index + 2}]`}
-            id={`chat_platform_${index + 2}`}
+            name={`chat_platform_id[${index + 2}]`}
+            id={`chat_platform_id_${index + 2}`}
             data={data}
           />
         </Grid>

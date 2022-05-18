@@ -1,43 +1,45 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import InputText from "../../../components/form/input/text/InputText";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { updateCoinAuditRequest } from "../../../store/action";
+import { editNftListingCategoryRequest } from "../../../store/action";
+import { updateNftListingCategoryRequest } from "../../../store/action";
+
 import InputSelect from "../../../components/form/select/InputSelect";
 
 const NftEventCategoryEdit = () => {
-  const coinAuditList = useSelector((auditList: any) => {
-    return auditList.listCoinAuditReducer.auditListAll.data;
+  let { id } = useParams();
+
+  const nftEventCategoryEdit = useSelector((nftCategoryList: any) => {
+    return nftCategoryList.nftListingCategoryReducer.editNftListingCategory
+      .data;
   });
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location: any = useLocation();
+  // const location: any = useLocation();
 
-  console.log(location.state.id);
-
-  let newArrList = coinAuditList.filter(
-    (userData: any) => userData.id === location.state.id
-  );
+  // let newArrList = nftEventCategoryEdit.filter(
+  //   (userData: any) => userData.id === location.state.id
+  // );
   const [loading, setLoading] = useState(false);
-  const [updateCoinAuditData, setUpdateCoinAudit] = useState({
-    id: newArrList[0].id,
-    name: newArrList[0].name,
-    status: newArrList[0].status,
+  const [updateNFTCategoryData, setUpdateNFTCategory] = useState({
+    id: "",
+    name: "",
+    status: "",
   });
 
-  console.log(updateCoinAuditData);
-  // Display the key/value pairs
+  console.log(updateNFTCategoryData.name);
 
-  const coinAuditEditHandler = () => {
+  const nftCategoryEditHandler = () => {
     const successHandler = (res: any) => {
       console.log(res);
       setLoading(true);
@@ -51,7 +53,7 @@ const NftEventCategoryEdit = () => {
       });
 
       setTimeout(() => {
-        navigate("/coins-audit");
+        navigate("/nft-listing-category");
       }, 3000);
     };
 
@@ -68,19 +70,21 @@ const NftEventCategoryEdit = () => {
     };
 
     const formData = new FormData();
-    formData.append("id", updateCoinAuditData.id);
+    formData.append("id", updateNFTCategoryData?.id);
 
-    formData.append("name", updateCoinAuditData.name);
+    formData.append("name", updateNFTCategoryData?.name);
 
-    formData.append("status", updateCoinAuditData.status);
+    formData.append("status", updateNFTCategoryData?.status);
 
-    dispatch(updateCoinAuditRequest(formData, successHandler, errorHandler));
+    dispatch(
+      updateNftListingCategoryRequest(formData, successHandler, errorHandler)
+    );
   };
 
-  const coinAuditNameHandler = (e: any) => {
+  const nftCategoryNameHandler = (e: any) => {
     //console.log(e);
 
-    setUpdateCoinAudit({ ...updateCoinAuditData, name: e });
+    setUpdateNFTCategory({ ...updateNFTCategoryData, name: e });
   };
 
   const selectOptions = [
@@ -88,6 +92,21 @@ const NftEventCategoryEdit = () => {
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      setUpdateNFTCategory({ ...updateNFTCategoryData, ...res.data.data });
+      console.log(res);
+    };
+
+    const errorHandler = (err: any) => {
+      console.log(err);
+    };
+    dispatch(
+      editNftListingCategoryRequest({ id: id }, successHandler, errorHandler)
+    );
+  }, [dispatch, id]);
+
   return (
     <div>
       {" "}
@@ -100,13 +119,13 @@ const NftEventCategoryEdit = () => {
             <IconButton>
               <ArrowBackIosTwoToneIcon
                 onClick={() => {
-                  navigate("/coins-audit");
+                  navigate("/nft-listing-category");
                 }}
               />
             </IconButton>
 
             <Typography variant="h5" sx={{ textAlign: "left" }}>
-              Add Audit
+              Update NFT Event
             </Typography>
           </Stack>
         </Grid>
@@ -118,13 +137,13 @@ const NftEventCategoryEdit = () => {
           >
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
-                Audit Name
+                Event Category Title
               </Typography>
 
               <InputText
-                placeholder="Enter audit Name"
-                inputTextHandler={(e: any) => coinAuditNameHandler(e)}
-                value={newArrList[0].name}
+                placeholder="Enter  Event Category Title"
+                inputTextHandler={(e: any) => nftCategoryNameHandler(e)}
+                value={updateNFTCategoryData?.name}
               />
             </Grid>
 
@@ -135,9 +154,9 @@ const NftEventCategoryEdit = () => {
 
               <InputSelect
                 selectOptions={selectOptions}
-                currentStatus={newArrList[0].status}
-                setInputSelectValue={setUpdateCoinAudit}
-                getInputSelectvalue={updateCoinAuditData}
+                currentStatus={updateNFTCategoryData?.status}
+                setInputSelectValue={setUpdateNFTCategory}
+                getInputSelectvalue={updateNFTCategoryData}
               />
             </Grid>
 
@@ -164,8 +183,8 @@ const NftEventCategoryEdit = () => {
                   </LoadingButton>
                 ) : (
                   <LargeBtn
-                    Title="Update User"
-                    lgBtnHandler={coinAuditEditHandler}
+                    Title="Update Event Category"
+                    lgBtnHandler={nftCategoryEditHandler}
                   />
                 )}
               </Stack>

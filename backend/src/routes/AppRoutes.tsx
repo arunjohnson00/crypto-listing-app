@@ -70,6 +70,14 @@ import NFTListingView from "../pages/nftlisting/view/NFTListingView";
 import CoinListingEdit from "../pages/coinlisting/edit/CoinListingEdit";
 import NotificationAll from "../pages/notification/NotificationAll";
 import CoinListingView from "../pages/coinlisting/view/CoinListingView";
+import NftEventCategory from "../pages/nfteventcategory/NftEventCategory";
+import NftTokenCurrency from "../pages/nfteventtokencurrency/NftTokenCurrency";
+import NftEventCategoryAdd from "../pages/nfteventcategory/add/NftEventCategoryAdd";
+import NftEventCategoryEdit from "../pages/nfteventcategory/edit/NftEventCategoryEdit";
+import NftTokenCurrencyEdit from "../pages/nfteventtokencurrency/edit/NftTokenCurrencyEdit";
+import NftTokenCurrencyAdd from "../pages/nfteventtokencurrency/add/NftTokenCurrencyAdd";
+import NftEventCategoryView from "../pages/nfteventcategory/view/NftEventCategoryView";
+import NftTokenCurrencyView from "../pages/nfteventtokencurrency/view/NftTokenCurrencyView";
 
 const AppRoutes = () => {
   return (
@@ -336,7 +344,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/nft-listings"
+          path="/nft-listing"
           element={
             <PrivateRoute>
               <NFTListing />
@@ -345,7 +353,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/nft-listings/add"
+          path="/nft-listing/add"
           element={
             <PrivateRoute>
               <NFTListingAdd />
@@ -354,7 +362,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/nft-listings/edit/:id"
+          path="/nft-listing/edit/:id"
           element={
             <PrivateRoute>
               <NFTListingEdit />
@@ -363,7 +371,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/nft-listings/view"
+          path="/nft-listing/view"
           element={
             <PrivateRoute>
               <NFTListingView />
@@ -628,6 +636,71 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <NotificationAll />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/nft-listing-category"
+          element={
+            <PrivateRoute>
+              <NftEventCategory />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/nft-listing-category/add"
+          element={
+            <PrivateRoute>
+              <NftEventCategoryAdd />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/nft-listing-category/edit/:id"
+          element={
+            <PrivateRoute>
+              <NftEventCategoryEdit />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/nft-listing-category/view/:id"
+          element={
+            <PrivateRoute>
+              <NftEventCategoryView />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/nft-listing-currency"
+          element={
+            <PrivateRoute>
+              <NftTokenCurrency />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/nft-listing-currency/add"
+          element={
+            <PrivateRoute>
+              <NftTokenCurrencyAdd />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/nft-listing-currency/edit/:id"
+          element={
+            <PrivateRoute>
+              <NftTokenCurrencyEdit />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/nft-listing-currency/view/:id"
+          element={
+            <PrivateRoute>
+              <NftTokenCurrencyView />
             </PrivateRoute>
           }
         />

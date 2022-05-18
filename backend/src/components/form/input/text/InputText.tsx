@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./style";
@@ -13,9 +13,11 @@ const InputText = ({
   width,
   InputProps,
 }: any) => {
-  // console.log(checkboxStatus);
+  const [inputValue, setinputValue] = useState();
+  useEffect(() => {
+    setinputValue(value);
+  }, [value]);
 
-  const [inputValue, setinputValue] = useState(value);
   return (
     <ThemeProvider theme={theme}>
       <TextField
