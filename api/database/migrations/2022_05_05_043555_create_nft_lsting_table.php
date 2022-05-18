@@ -19,14 +19,14 @@ class CreateNftLstingTable extends Migration
             $table->text('slug')->nullable(false);
             $table->text('description')->nullable(true); 
             $table->date('pre_sale_start_date')->nullable(true);
-            $table->date('pre_sale_start_time')->nullable(true);
+            $table->string('pre_sale_start_time')->nullable(true);
             $table->date('pre_sale_end_date')->nullable(true);
-            $table->date('pre_sale_end_time')->nullable(true);
+            $table->string('pre_sale_end_time')->nullable(true);
             
             $table->date('public_mint_start_date')->nullable(true);
-            $table->date('public_mint_start_time')->nullable(true);
+            $table->string('public_mint_start_time')->nullable(true);
             $table->date('public_mint_end_date')->nullable(true);
-            $table->date('public_mint_end_time')->nullable(true);
+            $table->string('public_mint_end_time')->nullable(true);
             
             $table->string('pre_sale_mint_price')->nullable(true);
             $table->string('public_mint_price')->nullable(true);
