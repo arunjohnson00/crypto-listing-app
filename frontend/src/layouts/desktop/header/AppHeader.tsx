@@ -29,7 +29,7 @@ const AppHeader = ({ windowInnerWidth }: any) => {
               paddingBottom: "40px",
             }}
           >
-            <Grid xs={12} sm={4.5} md={5} lg={6.5} xl={6.8}>
+            <Grid xs={12} sm={4.5} md={5} lg={6} xl={6}>
               <img
                 src="https://coinxhigh.com/public/assets/images/logo.png"
                 alt="coinxhigh"
@@ -40,8 +40,8 @@ const AppHeader = ({ windowInnerWidth }: any) => {
               xs={12}
               sm={7.5}
               md={7}
-              lg={5.5}
-              xl={5.2}
+              lg={6}
+              xl={6}
               sx={{
                 display: "flex",
                 alignItems: "center",

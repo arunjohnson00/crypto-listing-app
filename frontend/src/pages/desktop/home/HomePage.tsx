@@ -146,31 +146,34 @@ const HomePage = ({ windowInnerWidth }: any) => {
         </Grid>
 
         <Grid
-          container
           xs={12}
           sx={{
             alignItems: "center",
             paddingTop: "0px",
             paddingBottom: "23px",
           }}
-          spacing={2}
         >
-          <Grid item xs={12} sm={6} md={8} lg={8} xl={8} mb={2}>
-            <CardMedia
-              component="img"
-              height="95"
-              image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-              alt="green iguana"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4} lg={4} xl={4} mb={2}>
-            <CardMedia
-              component="img"
-              height="95"
-              image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-              alt="green iguana"
-            />
-          </Grid>
+          <Stack
+            direction={{ xs: "column", sm: "column", md: "row" }}
+            spacing={2}
+          >
+            <Grid item xs={12} sm={6} md={8} lg={8} xl={8} mb={2}>
+              <CardMedia
+                component="img"
+                height="95"
+                image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                alt="green iguana"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4} lg={4} xl={4} mb={2}>
+              <CardMedia
+                component="img"
+                height="95"
+                image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                alt="green iguana"
+              />
+            </Grid>
+          </Stack>
         </Grid>
 
         <Grid
@@ -234,7 +237,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
                 Highlights
               </Typography>
             </Grid>
-            <Grid item xs={10.5}>
+            <Grid item xs={12}>
               <Divider
                 sx={{ borderColor: "#2D4297", borderBottomWidth: "3px" }}
               />
@@ -243,28 +246,30 @@ const HomePage = ({ windowInnerWidth }: any) => {
         </Grid>
 
         <Grid
-          container
           xs={12}
           sx={{
             alignItems: "center",
             paddingTop: "0px",
             paddingBottom: "23px",
           }}
-          spacing={2}
         >
-          <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-            <HighlightCards />
-          </Grid>
-          <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-            <HighlightCards />
-          </Grid>
-          <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-            <HighlightCards />
-          </Grid>
+          <Stack
+            direction={{ xs: "column", sm: "column", md: "row" }}
+            spacing={2}
+          >
+            <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
+              <HighlightCards />
+            </Grid>
+            <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
+              <HighlightCards />
+            </Grid>
+            <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
+              <HighlightCards />
+            </Grid>
+          </Stack>
         </Grid>
 
         <Grid
-          container
           xs={12}
           sx={{
             alignItems: "center",
@@ -272,82 +277,91 @@ const HomePage = ({ windowInnerWidth }: any) => {
             paddingBottom: "23px",
           }}
         >
-          <Grid
-            xs={12}
-            sm={12}
-            md={12}
-            lg={1}
-            xl={1}
-            sx={{
-              alignItems: "center",
-            }}
+          <Stack
+            direction={{ xs: "column", sm: "column", md: "column", lg: "row" }}
+            spacing={2}
+            alignItems={{ xs: "center" }}
           >
-            <Stack
-              direction="column"
-              sx={{ alignItems: "center" }}
-              py={windowInnerWidth >= 1200 ? 0 : 3}
+            <Grid
+              xs={12}
+              sm={12}
+              md={12}
+              lg={1}
+              xl={1}
+              sx={{
+                alignItems: "center",
+              }}
             >
-              <Typography
-                variant="h3"
+              <Stack
+                direction="column"
+                sx={{ alignItems: "center" }}
+                py={windowInnerWidth >= 1200 ? 0 : 3}
+              >
+                <Typography
+                  variant="h3"
+                  sx={{
+                    color: "white",
+                    writingMode: `${
+                      windowInnerWidth &&
+                      windowInnerWidth >= 1200 &&
+                      "vertical-lr"
+                    }`,
+                    textOrientation: `${
+                      windowInnerWidth && windowInnerWidth >= 1200 && "mixed"
+                    }`,
+                    transform: `${
+                      windowInnerWidth &&
+                      windowInnerWidth >= 1200 &&
+                      "rotate(180deg)"
+                    }`,
+                  }}
+                >
+                  Featured Coins
+                </Typography>
+              </Stack>
+            </Grid>
+            <Grid xs={12} sm={12} md={12} lg={11} xl={11}>
+              <Stack
+                direction={{
+                  xs: "column",
+                  sm: "column",
+                  md: "row",
+                  lg: "row",
+                }}
+                spacing={0}
                 sx={{
-                  color: "white",
-                  writingMode: `${
-                    windowInnerWidth &&
-                    windowInnerWidth >= 1200 &&
-                    "vertical-lr"
-                  }`,
-                  textOrientation: `${
-                    windowInnerWidth && windowInnerWidth >= 1200 && "mixed"
-                  }`,
-                  transform: `${
-                    windowInnerWidth &&
-                    windowInnerWidth >= 1200 &&
-                    "rotate(180deg)"
-                  }`,
+                  alignItems: "flex-start",
+                  flexWrap: "wrap",
+                  justifyContent: "space-between",
                 }}
               >
-                Featured Coins
-              </Typography>
-            </Stack>
-          </Grid>
-          <Grid
-            container
-            xs={12}
-            sm={12}
-            md={12}
-            lg={11}
-            xl={11}
-            sx={{
-              alignItems: "flex-start",
-              flexWrap: "wrap",
-              justifyContent: "space-between",
-            }}
-          >
-            <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
-              <FeaturedCoinCards />
+                <Grid xs={12} sm={6} md={4} lg={12} xl={3}>
+                  <FeaturedCoinCards />
+                </Grid>
+                <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
+                  <FeaturedCoinCards />
+                </Grid>
+                <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
+                  <FeaturedCoinCards />
+                </Grid>
+                <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
+                  <FeaturedCoinCards />
+                </Grid>
+                <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
+                  <FeaturedCoinCards />
+                </Grid>
+                <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
+                  <FeaturedCoinCards />
+                </Grid>
+                <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
+                  <FeaturedCoinCards />
+                </Grid>
+                <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
+                  <FeaturedCoinCards />
+                </Grid>
+              </Stack>
             </Grid>
-            <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
-              <FeaturedCoinCards />
-            </Grid>
-            <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
-              <FeaturedCoinCards />
-            </Grid>
-            <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
-              <FeaturedCoinCards />
-            </Grid>
-            <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
-              <FeaturedCoinCards />
-            </Grid>
-            <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
-              <FeaturedCoinCards />
-            </Grid>
-            <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
-              <FeaturedCoinCards />
-            </Grid>
-            <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
-              <FeaturedCoinCards />
-            </Grid>
-          </Grid>
+          </Stack>
         </Grid>
 
         <Grid
@@ -384,42 +398,40 @@ const HomePage = ({ windowInnerWidth }: any) => {
           </Stack>
         </Grid>
 
-        <Grid
-          container
-          xs={12}
-          sm={12}
-          md={12}
-          lg={12}
-          xl={12}
-          sx={{
-            alignItems: "flex-start",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            paddingTop: "0px",
-            paddingBottom: "23px",
-          }}
-        >
-          <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
-            <TrendingCoins />
-          </Grid>
-          <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
-            <TrendingCoins />
-          </Grid>
-          <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
-            <TrendingCoins />
-          </Grid>
-          <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
-            <TrendingCoins />
-          </Grid>
-          <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
-            <TrendingCoins />
-          </Grid>
-          <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
-            <TrendingCoins />
-          </Grid>
-          <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
-            <TrendingCoins />
-          </Grid>
+        <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
+          <Stack
+            direction={{ xs: "column", sm: "column", md: "row" }}
+            spacing={1}
+            sx={{
+              alignItems: "flex-start",
+              //  flexWrap: "wrap",
+              justifyContent: "space-between",
+              paddingTop: "0px",
+              paddingBottom: "23px",
+            }}
+          >
+            <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
+              <TrendingCoins />
+            </Grid>
+            <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
+              <TrendingCoins />
+            </Grid>
+            <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
+              <TrendingCoins />
+            </Grid>
+            <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
+              <TrendingCoins />
+            </Grid>
+            <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
+              <TrendingCoins />
+            </Grid>
+            <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
+              <TrendingCoins />
+            </Grid>
+            <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
+              <TrendingCoins />
+            </Grid>
+          </Stack>
         </Grid>
 
         <Grid
