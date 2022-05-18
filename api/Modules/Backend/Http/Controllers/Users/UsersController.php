@@ -104,6 +104,7 @@ class UsersController extends Controller
     {
         $user = Users::find($user_id);  $error = null;
         if($user):   
+            
             $validator = Validator::make($request->all(), [
                 'name'      =>  'max:255', 'email'     =>  "max:255|unique:users,email,$user->id,id,deleted_at,NULL|regex:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", 
                 "status"    =>  "numeric", 'password'  =>  'min:6', "avatar"    => 'mimes:jpg,png,jpeg,gif,JPG,PNG,JPEG,GIF|max:3000' // max 3mb,  

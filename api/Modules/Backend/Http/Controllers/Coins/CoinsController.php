@@ -138,6 +138,7 @@ class CoinsController extends Controller
      */
     public function update(Request $request, $coin_id)
     {
+        
         if(!$request->exists('is_presale') &&  !$request->exists('is_launched') ):
             return response()->json(['response'=>false,'message'=>'Coin have issue, please select presale or launched only'],422);
         elseif($request->exists('is_presale') && $request->is_presale==1):
