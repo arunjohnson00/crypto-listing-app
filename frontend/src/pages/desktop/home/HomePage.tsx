@@ -335,7 +335,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
                   justifyContent: "space-between",
                 }}
               >
-                <Grid xs={12} sm={6} md={4} lg={12} xl={3}>
+                <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
                   <FeaturedCoinCards />
                 </Grid>
                 <Grid xs={12} sm={6} md={4} lg={3} xl={3}>

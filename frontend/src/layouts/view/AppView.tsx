@@ -12,27 +12,29 @@ const AppView = ({ children }: any) => {
     setWindowInnerWidth(window.innerWidth);
   });
   return (
-    <Grid ml={5}>
-      <Grid
-        container
-        spacing={5}
-        sx={{
-          dispaly: "flex",
-          //
-          paddingTop: "40px",
-          paddingBottom: "22px",
-        }}
-      >
-        <Grid xs={12}>
-          {windowInnerWidth >= 900 ? (
-            <AppHeader windowInnerWidth={windowInnerWidth} />
-          ) : (
-            <MobileAppHeader />
-          )}
+    <Fragment>
+      <Grid item ml={5}>
+        <Grid
+          container
+          spacing={5}
+          sx={{
+            dispaly: "flex",
+            //
+            paddingTop: "40px",
+            paddingBottom: "22px",
+          }}
+        >
+          <Grid xs={12}>
+            {windowInnerWidth >= 900 ? (
+              <AppHeader windowInnerWidth={windowInnerWidth} />
+            ) : (
+              <MobileAppHeader />
+            )}
+          </Grid>
         </Grid>
-      </Grid>
 
-      <Grid xs={12}>{children}</Grid>
+        <Grid xs={12}>{children}</Grid>
+      </Grid>
 
       <Grid
         xs={12}
@@ -50,7 +52,7 @@ const AppView = ({ children }: any) => {
           </Fragment>
         )}
       </Grid>
-    </Grid>
+    </Fragment>
   );
 };
 

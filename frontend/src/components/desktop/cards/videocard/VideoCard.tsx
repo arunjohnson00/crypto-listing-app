@@ -6,7 +6,7 @@ const VideoCard = () => {
     <Grid item xs={11}>
       <CardMedia
         component="img"
-        height="180"
+        height="130"
         image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
         alt="green iguana"
       />

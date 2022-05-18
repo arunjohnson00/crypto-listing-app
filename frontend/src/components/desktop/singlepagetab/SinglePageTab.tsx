@@ -36,7 +36,7 @@ const SinglePageTab = () => {
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <TabList
             variant="scrollable"
-            scrollButtons={true}
+            //scrollButtons={true}
             onChange={handleChange}
             aria-label="lab API tabs example"
             textColor="inherit"
