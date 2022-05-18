@@ -7,7 +7,7 @@ export const listNftListingRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/nft-marketplaces`,
+    url: `api/b/v1/nft-listing`,
     method: "GET",
     secure: true,
     actionType: NFT_LISTINGS.LIST_NFT_LISTINGS,
@@ -21,7 +21,7 @@ export const addNftListingRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/nft-marketplaces`,
+    url: `api/b/v1/nft-listing`,
     method: "POST",
     secure: true,
     body: values,
@@ -37,7 +37,7 @@ export const editNftListingRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/nft-marketplaces/${values.get("id")}/edit`,
+    url: `api/b/v1/nft-listing/${values.get("id")}/edit`,
     method: "POST",
     secure: true,
     body: values,
@@ -53,7 +53,7 @@ export const updateNftListingRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/nft-marketplaces/${values.get("id")}`,
+    url: `api/b/v1/nft-listing/${values.get("id")}`,
     method: "POST",
     secure: true,
     body: values,
@@ -69,7 +69,7 @@ export const viewNftListingRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/nft-marketplaces/${values.get("id")}/show`,
+    url: `api/b/v1/nft-listing/${values.get("id")}/show`,
     method: "POST",
     secure: true,
     body: values,

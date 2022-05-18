@@ -37,8 +37,12 @@ import ChatNFTDetails from "./ChatNFTDetails";
 import { listCoinChatRequest } from "../../../store/action";
 import { listCoinSocialRequest } from "../../../store/action";
 import { listNftMarketPlaceRequest } from "../../../store/action";
+import { allNftListingCurrencyRequest } from "../../../store/action";
+import { allNftListingCategoryRequest } from "../../../store/action";
 import InputCoinStatusSelect from "../../../components/form/selectcoinstatus/InputCoinStatusSelect";
 import InputDateTime from "../../../components/form/input/datetime/InputDateTime";
+
+import dateFormat, { masks } from "dateformat";
 
 const NFTListingAdd = () => {
   const selectOptions = [
@@ -46,6 +50,15 @@ const NFTListingAdd = () => {
     { title: "Scheduled", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
+
+  const nftListingCurrencyList = useSelector((nftCurrencyList: any) => {
+    return nftCurrencyList.nftListingCurrencyReducer.allNftListingCurrency.data;
+  });
+
+  const nftListingCategoryList = useSelector((nftCategoryList: any) => {
+    return nftCategoryList.nftListingCategoryReducer.allNftListingCategory.data;
+  });
+
   const nftMarketPlaceList = useSelector((nftList: any) => {
     return nftList.nftMarketPlacesReducer.listNftMarketPlaces.data;
   });
@@ -60,18 +73,6 @@ const NFTListingAdd = () => {
 
   const dispatch = useDispatch();
 
-  const eventCategory = [
-    "Oliver Hansen",
-    "Van Henry",
-    "April Tucker",
-    "Ralph Hubbard",
-    "Omar Alexander",
-    "Carlos Abbott",
-    "Miriam Wagner",
-    "Bradley Wilkerson",
-    "Virginia Andrews",
-    "Kelly Snyder",
-  ];
   const [checked, setChecked] = useState<any>({
     i_agree: false,
     i_declare: false,
@@ -80,9 +81,7 @@ const NFTListingAdd = () => {
 
   const [loading, setLoading] = useState(false);
   const [addCoinLogo, setCoinLogo] = useState({ coinLogo: "" });
-  const [eventCategoryMultiple, setEventCategoryMultiple] = useState<string[]>(
-    []
-  );
+  const [eventCategoryMultiple, setEventCategoryMultiple] = useState<any>([]);
 
   const [coinPublishStatus, setPublishCoinStatus] = useState<any>({
     status: "",
@@ -108,9 +107,45 @@ const NFTListingAdd = () => {
 
   const nftListingAddHandler = () => {
     var formData = new FormData(document.querySelector("#coinForm") as any);
+
+    console.log();
+    formData.append(
+      "pre_sale_start_date",
+      dateFormat(new Date(presaleDate.start_date), "yyyy-mm-dd")
+    );
+    formData.append(
+      "pre_sale_start_time",
+      dateFormat(new Date(presaleDate.start_time), " h:MM:ss TT")
+    );
+
+    formData.append(
+      "pre_sale_end_date",
+      dateFormat(new Date(presaleDate.end_date), "yyyy-mm-dd")
+    );
+    formData.append(
+      "pre_sale_end_time",
+      dateFormat(new Date(presaleDate.end_time), " h:MM:ss TT")
+    );
+    formData.append(
+      "public_mint_start_date",
+      dateFormat(new Date(publicMintDate.start_date), "yyyy-mm-dd")
+    );
+    formData.append(
+      "public_mint_start_time",
+      dateFormat(new Date(publicMintDate.start_time), " h:MM:ss TT")
+    );
+    formData.append(
+      "public_mint_end_date",
+      dateFormat(new Date(publicMintDate.start_date), "yyyy-mm-dd")
+    );
+    formData.append(
+      "public_mint_end_time",
+      dateFormat(new Date(publicMintDate.end_time), " h:MM:ss TT")
+    );
+    formData.append("image", addCoinLogo.coinLogo);
+    formData.append("category_id", eventCategoryMultiple);
     const successHandler = (res: any) => {
       console.log(res);
-
       setLoading(true);
       toast.success(`${res.data.message}`, {
         position: "top-right",
@@ -122,7 +157,7 @@ const NFTListingAdd = () => {
       });
 
       setTimeout(() => {
-        navigate("/nft-listings");
+        navigate("/nft-listing");
       }, 3000);
     };
 
@@ -231,6 +266,21 @@ const NFTListingAdd = () => {
     dispatch(
       listNftMarketPlaceRequest("emptyformData", successHandler, errorHandler)
     );
+    dispatch(
+      allNftListingCurrencyRequest(
+        "emptyformData",
+        successHandler,
+        errorHandler
+      )
+    );
+
+    dispatch(
+      allNftListingCategoryRequest(
+        "emptyformData",
+        successHandler,
+        errorHandler
+      )
+    );
   }, [dispatch]);
 
   return (
@@ -244,7 +294,7 @@ const NFTListingAdd = () => {
             <IconButton>
               <ArrowBackIosTwoToneIcon
                 onClick={() => {
-                  navigate("/nft-listings");
+                  navigate("/nft-listing");
                 }}
               />
             </IconButton>
@@ -271,8 +321,8 @@ const NFTListingAdd = () => {
                     <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
                       <InputText
                         placeholder="Eg: 09s8jgggffffay63733773"
-                        id="address"
-                        name="address"
+                        id="title"
+                        name="title"
                         width="auto"
                       />
                     </Grid>
@@ -284,7 +334,10 @@ const NFTListingAdd = () => {
                     </Typography>
 
                     <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
-                      <InputTextArea placeholder="Eg: 09s8jgggffffay63733773" />
+                      <InputTextArea
+                        placeholder="Eg: 09s8jgggffffay63733773"
+                        name="description"
+                      />
                     </Grid>
                   </Grid>
 
@@ -304,8 +357,8 @@ const NFTListingAdd = () => {
                             Marketplace 1
                           </Typography>
                           <InputSelectCoin
-                            name="market_place[1]"
-                            id="market_place_1"
+                            name="marketplace_id[1]"
+                            id="marketplace_id_1"
                             data={nftMarketPlaceList}
                           />
                         </Grid>
@@ -319,8 +372,8 @@ const NFTListingAdd = () => {
                           </Typography>
                           <InputText
                             placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
-                            name="market_place_link[1]"
-                            id="market_place_link_1"
+                            name="marketplace_url[1]"
+                            id="marketplace_url_1"
                             // width="auto"
                           />
                         </Grid>
@@ -364,8 +417,8 @@ const NFTListingAdd = () => {
 
                     <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
                       <CoinUploader
-                        name="logo"
-                        id="logo"
+                        name="image"
+                        id="image"
                         setAddIcon={setCoinLogo}
                         addIconData={addCoinLogo}
                       />
@@ -382,7 +435,10 @@ const NFTListingAdd = () => {
                     </Typography>
 
                     <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
-                      <InputSelectCoin />
+                      <InputSelectCoin
+                        name="currancy_id"
+                        data={nftListingCurrencyList}
+                      />
                     </Grid>
                   </Grid>
 
@@ -398,8 +454,8 @@ const NFTListingAdd = () => {
                     <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
                       <InputText
                         placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
-                        name="market_place_link[1]"
-                        id="market_place_link_1"
+                        name="max_num_items"
+                        id="max_num_items"
                         // width="auto"
                       />
                     </Grid>
@@ -429,7 +485,8 @@ const NFTListingAdd = () => {
                       <InputSelectMultiple
                         setInputSelectMultipleValue={setEventCategoryMultiple}
                         getInputSelectMultiplevalue={eventCategoryMultiple}
-                        selectOptions={eventCategory}
+                        selectOptions={nftListingCategoryList}
+                        name="category_id "
                       />
                     </Grid>
                   </Grid>
@@ -454,8 +511,8 @@ const NFTListingAdd = () => {
                       <InputDate
                         date={presaleDate}
                         setDate={setPresaleDate}
-                        name="presale_start_date[1]"
-                        id="presale_start_date_1"
+                        name="pre_sale_start_date"
+                        id="pre_sale_start_date"
                         presaleStart={true}
                         disabled={launchDate}
                       />
@@ -464,8 +521,8 @@ const NFTListingAdd = () => {
                       <InputTime
                         time={presaleDate}
                         setTime={setPresaleDate}
-                        name="presale_start_time[1]"
-                        id="presale_start_time_1"
+                        name="pre_sale_start_time"
+                        id="pre_sale_start_time"
                         presaleStart={true}
                         disabled={launchDate}
                       />
@@ -497,8 +554,8 @@ const NFTListingAdd = () => {
                         <InputDate
                           date={presaleDate}
                           setDate={setPresaleDate}
-                          name="presale_end_date[1]"
-                          id="presale_end_date_1"
+                          name="pre_sale_end_date"
+                          id="pre_sale_end_date"
                           presaleEnd={true}
                           disabled={launchDate}
                         />
@@ -507,8 +564,8 @@ const NFTListingAdd = () => {
                         <InputTime
                           time={presaleDate}
                           setTime={setPresaleDate}
-                          name="presale_end_time[1]"
-                          id="presale_end_time_1"
+                          name="pre_sale_end_time"
+                          id="pre_sale_end_time"
                           presaleEnd={true}
                           disabled={launchDate}
                         />
@@ -541,8 +598,8 @@ const NFTListingAdd = () => {
                       <InputDate
                         date={publicMintDate}
                         setDate={setPublicMintDate}
-                        name="public_mint_start_date[1]"
-                        id="public_mint_start_date_1"
+                        name="public_mint_start_date"
+                        id="public_mint_start_date"
                         publicMintStart={true}
                         disabled={launchDate}
                       />
@@ -551,8 +608,8 @@ const NFTListingAdd = () => {
                       <InputTime
                         time={publicMintDate}
                         setTime={setPublicMintDate}
-                        name="public_mint_start_time[1]"
-                        id="public_mint_start_time_1"
+                        name="public_mint_start_time"
+                        id="public_mint_start_time"
                         publicMintStart={true}
                         disabled={launchDate}
                       />
@@ -584,8 +641,8 @@ const NFTListingAdd = () => {
                         <InputDate
                           date={publicMintDate}
                           setDate={setPublicMintDate}
-                          name="public_mint_end_date[1]"
-                          id="public_mint_end_date_1"
+                          name="public_mint_end_date"
+                          id="public_mint_end_date"
                           publicMintEnd={true}
                           disabled={launchDate}
                         />
@@ -594,8 +651,8 @@ const NFTListingAdd = () => {
                         <InputTime
                           time={publicMintDate}
                           setTime={setPublicMintDate}
-                          name="public_mint_end_time[1]"
-                          id="public_mint_end_time_1"
+                          name="public_mint_end_time"
+                          id="public_mint_end_time"
                           publicMintEnd={true}
                           disabled={launchDate}
                         />
@@ -624,7 +681,7 @@ const NFTListingAdd = () => {
                     sx={{ alignItems: "center" }}
                   >
                     <InputCheckbox
-                      name="launch_date"
+                      name="is_launch"
                       checked={launchDate}
                       setChecked={setLaunchDate}
                       condition="launch_date"
@@ -660,8 +717,8 @@ const NFTListingAdd = () => {
                       </Typography>
                       <InputText
                         placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
-                        name="market_place_link[1]"
-                        id="market_place_link_1"
+                        name="pre_sale_mint_price"
+                        id="pre_sale_mint_price"
                         // width="auto"
                         InputProps={{
                           endAdornment: (
@@ -696,8 +753,8 @@ const NFTListingAdd = () => {
                       </Typography>
                       <InputText
                         placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
-                        name="market_place_link[1]"
-                        id="market_place_link_1"
+                        name="public_mint_price"
+                        id="public_mint_price"
                         // width="auto"
 
                         InputProps={{
@@ -813,8 +870,8 @@ const NFTListingAdd = () => {
                           Chat Platform
                         </Typography>
                         <InputSelectCoin
-                          name="chat_platform[1]"
-                          id="chat_platform_1"
+                          name="chat_platform_id[1]"
+                          id="chat_platform_id_1"
                           data={nftChatList}
                         />
                       </Grid>
@@ -885,8 +942,8 @@ const NFTListingAdd = () => {
                           Select Platform
                         </Typography>
                         <InputSelectCoin
-                          name="social_platform[1]"
-                          id="social_platform_1"
+                          name="social_platform_id[1]"
+                          id="social_platform_id_1"
                           data={nftSocialList}
                         />
                       </Grid>

@@ -1,30 +1,46 @@
+import { useEffect, useState } from "react";
 import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
-
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import InputText from "../../../components/form/input/text/InputText";
-import { useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { viewNftListingCurrencyRequest } from "../../../store/action";
 
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 
-const CoinsAuditView = () => {
-  const coinAuditList = useSelector((auditList: any) => {
-    return auditList.listCoinAuditReducer.auditListAll.data;
+const NftTokenCurrencyView = () => {
+  const [viewNftListingCurrency, setViewNftListingCurrency] = useState({
+    name: "",
+    status: "",
+    symbol: "",
+  });
+  let { id } = useParams();
+  const dispatch = useDispatch();
+
+  const nftEventCurrencyView = useSelector((nftCurrencyView: any) => {
+    return nftCurrencyView.nftListingCurrencyReducer.viewNftListingCurrency
+      .data;
   });
 
   const navigate = useNavigate();
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setViewNftListingCurrency({
+        ...viewNftListingCurrency,
+        ...res.data.data,
+      });
+    };
 
-  const location: any = useLocation();
-
-  console.log(location.state.id);
-
-  let newArrList = coinAuditList.filter(
-    (userData: any) => userData.id === location.state.id
-  );
-
-  // Display the key/value pairs
+    const errorHandler = (err: any) => {
+      console.log(err);
+    };
+    dispatch(
+      viewNftListingCurrencyRequest({ id: id }, successHandler, errorHandler)
+    );
+  }, [dispatch, id]);
 
   const selectOptions = [
     { title: "Approved", value: 1 },
@@ -43,13 +59,13 @@ const CoinsAuditView = () => {
             <IconButton>
               <ArrowBackIosTwoToneIcon
                 onClick={() => {
-                  navigate("/coins-audit");
+                  navigate("/nft-listing-currency");
                 }}
               />
             </IconButton>
 
             <Typography variant="h5" sx={{ textAlign: "left" }}>
-              Add Audit
+              View NFT Event Currency List
             </Typography>
           </Stack>
         </Grid>
@@ -61,12 +77,22 @@ const CoinsAuditView = () => {
           >
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
-                Audit Name
+                Event currency Title
               </Typography>
 
               <InputText
-                placeholder="Enter audit Name"
-                value={newArrList[0].name}
+                placeholder="Enter Currency Name"
+                value={viewNftListingCurrency?.name}
+              />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Event currency Symbol
+              </Typography>
+
+              <InputText
+                placeholder="Enter Currency Symbol"
+                value={viewNftListingCurrency?.symbol}
               />
             </Grid>
 
@@ -75,7 +101,7 @@ const CoinsAuditView = () => {
                 Status
               </Typography>
 
-              {newArrList[0].status}
+              {viewNftListingCurrency?.status}
             </Grid>
           </Box>
         </Grid>
@@ -84,4 +110,4 @@ const CoinsAuditView = () => {
   );
 };
 
-export default CoinsAuditView;
+export default NftTokenCurrencyView;

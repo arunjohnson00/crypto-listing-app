@@ -7,16 +7,17 @@ import LargeBtn from "../../components/form/button/large/LargeBtn";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
-import { listCoinAuditRequest } from "../../store/action";
+import { listNftListingCurrencyRequest } from "../../store/action";
 
 //const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const NftTokenCurrency = () => {
-  const coinAuditList = useSelector((auditList: any) => {
-    return auditList.listCoinAuditReducer.auditListAll.data;
+  const nftEventCurrencyList = useSelector((nftCurrencyList: any) => {
+    return nftCurrencyList.nftListingCurrencyReducer.listNftListingCurrency
+      .data;
   });
 
-  console.log(coinAuditList);
+  console.log(nftEventCurrencyList);
   const [searchValue, setSearchValue] = useState("");
 
   const searchHandler = (searchVal: any) => {
@@ -24,10 +25,10 @@ const NftTokenCurrency = () => {
   };
 
   var filteredData = searchValue
-    ? coinAuditList.filter((flData: any) => {
+    ? nftEventCurrencyList.filter((flData: any) => {
         return flData.name.toLowerCase().includes(searchValue.toLowerCase());
       })
-    : coinAuditList;
+    : nftEventCurrencyList;
 
   const dispatch = useDispatch();
 
@@ -39,7 +40,9 @@ const NftTokenCurrency = () => {
     const errorHandler = (err: any) => {
       console.log(err);
     };
-    dispatch(listCoinAuditRequest("emptyData", successHandler, errorHandler));
+    dispatch(
+      listNftListingCurrencyRequest("emptyData", successHandler, errorHandler)
+    );
   }, [dispatch]);
 
   const tableColumn = [
@@ -92,12 +95,12 @@ const NftTokenCurrency = () => {
             >
               <Grid item xl={2} lg={2} md={2} sm={12} xs={12}>
                 <Typography variant="h5" sx={{ textAlign: "left" }}>
-                  Audit
+                  NFT Currency
                 </Typography>
               </Grid>
               <Grid item xl={10} lg={10} md={10} sm={12} xs={12}>
                 <InputSearch
-                  placeholder="Search Audit"
+                  placeholder="Search NFT Currency"
                   searchValue={searchValue}
                   searchHandler={searchHandler}
                 />
@@ -114,8 +117,8 @@ const NftTokenCurrency = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/coins-audit/add">
-              <LargeBtn Title="Add new Audit" />
+            <Link to="/nft-listing-currency/add">
+              <LargeBtn Title="Add NFT Currency" />
             </Link>
           </Grid>
         </Stack>
@@ -131,8 +134,8 @@ const NftTokenCurrency = () => {
           sx={{ display: "flex", justifyContent: "flex-end" }}
         >
           {" "}
-          <Link to="/coins-audit/add">
-            <LargeBtn Title="Add new Audit" />
+          <Link to="/nft-listing-currency/add">
+            <LargeBtn Title="Add NFT Currency" />
           </Link>
         </Stack>
       </Grid>
