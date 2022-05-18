@@ -56,7 +56,7 @@ Route::prefix('b')->group(function() {
                 | Nft Listing Category Routes   
                 |--------------------------------------------------------------------------
                 */
-                Route::get('nft-listing-category-all', 'NftListing\NftListingCategoryController@All');   
+                Route::get('nft-listing-category-all', 'NftListing\NftListingCategoryController@All');                                  /*  All    */  
                 Route::get('nft-listing-category', 'NftListing\NftListingCategoryController@index');                                    /*  List    */     
                 Route::post('nft-listing-category', 'NftListing\NftListingCategoryController@store');                                   /*  Create  */   
                 Route::get('nft-listing-category/{nft_listing_category_id}/edit', 'NftListing\NftListingCategoryController@edit');      /*  Edit    */ 

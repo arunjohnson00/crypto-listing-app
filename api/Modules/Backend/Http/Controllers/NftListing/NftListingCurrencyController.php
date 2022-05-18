@@ -6,9 +6,11 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Backend\Entities\NftLstingCurrency;
+use Validator; use \Exception;
 
 class NftListingCurrencyController extends Controller
 {
+    
     public function __construct()
     {    
         $this->createMessage        =   'Nft Listing Currency is created successfully.';
