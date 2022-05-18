@@ -18,8 +18,8 @@ const EventMarketPlace = ({
             Marketplace {index + 2}
           </Typography>
           <InputSelectCoin
-            name={`market_place[${index + 2}]`}
-            id={`market_place_${index + 2}`}
+            name={`marketplace_id[${index + 2}]`}
+            id={`marketplace_id_${index + 2}`}
             data={data}
           />
         </Grid>
@@ -29,8 +29,8 @@ const EventMarketPlace = ({
           </Typography>
           <InputText
             placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
-            name={`market_place_link[${index + 2}]`}
-            id={`market_place_link_${index + 2}`}
+            name={`marketplace_url[${index + 2}]`}
+            id={`marketplace_url_${index + 2}`}
             // width="auto"
           />
         </Grid>

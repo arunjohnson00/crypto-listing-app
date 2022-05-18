@@ -11,7 +11,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { addCoinAuditRequest } from "../../../store/action";
+import { addNftListingCategoryRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
 
 const NftEventCategoryAdd = () => {
@@ -19,16 +19,16 @@ const NftEventCategoryAdd = () => {
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(false);
-  const [addCoinAuditData, setAddCoinAudit] = useState<any>({
+  const [addNFTCategoryData, setAddNFTCategory] = useState<any>({
     name: "",
     status: 1,
   });
 
-  console.log(addCoinAuditData);
+  console.log(addNFTCategoryData);
 
   // Display the key/value pairs
 
-  const coinAuditAddHandler = () => {
+  const nftCategoryAddHandler = () => {
     const successHandler = (res: any) => {
       console.log(res);
       setLoading(true);
@@ -42,7 +42,7 @@ const NftEventCategoryAdd = () => {
       });
 
       setTimeout(() => {
-        navigate("/coins-audit");
+        navigate("/nft-listing-category");
       }, 3000);
     };
 
@@ -60,17 +60,19 @@ const NftEventCategoryAdd = () => {
 
     const formData = new FormData();
 
-    formData.append("name", addCoinAuditData.name);
+    formData.append("name", addNFTCategoryData.name);
 
-    formData.append("status", addCoinAuditData.status);
+    formData.append("status", addNFTCategoryData.status);
 
-    dispatch(addCoinAuditRequest(formData, successHandler, errorHandler));
+    dispatch(
+      addNftListingCategoryRequest(formData, successHandler, errorHandler)
+    );
   };
 
-  const coinAuditNameHandler = (e: any) => {
+  const nftCategoryNameHandler = (e: any) => {
     //console.log(e);
 
-    setAddCoinAudit({ ...addCoinAuditData, name: e });
+    setAddNFTCategory({ ...addNFTCategoryData, name: e });
   };
 
   const selectOptions = [
@@ -90,13 +92,13 @@ const NftEventCategoryAdd = () => {
             <IconButton>
               <ArrowBackIosTwoToneIcon
                 onClick={() => {
-                  navigate("/coins-audit");
+                  navigate("/nft-listing-category");
                 }}
               />
             </IconButton>
 
             <Typography variant="h5" sx={{ textAlign: "left" }}>
-              Add Audit
+              Add Event category
             </Typography>
           </Stack>
         </Grid>
@@ -108,12 +110,12 @@ const NftEventCategoryAdd = () => {
           >
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
-                Audit Name
+                NFT Event Category Title
               </Typography>
 
               <InputText
-                placeholder="Enter audit Name"
-                inputTextHandler={(e: any) => coinAuditNameHandler(e)}
+                placeholder="Enter Event Category Title"
+                inputTextHandler={(e: any) => nftCategoryNameHandler(e)}
               />
             </Grid>
 
@@ -124,9 +126,9 @@ const NftEventCategoryAdd = () => {
 
               <InputSelect
                 selectOptions={selectOptions}
-                currentStatus={addCoinAuditData.status}
-                setInputSelectValue={setAddCoinAudit}
-                getInputSelectvalue={addCoinAuditData}
+                currentStatus={addNFTCategoryData.status}
+                setInputSelectValue={setAddNFTCategory}
+                getInputSelectvalue={addNFTCategoryData}
               />
             </Grid>
 
@@ -153,8 +155,8 @@ const NftEventCategoryAdd = () => {
                   </LoadingButton>
                 ) : (
                   <LargeBtn
-                    Title="Update User"
-                    lgBtnHandler={coinAuditAddHandler}
+                    Title="Add NFT Category"
+                    lgBtnHandler={nftCategoryAddHandler}
                   />
                 )}
               </Stack>
