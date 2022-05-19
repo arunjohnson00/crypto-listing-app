@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 import InputText from "../../../components/form/input/text/InputText";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
@@ -13,6 +13,7 @@ import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import InputSelect from "../../../components/form/select/InputSelect";
 import { updateNetworkRequest } from "../../../store/action";
+import { editNetworkRequest } from "../../../store/action";
 
 const NetworkEdit = () => {
   const selectOptions = [
@@ -21,33 +22,25 @@ const NetworkEdit = () => {
     { title: "Rejected/Blocked", value: 3 },
   ];
 
-  const networkList = useSelector((ntList: any) => {
-    return ntList.networksReducer.listNetworks.data;
-  });
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location: any = useLocation();
+  let { id } = useParams();
 
-  console.log(location.state.id);
-
-  let newArrList = networkList.filter(
-    (listData: any) => listData.id === location.state.id
-  );
-  console.log(newArrList[0].id);
   const [loading, setLoading] = useState(false);
   const [editNetworkData, setEditNetwork] = useState({
-    id: newArrList[0].id,
-    name: newArrList[0].name,
-    status: newArrList[0].status,
-    url: newArrList[0].url,
+    id: "",
+    name: "",
+    status: "",
+    url: "",
     thumb_icon: "",
-    chain_id: newArrList[0].chain_id,
-    explorer_url: newArrList[0].explorer_url,
-    currency_symbol: newArrList[0].currency_symbol,
+    chain_id: "",
+    explorer_url: "",
+    currency_symbol: "",
   });
 
   // Display the key/value pairs
-
+  console.log(editNetworkData);
   const networkEditHandler = () => {
     const successHandler = (res: any) => {
       console.log(res);
@@ -122,6 +115,18 @@ const NetworkEdit = () => {
     setEditNetwork({ ...editNetworkData, currency_symbol: e });
   };
 
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setEditNetwork(res.data.data);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(editNetworkRequest({ id: id }, successHandler, errorHandler));
+  }, [dispatch, id]);
+
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -156,7 +161,7 @@ const NetworkEdit = () => {
             <InputText
               placeholder="Enter network Name"
               inputTextHandler={(e: any) => networkNameHandler(e)}
-              value={newArrList[0].name}
+              value={editNetworkData?.name}
             />
           </Grid>
 
@@ -168,7 +173,7 @@ const NetworkEdit = () => {
             <InputText
               placeholder="Enter network url"
               inputTextHandler={(e: any) => networkURLHandler(e)}
-              value={newArrList[0].url}
+              value={editNetworkData?.url}
             />
           </Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
@@ -179,7 +184,7 @@ const NetworkEdit = () => {
             <InputText
               placeholder="Enter Chain id"
               inputTextHandler={(e: any) => networkChainIdHandler(e)}
-              value={newArrList[0].chain_id}
+              value={editNetworkData?.chain_id}
             />
           </Grid>
 
@@ -191,7 +196,7 @@ const NetworkEdit = () => {
             <InputText
               placeholder="Enter explorer URL"
               inputTextHandler={(e: any) => networkExplURLHandler(e)}
-              value={newArrList[0].explorer_url}
+              value={editNetworkData?.explorer_url}
             />
           </Grid>
 
@@ -203,7 +208,7 @@ const NetworkEdit = () => {
             <InputText
               placeholder="Enter currency symbol"
               inputTextHandler={(e: any) => networkCurrencySymbolHandler(e)}
-              value={newArrList[0].currency_symbol}
+              value={editNetworkData?.currency_symbol}
             />
           </Grid>
 
@@ -225,10 +230,10 @@ const NetworkEdit = () => {
 
             <InputSelect
               selectOptions={selectOptions}
-              // currentStatus={newArrList[0].status}
+              // currentStatus={editNetworkData?.status}
               setInputSelectValue={setEditNetwork}
               getInputSelectvalue={editNetworkData}
-              serverStatus={newArrList[0].status}
+              serverStatus={editNetworkData?.status}
             />
           </Grid>
 

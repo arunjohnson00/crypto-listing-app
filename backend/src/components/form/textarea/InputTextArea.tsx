@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { textareaStyle, rowCount } from "./style";
 
 const InputTextArea = ({ name, id, placeholder, value }: any) => {
   const [textAreaValue, setTextAreaValue] = useState(value);
+
+  useEffect(() => {
+    setTextAreaValue(value);
+  }, [value]);
+
   return (
     <TextareaAutosize
       aria-label="minimum height"

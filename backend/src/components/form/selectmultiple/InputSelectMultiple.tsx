@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useEffect, useState } from "react";
 import { Theme, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 //import OutlinedInput from "@mui/material/OutlinedInput";
@@ -30,8 +30,12 @@ const InputSelectMultiple = ({
   setInputSelectMultipleValue,
   getInputSelectMultiplevalue,
   name,
+  serverMultiRef,
 }: any) => {
-  console.log(selectOptions);
+  const [serverValue, setServerValue] = useState<any>({});
+
+  console.log(serverMultiRef);
+
   const theme = useTheme();
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;

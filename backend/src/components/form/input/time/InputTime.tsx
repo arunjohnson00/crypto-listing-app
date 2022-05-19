@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -13,7 +13,13 @@ const InputTime = ({
   publicMintStart,
   publicMintEnd,
   disabled,
+  ServerValue,
 }: any | number) => {
+  // const [timeUpdate, setTimeUpdate] = useState<any>(ServerValue);
+  // useEffect(() => {
+  //   setTimeUpdate(ServerValue);
+  // }, [ServerValue]);
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <TimePicker

@@ -10,9 +10,14 @@ import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
 import { listNftListingRequest } from "../../store/action";
 
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en.json";
+
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const NFTListing = () => {
+  TimeAgo.addLocale(en);
+  const timeAgo = new TimeAgo("en-US");
   const nftListingsList = useSelector((nftList: any) => {
     return nftList.nftListingsReducer.listNftListings.data;
   });
@@ -25,7 +30,7 @@ const NFTListing = () => {
 
   var filteredData = searchValue
     ? nftListingsList.filter((flData: any) => {
-        return flData.name.toLowerCase().includes(searchValue.toLowerCase());
+        return flData.title.toLowerCase().includes(searchValue.toLowerCase());
       })
     : nftListingsList;
 
@@ -43,6 +48,11 @@ const NFTListing = () => {
 
   const tableColumn = [
     {
+      field: "title",
+      headerName: "NFT Name",
+      flex: 1,
+    },
+    {
       field: "thumb_icon",
       headerName: "Icon",
       flex: 1,
@@ -55,22 +65,49 @@ const NFTListing = () => {
         />
       ),
     },
+
     {
-      field: "name",
-      headerName: "Name",
+      field: "created_at",
+      headerName: "Submitted",
       flex: 1,
+      renderCell: (params: any) =>
+        timeAgo.format(new Date(params.row.created_at)),
     },
 
     {
-      field: "url",
-      headerName: "Url",
+      field: "network",
+      headerName: "Network",
       flex: 1,
     },
-
     {
-      field: "slug",
-      headerName: "Slug",
+      field: "public_mint_start_date",
+      headerName: "Mint date",
       flex: 1,
+    },
+    {
+      field: "public_mint_start_time",
+      headerName: "Mint Time",
+      flex: 1,
+    },
+    {
+      field: "status",
+      headerName: "Status",
+      flex: 1,
+      renderCell: (params: any) => (
+        <span>
+          {parseInt(params.row.status) === 1 && (
+            <span style={{ color: "#64dd17" }}>Approved</span>
+          )}
+
+          {parseInt(params.row.status) === 2 && (
+            <span style={{ color: "#d50000" }}>Scheduled</span>
+          )}
+
+          {parseInt(params.row.status) === 3 && (
+            <span style={{ color: "#6a1b9a" }}>Suspended</span>
+          )}
+        </span>
+      ),
     },
   ];
   return (
