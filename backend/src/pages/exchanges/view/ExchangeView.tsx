@@ -1,23 +1,37 @@
+import { useEffect, useState } from "react";
 import { Grid, Typography, Box, IconButton, Stack } from "@mui/material";
 import InputText from "../../../components/form/input/text/InputText";
-import { useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
+import { viewExchangeRequest } from "../../../store/action";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const ExchangeView = () => {
   const location: any = useLocation();
   const navigate: any = useNavigate();
-  const exchangeList = useSelector((exList: any) => {
-    return exList.listExchangeReducer.exchangeListAll.data;
+  const dispatch: any = useDispatch();
+  let { id } = useParams();
+
+  const [viewExchange, setViewExchange] = useState({
+    name: "",
+    thumb_icon: "",
+    url: "",
   });
 
-  let newArrList = exchangeList.filter(
-    (listData: any) => listData.id === location.state.id
-  );
-  console.log(newArrList);
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setViewExchange(res.data.data);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(viewExchangeRequest({ id: id }, successHandler, errorHandler));
+  }, [dispatch, id]);
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -46,8 +60,8 @@ const ExchangeView = () => {
         >
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
             <img
-              src={`${serverAPIUrl}public/uploads/exchange_icons/${newArrList[0].thumb_icon}`}
-              alt={newArrList[0].thumb_icon}
+              src={`${serverAPIUrl}public/uploads/exchange_icons/${viewExchange?.thumb_icon}`}
+              alt={viewExchange?.thumb_icon}
               width="100%"
             />
           </Grid>
@@ -58,7 +72,7 @@ const ExchangeView = () => {
 
             <InputText
               placeholder="Enter Exchange Name"
-              value={newArrList[0].name}
+              value={viewExchange.name}
             />
           </Grid>
 
@@ -69,7 +83,7 @@ const ExchangeView = () => {
 
             <InputText
               placeholder="Enter Exchange url"
-              value={newArrList[0].url}
+              value={viewExchange.url}
             />
           </Grid>
         </Box>

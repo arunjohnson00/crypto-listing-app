@@ -10,14 +10,6 @@ const serverAPIUrl = process.env.REACT_APP_API_URL;
 const NFTListingView = () => {
   const location: any = useLocation();
   const navigate: any = useNavigate();
-  const nftListingsList = useSelector((nftList: any) => {
-    return nftList.listNftLisingsReducer.nftListingsListAll.data;
-  });
-
-  let newArrList = nftListingsList.filter(
-    (listData: any) => listData.id === location.state.id
-  );
-  console.log(newArrList);
 
   return (
     <Grid container spacing={2}>
@@ -29,13 +21,13 @@ const NFTListingView = () => {
           <IconButton>
             <ArrowBackIosTwoToneIcon
               onClick={() => {
-                navigate("/nft-listings");
+                navigate("/nft-listing");
               }}
             />
           </IconButton>
 
           <Typography variant="h5" sx={{ textAlign: "left" }}>
-            View Nft MarketPlace
+            View NftListing
           </Typography>
         </Stack>
       </Grid>
@@ -45,22 +37,13 @@ const NFTListingView = () => {
           pt={3}
           pl={4}
         >
-          <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-            <img
-              src={`${serverAPIUrl}public/uploads/nft_marketplace_icons/${newArrList[0].thumb_icon}`}
-              alt={newArrList[0].thumb_icon}
-              width="100%"
-            />
-          </Grid>
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12}></Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
             <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
-              Nft Name
+              Nft Listing Name
             </Typography>
 
-            <InputText
-              placeholder="Enter Nft Name"
-              value={newArrList[0].name}
-            />
+            <InputText placeholder="Enter Nft Name" value="test" />
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
@@ -68,7 +51,7 @@ const NFTListingView = () => {
               Nft URL
             </Typography>
 
-            <InputText placeholder="Enter Nft url" value={newArrList[0].url} />
+            <InputText placeholder="Enter Nft url" value="test" />
           </Grid>
         </Box>
       </Grid>

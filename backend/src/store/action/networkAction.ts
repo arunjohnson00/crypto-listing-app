@@ -38,10 +38,9 @@ export const editNetworkRequest = (
   successHandler: any,
   errorHandler: any
 ) => {
-  console.log(...values);
   const fetchOptions = {
-    url: `api/b/v1/networks/${values.get("id")}/edit`,
-    method: "POST",
+    url: `api/b/v1/networks/${values.id}/edit`,
+    method: "GET",
     secure: true,
     body: values,
     fileUpload: true,
@@ -55,7 +54,6 @@ export const updateNetworkRequest = (
   successHandler: any,
   errorHandler: any
 ) => {
-  console.log(...values);
   const fetchOptions = {
     url: `api/b/v1/networks/${values.get("id")}`,
     method: "POST",
@@ -72,10 +70,9 @@ export const viewNetworkRequest = (
   successHandler: any,
   errorHandler: any
 ) => {
-  console.log(...values);
   const fetchOptions = {
-    url: `api/b/v1/networks/${values.get("id")}/show`,
-    method: "POST",
+    url: `api/b/v1/networks/${values.id}/show`,
+    method: "GET",
     secure: true,
     body: values,
     fileUpload: true,

@@ -126,7 +126,7 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/coins/view"
+          path="/coins/view/:id"
           element={
             <PrivateRoute>
               <CoinListingView />
@@ -161,7 +161,7 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/coins-audit/view"
+          path="/coins-audit/view/:id"
           element={
             <PrivateRoute>
               <CoinsAuditView />
@@ -194,7 +194,7 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/coins-chart-provider/view"
+          path="/coins-chart-provider/view/:id"
           element={
             <PrivateRoute>
               <CoinsChartProviderView />
@@ -230,7 +230,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/coins-community/view"
+          path="/coins-community/view/:id"
           element={
             <PrivateRoute>
               <CoinsCommunityView />
@@ -266,7 +266,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/coins-chat/view"
+          path="/coins-chat/view/:id"
           element={
             <PrivateRoute>
               <CoinsChatView />
@@ -301,7 +301,7 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/coins-socials/view"
+          path="/coins-socials/view/:id"
           element={
             <PrivateRoute>
               <CoinsSocialsView />
@@ -335,7 +335,7 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/exchange/view"
+          path="/exchange/view/:id"
           element={
             <PrivateRoute>
               <ExchangeView />
@@ -371,7 +371,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/nft-listing/view"
+          path="/nft-listing/view/:id"
           element={
             <PrivateRoute>
               <NFTListingView />
@@ -407,7 +407,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/nft-marketplaces/view"
+          path="/nft-marketplaces/view/:id"
           element={
             <PrivateRoute>
               <NftMarketPlaceView />
@@ -449,7 +449,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/networks/view"
+          path="/networks/view/:id"
           element={
             <PrivateRoute>
               <NetworkView />
@@ -481,7 +481,7 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/users/view"
+          path="/users/view/:id"
           element={
             <PrivateRoute>
               <UserView />
@@ -523,7 +523,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/videos/view"
+          path="/videos/view/:id"
           element={
             <PrivateRoute>
               <VideosView />
@@ -556,7 +556,7 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/menu-cards/view"
+          path="/menu-cards/view/:id"
           element={
             <PrivateRoute>
               <MenuCardView />
@@ -615,7 +615,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/badges/view"
+          path="/badges/view/:id"
           element={
             <PrivateRoute>
               <BadgesView />

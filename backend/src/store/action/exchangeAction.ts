@@ -39,7 +39,7 @@ export const editExchangeRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/exchange/${values}/edit`,
+    url: `api/b/v1/exchange/${values.id}/edit`,
     method: "GET",
     secure: true,
     body: values,
@@ -71,8 +71,8 @@ export const viewExchangeRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/exchange/${values.get("id")}/show`,
-    method: "POST",
+    url: `api/b/v1/exchange/${values.id}/show`,
+    method: "GET",
     secure: true,
     body: values,
     fileUpload: true,

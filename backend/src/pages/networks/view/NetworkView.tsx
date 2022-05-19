@@ -1,23 +1,42 @@
+import { useState, useEffect } from "react";
 import { Grid, Typography, Box, IconButton, Stack } from "@mui/material";
 import InputText from "../../../components/form/input/text/InputText";
-import { useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
+import { viewNetworkRequest } from "../../../store/action";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const NetworkView = () => {
   const location: any = useLocation();
   const navigate: any = useNavigate();
-  const networkList = useSelector((ntList: any) => {
-    return ntList.listNetworkReducer.natworkListAll.data;
+  const dispatch: any = useDispatch();
+
+  let { id } = useParams();
+
+  const [networkData, setNetorkData] = useState({
+    id: "",
+    name: "",
+    status: "",
+    url: "",
+    thumb_icon: "",
+    chain_id: "",
+    explorer_url: "",
+    currency_symbol: "",
   });
 
-  let newArrList = networkList.filter(
-    (listData: any) => listData.id === location.state.id
-  );
-  console.log(newArrList);
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      setNetorkData(res.data.data);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(viewNetworkRequest({ id: id }, successHandler, errorHandler));
+  }, [dispatch, id]);
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -46,8 +65,8 @@ const NetworkView = () => {
         >
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
             <img
-              src={`${serverAPIUrl}public/uploads/network_icons/t/${newArrList[0].thumb_icon}`}
-              alt={newArrList[0].thumb_icon}
+              src={`${serverAPIUrl}public/uploads/network_icons/t/${networkData?.thumb_icon}`}
+              alt={networkData?.thumb_icon}
               width="100%"
             />
           </Grid>
@@ -58,7 +77,7 @@ const NetworkView = () => {
 
             <InputText
               placeholder="Enter Exchange Name"
-              value={newArrList[0].name}
+              value={networkData?.name}
             />
           </Grid>
 
@@ -69,7 +88,7 @@ const NetworkView = () => {
 
             <InputText
               placeholder="Enter Exchange url"
-              value={newArrList[0].url}
+              value={networkData?.url}
             />
           </Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -79,7 +98,7 @@ const NetworkView = () => {
 
             <InputText
               placeholder="Enter Chain Id"
-              value={newArrList[0].chain_id}
+              value={networkData?.chain_id}
             />
           </Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -89,7 +108,7 @@ const NetworkView = () => {
 
             <InputText
               placeholder="Enter Explorer URL"
-              value={newArrList[0].explorer_url}
+              value={networkData?.explorer_url}
             />
           </Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -99,7 +118,7 @@ const NetworkView = () => {
 
             <InputText
               placeholder="Enter Currency Symbol"
-              value={newArrList[0].currency_symbol}
+              value={networkData?.currency_symbol}
             />
           </Grid>
         </Box>

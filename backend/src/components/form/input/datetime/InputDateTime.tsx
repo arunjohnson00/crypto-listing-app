@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -12,6 +12,10 @@ const InputDateTime = ({
   ServerValue,
 }: any) => {
   const [timeUpdate, setTimeUpdate] = useState<any>(ServerValue);
+  useEffect(() => {
+    setTimeUpdate(ServerValue);
+  }, [ServerValue]);
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateTimePicker

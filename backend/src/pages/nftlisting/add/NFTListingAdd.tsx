@@ -118,7 +118,7 @@ const NFTListingAdd = () => {
     );
     formData.append(
       "pre_sale_start_time",
-      dateFormat(new Date(presaleDate.start_time), " h:MM:ss TT")
+      dateFormat(new Date(presaleDate.start_time), " hh:MM tt")
     );
 
     formData.append(
@@ -127,7 +127,7 @@ const NFTListingAdd = () => {
     );
     formData.append(
       "pre_sale_end_time",
-      dateFormat(new Date(presaleDate.end_time), " h:MM:ss TT")
+      dateFormat(new Date(presaleDate.end_time), " hh:MM tt")
     );
     formData.append(
       "public_mint_start_date",
@@ -135,7 +135,7 @@ const NFTListingAdd = () => {
     );
     formData.append(
       "public_mint_start_time",
-      dateFormat(new Date(publicMintDate.start_time), " h:MM:ss TT")
+      dateFormat(new Date(publicMintDate.start_time), " hh:MM tt")
     );
     formData.append(
       "public_mint_end_date",
@@ -143,13 +143,14 @@ const NFTListingAdd = () => {
     );
     formData.append(
       "public_mint_end_time",
-      dateFormat(new Date(publicMintDate.end_time), " h:MM:ss TT")
+      dateFormat(new Date(publicMintDate.end_time), " hh:MM tt")
     );
     formData.append("image", addCoinLogo.coinLogo);
+    formData.append("status", coinPublishStatus.status);
 
     const successHandler = (res: any) => {
       console.log(res);
-      //setLoading(true);
+      setLoading(true);
       toast.success(`${res.data.message}`, {
         position: "top-right",
         autoClose: 7000,
@@ -159,9 +160,9 @@ const NFTListingAdd = () => {
         draggable: true,
       });
 
-      // setTimeout(() => {
-      //   navigate("/nft-listing");
-      // }, 3000);
+      setTimeout(() => {
+        navigate("/nft-listing");
+      }, 3000);
     };
 
     const errorHandler = (err: any) => {
@@ -249,7 +250,7 @@ const NFTListingAdd = () => {
   };
 
   const [launchDate, setLaunchDate] = useState<boolean>(false);
-
+  console.log(launchDate);
   useEffect(() => {
     const successHandler = (res: any) => {
       //console.log(res);
@@ -680,6 +681,7 @@ const NFTListingAdd = () => {
                       checked={launchDate}
                       setChecked={setLaunchDate}
                       condition="launch_date"
+                      value={launchDate}
                     />
                     <Typography
                       variant="subtitle1"

@@ -37,8 +37,8 @@ export const editNftListingRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/nft-listing/${values.get("id")}/edit`,
-    method: "POST",
+    url: `api/b/v1/nft-listing/${values.id}/edit`,
+    method: "GET",
     secure: true,
     body: values,
     fileUpload: true,
