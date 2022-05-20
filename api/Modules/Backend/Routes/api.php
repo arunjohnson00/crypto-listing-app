@@ -31,6 +31,21 @@ Route::prefix('b')->group(function() {
         Route::group(['middleware' =>  'assign_guard:backend_api'], function()
         {
             
+            
+             /*
+            |--------------------------------------------------------------------------
+            | Airdrops Routes  
+            |--------------------------------------------------------------------------
+            */
+                Route::get('airdrops', 'Airdrops\AirdropsController@index');                    /*  List    */      
+                Route::post('airdrops', 'Airdrops\AirdropsController@store');                   /*  Create  */  
+                Route::get('airdrops/{airdrop_id}/edit', 'Airdrops\AirdropsController@edit');   /*  Edit    */ 
+                Route::get('airdrops/{airdrop_id}/show', 'Airdrops\AirdropsController@show');   /*  Show    */ 
+                Route::post('airdrops/{airdrop_id}', 'Airdrops\AirdropsController@update');     /*  Update  */   
+                Route::delete('airdrops/{airdrop_id}', 'Airdrops\AirdropsController@destroy');  /*  Destroy */
+            
+            
+            
             /*
             |--------------------------------------------------------------------------
             | show user notifications Routes  

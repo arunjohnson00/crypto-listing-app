@@ -83,7 +83,7 @@ class NftListingController extends Controller
             if(isset($data['nft_lsting_data'])): 
                 if($is_update==false &&  $NftLsting==null):
                     $NftLsting = NftLsting::create($data['nft_lsting_data']);
-                elseif($is_update==true &&  $coin!=null):
+                elseif($is_update==true &&  $NftLsting!=null):
                     $NftLsting->update($data['nft_lsting_data']);
                 endif;
                
