@@ -20,7 +20,6 @@ export const addVideoRequest = (
   successHandler: any,
   errorHandler: any
 ) => {
-  console.log(...values);
   const fetchOptions = {
     url: `api/b/v1/videos`,
     method: "POST",
@@ -37,10 +36,9 @@ export const editVideoRequest = (
   successHandler: any,
   errorHandler: any
 ) => {
-  console.log(...values);
   const fetchOptions = {
-    url: `api/b/v1/videos/${values.get("id")}/edit`,
-    method: "POST",
+    url: `api/b/v1/videos/${values.id}/edit`,
+    method: "GET",
     secure: true,
     body: values,
     fileUpload: true,
@@ -71,10 +69,9 @@ export const viewVideoRequest = (
   successHandler: any,
   errorHandler: any
 ) => {
-  console.log(...values);
   const fetchOptions = {
-    url: `api/b/v1/videos/${values.get("id")}/show`,
-    method: "POST",
+    url: `api/b/v1/videos/${values.id}/show`,
+    method: "GET",
     secure: true,
     body: values,
     fileUpload: true,

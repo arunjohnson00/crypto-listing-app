@@ -1,81 +1,82 @@
 import appRequest from "../../utils/fetchhandler";
-import { USERS } from "../types";
+import { AIRDROPS } from "../types";
 
-export const listUserRequest = (
+export const listAirDropsRequest = (
   pageData: any,
   successHandler: any,
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/users`,
+    //url: `api/b/v1/exchange`,
+    url: `api/b/v1/airdrops`,
     method: "GET",
     secure: true,
-    actionType: USERS.LIST_USERS,
+    actionType: AIRDROPS.LIST_AIRDROPS,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const addUserRequest = (
+export const addAirDropsRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
-  console.log(...values);
+  //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/users`,
+    url: `api/b/v1/airdrops`,
     method: "POST",
     secure: true,
     body: values,
     fileUpload: true,
-    actionType: USERS.ADD_USERS,
+    actionType: AIRDROPS.ADD_AIRDROPS,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const editUserRequest = (
+export const editAirDropsRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/users/${values.id}/edit`,
+    url: `api/b/v1/airdrops/${values.id}/edit`,
     method: "GET",
     secure: true,
     body: values,
     fileUpload: true,
-    actionType: USERS.EDIT_USERS,
+    actionType: AIRDROPS.EDIT_AIRDROPS,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const updateUserRequest = (
+export const updateAirDropsRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/users/${values.get("id")}`,
+    url: `api/b/v1/airdrops/${values.get("id")}`,
     method: "POST",
     secure: true,
     body: values,
     fileUpload: true,
-    actionType: USERS.UPDATE_USERS,
+    actionType: AIRDROPS.UPDATE_AIRDROPS,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const viewUserRequest = (
+export const viewAirDropsRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/users/${values.id}/show`,
+    url: `api/b/v1/airdrops/${values.id}/show`,
     method: "GET",
     secure: true,
     body: values,
     fileUpload: true,
-    actionType: USERS.VIEW_USERS,
+    actionType: AIRDROPS.VIEW_AIRDROPS,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };

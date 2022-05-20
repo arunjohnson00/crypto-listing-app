@@ -1,41 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import AvatarUploder from "../../../components/form/input/file/avatar/AvatarUploder";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import InputText from "../../../components/form/input/text/InputText";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
+import { editUserRequest } from "../../../store/action";
 import { updateUserRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
 
 const UserEdit = () => {
-  const userList = useSelector((usrList: any) => {
-    return usrList.usersReducer.listUsers.data;
-  });
-
-  console.log(userList);
+  let { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location: any = useLocation();
 
   console.log(location.state.id);
 
-  let newArrList = userList.filter(
-    (userData: any) => userData.id === location.state.id
-  );
   const [loading, setLoading] = useState(false);
   const [updateUsersData, setUpdateUser] = useState({
-    id: newArrList[0].id,
-    name: newArrList[0].name,
-    status: newArrList[0].status,
-    email: newArrList[0].email,
-    password: newArrList[0].password,
+    id: "",
+    name: "",
+    status: "",
+    email: "",
+    password: "",
     avatar: "",
   });
 
@@ -76,6 +70,7 @@ const UserEdit = () => {
     const formData = new FormData();
     formData.append("id", updateUsersData.id);
     updateUsersData.avatar !== "" &&
+      typeof updateUsersData.avatar !== "string" &&
       formData.append("avatar", updateUsersData.avatar);
     formData.append("name", updateUsersData.name);
     formData.append("email", updateUsersData.email);
@@ -109,6 +104,17 @@ const UserEdit = () => {
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      setUpdateUser(res.data.data);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(editUserRequest({ id: id }, successHandler, errorHandler));
+  }, [dispatch, id]);
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -143,7 +149,7 @@ const UserEdit = () => {
             <InputText
               placeholder="Enter User Name"
               inputTextHandler={(e: any) => userNameHandler(e)}
-              value={newArrList[0].name}
+              value={updateUsersData?.name}
             />
           </Grid>
 
@@ -155,7 +161,7 @@ const UserEdit = () => {
             <InputText
               placeholder="Enter email"
               inputTextHandler={(e: any) => userEmailHandler(e)}
-              value={newArrList[0].email}
+              value={updateUsersData?.email}
             />
           </Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
@@ -166,7 +172,7 @@ const UserEdit = () => {
             <InputText
               placeholder="Enter Password"
               inputTextHandler={(e: any) => userPasswordHandler(e)}
-              value={newArrList[0].password}
+              value={updateUsersData?.password}
             />
           </Grid>
 
@@ -187,10 +193,10 @@ const UserEdit = () => {
 
             <InputSelect
               selectOptions={selectOptions}
-              currentStatus={newArrList[0].status}
+              currentStatus={updateUsersData?.status}
               setInputSelectValue={setUpdateUser}
               getInputSelectvalue={updateUsersData}
-              serverStatus={newArrList[0].status}
+              serverStatus={updateUsersData?.status}
             />
           </Grid>
 

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
 import Avatar from "@mui/material/Avatar";
-import { listBadgeRequest } from "../../store/action";
+import { listAirDropsRequest } from "../../store/action";
 
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
@@ -13,9 +13,9 @@ import InputSearch from "../../components/form/input/search/InputSearch";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
-const Badges = () => {
-  const badgesList = useSelector((bdgList: any) => {
-    return bdgList.badgesReducer.listBadges.data;
+const AirDrops = () => {
+  const airdropsList = useSelector((airdpList: any) => {
+    return airdpList.airdropsReducer.listAirdrops.data;
   });
 
   const [searchValue, setSearchValue] = useState("");
@@ -25,10 +25,13 @@ const Badges = () => {
   };
 
   var filteredData = searchValue
-    ? badgesList.filter((flData: any) => {
-        return flData.name.toLowerCase().includes(searchValue.toLowerCase());
+    ? airdropsList.filter((flData: any) => {
+        return flData.coin_id
+          .toString()
+          .toLowerCase()
+          .includes(searchValue.toLowerCase());
       })
-    : badgesList;
+    : airdropsList;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -39,39 +42,81 @@ const Badges = () => {
     const errorHandler = (err: any) => {
       console.log(err);
     };
-    dispatch(listBadgeRequest("emptyData", successHandler, errorHandler));
+    dispatch(listAirDropsRequest("emptyData", successHandler, errorHandler));
   }, [dispatch]);
 
   const tableColumn = [
+    // {
+    //   field: "thumb_icon",
+    //   headerName: "Icon",
+    //   flex: 1,
+    //   sortable: false,
+    //   disableClickEventBubbling: true,
+    //   renderCell: (params: any) => (
+    //     <Avatar
+    //       src={`${serverAPIUrl}public/uploads/badge_icons/${params.row.icon}`}
+    //       alt={params.thumb_icon}
+    //     />
+    //   ),
+    // },
     {
-      field: "thumb_icon",
-      headerName: "Icon",
+      field: "coin_id",
+      headerName: "Coin ID",
       flex: 1,
-      sortable: false,
-      disableClickEventBubbling: true,
+    },
+
+    {
+      field: "start_date",
+      headerName: "Start Date",
+      flex: 1,
+    },
+
+    {
+      field: "no_of_days",
+      headerName: "No.of Days",
+      flex: 1,
+    },
+    {
+      field: "total_amount",
+      headerName: "Total Amount",
+      flex: 1,
+    },
+    {
+      field: "no_of_winners",
+      headerName: "No.of Winners",
+      flex: 1,
+    },
+    {
+      field: "is_follow_twitter",
+      headerName: "Is follow Twitter?",
+      flex: 1,
       renderCell: (params: any) => (
-        <Avatar
-          src={`${serverAPIUrl}public/uploads/badge_icons/${params.row.icon}`}
-          alt={params.thumb_icon}
-        />
+        <span>
+          {parseInt(params.row.is_follow_twitter) === 1 && (
+            <span style={{ color: "#64dd17" }}>Yes</span>
+          )}
+
+          {parseInt(params.row.is_follow_twitter) === 2 && (
+            <span style={{ color: "#d50000" }}>No</span>
+          )}
+        </span>
       ),
     },
     {
-      field: "name",
-      headerName: "Name",
+      field: "join_telegram",
+      headerName: "Joined Telegram?",
       flex: 1,
-    },
+      renderCell: (params: any) => (
+        <span>
+          {parseInt(params.row.join_telegram) === 1 && (
+            <span style={{ color: "#64dd17" }}>Yes</span>
+          )}
 
-    {
-      field: "url",
-      headerName: "Url",
-      flex: 1,
-    },
-
-    {
-      field: "slug",
-      headerName: "Slug",
-      flex: 1,
+          {parseInt(params.row.join_telegram) === 2 && (
+            <span style={{ color: "#d50000" }}>No</span>
+          )}
+        </span>
+      ),
     },
     {
       field: "status",
@@ -116,12 +161,12 @@ const Badges = () => {
             >
               <Grid item xl={2} lg={2} md={2} sm={12} xs={12}>
                 <Typography variant="h5" sx={{ textAlign: "left" }}>
-                  Badges
+                  Airdrops
                 </Typography>
               </Grid>
               <Grid item xl={10} lg={10} md={10} sm={12} xs={12}>
                 <InputSearch
-                  placeholder="Search Badges"
+                  placeholder="Search Airdrops"
                   searchValue={searchValue}
                   searchHandler={searchHandler}
                 />
@@ -138,8 +183,8 @@ const Badges = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/badges/add">
-              <LargeBtn Title="Add new Badge" />
+            <Link to="/airdrops/add">
+              <LargeBtn Title="Add new Airdrops" />
             </Link>
           </Grid>
         </Stack>
@@ -155,8 +200,8 @@ const Badges = () => {
           sx={{ display: "flex", justifyContent: "flex-end" }}
         >
           {" "}
-          <Link to="/badges/add">
-            <LargeBtn Title="Add new Badge" />
+          <Link to="/airdrops/add">
+            <LargeBtn Title="Add new Airdrops" />
           </Link>
         </Stack>
       </Grid>
@@ -164,4 +209,4 @@ const Badges = () => {
   );
 };
 
-export default Badges;
+export default AirDrops;

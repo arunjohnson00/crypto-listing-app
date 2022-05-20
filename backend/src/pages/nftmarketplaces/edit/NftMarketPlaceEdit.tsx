@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 import InputText from "../../../components/form/input/text/InputText";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -12,33 +12,28 @@ import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import InputSelect from "../../../components/form/select/InputSelect";
+import { editNftMarketPlaceRequest } from "../../../store/action";
 import { updateNftMarketPlaceRequest } from "../../../store/action";
 
 const NftMarketPlaceEdit = () => {
+  let { id } = useParams();
   const selectOptions = [
     { title: "Approved", value: 1 },
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
   const dispatch = useDispatch();
-  const location: any = useLocation();
+  //const location: any = useLocation();
 
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
-  const nftMarketPlaceList = useSelector((nftList: any) => {
-    return nftList.nftMarketPlacesReducer.listNftMarketPlaces.data;
-  });
 
-  let newArrList = nftMarketPlaceList.filter(
-    (listData: any) => listData.id === location.state.id
-  );
-  console.log(newArrList[0].id);
   const [editNftMarketPlaceData, setEditNftMarketPlace] = useState({
-    id: newArrList[0].id,
-    name: newArrList[0].name,
-    status: newArrList[0].status,
-    url: newArrList[0].url,
+    id: "",
+    name: "",
+    status: "",
+    url: "",
     thumb_icon: "",
   });
 
@@ -77,6 +72,7 @@ const NftMarketPlaceEdit = () => {
     const formData = new FormData();
 
     editNftMarketPlaceData.thumb_icon !== "" &&
+      typeof editNftMarketPlaceData.thumb_icon !== "string" &&
       formData.append("thumb_icon", editNftMarketPlaceData.thumb_icon);
 
     formData.append("name", editNftMarketPlaceData.name);
@@ -100,6 +96,21 @@ const NftMarketPlaceEdit = () => {
 
     setEditNftMarketPlace({ ...editNftMarketPlaceData, url: e });
   };
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setEditNftMarketPlace(res.data.data);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(
+      editNftMarketPlaceRequest({ id: id }, successHandler, errorHandler)
+    );
+  }, [dispatch, id]);
+
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -134,7 +145,7 @@ const NftMarketPlaceEdit = () => {
             <InputText
               placeholder="Enter  MarketPlace Name"
               inputTextHandler={(e: any) => nftMarketPlacesNameHandler(e)}
-              value={newArrList[0].name}
+              value={editNftMarketPlaceData?.name}
             />
           </Grid>
 
@@ -146,7 +157,7 @@ const NftMarketPlaceEdit = () => {
             <InputText
               placeholder="Enter  MarketPlace url"
               inputTextHandler={(e: any) => nftMarketPlacesURLHandler(e)}
-              value={newArrList[0].url}
+              value={editNftMarketPlaceData?.url}
             />
           </Grid>
 
@@ -167,10 +178,10 @@ const NftMarketPlaceEdit = () => {
 
             <InputSelect
               selectOptions={selectOptions}
-              // currentStatus={newArrList[0].status}
+              // currentStatus={editNftMarketPlaceData?.status}
               setInputSelectValue={setEditNftMarketPlace}
               getInputSelectvalue={editNftMarketPlaceData}
-              serverStatus={newArrList[0].status}
+              serverStatus={editNftMarketPlaceData?.status}
             />
           </Grid>
 

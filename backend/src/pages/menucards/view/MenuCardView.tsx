@@ -1,27 +1,42 @@
+import { useEffect, useState } from "react";
 import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 
 import InputText from "../../../components/form/input/text/InputText";
-import { useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
+import { viewMenuCardRequest } from "../../../store/action";
 
 const MenuCardView = () => {
-  const menuCardList = useSelector((menuList: any) => {
-    return menuList.listMenuCardReducer.menuCardListAll.data;
-  });
-
   const navigate = useNavigate();
   const location: any = useLocation();
+  const dispatch: any = useDispatch();
+  let { id } = useParams();
 
-  console.log(location.state.id);
+  const [viewMenuCard, setViewMenuCard] = useState({
+    id: "",
+    title: "",
+    status: "",
+    sub_title: "",
+    thumb_icon: "",
+    icon: "",
+    url: "",
+  });
 
-  let newArrList = menuCardList.filter(
-    (listData: any) => listData.id === location.state.id
-  );
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setViewMenuCard(res.data.data);
+    };
 
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(viewMenuCardRequest({ id: id }, successHandler, errorHandler));
+  }, [dispatch, id]);
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -55,7 +70,7 @@ const MenuCardView = () => {
 
             <InputText
               placeholder="Enter MenuCard Title"
-              value={newArrList[0].title}
+              value={viewMenuCard?.title}
             />
           </Grid>
 
@@ -66,7 +81,7 @@ const MenuCardView = () => {
 
             <InputText
               placeholder="Enter MenuCard Subtitle"
-              value={newArrList[0].sub_title}
+              value={viewMenuCard?.sub_title}
             />
           </Grid>
 
@@ -75,7 +90,7 @@ const MenuCardView = () => {
               MenuCard URL
             </Typography>
 
-            <InputText placeholder="Enter URL" value={newArrList[0].url} />
+            <InputText placeholder="Enter URL" value={viewMenuCard?.url} />
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
@@ -83,7 +98,7 @@ const MenuCardView = () => {
               Status
             </Typography>
 
-            {newArrList[0].status}
+            {viewMenuCard?.status}
           </Grid>
         </Box>
       </Grid>

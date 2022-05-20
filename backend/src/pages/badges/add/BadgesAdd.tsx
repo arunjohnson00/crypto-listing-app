@@ -28,6 +28,7 @@ const BadgesAdd = () => {
     status: "",
     url: "",
     thumb_icon: "",
+    icon: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -67,7 +68,7 @@ const BadgesAdd = () => {
     };
 
     const formData = new FormData();
-    formData.append("thumb_icon", addBadgeData.thumb_icon);
+    formData.append("icon", addBadgeData.thumb_icon);
     formData.append("name", addBadgeData.name);
     formData.append("url", addBadgeData.url);
     formData.append("status", addBadgeData.status);
