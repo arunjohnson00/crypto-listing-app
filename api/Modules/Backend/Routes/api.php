@@ -31,18 +31,55 @@ Route::prefix('b')->group(function() {
         Route::group(['middleware' =>  'assign_guard:backend_api'], function()
         {
             
+            /*
+            |--------------------------------------------------------------------------
+            | Events Routes  
+            |--------------------------------------------------------------------------
+            */
+                Route::get('events', 'Events\EventsController@index');                      /*  List    */      
+                Route::post('events', 'Events\EventsController@store');                     /*  Create  */  
+                Route::get('events/{event_id}/edit', 'Events\EventsController@edit');       /*  Edit    */ 
+                Route::get('events/{event_id}/show', 'Events\EventsController@show');       /*  Show    */ 
+                Route::post('events/{event_id}', 'Events\EventsController@update');         /*  Update  */   
+                Route::delete('events/{event_id}', 'Events\EventsController@destroy');      /*  Destroy */
+                    /*
+                    |--------------------------------------------------------------------------
+                    | Events Category Routes  
+                    |--------------------------------------------------------------------------
+                    */
+                        Route::get('events-category-all', 'Events\EventsCategoryController@All');                               /*  All    */  
+                        Route::get('events-category', 'Events\EventsCategoryController@index');                                 /*  List    */      
+                        Route::post('events-category', 'Events\EventsCategoryController@store');                                /*  Create  */  
+                        Route::get('events-category/{event_category_id}/edit', 'Events\EventsCategoryController@edit');         /*  Edit    */ 
+                        Route::get('events-category/{event_category_id}/show', 'Events\EventsCategoryController@show');         /*  Show    */ 
+                        Route::post('events-category/{event_category_id}', 'Events\EventsCategoryController@update');           /*  Update  */   
+                        Route::delete('events-category/{event_category_id}', 'Events\EventsCategoryController@destroy');        /*  Destroy */
+                    /*
+                    |--------------------------------------------------------------------------
+                    | Reward Address Routes  
+                    |--------------------------------------------------------------------------
+                    */
+                        Route::get('reward-address-all', 'Events\RewardAddressController@All');                               /*  All    */  
+                        Route::get('reward-address', 'Events\RewardAddressController@index');                                 /*  List    */      
+                        Route::post('reward-address', 'Events\RewardAddressController@store');                                /*  Create  */  
+                        Route::get('reward-address/{reward_address_id}/edit', 'Events\RewardAddressController@edit');         /*  Edit    */ 
+                        Route::get('reward-address/{reward_address_id}/show', 'Events\RewardAddressController@show');         /*  Show    */ 
+                        Route::post('reward-address/{reward_address_id}', 'Events\RewardAddressController@update');           /*  Update  */   
+                        Route::delete('reward-address/{reward_address_id}', 'Events\RewardAddressController@destroy');        /*  Destroy */
+            
+                
             
             /*
             |--------------------------------------------------------------------------
             | Badges Routes  
             |--------------------------------------------------------------------------
             */
-                Route::get('badges', 'Badges\BadgesController@index');                    /*  List    */      
-                Route::post('badges', 'Badges\BadgesController@store');                   /*  Create  */  
-                Route::get('badges/{badge_id}/edit', 'Badges\BadgesController@edit');   /*  Edit    */ 
-                Route::get('badges/{badge_id}/show', 'Badges\BadgesController@show');   /*  Show    */ 
-                Route::post('badges/{badge_id}', 'Badges\BadgesController@update');     /*  Update  */   
-                Route::delete('badges/{badge_id}', 'Badges\BadgesController@destroy');  /*  Destroy */
+                Route::get('badges', 'Badges\BadgesController@index');                      /*  List    */      
+                Route::post('badges', 'Badges\BadgesController@store');                     /*  Create  */  
+                Route::get('badges/{badge_id}/edit', 'Badges\BadgesController@edit');       /*  Edit    */ 
+                Route::get('badges/{badge_id}/show', 'Badges\BadgesController@show');       /*  Show    */ 
+                Route::post('badges/{badge_id}', 'Badges\BadgesController@update');         /*  Update  */   
+                Route::delete('badges/{badge_id}', 'Badges\BadgesController@destroy');      /*  Destroy */
             
                 
             /*
