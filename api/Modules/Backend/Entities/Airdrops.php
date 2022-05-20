@@ -14,7 +14,7 @@ class Airdrops extends Model
      *
      * @var string
      */
-    protected $table = "badges";
+    protected $table = "airdrops";
     
     /**
      * The attributes that are mass assignable.

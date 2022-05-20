@@ -14,7 +14,7 @@ class Badges extends Model
      *
      * @var string
      */
-    protected $table = "airdrops";
+    protected $table = "badges";
     
     /**
      * The attributes that are mass assignable.
