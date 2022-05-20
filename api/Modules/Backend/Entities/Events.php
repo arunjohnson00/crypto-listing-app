@@ -4,9 +4,11 @@ namespace Modules\Backend\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
+
 class Events extends Model
 {
-     use SoftDeletes;
+     use SoftDeletes, Sluggable;
     
     /**
      * The table associated with the model.
@@ -37,5 +39,18 @@ class Events extends Model
      * @var array<int, string>
      */
     protected $dates = ['deleted_at'];
-  
+    
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 }
