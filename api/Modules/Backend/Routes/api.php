@@ -32,7 +32,20 @@ Route::prefix('b')->group(function() {
         {
             
             
-             /*
+            /*
+            |--------------------------------------------------------------------------
+            | Badges Routes  
+            |--------------------------------------------------------------------------
+            */
+                Route::get('badges', 'Badges\BadgesController@index');                    /*  List    */      
+                Route::post('badges', 'Badges\BadgesController@store');                   /*  Create  */  
+                Route::get('badges/{badge_id}/edit', 'Badges\BadgesController@edit');   /*  Edit    */ 
+                Route::get('badges/{badge_id}/show', 'Badges\BadgesController@show');   /*  Show    */ 
+                Route::post('badges/{badge_id}', 'Badges\BadgesController@update');     /*  Update  */   
+                Route::delete('badges/{badge_id}', 'Badges\BadgesController@destroy');  /*  Destroy */
+            
+                
+            /*
             |--------------------------------------------------------------------------
             | Airdrops Routes  
             |--------------------------------------------------------------------------

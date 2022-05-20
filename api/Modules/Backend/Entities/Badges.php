@@ -5,7 +5,7 @@ namespace Modules\Backend\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Airdrops extends Model
+class Badges extends Model
 {
     use SoftDeletes;
     
@@ -14,7 +14,7 @@ class Airdrops extends Model
      *
      * @var string
      */
-    protected $table = "badges";
+    protected $table = "airdrops";
     
     /**
      * The attributes that are mass assignable.
@@ -39,7 +39,6 @@ class Airdrops extends Model
      */
     protected $dates = ['deleted_at'];
    
-    
     
     
 }
