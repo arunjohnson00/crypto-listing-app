@@ -134,3 +134,11 @@ export { editNftListingCurrencyRequest } from "./nftListingCurrencyAction";
 export { updateNftListingCurrencyRequest } from "./nftListingCurrencyAction";
 export { viewNftListingCurrencyRequest } from "./nftListingCurrencyAction";
 export { allNftListingCurrencyRequest } from "./nftListingCurrencyAction";
+
+//Common AIR Drops Actions
+
+export { listAirDropsRequest } from "./airdropsAction";
+export { addAirDropsRequest } from "./airdropsAction";
+export { editAirDropsRequest } from "./airdropsAction";
+export { updateAirDropsRequest } from "./airdropsAction";
+export { viewAirDropsRequest } from "./airdropsAction";

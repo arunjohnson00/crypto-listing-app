@@ -8,7 +8,7 @@ export const listBadgeRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/exchange`,
+    url: `api/b/v1/badges`,
     method: "GET",
     secure: true,
     actionType: BADGES.LIST_BADGES,
@@ -23,7 +23,7 @@ export const addBadgeRequest = (
 ) => {
   //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/exchange`,
+    url: `api/b/v1/badges`,
     method: "POST",
     secure: true,
     body: values,
@@ -39,8 +39,8 @@ export const editBadgeRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/exchange/${values.get("id")}/edit`,
-    method: "POST",
+    url: `api/b/v1/badges/${values.id}/edit`,
+    method: "GET",
     secure: true,
     body: values,
     fileUpload: true,
@@ -55,7 +55,7 @@ export const updateBadgeRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/exchange/${values.get("id")}`,
+    url: `api/b/v1/badges/${values.get("id")}`,
     method: "POST",
     secure: true,
     body: values,
@@ -71,8 +71,8 @@ export const viewBadgeRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/exchange/${values.get("id")}/show`,
-    method: "POST",
+    url: `api/b/v1/badges/${values.id}/show`,
+    method: "GET",
     secure: true,
     body: values,
     fileUpload: true,

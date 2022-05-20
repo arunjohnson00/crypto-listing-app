@@ -1,45 +1,57 @@
 import { useState, useEffect } from "react";
 import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
+import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 import InputText from "../../../components/form/input/text/InputText";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { editVideoRequest } from "../../../store/action";
-import { updateVideoRequest } from "../../../store/action";
-
 import InputSelect from "../../../components/form/select/InputSelect";
+import AutoCompleSelect from "../../../components/form/autocomplete/AutoCompleSelect";
+import InputDate from "../../../components/form/input/date/InputDate";
+import RadioBtnGroup from "../../../components/form/input/radiobtngroup/RadioBtnGroup";
+//import { listCoinRequest } from "../../../store/action";
+import dateFormat, { masks } from "dateformat";
 
-const VideoEdit = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const location: any = useLocation();
+import { editAirDropsRequest } from "../../../store/action";
+import { updateAirDropsRequest } from "../../../store/action";
+
+const selectOptions = [
+  { title: "Approved", value: 1 },
+  { title: "Processing", value: 2 },
+  { title: "Rejected/Blocked", value: 3 },
+];
+
+const AirDropsEdit = () => {
   let { id } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const [editAirdropsData, setEditAirdrops] = useState<any>({
+    id: id,
+    coin_id: "",
+    start_date: "",
+    no_of_days: "",
+    total_amount: "",
+    no_of_winners: "",
+    is_follow_twitter: "",
+    join_telegram: "",
+    status: "",
+  });
+  console.log(editAirdropsData);
   const [loading, setLoading] = useState(false);
 
-  const [editVideosData, setEditVideos] = useState({
-    id: "",
-    name: "",
-    status: "",
-    url: "",
-    button_name: "",
-    button_url: "",
-    title: "",
-    sub_title: "",
-  });
-
-  console.log(editVideosData);
   // Display the key/value pairs
 
-  const videoEditHandler = () => {
+  const airdropsAddHandler = () => {
     const successHandler = (res: any) => {
       console.log(res);
+
       setLoading(true);
       toast.success(`${res.data.message}`, {
         position: "top-right",
@@ -49,13 +61,15 @@ const VideoEdit = () => {
         pauseOnHover: true,
         draggable: true,
       });
+
       setTimeout(() => {
-        navigate("/videos");
+        navigate("/airdrops");
       }, 3000);
     };
 
     const errorHandler = (err: any) => {
       console.log(err);
+
       toast.error(`${err.error.message.response.request.responseText}`, {
         position: "top-right",
         autoClose: 7000,
@@ -67,82 +81,51 @@ const VideoEdit = () => {
     };
 
     const formData = new FormData();
-    formData.append("id", editVideosData.id);
-    formData.append("name", editVideosData.name);
-    formData.append("url", editVideosData.url);
-    formData.append("button_name", editVideosData.button_name);
-    formData.append("button_url", editVideosData.button_url);
-    formData.append("title", editVideosData.title);
-    formData.append("sub_title", editVideosData.sub_title);
+    formData.append("id", editAirdropsData?.id);
+    formData.append("coin_id", editAirdropsData?.coin_id);
+    formData.append(
+      "start_date",
+      dateFormat(new Date(editAirdropsData.start_date), "yyyy-mm-dd")
+    );
+    formData.append("no_of_days", editAirdropsData?.no_of_days);
+    formData.append("total_amount", editAirdropsData?.total_amount);
+    formData.append("no_of_winners", editAirdropsData?.no_of_winners);
+    formData.append("is_follow_twitter", editAirdropsData?.is_follow_twitter);
+    formData.append("join_telegram", editAirdropsData?.join_telegram);
+    formData.append("status", editAirdropsData?.status);
 
-    formData.append("status", editVideosData.status);
-
-    dispatch(updateVideoRequest(formData, successHandler, errorHandler));
+    dispatch(updateAirDropsRequest(formData, successHandler, errorHandler));
   };
 
-  const videoNameHandler = (e: any) => {
+  const airdropsNumDaysHandler = (e: any) => {
     //console.log(e);
 
-    setEditVideos({ ...editVideosData, name: e });
+    setEditAirdrops({ ...editAirdropsData, no_of_days: e });
   };
 
-  const videoTitleHandler = (e: any) => {
+  const airdropsTotalAmountHandler = (e: any) => {
     //console.log(e);
 
-    setEditVideos({ ...editVideosData, title: e });
+    setEditAirdrops({ ...editAirdropsData, total_amount: e });
   };
 
-  const videoSubtitleHandler = (e: any) => {
+  const airdropsNumbWinnersHandler = (e: any) => {
     //console.log(e);
 
-    setEditVideos({ ...editVideosData, sub_title: e });
+    setEditAirdrops({ ...editAirdropsData, no_of_winners: e });
   };
-
-  const videoURLHandler = (e: any) => {
-    //console.log(e);
-
-    setEditVideos({ ...editVideosData, url: e });
-  };
-
-  const videoBtnNameHandler = (e: any) => {
-    //console.log(e);
-
-    setEditVideos({ ...editVideosData, button_name: e });
-  };
-
-  const videoBtnURLHandler = (e: any) => {
-    //console.log(e);
-
-    setEditVideos({ ...editVideosData, button_url: e });
-  };
-
-  const selectOptions = [
-    { title: "Approved", value: 1, color: "#6FDF27" },
-    { title: "Processing", value: 2, color: "#DC3434" },
-    { title: "Rejected/Blocked", value: 3, color: "#8D52B1" },
-  ];
 
   useEffect(() => {
     const successHandler = (res: any) => {
       console.log(res);
-
-      setEditVideos({
-        id: res.data.data.id,
-        name: res.data.data.v_name,
-        status: res.data.data.status,
-        url: res.data.data.v_url,
-        button_name: res.data.data.v_btn_name,
-        button_url: res.data.data.v_btn_name,
-        title: res.data.data.v_title,
-        sub_title: res.data.data.v_sub_title,
-      });
+      setEditAirdrops(res?.data?.data);
     };
 
     const errorHandler = (err: any) => {
       //console.log(err);
     };
-    dispatch(editVideoRequest({ id: id }, successHandler, errorHandler));
-  }, [dispatch, id]);
+    dispatch(editAirDropsRequest({ id: id }, successHandler, errorHandler));
+  }, [dispatch]);
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -153,13 +136,13 @@ const VideoEdit = () => {
           <IconButton>
             <ArrowBackIosTwoToneIcon
               onClick={() => {
-                navigate("/videos");
+                navigate("/airdrops");
               }}
             />
           </IconButton>
 
           <Typography variant="h5" sx={{ textAlign: "left" }}>
-            Edit Videos
+            Add Airdrops
           </Typography>
         </Stack>
       </Grid>
@@ -171,74 +154,97 @@ const VideoEdit = () => {
         >
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
             <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
-              Video Name
+              Search your coin
+            </Typography>
+
+            <AutoCompleSelect
+              inputAutoValue={editAirdropsData}
+              setInputAutoValue={setEditAirdrops}
+              serverRef={editAirdropsData?.coin_id}
+            />
+          </Grid>
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              Start of the Airdrop
+            </Typography>
+
+            <InputDate
+              airdropStart={true}
+              date={editAirdropsData}
+              setDate={setEditAirdrops}
+              serverRef={editAirdropsData.start_date}
+            />
+          </Grid>
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              Number of Days (min:5, max:20)
             </Typography>
 
             <InputText
-              placeholder="Enter video Name"
-              inputTextHandler={(e: any) => videoNameHandler(e)}
-              value={editVideosData?.name}
+              placeholder=" Number of Days"
+              inputTextHandler={(e: any) => airdropsNumDaysHandler(e)}
+              value={editAirdropsData.no_of_days}
             />
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
-              Video Title
+              Total Airdrop Amount
             </Typography>
 
             <InputText
-              placeholder="Enter Video Title"
-              inputTextHandler={(e: any) => videoTitleHandler(e)}
-              value={editVideosData?.title}
-            />
-          </Grid>
-          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
-              Video Subtitle
-            </Typography>
-
-            <InputText
-              placeholder="Enter Video Subtitle"
-              inputTextHandler={(e: any) => videoSubtitleHandler(e)}
-              value={editVideosData?.sub_title}
+              placeholder="  Total Airdrop Amount"
+              inputTextHandler={(e: any) => airdropsTotalAmountHandler(e)}
+              value={editAirdropsData.total_amount}
             />
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
-              Video URL
+              Number of Winners
             </Typography>
 
             <InputText
-              placeholder="Enter Video URL"
-              inputTextHandler={(e: any) => videoURLHandler(e)}
-              value={editVideosData?.url}
+              placeholder="Enter Number of Winners"
+              inputTextHandler={(e: any) => airdropsNumbWinnersHandler(e)}
+              value={editAirdropsData.no_of_winners}
             />
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
-              Button Name
+              Add follow Twitter Step?
             </Typography>
 
-            <InputText
-              placeholder="Enter Button Name"
-              inputTextHandler={(e: any) => videoBtnNameHandler(e)}
-              value={editVideosData?.button_name}
+            <RadioBtnGroup
+              radioValue={editAirdropsData}
+              setRadioValue={setEditAirdrops}
+              name="is_follow_twitter"
             />
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
-              Button URL
+              Add Join to telegram Step?
             </Typography>
 
-            <InputText
-              placeholder="Enter Button URL"
-              inputTextHandler={(e: any) => videoBtnURLHandler(e)}
-              value={editVideosData?.button_url}
+            <RadioBtnGroup
+              radioValue={editAirdropsData}
+              setRadioValue={setEditAirdrops}
+              name="join_telegram"
             />
           </Grid>
+
+          {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+        <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+          Airdrops Icon
+        </Typography>
+
+        <IconUploader
+          setAddIcon={setEditAirdrops}
+          addIconData={editAirdropsData}
+        />
+      </Grid> */}
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
@@ -247,10 +253,10 @@ const VideoEdit = () => {
 
             <InputSelect
               selectOptions={selectOptions}
-              currentStatus={editVideosData?.status}
-              setInputSelectValue={setEditVideos}
-              getInputSelectvalue={editVideosData}
-              serverStatus={editVideosData?.status}
+              // currentStatus={newArrList[0].status}
+              setInputSelectValue={setEditAirdrops}
+              getInputSelectvalue={editAirdropsData}
+              // serverStatus={newArrList[0].status}
             />
           </Grid>
 
@@ -277,8 +283,8 @@ const VideoEdit = () => {
                 </LoadingButton>
               ) : (
                 <LargeBtn
-                  Title="Update Video"
-                  lgBtnHandler={videoEditHandler}
+                  Title="Add Airdrops"
+                  lgBtnHandler={airdropsAddHandler}
                 />
               )}
             </Stack>
@@ -289,4 +295,4 @@ const VideoEdit = () => {
   );
 };
 
-export default VideoEdit;
+export default AirDropsEdit;

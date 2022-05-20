@@ -13,6 +13,7 @@ const IconUploader = ({ addIconData, setAddIcon }: any) => {
       setAddIcon({
         ...addIconData,
         thumb_icon: acceptedFiles[0],
+        icon: acceptedFiles[0],
       });
     },
     [addIconData, setAddIcon]

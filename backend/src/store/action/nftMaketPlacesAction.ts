@@ -37,8 +37,8 @@ export const editNftMarketPlaceRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/nft-marketplaces/${values.get("id")}/edit`,
-    method: "POST",
+    url: `api/b/v1/nft-marketplaces/${values.id}/edit`,
+    method: "GET",
     secure: true,
     body: values,
     fileUpload: true,
@@ -69,8 +69,8 @@ export const viewNftMarketPlaceRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/nft-marketplaces/${values.get("id")}/show`,
-    method: "POST",
+    url: `api/b/v1/nft-marketplaces/${values.id}/show`,
+    method: "GET",
     secure: true,
     body: values,
     fileUpload: true,

@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 import InputText from "../../../components/form/input/text/InputText";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -13,6 +13,7 @@ import "material-react-toastify/dist/ReactToastify.css";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import InputSelect from "../../../components/form/select/InputSelect";
 import { updateBadgeRequest } from "../../../store/action";
+import { editBadgeRequest } from "../../../store/action";
 
 const BadgesEdit = () => {
   const selectOptions = [
@@ -24,22 +25,17 @@ const BadgesEdit = () => {
   const location: any = useLocation();
 
   const navigate = useNavigate();
+  let { id } = useParams();
 
   const [loading, setLoading] = useState(false);
-  const badgesList = useSelector((bdgList: any) => {
-    return bdgList.badgesReducer.listBadges.data;
-  });
 
-  let newArrList = badgesList.filter(
-    (listData: any) => listData.id === location.state.id
-  );
-  console.log(newArrList[0].id);
   const [editBadgeData, setEditbadge] = useState({
-    id: newArrList[0].id,
-    name: newArrList[0].name,
-    status: newArrList[0].status,
-    url: newArrList[0].url,
+    id: "",
+    name: "",
+    status: "",
+    url: "",
     thumb_icon: "",
+    icon: "",
   });
 
   // Display the key/value pairs
@@ -76,8 +72,9 @@ const BadgesEdit = () => {
 
     const formData = new FormData();
 
-    editBadgeData.thumb_icon !== "" &&
-      formData.append("thumb_icon", editBadgeData.thumb_icon);
+    editBadgeData.icon !== "" &&
+      typeof editBadgeData.icon !== "string" &&
+      formData.append("icom", editBadgeData.icon);
 
     formData.append("name", editBadgeData.name);
     formData.append("url", editBadgeData.url);
@@ -98,6 +95,18 @@ const BadgesEdit = () => {
 
     setEditbadge({ ...editBadgeData, url: e });
   };
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setEditbadge(res.data.data);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(editBadgeRequest({ id: id }, successHandler, errorHandler));
+  }, [dispatch, id]);
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -132,7 +141,7 @@ const BadgesEdit = () => {
             <InputText
               placeholder="Enter badge Name"
               inputTextHandler={(e: any) => badgeNameHandler(e)}
-              value={newArrList[0].name}
+              value={editBadgeData?.name}
             />
           </Grid>
 
@@ -144,7 +153,7 @@ const BadgesEdit = () => {
             <InputText
               placeholder="Enter badge url"
               inputTextHandler={(e: any) => badgeURLHandler(e)}
-              value={newArrList[0].url}
+              value={editBadgeData?.url}
             />
           </Grid>
 
@@ -166,10 +175,10 @@ const BadgesEdit = () => {
 
             <InputSelect
               selectOptions={selectOptions}
-              // currentStatus={newArrList[0].status}
+              // currentStatus={editBadgeData?.status}
               setInputSelectValue={setEditbadge}
               getInputSelectvalue={editBadgeData}
-              serverStatus={newArrList[0].status}
+              serverStatus={editBadgeData?.status}
             />
           </Grid>
 

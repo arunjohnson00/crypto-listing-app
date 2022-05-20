@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "../pages/login/Login";
 import Affiliates from "../pages/affiliates/view/Affiliates";
-import AirDrops from "../pages/airdrops/view/AirDrops";
+import AirDrops from "../pages/airdrops/AirDrops";
 import Badges from "../pages/badges/Badges";
 import BadgesAdd from "../pages/badges/add/BadgesAdd";
 import BadgesEdit from "../pages/badges/edit/BadgesEdit";
@@ -78,6 +78,9 @@ import NftTokenCurrencyEdit from "../pages/nfteventtokencurrency/edit/NftTokenCu
 import NftTokenCurrencyAdd from "../pages/nfteventtokencurrency/add/NftTokenCurrencyAdd";
 import NftEventCategoryView from "../pages/nfteventcategory/view/NftEventCategoryView";
 import NftTokenCurrencyView from "../pages/nfteventtokencurrency/view/NftTokenCurrencyView";
+import AirDropsAdd from "../pages/airdrops/add/AirDropsAdd";
+import AirDropsEdit from "../pages/airdrops/edit/AirDropsEdit";
+import AirDropsView from "../pages/airdrops/view/AirDropsView";
 
 const AppRoutes = () => {
   return (
@@ -419,6 +422,30 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <AirDrops />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/airdrops/add"
+          element={
+            <PrivateRoute>
+              <AirDropsAdd />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/airdrops/edit/:id"
+          element={
+            <PrivateRoute>
+              <AirDropsEdit />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/airdrops/view/:id"
+          element={
+            <PrivateRoute>
+              <AirDropsView />
             </PrivateRoute>
           }
         />

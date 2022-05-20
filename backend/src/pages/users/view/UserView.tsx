@@ -1,28 +1,42 @@
+import { useEffect, useState } from "react";
 import { Grid, Typography, Box, IconButton, Stack } from "@mui/material";
 import InputText from "../../../components/form/input/text/InputText";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
-import { useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
+import { viewUserRequest } from "../../../store/action";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const UserView = () => {
-  const userList = useSelector((usrList: any) => {
-    return usrList.listUsersReducer.userListAll.data;
-  });
-
-  console.log(userList);
-
   const location: any = useLocation();
   const navigate: any = useNavigate();
 
-  console.log(location.state.id);
+  let { id } = useParams();
+  const dispatch: any = useDispatch();
 
-  let newArrList = userList.filter(
-    (userData: any) => userData.id === location.state.id
-  );
+  const [viewUser, setViewUser] = useState({
+    id: "",
+    name: "",
+    status: "",
+    email: "",
+    password: "",
+    avatar: "",
+  });
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setViewUser(res.data.data);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(viewUserRequest({ id: id }, successHandler, errorHandler));
+  }, [dispatch, id]);
 
   return (
     <Grid container spacing={2}>
@@ -53,8 +67,8 @@ const UserView = () => {
         >
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <img
-              src={`${serverAPIUrl}public/uploads/users/${newArrList[0].avatar}`}
-              alt={newArrList[0].avatar}
+              src={`${serverAPIUrl}public/uploads/users/${viewUser?.avatar}`}
+              alt={viewUser?.avatar}
               width="100%"
             />
           </Grid>
@@ -63,10 +77,7 @@ const UserView = () => {
               User Name
             </Typography>
 
-            <InputText
-              placeholder="Enter User Name"
-              value={newArrList[0].name}
-            />
+            <InputText placeholder="Enter User Name" value={viewUser?.name} />
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
@@ -74,7 +85,7 @@ const UserView = () => {
               User Email
             </Typography>
 
-            <InputText placeholder="Enter email" value={newArrList[0].email} />
+            <InputText placeholder="Enter email" value={viewUser?.email} />
           </Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
@@ -83,7 +94,7 @@ const UserView = () => {
 
             <InputText
               placeholder="Enter Password"
-              value={newArrList[0].password}
+              value={viewUser?.password}
             />
           </Grid>
 
@@ -92,7 +103,7 @@ const UserView = () => {
               Status
             </Typography>
 
-            <Typography>{newArrList[0].status}</Typography>
+            <Typography>{viewUser?.status}</Typography>
           </Grid>
         </Box>
       </Grid>

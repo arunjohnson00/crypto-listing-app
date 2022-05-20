@@ -1,22 +1,39 @@
+import { useEffect, useState } from "react";
 import { Grid, Typography, Box, IconButton, Stack } from "@mui/material";
 import InputText from "../../../components/form/input/text/InputText";
-import { useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
+import { viewBadgeRequest } from "../../../store/action";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const BadgesView = () => {
   const location: any = useLocation();
   const navigate: any = useNavigate();
-  const badgesList = useSelector((bdgList: any) => {
-    return bdgList.badgesReducer.listBadges.data;
+  const dispatch: any = useDispatch();
+  let { id } = useParams();
+
+  const [viewBadgeData, setViewBadge] = useState({
+    id: "",
+    name: "",
+    status: "",
+    url: "",
+    thumb_icon: "",
+    icon: "",
   });
 
-  let newArrList = badgesList.filter(
-    (listData: any) => listData.id === location.state.id
-  );
-  console.log(newArrList);
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setViewBadge(res.data.data);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(viewBadgeRequest({ id: id }, successHandler, errorHandler));
+  }, [dispatch, id]);
 
   return (
     <Grid container spacing={2}>
@@ -46,8 +63,8 @@ const BadgesView = () => {
         >
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
             <img
-              src={`${serverAPIUrl}public/uploads/badges_icons/${newArrList[0].thumb_icon}`}
-              alt={newArrList[0].thumb_icon}
+              src={`${serverAPIUrl}public/uploads/badge_icons/${viewBadgeData?.icon}`}
+              alt={viewBadgeData?.icon}
               width="100%"
             />
           </Grid>
@@ -58,7 +75,7 @@ const BadgesView = () => {
 
             <InputText
               placeholder="Enter badge Name"
-              value={newArrList[0].name}
+              value={viewBadgeData?.name}
             />
           </Grid>
 
@@ -69,7 +86,7 @@ const BadgesView = () => {
 
             <InputText
               placeholder="Enter badge url"
-              value={newArrList[0].url}
+              value={viewBadgeData?.url}
             />
           </Grid>
         </Box>

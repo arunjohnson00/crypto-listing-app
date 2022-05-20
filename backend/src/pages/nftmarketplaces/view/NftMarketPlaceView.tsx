@@ -1,23 +1,40 @@
+import { useEffect, useState } from "react";
 import { Grid, Typography, Box, IconButton, Stack } from "@mui/material";
 import InputText from "../../../components/form/input/text/InputText";
-import { useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
+import { viewNftMarketPlaceRequest } from "../../../store/action";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const NftMarketPlaceView = () => {
   const location: any = useLocation();
   const navigate: any = useNavigate();
-  const nftMarketPlaceList = useSelector((nftList: any) => {
-    return nftList.listNftMarketPlcesReducer.nftMarketPlcesListAll.data;
+  const dispatch: any = useDispatch();
+  let { id } = useParams();
+  const [viewNftMarketPlaces, setViewNftMarketPlaces] = useState({
+    id: "",
+    name: "",
+    status: "",
+    url: "",
+    thumb_icon: "",
   });
 
-  let newArrList = nftMarketPlaceList.filter(
-    (listData: any) => listData.id === location.state.id
-  );
-  console.log(newArrList);
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      setViewNftMarketPlaces(res.data.data);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(
+      viewNftMarketPlaceRequest({ id: id }, successHandler, errorHandler)
+    );
+  }, [dispatch, id]);
+
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -46,8 +63,8 @@ const NftMarketPlaceView = () => {
         >
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
             <img
-              src={`${serverAPIUrl}public/uploads/nft_marketplace_icons/${newArrList[0].thumb_icon}`}
-              alt={newArrList[0].thumb_icon}
+              src={`${serverAPIUrl}public/uploads/nft_marketplace_icons/${viewNftMarketPlaces?.thumb_icon}`}
+              alt={viewNftMarketPlaces?.thumb_icon}
               width="100%"
             />
           </Grid>
@@ -58,7 +75,7 @@ const NftMarketPlaceView = () => {
 
             <InputText
               placeholder="Enter NftMarketPlace Name"
-              value={newArrList[0].name}
+              value={viewNftMarketPlaces?.name}
             />
           </Grid>
 
@@ -69,7 +86,7 @@ const NftMarketPlaceView = () => {
 
             <InputText
               placeholder="Enter NftMarketPlace url"
-              value={newArrList[0].url}
+              value={viewNftMarketPlaces?.url}
             />
           </Grid>
         </Box>

@@ -39,8 +39,8 @@ export const editMenuCardRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/menu-cards/${values.get("id")}/edit`,
-    method: "POST",
+    url: `api/b/v1/menu-cards/${values.id}/edit`,
+    method: "GET",
     secure: true,
     body: values,
     fileUpload: true,
@@ -71,8 +71,8 @@ export const viewMenuCardRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/menu-cards/${values.get("id")}/show`,
-    method: "POST",
+    url: `api/b/v1/menu-cards/${values.id}/show`,
+    method: "GET",
     secure: true,
     body: values,
     fileUpload: true,

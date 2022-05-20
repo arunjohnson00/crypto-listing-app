@@ -12,8 +12,11 @@ const InputDate = ({
   publicMintStart,
   publicMintEnd,
   disabled,
+  serverRef,
+
+  airdropStart,
 }: any) => {
-  //console.log(disabled);
+  console.log(date.start_date);
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
@@ -36,7 +39,9 @@ const InputDate = ({
             ? date.end_date
             : publicMintStart === true
             ? date.start_date
-            : publicMintEnd === true && date.end_date
+            : publicMintEnd === true
+            ? date.end_date
+            : airdropStart === true && date.start_date
         }
         //publicMintStart===true&&date.start_date
         onChange={(newValue) => {
@@ -45,6 +50,7 @@ const InputDate = ({
           publicMintStart === true &&
             setDate({ ...date, start_date: newValue });
           publicMintEnd === true && setDate({ ...date, end_date: newValue });
+          airdropStart === true && setDate({ ...date, start_date: newValue });
         }}
         disabled={disabled}
       />
