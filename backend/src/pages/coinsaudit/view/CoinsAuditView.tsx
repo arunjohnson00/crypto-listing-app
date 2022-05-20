@@ -1,28 +1,30 @@
+import { useEffect, useState } from "react";
 import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import InputText from "../../../components/form/input/text/InputText";
-import { useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
+import { viewCoinAuditRequest } from "../../../store/action";
 
 const CoinsAuditView = () => {
-  const coinAuditList = useSelector((auditList: any) => {
-    return auditList.auditReducer.listAudit.data;
-  });
-
   const navigate = useNavigate();
-
+  const dispatch: any = useDispatch();
   const location: any = useLocation();
-
+  let { id } = useParams();
   console.log(location.state.id);
-
-  let newArrList = coinAuditList.filter(
-    (userData: any) => userData.id === location.state.id
-  );
+  const [viewAudit, setViewAudit] = useState({
+    id: "",
+    name: "",
+    status: "",
+    icon: "",
+    thumb_icon: "",
+    url: "",
+  });
 
   // Display the key/value pairs
 
@@ -31,6 +33,18 @@ const CoinsAuditView = () => {
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setViewAudit(res.data.data);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(viewCoinAuditRequest({ id: id }, successHandler, errorHandler));
+  }, [dispatch, id]);
   return (
     <div>
       {" "}
@@ -66,7 +80,7 @@ const CoinsAuditView = () => {
 
               <InputText
                 placeholder="Enter audit Name"
-                value={newArrList[0].name}
+                value={viewAudit?.name}
               />
             </Grid>
 
@@ -75,7 +89,7 @@ const CoinsAuditView = () => {
                 Status
               </Typography>
 
-              {newArrList[0].status}
+              {viewAudit?.status}
             </Grid>
           </Box>
         </Grid>

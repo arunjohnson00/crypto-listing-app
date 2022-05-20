@@ -1,37 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import InputText from "../../../components/form/input/text/InputText";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import { updateCoinCommunityRequest } from "../../../store/action";
+import { editCoinCommunityRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
 
 const CoinsCommunityEdit = () => {
-  const coinCommunityList = useSelector((CommunityList: any) => {
-    return CommunityList.listCoinCommunityReducer.coinCommunityListAll.data;
-  });
-
+  let { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location: any = useLocation();
 
-  console.log(location.state.id);
-
-  let newArrList = coinCommunityList.filter(
-    (userData: any) => userData.id === location.state.id
-  );
   const [loading, setLoading] = useState(false);
   const [updateCoinsCommunityData, setUpdateCoinsCommunity] = useState({
-    id: newArrList[0].id,
-    name: newArrList[0].name,
-    status: newArrList[0].status,
+    id: "",
+    name: "",
+    status: "",
+    url: "",
+    thumb_icon: "",
   });
 
   console.log(updateCoinsCommunityData);
@@ -90,6 +84,20 @@ const CoinsCommunityEdit = () => {
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setUpdateCoinsCommunity(res.data.data);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(
+      editCoinCommunityRequest({ id: id }, successHandler, errorHandler)
+    );
+  }, [dispatch, id]);
   return (
     <div>
       {" "}
@@ -126,7 +134,7 @@ const CoinsCommunityEdit = () => {
               <InputText
                 placeholder="Enter  Chart Provider Name"
                 inputTextHandler={(e: any) => coinCoinsCommunityNameHandler(e)}
-                value={newArrList[0].name}
+                value={updateCoinsCommunityData?.name}
               />
             </Grid>
 
@@ -137,7 +145,7 @@ const CoinsCommunityEdit = () => {
 
               <InputSelect
                 selectOptions={selectOptions}
-                currentStatus={newArrList[0].status}
+                currentStatus={updateCoinsCommunityData?.status}
                 setInputSelectValue={setUpdateCoinsCommunity}
                 getInputSelectvalue={updateCoinsCommunityData}
               />

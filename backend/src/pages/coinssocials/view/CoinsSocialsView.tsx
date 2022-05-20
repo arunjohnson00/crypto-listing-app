@@ -1,28 +1,29 @@
+import { useEffect, useState } from "react";
 import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import InputText from "../../../components/form/input/text/InputText";
-import { useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
+import { viewCoinSocialRequest } from "../../../store/action";
 
 const CoinsSocialsView = () => {
-  const coinSocialList = useSelector((socialList: any) => {
-    return socialList.socialsReducer.listSocials.data;
-  });
-
+  let { id } = useParams();
+  const dispatch: any = useDispatch();
   const navigate = useNavigate();
 
-  const location: any = useLocation();
-
-  console.log(location.state.id);
-
-  let newArrList = coinSocialList.filter(
-    (userData: any) => userData.id === location.state.id
-  );
+  const [viewCoinSocial, setViewCoinSocial] = useState({
+    id: "",
+    name: "",
+    status: "",
+    icon: "",
+    thumb_icon: "",
+    url: "",
+  });
 
   // Display the key/value pairs
 
@@ -31,6 +32,19 @@ const CoinsSocialsView = () => {
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setViewCoinSocial(res.data.data);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(viewCoinSocialRequest({ id: id }, successHandler, errorHandler));
+  }, [dispatch, id]);
+
   return (
     <div>
       {" "}
@@ -66,7 +80,7 @@ const CoinsSocialsView = () => {
 
               <InputText
                 placeholder="Enter Social Name"
-                value={newArrList[0].name}
+                value={viewCoinSocial?.name}
               />
             </Grid>
 
@@ -75,7 +89,7 @@ const CoinsSocialsView = () => {
                 Status
               </Typography>
 
-              {newArrList[0].status}
+              {viewCoinSocial?.status}
             </Grid>
           </Box>
         </Grid>

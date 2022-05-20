@@ -1,37 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import InputText from "../../../components/form/input/text/InputText";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import { updateCoinSocialRequest } from "../../../store/action";
+import { editCoinSocialRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
 
 const CoinsSocialsEdit = () => {
-  const coinSocialList = useSelector((socialList: any) => {
-    return socialList.socialsReducer.listSocials.data;
-  });
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location: any = useLocation();
+  let { id } = useParams();
 
-  console.log(location.state.id);
-
-  let newArrList = coinSocialList.filter(
-    (userData: any) => userData.id === location.state.id
-  );
   const [loading, setLoading] = useState(false);
   const [updateCoinSocialData, setUpdateCoinSocial] = useState({
-    id: newArrList[0].id,
-    name: newArrList[0].name,
-    status: newArrList[0].status,
+    id: "",
+    name: "",
+    status: "",
+    icon: "",
+    thumb_icon: "",
+    url: "",
   });
 
   console.log(updateCoinSocialData);
@@ -88,6 +84,18 @@ const CoinsSocialsEdit = () => {
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setUpdateCoinSocial(res.data.data);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(editCoinSocialRequest({ id: id }, successHandler, errorHandler));
+  }, [dispatch, id]);
   return (
     <div>
       {" "}
@@ -124,7 +132,7 @@ const CoinsSocialsEdit = () => {
               <InputText
                 placeholder="Enter Social Name"
                 inputTextHandler={(e: any) => coinSocialNameHandler(e)}
-                value={newArrList[0].name}
+                value={updateCoinSocialData?.name}
               />
             </Grid>
 
@@ -135,10 +143,10 @@ const CoinsSocialsEdit = () => {
 
               <InputSelect
                 selectOptions={selectOptions}
-                currentStatus={newArrList[0].status}
+                currentStatus={updateCoinSocialData?.status}
                 setInputSelectValue={setUpdateCoinSocial}
                 getInputSelectvalue={updateCoinSocialData}
-                serverStatus={newArrList[0].status}
+                serverStatus={updateCoinSocialData?.status}
               />
             </Grid>
 

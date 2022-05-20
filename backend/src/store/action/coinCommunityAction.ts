@@ -40,8 +40,8 @@ export const editCoinCommunityRequest = (
 ) => {
   //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins-community/${values.get("id")}/edit`,
-    method: "POST",
+    url: `api/b/v1/coins-community/${values.id}/edit`,
+    method: "GET",
     secure: true,
     body: values,
     fileUpload: true,
@@ -74,8 +74,8 @@ export const viewCoinCommunityRequest = (
 ) => {
   //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins-community/${values.get("id")}/show`,
-    method: "POST",
+    url: `api/b/v1/coins-community/${values.id}/show`,
+    method: "GET",
     secure: true,
     body: values,
     fileUpload: true,

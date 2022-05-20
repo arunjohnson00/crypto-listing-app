@@ -1,28 +1,30 @@
+import { useEffect, useState } from "react";
 import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import InputText from "../../../components/form/input/text/InputText";
-import { useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
+import { viewCoinChatRequest } from "../../../store/action";
 
 const CoinsChatView = () => {
-  const coinChatList = useSelector((chatList: any) => {
-    return chatList.chatReducer.listChat.data;
-  });
-
+  let { id } = useParams();
   const navigate = useNavigate();
-
+  const dispatch: any = useDispatch();
   const location: any = useLocation();
 
-  console.log(location.state.id);
-
-  let newArrList = coinChatList.filter(
-    (userData: any) => userData.id === location.state.id
-  );
+  const [viewCoinChat, setViewCoinChat] = useState({
+    id: "",
+    name: "",
+    status: "",
+    icon: "",
+    thumb_icon: "",
+    url: "",
+  });
 
   // Display the key/value pairs
 
@@ -31,6 +33,18 @@ const CoinsChatView = () => {
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setViewCoinChat(res.data.data);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(viewCoinChatRequest({ id: id }, successHandler, errorHandler));
+  }, [dispatch, id]);
   return (
     <div>
       {" "}
@@ -66,7 +80,7 @@ const CoinsChatView = () => {
 
               <InputText
                 placeholder="Enter chat Name"
-                value={newArrList[0].name}
+                value={viewCoinChat?.name}
               />
             </Grid>
 
@@ -75,7 +89,7 @@ const CoinsChatView = () => {
                 Status
               </Typography>
 
-              {newArrList[0].status}
+              {viewCoinChat?.status}
             </Grid>
           </Box>
         </Grid>

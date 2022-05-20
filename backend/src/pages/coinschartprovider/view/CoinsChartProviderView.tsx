@@ -1,28 +1,32 @@
+import { useEffect, useState } from "react";
 import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import InputText from "../../../components/form/input/text/InputText";
-import { useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
+import { viewChartProviderRequest } from "../../../store/action";
 
 const CoinsChartProviderView = () => {
-  const coinChartProviderList = useSelector((chartProviderList: any) => {
-    return chartProviderList.chartProviderReducer.listChartProvider.data;
-  });
   const navigate = useNavigate();
 
   const location: any = useLocation();
-
+  const dispatch: any = useDispatch();
   console.log(location.state.id);
+  let { id } = useParams();
 
-  let newArrList = coinChartProviderList.filter(
-    (userData: any) => userData.id === location.state.id
-  );
-
+  const [viewChartProvider, setViewChartProvider] = useState({
+    id: "",
+    name: "",
+    status: "",
+    icon: "",
+    thumb_icon: "",
+    url: "",
+  });
   // Display the key/value pairs
 
   const selectOptions = [
@@ -30,6 +34,20 @@ const CoinsChartProviderView = () => {
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setViewChartProvider(res.data.data);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(
+      viewChartProviderRequest({ id: id }, successHandler, errorHandler)
+    );
+  }, [dispatch, id]);
   return (
     <div>
       {" "}
@@ -65,7 +83,7 @@ const CoinsChartProviderView = () => {
 
               <InputText
                 placeholder="Enter audit Name"
-                value={newArrList[0].name}
+                value={viewChartProvider?.name}
               />
             </Grid>
 
@@ -74,7 +92,7 @@ const CoinsChartProviderView = () => {
                 Status
               </Typography>
 
-              {newArrList[0].status}
+              {viewChartProvider?.status}
             </Grid>
           </Box>
         </Grid>
