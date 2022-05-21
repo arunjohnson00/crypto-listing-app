@@ -278,6 +278,7 @@ const CoinListingEdit = () => {
 
     formData.append("id", location.state.id);
     addCoinLogo.coinLogo !== "" &&
+      typeof addCoinLogo.coinLogo !== "string" &&
       formData.append("logo", addCoinLogo.coinLogo);
 
     formData.append(
@@ -523,7 +524,8 @@ const CoinListingEdit = () => {
                 </Grid>
               </Grid>
               {console.log(coinStatus)}
-              {coinStatus === "Presale" ? (
+              {coinStatus === "Presale" ||
+              parseInt(editCoin?.is_presale) === 1 ? (
                 <Grid container mb={5} mt={1}>
                   <Stack direction="row" spacing={3} mb={2}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

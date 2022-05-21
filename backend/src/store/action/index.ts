@@ -142,3 +142,29 @@ export { addAirDropsRequest } from "./airdropsAction";
 export { editAirDropsRequest } from "./airdropsAction";
 export { updateAirDropsRequest } from "./airdropsAction";
 export { viewAirDropsRequest } from "./airdropsAction";
+
+//Common Events Actions
+
+export { listEventsRequest } from "./eventsAction";
+export { addEventsRequest } from "./eventsAction";
+export { editEventsRequest } from "./eventsAction";
+export { updateEventsRequest } from "./eventsAction";
+export { viewEventsRequest } from "./eventsAction";
+
+//Common EventsCategory Actions
+
+export { listEventsCategoryRequest } from "./eventsCategoryAction";
+export { addEventsCategoryRequest } from "./eventsCategoryAction";
+export { editEventsCategoryRequest } from "./eventsCategoryAction";
+export { updateEventsCategoryRequest } from "./eventsCategoryAction";
+export { viewEventsCategoryRequest } from "./eventsCategoryAction";
+export { allEventsCategoryRequest } from "./eventsCategoryAction";
+
+//Common EventsRewardAddress Actions
+
+export { listEventsRewardAddressRequest } from "./eventsRewardAddressAction";
+export { addEventsRewardAddressRequest } from "./eventsRewardAddressAction";
+export { editEventsRewardAddressRequest } from "./eventsRewardAddressAction";
+export { updateEventsRewardAddressRequest } from "./eventsRewardAddressAction";
+export { viewEventsRewardAddressRequest } from "./eventsRewardAddressAction";
+export { allEventsRewardAddressRequest } from "./eventsRewardAddressAction";

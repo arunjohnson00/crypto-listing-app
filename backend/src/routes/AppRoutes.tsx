@@ -9,7 +9,7 @@ import BadgesEdit from "../pages/badges/edit/BadgesEdit";
 import BadgesView from "../pages/badges/view/BadgesView";
 import CoinListing from "../pages/coinlisting/CoinListing";
 import Dashboard from "../pages/dashboard/Dashboard";
-import Events from "../pages/events/view/Events";
+import Events from "../pages/events/Events";
 import Exchanges from "../pages/exchanges/Exchanges";
 import MenuCard from "../pages/menucards/MenuCard";
 import Networks from "../pages/networks/Networks";
@@ -81,6 +81,17 @@ import NftTokenCurrencyView from "../pages/nfteventtokencurrency/view/NftTokenCu
 import AirDropsAdd from "../pages/airdrops/add/AirDropsAdd";
 import AirDropsEdit from "../pages/airdrops/edit/AirDropsEdit";
 import AirDropsView from "../pages/airdrops/view/AirDropsView";
+import EventsAdd from "../pages/events/add/EventsAdd";
+import EventsEdit from "../pages/events/edit/EventsEdit";
+import EventsView from "../pages/events/view/EventsView";
+import EventCategory from "../pages/eventcategory/EventCategory";
+import EventCategoryAdd from "../pages/eventcategory/add/EventCategoryAdd";
+import EventCategoryEdit from "../pages/eventcategory/edit/EventCategoryEdit";
+import EventCategoryView from "../pages/eventcategory/view/EventCategoryView";
+import EventRewardAddress from "../pages/eventrewardaddress/EventRewardAddress";
+import EventRewardAddressAdd from "../pages/eventrewardaddress/add/EventRewardAddressAdd";
+import EventRewardAddressView from "../pages/eventrewardaddress/view/EventRewardAddressView";
+import EventRewardAddressEdit from "../pages/eventrewardaddress/edit/EventRewardAddressEdit";
 
 const AppRoutes = () => {
   return (
@@ -603,6 +614,104 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <Events />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/events/add"
+          element={
+            <PrivateRoute>
+              <EventsAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/events/edit/:id"
+          element={
+            <PrivateRoute>
+              <EventsEdit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/events/view/:id"
+          element={
+            <PrivateRoute>
+              <EventsView />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/events-category"
+          element={
+            <PrivateRoute>
+              <EventCategory />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/events-category/add"
+          element={
+            <PrivateRoute>
+              <EventCategoryAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/events-category/edit/:id"
+          element={
+            <PrivateRoute>
+              <EventCategoryEdit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/events-category/view/:id"
+          element={
+            <PrivateRoute>
+              <EventCategoryView />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/reward-address"
+          element={
+            <PrivateRoute>
+              <EventRewardAddress />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/reward-address/add"
+          element={
+            <PrivateRoute>
+              <EventRewardAddressAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/reward-address/edit/:id"
+          element={
+            <PrivateRoute>
+              <EventRewardAddressEdit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/reward-address/view/:id"
+          element={
+            <PrivateRoute>
+              <EventRewardAddressView />
             </PrivateRoute>
           }
         />

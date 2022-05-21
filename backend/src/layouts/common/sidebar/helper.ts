@@ -48,7 +48,15 @@ export const sideBarMenu = [
   },
   { id: "11", title: "Menu-cards", icon: "fact_check" },
   { id: "12", title: "Rating-Reviews", icon: "view_carousel" },
-  { id: "13", title: "Events", icon: "event" },
+  {
+    id: "13",
+    title: "Events",
+    icon: "event",
+    subMenu: [
+      { id: "131", title: "events-category", icon: "store" },
+      { id: "132", title: "reward-address", icon: "store" },
+    ],
+  },
   { id: "14", title: "Affiliates", icon: "stream" },
   { id: "15", title: "Badges", icon: "badge" },
 ];

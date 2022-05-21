@@ -79,7 +79,7 @@ const NFTListingEdit = () => {
   });
 
   const [nftListingData, setNftListingData] = useState<any>({});
-
+  console.log(nftListingData, "nftListingData");
   const [checked, setChecked] = useState<any>({
     i_agree: false,
     i_declare: false,
@@ -93,16 +93,16 @@ const NFTListingEdit = () => {
     is_scheduled: 0,
   });
   const [presaleDate, setPresaleDate] = useState<any>({
-    start_date: new Date(),
-    start_time: new Date(),
-    end_date: new Date(),
-    end_time: new Date(),
+    start_date: "",
+    start_time: "",
+    end_date: "",
+    end_time: "",
   });
   const [publicMintDate, setPublicMintDate] = useState<any>({
-    start_date: new Date(),
-    start_time: new Date(),
-    end_date: new Date(),
-    end_time: new Date(),
+    start_date: "",
+    start_time: "",
+    end_date: "",
+    end_time: "",
   });
 
   // Display the key/value pairs
@@ -294,7 +294,41 @@ const NFTListingEdit = () => {
   useEffect(() => {
     const successHandler = (res: any) => {
       console.log(res);
+
+      //new Date(year, month, day, hours, minutes, seconds, milliseconds)
+
+      // console.log(today);
+
       setNftListingData(res.data.data);
+      setPresaleDate({
+        start_date: res?.data?.data?.pre_sale_start_date,
+        start_time: new Date(
+          res?.data?.data?.pre_sale_start_date +
+            " " +
+            res?.data?.data?.pre_sale_start_time
+        ),
+        end_date: res?.data?.data?.pre_sale_end_date,
+        end_time: new Date(
+          res?.data?.data?.pre_sale_end_date +
+            " " +
+            res?.data?.data?.pre_sale_end_time
+        ),
+      });
+
+      setPublicMintDate({
+        start_date: res?.data?.data?.public_mint_start_date,
+        start_time: new Date(
+          res?.data?.data?.public_mint_start_date +
+            " " +
+            res?.data?.data?.public_mint_start_time
+        ),
+        end_date: res?.data?.data?.public_mint_end_date,
+        end_time: new Date(
+          res?.data?.data?.public_mint_end_date +
+            " " +
+            res?.data?.data?.public_mint_end_time
+        ),
+      });
     };
 
     const errorHandler = (err: any) => {
@@ -631,7 +665,10 @@ const NFTListingEdit = () => {
                           onClick={presaleEndTimeOpenHandler}
                           underline="none"
                         >
-                          Add End Time +
+                          {nftListingData.pre_sale_end_date !== "" ||
+                          nftListingData.pre_sale_end_time !== ""
+                            ? "Show End Time +"
+                            : "Add End Time +"}
                         </Link>
                       )}
                     </Grid>
@@ -718,7 +755,10 @@ const NFTListingEdit = () => {
                           onClick={publicMintEndTimeOpenHandler}
                           underline="none"
                         >
-                          Add End Time +
+                          {nftListingData.public_mint_end_date !== "" ||
+                          nftListingData.public_mint_end_time !== ""
+                            ? "Show End Time +"
+                            : "Add End Time +"}
                         </Link>
                       )}
                     </Grid>
@@ -732,7 +772,7 @@ const NFTListingEdit = () => {
                       sx={{ textAlign: "left" }}
                       mt={2}
                     >
-                      Presale end date time
+                      Public mint end date time
                     </Typography>
                     <Stack direction="row" spacing={3} mb={2} mt={0}>
                       <Grid item xl={4} lg={4} md={4} sm={4} xs={12} pt={0}>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Theme, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 //import OutlinedInput from "@mui/material/OutlinedInput";
@@ -34,7 +34,10 @@ const InputSelectMultiple = ({
 }: any) => {
   const [serverValue, setServerValue] = useState<any>({});
 
-  console.log(serverMultiRef);
+  //console.log(pluck(serverMultiRef, "category_id")); // even shorter);
+  // const pluck = (array: any, key: any) => array.map((a: any) => a[key]);
+
+  // console.log(pluck(serverMultiRef, "category_id").join(","));
 
   const theme = useTheme();
   const ITEM_HEIGHT = 48;
@@ -59,6 +62,7 @@ const InputSelectMultiple = ({
     const {
       target: { value },
     } = event;
+
     setInputSelectMultipleValue(
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value

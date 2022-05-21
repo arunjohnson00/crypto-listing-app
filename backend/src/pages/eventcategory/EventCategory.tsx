@@ -1,96 +1,76 @@
-import { Grid, Typography, Stack, Avatar } from "@mui/material";
+import { Grid, Typography, Stack } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
 import LargeBtn from "../../components/form/button/large/LargeBtn";
+
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
+import { listEventsCategoryRequest } from "../../store/action";
 
-import { listExchangeRequest } from "../../store/action";
+//const serverAPIUrl = process.env.REACT_APP_API_URL;
 
-//Server URL
-const serverAPIUrl = process.env.REACT_APP_API_URL;
-
-//Table Data
-
-const tableColumn = [
-  {
-    field: "name",
-    headerName: "Exchange Name",
-    flex: 1,
-  },
-
-  {
-    field: "thumb_icon",
-    headerName: "Icon",
-    flex: 1,
-    sortable: false,
-    disableClickEventBubbling: true,
-    renderCell: (params: any) => (
-      <Avatar
-        src={`${serverAPIUrl}public/uploads/exchange_icons/${params.row.thumb_icon}`}
-        alt={params.thumb_icon}
-      />
-    ),
-  },
-
-  {
-    field: "url",
-    headerName: "Exchange Url",
-    flex: 1,
-  },
-
-  {
-    field: "status",
-    headerName: "Status",
-    flex: 1,
-    renderCell: (params: any) => (
-      <span>
-        {parseInt(params.row.status) === 1 && (
-          <span style={{ color: "#64dd17" }}>Approved</span>
-        )}
-
-        {parseInt(params.row.status) === 2 && (
-          <span style={{ color: "#d50000" }}>Pending</span>
-        )}
-
-        {parseInt(params.row.status) === 3 && (
-          <span style={{ color: "#6a1b9a" }}>Suspended</span>
-        )}
-      </span>
-    ),
-  },
-];
-
-const Exchanges = () => {
-  const dispatch = useDispatch();
-  const [searchValue, setSearchValue] = useState("");
-
-  const exchangeList = useSelector((exList: any) => {
-    return exList.exchangesReducer.listExchanges.data;
+const EventCategory = () => {
+  const eventCategoryList = useSelector((evnCategoryList: any) => {
+    return evnCategoryList.eventsCategoryReducer.listEventsCategory.data;
   });
+
+  console.log(eventCategoryList);
+  const [searchValue, setSearchValue] = useState("");
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
   };
 
-  const filteredData = searchValue
-    ? exchangeList.filter((flData: any) => {
+  var filteredData = searchValue
+    ? eventCategoryList.filter((flData: any) => {
         return flData.name.toLowerCase().includes(searchValue.toLowerCase());
       })
-    : exchangeList;
+    : eventCategoryList;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const successHandler = (res: any) => {
-      //console.log(res);
+      console.log(res);
     };
+
     const errorHandler = (err: any) => {
-      //console.log(err);
+      console.log(err);
     };
-    dispatch(listExchangeRequest("emptyData", successHandler, errorHandler));
+    dispatch(
+      listEventsCategoryRequest("emptyData", successHandler, errorHandler)
+    );
   }, [dispatch]);
+
+  const tableColumn = [
+    {
+      field: "name",
+      headerName: "Name",
+      flex: 1,
+    },
+    {
+      field: "status",
+      headerName: "Status",
+      flex: 1,
+      renderCell: (params: any) => (
+        <span>
+          {params.row.status === 1 && (
+            <span style={{ color: "#64dd17" }}>Approved</span>
+          )}
+
+          {params.row.status === 2 && (
+            <span style={{ color: "#d50000" }}>Pending</span>
+          )}
+
+          {params.row.status === 3 && (
+            <span style={{ color: "#6a1b9a" }}>Suspended</span>
+          )}
+        </span>
+      ),
+    },
+  ];
 
   return (
     <Grid container spacing={2}>
@@ -114,12 +94,12 @@ const Exchanges = () => {
             >
               <Grid item xl={2} lg={2} md={2} sm={12} xs={12}>
                 <Typography variant="h5" sx={{ textAlign: "left" }}>
-                  Exchanges
+                  Event Category
                 </Typography>
               </Grid>
               <Grid item xl={10} lg={10} md={10} sm={12} xs={12}>
                 <InputSearch
-                  placeholder="Search Exchanges"
+                  placeholder="Search  Event category"
                   searchValue={searchValue}
                   searchHandler={searchHandler}
                 />
@@ -136,8 +116,8 @@ const Exchanges = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/exchange/add">
-              <LargeBtn Title="Add Exchange" />
+            <Link to="/events-category/add">
+              <LargeBtn Title="Add  Category" />
             </Link>
           </Grid>
         </Stack>
@@ -153,8 +133,8 @@ const Exchanges = () => {
           sx={{ display: "flex", justifyContent: "flex-end" }}
         >
           {" "}
-          <Link to="/exchange/add">
-            <LargeBtn Title="Add Exchange" />
+          <Link to="/events-category/add">
+            <LargeBtn Title="Add  Category" />
           </Link>
         </Stack>
       </Grid>
@@ -162,4 +142,4 @@ const Exchanges = () => {
   );
 };
 
-export default Exchanges;
+export default EventCategory;
