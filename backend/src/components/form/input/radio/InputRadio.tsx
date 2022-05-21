@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Radio, { RadioProps } from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -39,6 +39,12 @@ const InputRadio = ({
     setLaunched(0);
     setPresale(0);
   };
+  console.log(presale, launched);
+
+  useEffect(() => {
+    setLaunched(serverIsLanuched);
+    setPresale(serverIsPresale);
+  }, [serverIsPresale, serverIsLanuched]);
 
   return (
     <FormControl>

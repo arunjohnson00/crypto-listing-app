@@ -1,85 +1,98 @@
 import appRequest from "../../utils/fetchhandler";
-import { COINS } from "../types";
+import { EVENTS_REWARD_ADDRESS } from "../types";
 
-export const listCoinRequest = (
+export const listEventsRewardAddressRequest = (
   pageData: any,
   successHandler: any,
   errorHandler: any
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/coins`,
+    url: `api/b/v1/reward-address`,
     method: "GET",
     secure: true,
-    actionType: COINS.LIST_COINS,
+    actionType: EVENTS_REWARD_ADDRESS.LIST_EVENTS_REWARD_ADDRESS,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const addCoinRequest = (
+export const addEventsRewardAddressRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
   //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins`,
+    url: `api/b/v1/reward-address`,
     method: "POST",
     secure: true,
     body: values,
     fileUpload: true,
-    actionType: COINS.ADD_COINS,
+    actionType: EVENTS_REWARD_ADDRESS.ADD_EVENTS_REWARD_ADDRESS,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const editCoinRequest = (
+export const editEventsRewardAddressRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
-  //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins/${values.id}/edit`,
+    url: `api/b/v1/reward-address/${values.id}/edit`,
     method: "GET",
     secure: true,
     body: values,
     fileUpload: true,
-    actionType: COINS.EDIT_COINS,
+    actionType: EVENTS_REWARD_ADDRESS.EDIT_EVENTS_REWARD_ADDRESS,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const updateCoinRequest = (
+export const updateEventsRewardAddressRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
-  //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins/${values.get("id")}`,
+    url: `api/b/v1/reward-address/${values.get("id")}`,
     method: "POST",
     secure: true,
     body: values,
     fileUpload: true,
-    actionType: COINS.UPDATE_COINS,
+    actionType: EVENTS_REWARD_ADDRESS.UPDATE_EVENTS_REWARD_ADDRESS,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const viewCoinRequest = (
+export const viewEventsRewardAddressRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
-  //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins/${values.id}/show`,
+    url: `api/b/v1/reward-address/${values.id}/show`,
     method: "GET",
     secure: true,
     body: values,
     fileUpload: true,
-    actionType: COINS.VIEW_COINS,
+    actionType: EVENTS_REWARD_ADDRESS.VIEW_EVENTS_REWARD_ADDRESS,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const allEventsRewardAddressRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/b/v1/reward-address-all`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: EVENTS_REWARD_ADDRESS.ALL_EVENTS_REWARD_ADDRESS,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };

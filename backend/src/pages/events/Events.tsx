@@ -1,22 +1,21 @@
 import { Grid, Typography, Stack } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
 import Avatar from "@mui/material/Avatar";
+import { listEventsRequest } from "../../store/action";
+
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
-import { listCoinRequest } from "../../store/action";
+
 import InputSearch from "../../components/form/input/search/InputSearch";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en.json";
+
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
-const CoinListing = () => {
-  TimeAgo.addLocale(en);
-  const timeAgo = new TimeAgo("en-US");
-  const coinList = useSelector((cnList: any) => {
-    return cnList.coinReducer.listCoins.data;
+const Events = () => {
+  const eventsList = useSelector((evnList: any) => {
+    return evnList.eventsReducer.listEvents.data;
   });
 
   const [searchValue, setSearchValue] = useState("");
@@ -26,13 +25,12 @@ const CoinListing = () => {
   };
 
   var filteredData = searchValue
-    ? coinList.filter((flData: any) => {
+    ? eventsList.filter((flData: any) => {
         return flData.name.toLowerCase().includes(searchValue.toLowerCase());
       })
-    : coinList;
+    : eventsList;
 
   const dispatch = useDispatch();
-
   useEffect(() => {
     const successHandler = (res: any) => {
       console.log(res);
@@ -41,34 +39,51 @@ const CoinListing = () => {
     const errorHandler = (err: any) => {
       console.log(err);
     };
-    dispatch(listCoinRequest("emptyData", successHandler, errorHandler));
+    dispatch(listEventsRequest("emptyData", successHandler, errorHandler));
   }, [dispatch]);
 
   const tableColumn = [
     {
-      field: "name",
-      headerName: "Name",
+      field: "coin_id",
+      headerName: "Coin ID",
       flex: 1,
     },
     {
-      field: "logo",
+      field: "thumb_icon",
       headerName: "Icon",
       flex: 1,
       sortable: false,
       disableClickEventBubbling: true,
       renderCell: (params: any) => (
         <Avatar
-          src={`${serverAPIUrl}public/uploads/coin_logo/${params.row.logo}`}
-          alt={params.logo}
+          src={`${serverAPIUrl}public/uploads/event_proof/${params.row.proof}`}
+          alt={params.thumb_icon}
         />
       ),
     },
     {
-      field: "is_presale",
-      headerName: "Is Presale",
+      field: "title",
+      headerName: "Title",
+      flex: 1,
+    },
+
+    {
+      field: "category_id",
+      headerName: "Category ID",
+      flex: 1,
+    },
+
+    {
+      field: "event_date",
+      headerName: "Event Date",
+      flex: 1,
+    },
+    {
+      field: "or_earlier",
+      headerName: "Earlier",
       flex: 1,
       renderCell: (params: any) =>
-        parseInt(params.row.is_presale) === 1 ? (
+        parseInt(params.row.or_earlier) === 1 ? (
           <span style={{ color: "green" }}>yes</span>
         ) : (
           <span style={{ color: "red" }}>No</span>
@@ -76,27 +91,14 @@ const CoinListing = () => {
     },
 
     {
-      field: "created_at",
-      headerName: "Submitted",
-      flex: 1,
-      renderCell: (params: any) => (
-        <span>{timeAgo.format(new Date(params.row.created_at))}</span>
-      ),
-    },
-
-    {
-      field: "network_id",
-      headerName: "Network Id",
+      field: "source_link",
+      headerName: "Source Link",
       flex: 1,
     },
-
     {
-      field: "explorer_link",
-      headerName: "Block explorer url",
+      field: "address",
+      headerName: "Address",
       flex: 1,
-      renderCell: (params: any) => (
-        <span style={{ color: "blue" }}>{params.row.explorer_link}</span>
-      ),
     },
 
     {
@@ -110,7 +112,7 @@ const CoinListing = () => {
           )}
 
           {parseInt(params.row.status) === 2 && (
-            <span style={{ color: "#d50000" }}>Scheduled</span>
+            <span style={{ color: "#d50000" }}>Pending</span>
           )}
 
           {parseInt(params.row.status) === 3 && (
@@ -142,12 +144,12 @@ const CoinListing = () => {
             >
               <Grid item xl={2} lg={2} md={2} sm={12} xs={12}>
                 <Typography variant="h5" sx={{ textAlign: "left" }}>
-                  Coin Listing
+                  Events
                 </Typography>
               </Grid>
               <Grid item xl={10} lg={10} md={10} sm={12} xs={12}>
                 <InputSearch
-                  placeholder="Search Coin"
+                  placeholder="Search Events"
                   searchValue={searchValue}
                   searchHandler={searchHandler}
                 />
@@ -164,8 +166,8 @@ const CoinListing = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/coins/add">
-              <LargeBtn Title="Add new coins" />
+            <Link to="/events/add">
+              <LargeBtn Title="Add new Events" />
             </Link>
           </Grid>
         </Stack>
@@ -181,8 +183,8 @@ const CoinListing = () => {
           sx={{ display: "flex", justifyContent: "flex-end" }}
         >
           {" "}
-          <Link to="/coins/add">
-            <LargeBtn Title="Add new coins" />
+          <Link to="/events/add">
+            <LargeBtn Title="Add new Events" />
           </Link>
         </Stack>
       </Grid>
@@ -190,4 +192,4 @@ const CoinListing = () => {
   );
 };
 
-export default CoinListing;
+export default Events;

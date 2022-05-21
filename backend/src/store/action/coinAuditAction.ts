@@ -40,8 +40,8 @@ export const editCoinAuditRequest = (
 ) => {
   //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins-audit/${values.get("id")}/edit`,
-    method: "POST",
+    url: `api/b/v1/coins-audit/${values.id}/edit`,
+    method: "GET",
     secure: true,
     body: values,
     fileUpload: true,
@@ -74,8 +74,8 @@ export const viewCoinAuditRequest = (
 ) => {
   //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins-audit/${values.get("id")}/show`,
-    method: "POST",
+    url: `api/b/v1/coins-audit/${values.id}/show`,
+    method: "GET",
     secure: true,
     body: values,
     fileUpload: true,

@@ -1,85 +1,98 @@
 import appRequest from "../../utils/fetchhandler";
-import { COINS } from "../types";
+import { EVENTS_CATEGORY } from "../types";
 
-export const listCoinRequest = (
+export const listEventsCategoryRequest = (
   pageData: any,
   successHandler: any,
   errorHandler: any
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/coins`,
+    url: `api/b/v1/events-category`,
     method: "GET",
     secure: true,
-    actionType: COINS.LIST_COINS,
+    actionType: EVENTS_CATEGORY.LIST_EVENTS_CATEGORY,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const addCoinRequest = (
+export const addEventsCategoryRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
   //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins`,
+    url: `api/b/v1/events-category`,
     method: "POST",
     secure: true,
     body: values,
     fileUpload: true,
-    actionType: COINS.ADD_COINS,
+    actionType: EVENTS_CATEGORY.ADD_EVENTS_CATEGORY,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const editCoinRequest = (
+export const editEventsCategoryRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
-  //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins/${values.id}/edit`,
+    url: `api/b/v1/events-category/${values.id}/edit`,
     method: "GET",
     secure: true,
     body: values,
     fileUpload: true,
-    actionType: COINS.EDIT_COINS,
+    actionType: EVENTS_CATEGORY.EDIT_EVENTS_CATEGORY,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const updateCoinRequest = (
+export const updateEventsCategoryRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
-  //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins/${values.get("id")}`,
+    url: `api/b/v1/events-category/${values.get("id")}`,
     method: "POST",
     secure: true,
     body: values,
     fileUpload: true,
-    actionType: COINS.UPDATE_COINS,
+    actionType: EVENTS_CATEGORY.UPDATE_EVENTS_CATEGORY,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const viewCoinRequest = (
+export const viewEventsCategoryRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
-  //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins/${values.id}/show`,
+    url: `api/b/v1/events-category/${values.id}/show`,
     method: "GET",
     secure: true,
     body: values,
     fileUpload: true,
-    actionType: COINS.VIEW_COINS,
+    actionType: EVENTS_CATEGORY.VIEW_EVENTS_CATEGORY,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const allEventsCategoryRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/b/v1/events-category-all`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: EVENTS_CATEGORY.ALL_EVENTS_CATEGORY,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };

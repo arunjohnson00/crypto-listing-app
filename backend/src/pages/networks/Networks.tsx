@@ -43,6 +43,11 @@ const Networks = () => {
 
   const tableColumn = [
     {
+      field: "name",
+      headerName: "Network Name",
+      flex: 1,
+    },
+    {
       field: "thumb_icon",
       headerName: "Icon",
       flex: 1,
@@ -55,15 +60,15 @@ const Networks = () => {
         />
       ),
     },
-    {
-      field: "name",
-      headerName: "Name",
-      flex: 1,
-    },
 
     {
       field: "chain_id",
-      headerName: "Chain Id",
+      headerName: "Chain ID",
+      flex: 1,
+    },
+    {
+      field: "currency_symbol",
+      headerName: "Symbol",
       flex: 1,
     },
 
@@ -74,19 +79,8 @@ const Networks = () => {
     },
 
     {
-      field: "currency_symbol",
-      headerName: "Currency Symbol",
-      flex: 1,
-    },
-    {
       field: "url",
-      headerName: "Url",
-      flex: 1,
-    },
-
-    {
-      field: "slug",
-      headerName: "Slug",
+      headerName: "Network URL",
       flex: 1,
     },
 

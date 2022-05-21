@@ -1,85 +1,82 @@
 import appRequest from "../../utils/fetchhandler";
-import { COINS } from "../types";
+import { EVENTS } from "../types";
 
-export const listCoinRequest = (
+export const listEventsRequest = (
   pageData: any,
   successHandler: any,
   errorHandler: any
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/coins`,
+    url: `api/b/v1/events`,
     method: "GET",
     secure: true,
-    actionType: COINS.LIST_COINS,
+    actionType: EVENTS.LIST_EVENTS,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const addCoinRequest = (
+export const addEventsRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
   //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins`,
+    url: `api/b/v1/events`,
     method: "POST",
     secure: true,
     body: values,
     fileUpload: true,
-    actionType: COINS.ADD_COINS,
+    actionType: EVENTS.ADD_EVENTS,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const editCoinRequest = (
+export const editEventsRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
-  //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins/${values.id}/edit`,
+    url: `api/b/v1/events/${values.id}/edit`,
     method: "GET",
     secure: true,
     body: values,
     fileUpload: true,
-    actionType: COINS.EDIT_COINS,
+    actionType: EVENTS.EDIT_EVENTS,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const updateCoinRequest = (
+export const updateEventsRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
-  //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins/${values.get("id")}`,
+    url: `api/b/v1/events/${values.get("id")}`,
     method: "POST",
     secure: true,
     body: values,
     fileUpload: true,
-    actionType: COINS.UPDATE_COINS,
+    actionType: EVENTS.UPDATE_EVENTS,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const viewCoinRequest = (
+export const viewEventsRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
-  //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins/${values.id}/show`,
+    url: `api/b/v1/events/${values.id}/show`,
     method: "GET",
     secure: true,
     body: values,
     fileUpload: true,
-    actionType: COINS.VIEW_COINS,
+    actionType: EVENTS.VIEW_EVENTS,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };

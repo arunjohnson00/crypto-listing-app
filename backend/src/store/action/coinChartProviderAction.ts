@@ -40,8 +40,8 @@ export const editChartProviderRequest = (
 ) => {
   //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins-chart-provider/${values.get("id")}/edit`,
-    method: "POST",
+    url: `api/b/v1/coins-chart-provider/${values.id}/edit`,
+    method: "GEt",
     secure: true,
     body: values,
     fileUpload: true,
@@ -74,8 +74,8 @@ export const viewChartProviderRequest = (
 ) => {
   //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/coins-chart-provider/${values.get("id")}/show`,
-    method: "POST",
+    url: `api/b/v1/coins-chart-provider/${values.id}/show`,
+    method: "GET",
     secure: true,
     body: values,
     fileUpload: true,

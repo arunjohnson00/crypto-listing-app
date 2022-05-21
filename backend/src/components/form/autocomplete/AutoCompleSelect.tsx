@@ -55,7 +55,10 @@ const AutoCompleSelect = ({
         setInputAutoValue({ ...inputAutoValue, coin_id: filter[0]?.id });
       }}
       options={
-        opt && opt.length !== 0 && opt?.map((option: any) => option?.name)
+        opt &&
+        opt.length !== 0 &&
+        opt !== undefined &&
+        opt?.map((option: any) => option?.name)
       }
       sx={{
         width: "auto",

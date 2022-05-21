@@ -10,28 +10,33 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { updateCoinCommunityRequest } from "../../../store/action";
-import { editCoinCommunityRequest } from "../../../store/action";
+import { editEventsRewardAddressRequest } from "../../../store/action";
+import { updateEventsRewardAddressRequest } from "../../../store/action";
+
 import InputSelect from "../../../components/form/select/InputSelect";
 
-const CoinsCommunityEdit = () => {
+const EventRewardAddressEdit = () => {
   let { id } = useParams();
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  // const location: any = useLocation();
 
+  // let newArrList = nftEventReward AddressEdit.filter(
+  //   (userData: any) => userData.id === location.state.id
+  // );
   const [loading, setLoading] = useState(false);
-  const [updateCoinsCommunityData, setUpdateCoinsCommunity] = useState({
-    id: "",
-    name: "",
-    status: "",
-    url: "",
-    thumb_icon: "",
-  });
+  const [updateEventsRewardAddressData, setUpdateEventsRewardAddress] =
+    useState({
+      id: "",
+      name: "",
+      symbol: "",
+      status: "",
+    });
 
-  console.log(updateCoinsCommunityData);
-  // Display the key/value pairs
+  console.log(updateEventsRewardAddressData.name);
 
-  const coinsCommunityEditHandler = () => {
+  const eventsRewardAddressEditHandler = () => {
     const successHandler = (res: any) => {
       console.log(res);
       setLoading(true);
@@ -45,7 +50,7 @@ const CoinsCommunityEdit = () => {
       });
 
       setTimeout(() => {
-        navigate("/coins-community");
+        navigate("/reward-address");
       }, 3000);
     };
 
@@ -62,21 +67,31 @@ const CoinsCommunityEdit = () => {
     };
 
     const formData = new FormData();
-    formData.append("id", updateCoinsCommunityData.id);
+    formData.append("id", updateEventsRewardAddressData?.id);
 
-    formData.append("name", updateCoinsCommunityData.name);
+    formData.append("name", updateEventsRewardAddressData?.name);
 
-    formData.append("status", updateCoinsCommunityData.status);
+    formData.append("status", updateEventsRewardAddressData?.status);
+    formData.append("symbol", updateEventsRewardAddressData?.symbol);
 
     dispatch(
-      updateCoinCommunityRequest(formData, successHandler, errorHandler)
+      updateEventsRewardAddressRequest(formData, successHandler, errorHandler)
     );
   };
 
-  const coinCoinsCommunityNameHandler = (e: any) => {
+  const eventsRewardAddressNameHandler = (e: any) => {
     //console.log(e);
 
-    setUpdateCoinsCommunity({ ...updateCoinsCommunityData, name: e });
+    setUpdateEventsRewardAddress({ ...updateEventsRewardAddressData, name: e });
+  };
+
+  const eventsRewardAddressSymbolHandler = (e: any) => {
+    //console.log(e);
+
+    setUpdateEventsRewardAddress({
+      ...updateEventsRewardAddressData,
+      symbol: e,
+    });
   };
 
   const selectOptions = [
@@ -87,15 +102,18 @@ const CoinsCommunityEdit = () => {
 
   useEffect(() => {
     const successHandler = (res: any) => {
+      setUpdateEventsRewardAddress({
+        ...updateEventsRewardAddressData,
+        ...res.data.data,
+      });
       console.log(res);
-      setUpdateCoinsCommunity(res.data.data);
     };
 
     const errorHandler = (err: any) => {
-      //console.log(err);
+      console.log(err);
     };
     dispatch(
-      editCoinCommunityRequest({ id: id }, successHandler, errorHandler)
+      editEventsRewardAddressRequest({ id: id }, successHandler, errorHandler)
     );
   }, [dispatch, id]);
   return (
@@ -110,13 +128,13 @@ const CoinsCommunityEdit = () => {
             <IconButton>
               <ArrowBackIosTwoToneIcon
                 onClick={() => {
-                  navigate("/coins-community");
+                  navigate("/reward-address");
                 }}
               />
             </IconButton>
 
             <Typography variant="h5" sx={{ textAlign: "left" }}>
-              Edit Community
+              Update Reward Address
             </Typography>
           </Stack>
         </Grid>
@@ -128,13 +146,27 @@ const CoinsCommunityEdit = () => {
           >
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
-                Community Name
+                Event Reward Address Title
               </Typography>
 
               <InputText
-                placeholder="Enter  Chart Provider Name"
-                inputTextHandler={(e: any) => coinCoinsCommunityNameHandler(e)}
-                value={updateCoinsCommunityData?.name}
+                placeholder="Enter  Event Reward Address Title"
+                inputTextHandler={(e: any) => eventsRewardAddressNameHandler(e)}
+                value={updateEventsRewardAddressData?.name}
+              />
+            </Grid>
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Event Reward Address Symbol
+              </Typography>
+
+              <InputText
+                placeholder="Enter  Event Reward Address Symbol"
+                inputTextHandler={(e: any) =>
+                  eventsRewardAddressSymbolHandler(e)
+                }
+                value={updateEventsRewardAddressData?.symbol}
               />
             </Grid>
 
@@ -145,9 +177,9 @@ const CoinsCommunityEdit = () => {
 
               <InputSelect
                 selectOptions={selectOptions}
-                currentStatus={updateCoinsCommunityData?.status}
-                setInputSelectValue={setUpdateCoinsCommunity}
-                getInputSelectvalue={updateCoinsCommunityData}
+                currentStatus={updateEventsRewardAddressData?.status}
+                setInputSelectValue={setUpdateEventsRewardAddress}
+                getInputSelectvalue={updateEventsRewardAddressData}
               />
             </Grid>
 
@@ -174,8 +206,8 @@ const CoinsCommunityEdit = () => {
                   </LoadingButton>
                 ) : (
                   <LargeBtn
-                    Title="Update  Community"
-                    lgBtnHandler={coinsCommunityEditHandler}
+                    Title="Update Event Reward Address"
+                    lgBtnHandler={eventsRewardAddressEditHandler}
                   />
                 )}
               </Stack>
@@ -187,4 +219,4 @@ const CoinsCommunityEdit = () => {
   );
 };
 
-export default CoinsCommunityEdit;
+export default EventRewardAddressEdit;

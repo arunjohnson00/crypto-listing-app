@@ -1,36 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import InputText from "../../../components/form/input/text/InputText";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import { updateCoinChatRequest } from "../../../store/action";
+import { editCoinChatRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
 
 const CoinsChatEdit = () => {
-  const coinChatList = useSelector((chatList: any) => {
-    return chatList.chatReducer.listChat.data;
-  });
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location: any = useLocation();
-
+  let { id } = useParams();
   console.log(location.state.id);
 
-  let newArrList = coinChatList.filter(
-    (userData: any) => userData.id === location.state.id
-  );
   const [loading, setLoading] = useState(false);
   const [updateCoinChatData, setUpdateCoinChat] = useState({
-    id: newArrList[0].id,
-    name: newArrList[0].name,
-    status: newArrList[0].status,
+    id: "",
+    name: "",
+    status: "",
+    icon: "",
+    thumb_icon: "",
+    url: "",
   });
 
   console.log(updateCoinChatData);
@@ -87,6 +85,19 @@ const CoinsChatEdit = () => {
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setUpdateCoinChat(res.data.data);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(editCoinChatRequest({ id: id }, successHandler, errorHandler));
+  }, [dispatch, id]);
+
   return (
     <div>
       {" "}
@@ -123,7 +134,7 @@ const CoinsChatEdit = () => {
               <InputText
                 placeholder="Enter Chat Name"
                 inputTextHandler={(e: any) => coinChatNameHandler(e)}
-                value={newArrList[0].name}
+                value={updateCoinChatData?.name}
               />
             </Grid>
 
@@ -134,10 +145,10 @@ const CoinsChatEdit = () => {
 
               <InputSelect
                 selectOptions={selectOptions}
-                currentStatus={newArrList[0].status}
+                currentStatus={updateCoinChatData?.status}
                 setInputSelectValue={setUpdateCoinChat}
                 getInputSelectvalue={updateCoinChatData}
-                serverStatus={newArrList[0].status}
+                serverStatus={updateCoinChatData?.status}
               />
             </Grid>
 

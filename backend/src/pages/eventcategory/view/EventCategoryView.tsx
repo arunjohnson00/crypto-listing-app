@@ -1,50 +1,46 @@
 import { useEffect, useState } from "react";
 import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
-
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import InputText from "../../../components/form/input/text/InputText";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { viewEventsCategoryRequest } from "../../../store/action";
 
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { viewCoinAuditRequest } from "../../../store/action";
 
-const CoinsAuditView = () => {
-  const navigate = useNavigate();
-  const dispatch: any = useDispatch();
-  const location: any = useLocation();
-  let { id } = useParams();
-  console.log(location.state.id);
-  const [viewAudit, setViewAudit] = useState({
-    id: "",
+const EventCategoryView = () => {
+  const [viewEventsCategory, setViewEventsCategory] = useState({
     name: "",
     status: "",
-    icon: "",
-    thumb_icon: "",
-    url: "",
   });
+  let { id } = useParams();
+  const dispatch = useDispatch();
 
-  // Display the key/value pairs
+  const navigate = useNavigate();
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setViewEventsCategory({
+        ...viewEventsCategory,
+        ...res.data.data,
+      });
+    };
+
+    const errorHandler = (err: any) => {
+      console.log(err);
+    };
+    dispatch(
+      viewEventsCategoryRequest({ id: id }, successHandler, errorHandler)
+    );
+  }, [dispatch, id]);
 
   const selectOptions = [
     { title: "Approved", value: 1 },
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
-
-  useEffect(() => {
-    const successHandler = (res: any) => {
-      console.log(res);
-      setViewAudit(res.data.data);
-    };
-
-    const errorHandler = (err: any) => {
-      //console.log(err);
-    };
-    dispatch(viewCoinAuditRequest({ id: id }, successHandler, errorHandler));
-  }, [dispatch, id]);
   return (
     <div>
       {" "}
@@ -57,13 +53,13 @@ const CoinsAuditView = () => {
             <IconButton>
               <ArrowBackIosTwoToneIcon
                 onClick={() => {
-                  navigate("/coins-audit");
+                  navigate("/events-category");
                 }}
               />
             </IconButton>
 
             <Typography variant="h5" sx={{ textAlign: "left" }}>
-              Add Audit
+              View Event Category List
             </Typography>
           </Stack>
         </Grid>
@@ -75,12 +71,12 @@ const CoinsAuditView = () => {
           >
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
-                Audit Name
+                Event category Title
               </Typography>
 
               <InputText
                 placeholder="Enter audit Name"
-                value={viewAudit?.name}
+                value={viewEventsCategory?.name}
               />
             </Grid>
 
@@ -89,7 +85,7 @@ const CoinsAuditView = () => {
                 Status
               </Typography>
 
-              {viewAudit?.status}
+              {viewEventsCategory?.status}
             </Grid>
           </Box>
         </Grid>
@@ -98,4 +94,4 @@ const CoinsAuditView = () => {
   );
 };
 
-export default CoinsAuditView;
+export default EventCategoryView;

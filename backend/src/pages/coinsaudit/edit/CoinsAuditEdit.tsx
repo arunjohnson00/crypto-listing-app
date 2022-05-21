@@ -1,37 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import InputText from "../../../components/form/input/text/InputText";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import { updateCoinAuditRequest } from "../../../store/action";
+import { editCoinAuditRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
 
 const CoinsAuditEdit = () => {
-  const coinAuditList = useSelector((auditList: any) => {
-    return auditList.auditReducer.listAudit.data;
-  });
+  let { id } = useParams();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location: any = useLocation();
 
-  console.log(location.state.id);
-
-  let newArrList = coinAuditList.filter(
-    (userData: any) => userData.id === location.state.id
-  );
   const [loading, setLoading] = useState(false);
   const [updateCoinAuditData, setUpdateCoinAudit] = useState({
-    id: newArrList[0].id,
-    name: newArrList[0].name,
-    status: newArrList[0].status,
+    id: "",
+    name: "",
+    status: "",
+    icon: "",
+    thumb_icon: "",
+    url: "",
   });
 
   console.log(updateCoinAuditData);
@@ -88,6 +84,18 @@ const CoinsAuditEdit = () => {
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setUpdateCoinAudit(res.data.data);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+    dispatch(editCoinAuditRequest({ id: id }, successHandler, errorHandler));
+  }, [dispatch, id]);
   return (
     <div>
       {" "}
@@ -124,7 +132,7 @@ const CoinsAuditEdit = () => {
               <InputText
                 placeholder="Enter audit Name"
                 inputTextHandler={(e: any) => coinAuditNameHandler(e)}
-                value={newArrList[0].name}
+                value={updateCoinAuditData?.name}
               />
             </Grid>
 
@@ -135,10 +143,10 @@ const CoinsAuditEdit = () => {
 
               <InputSelect
                 selectOptions={selectOptions}
-                currentStatus={newArrList[0].status}
+                currentStatus={updateCoinAuditData?.status}
                 setInputSelectValue={setUpdateCoinAudit}
                 getInputSelectvalue={updateCoinAuditData}
-                serverStatus={newArrList[0].status}
+                serverStatus={updateCoinAuditData?.status}
               />
             </Grid>
 

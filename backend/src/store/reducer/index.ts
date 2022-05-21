@@ -27,6 +27,9 @@ import videosReducer from "./videosReducer";
 import nftListingCategoryReducer from "./nftListingCategoryReducer";
 import nftListingCurrencyReducer from "./nftListingCurrencyReducer";
 import airdropsReducer from "./airdropsReducer";
+import eventsReducer from "./eventsReducer";
+import eventsCategoryReducer from "./eventsCategoryReducer";
+import eventsRewardAddressReducer from "./eventsRewardAddressReducer";
 
 const allReducers = combineReducers({
   Auth,
@@ -50,6 +53,9 @@ const allReducers = combineReducers({
   nftListingCategoryReducer,
   nftListingCurrencyReducer,
   airdropsReducer,
+  eventsReducer,
+  eventsCategoryReducer,
+  eventsRewardAddressReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

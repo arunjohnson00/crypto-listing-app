@@ -10,28 +10,27 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
-import { updateCoinCommunityRequest } from "../../../store/action";
-import { editCoinCommunityRequest } from "../../../store/action";
+import { editEventsCategoryRequest } from "../../../store/action";
+import { updateEventsCategoryRequest } from "../../../store/action";
+
 import InputSelect from "../../../components/form/select/InputSelect";
 
-const CoinsCommunityEdit = () => {
+const EventCategoryEdit = () => {
   let { id } = useParams();
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(false);
-  const [updateCoinsCommunityData, setUpdateCoinsCommunity] = useState({
+  const [updateEventCategoryData, setUpdateEventCategory] = useState({
     id: "",
     name: "",
     status: "",
-    url: "",
-    thumb_icon: "",
   });
 
-  console.log(updateCoinsCommunityData);
-  // Display the key/value pairs
+  console.log(updateEventCategoryData.name);
 
-  const coinsCommunityEditHandler = () => {
+  const eventCategoryEditHandler = () => {
     const successHandler = (res: any) => {
       console.log(res);
       setLoading(true);
@@ -45,7 +44,7 @@ const CoinsCommunityEdit = () => {
       });
 
       setTimeout(() => {
-        navigate("/coins-community");
+        navigate("/events-category");
       }, 3000);
     };
 
@@ -62,21 +61,21 @@ const CoinsCommunityEdit = () => {
     };
 
     const formData = new FormData();
-    formData.append("id", updateCoinsCommunityData.id);
+    formData.append("id", updateEventCategoryData?.id);
 
-    formData.append("name", updateCoinsCommunityData.name);
+    formData.append("name", updateEventCategoryData?.name);
 
-    formData.append("status", updateCoinsCommunityData.status);
+    formData.append("status", updateEventCategoryData?.status);
 
     dispatch(
-      updateCoinCommunityRequest(formData, successHandler, errorHandler)
+      updateEventsCategoryRequest(formData, successHandler, errorHandler)
     );
   };
 
-  const coinCoinsCommunityNameHandler = (e: any) => {
+  const eventCategoryNameHandler = (e: any) => {
     //console.log(e);
 
-    setUpdateCoinsCommunity({ ...updateCoinsCommunityData, name: e });
+    setUpdateEventCategory({ ...updateEventCategoryData, name: e });
   };
 
   const selectOptions = [
@@ -87,17 +86,18 @@ const CoinsCommunityEdit = () => {
 
   useEffect(() => {
     const successHandler = (res: any) => {
+      setUpdateEventCategory({ ...updateEventCategoryData, ...res.data.data });
       console.log(res);
-      setUpdateCoinsCommunity(res.data.data);
     };
 
     const errorHandler = (err: any) => {
-      //console.log(err);
+      console.log(err);
     };
     dispatch(
-      editCoinCommunityRequest({ id: id }, successHandler, errorHandler)
+      editEventsCategoryRequest({ id: id }, successHandler, errorHandler)
     );
   }, [dispatch, id]);
+
   return (
     <div>
       {" "}
@@ -110,13 +110,13 @@ const CoinsCommunityEdit = () => {
             <IconButton>
               <ArrowBackIosTwoToneIcon
                 onClick={() => {
-                  navigate("/coins-community");
+                  navigate("/events-category");
                 }}
               />
             </IconButton>
 
             <Typography variant="h5" sx={{ textAlign: "left" }}>
-              Edit Community
+              Update NFT Event
             </Typography>
           </Stack>
         </Grid>
@@ -128,13 +128,13 @@ const CoinsCommunityEdit = () => {
           >
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
-                Community Name
+                Event Category Title
               </Typography>
 
               <InputText
-                placeholder="Enter  Chart Provider Name"
-                inputTextHandler={(e: any) => coinCoinsCommunityNameHandler(e)}
-                value={updateCoinsCommunityData?.name}
+                placeholder="Enter  Event Category Title"
+                inputTextHandler={(e: any) => eventCategoryNameHandler(e)}
+                value={updateEventCategoryData?.name}
               />
             </Grid>
 
@@ -145,9 +145,9 @@ const CoinsCommunityEdit = () => {
 
               <InputSelect
                 selectOptions={selectOptions}
-                currentStatus={updateCoinsCommunityData?.status}
-                setInputSelectValue={setUpdateCoinsCommunity}
-                getInputSelectvalue={updateCoinsCommunityData}
+                currentStatus={updateEventCategoryData?.status}
+                setInputSelectValue={setUpdateEventCategory}
+                getInputSelectvalue={updateEventCategoryData}
               />
             </Grid>
 
@@ -174,8 +174,8 @@ const CoinsCommunityEdit = () => {
                   </LoadingButton>
                 ) : (
                   <LargeBtn
-                    Title="Update  Community"
-                    lgBtnHandler={coinsCommunityEditHandler}
+                    Title="Update Event Category"
+                    lgBtnHandler={eventCategoryEditHandler}
                   />
                 )}
               </Stack>
@@ -187,4 +187,4 @@ const CoinsCommunityEdit = () => {
   );
 };
 
-export default CoinsCommunityEdit;
+export default EventCategoryEdit;
