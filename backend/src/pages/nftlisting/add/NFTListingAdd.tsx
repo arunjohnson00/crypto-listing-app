@@ -84,7 +84,7 @@ const NFTListingAdd = () => {
   const [eventCategoryMultiple, setEventCategoryMultiple] = useState<any>([]);
 
   const [coinPublishStatus, setPublishCoinStatus] = useState<any>({
-    status: "",
+    status: 1,
     statusDateTime: new Date(),
     is_scheduled: 0,
   });

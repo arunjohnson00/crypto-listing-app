@@ -11,6 +11,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { deleteRowRequest } from "../../../store/action";
 import { toast } from "material-react-toastify";
 import Swal from "sweetalert2";
+import DialogPopup from "../../dialog/DialogPopup";
 
 const useStyles = makeStyles({
   grid: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
   },
 });
 
-const GridEdit = ({ index, navigate, location, dispatch }: any) => {
+const GridEdit = ({ index, navigate, location, dispatch, data }: any) => {
   const handleEditClick = () => {
     navigate(`${location.pathname}/edit/${index}`, { state: { id: index } });
   };
@@ -78,8 +79,14 @@ const GridEdit = ({ index, navigate, location, dispatch }: any) => {
     });
   };
 
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   const handleViewClick = () => {
-    navigate(`${location.pathname}/view/${index}`, { state: { id: index } });
+    //navigate(`${location.pathname}/view/${index}`, { state: { id: index } });
+    setOpen(true);
   };
 
   return (
@@ -90,11 +97,17 @@ const GridEdit = ({ index, navigate, location, dispatch }: any) => {
         tableView={handleViewClick}
         id={index}
       />
+      <DialogPopup
+        handleClose={handleClose}
+        open={open}
+        id={index}
+        data={data}
+      />
     </Fragment>
   );
 };
 
-const DataTables = ({ tableData, tableColumn }: any) => {
+const DataTables = ({ tableData, tableColumn, data }: any) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -132,6 +145,7 @@ const DataTables = ({ tableData, tableColumn }: any) => {
               navigate={navigate}
               location={location}
               dispatch={dispatch}
+              data={data}
             />
           </div>
         );

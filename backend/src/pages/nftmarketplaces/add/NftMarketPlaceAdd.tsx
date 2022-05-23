@@ -23,9 +23,9 @@ const NftMarketPlaceAdd = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const [addNftMarketPlaceData, setAddNftMarketPlace] = useState({
+  const [addNftMarketPlaceData, setAddNftMarketPlace] = useState<any>({
     name: "",
-    status: "",
+    status: 1,
     url: "",
     thumb_icon: "",
   });

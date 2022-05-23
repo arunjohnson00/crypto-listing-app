@@ -83,3 +83,20 @@ export const viewCoinCommunityRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const allCoinCommunityRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/coins-community-all`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: COMMUNITY.ALL_COMMUNITY,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

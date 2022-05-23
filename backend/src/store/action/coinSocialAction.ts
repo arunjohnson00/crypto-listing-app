@@ -83,3 +83,20 @@ export const viewCoinSocialRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const allCoinSocialRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/b/v1/coins-socials-all`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: SOCIALS.ALL_SOCIALS,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

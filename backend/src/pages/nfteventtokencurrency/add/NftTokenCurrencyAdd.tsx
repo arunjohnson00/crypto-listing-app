@@ -21,7 +21,7 @@ const NftTokenCurrencyAdd = () => {
   const [loading, setLoading] = useState(false);
   const [addNFTListingCurrencyData, setAddNFTListingCurrency] = useState<any>({
     name: "",
-    status: "",
+    status: 1,
     symbol: "",
   });
 

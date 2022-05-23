@@ -44,7 +44,7 @@ const EventsAdd = () => {
     reward_address_id: "",
     address: "",
     twitter_account: "",
-    status: "",
+    status: 1,
     proof: "",
   });
 

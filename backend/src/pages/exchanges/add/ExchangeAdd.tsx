@@ -18,9 +18,9 @@ const ExchangeAdd = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const [addExchangeData, setAddExchange] = useState({
+  const [addExchangeData, setAddExchange] = useState<any>({
     name: "",
-    status: "",
+    status: 1,
     url: "",
     thumb_icon: "",
   });
@@ -68,11 +68,11 @@ const ExchangeAdd = () => {
     };
 
     const formData = new FormData();
-    formData.append("thumb_icon", addExchangeData.thumb_icon);
-    formData.append("name", addExchangeData.name);
-    formData.append("url", addExchangeData.url);
+    formData.append("thumb_icon", addExchangeData?.thumb_icon);
+    formData.append("name", addExchangeData?.name);
+    formData.append("url", addExchangeData?.url);
 
-    formData.append("status", addExchangeData.status);
+    formData.append("status", addExchangeData?.status);
 
     dispatch(addExchangeRequest(formData, successHandler, errorHandler));
   };

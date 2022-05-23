@@ -6,6 +6,7 @@ const initialState = {
   editAudit: "",
   updateAudit: "",
   viewAudit: "",
+  allAudit: "",
 };
 const auditReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -37,6 +38,12 @@ const auditReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         viewAudit: action?.payload?.data,
+      };
+
+    case AUDIT.ALL_AUDIT:
+      return {
+        ...state,
+        allAudit: action?.payload?.data,
       };
 
     default:

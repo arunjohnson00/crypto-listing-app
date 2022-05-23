@@ -37,7 +37,7 @@ const AirDropsAdd = () => {
     no_of_winners: "",
     is_follow_twitter: "",
     join_telegram: "",
-    status: "",
+    status: 1,
   });
 
   const [loading, setLoading] = useState(false);

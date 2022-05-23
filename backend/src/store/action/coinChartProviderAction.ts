@@ -83,3 +83,20 @@ export const viewChartProviderRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const allChartProviderRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/coins-chart-provider-all`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: CHART_PROVIDER.ALL_CHART_PROVIDER,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

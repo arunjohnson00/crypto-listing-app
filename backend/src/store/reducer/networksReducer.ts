@@ -6,6 +6,7 @@ const initialState = {
   editNetworks: "",
   updateNetworks: "",
   viewNetworks: "",
+  allNetworks: "",
 };
 const networksReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -37,6 +38,12 @@ const networksReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         viewNetworks: action?.payload?.data,
+      };
+
+    case NETWORK.ALL_NETWORK:
+      return {
+        ...state,
+        allNetworks: action?.payload?.data,
       };
 
     default:
