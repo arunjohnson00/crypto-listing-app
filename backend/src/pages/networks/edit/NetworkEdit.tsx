@@ -72,6 +72,7 @@ const NetworkEdit = () => {
 
     const formData = new FormData();
     editNetworkData.thumb_icon !== "" &&
+      typeof editNetworkData.thumb_icon !== "string" &&
       formData.append("thumb_icon", editNetworkData.thumb_icon);
     formData.append("id", editNetworkData.id);
     formData.append("name", editNetworkData.name);

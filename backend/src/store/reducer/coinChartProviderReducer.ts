@@ -6,6 +6,7 @@ const initialState = {
   editChartProvider: "",
   updateChartProvider: "",
   viewChartProvider: "",
+  allChartProvider: "",
 };
 const chartProviderReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -37,6 +38,12 @@ const chartProviderReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         viewChartProvider: action?.payload?.data,
+      };
+
+    case CHART_PROVIDER.ALL_CHART_PROVIDER:
+      return {
+        ...state,
+        allChartProvider: action?.payload?.data,
       };
 
     default:

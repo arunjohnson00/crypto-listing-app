@@ -6,6 +6,7 @@ const initialState = {
   editChat: "",
   updateChat: "",
   viewChat: "",
+  allChat: "",
 };
 const chatReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -37,6 +38,12 @@ const chatReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         viewChat: action?.payload?.data,
+      };
+
+    case CHAT.ALL_CHAT:
+      return {
+        ...state,
+        allChat: action?.payload?.data,
       };
 
     default:

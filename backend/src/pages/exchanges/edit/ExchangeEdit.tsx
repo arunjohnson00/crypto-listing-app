@@ -80,6 +80,7 @@ const ExchangeEdit = () => {
     const formData = new FormData();
 
     editExchangeData.thumb_icon !== "" &&
+      typeof editExchangeData.thumb_icon !== "string" &&
       formData.append("thumb_icon", editExchangeData.thumb_icon);
     formData.append("name", editExchangeData.name);
     formData.append("url", editExchangeData.url);

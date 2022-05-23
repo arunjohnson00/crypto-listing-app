@@ -23,9 +23,9 @@ const BadgesAdd = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [addBadgeData, setAddBadge] = useState({
+  const [addBadgeData, setAddBadge] = useState<any>({
     name: "",
-    status: "",
+    status: 1,
     url: "",
     thumb_icon: "",
     icon: "",

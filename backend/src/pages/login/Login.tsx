@@ -65,7 +65,7 @@ const Login = () => {
     };
     const errorHandler = (err: any) => {
       // console.log();
-      setAlert(err.error.message.response.data.error);
+      setAlert(err?.error?.message?.response?.data?.error);
     };
     dispatch(
       sendLoginCredentials(authCredentials, successHandler, errorHandler)

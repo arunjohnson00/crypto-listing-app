@@ -37,12 +37,12 @@ import CommunityDetails from "./CommunityDetails";
 import ChatDetails from "./ChatDetails";
 import SocialDetails from "./SocialDetails";
 
-import { listExchangeRequest } from "../../../store/action";
-import { listNetworkRequest } from "../../../store/action";
-import { listCoinAuditRequest } from "../../../store/action";
-import { listCoinChatRequest } from "../../../store/action";
-import { listCoinSocialRequest } from "../../../store/action";
-import { listChartProviderRequest } from "../../../store/action";
+import { allExchangeRequest } from "../../../store/action";
+import { allNetworkRequest } from "../../../store/action";
+import { allCoinAuditRequest } from "../../../store/action";
+import { allCoinChatRequest } from "../../../store/action";
+import { allCoinSocialRequest } from "../../../store/action";
+import { allChartProviderRequest } from "../../../store/action";
 import { updateCoinRequest } from "../../../store/action";
 import { editCoinRequest } from "../../../store/action";
 
@@ -138,25 +138,25 @@ const CoinListingEdit = () => {
   });
 
   const exchangeList = useSelector((exList: any) => {
-    return exList.exchangesReducer.listExchanges.data;
+    return exList.exchangesReducer.allExchanges.data;
   });
 
   const networkList = useSelector((ntList: any) => {
-    return ntList.networksReducer.listNetworks.data;
+    return ntList.networksReducer.allNetworks.data;
   });
   const coinAuditList = useSelector((auditList: any) => {
-    return auditList.auditReducer.listAudit.data;
+    return auditList.auditReducer.allAudit.data;
   });
   const coinChartProviderList = useSelector((chartProviderList: any) => {
-    return chartProviderList.chartProviderReducer.listChartProvider.data;
+    return chartProviderList.chartProviderReducer.allChartProvider.data;
   });
 
   const coinChatList = useSelector((chatList: any) => {
-    return chatList.chatReducer.listChat.data;
+    return chatList.chatReducer.allChat.data;
   });
 
   const coinSocialList = useSelector((socialList: any) => {
-    return socialList.socialsReducer.listSocials.data;
+    return socialList.socialsReducer.allSocials.data;
   });
 
   const [coinStatus, setCoinStatus] = useState(
@@ -344,22 +344,18 @@ const CoinListingEdit = () => {
       //console.log(err);
     };
 
-    dispatch(
-      listExchangeRequest("emptyformData", successHandler, errorHandler)
-    );
-    dispatch(listNetworkRequest("emptyformData", successHandler, errorHandler));
+    dispatch(allExchangeRequest("emptyformData", successHandler, errorHandler));
+    dispatch(allNetworkRequest("emptyformData", successHandler, errorHandler));
 
     dispatch(
-      listCoinAuditRequest("emptyformData", successHandler, errorHandler)
+      allCoinAuditRequest("emptyformData", successHandler, errorHandler)
     );
     dispatch(
-      listChartProviderRequest("emptyformData", successHandler, errorHandler)
+      allChartProviderRequest("emptyformData", successHandler, errorHandler)
     );
+    dispatch(allCoinChatRequest("emptyformData", successHandler, errorHandler));
     dispatch(
-      listCoinChatRequest("emptyformData", successHandler, errorHandler)
-    );
-    dispatch(
-      listCoinSocialRequest("emptyformData", successHandler, errorHandler)
+      allCoinSocialRequest("emptyformData", successHandler, errorHandler)
     );
   }, [dispatch, location]);
 

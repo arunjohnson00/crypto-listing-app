@@ -180,7 +180,11 @@ const Videos = () => {
         </Stack>
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-        <DataTables tableColumn={tableColumn} tableData={filteredData} />
+        <DataTables
+          tableColumn={tableColumn}
+          tableData={filteredData}
+          data={videoList}
+        />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Stack spacing={2} sx={{ alignItems: "flex-end" }}>

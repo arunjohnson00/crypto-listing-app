@@ -80,3 +80,19 @@ export const viewExchangeRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const allExchangeRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/b/v1/exchange-all`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: EXCHANGE.ALL_EXCHANGE,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

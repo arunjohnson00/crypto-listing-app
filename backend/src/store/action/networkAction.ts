@@ -80,3 +80,19 @@ export const viewNetworkRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const allNetworkRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/b/v1/networks-all`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: NETWORK.ALL_NETWORK,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

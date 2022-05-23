@@ -178,7 +178,7 @@ const CoinListingAdd = () => {
   };
 
   const [coinPublishStatus, setPublishCoinStatus] = useState<any>({
-    status: "",
+    status: 1,
     statusDateTime: new Date(),
     is_scheduled: 0,
   });

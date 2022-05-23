@@ -83,3 +83,20 @@ export const viewCoinChatRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const allCoinChatRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/b/v1/coins-chat-all`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: CHAT.ALL_CHAT,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

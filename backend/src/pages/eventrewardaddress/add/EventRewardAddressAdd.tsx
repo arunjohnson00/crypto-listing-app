@@ -21,7 +21,7 @@ const EventRewardAddressAdd = () => {
   const [loading, setLoading] = useState(false);
   const [addRewardAddressData, setAddRewardAddress] = useState<any>({
     name: "",
-    status: "",
+    status: 1,
     symbol: "",
   });
 

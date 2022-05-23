@@ -83,3 +83,20 @@ export const viewCoinAuditRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const allCoinAuditRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/coins-audit-all`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: AUDIT.ALL_AUDIT,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
