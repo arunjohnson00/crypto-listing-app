@@ -1,10 +1,10 @@
 import { useCallback } from "react";
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, Avatar } from "@mui/material";
 import UploadFileOutlinedIcon from "@mui/icons-material/UploadFileOutlined";
 import Link from "@mui/material/Link";
 import { useDropzone } from "react-dropzone";
 import { useStyles } from "./style";
-
+import ImageIcon from "@mui/icons-material/Image";
 const CoinUploader = ({ addIconData, setAddIcon }: any) => {
   const classes = useStyles();
 
@@ -26,7 +26,9 @@ const CoinUploader = ({ addIconData, setAddIcon }: any) => {
 
   const acceptedFileItems = acceptedFiles.map((file: any) => (
     <Typography variant="caption" key={file.path}>
-      {file.path} - {file.size} bytes
+      {file.path}
+
+      {/* {    {file.path} - {file.size} bytes} */}
     </Typography>
   ));
 
@@ -83,6 +85,19 @@ const CoinUploader = ({ addIconData, setAddIcon }: any) => {
               </>
             )}
           </Box>
+          {
+            <Avatar
+              src={`${
+                acceptedFileItems.length > 0
+                  ? URL.createObjectURL(acceptedFiles[0])
+                  : "#"
+              }`}
+              alt="icon"
+              sx={{ marginLeft: 1 }}
+            >
+              <ImageIcon />
+            </Avatar>
+          }
         </Box>
       </div>
     </Box>

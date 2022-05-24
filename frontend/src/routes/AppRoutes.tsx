@@ -10,6 +10,7 @@ import SingleNftPage from "../pages/desktop/singlenftpage/SingleNftPage";
 import AppLoginPage from "../pages/desktop/login/AppLoginPage";
 import AppNewsPage from "../pages/desktop/news/AppNewsPage";
 import AppRegisterPage from "../pages/desktop/register/AppRegisterPage";
+import UserDashboard from "../pages/useradmin/dashboard/UserDashboard";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -77,6 +78,15 @@ const AppRoutes = () => {
             <PublicRoutes>
               <AppRegisterPage />
             </PublicRoutes>
+          }
+        />
+
+        <Route
+          path="/user-dashboard"
+          element={
+            <PrivateRoute>
+              <UserDashboard />
+            </PrivateRoute>
           }
         />
 
