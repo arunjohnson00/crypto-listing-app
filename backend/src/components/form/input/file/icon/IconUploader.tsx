@@ -4,7 +4,8 @@ import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import Link from "@mui/material/Link";
 import { useDropzone } from "react-dropzone";
 import { useStyles } from "./style";
-
+import Avatar from "@mui/material/Avatar";
+import ImageIcon from "@mui/icons-material/Image";
 const IconUploader = ({ addIconData, setAddIcon }: any) => {
   const classes = useStyles();
 
@@ -23,7 +24,7 @@ const IconUploader = ({ addIconData, setAddIcon }: any) => {
   const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
     useDropzone({ onDrop, accept: "image/jpeg,image/png,image/gif" });
 
-  //console.log(acceptedFiles[0]);
+  console.log(acceptedFiles[0]);
 
   const acceptedFileItems = acceptedFiles.map((file: any) => (
     <Typography variant="caption" key={file.path}>
@@ -83,6 +84,18 @@ const IconUploader = ({ addIconData, setAddIcon }: any) => {
               </>
             )}
           </Box>
+
+          {
+            <Avatar
+              src={`${
+                acceptedFileItems.length > 0 &&
+                URL.createObjectURL(acceptedFiles[0])
+              }`}
+              alt="icon"
+            >
+              <ImageIcon />
+            </Avatar>
+          }
         </Box>
       </div>
     </Box>

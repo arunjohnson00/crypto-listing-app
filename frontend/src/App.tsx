@@ -1,5 +1,5 @@
 import "./App.css";
-import Container from "@mui/material/Container";
+
 import { Grid } from "@mui/material";
 import AppView from "./layouts/view/AppView";
 import AppRoutes from "./routes/AppRoutes";
@@ -15,9 +15,7 @@ function App() {
             background: "linear-gradient(180deg, #01061A 60%, #00030A)",
           }}
         >
-          <Container maxWidth="xl">
-            <AppRoutes />
-          </Container>
+          <AppRoutes />
         </Grid>
       </div>
     </ThemeProvider>

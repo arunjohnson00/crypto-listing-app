@@ -13,6 +13,7 @@ import HorizonatalList from "../../../components/list/horizontal/HorizonatalList
 import { updateCoinAuditRequest } from "../../../store/action";
 import { editCoinAuditRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
+import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 
 const CoinsAuditEdit = () => {
   let { id } = useParams();
@@ -28,6 +29,7 @@ const CoinsAuditEdit = () => {
     icon: "",
     thumb_icon: "",
     url: "",
+    image: "",
   });
 
   console.log(updateCoinAuditData);
@@ -65,6 +67,7 @@ const CoinsAuditEdit = () => {
 
     const formData = new FormData();
     formData.append("id", updateCoinAuditData.id);
+    formData.append("thumb_icon", updateCoinAuditData.thumb_icon);
 
     formData.append("name", updateCoinAuditData.name);
 
@@ -77,6 +80,12 @@ const CoinsAuditEdit = () => {
     //console.log(e);
 
     setUpdateCoinAudit({ ...updateCoinAuditData, name: e });
+  };
+
+  const auditURLHandler = (e: any) => {
+    //console.log(e);
+
+    setUpdateCoinAudit({ ...updateCoinAuditData, url: e });
   };
 
   const selectOptions = [
@@ -133,6 +142,28 @@ const CoinsAuditEdit = () => {
                 placeholder="Enter audit Name"
                 inputTextHandler={(e: any) => coinAuditNameHandler(e)}
                 value={updateCoinAuditData?.name}
+              />
+            </Grid>
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Audit URL
+              </Typography>
+
+              <InputText
+                placeholder="Enter Audit url"
+                inputTextHandler={(e: any) => auditURLHandler(e)}
+              />
+            </Grid>
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Audit Icon
+              </Typography>
+
+              <IconUploader
+                setAddIcon={setUpdateCoinAudit}
+                addIconData={updateCoinAuditData}
               />
             </Grid>
 

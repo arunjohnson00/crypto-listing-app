@@ -3,12 +3,12 @@ import { green, red } from "@mui/material/colors";
 
 export const useStyles = makeStyles({
   mainWrapper: {
-    width: "319px",
-    height: "89px",
+    width: "345px",
+    height: "95px",
     background: "white",
     borderRadius: "8px",
     color: "rgb(168 168 168)",
-    padding: "5px",
+    padding: "9px",
     border: "1.5px solid silver",
   },
   outerWrapper: {

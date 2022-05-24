@@ -1,14 +1,14 @@
 import { Navigate, useLocation } from "react-router-dom";
-import AppView from "../../layouts/view/AppView";
+import UserAdminView from "../../layouts/useradminview/UserAdminView";
 
 const PrivateRoute: any = ({ children }: { children: JSX.Element }) => {
-  const auth =
-    sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
-  let location = useLocation();
-  if (!auth) {
-    return <Navigate replace to="/" state={{ from: location }} />;
-  }
-  return <AppView>{children}</AppView>;
+  // const auth =
+  //   sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
+  // let location = useLocation();
+  // if (!auth) {
+  //   return <Navigate replace to="/" state={{ from: location }} />;
+  // }
+  return <UserAdminView>{children}</UserAdminView>;
 };
 
 export default PrivateRoute;

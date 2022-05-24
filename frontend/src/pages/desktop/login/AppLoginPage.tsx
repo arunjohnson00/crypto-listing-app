@@ -60,7 +60,9 @@ const AppLoginPage = () => {
 
   useEffect(() => {
     (async () => {
-      var rss = await parse("https://news.coinxhigh.com/feed/");
+      var rss = await parse(
+        "https://corsanywhere.herokuapp.com/https://news.coinxhigh.com/feed/"
+      );
 
       setFeed(rss);
     })();
@@ -180,196 +182,202 @@ const AppLoginPage = () => {
                   px={{ xs: 2, sm: 2, md: 7 }}
                   py={{ xs: 5, sm: 5, md: 7 }}
                 >
-                  <Stack
-                    direction="column"
-                    spacing={2}
-                    sx={{ alignItems: "center" }}
-                  >
+                  <form>
                     <Stack
                       direction="column"
-                      spacing={1}
-                      sx={{ alignItems: "flex-start", width: "100%" }}
+                      spacing={2}
+                      sx={{ alignItems: "center" }}
                     >
-                      <Typography
-                        variant="body2"
-                        sx={{ color: "#00E27D", fontWeight: 500 }}
+                      <Stack
+                        direction="column"
+                        spacing={1}
+                        sx={{ alignItems: "flex-start", width: "100%" }}
                       >
-                        Email address
-                      </Typography>
-                      <TextField
-                        id="outlined-basic"
-                        variant="filled"
-                        placeholder="Enter email address"
-                        fullWidth
-                        sx={{
-                          backgroundColor: "#020822",
-                          height: 42,
-                          borderRadius: 4,
-                          marginBottom: 0,
-
-                          "& .MuiInputBase-root": {
-                            paddingTop: 0,
-                          },
-
-                          "& .MuiFilledInput-root": {
-                            background: "#020822",
+                        <Typography
+                          variant="body2"
+                          sx={{ color: "#00E27D", fontWeight: 500 }}
+                        >
+                          Email address
+                        </Typography>
+                        <TextField
+                          id="outlined-basic"
+                          variant="filled"
+                          placeholder="Enter email address"
+                          fullWidth
+                          sx={{
+                            backgroundColor: "#020822",
                             height: 42,
                             borderRadius: 4,
                             marginBottom: 0,
 
-                            border: "1px solid #111836",
-                          },
-                          "& .MuiFilledInput-input": {
-                            paddingTop: 1,
-                          },
-                        }}
-                        InputProps={{
-                          disableUnderline: true,
+                            "& .MuiInputBase-root": {
+                              paddingTop: 0,
+                            },
 
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <EmailOutlinedIcon
-                                sx={{ color: "#D2D7E2", marginTop: "-16px" }}
-                              />
-                            </InputAdornment>
-                          ),
-                          style: {
-                            color: "#2C3344",
-                            paddingTop: 0,
-                            marginTop: 0,
-                          },
-                        }}
-                      />
-                    </Stack>
-                    <Stack
-                      direction="column"
-                      spacing={1}
-                      sx={{ alignItems: "flex-start", width: "100%" }}
-                      pb={2}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{ color: "#00E27D", fontWeight: 500 }}
-                      >
-                        Password
-                      </Typography>
-                      <TextField
-                        id="outlined-basic"
-                        variant="filled"
-                        placeholder="Enter Password"
-                        fullWidth
-                        type={showPassword.showPassword ? "text" : "password"}
-                        sx={{
-                          backgroundColor: "#020822",
-                          height: 42,
-                          borderRadius: 4,
-                          marginBottom: 0,
+                            "& .MuiFilledInput-root": {
+                              background: "#020822",
+                              height: 42,
+                              borderRadius: 4,
+                              marginBottom: 0,
 
-                          "& .MuiInputBase-root": {
-                            paddingTop: 0,
-                          },
+                              border: "1px solid #111836",
+                            },
+                            "& .MuiFilledInput-input": {
+                              paddingTop: 1,
+                            },
+                            "&input:-webkit-autofill": {
+                              borderRadius: "0px",
+                              backgroundColor: "none",
+                            },
+                          }}
+                          InputProps={{
+                            disableUnderline: true,
 
-                          "& .MuiFilledInput-root": {
-                            background: "#02071F",
-                            height: 42,
-                            borderRadius: 4,
-                            marginBottom: 0,
-
-                            border: "1px solid #111836",
-                          },
-                          "& .MuiFilledInput-input": {
-                            paddingTop: 1,
-                          },
-                          "&:-webkit-autofill": {
-                            backgroundColor: "none",
-                          },
-                        }}
-                        InputProps={{
-                          disableUnderline: true,
-                          autoComplete: "off",
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <LockOutlinedIcon
-                                sx={{ color: "#D2D7E2", marginTop: "-16px" }}
-                              />
-                            </InputAdornment>
-                          ),
-                          endAdornment: (
-                            <InputAdornment position="end">
-                              <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                              >
-                                {showPassword.showPassword ? (
-                                  <VisibilityOff sx={{ color: "#D2D7E2" }} />
-                                ) : (
-                                  <Visibility sx={{ color: "#D2D7E2" }} />
-                                )}
-                              </IconButton>
-                            </InputAdornment>
-                          ),
-                          style: {
-                            color: "#2C3344",
-                            paddingTop: 0,
-                            marginTop: 0,
-                          },
-                        }}
-                      />
-
-                      <FormGroup>
-                        <FormControlLabel
-                          sx={{ color: "#20B5CC" }}
-                          control={
-                            <Checkbox
-                              defaultChecked
-                              size="small"
-                              sx={{
-                                color: "#20B5CC",
-                                "&.Mui-checked": {
-                                  color: "#20B5CC",
-                                },
-                              }}
-                            />
-                          }
-                          label="Remember me"
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <EmailOutlinedIcon
+                                  sx={{ color: "#D2D7E2", marginTop: "-16px" }}
+                                />
+                              </InputAdornment>
+                            ),
+                            style: {
+                              color: "#2C3344",
+                              paddingTop: 0,
+                              marginTop: 0,
+                            },
+                          }}
                         />
-                      </FormGroup>
-                    </Stack>
+                      </Stack>
+                      <Stack
+                        direction="column"
+                        spacing={1}
+                        sx={{ alignItems: "flex-start", width: "100%" }}
+                        pb={2}
+                      >
+                        <Typography
+                          variant="body2"
+                          sx={{ color: "#00E27D", fontWeight: 500 }}
+                        >
+                          Password
+                        </Typography>
+                        <TextField
+                          id="outlined-basic"
+                          variant="filled"
+                          placeholder="Enter Password"
+                          fullWidth
+                          type={showPassword.showPassword ? "text" : "password"}
+                          sx={{
+                            backgroundColor: "#020822",
+                            height: 42,
+                            borderRadius: 4,
+                            marginBottom: 0,
 
-                    <Button
-                      variant="contained"
-                      sx={{
-                        backgroundColor: "#1239C4",
-                        borderRadius: 4,
-                        height: 42,
-                        textTransform: "capitalize",
-                        paddingX: 15,
-                      }}
+                            "& .MuiInputBase-root": {
+                              paddingTop: 0,
+                            },
+
+                            "& .MuiFilledInput-root": {
+                              background: "#02071F",
+                              height: 42,
+                              borderRadius: 4,
+                              marginBottom: 0,
+
+                              border: "1px solid #111836",
+                            },
+                            "& .MuiFilledInput-input": {
+                              paddingTop: 1,
+                            },
+                            "&:-webkit-autofill": {
+                              backgroundColor: "none",
+                            },
+                          }}
+                          InputProps={{
+                            disableUnderline: true,
+                            autoComplete: "off",
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <LockOutlinedIcon
+                                  sx={{ color: "#D2D7E2", marginTop: "-16px" }}
+                                />
+                              </InputAdornment>
+                            ),
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <IconButton
+                                  aria-label="toggle password visibility"
+                                  onClick={handleClickShowPassword}
+                                  onMouseDown={handleMouseDownPassword}
+                                  edge="end"
+                                >
+                                  {showPassword.showPassword ? (
+                                    <VisibilityOff sx={{ color: "#D2D7E2" }} />
+                                  ) : (
+                                    <Visibility sx={{ color: "#D2D7E2" }} />
+                                  )}
+                                </IconButton>
+                              </InputAdornment>
+                            ),
+                            style: {
+                              color: "#2C3344",
+                              paddingTop: 0,
+                              marginTop: 0,
+                            },
+                          }}
+                        />
+
+                        <FormGroup>
+                          <FormControlLabel
+                            sx={{ color: "#20B5CC" }}
+                            control={
+                              <Checkbox
+                                defaultChecked
+                                size="small"
+                                sx={{
+                                  color: "#20B5CC",
+                                  "&.Mui-checked": {
+                                    color: "#20B5CC",
+                                  },
+                                }}
+                              />
+                            }
+                            label="Remember me"
+                          />
+                        </FormGroup>
+                      </Stack>
+
+                      <Button
+                        variant="contained"
+                        sx={{
+                          backgroundColor: "#1239C4",
+                          borderRadius: 4,
+                          height: 42,
+                          textTransform: "capitalize",
+                          paddingX: 15,
+                        }}
+                      >
+                        Log in
+                      </Button>
+                    </Stack>
+                    <Stack
+                      direction="column"
+                      sx={{ alignItems: "center" }}
+                      spacing={1}
+                      pt={3}
                     >
-                      Log in
-                    </Button>
-                  </Stack>
-                  <Stack
-                    direction="column"
-                    sx={{ alignItems: "center" }}
-                    spacing={1}
-                    pt={3}
-                  >
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "#18F496", fontWeight: 500 }}
-                    >
-                      Forgot Password?
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "#1597B5", fontWeight: 500 }}
-                    >
-                      Register Now
-                    </Typography>
-                  </Stack>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "#18F496", fontWeight: 500 }}
+                      >
+                        Forgot Password?
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "#1597B5", fontWeight: 500 }}
+                      >
+                        Register Now
+                      </Typography>
+                    </Stack>
+                  </form>
                 </Box>
               </Grid>
             </Stack>

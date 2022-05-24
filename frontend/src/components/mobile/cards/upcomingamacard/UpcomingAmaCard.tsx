@@ -18,7 +18,7 @@ const UpcomingAmaCard = () => {
     >
       <Stack
         direction={{ xs: "row" }}
-        sx={{ alignItems: "center" }}
+        sx={{ alignItems: "center", justifyContent: "space-around" }}
         spacing={1.5}
       >
         <EventAvailableOutlinedIcon sx={{ fontSize: 40, color: "#00B156" }} />

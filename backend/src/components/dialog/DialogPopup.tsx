@@ -129,22 +129,27 @@ const DialogPopup = ({ handleClose, handleClickOpen, open, id, data }: any) => {
             <span style={{ color: "#A0A3C8" }}>
               {" "}
               :{" "}
-              {filteredData[0]["status"] === 1 && value === 1 ? (
+              {parseInt(filteredData[0]["status"]) === 1 &&
+              parseInt(`${value}`) === 1 ? (
                 <span style={{ color: "#3E9E19", fontWeight: 600 }}>
                   Approved/ Yes
                 </span>
-              ) : filteredData[0]["status"] === 2 && value === 2 ? (
+              ) : parseInt(filteredData[0]["status"]) === 2 &&
+                parseInt(`${value}`) === 2 ? (
                 <span style={{ color: "#D83235", fontWeight: 600 }}>
                   Processing/No
                 </span>
-              ) : filteredData[0]["status"] === 3 && value === 3 ? (
+              ) : parseInt(filteredData[0]["status"]) === 3 &&
+                parseInt(`${value}`) === 3 ? (
                 <span style={{ color: "#874AAF", fontWeight: 600 }}>
                   Suspended /Blocked
                 </span>
-              ) : (filteredData[0]["is_presale"] === 0 &&
-                  value === filteredData[0]["is_presale"]) ||
-                (filteredData[0]["is_launched"] === 0 &&
-                  value === filteredData[0]["is_launched"]) ? (
+              ) : (parseInt(filteredData[0]["is_presale"]) === 0 &&
+                  parseInt(`${value}`) ===
+                    parseInt(filteredData[0]["is_presale"])) ||
+                (parseInt(filteredData[0]["is_launched"]) === 0 &&
+                  parseInt(`${value}`) ===
+                    parseInt(filteredData[0]["is_launched"])) ? (
                 <span style={{ color: "#D83235", fontWeight: 600 }}>No</span>
               ) : filteredData[0]["created_at"] &&
                 value === filteredData[0]["created_at"] ? (
@@ -231,21 +236,22 @@ const DialogPopup = ({ handleClose, handleClickOpen, open, id, data }: any) => {
               disableElevation
               sx={{ background: "#5893FB", borderRadius: 6, paddingX: 3 }}
             >
-              <Link
+              <a
                 style={{
                   textDecoration: "none",
                   color: "#FFFFF5",
                   textTransform: "capitalize",
                 }}
-                to={`${
+                href={`${
                   filteredData[0]?.url
                     ? filteredData[0]?.url
                     : filteredData[0]?.v_url && filteredData[0]?.v_url
                 }`}
+                target="_blank"
+                rel="noreferrer"
               >
-                {" "}
                 Got to Page
-              </Link>
+              </a>
             </Button>
             <Button
               variant="contained"

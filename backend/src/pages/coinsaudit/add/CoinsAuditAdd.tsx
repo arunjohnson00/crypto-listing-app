@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
-
+import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import { addCoinAuditRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
@@ -21,6 +21,10 @@ const CoinsAuditAdd = () => {
   const [loading, setLoading] = useState(false);
   const [addCoinAuditData, setAddCoinAudit] = useState<any>({
     name: "",
+    url: "",
+    thumb_icon: "",
+    icon: "",
+    image: "",
     status: 1,
   });
 
@@ -61,7 +65,8 @@ const CoinsAuditAdd = () => {
     const formData = new FormData();
 
     formData.append("name", addCoinAuditData.name);
-
+    formData.append("thumb_icon", addCoinAuditData?.thumb_icon);
+    formData.append("url", addCoinAuditData?.url);
     formData.append("status", addCoinAuditData.status);
 
     dispatch(addCoinAuditRequest(formData, successHandler, errorHandler));
@@ -71,6 +76,12 @@ const CoinsAuditAdd = () => {
     //console.log(e);
 
     setAddCoinAudit({ ...addCoinAuditData, name: e });
+  };
+
+  const auditURLHandler = (e: any) => {
+    //console.log(e);
+
+    setAddCoinAudit({ ...addCoinAuditData, url: e });
   };
 
   const selectOptions = [
@@ -114,6 +125,28 @@ const CoinsAuditAdd = () => {
               <InputText
                 placeholder="Enter audit Name"
                 inputTextHandler={(e: any) => coinAuditNameHandler(e)}
+              />
+            </Grid>
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Audit URL
+              </Typography>
+
+              <InputText
+                placeholder="Enter Audit url"
+                inputTextHandler={(e: any) => auditURLHandler(e)}
+              />
+            </Grid>
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Audit Icon
+              </Typography>
+
+              <IconUploader
+                setAddIcon={setAddCoinAudit}
+                addIconData={addCoinAuditData}
               />
             </Grid>
 

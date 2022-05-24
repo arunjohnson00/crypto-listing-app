@@ -138,7 +138,9 @@ const MobileHomePage = () => {
 
   useEffect(() => {
     (async () => {
-      var rss = await parse("https://news.coinxhigh.com/feed/");
+      var rss = await parse(
+        "https://corsanywhere.herokuapp.com/https://news.coinxhigh.com/feed/"
+      );
 
       setFeed(rss);
     })();
