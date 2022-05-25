@@ -137,6 +137,7 @@ const CoinListingEdit = () => {
     youtube_link: "",
   });
 
+  console.log(editCoin);
   const exchangeList = useSelector((exList: any) => {
     return exList.exchangesReducer.allExchanges.data;
   });
@@ -164,7 +165,7 @@ const CoinListingEdit = () => {
       ? "Presale"
       : parseInt(editCoin?.is_launched) === 1
       ? "Launched"
-      : null
+      : 0
   );
 
   const [addCoinLogo, setCoinLogo] = useState({ coinLogo: "" });
@@ -363,6 +364,14 @@ const CoinListingEdit = () => {
     const successHandler = (res: any) => {
       console.log(res);
       setEditCoin(res.data.data);
+
+      setCoinStatus(
+        parseInt(res?.data?.data?.is_presale) === 1
+          ? "Presale"
+          : parseInt(res?.data?.data?.is_launched) === 1
+          ? "Launched"
+          : 0
+      );
     };
 
     const errorHandler = (err: any) => {
@@ -520,8 +529,7 @@ const CoinListingEdit = () => {
                 </Grid>
               </Grid>
               {console.log(coinStatus)}
-              {coinStatus === "Presale" ||
-              parseInt(editCoin?.is_presale) === 1 ? (
+              {coinStatus === "Presale" ? (
                 <Grid container mb={5} mt={1}>
                   <Stack direction="row" spacing={3} mb={2}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

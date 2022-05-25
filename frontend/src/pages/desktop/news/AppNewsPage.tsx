@@ -36,7 +36,9 @@ const AppNewsPage = () => {
   //console.log(feed?.items[0]);
   useEffect(() => {
     (async () => {
-      var rss = await parse("https://news.coinxhigh.com/feed/");
+      var rss = await parse(
+        "https://cors-anywhere.herokuapp.com/https://news.coinxhigh.com/feed/"
+      );
 
       setFeed(rss);
     })();
