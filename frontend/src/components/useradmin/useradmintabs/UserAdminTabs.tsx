@@ -9,6 +9,10 @@ import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined
 import UserAdminShortcuts from "../useradminshortcuts/UserAdminShortcuts";
 import BubbleChartRoundedIcon from "@mui/icons-material/BubbleChartRounded";
 import UserAdminDonutChart from "../useradmindonutchart/UserAdminDonutChart";
+import CampaignIcon from "@mui/icons-material/Campaign";
+import BatchPredictionIcon from "@mui/icons-material/BatchPrediction";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import InsertCommentIcon from "@mui/icons-material/InsertComment";
 
 const UserAdminTabs = () => {
   const [value, setValue] = useState("1");
@@ -388,9 +392,7 @@ const UserAdminTabs = () => {
                     spacing={2}
                     my={2}
                   >
-                    <OpenInNewIcon
-                      sx={{ color: "#25E595", fontSize: "30px" }}
-                    />
+                    <ThumbUpIcon sx={{ color: "#25E595", fontSize: "30px" }} />
                     <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
                       Recently Voted
                     </Typography>
@@ -527,7 +529,7 @@ const UserAdminTabs = () => {
                     spacing={2}
                     my={2}
                   >
-                    <OpenInNewIcon
+                    <InsertCommentIcon
                       sx={{ color: "#25E595", fontSize: "30px" }}
                     />
                     <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
@@ -732,7 +734,7 @@ const UserAdminTabs = () => {
                       spacing={2}
                       my={2}
                     >
-                      <OpenInNewIcon
+                      <BatchPredictionIcon
                         sx={{ color: "#25E595", fontSize: "30px" }}
                       />
                       <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
@@ -871,9 +873,7 @@ const UserAdminTabs = () => {
                     spacing={2}
                     my={2}
                   >
-                    <OpenInNewIcon
-                      sx={{ color: "#25E595", fontSize: "30px" }}
-                    />
+                    <CampaignIcon sx={{ color: "#25E595", fontSize: "30px" }} />
                     <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
                       Announcement
                     </Typography>
