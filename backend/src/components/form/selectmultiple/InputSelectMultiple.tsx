@@ -10,6 +10,7 @@ import Chip from "@mui/material/Chip";
 import { Checkbox } from "@mui/material";
 import { ListItemText } from "@mui/material";
 import { toast } from "material-react-toastify";
+import { isArray } from "lodash";
 
 const getStyles = (
   option: string,
@@ -35,9 +36,26 @@ const InputSelectMultiple = ({
   const [serverValue, setServerValue] = useState<any>({});
 
   //console.log(pluck(serverMultiRef, "category_id")); // even shorter);
-  // const pluck = (array: any, key: any) => array.map((a: any) => a[key]);
 
-  // console.log(pluck(serverMultiRef, "category_id").join(","));
+  const pluck = (array: any, key: any) => array?.map((a: any) => a[key]);
+
+  console.log(isArray(pluck(serverMultiRef && serverMultiRef, "category_id")));
+
+  console.log(getInputSelectMultiplevalue);
+
+  useEffect(() => {
+    getInputSelectMultiplevalue !== undefined &&
+      serverMultiRef !== undefined &&
+      setInputSelectMultipleValue([
+        ...getInputSelectMultiplevalue,
+        ...[
+          ...pluck(serverMultiRef && serverMultiRef, "category_id")
+            .toString()
+            .split(",")
+            .map((i: any) => Number(i)),
+        ],
+      ]);
+  }, [serverMultiRef]);
 
   const theme = useTheme();
   const ITEM_HEIGHT = 48;
@@ -65,7 +83,8 @@ const InputSelectMultiple = ({
 
     setInputSelectMultipleValue(
       // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
+
+      value && typeof value === "string" ? value.split(",") : value
     );
     //${optionSelected[0].title}
 
@@ -103,6 +122,7 @@ const InputSelectMultiple = ({
         }}
         renderValue={(selected) => (
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+            {console.log(selected)}
             {selected.map((value: any) => (
               <Chip key={value} label={value} />
             ))}
@@ -127,6 +147,7 @@ const InputSelectMultiple = ({
               <Checkbox
                 checked={getInputSelectMultiplevalue.indexOf(option.id) > -1}
               />
+
               <ListItemText primary={option.name} />
             </MenuItem>
           );
