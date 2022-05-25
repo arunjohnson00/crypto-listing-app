@@ -30,8 +30,6 @@ const InputRadio = ({
   serverIsLanuched,
   serverIsPresale,
 }: any) => {
-  console.log(serverIsLanuched);
-  console.log(serverIsPresale);
   const [launched, setLaunched] = useState(serverIsLanuched);
   const [presale, setPresale] = useState(serverIsPresale);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +43,8 @@ const InputRadio = ({
     setLaunched(serverIsLanuched);
     setPresale(serverIsPresale);
   }, [serverIsPresale, serverIsLanuched]);
-
+  console.log(launched);
+  console.log(presale);
   return (
     <FormControl>
       <RadioGroup
