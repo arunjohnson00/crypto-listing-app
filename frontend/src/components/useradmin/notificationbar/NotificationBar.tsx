@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import Collapse from "@mui/material/Collapse";
 import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
-import { Typography } from "@mui/material";
+import { Typography, Stack } from "@mui/material";
 
 const NotificationBar = () => {
   const [open, setOpen] = useState(true);
@@ -17,21 +17,6 @@ const NotificationBar = () => {
       <Collapse in={open}>
         <Alert
           icon={false}
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
-              sx={{
-                color: "#FFFFFF5",
-              }}
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }
           sx={{
             mb: 2,
             backgroundColor: "#079E7D",
@@ -51,8 +36,28 @@ const NotificationBar = () => {
             },
           }}
         >
-          <Typography>Your ads are expiring soon.</Typography>
-          <Typography>Start new ad</Typography>
+          <Stack direction="row" spacing={0.5}>
+            <Stack direction="row" spacing={0.5}>
+              <Typography variant="h6">Your ads are expiring soon. </Typography>
+              <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                Start new ad
+              </Typography>
+            </Stack>
+
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              sx={{
+                color: "#FFFFFF5",
+              }}
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              <CloseIcon fontSize="inherit" />
+            </IconButton>
+          </Stack>
         </Alert>
       </Collapse>
     </Box>

@@ -4,17 +4,25 @@ import UserAdminSideBar from "../../components/useradmin/useradminsidebar/UserAd
 
 const UserAdminView = ({ children }: any) => {
   return (
-    <Grid xs={12} sx={{ backgroundColor: "#161234", height: "100vh" }}>
+    <Box sx={{ backgroundColor: "#161234", height: "auto", width: "100%" }}>
       <NotificationBar />
       <Stack direction="row">
         <UserAdminSideBar />
-        <Grid xs={12}>
-          <Box px={5} py={5}>
-            {children}
-          </Box>
-        </Grid>
+
+        <Box
+          px={3}
+          py={5}
+          sx={{
+            margin: "0 auto",
+            display: "flex",
+            justifyContent: "center",
+            overflow: "hidden",
+          }}
+        >
+          {children}
+        </Box>
       </Stack>
-    </Grid>
+    </Box>
   );
 };
 

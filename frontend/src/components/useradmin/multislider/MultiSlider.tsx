@@ -26,58 +26,72 @@ const responsive = {
 };
 const MultiSlider = () => {
   return (
-    <div style={{ width: "1000px", padding: "10px" }}>
+    <div
+      style={{
+        padding: "10px",
+        width: "70vw",
+        boxSizing: "border-box",
+        margin: "0 auto",
+      }}
+    >
       <Carousel
+        focusOnSelect={true}
         responsive={responsive}
         infinite={true}
         autoPlay={true}
         showDots={true}
+        removeArrowOnDeviceType={[
+          "tablet",
+          "mobile",
+          "desktop",
+          "superLargeDesktop",
+        ]}
       >
         <div>
           <Box
             sx={{
-              width: 319,
-              height: 77,
+              flexGrow: 1,
+              height: 121,
               backgroundColor: "#000000",
               borderRadius: 3,
             }}
-            mx={3}
+            mx={1}
             my={6}
           ></Box>
         </div>
         <div>
           <Box
             sx={{
-              width: 319,
-              height: 77,
+              flexGrow: 1,
+              height: 121,
               backgroundColor: "#000000",
               borderRadius: 3,
             }}
-            mx={3}
+            mx={1}
             my={6}
           ></Box>
         </div>
         <div>
           <Box
             sx={{
-              width: 319,
-              height: 77,
+              flexGrow: 1,
+              height: 121,
               backgroundColor: "#000000",
               borderRadius: 3,
             }}
-            mx={3}
+            mx={1}
             my={6}
           ></Box>
         </div>
         <div>
           <Box
             sx={{
-              width: 319,
-              height: 77,
+              flexGrow: 1,
+              height: 121,
               backgroundColor: "#000000",
               borderRadius: 3,
             }}
-            mx={3}
+            mx={1}
             my={6}
           ></Box>
         </div>

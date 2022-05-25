@@ -27,7 +27,7 @@ const UserAdminSideBar = () => {
       collapsed={collapse}
       style={{
         position: "relative",
-        height: "100vh",
+        height: "auto",
         backgroundColor: "#1E1C48",
       }}
       //breakPoint="sm"
