@@ -219,7 +219,7 @@ const CoinListingAdd = () => {
     //console.log(...formData);
     const successHandler = (res: any) => {
       //console.log(res);
-      setLoading(true);
+      // setLoading(true);
       toast.success(`${res.data.message}`, {
         position: "top-right",
         autoClose: 7000,
@@ -228,9 +228,9 @@ const CoinListingAdd = () => {
         pauseOnHover: true,
         draggable: true,
       });
-      setTimeout(() => {
-        navigate("/coins");
-      }, 3000);
+      // setTimeout(() => {
+      //   navigate("/coins");
+      // }, 3000);
     };
 
     const errorHandler = (err: any) => {
