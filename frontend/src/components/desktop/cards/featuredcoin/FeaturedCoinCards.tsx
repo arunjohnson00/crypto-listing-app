@@ -91,7 +91,7 @@ const FeaturedCoinCards = () => {
             </Typography>
             <Typography
               variant="subtitle1"
-              sx={{ color: "white", fontSize: ".9rem" }}
+              sx={{ color: "white", fontSize: ".7rem" }}
             >
               6 Days 7 Hours 19 Minutes
             </Typography>
@@ -118,7 +118,7 @@ const FeaturedCoinCards = () => {
                 backgroundColor: "#DD0801",
                 color: "white",
                 height: "25px",
-                fontSize: "0.6125rem",
+                fontSize: "0.485rem",
                 marginBottom: "7px",
                 marginRight: "4px",
               }}
@@ -131,7 +131,7 @@ const FeaturedCoinCards = () => {
                 backgroundColor: "#9638FF",
                 color: "white",
                 height: "25px",
-                fontSize: "0.6125rem",
+                fontSize: "0.485rem",
                 marginBottom: "7px",
                 marginRight: "4px",
               }}
@@ -143,7 +143,7 @@ const FeaturedCoinCards = () => {
                 backgroundColor: "#3C38FF",
                 color: "white",
                 height: "25px",
-                fontSize: "0.6125rem",
+                fontSize: "0.485rem",
                 marginBottom: "7px",
                 marginRight: "4px",
               }}
@@ -155,7 +155,7 @@ const FeaturedCoinCards = () => {
                 backgroundColor: "#299E02",
                 color: "white",
                 height: "25px",
-                fontSize: "0.6125rem",
+                fontSize: "0.485rem",
                 marginBottom: "7px",
                 marginRight: "4px",
               }}
@@ -168,7 +168,7 @@ const FeaturedCoinCards = () => {
                 backgroundColor: "#DF6803",
                 color: "white",
                 height: "25px",
-                fontSize: "0.6125rem",
+                fontSize: "0.485rem",
                 marginBottom: "7px",
                 marginRight: "4px",
               }}
@@ -183,7 +183,8 @@ const FeaturedCoinCards = () => {
             sx={{
               justifyContent: "flex-start",
             }}
-            py={1}
+            pt={0}
+            pb={1}
           >
             <Grid item xs={12} py={0}>
               <Stack
@@ -193,7 +194,8 @@ const FeaturedCoinCards = () => {
                   alignItems: "center",
                   justifyContent: " space-between",
                 }}
-                py={0.3}
+                pt={0}
+                pb={0.3}
               >
                 <Typography
                   variant="caption"
