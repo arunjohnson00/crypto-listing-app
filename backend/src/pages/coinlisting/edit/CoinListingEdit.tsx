@@ -306,7 +306,7 @@ const CoinListingEdit = () => {
     //console.log(...formData);
     const successHandler = (res: any) => {
       //console.log(res);
-      // setLoading(true);
+      setLoading(true);
       toast.success(`${res.data.message}`, {
         position: "top-right",
         autoClose: 7000,
@@ -315,9 +315,9 @@ const CoinListingEdit = () => {
         pauseOnHover: true,
         draggable: true,
       });
-      // setTimeout(() => {
-      //   navigate("/coins");
-      // }, 3000);
+      setTimeout(() => {
+        navigate("/coins");
+      }, 3000);
     };
 
     const errorHandler = (err: any) => {
@@ -915,7 +915,7 @@ const CoinListingEdit = () => {
                             value={exchanges.url}
                           />
                         </Grid>
-                        <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
+                        {/* <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                           <Typography
                             variant="subtitle1"
                             sx={{ textAlign: "left" }}
@@ -929,7 +929,7 @@ const CoinListingEdit = () => {
                             id={`exchange_explorer_link_${index + 1}`}
                             value={exchanges.explorer_link}
                           />
-                        </Grid>
+                        </Grid> */}
                         <Grid
                           item
                           xl={2}
@@ -982,7 +982,7 @@ const CoinListingEdit = () => {
                       id={`url_1`}
                     />
                   </Grid>
-                  <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
+                  {/* <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                     <Typography
                       variant="subtitle1"
                       sx={{ textAlign: "left" }}
@@ -995,7 +995,7 @@ const CoinListingEdit = () => {
                       name={`exchange_explorer_link[1]`}
                       id={`exchange_explorer_link_1`}
                     />
-                  </Grid>
+                  </Grid> */}
                   <Grid
                     item
                     xl={2}

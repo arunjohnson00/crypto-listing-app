@@ -34,7 +34,7 @@ const ExchangeDetails = ({
             id={`url_${index + 2}`}
           />
         </Grid>
-        <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
+        {/* <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
           <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
             Block explorer URL {index + 2}
           </Typography>
@@ -43,7 +43,7 @@ const ExchangeDetails = ({
             name={`exchange_explorer_link[${index + 2}]`}
             id={`exchange_explorer_link_${index + 2}`}
           />
-        </Grid>
+        </Grid> */}
         {exchangeCount.length && (
           <Grid
             item

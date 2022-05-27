@@ -83,3 +83,20 @@ export const viewCoinRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const allCoinRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/coins-all`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: COINS.ALL_COINS,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
