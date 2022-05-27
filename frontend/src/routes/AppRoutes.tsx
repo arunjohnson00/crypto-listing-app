@@ -13,6 +13,7 @@ import AppRegisterPage from "../pages/desktop/register/AppRegisterPage";
 import UserDashboard from "../pages/useradmin/dashboard/UserDashboard";
 import NftListingsPage from "../pages/desktop/nftlisting/NftListingsPage";
 import CoinsListPage from "../pages/desktop/coins/CoinsListPage";
+import ComparisonPage from "../pages/desktop/comparisonpage/ComparisonPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -73,6 +74,14 @@ const AppRoutes = () => {
           element={
             <PublicRoutes>
               <NftListingsPage />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path="/comparison"
+          element={
+            <PublicRoutes>
+              <ComparisonPage />
             </PublicRoutes>
           }
         />

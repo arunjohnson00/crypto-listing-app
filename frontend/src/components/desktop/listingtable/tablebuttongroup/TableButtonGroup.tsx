@@ -16,6 +16,8 @@ const TableButtonGroup = () => {
       <Tabs
         value={value}
         onChange={handleChange}
+        variant="scrollable"
+        scrollButtons
         aria-label="secondary tabs example"
         sx={{
           "& .MuiTabs-indicator": {
