@@ -18,18 +18,26 @@ use Illuminate\Http\Request;
 //});
 
 // Auth Endpoints config('constants.version')
+//http://localhost/coinxhigh/api/api/b/v1/check
 
- 
 Route::prefix('b')->group(function() {
     
     Route::group([ 'middleware' => 'api', 'prefix' => config('constants.version') ], function ($router) 
     {
-       
+        //Route::any('cron-coincap', 'CronJob\CronJobController@coincapJob');  // https://docs.coincap.io/ data collection   
         Route::post('auth/login', 'Auth\LoginController@login');  // login 
         Route::any('check', 'BackendController@create');  // test api
-        
+            
         Route::group(['middleware' =>  'assign_guard:backend_api'], function()
         {
+            
+            /*
+            |--------------------------------------------------------------------------
+            | Dashboard Routes  
+            |--------------------------------------------------------------------------
+            */
+                Route::get('dashboard/top-bar-count', 'Dashboard\DashboardController@topBarCount');                      /*  Top Bar Count    */
+           
             
             /*
             |--------------------------------------------------------------------------
@@ -174,7 +182,8 @@ Route::prefix('b')->group(function() {
             | Coins Routes  
             |--------------------------------------------------------------------------
             */
-                Route::get('coins', 'Coins\CoinsController@index');                /*  List    */      
+                Route::get('coins-all', 'Coins\CoinsController@All');                /*  All    */ 
+                Route::get('coins', 'Coins\CoinsController@index');                /*  List    */ 
                 Route::post('coins', 'Coins\CoinsController@store');               /*  Create  */  
                 Route::get('coins/{coin_id}/edit', 'Coins\CoinsController@edit');  /*  Edit    */ 
                 Route::get('coins/{coin_id}/show', 'Coins\CoinsController@show');  /*  Show    */ 

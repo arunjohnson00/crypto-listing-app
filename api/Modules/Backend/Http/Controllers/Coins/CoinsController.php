@@ -28,6 +28,16 @@ class CoinsController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
+    public function All()
+    {
+        return response()->json([ 'data' => Coins::orderBy('id','desc')->get() ]);   
+ 
+    }
+    
+    /**
+     * Display a listing of the resource.
+     * @return Renderable
+     */
     public function index()
     {
         return  \DataTables::of(
