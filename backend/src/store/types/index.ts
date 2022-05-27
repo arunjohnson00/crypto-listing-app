@@ -6,6 +6,7 @@ export const COMMON = {
   DELETE_ROW: "DELETE_ROW",
   LOG_OUT: "LOG_OUT",
   NOTIFICATION_LIST: "NOTIFICATION_LIST",
+  TOPBAR_COUNT: "TOPBAR_COUNT",
 };
 
 export const EXCHANGE = {
@@ -55,6 +56,7 @@ export const COINS = {
   DELETE_COINS: "DELETE_COINS",
   VIEW_COINS: "VIEW_COINS",
   UPDATE_COINS: "UPDATE_COINS",
+  ALL_COINS: "ALL_COINS",
 };
 
 export const AUDIT = {

@@ -219,7 +219,7 @@ const CoinListingAdd = () => {
     //console.log(...formData);
     const successHandler = (res: any) => {
       //console.log(res);
-      // setLoading(true);
+      setLoading(true);
       toast.success(`${res.data.message}`, {
         position: "top-right",
         autoClose: 7000,
@@ -228,9 +228,9 @@ const CoinListingAdd = () => {
         pauseOnHover: true,
         draggable: true,
       });
-      // setTimeout(() => {
-      //   navigate("/coins");
-      // }, 3000);
+      setTimeout(() => {
+        navigate("/coins");
+      }, 3000);
     };
 
     const errorHandler = (err: any) => {
@@ -684,7 +684,7 @@ const CoinListingAdd = () => {
                     id={`url_1`}
                   />
                 </Grid>
-                <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
+                {/* <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
                     variant="subtitle1"
                     sx={{ textAlign: "left" }}
@@ -697,7 +697,7 @@ const CoinListingAdd = () => {
                     name={`exchange_explorer_link[1]`}
                     id={`exchange_explorer_link_1`}
                   />
-                </Grid>
+                </Grid> */}
                 <Grid
                   item
                   xl={2}

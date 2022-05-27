@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import { listCoinRequest } from "../../../store/action";
+import { allCoinRequest } from "../../../store/action";
 import { useDispatch } from "react-redux";
 
 const AutoCompleSelect = ({
@@ -23,7 +23,7 @@ const AutoCompleSelect = ({
     const errorHandler = (err: any) => {
       //console.log(err);
     };
-    dispatch(listCoinRequest("emptyData", successHandler, errorHandler));
+    dispatch(allCoinRequest("emptyData", successHandler, errorHandler));
   }, [dispatch]);
 
   //   const filterMount =

@@ -20,6 +20,7 @@ export { addCoinRequest } from "./coinAction";
 export { editCoinRequest } from "./coinAction";
 export { updateCoinRequest } from "./coinAction";
 export { viewCoinRequest } from "./coinAction";
+export { allCoinRequest } from "./coinAction";
 
 //Common Coin Audit Actions
 
@@ -175,3 +176,7 @@ export { editEventsRewardAddressRequest } from "./eventsRewardAddressAction";
 export { updateEventsRewardAddressRequest } from "./eventsRewardAddressAction";
 export { viewEventsRewardAddressRequest } from "./eventsRewardAddressAction";
 export { allEventsRewardAddressRequest } from "./eventsRewardAddressAction";
+
+//Common TopbarCount
+
+export { topbarCountRequest } from "./topbarCountAction";

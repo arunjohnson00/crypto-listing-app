@@ -1,28 +1,42 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Box, Stack, Typography } from "@mui/material";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
-import { useSelector } from "react-redux";
+import { topbarCountRequest } from "../../../store/action";
 
 const HorizonatalList = () => {
-  const coinList: any = useSelector((cnList: any) => {
-    return cnList.coinReducer.listCoins.data;
+  const dispatch = useDispatch();
+  const topbarCount: any = useSelector((topCount: any) => {
+    return topCount?.topbarCountReducer?.topbarCounts?.data;
   });
 
-  const exchangeList = useSelector((exList: any) => {
-    return exList.exchangesReducer.listExchanges.data;
-  });
+  // const exchangeList = useSelector((exList: any) => {
+  //   return exList.exchangesReducer.listExchanges.data;
+  // });
 
-  const networkList = useSelector((ntList: any) => {
-    return ntList.networksReducer.listNetworks.data;
-  });
+  // const networkList = useSelector((ntList: any) => {
+  //   return ntList.networksReducer.listNetworks.data;
+  // });
 
-  const nftMarketPlaceList = useSelector((nftList: any) => {
-    return nftList.nftMarketPlacesReducer.listNftMarketPlaces.data;
-  });
+  // const nftMarketPlaceList = useSelector((nftList: any) => {
+  //   return nftList.nftMarketPlacesReducer.listNftMarketPlaces.data;
+  // });
 
-  const userList = useSelector((usrList: any) => {
-    return usrList.usersReducer.listUsers.data;
-  });
+  // const userList = useSelector((usrList: any) => {
+  //   return usrList.usersReducer.listUsers.data;
+  // });
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+    };
+
+    const errorHandler = (err: any) => {
+      console.log(err);
+    };
+    dispatch(topbarCountRequest("emptyData", successHandler, errorHandler));
+  }, [dispatch]);
 
   return (
     <Box>
@@ -36,7 +50,9 @@ const HorizonatalList = () => {
           >
             <Typography variant="subtitle2">
               Coin Listed :{" "}
-              {coinList && coinList.length !== 0 ? coinList.length : 0}
+              {topbarCount &&
+                topbarCount[0]?.coinsCount &&
+                topbarCount[0]?.coinsCount}
             </Typography>
           </Link>
 
@@ -47,8 +63,10 @@ const HorizonatalList = () => {
             sx={{ color: "#FF4560" }}
           >
             <Typography variant="subtitle2">
-              {" "}
-              Users : {userList && userList.length !== 0 ? userList.length : 0}
+              User{" "}
+              {topbarCount &&
+                topbarCount[0]?.usersCount &&
+                topbarCount[0]?.usersCount}
             </Typography>
           </Link>
 
@@ -61,7 +79,9 @@ const HorizonatalList = () => {
             <Typography variant="subtitle2">
               {" "}
               Networks :{" "}
-              {networkList && networkList.length !== 0 ? networkList.length : 0}
+              {topbarCount &&
+                topbarCount[0]?.networksCount &&
+                topbarCount[0]?.networksCount}
             </Typography>
           </Link>
 
@@ -74,9 +94,9 @@ const HorizonatalList = () => {
             <Typography variant="subtitle2">
               {" "}
               Exchanges :{" "}
-              {exchangeList && exchangeList.length !== 0
-                ? exchangeList.length
-                : 0}
+              {topbarCount &&
+                topbarCount[0]?.exchangeCount &&
+                topbarCount[0]?.exchangeCount}
             </Typography>
           </Link>
 
@@ -89,9 +109,9 @@ const HorizonatalList = () => {
             <Typography variant="subtitle2">
               {" "}
               NTF's :{" "}
-              {nftMarketPlaceList && nftMarketPlaceList.length !== 0
-                ? nftMarketPlaceList.length
-                : 0}
+              {topbarCount &&
+                topbarCount[0]?.nftlstingCount &&
+                topbarCount[0]?.nftlstingCount}
             </Typography>
           </Link>
         </Breadcrumbs>

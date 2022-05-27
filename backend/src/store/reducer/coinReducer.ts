@@ -6,6 +6,7 @@ const initialState = {
   editCoins: "",
   updateCoins: "",
   viewCoins: "",
+  allCoins: "",
 };
 const coinReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -37,6 +38,12 @@ const coinReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         viewCoins: action?.payload?.data,
+      };
+
+    case COINS.ALL_COINS:
+      return {
+        ...state,
+        allCoins: action?.payload?.data,
       };
 
     default:
