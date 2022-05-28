@@ -1,8 +1,7 @@
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
+import { useEffect, useState } from "react";
+import { MenuItem, FormControl } from "@mui/material";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { toast } from "material-react-toastify";
-import { useEffect, useState } from "react";
 
 const InputCoinStatusSelect = ({
   selectOptions,
@@ -20,8 +19,6 @@ const InputCoinStatusSelect = ({
       status: serverStatus,
     });
   }, [serverStatus]);
-
-  console.log(currentStatus);
 
   const handleChange = (event: SelectChangeEvent | any) => {
     setInputSelectValue({

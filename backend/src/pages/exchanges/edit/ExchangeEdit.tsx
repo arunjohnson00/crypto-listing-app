@@ -17,7 +17,7 @@ import InputSelect from "../../../components/form/select/InputSelect";
 
 const ExchangeEdit = () => {
   const dispatch = useDispatch();
-  const location: any = useLocation();
+  const navigate = useNavigate();
   let { id } = useParams();
 
   const selectOptions = [
@@ -25,18 +25,7 @@ const ExchangeEdit = () => {
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
-
-  const navigate = useNavigate();
-
   const [loading, setLoading] = useState(false);
-  // const exchangeList = useSelector((exList: any) => {
-  //   return exList.exchangesReducer.listExchanges.data;
-  // });
-
-  // let newArrList = exchangeList.filter(
-  //   (listData: any) => listData.id === location.state.id
-  // );
-  // console.log(newArrList[0].id);
   const [editExchangeData, setEditExchange] = useState({
     id: "",
     name: "",
@@ -45,12 +34,8 @@ const ExchangeEdit = () => {
     thumb_icon: "",
   });
 
-  // Display the key/value pairs
-
   const exchangeEditHandler = () => {
     const successHandler = (res: any) => {
-      console.log(res);
-
       setLoading(true);
       toast.success(`${res.data.message}`, {
         position: "top-right",
@@ -66,7 +51,6 @@ const ExchangeEdit = () => {
     };
 
     const errorHandler = (err: any) => {
-      console.log(err);
       toast.error(`${err.error.message.response.request.responseText}`, {
         position: "top-right",
         autoClose: 7000,
@@ -91,26 +75,19 @@ const ExchangeEdit = () => {
   };
 
   const exchageNameHandler = (e: any) => {
-    //console.log(e);
-
     setEditExchange({ ...editExchangeData, name: e });
   };
 
   const exchageURLHandler = (e: any) => {
-    //console.log(e);
-
     setEditExchange({ ...editExchangeData, url: e });
   };
 
   useEffect(() => {
     const successHandler = (res: any) => {
-      console.log(res);
       setEditExchange(res.data.data);
     };
 
-    const errorHandler = (err: any) => {
-      //console.log(err);
-    };
+    const errorHandler = (err: any) => {};
     dispatch(editExchangeRequest({ id: id }, successHandler, errorHandler));
   }, [dispatch, id]);
   return (

@@ -1,22 +1,25 @@
-import { Grid, Typography, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import LargeBtn from "../../components/form/button/large/LargeBtn";
-import Avatar from "@mui/material/Avatar";
-import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
-import DataTables from "../../components/tables/datatables/DataTables";
-import { listCoinRequest } from "../../store/action";
-import InputSearch from "../../components/form/input/search/InputSearch";
+import { Grid, Typography, Stack, Avatar } from "@mui/material";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
+
+import LargeBtn from "../../components/form/button/large/LargeBtn";
+import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
+import DataTables from "../../components/tables/datatables/DataTables";
+import InputSearch from "../../components/form/input/search/InputSearch";
+
+import { listCoinRequest } from "../../store/action";
+
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const CoinListing = () => {
+  const dispatch = useDispatch();
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo("en-US");
   const coinList = useSelector((cnList: any) => {
-    return cnList.coinReducer.listCoins.data;
+    return cnList?.coinReducer?.listCoins?.data;
   });
 
   const [searchValue, setSearchValue] = useState("");
@@ -26,21 +29,14 @@ const CoinListing = () => {
   };
 
   var filteredData = searchValue
-    ? coinList.filter((flData: any) => {
+    ? coinList?.filter((flData: any) => {
         return flData.name.toLowerCase().includes(searchValue.toLowerCase());
       })
     : coinList;
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    const successHandler = (res: any) => {
-      console.log(res);
-    };
-
-    const errorHandler = (err: any) => {
-      console.log(err);
-    };
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
     dispatch(listCoinRequest("emptyData", successHandler, errorHandler));
   }, [dispatch]);
 

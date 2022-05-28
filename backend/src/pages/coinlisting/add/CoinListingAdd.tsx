@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   Grid,
   Typography,
@@ -6,8 +8,15 @@ import {
   Stack,
   Divider,
   IconButton,
+  FormControlLabel,
+  Link,
 } from "@mui/material";
-import FormControlLabel from "@mui/material/FormControlLabel";
+import dateFormat, { masks } from "dateformat";
+import { toast } from "material-react-toastify";
+import LoadingButton from "@mui/lab/LoadingButton";
+import "material-react-toastify/dist/ReactToastify.css";
+import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
+
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import InputText from "../../../components/form/input/text/InputText";
 import InputSelectCoin from "../../../components/form/selectcoin/InputSelectCoin";
@@ -18,18 +27,7 @@ import InputDateTime from "../../../components/form/input/datetime/InputDateTime
 import InputCheckbox from "../../../components/form/input/checkbox/InputCheckbox";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import InputCoinStatusSelect from "../../../components/form/selectcoinstatus/InputCoinStatusSelect";
-import dateFormat, { masks } from "dateformat";
 
-//import IconUploader from "../../../components/form/input/file/icon/IconUploader";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { toast } from "material-react-toastify";
-import LoadingButton from "@mui/lab/LoadingButton";
-import "material-react-toastify/dist/ReactToastify.css";
-import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
-
-import { addCoinRequest } from "../../../store/action";
-import Link from "@mui/material/Link";
 import NetworkDetails from "./NetworkDetails";
 import ExchangeDetails from "./ExchangeDetails";
 import AuditDetails from "./AuditDetails";
@@ -38,19 +36,13 @@ import CommunityDetails from "./CommunityDetails";
 import ChatDetails from "./ChatDetails";
 import SocialDetails from "./SocialDetails";
 
+import { addCoinRequest } from "../../../store/action";
 import { listExchangeRequest } from "../../../store/action";
 import { listNetworkRequest } from "../../../store/action";
 import { listCoinAuditRequest } from "../../../store/action";
 import { listCoinChatRequest } from "../../../store/action";
 import { listCoinSocialRequest } from "../../../store/action";
 import { listChartProviderRequest } from "../../../store/action";
-
-// import { listUsersRequest } from "../../../store/action";
-// import { listVideoRequest } from "../../../store/action";
-// import { listCoinRequest } from "../../../store/action";
-// import { listMenuCardRequest } from "../../../store/action";
-// import { listNftMarketPlacesRequest } from "../../../store/action";
-// import { listNftListingsRequest } from "../../../store/action";
 
 const CoinListingAdd = () => {
   const selectOptions = [
@@ -285,12 +277,12 @@ const CoinListingAdd = () => {
 
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={2} mb={2}>
           <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-            <IconButton>
-              <ArrowBackIosTwoToneIcon
-                onClick={() => {
-                  navigate("/coins");
-                }}
-              />
+            <IconButton
+              onClick={() => {
+                navigate("/coins");
+              }}
+            >
+              <ArrowBackIosTwoToneIcon />
             </IconButton>
 
             <Typography variant="h5" sx={{ textAlign: "left" }}>

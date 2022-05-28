@@ -1,16 +1,20 @@
-import { useState, forwardRef } from "react";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import Slide from "@mui/material/Slide";
-import { TransitionProps } from "@mui/material/transitions";
-import { Stack, Typography, Box } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
+import { forwardRef } from "react";
 import { useLocation, Link } from "react-router-dom";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Slide,
+  Stack,
+  Typography,
+  Box,
+  IconButton,
+} from "@mui/material";
+import { TransitionProps } from "@mui/material/transitions";
+import CloseIcon from "@mui/icons-material/Close";
+
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 
@@ -24,10 +28,10 @@ const Transition = forwardRef(function Transition(
 });
 
 const DialogPopup = ({ handleClose, handleClickOpen, open, id, data }: any) => {
+  const location = useLocation();
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo("en-US");
   const filteredData = data?.filter((item: any) => item?.id === id);
-  const location = useLocation();
 
   const mapped = Object.entries(filteredData[0]).map(
     ([key, value]) =>
@@ -108,12 +112,14 @@ const DialogPopup = ({ handleClose, handleClickOpen, open, id, data }: any) => {
       key !== "date_created" &&
       key !== "price" &&
       key !== "presale_address" &&
-      key !== "schedule_date" && (
+      key !== "schedule_date" &&
+      key !== "docs_url" && (
         <Stack
           direction="column"
           justifyContent="center"
           alignItems="center"
           pb={0.5}
+          key={key}
         >
           <Box>
             <span

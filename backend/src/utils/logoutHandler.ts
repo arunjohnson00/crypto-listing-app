@@ -4,8 +4,6 @@ import "material-react-toastify/dist/ReactToastify.css";
 
 export const logoutHandler = (navigate: any, dispatch: any) => {
   const successHandler = (res: any) => {
-    console.log(res);
-
     toast.success(`${res.data.message}`, {
       position: "top-right",
       autoClose: 3000,
@@ -15,10 +13,7 @@ export const logoutHandler = (navigate: any, dispatch: any) => {
       draggable: true,
     });
   };
-
-  const errorHandler = (err: any) => {
-    console.log(err);
-  };
+  const errorHandler = (err: any) => {};
   dispatch(logOutRequest("emptyData", successHandler, errorHandler));
   sessionStorage.clear();
   localStorage.clear();

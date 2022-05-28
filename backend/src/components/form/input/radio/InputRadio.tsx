@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import Radio, { RadioProps } from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
+import { RadioGroup, FormControlLabel, FormControl } from "@mui/material";
 
 import { BpIcon, BpCheckedIcon } from "./style";
 
@@ -37,19 +35,17 @@ const InputRadio = ({
     setLaunched(0);
     setPresale(0);
   };
-  console.log(presale, launched);
 
   useEffect(() => {
     setLaunched(serverIsLanuched);
     setPresale(serverIsPresale);
   }, [serverIsPresale, serverIsLanuched]);
-  console.log(launched);
-  console.log(presale);
+
   return (
     <FormControl>
       <RadioGroup
         row
-        aria-labelledby="demo-controlled-radio-buttons-group"
+        aria-labelledby="controlled-radio-buttons-group"
         value={
           launched === 1 ? "Launched" : presale === 1 ? "Presale" : coinStatus
         }

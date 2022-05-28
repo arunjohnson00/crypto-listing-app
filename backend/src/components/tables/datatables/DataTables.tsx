@@ -1,17 +1,19 @@
+import { Fragment, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   DataGrid,
   GridToolbarContainer,
   GridToolbarExport,
 } from "@mui/x-data-grid";
-import { makeStyles } from "@mui/styles";
-import { Fragment, useState } from "react";
-import { useDispatch } from "react-redux";
-import TableActionBtn from "../../button/tableaction/TableActionBtn";
-import { useNavigate, useLocation } from "react-router-dom";
-import { deleteRowRequest } from "../../../store/action";
-import { toast } from "material-react-toastify";
 import Swal from "sweetalert2";
+import { makeStyles } from "@mui/styles";
+import { toast } from "material-react-toastify";
+
 import DialogPopup from "../../dialog/DialogPopup";
+import TableActionBtn from "../../button/tableaction/TableActionBtn";
+
+import { deleteRowRequest } from "../../../store/action";
 
 const useStyles = makeStyles({
   grid: {
@@ -30,8 +32,6 @@ const GridEdit = ({ index, navigate, location, dispatch, data }: any) => {
   };
 
   const successHandler = (res: any) => {
-    console.log(res);
-
     toast.success(`${res.data.message}`, {
       position: "top-right",
       autoClose: 7000,
@@ -42,13 +42,10 @@ const GridEdit = ({ index, navigate, location, dispatch, data }: any) => {
     });
     setTimeout(() => {
       navigate(`${location.pathname}`);
-      console.log("hi");
     }, 3000);
   };
 
-  const errorHandler = (err: any) => {
-    console.log(err);
-  };
+  const errorHandler = (err: any) => {};
 
   const handleDeleteClick = () => {
     navigate(`${location.pathname}/delete`);
@@ -70,10 +67,7 @@ const GridEdit = ({ index, navigate, location, dispatch, data }: any) => {
           )
         );
         Swal.fire("Deleted!", "Your data has been deleted.", "success");
-      } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
         navigate(`${location.pathname}`);
       }
     });
@@ -85,7 +79,6 @@ const GridEdit = ({ index, navigate, location, dispatch, data }: any) => {
     setOpen(false);
   };
   const handleViewClick = () => {
-    //navigate(`${location.pathname}/view/${index}`, { state: { id: index } });
     setOpen(true);
   };
 
