@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react";
-
-import { useTheme } from "@mui/material/styles";
-import { Divider, Stack } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import MenuIcon from "@mui/icons-material/Menu";
-import IconButton from "@mui/material/IconButton";
-import Toolbar from "@mui/material/Toolbar";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useTheme } from "@mui/material/styles";
+import { Divider, Stack, Typography, IconButton, Toolbar } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 import { AppBar } from "./style";
 import { logoutHandler } from "../../../utils/logoutHandler";
@@ -27,6 +23,10 @@ import { listUserRequest } from "../../../store/action";
 import { listCoinRequest } from "../../../store/action";
 
 const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
+  const theme = useTheme();
+  const dispatch = useDispatch();
+  const navigate: any = useNavigate();
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const openProfile = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -37,18 +37,15 @@ const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
   };
 
   const [anchorNotification, setAnchorNotification] = useState<any>(null);
-
   const openNotification = Boolean(anchorNotification);
   const handleNotificationClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorNotification(event.currentTarget);
   };
-
   const handleNotificationClose = () => {
     setAnchorNotification(null);
   };
 
   const [anchorSettings, setAnchorSettings] = useState<any>(null);
-
   const openSettings = Boolean(anchorSettings);
   const handleSettingsClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorSettings(event.currentTarget);
@@ -58,22 +55,13 @@ const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
     setAnchorSettings(null);
   };
 
-  const navigate: any = useNavigate();
   const loginControll = () => {
     logoutHandler(navigate, dispatch);
   };
-  const theme = useTheme();
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    const successHandler = (res: any) => {
-      //console.log(res);
-    };
-
-    const errorHandler = (err: any) => {
-      //console.log(err);
-    };
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
 
     dispatch(
       listExchangeRequest("emptyformData", successHandler, errorHandler)
@@ -83,10 +71,8 @@ const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
     dispatch(
       listNftMarketPlaceRequest("emptyformData", successHandler, errorHandler)
     );
-
     dispatch(listCoinRequest("emptyformData", successHandler, errorHandler));
   }, [dispatch]);
-
   return (
     <AppBar
       position="fixed"

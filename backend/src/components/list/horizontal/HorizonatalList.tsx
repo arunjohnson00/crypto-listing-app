@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Stack, Typography } from "@mui/material";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Link from "@mui/material/Link";
+import { Box, Stack, Typography, Breadcrumbs, Link } from "@mui/material";
 import { topbarCountRequest } from "../../../store/action";
 
 const HorizonatalList = () => {
@@ -11,30 +9,9 @@ const HorizonatalList = () => {
     return topCount?.topbarCountReducer?.topbarCounts?.data;
   });
 
-  // const exchangeList = useSelector((exList: any) => {
-  //   return exList.exchangesReducer.listExchanges.data;
-  // });
-
-  // const networkList = useSelector((ntList: any) => {
-  //   return ntList.networksReducer.listNetworks.data;
-  // });
-
-  // const nftMarketPlaceList = useSelector((nftList: any) => {
-  //   return nftList.nftMarketPlacesReducer.listNftMarketPlaces.data;
-  // });
-
-  // const userList = useSelector((usrList: any) => {
-  //   return usrList.usersReducer.listUsers.data;
-  // });
-
   useEffect(() => {
-    const successHandler = (res: any) => {
-      console.log(res);
-    };
-
-    const errorHandler = (err: any) => {
-      console.log(err);
-    };
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
     dispatch(topbarCountRequest("emptyData", successHandler, errorHandler));
   }, [dispatch]);
 
@@ -63,7 +40,7 @@ const HorizonatalList = () => {
             sx={{ color: "#FF4560" }}
           >
             <Typography variant="subtitle2">
-              User{" "}
+              User:{" "}
               {topbarCount &&
                 topbarCount[0]?.usersCount &&
                 topbarCount[0]?.usersCount}
@@ -77,8 +54,7 @@ const HorizonatalList = () => {
             sx={{ color: "#00E396" }}
           >
             <Typography variant="subtitle2">
-              {" "}
-              Networks :{" "}
+              Networks:{" "}
               {topbarCount &&
                 topbarCount[0]?.networksCount &&
                 topbarCount[0]?.networksCount}
@@ -92,8 +68,7 @@ const HorizonatalList = () => {
             sx={{ color: "#00E396" }}
           >
             <Typography variant="subtitle2">
-              {" "}
-              Exchanges :{" "}
+              Exchanges:{" "}
               {topbarCount &&
                 topbarCount[0]?.exchangeCount &&
                 topbarCount[0]?.exchangeCount}
@@ -107,8 +82,7 @@ const HorizonatalList = () => {
             sx={{ color: "#775DD0" }}
           >
             <Typography variant="subtitle2">
-              {" "}
-              NTF's :{" "}
+              NTF's:{" "}
               {topbarCount &&
                 topbarCount[0]?.nftlstingCount &&
                 topbarCount[0]?.nftlstingCount}

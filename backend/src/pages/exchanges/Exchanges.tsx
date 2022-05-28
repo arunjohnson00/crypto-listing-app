@@ -1,7 +1,7 @@
-import { Grid, Typography, Stack, Avatar } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { Grid, Typography, Stack, Avatar } from "@mui/material";
 
 import LargeBtn from "../../components/form/button/large/LargeBtn";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
@@ -83,12 +83,8 @@ const Exchanges = () => {
     : exchangeList;
 
   useEffect(() => {
-    const successHandler = (res: any) => {
-      //console.log(res);
-    };
-    const errorHandler = (err: any) => {
-      //console.log(err);
-    };
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
     dispatch(listExchangeRequest("emptyData", successHandler, errorHandler));
   }, [dispatch]);
 

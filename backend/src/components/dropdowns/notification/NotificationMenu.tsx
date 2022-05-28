@@ -1,50 +1,28 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import {
-  Grid,
-  Typography,
-  Stack,
-  Box,
-  Menu,
-  MenuItem,
-  Divider,
-} from "@mui/material";
-import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
-import { IconButton } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Typography, Stack, Menu, MenuItem, Divider } from "@mui/material";
 import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en.json";
 import parse from "html-react-parser";
 
 import { listUsersNotificationRequest } from "../../../store/action";
-
-import en from "javascript-time-ago/locale/en.json";
-import { Link } from "react-router-dom";
-
-TimeAgo.addDefaultLocale(en);
-
-// Create formatter (English).
-const timeAgo = new TimeAgo("en-US");
 
 const NotificationMenu = ({
   anchorNotification,
   openNotification,
   handleNotificationClose,
 }: any) => {
-  const navigate = useNavigate();
+  TimeAgo.addLocale(en);
+  const timeAgo = new TimeAgo("en-US");
+  const dispatch = useDispatch();
   const userNotificationList = useSelector((notificationList: any) => {
     return notificationList.userNotificationReducer.userNotifications.data;
   });
 
-  const dispatch = useDispatch();
   useEffect(() => {
-    const successHandler = (res: any) => {
-      console.log(res);
-    };
-
-    const errorHandler = (err: any) => {
-      console.log(err);
-    };
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
     dispatch(
       listUsersNotificationRequest("emptyData", successHandler, errorHandler)
     );

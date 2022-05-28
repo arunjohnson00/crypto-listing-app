@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Grid, Typography, Box, IconButton, Stack } from "@mui/material";
 import InputText from "../../../components/form/input/text/InputText";
-import { useSelector, useDispatch } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import { viewExchangeRequest } from "../../../store/action";
@@ -10,7 +10,6 @@ import { viewExchangeRequest } from "../../../store/action";
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const ExchangeView = () => {
-  const location: any = useLocation();
   const navigate: any = useNavigate();
   const dispatch: any = useDispatch();
   let { id } = useParams();
@@ -23,13 +22,10 @@ const ExchangeView = () => {
 
   useEffect(() => {
     const successHandler = (res: any) => {
-      console.log(res);
       setViewExchange(res.data.data);
     };
 
-    const errorHandler = (err: any) => {
-      //console.log(err);
-    };
+    const errorHandler = (err: any) => {};
     dispatch(viewExchangeRequest({ id: id }, successHandler, errorHandler));
   }, [dispatch, id]);
   return (

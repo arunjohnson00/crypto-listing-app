@@ -60,7 +60,7 @@ const appRequest = (
         ...JSON.parse(body),
       });
     }
-    console.log(requestBody);
+
     return axios({
       method: method,
       url: `${serverAPIUrl}${url}`,

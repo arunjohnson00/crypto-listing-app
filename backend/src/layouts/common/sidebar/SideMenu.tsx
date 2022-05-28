@@ -1,55 +1,43 @@
 import { Fragment, useState } from "react";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import Collapse from "@mui/material/Collapse";
+import {
+  List,
+  Divider,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Collapse,
+  Icon,
+} from "@mui/material";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import { Icon } from "@mui/material";
-import { useLocation } from "react-router-dom";
-
-import { Drawer, DrawerHeader } from "./style";
+import { useLocation, Link } from "react-router-dom";
 import { sideBarMenu } from "./helper";
-//import logoWhite from "../../../assets/logo/logowhite.png";
+import { Drawer, DrawerHeader } from "./style";
 import darkLogo from "../../../assets/logo/logodark.png";
-import { Link } from "react-router-dom";
 
 const SideMenu = ({ open }: any) => {
   const location = useLocation();
 
-  console.log(location.pathname.replace(/[^a-zA-Z ]/g, ""));
   const [expandMenu, setOpen] = useState(false);
   const [title, setTitle] = useState();
   const [activeColorId, setActiveColorId] = useState<number>();
-  const [subActiveColorId, setSubActiveColorId] = useState();
+  const [subActiveColorId, setSubActiveColorId] = useState<number>();
 
   const menuHandler = (e: any, data: any) => {
     data.subMenu && handleExpand(e, data);
     !data.subMenu && setOpen(false);
     setActiveColorId(data.id);
-
-    console.log(
-      data.title
-        .toLowerCase()
-        .replace(/\s+/g, "")
-        .replace(/[^a-zA-Z ]/g, "")
-    );
+    setSubActiveColorId(0);
   };
 
   const subMenuHandler = (e: any, sublist: any, data: any) => {
     setSubActiveColorId(sublist.id);
-    console.log(sublist.id);
-    console.log(subActiveColorId);
     setActiveColorId(data.id);
   };
 
   const handleExpand = (e: any, data: any) => {
     setOpen(!expandMenu);
-    // console.log(e.currentTarget.id);
     setTitle(data.title);
   };
 

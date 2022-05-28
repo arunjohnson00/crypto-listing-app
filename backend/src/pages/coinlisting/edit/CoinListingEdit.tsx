@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   Grid,
   Typography,
@@ -6,8 +8,14 @@ import {
   Stack,
   Divider,
   IconButton,
+  FormControlLabel,
 } from "@mui/material";
-import FormControlLabel from "@mui/material/FormControlLabel";
+import dateFormat, { masks } from "dateformat";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { toast } from "material-react-toastify";
+import "material-react-toastify/dist/ReactToastify.css";
+import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
+
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import InputText from "../../../components/form/input/text/InputText";
 import InputSelectCoin from "../../../components/form/selectcoin/InputSelectCoin";
@@ -18,15 +26,6 @@ import InputDateTime from "../../../components/form/input/datetime/InputDateTime
 import InputCheckbox from "../../../components/form/input/checkbox/InputCheckbox";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import InputCoinStatusSelect from "../../../components/form/selectcoinstatus/InputCoinStatusSelect";
-import dateFormat, { masks } from "dateformat";
-
-//import IconUploader from "../../../components/form/input/file/icon/IconUploader";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { toast } from "material-react-toastify";
-import LoadingButton from "@mui/lab/LoadingButton";
-import "material-react-toastify/dist/ReactToastify.css";
-import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 
 import Link from "@mui/material/Link";
 import NetworkDetails from "./NetworkDetails";
@@ -45,13 +44,6 @@ import { allCoinSocialRequest } from "../../../store/action";
 import { allChartProviderRequest } from "../../../store/action";
 import { updateCoinRequest } from "../../../store/action";
 import { editCoinRequest } from "../../../store/action";
-
-// import { listUsersRequest } from "../../../store/action";
-// import { listVideoRequest } from "../../../store/action";
-// import { listCoinRequest } from "../../../store/action";
-// import { listMenuCardRequest } from "../../../store/action";
-// import { listNftMarketPlacesRequest } from "../../../store/action";
-// import { listNftListingsRequest } from "../../../store/action";
 
 const CoinListingEdit = () => {
   const location: any = useLocation();
@@ -137,7 +129,6 @@ const CoinListingEdit = () => {
     youtube_link: "",
   });
 
-  console.log(editCoin);
   const exchangeList = useSelector((exList: any) => {
     return exList.exchangesReducer.allExchanges.data;
   });
@@ -191,7 +182,6 @@ const CoinListingEdit = () => {
     let networkListDlt = [...networkCount];
     networkListDlt.splice(-1, 1);
     setNetworkCount(networkListDlt);
-    console.log(networkCount);
   };
 
   const [exchangeCount, setExchangeCount] = useState<any[]>([]);
@@ -270,8 +260,6 @@ const CoinListingEdit = () => {
     is_scheduled: 0,
   });
 
-  //console.log(coinPublishStatus);
-
   const [loading, setLoading] = useState(false);
 
   const coinEditHandler = (e: any) => {
@@ -303,9 +291,7 @@ const CoinListingEdit = () => {
     const launchedStatus: any = coinStatus === "Launched" ? 1 : 0;
     formData.append("is_launched", launchedStatus);
 
-    //console.log(...formData);
     const successHandler = (res: any) => {
-      //console.log(res);
       setLoading(true);
       toast.success(`${res.data.message}`, {
         position: "top-right",
@@ -321,8 +307,6 @@ const CoinListingEdit = () => {
     };
 
     const errorHandler = (err: any) => {
-      console.log(err);
-
       toast.error(`${err.error.message.response.request.responseText}`, {
         position: "top-right",
         autoClose: 7000,
@@ -337,13 +321,9 @@ const CoinListingEdit = () => {
   };
 
   useEffect(() => {
-    const successHandler = (res: any) => {
-      //console.log(res);
-    };
+    const successHandler = (res: any) => {};
 
-    const errorHandler = (err: any) => {
-      //console.log(err);
-    };
+    const errorHandler = (err: any) => {};
 
     dispatch(allExchangeRequest("emptyformData", successHandler, errorHandler));
     dispatch(allNetworkRequest("emptyformData", successHandler, errorHandler));
@@ -362,7 +342,6 @@ const CoinListingEdit = () => {
 
   useEffect(() => {
     const successHandler = (res: any) => {
-      console.log(res);
       setEditCoin(res.data.data);
 
       setCoinStatus(
@@ -374,12 +353,10 @@ const CoinListingEdit = () => {
       );
     };
 
-    const errorHandler = (err: any) => {
-      //console.log(err);
-    };
+    const errorHandler = (err: any) => {};
     dispatch(editCoinRequest({ id: id }, successHandler, errorHandler));
   }, [dispatch, id]);
-  console.log(editCoin);
+
   return (
     <Grid container spacing={0}>
       <form id="coinForm">
@@ -389,12 +366,12 @@ const CoinListingEdit = () => {
 
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={2} mb={2}>
           <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-            <IconButton>
-              <ArrowBackIosTwoToneIcon
-                onClick={() => {
-                  navigate("/coins");
-                }}
-              />
+            <IconButton
+              onClick={() => {
+                navigate("/coins");
+              }}
+            >
+              <ArrowBackIosTwoToneIcon />
             </IconButton>
 
             <Typography variant="h5" sx={{ textAlign: "left" }}>
@@ -528,7 +505,6 @@ const CoinListingEdit = () => {
                   />
                 </Grid>
               </Grid>
-              {console.log(coinStatus)}
               {coinStatus === "Presale" ? (
                 <Grid container mb={5} mt={1}>
                   <Stack direction="row" spacing={3} mb={2}>
@@ -883,7 +859,15 @@ const CoinListingEdit = () => {
               editCoin?.has_many_exchanges.map(
                 (exchanges: any, index: number) => {
                   return (
-                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                    <Grid
+                      item
+                      xl={12}
+                      lg={12}
+                      md={12}
+                      sm={12}
+                      xs={12}
+                      key={index}
+                    >
                       <Stack direction="row" spacing={3}>
                         <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
                           <Typography
@@ -1130,7 +1114,15 @@ const CoinListingEdit = () => {
             editCoin?.has_many_audits !== undefined ? (
               editCoin?.has_many_audits.map((audits: any, index: number) => {
                 return (
-                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                  <Grid
+                    item
+                    xl={12}
+                    lg={12}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    key={index}
+                  >
                     <Stack direction="row" spacing={3}>
                       <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
                         <Typography
@@ -1261,7 +1253,15 @@ const CoinListingEdit = () => {
             editCoin?.has_many_charts !== undefined ? (
               editCoin?.has_many_charts.map((charts: any, index: number) => {
                 return (
-                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                  <Grid
+                    item
+                    xl={12}
+                    lg={12}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    key={index}
+                  >
                     <Stack direction="row" spacing={3}>
                       <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
                         <Typography
@@ -1397,7 +1397,15 @@ const CoinListingEdit = () => {
                   editCoin?.has_many_communitys?.map(
                     (communitys: any, index: number) => {
                       return (
-                        <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                        <Grid
+                          item
+                          xl={12}
+                          lg={12}
+                          md={12}
+                          sm={12}
+                          xs={12}
+                          key={index}
+                        >
                           <Stack direction="row" spacing={3}>
                             <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                               <Typography
@@ -1577,7 +1585,15 @@ const CoinListingEdit = () => {
                 editCoin?.has_many_chats !== undefined ? (
                   editCoin?.has_many_chats.map((chats: any, index: number) => {
                     return (
-                      <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                      <Grid
+                        item
+                        xl={12}
+                        lg={12}
+                        md={12}
+                        sm={12}
+                        xs={12}
+                        key={index}
+                      >
                         <Stack direction="row" spacing={3}>
                           <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                             <Typography
@@ -1715,7 +1731,15 @@ const CoinListingEdit = () => {
                   editCoin?.has_many_socials.map(
                     (socials: any, index: number) => {
                       return (
-                        <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                        <Grid
+                          item
+                          xl={12}
+                          lg={12}
+                          md={12}
+                          sm={12}
+                          xs={12}
+                          key={index}
+                        >
                           <Stack direction="row" spacing={3}>
                             <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                               <Typography

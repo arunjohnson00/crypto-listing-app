@@ -1,17 +1,18 @@
-import { Box, Grid, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
+import { Box, Grid, Typography } from "@mui/material";
+
 import { Item } from "./style";
-import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
-import LineChart from "../../components/charts/linechart/LineChart";
 import PieChart from "../../components/charts/piechart/PieChart";
+import LineChart from "../../components/charts/linechart/LineChart";
 import HtmlTables from "../../components/tables/htmltable/HtmlTables";
-import TablesWithHead from "../../components/tables/htmltable/TablesWithHead";
 import CellTowerOutlinedIcon from "@mui/icons-material/CellTowerOutlined";
+import TablesWithHead from "../../components/tables/htmltable/TablesWithHead";
+import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import ComponentFooter from "../../components/footer/compfooter/ComponentFooter";
 
 const Dashboard = () => {
   const coinList = useSelector((cnList: any) => {
-    return cnList.coinReducer.listCoins.data;
+    return cnList?.coinReducer?.listCoins?.data;
   });
 
   return (

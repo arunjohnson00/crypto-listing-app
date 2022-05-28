@@ -1,40 +1,40 @@
 import { useState } from "react";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
 import { useDispatch } from "react-redux";
-import CoinxhighIcon from "../../assets/icon/coinxhighicon.jpg";
 import { useNavigate } from "react-router-dom";
-import Alert from "@mui/material/Alert";
-import Stack from "@mui/material/Stack";
-import { sendLoginCredentials } from "../../store/action";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Link,
+  Box,
+  Typography,
+  Container,
+  Alert,
+  Stack,
+} from "@mui/material";
 import { toast } from "material-react-toastify";
 import "material-react-toastify/dist/ReactToastify.css";
-
-const theme = createTheme();
+import CoinxhighIcon from "../../assets/icon/coinxhighicon.jpg";
+import { sendLoginCredentials } from "../../store/action";
 
 const Login = () => {
+  const theme = createTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [authCredentials, setAuth] = useState({
+
+  const [loginAlrert, setAlert] = useState("");
+  const [authCredentials, setAuth] = useState<any>({
     email: "",
     password: "",
     remember: false,
   });
-  const [loginAlrert, setAlert] = useState("");
 
   const loginHandler = () => {
-    //appRequest(authCredentials, reDirectHandler, LoginError, storeData);
     const successHandler = (res: any) => {
-      console.log(res);
       toast.success(`Welcome ${res.data.user.name}`, {
         position: "top-right",
         autoClose: 7000,
@@ -49,6 +49,7 @@ const Login = () => {
           "authToken",
           JSON.stringify(res?.data?.access_token)
         );
+
         sessionStorage.setItem("authUser", JSON.stringify(res?.data?.user));
 
         if (authCredentials?.remember === true) {
@@ -60,39 +61,15 @@ const Login = () => {
           localStorage.setItem("authUser", JSON.stringify(res?.data?.user));
         }
       }
-
       navigate("/dashboard");
     };
     const errorHandler = (err: any) => {
-      // console.log();
       setAlert(err?.error?.message?.response?.data?.error);
     };
     dispatch(
       sendLoginCredentials(authCredentials, successHandler, errorHandler)
     );
   };
-  // const jwToken =
-  //   sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
-  // const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   jwToken && navigate("/dashboard");
-  // }, [navigate, jwToken]);
-
-  // const reDirectHandler = (authData: any) => {
-  //   if (
-  //     authData.data.access_token !== null ||
-  //     authData.data.access_token !== undefined ||
-  //     authData.data.access_token !== "" ||
-  //     jwToken
-  //   ) {
-  //     navigate("/dashboard");
-  //   }
-  // };
-  // const LoginError = (error: any) => {
-  //   console.log(error);
-  //   setAlert("Unauthorized Username & Password " + error);
-  // };
 
   function Copyright(props: any) {
     return (
@@ -105,9 +82,8 @@ const Login = () => {
         {"Copyright © "}
         <Link color="inherit" href="https:coinxhigh.com">
           CoinXhigh
-        </Link>{" "}
+        </Link>
         {new Date().getFullYear()}
-        {"."}
       </Typography>
     );
   }
@@ -143,6 +119,7 @@ const Login = () => {
               label="Email Address"
               name="email"
               autoFocus
+              autoComplete="on"
               onChange={(e: any) =>
                 setAuth({ ...authCredentials, email: e.target.value })
               }
@@ -151,6 +128,7 @@ const Login = () => {
               margin="normal"
               required
               fullWidth
+              autoComplete="on"
               name="password"
               label="Password"
               type="password"
@@ -165,7 +143,10 @@ const Login = () => {
                   value="remember"
                   color="primary"
                   onClick={(e: any) => {
-                    setAuth({ ...authCredentials, remember: e.target.checked });
+                    setAuth({
+                      ...authCredentials,
+                      remember: e.target.checked,
+                    });
                   }}
                 />
               }
@@ -178,7 +159,6 @@ const Login = () => {
               sx={{
                 mt: 3,
                 mb: 2,
-                // width: "173px",
                 height: "41px",
                 backgroundColor: "rgb(61, 56, 122)",
                 borderRadius: "8px",
