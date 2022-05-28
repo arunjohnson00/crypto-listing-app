@@ -403,7 +403,7 @@ class CoinsController extends Controller
 
         $pivot_exchange =  [] ;
         if(
-             ($request->exists('exchange_id') && $request->exists('url') && $request->exists('exchange_explorer_link')) 
+             ($request->exists('exchange_id') && $request->exists('url') ) 
         //     /*&&
         //     (
         //         count($request['exchange_id']) == count($request['url']) &&
