@@ -19,7 +19,7 @@ import en from "javascript-time-ago/locale/en.json";
 //import useMediaQuery from "@mui/material/useMediaQuery";
 
 import IconButton from "@mui/material/IconButton";
-import ComparisonCard from "../../../components/desktop/comparisoncard/ComparisonCard";
+import ComparisonCard from "../../../components/desktop/cards/comparisoncard/ComparisonCard";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import TextField from "@mui/material/TextField";
 
@@ -49,7 +49,7 @@ const ComparisonPage = () => {
 
       setFeed(rss);
     })();
-  }, []);
+  }, [parse]);
   return (
     <Fragment>
       <Grid
