@@ -113,48 +113,82 @@ const UpcomingEvents = () => {
         </Grid>
         <Grid xs={12} pt={2}>
           <Stack
-            direction={{ xs: "column", sm: "column", md: "row" }}
-            spacing={1}
+            direction="row"
+            //  direction={{ xs: "column", sm: "column", md: "row" }}
+
+            flexWrap="wrap"
           >
             <Chip
               label="All Events"
               color="success"
-              sx={{ backgroundColor: "#6252EA", fontSize: "0.7125rem" }}
+              sx={{
+                backgroundColor: "#6252EA",
+                fontSize: "0.7125rem",
+                margin: 0.5,
+              }}
             />
             <Chip
               label="Airdrops"
               color="success"
-              sx={{ backgroundColor: "#B252EA", fontSize: "0.7125rem" }}
+              sx={{
+                backgroundColor: "#B252EA",
+                fontSize: "0.7125rem",
+                margin: 0.5,
+              }}
             />
             <Chip
               label="AMA"
               color="success"
-              sx={{ backgroundColor: "#E753C3", fontSize: "0.7125rem" }}
+              sx={{
+                backgroundColor: "#E753C3",
+                fontSize: "0.7125rem",
+                margin: 0.5,
+              }}
             />
             <Chip
               label="Partnership"
               color="success"
-              sx={{ backgroundColor: "#EC516B", fontSize: "0.7125rem" }}
+              sx={{
+                backgroundColor: "#EC516B",
+                fontSize: "0.7125rem",
+                margin: 0.5,
+              }}
             />
             <Chip
               label="Community"
               color="success"
-              sx={{ backgroundColor: "#E97252", fontSize: "0.7125rem" }}
+              sx={{
+                backgroundColor: "#E97252",
+                fontSize: "0.7125rem",
+                margin: 0.5,
+              }}
             />
             <Chip
               label="Branding"
               color="success"
-              sx={{ backgroundColor: "#C49629", fontSize: "0.7125rem" }}
+              sx={{
+                backgroundColor: "#C49629",
+                fontSize: "0.7125rem",
+                margin: 0.5,
+              }}
             />
             <Chip
               label="Burning"
               color="success"
-              sx={{ backgroundColor: "#A3C111", fontSize: "0.7125rem" }}
+              sx={{
+                backgroundColor: "#A3C111",
+                fontSize: "0.7125rem",
+                margin: 0.5,
+              }}
             />
             <Chip
               label="Release"
               color="success"
-              sx={{ backgroundColor: "#42C110", fontSize: "0.7125rem" }}
+              sx={{
+                backgroundColor: "#42C110",
+                fontSize: "0.7125rem",
+                margin: 0.5,
+              }}
             />
           </Stack>
         </Grid>
