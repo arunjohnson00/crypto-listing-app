@@ -14,6 +14,7 @@ import UserDashboard from "../pages/useradmin/dashboard/UserDashboard";
 import NftListingsPage from "../pages/desktop/nftlisting/NftListingsPage";
 import CoinsListPage from "../pages/desktop/coins/CoinsListPage";
 import ComparisonPage from "../pages/desktop/comparisonpage/ComparisonPage";
+import UpcomingEvents from "../pages/desktop/upcomingevents/UpcomingEvents";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -82,6 +83,14 @@ const AppRoutes = () => {
           element={
             <PublicRoutes>
               <ComparisonPage />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path="/upcoming-events"
+          element={
+            <PublicRoutes>
+              <UpcomingEvents />
             </PublicRoutes>
           }
         />

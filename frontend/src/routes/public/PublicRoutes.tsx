@@ -5,12 +5,12 @@ export const PublicRoutes: any = (
   { children }: { children: JSX.Element },
   windowInnerWidth: any
 ) => {
-  const auth =
-    sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
-  let location = useLocation();
-  if (auth) {
-    return <Navigate replace to="/" state={{ from: location }} />;
-  }
+  // const auth =
+  //   sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
+  // let location = useLocation();
+  // if (auth) {
+  //   return <Navigate replace to="/" state={{ from: location }} />;
+  // }
   return <AppView windowInnerWidth={windowInnerWidth}>{children}</AppView>;
 };
 
