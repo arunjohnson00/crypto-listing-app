@@ -15,6 +15,7 @@ import NftListingsPage from "../pages/desktop/nftlisting/NftListingsPage";
 import CoinsListPage from "../pages/desktop/coins/CoinsListPage";
 import ComparisonPage from "../pages/desktop/comparisonpage/ComparisonPage";
 import UpcomingEvents from "../pages/desktop/upcomingevents/UpcomingEvents";
+import AirdropPage from "../pages/desktop/airdrops/AirdropPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -91,6 +92,14 @@ const AppRoutes = () => {
           element={
             <PublicRoutes>
               <UpcomingEvents />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path="/airdrops"
+          element={
+            <PublicRoutes>
+              <AirdropPage />
             </PublicRoutes>
           }
         />
