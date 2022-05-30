@@ -30,6 +30,17 @@ Route::prefix('b')->group(function() {
             
         Route::group(['middleware' =>  'assign_guard:backend_api'], function()
         {
+            /* ************************************************************************** */
+            /* ******************************* Master Settings ************************** */ 
+            /* ************************************************************************** */ 
+
+                Route::any('settings/random-votes-store', 'Settings\MasterSettingsController@random_votes_store' );
+                Route::any('settings/discount-store', 'Settings\MasterSettingsController@discount_store' );
+                Route::any('settings/privacy-policy-store', 'Settings\MasterSettingsController@privacy_policy_store' );
+                Route::any('settings/disclaimer-store', 'Settings\MasterSettingsController@disclaimer_store' );
+                Route::any('settings/terms-and-conditions-store', 'Settings\MasterSettingsController@terms_and_conditions_store' );
+                Route::any('settings/top-bar-notification-store', 'Settings\MasterSettingsController@top_bar_notification_store' );
+                Route::post('settings/change-password', 'Settings\MasterSettingsController@change_password' );
             
             /*
             |--------------------------------------------------------------------------
