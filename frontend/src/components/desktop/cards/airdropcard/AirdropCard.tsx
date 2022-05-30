@@ -110,8 +110,9 @@ const AirdropCard = () => {
             variant="subtitle2"
             sx={{ color: "#00E7AE", fontSize: 11 }}
           >
-            {"0xED3F52c46280ad96485323Fb6a51242cb4CA45F5".substring(0, 28)}
-            ...
+            {"0xED3F52c46280ad96485323Fb6a51242cb4CA45F5".substring(0, 14) +
+              "........." +
+              "0xED3F52c46280ad96485323Fb6a51242cb4CA45F5".slice(-6)}
           </Typography>
           <CopyToClipboard
             options={{ message: "" }}
@@ -126,7 +127,10 @@ const AirdropCard = () => {
             >
               <Tooltip title={`${copied ? "Copied" : "Copy this Token"}`}>
                 <ContentCopyIcon
-                  sx={{ color: `${copied ? "#23D471" : "#75787c"}` }}
+                  sx={{
+                    color: `${copied ? "#23D471" : "#75787c"}`,
+                    fontSize: 14,
+                  }}
                 />
               </Tooltip>
             </IconButton>
