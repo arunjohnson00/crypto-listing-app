@@ -16,6 +16,7 @@ import CoinsListPage from "../pages/desktop/coins/CoinsListPage";
 import ComparisonPage from "../pages/desktop/comparisonpage/ComparisonPage";
 import UpcomingEvents from "../pages/desktop/upcomingevents/UpcomingEvents";
 import AirdropPage from "../pages/desktop/airdrops/AirdropPage";
+import EventsViewPage from "../pages/desktop/eventsview/EventsViewPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -100,6 +101,14 @@ const AppRoutes = () => {
           element={
             <PublicRoutes>
               <AirdropPage />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path="/events-view"
+          element={
+            <PublicRoutes>
+              <EventsViewPage />
             </PublicRoutes>
           }
         />

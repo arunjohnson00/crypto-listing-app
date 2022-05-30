@@ -372,9 +372,10 @@ const SingleCoinHeader = () => {
                 <Typography variant="subtitle2" sx={{ color: "#FFFFF5" }}>
                   {"0xED3F52c46280ad96485323Fb6a51242cb4CA45F5".substring(
                     0,
-                    28
-                  )}
-                  ...
+                    14
+                  ) +
+                    "........." +
+                    "0xED3F52c46280ad96485323Fb6a51242cb4CA45F5".slice(-6)}
                 </Typography>
                 <CopyToClipboard
                   options={{ message: "" }}
