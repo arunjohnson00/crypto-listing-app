@@ -89,7 +89,7 @@ const EventViewCard = () => {
       <Stack
         direction="row"
         sx={{ justifyContent: "flex-start" }}
-        pt={2}
+        pt={0.5}
         spacing={10}
       >
         <Box

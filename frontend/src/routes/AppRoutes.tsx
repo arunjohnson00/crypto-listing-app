@@ -17,6 +17,7 @@ import ComparisonPage from "../pages/desktop/comparisonpage/ComparisonPage";
 import UpcomingEvents from "../pages/desktop/upcomingevents/UpcomingEvents";
 import AirdropPage from "../pages/desktop/airdrops/AirdropPage";
 import EventsViewPage from "../pages/desktop/eventsview/EventsViewPage";
+import PresaleListPage from "../pages/desktop/presales/PresaleListPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -72,6 +73,14 @@ const AppRoutes = () => {
           }
         />
 
+        <Route
+          path="/presale-list"
+          element={
+            <PublicRoutes>
+              <PresaleListPage windowInnerWidth={windowInnerWidth} />
+            </PublicRoutes>
+          }
+        />
         <Route
           path="/nftlisting"
           element={
