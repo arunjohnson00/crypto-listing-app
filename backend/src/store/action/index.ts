@@ -180,3 +180,21 @@ export { allEventsRewardAddressRequest } from "./eventsRewardAddressAction";
 //Common TopbarCount
 
 export { topbarCountRequest } from "./topbarCountAction";
+
+//Common Settings
+
+export {
+  viewRandomVoteStore,
+  updateRandomVoteStore,
+  viewDiscountStore,
+  updateDiscountStore,
+  viewPrivacyPolicyStore,
+  updatePrivacyPolicyStore,
+  viewDisclaimerStore,
+  updateDisclaimerStore,
+  viewTermsAndConditionStore,
+  updateTermsAndConditionStore,
+  viewTopBarNotificationStore,
+  updateTopBarNotificationStore,
+  updateChangePasswordStore,
+} from "./settingsAction";

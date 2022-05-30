@@ -31,6 +31,7 @@ import eventsReducer from "./eventsReducer";
 import eventsCategoryReducer from "./eventsCategoryReducer";
 import eventsRewardAddressReducer from "./eventsRewardAddressReducer";
 import topbarCountReducer from "./tobarCountReducer";
+import settingsReducer from "./settingsReducer";
 
 const allReducers = combineReducers({
   Auth,
@@ -58,6 +59,7 @@ const allReducers = combineReducers({
   eventsCategoryReducer,
   eventsRewardAddressReducer,
   topbarCountReducer,
+  settingsReducer,
 });
 
 const rootReducer = (state: any, action: any) => {
