@@ -7,7 +7,7 @@ export const viewRandomVoteStore = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/settings/random-votes-store?show="true"`,
+    url: `api/b/v1/settings/random-votes-store?show=${values.show}`,
     method: "GET",
     // body: JSON.stringify(values),
     secure: true,
@@ -38,11 +38,11 @@ export const viewDiscountStore = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/settings/discount-store?show="true"`,
+    url: `api/b/v1/settings/discount-store?show=${values.show}`,
     method: "GET",
     secure: true,
     // body: values,
-    actionType: SETTINGS.VIEW_RANDOM_VOTES_STORE,
+    actionType: SETTINGS.VIEW_DISCOUNT_STORE,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
@@ -69,7 +69,7 @@ export const viewPrivacyPolicyStore = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/settings/privacy-policy-store?show="true"`,
+    url: `api/b/v1/settings/privacy-policy-store?show=${values.show}`,
     method: "GET",
     //body: values,
     secure: true,
@@ -100,7 +100,7 @@ export const viewDisclaimerStore = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/settings/disclaimer-store?show="true"`,
+    url: `api/b/v1/settings/disclaimer-store?show=${values.show}`,
     method: "GET",
     // body: values,
     secure: true,
@@ -131,7 +131,7 @@ export const viewTermsAndConditionStore = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/settings/terms-and-conditions-store?show="true"`,
+    url: `api/b/v1/settings/terms-and-conditions-store?show=${values.show}`,
     method: "GET",
     // body: values,
     secure: true,
@@ -162,7 +162,7 @@ export const viewTopBarNotificationStore = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/settings/top-bar-notification-store?show="true"`,
+    url: `api/b/v1/settings/top-bar-notification-store?show=${values.show}`,
     //  body: values,
     method: "GET",
     secure: true,
