@@ -18,6 +18,7 @@ import UpcomingEvents from "../pages/desktop/upcomingevents/UpcomingEvents";
 import AirdropPage from "../pages/desktop/airdrops/AirdropPage";
 import EventsViewPage from "../pages/desktop/eventsview/EventsViewPage";
 import PresaleListPage from "../pages/desktop/presales/PresaleListPage";
+import DiscoverPage from "../pages/desktop/discover/DiscoverPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -118,6 +119,15 @@ const AppRoutes = () => {
           element={
             <PublicRoutes>
               <EventsViewPage />
+            </PublicRoutes>
+          }
+        />
+
+        <Route
+          path="/discover"
+          element={
+            <PublicRoutes>
+              <DiscoverPage />
             </PublicRoutes>
           }
         />
