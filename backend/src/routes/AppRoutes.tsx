@@ -92,6 +92,7 @@ import EventRewardAddress from "../pages/eventrewardaddress/EventRewardAddress";
 import EventRewardAddressAdd from "../pages/eventrewardaddress/add/EventRewardAddressAdd";
 import EventRewardAddressView from "../pages/eventrewardaddress/view/EventRewardAddressView";
 import EventRewardAddressEdit from "../pages/eventrewardaddress/edit/EventRewardAddressEdit";
+import AdsDashboard from "../pages/ads/dashboard/AdsDashboard";
 
 const AppRoutes = () => {
   return (
@@ -530,7 +531,7 @@ const AppRoutes = () => {
           path="/ads"
           element={
             <PrivateRoute>
-              <p>ads</p>
+              <AdsDashboard />
             </PrivateRoute>
           }
         />
