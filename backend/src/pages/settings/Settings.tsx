@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Grid, Typography, Stack, Box, Divider } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MediumBtn from "../../components/form/button/medium/MediumBtn";
 import BannerUploader from "../../components/form/input/file/banner/BannerUploader";
 import InputText from "../../components/form/input/text/InputText";
@@ -27,10 +27,14 @@ import { updateDisclaimerStore } from "../../store/action";
 import { updatePrivacyPolicyStore } from "../../store/action";
 import { updateChangePasswordStore } from "../../store/action";
 
-const serverAPIUrl = process.env.REACT_APP_API_URL;
+//const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const Settings = () => {
   const dispatch = useDispatch();
+  const settings = useSelector((settingsAll: any) => {
+    return settingsAll?.settingsReducer;
+  });
+
   const [loading, setLoading] = useState({
     discount: false,
     randomVote: false,
@@ -40,14 +44,7 @@ const Settings = () => {
     disclaimer: false,
     password: false,
   });
-  const [settingsData, setSettingsData] = useState({
-    discount: "",
-    randomVote: "",
-    tobBarNofication: "",
-    termsConditions: "",
-    privacyPolicy: "",
-    disclaimer: "",
-  });
+  const [settingsData, setSettingsData] = useState<any>({});
 
   const discountHandler = () => {
     const successHandler = (res: any) => {
@@ -333,84 +330,23 @@ const Settings = () => {
   };
 
   useEffect(() => {
-    const successHandler = (res: any) => {
-      setSettingsData({
-        ...settingsData,
-        discount: res.data.data,
-      });
-    };
+    const successHandler = (res: any) => {};
 
     const errorHandler = (err: any) => {};
-    dispatch(viewDiscountStore({ show: true }, successHandler, errorHandler));
-  }, [dispatch]);
 
-  useEffect(() => {
-    const successHandler = (res: any) => {
-      setSettingsData({
-        ...settingsData,
-        randomVote: res.data.data,
-      });
-    };
-
-    const errorHandler = (err: any) => {};
-    dispatch(viewRandomVoteStore({ show: true }, successHandler, errorHandler));
-  }, [dispatch]);
-
-  useEffect(() => {
-    const successHandler = (res: any) => {
-      setSettingsData({
-        ...settingsData,
-        tobBarNofication: res.data.data,
-      });
-    };
-
-    const errorHandler = (err: any) => {};
-    dispatch(
-      viewTopBarNotificationStore({ show: true }, successHandler, errorHandler)
-    );
-  }, [dispatch]);
-
-  useEffect(() => {
-    const successHandler = (res: any) => {
-      setSettingsData({
-        ...settingsData,
-        termsConditions: res.data.data,
-      });
-    };
-
-    const errorHandler = (err: any) => {};
-    dispatch(
-      viewTermsAndConditionStore({ show: true }, successHandler, errorHandler)
-    );
-  }, [dispatch]);
-
-  useEffect(() => {
-    const successHandler = (res: any) => {
-      setSettingsData({
-        ...settingsData,
-        privacyPolicy: res.data.data,
-      });
-    };
-
-    const errorHandler = (err: any) => {};
+    dispatch(viewDisclaimerStore({ show: true }, successHandler, errorHandler));
     dispatch(
       viewPrivacyPolicyStore({ show: true }, successHandler, errorHandler)
     );
+    dispatch(
+      viewTermsAndConditionStore({ show: true }, successHandler, errorHandler)
+    );
+    dispatch(
+      viewTopBarNotificationStore({ show: true }, successHandler, errorHandler)
+    );
+    dispatch(viewRandomVoteStore({ show: true }, successHandler, errorHandler));
+    dispatch(viewDiscountStore({ show: true }, successHandler, errorHandler));
   }, [dispatch]);
-
-  useEffect(() => {
-    const successHandler = (res: any) => {
-      setSettingsData({
-        ...settingsData,
-        tobBarNofication: res.data.data,
-      });
-    };
-
-    const errorHandler = (err: any) => {};
-    dispatch(viewDisclaimerStore({ show: true }, successHandler, errorHandler));
-  }, [dispatch]);
-
-  console.log(settingsData?.discount);
 
   return (
     <Grid container spacing={2}>
@@ -461,12 +397,24 @@ const Settings = () => {
                           width="auto"
                           placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
                           name="duration"
+                          value={
+                            settings?.viewDiscountStore?.data?.setting &&
+                            JSON.parse(
+                              settings?.viewDiscountStore?.data?.setting
+                            )?.duration
+                          }
                         />
                         <Typography variant="subtitle1">Percentage</Typography>
                         <InputText
                           width="auto"
                           placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
                           name="percentage"
+                          value={
+                            settings?.viewDiscountStore?.data?.setting &&
+                            JSON.parse(
+                              settings?.viewDiscountStore?.data?.setting
+                            )?.percentage
+                          }
                         />
 
                         {loading.discount ? (
@@ -517,12 +465,24 @@ const Settings = () => {
                           width="auto"
                           placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
                           name="from"
+                          value={
+                            settings?.viewRandomVoteStore?.data?.setting &&
+                            JSON.parse(
+                              settings?.viewRandomVoteStore?.data?.setting
+                            )?.from
+                          }
                         />
                         <Typography variant="subtitle1">To</Typography>
                         <InputText
                           width="auto"
                           placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
                           name="to"
+                          value={
+                            settings?.viewRandomVoteStore?.data?.setting &&
+                            JSON.parse(
+                              settings?.viewRandomVoteStore?.data?.setting
+                            )?.to
+                          }
                         />
                         {loading.randomVote ? (
                           <LoadingButton
@@ -579,6 +539,14 @@ const Settings = () => {
                           name="top_bar_notification_text"
                           id="description"
                           placeholder="Enter Text"
+                          value={
+                            settings?.viewTopBarNotificationStore?.data
+                              ?.setting &&
+                            JSON.parse(
+                              settings?.viewTopBarNotificationStore?.data
+                                ?.setting
+                            )?.top_bar_notification_text
+                          }
                         />
                         <Stack
                           direction="row"
@@ -705,6 +673,14 @@ const Settings = () => {
                           name="terms_and_conditions_text"
                           id="description"
                           placeholder="Enter Text"
+                          value={
+                            settings?.viewTermsAndConditionStore?.data
+                              ?.setting &&
+                            JSON.parse(
+                              settings?.viewTermsAndConditionStore?.data
+                                ?.setting
+                            )?.terms_and_conditions_text
+                          }
                         />
                         <Stack
                           direction="row"
@@ -764,6 +740,12 @@ const Settings = () => {
                           name="disclaimer_text"
                           id="description"
                           placeholder="Enter Text"
+                          value={
+                            settings?.viewDisclaimerStore?.data?.setting &&
+                            JSON.parse(
+                              settings?.viewDisclaimerStore?.data?.setting
+                            )?.disclaimer_text
+                          }
                         />
                         <Stack
                           direction="row"
@@ -823,6 +805,12 @@ const Settings = () => {
                           name="policy_text"
                           id="description"
                           placeholder="Enter Text"
+                          value={
+                            settings?.viewPrivacyPolicyStore?.data?.setting &&
+                            JSON.parse(
+                              settings?.viewPrivacyPolicyStore?.data?.setting
+                            )?.policy_text
+                          }
                         />
                         <Stack
                           direction="row"
