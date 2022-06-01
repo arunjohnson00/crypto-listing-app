@@ -9,6 +9,8 @@ import DiscoverNews from "../discovernews/DiscoverNews";
 import DiscoverVideo from "../discovervideo/DiscoverVideo";
 import DiscoverRecentlyAdded from "../discoverrecentlyadded/DiscoverRecentlyAdded";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import DiscoverTrending from "../discovertrending/DiscoverTrending";
+import DiscoverNFTs from "../discovernft/DiscoverNFTs";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -63,7 +65,9 @@ const DiscoverVerticalTab = () => {
     >
       <Tabs
         orientation={`${matches ? "vertical" : "horizontal"}`}
-        variant="fullWidth"
+        variant={`${matches ? "fullWidth" : "scrollable"}`}
+        scrollButtons
+        allowScrollButtonsMobile
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
@@ -199,10 +203,10 @@ const DiscoverVerticalTab = () => {
         <DiscoverRecentlyAdded />
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Item Five
+        <DiscoverTrending />
       </TabPanel>
       <TabPanel value={value} index={5}>
-        Item Six
+        <DiscoverNFTs />
       </TabPanel>
       <TabPanel value={value} index={6}>
         Item Seven

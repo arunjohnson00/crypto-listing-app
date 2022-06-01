@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import {
-  Grid,
   Box,
   Stack,
   Avatar,
@@ -16,7 +15,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 import Telegram from "@mui/icons-material/Telegram";
 import Twitter from "@mui/icons-material/Twitter";
 
-const DiscoverRecentCryptoCard = ({}) => {
+const DiscoverRecentCryptoCard = () => {
   const prevCountRef = useRef();
   const [data, updateData] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
   const [percentageData, setPercentageData] = useState<any>();

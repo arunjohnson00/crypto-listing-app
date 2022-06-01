@@ -1,22 +1,10 @@
-import {
-  Grid,
-  Box,
-  Stack,
-  Avatar,
-  Typography,
-  Chip,
-  Rating,
-  IconButton,
-  CardMedia,
-} from "@mui/material";
-import Chart from "react-apexcharts";
-import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
-import ArrowDropUp from "@mui/icons-material/ArrowDropUp";
+import { Box, Stack, Typography, IconButton, CardMedia } from "@mui/material";
+
 import LanguageIcon from "@mui/icons-material/Language";
 import Telegram from "@mui/icons-material/Telegram";
 import Twitter from "@mui/icons-material/Twitter";
 
-const DiscoverNFTCard = ({}) => {
+const DiscoverNFTCard = () => {
   return (
     <Box
       sx={{

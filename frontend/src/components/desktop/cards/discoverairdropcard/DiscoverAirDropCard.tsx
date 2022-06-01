@@ -1,6 +1,6 @@
 import { Box, Stack, Avatar, Typography } from "@mui/material";
 
-const DiscoverAirDropCard = ({}) => {
+const DiscoverAirDropCard = () => {
   return (
     <Box
       sx={{
@@ -47,7 +47,7 @@ const DiscoverAirDropCard = ({}) => {
         direction={{ xs: "column" }}
         spacing={0.0}
         alignItems="center"
-        mt={0.5}
+        mt={1.2}
       >
         <Typography
           variant="subtitle1"

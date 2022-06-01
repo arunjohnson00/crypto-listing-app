@@ -1,6 +1,6 @@
 import { Box, Stack, Avatar, Typography } from "@mui/material";
 
-const DiscoverEventsCard = ({}) => {
+const DiscoverEventsCard = () => {
   return (
     <Box
       sx={{
