@@ -202,3 +202,35 @@ export const updateChangePasswordStore = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const updateDashboardImageSlider = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/b/v1/settings/dashboard-image-slider`,
+    method: "POST",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: SETTINGS.UPDATE_DASHBOARD_IMAGE_SLIDER,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const updateDashboardInfoBanner = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/b/v1/settings/dashboard-info-banner`,
+    method: "POST",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: SETTINGS.UPDATE_DASHBOARD_INFO_BANNER,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

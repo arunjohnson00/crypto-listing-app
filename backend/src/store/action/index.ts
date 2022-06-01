@@ -197,4 +197,6 @@ export {
   viewTopBarNotificationStore,
   updateTopBarNotificationStore,
   updateChangePasswordStore,
+  updateDashboardImageSlider,
+  updateDashboardInfoBanner,
 } from "./settingsAction";

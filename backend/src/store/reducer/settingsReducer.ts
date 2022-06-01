@@ -14,6 +14,8 @@ const initialState = {
   viewTopBarNotificationStore: "",
   updateTopBarNotificationStore: "",
   updateChangePasswordStore: "",
+  updateDashBoardSlider: "",
+  updateDashBoardInfoBanner: "",
 };
 const settingsReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -88,6 +90,16 @@ const settingsReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         updateChangePasswordStore: action?.payload?.data,
+      };
+    case SETTINGS.UPDATE_DASHBOARD_IMAGE_SLIDER:
+      return {
+        ...state,
+        updateDashBoardSlider: action?.payload?.data,
+      };
+    case SETTINGS.UPDATE_DASHBOARD_INFO_BANNER:
+      return {
+        ...state,
+        updateDashBoardInfoBanner: action?.payload?.data,
       };
 
     default:

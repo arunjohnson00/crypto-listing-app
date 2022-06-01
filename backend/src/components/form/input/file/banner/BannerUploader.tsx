@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import { useDropzone } from "react-dropzone";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 
-const BannerUploader = ({ addIconData, setAddIcon }: any) => {
+const BannerUploader = ({ addIconData, setAddIcon, name }: any) => {
   const onDrop = useCallback(
     (acceptedFiles: any) => {
       setAddIcon({
@@ -36,7 +36,7 @@ const BannerUploader = ({ addIconData, setAddIcon }: any) => {
   return (
     <Box>
       <div {...getRootProps({ className: "dropzone" })}>
-        <input {...getInputProps()} />
+        <input {...getInputProps()} name={name} />
 
         <Button
           variant="outlined"
