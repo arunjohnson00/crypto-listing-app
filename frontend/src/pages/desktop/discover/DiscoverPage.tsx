@@ -1,5 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
-import { Divider, Grid, Stack, Typography } from "@mui/material";
+import { Divider, Grid, Stack, Typography, Box } from "@mui/material";
 
 import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
 import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
@@ -102,117 +102,131 @@ const DiscoverPage = () => {
               <Typography variant="body2" sx={{ color: "#FFFFF5" }}>
                 Monitor
               </Typography>
-              <Stack direction="row" spacing={2} justifyContent="space-between">
-                <Stack direction="row" spacing={3} alignItems="center">
-                  <Stack direction="row" spacing={0.4}>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "#FFFFF5", fontWeight: "bold" }}
-                    >
-                      BTC
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "#27CFDF", fontWeight: 500 }}
-                    >
-                      $59,839.16
-                    </Typography>
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "row" }}
+                spacing={2}
+                justifyContent="space-between"
+              >
+                <Box sx={{ height: 50 }}>
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    spacing={3}
+                    alignItems="center"
+                  >
+                    <Stack direction="row" spacing={0.4}>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "#FFFFF5", fontWeight: "bold" }}
+                      >
+                        BTC
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "#27CFDF", fontWeight: 500 }}
+                      >
+                        $59,839.16
+                      </Typography>
+                    </Stack>
+
+                    <Divider
+                      variant="middle"
+                      orientation="vertical"
+                      flexItem
+                      sx={{ borderRightColor: "#1A1D23", borderRightWidth: 2 }}
+                    />
+
+                    <Stack direction="row" spacing={0.4}>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "#FFFFF5", fontWeight: "bold" }}
+                      >
+                        BTC
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "#27CFDF", fontWeight: 500 }}
+                      >
+                        $59,839.16
+                      </Typography>
+                    </Stack>
+
+                    <Divider
+                      variant="middle"
+                      orientation="vertical"
+                      flexItem
+                      sx={{ borderRightColor: "#1A1D23", borderRightWidth: 2 }}
+                    />
+
+                    <Stack direction="row" spacing={0.4}>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "#FFFFF5", fontWeight: "bold" }}
+                      >
+                        BTC
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "#27CFDF", fontWeight: 500 }}
+                      >
+                        $59,839.16
+                      </Typography>
+                    </Stack>
+
+                    <Divider
+                      variant="middle"
+                      orientation="vertical"
+                      flexItem
+                      sx={{ borderRightColor: "#1A1D23", borderRightWidth: 2 }}
+                    />
+
+                    <Stack direction="row" spacing={0.4}>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "#FFFFF5", fontWeight: "bold" }}
+                      >
+                        BTC
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "#27CFDF", fontWeight: 500 }}
+                      >
+                        $59,839.16
+                      </Typography>
+                    </Stack>
+
+                    <Divider
+                      variant="middle"
+                      orientation="vertical"
+                      flexItem
+                      sx={{ borderRightColor: "#1A1D23", borderRightWidth: 2 }}
+                    />
+
+                    <Stack direction="row" spacing={0.4}>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "#FFFFF5", fontWeight: "bold" }}
+                      >
+                        BTC
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "#27CFDF", fontWeight: 500 }}
+                      >
+                        $59,839.16
+                      </Typography>
+                    </Stack>
                   </Stack>
-
-                  <Divider
-                    variant="middle"
-                    orientation="vertical"
-                    flexItem
-                    sx={{ borderRightColor: "#1A1D23", borderRightWidth: 2 }}
-                  />
-
-                  <Stack direction="row" spacing={0.4}>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "#FFFFF5", fontWeight: "bold" }}
-                    >
-                      BTC
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "#27CFDF", fontWeight: 500 }}
-                    >
-                      $59,839.16
-                    </Typography>
-                  </Stack>
-
-                  <Divider
-                    variant="middle"
-                    orientation="vertical"
-                    flexItem
-                    sx={{ borderRightColor: "#1A1D23", borderRightWidth: 2 }}
-                  />
-
-                  <Stack direction="row" spacing={0.4}>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "#FFFFF5", fontWeight: "bold" }}
-                    >
-                      BTC
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "#27CFDF", fontWeight: 500 }}
-                    >
-                      $59,839.16
-                    </Typography>
-                  </Stack>
-
-                  <Divider
-                    variant="middle"
-                    orientation="vertical"
-                    flexItem
-                    sx={{ borderRightColor: "#1A1D23", borderRightWidth: 2 }}
-                  />
-
-                  <Stack direction="row" spacing={0.4}>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "#FFFFF5", fontWeight: "bold" }}
-                    >
-                      BTC
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "#27CFDF", fontWeight: 500 }}
-                    >
-                      $59,839.16
-                    </Typography>
-                  </Stack>
-
-                  <Divider
-                    variant="middle"
-                    orientation="vertical"
-                    flexItem
-                    sx={{ borderRightColor: "#1A1D23", borderRightWidth: 2 }}
-                  />
-
-                  <Stack direction="row" spacing={0.4}>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "#FFFFF5", fontWeight: "bold" }}
-                    >
-                      BTC
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "#27CFDF", fontWeight: 500 }}
-                    >
-                      $59,839.16
-                    </Typography>
-                  </Stack>
-                </Stack>
-                <Stack direction="column" spacing={0} alignItems="flex-end">
+                </Box>
+                <Stack
+                  direction="column"
+                  spacing={0}
+                  alignItems={{ xs: "center", sm: "center", md: "flex-end" }}
+                >
                   <Typography
                     variant="body2"
                     sx={{ color: "#FFFFF5", fontWeight: 500 }}
                   >
-                    Market is{" "}
+                    Market is
                     <span style={{ color: "#FF2B31" }}>Extreme Fear</span>
                   </Typography>
                   <Typography

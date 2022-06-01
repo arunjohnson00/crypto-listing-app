@@ -46,7 +46,7 @@ const DiscoverLatestGaindLosers = () => {
                 Gainers
               </Typography>
               <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
+                direction={{ xs: "column", sm: "column", md: "row" }}
                 alignItems="center"
                 spacing={1}
                 pt={0}
@@ -70,7 +70,7 @@ const DiscoverLatestGaindLosers = () => {
                 Losers
               </Typography>
               <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
+                direction={{ xs: "column", sm: "column", md: "row" }}
                 alignItems="center"
                 spacing={1}
               >

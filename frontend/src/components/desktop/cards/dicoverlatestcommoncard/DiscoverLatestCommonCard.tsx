@@ -9,6 +9,7 @@ const DiscoverLatestCommonCard = () => {
         backgroundColor: "#081243",
         borderRadius: 15,
         padding: 3,
+        margin: 1,
       }}
     >
       <Stack

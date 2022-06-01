@@ -6,8 +6,6 @@ import {
   Typography,
   CardMedia,
 } from "@mui/material";
-import CampaignIcon from "@mui/icons-material/Campaign";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 const DiscoverVideo = () => {
   return (
@@ -31,7 +29,7 @@ const DiscoverVideo = () => {
             <Stack
               direction={{ xs: "column", sm: "column", md: "row" }}
               justifyContent="space-between"
-              alignItems="center"
+              alignItems={{ xs: "center", sm: "center", md: "center" }}
             >
               <Stack
                 direction={{ xs: "column", sm: "column", md: "row" }}
@@ -48,15 +46,21 @@ const DiscoverVideo = () => {
                   direction={{ xs: "column", sm: "column", md: "column" }}
                   spacing={0.6}
                   sx={{ maxWidth: 380 }}
+                  alignItems={{ xs: "center", sm: "center", md: "flex-start" }}
                 >
                   <Typography
                     variant="h6"
                     sx={{ color: "#FFFFF5", fontWeight: 300 }}
+                    textAlign={{ xs: "center", sm: "center", md: "left" }}
                   >
                     I have an announcement
                   </Typography>
 
-                  <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "#FFFFF5" }}
+                    textAlign={{ xs: "center", sm: "center", md: "left" }}
+                  >
                     "Bitcoin and Ethereum showed some improvement by gaining
                     nearly 5 per cent and 6 per cent each over the past 24 hours
                     compared to their last two days' performance. Bitcoin
@@ -87,7 +91,7 @@ const DiscoverVideo = () => {
             <Stack
               direction={{ xs: "column", sm: "column", md: "row" }}
               justifyContent="space-between"
-              alignItems="center"
+              alignItems={{ xs: "center", sm: "center", md: "center" }}
             >
               <Stack
                 direction={{ xs: "column", sm: "column", md: "row" }}
@@ -104,15 +108,21 @@ const DiscoverVideo = () => {
                   direction={{ xs: "column", sm: "column", md: "column" }}
                   spacing={0.6}
                   sx={{ maxWidth: 380 }}
+                  alignItems={{ xs: "center", sm: "center", md: "flex-start" }}
                 >
                   <Typography
                     variant="h6"
                     sx={{ color: "#FFFFF5", fontWeight: 300 }}
+                    textAlign={{ xs: "center", sm: "center", md: "left" }}
                   >
                     I have an announcement
                   </Typography>
 
-                  <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "#FFFFF5" }}
+                    textAlign={{ xs: "center", sm: "center", md: "left" }}
+                  >
                     "Bitcoin and Ethereum showed some improvement by gaining
                     nearly 5 per cent and 6 per cent each over the past 24 hours
                     compared to their last two days' performance. Bitcoin
@@ -131,7 +141,6 @@ const DiscoverVideo = () => {
               </Typography>
             </Stack>
           </Box>
-
           <Box
             sx={{
               flexGrow: 1,
@@ -144,7 +153,7 @@ const DiscoverVideo = () => {
             <Stack
               direction={{ xs: "column", sm: "column", md: "row" }}
               justifyContent="space-between"
-              alignItems="center"
+              alignItems={{ xs: "center", sm: "center", md: "center" }}
             >
               <Stack
                 direction={{ xs: "column", sm: "column", md: "row" }}
@@ -161,15 +170,21 @@ const DiscoverVideo = () => {
                   direction={{ xs: "column", sm: "column", md: "column" }}
                   spacing={0.6}
                   sx={{ maxWidth: 380 }}
+                  alignItems={{ xs: "center", sm: "center", md: "flex-start" }}
                 >
                   <Typography
                     variant="h6"
                     sx={{ color: "#FFFFF5", fontWeight: 300 }}
+                    textAlign={{ xs: "center", sm: "center", md: "left" }}
                   >
                     I have an announcement
                   </Typography>
 
-                  <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "#FFFFF5" }}
+                    textAlign={{ xs: "center", sm: "center", md: "left" }}
+                  >
                     "Bitcoin and Ethereum showed some improvement by gaining
                     nearly 5 per cent and 6 per cent each over the past 24 hours
                     compared to their last two days' performance. Bitcoin
@@ -188,7 +203,6 @@ const DiscoverVideo = () => {
               </Typography>
             </Stack>
           </Box>
-
           <Box
             sx={{
               flexGrow: 1,
@@ -201,7 +215,7 @@ const DiscoverVideo = () => {
             <Stack
               direction={{ xs: "column", sm: "column", md: "row" }}
               justifyContent="space-between"
-              alignItems="center"
+              alignItems={{ xs: "center", sm: "center", md: "center" }}
             >
               <Stack
                 direction={{ xs: "column", sm: "column", md: "row" }}
@@ -218,15 +232,21 @@ const DiscoverVideo = () => {
                   direction={{ xs: "column", sm: "column", md: "column" }}
                   spacing={0.6}
                   sx={{ maxWidth: 380 }}
+                  alignItems={{ xs: "center", sm: "center", md: "flex-start" }}
                 >
                   <Typography
                     variant="h6"
                     sx={{ color: "#FFFFF5", fontWeight: 300 }}
+                    textAlign={{ xs: "center", sm: "center", md: "left" }}
                   >
                     I have an announcement
                   </Typography>
 
-                  <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "#FFFFF5" }}
+                    textAlign={{ xs: "center", sm: "center", md: "left" }}
+                  >
                     "Bitcoin and Ethereum showed some improvement by gaining
                     nearly 5 per cent and 6 per cent each over the past 24 hours
                     compared to their last two days' performance. Bitcoin

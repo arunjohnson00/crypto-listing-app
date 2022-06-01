@@ -322,7 +322,7 @@ const DiscoverNews = () => {
 
           <Stack
             direction={{ xs: "column", sm: "column", md: "column" }}
-            alignItems="flex-start"
+            alignItems={{ xs: "center", sm: "center", md: "flex-start" }}
             spacing={1}
           >
             <Typography

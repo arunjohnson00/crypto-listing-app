@@ -43,8 +43,8 @@ const DiscoverLatestAma = () => {
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
                 alignItems="center"
-                spacing={2}
                 pt={0}
+                flexWrap={{ xs: "wrap", sm: "wrap", md: "nowrap" }}
               >
                 <DiscoverLatestCommonCard />
                 <DiscoverLatestCommonCard />

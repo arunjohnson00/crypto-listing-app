@@ -8,6 +8,7 @@ import DiscoverLatest from "../discoverlatest/DiscoverLatest";
 import DiscoverNews from "../discovernews/DiscoverNews";
 import DiscoverVideo from "../discovervideo/DiscoverVideo";
 import DiscoverRecentlyAdded from "../discoverrecentlyadded/DiscoverRecentlyAdded";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -44,6 +45,7 @@ function a11yProps(index: number) {
 
 const DiscoverVerticalTab = () => {
   const [value, setValue] = React.useState(0);
+  const matches = useMediaQuery("(min-width:900px)");
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -57,16 +59,16 @@ const DiscoverVerticalTab = () => {
         color: "#FFFFF5",
         //paddingLeft: "62px",
       }}
+      flexDirection={{ xs: "column", sm: "column", md: "row", lg: "row" }}
     >
       <Tabs
-        orientation="vertical"
+        orientation={`${matches ? "vertical" : "horizontal"}`}
         variant="fullWidth"
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
         sx={{
-          width: "250px",
-
+          width: `${matches ? "250px" : "100%"}`,
           backgroundColor: "#020419",
           "& .MuiTabs-indicator": {
             //display: "none",
@@ -98,7 +100,7 @@ const DiscoverVerticalTab = () => {
           sx={{
             paddingLeft: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
-              alignItems: "flex-start",
+              alignItems: `${matches ? "flex-start" : "center"}`,
             },
           }}
         />
@@ -108,7 +110,7 @@ const DiscoverVerticalTab = () => {
           sx={{
             paddingLeft: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
-              alignItems: "flex-start",
+              alignItems: `${matches ? "flex-start" : "center"}`,
             },
           }}
         />
@@ -118,7 +120,7 @@ const DiscoverVerticalTab = () => {
           sx={{
             paddingLeft: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
-              alignItems: "flex-start",
+              alignItems: `${matches ? "flex-start" : "center"}`,
             },
           }}
         />
@@ -128,7 +130,7 @@ const DiscoverVerticalTab = () => {
           sx={{
             paddingLeft: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
-              alignItems: "flex-start",
+              alignItems: `${matches ? "flex-start" : "center"}`,
             },
           }}
         />
@@ -138,7 +140,7 @@ const DiscoverVerticalTab = () => {
           sx={{
             paddingLeft: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
-              alignItems: "flex-start",
+              alignItems: `${matches ? "flex-start" : "center"}`,
             },
           }}
         />
@@ -148,7 +150,7 @@ const DiscoverVerticalTab = () => {
           sx={{
             paddingLeft: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
-              alignItems: "flex-start",
+              alignItems: `${matches ? "flex-start" : "center"}`,
             },
           }}
         />
@@ -158,7 +160,7 @@ const DiscoverVerticalTab = () => {
           sx={{
             paddingLeft: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
-              alignItems: "flex-start",
+              alignItems: `${matches ? "flex-start" : "center"}`,
             },
           }}
         />
@@ -169,7 +171,7 @@ const DiscoverVerticalTab = () => {
           sx={{
             paddingLeft: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
-              alignItems: "flex-start",
+              alignItems: `${matches ? "flex-start" : "center"}`,
             },
           }}
         />
@@ -179,7 +181,7 @@ const DiscoverVerticalTab = () => {
           sx={{
             paddingLeft: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
-              alignItems: "flex-start",
+              alignItems: `${matches ? "flex-start" : "center"}`,
             },
           }}
         />
