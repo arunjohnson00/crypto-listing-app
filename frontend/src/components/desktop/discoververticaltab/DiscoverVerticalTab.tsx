@@ -196,7 +196,7 @@ const DiscoverVerticalTab = () => {
           }}
         />
       </Tabs>
-      <Box sx={{ width: "80%" }}>
+      <Box sx={{ width: "90%" }}>
         <TabPanel value={value} index={0}>
           <DiscoverLatest />
         </TabPanel>
