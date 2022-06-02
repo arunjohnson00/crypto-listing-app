@@ -12,6 +12,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import DiscoverTrending from "../discovertrending/DiscoverTrending";
 import DiscoverNFTs from "../discovernft/DiscoverNFTs";
 import DiscoverNftMarketPlaces from "../discovernftmarketplaces/DiscoverNftMarketPlaces";
+import DiscoverAirdrops from "../discoverairdrops/DiscoverAirdrops";
+import DiscoverEvents from "../discoverevents/DiscoverEvents";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -213,10 +215,10 @@ const DiscoverVerticalTab = () => {
         <DiscoverNftMarketPlaces />
       </TabPanel>
       <TabPanel value={value} index={7}>
-        Item Seven
+        <DiscoverAirdrops />
       </TabPanel>
       <TabPanel value={value} index={8}>
-        Item Seven
+        <DiscoverEvents />
       </TabPanel>
     </Box>
   );
