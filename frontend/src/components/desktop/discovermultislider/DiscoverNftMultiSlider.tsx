@@ -38,7 +38,7 @@ const DiscoverNftMultiSlider = () => {
   return (
     <div
       style={{
-        padding: "10px",
+        paddingTop: "10px",
         width: "60vw",
         boxSizing: "border-box",
         margin: "0 auto",

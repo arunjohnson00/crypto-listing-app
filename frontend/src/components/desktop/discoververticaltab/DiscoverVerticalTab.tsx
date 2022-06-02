@@ -59,23 +59,25 @@ const DiscoverVerticalTab = () => {
     <Box
       sx={{
         flexGrow: 1,
+        width: "100%",
         backgroundColor: "#020419",
         display: "flex",
         color: "#FFFFF5",
         //paddingLeft: "62px",
       }}
-      flexDirection={{ xs: "column", sm: "column", md: "row", lg: "row" }}
+      flexDirection={{ xs: "column", sm: "column", md: "column", lg: "row" }}
     >
       <Tabs
         orientation={`${matches ? "vertical" : "horizontal"}`}
-        variant={`${matches ? "fullWidth" : "scrollable"}`}
+        //variant={`${matches ? "fullWidth" : "scrollable"}`}
+        variant="scrollable"
         scrollButtons
         allowScrollButtonsMobile
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
         sx={{
-          width: `${matches ? "250px" : "100%"}`,
+          width: `${matches ? "240px" : "100%"}`,
           backgroundColor: "#020419",
           "& .MuiTabs-indicator": {
             //display: "none",
@@ -193,33 +195,35 @@ const DiscoverVerticalTab = () => {
           }}
         />
       </Tabs>
-      <TabPanel value={value} index={0}>
-        <DiscoverLatest />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <DiscoverNews />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <DiscoverVideo />
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        <DiscoverRecentlyAdded />
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        <DiscoverTrending />
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        <DiscoverNFTs />
-      </TabPanel>
-      <TabPanel value={value} index={6}>
-        <DiscoverNftMarketPlaces />
-      </TabPanel>
-      <TabPanel value={value} index={7}>
-        <DiscoverAirdrops />
-      </TabPanel>
-      <TabPanel value={value} index={8}>
-        <DiscoverEvents />
-      </TabPanel>
+      <Box>
+        <TabPanel value={value} index={0}>
+          <DiscoverLatest />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <DiscoverNews />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <DiscoverVideo />
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          <DiscoverRecentlyAdded />
+        </TabPanel>
+        <TabPanel value={value} index={4}>
+          <DiscoverTrending />
+        </TabPanel>
+        <TabPanel value={value} index={5}>
+          <DiscoverNFTs />
+        </TabPanel>
+        <TabPanel value={value} index={6}>
+          <DiscoverNftMarketPlaces />
+        </TabPanel>
+        <TabPanel value={value} index={7}>
+          <DiscoverAirdrops />
+        </TabPanel>
+        <TabPanel value={value} index={8}>
+          <DiscoverEvents />
+        </TabPanel>
+      </Box>
     </Box>
   );
 };

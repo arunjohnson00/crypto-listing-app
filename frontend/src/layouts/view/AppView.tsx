@@ -14,7 +14,7 @@ const AppView = ({ children }: any) => {
   return (
     <Fragment>
       <Container
-        // maxWidth="xl"
+        // maxWidth="sm"
         fixed
       >
         <Grid item ml={5}>

@@ -3,8 +3,6 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import DiscoverListAirdropCard from "../cards/discoverlistairdropcard/DiscoverListAirdropCard";
 
-import DiscoverNFTMarketPlaceCard from "../cards/discovernftmarketplacecard/DiscoverNFTMarketPlaceCard";
-
 const DiscoverAirdrops = () => {
   return (
     <Grid container spacing={0}>

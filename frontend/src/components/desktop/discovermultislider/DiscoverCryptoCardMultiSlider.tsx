@@ -14,6 +14,7 @@ const responsive = {
     items: 5,
     slidesToSlide: 5,
   },
+
   tablet: {
     breakpoint: { max: 1024, min: 464 },
     items: 2,
@@ -38,7 +39,7 @@ const DiscoverCryptoCardMultiSlider = () => {
   return (
     <div
       style={{
-        padding: "10px",
+        paddingTop: "10px",
         width: "60vw",
         boxSizing: "border-box",
         margin: "0 auto",

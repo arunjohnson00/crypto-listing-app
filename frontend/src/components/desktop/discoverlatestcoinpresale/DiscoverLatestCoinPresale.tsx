@@ -8,6 +8,7 @@ const DiscoverLatestCoinPresale = () => {
       <Box
         sx={{
           flexGrow: 1,
+
           padding: 4,
           borderRadius: 4,
           backgroundColor: "#020727",
@@ -17,414 +18,429 @@ const DiscoverLatestCoinPresale = () => {
         <Stack
           direction={{ xs: "column", sm: "column", md: "row" }}
           spacing={5}
+          justifyContent="space-around"
         >
-          <Stack
-            direction={{ xs: "column", sm: "column", md: "column" }}
-            spacing={2}
+          <Box
+            sx={{
+              flexGrow: 1,
+              width: "100%",
+            }}
           >
             <Stack
-              direction={{ xs: "row", sm: "row", md: "row" }}
-              alignItems="center"
-              spacing={1}
-            >
-              <PaidOutlinedIcon sx={{ color: "#2DCEAF", fontSize: 20 }} />
-              <Typography
-                variant="h6"
-                sx={{ color: "#2DCEAF", fontWeight: 500 }}
-              >
-                Coins
-              </Typography>
-            </Stack>
-            <Stack
               direction={{ xs: "column", sm: "column", md: "column" }}
-              spacing={0.5}
+              spacing={2}
             >
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
                 alignItems="center"
-                spacing={10}
-                // justifyContent="space-between"
-                pl={{ xs: 0, sm: 0, md: 3.8 }}
-                pt={0}
+                spacing={1}
               >
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  alignItems="center"
-                  spacing={1}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
-                  >
-                    Safemoon Listed
-                  </Typography>
-                  <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
-                </Stack>
-
+                <PaidOutlinedIcon sx={{ color: "#2DCEAF", fontSize: 20 }} />
                 <Typography
-                  variant="caption"
-                  sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
+                  variant="h6"
+                  sx={{ color: "#2DCEAF", fontWeight: 500 }}
                 >
-                  4 Min ago
-                </Typography>
-              </Stack>
-
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                alignItems="center"
-                spacing={10}
-                // justifyContent="space-between"
-                pl={{ xs: 0, sm: 0, md: 3.8 }}
-                pt={0}
-              >
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  alignItems="center"
-                  spacing={1}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
-                  >
-                    Safemoon Listed
-                  </Typography>
-                  <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
-                </Stack>
-
-                <Typography
-                  variant="caption"
-                  sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
-                >
-                  4 Min ago
+                  Coins
                 </Typography>
               </Stack>
               <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                alignItems="center"
-                spacing={10}
-                // justifyContent="space-between"
-                pl={{ xs: 0, sm: 0, md: 3.8 }}
-                pt={0}
+                direction={{ xs: "column", sm: "column", md: "column" }}
+                spacing={0.5}
               >
                 <Stack
                   direction={{ xs: "row", sm: "row", md: "row" }}
                   alignItems="center"
-                  spacing={1}
+                  // spacing={10}
+                  justifyContent="space-between"
+                  pl={{ xs: 0, sm: 0, md: 3.8 }}
+                  pt={0}
                 >
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    alignItems="center"
+                    spacing={1}
                   >
-                    Safemoon Listed
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
+                    >
+                      Safemoon Listed
+                    </Typography>
+                    <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
+                  </Stack>
+
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
+                  >
+                    4 Min ago
                   </Typography>
-                  <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
                 </Stack>
 
-                <Typography
-                  variant="caption"
-                  sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
-                >
-                  4 Min ago
-                </Typography>
-              </Stack>
-
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                alignItems="center"
-                spacing={10}
-                // justifyContent="space-between"
-                pl={{ xs: 0, sm: 0, md: 3.8 }}
-                pt={0}
-              >
                 <Stack
                   direction={{ xs: "row", sm: "row", md: "row" }}
                   alignItems="center"
-                  spacing={1}
+                  //spacing={10}
+                  justifyContent="space-between"
+                  pl={{ xs: 0, sm: 0, md: 3.8 }}
+                  pt={0}
                 >
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    alignItems="center"
+                    spacing={1}
                   >
-                    Safemoon Listed
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
+                    >
+                      Safemoon Listed
+                    </Typography>
+                    <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
+                  </Stack>
+
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
+                  >
+                    4 Min ago
                   </Typography>
-                  <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
                 </Stack>
-
-                <Typography
-                  variant="caption"
-                  sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
-                >
-                  4 Min ago
-                </Typography>
-              </Stack>
-
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                alignItems="center"
-                spacing={10}
-                // justifyContent="space-between"
-                pl={{ xs: 0, sm: 0, md: 3.8 }}
-                pt={0}
-              >
                 <Stack
                   direction={{ xs: "row", sm: "row", md: "row" }}
                   alignItems="center"
-                  spacing={1}
+                  //spacing={10}
+                  justifyContent="space-between"
+                  pl={{ xs: 0, sm: 0, md: 3.8 }}
+                  pt={0}
                 >
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    alignItems="center"
+                    spacing={1}
                   >
-                    Safemoon Listed
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
+                    >
+                      Safemoon Listed
+                    </Typography>
+                    <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
+                  </Stack>
+
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
+                  >
+                    4 Min ago
                   </Typography>
-                  <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
                 </Stack>
 
-                <Typography
-                  variant="caption"
-                  sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  alignItems="center"
+                  //spacing={10}
+                  justifyContent="space-between"
+                  pl={{ xs: 0, sm: 0, md: 3.8 }}
+                  pt={0}
                 >
-                  4 Min ago
-                </Typography>
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    alignItems="center"
+                    spacing={1}
+                  >
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
+                    >
+                      Safemoon Listed
+                    </Typography>
+                    <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
+                  </Stack>
+
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
+                  >
+                    4 Min ago
+                  </Typography>
+                </Stack>
+
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  alignItems="center"
+                  // spacing={10}
+                  justifyContent="space-between"
+                  pl={{ xs: 0, sm: 0, md: 3.8 }}
+                  pt={0}
+                >
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    alignItems="center"
+                    spacing={1}
+                  >
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
+                    >
+                      Safemoon Listed
+                    </Typography>
+                    <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
+                  </Stack>
+
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
+                  >
+                    4 Min ago
+                  </Typography>
+                </Stack>
               </Stack>
             </Stack>
-          </Stack>
-
+          </Box>
           <Divider
             variant="middle"
             orientation="vertical"
             flexItem
             sx={{ borderRightColor: "#1A1D23", borderRightWidth: 2 }}
           />
-          <Stack
-            direction={{ xs: "column", sm: "column", md: "column" }}
-            spacing={2}
+          <Box
+            sx={{
+              flexGrow: 1,
+              width: "100%",
+            }}
           >
             <Stack
-              direction={{ xs: "row", sm: "row", md: "row" }}
-              alignItems="center"
-              spacing={1}
-            >
-              <PaidOutlinedIcon sx={{ color: "#2DCEAF", fontSize: 20 }} />
-              <Typography
-                variant="h6"
-                sx={{ color: "#2DCEAF", fontWeight: 500 }}
-              >
-                Presale
-              </Typography>
-            </Stack>
-
-            <Stack
               direction={{ xs: "column", sm: "column", md: "column" }}
-              spacing={0.5}
+              spacing={2}
+              justifyContent="space-around"
             >
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
                 alignItems="center"
-                spacing={5}
-                // justifyContent="space-between"
-                pl={{ xs: 0, sm: 0, md: 3.8 }}
-                pt={0}
+                spacing={1}
               >
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  alignItems="center"
-                  spacing={1}
+                <PaidOutlinedIcon sx={{ color: "#2DCEAF", fontSize: 20 }} />
+                <Typography
+                  variant="h6"
+                  sx={{ color: "#2DCEAF", fontWeight: 500 }}
                 >
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
-                  >
-                    Safemoon Listed
-                  </Typography>
-                  <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
-                </Stack>
-
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  alignItems="center"
-                  spacing={1}
-                >
-                  <Typography
-                    variant="caption"
-                    sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
-                  >
-                    Starts in
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: 10 }}
-                  >
-                    3 Days 11 Hours 33 Min 15 Sec
-                  </Typography>
-                </Stack>
+                  Presale
+                </Typography>
               </Stack>
+
               <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                alignItems="center"
-                spacing={5}
-                // justifyContent="space-between"
-                pl={{ xs: 0, sm: 0, md: 3.8 }}
-                pt={0}
+                direction={{ xs: "column", sm: "column", md: "column" }}
+                spacing={0.5}
               >
                 <Stack
                   direction={{ xs: "row", sm: "row", md: "row" }}
                   alignItems="center"
-                  spacing={1}
+                  //spacing={5}
+                  justifyContent="space-between"
+                  pl={{ xs: 0, sm: 0, md: 3.8 }}
+                  pt={0}
                 >
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    alignItems="center"
+                    spacing={1}
                   >
-                    Safemoon Listed
-                  </Typography>
-                  <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
-                </Stack>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
+                    >
+                      Safemoon Listed
+                    </Typography>
+                    <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
+                  </Stack>
 
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    alignItems="center"
+                    spacing={1}
+                  >
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
+                    >
+                      Starts in
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: 10 }}
+                    >
+                      3 Days 11 Hours 33 Min 15 Sec
+                    </Typography>
+                  </Stack>
+                </Stack>
                 <Stack
                   direction={{ xs: "row", sm: "row", md: "row" }}
                   alignItems="center"
-                  spacing={1}
+                  //spacing={5}
+                  justifyContent="space-between"
+                  pl={{ xs: 0, sm: 0, md: 3.8 }}
+                  pt={0}
                 >
-                  <Typography
-                    variant="caption"
-                    sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    alignItems="center"
+                    spacing={1}
                   >
-                    Starts in
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: 10 }}
-                  >
-                    3 Days 11 Hours 33 Min 15 Sec
-                  </Typography>
-                </Stack>
-              </Stack>
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                alignItems="center"
-                spacing={5}
-                // justifyContent="space-between"
-                pl={{ xs: 0, sm: 0, md: 3.8 }}
-                pt={0}
-              >
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  alignItems="center"
-                  spacing={1}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
-                  >
-                    Safemoon Listed
-                  </Typography>
-                  <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
-                </Stack>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
+                    >
+                      Safemoon Listed
+                    </Typography>
+                    <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
+                  </Stack>
 
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    alignItems="center"
+                    spacing={1}
+                  >
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
+                    >
+                      Starts in
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: 10 }}
+                    >
+                      3 Days 11 Hours 33 Min 15 Sec
+                    </Typography>
+                  </Stack>
+                </Stack>
                 <Stack
                   direction={{ xs: "row", sm: "row", md: "row" }}
                   alignItems="center"
-                  spacing={1}
+                  //spacing={5}
+                  justifyContent="space-between"
+                  pl={{ xs: 0, sm: 0, md: 3.8 }}
+                  pt={0}
                 >
-                  <Typography
-                    variant="caption"
-                    sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    alignItems="center"
+                    spacing={1}
                   >
-                    Starts in
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: 10 }}
-                  >
-                    3 Days 11 Hours 33 Min 15 Sec
-                  </Typography>
-                </Stack>
-              </Stack>
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                alignItems="center"
-                spacing={5}
-                // justifyContent="space-between"
-                pl={{ xs: 0, sm: 0, md: 3.8 }}
-                pt={0}
-              >
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  alignItems="center"
-                  spacing={1}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
-                  >
-                    Safemoon Listed
-                  </Typography>
-                  <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
-                </Stack>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
+                    >
+                      Safemoon Listed
+                    </Typography>
+                    <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
+                  </Stack>
 
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    alignItems="center"
+                    spacing={1}
+                  >
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
+                    >
+                      Starts in
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: 10 }}
+                    >
+                      3 Days 11 Hours 33 Min 15 Sec
+                    </Typography>
+                  </Stack>
+                </Stack>
                 <Stack
                   direction={{ xs: "row", sm: "row", md: "row" }}
                   alignItems="center"
-                  spacing={1}
+                  //spacing={5}
+                  justifyContent="space-between"
+                  pl={{ xs: 0, sm: 0, md: 3.8 }}
+                  pt={0}
                 >
-                  <Typography
-                    variant="caption"
-                    sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    alignItems="center"
+                    spacing={1}
                   >
-                    Starts in
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: 10 }}
-                  >
-                    3 Days 11 Hours 33 Min 15 Sec
-                  </Typography>
-                </Stack>
-              </Stack>
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                alignItems="center"
-                spacing={5}
-                // justifyContent="space-between"
-                pl={{ xs: 0, sm: 0, md: 3.8 }}
-                pt={0}
-              >
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  alignItems="center"
-                  spacing={1}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
-                  >
-                    Safemoon Listed
-                  </Typography>
-                  <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
-                </Stack>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
+                    >
+                      Safemoon Listed
+                    </Typography>
+                    <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
+                  </Stack>
 
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    alignItems="center"
+                    spacing={1}
+                  >
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
+                    >
+                      Starts in
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: 10 }}
+                    >
+                      3 Days 11 Hours 33 Min 15 Sec
+                    </Typography>
+                  </Stack>
+                </Stack>
                 <Stack
                   direction={{ xs: "row", sm: "row", md: "row" }}
                   alignItems="center"
-                  spacing={1}
+                  //spacing={5}
+                  justifyContent="space-between"
+                  pl={{ xs: 0, sm: 0, md: 3.8 }}
+                  pt={0}
                 >
-                  <Typography
-                    variant="caption"
-                    sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    alignItems="center"
+                    spacing={1}
                   >
-                    Starts in
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: 10 }}
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
+                    >
+                      Safemoon Listed
+                    </Typography>
+                    <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
+                  </Stack>
+
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    alignItems="center"
+                    spacing={1}
                   >
-                    3 Days 11 Hours 33 Min 15 Sec
-                  </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
+                    >
+                      Starts in
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: 10 }}
+                    >
+                      3 Days 11 Hours 33 Min 15 Sec
+                    </Typography>
+                  </Stack>
                 </Stack>
               </Stack>
             </Stack>
-          </Stack>
+          </Box>
         </Stack>
       </Box>
     </Grid>
