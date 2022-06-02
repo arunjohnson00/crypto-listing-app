@@ -15,7 +15,7 @@ const DiscoverVideo = () => {
           Watch Videos
         </Typography>
       </Grid>
-      <Grid item xs={12} py={2.5}>
+      <Grid xs={12} py={2.5}>
         <Grid xs={12}>
           <Box
             sx={{

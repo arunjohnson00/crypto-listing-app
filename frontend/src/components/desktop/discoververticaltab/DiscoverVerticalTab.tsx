@@ -65,19 +65,20 @@ const DiscoverVerticalTab = () => {
         color: "#FFFFF5",
         //paddingLeft: "62px",
       }}
-      flexDirection={{ xs: "column", sm: "column", md: "column", lg: "row" }}
+      flexDirection={{ xs: "column", sm: "column", md: "row", lg: "row" }}
     >
       <Tabs
         orientation={`${matches ? "vertical" : "horizontal"}`}
-        //variant={`${matches ? "fullWidth" : "scrollable"}`}
-        variant="scrollable"
+        variant={`${matches ? "fullWidth" : "scrollable"}`}
+        //variant="scrollable"
+        //orientation="vertical"
         scrollButtons
         allowScrollButtonsMobile
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
         sx={{
-          width: `${matches ? "240px" : "100%"}`,
+          width: `${matches ? "18%" : "100%"}`,
           backgroundColor: "#020419",
           "& .MuiTabs-indicator": {
             //display: "none",
