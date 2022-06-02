@@ -1,14 +1,13 @@
 import { Fragment, useState, useEffect } from "react";
 import { Divider, Grid, Stack, Typography, Box } from "@mui/material";
-
-import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
-import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
-import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
 import Marquee from "react-fast-marquee";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import dateFormat, { masks } from "dateformat";
 import DiscoverVerticalTab from "../../../components/desktop/discoververticaltab/DiscoverVerticalTab";
+import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
+import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
+import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
 
 const DiscoverPage = () => {
   const [date, setDate] = useState<any>(new Date());
@@ -107,9 +106,9 @@ const DiscoverPage = () => {
                 spacing={2}
                 justifyContent="space-between"
               >
-                <Box sx={{ height: 50 }}>
+                <Box height={{ xs: "auto", sm: "auto", md: 50 }}>
                   <Stack
-                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    direction={{ xs: "column", sm: "column", md: "row" }}
                     spacing={3}
                     alignItems="center"
                   >
@@ -226,7 +225,7 @@ const DiscoverPage = () => {
                     variant="body2"
                     sx={{ color: "#FFFFF5", fontWeight: 500 }}
                   >
-                    Market is
+                    Market is{" "}
                     <span style={{ color: "#FF2B31" }}>Extreme Fear</span>
                   </Typography>
                   <Typography

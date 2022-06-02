@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
-import { Grid, Typography, Stack, Box, Divider } from "@mui/material";
+import { useState, useEffect, Fragment } from "react";
+import { Grid, Typography, Stack, Box, Divider, Avatar } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import MediumBtn from "../../components/form/button/medium/MediumBtn";
 import BannerUploader from "../../components/form/input/file/banner/BannerUploader";
 import InputText from "../../components/form/input/text/InputText";
@@ -11,6 +12,7 @@ import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 
 import { viewDiscountStore } from "../../store/action";
 import { viewRandomVoteStore } from "../../store/action";
@@ -27,15 +29,27 @@ import { updatePrivacyPolicyStore } from "../../store/action";
 import { updateChangePasswordStore } from "../../store/action";
 import { updateDashboardImageSlider } from "../../store/action";
 import { updateDashboardInfoBanner } from "../../store/action";
+import { listDashboardImageSlider } from "../../store/action";
+import { listDashboardInfoBanner } from "../../store/action";
+import { deleteDashboardImageSlider } from "../../store/action";
+import { deleteDashboardInfoBanner } from "../../store/action";
 import DashBoardInfoBanner from "./DashBoardInfoBanner";
 import DashBoardImageSlider from "./DashBoardImageSlider";
 
-//const serverAPIUrl = process.env.REACT_APP_API_URL;
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const Settings = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const settings = useSelector((settingsAll: any) => {
     return settingsAll?.settingsReducer;
+  });
+
+  const imageSliderListFetch = useSelector((imageSlider: any) => {
+    return imageSlider.settingsReducer.listDashBoardSlider.data;
+  });
+  const infoBannerListFetch = useSelector((infoBanner: any) => {
+    return infoBanner.settingsReducer.listDashBoardInfoBanner.data;
   });
 
   const [dashBoardImageSliderData, setDashBoardImageSliderData] = useState<any>(
@@ -385,6 +399,7 @@ const Settings = () => {
 
       setTimeout(() => {
         setLoading({ ...loading, imageSlider: false });
+        navigate(0);
       }, 3000);
     };
     const errorHandler = (err: any) => {
@@ -425,6 +440,7 @@ const Settings = () => {
 
       setTimeout(() => {
         setLoading({ ...loading, infoBanner: false });
+        navigate(0);
       }, 3000);
     };
     const errorHandler = (err: any) => {
@@ -450,6 +466,69 @@ const Settings = () => {
       )
     );
   };
+
+  const imageSliderDeleteHandler = (index: any) => {
+    const successHandler = (res: any) => {
+      toast.success(`${res.data.message}`, {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+
+      setTimeout(() => {
+        navigate(0);
+      }, 3000);
+    };
+    const errorHandler = (err: any) => {
+      toast.warn(`${err}`, {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    };
+
+    dispatch(
+      deleteDashboardImageSlider(parseInt(index), successHandler, errorHandler)
+    );
+  };
+
+  const InfoBannerDeleteHandler = (index: any) => {
+    const successHandler = (res: any) => {
+      toast.success(`${res.data.message}`, {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      setTimeout(() => {
+        navigate(0);
+      }, 3000);
+    };
+
+    const errorHandler = (err: any) => {
+      toast.warn(`${err}`, {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    };
+
+    dispatch(
+      deleteDashboardInfoBanner(parseInt(index), successHandler, errorHandler)
+    );
+  };
+
   useEffect(() => {
     const successHandler = (res: any) => {};
 
@@ -469,6 +548,21 @@ const Settings = () => {
     dispatch(viewDiscountStore({ show: true }, successHandler, errorHandler));
   }, [dispatch]);
 
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(
+      listDashboardImageSlider({ show: true }, successHandler, errorHandler)
+    );
+  }, [dispatch]);
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(
+      listDashboardInfoBanner({ show: true }, successHandler, errorHandler)
+    );
+  }, [dispatch]);
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -982,36 +1076,116 @@ const Settings = () => {
                 </Typography>
                 <Divider />
                 <form id="imageSlider">
-                  <Stack direction="column" spacing={2} pt={3} pb={3} px={3}>
-                    <InputText
-                      placeholder="Benner Redirection URL"
-                      width="auto"
-                      name="redirection_url[1]"
-                      id="redirection_url_1"
-                    />
-                    <Stack
-                      direction="row"
-                      sx={{ justifyContent: " space-between" }}
-                    >
-                      <BannerUploader
-                        addIconData={dashBoardImageSliderData}
-                        setAddIcon={setDashBoardImageSliderData}
-                        name="slider_image[1]"
-                      />
-                      <MediumBtn
-                        mdBtnHandler={imageSliderHandler}
-                        Title="Save"
-                      />
-                      <IconButton
-                        aria-label="delete"
-                        sx={{ color: "green" }}
-                        onClick={dashBoardImageaddHandle}
-                      >
-                        <AddCircleOutlineIcon />
-                      </IconButton>
-                    </Stack>
-                  </Stack>
+                  {imageSliderListFetch &&
+                  Object.keys(imageSliderListFetch?.images).length !== 0 ? (
+                    Object.keys(imageSliderListFetch?.images).map(function (
+                      key,
+                      index
+                    ) {
+                      return (
+                        <Stack
+                          direction="column"
+                          spacing={2}
+                          pt={3}
+                          pb={3}
+                          px={3}
+                          key={index}
+                        >
+                          <Stack
+                            direction="row"
+                            sx={{ justifyContent: " space-between" }}
+                          >
+                            {" "}
+                            <InputText
+                              placeholder="Benner Redirection URL"
+                              width="auto"
+                              name={`redirection_url[${index + 1}]`}
+                              id={`redirection_url_${index + 1}`}
+                              value={imageSliderListFetch?.redirection_url[key]}
+                            />
+                            <Avatar
+                              alt="Remy Sharp"
+                              src={`${serverAPIUrl}public/uploads/slider_image/${imageSliderListFetch?.images[key]}`}
+                            />
+                          </Stack>
+                          <Stack direction="row" spacing={1}>
+                            <BannerUploader
+                              addIconData={dashBoardImageSliderData}
+                              setAddIcon={setDashBoardImageSliderData}
+                              name={`slider_image[${index + 1}]`}
+                            />
+                            <MediumBtn
+                              mdBtnHandler={imageSliderHandler}
+                              Title="Save"
+                            />
 
+                            {Object.keys(imageSliderListFetch?.images)
+                              .length ===
+                            index + 1 ? (
+                              <Fragment>
+                                <Stack direction="row" spacing={2}>
+                                  <IconButton
+                                    aria-label="delete"
+                                    sx={{ color: "red" }}
+                                    onClick={() =>
+                                      imageSliderDeleteHandler(key)
+                                    }
+                                  >
+                                    <RemoveCircleOutlineIcon />
+                                  </IconButton>
+                                  <IconButton
+                                    aria-label="delete"
+                                    sx={{ color: "green" }}
+                                    onClick={dashBoardImageaddHandle}
+                                  >
+                                    <AddCircleOutlineIcon />
+                                  </IconButton>
+                                </Stack>
+                              </Fragment>
+                            ) : (
+                              <IconButton
+                                aria-label="delete"
+                                sx={{ color: "red" }}
+                                onClick={() => imageSliderDeleteHandler(key)}
+                              >
+                                <RemoveCircleOutlineIcon />
+                              </IconButton>
+                            )}
+                          </Stack>
+                        </Stack>
+                      );
+                    })
+                  ) : (
+                    <Stack direction="column" spacing={2} pt={3} pb={3} px={3}>
+                      <InputText
+                        placeholder="Benner Redirection URL"
+                        width="auto"
+                        name="redirection_url[1]"
+                        id="redirection_url_1"
+                      />
+                      <Stack
+                        direction="row"
+                        sx={{ justifyContent: " space-between" }}
+                      >
+                        <BannerUploader
+                          addIconData={dashBoardImageSliderData}
+                          setAddIcon={setDashBoardImageSliderData}
+                          name="slider_image[1]"
+                        />
+                        <MediumBtn
+                          mdBtnHandler={imageSliderHandler}
+                          Title="Save"
+                        />
+                        <IconButton
+                          aria-label="delete"
+                          sx={{ color: "green" }}
+                          onClick={dashBoardImageaddHandle}
+                        >
+                          <AddCircleOutlineIcon />
+                        </IconButton>
+                      </Stack>
+                    </Stack>
+                  )}
                   {dashBoardImageSliderCount.map((slider, index) => {
                     return (
                       <div>
@@ -1020,7 +1194,15 @@ const Settings = () => {
                             dashBoardImageremoveHandle
                           }
                           dashBoardImageSliderCount={dashBoardImageSliderCount}
-                          index={index}
+                          index={
+                            imageSliderListFetch !== 0 &&
+                            imageSliderListFetch !== undefined
+                              ? Object.keys(imageSliderListFetch?.images)
+                                  .length -
+                                1 +
+                                index
+                              : index
+                          }
                           key={index}
                           dashBoardImageSliderData={dashBoardImageSliderData}
                           setDashBoardImageSliderData={
@@ -1044,36 +1226,112 @@ const Settings = () => {
                 <Typography variant="h6">User dashboard info banner</Typography>
                 <Divider />
                 <form id="infoBanner">
-                  <Stack direction="column" spacing={2} pt={3} pb={3} px={3}>
-                    <InputText
-                      placeholder="Benner Redirection URL"
-                      width="auto"
-                      name="redirection_url[1]"
-                      id="redirection_url_1"
-                    />
-                    <Stack
-                      direction="row"
-                      sx={{ justifyContent: " space-between" }}
-                    >
-                      <BannerUploader
-                        addIconData={dashBoardInfoBannerData}
-                        setAddIcon={setDashBoardInfoBannerData}
-                        name="info_banner[1]"
+                  {infoBannerListFetch &&
+                  Object.keys(infoBannerListFetch?.images).length !== 0 ? (
+                    Object.keys(infoBannerListFetch?.images).map(function (
+                      key,
+                      index
+                    ) {
+                      return (
+                        <Stack
+                          direction="column"
+                          spacing={2}
+                          pt={3}
+                          pb={3}
+                          px={3}
+                          key={index}
+                        >
+                          <Stack
+                            direction="row"
+                            sx={{ justifyContent: " space-between" }}
+                          >
+                            {" "}
+                            <InputText
+                              placeholder="Info banner Redirection URL"
+                              width="auto"
+                              name={`redirection_url[${index + 1}]`}
+                              id={`redirection_url_${index + 1}`}
+                              value={infoBannerListFetch?.redirection_url[key]}
+                            />
+                            <Avatar
+                              alt="Remy Sharp"
+                              src={`${serverAPIUrl}public/uploads/info_banner/${infoBannerListFetch?.images[key]}`}
+                            />
+                          </Stack>
+                          <Stack direction="row" spacing={1}>
+                            <BannerUploader
+                              addIconData={dashBoardInfoBannerData}
+                              setAddIcon={setDashBoardInfoBannerData}
+                              name={`info_banner[${index + 1}]`}
+                            />
+                            <MediumBtn
+                              mdBtnHandler={infoBannerHandler}
+                              Title="Save"
+                            />
+                            {Object.keys(infoBannerListFetch?.images).length ===
+                            index + 1 ? (
+                              <Fragment>
+                                <Stack direction="row" spacing={2}>
+                                  <IconButton
+                                    aria-label="delete"
+                                    sx={{ color: "red" }}
+                                    onClick={() => InfoBannerDeleteHandler(key)}
+                                  >
+                                    <RemoveCircleOutlineIcon />
+                                  </IconButton>
+                                  <IconButton
+                                    aria-label="delete"
+                                    sx={{ color: "green" }}
+                                    onClick={dashBoardInfoBanneraddHandle}
+                                  >
+                                    <AddCircleOutlineIcon />
+                                  </IconButton>
+                                </Stack>
+                              </Fragment>
+                            ) : (
+                              <IconButton
+                                aria-label="delete"
+                                sx={{ color: "red" }}
+                                onClick={() => InfoBannerDeleteHandler(key)}
+                              >
+                                <RemoveCircleOutlineIcon />
+                              </IconButton>
+                            )}
+                          </Stack>
+                        </Stack>
+                      );
+                    })
+                  ) : (
+                    <Stack direction="column" spacing={2} pt={3} pb={3} px={3}>
+                      <InputText
+                        placeholder="Info Benner Redirection URL"
+                        width="auto"
+                        name="redirection_url[1]"
+                        id="redirection_url_1"
                       />
-                      <MediumBtn
-                        mdBtnHandler={infoBannerHandler}
-                        Title="Save"
-                      />
-                      <IconButton
-                        aria-label="delete"
-                        sx={{ color: "green" }}
-                        onClick={dashBoardInfoBanneraddHandle}
+                      <Stack
+                        direction="row"
+                        sx={{ justifyContent: " space-between" }}
                       >
-                        <AddCircleOutlineIcon />
-                      </IconButton>
+                        <BannerUploader
+                          addIconData={dashBoardInfoBannerData}
+                          setAddIcon={setDashBoardInfoBannerData}
+                          name="info_banner[1]"
+                        />
+                        <MediumBtn
+                          mdBtnHandler={infoBannerHandler}
+                          Title="Save"
+                        />
+                        <IconButton
+                          aria-label="delete"
+                          sx={{ color: "green" }}
+                          onClick={dashBoardInfoBanneraddHandle}
+                        >
+                          <AddCircleOutlineIcon />
+                        </IconButton>
+                      </Stack>
                     </Stack>
-                  </Stack>
-
+                  )}
                   {dashBoardInfoBannerCount.map((slider, index) => {
                     return (
                       <div>
@@ -1082,7 +1340,15 @@ const Settings = () => {
                             dashBoardInfoBannerRemoveHandle
                           }
                           dashBoardInfoBannerCount={dashBoardInfoBannerCount}
-                          index={index}
+                          index={
+                            infoBannerListFetch !== 0 &&
+                            infoBannerListFetch !== undefined
+                              ? Object.keys(infoBannerListFetch?.images)
+                                  .length -
+                                1 +
+                                index
+                              : index
+                          }
                           key={index}
                           dashBoardInfoBannerData={dashBoardInfoBannerData}
                           setDashBoardInfoBannerData={

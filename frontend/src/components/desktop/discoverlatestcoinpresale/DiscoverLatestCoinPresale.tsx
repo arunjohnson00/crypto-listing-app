@@ -44,7 +44,7 @@ const DiscoverLatestCoinPresale = () => {
                 alignItems="center"
                 spacing={10}
                 // justifyContent="space-between"
-                pl={3.8}
+                pl={{ xs: 0, sm: 0, md: 3.8 }}
                 pt={0}
               >
                 <Stack
@@ -74,7 +74,7 @@ const DiscoverLatestCoinPresale = () => {
                 alignItems="center"
                 spacing={10}
                 // justifyContent="space-between"
-                pl={3.8}
+                pl={{ xs: 0, sm: 0, md: 3.8 }}
                 pt={0}
               >
                 <Stack
@@ -103,37 +103,7 @@ const DiscoverLatestCoinPresale = () => {
                 alignItems="center"
                 spacing={10}
                 // justifyContent="space-between"
-                pl={3.8}
-                pt={0}
-              >
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  alignItems="center"
-                  spacing={1}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
-                  >
-                    Safemoon Listed
-                  </Typography>
-                  <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
-                </Stack>
-
-                <Typography
-                  variant="caption"
-                  sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
-                >
-                  4 Min ago
-                </Typography>
-              </Stack>
-
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                alignItems="center"
-                spacing={10}
-                // justifyContent="space-between"
-                pl={3.8}
+                pl={{ xs: 0, sm: 0, md: 3.8 }}
                 pt={0}
               >
                 <Stack
@@ -163,7 +133,37 @@ const DiscoverLatestCoinPresale = () => {
                 alignItems="center"
                 spacing={10}
                 // justifyContent="space-between"
-                pl={3.8}
+                pl={{ xs: 0, sm: 0, md: 3.8 }}
+                pt={0}
+              >
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  alignItems="center"
+                  spacing={1}
+                >
+                  <Typography
+                    variant="body2"
+                    sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
+                  >
+                    Safemoon Listed
+                  </Typography>
+                  <OpenInNewIcon sx={{ color: "#5B6171", fontSize: 14 }} />
+                </Stack>
+
+                <Typography
+                  variant="caption"
+                  sx={{ color: "#223077", fontWeight: 600, fontSize: 10 }}
+                >
+                  4 Min ago
+                </Typography>
+              </Stack>
+
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                alignItems="center"
+                spacing={10}
+                // justifyContent="space-between"
+                pl={{ xs: 0, sm: 0, md: 3.8 }}
                 pt={0}
               >
                 <Stack
@@ -223,7 +223,7 @@ const DiscoverLatestCoinPresale = () => {
                 alignItems="center"
                 spacing={5}
                 // justifyContent="space-between"
-                pl={3.8}
+                pl={{ xs: 0, sm: 0, md: 3.8 }}
                 pt={0}
               >
                 <Stack
@@ -264,7 +264,7 @@ const DiscoverLatestCoinPresale = () => {
                 alignItems="center"
                 spacing={5}
                 // justifyContent="space-between"
-                pl={3.8}
+                pl={{ xs: 0, sm: 0, md: 3.8 }}
                 pt={0}
               >
                 <Stack
@@ -305,7 +305,7 @@ const DiscoverLatestCoinPresale = () => {
                 alignItems="center"
                 spacing={5}
                 // justifyContent="space-between"
-                pl={3.8}
+                pl={{ xs: 0, sm: 0, md: 3.8 }}
                 pt={0}
               >
                 <Stack
@@ -346,7 +346,7 @@ const DiscoverLatestCoinPresale = () => {
                 alignItems="center"
                 spacing={5}
                 // justifyContent="space-between"
-                pl={3.8}
+                pl={{ xs: 0, sm: 0, md: 3.8 }}
                 pt={0}
               >
                 <Stack
@@ -387,7 +387,7 @@ const DiscoverLatestCoinPresale = () => {
                 alignItems="center"
                 spacing={5}
                 // justifyContent="space-between"
-                pl={3.8}
+                pl={{ xs: 0, sm: 0, md: 3.8 }}
                 pt={0}
               >
                 <Stack

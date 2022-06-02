@@ -15,7 +15,11 @@ const initialState = {
   updateTopBarNotificationStore: "",
   updateChangePasswordStore: "",
   updateDashBoardSlider: "",
+  listDashBoardSlider: "",
+  deleteDashBoardSlider: "",
   updateDashBoardInfoBanner: "",
+  listDashBoardInfoBanner: "",
+  deleteDashBoardInfoBanner: "",
 };
 const settingsReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -96,10 +100,30 @@ const settingsReducer = (state: any = initialState, action: any) => {
         ...state,
         updateDashBoardSlider: action?.payload?.data,
       };
+    case SETTINGS.LIST_DASHBOARD_IMAGE_SLIDER:
+      return {
+        ...state,
+        listDashBoardSlider: action?.payload?.data,
+      };
+    case SETTINGS.DELETE_DASHBOARD_IMAGE_SLIDER:
+      return {
+        ...state,
+        deleteDashBoardSlider: action?.payload?.data,
+      };
     case SETTINGS.UPDATE_DASHBOARD_INFO_BANNER:
       return {
         ...state,
         updateDashBoardInfoBanner: action?.payload?.data,
+      };
+    case SETTINGS.LIST_DASHBOARD_INFO_BANNER:
+      return {
+        ...state,
+        listDashBoardInfoBanner: action?.payload?.data,
+      };
+    case SETTINGS.DELETE_DASHBOARD_INFO_BANNER:
+      return {
+        ...state,
+        deleteDashBoardInfoBanner: action?.payload?.data,
       };
 
     default:

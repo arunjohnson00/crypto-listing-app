@@ -203,6 +203,37 @@ export const updateChangePasswordStore = (
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
+export const listDashboardImageSlider = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/b/v1/settings/dashboard-image-slider?show=${values.show}`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: SETTINGS.LIST_DASHBOARD_IMAGE_SLIDER,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const deleteDashboardImageSlider = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/b/v1/settings/dashboard-image-slider?index=${values}`,
+    method: "DELETE",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: SETTINGS.DELETE_DASHBOARD_IMAGE_SLIDER,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
 export const updateDashboardImageSlider = (
   values: any,
   successHandler: any,
@@ -215,6 +246,38 @@ export const updateDashboardImageSlider = (
     body: values,
     fileUpload: true,
     actionType: SETTINGS.UPDATE_DASHBOARD_IMAGE_SLIDER,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const listDashboardInfoBanner = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/b/v1/settings/dashboard-info-banner?show=${values.show}`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: SETTINGS.LIST_DASHBOARD_INFO_BANNER,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const deleteDashboardInfoBanner = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/b/v1/settings/dashboard-info-banner?index=${values}`,
+    method: "DELETE",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: SETTINGS.DELETE_DASHBOARD_INFO_BANNER,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };

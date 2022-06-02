@@ -1,12 +1,6 @@
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-
-const options = [
-  "Show some love to MUI",
-  "Show all notification content",
-  "Hide sensitive notification content",
-  "Hide all notification content",
-];
+import { Link } from "react-router-dom";
 
 const SettingsMenu = ({
   anchorSettings,
@@ -25,9 +19,14 @@ const SettingsMenu = ({
           role: "listbox",
         }}
       >
-        {options.map((option: any, index: number) => (
-          <MenuItem key={index}>{option}</MenuItem>
-        ))}
+        <MenuItem>
+          <Link
+            to="/settings"
+            style={{ textDecoration: "none", color: "#000000" }}
+          >
+            Settings
+          </Link>
+        </MenuItem>
       </Menu>
     </div>
   );

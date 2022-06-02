@@ -198,5 +198,9 @@ export {
   updateTopBarNotificationStore,
   updateChangePasswordStore,
   updateDashboardImageSlider,
+  listDashboardImageSlider,
+  deleteDashboardImageSlider,
+  listDashboardInfoBanner,
+  deleteDashboardInfoBanner,
   updateDashboardInfoBanner,
 } from "./settingsAction";
