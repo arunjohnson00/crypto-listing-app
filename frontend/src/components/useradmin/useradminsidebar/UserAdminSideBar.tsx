@@ -15,7 +15,7 @@ import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
 
 import "react-pro-sidebar/dist/css/styles.css";
 import CoinXHighLogo from "../../../assets/logo/logo.png";
-import { IconButton } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 
 const UserAdminSideBar = () => {
   const [collapse, setCollapse] = useState(false);
@@ -49,7 +49,7 @@ const UserAdminSideBar = () => {
           <img src={CoinXHighLogo} alt="CoinXHigh" width={150} />
         ) : null}
         <IconButton
-          sx={{ color: "#25E594", fontSize: 38 }}
+          sx={{ color: "#25E594", fontSize: "1.5rem" }}
           onClick={() => {
             collapse === false ? setCollapse(true) : setCollapse(false);
           }}
@@ -69,32 +69,15 @@ const UserAdminSideBar = () => {
               setActiveMenu(true);
             }}
             icon={
-              <DashboardRoundedIcon sx={{ color: "#25E594", fontSize: 38 }} />
+              <DashboardRoundedIcon
+                sx={{ color: "#25E594", fontSize: "1.5rem" }}
+              />
             }
           >
-            Dashboard
-          </MenuItem>
-
-          <MenuItem
-            style={{
-              paddingTop: 10,
-              paddingBottom: 10,
-            }}
-            icon={<BiCoinStack style={{ color: "#25E594", fontSize: 38 }} />}
-          >
-            Add Coin
-          </MenuItem>
-
-          <MenuItem
-            style={{
-              paddingTop: 10,
-              paddingBottom: 10,
-            }}
-            icon={
-              <DashboardRoundedIcon sx={{ color: "#25E594", fontSize: 38 }} />
-            }
-          >
-            Add NFT
+            <Typography variant="body2" ml={2}>
+              {" "}
+              Dashboard{" "}
+            </Typography>
           </MenuItem>
 
           <MenuItem
@@ -103,10 +86,13 @@ const UserAdminSideBar = () => {
               paddingBottom: 10,
             }}
             icon={
-              <DashboardRoundedIcon sx={{ color: "#25E594", fontSize: 38 }} />
+              <BiCoinStack style={{ color: "#25E594", fontSize: "1.5rem" }} />
             }
           >
-            Add AirDrop
+            <Typography variant="body2" ml={2}>
+              {" "}
+              Add Coin
+            </Typography>
           </MenuItem>
 
           <MenuItem
@@ -115,18 +101,62 @@ const UserAdminSideBar = () => {
               paddingBottom: 10,
             }}
             icon={
-              <DashboardRoundedIcon sx={{ color: "#25E594", fontSize: 38 }} />
+              <DashboardRoundedIcon
+                sx={{ color: "#25E594", fontSize: "1.5rem" }}
+              />
             }
           >
-            My Listings
+            <Typography variant="body2" ml={2}>
+              {" "}
+              Add NFT
+            </Typography>
+          </MenuItem>
+
+          <MenuItem
+            style={{
+              paddingTop: 10,
+              paddingBottom: 10,
+            }}
+            icon={
+              <DashboardRoundedIcon
+                sx={{ color: "#25E594", fontSize: "1.5rem" }}
+              />
+            }
+          >
+            <Typography variant="body2" ml={2}>
+              {" "}
+              Add AirDrop
+            </Typography>
+          </MenuItem>
+
+          <MenuItem
+            style={{
+              paddingTop: 10,
+              paddingBottom: 10,
+            }}
+            icon={
+              <DashboardRoundedIcon
+                sx={{ color: "#25E594", fontSize: "1.5rem" }}
+              />
+            }
+          >
+            <Typography variant="body2" ml={2}>
+              {" "}
+              My Listings
+            </Typography>
           </MenuItem>
 
           <MenuItem
             icon={
-              <DashboardRoundedIcon sx={{ color: "#25E594", fontSize: 38 }} />
+              <DashboardRoundedIcon
+                sx={{ color: "#25E594", fontSize: "1.5rem" }}
+              />
             }
           >
-            Ads
+            <Typography variant="body2" ml={2}>
+              {" "}
+              Ads
+            </Typography>
           </MenuItem>
           {/* <SubMenu title="Components">
             <MenuItem>Component 1</MenuItem>

@@ -38,8 +38,10 @@ const NotificationBar = () => {
         >
           <Stack direction="row" spacing={0.5}>
             <Stack direction="row" spacing={0.5}>
-              <Typography variant="h6">Your ads are expiring soon. </Typography>
-              <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+              <Typography variant="body1">
+                Your ads are expiring soon.{" "}
+              </Typography>
+              <Typography variant="body1" sx={{ fontWeight: "bold" }}>
                 Start new ad
               </Typography>
             </Stack>

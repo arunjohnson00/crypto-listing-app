@@ -43,19 +43,28 @@ const UserAdminTabs = () => {
                 color: "#9D9F9F",
                 textTransform: "capitalize",
                 minHeight: 62,
-                fontSize: 18,
+                fontSize: "1rem",
               },
             }}
           >
-            <Tab label="Over View" value="1" />
+            <Tab label="Overview" value="1" />
             <Tab label="Badges" value="2" />
             <Tab label="KYC & Audit" value="3" />
           </TabList>
         </Box>
         <TabPanel value="1" sx={{ padding: 0, paddingY: 3 }}>
-          <Grid container>
+          <Grid container py={0.5}>
             <Grid item xs={12} sm={12} md={12} lg={8.5} xl={8.5}>
-              <Grid item xs={12} sm={12} md={12} lg={12} xl={12} pr={2}>
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={12}
+                lg={12}
+                xl={12}
+                pr={2}
+                py={0.5}
+              >
                 <Box
                   sx={{
                     flexGrow: 1,
@@ -64,18 +73,19 @@ const UserAdminTabs = () => {
                     backgroundColor: "#11101C",
                   }}
                   px={2.5}
-                  py={4}
+                  pb={2}
+                  pt={2}
                 >
                   <Stack
                     direction="row"
                     sx={{ alignItems: "center" }}
-                    spacing={2}
+                    spacing={1.5}
                     my={1}
                   >
                     <OpenInNewIcon
-                      sx={{ color: "#25E595", fontSize: "30px" }}
+                      sx={{ color: "#25E595", fontSize: "1.5rem" }}
                     />
-                    <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+                    <Typography sx={{ color: "#FFFFF5", fontSize: "1.1rem" }}>
                       Shortcuts
                     </Typography>
                   </Stack>
@@ -94,7 +104,7 @@ const UserAdminTabs = () => {
                 </Box>
               </Grid>
 
-              <Grid container my={3} spacing={2}>
+              <Grid container spacing={1} py={0.5}>
                 <Grid item xs={12} sm={12} md={12} lg={3.7} xl={3.7}>
                   <Box
                     sx={{
@@ -104,22 +114,26 @@ const UserAdminTabs = () => {
                       backgroundColor: "#11101C",
                     }}
                     px={2.5}
-                    py={4}
+                    pt={3}
+                    pb={4}
                   >
                     <Stack
                       direction="row"
                       sx={{ alignItems: "center" }}
-                      spacing={2}
+                      spacing={1.5}
                       my={1}
                     >
                       <OpenInNewIcon
-                        sx={{ color: "#25E595", fontSize: "30px" }}
+                        sx={{ color: "#25E595", fontSize: "1.5rem" }}
                       />
-                      <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+                      <Typography
+                        variant="h5"
+                        sx={{ color: "#FFFFF5", fontSize: "1.1rem" }}
+                      >
                         Shortcuts
                       </Typography>
                     </Stack>
-                    <Box pl={5.5}>
+                    <Box pl={5}>
                       <Stack
                         direction="row"
                         sx={{ alignItems: "center" }}
@@ -205,7 +219,8 @@ const UserAdminTabs = () => {
                       backgroundColor: "#11101C",
                     }}
                     px={2.5}
-                    py={4}
+                    pt={3}
+                    pb={4}
                   >
                     <Stack
                       direction="row"
@@ -214,9 +229,12 @@ const UserAdminTabs = () => {
                       my={1}
                     >
                       <BubbleChartRoundedIcon
-                        sx={{ color: "#25E595", fontSize: "30px" }}
+                        sx={{ color: "#25E595", fontSize: "1.5rem" }}
                       />
-                      <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+                      <Typography
+                        variant="h5"
+                        sx={{ color: "#FFFFF5", fontSize: "1.1rem" }}
+                      >
                         My Portfolio
                       </Typography>
                     </Stack>
@@ -252,7 +270,7 @@ const UserAdminTabs = () => {
               <Box
                 sx={{
                   flexGrow: 1,
-                  height: "690px",
+                  height: "500px",
 
                   borderRadius: 7,
                   background:
@@ -265,7 +283,7 @@ const UserAdminTabs = () => {
               </Box>
             </Grid>
 
-            <Grid container spacing={2}>
+            <Grid container spacing={1} py={0.5}>
               <Grid item xs={12} sm={12} md={12} lg={3} xl={3}>
                 <Box
                   sx={{
@@ -282,12 +300,14 @@ const UserAdminTabs = () => {
                     sx={{ alignItems: "center" }}
                     spacing={2}
                     my={1}
-                    py={1}
                   >
                     <OpenInNewIcon
-                      sx={{ color: "#25E595", fontSize: "30px" }}
+                      sx={{ color: "#25E595", fontSize: "1.5rem" }}
                     />
-                    <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+                    <Typography
+                      variant="h5"
+                      sx={{ color: "#FFFFF5", fontSize: "1.1rem" }}
+                    >
                       My Watchlist
                     </Typography>
                   </Stack>
@@ -390,10 +410,15 @@ const UserAdminTabs = () => {
                     direction="row"
                     sx={{ alignItems: "center" }}
                     spacing={2}
-                    my={2}
+                    my={1}
                   >
-                    <ThumbUpIcon sx={{ color: "#25E595", fontSize: "30px" }} />
-                    <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+                    <ThumbUpIcon
+                      sx={{ color: "#25E595", fontSize: "1.5rem" }}
+                    />
+                    <Typography
+                      variant="h5"
+                      sx={{ color: "#FFFFF5", fontSize: "1.1rem" }}
+                    >
                       Recently Voted
                     </Typography>
                   </Stack>
@@ -527,12 +552,15 @@ const UserAdminTabs = () => {
                     direction="row"
                     sx={{ alignItems: "center" }}
                     spacing={2}
-                    my={2}
+                    my={1}
                   >
                     <InsertCommentIcon
-                      sx={{ color: "#25E595", fontSize: "30px" }}
+                      sx={{ color: "#25E595", fontSize: "1.5rem" }}
                     />
-                    <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+                    <Typography
+                      variant="h5"
+                      sx={{ color: "#FFFFF5", fontSize: "1.1rem" }}
+                    >
                       My Ratings
                     </Typography>
                   </Stack>
@@ -667,9 +695,9 @@ const UserAdminTabs = () => {
               </Grid>
             </Grid>
 
-            <Grid container py={3} spacing={2}>
+            <Grid container py={0.5} spacing={1}>
               <Grid item xs={12} sm={12} md={12} lg={4.5} xl={4.5}>
-                <Stack direction="column" spacing={2}>
+                <Stack direction="column" spacing={1}>
                   <Box
                     sx={{
                       flexGrow: 1,
@@ -683,19 +711,22 @@ const UserAdminTabs = () => {
                     <Stack
                       direction="row"
                       sx={{ alignItems: "center" }}
-                      spacing={2}
-                      my={2}
+                      spacing={2.5}
+                      my={1}
                     >
                       <Avatar
                         alt="Remy Sharp"
                         src="https://mui.com/static/images/avatar/2.jpg"
-                        sx={{ width: 50, height: 50 }}
+                        sx={{ width: 35, height: 35 }}
                       />
-                      <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+                      <Typography
+                        variant="h5"
+                        sx={{ color: "#FFFFF5", fontSize: "1.1rem" }}
+                      >
                         Profile Settings
                       </Typography>
                     </Stack>
-                    <Box pl={8.5}>
+                    <Box pl={7}>
                       <Stack
                         direction="column"
                         sx={{ alignItems: "left" }}
@@ -735,13 +766,16 @@ const UserAdminTabs = () => {
                       my={2}
                     >
                       <BatchPredictionIcon
-                        sx={{ color: "#25E595", fontSize: "30px" }}
+                        sx={{ color: "#25E595", fontSize: "1.5rem" }}
                       />
-                      <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+                      <Typography
+                        variant="h5"
+                        sx={{ color: "#FFFFF5", fontSize: "1.1rem" }}
+                      >
                         My Ads
                       </Typography>
                     </Stack>
-                    <Box pl={5.5}>
+                    <Box pl={5}>
                       <Stack
                         direction="row"
                         sx={{ alignItems: "center" }}
@@ -873,8 +907,13 @@ const UserAdminTabs = () => {
                     spacing={2}
                     my={2}
                   >
-                    <CampaignIcon sx={{ color: "#25E595", fontSize: "30px" }} />
-                    <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+                    <CampaignIcon
+                      sx={{ color: "#25E595", fontSize: "1.5rem" }}
+                    />
+                    <Typography
+                      variant="h5"
+                      sx={{ color: "#FFFFF5", fontSize: "1.1rem" }}
+                    >
                       Announcement
                     </Typography>
                   </Stack>

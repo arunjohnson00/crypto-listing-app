@@ -9,12 +9,17 @@ const UserDashboard = () => {
         <MultiSlider />
       </Grid>
       <Grid item xs={12}>
-        <Stack direction="row">
-          <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <Typography
+            variant="subtitle2"
+            sx={{ color: "#FFFFF5", fontSize: "1.1rem" }}
+          >
             <span>Good Evening,</span>{" "}
-            <span style={{ fontWeight: 600 }}>Alexander Jacob</span>
           </Typography>
-          <Typography variant="caption" sx={{ color: "#57546C" }}></Typography>
+          <Typography variant="h6" sx={{ fontWeight: 600, color: "#FFFFF5" }}>
+            {" "}
+            Alexander Jacob
+          </Typography>
         </Stack>
       </Grid>
       <Grid item xs={12} py={3}>

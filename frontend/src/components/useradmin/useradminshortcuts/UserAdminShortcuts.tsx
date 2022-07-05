@@ -22,7 +22,10 @@ const UserAdminShortcuts = ({ title }: any) => {
         spacing={2}
         my={1}
       >
-        <Typography variant="h6" sx={{ color: "#FFFFF5", textAlign: "center" }}>
+        <Typography
+          variant="body2"
+          sx={{ color: "#FFFFF5", textAlign: "center" }}
+        >
           {title}
         </Typography>
 

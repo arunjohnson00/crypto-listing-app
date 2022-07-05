@@ -36,7 +36,7 @@ const UserAdminDonutChart = () => {
           breakpoint: 1500,
           options: {
             chart: {
-              width: 400,
+              width: 300,
             },
             legend: {
               position: "right",
@@ -47,7 +47,7 @@ const UserAdminDonutChart = () => {
           breakpoint: 600,
           options: {
             chart: {
-              width: 400,
+              width: 300,
             },
             legend: {
               position: "bottom",
