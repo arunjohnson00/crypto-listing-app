@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import { Divider, Stack, Typography, IconButton, Toolbar } from "@mui/material";
@@ -112,12 +112,18 @@ const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
           Dashboard
         </Typography>
         <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-          <SettingsBtn handleSettingsClick={handleSettingsClick} />
-          <SettingsMenu
+          <Link
+            to="/settings"
+            style={{ textDecoration: "none", color: "#000000" }}
+          >
+            {" "}
+            <SettingsBtn handleSettingsClick={handleSettingsClick} />
+          </Link>
+          {/* <SettingsMenu
             anchorSettings={anchorSettings}
             openSettings={openSettings}
             handleSettingsClose={handleSettingsClose}
-          />
+          /> */}
 
           <NotificationBtn handleNotificationClick={handleNotificationClick} />
           <NotificationMenu

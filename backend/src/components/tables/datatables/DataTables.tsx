@@ -6,6 +6,7 @@ import {
   GridToolbarContainer,
   GridToolbarExport,
 } from "@mui/x-data-grid";
+
 import Swal from "sweetalert2";
 import { makeStyles } from "@mui/styles";
 import { toast } from "material-react-toastify";
@@ -68,7 +69,8 @@ const GridEdit = ({ index, navigate, location, dispatch, data }: any) => {
         );
         Swal.fire("Deleted!", "Your data has been deleted.", "success");
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        navigate(`${location.pathname}`);
+        //navigate(`${location.pathname}`);
+        navigate(-1);
       }
     });
   };
@@ -158,7 +160,10 @@ const DataTables = ({ tableData, tableColumn, data }: any) => {
           onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
           rowsPerPageOptions={[10, 25, 50]}
           pagination
-          components={{ Toolbar: CustomToolbar }}
+          loading={!tableData}
+          components={{
+            Toolbar: CustomToolbar,
+          }}
           className={classes.grid}
           sx={{
             boxShadow: 0,

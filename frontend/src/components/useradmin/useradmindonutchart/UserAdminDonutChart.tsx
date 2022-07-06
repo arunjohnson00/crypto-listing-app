@@ -33,10 +33,21 @@ const UserAdminDonutChart = () => {
       },
       responsive: [
         {
+          breakpoint: 2500,
+          options: {
+            chart: {
+              width: 450,
+            },
+            legend: {
+              position: "right",
+            },
+          },
+        },
+        {
           breakpoint: 1500,
           options: {
             chart: {
-              width: 300,
+              width: 450,
             },
             legend: {
               position: "right",
@@ -47,7 +58,7 @@ const UserAdminDonutChart = () => {
           breakpoint: 600,
           options: {
             chart: {
-              width: 300,
+              width: 400,
             },
             legend: {
               position: "bottom",
