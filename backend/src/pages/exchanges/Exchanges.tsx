@@ -19,12 +19,16 @@ const tableColumn = [
   {
     field: "name",
     headerName: "Exchange Name",
-    flex: 1,
+    flex: 2,
+    align: "left",
+    headerAlign: "left",
   },
 
   {
     field: "thumb_icon",
     headerName: "Icon",
+    align: "center",
+    headerAlign: "center",
     flex: 1,
     sortable: false,
     disableClickEventBubbling: true,
@@ -39,12 +43,29 @@ const tableColumn = [
   {
     field: "url",
     headerName: "Exchange Url",
-    flex: 1,
+    flex: 2.5,
+    align: "left",
+    headerAlign: "left",
+    renderCell: (params: any) => (
+      <span style={{ color: "blue", fontSize: ".7rem" }}>
+        <a
+          href={params.row.url}
+          target="_blank"
+          rel="noreferrer"
+          style={{ color: "blue", textDecoration: "none" }}
+        >
+          {" "}
+          {params.row.url}
+        </a>
+      </span>
+    ),
   },
 
   {
     field: "status",
     headerName: "Status",
+    align: "center",
+    headerAlign: "center",
     flex: 1,
     renderCell: (params: any) => (
       <span>

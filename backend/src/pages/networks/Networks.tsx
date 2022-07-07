@@ -45,13 +45,17 @@ const Networks = () => {
     {
       field: "name",
       headerName: "Network Name",
-      flex: 1,
+      flex: 2,
+      align: "left",
+      headerAlign: "left",
     },
     {
       field: "thumb_icon",
       headerName: "Icon",
       flex: 1,
       sortable: false,
+      align: "center",
+      headerAlign: "center",
       disableClickEventBubbling: true,
       renderCell: (params: any) => (
         <Avatar
@@ -65,28 +69,64 @@ const Networks = () => {
       field: "chain_id",
       headerName: "Chain ID",
       flex: 1,
+      align: "center",
+      headerAlign: "center",
     },
     {
       field: "currency_symbol",
       headerName: "Symbol",
       flex: 1,
+      align: "center",
+      headerAlign: "center",
     },
 
     {
       field: "explorer_url",
       headerName: "Explorer URL",
-      flex: 1,
+      flex: 2.5,
+      align: "left",
+      headerAlign: "left",
+      renderCell: (params: any) => (
+        <span style={{ color: "blue", fontSize: ".7rem" }}>
+          <a
+            href={params.row.explorer_url}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "blue", textDecoration: "none" }}
+          >
+            {" "}
+            {params.row.explorer_url}
+          </a>
+        </span>
+      ),
     },
 
     {
       field: "url",
       headerName: "Network URL",
-      flex: 1,
+      flex: 2.5,
+      align: "left",
+      headerAlign: "left",
+      renderCell: (params: any) => (
+        <span style={{ color: "blue", fontSize: ".7rem" }}>
+          <a
+            href={params.row.url}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "blue", textDecoration: "none" }}
+          >
+            {" "}
+            {params.row.url}
+          </a>
+        </span>
+      ),
     },
 
     {
       field: "status",
       headerName: "Status",
+      align: "center",
+      headerAlign: "center",
       flex: 1,
       renderCell: (params: any) => (
         <span>

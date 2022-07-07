@@ -46,13 +46,17 @@ const Users = () => {
     {
       field: "name",
       headerName: "User Name",
-      flex: 1,
+      flex: 2,
+      align: "left",
+      headerAlign: "left",
     },
     {
       field: "avatar",
       headerName: "Avatar",
       flex: 1,
       sortable: false,
+      align: "center",
+      headerAlign: "center",
       disableClickEventBubbling: true,
       renderCell: (params: any) => (
         <Avatar
@@ -65,17 +69,36 @@ const Users = () => {
     {
       field: "email",
       headerName: "Email Id",
-      flex: 1,
+      flex: 2,
+      align: "left",
+      headerAlign: "left",
+      renderCell: (params: any) => (
+        <span style={{ color: "blue", fontSize: ".7rem" }}>
+          <a
+            href={params.row.email}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "blue", textDecoration: "none" }}
+          >
+            {" "}
+            {params.row.email}
+          </a>
+        </span>
+      ),
     },
     {
       field: "dname",
       headerName: "Display Name",
       flex: 1,
+      align: "center",
+      headerAlign: "center",
     },
 
     {
       field: "created_at",
       headerName: "Careated at",
+      align: "center",
+      headerAlign: "center",
       flex: 1,
       renderCell: (params: any) => (
         <span>{moment(params.row.created_at).fromNow()}</span>
@@ -87,11 +110,15 @@ const Users = () => {
       field: "rating",
       headerName: "Rating",
       flex: 1,
+      align: "center",
+      headerAlign: "center",
     },
 
     {
       field: "status",
       headerName: "Status",
+      align: "center",
+      headerAlign: "center",
       flex: 1,
       renderCell: (params: any) => (
         <span>
