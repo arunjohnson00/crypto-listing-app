@@ -59,7 +59,7 @@ const Networks = () => {
       disableClickEventBubbling: true,
       renderCell: (params: any) => (
         <Avatar
-          src={`${serverAPIUrl}public/uploads/network_icons/t/${params.row.thumb_icon}`}
+          src={`${serverAPIUrl}public/uploads/network_icons/${params.row.thumb_icon}`}
           alt={params.thumb_icon}
         />
       ),

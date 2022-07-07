@@ -75,7 +75,7 @@ const Users = () => {
       renderCell: (params: any) => (
         <span style={{ color: "blue", fontSize: ".7rem" }}>
           <a
-            href={params.row.email}
+            href={`mailto:${params.row.email}`}
             target="_blank"
             rel="noreferrer"
             style={{ color: "blue", textDecoration: "none" }}
