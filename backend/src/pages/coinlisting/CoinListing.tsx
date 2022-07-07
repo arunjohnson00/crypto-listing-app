@@ -44,7 +44,7 @@ const CoinListing = () => {
     {
       field: "name",
       headerName: "Name",
-      flex: 1,
+      flex: 2,
     },
     {
       field: "logo",
@@ -52,6 +52,10 @@ const CoinListing = () => {
       flex: 1,
       sortable: false,
       disableClickEventBubbling: true,
+
+      align: "center",
+      headerAlign: "center",
+
       renderCell: (params: any) => (
         <Avatar
           src={`${serverAPIUrl}public/uploads/coin_logo/${params.row.logo}`}
@@ -63,6 +67,9 @@ const CoinListing = () => {
       field: "is_presale",
       headerName: "Is Presale",
       flex: 1,
+
+      align: "center",
+      headerAlign: "center",
       renderCell: (params: any) =>
         parseInt(params.row.is_presale) === 1 ? (
           <span style={{ color: "green" }}>yes</span>
@@ -75,6 +82,9 @@ const CoinListing = () => {
       field: "created_at",
       headerName: "Submitted",
       flex: 1,
+
+      align: "center",
+      headerAlign: "center",
       renderCell: (params: any) => (
         <span>{timeAgo.format(new Date(params.row.created_at))}</span>
       ),
@@ -84,20 +94,39 @@ const CoinListing = () => {
       field: "network_id",
       headerName: "Network Id",
       flex: 1,
+
+      align: "center",
+      headerAlign: "center",
     },
 
     {
       field: "explorer_link",
       headerName: "Block explorer url",
-      flex: 1,
+      flex: 2.5,
+
+      headerAlign: "left",
+      align: "left",
       renderCell: (params: any) => (
-        <span style={{ color: "blue" }}>{params.row.explorer_link}</span>
+        <span style={{ color: "blue", fontSize: ".7rem" }}>
+          <a
+            href={params.row.explorer_link}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "blue", textDecoration: "none" }}
+          >
+            {" "}
+            {params.row.explorer_link}
+          </a>
+        </span>
       ),
     },
 
     {
       field: "status",
       headerName: "Status",
+
+      align: "center",
+      headerAlign: "center",
       flex: 1,
       renderCell: (params: any) => (
         <span>

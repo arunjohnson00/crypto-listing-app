@@ -129,6 +129,8 @@ const DataTables = ({ tableData, tableColumn, data }: any) => {
 
       flex: 2,
       disableClickEventBubbling: true,
+      align: "center",
+      headerAlign: "center",
       renderCell: (params: any) => {
         return (
           <div
@@ -161,6 +163,7 @@ const DataTables = ({ tableData, tableColumn, data }: any) => {
           rowsPerPageOptions={[10, 25, 50]}
           pagination
           loading={!tableData}
+          //onCellClick={(e: any) => console.log(e.colDef.width)}
           components={{
             Toolbar: CustomToolbar,
           }}
