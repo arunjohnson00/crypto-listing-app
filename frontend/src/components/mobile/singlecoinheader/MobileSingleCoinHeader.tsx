@@ -15,6 +15,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Chip from "@mui/material/Chip";
 import MoodIcon from "@mui/icons-material/Mood";
 import ArrowUpwardRoundedIcon from "@mui/icons-material/ArrowUpwardRounded";
+
 import { Fragment } from "react";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
@@ -62,96 +63,207 @@ const MobileSingleCoinHeader = () => {
 
   return (
     <Fragment>
-      <Grid xs={12}>
+      <Grid container>
         <Stack
           direction={{ xs: "column", sm: "column", md: "row" }}
           px={0}
+          width="100%"
           sx={{ alignItems: "center" }}
         >
-          <Grid xs={12} sm={12} md={6} lg={6} xl={6} py={2}>
+          <Stack
+            direction={{ xs: "column", sm: "column", md: "row" }}
+            spacing={2}
+            sx={{ alignItems: "center" }}
+            py={1}
+            width="100%"
+          >
             <Stack
-              direction={{ xs: "column", sm: "column", md: "row" }}
-              spacing={4}
-              sx={{ alignItems: "center" }}
+              direction={{ xs: "row", sm: "row", md: "row" }}
+              justifyContent="space-between"
+              alignItems="center"
+              width="100%"
             >
-              <Avatar
-                alt="Remy Sharp"
-                src="https://cryptologos.cc/logos/safemoon-safemoon-logo.png?v=022"
-                sx={{ borderRadius: 0, width: 120, height: 120 }}
-              />
-              <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
+              <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+                <Avatar
+                  alt="Remy Sharp"
+                  src="https://cryptologos.cc/logos/safemoon-safemoon-logo.png?v=022"
+                  sx={{ borderRadius: 0, width: 25, height: 25 }}
+                />
                 <Typography
-                  variant="caption"
-                  sx={{ color: "#FFFFF5" }}
+                  variant="body2"
+                  sx={{ color: "#FFFFF5ae", fontWeight: 600 }}
                   textAlign={{ xs: "center", sm: "center", md: "left" }}
                 >
-                  Presale starts in:
+                  Presale starts in :
                   <span style={{ color: "#BDD645" }}> 00days 08 Hours 24</span>
+                </Typography>
+              </Stack>
+              <Stack
+                direction="column"
+                spacing={0}
+                sx={{ alignItems: "center" }}
+              >
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ alignItems: "center" }}
+                >
+                  <Typography
+                    variant="h5"
+                    sx={{ color: "#FFFFF5", fontWeight: "400" }}
+                  >
+                    4.9
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 14, height: 14 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Rating
+                  name="size-small"
+                  defaultValue={5}
+                  size="small"
+                  readOnly
+                  sx={{ fontSize: ".9rem" }}
+                />
+              </Stack>
+            </Stack>
+            <Stack
+              direction={{ xs: "column", sm: "column", md: "column" }}
+              width="100%"
+            >
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "column" }}
+                spacing={-0.5}
+                sx={{ alignItems: "flex-start" }}
+                width="100%"
+              >
+                <Typography
+                  sx={{ color: "#FFFFF5", fontWeight: 800, fontSize: "1.8rem" }}
+                  textAlign={{ xs: "center", sm: "center", md: "left" }}
+                >
+                  SafeMoon
                 </Typography>
 
                 <Stack
                   direction={{ xs: "row", sm: "row", md: "row" }}
-                  spacing={1}
-                  sx={{ alignItems: "flex-end" }}
+                  spacing={0.5}
+                  sx={{ alignItems: "center" }}
                 >
                   <Typography
-                    variant="h4"
-                    sx={{ color: "#FFFFF5", fontWeight: 800 }}
+                    variant="h6"
+                    sx={{
+                      color: "#27D6A2",
+                      fontWeight: 400,
+                      textTransform: "uppercase",
+                    }}
                     textAlign={{ xs: "center", sm: "center", md: "left" }}
                   >
                     SafeMoon
                   </Typography>
-
-                  <Stack
-                    direction={{ xs: "row", sm: "row", md: "row" }}
-                    spacing={0.5}
-                    sx={{ alignItems: "center" }}
-                  >
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        color: "#FFFFF5",
-                        fontWeight: 500,
-                        textTransform: "uppercase",
-                      }}
-                      textAlign={{ xs: "center", sm: "center", md: "left" }}
-                    >
-                      SafeMoon
-                    </Typography>
-                    <Rating
-                      name="size-large"
-                      defaultValue={1}
-                      size="large"
-                      max={1}
-                      icon={
-                        <StarOutlineOutlinedIcon sx={{ color: "#FFFFF5" }} />
-                      }
-                    />
-                  </Stack>
-                </Stack>
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  spacing={1}
-                  sx={{ alignItems: "center" }}
-                  pt={0.5}
-                >
-                  <Typography variant="h4" sx={{ color: "#FFFFF5" }}>
-                    $0.0000090756
-                  </Typography>
-                  <Chip
-                    icon={<ArrowDropDownIcon />}
-                    label="4.1%"
-                    color="success"
-                    sx={{
-                      height: "24px",
-                      borderRadius: "4px",
-                      backgroundColor: "#05BC34",
-                    }}
+                  <Rating
+                    name="size-large"
+                    defaultValue={1}
+                    size="large"
+                    max={1}
+                    icon={<StarOutlineOutlinedIcon sx={{ color: "#FFFFF5" }} />}
                   />
                 </Stack>
               </Stack>
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                spacing={1}
+                sx={{ alignItems: "center" }}
+                pt={0.5}
+              >
+                <Typography
+                  variant="h5"
+                  sx={{ color: "#FFFFF5", fontWeight: "bold" }}
+                >
+                  $0.0000090756
+                </Typography>
+                <Chip
+                  icon={<ArrowDropDownIcon />}
+                  label="4.1%"
+                  color="success"
+                  sx={{
+                    height: "24px",
+                    borderRadius: "4px",
+                    backgroundColor: "#05BC34",
+                  }}
+                />
+              </Stack>
             </Stack>
-          </Grid>
+            <Stack
+              direction={{ xs: "row", sm: "row", md: "row" }}
+              spacing={2}
+              sx={{ alignItems: "flex-start" }}
+              width="100%"
+            >
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                spacing={0.5}
+                sx={{ alignItems: "center" }}
+              >
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="subtitle2" sx={{ color: "#FFFFFFae" }}>
+                    Listed :
+                  </Typography>
+                </Stack>
+
+                <Typography variant="subtitle2" sx={{ color: "#00B96E" }}>
+                  3 Hrs ago
+                </Typography>
+              </Stack>
+              <Divider
+                variant="middle"
+                flexItem
+                orientation={"vertical"}
+                sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
+              />
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                spacing={0.5}
+                sx={{ alignItems: "center" }}
+              >
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="subtitle2" sx={{ color: "#FFFFFFae" }}>
+                    <ArrowUpwardRoundedIcon sx={{ fontSize: 18 }} />
+                  </Typography>
+                </Stack>
+
+                <Typography
+                  variant="subtitle2"
+                  sx={{ color: "#FFFFFFae", fontWeight: 600 }}
+                >
+                  <span style={{ color: "#06E9DC" }}>1234</span> Votes
+                </Typography>
+              </Stack>
+            </Stack>
+          </Stack>
+
           <Grid xs={12} sm={12} md={6} lg={6} xl={6} py={2}>
             <Stack
               direction={{ xs: "column", sm: "column", md: "column" }}
