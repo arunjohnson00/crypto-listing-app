@@ -13,6 +13,7 @@ import "material-react-toastify/dist/ReactToastify.css";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import { addChartProviderRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
+import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 
 const CoinsChartProviderAdd = () => {
   const navigate = useNavigate();
@@ -21,6 +22,10 @@ const CoinsChartProviderAdd = () => {
   const [loading, setLoading] = useState(false);
   const [addChartProviderData, setAddChartProvider] = useState<any>({
     name: "",
+    url: "",
+    thumb_icon: "",
+    icon: "",
+    image: "",
     status: 1,
   });
 
@@ -60,17 +65,24 @@ const CoinsChartProviderAdd = () => {
 
     const formData = new FormData();
 
-    formData.append("name", addChartProviderData.name);
+    formData.append("name", addChartProviderData?.name);
 
-    formData.append("status", addChartProviderData.status);
-
+    formData.append("status", addChartProviderData?.status);
+    formData.append("thumb_icon", addChartProviderData?.thumb_icon);
+    formData.append("url", addChartProviderData?.url);
     dispatch(addChartProviderRequest(formData, successHandler, errorHandler));
   };
 
-  const coinAuditNameHandler = (e: any) => {
+  const chartProviderNameHandler = (e: any) => {
     //console.log(e);
 
     setAddChartProvider({ ...addChartProviderData, name: e });
+  };
+
+  const chartProviderURLHandler = (e: any) => {
+    //console.log(e);
+
+    setAddChartProvider({ ...addChartProviderData, url: e });
   };
 
   const selectOptions = [
@@ -113,7 +125,28 @@ const CoinsChartProviderAdd = () => {
 
               <InputText
                 placeholder="Enter ChartProvider Name"
-                inputTextHandler={(e: any) => coinAuditNameHandler(e)}
+                inputTextHandler={(e: any) => chartProviderNameHandler(e)}
+              />
+            </Grid>
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Chart Provider URL
+              </Typography>
+
+              <InputText
+                placeholder="Enter Audit url"
+                inputTextHandler={(e: any) => chartProviderURLHandler(e)}
+              />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Chart Provider Icon
+              </Typography>
+
+              <IconUploader
+                setAddIcon={setAddChartProvider}
+                addIconData={addChartProviderData}
               />
             </Grid>
 

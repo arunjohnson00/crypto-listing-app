@@ -227,7 +227,8 @@ const DataTables = ({ tableData, tableColumn, data }: any) => {
         <DataGrid
           rows={tableData}
           columns={[...tableColumn, ...addtitionalColumns]}
-          filterMode="server"
+          // filterMode="server"
+          //paginationMode="server"
           autoHeight={false}
           pageSize={pageSize}
           onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}

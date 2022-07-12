@@ -13,6 +13,7 @@ import HorizonatalList from "../../../components/list/horizontal/HorizonatalList
 import { updateCoinSocialRequest } from "../../../store/action";
 import { editCoinSocialRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
+import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 
 const CoinsSocialsEdit = () => {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const CoinsSocialsEdit = () => {
     icon: "",
     thumb_icon: "",
     url: "",
+    image: "",
   });
 
   console.log(updateCoinSocialData);
@@ -65,9 +67,9 @@ const CoinsSocialsEdit = () => {
 
     const formData = new FormData();
     formData.append("id", updateCoinSocialData.id);
-
     formData.append("name", updateCoinSocialData.name);
-
+    formData.append("thumb_icon", updateCoinSocialData?.thumb_icon);
+    formData.append("url", updateCoinSocialData?.url);
     formData.append("status", updateCoinSocialData.status);
 
     dispatch(updateCoinSocialRequest(formData, successHandler, errorHandler));
@@ -77,6 +79,12 @@ const CoinsSocialsEdit = () => {
     //console.log(e);
 
     setUpdateCoinSocial({ ...updateCoinSocialData, name: e });
+  };
+
+  const coinSocialURLHandler = (e: any) => {
+    //console.log(e);
+
+    setUpdateCoinSocial({ ...updateCoinSocialData, url: e });
   };
 
   const selectOptions = [
@@ -133,6 +141,27 @@ const CoinsSocialsEdit = () => {
                 placeholder="Enter Social Name"
                 inputTextHandler={(e: any) => coinSocialNameHandler(e)}
                 value={updateCoinSocialData?.name}
+              />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Social URL
+              </Typography>
+
+              <InputText
+                placeholder="Enter Social url"
+                inputTextHandler={(e: any) => coinSocialURLHandler(e)}
+                value={updateCoinSocialData?.url}
+              />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Audit Icon
+              </Typography>
+
+              <IconUploader
+                setAddIcon={setUpdateCoinSocial}
+                addIconData={updateCoinSocialData}
               />
             </Grid>
 

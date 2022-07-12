@@ -13,6 +13,7 @@ import HorizonatalList from "../../../components/list/horizontal/HorizonatalList
 import { updateChartProviderRequest } from "../../../store/action";
 import { editChartProviderRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
+import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 
 const CoinsChartProviderEdit = () => {
   const navigate = useNavigate();
@@ -65,21 +66,27 @@ const CoinsChartProviderEdit = () => {
     };
 
     const formData = new FormData();
-    formData.append("id", updateCoinChartProviderData.id);
+    formData.append("id", updateCoinChartProviderData?.id);
 
-    formData.append("name", updateCoinChartProviderData.name);
-
-    formData.append("status", updateCoinChartProviderData.status);
+    formData.append("name", updateCoinChartProviderData?.name);
+    formData.append("url", updateCoinChartProviderData?.url);
+    formData.append("thumb_icon", updateCoinChartProviderData?.thumb_icon);
+    formData.append("status", updateCoinChartProviderData?.status);
 
     dispatch(
       updateChartProviderRequest(formData, successHandler, errorHandler)
     );
   };
 
-  const coinAuditNameHandler = (e: any) => {
+  const chartProviderNameHandler = (e: any) => {
+    //console.log(e);
+    setUpdateCoinChartProvider({ ...updateCoinChartProviderData, name: e });
+  };
+
+  const chartProviderURLHandler = (e: any) => {
     //console.log(e);
 
-    setUpdateCoinChartProvider({ ...updateCoinChartProviderData, name: e });
+    setUpdateCoinChartProvider({ ...updateCoinChartProviderData, url: e });
   };
 
   const selectOptions = [
@@ -136,8 +143,30 @@ const CoinsChartProviderEdit = () => {
 
               <InputText
                 placeholder="Enter  Chart Provider Name"
-                inputTextHandler={(e: any) => coinAuditNameHandler(e)}
+                inputTextHandler={(e: any) => chartProviderNameHandler(e)}
                 value={updateCoinChartProviderData?.name}
+              />
+            </Grid>
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Chart Provider URL
+              </Typography>
+
+              <InputText
+                placeholder="Enter Chart Provider url"
+                inputTextHandler={(e: any) => chartProviderURLHandler(e)}
+                value={updateCoinChartProviderData?.url}
+              />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Chart Provider Icon
+              </Typography>
+
+              <IconUploader
+                setAddIcon={setUpdateCoinChartProvider}
+                addIconData={updateCoinChartProviderData}
               />
             </Grid>
 

@@ -13,6 +13,7 @@ import "material-react-toastify/dist/ReactToastify.css";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import { addCoinSocialRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
+import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 
 const CoinsSocialsAdd = () => {
   const navigate = useNavigate();
@@ -21,6 +22,10 @@ const CoinsSocialsAdd = () => {
   const [loading, setLoading] = useState(false);
   const [addCoinSocialData, setAddSocialData] = useState<any>({
     name: "",
+    url: "",
+    thumb_icon: "",
+    icon: "",
+    image: "",
     status: 1,
   });
 
@@ -60,9 +65,10 @@ const CoinsSocialsAdd = () => {
 
     const formData = new FormData();
 
-    formData.append("name", addCoinSocialData.name);
-
-    formData.append("status", addCoinSocialData.status);
+    formData.append("name", addCoinSocialData?.name);
+    formData.append("thumb_icon", addCoinSocialData?.thumb_icon);
+    formData.append("url", addCoinSocialData?.url);
+    formData.append("status", addCoinSocialData?.status);
 
     dispatch(addCoinSocialRequest(formData, successHandler, errorHandler));
   };
@@ -71,6 +77,11 @@ const CoinsSocialsAdd = () => {
     //console.log(e);
 
     setAddSocialData({ ...addCoinSocialData, name: e });
+  };
+  const coinSocialURLHandler = (e: any) => {
+    //console.log(e);
+
+    setAddSocialData({ ...addCoinSocialData, url: e });
   };
 
   const selectOptions = [
@@ -114,6 +125,26 @@ const CoinsSocialsAdd = () => {
               <InputText
                 placeholder="Enter Social Name"
                 inputTextHandler={(e: any) => coinSocialNameHandler(e)}
+              />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Social URL
+              </Typography>
+
+              <InputText
+                placeholder="Enter Social url"
+                inputTextHandler={(e: any) => coinSocialURLHandler(e)}
+              />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Social Icon
+              </Typography>
+
+              <IconUploader
+                setAddIcon={setAddSocialData}
+                addIconData={addCoinSocialData}
               />
             </Grid>
 

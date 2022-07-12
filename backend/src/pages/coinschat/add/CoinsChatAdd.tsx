@@ -13,6 +13,7 @@ import "material-react-toastify/dist/ReactToastify.css";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import { addCoinChatRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
+import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 
 const CoinsChatAdd = () => {
   const navigate = useNavigate();
@@ -21,6 +22,10 @@ const CoinsChatAdd = () => {
   const [loading, setLoading] = useState(false);
   const [addCoinChatData, setAddCoinChat] = useState<any>({
     name: "",
+    url: "",
+    thumb_icon: "",
+    icon: "",
+    image: "",
     status: 1,
   });
 
@@ -61,7 +66,8 @@ const CoinsChatAdd = () => {
     const formData = new FormData();
 
     formData.append("name", addCoinChatData.name);
-
+    formData.append("thumb_icon", addCoinChatData?.thumb_icon);
+    formData.append("url", addCoinChatData?.url);
     formData.append("status", addCoinChatData.status);
 
     dispatch(addCoinChatRequest(formData, successHandler, errorHandler));
@@ -71,6 +77,12 @@ const CoinsChatAdd = () => {
     //console.log(e);
 
     setAddCoinChat({ ...addCoinChatData, name: e });
+  };
+
+  const coinChatURLHandler = (e: any) => {
+    //console.log(e);
+
+    setAddCoinChat({ ...addCoinChatData, url: e });
   };
 
   const selectOptions = [
@@ -114,6 +126,28 @@ const CoinsChatAdd = () => {
               <InputText
                 placeholder="Enter chat Name"
                 inputTextHandler={(e: any) => coinChatNameHandler(e)}
+              />
+            </Grid>
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Chat URL
+              </Typography>
+
+              <InputText
+                placeholder="Enter Chat url"
+                inputTextHandler={(e: any) => coinChatURLHandler(e)}
+              />
+            </Grid>
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Audit Icon
+              </Typography>
+
+              <IconUploader
+                setAddIcon={setAddCoinChat}
+                addIconData={addCoinChatData}
               />
             </Grid>
 

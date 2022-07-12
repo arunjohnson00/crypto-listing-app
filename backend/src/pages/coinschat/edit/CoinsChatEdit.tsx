@@ -13,6 +13,7 @@ import HorizonatalList from "../../../components/list/horizontal/HorizonatalList
 import { updateCoinChatRequest } from "../../../store/action";
 import { editCoinChatRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
+import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 
 const CoinsChatEdit = () => {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const CoinsChatEdit = () => {
     icon: "",
     thumb_icon: "",
     url: "",
+    image: "",
   });
 
   console.log(updateCoinChatData);
@@ -66,9 +68,9 @@ const CoinsChatEdit = () => {
 
     const formData = new FormData();
     formData.append("id", updateCoinChatData.id);
-
     formData.append("name", updateCoinChatData.name);
-
+    formData.append("thumb_icon", updateCoinChatData?.thumb_icon);
+    formData.append("url", updateCoinChatData?.url);
     formData.append("status", updateCoinChatData.status);
 
     dispatch(updateCoinChatRequest(formData, successHandler, errorHandler));
@@ -78,6 +80,12 @@ const CoinsChatEdit = () => {
     //console.log(e);
 
     setUpdateCoinChat({ ...updateCoinChatData, name: e });
+  };
+
+  const coinChatURLHandler = (e: any) => {
+    //console.log(e);
+
+    setUpdateCoinChat({ ...updateCoinChatData, url: e });
   };
 
   const selectOptions = [
@@ -135,6 +143,28 @@ const CoinsChatEdit = () => {
                 placeholder="Enter Chat Name"
                 inputTextHandler={(e: any) => coinChatNameHandler(e)}
                 value={updateCoinChatData?.name}
+              />
+            </Grid>
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Chat URL
+              </Typography>
+
+              <InputText
+                placeholder="Enter Chat url"
+                inputTextHandler={(e: any) => coinChatURLHandler(e)}
+                value={updateCoinChatData?.url}
+              />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+                Audit Icon
+              </Typography>
+
+              <IconUploader
+                setAddIcon={setUpdateCoinChat}
+                addIconData={updateCoinChatData}
               />
             </Grid>
 
