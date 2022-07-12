@@ -11,26 +11,26 @@ import {
 import Marquee from "react-fast-marquee";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
-import MobileLatestNewsHeading from "../../components/mobile/Typography/headings/latestnews/MobileLatestNewsHeading";
-import MobileNewsCardTop from "../../components/mobile/cards/topnewscard/MobileNewsCardTop";
-import FullWidthSlider from "../../components/mobile/slider/fullwidthslider/FullWidthSlider";
-import UpcomingAmaCard from "../../components/mobile/cards/upcomingamacard/UpcomingAmaCard";
-import MobileIconMenuCard from "../../components/mobile/cards/iconmenucard/MobileIconMenuCard";
+import MobileLatestNewsHeading from "../../../components/mobile/Typography/headings/latestnews/MobileLatestNewsHeading";
+import MobileNewsCardTop from "../../../components/mobile/cards/topnewscard/MobileNewsCardTop";
+import FullWidthSlider from "../../../components/mobile/slider/fullwidthslider/FullWidthSlider";
+import UpcomingAmaCard from "../../../components/mobile/cards/upcomingamacard/UpcomingAmaCard";
+import MobileIconMenuCard from "../../../components/mobile/cards/iconmenucard/MobileIconMenuCard";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import MobileFeaturedCoinCards from "../../components/mobile/cards/featuredcoin/MobileFeaturedCoinCards";
-import MobileTrendingCoins from "../../components/mobile/cards/trendingcoins/MobileTrendingCoins";
-import MobileVideoCard from "../../components/mobile/cards/videocard/MobileVideoCard";
-import MobileTableBtnGroup from "../../components/mobile/buttongroup/tablebtngroup/MobileTableBtnGroup";
-import MobileTableFilterBtn from "../../components/mobile/buttongroup/tablefilterbtn/MobileTableFilterBtn";
-import MobileHtmlTable from "../../components/mobile/htmltable/MobileHtmlTable";
-import MobileViewMoreBtn from "../../components/mobile/button/viewmorebtn/MobileViewMoreBtn";
-import MobileNftCollectionCard from "../../components/mobile/cards/nftcollection/MobileNftCollectionCard";
-import MobileNewsCard from "../../components/mobile/cards/newscard/MobileNewsCard";
-import MobileAdsCardHome from "../../components/mobile/cards/adscard/MobileAdsCardHome";
-import MobileMenuCards from "../../components/mobile/cards/menucards/MobileMenuCards";
-import MobileBannerMaps from "../../components/mobile/banner/bannermap/MobileBannerMap";
+import MobileFeaturedCoinCards from "../../../components/mobile/cards/featuredcoin/MobileFeaturedCoinCards";
+import MobileTrendingCoins from "../../../components/mobile/cards/trendingcoins/MobileTrendingCoins";
+import MobileVideoCard from "../../../components/mobile/cards/videocard/MobileVideoCard";
+import MobileTableBtnGroup from "../../../components/mobile/buttongroup/tablebtngroup/MobileTableBtnGroup";
+import MobileTableFilterBtn from "../../../components/mobile/buttongroup/tablefilterbtn/MobileTableFilterBtn";
+import MobileHtmlTable from "../../../components/mobile/htmltable/MobileHtmlTable";
+import MobileViewMoreBtn from "../../../components/mobile/button/viewmorebtn/MobileViewMoreBtn";
+import MobileNftCollectionCard from "../../../components/mobile/cards/nftcollection/MobileNftCollectionCard";
+import MobileNewsCard from "../../../components/mobile/cards/newscard/MobileNewsCard";
+import MobileAdsCardHome from "../../../components/mobile/cards/adscard/MobileAdsCardHome";
+import MobileMenuCards from "../../../components/mobile/cards/menucards/MobileMenuCards";
+import MobileBannerMaps from "../../../components/mobile/banner/bannermap/MobileBannerMap";
 
 const { parse } = require("rss-to-json");
 
@@ -85,11 +85,11 @@ const MobileHomePage = () => {
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2.5,
+      items: 2,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 2.5,
+      items: 2,
     },
   };
 
@@ -125,11 +125,11 @@ const MobileHomePage = () => {
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2.5,
+      items: 2,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 2.5,
+      items: 2,
     },
   };
   TimeAgo.addDefaultLocale(en);

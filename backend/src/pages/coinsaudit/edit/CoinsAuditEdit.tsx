@@ -68,7 +68,7 @@ const CoinsAuditEdit = () => {
     const formData = new FormData();
     formData.append("id", updateCoinAuditData.id);
     formData.append("thumb_icon", updateCoinAuditData.thumb_icon);
-
+    formData.append("url", updateCoinAuditData.url);
     formData.append("name", updateCoinAuditData.name);
 
     formData.append("status", updateCoinAuditData.status);
@@ -153,6 +153,7 @@ const CoinsAuditEdit = () => {
               <InputText
                 placeholder="Enter Audit url"
                 inputTextHandler={(e: any) => auditURLHandler(e)}
+                value={updateCoinAuditData?.url}
               />
             </Grid>
 
@@ -164,6 +165,7 @@ const CoinsAuditEdit = () => {
               <IconUploader
                 setAddIcon={setUpdateCoinAudit}
                 addIconData={updateCoinAuditData}
+                slug="coins_audit"
               />
             </Grid>
 

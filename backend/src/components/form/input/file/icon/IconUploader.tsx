@@ -6,7 +6,9 @@ import { useDropzone } from "react-dropzone";
 import { useStyles } from "./style";
 import Avatar from "@mui/material/Avatar";
 import ImageIcon from "@mui/icons-material/Image";
-const IconUploader = ({ addIconData, setAddIcon }: any) => {
+
+const serverAPIUrl = process.env.REACT_APP_API_URL;
+const IconUploader = ({ addIconData, setAddIcon, slug }: any) => {
   const classes = useStyles();
 
   const onDrop = useCallback(
@@ -88,8 +90,11 @@ const IconUploader = ({ addIconData, setAddIcon }: any) => {
           {
             <Avatar
               src={`${
-                acceptedFileItems.length > 0 &&
-                URL.createObjectURL(acceptedFiles[0])
+                acceptedFileItems.length > 0
+                  ? URL.createObjectURL(acceptedFiles[0])
+                  : (addIconData.thumb_icon !== "" ||
+                      addIconData.thumb_icon !== undefined) &&
+                    `${serverAPIUrl}public/uploads/${slug}/${addIconData.thumb_icon}`
               }`}
               alt="icon"
             >

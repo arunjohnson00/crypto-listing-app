@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "../pages/desktop/home/HomePage";
 import PublicRoutes from "./public/PublicRoutes";
 import PrivateRoute from "./private/PrivateRoute";
-import MobileHomePage from "../pages/mobile/MobileHomePage";
+import MobileHomePage from "../pages/mobile/mobilehome/MobileHomePage";
 import SingleCoinPage from "../pages/desktop/singlecoinpage/SingleCoinPage";
 import SingleNftPage from "../pages/desktop/singlenftpage/SingleNftPage";
 import AppLoginPage from "../pages/desktop/login/AppLoginPage";
@@ -19,6 +19,7 @@ import AirdropPage from "../pages/desktop/airdrops/AirdropPage";
 import EventsViewPage from "../pages/desktop/eventsview/EventsViewPage";
 import PresaleListPage from "../pages/desktop/presales/PresaleListPage";
 import DiscoverPage from "../pages/desktop/discover/DiscoverPage";
+import MobileSingleCoinPage from "../pages/mobile/mobilesinglecoinpage/MobileSingleCoinPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -48,14 +49,27 @@ const AppRoutes = () => {
             }
           />
         )}
-        <Route
-          path="/coin"
-          element={
-            <PublicRoutes>
-              <SingleCoinPage />
-            </PublicRoutes>
-          }
-        />
+
+        {windowInnerWidth >= 900 ? (
+          <Route
+            path="/coin"
+            element={
+              <PublicRoutes>
+                <SingleCoinPage />
+              </PublicRoutes>
+            }
+          />
+        ) : (
+          <Route
+            path="/coin"
+            element={
+              <PublicRoutes>
+                <MobileSingleCoinPage />
+              </PublicRoutes>
+            }
+          />
+        )}
+
         <Route
           path="/nft"
           element={
