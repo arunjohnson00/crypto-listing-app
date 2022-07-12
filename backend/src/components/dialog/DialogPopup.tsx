@@ -132,6 +132,7 @@ const DialogPopup = ({ handleClose, handleClickOpen, open, id, data }: any) => {
               {location?.pathname?.replace(/[^a-zA-Z ]/g, " ")}{" "}
               {key.replace(/[^a-zA-Z ]/g, " ")}
             </span>
+
             <span style={{ color: "#A0A3C8" }}>
               {" "}
               :{" "}
@@ -163,7 +164,7 @@ const DialogPopup = ({ handleClose, handleClickOpen, open, id, data }: any) => {
                   {timeAgo.format(new Date(`${value}`))}
                 </span>
               ) : (
-                value
+                <span>{`${value}`}</span>
               )}
             </span>
           </Box>
