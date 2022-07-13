@@ -15,10 +15,9 @@ import Marquee from "react-fast-marquee";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
-import SingleCoinHeader from "../../../components/desktop/singlecoinheader/SingleCoinHeader";
-import SinglePageTab from "../../../components/desktop/singlepagetab/SinglePageTab";
 import MobileTopAlertBox from "../../../components/mobile/alert/topalertbox/MobileTopAlertBox";
 import MobileSingleCoinHeader from "../../../components/mobile/singlecoinheader/MobileSingleCoinHeader";
+import MobileSingleCoinPageAccordion from "../../../components/mobile/singlecoinpageaccordion/MobileSingleCoinPageAccordion";
 
 const MobileSingleCoinPage = () => {
   const { parse } = require("rss-to-json");
@@ -183,7 +182,7 @@ const MobileSingleCoinPage = () => {
             paddingTop: 2,
           }}
         >
-          <SinglePageTab />
+          <MobileSingleCoinPageAccordion />
         </Grid>
       </Grid>
     </Fragment>

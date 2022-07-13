@@ -199,7 +199,7 @@ const MobileSingleCoinHeader = () => {
             <Stack
               direction={{ xs: "row", sm: "row", md: "row" }}
               spacing={2}
-              sx={{ alignItems: "flex-start" }}
+              sx={{ alignItems: "flex-start", justifyContent: "flex-start" }}
               width="100%"
             >
               <Stack
@@ -264,54 +264,93 @@ const MobileSingleCoinHeader = () => {
             </Stack>
           </Stack>
 
-          <Grid xs={12} sm={12} md={6} lg={6} xl={6} py={2}>
+          <Stack
+            direction={{ xs: "column", sm: "column", md: "column" }}
+            spacing={3}
+            width="100%"
+            alignItems="flex-start"
+          >
             <Stack
-              direction={{ xs: "column", sm: "column", md: "column" }}
-              spacing={3}
+              direction={{ xs: "row", sm: "row", md: "row" }}
+              spacing={1.5}
+              sx={{ alignItems: "center", justifyContent: "flex-start" }}
+              py={2}
             >
-              <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
-                <Stack
-                  direction={{ xs: "column", sm: "column", md: "row" }}
-                  spacing={1.5}
-                  sx={{ alignItems: "center", justifyContent: "flex-end" }}
+              <Button
+                variant="contained"
+                startIcon={<MoodIcon />}
+                sx={{
+                  backgroundColor: "#6252E7",
+                  textTransform: "capitalize",
+                }}
+              >
+                By on pancakeswap
+              </Button>
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                spacing={1}
+                sx={{ alignItems: "center" }}
+                justifyContent={{
+                  xs: "center",
+                  sm: "center",
+                  md: "center",
+                  lg: "flex-start",
+                }}
+              >
+                <Avatar
+                  src={CoinGeckoImage}
+                  sx={{ width: 30, height: 30 }}
+                ></Avatar>
+                <Avatar
+                  src={CoinMarketcapImage}
+                  sx={{ width: 30, height: 30 }}
+                ></Avatar>
+                <RWebShare
+                  data={{
+                    text: "Test Share Text",
+                    url: "http://localhost:3000/coin",
+                    title: "Coinxhigh",
+                  }}
+                  onClick={() => console.log("shared successfully!")}
                 >
-                  <Button
-                    variant="contained"
-                    startIcon={<MoodIcon />}
-                    sx={{
-                      backgroundColor: "#6252E7",
-                      textTransform: "capitalize",
-                    }}
-                  >
-                    By on pancakeswap
-                  </Button>
-
-                  <Chip
-                    label="1675 Votes"
-                    sx={{
-                      height: "36px",
-                      borderRadius: "4px",
-                      color: "#FFFFF5",
-                      backgroundColor: "#13133B",
-                      fontSize: "1.025rem",
-                      "&.MuiChip-deleteIcon": {
-                        color: "#FFFFF5",
-                      },
-                    }}
-                    onDelete={() => {}}
-                    deleteIcon={
-                      <ArrowUpwardRoundedIcon
-                        sx={{
-                          color: "rgb(255 255 255 / 72%)",
-                          "&.MuiChip-deleteIcon": {
-                            color: "#FFFFF5",
-                          },
-                        }}
-                      />
-                    }
-                  />
-                </Stack>
-              </Grid>
+                  <IconButton sx={{ padding: 0 }}>
+                    <ShareOutlinedIcon sx={{ color: "#575385" }} />
+                  </IconButton>
+                </RWebShare>
+              </Stack>
+            </Stack>
+          </Stack>
+        </Stack>
+      </Grid>
+      <Grid xs={12}>
+        <Box
+          sx={{
+            flexGrow: 1,
+            borderTop: "2px solid #292654",
+            borderBottom: "2px solid #292654",
+          }}
+        >
+          <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
+            <Stack
+              direction={{ xs: "row", sm: "row", md: "row" }}
+              sx={{ alignItems: "center" }}
+              spacing={4}
+              py={2}
+            >
+              <Stack direction="row" spacing={1} alignItems="center">
+                <Tooltip title="Delete">
+                  <Avatar
+                    src={ToolTipImage}
+                    sx={{ width: 14, height: 14 }}
+                  ></Avatar>
+                </Tooltip>
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#23E2A0", fontWeight: 500 }}
+                >
+                  Badges
+                </Typography>
+              </Stack>
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
                 spacing={0.5}
@@ -341,729 +380,13 @@ const MobileSingleCoinHeader = () => {
                 </Box>
               </Stack>
             </Stack>
-          </Grid>
-        </Stack>
-      </Grid>
-      <Grid xs={12}>
-        <Box
-          sx={{
-            flexGrow: 1,
-            borderTop: "2px solid #292654",
-            borderBottom: "2px solid #292654",
-          }}
-          py={2}
-        >
-          <Stack
-            direction={{ xs: "column", sm: "column", md: "column", lg: "row" }}
-            spacing={1}
-            sx={{ alignItems: "center", justifyContent: "space-between" }}
-          >
-            <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
-              >
-                <Typography variant="caption" sx={{ color: "#23E2A0" }}>
-                  Listed
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
-                  ></Avatar>
-                </Tooltip>
-              </Stack>
 
-              <Typography variant="subtitle2" sx={{ color: "#FFFFF5" }}>
-                3 Hrs ago
-              </Typography>
-            </Stack>
-            <Divider
+            {/* <Divider
               variant="middle"
               flexItem
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
               sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
-            />
-
-            <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                spacing={1}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-              >
-                <Typography variant="caption" sx={{ color: "#23E2A0" }}>
-                  Network
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
-                  ></Avatar>
-                </Tooltip>
-              </Stack>
-
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                spacing={0}
-              >
-                {" "}
-                <Typography variant="subtitle2" sx={{ color: "#FFFFF5" }}>
-                  Biance Smart Chain
-                </Typography>
-                <IconButton
-                  aria-label="more"
-                  id="long-button"
-                  aria-controls={open ? "long-menu" : undefined}
-                  aria-expanded={open ? "true" : undefined}
-                  aria-haspopup="true"
-                  onClick={handleClick}
-                  sx={{ padding: 0 }}
-                >
-                  <MoreVertIcon sx={{ color: "#75787c" }} />
-                </IconButton>
-              </Stack>
-            </Stack>
-
-            <Divider
-              variant="middle"
-              flexItem
-              orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
-            />
-
-            <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                spacing={1}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-              >
-                <Typography variant="caption" sx={{ color: "#23E2A0" }}>
-                  Token contract address
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
-                  ></Avatar>
-                </Tooltip>
-              </Stack>
-
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                spacing={0}
-              >
-                {" "}
-                <Typography variant="subtitle2" sx={{ color: "#FFFFF5" }}>
-                  {"0xED3F52c46280ad96485323Fb6a51242cb4CA45F5".substring(
-                    0,
-                    14
-                  ) +
-                    "........." +
-                    "0xED3F52c46280ad96485323Fb6a51242cb4CA45F5".slice(-6)}
-                </Typography>
-                <CopyToClipboard
-                  options={{ message: "" }}
-                  text={copyValue}
-                  onCopy={() => setCopied(true)}
-                >
-                  <IconButton
-                    sx={{ paddingLeft: 1 }}
-                    onClick={() => {
-                      setCopyValue(
-                        "0xED3F52c46280ad96485323Fb6a51242cb4CA45F5"
-                      );
-                    }}
-                  >
-                    <Tooltip title={`${copied ? "Copied" : "Copy this Token"}`}>
-                      <ContentCopyIcon
-                        sx={{ color: `${copied ? "#23D471" : "#75787c"}` }}
-                      />
-                    </Tooltip>
-                  </IconButton>
-                </CopyToClipboard>
-                <IconButton
-                  aria-label="more"
-                  id="long-button"
-                  aria-controls={open ? "long-menu" : undefined}
-                  aria-expanded={open ? "true" : undefined}
-                  aria-haspopup="true"
-                  onClick={handleClick}
-                  sx={{ padding: 0 }}
-                >
-                  <MoreVertIcon sx={{ color: "#75787c" }} />
-                </IconButton>
-              </Stack>
-            </Stack>
-
-            <Divider
-              variant="middle"
-              flexItem
-              orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
-            />
-            <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                spacing={1}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-              >
-                <Typography variant="caption" sx={{ color: "#23E2A0" }}>
-                  Total Holders
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
-                  ></Avatar>
-                </Tooltip>
-              </Stack>
-
-              <Typography variant="subtitle2" sx={{ color: "#FFFFF5" }}>
-                187,556
-              </Typography>
-            </Stack>
-            <Divider
-              variant="middle"
-              flexItem
-              orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
-            />
-
-            <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                spacing={1}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-              >
-                <Typography variant="caption" sx={{ color: "#23E2A0" }}>
-                  In Watchlist
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
-                  ></Avatar>
-                </Tooltip>
-              </Stack>
-
-              <Typography variant="subtitle2" sx={{ color: "#FFFFF5" }}>
-                4444,333
-              </Typography>
-            </Stack>
-            <Divider
-              variant="middle"
-              flexItem
-              orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
-            />
-            <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                spacing={1}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-              >
-                <Typography variant="caption" sx={{ color: "#23E2A0" }}>
-                  Total Liquidity in pool
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
-                  ></Avatar>
-                </Tooltip>
-              </Stack>
-
-              <Typography variant="subtitle2" sx={{ color: "#FFFFF5" }}>
-                $20,185,00
-              </Typography>
-            </Stack>
-            <Divider
-              variant="middle"
-              flexItem
-              orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
-            />
-            <Stack
-              direction={{ xs: "row", sm: "row", md: "row" }}
-              spacing={1}
-              sx={{ alignItems: "center" }}
-              justifyContent={{
-                xs: "center",
-                sm: "center",
-                md: "center",
-                lg: "flex-start",
-              }}
-            >
-              <Avatar
-                src={CoinGeckoImage}
-                sx={{ width: 30, height: 30 }}
-              ></Avatar>
-              <Avatar
-                src={CoinMarketcapImage}
-                sx={{ width: 30, height: 30 }}
-              ></Avatar>
-              <RWebShare
-                data={{
-                  text: "Test Share Text",
-                  url: "http://localhost:3000/coin",
-                  title: "Coinxhigh",
-                }}
-                onClick={() => console.log("shared successfully!")}
-              >
-                <IconButton sx={{ padding: 0 }}>
-                  <ShareOutlinedIcon sx={{ color: "#575385" }} />
-                </IconButton>
-              </RWebShare>
-            </Stack>
-          </Stack>
-        </Box>
-      </Grid>
-      <Grid xs={12}>
-        <Box
-          sx={{
-            flexGrow: 1,
-            // borderTop: "2px solid #292654",
-            borderBottom: "2px solid #292654",
-          }}
-        >
-          <Stack
-            direction={{ xs: "column", sm: "column", md: "column", lg: "row" }}
-            spacing={1}
-            sx={{ alignItems: "center", justifyContent: "space-between" }}
-          >
-            <Stack
-              direction={{ xs: "column", sm: "column", md: "column" }}
-              py={2}
-            >
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                spacing={1}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-              >
-                <Typography
-                  variant="caption"
-                  sx={{ color: "#4D4E54", fontSize: "8.5px", fontWeight: 500 }}
-                >
-                  Website
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
-                  ></Avatar>
-                </Tooltip>
-              </Stack>
-
-              <Stack
-                direction={{ xs: "column", sm: "column", md: "column" }}
-                alignItems={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
-                pt={1}
-              >
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  sx={{ alignItems: "center" }}
-                  spacing={0}
-                  justifyContent={{
-                    xs: "center",
-                    sm: "center",
-                    md: "center",
-                    lg: "flex-start",
-                  }}
-                >
-                  <IconButton
-                    aria-label="more"
-                    id="long-button"
-                    aria-controls={open ? "long-menu" : undefined}
-                    aria-expanded={open ? "true" : undefined}
-                    aria-haspopup="true"
-                    onClick={handleClick}
-                    sx={{ padding: 0 }}
-                  >
-                    <MoreVertIcon sx={{ color: "#75787c" }} />
-                  </IconButton>
-                </Stack>
-              </Stack>
-            </Stack>
-
-            <Divider
-              variant="middle"
-              flexItem
-              orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
-            />
-
-            <Stack
-              direction={{ xs: "column", sm: "column", md: "column" }}
-              py={2}
-            >
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                spacing={1}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-              >
-                <Typography
-                  variant="caption"
-                  sx={{ color: "#4D4E54", fontSize: "8.5px", fontWeight: 500 }}
-                >
-                  Explorers
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
-                  ></Avatar>
-                </Tooltip>
-              </Stack>
-
-              <Stack
-                direction={{ xs: "column", sm: "column", md: "column" }}
-                alignItems={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
-                pt={1}
-              >
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  sx={{ alignItems: "center" }}
-                  spacing={0}
-                  justifyContent={{
-                    xs: "center",
-                    sm: "center",
-                    md: "center",
-                    lg: "flex-start",
-                  }}
-                >
-                  <IconButton
-                    aria-label="more"
-                    id="long-button"
-                    aria-controls={open ? "long-menu" : undefined}
-                    aria-expanded={open ? "true" : undefined}
-                    aria-haspopup="true"
-                    onClick={handleClick}
-                    sx={{ padding: 0 }}
-                  >
-                    <MoreVertIcon sx={{ color: "#75787c" }} />
-                  </IconButton>
-                </Stack>
-              </Stack>
-            </Stack>
-
-            <Divider
-              variant="middle"
-              flexItem
-              orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
-            />
-            <Stack
-              direction={{ xs: "column", sm: "column", md: "column" }}
-              py={2}
-            >
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                spacing={1}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-              >
-                <Typography
-                  variant="caption"
-                  sx={{ color: "#4D4E54", fontSize: "8.5px", fontWeight: 500 }}
-                >
-                  Community
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
-                  ></Avatar>
-                </Tooltip>
-              </Stack>
-
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{
-                  alignItems: "flex-start",
-                  flexWrap: "wrap",
-                }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={0}
-                pt={1}
-              ></Stack>
-            </Stack>
-
-            <Divider
-              variant="middle"
-              flexItem
-              orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
-            />
-
-            <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                spacing={1}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-              >
-                <Typography
-                  variant="caption"
-                  sx={{ color: "#4D4E54", fontSize: "8.5px", fontWeight: 500 }}
-                >
-                  Source Code,White Paper & Audit..
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
-                  ></Avatar>
-                </Tooltip>
-              </Stack>
-
-              <Stack
-                direction={{ xs: "column", sm: "column", md: "column" }}
-                alignItems={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
-                pt={1}
-              >
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  sx={{ alignItems: "center" }}
-                  spacing={0}
-                  justifyContent={{
-                    xs: "center",
-                    sm: "center",
-                    md: "center",
-                    lg: "flex-start",
-                  }}
-                ></Stack>
-
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  sx={{ alignItems: "center" }}
-                  spacing={0}
-                  justifyContent={{
-                    xs: "center",
-                    sm: "center",
-                    md: "center",
-                    lg: "flex-start",
-                  }}
-                >
-                  <IconButton
-                    aria-label="more"
-                    id="long-button"
-                    aria-controls={open ? "long-menu" : undefined}
-                    aria-expanded={open ? "true" : undefined}
-                    aria-haspopup="true"
-                    onClick={handleClick}
-                    sx={{ padding: 0 }}
-                  >
-                    <MoreVertIcon sx={{ color: "#75787c" }} />
-                  </IconButton>
-                </Stack>
-              </Stack>
-            </Stack>
-
-            <Divider
-              variant="middle"
-              flexItem
-              orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
-            />
-            <Stack
-              direction={{ xs: "column", sm: "column", md: "column" }}
-              py={2}
-            >
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                spacing={1}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-              >
-                <Typography
-                  variant="caption"
-                  sx={{ color: "#4D4E54", fontSize: "8.5px", fontWeight: 500 }}
-                >
-                  Chart
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
-                  ></Avatar>
-                </Tooltip>
-              </Stack>
-
-              <Stack
-                direction={{ xs: "column", sm: "column", md: "column" }}
-                sx={{ alignItems: "flex-start" }}
-                spacing={1}
-                pt={1}
-              >
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  sx={{ alignItems: "center" }}
-                  spacing={0}
-                  justifyContent={{
-                    xs: "center",
-                    sm: "center",
-                    md: "center",
-                    lg: "flex-start",
-                  }}
-                >
-                  <IconButton
-                    aria-label="more"
-                    id="long-button"
-                    aria-controls={open ? "long-menu" : undefined}
-                    aria-expanded={open ? "true" : undefined}
-                    aria-haspopup="true"
-                    onClick={handleClick}
-                    sx={{ padding: 0 }}
-                  >
-                    <MoreVertIcon sx={{ color: "#75787c" }} />
-                  </IconButton>
-                </Stack>
-              </Stack>
-            </Stack>
-
-            <Divider
-              variant="middle"
-              flexItem
-              orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
-            />
-
-            <Stack
-              direction={{ xs: "column", sm: "column", md: "column" }}
-              sx={{ alignItems: "center" }}
-              py={2}
-            >
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
-              >
-                <Typography variant="caption" sx={{ color: "#23E2A0" }}>
-                  Listed
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
-                  ></Avatar>
-                </Tooltip>
-              </Stack>
-
-              <Stack
-                direction="column"
-                spacing={0}
-                sx={{ alignItems: "center" }}
-              >
-                <Typography
-                  variant="h5"
-                  sx={{ color: "#FFFFF5", fontWeight: "400" }}
-                >
-                  4.9
-                </Typography>
-                <Rating
-                  name="size-small"
-                  defaultValue={5}
-                  size="small"
-                  readOnly
-                  sx={{ fontSize: ".9rem" }}
-                />
-              </Stack>
-            </Stack>
+            /> */}
           </Stack>
         </Box>
       </Grid>
