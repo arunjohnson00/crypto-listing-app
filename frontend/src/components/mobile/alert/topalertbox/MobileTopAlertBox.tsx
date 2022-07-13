@@ -30,7 +30,7 @@ const MobileTopAlertBox = () => {
             backgroundColor: "#000000",
 
             borderRadius: 3,
-            height: 80,
+            height: "auto",
             paddingTop: 1,
           }}
         >

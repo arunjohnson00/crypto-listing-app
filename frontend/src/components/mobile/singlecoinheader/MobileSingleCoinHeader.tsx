@@ -89,14 +89,28 @@ const MobileSingleCoinHeader = () => {
                   src="https://cryptologos.cc/logos/safemoon-safemoon-logo.png?v=022"
                   sx={{ borderRadius: 0, width: 25, height: 25 }}
                 />
-                <Typography
-                  variant="body2"
-                  sx={{ color: "#FFFFF5ae", fontWeight: 600 }}
-                  textAlign={{ xs: "center", sm: "center", md: "left" }}
+                <Stack
+                  direction="row"
+                  spacing={0}
+                  sx={{ alignItems: "center", flexWrap: "wrap" }}
                 >
-                  Presale starts in :
-                  <span style={{ color: "#BDD645" }}> 00days 08 Hours 24</span>
-                </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{ color: "#FFFFF5ae", fontWeight: 600 }}
+                    textAlign={{ xs: "center", sm: "center", md: "left" }}
+                    mr={1}
+                  >
+                    Presale starts in :
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{ color: "#BDD645", fontWeight: 600 }}
+                    textAlign={{ xs: "center", sm: "center", md: "left" }}
+                  >
+                    {" "}
+                    00days 08 Hours 24
+                  </Typography>
+                </Stack>
               </Stack>
               <Stack
                 direction="column"

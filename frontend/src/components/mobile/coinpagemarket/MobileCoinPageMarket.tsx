@@ -69,7 +69,7 @@ const MobileCoinPageMarket = () => {
         </Stack>
       </Grid>
       <Grid xs={12} sm={12} md={8} lg={8} xl={8}>
-        <Grid xs={12} mb={5}>
+        <Grid xs={12} mb={2}>
           <Stack
             direction="column"
             mt={{ xs: 0, sm: 0, md: 7 }}
@@ -97,7 +97,7 @@ const MobileCoinPageMarket = () => {
                     color: "#FFFFF5",
                     fontWeight: 400,
                     lineHeight: 1,
-                    fontSize: "1rem",
+                    fontSize: ".8rem",
                   }}
                 >
                   Pancakeswap
@@ -106,7 +106,11 @@ const MobileCoinPageMarket = () => {
               <Button
                 variant="contained"
                 startIcon={<MoodIcon />}
-                sx={{ backgroundColor: "#6252E7", textTransform: "capitalize" }}
+                sx={{
+                  backgroundColor: "#6252E7",
+                  textTransform: "capitalize",
+                  fontSize: ".8rem",
+                }}
               >
                 By on pancakeswap
               </Button>
@@ -133,7 +137,7 @@ const MobileCoinPageMarket = () => {
                     color: "#FFFFF5",
                     fontWeight: 400,
                     lineHeight: 1,
-                    fontSize: "1rem",
+                    fontSize: ".8rem",
                   }}
                 >
                   Pancakeswap
@@ -142,7 +146,11 @@ const MobileCoinPageMarket = () => {
               <Button
                 variant="contained"
                 startIcon={<MoodIcon />}
-                sx={{ backgroundColor: "#6252E7", textTransform: "capitalize" }}
+                sx={{
+                  backgroundColor: "#6252E7",
+                  textTransform: "capitalize",
+                  fontSize: ".8rem",
+                }}
               >
                 By on pancakeswap
               </Button>
@@ -169,7 +177,7 @@ const MobileCoinPageMarket = () => {
                     color: "#FFFFF5",
                     fontWeight: 400,
                     lineHeight: 1,
-                    fontSize: "1rem",
+                    fontSize: ".8rem",
                   }}
                 >
                   Pancakeswap
@@ -178,7 +186,11 @@ const MobileCoinPageMarket = () => {
               <Button
                 variant="contained"
                 startIcon={<MoodIcon />}
-                sx={{ backgroundColor: "#6252E7", textTransform: "capitalize" }}
+                sx={{
+                  backgroundColor: "#6252E7",
+                  textTransform: "capitalize",
+                  fontSize: ".8rem",
+                }}
               >
                 By on pancakeswap
               </Button>

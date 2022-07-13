@@ -18,6 +18,7 @@ import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
 import MobileTopAlertBox from "../../../components/mobile/alert/topalertbox/MobileTopAlertBox";
 import MobileSingleCoinHeader from "../../../components/mobile/singlecoinheader/MobileSingleCoinHeader";
 import MobileSingleCoinPageAccordion from "../../../components/mobile/singlecoinpageaccordion/MobileSingleCoinPageAccordion";
+import MobileLatestNewsHeading from "../../../components/mobile/Typography/headings/latestnews/MobileLatestNewsHeading";
 
 const MobileSingleCoinPage = () => {
   const { parse } = require("rss-to-json");
@@ -57,7 +58,7 @@ const MobileSingleCoinPage = () => {
             }}
           >
             <Grid xs={4} sm={4} md={3} lg={2} xl={2}>
-              <LatestNewsHeading />
+              <MobileLatestNewsHeading />
             </Grid>
             <Grid xs={8} sm={8} md={9} lg={10} xl={10}>
               <Stack direction="row" spacing={3}>

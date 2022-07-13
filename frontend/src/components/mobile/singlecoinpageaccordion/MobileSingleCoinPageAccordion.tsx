@@ -1020,12 +1020,6 @@ const MobileSingleCoinPageAccordion = () => {
               </Typography>
             </Stack>
           </Stack>
-          <Divider
-            variant="fullWidth"
-            flexItem
-            orientation={"horizontal"}
-            sx={{ borderColor: "#181921", borderBottomWidth: 2 }}
-          />
 
           <Button
             variant="contained"
