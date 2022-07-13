@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import Collapse from "@mui/material/Collapse";
 import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
-import { Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 const MobileTopAlertBox = () => {
   const [open, setOpen] = React.useState(true);
   return (
@@ -30,16 +30,37 @@ const MobileTopAlertBox = () => {
             backgroundColor: "#000000",
 
             borderRadius: 3,
-            height: 60,
+            height: 80,
             paddingTop: 1,
           }}
         >
-          <Typography
-            sx={{ alignSelf: "flex-end", color: "#a3a3a3", fontSize: "0.8rem" }}
-          >
-            Veryfiy Your identity. Complete the identity verification process to
-            secure your account and transactions
-          </Typography>
+          <Stack direction="column" spacing={0}>
+            <Typography
+              sx={{
+                alignSelf: "flex-end",
+                color: "#a3a3a3",
+                fontSize: "0.8rem",
+              }}
+            >
+              Veryfiy Your identity. Complete the identity verification process
+              to secure your account and transactions
+            </Typography>
+            <Stack direction="column" spacing={1} justifyContent="flex-end">
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "#1a1f30",
+                  borderRadius: 3,
+                  textTransform: "capitalize",
+                  fontSize: ".7rem",
+                  alignSelf: "end",
+                }}
+              >
+                {" "}
+                LetsGo {">"}
+              </Button>
+            </Stack>
+          </Stack>
         </Alert>
       </Collapse>
     </Box>

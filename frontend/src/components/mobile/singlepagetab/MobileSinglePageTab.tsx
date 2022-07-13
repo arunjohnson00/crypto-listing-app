@@ -9,6 +9,7 @@ import MobileCoinPageAbout from "../coinpageabout/MobileCoinPageAbout";
 import MobileCoinpageRatings from "../coinpageratings/MobileCoinpageRatings";
 import MobileCoinPageMarket from "../coinpagemarket/MobileCoinPageMarket";
 import MobileCoinPageFAQ from "../coinpagefaq/MobileCoinPageFAQ";
+import MobileCoinPageEvents from "../coinpageevents/MobileCoinPageEvents";
 
 const MobileSinglePageTab = () => {
   const [value, setValue] = useState("1");
@@ -80,7 +81,9 @@ const MobileSinglePageTab = () => {
         <TabPanel value="5">
           <MobileCoinPageFAQ />
         </TabPanel>
-        <TabPanel value="6">Item Three</TabPanel>
+        <TabPanel value="6">
+          <MobileCoinPageEvents />
+        </TabPanel>
         <TabPanel value="7">Item One</TabPanel>
         <TabPanel value="8">Item Two</TabPanel>
         <TabPanel value="9">Item Three</TabPanel>

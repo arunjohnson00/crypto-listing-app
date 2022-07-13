@@ -41,7 +41,7 @@ const MobileSingleCoinPageAccordion = () => {
         disableGutters={true}
         defaultExpanded
         sx={{
-          backgroundColor: "#01061b",
+          backgroundColor: "transparent",
           color: "#FFFFFF",
         }}
       >
@@ -277,7 +277,7 @@ const MobileSingleCoinPageAccordion = () => {
         disableGutters={true}
         defaultExpanded
         sx={{
-          backgroundColor: "#01061b",
+          backgroundColor: "transparent",
           color: "#FFFFFF",
         }}
       >
@@ -318,7 +318,7 @@ const MobileSingleCoinPageAccordion = () => {
         disableGutters={true}
         defaultExpanded
         sx={{
-          backgroundColor: "#01061b",
+          backgroundColor: "transparent",
           color: "#FFFFFF",
         }}
       >
@@ -630,7 +630,7 @@ const MobileSingleCoinPageAccordion = () => {
         disableGutters={true}
         defaultExpanded
         sx={{
-          backgroundColor: "#01061b",
+          backgroundColor: "transparent",
           color: "#FFFFFF",
         }}
       >
@@ -953,7 +953,7 @@ const MobileSingleCoinPageAccordion = () => {
         disableGutters={true}
         defaultExpanded
         sx={{
-          backgroundColor: "#01061b",
+          backgroundColor: "transparent",
           color: "#FFFFFF",
         }}
       >
