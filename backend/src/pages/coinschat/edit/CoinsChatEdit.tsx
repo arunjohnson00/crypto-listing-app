@@ -165,6 +165,7 @@ const CoinsChatEdit = () => {
               <IconUploader
                 setAddIcon={setUpdateCoinChat}
                 addIconData={updateCoinChatData}
+                slug="coins_chat"
               />
             </Grid>
 

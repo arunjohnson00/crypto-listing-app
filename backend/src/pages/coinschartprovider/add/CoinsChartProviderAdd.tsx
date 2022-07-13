@@ -135,7 +135,7 @@ const CoinsChartProviderAdd = () => {
               </Typography>
 
               <InputText
-                placeholder="Enter Audit url"
+                placeholder="Enter Cart Provider url"
                 inputTextHandler={(e: any) => chartProviderURLHandler(e)}
               />
             </Grid>

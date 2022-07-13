@@ -1,4 +1,4 @@
-import { Grid, Typography, Stack } from "@mui/material";
+import { Grid, Typography, Stack, Avatar } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,7 +9,7 @@ import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
 import { listChartProviderRequest } from "../../store/action";
 
-//const serverAPIUrl = process.env.REACT_APP_API_URL;
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const CoinsChartProvider = () => {
   const coinChartProviderList = useSelector((chartProviderList: any) => {
@@ -48,6 +48,42 @@ const CoinsChartProvider = () => {
       field: "name",
       headerName: "Name",
       flex: 1,
+    },
+    {
+      field: "thumb_icon",
+      headerName: "Icon",
+      align: "center",
+      headerAlign: "center",
+      flex: 1,
+      sortable: false,
+      disableClickEventBubbling: true,
+      renderCell: (params: any) => (
+        <Avatar
+          src={`${serverAPIUrl}public/uploads/coins_chart_provider/${params.row.thumb_icon}`}
+          alt={params.thumb_icon}
+        />
+      ),
+    },
+
+    {
+      field: "url",
+      headerName: "Chart Provider Url",
+      flex: 2.5,
+      align: "left",
+      headerAlign: "left",
+      renderCell: (params: any) => (
+        <span style={{ color: "blue", fontSize: ".7rem" }}>
+          <a
+            href={params.row.url}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "blue", textDecoration: "none" }}
+          >
+            {" "}
+            {params.row.url}
+          </a>
+        </span>
+      ),
     },
     {
       field: "status",

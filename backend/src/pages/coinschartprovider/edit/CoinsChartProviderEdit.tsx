@@ -167,6 +167,7 @@ const CoinsChartProviderEdit = () => {
               <IconUploader
                 setAddIcon={setUpdateCoinChartProvider}
                 addIconData={updateCoinChartProviderData}
+                slug="coins_chart_provider"
               />
             </Grid>
 

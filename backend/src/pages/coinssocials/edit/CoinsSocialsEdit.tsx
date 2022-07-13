@@ -162,6 +162,7 @@ const CoinsSocialsEdit = () => {
               <IconUploader
                 setAddIcon={setUpdateCoinSocial}
                 addIconData={updateCoinSocialData}
+                slug="coins_social"
               />
             </Grid>
 

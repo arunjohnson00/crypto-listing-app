@@ -109,7 +109,7 @@ const MobileCoinPageMarket = () => {
                 sx={{
                   backgroundColor: "#6252E7",
                   textTransform: "capitalize",
-                  fontSize: ".8rem",
+                  fontSize: ".7rem",
                 }}
               >
                 By on pancakeswap
@@ -149,7 +149,7 @@ const MobileCoinPageMarket = () => {
                 sx={{
                   backgroundColor: "#6252E7",
                   textTransform: "capitalize",
-                  fontSize: ".8rem",
+                  fontSize: ".7rem",
                 }}
               >
                 By on pancakeswap
@@ -189,7 +189,7 @@ const MobileCoinPageMarket = () => {
                 sx={{
                   backgroundColor: "#6252E7",
                   textTransform: "capitalize",
-                  fontSize: ".8rem",
+                  fontSize: ".7rem",
                 }}
               >
                 By on pancakeswap
