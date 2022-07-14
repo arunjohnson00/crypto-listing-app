@@ -19,7 +19,11 @@ const CoinListing = () => {
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo("en-US");
   const coinList = useSelector((cnList: any) => {
-    return cnList?.coinReducer?.listCoins?.data;
+    return cnList?.coinReducer?.listCoins.data;
+  });
+
+  const rowCount = useSelector((cnList: any) => {
+    return cnList?.coinReducer?.listCoins?.total;
   });
 
   const [searchValue, setSearchValue] = useState("");
@@ -33,12 +37,17 @@ const CoinListing = () => {
         return flData.name.toLowerCase().includes(searchValue.toLowerCase());
       })
     : coinList;
+  console.log(filteredData);
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
 
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
-    dispatch(listCoinRequest("emptyData", successHandler, errorHandler));
-  }, [dispatch]);
+    dispatch(listCoinRequest(dataTableParams, successHandler, errorHandler));
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   const tableColumn = [
     {
@@ -78,17 +87,17 @@ const CoinListing = () => {
         ),
     },
 
-    {
-      field: "created_at",
-      headerName: "Submitted",
-      flex: 1,
+    // {
+    //   field: "created_at",
+    //   headerName: "Submitted",
+    //   flex: 1,
 
-      align: "center",
-      headerAlign: "center",
-      renderCell: (params: any) => (
-        <span>{timeAgo.format(new Date(params.row.created_at))}</span>
-      ),
-    },
+    //   align: "center",
+    //   headerAlign: "center",
+    //   renderCell: (params: any) => (
+    //     <span>{timeAgo.format(new Date(params.row.created_at))}</span>
+    //   ),
+    // },
 
     {
       field: "network_id",
@@ -198,9 +207,12 @@ const CoinListing = () => {
 
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
           data={coinList}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

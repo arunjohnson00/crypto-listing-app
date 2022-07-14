@@ -6,9 +6,10 @@ export const listCoinRequest = (
   successHandler: any,
   errorHandler: any
 ) => {
+  console.log(pageData);
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/coins`,
+    url: `api/b/v1/coins?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: COINS.LIST_COINS,

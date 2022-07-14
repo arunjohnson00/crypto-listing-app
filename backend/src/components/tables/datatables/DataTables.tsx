@@ -173,12 +173,18 @@ const GridEdit = ({ index, navigate, location, dispatch, data }: any) => {
   );
 };
 
-const DataTables = ({ tableData, tableColumn, data }: any) => {
+const DataTables = ({
+  tableData,
+  tableColumn,
+  data,
+  setDataTableParams,
+  dataTableParams,
+  rowCount,
+}: any) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const [pageSize, setPageSize] = useState<number>(10);
 
   const CustomToolbar = () => {
     return (
@@ -220,19 +226,28 @@ const DataTables = ({ tableData, tableColumn, data }: any) => {
       },
     },
   ];
-
+  console.log(tableData);
   return (
     <Fragment>
       <div style={{ height: "100vh", width: "100%" }}>
         <DataGrid
-          rows={tableData}
+          rows={tableData && tableData}
           columns={[...tableColumn, ...addtitionalColumns]}
           // filterMode="server"
-          //paginationMode="server"
+          paginationMode="server"
+          rowCount={rowCount && rowCount}
           autoHeight={false}
-          pageSize={pageSize}
-          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-          rowsPerPageOptions={[10, 25, 50]}
+          page={dataTableParams && dataTableParams.pageCount}
+          pageSize={dataTableParams && dataTableParams.PageSize}
+          // onPageSizeChange={(newPageSize) =>
+          //   dataTableParams &&
+          //   setDataTableParams({ ...dataTableParams, PageSize: newPageSize })
+          // }
+          onPageChange={(newPage) =>
+            dataTableParams &&
+            setDataTableParams({ ...dataTableParams, pageCount: newPage })
+          }
+          // rowsPerPageOptions={[15]}
           pagination
           loading={!tableData}
           //onCellClick={(e: any) => console.log(e.colDef.width)}
