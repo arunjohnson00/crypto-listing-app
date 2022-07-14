@@ -1,6 +1,6 @@
 import { Box, Typography, Stack, Button } from "@mui/material";
 
-const VoteCard = ({ position, variant }: any) => {
+const LeaderBoardVoteCard = ({ position, variant, width }: any) => {
   return (
     <Box
       sx={{
@@ -8,6 +8,7 @@ const VoteCard = ({ position, variant }: any) => {
         background: "linear-gradient(180deg, #1E109B, #010720)",
         border: "1px solid #151345",
         height: variant === "large" ? 236 : variant === "medium" ? 150 : 236,
+        width: width ? width : "auto",
       }}
       px={2.5}
       py={2}
@@ -161,4 +162,4 @@ const VoteCard = ({ position, variant }: any) => {
   );
 };
 
-export default VoteCard;
+export default LeaderBoardVoteCard;

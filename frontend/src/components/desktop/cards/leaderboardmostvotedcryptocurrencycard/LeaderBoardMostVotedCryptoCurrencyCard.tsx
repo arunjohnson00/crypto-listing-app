@@ -31,7 +31,6 @@ import SourcecodeImage from "../../../../assets/singlepagecoin/sourcecode.png";
 import WhitepaperImage from "../../../../assets/singlepagecoin/Whitepaper.png";
 import DocsImage from "../../../../assets/singlepagecoin/doc.png";
 import LinkImage from "../../../../assets/singlepagecoin/link.png";
-import VoteCard from "../votecard/VoteCard";
 
 const LeaderBoardMostVotedCryptoCurrencyCard = () => {
   const [copyValue, setCopyValue] = useState(

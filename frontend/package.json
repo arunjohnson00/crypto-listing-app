@@ -11,6 +11,8 @@
     "@mui/lab": "^5.0.0-alpha.81",
     "@mui/material": "^5.6.4",
     "@mui/styled-engine-sc": "^5.6.1",
+    "@reach/window-size": "^0.17.0",
+    "@react-hook/window-size": "^3.0.7",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.5.0",
