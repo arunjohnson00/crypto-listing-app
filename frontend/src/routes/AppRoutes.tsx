@@ -20,6 +20,7 @@ import EventsViewPage from "../pages/desktop/eventsview/EventsViewPage";
 import PresaleListPage from "../pages/desktop/presales/PresaleListPage";
 import DiscoverPage from "../pages/desktop/discover/DiscoverPage";
 import MobileSingleCoinPage from "../pages/mobile/mobilesinglecoinpage/MobileSingleCoinPage";
+import LeaderBoardPage from "../pages/desktop/leaderboard/LeaderBoardPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -93,6 +94,15 @@ const AppRoutes = () => {
           element={
             <PublicRoutes>
               <PresaleListPage windowInnerWidth={windowInnerWidth} />
+            </PublicRoutes>
+          }
+        />
+
+        <Route
+          path="/leader-board"
+          element={
+            <PublicRoutes>
+              <LeaderBoardPage />
             </PublicRoutes>
           }
         />

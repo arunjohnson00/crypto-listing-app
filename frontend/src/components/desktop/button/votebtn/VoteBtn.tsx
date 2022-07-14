@@ -7,8 +7,8 @@ const VoteBtn = () => {
       sx={{
         borderRadius: "50px",
         textTransform: "capitalize",
-        fontSize: "0.775rem",
-        height: "28px",
+        fontSize: "0.675rem",
+        height: 23,
       }}
       style={{
         background: "linear-gradient(to right, #5652DD 0%, #104EAB 100%)",
