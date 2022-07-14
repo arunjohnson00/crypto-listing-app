@@ -28,16 +28,16 @@ const LeaderBoardPage = ({ windowInnerWidth }: any) => {
       items: 3,
     },
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 3000, min: 1200 },
       items: 3,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 3,
+      breakpoint: { max: 1200, min: 900 },
+      items: 2,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 3,
+      breakpoint: { max: 900, min: 0 },
+      items: 1,
     },
   };
 
@@ -194,10 +194,10 @@ const LeaderBoardPage = ({ windowInnerWidth }: any) => {
           }}
         >
           <Grid container>
-            <Grid xs={7}>
+            <Grid xs={12} sm={12} md={12} lg={7} xl={7}>
               <LeaderBoardMostVotedCard />
             </Grid>
-            <Grid xs={5}>
+            <Grid xs={12} sm={12} md={12} lg={5} xl={5}>
               <LeaderBoardMostVotedCryptoCurrencyCard />
             </Grid>
           </Grid>
