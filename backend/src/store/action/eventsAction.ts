@@ -8,7 +8,7 @@ export const listEventsRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/events`,
+    url: `api/b/v1/events?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: EVENTS.LIST_EVENTS,

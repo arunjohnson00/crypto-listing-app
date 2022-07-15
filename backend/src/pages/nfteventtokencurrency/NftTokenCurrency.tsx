@@ -16,9 +16,16 @@ const NftTokenCurrency = () => {
     return nftCurrencyList.nftListingCurrencyReducer.listNftListingCurrency
       .data;
   });
+  const rowCount = useSelector((nftCurrencyList: any) => {
+    return nftCurrencyList.nftListingCurrencyReducer.listNftListingCurrency
+      .total;
+  });
 
-  console.log(nftEventCurrencyList);
   const [searchValue, setSearchValue] = useState("");
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
@@ -41,9 +48,13 @@ const NftTokenCurrency = () => {
       console.log(err);
     };
     dispatch(
-      listNftListingCurrencyRequest("emptyData", successHandler, errorHandler)
+      listNftListingCurrencyRequest(
+        dataTableParams,
+        successHandler,
+        errorHandler
+      )
     );
-  }, [dispatch]);
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   const tableColumn = [
     {
@@ -126,9 +137,12 @@ const NftTokenCurrency = () => {
 
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
-          data={nftEventCurrencyList}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
+          data={nftEventCurrencyList && nftEventCurrencyList}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

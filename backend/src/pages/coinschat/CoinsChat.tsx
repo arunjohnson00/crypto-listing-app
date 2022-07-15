@@ -17,8 +17,14 @@ const CoinsChat = () => {
     return chatList.chatReducer.listChat.data;
   });
 
-  console.log(coinChatList);
+  const rowCount = useSelector((chatList: any) => {
+    return chatList.chatReducer.listChat.total;
+  });
   const [searchValue, setSearchValue] = useState("");
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
@@ -40,8 +46,10 @@ const CoinsChat = () => {
     const errorHandler = (err: any) => {
       console.log(err);
     };
-    dispatch(listCoinChatRequest("emptyData", successHandler, errorHandler));
-  }, [dispatch]);
+    dispatch(
+      listCoinChatRequest(dataTableParams, successHandler, errorHandler)
+    );
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   const tableColumn = [
     {
@@ -160,9 +168,12 @@ const CoinsChat = () => {
 
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
-          data={coinChatList}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
+          data={coinChatList && coinChatList}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

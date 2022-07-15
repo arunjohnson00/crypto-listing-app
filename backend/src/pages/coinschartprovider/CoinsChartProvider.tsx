@@ -15,8 +15,14 @@ const CoinsChartProvider = () => {
   const coinChartProviderList = useSelector((chartProviderList: any) => {
     return chartProviderList.chartProviderReducer.listChartProvider.data;
   });
-
+  const rowCount = useSelector((chartProviderList: any) => {
+    return chartProviderList.chartProviderReducer.listChartProvider.total;
+  });
   const [searchValue, setSearchValue] = useState("");
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
@@ -39,9 +45,9 @@ const CoinsChartProvider = () => {
       console.log(err);
     };
     dispatch(
-      listChartProviderRequest("emptyData", successHandler, errorHandler)
+      listChartProviderRequest(dataTableParams, successHandler, errorHandler)
     );
-  }, [dispatch]);
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   const tableColumn = [
     {
@@ -160,9 +166,12 @@ const CoinsChartProvider = () => {
 
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
-          data={coinChartProviderList}
+          data={coinChartProviderList && coinChartProviderList}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

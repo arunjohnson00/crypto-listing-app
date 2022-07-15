@@ -16,8 +16,14 @@ const NftMarketPlaces = () => {
   const nftMarketPlaceList = useSelector((nftList: any) => {
     return nftList.nftMarketPlacesReducer.listNftMarketPlaces.data;
   });
-
+  const rowCount = useSelector((nftList: any) => {
+    return nftList.nftMarketPlacesReducer.listNftMarketPlaces.total;
+  });
   const [searchValue, setSearchValue] = useState("");
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
@@ -39,9 +45,9 @@ const NftMarketPlaces = () => {
       console.log(err);
     };
     dispatch(
-      listNftMarketPlaceRequest("emptyData", successHandler, errorHandler)
+      listNftMarketPlaceRequest(dataTableParams, successHandler, errorHandler)
     );
-  }, [dispatch]);
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   const tableColumn = [
     {
@@ -148,9 +154,12 @@ const NftMarketPlaces = () => {
 
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
-          data={nftMarketPlaceList}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
+          data={nftMarketPlaceList && nftMarketPlaceList}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

@@ -8,7 +8,7 @@ export const listCoinChatRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/coins-chat`,
+    url: `api/b/v1/coins-chat?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: CHAT.LIST_CHAT,

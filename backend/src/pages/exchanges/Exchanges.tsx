@@ -88,11 +88,17 @@ const tableColumn = [
 const Exchanges = () => {
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState("");
-
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
   const exchangeList = useSelector((exList: any) => {
     return exList.exchangesReducer.listExchanges.data;
   });
 
+  const rowCount = useSelector((exList: any) => {
+    return exList.exchangesReducer.listExchanges.total;
+  });
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
   };
@@ -106,8 +112,10 @@ const Exchanges = () => {
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
-    dispatch(listExchangeRequest("emptyData", successHandler, errorHandler));
-  }, [dispatch]);
+    dispatch(
+      listExchangeRequest(dataTableParams, successHandler, errorHandler)
+    );
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   return (
     <Grid container spacing={2}>
@@ -162,9 +170,12 @@ const Exchanges = () => {
 
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
-          data={exchangeList}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
+          data={exchangeList && exchangeList}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

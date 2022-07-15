@@ -15,9 +15,15 @@ const EventCategory = () => {
   const eventCategoryList = useSelector((evnCategoryList: any) => {
     return evnCategoryList.eventsCategoryReducer.listEventsCategory.data;
   });
+  const rowCount = useSelector((evnCategoryList: any) => {
+    return evnCategoryList.eventsCategoryReducer.listEventsCategory.total;
+  });
 
-  console.log(eventCategoryList);
   const [searchValue, setSearchValue] = useState("");
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
@@ -40,9 +46,9 @@ const EventCategory = () => {
       console.log(err);
     };
     dispatch(
-      listEventsCategoryRequest("emptyData", successHandler, errorHandler)
+      listEventsCategoryRequest(dataTableParams, successHandler, errorHandler)
     );
-  }, [dispatch]);
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   const tableColumn = [
     {
@@ -125,9 +131,12 @@ const EventCategory = () => {
 
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
-          data={eventCategoryList}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
+          data={eventCategoryList && eventCategoryList}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

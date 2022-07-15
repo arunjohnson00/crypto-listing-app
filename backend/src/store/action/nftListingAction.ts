@@ -7,7 +7,7 @@ export const listNftListingRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/nft-listing`,
+    url: `api/b/v1/nft-listing?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: NFT_LISTINGS.LIST_NFT_LISTINGS,

@@ -18,7 +18,14 @@ const AirDrops = () => {
     return airdpList.airdropsReducer.listAirdrops.data;
   });
 
+  const rowCount = useSelector((airdpList: any) => {
+    return airdpList.airdropsReducer.listAirdrops.total;
+  });
   const [searchValue, setSearchValue] = useState("");
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
@@ -42,8 +49,10 @@ const AirDrops = () => {
     const errorHandler = (err: any) => {
       console.log(err);
     };
-    dispatch(listAirDropsRequest("emptyData", successHandler, errorHandler));
-  }, [dispatch]);
+    dispatch(
+      listAirDropsRequest(dataTableParams, successHandler, errorHandler)
+    );
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   const tableColumn = [
     // {
@@ -192,9 +201,12 @@ const AirDrops = () => {
 
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
-          data={airdropsList}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
+          data={airdropsList && airdropsList}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

@@ -17,9 +17,16 @@ const MenuCard = () => {
   const menuCardList = useSelector((menuList: any) => {
     return menuList.menuCardsReducer.listMenuCards.data;
   });
+  const rowCount = useSelector((menuList: any) => {
+    return menuList.menuCardsReducer.listMenuCards.total;
+  });
 
   //console.log(menuCardList);
   const [searchValue, setSearchValue] = useState("");
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
@@ -40,8 +47,10 @@ const MenuCard = () => {
     const errorHandler = (err: any) => {
       console.log(err);
     };
-    dispatch(listMenuCardRequest("emptyData", successHandler, errorHandler));
-  }, [dispatch]);
+    dispatch(
+      listMenuCardRequest(dataTableParams, successHandler, errorHandler)
+    );
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   const tableColumn = [
     {
@@ -158,9 +167,12 @@ const MenuCard = () => {
 
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
-          data={menuCardList}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
+          data={menuCardList && menuCardList}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

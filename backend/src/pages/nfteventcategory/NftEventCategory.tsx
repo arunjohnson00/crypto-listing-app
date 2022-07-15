@@ -17,8 +17,15 @@ const NftEventCategory = () => {
       .data;
   });
 
-  console.log(nftEventCategoryList);
+  const rowCount = useSelector((nftCategoryList: any) => {
+    return nftCategoryList.nftListingCategoryReducer.listNftListingCategory
+      .total;
+  });
   const [searchValue, setSearchValue] = useState("");
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
@@ -41,9 +48,13 @@ const NftEventCategory = () => {
       console.log(err);
     };
     dispatch(
-      listNftListingCategoryRequest("emptyData", successHandler, errorHandler)
+      listNftListingCategoryRequest(
+        dataTableParams,
+        successHandler,
+        errorHandler
+      )
     );
-  }, [dispatch]);
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   const tableColumn = [
     {
@@ -126,9 +137,12 @@ const NftEventCategory = () => {
 
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
-          data={nftEventCategoryList}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
+          data={nftEventCategoryList && nftEventCategoryList}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

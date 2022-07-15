@@ -8,7 +8,7 @@ export const listNetworkRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/networks`,
+    url: `api/b/v1/networks?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: NETWORK.LIST_NETWORK,

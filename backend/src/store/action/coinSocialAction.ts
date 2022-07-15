@@ -8,7 +8,7 @@ export const listCoinSocialRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/coins-socials`,
+    url: `api/b/v1/coins-socials?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: SOCIALS.LIST_SOCIALS,

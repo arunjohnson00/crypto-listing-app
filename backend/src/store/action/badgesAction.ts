@@ -8,7 +8,7 @@ export const listBadgeRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/badges`,
+    url: `api/b/v1/badges?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: BADGES.LIST_BADGES,

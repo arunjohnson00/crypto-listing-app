@@ -8,7 +8,7 @@ export const listAirDropsRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/airdrops`,
+    url: `api/b/v1/airdrops?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: AIRDROPS.LIST_AIRDROPS,

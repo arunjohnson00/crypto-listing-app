@@ -17,8 +17,16 @@ const EventRewardAddress = () => {
       .data;
   });
 
-  console.log(eventsRewardAddressList);
+  const rowCount = useSelector((rewardAddressList: any) => {
+    return rewardAddressList.eventsRewardAddressReducer.listEventsRewardAddress
+      .total;
+  });
+
   const [searchValue, setSearchValue] = useState("");
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
@@ -41,9 +49,13 @@ const EventRewardAddress = () => {
       console.log(err);
     };
     dispatch(
-      listEventsRewardAddressRequest("emptyData", successHandler, errorHandler)
+      listEventsRewardAddressRequest(
+        dataTableParams,
+        successHandler,
+        errorHandler
+      )
     );
-  }, [dispatch]);
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   const tableColumn = [
     {
@@ -131,9 +143,12 @@ const EventRewardAddress = () => {
 
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
-          data={eventsRewardAddressList}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
+          data={eventsRewardAddressList && eventsRewardAddressList}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

@@ -8,7 +8,7 @@ export const listCoinCommunityRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/coins-community`,
+    url: `api/b/v1/coins-community?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: COMMUNITY.LIST_COMMUNITY,

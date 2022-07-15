@@ -8,7 +8,7 @@ export const listChartProviderRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/coins-chart-provider`,
+    url: `api/b/v1/coins-chart-provider?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: CHART_PROVIDER.LIST_CHART_PROVIDER,

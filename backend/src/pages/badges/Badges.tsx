@@ -17,8 +17,15 @@ const Badges = () => {
   const badgesList = useSelector((bdgList: any) => {
     return bdgList.badgesReducer.listBadges.data;
   });
+  const rowCount = useSelector((bdgList: any) => {
+    return bdgList.badgesReducer.listBadges.total;
+  });
 
   const [searchValue, setSearchValue] = useState("");
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
@@ -39,8 +46,8 @@ const Badges = () => {
     const errorHandler = (err: any) => {
       console.log(err);
     };
-    dispatch(listBadgeRequest("emptyData", successHandler, errorHandler));
-  }, [dispatch]);
+    dispatch(listBadgeRequest(dataTableParams, successHandler, errorHandler));
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   const tableColumn = [
     {
@@ -147,9 +154,12 @@ const Badges = () => {
 
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
-          data={badgesList}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
+          data={badgesList && badgesList}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

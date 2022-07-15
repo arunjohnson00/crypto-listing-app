@@ -7,7 +7,7 @@ export const listNftMarketPlaceRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/nft-marketplaces`,
+    url: `api/b/v1/nft-marketplaces?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: NFT_MARKETPLACES.LIST_NFT_MARKETPLACES,

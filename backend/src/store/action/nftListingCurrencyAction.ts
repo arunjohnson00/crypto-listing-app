@@ -7,7 +7,7 @@ export const listNftListingCurrencyRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/nft-listing-currency`,
+    url: `api/b/v1/nft-listing-currency?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: NFT_LISTINGS_CURRENCY.LIST_NFT_LISTINGS_CURRENCY,

@@ -15,8 +15,14 @@ const Users = () => {
   const userList = useSelector((usrList: any) => {
     return usrList.usersReducer.listUsers.data;
   });
-
+  const rowCount = useSelector((usrList: any) => {
+    return usrList.usersReducer.listUsers.total;
+  });
   const [searchValue, setSearchValue] = useState("");
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
@@ -37,8 +43,8 @@ const Users = () => {
     const errorHandler = (err: any) => {
       console.log(err);
     };
-    dispatch(listUserRequest("emptyData", successHandler, errorHandler));
-  }, [dispatch]);
+    dispatch(listUserRequest(dataTableParams, successHandler, errorHandler));
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -189,9 +195,12 @@ const Users = () => {
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
-          data={userList}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
+          data={userList && userList}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

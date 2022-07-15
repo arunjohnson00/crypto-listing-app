@@ -7,7 +7,7 @@ export const listUserRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/users`,
+    url: `api/b/v1/users?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: USERS.LIST_USERS,

@@ -37,7 +37,7 @@ const CoinListing = () => {
         return flData.name.toLowerCase().includes(searchValue.toLowerCase());
       })
     : coinList;
-  console.log(filteredData);
+
   const [dataTableParams, setDataTableParams] = useState<any>({
     PageSize: 15,
     pageCount: 1,
@@ -209,7 +209,7 @@ const CoinListing = () => {
         <DataTables
           tableColumn={tableColumn && tableColumn}
           tableData={filteredData && filteredData}
-          data={coinList}
+          data={coinList && coinList}
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
           rowCount={rowCount && rowCount}

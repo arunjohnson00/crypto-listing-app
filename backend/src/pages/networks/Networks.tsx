@@ -16,8 +16,14 @@ const Networks = () => {
   const networkList = useSelector((ntList: any) => {
     return ntList.networksReducer.listNetworks.data;
   });
-
+  const rowCount = useSelector((ntList: any) => {
+    return ntList.networksReducer.listNetworks.total;
+  });
   const [searchValue, setSearchValue] = useState("");
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
@@ -38,8 +44,8 @@ const Networks = () => {
     const errorHandler = (err: any) => {
       console.log(err);
     };
-    dispatch(listNetworkRequest("emptyData", successHandler, errorHandler));
-  }, [dispatch]);
+    dispatch(listNetworkRequest(dataTableParams, successHandler, errorHandler));
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   const tableColumn = [
     {
@@ -197,9 +203,12 @@ const Networks = () => {
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
-          data={networkList}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
+          data={networkList && networkList}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

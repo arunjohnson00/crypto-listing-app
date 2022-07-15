@@ -17,8 +17,15 @@ const Events = () => {
   const eventsList = useSelector((evnList: any) => {
     return evnList.eventsReducer.listEvents.data;
   });
+  const rowCount = useSelector((evnList: any) => {
+    return evnList.eventsReducer.listEvents.total;
+  });
 
   const [searchValue, setSearchValue] = useState("");
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
@@ -39,8 +46,8 @@ const Events = () => {
     const errorHandler = (err: any) => {
       console.log(err);
     };
-    dispatch(listEventsRequest("emptyData", successHandler, errorHandler));
-  }, [dispatch]);
+    dispatch(listEventsRequest(dataTableParams, successHandler, errorHandler));
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   const tableColumn = [
     {
@@ -175,9 +182,12 @@ const Events = () => {
 
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
-          data={eventsList}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
+          data={eventsList && eventsList}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

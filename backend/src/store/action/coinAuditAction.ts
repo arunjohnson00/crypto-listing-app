@@ -8,7 +8,7 @@ export const listCoinAuditRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/coins-audit`,
+    url: `api/b/v1/coins-audit?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: AUDIT.LIST_AUDIT,

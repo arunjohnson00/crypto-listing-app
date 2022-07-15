@@ -8,7 +8,7 @@ export const listEventsRewardAddressRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/reward-address`,
+    url: `api/b/v1/reward-address?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: EVENTS_REWARD_ADDRESS.LIST_EVENTS_REWARD_ADDRESS,

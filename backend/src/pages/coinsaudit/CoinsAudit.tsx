@@ -16,8 +16,15 @@ const CoinsAudit = () => {
     return auditList.auditReducer.listAudit.data;
   });
 
-  console.log(coinAuditList);
+  const rowCount = useSelector((auditList: any) => {
+    return auditList.auditReducer.listAudit.total;
+  });
+
   const [searchValue, setSearchValue] = useState("");
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
@@ -39,8 +46,10 @@ const CoinsAudit = () => {
     const errorHandler = (err: any) => {
       console.log(err);
     };
-    dispatch(listCoinAuditRequest("emptyData", successHandler, errorHandler));
-  }, [dispatch]);
+    dispatch(
+      listCoinAuditRequest(dataTableParams, successHandler, errorHandler)
+    );
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   const tableColumn = [
     {
@@ -159,9 +168,12 @@ const CoinsAudit = () => {
 
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
-          data={coinAuditList}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
+          data={coinAuditList && coinAuditList}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

@@ -16,8 +16,15 @@ const CoinsSocials = () => {
     return socialList.socialsReducer.listSocials.data;
   });
 
-  console.log(coinSocialList);
+  const rowCount = useSelector((socialList: any) => {
+    return socialList.socialsReducer.listSocials.total;
+  });
+
   const [searchValue, setSearchValue] = useState("");
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
@@ -39,8 +46,10 @@ const CoinsSocials = () => {
     const errorHandler = (err: any) => {
       console.log(err);
     };
-    dispatch(listCoinSocialRequest("emptyData", successHandler, errorHandler));
-  }, [dispatch]);
+    dispatch(
+      listCoinSocialRequest(dataTableParams, successHandler, errorHandler)
+    );
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   const tableColumn = [
     {
@@ -159,9 +168,12 @@ const CoinsSocials = () => {
 
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
-          data={coinSocialList}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
+          data={coinSocialList && coinSocialList}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

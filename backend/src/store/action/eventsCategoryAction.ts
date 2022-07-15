@@ -8,7 +8,7 @@ export const listEventsCategoryRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/events-category`,
+    url: `api/b/v1/events-category?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: EVENTS_CATEGORY.LIST_EVENTS_CATEGORY,

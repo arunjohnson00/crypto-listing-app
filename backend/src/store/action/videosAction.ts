@@ -7,7 +7,7 @@ export const listVideoRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/videos`,
+    url: `api/b/v1/videos?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: VIDEOS.LIST_VIDEOS,

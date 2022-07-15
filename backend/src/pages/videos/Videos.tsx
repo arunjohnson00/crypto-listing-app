@@ -18,6 +18,13 @@ const Videos = () => {
   const videoList = useSelector((vdList: any) => {
     return vdList.videosReducer.listVideos.data;
   });
+  const rowCount = useSelector((vdList: any) => {
+    return vdList.videosReducer.listVideos.total;
+  });
+  const [dataTableParams, setDataTableParams] = useState<any>({
+    PageSize: 15,
+    pageCount: 1,
+  });
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -40,8 +47,8 @@ const Videos = () => {
     const errorHandler = (err: any) => {
       console.log(err);
     };
-    dispatch(listVideoRequest("emptyData", successHandler, errorHandler));
-  }, [dispatch]);
+    dispatch(listVideoRequest(dataTableParams, successHandler, errorHandler));
+  }, [dispatch, dataTableParams, setDataTableParams]);
 
   const tableColumn = [
     // {
@@ -181,9 +188,12 @@ const Videos = () => {
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          tableColumn={tableColumn}
-          tableData={filteredData}
-          data={videoList}
+          tableColumn={tableColumn && tableColumn}
+          tableData={filteredData && filteredData}
+          setDataTableParams={setDataTableParams}
+          dataTableParams={dataTableParams}
+          rowCount={rowCount && rowCount}
+          data={videoList && videoList}
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
