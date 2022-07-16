@@ -6,6 +6,7 @@ const initialState = {
   editEventsCategory: "",
   updateEventsCategory: "",
   viewEventsCategory: "",
+  search_result: "",
 };
 const eventsCategoryReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -37,6 +38,12 @@ const eventsCategoryReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         viewEventsCategory: action?.payload?.data,
+      };
+
+    case EVENTS_CATEGORY.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
       };
 
     default:

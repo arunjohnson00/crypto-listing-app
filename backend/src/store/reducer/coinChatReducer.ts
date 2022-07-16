@@ -7,6 +7,7 @@ const initialState = {
   updateChat: "",
   viewChat: "",
   allChat: "",
+  search_result: "",
 };
 const chatReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -45,7 +46,11 @@ const chatReducer = (state: any = initialState, action: any) => {
         ...state,
         allChat: action?.payload?.data,
       };
-
+    case CHAT.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
+      };
     default:
       return state;
   }

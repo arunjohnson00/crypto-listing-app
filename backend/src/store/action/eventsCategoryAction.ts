@@ -96,3 +96,20 @@ export const allEventsCategoryRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const searchEventsCategoryRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/event-category-search/${values}`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: EVENTS_CATEGORY.SEARCH,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

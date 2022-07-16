@@ -7,6 +7,7 @@ const initialState = {
   updateCommunity: "",
   viewCommunity: "",
   allCommunity: "",
+  search_result: "",
 };
 const communityReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -45,7 +46,11 @@ const communityReducer = (state: any = initialState, action: any) => {
         ...state,
         allCommunity: action?.payload?.data,
       };
-
+    case COMMUNITY.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
+      };
     default:
       return state;
   }

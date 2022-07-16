@@ -16,11 +16,11 @@ import ProfileMenu from "../../../components/dropdowns/profile/ProfileMenu";
 import NotificationMenu from "../../../components/dropdowns/notification/NotificationMenu";
 import SettingsMenu from "../../../components/dropdowns/settings/SettingsMenu";
 
-import { listExchangeRequest } from "../../../store/action";
-import { listNetworkRequest } from "../../../store/action";
-import { listNftMarketPlaceRequest } from "../../../store/action";
-import { listUserRequest } from "../../../store/action";
-import { listCoinRequest } from "../../../store/action";
+// import { listExchangeRequest } from "../../../store/action";
+// import { listNetworkRequest } from "../../../store/action";
+// import { listNftMarketPlaceRequest } from "../../../store/action";
+// import { listUserRequest } from "../../../store/action";
+// import { listCoinRequest } from "../../../store/action";
 
 const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
   const theme = useTheme();
@@ -59,20 +59,20 @@ const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
     logoutHandler(navigate, dispatch);
   };
 
-  useEffect(() => {
-    const successHandler = (res: any) => {};
-    const errorHandler = (err: any) => {};
+  // useEffect(() => {
+  //   const successHandler = (res: any) => {};
+  //   const errorHandler = (err: any) => {};
 
-    dispatch(
-      listExchangeRequest("emptyformData", successHandler, errorHandler)
-    );
-    dispatch(listNetworkRequest("emptyformData", successHandler, errorHandler));
-    dispatch(listUserRequest("emptyformData", successHandler, errorHandler));
-    dispatch(
-      listNftMarketPlaceRequest("emptyformData", successHandler, errorHandler)
-    );
-    dispatch(listCoinRequest("emptyformData", successHandler, errorHandler));
-  }, [dispatch]);
+  //   dispatch(
+  //     listExchangeRequest("emptyformData", successHandler, errorHandler)
+  //   );
+  //   dispatch(listNetworkRequest("emptyformData", successHandler, errorHandler));
+  //   dispatch(listUserRequest("emptyformData", successHandler, errorHandler));
+  //   dispatch(
+  //     listNftMarketPlaceRequest("emptyformData", successHandler, errorHandler)
+  //   );
+  //   dispatch(listCoinRequest("emptyformData", successHandler, errorHandler));
+  // }, [dispatch]);
   return (
     <AppBar
       position="fixed"

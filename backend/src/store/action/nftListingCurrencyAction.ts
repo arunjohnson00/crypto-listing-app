@@ -94,3 +94,20 @@ export const allNftListingCurrencyRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const searchNftListingCurrencyRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/nft-listing-currency-search/${values}`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: NFT_LISTINGS_CURRENCY.SEARCH,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

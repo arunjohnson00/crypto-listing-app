@@ -6,6 +6,7 @@ const initialState = {
   editMenuCards: "",
   updateMenuCards: "",
   viewMenuCards: "",
+  search_result: "",
 };
 const menuCardsReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -37,6 +38,12 @@ const menuCardsReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         viewMenuCards: action?.payload?.data,
+      };
+
+    case MENUCARD.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
       };
 
     default:

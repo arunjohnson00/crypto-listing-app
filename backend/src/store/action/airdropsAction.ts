@@ -80,3 +80,20 @@ export const viewAirDropsRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const searchAirDropsRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/airdrops-search/${values}`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: AIRDROPS.SEARCH,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

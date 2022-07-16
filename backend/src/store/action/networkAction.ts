@@ -96,3 +96,20 @@ export const allNetworkRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const searchNetworkRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/networksh-search/${values}`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: NETWORK.SEARCH,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

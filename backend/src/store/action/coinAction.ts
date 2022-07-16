@@ -6,7 +6,6 @@ export const listCoinRequest = (
   successHandler: any,
   errorHandler: any
 ) => {
-  console.log(pageData);
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
     url: `api/b/v1/coins?page=${pageData?.pageCount}`,
@@ -98,6 +97,23 @@ export const allCoinRequest = (
     body: values,
     fileUpload: true,
     actionType: COINS.ALL_COINS,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const searchCoinRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/coins-search/${values}`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: COINS.SEARCH,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };

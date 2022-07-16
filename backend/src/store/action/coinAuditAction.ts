@@ -100,3 +100,20 @@ export const allCoinAuditRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const searchCoinAuditRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/coins-audit-search/${values}`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: AUDIT.SEARCH,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

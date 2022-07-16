@@ -7,6 +7,7 @@ const initialState = {
   updateNetworks: "",
   viewNetworks: "",
   allNetworks: "",
+  search_result: "",
 };
 const networksReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -44,6 +45,12 @@ const networksReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         allNetworks: action?.payload?.data,
+      };
+
+    case NETWORK.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
       };
 
     default:

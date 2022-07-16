@@ -100,3 +100,20 @@ export const allChartProviderRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const searchChartProviderRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/coins-chart-provider-search/${values}`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: CHART_PROVIDER.SEARCH,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

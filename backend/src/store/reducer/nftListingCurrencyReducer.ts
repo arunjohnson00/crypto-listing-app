@@ -7,6 +7,7 @@ const initialState = {
   updateNftListingCurrency: "",
   viewNftListingCurrency: "",
   allNftListingCurrency: "",
+  search_result: "",
 };
 const nftListingCurrencyReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -43,6 +44,12 @@ const nftListingCurrencyReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         allNftListingCurrency: action?.payload?.data,
+      };
+
+    case NFT_LISTINGS_CURRENCY.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
       };
 
     default:

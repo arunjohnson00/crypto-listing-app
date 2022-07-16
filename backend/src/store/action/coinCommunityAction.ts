@@ -100,3 +100,20 @@ export const allCoinCommunityRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const searchCoinCommunityRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/coins-community-search/${values}`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: COMMUNITY.SEARCH,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

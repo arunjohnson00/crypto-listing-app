@@ -7,6 +7,7 @@ const initialState = {
   updateExchanges: "",
   viewExchanges: "",
   allExchanges: "",
+  search_result: "",
 };
 const exchangesReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -44,6 +45,12 @@ const exchangesReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         allExchanges: action?.payload?.data,
+      };
+
+    case EXCHANGE.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
       };
 
     default:

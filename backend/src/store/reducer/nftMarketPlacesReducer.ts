@@ -6,6 +6,7 @@ const initialState = {
   editNftMarketPlaces: "",
   updateNftMarketPlaces: "",
   viewNftMarketPlaces: "",
+  search_result: "",
 };
 const nftMarketPlacesReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -37,6 +38,12 @@ const nftMarketPlacesReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         viewNftMarketPlaces: action?.payload?.data,
+      };
+
+    case NFT_MARKETPLACES.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
       };
 
     default:

@@ -6,6 +6,7 @@ const initialState = {
   editBadges: "",
   updateBadges: "",
   viewBadges: "",
+  search_result: "",
 };
 const badgesReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -38,7 +39,11 @@ const badgesReducer = (state: any = initialState, action: any) => {
         ...state,
         viewBadges: action?.payload?.data,
       };
-
+    case BADGES.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
+      };
     default:
       return state;
   }

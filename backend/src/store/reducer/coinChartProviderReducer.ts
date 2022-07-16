@@ -7,6 +7,7 @@ const initialState = {
   updateChartProvider: "",
   viewChartProvider: "",
   allChartProvider: "",
+  search_result: "",
 };
 const chartProviderReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -44,6 +45,11 @@ const chartProviderReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         allChartProvider: action?.payload?.data,
+      };
+    case CHART_PROVIDER.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
       };
 
     default:

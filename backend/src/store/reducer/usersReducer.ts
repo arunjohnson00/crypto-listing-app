@@ -6,6 +6,7 @@ const initialState = {
   editUsers: "",
   updateUsers: "",
   viewUsers: "",
+  search_result: "",
 };
 const usersReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -37,6 +38,12 @@ const usersReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         viewUsers: action?.payload?.data,
+      };
+
+    case USERS.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
       };
 
     default:

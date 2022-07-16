@@ -7,6 +7,7 @@ const initialState = {
   updateAudit: "",
   viewAudit: "",
   allAudit: "",
+  search_result: "",
 };
 const auditReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -44,6 +45,11 @@ const auditReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         allAudit: action?.payload?.data,
+      };
+    case AUDIT.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
       };
 
     default:

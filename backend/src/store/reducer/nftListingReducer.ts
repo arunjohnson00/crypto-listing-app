@@ -6,6 +6,7 @@ const initialState = {
   editNftListings: "",
   updateNftListings: "",
   viewNftListings: "",
+  search_result: "",
 };
 const nftListingsReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -37,6 +38,12 @@ const nftListingsReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         viewNftListings: action?.payload?.data,
+      };
+
+    case NFT_LISTINGS.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
       };
 
     default:

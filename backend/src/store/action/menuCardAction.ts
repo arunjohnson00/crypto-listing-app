@@ -80,3 +80,20 @@ export const viewMenuCardRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const searchMenuCardRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/menu-cards-search/${values}`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: MENUCARD.SEARCH,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

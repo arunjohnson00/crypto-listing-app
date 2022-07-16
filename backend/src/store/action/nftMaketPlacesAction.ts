@@ -78,3 +78,20 @@ export const viewNftMarketPlaceRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const searchNftMarketPlaceRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/nft-marketplaces-search/${values}`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: NFT_MARKETPLACES.SEARCH,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

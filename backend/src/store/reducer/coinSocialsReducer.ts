@@ -7,6 +7,7 @@ const initialState = {
   updateSocials: "",
   viewSocials: "",
   allSocials: "",
+  search_result: "",
 };
 const socialsReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -46,6 +47,11 @@ const socialsReducer = (state: any = initialState, action: any) => {
         allSocials: action?.payload?.data,
       };
 
+    case SOCIALS.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
+      };
     default:
       return state;
   }

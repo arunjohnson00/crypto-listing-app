@@ -80,3 +80,20 @@ export const viewEventsRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const searchEventsRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/events-search/${values}`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: EVENTS.SEARCH,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

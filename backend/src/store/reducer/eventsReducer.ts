@@ -6,6 +6,7 @@ const initialState = {
   editEvents: "",
   updateEvents: "",
   viewEvents: "",
+  search_result: "",
 };
 const eventsReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -37,6 +38,11 @@ const eventsReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         viewEvents: action?.payload?.data,
+      };
+    case EVENTS.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
       };
 
     default:

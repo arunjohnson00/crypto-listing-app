@@ -7,6 +7,7 @@ const initialState = {
   updateNftListingCategory: "",
   viewNftListingCategory: "",
   allNftListingCategory: "",
+  search_result: "",
 };
 const nftListingCategoryReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -43,6 +44,11 @@ const nftListingCategoryReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         allNftListingCategory: action?.payload?.data,
+      };
+    case NFT_LISTINGS_CATEGORY.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
       };
 
     default:

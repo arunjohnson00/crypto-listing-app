@@ -79,3 +79,20 @@ export const viewVideoRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const searchVideoRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/videos-search/${values}`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: VIDEOS.SEARCH,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

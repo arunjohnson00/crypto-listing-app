@@ -6,6 +6,7 @@ const initialState = {
   editEventsRewardAddress: "",
   updateEventsRewardAddress: "",
   viewEventsRewardAddress: "",
+  search_result: "",
 };
 const eventsRewardAddressReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -37,6 +38,11 @@ const eventsRewardAddressReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         viewEventsRewardAddress: action?.payload?.data,
+      };
+    case EVENTS_REWARD_ADDRESS.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
       };
 
     default:

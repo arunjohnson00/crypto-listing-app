@@ -96,3 +96,20 @@ export const allExchangeRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const searchExchangeRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/exchange-search/${values}`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: EXCHANGE.SEARCH,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

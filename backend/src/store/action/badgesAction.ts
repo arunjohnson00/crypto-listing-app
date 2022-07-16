@@ -80,3 +80,20 @@ export const viewBadgeRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const searchBadgeRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/badges-search/${values}`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: BADGES.SEARCH,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

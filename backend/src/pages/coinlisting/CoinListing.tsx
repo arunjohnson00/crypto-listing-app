@@ -87,17 +87,17 @@ const CoinListing = () => {
         ),
     },
 
-    // {
-    //   field: "created_at",
-    //   headerName: "Submitted",
-    //   flex: 1,
+    {
+      field: "created_at",
+      headerName: "Submitted",
+      flex: 1,
 
-    //   align: "center",
-    //   headerAlign: "center",
-    //   renderCell: (params: any) => (
-    //     <span>{timeAgo.format(new Date(params.row.created_at))}</span>
-    //   ),
-    // },
+      align: "center",
+      headerAlign: "center",
+      renderCell: (params: any) => (
+        <span>{timeAgo.format(new Date(params.row.created_at))}</span>
+      ),
+    },
 
     {
       field: "network_id",

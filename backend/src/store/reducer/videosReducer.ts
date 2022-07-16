@@ -6,6 +6,7 @@ const initialState = {
   editVideos: "",
   updateVideos: "",
   viewVideos: "",
+  search_result: "",
 };
 const videosReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -37,6 +38,12 @@ const videosReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         viewVideos: action?.payload?.data,
+      };
+
+    case VIDEOS.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
       };
 
     default:

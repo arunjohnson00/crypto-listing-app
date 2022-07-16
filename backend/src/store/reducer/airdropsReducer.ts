@@ -6,6 +6,7 @@ const initialState = {
   editAirdrops: "",
   updateAirdrops: "",
   viewAirdrops: "",
+  search_result: "",
 };
 const airdropsReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -37,6 +38,11 @@ const airdropsReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         viewAirdrops: action?.payload?.data,
+      };
+    case AIRDROPS.SEARCH:
+      return {
+        ...state,
+        search_result: action?.payload?.data,
       };
 
     default:
