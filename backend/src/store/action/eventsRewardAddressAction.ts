@@ -104,7 +104,7 @@ export const searchEventsRewardAddressRequest = (
 ) => {
   //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/event-reward-address-search/${values}`,
+    url: `api/b/v1/reward-address-search/${values}`,
     method: "GET",
     secure: true,
     body: values,

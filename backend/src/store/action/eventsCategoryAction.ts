@@ -104,7 +104,7 @@ export const searchEventsCategoryRequest = (
 ) => {
   //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/event-category-search/${values}`,
+    url: `api/b/v1/events-category-search/${values}`,
     method: "GET",
     secure: true,
     body: values,

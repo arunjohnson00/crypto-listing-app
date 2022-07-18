@@ -69,13 +69,13 @@ const MenuCardEdit = () => {
     };
 
     const formData = new FormData();
-    addMenuCardData.icon !== "" &&
-      typeof addMenuCardData.icon !== "string" &&
-      formData.append("icon", addMenuCardData.icon);
-    formData.append("id", addMenuCardData.id);
-    formData.append("title", addMenuCardData.title);
-    formData.append("sub_title", addMenuCardData.sub_title);
-    formData.append("url", addMenuCardData.url);
+    addMenuCardData?.icon !== "" &&
+      typeof addMenuCardData?.icon !== "string" &&
+      formData.append("icon", addMenuCardData?.icon);
+    formData.append("id", addMenuCardData?.id);
+    formData.append("title", addMenuCardData?.title);
+    formData.append("sub_title", addMenuCardData?.sub_title);
+    formData.append("url", addMenuCardData?.url);
 
     formData.append("status", addMenuCardData.status);
 
@@ -133,7 +133,7 @@ const MenuCardEdit = () => {
           </IconButton>
 
           <Typography variant="h5" sx={{ textAlign: "left" }}>
-            Add MenuCards
+            Update MenuCards
           </Typography>
         </Stack>
       </Grid>
@@ -227,7 +227,7 @@ const MenuCardEdit = () => {
                 </LoadingButton>
               ) : (
                 <LargeBtn
-                  Title="Add new MenuCard"
+                  Title="Save MenuCard"
                   lgBtnHandler={menuCardEditHandler}
                 />
               )}

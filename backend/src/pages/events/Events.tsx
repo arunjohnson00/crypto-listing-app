@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
 import Avatar from "@mui/material/Avatar";
-import { listEventsRequest } from "../../store/action";
+import { listEventsRequest, searchEventsRequest } from "../../store/action";
 
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
@@ -15,10 +15,10 @@ const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const Events = () => {
   const eventsList = useSelector((evnList: any) => {
-    return evnList.eventsReducer.listEvents.data;
+    return evnList.eventsReducer.listEvents;
   });
-  const rowCount = useSelector((evnList: any) => {
-    return evnList.eventsReducer.listEvents.total;
+  const searchResult = useSelector((result: any) => {
+    return result?.eventsReducer?.search_result;
   });
 
   const [searchValue, setSearchValue] = useState("");
@@ -29,13 +29,18 @@ const Events = () => {
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(searchEventsRequest(searchVal, successHandler, errorHandler));
   };
 
-  var filteredData = searchValue
-    ? eventsList.filter((flData: any) => {
-        return flData.name.toLowerCase().includes(searchValue.toLowerCase());
-      })
-    : eventsList;
+  var filteredData =
+    searchValue !== "" &&
+    searchResult &&
+    searchResult !== undefined &&
+    searchResult.length !== 0
+      ? searchResult.data
+      : eventsList.data;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -184,10 +189,24 @@ const Events = () => {
         <DataTables
           tableColumn={tableColumn && tableColumn}
           tableData={filteredData && filteredData}
+          data={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data
+              : eventsList && eventsList?.data
+          }
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
-          rowCount={rowCount && rowCount}
-          data={eventsList && eventsList}
+          rowCount={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data?.length
+              : eventsList && eventsList?.total
+          }
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

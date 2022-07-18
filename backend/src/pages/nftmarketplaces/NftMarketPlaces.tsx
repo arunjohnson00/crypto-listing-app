@@ -8,17 +8,21 @@ import Avatar from "@mui/material/Avatar";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
-import { listNftMarketPlaceRequest } from "../../store/action";
+import {
+  listNftMarketPlaceRequest,
+  searchNftMarketPlaceRequest,
+} from "../../store/action";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const NftMarketPlaces = () => {
   const nftMarketPlaceList = useSelector((nftList: any) => {
-    return nftList.nftMarketPlacesReducer.listNftMarketPlaces.data;
+    return nftList.nftMarketPlacesReducer.listNftMarketPlaces;
   });
-  const rowCount = useSelector((nftList: any) => {
-    return nftList.nftMarketPlacesReducer.listNftMarketPlaces.total;
+  const searchResult = useSelector((result: any) => {
+    return result?.nftMarketPlacesReducer?.search_result;
   });
+
   const [searchValue, setSearchValue] = useState("");
   const [dataTableParams, setDataTableParams] = useState<any>({
     PageSize: 15,
@@ -27,13 +31,21 @@ const NftMarketPlaces = () => {
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
+
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(
+      searchNftMarketPlaceRequest(searchVal, successHandler, errorHandler)
+    );
   };
 
-  var filteredData = searchValue
-    ? nftMarketPlaceList.filter((flData: any) => {
-        return flData.name.toLowerCase().includes(searchValue.toLowerCase());
-      })
-    : nftMarketPlaceList;
+  var filteredData =
+    searchValue !== "" &&
+    searchResult &&
+    searchResult !== undefined &&
+    searchResult.length !== 0
+      ? searchResult?.data
+      : nftMarketPlaceList?.data;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -156,10 +168,24 @@ const NftMarketPlaces = () => {
         <DataTables
           tableColumn={tableColumn && tableColumn}
           tableData={filteredData && filteredData}
+          data={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data
+              : nftMarketPlaceList && nftMarketPlaceList?.data
+          }
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
-          rowCount={rowCount && rowCount}
-          data={nftMarketPlaceList && nftMarketPlaceList}
+          rowCount={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data?.length
+              : nftMarketPlaceList && nftMarketPlaceList?.total
+          }
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

@@ -9,15 +9,16 @@ import moment from "moment";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
-import { listUserRequest } from "../../store/action";
+import { listUserRequest, searchUserRequest } from "../../store/action";
 
 const Users = () => {
   const userList = useSelector((usrList: any) => {
-    return usrList.usersReducer.listUsers.data;
+    return usrList?.usersReducer?.listUsers;
   });
-  const rowCount = useSelector((usrList: any) => {
-    return usrList.usersReducer.listUsers.total;
+  const searchResult = useSelector((result: any) => {
+    return result?.usersReducer?.search_result;
   });
+
   const [searchValue, setSearchValue] = useState("");
   const [dataTableParams, setDataTableParams] = useState<any>({
     PageSize: 15,
@@ -26,13 +27,18 @@ const Users = () => {
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(searchUserRequest(searchVal, successHandler, errorHandler));
   };
 
-  var filteredData = searchValue
-    ? userList.filter((flData: any) => {
-        return flData.name.toLowerCase().includes(searchValue.toLowerCase());
-      })
-    : userList;
+  var filteredData =
+    searchValue !== "" &&
+    searchResult &&
+    searchResult !== undefined &&
+    searchResult.length !== 0
+      ? searchResult?.data
+      : userList?.data;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -197,10 +203,24 @@ const Users = () => {
         <DataTables
           tableColumn={tableColumn && tableColumn}
           tableData={filteredData && filteredData}
+          data={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data
+              : userList && userList?.data
+          }
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
-          rowCount={rowCount && rowCount}
-          data={userList && userList}
+          rowCount={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data?.length
+              : userList && userList?.total
+          }
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

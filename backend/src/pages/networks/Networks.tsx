@@ -8,17 +8,18 @@ import Avatar from "@mui/material/Avatar";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
-import { listNetworkRequest } from "../../store/action";
+import { listNetworkRequest, searchNetworkRequest } from "../../store/action";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const Networks = () => {
   const networkList = useSelector((ntList: any) => {
-    return ntList.networksReducer.listNetworks.data;
+    return ntList.networksReducer.listNetworks;
   });
-  const rowCount = useSelector((ntList: any) => {
-    return ntList.networksReducer.listNetworks.total;
+  const searchResult = useSelector((result: any) => {
+    return result?.networksReducer?.search_result;
   });
+
   const [searchValue, setSearchValue] = useState("");
   const [dataTableParams, setDataTableParams] = useState<any>({
     PageSize: 15,
@@ -27,13 +28,18 @@ const Networks = () => {
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(searchNetworkRequest(searchVal, successHandler, errorHandler));
   };
 
-  var filteredData = searchValue
-    ? networkList.filter((flData: any) => {
-        return flData.name.toLowerCase().includes(searchValue.toLowerCase());
-      })
-    : networkList;
+  var filteredData =
+    searchValue !== "" &&
+    searchResult &&
+    searchResult !== undefined &&
+    searchResult.length !== 0
+      ? searchResult.data
+      : networkList.data;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -205,10 +211,24 @@ const Networks = () => {
         <DataTables
           tableColumn={tableColumn && tableColumn}
           tableData={filteredData && filteredData}
+          data={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data
+              : networkList && networkList?.data
+          }
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
-          rowCount={rowCount && rowCount}
-          data={networkList && networkList}
+          rowCount={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data?.length
+              : networkList && networkList?.total
+          }
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

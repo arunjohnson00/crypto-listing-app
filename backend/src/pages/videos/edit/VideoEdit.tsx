@@ -67,15 +67,14 @@ const VideoEdit = () => {
     };
 
     const formData = new FormData();
-    formData.append("id", editVideosData.id);
-    formData.append("name", editVideosData.name);
-    formData.append("url", editVideosData.url);
-    formData.append("button_name", editVideosData.button_name);
-    formData.append("button_url", editVideosData.button_url);
-    formData.append("title", editVideosData.title);
-    formData.append("sub_title", editVideosData.sub_title);
-
-    formData.append("status", editVideosData.status);
+    formData.append("id", editVideosData?.id);
+    formData.append("name", editVideosData?.name);
+    formData.append("url", editVideosData?.url);
+    formData.append("button_name", editVideosData?.button_name);
+    formData.append("button_url", editVideosData?.button_url);
+    formData.append("title", editVideosData?.title);
+    formData.append("sub_title", editVideosData?.sub_title);
+    formData.append("status", editVideosData?.status);
 
     dispatch(updateVideoRequest(formData, successHandler, errorHandler));
   };

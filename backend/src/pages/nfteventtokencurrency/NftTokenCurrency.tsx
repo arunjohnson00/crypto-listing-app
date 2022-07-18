@@ -7,18 +7,19 @@ import LargeBtn from "../../components/form/button/large/LargeBtn";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
-import { listNftListingCurrencyRequest } from "../../store/action";
+import {
+  listNftListingCurrencyRequest,
+  searchNftListingCurrencyRequest,
+} from "../../store/action";
 
 //const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const NftTokenCurrency = () => {
   const nftEventCurrencyList = useSelector((nftCurrencyList: any) => {
-    return nftCurrencyList.nftListingCurrencyReducer.listNftListingCurrency
-      .data;
+    return nftCurrencyList.nftListingCurrencyReducer.listNftListingCurrency;
   });
-  const rowCount = useSelector((nftCurrencyList: any) => {
-    return nftCurrencyList.nftListingCurrencyReducer.listNftListingCurrency
-      .total;
+  const searchResult = useSelector((result: any) => {
+    return result?.nftListingCurrencyReducer?.search_result;
   });
 
   const [searchValue, setSearchValue] = useState("");
@@ -29,13 +30,20 @@ const NftTokenCurrency = () => {
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(
+      searchNftListingCurrencyRequest(searchVal, successHandler, errorHandler)
+    );
   };
 
-  var filteredData = searchValue
-    ? nftEventCurrencyList.filter((flData: any) => {
-        return flData.name.toLowerCase().includes(searchValue.toLowerCase());
-      })
-    : nftEventCurrencyList;
+  var filteredData =
+    searchValue !== "" &&
+    searchResult &&
+    searchResult !== undefined &&
+    searchResult.length !== 0
+      ? searchResult.data
+      : nftEventCurrencyList.data;
 
   const dispatch = useDispatch();
 
@@ -139,10 +147,24 @@ const NftTokenCurrency = () => {
         <DataTables
           tableColumn={tableColumn && tableColumn}
           tableData={filteredData && filteredData}
+          data={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data
+              : nftEventCurrencyList && nftEventCurrencyList?.data
+          }
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
-          rowCount={rowCount && rowCount}
-          data={nftEventCurrencyList && nftEventCurrencyList}
+          rowCount={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data?.length
+              : nftEventCurrencyList && nftEventCurrencyList?.total
+          }
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

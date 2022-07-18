@@ -7,19 +7,20 @@ import LargeBtn from "../../components/form/button/large/LargeBtn";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
-import { listEventsRewardAddressRequest } from "../../store/action";
+import {
+  listEventsRewardAddressRequest,
+  searchEventsRewardAddressRequest,
+} from "../../store/action";
 
 //const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const EventRewardAddress = () => {
   const eventsRewardAddressList = useSelector((rewardAddressList: any) => {
-    return rewardAddressList.eventsRewardAddressReducer.listEventsRewardAddress
-      .data;
+    return rewardAddressList.eventsRewardAddressReducer.listEventsRewardAddress;
   });
 
-  const rowCount = useSelector((rewardAddressList: any) => {
-    return rewardAddressList.eventsRewardAddressReducer.listEventsRewardAddress
-      .total;
+  const searchResult = useSelector((result: any) => {
+    return result?.eventsRewardAddressReducer?.search_result;
   });
 
   const [searchValue, setSearchValue] = useState("");
@@ -30,13 +31,21 @@ const EventRewardAddress = () => {
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
+
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(
+      searchEventsRewardAddressRequest(searchVal, successHandler, errorHandler)
+    );
   };
 
-  var filteredData = searchValue
-    ? eventsRewardAddressList.filter((flData: any) => {
-        return flData.name.toLowerCase().includes(searchValue.toLowerCase());
-      })
-    : eventsRewardAddressList;
+  var filteredData =
+    searchValue !== "" &&
+    searchResult &&
+    searchResult !== undefined &&
+    searchResult.length !== 0
+      ? searchResult.data
+      : eventsRewardAddressList.data;
 
   const dispatch = useDispatch();
 
@@ -145,10 +154,24 @@ const EventRewardAddress = () => {
         <DataTables
           tableColumn={tableColumn && tableColumn}
           tableData={filteredData && filteredData}
+          data={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data
+              : eventsRewardAddressList && eventsRewardAddressList?.data
+          }
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
-          rowCount={rowCount && rowCount}
-          data={eventsRewardAddressList && eventsRewardAddressList}
+          rowCount={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data?.length
+              : eventsRewardAddressList && eventsRewardAddressList?.total
+          }
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

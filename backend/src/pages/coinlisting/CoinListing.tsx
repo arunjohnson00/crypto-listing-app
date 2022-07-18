@@ -10,7 +10,7 @@ import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
 
-import { listCoinRequest } from "../../store/action";
+import { listCoinRequest, searchCoinRequest } from "../../store/action";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -18,25 +18,41 @@ const CoinListing = () => {
   const dispatch = useDispatch();
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo("en-US");
+
   const coinList = useSelector((cnList: any) => {
-    return cnList?.coinReducer?.listCoins.data;
+    return cnList?.coinReducer?.listCoins;
   });
 
-  const rowCount = useSelector((cnList: any) => {
-    return cnList?.coinReducer?.listCoins?.total;
+  const searchResult = useSelector((result: any) => {
+    return result?.coinReducer?.search_result;
   });
+
+  // const rowCount = useSelector((cnList: any) => {
+  //   return cnList?.coinReducer?.listCoins?.total;
+  // });
 
   const [searchValue, setSearchValue] = useState("");
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(searchCoinRequest(searchVal, successHandler, errorHandler));
   };
 
-  var filteredData = searchValue
-    ? coinList?.filter((flData: any) => {
-        return flData.name.toLowerCase().includes(searchValue.toLowerCase());
-      })
-    : coinList;
+  // var filteredData = searchValue
+  //   ? coinList?.filter((flData: any) => {
+  //       return flData.name.toLowerCase().includes(searchValue.toLowerCase());
+  //     })
+  //   : coinList;
+
+  var filteredData =
+    searchValue !== "" &&
+    searchResult &&
+    searchResult !== undefined &&
+    searchResult.length !== 0
+      ? searchResult.data
+      : coinList.data;
 
   const [dataTableParams, setDataTableParams] = useState<any>({
     PageSize: 15,
@@ -76,7 +92,6 @@ const CoinListing = () => {
       field: "is_presale",
       headerName: "Is Presale",
       flex: 1,
-
       align: "center",
       headerAlign: "center",
       renderCell: (params: any) =>
@@ -91,7 +106,6 @@ const CoinListing = () => {
       field: "created_at",
       headerName: "Submitted",
       flex: 1,
-
       align: "center",
       headerAlign: "center",
       renderCell: (params: any) => (
@@ -103,7 +117,6 @@ const CoinListing = () => {
       field: "network_id",
       headerName: "Network Id",
       flex: 1,
-
       align: "center",
       headerAlign: "center",
     },
@@ -112,7 +125,6 @@ const CoinListing = () => {
       field: "explorer_link",
       headerName: "Block explorer url",
       flex: 2.5,
-
       headerAlign: "left",
       align: "left",
       renderCell: (params: any) => (
@@ -209,10 +221,24 @@ const CoinListing = () => {
         <DataTables
           tableColumn={tableColumn && tableColumn}
           tableData={filteredData && filteredData}
-          data={coinList && coinList}
+          data={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data
+              : coinList && coinList?.data
+          }
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
-          rowCount={rowCount && rowCount}
+          rowCount={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data?.length
+              : coinList && coinList?.total
+          }
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

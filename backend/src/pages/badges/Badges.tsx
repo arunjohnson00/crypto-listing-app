@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
 import Avatar from "@mui/material/Avatar";
-import { listBadgeRequest } from "../../store/action";
+import { listBadgeRequest, searchBadgeRequest } from "../../store/action";
 
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
@@ -15,10 +15,10 @@ const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const Badges = () => {
   const badgesList = useSelector((bdgList: any) => {
-    return bdgList.badgesReducer.listBadges.data;
+    return bdgList.badgesReducer.listBadges;
   });
-  const rowCount = useSelector((bdgList: any) => {
-    return bdgList.badgesReducer.listBadges.total;
+  const searchResult = useSelector((result: any) => {
+    return result?.badgesReducer?.search_result;
   });
 
   const [searchValue, setSearchValue] = useState("");
@@ -29,13 +29,18 @@ const Badges = () => {
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(searchBadgeRequest(searchVal, successHandler, errorHandler));
   };
 
-  var filteredData = searchValue
-    ? badgesList.filter((flData: any) => {
-        return flData.name.toLowerCase().includes(searchValue.toLowerCase());
-      })
-    : badgesList;
+  var filteredData =
+    searchValue !== "" &&
+    searchResult &&
+    searchResult !== undefined &&
+    searchResult.length !== 0
+      ? searchResult.data
+      : badgesList.data;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -156,10 +161,24 @@ const Badges = () => {
         <DataTables
           tableColumn={tableColumn && tableColumn}
           tableData={filteredData && filteredData}
-          data={badgesList && badgesList}
+          data={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data
+              : badgesList && badgesList?.data
+          }
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
-          rowCount={rowCount && rowCount}
+          rowCount={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data?.length
+              : badgesList && badgesList?.total
+          }
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

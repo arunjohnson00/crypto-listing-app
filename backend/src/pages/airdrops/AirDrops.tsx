@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import LargeBtn from "../../components/form/button/large/LargeBtn";
 import Avatar from "@mui/material/Avatar";
-import { listAirDropsRequest } from "../../store/action";
+import { listAirDropsRequest, searchAirDropsRequest } from "../../store/action";
 
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
@@ -15,12 +15,12 @@ const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const AirDrops = () => {
   const airdropsList = useSelector((airdpList: any) => {
-    return airdpList.airdropsReducer.listAirdrops.data;
+    return airdpList.airdropsReducer.listAirdrops;
+  });
+  const searchResult = useSelector((result: any) => {
+    return result?.airdropsReducer?.search_result;
   });
 
-  const rowCount = useSelector((airdpList: any) => {
-    return airdpList.airdropsReducer.listAirdrops.total;
-  });
   const [searchValue, setSearchValue] = useState("");
   const [dataTableParams, setDataTableParams] = useState<any>({
     PageSize: 15,
@@ -29,16 +29,18 @@ const AirDrops = () => {
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(searchAirDropsRequest(searchVal, successHandler, errorHandler));
   };
 
-  var filteredData = searchValue
-    ? airdropsList.filter((flData: any) => {
-        return flData.coin_id
-          .toString()
-          .toLowerCase()
-          .includes(searchValue.toLowerCase());
-      })
-    : airdropsList;
+  var filteredData =
+    searchValue !== "" &&
+    searchResult &&
+    searchResult !== undefined &&
+    searchResult.length !== 0
+      ? searchResult.data
+      : airdropsList.data;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -203,10 +205,24 @@ const AirDrops = () => {
         <DataTables
           tableColumn={tableColumn && tableColumn}
           tableData={filteredData && filteredData}
-          data={airdropsList && airdropsList}
+          data={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data
+              : airdropsList && airdropsList?.data
+          }
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
-          rowCount={rowCount && rowCount}
+          rowCount={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data?.length
+              : airdropsList && airdropsList?.total
+          }
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

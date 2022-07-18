@@ -8,7 +8,7 @@ import moment from "moment";
 
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
-import { listVideoRequest } from "../../store/action";
+import { listVideoRequest, searchVideoRequest } from "../../store/action";
 
 import InputSearch from "../../components/form/input/search/InputSearch";
 
@@ -16,10 +16,10 @@ import InputSearch from "../../components/form/input/search/InputSearch";
 
 const Videos = () => {
   const videoList = useSelector((vdList: any) => {
-    return vdList.videosReducer.listVideos.data;
+    return vdList.videosReducer.listVideos;
   });
-  const rowCount = useSelector((vdList: any) => {
-    return vdList.videosReducer.listVideos.total;
+  const searchResult = useSelector((result: any) => {
+    return result?.videosReducer?.search_result;
   });
   const [dataTableParams, setDataTableParams] = useState<any>({
     PageSize: 15,
@@ -30,13 +30,19 @@ const Videos = () => {
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
+
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(searchVideoRequest(searchVal, successHandler, errorHandler));
   };
 
-  var filteredData = searchValue
-    ? videoList.filter((flData: any) => {
-        return flData.v_name.toLowerCase().includes(searchValue.toLowerCase());
-      })
-    : videoList;
+  var filteredData =
+    searchValue !== "" &&
+    searchResult &&
+    searchResult !== undefined &&
+    searchResult.length !== 0
+      ? searchResult?.data
+      : videoList?.data;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -190,10 +196,24 @@ const Videos = () => {
         <DataTables
           tableColumn={tableColumn && tableColumn}
           tableData={filteredData && filteredData}
+          data={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data
+              : videoList && videoList?.data
+          }
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
-          rowCount={rowCount && rowCount}
-          data={videoList && videoList}
+          rowCount={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data?.length
+              : videoList && videoList?.total
+          }
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

@@ -8,7 +8,7 @@ const HorizonatalList = () => {
   const topbarCount: any = useSelector((topCount: any) => {
     return topCount?.topbarCountReducer?.topbarCounts?.data;
   });
-
+  console.log(topbarCount);
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};

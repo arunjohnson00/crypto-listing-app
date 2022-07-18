@@ -9,16 +9,16 @@ import moment from "moment";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
-import { listMenuCardRequest } from "../../store/action";
+import { listMenuCardRequest, searchMenuCardRequest } from "../../store/action";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const MenuCard = () => {
   const menuCardList = useSelector((menuList: any) => {
-    return menuList.menuCardsReducer.listMenuCards.data;
+    return menuList.menuCardsReducer.listMenuCards;
   });
-  const rowCount = useSelector((menuList: any) => {
-    return menuList.menuCardsReducer.listMenuCards.total;
+  const searchResult = useSelector((result: any) => {
+    return result?.menuCardsReducer?.search_result;
   });
 
   //console.log(menuCardList);
@@ -30,13 +30,18 @@ const MenuCard = () => {
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(searchMenuCardRequest(searchVal, successHandler, errorHandler));
   };
 
-  var filteredData = searchValue
-    ? menuCardList.filter((flData: any) => {
-        return flData.title.toLowerCase().includes(searchValue.toLowerCase());
-      })
-    : menuCardList;
+  var filteredData =
+    searchValue !== "" &&
+    searchResult &&
+    searchResult !== undefined &&
+    searchResult.length !== 0
+      ? searchResult.data
+      : menuCardList.data;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -169,10 +174,24 @@ const MenuCard = () => {
         <DataTables
           tableColumn={tableColumn && tableColumn}
           tableData={filteredData && filteredData}
+          data={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data
+              : menuCardList && menuCardList?.data
+          }
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
-          rowCount={rowCount && rowCount}
-          data={menuCardList && menuCardList}
+          rowCount={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data?.length
+              : menuCardList && menuCardList?.total
+          }
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

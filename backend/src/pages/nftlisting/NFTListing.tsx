@@ -8,7 +8,10 @@ import Avatar from "@mui/material/Avatar";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
-import { listNftListingRequest } from "../../store/action";
+import {
+  listNftListingRequest,
+  searchNftListingRequest,
+} from "../../store/action";
 
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
@@ -19,11 +22,12 @@ const NFTListing = () => {
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo("en-US");
   const nftListingsList = useSelector((nftList: any) => {
-    return nftList.nftListingsReducer.listNftListings.data;
+    return nftList.nftListingsReducer.listNftListings;
   });
-  const rowCount = useSelector((nftList: any) => {
-    return nftList.nftListingsReducer.listNftListings.total;
+  const searchResult = useSelector((result: any) => {
+    return result?.nftListingsReducer?.search_result;
   });
+
   const [searchValue, setSearchValue] = useState("");
   const [dataTableParams, setDataTableParams] = useState<any>({
     PageSize: 15,
@@ -32,13 +36,19 @@ const NFTListing = () => {
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
+
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(searchNftListingRequest(searchVal, successHandler, errorHandler));
   };
 
-  var filteredData = searchValue
-    ? nftListingsList.filter((flData: any) => {
-        return flData.title.toLowerCase().includes(searchValue.toLowerCase());
-      })
-    : nftListingsList;
+  var filteredData =
+    searchValue !== "" &&
+    searchResult &&
+    searchResult !== undefined &&
+    searchResult.length !== 0
+      ? searchResult.data
+      : nftListingsList.data;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -173,10 +183,24 @@ const NFTListing = () => {
         <DataTables
           tableColumn={tableColumn && tableColumn}
           tableData={filteredData && filteredData}
+          data={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data
+              : nftListingsList && nftListingsList?.data
+          }
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
-          rowCount={rowCount && rowCount}
-          data={nftListingsList && nftListingsList}
+          rowCount={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data?.length
+              : nftListingsList && nftListingsList?.total
+          }
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

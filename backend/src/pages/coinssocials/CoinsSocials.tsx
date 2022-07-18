@@ -7,17 +7,20 @@ import LargeBtn from "../../components/form/button/large/LargeBtn";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
-import { listCoinSocialRequest } from "../../store/action";
+import {
+  listCoinSocialRequest,
+  searchCoinSocialRequest,
+} from "../../store/action";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const CoinsSocials = () => {
   const coinSocialList = useSelector((socialList: any) => {
-    return socialList.socialsReducer.listSocials.data;
+    return socialList.socialsReducer.listSocials;
   });
 
-  const rowCount = useSelector((socialList: any) => {
-    return socialList.socialsReducer.listSocials.total;
+  const searchResult = useSelector((result: any) => {
+    return result?.socialsReducer?.search_result;
   });
 
   const [searchValue, setSearchValue] = useState("");
@@ -28,13 +31,18 @@ const CoinsSocials = () => {
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(searchCoinSocialRequest(searchVal, successHandler, errorHandler));
   };
 
-  var filteredData = searchValue
-    ? coinSocialList.filter((flData: any) => {
-        return flData.name.toLowerCase().includes(searchValue.toLowerCase());
-      })
-    : coinSocialList;
+  var filteredData =
+    searchValue !== "" &&
+    searchResult &&
+    searchResult !== undefined &&
+    searchResult.length !== 0
+      ? searchResult.data
+      : coinSocialList.data;
 
   const dispatch = useDispatch();
 
@@ -170,10 +178,24 @@ const CoinsSocials = () => {
         <DataTables
           tableColumn={tableColumn && tableColumn}
           tableData={filteredData && filteredData}
+          data={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data
+              : coinSocialList && coinSocialList?.data
+          }
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
-          rowCount={rowCount && rowCount}
-          data={coinSocialList && coinSocialList}
+          rowCount={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data?.length
+              : coinSocialList && coinSocialList?.total
+          }
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

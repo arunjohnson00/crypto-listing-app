@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
@@ -226,28 +226,29 @@ const DataTables = ({
       },
     },
   ];
-  console.log(tableData);
+
   return (
     <Fragment>
       <div style={{ height: "100vh", width: "100%" }}>
         <DataGrid
           rows={tableData && tableData}
           columns={[...tableColumn, ...addtitionalColumns]}
-          // filterMode="server"
+          //filterMode="server"
           paginationMode="server"
           rowCount={rowCount && rowCount}
           autoHeight={false}
-          page={dataTableParams && dataTableParams.pageCount}
-          pageSize={dataTableParams && dataTableParams.PageSize}
+          page={dataTableParams && dataTableParams?.pageCount - 1}
+          pageSize={dataTableParams && dataTableParams?.PageSize}
           // onPageSizeChange={(newPageSize) =>
           //   dataTableParams &&
           //   setDataTableParams({ ...dataTableParams, PageSize: newPageSize })
           // }
+
           onPageChange={(newPage) =>
             dataTableParams &&
             setDataTableParams({ ...dataTableParams, pageCount: newPage })
           }
-          // rowsPerPageOptions={[15]}
+          //rowsPerPageOptions={[15, 20, 25]}
           pagination
           loading={!tableData}
           //onCellClick={(e: any) => console.log(e.colDef.width)}

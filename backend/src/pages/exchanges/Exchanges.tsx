@@ -8,7 +8,7 @@ import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
 
-import { listExchangeRequest } from "../../store/action";
+import { listExchangeRequest, searchExchangeRequest } from "../../store/action";
 
 //Server URL
 const serverAPIUrl = process.env.REACT_APP_API_URL;
@@ -93,21 +93,28 @@ const Exchanges = () => {
     pageCount: 1,
   });
   const exchangeList = useSelector((exList: any) => {
-    return exList.exchangesReducer.listExchanges.data;
+    return exList.exchangesReducer.listExchanges;
   });
 
-  const rowCount = useSelector((exList: any) => {
-    return exList.exchangesReducer.listExchanges.total;
+  const searchResult = useSelector((result: any) => {
+    return result?.exchangesReducer?.search_result;
   });
+
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
+
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(searchExchangeRequest(searchVal, successHandler, errorHandler));
   };
 
-  const filteredData = searchValue
-    ? exchangeList.filter((flData: any) => {
-        return flData.name.toLowerCase().includes(searchValue.toLowerCase());
-      })
-    : exchangeList;
+  const filteredData =
+    searchValue !== "" &&
+    searchResult &&
+    searchResult !== undefined &&
+    searchResult.length !== 0
+      ? searchResult.data
+      : exchangeList.data;
 
   useEffect(() => {
     const successHandler = (res: any) => {};
@@ -172,10 +179,24 @@ const Exchanges = () => {
         <DataTables
           tableColumn={tableColumn && tableColumn}
           tableData={filteredData && filteredData}
+          data={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data
+              : exchangeList && exchangeList?.data
+          }
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
-          rowCount={rowCount && rowCount}
-          data={exchangeList && exchangeList}
+          rowCount={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data?.length
+              : exchangeList && exchangeList?.total
+          }
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

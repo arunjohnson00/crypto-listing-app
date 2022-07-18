@@ -7,17 +7,20 @@ import LargeBtn from "../../components/form/button/large/LargeBtn";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
-import { listCoinAuditRequest } from "../../store/action";
+import {
+  listCoinAuditRequest,
+  searchCoinAuditRequest,
+} from "../../store/action";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const CoinsAudit = () => {
   const coinAuditList = useSelector((auditList: any) => {
-    return auditList.auditReducer.listAudit.data;
+    return auditList.auditReducer.listAudit;
   });
 
-  const rowCount = useSelector((auditList: any) => {
-    return auditList.auditReducer.listAudit.total;
+  const searchResult = useSelector((result: any) => {
+    return result?.auditReducer?.search_result;
   });
 
   const [searchValue, setSearchValue] = useState("");
@@ -28,13 +31,18 @@ const CoinsAudit = () => {
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(searchCoinAuditRequest(searchVal, successHandler, errorHandler));
   };
 
-  var filteredData = searchValue
-    ? coinAuditList.filter((flData: any) => {
-        return flData.name.toLowerCase().includes(searchValue.toLowerCase());
-      })
-    : coinAuditList;
+  var filteredData =
+    searchValue !== "" &&
+    searchResult &&
+    searchResult !== undefined &&
+    searchResult.length !== 0
+      ? searchResult.data
+      : coinAuditList.data;
 
   const dispatch = useDispatch();
 
@@ -170,10 +178,24 @@ const CoinsAudit = () => {
         <DataTables
           tableColumn={tableColumn && tableColumn}
           tableData={filteredData && filteredData}
+          data={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data
+              : coinAuditList && coinAuditList?.data
+          }
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
-          rowCount={rowCount && rowCount}
-          data={coinAuditList && coinAuditList}
+          rowCount={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data?.length
+              : coinAuditList && coinAuditList?.total
+          }
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

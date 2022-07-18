@@ -7,17 +7,21 @@ import LargeBtn from "../../components/form/button/large/LargeBtn";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
-import { listChartProviderRequest } from "../../store/action";
+import {
+  listChartProviderRequest,
+  searchChartProviderRequest,
+} from "../../store/action";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const CoinsChartProvider = () => {
   const coinChartProviderList = useSelector((chartProviderList: any) => {
-    return chartProviderList.chartProviderReducer.listChartProvider.data;
+    return chartProviderList.chartProviderReducer.listChartProvider;
   });
-  const rowCount = useSelector((chartProviderList: any) => {
-    return chartProviderList.chartProviderReducer.listChartProvider.total;
+  const searchResult = useSelector((result: any) => {
+    return result?.chartProviderReducer?.search_result;
   });
+
   const [searchValue, setSearchValue] = useState("");
   const [dataTableParams, setDataTableParams] = useState<any>({
     PageSize: 15,
@@ -26,13 +30,20 @@ const CoinsChartProvider = () => {
 
   const searchHandler = (searchVal: any) => {
     setSearchValue(searchVal);
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(
+      searchChartProviderRequest(searchVal, successHandler, errorHandler)
+    );
   };
 
-  var filteredData = searchValue
-    ? coinChartProviderList.filter((flData: any) => {
-        return flData.name.toLowerCase().includes(searchValue.toLowerCase());
-      })
-    : coinChartProviderList;
+  var filteredData =
+    searchValue !== "" &&
+    searchResult &&
+    searchResult !== undefined &&
+    searchResult.length !== 0
+      ? searchResult.data
+      : coinChartProviderList.data;
 
   const dispatch = useDispatch();
 
@@ -166,12 +177,26 @@ const CoinsChartProvider = () => {
 
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <DataTables
-          data={coinChartProviderList && coinChartProviderList}
           tableColumn={tableColumn && tableColumn}
           tableData={filteredData && filteredData}
+          data={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data
+              : coinChartProviderList && coinChartProviderList?.data
+          }
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
-          rowCount={rowCount && rowCount}
+          rowCount={
+            searchValue !== "" &&
+            searchResult &&
+            searchResult !== undefined &&
+            searchResult?.length !== 0
+              ? searchResult?.data?.length
+              : coinChartProviderList && coinChartProviderList?.total
+          }
         />
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
