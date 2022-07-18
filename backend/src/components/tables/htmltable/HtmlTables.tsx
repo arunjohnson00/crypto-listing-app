@@ -5,19 +5,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 
-function createData(year: number, month: string, coinlist: number) {
-  return { year, month, coinlist };
-}
-
-const rows = [
-  createData(2021, "June", 60),
-  createData(2021, "July", 910),
-  createData(2021, "August", 160),
-  createData(2021, "September", 37),
-  createData(2021, "October", 150),
-];
-
-const HtmlTables = () => {
+const HtmlTables = ({ rows }: any) => {
   return (
     <TableContainer>
       <Table
@@ -31,7 +19,7 @@ const HtmlTables = () => {
         aria-label="a dense table"
       >
         <TableBody>
-          {rows.map((row, index) => (
+          {rows?.slice(6, 12).map((row: any, index: number) => (
             <TableRow
               key={index}
               sx={{
@@ -41,10 +29,10 @@ const HtmlTables = () => {
               }}
             >
               <TableCell component="th" scope="row">
-                {row.year}
+                {row?.year}
               </TableCell>
-              <TableCell align="right">{row.month}</TableCell>
-              <TableCell align="right">{row.coinlist}</TableCell>
+              <TableCell align="right">{row?.month}</TableCell>
+              <TableCell align="right">{row?.count}</TableCell>
             </TableRow>
           ))}
         </TableBody>

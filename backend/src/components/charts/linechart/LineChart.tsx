@@ -21,23 +21,75 @@ const LineChart = ({ lineChartData }: any) => {
   //   tooltip: { trigger: "selection" },
   //   chartArea: { width: "85%" },
   // };
-  const [data, updateData] = useState([1, 2, 3, 4, 5, 6]);
 
+  const [data, updateData] = useState<any>();
+  const [axisData, updateAxisData] = useState<any>({ xAxis: "", yAxis: "" });
+
+  console.log(axisData);
   useEffect(() => {
-    const interval = setInterval(() => {
-      const val = Math.floor(Math.random() * (100 - 30 + 1)) + 30;
-      let array = [...data, val];
-      array.shift();
-      updateData(array);
-    }, 2000);
-    return () => {
-      window.clearInterval(interval);
-    };
-  }, [data]);
+    lineChartData &&
+      lineChartData?.thirty_days !== undefined &&
+      lineChartData?.thirty_days?.length !== 0 &&
+      updateData(Object.values(lineChartData?.thirty_days));
+    lineChartData &&
+      lineChartData?.thirty_days !== undefined &&
+      lineChartData?.thirty_days?.length !== 0 &&
+      updateAxisData({
+        ...axisData,
+        xAxis: Object.keys(lineChartData?.thirty_days),
+      });
+  }, [lineChartData]);
+
+  const linegraphFilterHandler = (e: any) => {
+    parseInt(e.target.value) === 30 &&
+      lineChartData &&
+      lineChartData?.thirty_days !== undefined &&
+      lineChartData?.thirty_days?.length !== 0 &&
+      updateData(Object.values(lineChartData?.thirty_days));
+
+    parseInt(e.target.value) === 30 &&
+      lineChartData &&
+      lineChartData?.thirty_days !== undefined &&
+      lineChartData?.thirty_days?.length !== 0 &&
+      updateAxisData({
+        ...axisData,
+        xAxis: Object.keys(lineChartData?.thirty_days),
+      });
+    parseInt(e.target.value) === 15 &&
+      lineChartData &&
+      lineChartData?.fifteen_days !== undefined &&
+      lineChartData?.fifteen_days?.length !== 0 &&
+      updateData(Object.values(lineChartData?.fifteen_days));
+
+    parseInt(e.target.value) === 15 &&
+      lineChartData &&
+      lineChartData?.fifteen_days !== undefined &&
+      lineChartData?.fifteen_days?.length !== 0 &&
+      updateAxisData({
+        ...axisData,
+        xAxis: Object.keys(lineChartData?.fifteen_days),
+      });
+
+    parseInt(e.target.value) === 7 &&
+      lineChartData &&
+      lineChartData?.seven_days !== undefined &&
+      lineChartData?.seven_days?.length !== 0 &&
+      updateData(Object.values(lineChartData?.seven_days));
+
+    parseInt(e.target.value) === 7 &&
+      lineChartData &&
+      lineChartData?.seven_days !== undefined &&
+      lineChartData?.seven_days?.length !== 0 &&
+      updateAxisData({
+        ...axisData,
+        xAxis: Object.keys(lineChartData?.seven_days),
+      });
+  };
+
   const chartData: any = {
     series: [
       {
-        name: "Coinxhigh",
+        name: "Request",
         data: data,
       },
     ],
@@ -96,6 +148,7 @@ const LineChart = ({ lineChartData }: any) => {
         },
       },
       xaxis: {
+        categories: axisData && axisData?.xAxis,
         labels: {
           show: true,
         },
@@ -171,10 +224,11 @@ const LineChart = ({ lineChartData }: any) => {
                 },
               }}
               sx={{ fontSize: "13px", color: "#9C9FA0" }}
+              onChange={(e: any) => linegraphFilterHandler(e)}
             >
               <option value={7}>Last 7 days</option>
               <option value={15}>Last 15 days</option>
-              <option value={20}>Last 20 days</option>
+              <option value={30}>Last 30 days</option>
             </NativeSelect>
           </FormControl>
         </Grid>

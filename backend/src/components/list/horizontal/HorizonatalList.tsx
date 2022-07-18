@@ -65,7 +65,7 @@ const HorizonatalList = () => {
             underline="none"
             key="1"
             color="inherit"
-            sx={{ color: "#00E396" }}
+            sx={{ color: "#00a4e3" }}
           >
             <Typography variant="subtitle2">
               Exchanges:{" "}
@@ -86,6 +86,45 @@ const HorizonatalList = () => {
               {topbarCount &&
                 topbarCount[0]?.nftlstingCount &&
                 topbarCount[0]?.nftlstingCount}
+            </Typography>
+          </Link>
+          <Link
+            underline="none"
+            key="1"
+            color="inherit"
+            sx={{ color: "#FF9900" }}
+          >
+            <Typography variant="subtitle2">
+              AirDrops:{" "}
+              {topbarCount &&
+                topbarCount[0]?.airdropCount &&
+                topbarCount[0]?.airdropCount}
+            </Typography>
+          </Link>
+          <Link
+            underline="none"
+            key="1"
+            color="inherit"
+            sx={{ color: "#990099" }}
+          >
+            <Typography variant="subtitle2">
+              Events:
+              {topbarCount &&
+                topbarCount[0]?.eventCount &&
+                topbarCount[0]?.eventCount}
+            </Typography>
+          </Link>
+          <Link
+            underline="none"
+            key="1"
+            color="inherit"
+            sx={{ color: "#DC3912" }}
+          >
+            <Typography variant="subtitle2">
+              Marketplace:{" "}
+              {topbarCount &&
+                topbarCount[0]?.nftMarketplaceCount &&
+                topbarCount[0]?.nftMarketplaceCount}
             </Typography>
           </Link>
         </Breadcrumbs>

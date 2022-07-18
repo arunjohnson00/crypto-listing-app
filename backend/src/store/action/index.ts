@@ -211,3 +211,4 @@ export {
 
 export { coinListingPerDaysRequest } from "./dashboardAction";
 export { monthWiseCoinListingRequest } from "./dashboardAction";
+export { coinStatusCountRequest } from "./dashboardAction";

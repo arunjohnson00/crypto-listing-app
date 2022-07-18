@@ -5,6 +5,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import {
   coinListingPerDaysRequest,
   monthWiseCoinListingRequest,
+  coinStatusCountRequest,
 } from "../../store/action";
 import { Item } from "./style";
 import PieChart from "../../components/charts/piechart/PieChart";
@@ -27,6 +28,11 @@ const Dashboard = () => {
   const monthwiseCoinListing = useSelector((cnMonthList: any) => {
     return cnMonthList?.dashboardReducer?.month_wise_coin_listing?.data;
   });
+
+  const coinStatus = useSelector((cnMonthList: any) => {
+    return cnMonthList?.dashboardReducer?.coin_status_count?.data;
+  });
+
   useEffect(() => {
     const successHandler = (res: any) => {
       console.log(res);
@@ -41,17 +47,19 @@ const Dashboard = () => {
     dispatch(
       monthWiseCoinListingRequest("emptyData", successHandler, errorHandler)
     );
+
+    dispatch(coinStatusCountRequest("emptyData", successHandler, errorHandler));
   }, [dispatch]);
 
   return (
     <Grid container spacing={2}>
-      <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
+      <Grid item xl={3.5} lg={3.5} md={3.5} sm={12} xs={12}>
         <Typography variant="h5" sx={{ textAlign: "left" }}>
           Coins Overview
         </Typography>
       </Grid>
 
-      <Grid item xl={8} lg={8} md={8} sm={12} xs={12}>
+      <Grid item xl={8.5} lg={8.5} md={8.5} sm={12} xs={12}>
         <HorizonatalList />
       </Grid>
 
@@ -83,8 +91,8 @@ const Dashboard = () => {
             >
               Coins Historical Data
             </Typography>
-            <HtmlTables />
-            <ComponentFooter />
+            <HtmlTables rows={monthwiseCoinListing && monthwiseCoinListing} />
+            <ComponentFooter counter={false} />
           </Box>
         </Item>
       </Grid>

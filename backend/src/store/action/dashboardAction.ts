@@ -34,3 +34,20 @@ export const monthWiseCoinListingRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const coinStatusCountRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/dashboard/coin-status-count`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: DASHBOARD.COIN_STATUS_COUNT,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

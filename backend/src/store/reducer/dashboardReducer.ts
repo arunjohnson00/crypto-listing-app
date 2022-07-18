@@ -3,6 +3,7 @@ import { DASHBOARD } from "../types";
 const initialState = {
   coin_listing_per_days: "",
   month_wise_coin_listing: "",
+  coin_status_count: "",
 };
 const dashboardReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -15,6 +16,12 @@ const dashboardReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         month_wise_coin_listing: action?.payload?.data,
+      };
+
+    case DASHBOARD.COIN_STATUS_COUNT:
+      return {
+        ...state,
+        coin_status_count: action?.payload?.data,
       };
 
     default:
