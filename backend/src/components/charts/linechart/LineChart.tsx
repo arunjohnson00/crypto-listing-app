@@ -6,7 +6,7 @@ import { Grid } from "@mui/material";
 import { NativeSelect } from "@mui/material";
 import { FormControl } from "@mui/material";
 
-const LineChart = () => {
+const LineChart = ({ lineChartData }: any) => {
   // const data = [
   //   ["Day", "CoinListing"],
   //   ["1", 1000],

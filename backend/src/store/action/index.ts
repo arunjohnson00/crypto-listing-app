@@ -206,3 +206,8 @@ export {
   deleteDashboardInfoBanner,
   updateDashboardInfoBanner,
 } from "./settingsAction";
+
+//Dashboard Action
+
+export { coinListingPerDaysRequest } from "./dashboardAction";
+export { monthWiseCoinListingRequest } from "./dashboardAction";

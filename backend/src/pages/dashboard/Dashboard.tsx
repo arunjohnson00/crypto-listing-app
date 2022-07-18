@@ -1,6 +1,11 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Box, Grid, Typography } from "@mui/material";
 
+import {
+  coinListingPerDaysRequest,
+  monthWiseCoinListingRequest,
+} from "../../store/action";
 import { Item } from "./style";
 import PieChart from "../../components/charts/piechart/PieChart";
 import LineChart from "../../components/charts/linechart/LineChart";
@@ -11,9 +16,32 @@ import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import ComponentFooter from "../../components/footer/compfooter/ComponentFooter";
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
   const coinList = useSelector((cnList: any) => {
     return cnList?.coinReducer?.listCoins?.data;
   });
+  const coinPerDayListing = useSelector((cnPerDayList: any) => {
+    return cnPerDayList?.dashboardReducer?.coin_listing_per_days?.data;
+  });
+
+  const monthwiseCoinListing = useSelector((cnMonthList: any) => {
+    return cnMonthList?.dashboardReducer?.month_wise_coin_listing?.data;
+  });
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      console.log(res);
+    };
+
+    const errorHandler = (err: any) => {
+      console.log(err);
+    };
+    dispatch(
+      coinListingPerDaysRequest("emptyData", successHandler, errorHandler)
+    );
+    dispatch(
+      monthWiseCoinListingRequest("emptyData", successHandler, errorHandler)
+    );
+  }, [dispatch]);
 
   return (
     <Grid container spacing={2}>
@@ -30,7 +58,7 @@ const Dashboard = () => {
       <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
         <Item>
           <Box pt={3}>
-            <LineChart />
+            <LineChart lineChartData={coinPerDayListing && coinPerDayListing} />
           </Box>
         </Item>
       </Grid>
