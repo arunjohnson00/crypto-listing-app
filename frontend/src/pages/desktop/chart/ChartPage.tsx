@@ -213,7 +213,6 @@ const ChartPage = ({ windowInnerWidth }: any) => {
                     <Typography
                       variant="h5"
                       sx={{ color: "#FFFFF5", fontWeight: 600 }}
-                      textAlign={{ xs: "center", sm: "center", md: "left" }}
                     >
                       Safemoon {"($SFM)"}
                     </Typography>

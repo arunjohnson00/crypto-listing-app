@@ -22,6 +22,7 @@ import DiscoverPage from "../pages/desktop/discover/DiscoverPage";
 import MobileSingleCoinPage from "../pages/mobile/mobilesinglecoinpage/MobileSingleCoinPage";
 import LeaderBoardPage from "../pages/desktop/leaderboard/LeaderBoardPage";
 import ChartPage from "../pages/desktop/chart/ChartPage";
+import FreeCoinPage from "../pages/desktop/freecoin/FreeCoinPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -113,6 +114,14 @@ const AppRoutes = () => {
           element={
             <PublicRoutes>
               <ChartPage windowInnerWidth={windowInnerWidth} />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path="/free-coin"
+          element={
+            <PublicRoutes>
+              <FreeCoinPage windowInnerWidth={windowInnerWidth} />
             </PublicRoutes>
           }
         />
