@@ -30,6 +30,7 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
       >
         <TableHead>
           <TableRow>
+            <TableCell></TableCell>
             {rowHeader &&
               rowHeader.map((title: any, index: number) => (
                 <TableCell key={index} sx={{ fontWeight: 600 }}>
@@ -47,10 +48,22 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                   "&:last-child td, &:last-child th": {
                     border: 0,
                     fontWeight: 500,
+                    paddingY: 1.2,
                   },
                 }}
                 key={index}
               >
+                <TableCell
+                  align="left"
+                  sx={{
+                    fontSize: ".75rem",
+                    border: 0,
+                    fontWeight: 500,
+                    color: "#A1A1A1",
+                  }}
+                >
+                  {index + 1}
+                </TableCell>
                 <TableCell
                   align="left"
                   sx={{ fontSize: ".75rem", border: 0, fontWeight: 500 }}
@@ -116,6 +129,17 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
               >
                 <TableCell
                   align="left"
+                  sx={{
+                    fontSize: ".75rem",
+                    border: 0,
+                    fontWeight: 500,
+                    color: "#A1A1A1",
+                  }}
+                >
+                  {index + 1}
+                </TableCell>
+                <TableCell
+                  align="left"
                   sx={{ fontSize: ".75rem", border: 0, fontWeight: 500 }}
                 >
                   {data?.coinName}
@@ -157,20 +181,16 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                               horizontal: "left",
                             }}
                           >
-                            <Stack direction="column" spacing={0.5}>
-                              <Typography
-                                sx={{ px: 2, py: 0.3, fontSize: ".75rem" }}
-                              >
+                            <Stack direction="column" spacing={0} py={0.5}>
+                              <Typography sx={{ px: 2, fontSize: ".65rem" }}>
                                 {data?.product}
                               </Typography>
-                              <Divider
+                              {/* <Divider
                                 flexItem
                                 orientation="horizontal"
                                 variant="fullWidth"
-                              />
-                              <Typography
-                                sx={{ px: 2, py: 0.3, fontSize: ".75rem" }}
-                              >
+                              /> */}
+                              <Typography sx={{ px: 2, fontSize: ".65rem" }}>
                                 {data?.product}
                               </Typography>
                             </Stack>
