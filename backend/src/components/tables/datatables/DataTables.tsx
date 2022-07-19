@@ -237,7 +237,7 @@ const DataTables = ({
           paginationMode="server"
           rowCount={rowCount && rowCount}
           autoHeight={false}
-          //page={dataTableParams && dataTableParams?.pageCount - 1}
+          //page={dataTableParams?.pageCount && dataTableParams?.pageCount}
           pageSize={dataTableParams && dataTableParams?.PageSize}
           // onPageSizeChange={(newPageSize) =>
           //   dataTableParams &&
@@ -246,7 +246,7 @@ const DataTables = ({
 
           onPageChange={(newPage) =>
             dataTableParams &&
-            setDataTableParams({ ...dataTableParams, pageCount: newPage })
+            setDataTableParams({ ...dataTableParams, pageCount: newPage + 1 })
           }
           //rowsPerPageOptions={[15]}
           pagination
