@@ -7,6 +7,7 @@ import {
   monthWiseCoinListingRequest,
   coinStatusCountRequest,
   liveAdsOverviewRequest,
+  incomingAdRequest,
 } from "../../store/action";
 import { Item } from "./style";
 import PieChart from "../../components/charts/piechart/PieChart";
@@ -37,8 +38,10 @@ const Dashboard = () => {
   const liveAdsOverView = useSelector((liveAds: any) => {
     return liveAds?.dashboardReducer?.live_ads_overview?.data;
   });
-
-  console.log(liveAdsOverView);
+  const incomingAds = useSelector((inAds: any) => {
+    return inAds?.dashboardReducer?.incoming_ad_request?.data;
+  });
+  console.log(incomingAds);
   useEffect(() => {
     const successHandler = (res: any) => {
       console.log(res);
@@ -56,6 +59,7 @@ const Dashboard = () => {
 
     dispatch(coinStatusCountRequest("emptyData", successHandler, errorHandler));
     dispatch(liveAdsOverviewRequest("emptyData", successHandler, errorHandler));
+    dispatch(incomingAdRequest("emptyData", successHandler, errorHandler));
   }, [dispatch]);
 
   return (
@@ -145,6 +149,8 @@ const Dashboard = () => {
                 "Notify",
               ]}
               rows={liveAdsOverView && liveAdsOverView}
+              variant="ads_overview"
+              mailer={true}
             />
             <ComponentFooter />
           </Box>
@@ -153,13 +159,13 @@ const Dashboard = () => {
 
       <Grid item xl={5} lg={5} md={5} sm={6} xs={12}>
         <Typography
-          variant="h5"
+          variant="h6"
           sx={{ textAlign: "left", paddingBottom: "18px", marginTop: "20px" }}
         >
           Recent Listings
         </Typography>
         <Item>
-          <Box pt={2} pl={1}>
+          <Box pt={0} pl={1}>
             <TablesWithHead />
             <ComponentFooter />
           </Box>
@@ -168,14 +174,27 @@ const Dashboard = () => {
 
       <Grid item xs={12}>
         <Typography
-          variant="h5"
+          variant="h6"
           sx={{ textAlign: "left", paddingBottom: "18px", marginTop: "20px" }}
         >
           Incoming Ads Requests
         </Typography>
         <Item>
-          <Box pt={2} pl={0}>
-            <TablesWithHead />
+          <Box pt={0} pl={0}>
+            <TablesWithHead
+              rowHeader={[
+                "Coin name",
+                "Amount",
+                "Products",
+                "Start Date",
+                "Days",
+                "Trans.ID",
+                "Order Careated",
+                "Status",
+              ]}
+              rows={incomingAds && incomingAds}
+              variant="incoming_ads"
+            />
             <ComponentFooter />
           </Box>
         </Item>

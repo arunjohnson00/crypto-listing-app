@@ -15,7 +15,7 @@ const ComponentFooter = ({ counter, data }: any) => {
       <Link
         href="#"
         underline="none"
-        sx={{ color: "#3C3667", fontWeight: 400 }}
+        sx={{ color: "#3C3667", fontWeight: 500 }}
       >
         <Typography
           variant="subtitle2"
@@ -24,6 +24,7 @@ const ComponentFooter = ({ counter, data }: any) => {
             paddingRight: "4px",
             textAlign: "right",
             justifyContent: " space-between",
+            fontSize: ".8rem",
           }}
         >
           View full list ≫

@@ -28,13 +28,27 @@ const HtmlTables = ({ rows }: any) => {
                 },
               }}
             >
-              <TableCell sx={{ fontSize: ".80rem" }} align="left">
+              <TableCell
+                sx={{ fontSize: ".80rem", fontWeight: 500, border: 0 }}
+                align="left"
+              >
                 {row?.year}
               </TableCell>
-              <TableCell sx={{ fontSize: ".80rem" }} align="left">
+              <TableCell
+                sx={{ fontSize: ".80rem", fontWeight: 500, border: 0 }}
+                align="left"
+              >
                 {row?.month}
               </TableCell>
-              <TableCell sx={{ fontSize: ".80rem" }} align="left">
+              <TableCell
+                sx={{
+                  fontSize: ".80rem",
+                  color: "#AB264F",
+                  fontWeight: 500,
+                  border: 0,
+                }}
+                align="left"
+              >
                 {row?.count}
               </TableCell>
             </TableRow>
