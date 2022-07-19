@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Divider, Grid, Stack, Typography } from "@mui/material";
 
 import {
   coinListingPerDaysRequest,
@@ -29,7 +29,7 @@ const Dashboard = () => {
     return cnMonthList?.dashboardReducer?.month_wise_coin_listing?.data;
   });
 
-  const coinStatus = useSelector((cnMonthList: any) => {
+  const coinStatusCount = useSelector((cnMonthList: any) => {
     return cnMonthList?.dashboardReducer?.coin_status_count?.data;
   });
 
@@ -73,8 +73,17 @@ const Dashboard = () => {
       <Grid item xl={4} lg={4} md={4} sm={6} xs={12}>
         <Item>
           <Box pt={3}>
-            <PieChart piData={coinList} />
-            <ComponentFooter />
+            <Stack direction="column" spacing={1.1}>
+              <Typography
+                variant="body1"
+                sx={{ textAlign: "left", fontWeight: 600, color: "#363062" }}
+              >
+                Current status of coin
+              </Typography>
+              <Divider orientation="horizontal" flexItem variant="fullWidth" />
+            </Stack>
+            <PieChart piData={coinStatusCount} />
+            <ComponentFooter data={coinStatusCount} />
           </Box>
         </Item>
       </Grid>

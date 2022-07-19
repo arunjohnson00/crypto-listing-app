@@ -2,7 +2,7 @@ import { Box } from "@mui/system";
 import Link from "@mui/material/Link";
 import { Typography } from "@mui/material";
 
-const ComponentFooter = ({ counter }: any) => {
+const ComponentFooter = ({ counter, data }: any) => {
   return (
     <Box
       sx={{
@@ -23,7 +23,9 @@ const ComponentFooter = ({ counter }: any) => {
           }}
         >
           Total Coins :{" "}
-          <span style={{ color: "black", fontWeight: "bold" }}>6867</span>
+          <span style={{ color: "black", fontWeight: "bold" }}>
+            {data?.total_coins}
+          </span>
         </Typography>
       )}
       <Link
