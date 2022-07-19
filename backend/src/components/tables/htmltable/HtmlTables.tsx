@@ -13,7 +13,7 @@ const HtmlTables = ({ rows }: any) => {
           minWidth: 100,
           height: 223,
           border: 0,
-          fontSize: "13px",
+          fontSize: "8.5rem",
         }}
         size="small"
         aria-label="a dense table"
@@ -28,11 +28,15 @@ const HtmlTables = ({ rows }: any) => {
                 },
               }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell sx={{ fontSize: ".80rem" }} align="left">
                 {row?.year}
               </TableCell>
-              <TableCell align="right">{row?.month}</TableCell>
-              <TableCell align="right">{row?.count}</TableCell>
+              <TableCell sx={{ fontSize: ".80rem" }} align="left">
+                {row?.month}
+              </TableCell>
+              <TableCell sx={{ fontSize: ".80rem" }} align="left">
+                {row?.count}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -4,6 +4,7 @@ const initialState = {
   coin_listing_per_days: "",
   month_wise_coin_listing: "",
   coin_status_count: "",
+  live_ads_overview: "",
 };
 const dashboardReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -23,7 +24,11 @@ const dashboardReducer = (state: any = initialState, action: any) => {
         ...state,
         coin_status_count: action?.payload?.data,
       };
-
+    case DASHBOARD.LIVE_ADS_OVERVIEW:
+      return {
+        ...state,
+        live_ads_overview: action?.payload?.data,
+      };
     default:
       return state;
   }

@@ -6,6 +6,7 @@ import {
   coinListingPerDaysRequest,
   monthWiseCoinListingRequest,
   coinStatusCountRequest,
+  liveAdsOverviewRequest,
 } from "../../store/action";
 import { Item } from "./style";
 import PieChart from "../../components/charts/piechart/PieChart";
@@ -29,10 +30,15 @@ const Dashboard = () => {
     return cnMonthList?.dashboardReducer?.month_wise_coin_listing?.data;
   });
 
-  const coinStatusCount = useSelector((cnMonthList: any) => {
-    return cnMonthList?.dashboardReducer?.coin_status_count?.data;
+  const coinStatusCount = useSelector((cnStatus: any) => {
+    return cnStatus?.dashboardReducer?.coin_status_count?.data;
   });
 
+  const liveAdsOverView = useSelector((liveAds: any) => {
+    return liveAds?.dashboardReducer?.live_ads_overview?.data;
+  });
+
+  console.log(liveAdsOverView);
   useEffect(() => {
     const successHandler = (res: any) => {
       console.log(res);
@@ -49,6 +55,7 @@ const Dashboard = () => {
     );
 
     dispatch(coinStatusCountRequest("emptyData", successHandler, errorHandler));
+    dispatch(liveAdsOverviewRequest("emptyData", successHandler, errorHandler));
   }, [dispatch]);
 
   return (
@@ -73,16 +80,22 @@ const Dashboard = () => {
       <Grid item xl={4} lg={4} md={4} sm={6} xs={12}>
         <Item>
           <Box pt={3}>
-            <Stack direction="column" spacing={1.1}>
+            <Stack direction="column" spacing={0.5}>
               <Typography
                 variant="body1"
-                sx={{ textAlign: "left", fontWeight: 600, color: "#363062" }}
+                sx={{
+                  fontWeight: "bold",
+                  textAlign: "left",
+                  paddingBottom: "5px",
+                  color: "#363062",
+                  fontSmooth: "always",
+                }}
               >
-                Current status of coin
+                Current Status of Coin
               </Typography>
               <Divider orientation="horizontal" flexItem variant="fullWidth" />
             </Stack>
-            <PieChart piData={coinStatusCount} />
+            <PieChart piData={coinStatusCount} title="Current status of coin" />
             <ComponentFooter data={coinStatusCount} />
           </Box>
         </Item>
@@ -90,16 +103,21 @@ const Dashboard = () => {
       <Grid item xl={4} lg={4} md={4} sm={6} xs={12}>
         <Item>
           <Box pt={2} pl={1}>
-            <Typography
-              variant="subtitle1"
-              sx={{
-                fontWeight: "bold",
-                textAlign: "left",
-                paddingBottom: "5px",
-              }}
-            >
-              Coins Historical Data
-            </Typography>
+            <Stack direction="column" spacing={0.5}>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontWeight: "bold",
+                  textAlign: "left",
+                  paddingBottom: "5px",
+                  color: "#363062",
+                  fontSmooth: "always",
+                }}
+              >
+                Coins Historical Data
+              </Typography>
+              <Divider orientation="horizontal" flexItem variant="fullWidth" />
+            </Stack>
             <HtmlTables rows={monthwiseCoinListing && monthwiseCoinListing} />
             <ComponentFooter counter={false} />
           </Box>
@@ -107,16 +125,27 @@ const Dashboard = () => {
       </Grid>
 
       <Grid item xl={7} lg={7} md={7} sm={6} xs={12}>
-        <Typography
-          variant="h5"
-          sx={{ textAlign: "left", paddingBottom: "18px", marginTop: "20px" }}
-        >
-          Live Ads Overview{" "}
+        <Stack direction="row" spacing={1} alignItems="center">
+          <Typography
+            variant="h6"
+            sx={{ textAlign: "left", paddingBottom: "18px", marginTop: "20px" }}
+          >
+            Live Ads Overview{" "}
+          </Typography>
           <CellTowerOutlinedIcon style={{ color: "#00E396" }} />
-        </Typography>
+        </Stack>
         <Item>
-          <Box pt={2} pl={1}>
-            <TablesWithHead />
+          <Box pt={0} pl={0}>
+            <TablesWithHead
+              rowHeader={[
+                "Ad name",
+                "Advertisement type",
+                "Expires in",
+                "Total days",
+                "Notify",
+              ]}
+              rows={liveAdsOverView && liveAdsOverView}
+            />
             <ComponentFooter />
           </Box>
         </Item>
@@ -145,7 +174,7 @@ const Dashboard = () => {
           Incoming Ads Requests
         </Typography>
         <Item>
-          <Box pt={2} pl={1}>
+          <Box pt={2} pl={0}>
             <TablesWithHead />
             <ComponentFooter />
           </Box>

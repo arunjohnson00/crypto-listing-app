@@ -51,3 +51,20 @@ export const coinStatusCountRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const liveAdsOverviewRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/dashboard/live-ads-overview`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: DASHBOARD.LIVE_ADS_OVERVIEW,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

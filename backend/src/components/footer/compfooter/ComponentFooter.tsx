@@ -8,26 +8,10 @@ const ComponentFooter = ({ counter, data }: any) => {
       sx={{
         borderTop: "rgb(232, 232, 232) solid 2px",
         display: "flex",
-        justifyContent: counter !== false ? "space-between" : "flex-end",
+        justifyContent: "flex-end",
         width: "100%",
       }}
     >
-      {counter !== false && (
-        <Typography
-          variant="subtitle1"
-          sx={{
-            paddingTop: "9px",
-            paddingRight: "4px",
-            textAlign: "right",
-            fontWeight: "bold",
-          }}
-        >
-          Total Coins :{" "}
-          <span style={{ color: "black", fontWeight: "bold" }}>
-            {data?.total_coins}
-          </span>
-        </Typography>
-      )}
       <Link
         href="#"
         underline="none"

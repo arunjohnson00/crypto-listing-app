@@ -5,19 +5,12 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import { IconButton } from "@mui/material";
+const TablesWithHead = ({ rows, rowHeader }: any) => {
+  const diffDays = (date: any, otherDate: any) =>
+    Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24));
 
-function createData(year: number, month: string, coinlist: number) {
-  return { year, month, coinlist };
-}
-
-const rows = [
-  createData(2021, "June", 60),
-  createData(2021, "July", 910),
-  createData(2021, "August", 160),
-  createData(2021, "September", 37),
-  createData(2021, "October", 150),
-];
-const TablesWithHead = () => {
   return (
     <TableContainer>
       <Table
@@ -32,26 +25,53 @@ const TablesWithHead = () => {
       >
         <TableHead>
           <TableRow>
-            <TableCell>Dessert </TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            {rowHeader &&
+              rowHeader.map((title: any, index: number) => (
+                <TableCell key={index}>{title} </TableCell>
+              ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, index) => (
-            <TableRow
-              key={index}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.year}
-              </TableCell>
-              <TableCell align="right">{row.month}</TableCell>
-              <TableCell align="right">{row.coinlist}</TableCell>
-            </TableRow>
-          ))}
+          {rows &&
+            rows.map((data: any, index: number) => (
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                key={index}
+              >
+                <TableCell align="left" sx={{ fontSize: ".75rem", border: 0 }}>
+                  {data?.adName}
+                </TableCell>
+                <TableCell
+                  align="left"
+                  sx={{ fontSize: ".75rem", color: "#008bff", border: 0 }}
+                >
+                  {data?.adType}
+                </TableCell>
+                <TableCell align="left" sx={{ fontSize: ".75rem", border: 0 }}>
+                  {diffDays(
+                    new Date(data?.adStartDate).setDate(
+                      new Date(data?.adStartDate).getDate() +
+                        parseInt(data?.adNumberOfDays)
+                    ),
+                    new Date()
+                  )}
+                </TableCell>
+                <TableCell align="left" sx={{ fontSize: ".75rem", border: 0 }}>
+                  {data?.adNumberOfDays}
+                </TableCell>
+
+                <TableCell
+                  align="center"
+                  sx={{ fontSize: ".80rem", border: 0 }}
+                >
+                  <IconButton sx={{ padding: 0 }}>
+                    <MailOutlineIcon
+                      sx={{ color: "#10E49C", fontSize: "1rem" }}
+                    />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>

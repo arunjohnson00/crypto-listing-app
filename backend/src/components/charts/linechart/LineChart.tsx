@@ -200,9 +200,10 @@ const LineChart = ({ lineChartData }: any) => {
         <Grid item xs={8}>
           <Typography
             sx={{
-              fontWeight: "600",
+              fontWeight: "bold",
               textAlign: "left",
               color: "#363062",
+              fontSmooth: "always",
               paddingTop: "7px",
               paddingLeft: "4px",
             }}
@@ -221,10 +222,12 @@ const LineChart = ({ lineChartData }: any) => {
                 id: "uncontrolled-native",
                 style: {
                   border: 0,
+                  padding: 2,
                 },
               }}
               sx={{ fontSize: "13px", color: "#9C9FA0" }}
               onChange={(e: any) => linegraphFilterHandler(e)}
+              disableUnderline
             >
               <option value={7}>Last 7 days</option>
               <option value={15}>Last 15 days</option>
