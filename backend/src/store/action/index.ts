@@ -214,3 +214,4 @@ export { monthWiseCoinListingRequest } from "./dashboardAction";
 export { coinStatusCountRequest } from "./dashboardAction";
 export { liveAdsOverviewRequest } from "./dashboardAction";
 export { incomingAdRequest } from "./dashboardAction";
+export { recentListingsRequest } from "./dashboardAction";

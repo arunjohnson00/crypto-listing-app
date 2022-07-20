@@ -33,7 +33,11 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
             <TableCell></TableCell>
             {rowHeader &&
               rowHeader.map((title: any, index: number) => (
-                <TableCell key={index} sx={{ fontWeight: 600 }}>
+                <TableCell
+                  align="left"
+                  key={index}
+                  sx={{ fontWeight: 600, padding: 0.5 }}
+                >
                   {title}{" "}
                 </TableCell>
               ))}
@@ -42,13 +46,16 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
         <TableBody>
           {variant === "ads_overview" &&
             rows &&
-            rows.map((data: any, index: number) => (
+            rows?.slice(0, 13).map((data: any, index: number) => (
               <TableRow
                 sx={{
                   "&:last-child td, &:last-child th": {
                     border: 0,
-                    fontWeight: 500,
-                    paddingY: 1.2,
+                    paddingBottom: 1,
+                  },
+                  "&:first-child td, &:first-child th": {
+                    border: 0,
+                    paddingTop: 1,
                   },
                 }}
                 key={index}
@@ -59,6 +66,7 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                     fontSize: ".75rem",
                     border: 0,
                     fontWeight: 500,
+                    padding: 0.5,
                     color: "#A1A1A1",
                   }}
                 >
@@ -77,6 +85,7 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                     color: "#008bff",
                     border: 0,
                     fontWeight: 500,
+                    padding: 0.5,
                   }}
                 >
                   {data?.adType}
@@ -100,6 +109,7 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                     border: 0,
                     color: "#AB264F",
                     fontWeight: 500,
+                    padding: 0.5,
                   }}
                 >
                   {data?.adNumberOfDays}
@@ -108,7 +118,12 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                 {mailer === true && (
                   <TableCell
                     align="center"
-                    sx={{ fontSize: ".80rem", border: 0, fontWeight: 500 }}
+                    sx={{
+                      fontSize: ".80rem",
+                      border: 0,
+                      fontWeight: 500,
+                      padding: 0.5,
+                    }}
                   >
                     <IconButton sx={{ padding: 0 }}>
                       <MailOutlineIcon
@@ -119,12 +134,130 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                 )}
               </TableRow>
             ))}
+          {variant === "recent_listings" &&
+            rows &&
+            rows
+              ?.concat(rows)
+              .sort((a: any, b: any) => (a.time < b.time ? 1 : -1))
+              .slice(0, 13)
+              .map((data: any, index: number) => (
+                <TableRow
+                  sx={{
+                    "&:last-child td, &:last-child th": {
+                      border: 0,
+                      paddingBottom: 1,
+                    },
+                    "&:first-child td, &:first-child th": {
+                      border: 0,
+                      paddingTop: 1,
+                    },
+                  }}
+                  key={index}
+                >
+                  <TableCell
+                    align="left"
+                    sx={{
+                      fontSize: ".75rem",
+                      border: 0,
+                      fontWeight: 500,
+                      padding: 0.5,
+                      color: "#A1A1A1",
+                    }}
+                  >
+                    {index + 1}
+                  </TableCell>
+                  <TableCell
+                    align="left"
+                    sx={{
+                      fontSize: ".75rem",
+                      border: 0,
+                      fontWeight: 500,
+                      padding: 0.5,
+                    }}
+                  >
+                    {data?.name}
+                  </TableCell>
+                  <TableCell
+                    align="left"
+                    sx={{
+                      fontSize: ".75rem",
+                      color: "#008bff",
+                      border: 0,
+                      fontWeight: 500,
+                      padding: 0.5,
+                    }}
+                  >
+                    {data?.type}
+                  </TableCell>
+                  <TableCell
+                    align="left"
+                    sx={{
+                      fontSize: ".75rem",
+                      border: 0,
+                      fontWeight: 500,
+                      padding: 0.5,
+                    }}
+                  >
+                    {ago(data?.time)}
+                  </TableCell>
+                  <TableCell
+                    align="left"
+                    sx={{
+                      fontSize: ".75rem",
+                      border: 0,
+                      color: "#AB264F",
+                      fontWeight: 500,
+                      padding: 0.5,
+                    }}
+                  >
+                    <span>
+                      {parseInt(data?.status) === 1 && (
+                        <span style={{ color: "#00E396" }}>Approved</span>
+                      )}
+
+                      {parseInt(data?.status) === 2 && (
+                        <span style={{ color: "#FEB019" }}>Suspended</span>
+                      )}
+
+                      {parseInt(data?.status) === 3 && (
+                        <span style={{ color: "#f7370c" }}>Blocked</span>
+                      )}
+
+                      {parseInt(data?.status) === 4 && (
+                        <span style={{ color: "#775DD0" }}>Processing</span>
+                      )}
+                    </span>
+                  </TableCell>
+
+                  {mailer === true && (
+                    <TableCell
+                      align="center"
+                      sx={{ fontSize: ".80rem", border: 0, fontWeight: 500 }}
+                    >
+                      <IconButton sx={{ padding: 0 }}>
+                        <MailOutlineIcon
+                          sx={{ color: "#10E49C", fontSize: "1rem" }}
+                        />
+                      </IconButton>
+                    </TableCell>
+                  )}
+                </TableRow>
+              ))}
 
           {variant === "incoming_ads" &&
             rows &&
-            rows.map((data: any, index: number) => (
+            rows?.slice(0, 13).map((data: any, index: number) => (
               <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                sx={{
+                  "&:last-child td, &:last-child th": {
+                    border: 0,
+                    paddingBottom: 1,
+                  },
+                  "&:first-child td, &:first-child th": {
+                    border: 0,
+                    paddingTop: 1,
+                  },
+                }}
                 key={index}
               >
                 <TableCell
@@ -133,6 +266,7 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                     fontSize: ".75rem",
                     border: 0,
                     fontWeight: 500,
+                    padding: 0.5,
                     color: "#A1A1A1",
                   }}
                 >
@@ -140,9 +274,14 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                 </TableCell>
                 <TableCell
                   align="left"
-                  sx={{ fontSize: ".75rem", border: 0, fontWeight: 500 }}
+                  sx={{
+                    fontSize: ".75rem",
+                    border: 0,
+                    fontWeight: 500,
+                    padding: 0.5,
+                  }}
                 >
-                  {data?.coinName}
+                  {data?.name}
                 </TableCell>
                 <TableCell
                   align="left"
@@ -150,14 +289,20 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                     fontSize: ".75rem",
                     color: "#240cfb",
                     border: 0,
-                    fontWeight: "500",
+                    fontWeight: 500,
+                    padding: 0.5,
                   }}
                 >
                   {data?.amount}{" "}
                 </TableCell>
                 <TableCell
                   align="left"
-                  sx={{ fontSize: ".75rem", border: 0, fontWeight: 500 }}
+                  sx={{
+                    fontSize: ".75rem",
+                    border: 0,
+                    fontWeight: 500,
+                    padding: 0.5,
+                  }}
                 >
                   <Stack direction="row" spacing={1} alignItems="center">
                     <span style={{ cursor: "pointer" }}>{data?.product}</span>
@@ -202,13 +347,23 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                 </TableCell>
                 <TableCell
                   align="left"
-                  sx={{ fontSize: ".75rem", border: 0, fontWeight: 500 }}
+                  sx={{
+                    fontSize: ".75rem",
+                    border: 0,
+                    fontWeight: 500,
+                    padding: 0.5,
+                  }}
                 >
                   {ago(data?.startDate)}
                 </TableCell>
                 <TableCell
                   align="left"
-                  sx={{ fontSize: ".75rem", border: 0, fontWeight: 500 }}
+                  sx={{
+                    fontSize: ".75rem",
+                    border: 0,
+                    fontWeight: 500,
+                    padding: 0.5,
+                  }}
                 >
                   {data?.days}
                 </TableCell>
@@ -218,6 +373,7 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                     fontSize: ".75rem",
                     border: 0,
                     fontWeight: 500,
+                    padding: 0.5,
                     color: "#0864B1",
                   }}
                 >
@@ -225,13 +381,23 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                 </TableCell>
                 <TableCell
                   align="left"
-                  sx={{ fontSize: ".75rem", border: 0, fontWeight: 500 }}
+                  sx={{
+                    fontSize: ".75rem",
+                    border: 0,
+                    fontWeight: 500,
+                    padding: 0.5,
+                  }}
                 >
                   {ago(data?.orderCreated)}
                 </TableCell>
                 <TableCell
                   align="left"
-                  sx={{ fontSize: ".75rem", border: 0, fontWeight: 500 }}
+                  sx={{
+                    fontSize: ".75rem",
+                    border: 0,
+                    fontWeight: 500,
+                    padding: 0.5,
+                  }}
                 >
                   <span>
                     {parseInt(data?.status) === 1 && (

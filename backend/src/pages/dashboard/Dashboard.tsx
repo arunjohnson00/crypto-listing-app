@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Box, Divider, Grid, Stack, Typography } from "@mui/material";
-
+import sortBy from "lodash/sortBy";
 import {
   coinListingPerDaysRequest,
   monthWiseCoinListingRequest,
   coinStatusCountRequest,
   liveAdsOverviewRequest,
   incomingAdRequest,
+  recentListingsRequest,
 } from "../../store/action";
 import { Item } from "./style";
 import PieChart from "../../components/charts/piechart/PieChart";
@@ -41,14 +42,17 @@ const Dashboard = () => {
   const incomingAds = useSelector((inAds: any) => {
     return inAds?.dashboardReducer?.incoming_ad_request?.data;
   });
-  console.log(incomingAds);
+  const recentListings: any = useSelector((rcList: any) => {
+    return rcList?.dashboardReducer?.recent_listings?.data;
+  });
+
   useEffect(() => {
     const successHandler = (res: any) => {
-      console.log(res);
+      //console.log(res);
     };
 
     const errorHandler = (err: any) => {
-      console.log(err);
+      //console.log(err);
     };
     dispatch(
       coinListingPerDaysRequest("emptyData", successHandler, errorHandler)
@@ -60,6 +64,7 @@ const Dashboard = () => {
     dispatch(coinStatusCountRequest("emptyData", successHandler, errorHandler));
     dispatch(liveAdsOverviewRequest("emptyData", successHandler, errorHandler));
     dispatch(incomingAdRequest("emptyData", successHandler, errorHandler));
+    dispatch(recentListingsRequest("emptyData", successHandler, errorHandler));
   }, [dispatch]);
 
   return (
@@ -166,7 +171,11 @@ const Dashboard = () => {
         </Typography>
         <Item>
           <Box pt={0} pl={1}>
-            <TablesWithHead />
+            <TablesWithHead
+              rowHeader={["Name", "Type", "Time", "Status"]}
+              rows={recentListings && recentListings[0]}
+              variant="recent_listings"
+            />
             <ComponentFooter />
           </Box>
         </Item>

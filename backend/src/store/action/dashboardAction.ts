@@ -85,3 +85,20 @@ export const incomingAdRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const recentListingsRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/dashboard/recent-listings`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: DASHBOARD.RECENT_LISTINGS,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
