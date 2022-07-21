@@ -135,6 +135,7 @@ const SideMenu = ({ open }: any) => {
                       primary={data.title.replace(/[^a-zA-Z ]/g, " ")}
                       primaryTypographyProps={{
                         fontSize: ".93rem",
+                        textTransform: "capitalize",
                         fontWeight: `${
                           activeColorId === data.id ||
                           location.pathname.replace(/[^a-zA-Z ]/g, "") ===
@@ -164,6 +165,7 @@ const SideMenu = ({ open }: any) => {
                       primary={data.title.replace(/[^a-zA-Z ]/g, " ")}
                       primaryTypographyProps={{
                         fontSize: ".93rem",
+                        textTransform: "capitalize",
                         fontWeight: `${
                           activeColorId === data.id ||
                           location.pathname.replace(/[^a-zA-Z ]/g, "") ===
@@ -257,6 +259,7 @@ const SideMenu = ({ open }: any) => {
                               )}
                               primaryTypographyProps={{
                                 fontSize: ".93rem",
+                                textTransform: "capitalize",
                                 fontWeight: `${
                                   activeColorId === data.id &&
                                   subActiveColorId === sublist.id

@@ -93,6 +93,7 @@ import EventRewardAddressAdd from "../pages/eventrewardaddress/add/EventRewardAd
 import EventRewardAddressView from "../pages/eventrewardaddress/view/EventRewardAddressView";
 import EventRewardAddressEdit from "../pages/eventrewardaddress/edit/EventRewardAddressEdit";
 import AdsDashboard from "../pages/ads/dashboard/AdsDashboard";
+import ViewFullList from "../pages/viewfulllist/ViewFullList";
 
 const AppRoutes = () => {
   return (
@@ -111,6 +112,46 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/coin-status-count"
+          element={
+            <PrivateRoute>
+              <ViewFullList />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/month-wise-coin-listing"
+          element={
+            <PrivateRoute>
+              <ViewFullList />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/live-ads-overview"
+          element={
+            <PrivateRoute>
+              <ViewFullList />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/recent-listings"
+          element={
+            <PrivateRoute>
+              <ViewFullList />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/incoming-ad-request"
+          element={
+            <PrivateRoute>
+              <ViewFullList />
             </PrivateRoute>
           }
         />

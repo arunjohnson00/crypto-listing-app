@@ -25,7 +25,7 @@ export const monthWiseCoinListingRequest = (
 ) => {
   //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/dashboard/month-wise-coin-listing`,
+    url: `api/b/v1/dashboard/month-wise-coin-listing?page=${values?.pageCount}`,
     method: "GET",
     secure: true,
     body: values,
@@ -57,9 +57,8 @@ export const liveAdsOverviewRequest = (
   successHandler: any,
   errorHandler: any
 ) => {
-  //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/dashboard/live-ads-overview`,
+    url: `api/b/v1/dashboard/live-ads-overview?page=${values?.pageCount}`,
     method: "GET",
     secure: true,
     body: values,
@@ -76,7 +75,7 @@ export const incomingAdRequest = (
 ) => {
   //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/dashboard/incoming-ad-request`,
+    url: `api/b/v1/dashboard/incoming-ad-request?page=${values?.pageCount}`,
     method: "GET",
     secure: true,
     body: values,
@@ -93,7 +92,7 @@ export const recentListingsRequest = (
 ) => {
   //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/dashboard/recent-listings`,
+    url: `api/b/v1/dashboard/recent-listings?page=${values?.pageCount}`,
     method: "GET",
     secure: true,
     body: values,

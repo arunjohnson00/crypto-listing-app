@@ -113,12 +113,12 @@ const NftEventCategory = () => {
               spacing={2}
               sx={{ justifyContent: "flex-start" }}
             >
-              <Grid item xl={2} lg={2} md={2} sm={12} xs={12}>
+              <Grid item xl={2.5} lg={2.5} md={2.5} sm={12} xs={12}>
                 <Typography variant="h5" sx={{ textAlign: "left" }}>
-                  NFT Event Category
+                  NFT Category
                 </Typography>
               </Grid>
-              <Grid item xl={10} lg={10} md={10} sm={12} xs={12}>
+              <Grid item xl={9.5} lg={9.5} md={9.5} sm={12} xs={12}>
                 <InputSearch
                   placeholder="Search NFT Event category"
                   searchValue={searchValue}

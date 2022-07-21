@@ -105,7 +105,7 @@ const Dashboard = () => {
               <Divider orientation="horizontal" flexItem variant="fullWidth" />
             </Stack>
             <PieChart piData={coinStatusCount} title="Current status of coin" />
-            <ComponentFooter data={coinStatusCount} />
+            <ComponentFooter data={coinStatusCount} path="/coin-status-count" />
           </Box>
         </Item>
       </Grid>
@@ -128,7 +128,7 @@ const Dashboard = () => {
               <Divider orientation="horizontal" flexItem variant="fullWidth" />
             </Stack>
             <HtmlTables rows={monthwiseCoinListing && monthwiseCoinListing} />
-            <ComponentFooter counter={false} />
+            <ComponentFooter counter={false} path="/month-wise-coin-listing" />
           </Box>
         </Item>
       </Grid>
@@ -157,7 +157,7 @@ const Dashboard = () => {
               variant="ads_overview"
               mailer={true}
             />
-            <ComponentFooter />
+            <ComponentFooter path="/live-ads-overview" />
           </Box>
         </Item>
       </Grid>
@@ -176,7 +176,7 @@ const Dashboard = () => {
               rows={recentListings && recentListings[0]}
               variant="recent_listings"
             />
-            <ComponentFooter />
+            <ComponentFooter path="/recent-listings" />
           </Box>
         </Item>
       </Grid>
@@ -204,7 +204,7 @@ const Dashboard = () => {
               rows={incomingAds && incomingAds}
               variant="incoming_ads"
             />
-            <ComponentFooter />
+            <ComponentFooter path="/incoming-ad-request" />
           </Box>
         </Item>
       </Grid>

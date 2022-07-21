@@ -1,8 +1,8 @@
 import { Box } from "@mui/system";
-import Link from "@mui/material/Link";
+import { Link } from "react-router-dom";
 import { Typography } from "@mui/material";
 
-const ComponentFooter = ({ counter, data }: any) => {
+const ComponentFooter = ({ counter, data, path }: any) => {
   return (
     <Box
       sx={{
@@ -13,9 +13,8 @@ const ComponentFooter = ({ counter, data }: any) => {
       }}
     >
       <Link
-        href="#"
-        underline="none"
-        sx={{ color: "#3C3667", fontWeight: 500 }}
+        to={path && path}
+        style={{ color: "#3C3667", fontWeight: 500, textDecoration: "none" }}
       >
         <Typography
           variant="subtitle2"

@@ -7,12 +7,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { Divider, IconButton, Stack, Typography } from "@mui/material";
-import ago from "ts-ago";
+//import ago from "ts-ago";
+import TimeAgo from "javascript-time-ago";
 
 import Popover from "@mui/material/Popover";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 
 const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
+  const timeAgo = new TimeAgo("en-US");
   const diffDays = (date: any, otherDate: any) =>
     Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24));
 
@@ -30,7 +32,9 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
       >
         <TableHead>
           <TableRow>
-            <TableCell></TableCell>
+            <TableCell align="left" sx={{ fontWeight: 600, padding: 0.5 }}>
+              #
+            </TableCell>
             {rowHeader &&
               rowHeader.map((title: any, index: number) => (
                 <TableCell
@@ -181,7 +185,7 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                     align="left"
                     sx={{
                       fontSize: ".75rem",
-                      color: "#008bff",
+                      color: "#240cfb",
                       border: 0,
                       fontWeight: 500,
                       padding: 0.5,
@@ -198,7 +202,8 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                       padding: 0.5,
                     }}
                   >
-                    {ago(data?.time)}
+                    {/* {ago(data?.time)} */}
+                    {timeAgo.format(new Date(data?.time))}
                   </TableCell>
                   <TableCell
                     align="left"
@@ -220,7 +225,7 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                       )}
 
                       {parseInt(data?.status) === 3 && (
-                        <span style={{ color: "#f7370c" }}>Blocked</span>
+                        <span style={{ color: "#FF0000" }}>Blocked</span>
                       )}
 
                       {parseInt(data?.status) === 4 && (
@@ -354,7 +359,8 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                     padding: 0.5,
                   }}
                 >
-                  {ago(data?.startDate)}
+                  {timeAgo.format(new Date(data?.startDate))}
+                  {/* {ago(data?.startDate)} */}
                 </TableCell>
                 <TableCell
                   align="left"
@@ -365,7 +371,7 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                     padding: 0.5,
                   }}
                 >
-                  {data?.days}
+                  {data?.days} Days
                 </TableCell>
                 <TableCell
                   align="left"
@@ -388,7 +394,8 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                     padding: 0.5,
                   }}
                 >
-                  {ago(data?.orderCreated)}
+                  {/* {ago(data?.orderCreated)} */}
+                  {timeAgo.format(new Date(data?.orderCreated))}
                 </TableCell>
                 <TableCell
                   align="left"
@@ -409,7 +416,7 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                     )}
 
                     {parseInt(data?.status) === 3 && (
-                      <span style={{ color: "#f7370c" }}>Blocked</span>
+                      <span style={{ color: "#FF0000" }}>Blocked</span>
                     )}
 
                     {parseInt(data?.status) === 4 && (

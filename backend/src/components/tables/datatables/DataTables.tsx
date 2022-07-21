@@ -180,6 +180,7 @@ const DataTables = ({
   setDataTableParams,
   dataTableParams,
   rowCount,
+  action,
 }: any) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -232,7 +233,11 @@ const DataTables = ({
       <div style={{ height: "100vh", width: "100%" }}>
         <DataGrid
           rows={tableData && tableData}
-          columns={[...tableColumn, ...addtitionalColumns]}
+          columns={
+            action !== false
+              ? [...tableColumn, ...addtitionalColumns]
+              : [...tableColumn]
+          }
           //filterMode="server"
           paginationMode="server"
           rowCount={rowCount && rowCount}
