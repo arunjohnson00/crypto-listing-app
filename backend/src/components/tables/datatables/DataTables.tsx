@@ -267,6 +267,7 @@ const DataTables = ({
             boxShadow: 0,
             border: "none",
             padding: "8px",
+            fontSize: ".77rem",
             borderRadius: "12px",
             backgroundColor: "white",
             borderColor: "primary.light",
@@ -275,7 +276,7 @@ const DataTables = ({
             },
             "& .MuiDataGrid-columnHeaders": {
               borderTop: "none",
-              fontSize: 14,
+              fontSize: ".85rem",
             },
             "& .MuiDataGrid-columnHeaderTitle": {
               fontWeight: 600,

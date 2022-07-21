@@ -66,7 +66,7 @@ const ViewFullList = () => {
       x.id = i + 1;
       return x;
     });
-  console.log(incomingAds?.data?.length);
+  console.log(incomingAds);
   // const searchResult = useSelector((result: any) => {
   //   return result?.badgesReducer?.search_result;
   // });

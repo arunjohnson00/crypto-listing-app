@@ -173,7 +173,7 @@ const Dashboard = () => {
           <Box pt={0} pl={1}>
             <TablesWithHead
               rowHeader={["Name", "Type", "Time", "Status"]}
-              rows={recentListings && recentListings[0]}
+              rows={recentListings && recentListings}
               variant="recent_listings"
             />
             <ComponentFooter path="/recent-listings" />
