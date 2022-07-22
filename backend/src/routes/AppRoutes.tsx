@@ -94,6 +94,7 @@ import EventRewardAddressView from "../pages/eventrewardaddress/view/EventReward
 import EventRewardAddressEdit from "../pages/eventrewardaddress/edit/EventRewardAddressEdit";
 import AdsDashboard from "../pages/ads/dashboard/AdsDashboard";
 import ViewFullList from "../pages/viewfulllist/ViewFullList";
+import CreateNewAdWizard from "../pages/ads/createnewadwizard/CreateNewAdWizard";
 
 const AppRoutes = () => {
   return (
@@ -155,7 +156,14 @@ const AppRoutes = () => {
             </PrivateRoute>
           }
         />
-
+        <Route
+          path="/create-ad-wizard"
+          element={
+            <PrivateRoute>
+              <CreateNewAdWizard />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/coins"
           element={
