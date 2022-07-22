@@ -71,6 +71,11 @@ const AirDrops = () => {
     //   ),
     // },
     {
+      field: "name",
+      headerName: "Coin Name",
+      flex: 1,
+    },
+    {
       field: "coin_id",
       headerName: "Coin ID",
       flex: 1,

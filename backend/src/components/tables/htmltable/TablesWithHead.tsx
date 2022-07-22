@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
 import TableBody from "@mui/material/TableBody";
@@ -7,17 +7,46 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { Divider, IconButton, Stack, Typography } from "@mui/material";
-//import ago from "ts-ago";
+import ago from "ts-ago";
 import TimeAgo from "javascript-time-ago";
-
+import { toast } from "material-react-toastify";
+import "material-react-toastify/dist/ReactToastify.css";
 import Popover from "@mui/material/Popover";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
+import { sendNotificationEmailRequest } from "../../../store/action";
 
 const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
   const timeAgo = new TimeAgo("en-US");
+  const dispatch = useDispatch();
   const diffDays = (date: any, otherDate: any) =>
     Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24));
+  const sendMailHandler = (val: any) => {
+    const successHandler = (res: any) => {
+      console.log(res);
 
+      toast.success(`${res?.data?.data}`, {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    };
+
+    const errorHandler = (err: any) => {
+      console.log(err);
+      toast.error(`${err.error.message.response.request.responseText}`, {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    };
+    dispatch(sendNotificationEmailRequest(val, successHandler, errorHandler));
+  };
   return (
     <TableContainer>
       <Table
@@ -129,7 +158,10 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                       padding: 0.5,
                     }}
                   >
-                    <IconButton sx={{ padding: 0 }}>
+                    <IconButton
+                      sx={{ padding: 0 }}
+                      onClick={() => sendMailHandler(data?.id)}
+                    >
                       <MailOutlineIcon
                         sx={{ color: "#10E49C", fontSize: "1rem" }}
                       />
@@ -359,8 +391,8 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                     padding: 0.5,
                   }}
                 >
-                  {timeAgo.format(new Date(data?.startDate))}
-                  {/* {ago(data?.startDate)} */}
+                  {/* {timeAgo.format(new Date(data && data?.startDate))} */}
+                  {ago(data?.startDate)}
                 </TableCell>
                 <TableCell
                   align="left"
@@ -424,7 +456,6 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                     )}
                   </span>
                 </TableCell>
-
                 {mailer === true && (
                   <TableCell
                     align="center"

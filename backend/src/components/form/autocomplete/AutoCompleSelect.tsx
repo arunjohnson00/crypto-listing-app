@@ -1,8 +1,16 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { TextField, Autocomplete } from "@mui/material";
-
+import {
+  TextField,
+  Autocomplete,
+  Typography,
+  Box,
+  Avatar,
+  Stack,
+} from "@mui/material";
 import { allCoinRequest } from "../../../store/action";
+
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const AutoCompleSelect = ({
   inputAutoValue,
@@ -14,6 +22,7 @@ const AutoCompleSelect = ({
   const [opt, setOpt] = useState<any>();
   const [defaultVal, setDefaultval] = useState<any>();
 
+  console.log(opt);
   useEffect(() => {
     const successHandler = (res: any) => {
       setOpt(res?.data?.data && res?.data?.data);
@@ -51,6 +60,7 @@ const AutoCompleSelect = ({
           : "Please Choose a Coin"
       }`}
       id="combo-box-demo"
+      size="small"
       onChange={(event: any, newValue: string | null) => {
         const filter =
           opt &&
@@ -62,6 +72,7 @@ const AutoCompleSelect = ({
           ...inputAutoValue,
           coin_id: filter[0]?.id,
           coin_name: filter[0]?.name,
+          logo: filter[0]?.logo,
         });
       }}
       options={
@@ -69,9 +80,28 @@ const AutoCompleSelect = ({
           ? opt?.map((option: any) => option?.name)
           : options
       }
+      renderOption={(props, option) => (
+        <Stack
+          direction="row"
+          spacing={-1}
+          sx={{ paddingY: 0.2 }}
+          alignItems="center"
+        >
+          {/* <Avatar
+            alt="Travis Howard"
+            src="https://mui.com/static/images/avatar/2.jpg"
+            sx={{ width: 20, height: 20 }}
+          /> */}
+
+          <Typography {...props} sx={{ fontSize: ".8rem" }}>
+            {option}
+          </Typography>
+        </Stack>
+      )}
       sx={{
         width: "auto",
         marginBottom: 1,
+        fontSize: ".8rem",
 
         "&$focus": {
           border: "1px solid rgb(200, 200, 200)",
@@ -83,12 +113,16 @@ const AutoCompleSelect = ({
           paddingRight: 0,
           height: "39px",
           borderRadius: "8px",
-          fontSize: "14px",
+          fontSize: ".8rem",
           background: "white",
         },
       }}
       renderInput={(params) => (
-        <TextField {...params} placeholder="select coins" />
+        <TextField
+          {...params}
+          placeholder="select coins"
+          sx={{ fontSize: ".8rem" }}
+        />
       )}
     />
   );

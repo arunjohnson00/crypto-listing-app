@@ -42,6 +42,7 @@ const dashboardReducer = (state: any = initialState, action: any) => {
         ...state,
         recent_listings: action?.payload?.data,
       };
+
     default:
       return state;
   }

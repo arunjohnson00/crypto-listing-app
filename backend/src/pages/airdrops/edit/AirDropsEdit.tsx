@@ -42,6 +42,7 @@ const AirDropsEdit = () => {
     is_follow_twitter: "",
     join_telegram: "",
     status: "",
+    logo: "",
   });
   console.log(editAirdropsData);
   const [loading, setLoading] = useState(false);

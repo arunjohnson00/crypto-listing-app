@@ -37,6 +37,7 @@ const AirDropsAdd = () => {
     no_of_winners: "",
     is_follow_twitter: "",
     join_telegram: "",
+    logo: "",
     status: 1,
   });
 
