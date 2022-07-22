@@ -169,6 +169,7 @@ const NftMarketPlaceEdit = () => {
             <IconUploader
               setAddIcon={setEditNftMarketPlace}
               addIconData={editNftMarketPlaceData}
+              slug="nft_marketplace_icons"
             />
           </Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>

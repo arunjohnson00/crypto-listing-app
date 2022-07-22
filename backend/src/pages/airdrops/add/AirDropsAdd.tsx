@@ -157,7 +157,7 @@ const AirDropsAdd = () => {
               setInputAutoValue={setAddAirdrops}
             />
           </Grid>
-          <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
               Start of the Airdrop
             </Typography>
@@ -168,7 +168,7 @@ const AirDropsAdd = () => {
               setDate={setAddAirdrops}
             />
           </Grid>
-          <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
               Number of Days (min:5, max:20)
             </Typography>

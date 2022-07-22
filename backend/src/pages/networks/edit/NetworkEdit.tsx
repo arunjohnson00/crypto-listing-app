@@ -221,6 +221,7 @@ const NetworkEdit = () => {
             <IconUploader
               setAddIcon={setEditNetwork}
               addIconData={editNetworkData}
+              slug="network_icons"
             />
           </Grid>
 

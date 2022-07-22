@@ -142,7 +142,7 @@ const AirDropsEdit = () => {
           </IconButton>
 
           <Typography variant="h5" sx={{ textAlign: "left" }}>
-            Add Airdrops
+            Edit Airdrops
           </Typography>
         </Stack>
       </Grid>
@@ -163,7 +163,7 @@ const AirDropsEdit = () => {
               serverRef={editAirdropsData?.coin_id}
             />
           </Grid>
-          <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
               Start of the Airdrop
             </Typography>
@@ -175,7 +175,7 @@ const AirDropsEdit = () => {
               serverRef={editAirdropsData.start_date}
             />
           </Grid>
-          <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
               Number of Days (min:5, max:20)
             </Typography>

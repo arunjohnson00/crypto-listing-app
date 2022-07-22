@@ -25,7 +25,6 @@ const LineChart = ({ lineChartData }: any) => {
   const [data, updateData] = useState<any>();
   const [axisData, updateAxisData] = useState<any>({ xAxis: "", yAxis: "" });
 
-  console.log(axisData);
   useEffect(() => {
     lineChartData &&
       lineChartData?.thirty_days !== undefined &&

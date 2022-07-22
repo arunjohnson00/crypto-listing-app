@@ -2,6 +2,7 @@
 import { Box, Typography } from "@mui/material";
 import { relative } from "path";
 import Chart from "react-apexcharts";
+
 const PieChart = ({ piData, title }: any) => {
   //console.log(piData);
 

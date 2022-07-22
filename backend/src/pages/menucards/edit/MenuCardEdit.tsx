@@ -187,6 +187,7 @@ const MenuCardEdit = () => {
             <IconUploader
               setAddIcon={setAddMenuCard}
               addIconData={addMenuCardData}
+              slug="menu_card_icons"
             />
           </Grid>
 

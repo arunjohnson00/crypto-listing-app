@@ -321,6 +321,7 @@ const EventsEdit = () => {
               <IconUploader
                 setAddIcon={setEditEvents}
                 addIconData={editEventsData}
+                slug="event_proof"
               />
             </Grid>
 

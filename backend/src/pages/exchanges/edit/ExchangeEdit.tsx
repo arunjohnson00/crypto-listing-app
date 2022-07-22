@@ -148,6 +148,7 @@ const ExchangeEdit = () => {
             <IconUploader
               setAddIcon={setEditExchange}
               addIconData={editExchangeData}
+              slug="exchange_icons"
             />
           </Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>

@@ -165,6 +165,7 @@ const BadgesEdit = () => {
             <IconUploader
               setAddIcon={setEditbadge}
               addIconData={editBadgeData}
+              slug="badge_icons"
             />
           </Grid>
 
