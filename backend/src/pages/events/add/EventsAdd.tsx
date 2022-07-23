@@ -219,7 +219,7 @@ const EventsAdd = () => {
               </Typography>
 
               <InputDate
-                airdropStart={true}
+                eventDate={true}
                 date={addEventsData}
                 setDate={setAddEvents}
               />

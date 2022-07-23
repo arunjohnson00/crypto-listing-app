@@ -16,8 +16,9 @@ const InputDate = ({
 
   airdropStart,
   eventDate,
+  coinAdWizard,
+  height,
 }: any) => {
-  console.log(date.event_date);
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
@@ -27,7 +28,8 @@ const InputDate = ({
             sx={{
               "& .MuiInputBase-root": {
                 borderRadius: "7px",
-                height: "43px",
+                height: height ? height : "43px",
+                fontSize: ".85rem",
               },
             }}
             name={name}
@@ -44,7 +46,9 @@ const InputDate = ({
             ? date.end_date
             : airdropStart === true
             ? date.start_date
-            : eventDate === true && date.event_date
+            : eventDate === true
+            ? date.event_date
+            : coinAdWizard === true && date.coin_start_date
         }
         //publicMintStart===true&&date.start_date
         onChange={(newValue) => {
@@ -55,6 +59,8 @@ const InputDate = ({
           publicMintEnd === true && setDate({ ...date, end_date: newValue });
           airdropStart === true && setDate({ ...date, start_date: newValue });
           eventDate === true && setDate({ ...date, event_date: newValue });
+          coinAdWizard === true &&
+            setDate({ ...date, coin_start_date: newValue });
         }}
         disabled={disabled}
       />

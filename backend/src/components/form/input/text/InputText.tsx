@@ -34,7 +34,7 @@ const InputText = ({
         }}
         sx={{
           "& .MuiOutlinedInput-root": {
-            width: `${!width && "312px"}`,
+            width: `${width ? width : "312px"}`,
             paddingRight: `${InputProps && 0}`,
           },
           // "& .MuiInputAdornment-root": {
