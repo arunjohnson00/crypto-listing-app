@@ -18,18 +18,18 @@ const SaveAndCreateAdsCard = () => {
           variant="body2"
           sx={{
             textAlign: "left",
-            color: "#676767",
+            color: "#9d9d9d",
             fontWeight: 400,
           }}
         >
           Currenty selected
         </Typography>
         <Typography
-          variant="h6"
           sx={{
             textAlign: "left",
             color: "#070A4E",
             fontWeight: 700,
+            fontSize: "1.2rem",
           }}
         >
           Coin Promoted Spot
@@ -40,18 +40,18 @@ const SaveAndCreateAdsCard = () => {
           variant="body2"
           sx={{
             textAlign: "left",
-            color: "#676767",
+            color: "#9d9d9d",
             fontWeight: 400,
           }}
         >
           Days
         </Typography>
         <Typography
-          variant="h6"
           sx={{
             textAlign: "left",
             color: "#070A4E",
             fontWeight: 700,
+            fontSize: "1.1rem",
           }}
         >
           3
@@ -62,7 +62,7 @@ const SaveAndCreateAdsCard = () => {
           variant="body2"
           sx={{
             textAlign: "left",
-            color: "#676767",
+            color: "#9d9d9d",
             fontWeight: 400,
           }}
         >
@@ -84,7 +84,7 @@ const SaveAndCreateAdsCard = () => {
           variant="body2"
           sx={{
             textAlign: "left",
-            color: "#676767",
+            color: "#9d9d9d",
             fontWeight: 400,
           }}
         >
@@ -95,7 +95,7 @@ const SaveAndCreateAdsCard = () => {
           sx={{
             textAlign: "left",
             color: "#070A4E",
-            fontWeight: 400,
+            fontWeight: 500,
           }}
         >
           3 BNB

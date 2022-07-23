@@ -10,7 +10,15 @@ import {
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 
-const CreateAdWizardCard = ({ title, caption, value, name }: any) => {
+const CreateAdWizardCard = ({
+  title,
+  caption,
+  value,
+  name,
+  size,
+  type,
+  variant,
+}: any) => {
   return (
     <div>
       <Radio
@@ -61,17 +69,37 @@ const CreateAdWizardCard = ({ title, caption, value, name }: any) => {
                 >
                   {title && title}
                 </Typography>
-                <Typography
-                  variant="caption"
-                  sx={{
-                    fontSize: ".65rem",
-                    textAlign: "left",
-                    color: "#858585",
-                    fontWeight: 400,
-                  }}
+                <Stack
+                  direction="column"
+                  spacing={variant === "banner" ? 0 : 1.3}
+                  sx={{ justifyContent: "flex-start" }}
                 >
-                  {caption && caption}
-                </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      fontSize: ".65rem",
+                      textAlign: "left",
+                      color: "#858585",
+                      fontWeight: 400,
+                    }}
+                  >
+                    {caption && caption} {size && `Size :${size}`}
+                  </Typography>
+
+                  {type && (
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        fontSize: ".65rem",
+                        textAlign: "left",
+                        color: "#858585",
+                        fontWeight: 400,
+                      }}
+                    >
+                      {type && `Type :${type}`}
+                    </Typography>
+                  )}
+                </Stack>
               </Stack>
             </Stack>
           </Box>
@@ -115,17 +143,36 @@ const CreateAdWizardCard = ({ title, caption, value, name }: any) => {
                 >
                   {title && title}
                 </Typography>
-                <Typography
-                  variant="caption"
-                  sx={{
-                    fontSize: ".65rem",
-                    textAlign: "left",
-                    color: "#858585",
-                    fontWeight: 400,
-                  }}
+                <Stack
+                  direction="column"
+                  spacing={variant === "banner" ? 0 : 1.3}
+                  sx={{ justifyContent: "flex-start" }}
                 >
-                  {caption && caption}
-                </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      fontSize: ".65rem",
+                      textAlign: "left",
+                      color: "#858585",
+                      fontWeight: 400,
+                    }}
+                  >
+                    {caption && caption} {size && `Size :${size}`}
+                  </Typography>
+                  {type && (
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        fontSize: ".65rem",
+                        textAlign: "left",
+                        color: "#858585",
+                        fontWeight: 400,
+                      }}
+                    >
+                      {type && `Type :${type}`}
+                    </Typography>
+                  )}
+                </Stack>
               </Stack>
             </Stack>
           </Box>
