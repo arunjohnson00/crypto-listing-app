@@ -15,11 +15,13 @@ import {
   incomingAdRequest,
   recentListingsRequest,
 } from "../../store/action";
-
+import ago from "ts-ago";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import TimeAgo from "javascript-time-ago";
-
+import { sendNotificationEmailRequest } from "../../store/action";
+import { toast } from "material-react-toastify";
+import "material-react-toastify/dist/ReactToastify.css";
 import InputSearch from "../../components/form/input/search/InputSearch";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
@@ -50,7 +52,7 @@ const ViewFullList = () => {
   const incomingAds = useSelector((inAds: any) => {
     return inAds?.dashboardReducer?.incoming_ad_request;
   });
-
+  console.log(incomingAds);
   // incomingAds?.data?.map((x: any, i: any) => {
   //   x.id = i + 1;
   //   return x;
@@ -66,7 +68,7 @@ const ViewFullList = () => {
       x.id = i + 1;
       return x;
     });
-  console.log(incomingAds);
+
   // const searchResult = useSelector((result: any) => {
   //   return result?.badgesReducer?.search_result;
   // });
@@ -125,6 +127,33 @@ const ViewFullList = () => {
     );
   }, [dispatch, dataTableParams, setDataTableParams]);
 
+  const sendMailHandler = (val: any) => {
+    const successHandler = (res: any) => {
+      console.log(res);
+
+      toast.success(`${res?.data?.data}`, {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    };
+
+    const errorHandler = (err: any) => {
+      console.log(err);
+      toast.error(`${err.error.message.response.request.responseText}`, {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    };
+    dispatch(sendNotificationEmailRequest(val, successHandler, errorHandler));
+  };
   const monthWiseColumn = [
     {
       field: "id",
@@ -210,7 +239,7 @@ const ViewFullList = () => {
       headerName: "Notify",
       flex: 1,
       renderCell: (params: any) => (
-        <IconButton sx={{ padding: 0 }}>
+        <IconButton sx={{ padding: 0 }} onClick={sendMailHandler}>
           <MailOutlineIcon sx={{ color: "#10E49C", fontSize: "1rem" }} />
         </IconButton>
       ),
@@ -339,7 +368,12 @@ const ViewFullList = () => {
       headerName: "Start Date",
       flex: 0.5,
       renderCell: (params: any) => (
-        <span>{timeAgo.format(new Date(params?.row?.startDate))}</span>
+        <span>
+          {
+            // timeAgo.format(new Date(params?.row?.startDate))
+            ago(params?.row?.startDate)
+          }
+        </span>
       ),
     },
     {
@@ -357,7 +391,12 @@ const ViewFullList = () => {
       headerName: "Order Created",
       flex: 0.5,
       renderCell: (params: any) => (
-        <span>{timeAgo.format(new Date(params?.row?.orderCreated))}</span>
+        <span>
+          {
+            // timeAgo.format(new Date(params?.row?.orderCreated))
+            ago(params?.row?.orderCreated)
+          }
+        </span>
       ),
     },
     {
@@ -501,7 +540,7 @@ const ViewFullList = () => {
               : location.pathname === "/recent-listings"
               ? recentListings?.data?.length
               : location.pathname === "/incoming-ad-request" &&
-                incomingAds?.data?.length
+                incomingAds?.total
           }
         />
       </Grid>
