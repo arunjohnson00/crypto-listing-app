@@ -34,6 +34,7 @@ const EventsAdd = () => {
   const navigate = useNavigate();
 
   const [addEventsData, setAddEvents] = useState<any>({
+    item_id: "",
     coin_id: "",
     title: "",
     category_id: "",
@@ -87,7 +88,7 @@ const EventsAdd = () => {
     };
 
     var formData = new FormData(document.querySelector("#eventForm") as any);
-    formData.append("coin_id", addEventsData?.coin_id);
+    formData.append("coin_id", addEventsData?.item_id);
     formData.append(
       "event_date",
       dateFormat(new Date(addEventsData.start_date), "yyyy-mm-dd")
@@ -187,6 +188,7 @@ const EventsAdd = () => {
               <AutoCompleSelect
                 inputAutoValue={addEventsData}
                 setInputAutoValue={setAddEvents}
+                variant="coin"
               />
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

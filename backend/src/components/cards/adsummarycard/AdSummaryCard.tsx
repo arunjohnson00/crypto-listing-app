@@ -1,5 +1,6 @@
 import React, { Fragment, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Box, Button, Divider, Stack, Typography } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 import dateFormat, { masks } from "dateformat";
@@ -11,7 +12,7 @@ const AdSummaryCard = () => {
   });
 
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const removeFromAdsSummaryHandler = (index: any) => {
     Swal.fire({
       title: "Are you sure?",
@@ -28,11 +29,17 @@ const AdSummaryCard = () => {
           timer: 1500,
         });
 
-      dispatch({
-        type: removeFromAdsSummaryRequest,
-        payload: index,
-      });
+      result.isConfirmed && removeRequestHandler(index);
     });
+  };
+
+  const removeRequestHandler = (index: any) => {
+    dispatch({
+      type: removeFromAdsSummaryRequest,
+      payload: index,
+    });
+
+    navigate(0);
   };
   return (
     <Fragment>
@@ -259,112 +266,119 @@ const AdSummaryCard = () => {
           </Box>
         </Stack>
       </Box>
-      <Box sx={{ backgroundColor: "transparent", borderRadius: 0 }} py={2}>
-        <Divider flexItem orientation="horizontal" variant="fullWidth" />
+      {adSummaryDetails && adSummaryDetails?.length !== 0 && (
+        <Box sx={{ backgroundColor: "transparent", borderRadius: 0 }} py={2}>
+          <Divider flexItem orientation="horizontal" variant="fullWidth" />
 
-        <Stack direction="column" spacing={2.5} pt={2} alignItems="flex-start">
-          <Stack direction="row" spacing={2} alignItems="center">
-            <Typography
-              sx={{
-                textAlign: "left",
-                color: "#000000",
-                fontWeight: 500,
-                fontSize: ".90rem",
-                minWidth: 80,
-              }}
-            >
-              Total Amount :
-            </Typography>
-            <Typography
-              sx={{
-                textAlign: "left",
-                color: "#1D1D36",
-                fontWeight: 700,
-                fontSize: "1.26rem",
-              }}
-            >
-              12 BNB
-            </Typography>
-          </Stack>
-          <Stack direction="row" spacing={2} alignItems="flex-start">
-            <CircleIcon
-              sx={{ color: "#C2C2C2", width: 9, height: 9, marginTop: 0.5 }}
-            />
-            <Stack direction="column" spacing={0}>
+          <Stack
+            direction="column"
+            spacing={2.5}
+            pt={2}
+            alignItems="flex-start"
+          >
+            <Stack direction="row" spacing={2} alignItems="center">
               <Typography
                 sx={{
                   textAlign: "left",
-                  color: "#1D1D36",
+                  color: "#000000",
                   fontWeight: 500,
-                  fontSize: ".65rem",
+                  fontSize: ".90rem",
+                  minWidth: 80,
                 }}
               >
-                Please transfer 12 BNB to
+                Total Amount :
               </Typography>
-              <Typography
-                sx={{
-                  textAlign: "left",
-                  color: "#181C99",
-                  fontWeight: 600,
-                  fontSize: ".65rem",
-                }}
-              >
-                0x473037de59cf9484632f4a27b509cfe8d4a31404{" "}
-                <span style={{ color: "#000000" }}>{"(BEP20)"}</span>
-              </Typography>
-            </Stack>
-          </Stack>
-          <Stack direction="row" spacing={2} alignItems="flex-start">
-            <CircleIcon
-              sx={{ color: "#C2C2C2", width: 9, height: 9, marginTop: 0.5 }}
-            />
-            <Stack direction="column" spacing={0}>
               <Typography
                 sx={{
                   textAlign: "left",
                   color: "#1D1D36",
                   fontWeight: 700,
-                  fontSize: ".75rem",
+                  fontSize: "1.26rem",
                 }}
               >
-                Products
-              </Typography>
-              <Typography
-                sx={{
-                  textAlign: "left",
-                  color: "#181C99",
-                  fontWeight: 600,
-                  fontSize: ".65rem",
-                }}
-              >
-                Coin Promo Spot, NFT Promoted Spot, Airdrop Promotion, Banner
-                Ads
+                12 BNB
               </Typography>
             </Stack>
-          </Stack>
-          <Stack
-            direction="row"
-            spacing={2}
-            alignItems="center"
-            width="100%"
-            justifyContent="center"
-          >
-            <Button
-              variant="contained"
-              sx={{
-                textTransform: "capitalize",
-                fontSize: ".9rem",
-                backgroundColor: "#06094C",
-                borderRadius: 2,
-                minWidth: 200,
-                maxWidth: 250,
-              }}
+            <Stack direction="row" spacing={2} alignItems="flex-start">
+              <CircleIcon
+                sx={{ color: "#C2C2C2", width: 9, height: 9, marginTop: 0.5 }}
+              />
+              <Stack direction="column" spacing={0}>
+                <Typography
+                  sx={{
+                    textAlign: "left",
+                    color: "#1D1D36",
+                    fontWeight: 500,
+                    fontSize: ".65rem",
+                  }}
+                >
+                  Please transfer 12 BNB to
+                </Typography>
+                <Typography
+                  sx={{
+                    textAlign: "left",
+                    color: "#181C99",
+                    fontWeight: 600,
+                    fontSize: ".65rem",
+                  }}
+                >
+                  0x473037de59cf9484632f4a27b509cfe8d4a31404{" "}
+                  <span style={{ color: "#000000" }}>{"(BEP20)"}</span>
+                </Typography>
+              </Stack>
+            </Stack>
+            <Stack direction="row" spacing={2} alignItems="flex-start">
+              <CircleIcon
+                sx={{ color: "#C2C2C2", width: 9, height: 9, marginTop: 0.5 }}
+              />
+              <Stack direction="column" spacing={0}>
+                <Typography
+                  sx={{
+                    textAlign: "left",
+                    color: "#1D1D36",
+                    fontWeight: 700,
+                    fontSize: ".75rem",
+                  }}
+                >
+                  Products
+                </Typography>
+                <Typography
+                  sx={{
+                    textAlign: "left",
+                    color: "#181C99",
+                    fontWeight: 600,
+                    fontSize: ".65rem",
+                  }}
+                >
+                  Coin Promo Spot, NFT Promoted Spot, Airdrop Promotion, Banner
+                  Ads
+                </Typography>
+              </Stack>
+            </Stack>
+            <Stack
+              direction="row"
+              spacing={2}
+              alignItems="center"
+              width="100%"
+              justifyContent="center"
             >
-              Promote Now
-            </Button>
+              <Button
+                variant="contained"
+                sx={{
+                  textTransform: "capitalize",
+                  fontSize: ".9rem",
+                  backgroundColor: "#06094C",
+                  borderRadius: 2,
+                  minWidth: 200,
+                  maxWidth: 250,
+                }}
+              >
+                Promote Now
+              </Button>
+            </Stack>
           </Stack>
-        </Stack>
-      </Box>
+        </Box>
+      )}
     </Fragment>
   );
 };

@@ -39,6 +39,7 @@ const EventsEdit = () => {
   const [editEventsData, setEditEvents] = useState<any>({
     id: "",
     coin_id: "",
+    item_id: "",
     title: "",
     category_id: "",
     event_date: new Date(),
@@ -94,7 +95,7 @@ const EventsEdit = () => {
 
     formData.append("id", editEventsData?.id);
 
-    formData.append("coin_id", editEventsData?.coin_id);
+    formData.append("coin_id", editEventsData?.item_id);
     formData.append(
       "event_date",
       dateFormat(new Date(editEventsData.event_date), "yyyy-mm-dd")
@@ -206,6 +207,7 @@ const EventsEdit = () => {
               <AutoCompleSelect
                 inputAutoValue={editEventsData}
                 setInputAutoValue={setEditEvents}
+                variant="coin"
               />
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

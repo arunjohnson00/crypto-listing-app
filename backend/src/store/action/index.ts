@@ -225,3 +225,5 @@ export { sendNotificationEmailRequest } from "./emailAction";
 
 export { adsSummaryRequest } from "./adsAction";
 export { removeFromAdsSummaryRequest } from "./adsAction";
+export { airDropListSearchWithCoinSearchRequest } from "./adsAction";
+export { eventsListSearchWithCoinSearchRequest } from "./adsAction";

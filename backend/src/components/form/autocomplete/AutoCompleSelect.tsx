@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import { allCoinRequest } from "../../../store/action";
 import { allNftListingRequest } from "../../../store/action";
+import { airDropListSearchWithCoinSearchRequest } from "../../../store/action";
+import { eventsListSearchWithCoinSearchRequest } from "../../../store/action";
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const AutoCompleSelect = ({
@@ -17,13 +19,13 @@ const AutoCompleSelect = ({
   setInputAutoValue,
   serverRef,
   variant,
+  filterType,
 }: any) => {
   const dispatch: any = useDispatch();
 
   const [opt, setOpt] = useState<any>();
   const [defaultVal, setDefaultval] = useState<any>();
 
-  console.log(opt);
   useEffect(() => {
     const successHandler = (res: any) => {
       setOpt(res?.data?.data && res?.data?.data);
@@ -54,7 +56,30 @@ const AutoCompleSelect = ({
       );
   }, [opt, serverRef]);
 
-  const options = ["Coins Not Found"];
+  const options = [
+    variant === "nft" ? "loading..." : variant === "coin" && "loading...",
+  ];
+
+  const requestSendHandler: any = (itemId: any) => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    filterType === "airdrop" &&
+      dispatch(
+        airDropListSearchWithCoinSearchRequest(
+          itemId,
+          successHandler,
+          errorHandler
+        )
+      );
+    filterType === "events" &&
+      dispatch(
+        eventsListSearchWithCoinSearchRequest(
+          itemId,
+          successHandler,
+          errorHandler
+        )
+      );
+  };
   return (
     <Autocomplete
       // disablePortal
@@ -64,7 +89,9 @@ const AutoCompleSelect = ({
           ? defaultVal
           : inputAutoValue?.item_name
           ? inputAutoValue?.item_name
-          : "Please Choose a Coin"
+          : variant === "nft"
+          ? "Please Choose a NFT"
+          : variant === "coin" && "Please Choose a Coin"
       }`}
       id="combo-box-demo"
       size="small"
@@ -83,6 +110,7 @@ const AutoCompleSelect = ({
           item_name: variant === "nft" ? filter[0]?.title : filter[0]?.name,
           logo: filter[0]?.logo,
         });
+        requestSendHandler(filter[0]?.id);
       }}
       options={
         opt && opt?.length !== 0 && opt !== undefined

@@ -4,7 +4,15 @@ import NativeSelect from "@mui/material/NativeSelect";
 import { toast } from "material-react-toastify";
 import { Fragment } from "react";
 
-const InputSelectCoin = ({ name, id, data, selectedValue }: any) => {
+const InputSelectCoin = ({
+  name,
+  id,
+  data,
+  selectedValue,
+  variant,
+  height,
+  width,
+}: any) => {
   return (
     <FormControl fullWidth>
       <NativeSelect
@@ -16,7 +24,9 @@ const InputSelectCoin = ({ name, id, data, selectedValue }: any) => {
         sx={{
           background: "white",
           borderRadius: "7px",
-          border: "1px solid black",
+          border: "1px solid #bbbbbb",
+          height: height && height,
+          minWidth: width && width,
           "&::before": {
             border: "none",
           },
@@ -39,7 +49,10 @@ const InputSelectCoin = ({ name, id, data, selectedValue }: any) => {
                     {`${list.name} (Selected) `}
                   </option>
                 )}
-                <option value={list.id}>{list.name}</option>
+                <option value={list.id}>
+                  {list.name}{" "}
+                  {variant === "search_with_coin" && `(${list?.total_amount})`}
+                </option>
               </Fragment>
             );
           })}

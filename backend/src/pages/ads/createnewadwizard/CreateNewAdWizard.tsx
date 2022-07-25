@@ -27,6 +27,7 @@ import SaveAndCreateAdsCard from "../../../components/cards/saveandcreateads/Sav
 import CoinUploader from "../../../components/form/input/file/coinlogo/CoinUploader";
 
 import { adsSummaryRequest } from "../../../store/action";
+import InputSelectCoin from "../../../components/form/selectcoin/InputSelectCoin";
 
 //Server URL
 const serverAPIUrl = process.env.REACT_APP_API_URL;
@@ -37,6 +38,14 @@ const CreateNewAdWizard = () => {
   const [choseAdType, setChooseAdType] = useState("");
   const adSummaryDetails = useSelector((adSummary: any) => {
     return adSummary?.adsReducer?.ads_summary;
+  });
+
+  const airDropListWithCoin = useSelector((airDropList: any) => {
+    return airDropList?.adsReducer?.airdrop_list_with_coin_search?.data;
+  });
+
+  const eventsListWithCoin = useSelector((eventsList: any) => {
+    return eventsList?.adsReducer?.events_list_with_coin_search?.data;
   });
   const [addCoinLogo, setCoinLogo] = useState({ coinLogo: "" });
   const [loading, setLoading] = useState({
@@ -113,6 +122,10 @@ const CreateNewAdWizard = () => {
     setTimeout(() => {
       setLoading({ ...loading, save_create_new_ad: false });
     }, 3000);
+    dispatch({
+      type: adsSummaryRequest,
+      payload: { ...createAdsData, choseAdType },
+    });
   };
 
   const createAdsHandler = (e: any) => {
@@ -974,6 +987,8 @@ const CreateNewAdWizard = () => {
                                 <AutoCompleSelect
                                   inputAutoValue={createAdsData}
                                   setInputAutoValue={setCreateAdsData}
+                                  variant="coin"
+                                  filterType="airdrop"
                                 />
                               </Stack>
                               <Stack direction="column" spacing={1.5}>
@@ -987,10 +1002,29 @@ const CreateNewAdWizard = () => {
                                 >
                                   Select Airdrop
                                 </Typography>
-                                <AutoCompleSelect
-                                  inputAutoValue={createAdsData}
-                                  setInputAutoValue={setCreateAdsData}
-                                />
+                                {airDropListWithCoin?.length > 0 ? (
+                                  <InputSelectCoin
+                                    name="coin_airdrop"
+                                    id="coin_airdrop"
+                                    data={airDropListWithCoin}
+                                    // selectedValue={}
+                                    variant="search_with_coin"
+                                    height={40}
+                                    width={150}
+                                  />
+                                ) : (
+                                  <Typography
+                                    variant="body2"
+                                    sx={{
+                                      textAlign: "left",
+                                      color: "#000000",
+                                      fontWeight: 400,
+                                    }}
+                                    pt={1}
+                                  >
+                                    Airdrop not found
+                                  </Typography>
+                                )}
                               </Stack>
                             </Stack>
                             <Stack
@@ -1107,6 +1141,8 @@ const CreateNewAdWizard = () => {
                                 <AutoCompleSelect
                                   inputAutoValue={createAdsData}
                                   setInputAutoValue={setCreateAdsData}
+                                  variant="coin"
+                                  filterType="events"
                                 />
                               </Stack>
                               <Stack direction="column" spacing={1.5}>

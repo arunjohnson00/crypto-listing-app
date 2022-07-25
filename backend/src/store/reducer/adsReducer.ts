@@ -2,6 +2,8 @@ import { ADS } from "../types";
 
 const initialState = {
   ads_summary: [],
+  airdrop_list_with_coin_search: "",
+  events_list_with_coin_search: "",
 };
 const adsReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -20,6 +22,17 @@ const adsReducer = (state: any = initialState, action: any) => {
         ads_summary: state?.ads_summary,
       };
 
+    case ADS.AIRDROPS_LIST_WITH_COIN_SEARCH:
+      return {
+        ...state,
+        airdrop_list_with_coin_search: action?.payload?.data,
+      };
+
+    case ADS.EVENTS_LIST_WITH_COIN_SEARCH:
+      return {
+        ...state,
+        events_list_with_coin_search: action?.payload?.data,
+      };
     default:
       return state;
   }
