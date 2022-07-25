@@ -31,9 +31,8 @@ const serverAPIUrl = process.env.REACT_APP_API_URL;
 const CreateNewAdWizard = () => {
   const adtypeRef = useRef<any>(null);
   const [choseAd, setChooseAd] = useState("");
-  const [choseBannerAdType, setChooseBannerAdType] = useState("");
   const [choseAdType, setChooseAdType] = useState("");
-
+  console.log(choseAdType);
   const [addCoinLogo, setCoinLogo] = useState({ coinLogo: "" });
   const [loading, setLoading] = useState({
     save_ad: false,
@@ -124,21 +123,15 @@ const CreateNewAdWizard = () => {
     adtypeRef.current.scrollIntoView({
       behavior: "smooth",
     });
+    setChooseAdType("");
   };
 
   const chooseAdTypeHandleChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setChooseAdType((event.target as HTMLInputElement).value);
-    setChooseBannerAdType("");
   };
 
-  const chooseBannerAdTypeHandleChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setChooseBannerAdType((event.target as HTMLInputElement).value);
-    setChooseAdType("");
-  };
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -397,8 +390,8 @@ const CreateNewAdWizard = () => {
                           <RadioGroup
                             aria-labelledby="demo-controlled-radio-buttons-group"
                             name="choose_ad_type"
-                            value={choseBannerAdType}
-                            onChange={chooseBannerAdTypeHandleChange}
+                            value={choseAdType}
+                            onChange={chooseAdTypeHandleChange}
                           >
                             <Stack
                               direction="row"
@@ -457,7 +450,7 @@ const CreateNewAdWizard = () => {
                               <CreateAdWizardCard
                                 title="Bigger Ad- Full"
                                 //caption="Promoted By coin/Project"
-                                value="bigger_add_full"
+                                value="bigger_ad_full"
                                 name="banner"
                                 size="970x90"
                                 type="GIF,JPEG,JPG,PNG"
@@ -466,7 +459,7 @@ const CreateNewAdWizard = () => {
                               <CreateAdWizardCard
                                 title="Bigger Ad- Half"
                                 //caption="Promoted By coin/Project"
-                                value="bigger_add_half"
+                                value="bigger_ad_half"
                                 name="banner"
                                 size="970x90"
                                 type="GIF,JPEG,JPG,PNG"
@@ -480,8 +473,14 @@ const CreateNewAdWizard = () => {
                   </Grid>
                 </Grid>
               )}
-              {choseBannerAdType &&
-                choseBannerAdType === "main_banner" &&
+              {choseAdType &&
+                (choseAdType === "main_banner" ||
+                  choseAdType === "square_banner" ||
+                  choseAdType === "square_half" ||
+                  choseAdType === "vote_click_popup" ||
+                  choseAdType === "welcome_popup" ||
+                  choseAdType === "bigger_ad_full" ||
+                  choseAdType === "bigger_ad_half") &&
                 choseAd === "banner_ads" && (
                   <Grid container spacing={2} ref={adtypeRef}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -571,8 +570,14 @@ const CreateNewAdWizard = () => {
                     </Grid>
                   </Grid>
                 )}
-              {choseBannerAdType &&
-                choseBannerAdType === "main_banner" &&
+              {choseAdType &&
+                (choseAdType === "main_banner" ||
+                  choseAdType === "square_banner" ||
+                  choseAdType === "square_half" ||
+                  choseAdType === "vote_click_popup" ||
+                  choseAdType === "welcome_popup" ||
+                  choseAdType === "bigger_ad_full" ||
+                  choseAdType === "bigger_ad_half") &&
                 choseAd === "banner_ads" && (
                   <Grid container spacing={2} ref={adtypeRef}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -783,6 +788,379 @@ const CreateNewAdWizard = () => {
                     </Grid>
                   </Grid>
                 )}
+
+              {choseAdType &&
+                choseAdType === "nft_promoted_spot" &&
+                choseAd === "promoted_spot" && (
+                  <Grid container spacing={2} ref={adtypeRef}>
+                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                      <Box p={4}>
+                        <Stack
+                          direction="column"
+                          spacing={2}
+                          sx={{ justifyContent: "flex-start" }}
+                        >
+                          <Stack
+                            direction="column"
+                            spacing={0.7}
+                            sx={{ justifyContent: "flex-start" }}
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                textAlign: "left",
+                                color: "#2C399F",
+                                fontWeight: 600,
+                              }}
+                            >
+                              Select Date
+                            </Typography>
+                            <Typography
+                              sx={{
+                                textAlign: "left",
+                                fontSize: ".8rem",
+                                color: "#858585",
+                                fontWeight: 400,
+                              }}
+                            >
+                              Select and Ad tailor your experience to the goals
+                              and settings that will work best for your campaign
+                            </Typography>
+                          </Stack>
+                          <Stack
+                            direction="row"
+                            spacing={1}
+                            sx={{
+                              justifyContent: "flex-start",
+                              flexWrap: "wrap",
+                            }}
+                            pt={3}
+                          >
+                            <Stack direction="column" spacing={1.5}>
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  textAlign: "left",
+                                  color: "#000000",
+                                  fontWeight: 600,
+                                }}
+                              >
+                                Select the NFT
+                              </Typography>
+                              <AutoCompleSelect
+                                inputAutoValue={createAdsData}
+                                setInputAutoValue={setCreateAdsData}
+                              />
+                            </Stack>
+                            <Stack direction="column" spacing={1.5}>
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  textAlign: "left",
+                                  color: "#000000",
+                                  fontWeight: 600,
+                                }}
+                              >
+                                Start Date
+                              </Typography>
+                              <InputDate
+                                coinAdWizard={true}
+                                date={createAdsData}
+                                setDate={setCreateAdsData}
+                                height={40}
+                              />
+                            </Stack>
+                            <Stack direction="column" spacing={1.5}>
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  textAlign: "left",
+                                  color: "#000000",
+                                  fontWeight: 600,
+                                }}
+                              >
+                                No.of Days
+                              </Typography>
+                              <InputText
+                                width={100}
+                                placeholder=" Number of Days"
+                                inputTextHandler={(e: any) =>
+                                  createAdsHandler(e)
+                                }
+                              />
+                            </Stack>
+                          </Stack>
+                        </Stack>
+                      </Box>
+                    </Grid>
+                  </Grid>
+                )}
+
+              {choseAdType &&
+                choseAdType === "airdrop_promotion" &&
+                choseAd === "promoted_spot" && (
+                  <Grid container spacing={2} ref={adtypeRef}>
+                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                      <Box p={4}>
+                        <Stack
+                          direction="column"
+                          spacing={2}
+                          sx={{ justifyContent: "flex-start" }}
+                        >
+                          <Stack
+                            direction="column"
+                            spacing={0.7}
+                            sx={{ justifyContent: "flex-start" }}
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                textAlign: "left",
+                                color: "#2C399F",
+                                fontWeight: 600,
+                              }}
+                            >
+                              Select Date
+                            </Typography>
+                            <Typography
+                              sx={{
+                                textAlign: "left",
+                                fontSize: ".8rem",
+                                color: "#858585",
+                                fontWeight: 400,
+                              }}
+                            >
+                              Select and Ad tailor your experience to the goals
+                              and settings that will work best for your campaign
+                            </Typography>
+                          </Stack>
+                          <Stack direction="column" spacing={2} pt={3}>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              sx={{
+                                justifyContent: "flex-start",
+                                flexWrap: "wrap",
+                              }}
+                            >
+                              <Stack direction="column" spacing={1.5}>
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    textAlign: "left",
+                                    color: "#000000",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  Select the Coin
+                                </Typography>
+                                <AutoCompleSelect
+                                  inputAutoValue={createAdsData}
+                                  setInputAutoValue={setCreateAdsData}
+                                />
+                              </Stack>
+                              <Stack direction="column" spacing={1.5}>
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    textAlign: "left",
+                                    color: "#000000",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  Select Airdrop
+                                </Typography>
+                                <AutoCompleSelect
+                                  inputAutoValue={createAdsData}
+                                  setInputAutoValue={setCreateAdsData}
+                                />
+                              </Stack>
+                            </Stack>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              sx={{
+                                justifyContent: "flex-start",
+                                flexWrap: "wrap",
+                              }}
+                            >
+                              <Stack direction="column" spacing={1.5}>
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    textAlign: "left",
+                                    color: "#000000",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  Start Date
+                                </Typography>
+                                <InputDate
+                                  coinAdWizard={true}
+                                  date={createAdsData}
+                                  setDate={setCreateAdsData}
+                                  height={40}
+                                />
+                              </Stack>
+                              <Stack direction="column" spacing={1.5}>
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    textAlign: "left",
+                                    color: "#000000",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  No.of Days
+                                </Typography>
+                                <InputText
+                                  width={100}
+                                  placeholder=" Number of Days"
+                                  inputTextHandler={(e: any) =>
+                                    createAdsHandler(e)
+                                  }
+                                />
+                              </Stack>
+                            </Stack>
+                          </Stack>
+                        </Stack>
+                      </Box>
+                    </Grid>
+                  </Grid>
+                )}
+
+              {choseAdType &&
+                choseAdType === "event_promotion" &&
+                choseAd === "promoted_spot" && (
+                  <Grid container spacing={2} ref={adtypeRef}>
+                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                      <Box p={4}>
+                        <Stack
+                          direction="column"
+                          spacing={2}
+                          sx={{ justifyContent: "flex-start" }}
+                        >
+                          <Stack
+                            direction="column"
+                            spacing={0.7}
+                            sx={{ justifyContent: "flex-start" }}
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                textAlign: "left",
+                                color: "#2C399F",
+                                fontWeight: 600,
+                              }}
+                            >
+                              Select Date
+                            </Typography>
+                            <Typography
+                              sx={{
+                                textAlign: "left",
+                                fontSize: ".8rem",
+                                color: "#858585",
+                                fontWeight: 400,
+                              }}
+                            >
+                              Select and Ad tailor your experience to the goals
+                              and settings that will work best for your campaign
+                            </Typography>
+                          </Stack>
+                          <Stack direction="column" spacing={2} pt={3}>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              sx={{
+                                justifyContent: "flex-start",
+                                flexWrap: "wrap",
+                              }}
+                            >
+                              <Stack direction="column" spacing={1.5}>
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    textAlign: "left",
+                                    color: "#000000",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  Select the Coin
+                                </Typography>
+                                <AutoCompleSelect
+                                  inputAutoValue={createAdsData}
+                                  setInputAutoValue={setCreateAdsData}
+                                />
+                              </Stack>
+                              <Stack direction="column" spacing={1.5}>
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    textAlign: "left",
+                                    color: "#000000",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  Select Events
+                                </Typography>
+                                <AutoCompleSelect
+                                  inputAutoValue={createAdsData}
+                                  setInputAutoValue={setCreateAdsData}
+                                />
+                              </Stack>
+                            </Stack>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              sx={{
+                                justifyContent: "flex-start",
+                                flexWrap: "wrap",
+                              }}
+                            >
+                              <Stack direction="column" spacing={1.5}>
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    textAlign: "left",
+                                    color: "#000000",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  Start Date
+                                </Typography>
+                                <InputDate
+                                  coinAdWizard={true}
+                                  date={createAdsData}
+                                  setDate={setCreateAdsData}
+                                  height={40}
+                                />
+                              </Stack>
+                              <Stack direction="column" spacing={1.5}>
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    textAlign: "left",
+                                    color: "#000000",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  No.of Days
+                                </Typography>
+                                <InputText
+                                  width={100}
+                                  placeholder=" Number of Days"
+                                  inputTextHandler={(e: any) =>
+                                    createAdsHandler(e)
+                                  }
+                                />
+                              </Stack>
+                            </Stack>
+                          </Stack>
+                        </Stack>
+                      </Box>
+                    </Grid>
+                  </Grid>
+                )}
             </Grid>
           )}
 
@@ -793,8 +1171,7 @@ const CreateNewAdWizard = () => {
 
         {choseAdType &&
           actions.save_ad !== true &&
-          (choseAdType === "coin_promoted_spot" ||
-            actions.save_create_new_ad !== true) && (
+          (choseAdType !== "" || actions.save_create_new_ad !== true) && (
             <Grid item xl={10} lg={10} md={10} sm={12} xs={12} my={6}>
               <Stack
                 spacing={2}
@@ -893,106 +1270,6 @@ const CreateNewAdWizard = () => {
               </Stack>
             </Grid>
           )}
-
-        {choseBannerAdType === "main_banner" && (
-          <Grid item xl={10} lg={10} md={10} sm={12} xs={12} my={6}>
-            <Stack
-              spacing={2}
-              direction="row"
-              sx={{ alignItems: "center", justifyContent: "flex-end" }}
-            >
-              <Stack spacing={2}>
-                {loading?.cancel_ad === true ? (
-                  <LoadingButton
-                    color="secondary"
-                    loading={loading?.cancel_ad}
-                    loadingPosition="center"
-                    // startIcon={<SaveIcon />}
-                    variant="contained"
-                    sx={{
-                      minWidth: "104px",
-                      maxWidth: "104px",
-                      height: "32px",
-                      backgroundColor: "rgb(61, 56, 122)",
-                      borderRadius: "8px",
-                      fontSize: "14px",
-                      textTransform: "capitalize",
-                      fontWeight: "300",
-                    }}
-                  >
-                    Saving...Wait
-                  </LoadingButton>
-                ) : (
-                  <Button
-                    variant="text"
-                    sx={{ textTransform: "capitalize", fontSize: ".75rem" }}
-                    onClick={cancelAdHandler}
-                  >
-                    Cancel
-                  </Button>
-                )}
-              </Stack>
-              <Stack spacing={2}>
-                {loading?.save_ad === true ? (
-                  <LoadingButton
-                    color="secondary"
-                    loading={loading?.save_ad}
-                    loadingPosition="center"
-                    // startIcon={<SaveIcon />}
-                    variant="contained"
-                    sx={{
-                      minWidth: "104px",
-                      maxWidth: "104px",
-                      height: "32px",
-                      backgroundColor: "rgb(61, 56, 122)",
-                      borderRadius: "8px",
-                      fontSize: "14px",
-                      textTransform: "capitalize",
-                      fontWeight: "300",
-                    }}
-                  >
-                    Saving...Wait
-                  </LoadingButton>
-                ) : (
-                  <MediumBtn
-                    Title="Save Ad"
-                    width="auto"
-                    mdBtnHandler={saveAdHandler}
-                  />
-                )}
-              </Stack>
-              <Stack spacing={2}>
-                {loading?.save_create_new_ad === true ? (
-                  <LoadingButton
-                    color="secondary"
-                    loading={loading?.save_create_new_ad}
-                    loadingPosition="center"
-                    // startIcon={<SaveIcon />}
-                    variant="contained"
-                    sx={{
-                      minWidth: "104px",
-                      maxWidth: "104px",
-                      height: "32px",
-                      backgroundColor: "rgb(61, 56, 122)",
-                      borderRadius: "8px",
-                      fontSize: "14px",
-                      textTransform: "capitalize",
-                      fontWeight: "300",
-                    }}
-                  >
-                    Saving...Wait
-                  </LoadingButton>
-                ) : (
-                  <MediumBtn
-                    Title="Save & Create New Ad"
-                    width="auto"
-                    mdBtnHandler={saveCreateNewAdHandler}
-                  />
-                )}
-              </Stack>
-            </Stack>
-          </Grid>
-        )}
       </Grid>
     </Grid>
   );
