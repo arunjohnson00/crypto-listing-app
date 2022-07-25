@@ -30,7 +30,7 @@ const AirDropsAdd = () => {
   const navigate = useNavigate();
 
   const [addAirdropsData, setAddAirdrops] = useState<any>({
-    coin_id: "",
+    item_id: "",
     start_date: new Date(),
     no_of_days: "",
     total_amount: "",
@@ -78,7 +78,7 @@ const AirDropsAdd = () => {
     };
 
     const formData = new FormData();
-    formData.append("coin_id", addAirdropsData?.coin_id);
+    formData.append("coin_id", addAirdropsData?.item_id);
     formData.append(
       "start_date",
       dateFormat(new Date(addAirdropsData.start_date), "yyyy-mm-dd")
@@ -156,6 +156,7 @@ const AirDropsAdd = () => {
             <AutoCompleSelect
               inputAutoValue={addAirdropsData}
               setInputAutoValue={setAddAirdrops}
+              variant="coin"
             />
           </Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>

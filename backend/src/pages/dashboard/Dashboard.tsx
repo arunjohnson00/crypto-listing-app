@@ -79,14 +79,14 @@ const Dashboard = () => {
         <HorizonatalList />
       </Grid>
 
-      <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
+      <Grid item xl={4} lg={4} md={6} sm={12} xs={12}>
         <Item>
           <Box pt={3}>
             <LineChart lineChartData={coinPerDayListing && coinPerDayListing} />
           </Box>
         </Item>
       </Grid>
-      <Grid item xl={4} lg={4} md={4} sm={6} xs={12}>
+      <Grid item xl={4} lg={4} md={6} sm={12} xs={12}>
         <Item>
           <Box pt={3}>
             <Stack direction="column" spacing={0.5}>
@@ -109,7 +109,7 @@ const Dashboard = () => {
           </Box>
         </Item>
       </Grid>
-      <Grid item xl={4} lg={4} md={4} sm={6} xs={12}>
+      <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
         <Item>
           <Box pt={2} pl={1}>
             <Stack direction="column" spacing={0.5}>
@@ -133,7 +133,7 @@ const Dashboard = () => {
         </Item>
       </Grid>
 
-      <Grid item xl={7} lg={7} md={7} sm={6} xs={12}>
+      <Grid item xl={7} lg={7} md={8} sm={12} xs={12}>
         <Stack direction="row" spacing={1} alignItems="center">
           <Typography
             variant="h6"
@@ -162,7 +162,7 @@ const Dashboard = () => {
         </Item>
       </Grid>
 
-      <Grid item xl={5} lg={5} md={5} sm={6} xs={12}>
+      <Grid item xl={5} lg={5} md={12} sm={12} xs={12}>
         <Typography
           variant="h6"
           sx={{ textAlign: "left", paddingBottom: "18px", marginTop: "20px" }}

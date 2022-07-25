@@ -95,3 +95,20 @@ export const searchNftListingRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const allNftListingRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  //console.log(JSON.stringify(values));
+  const fetchOptions = {
+    url: `api/b/v1/nft-all `,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: NFT_LISTINGS.ALL_NFT_LISTINGS,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

@@ -1,6 +1,12 @@
 import { Typography, Stack, Divider } from "@mui/material";
-
+import { useSelector, useDispatch } from "react-redux";
+import dateFormat, { masks } from "dateformat";
+import moment from "moment";
 const SaveAdsCard = () => {
+  const adSummaryDetails = useSelector((adSummary: any) => {
+    return adSummary?.adsReducer?.ads_summary[0];
+  });
+
   return (
     <Stack direction="column" spacing={6}>
       <Stack direction="column" spacing={1.5}>
@@ -42,9 +48,19 @@ const SaveAdsCard = () => {
             textAlign: "left",
             color: "#070A4E",
             fontWeight: 700,
+            textTransform: "capitalize",
           }}
         >
-          Coin Promoted Spot
+          {adSummaryDetails &&
+            adSummaryDetails?.choseAdType?.replace(/_/g, " ")}{" "}
+          {adSummaryDetails && (
+            <span
+              style={{ color: "#363aa5", fontWeight: 700, fontSize: ".7rem" }}
+            >
+              {" "}
+              {`(${adSummaryDetails?.item_name})`}
+            </span>
+          )}
         </Typography>
       </Stack>
       <Stack direction="column" spacing={0}>
@@ -66,7 +82,7 @@ const SaveAdsCard = () => {
             fontWeight: 500,
           }}
         >
-          3 Days
+          {adSummaryDetails && adSummaryDetails?.no_of_days}
         </Typography>
       </Stack>
       <Stack direction="row" spacing={4}>
@@ -89,7 +105,8 @@ const SaveAdsCard = () => {
               fontWeight: 500,
             }}
           >
-            27 July 2022
+            {adSummaryDetails &&
+              dateFormat(adSummaryDetails?.start_date, "dd mmmm yyyy")}
           </Typography>
         </Stack>
         <Divider
@@ -117,7 +134,12 @@ const SaveAdsCard = () => {
               fontWeight: 500,
             }}
           >
-            27 Aug 2022
+            {dateFormat(
+              moment(adSummaryDetails?.start_date)
+                .add(adSummaryDetails?.no_of_days, "days")
+                .toDate(),
+              "dd mmmm yyyy"
+            )}
           </Typography>
         </Stack>
       </Stack>
@@ -143,7 +165,10 @@ const SaveAdsCard = () => {
             fontWeight: 700,
           }}
         >
-          12 BNB
+          {adSummaryDetails &&
+            parseInt(adSummaryDetails?.price) *
+              parseInt(adSummaryDetails?.no_of_days)}
+          {".00"}
         </Typography>
       </Stack>
       <Stack direction="column" spacing={0}>

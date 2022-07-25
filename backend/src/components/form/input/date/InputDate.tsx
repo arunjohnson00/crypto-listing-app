@@ -16,7 +16,7 @@ const InputDate = ({
 
   airdropStart,
   eventDate,
-  coinAdWizard,
+  adWizard,
   height,
 }: any) => {
   return (
@@ -48,7 +48,7 @@ const InputDate = ({
             ? date.start_date
             : eventDate === true
             ? date.event_date
-            : coinAdWizard === true && date.coin_start_date
+            : adWizard === true && date.start_date
         }
         //publicMintStart===true&&date.start_date
         onChange={(newValue) => {
@@ -59,8 +59,7 @@ const InputDate = ({
           publicMintEnd === true && setDate({ ...date, end_date: newValue });
           airdropStart === true && setDate({ ...date, start_date: newValue });
           eventDate === true && setDate({ ...date, event_date: newValue });
-          coinAdWizard === true &&
-            setDate({ ...date, coin_start_date: newValue });
+          adWizard === true && setDate({ ...date, start_date: newValue });
         }}
         disabled={disabled}
       />

@@ -34,6 +34,7 @@ import topbarCountReducer from "./tobarCountReducer";
 import settingsReducer from "./settingsReducer";
 import dashboardReducer from "./dashboardReducer";
 import emailReducer from "./emailReducer";
+import adsReducer from "./adsReducer";
 
 const allReducers = combineReducers({
   Auth,
@@ -64,6 +65,7 @@ const allReducers = combineReducers({
   settingsReducer,
   dashboardReducer,
   emailReducer,
+  adsReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

@@ -9,13 +9,14 @@ import {
   Stack,
 } from "@mui/material";
 import { allCoinRequest } from "../../../store/action";
-
+import { allNftListingRequest } from "../../../store/action";
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const AutoCompleSelect = ({
   inputAutoValue,
   setInputAutoValue,
   serverRef,
+  variant,
 }: any) => {
   const dispatch: any = useDispatch();
 
@@ -27,8 +28,14 @@ const AutoCompleSelect = ({
     const successHandler = (res: any) => {
       setOpt(res?.data?.data && res?.data?.data);
     };
-    const errorHandler = (err: any) => {};
-    dispatch(allCoinRequest("emptyData", successHandler, errorHandler));
+    const errorHandler: any = (err: any) => {};
+    variant &&
+      variant === "coin" &&
+      dispatch(allCoinRequest("emptyData", successHandler, errorHandler));
+
+    variant &&
+      variant === "nft" &&
+      dispatch(allNftListingRequest("emptyData", successHandler, errorHandler));
   }, [dispatch]);
 
   useEffect(() => {
@@ -55,8 +62,8 @@ const AutoCompleSelect = ({
       value={`${
         defaultVal !== undefined
           ? defaultVal
-          : inputAutoValue?.coin_name
-          ? inputAutoValue?.coin_name
+          : inputAutoValue?.item_name
+          ? inputAutoValue?.item_name
           : "Please Choose a Coin"
       }`}
       id="combo-box-demo"
@@ -66,18 +73,22 @@ const AutoCompleSelect = ({
           opt &&
           opt?.length !== 0 &&
           opt?.filter((flData: any) => {
-            return flData?.name === newValue;
+            return variant === "nft"
+              ? flData?.title === newValue
+              : flData?.name === newValue;
           });
         setInputAutoValue({
           ...inputAutoValue,
-          coin_id: filter[0]?.id,
-          coin_name: filter[0]?.name,
+          item_id: filter[0]?.id,
+          item_name: variant === "nft" ? filter[0]?.title : filter[0]?.name,
           logo: filter[0]?.logo,
         });
       }}
       options={
         opt && opt?.length !== 0 && opt !== undefined
-          ? opt?.map((option: any) => option?.name)
+          ? opt?.map((option: any) =>
+              variant === "nft" ? option?.title : option?.name
+            )
           : options
       }
       renderOption={(props, option) => (

@@ -172,114 +172,110 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
             ))}
           {variant === "recent_listings" &&
             rows &&
-            rows
-              ?.concat(rows)
-              .sort((a: any, b: any) => (a.time < b.time ? 1 : -1))
-              .slice(0, 13)
-              .map((data: any, index: number) => (
-                <TableRow
+            rows.slice(0, 13).map((data: any, index: number) => (
+              <TableRow
+                sx={{
+                  "&:last-child td, &:last-child th": {
+                    border: 0,
+                    paddingBottom: 1,
+                  },
+                  "&:first-child td, &:first-child th": {
+                    border: 0,
+                    paddingTop: 1,
+                  },
+                }}
+                key={index}
+              >
+                <TableCell
+                  align="left"
                   sx={{
-                    "&:last-child td, &:last-child th": {
-                      border: 0,
-                      paddingBottom: 1,
-                    },
-                    "&:first-child td, &:first-child th": {
-                      border: 0,
-                      paddingTop: 1,
-                    },
+                    fontSize: ".75rem",
+                    border: 0,
+                    fontWeight: 500,
+                    padding: 0.5,
+                    color: "#A1A1A1",
                   }}
-                  key={index}
                 >
-                  <TableCell
-                    align="left"
-                    sx={{
-                      fontSize: ".75rem",
-                      border: 0,
-                      fontWeight: 500,
-                      padding: 0.5,
-                      color: "#A1A1A1",
-                    }}
-                  >
-                    {index + 1}
-                  </TableCell>
-                  <TableCell
-                    align="left"
-                    sx={{
-                      fontSize: ".75rem",
-                      border: 0,
-                      fontWeight: 500,
-                      padding: 0.5,
-                    }}
-                  >
-                    {data?.name}
-                  </TableCell>
-                  <TableCell
-                    align="left"
-                    sx={{
-                      fontSize: ".75rem",
-                      color: "#240cfb",
-                      border: 0,
-                      fontWeight: 500,
-                      padding: 0.5,
-                    }}
-                  >
-                    {data?.type}
-                  </TableCell>
-                  <TableCell
-                    align="left"
-                    sx={{
-                      fontSize: ".75rem",
-                      border: 0,
-                      fontWeight: 500,
-                      padding: 0.5,
-                    }}
-                  >
-                    {/* {ago(data?.time)} */}
-                    {timeAgo.format(new Date(data?.time))}
-                  </TableCell>
-                  <TableCell
-                    align="left"
-                    sx={{
-                      fontSize: ".75rem",
-                      border: 0,
-                      color: "#AB264F",
-                      fontWeight: 500,
-                      padding: 0.5,
-                    }}
-                  >
-                    <span>
-                      {parseInt(data?.status) === 1 && (
-                        <span style={{ color: "#00E396" }}>Approved</span>
-                      )}
+                  {index + 1}
+                </TableCell>
+                <TableCell
+                  align="left"
+                  sx={{
+                    fontSize: ".75rem",
+                    border: 0,
+                    fontWeight: 500,
+                    padding: 0.5,
+                  }}
+                >
+                  {data?.name}
+                </TableCell>
+                <TableCell
+                  align="left"
+                  sx={{
+                    fontSize: ".75rem",
+                    color: "#240cfb",
+                    border: 0,
+                    fontWeight: 500,
+                    padding: 0.5,
+                  }}
+                >
+                  {data?.type}
+                </TableCell>
+                <TableCell
+                  align="left"
+                  sx={{
+                    fontSize: ".75rem",
+                    border: 0,
+                    fontWeight: 500,
+                    padding: 0.5,
+                  }}
+                >
+                  {ago(data?.time)}
+                  {/* {timeAgo.format(new Date(data?.time))} */}
+                </TableCell>
+                <TableCell
+                  align="left"
+                  sx={{
+                    fontSize: ".75rem",
+                    border: 0,
+                    color: "#AB264F",
+                    fontWeight: 500,
+                    padding: 0.5,
+                  }}
+                >
+                  <span>
+                    {parseInt(data?.status) === 1 && (
+                      <span style={{ color: "#00E396" }}>Approved</span>
+                    )}
 
-                      {parseInt(data?.status) === 2 && (
-                        <span style={{ color: "#FEB019" }}>Suspended</span>
-                      )}
+                    {parseInt(data?.status) === 2 && (
+                      <span style={{ color: "#FEB019" }}>Suspended</span>
+                    )}
 
-                      {parseInt(data?.status) === 3 && (
-                        <span style={{ color: "#FF0000" }}>Blocked</span>
-                      )}
+                    {parseInt(data?.status) === 3 && (
+                      <span style={{ color: "#FF0000" }}>Blocked</span>
+                    )}
 
-                      {parseInt(data?.status) === 4 && (
-                        <span style={{ color: "#775DD0" }}>Processing</span>
-                      )}
-                    </span>
+                    {parseInt(data?.status) === 4 && (
+                      <span style={{ color: "#775DD0" }}>Processing</span>
+                    )}
+                  </span>
+                </TableCell>
+
+                {mailer === true && (
+                  <TableCell
+                    align="center"
+                    sx={{ fontSize: ".80rem", border: 0, fontWeight: 500 }}
+                  >
+                    <IconButton sx={{ padding: 0 }}>
+                      <MailOutlineIcon
+                        sx={{ color: "#10E49C", fontSize: "1rem" }}
+                      />
+                    </IconButton>
                   </TableCell>
-
-                  {mailer === true && (
-                    <TableCell
-                      align="center"
-                      sx={{ fontSize: ".80rem", border: 0, fontWeight: 500 }}
-                    >
-                      <IconButton sx={{ padding: 0 }}>
-                        <MailOutlineIcon
-                          sx={{ color: "#10E49C", fontSize: "1rem" }}
-                        />
-                      </IconButton>
-                    </TableCell>
-                  )}
-                </TableRow>
-              ))}
+                )}
+              </TableRow>
+            ))}
 
           {variant === "incoming_ads" &&
             rows &&
@@ -426,8 +422,8 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                     padding: 0.5,
                   }}
                 >
-                  {/* {ago(data?.orderCreated)} */}
-                  {timeAgo.format(new Date(data?.orderCreated))}
+                  {ago(data?.orderCreated)}
+                  {/* {timeAgo.format(new Date(data?.orderCreated))} */}
                 </TableCell>
                 <TableCell
                   align="left"

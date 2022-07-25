@@ -26,13 +26,18 @@ import SaveAdsCard from "../../../components/cards/saveadscard/SaveAdsCard";
 import SaveAndCreateAdsCard from "../../../components/cards/saveandcreateads/SaveAndCreateAdsCard";
 import CoinUploader from "../../../components/form/input/file/coinlogo/CoinUploader";
 
+import { adsSummaryRequest } from "../../../store/action";
+
 //Server URL
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const CreateNewAdWizard = () => {
+  const dispatch = useDispatch();
   const adtypeRef = useRef<any>(null);
   const [choseAd, setChooseAd] = useState("");
   const [choseAdType, setChooseAdType] = useState("");
-  console.log(choseAdType);
+  const adSummaryDetails = useSelector((adSummary: any) => {
+    return adSummary?.adsReducer?.ads_summary;
+  });
   const [addCoinLogo, setCoinLogo] = useState({ coinLogo: "" });
   const [loading, setLoading] = useState({
     save_ad: false,
@@ -47,16 +52,17 @@ const CreateNewAdWizard = () => {
     cancel_ad: false,
   });
   const [createAdsData, setCreateAdsData] = useState<any>({
-    coin_id: "",
+    item_id: "",
     logo: "",
     status: 1,
-    coin_start_date: new Date(),
+    start_date: new Date(),
     no_of_days: "",
     no_of_days_banner: "",
     banner_target_link: "",
+    price: 1,
   });
 
-  const cancelAdHandler = () => {
+  const cancelAdHandler = (index: any) => {
     Swal.fire({
       title: "Are you sure?",
       text: "Do you want to cancel this process?",
@@ -65,14 +71,17 @@ const CreateNewAdWizard = () => {
     }).then((result) => {
       result.isConfirmed && setLoading({ ...loading, cancel_ad: false });
 
-      result.isConfirmed &&
+      if (result.isConfirmed) {
         Swal.fire({
           title: "Deleted!",
-          text: "Your data has been deleted",
+          text: "Process canceled",
           icon: "success",
           showConfirmButton: false,
           timer: 1500,
         });
+        setChooseAd("");
+        setChooseAdType("");
+      }
       result.dismiss === Swal.DismissReason.cancel &&
         setLoading({ ...loading, cancel_ad: false });
     });
@@ -84,6 +93,12 @@ const CreateNewAdWizard = () => {
     setTimeout(() => {
       setLoading({ ...loading, save_ad: false });
     }, 3000);
+    // const successHandler = (res: any) => {};
+    // const errorHandler = (err: any) => {};
+    dispatch({
+      type: adsSummaryRequest,
+      payload: { ...createAdsData, choseAdType },
+    });
   };
 
   const saveCreateNewAdHandler = () => {
@@ -651,7 +666,7 @@ const CreateNewAdWizard = () => {
                                 Start Date
                               </Typography>
                               <InputDate
-                                coinAdWizard={true}
+                                adWizard={true}
                                 date={createAdsData}
                                 setDate={setCreateAdsData}
                                 height={40}
@@ -743,6 +758,7 @@ const CreateNewAdWizard = () => {
                               <AutoCompleSelect
                                 inputAutoValue={createAdsData}
                                 setInputAutoValue={setCreateAdsData}
+                                variant="coin"
                               />
                             </Stack>
                             <Stack direction="column" spacing={1.5}>
@@ -757,7 +773,7 @@ const CreateNewAdWizard = () => {
                                 Start Date
                               </Typography>
                               <InputDate
-                                coinAdWizard={true}
+                                adWizard={true}
                                 date={createAdsData}
                                 setDate={setCreateAdsData}
                                 height={40}
@@ -850,6 +866,7 @@ const CreateNewAdWizard = () => {
                               <AutoCompleSelect
                                 inputAutoValue={createAdsData}
                                 setInputAutoValue={setCreateAdsData}
+                                variant="nft"
                               />
                             </Stack>
                             <Stack direction="column" spacing={1.5}>
@@ -864,7 +881,7 @@ const CreateNewAdWizard = () => {
                                 Start Date
                               </Typography>
                               <InputDate
-                                coinAdWizard={true}
+                                adWizard={true}
                                 date={createAdsData}
                                 setDate={setCreateAdsData}
                                 height={40}
@@ -996,7 +1013,7 @@ const CreateNewAdWizard = () => {
                                   Start Date
                                 </Typography>
                                 <InputDate
-                                  coinAdWizard={true}
+                                  adWizard={true}
                                   date={createAdsData}
                                   setDate={setCreateAdsData}
                                   height={40}
@@ -1129,7 +1146,7 @@ const CreateNewAdWizard = () => {
                                   Start Date
                                 </Typography>
                                 <InputDate
-                                  coinAdWizard={true}
+                                  adWizard={true}
                                   date={createAdsData}
                                   setDate={setCreateAdsData}
                                   height={40}
@@ -1165,7 +1182,7 @@ const CreateNewAdWizard = () => {
           )}
 
           <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
-            <AdSummaryCard cancelBtnHandler={cancelAdHandler} />
+            {adSummaryDetails && <AdSummaryCard />}
           </Grid>
         </Grid>
 
