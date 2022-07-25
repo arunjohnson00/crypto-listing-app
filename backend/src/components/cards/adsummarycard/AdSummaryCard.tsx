@@ -41,6 +41,10 @@ const AdSummaryCard = () => {
 
     navigate(0);
   };
+
+  const TotalPrice = adSummaryDetails?.reduce(function (s: any, a: any) {
+    return s + parseInt(a.price) * parseInt(a.no_of_days);
+  }, 0);
   return (
     <Fragment>
       <Box sx={{ backgroundColor: "#06094C", borderRadius: 3 }}>
@@ -296,7 +300,7 @@ const AdSummaryCard = () => {
                   fontSize: "1.26rem",
                 }}
               >
-                12 BNB
+                {TotalPrice && TotalPrice}
               </Typography>
             </Stack>
             <Stack direction="row" spacing={2} alignItems="flex-start">

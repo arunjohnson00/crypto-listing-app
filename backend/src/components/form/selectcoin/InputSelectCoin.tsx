@@ -12,6 +12,7 @@ const InputSelectCoin = ({
   variant,
   height,
   width,
+  type,
 }: any) => {
   return (
     <FormControl fullWidth>
@@ -50,8 +51,14 @@ const InputSelectCoin = ({
                   </option>
                 )}
                 <option value={list.id}>
-                  {list.name}{" "}
-                  {variant === "search_with_coin" && `(${list?.total_amount})`}
+                  {type === "events"
+                    ? list.title
+                    : type === "airdrop"
+                    ? list.name
+                    : list.name}{" "}
+                  {variant === "search_with_coin" &&
+                    type === "airdrop" &&
+                    `(${list?.total_amount})`}
                 </option>
               </Fragment>
             );

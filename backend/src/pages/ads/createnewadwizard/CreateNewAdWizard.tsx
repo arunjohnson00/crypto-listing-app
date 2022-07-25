@@ -1011,6 +1011,7 @@ const CreateNewAdWizard = () => {
                                     variant="search_with_coin"
                                     height={40}
                                     width={150}
+                                    type="airdrop"
                                   />
                                 ) : (
                                   <Typography
@@ -1156,10 +1157,30 @@ const CreateNewAdWizard = () => {
                                 >
                                   Select Events
                                 </Typography>
-                                <AutoCompleSelect
-                                  inputAutoValue={createAdsData}
-                                  setInputAutoValue={setCreateAdsData}
-                                />
+                                {eventsListWithCoin?.length > 0 ? (
+                                  <InputSelectCoin
+                                    name="coin_events"
+                                    id="coin_events"
+                                    data={eventsListWithCoin}
+                                    // selectedValue={}
+                                    variant="search_with_coin"
+                                    height={40}
+                                    width={150}
+                                    type="events"
+                                  />
+                                ) : (
+                                  <Typography
+                                    variant="body2"
+                                    sx={{
+                                      textAlign: "left",
+                                      color: "#000000",
+                                      fontWeight: 400,
+                                    }}
+                                    pt={1}
+                                  >
+                                    Events not found
+                                  </Typography>
+                                )}
                               </Stack>
                             </Stack>
                             <Stack
