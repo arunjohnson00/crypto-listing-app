@@ -1,11 +1,11 @@
 import Button from "@mui/material/Button";
 
-const LargeBtn = ({ Title, lgBtnHandler }: any) => {
+const LargeBtn = ({ Title, lgBtnHandler, width }: any) => {
   return (
     <Button
       variant="contained"
       sx={{
-        width: "173px",
+        width: width ? width : 173,
         height: "41px",
         backgroundColor: "rgb(61, 56, 122)",
         borderRadius: "8px",

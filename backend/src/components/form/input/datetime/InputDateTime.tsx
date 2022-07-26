@@ -26,6 +26,8 @@ const InputDateTime = ({
               "& .MuiInputBase-root": {
                 borderRadius: "7px",
                 height: "43px",
+                fontSize: ".85rem",
+                minWidth: 311,
               },
             }}
           />

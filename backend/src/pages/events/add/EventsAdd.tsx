@@ -178,11 +178,12 @@ const EventsAdd = () => {
           sx={{ maxWidth: "758px", background: "white", borderRadius: "5px" }}
           pt={3}
           pl={4}
+          pr={4}
         >
           <form id="eventForm">
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
-                select coin
+                Select coin
               </Typography>
 
               <AutoCompleSelect
@@ -192,7 +193,11 @@ const EventsAdd = () => {
               />
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Title
               </Typography>
 
@@ -202,8 +207,12 @@ const EventsAdd = () => {
               />
             </Grid>
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Select category
               </Typography>
 
@@ -212,11 +221,16 @@ const EventsAdd = () => {
                   name="category_id"
                   id="category_id"
                   data={eventsCategory}
+                  height={40}
                 />
               </Grid>
             </Grid>
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Date
               </Typography>
 
@@ -227,14 +241,14 @@ const EventsAdd = () => {
               />
             </Grid>
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <CheckboxWithLabel
                 label=" Or earlier (if it can occur before the date stated)"
                 name="or_earlier"
               />
             </Grid>
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <InputTextArea
                 name="description"
                 id="description"
@@ -243,7 +257,11 @@ const EventsAdd = () => {
             </Grid>
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Source Link
               </Typography>
 
@@ -253,8 +271,12 @@ const EventsAdd = () => {
               />
             </Grid>
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Reward address
               </Typography>
               <Grid item xl={5} lg={5} md={5} sm={12} xs={12}>
@@ -262,12 +284,17 @@ const EventsAdd = () => {
                   name="reward_address_id"
                   id="reward_address_id"
                   data={eventsRewardAddress}
+                  height={40}
                 />
               </Grid>
             </Grid>
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Address
               </Typography>
 
@@ -277,8 +304,12 @@ const EventsAdd = () => {
               />
             </Grid>
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Twitter Account
               </Typography>
 
@@ -288,8 +319,12 @@ const EventsAdd = () => {
               />
             </Grid>
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Proof (max 2MB)
               </Typography>
 
@@ -299,8 +334,12 @@ const EventsAdd = () => {
               />
             </Grid>
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Status
               </Typography>
 

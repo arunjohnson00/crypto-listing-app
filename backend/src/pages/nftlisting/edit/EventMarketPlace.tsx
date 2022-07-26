@@ -14,7 +14,11 @@ const EventMarketPlace = ({
     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
       <Stack direction="row" spacing={3} mb={2}>
         <Grid item xl={3} lg={3} md={3} sm={3} xs={12}>
-          <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+          <Typography
+            variant="subtitle1"
+            sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+            mb={1}
+          >
             Marketplace {index + 2}
           </Typography>
           <InputSelectCoin
@@ -24,7 +28,11 @@ const EventMarketPlace = ({
           />
         </Grid>
         <Grid item xl={5} lg={5} md={5} sm={5} xs={12}>
-          <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+          <Typography
+            variant="subtitle1"
+            sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+            mb={1}
+          >
             Marketplace URL {index + 2}
           </Typography>
           <InputText

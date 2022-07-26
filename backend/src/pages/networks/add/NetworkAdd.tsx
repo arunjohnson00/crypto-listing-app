@@ -136,7 +136,11 @@ const NetworkAdd = () => {
           pl={4}
         >
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               Network Name
             </Typography>
 
@@ -147,7 +151,11 @@ const NetworkAdd = () => {
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               Network URL
             </Typography>
 
@@ -157,7 +165,11 @@ const NetworkAdd = () => {
             />
           </Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               Chain Id
             </Typography>
 
@@ -168,7 +180,11 @@ const NetworkAdd = () => {
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               Explorer URL
             </Typography>
 
@@ -179,7 +195,11 @@ const NetworkAdd = () => {
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               Currency Symbol
             </Typography>
 
@@ -190,7 +210,11 @@ const NetworkAdd = () => {
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               Network Icon
             </Typography>
 
@@ -201,7 +225,11 @@ const NetworkAdd = () => {
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               Status
             </Typography>
 

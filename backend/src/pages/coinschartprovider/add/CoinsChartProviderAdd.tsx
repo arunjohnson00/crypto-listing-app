@@ -119,7 +119,11 @@ const CoinsChartProviderAdd = () => {
             pl={4}
           >
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Chart Provider Name
               </Typography>
 
@@ -130,7 +134,11 @@ const CoinsChartProviderAdd = () => {
             </Grid>
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Chart Provider URL
               </Typography>
 
@@ -140,7 +148,11 @@ const CoinsChartProviderAdd = () => {
               />
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Chart Provider Icon
               </Typography>
 
@@ -151,7 +163,11 @@ const CoinsChartProviderAdd = () => {
             </Grid>
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Status
               </Typography>
 

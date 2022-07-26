@@ -144,7 +144,11 @@ const MenuCardEdit = () => {
           pl={4}
         >
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               MenuCard Title
             </Typography>
 
@@ -156,7 +160,11 @@ const MenuCardEdit = () => {
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               MenuCard Subtitle
             </Typography>
 
@@ -168,7 +176,11 @@ const MenuCardEdit = () => {
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               MenuCard URL
             </Typography>
 
@@ -180,7 +192,11 @@ const MenuCardEdit = () => {
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               MenuCard Icon
             </Typography>
 
@@ -192,7 +208,11 @@ const MenuCardEdit = () => {
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               Status
             </Typography>
 

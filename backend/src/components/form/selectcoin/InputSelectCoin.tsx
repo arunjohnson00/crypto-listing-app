@@ -23,11 +23,12 @@ const InputSelectCoin = ({
           id: `${id}`,
         }}
         sx={{
-          background: "white",
+          background: "#FFFFFF",
           borderRadius: "7px",
           border: "1px solid #bbbbbb",
           height: height && height,
           minWidth: width && width,
+          fontSize: ".85rem",
           "&::before": {
             border: "none",
           },
@@ -45,7 +46,10 @@ const InputSelectCoin = ({
                   <option
                     value={list.id}
                     selected
-                    style={{ background: "red", color: "white" }}
+                    style={{
+                      background: "red",
+                      color: "#FFFFFF",
+                    }}
                   >
                     {`${list.name} (Selected) `}
                   </option>

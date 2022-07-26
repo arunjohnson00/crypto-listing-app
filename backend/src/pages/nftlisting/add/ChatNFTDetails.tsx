@@ -9,17 +9,26 @@ const ChatNFTDetails = ({ chatCount, index, chatremoveHandle, data }: any) => {
     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
       <Stack direction="row" spacing={3} pt={3}>
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
-          <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+          <Typography
+            variant="subtitle1"
+            sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+            mb={1}
+          >
             Chat Platform {index + 2}
           </Typography>
           <InputSelectCoin
             name={`chat_platform_id[${index + 2}]`}
             id={`chat_platform_id_${index + 2}`}
             data={data}
+            height={40}
           />
         </Grid>
         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
-          <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+          <Typography
+            variant="subtitle1"
+            sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+            mb={1}
+          >
             Chat URL {index + 2}
           </Typography>
           <InputText

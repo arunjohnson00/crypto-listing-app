@@ -272,6 +272,7 @@ const DataTables = ({
             backgroundColor: "#FFFFFF",
             fontWeight: 500,
             borderColor: "primary.light",
+            "& .MuiDataGrid-cell": { borderBottom: ".5px solid #f3f3f3" },
             "& .MuiDataGrid-cell:hover": {
               color: "black",
             },
@@ -283,6 +284,10 @@ const DataTables = ({
               fontWeight: 700,
               color: "#373163",
             },
+            "&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus":
+              {
+                outline: "none",
+              },
           }}
         />
       </div>

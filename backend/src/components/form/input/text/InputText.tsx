@@ -33,9 +33,11 @@ const InputText = ({
           setinputValue(e.target.value);
         }}
         sx={{
+          fontSize: ".85rem",
           "& .MuiOutlinedInput-root": {
             width: `${width ? width : "312px"}`,
             paddingRight: `${InputProps && 0}`,
+            fontSize: ".85rem",
           },
           // "& .MuiInputAdornment-root": {
           //   color: "rgb(61 56 122)",

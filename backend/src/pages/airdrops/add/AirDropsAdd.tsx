@@ -149,7 +149,11 @@ const AirDropsAdd = () => {
           pl={4}
         >
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               Search your coin
             </Typography>
 
@@ -160,7 +164,11 @@ const AirDropsAdd = () => {
             />
           </Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               Start of the Airdrop
             </Typography>
 
@@ -171,7 +179,11 @@ const AirDropsAdd = () => {
             />
           </Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               Number of Days (min:5, max:20)
             </Typography>
 
@@ -182,7 +194,11 @@ const AirDropsAdd = () => {
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               Total Airdrop Amount
             </Typography>
 
@@ -193,7 +209,11 @@ const AirDropsAdd = () => {
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               Number of Winners
             </Typography>
 
@@ -204,7 +224,11 @@ const AirDropsAdd = () => {
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               Add follow Twitter Step?
             </Typography>
 
@@ -216,7 +240,11 @@ const AirDropsAdd = () => {
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               Add Join to telegram Step?
             </Typography>
 
@@ -228,7 +256,7 @@ const AirDropsAdd = () => {
           </Grid>
 
           {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography variant="subtitle1" sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }} mb={1}>
               Airdrops Icon
             </Typography>
 
@@ -239,7 +267,11 @@ const AirDropsAdd = () => {
           </Grid> */}
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
               Status
             </Typography>
 

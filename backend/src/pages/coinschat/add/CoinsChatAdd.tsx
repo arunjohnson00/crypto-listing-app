@@ -119,7 +119,11 @@ const CoinsChatAdd = () => {
             pl={4}
           >
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Chat Name
               </Typography>
 
@@ -130,7 +134,11 @@ const CoinsChatAdd = () => {
             </Grid>
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Chat URL
               </Typography>
 
@@ -141,7 +149,11 @@ const CoinsChatAdd = () => {
             </Grid>
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Audit Icon
               </Typography>
 
@@ -152,7 +164,11 @@ const CoinsChatAdd = () => {
             </Grid>
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Status
               </Typography>
 

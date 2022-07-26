@@ -410,7 +410,11 @@ const NFTListingEdit = () => {
                                 <Grid item xl={3} lg={3} md={3} sm={3} xs={12}>
                                   <Typography
                                     variant="subtitle1"
-                                    sx={{ textAlign: "left" }}
+                                    sx={{
+                                      textAlign: "left",
+                                      fontSize: ".9rem",
+                                      fontWeight: 600,
+                                    }}
                                     mb={1}
                                   >
                                     Marketplace {index + 1}
@@ -425,7 +429,11 @@ const NFTListingEdit = () => {
                                 <Grid item xl={5} lg={5} md={5} sm={5} xs={12}>
                                   <Typography
                                     variant="subtitle1"
-                                    sx={{ textAlign: "left" }}
+                                    sx={{
+                                      textAlign: "left",
+                                      fontSize: ".9rem",
+                                      fontWeight: 600,
+                                    }}
                                     mb={1}
                                   >
                                     Marketplace URL {index + 1}
@@ -469,7 +477,11 @@ const NFTListingEdit = () => {
                           <Grid item xl={3} lg={3} md={3} sm={3} xs={12}>
                             <Typography
                               variant="subtitle1"
-                              sx={{ textAlign: "left" }}
+                              sx={{
+                                textAlign: "left",
+                                fontSize: ".9rem",
+                                fontWeight: 600,
+                              }}
                               mb={1}
                             >
                               Marketplace 1
@@ -483,7 +495,11 @@ const NFTListingEdit = () => {
                           <Grid item xl={5} lg={5} md={5} sm={5} xs={12}>
                             <Typography
                               variant="subtitle1"
-                              sx={{ textAlign: "left" }}
+                              sx={{
+                                textAlign: "left",
+                                fontSize: ".9rem",
+                                fontWeight: 600,
+                              }}
                               mb={1}
                             >
                               Marketplace URL 1
@@ -556,7 +572,11 @@ const NFTListingEdit = () => {
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={5}>
                     <Typography
                       variant="subtitle1"
-                      sx={{ textAlign: "left" }}
+                      sx={{
+                        textAlign: "left",
+                        fontSize: ".9rem",
+                        fontWeight: 600,
+                      }}
                       mb={2}
                     >
                       Event Token Currency
@@ -574,7 +594,11 @@ const NFTListingEdit = () => {
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={5}>
                     <Typography
                       variant="subtitle1"
-                      sx={{ textAlign: "left" }}
+                      sx={{
+                        textAlign: "left",
+                        fontSize: ".9rem",
+                        fontWeight: 600,
+                      }}
                       mb={2}
                     >
                       What is the maximum number of items in your collection?*
@@ -595,7 +619,11 @@ const NFTListingEdit = () => {
                     <Stack direction="row" spacing={3} mb={2}>
                       <Typography
                         variant="subtitle1"
-                        sx={{ textAlign: "left" }}
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                        }}
                       >
                         Event Category*
                       </Typography>
@@ -633,7 +661,11 @@ const NFTListingEdit = () => {
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mt={5}
                   >
                     Presale start date time
@@ -679,7 +711,11 @@ const NFTListingEdit = () => {
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                     <Typography
                       variant="subtitle1"
-                      sx={{ textAlign: "left" }}
+                      sx={{
+                        textAlign: "left",
+                        fontSize: ".9rem",
+                        fontWeight: 600,
+                      }}
                       mt={2}
                     >
                       Presale end date time
@@ -723,7 +759,11 @@ const NFTListingEdit = () => {
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mt={5}
                   >
                     Public mint start date time
@@ -769,7 +809,11 @@ const NFTListingEdit = () => {
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                     <Typography
                       variant="subtitle1"
-                      sx={{ textAlign: "left" }}
+                      sx={{
+                        textAlign: "left",
+                        fontSize: ".9rem",
+                        fontWeight: 600,
+                      }}
                       mt={2}
                     >
                       Public mint end date time
@@ -828,7 +872,11 @@ const NFTListingEdit = () => {
                     />
                     <Typography
                       variant="subtitle1"
-                      sx={{ textAlign: "left", marginleft: 0 }}
+                      sx={{
+                        textAlign: "left",
+                        fontSize: ".9rem",
+                        marginleft: 0,
+                      }}
                       mt={5}
                     >
                       Don't you know launch date?
@@ -849,7 +897,12 @@ const NFTListingEdit = () => {
                     <Grid item xl={6} lg={6} md={6} sm={6} xs={12} pt={0}>
                       <Typography
                         variant="subtitle1"
-                        sx={{ textAlign: "left", marginleft: 0 }}
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                          marginleft: 0,
+                        }}
                         mt={5}
                         mb={1}
                       >
@@ -886,7 +939,12 @@ const NFTListingEdit = () => {
                     <Grid item xl={6} lg={6} md={6} sm={6} xs={12} pt={0}>
                       <Typography
                         variant="subtitle1"
-                        sx={{ textAlign: "left", marginleft: 0 }}
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                          marginleft: 0,
+                        }}
                         mt={5}
                         mb={1}
                       >
@@ -954,7 +1012,11 @@ const NFTListingEdit = () => {
                               <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                                 <Typography
                                   variant="subtitle1"
-                                  sx={{ textAlign: "left" }}
+                                  sx={{
+                                    textAlign: "left",
+                                    fontSize: ".9rem",
+                                    fontWeight: 600,
+                                  }}
                                   mb={1}
                                 >
                                   Website URL {index + 1}
@@ -997,7 +1059,11 @@ const NFTListingEdit = () => {
                         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                           <Typography
                             variant="subtitle1"
-                            sx={{ textAlign: "left" }}
+                            sx={{
+                              textAlign: "left",
+                              fontSize: ".9rem",
+                              fontWeight: 600,
+                            }}
                             mb={1}
                           >
                             Website URL
@@ -1068,7 +1134,11 @@ const NFTListingEdit = () => {
                               <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                                 <Typography
                                   variant="subtitle1"
-                                  sx={{ textAlign: "left" }}
+                                  sx={{
+                                    textAlign: "left",
+                                    fontSize: ".9rem",
+                                    fontWeight: 600,
+                                  }}
                                   mb={1}
                                 >
                                   Chat Platform {index + 1}
@@ -1087,7 +1157,11 @@ const NFTListingEdit = () => {
                               <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                                 <Typography
                                   variant="subtitle1"
-                                  sx={{ textAlign: "left" }}
+                                  sx={{
+                                    textAlign: "left",
+                                    fontSize: ".9rem",
+                                    fontWeight: 600,
+                                  }}
                                   mb={1}
                                 >
                                   Chat URL {index + 1}
@@ -1130,7 +1204,11 @@ const NFTListingEdit = () => {
                         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                           <Typography
                             variant="subtitle1"
-                            sx={{ textAlign: "left" }}
+                            sx={{
+                              textAlign: "left",
+                              fontSize: ".9rem",
+                              fontWeight: 600,
+                            }}
                             mb={1}
                           >
                             Chat Platform
@@ -1144,7 +1222,11 @@ const NFTListingEdit = () => {
                         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                           <Typography
                             variant="subtitle1"
-                            sx={{ textAlign: "left" }}
+                            sx={{
+                              textAlign: "left",
+                              fontSize: ".9rem",
+                              fontWeight: 600,
+                            }}
                             mb={1}
                           >
                             Chat URL
@@ -1216,7 +1298,11 @@ const NFTListingEdit = () => {
                               <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                                 <Typography
                                   variant="subtitle1"
-                                  sx={{ textAlign: "left" }}
+                                  sx={{
+                                    textAlign: "left",
+                                    fontSize: ".9rem",
+                                    fontWeight: 600,
+                                  }}
                                   mb={1}
                                 >
                                   Select Platform {index + 1}
@@ -1233,7 +1319,11 @@ const NFTListingEdit = () => {
                               <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                                 <Typography
                                   variant="subtitle1"
-                                  sx={{ textAlign: "left" }}
+                                  sx={{
+                                    textAlign: "left",
+                                    fontSize: ".9rem",
+                                    fontWeight: 600,
+                                  }}
                                   mb={1}
                                 >
                                   Social URL {index + 1}
@@ -1276,7 +1366,11 @@ const NFTListingEdit = () => {
                         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                           <Typography
                             variant="subtitle1"
-                            sx={{ textAlign: "left" }}
+                            sx={{
+                              textAlign: "left",
+                              fontSize: ".9rem",
+                              fontWeight: 600,
+                            }}
                             mb={1}
                           >
                             Select Platform
@@ -1290,7 +1384,11 @@ const NFTListingEdit = () => {
                         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                           <Typography
                             variant="subtitle1"
-                            sx={{ textAlign: "left" }}
+                            sx={{
+                              textAlign: "left",
+                              fontSize: ".9rem",
+                              fontWeight: 600,
+                            }}
                             mb={1}
                           >
                             Social URL
@@ -1390,7 +1488,11 @@ const NFTListingEdit = () => {
                 <Grid item xl={3} lg={3} md={3} sm={3} xs={3}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Publishing Status

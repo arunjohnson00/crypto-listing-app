@@ -303,7 +303,11 @@ const CoinListingAdd = () => {
               <Typography variant="h6" sx={{ textAlign: "left" }} mb={2}>
                 Basic Details
               </Typography>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
                 Enter contract address
               </Typography>
               <Stack direction="row" spacing={3}>
@@ -319,6 +323,7 @@ const CoinListingAdd = () => {
                     name="network_id"
                     id="network_id"
                     data={networkList}
+                    height={40}
                   />
                 </Grid>
               </Stack>
@@ -329,7 +334,11 @@ const CoinListingAdd = () => {
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Coin Name
@@ -341,7 +350,11 @@ const CoinListingAdd = () => {
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Coin Symbol
@@ -364,7 +377,11 @@ const CoinListingAdd = () => {
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Logo
@@ -407,7 +424,11 @@ const CoinListingAdd = () => {
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                       <Typography
                         variant="subtitle1"
-                        sx={{ textAlign: "left" }}
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                        }}
                         mb={1}
                       >
                         Presale start Date & Time (UTC)
@@ -423,7 +444,11 @@ const CoinListingAdd = () => {
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                       <Typography
                         variant="subtitle1"
-                        sx={{ textAlign: "left" }}
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                        }}
                         mb={1}
                       >
                         Presale end Date & Time (UTC)
@@ -441,7 +466,11 @@ const CoinListingAdd = () => {
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                       <Typography
                         variant="subtitle1"
-                        sx={{ textAlign: "left" }}
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                        }}
                         mb={1}
                       >
                         Presale address (Optional)
@@ -457,7 +486,11 @@ const CoinListingAdd = () => {
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                       <Typography
                         variant="subtitle1"
-                        sx={{ textAlign: "left" }}
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                        }}
                         mb={1}
                       >
                         Presale Link
@@ -477,7 +510,11 @@ const CoinListingAdd = () => {
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                       <Typography
                         variant="subtitle1"
-                        sx={{ textAlign: "left" }}
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                        }}
                         mb={1}
                       >
                         Price
@@ -493,7 +530,11 @@ const CoinListingAdd = () => {
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                       <Typography
                         variant="subtitle1"
-                        sx={{ textAlign: "left" }}
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                        }}
                         mb={1}
                       >
                         Circularity Supply (Optional)
@@ -511,7 +552,11 @@ const CoinListingAdd = () => {
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                       <Typography
                         variant="subtitle1"
-                        sx={{ textAlign: "left" }}
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                        }}
                         mb={1}
                       >
                         Max/Total Supply
@@ -527,7 +572,11 @@ const CoinListingAdd = () => {
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                       <Typography
                         variant="subtitle1"
-                        sx={{ textAlign: "left" }}
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                        }}
                         mb={1}
                       >
                         Marketap (Optional)
@@ -567,7 +616,11 @@ const CoinListingAdd = () => {
                 <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Network 1
@@ -576,12 +629,17 @@ const CoinListingAdd = () => {
                     name={`network[1]`}
                     id={`network_1`}
                     data={networkList}
+                    height={40}
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Contract address 1
@@ -595,7 +653,11 @@ const CoinListingAdd = () => {
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Block explorer URL 1
@@ -651,7 +713,11 @@ const CoinListingAdd = () => {
                 <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Exchange 1
@@ -660,12 +726,17 @@ const CoinListingAdd = () => {
                     name={`exchange_id[1]`}
                     id={`exchange_id_1`}
                     data={exchangeList}
+                    height={40}
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Exchange URL
@@ -679,7 +750,7 @@ const CoinListingAdd = () => {
                 {/* <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
                     mb={1}
                   >
                     Block explorer URL 1
@@ -742,7 +813,11 @@ const CoinListingAdd = () => {
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Github URL
@@ -756,7 +831,11 @@ const CoinListingAdd = () => {
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Medium URL
@@ -774,7 +853,11 @@ const CoinListingAdd = () => {
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Whitepaper URL
@@ -788,7 +871,11 @@ const CoinListingAdd = () => {
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Docs URL 1
@@ -814,7 +901,11 @@ const CoinListingAdd = () => {
                 <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Audited By
@@ -823,12 +914,17 @@ const CoinListingAdd = () => {
                     name="audited_by[1]"
                     id="audited_by_1"
                     data={coinAuditList}
+                    height={40}
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Audit URL
@@ -881,7 +977,11 @@ const CoinListingAdd = () => {
                 <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Chart Provider
@@ -890,12 +990,17 @@ const CoinListingAdd = () => {
                     name="chart_provider[1]"
                     id="chart_provider_1"
                     data={coinChartProviderList}
+                    height={40}
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Chart URL
@@ -953,7 +1058,11 @@ const CoinListingAdd = () => {
                     <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                       <Typography
                         variant="subtitle1"
-                        sx={{ textAlign: "left" }}
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                        }}
                         mb={1}
                       >
                         Website URL
@@ -1075,7 +1184,11 @@ const CoinListingAdd = () => {
                     <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                       <Typography
                         variant="subtitle1"
-                        sx={{ textAlign: "left" }}
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                        }}
                         mb={1}
                       >
                         Chat Platform
@@ -1084,12 +1197,17 @@ const CoinListingAdd = () => {
                         name="chat_platform[1]"
                         id="chat_platform_1"
                         data={coinChatList}
+                        height={40}
                       />
                     </Grid>
                     <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                       <Typography
                         variant="subtitle1"
-                        sx={{ textAlign: "left" }}
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                        }}
                         mb={1}
                       >
                         Chat URL
@@ -1147,7 +1265,11 @@ const CoinListingAdd = () => {
                     <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                       <Typography
                         variant="subtitle1"
-                        sx={{ textAlign: "left" }}
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                        }}
                         mb={1}
                       >
                         Select Platform
@@ -1156,12 +1278,17 @@ const CoinListingAdd = () => {
                         name="social_platform[1]"
                         id="social_platform_1"
                         data={coinSocialList}
+                        height={40}
                       />
                     </Grid>
                     <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                       <Typography
                         variant="subtitle1"
-                        sx={{ textAlign: "left" }}
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                        }}
                         mb={1}
                       >
                         Social URL
@@ -1207,7 +1334,11 @@ const CoinListingAdd = () => {
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Random Vote
@@ -1222,7 +1353,11 @@ const CoinListingAdd = () => {
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={4}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left" }}
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
                     mb={1}
                   >
                     Publishing Status
