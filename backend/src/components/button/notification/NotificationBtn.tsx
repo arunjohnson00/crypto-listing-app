@@ -1,6 +1,7 @@
-import { Box } from "@mui/material";
+import { Avatar, Box } from "@mui/material";
 import { StyledBadge } from "./style";
 import { Icon } from "@mui/material";
+import notificationIcon from "../../../assets/icon/gray/notification_icon_gray.png";
 
 const NotificationBtn = ({ handleNotificationClick }: any) => {
   return (
@@ -19,7 +20,13 @@ const NotificationBtn = ({ handleNotificationClick }: any) => {
           justifyContent: "center",
         }}
       >
-        <Icon>notifications_active</Icon>
+        {/* <Icon>notifications_active</Icon> */}
+        <Avatar
+          alt="menu"
+          variant="square"
+          src={notificationIcon}
+          sx={{ width: 27, height: 27, padding: 0.2 }}
+        />
       </Box>
     </StyledBadge>
   );

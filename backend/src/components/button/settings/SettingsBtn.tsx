@@ -1,7 +1,7 @@
-import { Box } from "@mui/material";
+import { Avatar, Box } from "@mui/material";
 import { StyledBadge } from "./style";
 import { Icon } from "@mui/material";
-
+import settingsIcon from "../../../assets/icon/gray/setting_icon_gray.png";
 const SettingsBtn = ({ handleSettingsClick }: any) => {
   return (
     <StyledBadge variant="dot" color={"success"}>
@@ -19,7 +19,13 @@ const SettingsBtn = ({ handleSettingsClick }: any) => {
           justifyContent: "center",
         }}
       >
-        <Icon>settings</Icon>
+        {/* <Icon>settings</Icon> */}
+        <Avatar
+          alt="menu"
+          variant="square"
+          src={settingsIcon}
+          sx={{ width: 28, height: 28, padding: 0.2 }}
+        />
       </Box>
     </StyledBadge>
   );
