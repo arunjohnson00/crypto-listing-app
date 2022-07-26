@@ -367,16 +367,18 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                               }}
                             >
                               <Stack direction="column" spacing={0.2} py={0.7}>
-                                {data?.adList?.map(
-                                  (list: any, index: number) => (
-                                    <Typography
-                                      key={index}
-                                      sx={{ px: 2, fontSize: ".65rem" }}
-                                    >
-                                      {list && list?.name}
-                                    </Typography>
-                                  )
-                                )}
+                                {parseInt(data?.adList) !== 0 &&
+                                  data?.adList?.length !== 0 &&
+                                  data?.adList?.map(
+                                    (list: any, index: number) => (
+                                      <Typography
+                                        key={index}
+                                        sx={{ px: 2, fontSize: ".65rem" }}
+                                      >
+                                        {list && list?.name}
+                                      </Typography>
+                                    )
+                                  )}
                                 {/* <Divider
                                 flexItem
                                 orientation="horizontal"
