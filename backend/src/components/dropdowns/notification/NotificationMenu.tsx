@@ -48,8 +48,8 @@ const NotificationMenu = ({
         }}
       >
         <Typography
-          variant="h6"
-          sx={{ color: "white", paddingTop: "10px", paddingBottom: "10px" }}
+          sx={{ color: "white", fontSize: "1rem", fontWeight: 500 }}
+          py={1}
         >
           Notifications
         </Typography>
@@ -108,13 +108,10 @@ const NotificationMenu = ({
             );
           })
         ) : (
-          <Stack
-            direction="column"
-            spacing={1}
-            mb={3}
-            sx={{ color: "white", fontSize: ".8rem", padding: "11px" }}
-          >
-            <Typography>Not Data Found</Typography>
+          <Stack direction="column" spacing={1} mb={3} py={1.5}>
+            <Typography sx={{ color: "white", fontSize: ".8rem" }}>
+              Not Data Found
+            </Typography>
           </Stack>
         )}
         <Divider sx={{ borderBottomWidth: 1, backgroundColor: "white" }} />

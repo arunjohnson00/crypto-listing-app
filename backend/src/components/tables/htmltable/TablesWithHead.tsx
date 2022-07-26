@@ -61,7 +61,10 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
       >
         <TableHead>
           <TableRow>
-            <TableCell align="left" sx={{ fontWeight: 600, padding: 0.5 }}>
+            <TableCell
+              align="left"
+              sx={{ fontWeight: 700, padding: 0.5, color: "#373163" }}
+            >
               #
             </TableCell>
             {rowHeader &&
@@ -69,7 +72,7 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                 <TableCell
                   align="left"
                   key={index}
-                  sx={{ fontWeight: 600, padding: 0.5 }}
+                  sx={{ fontWeight: 700, padding: 0.5, color: "#373163" }}
                 >
                   {title}{" "}
                 </TableCell>

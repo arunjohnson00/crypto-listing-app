@@ -17,6 +17,14 @@ const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const tableColumn = [
   {
+    field: "id",
+    headerName: "#",
+    flex: 0.5,
+    renderCell: (params: any) => (
+      <span style={{ color: "#bebebe", fontWeight: 600 }}>{params?.id}</span>
+    ),
+  },
+  {
     field: "name",
     headerName: "Exchange Name",
     flex: 2,
@@ -168,7 +176,7 @@ const Exchanges = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/exchange/add">
+            <Link to="/exchange/add" style={{ textDecoration: "none" }}>
               <LargeBtn Title="Add Exchange" />
             </Link>
           </Grid>
@@ -206,7 +214,7 @@ const Exchanges = () => {
           sx={{ display: "flex", justifyContent: "flex-end" }}
         >
           {" "}
-          <Link to="/exchange/add">
+          <Link to="/exchange/add" style={{ textDecoration: "none" }}>
             <LargeBtn Title="Add Exchange" />
           </Link>
         </Stack>

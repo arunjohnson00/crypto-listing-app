@@ -2,7 +2,14 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useTheme } from "@mui/material/styles";
-import { Divider, Stack, Typography, IconButton, Toolbar } from "@mui/material";
+import {
+  Divider,
+  Stack,
+  Typography,
+  IconButton,
+  Toolbar,
+  Avatar,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -14,13 +21,8 @@ import NotificationBtn from "../../../components/button/notification/Notificatio
 import ProfileBtn from "../../../components/button/profile/ProfileBtn";
 import ProfileMenu from "../../../components/dropdowns/profile/ProfileMenu";
 import NotificationMenu from "../../../components/dropdowns/notification/NotificationMenu";
-import SettingsMenu from "../../../components/dropdowns/settings/SettingsMenu";
 
-// import { listExchangeRequest } from "../../../store/action";
-// import { listNetworkRequest } from "../../../store/action";
-// import { listNftMarketPlaceRequest } from "../../../store/action";
-// import { listUserRequest } from "../../../store/action";
-// import { listCoinRequest } from "../../../store/action";
+import hamburgerMenu from "../../../assets/icon/menu_drawer_icon.png";
 
 const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
   const theme = useTheme();
@@ -96,19 +98,38 @@ const TopBar = ({ handleDrawerOpen, handleDrawerClose, open }: any) => {
               ...(open && { display: "none" }),
             }}
           >
-            <MenuIcon />
+            {/* <MenuIcon /> */}
+
+            <Avatar
+              alt="menu"
+              variant="square"
+              src={hamburgerMenu}
+              sx={{ width: 24, height: 24, padding: 0.2 }}
+            />
           </IconButton>
         ) : (
           <IconButton onClick={handleDrawerClose} sx={{ marginRight: "20px" }}>
-            {theme.direction === "rtl" ? (
+            {/* {theme.direction === "rtl" ? (
               <ChevronRightIcon />
             ) : (
               <ChevronLeftIcon />
-            )}
+            )} */}
+
+            <Avatar
+              alt="menu"
+              variant="square"
+              src={hamburgerMenu}
+              sx={{ width: 24, height: 24, padding: 0.2 }}
+            />
           </IconButton>
         )}
 
-        <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+        <Typography
+          variant="h5"
+          noWrap
+          component="div"
+          sx={{ flexGrow: 1, fontWeight: 600 }}
+        >
           Dashboard
         </Typography>
         <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>

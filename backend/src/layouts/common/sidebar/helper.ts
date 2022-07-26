@@ -1,5 +1,7 @@
+import dashboardIcon from "../../../assets/icon/dashboard_icon.png";
+
 export const sideBarMenu = [
-  { id: "1", title: "Dashboard", icon: "dashboard" },
+  { id: "1", title: "Dashboard", icon: dashboardIcon },
   {
     id: "2",
     title: "Coins",

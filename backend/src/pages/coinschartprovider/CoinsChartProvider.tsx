@@ -62,6 +62,14 @@ const CoinsChartProvider = () => {
 
   const tableColumn = [
     {
+      field: "id",
+      headerName: "#",
+      flex: 0.5,
+      renderCell: (params: any) => (
+        <span style={{ color: "#bebebe", fontWeight: 600 }}>{params?.id}</span>
+      ),
+    },
+    {
       field: "name",
       headerName: "Name",
       flex: 1,
@@ -168,7 +176,10 @@ const CoinsChartProvider = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/coins-chart-provider/add">
+            <Link
+              to="/coins-chart-provider/add"
+              style={{ textDecoration: "none" }}
+            >
               <LargeBtn Title="Add Chart Provider" />
             </Link>
           </Grid>
@@ -206,7 +217,10 @@ const CoinsChartProvider = () => {
           sx={{ display: "flex", justifyContent: "flex-end" }}
         >
           {" "}
-          <Link to="/coins-chart-provider/add">
+          <Link
+            to="/coins-chart-provider/add"
+            style={{ textDecoration: "none" }}
+          >
             <LargeBtn Title="Add Chart Provider" />
           </Link>
         </Stack>

@@ -55,6 +55,14 @@ const Networks = () => {
 
   const tableColumn = [
     {
+      field: "id",
+      headerName: "#",
+      flex: 0.5,
+      renderCell: (params: any) => (
+        <span style={{ color: "#bebebe", fontWeight: 600 }}>{params?.id}</span>
+      ),
+    },
+    {
       field: "name",
       headerName: "Network Name",
       flex: 2,
@@ -201,7 +209,7 @@ const Networks = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/networks/add">
+            <Link to="/networks/add" style={{ textDecoration: "none" }}>
               <LargeBtn Title="Add new network" />
             </Link>
           </Grid>
@@ -234,7 +242,7 @@ const Networks = () => {
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Stack spacing={2} sx={{ alignItems: "flex-end" }}>
           {" "}
-          <Link to="/networks/add">
+          <Link to="/networks/add" style={{ textDecoration: "none" }}>
             <LargeBtn Title="Add new network" />
           </Link>
         </Stack>

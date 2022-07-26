@@ -269,7 +269,8 @@ const DataTables = ({
             padding: "8px",
             fontSize: ".77rem",
             borderRadius: "12px",
-            backgroundColor: "white",
+            backgroundColor: "#FFFFFF",
+            fontWeight: 500,
             borderColor: "primary.light",
             "& .MuiDataGrid-cell:hover": {
               color: "black",
@@ -279,7 +280,8 @@ const DataTables = ({
               fontSize: ".85rem",
             },
             "& .MuiDataGrid-columnHeaderTitle": {
-              fontWeight: 600,
+              fontWeight: 700,
+              color: "#373163",
             },
           }}
         />

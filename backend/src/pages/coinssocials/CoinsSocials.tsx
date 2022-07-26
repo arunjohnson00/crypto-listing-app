@@ -61,6 +61,14 @@ const CoinsSocials = () => {
 
   const tableColumn = [
     {
+      field: "id",
+      headerName: "#",
+      flex: 0.5,
+      renderCell: (params: any) => (
+        <span style={{ color: "#bebebe", fontWeight: 600 }}>{params?.id}</span>
+      ),
+    },
+    {
       field: "name",
       headerName: "Name",
       flex: 1,
@@ -167,7 +175,7 @@ const CoinsSocials = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/coins-socials/add">
+            <Link to="/coins-socials/add" style={{ textDecoration: "none" }}>
               <LargeBtn Title="Add new Social" />
             </Link>
           </Grid>
@@ -205,7 +213,7 @@ const CoinsSocials = () => {
           sx={{ display: "flex", justifyContent: "flex-end" }}
         >
           {" "}
-          <Link to="/coins-socials/add">
+          <Link to="/coins-socials/add" style={{ textDecoration: "none" }}>
             <LargeBtn Title="Add new Social" />
           </Link>
         </Stack>

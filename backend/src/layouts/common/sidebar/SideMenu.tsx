@@ -8,6 +8,7 @@ import {
   ListItemText,
   Collapse,
   Icon,
+  Avatar,
 } from "@mui/material";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
@@ -54,11 +55,11 @@ const SideMenu = ({ open }: any) => {
     >
       <DrawerHeader
         style={{
-          background: "white",
+          background: "#FFFFFF",
           justifyContent: "flex-start",
-          paddingLeft: "26px",
-          paddingTop: "18px",
-          marginBottom: "20px",
+          paddingLeft: 33,
+          paddingTop: 18,
+          marginBottom: 20,
         }}
       >
         <img
@@ -70,7 +71,7 @@ const SideMenu = ({ open }: any) => {
       {
         //<Divider />
       }
-      <List sx={{ padding: "7px" }}>
+      <List sx={{ paddingX: open === false ? 1 : 2, paddingY: 2 }}>
         {sideBarMenu.map((data: any, index: number) => {
           return (
             <Fragment key={index}>
@@ -80,7 +81,7 @@ const SideMenu = ({ open }: any) => {
               >
                 <ListItem
                   button
-                  sx={{ height: "52px" }}
+                  sx={{ height: "52px", paddingX: 1.55, paddingY: 1 }}
                   onClick={(e) => menuHandler(e, data)}
                   id={"main" + index}
                   style={{
@@ -110,6 +111,7 @@ const SideMenu = ({ open }: any) => {
                     sx={{
                       color: "rgba(170, 174, 178, 1)",
                       margin: "0px 6px 0px 0px",
+                      minWidth: 40,
                     }}
                   >
                     <Icon
@@ -121,12 +123,19 @@ const SideMenu = ({ open }: any) => {
                               .toLowerCase()
                               .replace(/\s+/g, "")
                               .replace(/[^a-zA-Z ]/g, "")
-                            ? "white "
+                            ? "#FFFFFF "
                             : "rgba(170, 174, 178, 1)"
                         }`,
                       }}
                     >
-                      {data.icon}
+                      {/* {data.icon} */}
+
+                      <Avatar
+                        alt={data?.title}
+                        variant="square"
+                        src={data?.icon}
+                        sx={{ width: 24, height: 24, padding: 0.2 }}
+                      />
                     </Icon>
                   </ListItemIcon>
 
@@ -134,7 +143,7 @@ const SideMenu = ({ open }: any) => {
                     <ListItemText
                       primary={data.title.replace(/[^a-zA-Z ]/g, " ")}
                       primaryTypographyProps={{
-                        fontSize: ".93rem",
+                        fontSize: ".85rem",
                         textTransform: "capitalize",
                         fontWeight: `${
                           activeColorId === data.id ||
@@ -155,7 +164,7 @@ const SideMenu = ({ open }: any) => {
                               .toLowerCase()
                               .replace(/\s+/g, "")
                               .replace(/[^a-zA-Z ]/g, "")
-                            ? "white"
+                            ? "#FFFFFF"
                             : "rgba(170, 174, 178, 1)"
                         }`,
                       }}
@@ -164,7 +173,7 @@ const SideMenu = ({ open }: any) => {
                     <ListItemText
                       primary={data.title.replace(/[^a-zA-Z ]/g, " ")}
                       primaryTypographyProps={{
-                        fontSize: ".93rem",
+                        fontSize: ".85rem",
                         textTransform: "capitalize",
                         fontWeight: `${
                           activeColorId === data.id ||
@@ -185,7 +194,7 @@ const SideMenu = ({ open }: any) => {
                               .toLowerCase()
                               .replace(/\s+/g, "")
                               .replace(/[^a-zA-Z ]/g, "")
-                            ? "white "
+                            ? "#FFFFFF "
                             : "rgba(170, 174, 178, 1)"
                         }`,
                       }}
@@ -258,7 +267,7 @@ const SideMenu = ({ open }: any) => {
                                 " "
                               )}
                               primaryTypographyProps={{
-                                fontSize: ".93rem",
+                                fontSize: ".8rem",
                                 textTransform: "capitalize",
                                 fontWeight: `${
                                   activeColorId === data.id &&

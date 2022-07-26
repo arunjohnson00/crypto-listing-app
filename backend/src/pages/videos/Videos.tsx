@@ -71,6 +71,14 @@ const Videos = () => {
     //   ),
     // },
     {
+      field: "id",
+      headerName: "#",
+      flex: 0.5,
+      renderCell: (params: any) => (
+        <span style={{ color: "#bebebe", fontWeight: 600 }}>{params?.id}</span>
+      ),
+    },
+    {
       field: "v_name",
       headerName: "Video Name",
       flex: 1,
@@ -186,7 +194,7 @@ const Videos = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/videos/add">
+            <Link to="/videos/add" style={{ textDecoration: "none" }}>
               <LargeBtn Title="Add Videos" />
             </Link>
           </Grid>
@@ -219,7 +227,7 @@ const Videos = () => {
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Stack spacing={2} sx={{ alignItems: "flex-end" }}>
           {" "}
-          <Link to="/videos/add">
+          <Link to="/videos/add" style={{ textDecoration: "none" }}>
             <LargeBtn Title="Add new video" />
           </Link>
         </Stack>

@@ -67,6 +67,14 @@ const NftEventCategory = () => {
 
   const tableColumn = [
     {
+      field: "id",
+      headerName: "#",
+      flex: 0.5,
+      renderCell: (params: any) => (
+        <span style={{ color: "#bebebe", fontWeight: 600 }}>{params?.id}</span>
+      ),
+    },
+    {
       field: "name",
       headerName: "Name",
       flex: 1,
@@ -137,7 +145,10 @@ const NftEventCategory = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/nft-listing-category/add">
+            <Link
+              to="/nft-listing-category/add"
+              style={{ textDecoration: "none" }}
+            >
               <LargeBtn Title="Add NFT Category" />
             </Link>
           </Grid>
@@ -175,7 +186,10 @@ const NftEventCategory = () => {
           sx={{ display: "flex", justifyContent: "flex-end" }}
         >
           {" "}
-          <Link to="/nft-listing-category/add">
+          <Link
+            to="/nft-listing-category/add"
+            style={{ textDecoration: "none" }}
+          >
             <LargeBtn Title="Add NFT Category" />
           </Link>
         </Stack>

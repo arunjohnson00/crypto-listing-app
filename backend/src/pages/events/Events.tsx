@@ -56,6 +56,14 @@ const Events = () => {
 
   const tableColumn = [
     {
+      field: "id",
+      headerName: "#",
+      flex: 0.5,
+      renderCell: (params: any) => (
+        <span style={{ color: "#bebebe", fontWeight: 600 }}>{params?.id}</span>
+      ),
+    },
+    {
       field: "coin_id",
       headerName: "Coin ID",
       flex: 1,
@@ -178,7 +186,7 @@ const Events = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/events/add">
+            <Link to="/events/add" style={{ textDecoration: "none" }}>
               <LargeBtn Title="Add new Events" />
             </Link>
           </Grid>
@@ -216,7 +224,7 @@ const Events = () => {
           sx={{ display: "flex", justifyContent: "flex-end" }}
         >
           {" "}
-          <Link to="/events/add">
+          <Link to="/events/add" style={{ textDecoration: "none" }}>
             <LargeBtn Title="Add new Events" />
           </Link>
         </Stack>

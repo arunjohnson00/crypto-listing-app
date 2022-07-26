@@ -158,22 +158,25 @@ const ViewFullList = () => {
     {
       field: "id",
       headerName: "#",
-      flex: 1,
+      flex: 0.3,
+      renderCell: (params: any) => (
+        <span style={{ color: "#bebebe", fontWeight: 600 }}>{params?.id}</span>
+      ),
     },
     {
       field: "year",
       headerName: "Year",
-      flex: 1,
+      flex: 0.5,
     },
     {
       field: "month",
       headerName: "Month",
-      flex: 1,
+      flex: 0.5,
     },
     {
       field: "count",
       headerName: "Count",
-      flex: 1,
+      flex: 0.5,
     },
     // {
     //   field: "status",
@@ -201,7 +204,10 @@ const ViewFullList = () => {
     {
       field: "id",
       headerName: "#",
-      flex: 1,
+      flex: 0.3,
+      renderCell: (params: any) => (
+        <span style={{ color: "#bebebe", fontWeight: 600 }}>{params?.id}</span>
+      ),
     },
     {
       field: "adName",
@@ -250,7 +256,10 @@ const ViewFullList = () => {
     {
       field: "id",
       headerName: "#",
-      flex: 1,
+      flex: 0.3,
+      renderCell: (params: any) => (
+        <span style={{ color: "#bebebe", fontWeight: 600 }}>{params?.id}</span>
+      ),
     },
     {
       field: "name",
@@ -300,17 +309,20 @@ const ViewFullList = () => {
     {
       field: "id",
       headerName: "#",
-      flex: 0,
+      flex: 0.3,
+      renderCell: (params: any) => (
+        <span style={{ color: "#bebebe", fontWeight: 600 }}>{params?.id}</span>
+      ),
     },
     {
       field: "name",
       headerName: "Coin Name",
-      flex: 0,
+      flex: 0.8,
     },
     {
       field: "amount",
       headerName: "Amount",
-      flex: 0,
+      flex: 0.5,
     },
 
     {

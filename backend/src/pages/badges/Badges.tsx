@@ -56,6 +56,14 @@ const Badges = () => {
 
   const tableColumn = [
     {
+      field: "id",
+      headerName: "#",
+      flex: 0.5,
+      renderCell: (params: any) => (
+        <span style={{ color: "#bebebe", fontWeight: 600 }}>{params?.id}</span>
+      ),
+    },
+    {
       field: "thumb_icon",
       headerName: "Icon",
       flex: 1,
@@ -150,7 +158,7 @@ const Badges = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/badges/add">
+            <Link to="/badges/add" style={{ textDecoration: "none" }}>
               <LargeBtn Title="Add new Badge" />
             </Link>
           </Grid>
@@ -188,7 +196,7 @@ const Badges = () => {
           sx={{ display: "flex", justifyContent: "flex-end" }}
         >
           {" "}
-          <Link to="/badges/add">
+          <Link to="/badges/add" style={{ textDecoration: "none" }}>
             <LargeBtn Title="Add new Badge" />
           </Link>
         </Stack>

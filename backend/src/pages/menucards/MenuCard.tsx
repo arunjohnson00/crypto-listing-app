@@ -59,6 +59,14 @@ const MenuCard = () => {
 
   const tableColumn = [
     {
+      field: "id",
+      headerName: "#",
+      flex: 0.5,
+      renderCell: (params: any) => (
+        <span style={{ color: "#bebebe", fontWeight: 600 }}>{params?.id}</span>
+      ),
+    },
+    {
       field: "title",
       headerName: "Title",
       flex: 1,
@@ -163,7 +171,7 @@ const MenuCard = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/menu-cards/add">
+            <Link to="/menu-cards/add" style={{ textDecoration: "none" }}>
               <LargeBtn Title="Add new menucard" />
             </Link>
           </Grid>
@@ -201,7 +209,7 @@ const MenuCard = () => {
           sx={{ display: "flex", justifyContent: "flex-end" }}
         >
           {" "}
-          <Link to="/menu-cards/add">
+          <Link to="/menu-cards/add" style={{ textDecoration: "none" }}>
             <LargeBtn Title="Add new menucard" />
           </Link>
         </Stack>

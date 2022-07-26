@@ -24,6 +24,7 @@ const ComponentFooter = ({ counter, data, path }: any) => {
             textAlign: "right",
             justifyContent: " space-between",
             fontSize: ".8rem",
+            color: "#373163",
           }}
         >
           View full list ≫

@@ -28,21 +28,30 @@ const InputCoinStatusSelect = ({
       is_scheduled: event.target.value === 2 ? 1 : 0,
     });
 
-    toast.warn(`Status Selected`, {
-      position: "top-right",
-      autoClose: 7000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    });
+    toast.success(
+      `Status changed to ${
+        parseInt(event.target.value) === 1
+          ? "Approved"
+          : parseInt(event.target.value) === 2
+          ? "Processing"
+          : parseInt(event.target.value) === 3 && "Rejected"
+      }`,
+      {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      }
+    );
   };
 
   return (
     <FormControl sx={{ m: 1, width: 300, mt: 0 }}>
       <Select
         defaultValue={currentStatus && currentStatus}
-        displayEmpty
+        //displayEmpty
         value={getInputSelectvalue.status}
         onChange={handleChange}
         inputProps={{ "aria-label": "Without label" }}
@@ -51,9 +60,16 @@ const InputCoinStatusSelect = ({
           width: "184px",
           background: "#f6f6f6",
           borderRadius: "8px",
-          color: "rgb(200, 200, 200)",
+          color:
+            getInputSelectvalue?.status === 1
+              ? "#73eb1b"
+              : getInputSelectvalue?.status === 2
+              ? "#c105ffd4"
+              : getInputSelectvalue?.status === 3
+              ? "#ff0000"
+              : "#000000",
           fontSize: "14px",
-          fontWeight: "100",
+          fontWeight: 600,
           fontStyle: "normal",
         }}
       >

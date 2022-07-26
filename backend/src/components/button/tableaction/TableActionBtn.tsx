@@ -14,7 +14,10 @@ const TableActionBtn = ({ tableEdit, tableDelete, tableView }: any) => {
             sx={{ color: "rgb(65, 81, 167)" }}
             onClick={tableEdit}
           >
-            <Typography variant="subtitle2"> Edit</Typography>
+            <Typography sx={{ fontSize: ".8rem", fontWeight: 600 }}>
+              {" "}
+              Edit
+            </Typography>
           </Link>
 
           <Link
@@ -24,7 +27,10 @@ const TableActionBtn = ({ tableEdit, tableDelete, tableView }: any) => {
             sx={{ color: "#FF4560" }}
             onClick={tableDelete}
           >
-            <Typography variant="subtitle2"> Delete</Typography>
+            <Typography sx={{ fontSize: ".8rem", fontWeight: 600 }}>
+              {" "}
+              Delete
+            </Typography>
           </Link>
 
           <Link
@@ -34,7 +40,10 @@ const TableActionBtn = ({ tableEdit, tableDelete, tableView }: any) => {
             sx={{ color: "#00E396" }}
             onClick={tableView}
           >
-            <Typography variant="subtitle2"> View</Typography>
+            <Typography sx={{ fontSize: ".8rem", fontWeight: 600 }}>
+              {" "}
+              View
+            </Typography>
           </Link>
         </Breadcrumbs>
       </Stack>

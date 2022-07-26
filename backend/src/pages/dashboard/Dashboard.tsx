@@ -68,9 +68,11 @@ const Dashboard = () => {
   }, [dispatch]);
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} alignItems="flex-start">
       <Grid item xl={3.5} lg={3.5} md={3.5} sm={12} xs={12}>
-        <Typography variant="h5" sx={{ textAlign: "left" }}>
+        <Typography
+          sx={{ textAlign: "left", fontWeight: 500, fontSize: "1.3rem" }}
+        >
           Coins Overview
         </Typography>
       </Grid>
@@ -93,11 +95,12 @@ const Dashboard = () => {
               <Typography
                 variant="body1"
                 sx={{
-                  fontWeight: "bold",
                   textAlign: "left",
                   paddingBottom: "5px",
-                  color: "#363062",
+                  color: "#373163",
                   fontSmooth: "always",
+                  fontSize: ".9rem",
+                  fontWeight: 700,
                 }}
               >
                 Current Status of Coin
@@ -116,11 +119,12 @@ const Dashboard = () => {
               <Typography
                 variant="body1"
                 sx={{
-                  fontWeight: "bold",
                   textAlign: "left",
                   paddingBottom: "5px",
-                  color: "#363062",
+                  color: "#373163",
                   fontSmooth: "always",
+                  fontSize: ".9rem",
+                  fontWeight: 700,
                 }}
               >
                 Coins Historical Data

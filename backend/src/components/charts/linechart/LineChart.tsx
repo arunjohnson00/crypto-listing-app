@@ -150,6 +150,9 @@ const LineChart = ({ lineChartData }: any) => {
         categories: axisData && axisData?.xAxis,
         labels: {
           show: true,
+          style: {
+            fontSize: ".6rem",
+          },
         },
         axisBorder: {
           show: true,
@@ -161,6 +164,9 @@ const LineChart = ({ lineChartData }: any) => {
       yaxis: {
         labels: {
           show: true,
+          style: {
+            fontSize: ".6rem",
+          },
         },
       },
       dataLabels: {
@@ -195,16 +201,17 @@ const LineChart = ({ lineChartData }: any) => {
   };
   return (
     <Fragment>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} alignItems="center">
         <Grid item xs={8}>
           <Typography
             sx={{
-              fontWeight: "bold",
               textAlign: "left",
-              color: "#363062",
+              color: "#373163",
               fontSmooth: "always",
               paddingTop: "7px",
               paddingLeft: "4px",
+              fontSize: ".9rem",
+              fontWeight: 700,
             }}
           >
             Coin Listing Request / Day
@@ -224,7 +231,7 @@ const LineChart = ({ lineChartData }: any) => {
                   padding: 2,
                 },
               }}
-              sx={{ fontSize: "13px", color: "#9C9FA0" }}
+              sx={{ fontSize: ".75rem", color: "#9C9FA0" }}
               onChange={(e: any) => linegraphFilterHandler(e)}
               disableUnderline
             >

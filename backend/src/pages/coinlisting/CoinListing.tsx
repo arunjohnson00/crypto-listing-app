@@ -67,6 +67,14 @@ const CoinListing = () => {
 
   const tableColumn = [
     {
+      field: "id",
+      headerName: "#",
+      flex: 0.5,
+      renderCell: (params: any) => (
+        <span style={{ color: "#bebebe", fontWeight: 600 }}>{params?.id}</span>
+      ),
+    },
+    {
       field: "name",
       headerName: "Name",
       flex: 2,
@@ -210,7 +218,7 @@ const CoinListing = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/coins/add">
+            <Link to="/coins/add" style={{ textDecoration: "none" }}>
               <LargeBtn Title="Add new coins" />
             </Link>
           </Grid>
@@ -248,7 +256,7 @@ const CoinListing = () => {
           sx={{ display: "flex", justifyContent: "flex-end" }}
         >
           {" "}
-          <Link to="/coins/add">
+          <Link to="/coins/add" style={{ textDecoration: "none" }}>
             <LargeBtn Title="Add new coins" />
           </Link>
         </Stack>

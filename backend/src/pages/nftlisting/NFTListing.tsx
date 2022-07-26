@@ -66,6 +66,14 @@ const NFTListing = () => {
 
   const tableColumn = [
     {
+      field: "id",
+      headerName: "#",
+      flex: 0.5,
+      renderCell: (params: any) => (
+        <span style={{ color: "#bebebe", fontWeight: 600 }}>{params?.id}</span>
+      ),
+    },
+    {
       field: "title",
       headerName: "NFT Name",
       flex: 1,
@@ -172,7 +180,7 @@ const NFTListing = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/nft-listing/add">
+            <Link to="/nft-listing/add" style={{ textDecoration: "none" }}>
               <LargeBtn Title="Add NFT" />
             </Link>
           </Grid>
@@ -210,7 +218,7 @@ const NFTListing = () => {
           sx={{ display: "flex", justifyContent: "flex-end" }}
         >
           {" "}
-          <Link to="/nft-listing/add">
+          <Link to="/nft-listing/add" style={{ textDecoration: "none" }}>
             <LargeBtn Title="Add NFT" />
           </Link>
         </Stack>
