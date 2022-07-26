@@ -187,8 +187,9 @@ const EventRewardAddressAdd = () => {
                   </LoadingButton>
                 ) : (
                   <LargeBtn
-                    Title="Add Reward Symbol"
+                    Title="Add Reward Address"
                     lgBtnHandler={eventsRewardAddressAddHandler}
+                    width={200}
                   />
                 )}
               </Stack>

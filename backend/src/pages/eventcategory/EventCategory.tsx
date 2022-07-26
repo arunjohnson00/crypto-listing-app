@@ -141,7 +141,7 @@ const EventCategory = () => {
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
             <Link to="/events-category/add" style={{ textDecoration: "none" }}>
-              <LargeBtn Title="Add  Category" />
+              <LargeBtn Title="Add Event Category" width={200} />
             </Link>
           </Grid>
         </Stack>
@@ -179,7 +179,7 @@ const EventCategory = () => {
         >
           {" "}
           <Link to="/events-category/add" style={{ textDecoration: "none" }}>
-            <LargeBtn Title="Add  Category" />
+            <LargeBtn Title="Add Event Category" width={200} />
           </Link>
         </Stack>
       </Grid>

@@ -184,6 +184,7 @@ const EventCategoryEdit = () => {
                   <LargeBtn
                     Title="Update Event Category"
                     lgBtnHandler={eventCategoryEditHandler}
+                    width={200}
                   />
                 )}
               </Stack>

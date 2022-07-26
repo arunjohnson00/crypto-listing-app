@@ -221,7 +221,7 @@ const CoinsAuditEdit = () => {
                   </LoadingButton>
                 ) : (
                   <LargeBtn
-                    Title="Update User"
+                    Title="Update Audit"
                     lgBtnHandler={coinAuditEditHandler}
                   />
                 )}

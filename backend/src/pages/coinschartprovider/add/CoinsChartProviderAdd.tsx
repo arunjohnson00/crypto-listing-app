@@ -202,8 +202,9 @@ const CoinsChartProviderAdd = () => {
                   </LoadingButton>
                 ) : (
                   <LargeBtn
-                    Title="Update Chart "
+                    Title="Add Chart Provider "
                     lgBtnHandler={coinsChartProviderAddHandler}
+                    width={200}
                   />
                 )}
               </Stack>

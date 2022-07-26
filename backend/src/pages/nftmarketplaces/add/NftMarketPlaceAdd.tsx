@@ -200,6 +200,7 @@ const NftMarketPlaceAdd = () => {
                 <LargeBtn
                   Title="Add new MarketPlaces"
                   lgBtnHandler={NftMarketPlaceAddHandler}
+                  width={200}
                 />
               )}
             </Stack>

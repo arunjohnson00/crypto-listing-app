@@ -227,6 +227,7 @@ const NftMarketPlaceEdit = () => {
                 <LargeBtn
                   Title="Update Market Place"
                   lgBtnHandler={nftMarketPlacesEditHandler}
+                  width={200}
                 />
               )}
             </Stack>

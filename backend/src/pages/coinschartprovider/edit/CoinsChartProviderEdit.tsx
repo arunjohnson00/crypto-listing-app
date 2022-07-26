@@ -224,8 +224,9 @@ const CoinsChartProviderEdit = () => {
                   </LoadingButton>
                 ) : (
                   <LargeBtn
-                    Title="Update User"
+                    Title="Update Chart Provider"
                     lgBtnHandler={coinChartProviderEditHandler}
+                    width={200}
                   />
                 )}
               </Stack>

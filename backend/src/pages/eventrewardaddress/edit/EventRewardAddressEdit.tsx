@@ -220,6 +220,7 @@ const EventRewardAddressEdit = () => {
                   <LargeBtn
                     Title="Update Event Reward Address"
                     lgBtnHandler={eventsRewardAddressEditHandler}
+                    width={250}
                   />
                 )}
               </Stack>

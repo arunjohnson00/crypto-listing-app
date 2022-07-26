@@ -25,6 +25,7 @@ const EventMarketPlace = ({
             name={`marketplace_id[${index + 2}]`}
             id={`marketplace_id_${index + 2}`}
             data={data}
+            height={40}
           />
         </Grid>
         <Grid item xl={5} lg={5} md={5} sm={5} xs={12}>

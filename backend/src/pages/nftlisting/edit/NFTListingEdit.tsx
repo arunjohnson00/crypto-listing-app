@@ -362,6 +362,7 @@ const NFTListingEdit = () => {
             sx={{ width: "100%", background: "white", borderRadius: "5px" }}
             pt={3}
             pl={4}
+            pr={4}
           >
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Stack direction="row" spacing={2}>
@@ -424,6 +425,7 @@ const NFTListingEdit = () => {
                                     name={`marketplace_id[${index + 1}]`}
                                     id={`marketplace_id_${index + 1}`}
                                     value={marketplaces.marketplace_id}
+                                    height={40}
                                   />
                                 </Grid>
                                 <Grid item xl={5} lg={5} md={5} sm={5} xs={12}>
@@ -490,6 +492,7 @@ const NFTListingEdit = () => {
                               name="marketplace_id[1]"
                               id="marketplace_id_1"
                               data={nftMarketPlaceList}
+                              height={40}
                             />
                           </Grid>
                           <Grid item xl={5} lg={5} md={5} sm={5} xs={12}>
@@ -587,6 +590,7 @@ const NFTListingEdit = () => {
                         name="currancy_id"
                         data={nftListingCurrencyList}
                         selectedValue={nftListingData?.currency_id}
+                        height={40}
                       />
                     </Grid>
                   </Grid>
@@ -1152,6 +1156,7 @@ const NFTListingEdit = () => {
                                   selectedValue={parseInt(
                                     chats.chat_platform_id
                                   )}
+                                  height={40}
                                 />
                               </Grid>
                               <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -1217,6 +1222,7 @@ const NFTListingEdit = () => {
                             name="chat_platform_id[1]"
                             id="chat_platform_id_1"
                             data={nftChatList}
+                            height={40}
                           />
                         </Grid>
                         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -1314,6 +1320,7 @@ const NFTListingEdit = () => {
                                   selectedValue={parseInt(
                                     socials.social_platform
                                   )}
+                                  height={40}
                                 />
                               </Grid>
                               <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -1379,6 +1386,7 @@ const NFTListingEdit = () => {
                             name="social_platform_id[1]"
                             id="social_platform_id_1"
                             data={nftSocialList}
+                            height={40}
                           />
                         </Grid>
                         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -1451,7 +1459,11 @@ const NFTListingEdit = () => {
                           serverCheckedRef={nftListingData?.i_agree}
                         />
                       }
-                      label="I agree terms and conditions"
+                      label={
+                        <Typography sx={{ fontSize: ".85rem" }}>
+                          I agree terms and conditions
+                        </Typography>
+                      }
                       sx={{ fontSize: "10px" }}
                     />
                   </Grid>
@@ -1468,7 +1480,14 @@ const NFTListingEdit = () => {
                           serverCheckedRef={nftListingData?.i_declare}
                         />
                       }
-                      label="I declare the information provided on this form is accurate and complete to the best of my knowledge and the failure to fullfill the requirements may render my request in admissible"
+                      label={
+                        <Typography sx={{ fontSize: ".85rem" }}>
+                          I declare the information provided on this form is
+                          accurate and complete to the best of my knowledge and
+                          the failure to fullfill the requirements may render my
+                          request in admissible
+                        </Typography>
+                      }
                       sx={{ fontSize: "10px" }}
                     />
                   </Grid>

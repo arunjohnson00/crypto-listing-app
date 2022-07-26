@@ -152,7 +152,7 @@ const EventRewardAddress = () => {
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
             <Link to="/reward-address/add" style={{ textDecoration: "none" }}>
-              <LargeBtn Title="Add Reward Address" />
+              <LargeBtn Title="Add Reward Address" width={200} />
             </Link>
           </Grid>
         </Stack>
@@ -190,7 +190,7 @@ const EventRewardAddress = () => {
         >
           {" "}
           <Link to="/reward-address/add" style={{ textDecoration: "none" }}>
-            <LargeBtn Title="Add Reward Address" />
+            <LargeBtn Title="Add Reward Address" width={200} />
           </Link>
         </Stack>
       </Grid>

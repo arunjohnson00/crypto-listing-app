@@ -25,6 +25,7 @@ const SocialNFTDetails = ({
             name={`social_platform_id[${index + 2}]`}
             id={`social_platform_id_${index + 2}`}
             data={data}
+            height={40}
           />
         </Grid>
         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>

@@ -1678,7 +1678,11 @@ const CoinListingEdit = () => {
                               serverCheckedRef={editCoin?.is_listed_market_cap}
                             />
                           }
-                          label="Coin marketcap"
+                          label={
+                            <Typography sx={{ fontSize: ".85rem" }}>
+                              Coin Marketcap
+                            </Typography>
+                          }
                           sx={{ fontSize: "10px" }}
                         />
 
@@ -1706,7 +1710,11 @@ const CoinListingEdit = () => {
                               serverCheckedRef={editCoin?.is_listed_coingecko}
                             />
                           }
-                          label="Coingecko"
+                          label={
+                            <Typography sx={{ fontSize: ".85rem" }}>
+                              Coingecko
+                            </Typography>
+                          }
                           sx={{ fontSize: "10px" }}
                         />
 
@@ -2126,7 +2134,11 @@ const CoinListingEdit = () => {
                           serverCheckedRef={editCoin?.i_agree}
                         />
                       }
-                      label="I agree terms and conditions"
+                      label={
+                        <Typography sx={{ fontSize: ".9rem" }}>
+                          I agree terms and conditions
+                        </Typography>
+                      }
                       sx={{ fontSize: "10px" }}
                     />
                   </Grid>
@@ -2143,7 +2155,14 @@ const CoinListingEdit = () => {
                           serverCheckedRef={editCoin?.i_declare}
                         />
                       }
-                      label="I declare the information provided on this form is accurate and complete to the best of my knowledge and the failure to fullfill the requirements may render my request in admissible"
+                      label={
+                        <Typography sx={{ fontSize: ".9rem" }}>
+                          I declare the information provided on this form is
+                          accurate and complete to the best of my knowledge and
+                          the failure to fullfill the requirements may render my
+                          request in admissible
+                        </Typography>
+                      }
                       sx={{ fontSize: "10px" }}
                     />
                   </Grid>

@@ -202,7 +202,7 @@ const CoinsAuditAdd = () => {
                   </LoadingButton>
                 ) : (
                   <LargeBtn
-                    Title="Update User"
+                    Title="Add Audit"
                     lgBtnHandler={coinAuditAddHandler}
                   />
                 )}

@@ -46,6 +46,7 @@ const InputCheckbox = ({
       onChange={handleChange}
       inputProps={{ "aria-label": "controlled" }}
       sx={{
+        fontSize: ".85rem",
         color: "rgb(54, 48, 98)",
         "&.Mui-checked": {
           color: "rgb(54, 48, 98)",

@@ -161,8 +161,9 @@ const EventCategoryAdd = () => {
                   </LoadingButton>
                 ) : (
                   <LargeBtn
-                    Title="Add Category"
+                    Title="Add Event Category"
                     lgBtnHandler={eventCategoryAddHandler}
+                    width={200}
                   />
                 )}
               </Stack>

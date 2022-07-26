@@ -313,6 +313,7 @@ const NFTListingAdd = () => {
             sx={{ width: "100%", background: "white", borderRadius: "5px" }}
             pt={3}
             pl={4}
+            pr={4}
           >
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Stack direction="row" spacing={2}>
@@ -1081,7 +1082,11 @@ const NFTListingAdd = () => {
                           condition="i_agree"
                         />
                       }
-                      label="I agree terms and conditions"
+                      label={
+                        <Typography sx={{ fontSize: ".85rem" }}>
+                          I agree terms and conditions
+                        </Typography>
+                      }
                       sx={{ fontSize: "10px" }}
                     />
                   </Grid>
@@ -1097,7 +1102,14 @@ const NFTListingAdd = () => {
                           condition="i_declare"
                         />
                       }
-                      label="I declare the information provided on this form is accurate and complete to the best of my knowledge and the failure to fullfill the requirements may render my request in admissible"
+                      label={
+                        <Typography sx={{ fontSize: ".85rem" }}>
+                          I declare the information provided on this form is
+                          accurate and complete to the best of my knowledge and
+                          the failure to fullfill the requirements may render my
+                          request in admissible
+                        </Typography>
+                      }
                       sx={{ fontSize: "10px" }}
                     />
                   </Grid>
