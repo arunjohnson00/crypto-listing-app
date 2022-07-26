@@ -320,40 +320,47 @@ const ViewFullList = () => {
       renderCell: (params: any) => (
         <Stack direction="row" spacing={1} alignItems="center">
           <span style={{ cursor: "pointer" }}>{params?.row?.product}</span>
-          <PopupState variant="popover" popupId="demo-popup-popover">
-            {(popupState: any) => (
-              <div>
-                <span style={{ color: "#7676ea" }} {...bindTrigger(popupState)}>
-                  +3 Items
-                </span>
-                <Popover
-                  {...bindPopover(popupState)}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "right",
-                  }}
-                  transformOrigin={{
-                    vertical: "center",
-                    horizontal: "left",
-                  }}
-                >
-                  <Stack direction="column" spacing={0} py={0.5}>
-                    <Typography sx={{ px: 2, fontSize: ".65rem" }}>
-                      {params?.row?.product}
-                    </Typography>
-                    {/* <Divider
-                    flexItem
-                    orientation="horizontal"
-                    variant="fullWidth"
-                  /> */}
-                    <Typography sx={{ px: 2, fontSize: ".65rem" }}>
-                      {params?.row?.product}
-                    </Typography>
-                  </Stack>
-                </Popover>
-              </div>
-            )}
-          </PopupState>
+          {params?.row?.adList !== 0 && (
+            <PopupState variant="popover" popupId="demo-popup-popover">
+              {(popupState: any) => (
+                <div>
+                  <span
+                    style={{ color: "#7676ea" }}
+                    {...bindTrigger(popupState)}
+                  >
+                    {params?.row?.adList?.length} Items
+                  </span>
+                  <Popover
+                    {...bindPopover(popupState)}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "right",
+                    }}
+                    transformOrigin={{
+                      vertical: "center",
+                      horizontal: "left",
+                    }}
+                  >
+                    <Stack direction="column" spacing={0.2} py={0.7}>
+                      {params?.row?.adList?.map((list: any, index: number) => (
+                        <Typography
+                          key={index}
+                          sx={{ px: 2, fontSize: ".65rem" }}
+                        >
+                          {list && list?.name}
+                        </Typography>
+                      ))}
+                      {/* <Divider
+                                flexItem
+                                orientation="horizontal"
+                                variant="fullWidth"
+                              /> */}
+                    </Stack>
+                  </Popover>
+                </div>
+              )}
+            </PopupState>
+          )}
         </Stack>
       ),
     },
