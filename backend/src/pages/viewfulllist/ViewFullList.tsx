@@ -340,7 +340,9 @@ const ViewFullList = () => {
                     style={{ color: "#7676ea" }}
                     {...bindTrigger(popupState)}
                   >
-                    {params?.row?.adList?.length} Items
+                    {parseInt(params?.row?.adList) !== 0 &&
+                      params?.row?.adList?.length !== 0 &&
+                      params?.row?.adList?.length + " Items"}
                   </span>
                   <Popover
                     {...bindPopover(popupState)}

@@ -353,7 +353,9 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                               style={{ color: "#7676ea" }}
                               {...bindTrigger(popupState)}
                             >
-                              {data?.adList?.length} Items
+                              {parseInt(data?.adList) !== 0 &&
+                                data?.adList?.length !== 0 &&
+                                data?.adList?.length + " Items"}
                             </span>
                             <Popover
                               {...bindPopover(popupState)}
