@@ -25,7 +25,7 @@ const HorizonatalList = () => {
             color="inherit"
             sx={{ color: "rgb(65, 81, 167)" }}
           >
-            <Typography variant="subtitle2">
+            <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
               Coin Listed :{" "}
               {topbarCount &&
                 topbarCount[0]?.coinsCount &&
@@ -39,7 +39,7 @@ const HorizonatalList = () => {
             color="inherit"
             sx={{ color: "#FF4560" }}
           >
-            <Typography variant="subtitle2">
+            <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
               User:{" "}
               {topbarCount &&
                 topbarCount[0]?.usersCount &&
@@ -53,7 +53,7 @@ const HorizonatalList = () => {
             color="inherit"
             sx={{ color: "#00E396" }}
           >
-            <Typography variant="subtitle2">
+            <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
               Networks:{" "}
               {topbarCount &&
                 topbarCount[0]?.networksCount &&
@@ -67,7 +67,7 @@ const HorizonatalList = () => {
             color="inherit"
             sx={{ color: "#00a4e3" }}
           >
-            <Typography variant="subtitle2">
+            <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
               Exchanges:{" "}
               {topbarCount &&
                 topbarCount[0]?.exchangeCount &&
@@ -81,7 +81,7 @@ const HorizonatalList = () => {
             color="inherit"
             sx={{ color: "#775DD0" }}
           >
-            <Typography variant="subtitle2">
+            <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
               NTF's:{" "}
               {topbarCount &&
                 topbarCount[0]?.nftlstingCount &&
@@ -94,7 +94,7 @@ const HorizonatalList = () => {
             color="inherit"
             sx={{ color: "#FF9900" }}
           >
-            <Typography variant="subtitle2">
+            <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
               AirDrops:{" "}
               {topbarCount &&
                 topbarCount[0]?.airdropCount &&
@@ -107,7 +107,7 @@ const HorizonatalList = () => {
             color="inherit"
             sx={{ color: "#990099" }}
           >
-            <Typography variant="subtitle2">
+            <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
               Events:
               {topbarCount &&
                 topbarCount[0]?.eventCount &&
@@ -120,7 +120,7 @@ const HorizonatalList = () => {
             color="inherit"
             sx={{ color: "#DC3912" }}
           >
-            <Typography variant="subtitle2">
+            <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
               Marketplace:{" "}
               {topbarCount &&
                 topbarCount[0]?.nftMarketplaceCount &&

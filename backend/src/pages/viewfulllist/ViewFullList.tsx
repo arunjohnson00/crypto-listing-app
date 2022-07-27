@@ -354,14 +354,16 @@ const ViewFullList = () => {
                     }}
                   >
                     <Stack direction="column" spacing={0.2} py={0.7}>
-                      {params?.row?.adList?.map((list: any, index: number) => (
-                        <Typography
-                          key={index}
-                          sx={{ px: 2, fontSize: ".65rem" }}
-                        >
-                          {list && list?.name}
-                        </Typography>
-                      ))}
+                      {parseInt(params?.row?.adList) !== 0 &&
+                        params?.row?.length !== 0 &&
+                        params?.row?.adList?.map((list: any, index: number) => (
+                          <Typography
+                            key={index}
+                            sx={{ px: 2, fontSize: ".65rem" }}
+                          >
+                            {list && list?.name}
+                          </Typography>
+                        ))}
                       {/* <Divider
                                 flexItem
                                 orientation="horizontal"
@@ -525,7 +527,7 @@ const ViewFullList = () => {
         </Stack>
       </Grid>
 
-      <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+      <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
         <DataTables
           action={false}
           tableColumn={

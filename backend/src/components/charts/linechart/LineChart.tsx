@@ -201,7 +201,7 @@ const LineChart = ({ lineChartData }: any) => {
   };
   return (
     <Fragment>
-      <Grid container spacing={2} alignItems="center">
+      <Grid container spacing={0.3} alignItems="center">
         <Grid item xs={8}>
           <Typography
             sx={{

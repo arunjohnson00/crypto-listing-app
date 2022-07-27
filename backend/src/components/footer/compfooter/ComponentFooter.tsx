@@ -19,8 +19,9 @@ const ComponentFooter = ({ counter, data, path }: any) => {
         <Typography
           variant="subtitle2"
           sx={{
-            paddingTop: "9px",
+            paddingTop: "8px",
             paddingRight: "4px",
+            paddingBottom: "2px",
             textAlign: "right",
             justifyContent: " space-between",
             fontSize: ".8rem",
