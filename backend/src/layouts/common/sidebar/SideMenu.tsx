@@ -134,7 +134,20 @@ const SideMenu = ({ open }: any) => {
                         alt={data?.title}
                         variant="square"
                         src={data?.icon}
-                        sx={{ width: 24, height: 24, padding: 0.2 }}
+                        sx={{
+                          width: 24,
+                          height: 24,
+                          padding: 0.2,
+                          filter:
+                            activeColorId === data.id ||
+                            location.pathname.replace(/[^a-zA-Z ]/g, "") ===
+                              data.title
+                                .toLowerCase()
+                                .replace(/\s+/g, "")
+                                .replace(/[^a-zA-Z ]/g, "")
+                              ? "brightness(200%)"
+                              : "brightness(100%)",
+                        }}
                       />
                     </Icon>
                   </ListItemIcon>

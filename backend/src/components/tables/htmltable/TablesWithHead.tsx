@@ -36,7 +36,7 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
 
     const errorHandler = (err: any) => {
       console.log(err);
-      toast.error(`${err.error.message.response.request.responseText}`, {
+      toast.error(`${err?.error?.message?.response?.request?.responseText}`, {
         position: "top-right",
         autoClose: 7000,
         hideProgressBar: false,
