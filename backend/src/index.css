@@ -17,3 +17,8 @@ code {
   width: 0px;
   background: transparent; /* make scrollbar transparent */
 }
+
+.apexcharts-legend.apexcharts-align-right .apexcharts-legend-series,
+.apexcharts-legend.apexcharts-align-left .apexcharts-legend-series {
+  text-align: left;
+}
