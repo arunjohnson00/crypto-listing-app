@@ -130,14 +130,14 @@ const LineChart = ({ lineChartData }: any) => {
       },
 
       grid: {
-        show: false, // you can either change hear to disable all grids
+        show: true, // you can either change hear to disable all grids
         padding: {
           left: -5,
           bottom: -5,
         },
         xaxis: {
           lines: {
-            show: true, //or just here to disable only x axis grids
+            show: false, //or just here to disable only x axis grids
           },
         },
         yaxis: {
