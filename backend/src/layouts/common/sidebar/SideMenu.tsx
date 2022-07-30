@@ -270,7 +270,30 @@ const SideMenu = ({ open }: any) => {
                                   }`,
                                 }}
                               >
-                                {sublist.icon}
+                                {/* {sublist.icon} */}
+                                <Avatar
+                                  alt={sublist?.title}
+                                  variant="square"
+                                  src={sublist?.icon}
+                                  sx={{
+                                    width: 24,
+                                    height: 24,
+                                    padding: 0.2,
+                                    filter:
+                                      (activeColorId === data.id &&
+                                        subActiveColorId === sublist.id) ||
+                                      location.pathname.replace(
+                                        /[^a-zA-Z ]/g,
+                                        ""
+                                      ) ===
+                                        sublist.title
+                                          .toLowerCase()
+                                          .replace(/\s+/g, "")
+                                          .replace(/[^a-zA-Z ]/g, "")
+                                        ? "brightness(115%)"
+                                        : "brightness(115%)",
+                                  }}
+                                />
                               </Icon>
                             </ListItemIcon>
 

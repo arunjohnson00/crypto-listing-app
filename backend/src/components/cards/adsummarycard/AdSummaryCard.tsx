@@ -13,6 +13,7 @@ const AdSummaryCard = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const removeFromAdsSummaryHandler = (index: any) => {
     Swal.fire({
       title: "Are you sure?",
@@ -271,7 +272,7 @@ const AdSummaryCard = () => {
         </Stack>
       </Box>
       {adSummaryDetails && adSummaryDetails?.length !== 0 && (
-        <Box sx={{ backgroundColor: "transparent", borderRadius: 0 }} py={2}>
+        <Box py={2} px={2} sx={{ backgroundColor: "#FFFFFF", borderRadius: 3 }}>
           <Divider flexItem orientation="horizontal" variant="fullWidth" />
 
           <Stack

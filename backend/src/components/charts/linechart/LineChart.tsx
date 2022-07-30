@@ -254,7 +254,7 @@ const LineChart = ({ lineChartData }: any) => {
             options={chartData.options}
             series={chartData.series}
             type="line"
-            height="auto"
+            height={233}
           />
         </Grid>
       </Grid>

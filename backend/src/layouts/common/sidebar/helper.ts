@@ -13,6 +13,14 @@ import ratingIcon from "../../../assets/icon/gray/rating_icon_gray.png";
 import eventIcon from "../../../assets/icon/gray/events_icon_gray.png";
 import affiliatesIcon from "../../../assets/icon/gray/affiliates_icon_gray.png";
 import badgesIcon from "../../../assets/icon/gray/badge_icon_gray.png";
+import auditIcon from "../../../assets/icon/gray/audit_icon_gray.png";
+import chartIcon from "../../../assets/icon/gray/chart_icon_gray.png";
+import chatIcon from "../../../assets/icon/gray/chat_icon_gray.png";
+import socialIcon from "../../../assets/icon/gray/social-media_icon_gray.png";
+import eventCategoryIcon from "../../../assets/icon/gray/event_category_icon_gray.png";
+import rewardIconIcon from "../../../assets/icon/gray/reward_icon_gray.png";
+import nftListingCategoryIcon from "../../../assets/icon/gray/nft_listing_category_icon_gray.png";
+import nftListingCurrencyIcon from "../../../assets/icon/gray/nft_listing_currency_icon_gray.png";
 
 export const sideBarMenu = [
   { id: "1", title: "Dashboard", icon: dashboardIcon },
@@ -21,11 +29,11 @@ export const sideBarMenu = [
     title: "Coins",
     icon: coinListingIcon,
     subMenu: [
-      { id: "21", title: "coins-audit", icon: "receipt" },
-      { id: "22", title: "coins-chart-provider", icon: "receipt" },
+      { id: "21", title: "coins-audit", icon: auditIcon },
+      { id: "22", title: "coins-chart-provider", icon: chartIcon },
       //  { id: "23", title: "coins-community", icon: "receipt" },
-      { id: "24", title: "coins-chat", icon: "receipt" },
-      { id: "25", title: "coins-socials", icon: "receipt" },
+      { id: "24", title: "coins-chat", icon: chatIcon },
+      { id: "25", title: "coins-socials", icon: socialIcon },
     ],
   },
   { id: "3", title: "Exchange", icon: exchnageIcon },
@@ -34,8 +42,8 @@ export const sideBarMenu = [
     title: "nft-listing",
     icon: nftListingIcon,
     subMenu: [
-      { id: "41", title: "nft-listing-category", icon: "store" },
-      { id: "42", title: "nft-listing-currency", icon: "store" },
+      { id: "41", title: "nft-listing-category", icon: nftListingCategoryIcon },
+      { id: "42", title: "nft-listing-currency", icon: nftListingCurrencyIcon },
     ],
   },
   { id: "5", title: "nft-marketplaces", icon: nftMarketPlacesIcon },
@@ -54,6 +62,15 @@ export const sideBarMenu = [
   },
   {
     id: "10",
+    title: "ads-configuration",
+    icon: adsIcon,
+    subMenu: [
+      // { id: "101", title: "ads-config-listing", icon: "store" },
+      { id: "102", title: "ads-config-settings", icon: "store" },
+    ],
+  },
+  {
+    id: "11",
     title: "Videos",
     icon: videosIcon,
     // subMenu: [
@@ -62,19 +79,19 @@ export const sideBarMenu = [
     //   { id: "103", title: "a", icon: "store" },
     // ],
   },
-  { id: "11", title: "Menu-cards", icon: menucardIcon },
-  { id: "12", title: "Rating-Reviews", icon: ratingIcon },
+  { id: "12", title: "Menu-cards", icon: menucardIcon },
+  { id: "13", title: "Rating-Reviews", icon: ratingIcon },
   {
-    id: "13",
+    id: "14",
     title: "Events",
     icon: eventIcon,
     subMenu: [
-      { id: "131", title: "events-category", icon: "store" },
-      { id: "132", title: "reward-address", icon: "store" },
+      { id: "141", title: "events-category", icon: eventCategoryIcon },
+      { id: "142", title: "reward-address", icon: rewardIconIcon },
     ],
   },
-  { id: "14", title: "Affiliates", icon: affiliatesIcon },
-  { id: "15", title: "Badges", icon: badgesIcon },
+  { id: "15", title: "Affiliates", icon: affiliatesIcon },
+  { id: "16", title: "Badges", icon: badgesIcon },
 ];
 
 export const sideBarIcons = ["All mail", "Trash", "Spam"];

@@ -95,6 +95,8 @@ import EventRewardAddressEdit from "../pages/eventrewardaddress/edit/EventReward
 import AdsDashboard from "../pages/ads/dashboard/AdsDashboard";
 import ViewFullList from "../pages/viewfulllist/ViewFullList";
 import CreateNewAdWizard from "../pages/ads/createnewadwizard/CreateNewAdWizard";
+import AdsConfigurationListing from "../pages/adsconfiguration/AdsConfigurationListing";
+import CreateNewAdConfiguration from "../pages/adsconfiguration/add/CreateNewAdConfiguration";
 
 const AppRoutes = () => {
   return (
@@ -887,6 +889,30 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <NftTokenCurrencyView />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/ads-configuration"
+          element={
+            <PrivateRoute>
+              <AdsConfigurationListing />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/ads-config-listing"
+          element={
+            <PrivateRoute>
+              <AdsConfigurationListing />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/ads-config-settings"
+          element={
+            <PrivateRoute>
+              <CreateNewAdConfiguration />
             </PrivateRoute>
           }
         />
