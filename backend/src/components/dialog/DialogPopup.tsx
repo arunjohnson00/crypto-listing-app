@@ -11,10 +11,11 @@ import {
   Typography,
   Box,
   IconButton,
+  Avatar,
 } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";
 import CloseIcon from "@mui/icons-material/Close";
-
+import dateFormat, { masks } from "dateformat";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 
@@ -30,12 +31,14 @@ const Transition = forwardRef(function Transition(
 const DialogPopup = ({ handleClose, handleClickOpen, open, id, data }: any) => {
   const location = useLocation();
   TimeAgo.addLocale(en);
+  const serverAPIUrl = process.env.REACT_APP_API_URL;
   const timeAgo = new TimeAgo("en-US");
   const filteredData = data?.filter((item: any) => item?.id === id);
 
   const mapped = Object.entries(filteredData[0]).map(
     ([key, value]) =>
       key !== "thumb_icon" &&
+      key !== "name" &&
       key !== "id" &&
       key !== "slug" &&
       key !== "deleted_at" &&
@@ -105,7 +108,10 @@ const DialogPopup = ({ handleClose, handleClickOpen, open, id, data }: any) => {
       key !== "whitepaper_link" &&
       key !== "discord_url" &&
       key !== "github_link" &&
-      key !== "explorer_link" &&
+      // key !== "explorer_link" &&
+      // key !== "is_presale" &&
+      key !== "is_launched" &&
+      key !== "status" &&
       key !== "market_cap" &&
       key !== "max_supply" &&
       key !== "presale_date" &&
@@ -121,52 +127,101 @@ const DialogPopup = ({ handleClose, handleClickOpen, open, id, data }: any) => {
           pb={0.5}
           key={key}
         >
-          <Box>
-            <span
-              style={{
-                color: "#33313E",
-                textTransform: "capitalize",
-                fontWeight: 500,
-              }}
-            >
-              {location?.pathname?.replace(/[^a-zA-Z ]/g, " ")}{" "}
-              {key.replace(/[^a-zA-Z ]/g, " ")}
-            </span>
+          <Box
+            sx={{
+              minWidth: 350,
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <Stack direction="row" spacing={4} alignItems="center">
+              <span
+                style={{
+                  color: "#433C6F",
+                  textTransform: "capitalize",
+                  fontWeight: 600,
+                  fontSize: ".8rem",
+                  minWidth: 150,
+                  textAlign: "right",
+                }}
+              >
+                {/* {location?.pathname?.replace(/[^a-zA-Z ]/g, " ")}{" "} */}
+                {key.replace(/[^a-zA-Z ]/g, " ")}
+                {" :"}
+              </span>
+              <Stack
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <span
+                  style={{ color: "#A0A3C8", minWidth: 150, maxWidth: 150 }}
+                >
+                  {
+                    filteredData[0]["created_at"] &&
+                      value === filteredData[0]["created_at"] && (
+                        <span
+                          style={{
+                            color: "#E0DFE7",
+                            fontWeight: 600,
+                            fontSize: ".85rem",
+                          }}
+                        >
+                          {/* {timeAgo.format(new Date(`${value}`))} */}
+                          {dateFormat(
+                            filteredData[0]["created_at"],
+                            "dd mmmm yyyy"
+                          )}
+                        </span>
+                      )
+                    // {: (
+                    //   <span>{`${value}`}</span>
+                    // )}
+                  }
+                  {(filteredData[0]["is_presale"] &&
+                    value === filteredData[0]["is_presale"] &&
+                    parseInt(filteredData[0]["is_presale"]) === 1) ||
+                  parseInt(`${value}`) === 1 ? (
+                    <span
+                      style={{
+                        color: "#E0DFE7",
+                        fontWeight: 600,
+                        fontSize: ".85rem",
+                      }}
+                    >
+                      Yes
+                    </span>
+                  ) : (
+                    value === filteredData[0]["is_presale"] &&
+                    parseInt(filteredData[0]["is_presale"]) !== 1 &&
+                    parseInt(`${value}`) !== 1 && (
+                      <span
+                        style={{
+                          color: "#E0DFE7",
+                          fontWeight: 600,
+                          fontSize: ".85rem",
+                        }}
+                      >
+                        No
+                      </span>
+                    )
+                  )}
 
-            <span style={{ color: "#A0A3C8" }}>
-              {" "}
-              :{" "}
-              {parseInt(filteredData[0]["status"]) === 1 &&
-              parseInt(`${value}`) === 1 ? (
-                <span style={{ color: "#3E9E19", fontWeight: 600 }}>
-                  Approved/ Yes
+                  {filteredData[0]["explorer_link"] &&
+                    value === filteredData[0]["explorer_link"] && (
+                      <span
+                        style={{
+                          color: "#0083FF",
+                          fontWeight: 500,
+                          fontSize: ".55rem",
+                        }}
+                      >
+                        {filteredData[0]["explorer_link"]}
+                      </span>
+                    )}
                 </span>
-              ) : parseInt(filteredData[0]["status"]) === 2 &&
-                parseInt(`${value}`) === 2 ? (
-                <span style={{ color: "#D83235", fontWeight: 600 }}>
-                  Processing/No
-                </span>
-              ) : parseInt(filteredData[0]["status"]) === 3 &&
-                parseInt(`${value}`) === 3 ? (
-                <span style={{ color: "#874AAF", fontWeight: 600 }}>
-                  Suspended /Blocked
-                </span>
-              ) : (parseInt(filteredData[0]["is_presale"]) === 0 &&
-                  parseInt(`${value}`) ===
-                    parseInt(filteredData[0]["is_presale"])) ||
-                (parseInt(filteredData[0]["is_launched"]) === 0 &&
-                  parseInt(`${value}`) ===
-                    parseInt(filteredData[0]["is_launched"])) ? (
-                <span style={{ color: "#D83235", fontWeight: 600 }}>No</span>
-              ) : filteredData[0]["created_at"] &&
-                value === filteredData[0]["created_at"] ? (
-                <span style={{ color: "#A8B335", fontWeight: 600 }}>
-                  {timeAgo.format(new Date(`${value}`))}
-                </span>
-              ) : (
-                <span>{`${value}`}</span>
-              )}
-            </span>
+              </Stack>
+            </Stack>
           </Box>
         </Stack>
       )
@@ -183,7 +238,7 @@ const DialogPopup = ({ handleClose, handleClickOpen, open, id, data }: any) => {
         sx={{
           "& .MuiDialog-paper": {
             width: "80%",
-            maxHeight: 435,
+            maxHeight: 535,
             backgroundColor: "#060030",
             color: "#D2CFEA",
             padding: 1,
@@ -211,6 +266,37 @@ const DialogPopup = ({ handleClose, handleClickOpen, open, id, data }: any) => {
           </Stack>
         </Stack>
         <DialogContent>
+          {location?.pathname?.replace(/[^a-zA-Z ]/g, "") === "coins" && (
+            <Stack
+              direction="column"
+              spacing={1.3}
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Avatar
+                alt="Remy Sharp"
+                src={`${serverAPIUrl}public/uploads/coin_logo/${filteredData[0]?.logo}`}
+                sx={{ width: 65, height: 65 }}
+              />
+              <Stack
+                direction="column"
+                spacing={0}
+                alignItems="center"
+                justifyContent="center"
+                pb={5}
+              >
+                <Typography variant="h5" sx={{ textAlign: "left" }}>
+                  {filteredData[0]?.name}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ textAlign: "left", color: "#84d5a3" }}
+                >
+                  {`(${filteredData[0]?.name})`}
+                </Typography>
+              </Stack>
+            </Stack>
+          )}
           <DialogContentText id="alert-dialog-slide-description">
             {mapped}
           </DialogContentText>
@@ -257,7 +343,10 @@ const DialogPopup = ({ handleClose, handleClickOpen, open, id, data }: any) => {
                 target="_blank"
                 rel="noreferrer"
               >
-                Got to Page
+                Got to{" "}
+                {location?.pathname?.replace(/[^a-zA-Z ]/g, "") === "coins"
+                  ? "Coin"
+                  : "Page"}
               </a>
             </Button>
             <Button
