@@ -1,4 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Grid,
   Stack,
@@ -31,10 +32,15 @@ import BannerMap from "../../../components/desktop/banner/bannermap/BannerMap";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import TrendingCoins from "../../../components/desktop/cards/trendingcoins/TrendingCoins";
-
+import {
+  recentlyAddedRequest,
+  biggestGainersRequest,
+  biggestLoosersRequest,
+  featuredCoinListRequest,
+} from "../../../store/action";
 const { parse } = require("rss-to-json");
 
-const responsive = {
+const responsiveNFTCollections = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
@@ -54,11 +60,67 @@ const responsive = {
   },
 };
 
+const responsiveVideo = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 5,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 3,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
+
+const responsiveHighlights = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 3,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
+
 const HomePage = ({ windowInnerWidth }: any) => {
+  const dispatch: any = useDispatch();
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
   const [feed, setFeed] = useState<any>();
 
+  const recentlyAdded = useSelector((data: any) => {
+    return data?.homeReducer?.recently_added?.data;
+  });
+
+  const biggestGainers = useSelector((data: any) => {
+    return data?.homeReducer?.biggest_gainers?.data;
+  });
+
+  const biggestloosers = useSelector((data: any) => {
+    return data?.homeReducer?.biggest_loosers?.data;
+  });
+
+  const featuredCoinList = useSelector((data: any) => {
+    return data?.homeReducer?.featured_coin_list?.data;
+  });
   useEffect(() => {
     (async () => {
       var rss = await parse("https://news.coinxhigh.com/feed/", {
@@ -72,6 +134,14 @@ const HomePage = ({ windowInnerWidth }: any) => {
       setFeed(rss);
     })();
   }, []);
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(recentlyAddedRequest("noData", successHandler, errorHandler));
+    dispatch(biggestGainersRequest("noData", successHandler, errorHandler));
+    dispatch(biggestLoosersRequest("noData", successHandler, errorHandler));
+    dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
+  }, [dispatch]);
 
   return (
     <Fragment>
@@ -185,7 +255,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           }}
         >
           <Carousel
-            responsive={responsive}
+            responsive={responsiveVideo}
             infinite={true}
             removeArrowOnDeviceType={["tablet", "mobile"]}
             arrows={true}
@@ -253,20 +323,32 @@ const HomePage = ({ windowInnerWidth }: any) => {
             paddingBottom: "23px",
           }}
         >
-          <Stack
-            direction={{ xs: "column", sm: "column", md: "row" }}
-            spacing={2}
+          <Carousel
+            responsive={responsiveHighlights}
+            infinite={true}
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            arrows={false}
           >
-            <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-              <HighlightCards />
-            </Grid>
-            <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-              <HighlightCards />
-            </Grid>
-            <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-              <HighlightCards />
-            </Grid>
-          </Stack>
+            <Box>
+              <HighlightCards title="Todays Performer" cardData="" />
+            </Box>
+            <Box>
+              <HighlightCards
+                title="Biggest Gainers"
+                cardData={biggestGainers}
+              />
+            </Box>
+            <Box>
+              <HighlightCards
+                title="Biggest Lossers"
+                cardData={biggestloosers}
+              />
+            </Box>
+
+            <Box>
+              <HighlightCards title="Recently Added" cardData={recentlyAdded} />
+            </Box>
+          </Carousel>
         </Grid>
 
         <Grid
@@ -635,7 +717,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           }}
         >
           <Carousel
-            responsive={responsive}
+            responsive={responsiveNFTCollections}
             infinite={true}
             removeArrowOnDeviceType={["tablet", "mobile"]}
             arrows={true}
