@@ -11,6 +11,8 @@ import {
   CardMedia,
   Link,
 } from "@mui/material";
+import React from "react";
+import ReactPlayer from "react-player";
 import LinearProgress from "@mui/material/LinearProgress";
 import ToolTipImage from "../../../assets/singlepagecoin/tool-tip.png";
 
@@ -28,6 +30,13 @@ const CoinPageOverview = () => {
   return (
     <Grid container xs={12}>
       <Grid xs={12} sm={12} md={4} lg={4} xl={4}>
+        <Grid xs={12} mb={5}>
+          <ReactPlayer
+            url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+            width="100%"
+            height={300}
+          />
+        </Grid>
         <Grid xs={12} mb={5}>
           <Typography
             variant="h5"
@@ -127,6 +136,97 @@ const CoinPageOverview = () => {
                 spacing={1}
               >
                 <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                  Total Holders
+                </Typography>
+                <Tooltip title="Delete">
+                  <Avatar
+                    src={ToolTipImage}
+                    sx={{ width: 12, height: 12 }}
+                  ></Avatar>
+                </Tooltip>
+              </Stack>
+              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                98,978,88
+              </Typography>
+            </Stack>
+            <Stack
+              direction="row"
+              sx={{ alignItems: "center", justifyContent: "space-between" }}
+              mt={1}
+            >
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                sx={{ alignItems: "center" }}
+                justifyContent={{
+                  xs: "center",
+                  sm: "center",
+                  md: "center",
+                  lg: "flex-start",
+                }}
+                spacing={1}
+              >
+                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                  In Watchlist
+                </Typography>
+                <Tooltip title="Delete">
+                  <Avatar
+                    src={ToolTipImage}
+                    sx={{ width: 12, height: 12 }}
+                  ></Avatar>
+                </Tooltip>
+              </Stack>
+              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                4444,333
+              </Typography>
+            </Stack>
+            <Stack
+              direction="row"
+              sx={{ alignItems: "center", justifyContent: "space-between" }}
+              mt={1}
+            >
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                sx={{ alignItems: "center" }}
+                justifyContent={{
+                  xs: "center",
+                  sm: "center",
+                  md: "center",
+                  lg: "flex-start",
+                }}
+                spacing={1}
+              >
+                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                  Total Liqudity in pool
+                </Typography>
+                <Tooltip title="Delete">
+                  <Avatar
+                    src={ToolTipImage}
+                    sx={{ width: 12, height: 12 }}
+                  ></Avatar>
+                </Tooltip>
+              </Stack>
+              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                $4444,333
+              </Typography>
+            </Stack>
+
+            <Stack
+              direction="row"
+              sx={{ alignItems: "center", justifyContent: "space-between" }}
+              mt={1}
+            >
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                sx={{ alignItems: "center" }}
+                justifyContent={{
+                  xs: "center",
+                  sm: "center",
+                  md: "center",
+                  lg: "flex-start",
+                }}
+                spacing={1}
+              >
+                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
                   All Time High
                 </Typography>
                 <Tooltip title="Delete">
@@ -140,7 +240,6 @@ const CoinPageOverview = () => {
                 $0.00589303
               </Typography>
             </Stack>
-
             <Stack
               direction="row"
               sx={{ alignItems: "center", justifyContent: "space-between" }}

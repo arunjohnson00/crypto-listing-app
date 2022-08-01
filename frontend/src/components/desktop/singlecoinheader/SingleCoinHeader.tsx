@@ -42,6 +42,7 @@ import DocsImage from "../../../assets/singlepagecoin/doc.png";
 import LinkImage from "../../../assets/singlepagecoin/link.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import SingleCoinChip from "../coinpagechip/SingleCoinChip";
+import SocialCounterWithGraphCard from "../cards/socialcounterwithgraphcard/SocialCounterWithGraphCard";
 
 const SingleCoinHeader = () => {
   const theme = useTheme();
@@ -214,20 +215,49 @@ const SingleCoinHeader = () => {
                   md: "flex-end",
                 }}
               >
+                <MoodIcon sx={{ color: "#FFFFF5" }} />
+
+                <MoodIcon sx={{ color: "#FFFFF5" }} />
+
+                <MoodIcon sx={{ color: "#FFFFF5" }} />
+
+                <MoodIcon sx={{ color: "#FFFFF5" }} />
+
+                <MoodIcon sx={{ color: "#FFFFF5" }} />
+
                 <Box>
-                  <MoodIcon sx={{ color: "#FFFFF5" }} />
-                </Box>
-                <Box>
-                  <MoodIcon sx={{ color: "#FFFFF5" }} />
-                </Box>
-                <Box>
-                  <MoodIcon sx={{ color: "#FFFFF5" }} />
-                </Box>
-                <Box>
-                  <MoodIcon sx={{ color: "#FFFFF5" }} />
-                </Box>
-                <Box>
-                  <MoodIcon sx={{ color: "#FFFFF5" }} />
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    spacing={1}
+                    sx={{ alignItems: "center" }}
+                    justifyContent={{
+                      xs: "center",
+                      sm: "center",
+                      md: "center",
+                      lg: "flex-start",
+                    }}
+                  >
+                    <Avatar
+                      src={CoinGeckoImage}
+                      sx={{ width: 24, height: 24 }}
+                    ></Avatar>
+                    <Avatar
+                      src={CoinMarketcapImage}
+                      sx={{ width: 24, height: 24 }}
+                    ></Avatar>
+                    <RWebShare
+                      data={{
+                        text: "Test Share Text",
+                        url: "http://localhost:3000/coin",
+                        title: "Coinxhigh",
+                      }}
+                      onClick={() => console.log("shared successfully!")}
+                    >
+                      <IconButton sx={{ padding: 0 }}>
+                        <ShareOutlinedIcon sx={{ color: "#575385" }} />
+                      </IconButton>
+                    </RWebShare>
+                  </Stack>
                 </Box>
               </Stack>
             </Stack>
@@ -422,7 +452,7 @@ const SingleCoinHeader = () => {
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
               sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
             />
-            <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
+            {/* <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
                 sx={{ alignItems: "center" }}
@@ -515,45 +545,31 @@ const SingleCoinHeader = () => {
               <Typography variant="subtitle2" sx={{ color: "#FFFFF5" }}>
                 $20,185,00
               </Typography>
-            </Stack>
-            <Divider
+            </Stack> */}
+            <SocialCounterWithGraphCard
+              title="Twitter Followers"
+              cardData=""
+              icon=""
+              color="#15BCD5"
+            />
+            <SocialCounterWithGraphCard
+              title="Telegram Followers"
+              cardData=""
+              icon=""
+              color="#1093D3"
+            />
+            <SocialCounterWithGraphCard
+              title="Reddit Subscribers"
+              cardData=""
+              icon=""
+              color="#E02409"
+            />
+            {/* <Divider
               variant="middle"
               flexItem
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
               sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
-            />
-            <Stack
-              direction={{ xs: "row", sm: "row", md: "row" }}
-              spacing={1}
-              sx={{ alignItems: "center" }}
-              justifyContent={{
-                xs: "center",
-                sm: "center",
-                md: "center",
-                lg: "flex-start",
-              }}
-            >
-              <Avatar
-                src={CoinGeckoImage}
-                sx={{ width: 30, height: 30 }}
-              ></Avatar>
-              <Avatar
-                src={CoinMarketcapImage}
-                sx={{ width: 30, height: 30 }}
-              ></Avatar>
-              <RWebShare
-                data={{
-                  text: "Test Share Text",
-                  url: "http://localhost:3000/coin",
-                  title: "Coinxhigh",
-                }}
-                onClick={() => console.log("shared successfully!")}
-              >
-                <IconButton sx={{ padding: 0 }}>
-                  <ShareOutlinedIcon sx={{ color: "#575385" }} />
-                </IconButton>
-              </RWebShare>
-            </Stack>
+            /> */}
           </Stack>
         </Box>
       </Grid>
