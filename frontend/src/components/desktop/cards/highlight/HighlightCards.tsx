@@ -6,7 +6,7 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import Avatar from "@mui/material/Avatar";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import CommitRoundedIcon from "@mui/icons-material/CommitRounded";
+import HorizontalRuleRoundedIcon from "@mui/icons-material/HorizontalRuleRounded";
 
 const HighlightCards = ({ title, cardData }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
@@ -37,11 +37,12 @@ const HighlightCards = ({ title, cardData }: any) => {
         style={{ paddingTop: 1.5, paddingBottom: 3.5 }}
         onClick={() => onClick()}
       >
-        <CommitRoundedIcon
+        <HorizontalRuleRoundedIcon
           sx={{
             color: "#FFFFFF",
             cursor: "pointer",
             opacity: active ? 1 : 0.5,
+            fontSize: "1.8rem",
           }}
         />
       </li>
@@ -160,7 +161,7 @@ const HighlightCards = ({ title, cardData }: any) => {
                         color:
                           Math.sign(parseInt(data?.percent_change)) === -1
                             ? "red"
-                            : "green",
+                            : "#00C080",
                         fontWeight: "600",
                       }}
                     >
@@ -170,7 +171,7 @@ const HighlightCards = ({ title, cardData }: any) => {
                       {Math.sign(parseInt(data?.percent_change)) === -1 ? (
                         <ArrowDropDownIcon sx={{ color: "red" }} />
                       ) : (
-                        <ArrowDropUpIcon sx={{ color: "green" }} />
+                        <ArrowDropUpIcon sx={{ color: "#00C080" }} />
                       )}
                     </Typography>
                   </Stack>
@@ -244,7 +245,7 @@ const HighlightCards = ({ title, cardData }: any) => {
                         color:
                           Math.sign(parseInt(data?.percent_change)) === -1
                             ? "red"
-                            : "green",
+                            : "#00C080",
                         fontWeight: "600",
                       }}
                     >
@@ -254,7 +255,7 @@ const HighlightCards = ({ title, cardData }: any) => {
                       {Math.sign(parseInt(data?.percent_change)) === -1 ? (
                         <ArrowDropDownIcon sx={{ color: "red" }} />
                       ) : (
-                        <ArrowDropUpIcon sx={{ color: "green" }} />
+                        <ArrowDropUpIcon sx={{ color: "#00C080" }} />
                       )}
                     </Typography>
                   </Stack>
@@ -328,7 +329,7 @@ const HighlightCards = ({ title, cardData }: any) => {
                         color:
                           Math.sign(parseInt(data?.percent_change)) === -1
                             ? "red"
-                            : "green",
+                            : "#00C080",
                         fontWeight: "600",
                       }}
                     >
@@ -338,7 +339,7 @@ const HighlightCards = ({ title, cardData }: any) => {
                       {Math.sign(parseInt(data?.percent_change)) === -1 ? (
                         <ArrowDropDownIcon sx={{ color: "red" }} />
                       ) : (
-                        <ArrowDropUpIcon sx={{ color: "green" }} />
+                        <ArrowDropUpIcon sx={{ color: "#00C080" }} />
                       )}
                     </Typography>
                   </Stack>

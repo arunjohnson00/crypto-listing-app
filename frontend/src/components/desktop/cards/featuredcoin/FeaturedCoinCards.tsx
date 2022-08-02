@@ -7,22 +7,29 @@ import {
   Divider,
   Chip,
 } from "@mui/material";
+import moment from "moment";
 import Rating from "@mui/material/Rating";
-import { fontSize } from "@mui/system";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
 const FeaturedCoinCards = ({ cardData }: any) => {
+  const getDifferenceInDays = (date1: any, date2: any) => {
+    const diffInMs = Math.abs(date2 - date1);
+    return diffInMs / (1000 * 60 * 60 * 24);
+  };
+  const serverAPIUrl = process.env.REACT_APP_API_URL;
   return (
     <Grid item xs={12} sm={11} md={11} lg={11} xl={11} mb={3}>
       <Box
         sx={{
           borderRadius: "6px",
           border: "1px solid #243464",
-          background: "linear-gradient(98deg, #01061c 50%, #0B1A51)",
+          background: "linear-gradient(90deg, #01061c 20%, #0B1A51)",
         }}
         px={2}
         py={2}
       >
-        <Grid item xs={12} pb={2}>
+        <Grid item xs={12} pb={0.5}>
           <Stack
             direction="row"
             spacing={2}
@@ -30,31 +37,32 @@ const FeaturedCoinCards = ({ cardData }: any) => {
           >
             <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
               <Avatar
-                alt="Remy Sharp"
-                src="https://mui.com/static/images/avatar/1.jpg"
+                alt={cardData && cardData?.name}
+                src={`${serverAPIUrl}public/uploads/coins/${cardData?.logo}`}
               />
               <Stack direction="column" spacing={0}>
                 <Typography
                   variant="caption"
                   sx={{ color: "white", fontWeight: "600" }}
                 >
-                  {cardData && cardData?.name}
+                  {cardData && cardData?.name?.slice(0, 12)}
+                  {cardData?.name?.length > 12 && ".."}
                 </Typography>
                 <Typography
                   variant="caption"
                   sx={{
-                    color: "white",
-                    fontWeight: "600",
-                    fontSize: "0.59rem",
+                    color: "#FFFFFF",
+                    fontWeight: 500,
+                    fontSize: "0.53rem",
                   }}
                 >
                   {cardData && cardData?.symbol}
                 </Typography>
                 <Typography
                   variant="caption"
-                  sx={{ color: "#29AA97", fontWeight: "600" }}
+                  sx={{ color: "#31E6B5", fontWeight: "600" }}
                 >
-                  $0.0000031
+                  $ {cardData && parseInt(cardData?.current_price).toFixed(1)}
                 </Typography>
               </Stack>
             </Stack>
@@ -63,14 +71,17 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                 variant="h5"
                 sx={{ color: "#FFFFF5", fontWeight: "400" }}
               >
-                {cardData && parseInt(cardData?.rating).toFixed(1)}
+                {cardData && cardData?.rating === null
+                  ? 0.0
+                  : parseInt(cardData?.rating).toFixed(1)}
               </Typography>
               <Rating
                 name="size-small"
-                defaultValue={cardData && parseInt(cardData?.rating).toFixed(0)}
+                defaultValue={0}
+                value={cardData && parseInt(cardData?.rating).toFixed(0)}
                 size="small"
                 readOnly
-                sx={{ fontSize: ".9rem" }}
+                sx={{ fontSize: "0.6rem" }}
               />
             </Stack>
           </Stack>
@@ -85,18 +96,24 @@ const FeaturedCoinCards = ({ cardData }: any) => {
           >
             <Typography
               variant="body2"
-              sx={{ color: "#6f737f", fontSize: "0.775rem" }}
+              sx={{ color: "#6f737f", fontSize: "0.65rem" }}
             >
               Presale Starts in :
             </Typography>
             <Typography
               variant="subtitle1"
-              sx={{ color: "white", fontSize: ".7rem" }}
+              sx={{
+                color:
+                  parseInt(cardData?.is_presale) === 1 ? "#FFFFFF" : "#ff0000",
+                fontSize: ".7rem",
+              }}
             >
               {
                 //6 Days 7 Hours 19 Minutes
               }
-              {cardData && cardData?.presale_date}
+              {cardData && parseInt(cardData?.is_presale) === 1
+                ? cardData?.presale_date
+                : "Not Available"}
             </Typography>
           </Stack>
 
@@ -114,80 +131,89 @@ const FeaturedCoinCards = ({ cardData }: any) => {
             }}
             py={1}
           >
-            <Chip
-              label="Presale"
-              sx={{
-                borderRadius: "0px",
-                backgroundColor: "#DD0801",
-                color: "white",
-                height: "25px",
-                fontSize: "0.485rem",
-                marginBottom: "7px",
-                marginRight: "4px",
-              }}
-            />
+            {cardData && parseInt(cardData?.badges?.presale) === 1 && (
+              <Chip
+                label="Presale"
+                sx={{
+                  borderRadius: "0px",
+                  backgroundColor: "#DD0801",
+                  color: "#FFFFFF",
+                  height: 18,
+                  fontSize: "0.485rem",
+                  marginBottom: "7px",
+                  marginRight: "4px",
+                }}
+              />
+            )}
 
-            <Chip
-              label="Audited"
-              sx={{
-                borderRadius: "0px",
-                backgroundColor: "#9638FF",
-                color: "white",
-                height: "25px",
-                fontSize: "0.485rem",
-                marginBottom: "7px",
-                marginRight: "4px",
-              }}
-            />
-            <Chip
-              label="KYC Verified"
-              sx={{
-                borderRadius: "0px",
-                backgroundColor: "#3C38FF",
-                color: "white",
-                height: "25px",
-                fontSize: "0.485rem",
-                marginBottom: "7px",
-                marginRight: "4px",
-              }}
-            />
-            <Chip
-              label="Airdrop Hosted"
-              sx={{
-                borderRadius: "0px",
-                backgroundColor: "#299E02",
-                color: "white",
-                height: "25px",
-                fontSize: "0.485rem",
-                marginBottom: "7px",
-                marginRight: "4px",
-              }}
-            />
-
-            <Chip
-              label="Ownership Renounced"
-              sx={{
-                borderRadius: "0px",
-                backgroundColor: "#DF6803",
-                color: "white",
-                height: "25px",
-                fontSize: "0.485rem",
-                marginBottom: "7px",
-                marginRight: "4px",
-              }}
-            />
+            {cardData && parseInt(cardData?.badges?.audited) === 1 && (
+              <Chip
+                label="Audited"
+                sx={{
+                  borderRadius: "0px",
+                  backgroundColor: "#9638FF",
+                  color: "#FFFFFF",
+                  height: 18,
+                  fontSize: "0.485rem",
+                  marginBottom: "7px",
+                  marginRight: "4px",
+                }}
+              />
+            )}
+            {cardData && parseInt(cardData?.badges?.kyc) === 1 && (
+              <Chip
+                label="KYC Verified"
+                sx={{
+                  borderRadius: "0px",
+                  backgroundColor: "#3C38FF",
+                  color: "#FFFFFF",
+                  height: 18,
+                  fontSize: "0.485rem",
+                  marginBottom: "7px",
+                  marginRight: "4px",
+                }}
+              />
+            )}
+            {cardData && parseInt(cardData?.badges?.airdrop) === 1 && (
+              <Chip
+                label="Airdrop Hosted"
+                sx={{
+                  borderRadius: "0px",
+                  backgroundColor: "#299E02",
+                  color: "#FFFFFF",
+                  height: 18,
+                  fontSize: "0.485rem",
+                  marginBottom: "7px",
+                  marginRight: "4px",
+                }}
+              />
+            )}
+            {cardData && parseInt(cardData?.badges?.ownership) === 1 && (
+              <Chip
+                label="Ownership Renounced"
+                sx={{
+                  borderRadius: "0px",
+                  backgroundColor: "#DF6803",
+                  color: "#FFFFFF",
+                  height: 18,
+                  fontSize: "0.485rem",
+                  marginBottom: "7px",
+                  marginRight: "4px",
+                }}
+              />
+            )}
           </Stack>
         </Grid>
 
         <Grid item xs={12} py={0}>
           <Stack
             direction="column"
-            spacing={0}
+            spacing={-0.5}
             sx={{
               justifyContent: "flex-start",
             }}
             pt={0}
-            pb={1}
+            pb={0}
           >
             <Grid item xs={12} py={0}>
               <Stack
@@ -197,20 +223,30 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   alignItems: "center",
                   justifyContent: " space-between",
                 }}
-                pt={0}
-                pb={0.3}
               >
                 <Typography
                   variant="caption"
-                  sx={{ color: "#5E6464", fontWeight: "Bold" }}
+                  sx={{
+                    color: "#5E6464",
+                    fontWeight: 600,
+                    fontSize: ".7rem",
+                  }}
                 >
                   Launch
                 </Typography>
                 <Typography
                   variant="caption"
-                  sx={{ color: "#FFFFF5", fontWeight: "Bold" }}
+                  sx={{ color: "#FFFFF5", fontWeight: 600, fontSize: ".7rem" }}
                 >
-                  In 2 Days
+                  In{" "}
+                  {cardData &&
+                    Math.floor(
+                      getDifferenceInDays(
+                        new Date(),
+                        new Date(cardData?.presale_end_date)
+                      )
+                    )}{" "}
+                  Days
                 </Typography>
               </Stack>
             </Grid>
@@ -223,20 +259,41 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   alignItems: "center",
                   justifyContent: " space-between",
                 }}
-                py={0.3}
               >
                 <Typography
                   variant="caption"
-                  sx={{ color: "#5E6464", fontWeight: "Bold" }}
+                  sx={{ color: "#5E6464", fontWeight: 600, fontSize: ".7rem" }}
                 >
                   1h
                 </Typography>
-                <Typography
-                  variant="caption"
-                  sx={{ color: "red", fontWeight: "Bold" }}
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center", justifyContent: "center" }}
+                  spacing={0}
                 >
-                  18.36 % ⯆
-                </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color:
+                        Math.sign(parseInt(cardData?.percent_change_1h)) === -1
+                          ? "#D40106"
+                          : "#00C080",
+                      fontWeight: 600,
+                      fontSize: ".7rem",
+                    }}
+                  >
+                    {cardData &&
+                      parseInt(cardData?.percent_change_1h).toFixed(2)}
+                    %
+                  </Typography>
+                  <Typography variant="caption">
+                    {Math.sign(parseInt(cardData?.percent_change_1h)) === -1 ? (
+                      <ArrowDropDownIcon sx={{ color: "#D40106" }} />
+                    ) : (
+                      <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                    )}
+                  </Typography>
+                </Stack>
               </Stack>
             </Grid>
 
@@ -248,20 +305,42 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   alignItems: "center",
                   justifyContent: " space-between",
                 }}
-                py={0.3}
               >
                 <Typography
                   variant="caption"
-                  sx={{ color: "#5E6464", fontWeight: "Bold" }}
+                  sx={{ color: "#5E6464", fontWeight: 600, fontSize: ".7rem" }}
                 >
                   24h
                 </Typography>
-                <Typography
-                  variant="caption"
-                  sx={{ color: "#00C080", fontWeight: "Bold" }}
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center", justifyContent: "center" }}
+                  spacing={0}
                 >
-                  18.36 % ⯅
-                </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color:
+                        Math.sign(parseInt(cardData?.percent_change_24h)) === -1
+                          ? "#D40106"
+                          : "#00C080",
+                      fontWeight: 600,
+                      fontSize: ".7rem",
+                    }}
+                  >
+                    {cardData &&
+                      parseInt(cardData?.percent_change_24h).toFixed(2)}
+                    %
+                  </Typography>
+                  <Typography variant="caption">
+                    {Math.sign(parseInt(cardData?.percent_change_24h)) ===
+                    -1 ? (
+                      <ArrowDropDownIcon sx={{ color: "#D40106" }} />
+                    ) : (
+                      <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                    )}
+                  </Typography>
+                </Stack>
               </Stack>
             </Grid>
 
@@ -273,19 +352,18 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   alignItems: "center",
                   justifyContent: " space-between",
                 }}
-                py={0.3}
               >
                 <Typography
                   variant="caption"
-                  sx={{ color: "#5E6464", fontWeight: "Bold" }}
+                  sx={{ color: "#5E6464", fontWeight: 600, fontSize: ".7rem" }}
                 >
                   Network
                 </Typography>
                 <Typography
                   variant="caption"
-                  sx={{ color: "#FFFFF5", fontWeight: "Bold" }}
+                  sx={{ color: "#FFFFF5", fontWeight: 600, fontSize: ".7rem" }}
                 >
-                  BSC
+                  {cardData && cardData?.network?.slice(0, 18)}..
                 </Typography>
               </Stack>
             </Grid>
@@ -298,19 +376,19 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   alignItems: "center",
                   justifyContent: " space-between",
                 }}
-                py={0.3}
+                pt={0.7}
               >
                 <Typography
                   variant="caption"
-                  sx={{ color: "#5E6464", fontWeight: "Bold" }}
+                  sx={{ color: "#5E6464", fontWeight: 600, fontSize: ".7rem" }}
                 >
                   Votes
                 </Typography>
                 <Typography
                   variant="caption"
-                  sx={{ color: "#FFFFF5", fontWeight: "Bold" }}
+                  sx={{ color: "#FFFFF5", fontWeight: 600, fontSize: ".7rem" }}
                 >
-                  43456
+                  {cardData && cardData?.vote}
                 </Typography>
               </Stack>
             </Grid>

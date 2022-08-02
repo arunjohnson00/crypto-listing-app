@@ -77,3 +77,65 @@ export const featuredCoinListRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const cryptoCurrenciesListRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/crypto-currencies-list`,
+    method: "GET",
+    secure: false,
+    actionType: HOME.CRYPTO_CURRENCIES_LIST,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const cryptoCurrenciesNewRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/crypto-currencies-new`,
+    method: "GET",
+    secure: false,
+    actionType: HOME.CRYPTO_CURRENCIES_NEW,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const cryptoCurrenciesPresaleRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/crypto-currencies-presale`,
+    method: "GET",
+    secure: false,
+    actionType: HOME.CRYPTO_CURRENCIES_PRESALE,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const cryptoCurrenciesTodaysBestRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/crypto-currencies-todays-best`,
+    method: "GET",
+    secure: false,
+    actionType: HOME.CRYPTO_CURRENCIES_TODAYS_BEST,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const cryptoCurrenciesTabRequest = HOME.CRYPTO_CURRENCIES_TAB;

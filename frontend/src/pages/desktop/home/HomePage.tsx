@@ -37,6 +37,10 @@ import {
   biggestGainersRequest,
   biggestLoosersRequest,
   featuredCoinListRequest,
+  cryptoCurrenciesListRequest,
+  cryptoCurrenciesTodaysBestRequest,
+  cryptoCurrenciesNewRequest,
+  cryptoCurrenciesPresaleRequest,
 } from "../../../store/action";
 const { parse } = require("rss-to-json");
 
@@ -84,15 +88,15 @@ const responsiveHighlights = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 3.5,
+    items: 3,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 3.5,
+    items: 3,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2.5,
+    items: 2,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
@@ -105,6 +109,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
   const [feed, setFeed] = useState<any>();
+  const [tableData, setTableData] = useState<any>();
 
   const recentlyAdded = useSelector((data: any) => {
     return data?.homeReducer?.recently_added?.data;
@@ -121,6 +126,15 @@ const HomePage = ({ windowInnerWidth }: any) => {
   const featuredCoinList = useSelector((data: any) => {
     return data?.homeReducer?.featured_coin_list?.data;
   });
+
+  // const cryptoCurrenciesList = useSelector((data: any) => {
+  //   return data?.homeReducer?.crypto_currencies_list?.data;
+  // });
+
+  const tabIndex = useSelector((data: any) => {
+    return data?.homeReducer?.crypto_currencies_tab;
+  });
+
   useEffect(() => {
     (async () => {
       var rss = await parse("https://news.coinxhigh.com/feed/", {
@@ -142,6 +156,34 @@ const HomePage = ({ windowInnerWidth }: any) => {
     dispatch(biggestLoosersRequest("noData", successHandler, errorHandler));
     dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
   }, [dispatch]);
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      setTableData(res?.data?.data);
+    };
+    const errorHandler = (err: any) => {};
+
+    tabIndex === 0 &&
+      dispatch(
+        cryptoCurrenciesListRequest("noData", successHandler, errorHandler)
+      );
+    tabIndex === 2 &&
+      dispatch(
+        cryptoCurrenciesTodaysBestRequest(
+          "noData",
+          successHandler,
+          errorHandler
+        )
+      );
+    tabIndex === 4 &&
+      dispatch(
+        cryptoCurrenciesNewRequest("noData", successHandler, errorHandler)
+      );
+    tabIndex === 6 &&
+      dispatch(
+        cryptoCurrenciesPresaleRequest("noData", successHandler, errorHandler)
+      );
+  }, [dispatch, tabIndex]);
 
   return (
     <Fragment>
@@ -329,6 +371,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
             removeArrowOnDeviceType={["tablet", "mobile"]}
             arrows={false}
             autoPlay={false}
+            shouldResetAutoplay={false}
           >
             <Box>
               <HighlightCards title="Todays Performer" cardData="" />
@@ -601,7 +644,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               alignItems: "center",
             }}
           >
-            <HtmlTable />
+            <HtmlTable tableData={tableData && tableData} />
           </Stack>
         </Grid>
 

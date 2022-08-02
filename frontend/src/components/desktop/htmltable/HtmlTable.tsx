@@ -7,14 +7,24 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, Box } from "@mui/material";
 import VoteBtn from "../button/votebtn/VoteBtn";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import moment from "moment";
+const HtmlTable = ({ tableData }: any) => {
+  const serverAPIUrl = process.env.REACT_APP_API_URL;
 
-const HtmlTable = () => {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead sx={{ backgroundColor: "#000000", color: "#FFFFF5" }}>
+      <Table
+        sx={{ minWidth: 650, backgroundColor: "transparent" }}
+        aria-label="simple table"
+        size="small"
+      >
+        <TableHead
+          sx={{ backgroundColor: "#000000", color: "#FFFFF5", height: 50 }}
+        >
           <TableRow sx={{ borderBottom: "2px solid black" }}>
             <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
               #
@@ -51,76 +61,280 @@ const HtmlTable = () => {
             </TableCell>
           </TableRow>
         </TableHead>
-        <TableBody sx={{ backgroundColor: "#010822", color: "white" }}>
-          <TableRow
-            sx={{
-              "&:last-child td, &:last-child th": { border: 0 },
-              borderBottom: "2px solid black",
-            }}
-          >
-            <TableCell component="th" scope="row" sx={{ color: "white" }}>
-              1
-            </TableCell>
-            <TableCell sx={{ color: "white" }}>
-              {" "}
-              <Avatar
-                alt="Remy Sharp"
-                src="https://mui.com/static/images/avatar/1.jpg"
-              />
-            </TableCell>
-            <TableCell sx={{ color: "white" }}>
-              <Stack direction="column">
-                <Typography variant="caption">Taroverse</Typography>
-                <Typography
-                  variant="caption"
-                  sx={{
-                    color: "#0F68A1",
-                    fontWeight: "bold",
-                    fontSize: "0.6rem",
-                  }}
-                >
-                  $TRSV
-                </Typography>
-              </Stack>
-            </TableCell>
-            <TableCell sx={{ color: "white" }}>
-              {" "}
-              <Avatar
-                alt="Remy Sharp"
-                src="https://mui.com/static/images/avatar/1.jpg"
-              />
-            </TableCell>
-            <TableCell sx={{ color: "white" }}>Test</TableCell>
-            <TableCell sx={{ color: "white" }}>Test</TableCell>
-            <TableCell sx={{ color: "white" }}>Test</TableCell>
-            <TableCell sx={{ color: "white" }}>Test</TableCell>
-            <TableCell sx={{ color: "white" }}>Test</TableCell>
-            <TableCell sx={{ color: "white" }}>Test</TableCell>
-            <TableCell sx={{ color: "white" }}>Test</TableCell>
-          </TableRow>
+        <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
+          {tableData &&
+            tableData.map((data: any, index: number) => (
+              <TableRow
+                sx={{
+                  "&:last-child td, &:last-child th": { border: 0 },
 
-          <TableRow
+                  border: 0,
+                  height: 20,
+                }}
+                key={index}
+              >
+                <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                  {index + 1}
+                </TableCell>
+                <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                  {" "}
+                  <Avatar
+                    alt={data?.name}
+                    src={`${serverAPIUrl}public/uploads/coins/${data?.logo}`}
+                    sx={{ width: 34, height: 34 }}
+                  />
+                </TableCell>
+                <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                  <Stack direction="column">
+                    <Typography variant="caption">{data?.name}</Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: "#0F68A1",
+                        fontWeight: "bold",
+                        fontSize: "0.6rem",
+                      }}
+                    >
+                      {data?.symbol}
+                    </Typography>
+                  </Stack>
+                </TableCell>
+                <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                  {" "}
+                  <Avatar
+                    alt={data?.name}
+                    src={`${serverAPIUrl}public/uploads/coins/${data?.chain}`}
+                    sx={{ width: 34, height: 34 }}
+                  />
+                </TableCell>
+                <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                  <Typography variant="caption">{data?.market_cap}</Typography>
+                </TableCell>
+                <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                  <Typography variant="caption">
+                    ${data?.current_price}
+                  </Typography>
+                </TableCell>
+                <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                  {" "}
+                  <Stack
+                    direction="row"
+                    sx={{ alignItems: "center", justifyContent: "center" }}
+                    spacing={0}
+                  >
+                    <Typography variant="caption">
+                      {Math.sign(parseInt(data?.pc_24h)) === -1 ? (
+                        <ArrowDropDownIcon sx={{ color: "#D40106" }} />
+                      ) : (
+                        <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                      )}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color:
+                          Math.sign(parseInt(data?.pc_24h)) === -1
+                            ? "#D40106"
+                            : "#00C080",
+                        fontWeight: 600,
+                        fontSize: ".7rem",
+                      }}
+                    >
+                      {data && parseInt(data?.pc_24h).toFixed(2)}%
+                    </Typography>
+                  </Stack>
+                </TableCell>
+                <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                  {" "}
+                  <Stack
+                    direction="row"
+                    sx={{ alignItems: "center", justifyContent: "center" }}
+                    spacing={0}
+                  >
+                    <Typography variant="caption">
+                      {Math.sign(parseInt(data?.pc_7d)) === -1 ? (
+                        <ArrowDropDownIcon sx={{ color: "#D40106" }} />
+                      ) : (
+                        <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                      )}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color:
+                          Math.sign(parseInt(data?.pc_7d)) === -1
+                            ? "#D40106"
+                            : "#00C080",
+                        fontWeight: 600,
+                        fontSize: ".7rem",
+                      }}
+                    >
+                      {data && parseInt(data?.pc_7d).toFixed(2)}%
+                    </Typography>
+                  </Stack>
+                </TableCell>
+                <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                  <Typography variant="caption">
+                    {" "}
+                    {moment(data?.listed, "YYYYMMDD").fromNow()}
+                  </Typography>
+                </TableCell>
+                <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                  <Stack direction="row" spacing={2} alignItems="center">
+                    <Box sx={{ minWidth: 30 }}>
+                      <Typography variant="caption"> {data?.vote}</Typography>
+                    </Box>
+                    <VoteBtn />
+                  </Stack>
+                </TableCell>
+                <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                  <Stack
+                    direction="row"
+                    spacing={0}
+                    alignItems="center"
+                    sx={{ flexWrap: "wrap" }}
+                  >
+                    {data?.badges?.vote?.status === 1 ? (
+                      <Avatar
+                        alt={data?.badges?.vote?.name}
+                        src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.vote?.active_icon}`}
+                        sx={{
+                          width: 25,
+                          height: 25,
+                          mr: 0.5,
+                          mb: 0.5,
+                        }}
+                      />
+                    ) : (
+                      <Avatar
+                        alt={data?.badges?.vote?.name}
+                        src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.vote?.inactive_icon}`}
+                        sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
+                      />
+                    )}
+                    {data?.badges?.airdrop?.status === 1 ? (
+                      <Avatar
+                        alt={data?.badges?.airdrop?.name}
+                        src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.airdrop?.active_icon}`}
+                        sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
+                      />
+                    ) : (
+                      <Avatar
+                        alt={data?.badges?.airdrop?.name}
+                        src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.airdrop?.inactive_icon}`}
+                        sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
+                      />
+                    )}
+
+                    {data?.badges?.ama?.status === 1 ? (
+                      <Avatar
+                        alt={data?.badges?.ama?.name}
+                        src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.ama?.active_icon}`}
+                        sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
+                      />
+                    ) : (
+                      <Avatar
+                        alt={data?.badges?.ama?.name}
+                        src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.ama?.inactive_icon}`}
+                        sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
+                      />
+                    )}
+
+                    {data?.badges?.audit?.status === 1 ? (
+                      <Avatar
+                        alt={data?.badges?.audit?.name}
+                        src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.audit?.active_icon}`}
+                        sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
+                      />
+                    ) : (
+                      <Avatar
+                        alt={data?.badges?.audit?.name}
+                        src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.audit?.inactive_icon}`}
+                        sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
+                      />
+                    )}
+
+                    {data?.badges?.kyc?.status === 1 ? (
+                      <Avatar
+                        alt={data?.badges?.kyc?.name}
+                        src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.kyc?.active_icon}`}
+                        sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
+                      />
+                    ) : (
+                      <Avatar
+                        alt={data?.badges?.kyc?.name}
+                        src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.kyc?.inactive_icon}`}
+                        sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
+                      />
+                    )}
+                    {data?.badges?.liquidity?.status === 1 ? (
+                      <Avatar
+                        alt={data?.badges?.liquidity?.name}
+                        src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.liquidity?.active_icon}`}
+                        sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
+                      />
+                    ) : (
+                      <Avatar
+                        alt={data?.badges?.liquidity?.name}
+                        src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.liquidity?.inactive_icon}`}
+                        sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
+                      />
+                    )}
+
+                    {data?.badges?.ownership?.status === 1 ? (
+                      <Avatar
+                        alt={data?.badges?.ownership?.name}
+                        src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.ownership?.active_icon}`}
+                        sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
+                      />
+                    ) : (
+                      <Avatar
+                        alt={data?.badges?.ownership?.name}
+                        src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.ownership?.inactive_icon}`}
+                        sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
+                      />
+                    )}
+
+                    {data?.badges?.presale?.status === 1 ? (
+                      <Avatar
+                        alt={data?.badges?.presale?.name}
+                        src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.presale?.active_icon}`}
+                        sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
+                      />
+                    ) : (
+                      <Avatar
+                        alt={data?.badges?.presale?.name}
+                        src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.presale?.inactive_icon}`}
+                        sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
+                      />
+                    )}
+                  </Stack>
+                </TableCell>
+              </TableRow>
+            ))}
+
+          {/* <TableRow
             sx={{
               "&:last-child td, &:last-child th": { border: 0 },
               borderBottom: "2px solid black",
             }}
           >
-            <TableCell component="th" scope="row" sx={{ color: "white" }}>
+            <TableCell component="th" scope="row" sx={{ color:"#FFFFFF" }}>
               1
             </TableCell>
-            <TableCell sx={{ color: "white" }}>Test</TableCell>
-            <TableCell sx={{ color: "white" }}>Test</TableCell>
-            <TableCell sx={{ color: "white" }}>Test</TableCell>
-            <TableCell sx={{ color: "white" }}>Test</TableCell>
-            <TableCell sx={{ color: "white" }}>Test</TableCell>
-            <TableCell sx={{ color: "white" }}>Test</TableCell>
-            <TableCell sx={{ color: "white" }}>Test</TableCell>
-            <TableCell sx={{ color: "white" }}>Test</TableCell>
-            <TableCell sx={{ color: "white" }}>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>
               <VoteBtn />
             </TableCell>
-            <TableCell sx={{ color: "white" }}>Test</TableCell>
-          </TableRow>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          </TableRow> */}
         </TableBody>
       </Table>
     </TableContainer>
