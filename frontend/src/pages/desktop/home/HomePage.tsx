@@ -84,15 +84,15 @@ const responsiveHighlights = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 3,
+    items: 3.5,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 3,
+    items: 3.5,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2,
+    items: 2.5,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
@@ -328,6 +328,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
             infinite={true}
             removeArrowOnDeviceType={["tablet", "mobile"]}
             arrows={false}
+            autoPlay={false}
           >
             <Box>
               <HighlightCards title="Todays Performer" cardData="" />
@@ -417,30 +418,12 @@ const HomePage = ({ windowInnerWidth }: any) => {
                   justifyContent: "space-between",
                 }}
               >
-                <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
-                  <FeaturedCoinCards />
-                </Grid>
-                <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
-                  <FeaturedCoinCards />
-                </Grid>
-                <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
-                  <FeaturedCoinCards />
-                </Grid>
-                <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
-                  <FeaturedCoinCards />
-                </Grid>
-                <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
-                  <FeaturedCoinCards />
-                </Grid>
-                <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
-                  <FeaturedCoinCards />
-                </Grid>
-                <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
-                  <FeaturedCoinCards />
-                </Grid>
-                <Grid xs={12} sm={6} md={4} lg={3} xl={3}>
-                  <FeaturedCoinCards />
-                </Grid>
+                {featuredCoinList &&
+                  featuredCoinList?.map((data: any, index: number) => (
+                    <Grid xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
+                      <FeaturedCoinCards cardData={data} />
+                    </Grid>
+                  ))}
               </Stack>
             </Grid>
           </Stack>

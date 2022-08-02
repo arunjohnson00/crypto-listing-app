@@ -10,7 +10,7 @@ import {
 import Rating from "@mui/material/Rating";
 import { fontSize } from "@mui/system";
 
-const FeaturedCoinCards = () => {
+const FeaturedCoinCards = ({ cardData }: any) => {
   return (
     <Grid item xs={12} sm={11} md={11} lg={11} xl={11} mb={3}>
       <Box
@@ -38,7 +38,7 @@ const FeaturedCoinCards = () => {
                   variant="caption"
                   sx={{ color: "white", fontWeight: "600" }}
                 >
-                  IRENA Coin
+                  {cardData && cardData?.name}
                 </Typography>
                 <Typography
                   variant="caption"
@@ -48,7 +48,7 @@ const FeaturedCoinCards = () => {
                     fontSize: "0.59rem",
                   }}
                 >
-                  IRENA
+                  {cardData && cardData?.symbol}
                 </Typography>
                 <Typography
                   variant="caption"
@@ -63,11 +63,11 @@ const FeaturedCoinCards = () => {
                 variant="h5"
                 sx={{ color: "#FFFFF5", fontWeight: "400" }}
               >
-                4.9
+                {cardData && parseInt(cardData?.rating).toFixed(1)}
               </Typography>
               <Rating
                 name="size-small"
-                defaultValue={5}
+                defaultValue={cardData && parseInt(cardData?.rating).toFixed(0)}
                 size="small"
                 readOnly
                 sx={{ fontSize: ".9rem" }}
@@ -93,7 +93,10 @@ const FeaturedCoinCards = () => {
               variant="subtitle1"
               sx={{ color: "white", fontSize: ".7rem" }}
             >
-              6 Days 7 Hours 19 Minutes
+              {
+                //6 Days 7 Hours 19 Minutes
+              }
+              {cardData && cardData?.presale_date}
             </Typography>
           </Stack>
 
