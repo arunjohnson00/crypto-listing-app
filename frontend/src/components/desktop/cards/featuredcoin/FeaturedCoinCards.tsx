@@ -17,6 +17,27 @@ const FeaturedCoinCards = ({ cardData }: any) => {
     const diffInMs = Math.abs(date2 - date1);
     return diffInMs / (1000 * 60 * 60 * 24);
   };
+
+  const getDifferenceInAll: any = (start: any, end: any) => {
+    const duration: any = moment.duration(moment(end).diff(moment(start)));
+
+    //Get Days
+    const days = Math.floor(duration.asDays()); // .asDays returns float but we are interested in full days only
+    const daysFormatted = days ? `${days} Days ` : ""; // if no full days then do not display it at all
+
+    //Get Hours
+    const hours = duration.hours();
+    const hoursFormatted = `${hours} Hour `;
+
+    //Get Minutes
+    const minutes = duration.minutes();
+    const minutesFormatted = `${minutes}Minutes`;
+
+    return duration?._data?.days <= 0
+      ? "Presale Ended"
+      : [daysFormatted, hoursFormatted, minutesFormatted].join("");
+  };
+
   const serverAPIUrl = process.env.REACT_APP_API_URL;
   return (
     <Grid item xs={12} sm={11} md={11} lg={11} xl={11} mb={3}>
@@ -111,9 +132,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
               {
                 //6 Days 7 Hours 19 Minutes
               }
-              {cardData && parseInt(cardData?.is_presale) === 1
-                ? cardData?.presale_date
-                : "Not Available"}
+              {getDifferenceInAll(new Date(), new Date(cardData?.presale_date))}
             </Typography>
           </Stack>
 
@@ -238,6 +257,9 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   variant="caption"
                   sx={{ color: "#FFFFF5", fontWeight: 600, fontSize: ".7rem" }}
                 >
+                  {/* {moment(new Date(cardData?.presale_end_date)).from(
+                    new Date()
+                  )} */}
                   In{" "}
                   {cardData &&
                     Math.floor(
