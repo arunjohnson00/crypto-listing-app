@@ -35,7 +35,7 @@ import settingsReducer from "./settingsReducer";
 import dashboardReducer from "./dashboardReducer";
 import emailReducer from "./emailReducer";
 import adsReducer from "./adsReducer";
-
+import nftNetworksReducer from "./nftNetworksReducer";
 const allReducers = combineReducers({
   Auth,
   deleteRowReducer,
@@ -66,6 +66,7 @@ const allReducers = combineReducers({
   dashboardReducer,
   emailReducer,
   adsReducer,
+  nftNetworksReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

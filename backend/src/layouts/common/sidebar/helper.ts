@@ -44,6 +44,7 @@ export const sideBarMenu = [
     subMenu: [
       { id: "41", title: "nft-listing-category", icon: nftListingCategoryIcon },
       { id: "42", title: "nft-listing-currency", icon: nftListingCurrencyIcon },
+      { id: "42", title: "nft-networks", icon: nftListingCurrencyIcon },
     ],
   },
   { id: "5", title: "nft-marketplaces", icon: nftMarketPlacesIcon },

@@ -104,6 +104,16 @@ export { updateNftListingRequest } from "./nftListingAction";
 export { viewNftListingRequest } from "./nftListingAction";
 export { searchNftListingRequest } from "./nftListingAction";
 export { allNftListingRequest } from "./nftListingAction";
+
+//NFT NETWORKS
+
+export { listNFTNetworkRequest } from "./nftNetworkAction";
+export { addNFTNetworkRequest } from "./nftNetworkAction";
+export { editNFTNetworkRequest } from "./nftNetworkAction";
+export { updateNFTNetworkRequest } from "./nftNetworkAction";
+export { viewNFTNetworkRequest } from "./nftNetworkAction";
+export { allNFTNetworkRequest } from "./nftNetworkAction";
+export { searchNFTNetworkRequest } from "./nftNetworkAction";
 //Common NFT MarketPlaces Actions
 
 export { listNftMarketPlaceRequest } from "./nftMaketPlacesAction";

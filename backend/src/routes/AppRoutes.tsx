@@ -97,6 +97,11 @@ import ViewFullList from "../pages/viewfulllist/ViewFullList";
 import CreateNewAdWizard from "../pages/ads/createnewadwizard/CreateNewAdWizard";
 import AdsConfigurationListing from "../pages/adsconfiguration/AdsConfigurationListing";
 import CreateNewAdConfiguration from "../pages/adsconfiguration/add/CreateNewAdConfiguration";
+import NFTNetworks from "../pages/nftnetworks/NFTNetworks";
+
+import NFTNetworkAdd from "../pages/nftnetworks/add/NFTNetworkAdd";
+import NFTNetworkEdit from "../pages/nftnetworks/edit/NFTNetworkEdit";
+import NFTNetworkView from "../pages/nftnetworks/view/NFTNetworkView";
 
 const AppRoutes = () => {
   return (
@@ -728,6 +733,42 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <EventCategoryView />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/nft-networks"
+          element={
+            <PrivateRoute>
+              <NFTNetworks />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/nft-networks/add"
+          element={
+            <PrivateRoute>
+              <NFTNetworkAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/nft-networks/edit/:id"
+          element={
+            <PrivateRoute>
+              <NFTNetworkEdit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/nft-networks/view/:id"
+          element={
+            <PrivateRoute>
+              <NFTNetworkView />
             </PrivateRoute>
           }
         />
