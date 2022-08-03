@@ -8,7 +8,10 @@ import Avatar from "@mui/material/Avatar";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
-import { listNetworkRequest, searchNetworkRequest } from "../../store/action";
+import {
+  listNFTNetworkRequest,
+  searchNFTNetworkRequest,
+} from "../../store/action";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -30,7 +33,7 @@ const NFTNetworks = () => {
     setSearchValue(searchVal);
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
-    dispatch(searchNetworkRequest(searchVal, successHandler, errorHandler));
+    dispatch(searchNFTNetworkRequest(searchVal, successHandler, errorHandler));
   };
 
   var filteredData =
@@ -50,7 +53,9 @@ const NFTNetworks = () => {
     const errorHandler = (err: any) => {
       console.log(err);
     };
-    dispatch(listNetworkRequest(dataTableParams, successHandler, errorHandler));
+    dispatch(
+      listNFTNetworkRequest(dataTableParams, successHandler, errorHandler)
+    );
   }, [dispatch, dataTableParams, setDataTableParams]);
 
   const tableColumn = [
@@ -85,20 +90,20 @@ const NFTNetworks = () => {
       ),
     },
 
-    {
-      field: "chain_id",
-      headerName: "Chain ID",
-      flex: 1,
-      align: "center",
-      headerAlign: "center",
-    },
-    {
-      field: "currency_symbol",
-      headerName: "Symbol",
-      flex: 1,
-      align: "center",
-      headerAlign: "center",
-    },
+    // {
+    //   field: "chain_id",
+    //   headerName: "Chain ID",
+    //   flex: 1,
+    //   align: "center",
+    //   headerAlign: "center",
+    // },
+    // {
+    //   field: "currency_symbol",
+    //   headerName: "Symbol",
+    //   flex: 1,
+    //   align: "center",
+    //   headerAlign: "center",
+    // },
 
     {
       field: "explorer_url",

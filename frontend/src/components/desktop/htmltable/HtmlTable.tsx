@@ -112,7 +112,9 @@ const HtmlTable = ({ tableData }: any) => {
                 </TableCell>
                 <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                   <Typography variant="caption">
-                    ${data?.current_price}
+                    {data && data?.pc_24h !== null
+                      ? "$" + data?.current_price
+                      : "--"}
                   </Typography>
                 </TableCell>
                 <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
@@ -123,10 +125,14 @@ const HtmlTable = ({ tableData }: any) => {
                     spacing={0}
                   >
                     <Typography variant="caption">
-                      {Math.sign(parseInt(data?.pc_24h)) === -1 ? (
+                      {data &&
+                      data?.pc_24h !== null &&
+                      Math.sign(parseInt(data?.pc_24h)) === -1 ? (
                         <ArrowDropDownIcon sx={{ color: "#D40106" }} />
                       ) : (
-                        <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                        data?.pc_24h !== null && (
+                          <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                        )
                       )}
                     </Typography>
                     <Typography
@@ -140,7 +146,9 @@ const HtmlTable = ({ tableData }: any) => {
                         fontSize: ".7rem",
                       }}
                     >
-                      {data && parseInt(data?.pc_24h).toFixed(2)}%
+                      {data && data?.pc_24h !== null
+                        ? parseFloat(data?.pc_24h).toFixed(2) + "%"
+                        : "--"}
                     </Typography>
                   </Stack>
                 </TableCell>
@@ -152,10 +160,14 @@ const HtmlTable = ({ tableData }: any) => {
                     spacing={0}
                   >
                     <Typography variant="caption">
-                      {Math.sign(parseInt(data?.pc_7d)) === -1 ? (
+                      {data &&
+                      data?.pc_7d !== null &&
+                      Math.sign(parseInt(data?.pc_7d)) === -1 ? (
                         <ArrowDropDownIcon sx={{ color: "#D40106" }} />
                       ) : (
-                        <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                        data?.pc_7d !== null && (
+                          <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                        )
                       )}
                     </Typography>
                     <Typography
@@ -169,7 +181,9 @@ const HtmlTable = ({ tableData }: any) => {
                         fontSize: ".7rem",
                       }}
                     >
-                      {data && parseInt(data?.pc_7d).toFixed(2)}%
+                      {data && data?.pc_7d !== null
+                        ? parseFloat(data?.pc_7d).toFixed(2) + "%"
+                        : "--"}
                     </Typography>
                   </Stack>
                 </TableCell>

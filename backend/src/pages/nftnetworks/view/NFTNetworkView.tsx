@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
-import { viewNetworkRequest } from "../../../store/action";
+import { viewNFTNetworkRequest } from "../../../store/action";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -35,7 +35,7 @@ const NFTNetworkView = () => {
     const errorHandler = (err: any) => {
       //console.log(err);
     };
-    dispatch(viewNetworkRequest({ id: id }, successHandler, errorHandler));
+    dispatch(viewNFTNetworkRequest({ id: id }, successHandler, errorHandler));
   }, [dispatch, id]);
   return (
     <Grid container spacing={2}>

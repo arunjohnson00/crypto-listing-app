@@ -34,7 +34,7 @@ const HighlightCards = ({ title, cardData }: any) => {
     return (
       <li
         className={active ? "active" : "inactive"}
-        style={{ paddingTop: 1.5, paddingBottom: 3.5 }}
+        style={{ paddingTop: 1.5, paddingBottom: 11 }}
         onClick={() => onClick()}
       >
         <HorizontalRuleRoundedIcon
@@ -103,7 +103,7 @@ const HighlightCards = ({ title, cardData }: any) => {
                 direction="row"
                 spacing={4}
                 sx={{ alignItems: "center", justifyContent: "space-between" }}
-                py={0}
+                py={0.5}
               >
                 <Grid item xs={10}>
                   <Stack
@@ -165,13 +165,19 @@ const HighlightCards = ({ title, cardData }: any) => {
                         fontWeight: "600",
                       }}
                     >
-                      {data && parseInt(data?.percent_change).toFixed(2)}%
+                      {data && data?.percent_change !== null
+                        ? parseInt(data?.percent_change).toFixed(2) + "%"
+                        : "--"}
                     </Typography>
                     <Typography variant="caption">
-                      {Math.sign(parseInt(data?.percent_change)) === -1 ? (
+                      {data &&
+                      data?.percent_change !== null &&
+                      Math.sign(parseInt(data?.percent_change)) === -1 ? (
                         <ArrowDropDownIcon sx={{ color: "red" }} />
                       ) : (
-                        <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                        data?.percent_change !== null && (
+                          <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                        )
                       )}
                     </Typography>
                   </Stack>
@@ -187,7 +193,7 @@ const HighlightCards = ({ title, cardData }: any) => {
                 direction="row"
                 spacing={4}
                 sx={{ alignItems: "center", justifyContent: "space-between" }}
-                py={0}
+                py={0.5}
               >
                 <Grid item xs={10}>
                   <Stack
@@ -249,13 +255,19 @@ const HighlightCards = ({ title, cardData }: any) => {
                         fontWeight: "600",
                       }}
                     >
-                      {data && parseInt(data?.percent_change).toFixed(2)}%
+                      {data && data?.percent_change !== null
+                        ? parseInt(data?.percent_change).toFixed(2) + "%"
+                        : "--"}
                     </Typography>
                     <Typography variant="caption">
-                      {Math.sign(parseInt(data?.percent_change)) === -1 ? (
+                      {data &&
+                      data?.percent_change !== null &&
+                      Math.sign(parseInt(data?.percent_change)) === -1 ? (
                         <ArrowDropDownIcon sx={{ color: "red" }} />
                       ) : (
-                        <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                        data?.percent_change !== null && (
+                          <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                        )
                       )}
                     </Typography>
                   </Stack>
@@ -271,7 +283,7 @@ const HighlightCards = ({ title, cardData }: any) => {
                 direction="row"
                 spacing={4}
                 sx={{ alignItems: "center", justifyContent: "space-between" }}
-                py={0}
+                py={0.5}
               >
                 <Grid item xs={10}>
                   <Stack
@@ -333,13 +345,19 @@ const HighlightCards = ({ title, cardData }: any) => {
                         fontWeight: "600",
                       }}
                     >
-                      {data && parseInt(data?.percent_change).toFixed(2)}%
+                      {data && data?.percent_change !== null
+                        ? parseFloat(data?.percent_change).toFixed(2) + "%"
+                        : "--"}
                     </Typography>
                     <Typography variant="caption">
-                      {Math.sign(parseInt(data?.percent_change)) === -1 ? (
+                      {data &&
+                      data?.percent_change !== null &&
+                      Math.sign(parseInt(data?.percent_change)) === -1 ? (
                         <ArrowDropDownIcon sx={{ color: "red" }} />
                       ) : (
-                        <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                        data?.percent_change !== null && (
+                          <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                        )
                       )}
                     </Typography>
                   </Stack>

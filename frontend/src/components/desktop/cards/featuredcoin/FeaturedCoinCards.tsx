@@ -304,9 +304,9 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                       fontSize: ".7rem",
                     }}
                   >
-                    {cardData &&
-                      parseInt(cardData?.percent_change_1h).toFixed(2)}
-                    %
+                    {cardData && cardData?.percent_change_1h !== null
+                      ? parseFloat(cardData?.percent_change_1h).toFixed(2) + "%"
+                      : "--"}
                   </Typography>
                   <Typography variant="caption">
                     {Math.sign(parseInt(cardData?.percent_change_1h)) === -1 ? (
@@ -350,9 +350,10 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                       fontSize: ".7rem",
                     }}
                   >
-                    {cardData &&
-                      parseInt(cardData?.percent_change_24h).toFixed(2)}
-                    %
+                    {cardData && cardData?.percent_change_24h !== null
+                      ? parseFloat(cardData?.percent_change_24h).toFixed(2) +
+                        "%"
+                      : "--"}
                   </Typography>
                   <Typography variant="caption">
                     {Math.sign(parseInt(cardData?.percent_change_24h)) ===
