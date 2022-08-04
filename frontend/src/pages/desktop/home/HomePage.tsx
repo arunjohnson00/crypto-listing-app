@@ -262,7 +262,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               alignItems: "center",
             }}
           >
-            <CoinSlider />
+            {/* <CoinSlider /> */}
           </Stack>
         </Grid>
 

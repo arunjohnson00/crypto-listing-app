@@ -66,7 +66,7 @@ const SinglePageTab = () => {
             <Tab label="KYC Details" value="8" />
             <Tab label="Audit Details" value="9" />
           </TabList>
-          <Divider sx={{ borderColor: "#2D2858", borderBottomWidth: "2px" }} />
+          <Divider sx={{ borderColor: "#2D2858", borderBottomWidth: "1px" }} />
         </Box>
         <TabPanel value="1">
           <CoinPageOverview />

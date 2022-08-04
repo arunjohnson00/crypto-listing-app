@@ -289,8 +289,8 @@ const SingleCoinHeader = ({ coinData }: any) => {
         <Box
           sx={{
             flexGrow: 1,
-            borderTop: "2px solid #292654",
-            borderBottom: "2px solid #292654",
+            borderTop: "1px solid #292654",
+            borderBottom: "1px solid #292654",
           }}
           py={2}
         >
@@ -341,7 +341,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               variant="middle"
               flexItem
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
+              sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
             />
 
             <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
@@ -407,7 +407,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               variant="middle"
               flexItem
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
+              sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
             />
 
             <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
@@ -511,7 +511,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               variant="middle"
               flexItem
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
+              sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
             />
             {/* <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
               <Stack
@@ -544,7 +544,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               variant="middle"
               flexItem
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
+              sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
             />
 
             <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
@@ -578,7 +578,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               variant="middle"
               flexItem
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
+              sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
             />
             <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
               <Stack
@@ -632,7 +632,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               variant="middle"
               flexItem
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
+              sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
             /> */}
           </Stack>
         </Box>
@@ -642,7 +642,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
           sx={{
             flexGrow: 1,
             // borderTop: "2px solid #292654",
-            borderBottom: "2px solid #292654",
+            borderBottom: "1px solid #292654",
           }}
           py={2}
         >
@@ -727,7 +727,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               variant="middle"
               flexItem
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
+              sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
             />
 
             <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
@@ -805,7 +805,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               variant="middle"
               flexItem
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
+              sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
             />
             <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
               <Stack
@@ -861,7 +861,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               variant="middle"
               flexItem
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
+              sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
             />
 
             <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
@@ -958,7 +958,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               variant="middle"
               flexItem
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
+              sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
             />
             <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
               <Stack
@@ -1030,7 +1030,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               variant="middle"
               flexItem
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
+              sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
             />
 
             <Stack
@@ -1075,22 +1075,18 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     ? parseInt(coinData?.score[0]?.trust_score).toFixed(1)
                     : "--"}
                 </Typography>
-                <Rating
-                  name="size-small"
-                  defaultValue={
-                    coinData?.score[0]?.trust_score !== null
-                      ? coinData?.score[0]?.trust_score
-                      : 0
-                  }
-                  value={
-                    coinData?.score[0]?.trust_score !== null
-                      ? coinData?.score[0]?.trust_score
-                      : 0
-                  }
-                  size="small"
-                  readOnly
-                  sx={{ fontSize: ".9rem" }}
-                />
+
+                {coinData && coinData?.score[0]?.trust_score !== null && (
+                  <Rating
+                    name="size-small"
+                    precision={0.5}
+                    defaultValue={coinData?.score[0]?.trust_score}
+                    value={coinData?.score[0]?.trust_score}
+                    size="small"
+                    readOnly
+                    sx={{ fontSize: ".9rem" }}
+                  />
+                )}
               </Stack>
             </Stack>
           </Stack>

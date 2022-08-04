@@ -121,7 +121,7 @@ const SingleCoinPage = () => {
               alignItems: "center",
             }}
           >
-            <CoinSlider />
+            {/* <CoinSlider /> */}
           </Stack>
         </Grid>
 
