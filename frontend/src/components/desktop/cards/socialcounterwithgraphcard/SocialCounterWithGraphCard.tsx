@@ -2,7 +2,13 @@ import { useState, useEffect } from "react";
 import { Grid, Box, Stack, Avatar, Typography } from "@mui/material";
 import Chart from "react-apexcharts";
 
-const SocialCounterWithGraphCard = ({ title, cardData, icon, color }: any) => {
+const SocialCounterWithGraphCard = ({
+  title,
+  cardData,
+  icon,
+  endColor,
+  startColor,
+}: any) => {
   const [data, updateData] = useState([1, 2, 3, 4, 5, 6]);
 
   useEffect(() => {
@@ -25,7 +31,7 @@ const SocialCounterWithGraphCard = ({ title, cardData, icon, color }: any) => {
     ],
 
     options: {
-      colors: [color && color],
+      colors: [startColor, endColor],
       chart: {
         height: "auto",
         type: "area",
@@ -51,12 +57,24 @@ const SocialCounterWithGraphCard = ({ title, cardData, icon, color }: any) => {
         type: "gradient",
         gradient: {
           shade: "dark",
-          gradientToColors: [color && color],
+          gradientToColors: [startColor, endColor],
           shadeIntensity: 1,
           type: "horizontal",
           opacityFrom: 1,
           opacityTo: 1,
           stops: [0, 100, 100, 100],
+          colorStops: [
+            {
+              offset: 0,
+              color: startColor,
+              opacity: 1,
+            },
+            {
+              offset: 130,
+              color: endColor,
+              opacity: 1,
+            },
+          ],
         },
       },
 

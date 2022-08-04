@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import moment from "moment";
 import {
   Grid,
   Stack,
@@ -10,7 +10,8 @@ import {
   Divider,
 } from "@mui/material";
 import Rating from "@mui/material/Rating";
-import StarOutlineOutlinedIcon from "@mui/icons-material/StarOutlineOutlined";
+import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
+import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Chip from "@mui/material/Chip";
 import MoodIcon from "@mui/icons-material/Mood";
@@ -126,22 +127,23 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       variant="h6"
                       sx={{
                         color: "#FFFFF5",
-                        fontWeight: 500,
+                        fontWeight: 400,
                         textTransform: "uppercase",
                       }}
                       textAlign={{ xs: "center", sm: "center", md: "left" }}
                     >
-                      {coinData &&
-                        coinData?.symbol !== null &&
-                        coinData?.symbol}
+                      {coinData && coinData?.symbol !== null
+                        ? coinData?.symbol
+                        : "--"}
                     </Typography>
                     <Rating
                       name="size-large"
                       defaultValue={1}
                       size="large"
                       max={1}
-                      icon={
-                        <StarOutlineOutlinedIcon sx={{ color: "#FFFFF5" }} />
+                      icon={<StarRoundedIcon sx={{ color: "#FAAF00" }} />}
+                      emptyIcon={
+                        <StarBorderRoundedIcon sx={{ color: "#FFFFF5" }} />
                       }
                     />
                   </Stack>
@@ -153,9 +155,9 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   pt={0.5}
                 >
                   <Typography variant="h4" sx={{ color: "#FFFFF5" }}>
-                    {coinData &&
-                      coinData?.current_price !== null &&
-                      coinData?.current_price}
+                    {coinData && coinData?.current_price !== null
+                      ? "$" + parseInt(coinData?.current_price).toFixed(2)
+                      : "__"}
                   </Typography>
                   <Chip
                     icon={<ArrowDropDownIcon />}
@@ -188,15 +190,16 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     sx={{
                       backgroundColor: "#6252E7",
                       textTransform: "capitalize",
+                      fontSize: ".8rem",
                     }}
                   >
-                    By on pancakeswap
+                    Buy on pancakeswap
                   </Button>
 
                   <Chip
-                    label={
+                    label={`${
                       coinData && coinData?.vote !== null && coinData?.vote
-                    }
+                    } Votes`}
                     sx={{
                       height: "36px",
                       borderRadius: "4px",
@@ -308,19 +311,30 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 }}
                 spacing={1}
               >
-                <Typography variant="caption" sx={{ color: "#23E2A0" }}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "#19ffb0",
+                    fontSize: "0.60rem",
+                  }}
+                >
                   Listed
                 </Typography>
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
 
-              <Typography variant="subtitle2" sx={{ color: "#FFFFF5" }}>
-                3 Hrs ago
+              <Typography
+                variant="subtitle2"
+                sx={{ color: "#FFFFF5", fontSize: "0.75rem" }}
+              >
+                {coinData && coinData?.approved_at !== null
+                  ? moment(new Date(coinData?.approved_at)).fromNow()
+                  : "NA"}
               </Typography>
             </Stack>
             <Divider
@@ -342,13 +356,16 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   lg: "flex-start",
                 }}
               >
-                <Typography variant="caption" sx={{ color: "#23E2A0" }}>
+                <Typography
+                  variant="caption"
+                  sx={{ color: "#19ffb0", fontSize: "0.60rem" }}
+                >
                   Network
                 </Typography>
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -359,8 +376,13 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 spacing={0}
               >
                 {" "}
-                <Typography variant="subtitle2" sx={{ color: "#FFFFF5" }}>
-                  {coinData && coinData?.network !== null && coinData?.network}
+                <Typography
+                  variant="subtitle2"
+                  sx={{ color: "#FFFFF5", fontSize: "0.75rem" }}
+                >
+                  {coinData && coinData?.network !== null
+                    ? coinData?.network
+                    : "NA"}
                 </Typography>
                 <IconButton
                   aria-label="more"
@@ -400,13 +422,16 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   lg: "flex-start",
                 }}
               >
-                <Typography variant="caption" sx={{ color: "#23E2A0" }}>
+                <Typography
+                  variant="caption"
+                  sx={{ color: "#19ffb0", fontSize: "0.60rem" }}
+                >
                   Token contract address
                 </Typography>
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -417,19 +442,24 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 spacing={0}
               >
                 {" "}
-                <Typography variant="subtitle2" sx={{ color: "#FFFFF5" }}>
+                <Typography
+                  variant="subtitle2"
+                  sx={{ color: "#FFFFF5", fontSize: "0.75rem" }}
+                >
                   {`${
                     coinData &&
                     coinData?.address !== null &&
-                    coinData?.address !== "" &&
-                    coinData?.address.substring(0, 14)
+                    coinData?.address !== ""
+                      ? coinData?.address.substring(0, 14)
+                      : "NA"
                   } 
                       .........
                       ${
                         coinData &&
                         coinData?.address !== null &&
-                        coinData?.address !== "" &&
-                        coinData?.address.slice(-6)
+                        coinData?.address !== ""
+                          ? coinData?.address.slice(-6)
+                          : "NA"
                       }`}
                 </Typography>
                 <CopyToClipboard
@@ -451,7 +481,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     <Tooltip title={`${copied ? "Copied" : "Copy this Token"}`}>
                       <ContentCopyIcon
                         sx={{
-                          color: `${copied ? "#23D471" : "#23D471"}`,
+                          color: `${copied ? "#19ffb0" : "#19ffb0"}`,
                           fontSize: ".9rem",
                         }}
                       />
@@ -495,13 +525,13 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   lg: "flex-start",
                 }}
               >
-                <Typography variant="caption" sx={{ color: "#23E2A0" }}>
+                <Typography variant="caption" sx={{ color: "#19ffb0",fontSize:"0.60rem"  }}>
                   Total Holders
                 </Typography>
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -529,13 +559,13 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   lg: "flex-start",
                 }}
               >
-                <Typography variant="caption" sx={{ color: "#23E2A0" }}>
+                <Typography variant="caption" sx={{ color: "#19ffb0",fontSize:"0.60rem"  }}>
                   In Watchlist
                 </Typography>
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -562,13 +592,13 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   lg: "flex-start",
                 }}
               >
-                <Typography variant="caption" sx={{ color: "#23E2A0" }}>
+                <Typography variant="caption" sx={{ color: "#19ffb0",fontSize:"0.60rem"  }}>
                   Total Liquidity in pool
                 </Typography>
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -581,19 +611,22 @@ const SingleCoinHeader = ({ coinData }: any) => {
               title="Twitter Followers"
               cardData=""
               icon=""
-              color="#15BCD5"
+              endColor="#43baff"
+              startColor="#00e8fd"
             />
             <SocialCounterWithGraphCard
               title="Telegram Followers"
               cardData=""
               icon=""
-              color="#1093D3"
+              endColor="#2e67f6"
+              startColor="#13b0fc"
             />
             <SocialCounterWithGraphCard
               title="Reddit Subscribers"
               cardData=""
               icon=""
-              color="#E02409"
+              endColor="#ff6e4c"
+              startColor="#ff3708"
             />
             {/* <Divider
               variant="middle"
@@ -611,16 +644,14 @@ const SingleCoinHeader = ({ coinData }: any) => {
             // borderTop: "2px solid #292654",
             borderBottom: "2px solid #292654",
           }}
+          py={2}
         >
           <Stack
             direction={{ xs: "column", sm: "column", md: "column", lg: "row" }}
             spacing={1}
             sx={{ alignItems: "center", justifyContent: "space-between" }}
           >
-            <Stack
-              direction={{ xs: "column", sm: "column", md: "column" }}
-              py={2}
-            >
+            <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
                 sx={{ alignItems: "center" }}
@@ -641,7 +672,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -670,10 +701,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     lg: "flex-start",
                   }}
                 >
-                  <SingleCoinChip
-                    src={LinkImage}
-                    title="Safemoonunityindia.com"
-                  />
+                  <SingleCoinChip src={LinkImage} title="Safemoonun.com" />
 
                   <IconButton
                     aria-label="more"
@@ -702,10 +730,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
             />
 
-            <Stack
-              direction={{ xs: "column", sm: "column", md: "column" }}
-              py={2}
-            >
+            <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
                 sx={{ alignItems: "center" }}
@@ -726,7 +751,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -782,10 +807,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
               sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
             />
-            <Stack
-              direction={{ xs: "column", sm: "column", md: "column" }}
-              py={2}
-            >
+            <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
                 sx={{ alignItems: "center" }}
@@ -806,7 +828,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -863,7 +885,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -938,10 +960,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
               sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
             />
-            <Stack
-              direction={{ xs: "column", sm: "column", md: "column" }}
-              py={2}
-            >
+            <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
                 sx={{ alignItems: "center" }}
@@ -962,7 +981,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -1016,8 +1035,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
 
             <Stack
               direction={{ xs: "column", sm: "column", md: "column" }}
-              sx={{ alignItems: "center" }}
-              py={2}
+              sx={{ alignItems: "center", minWidth: 100 }}
             >
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
@@ -1030,13 +1048,16 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 }}
                 spacing={1}
               >
-                <Typography variant="caption" sx={{ color: "#23E2A0" }}>
-                  Listed
+                <Typography
+                  variant="caption"
+                  sx={{ color: "#19ffb0", fontSize: "0.60rem" }}
+                >
+                  Trust Score
                 </Typography>
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -1047,14 +1068,25 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 sx={{ alignItems: "center" }}
               >
                 <Typography
-                  variant="h5"
+                  variant="h3"
                   sx={{ color: "#FFFFF5", fontWeight: "400" }}
                 >
-                  4.9
+                  {coinData && coinData?.score[0]?.trust_score !== null
+                    ? parseInt(coinData?.score[0]?.trust_score).toFixed(1)
+                    : "--"}
                 </Typography>
                 <Rating
                   name="size-small"
-                  defaultValue={5}
+                  defaultValue={
+                    coinData?.score[0]?.trust_score !== null
+                      ? coinData?.score[0]?.trust_score
+                      : 0
+                  }
+                  value={
+                    coinData?.score[0]?.trust_score !== null
+                      ? coinData?.score[0]?.trust_score
+                      : 0
+                  }
                   size="small"
                   readOnly
                   sx={{ fontSize: ".9rem" }}

@@ -310,6 +310,12 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   sx={{ alignItems: "center", justifyContent: "center" }}
                   spacing={0}
                 >
+                  {Math.sign(parseInt(cardData?.percent_change_1h)) === -1 ? (
+                    <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                  ) : (
+                    <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                  )}
+
                   <Typography
                     variant="caption"
                     sx={{
@@ -324,13 +330,6 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                     {cardData && cardData?.percent_change_1h !== null
                       ? parseFloat(cardData?.percent_change_1h).toFixed(2) + "%"
                       : "--"}
-                  </Typography>
-                  <Typography variant="caption">
-                    {Math.sign(parseInt(cardData?.percent_change_1h)) === -1 ? (
-                      <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                    ) : (
-                      <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                    )}
                   </Typography>
                 </Stack>
               </Stack>
@@ -356,6 +355,12 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   sx={{ alignItems: "center", justifyContent: "center" }}
                   spacing={0}
                 >
+                  {Math.sign(parseInt(cardData?.percent_change_24h)) === -1 ? (
+                    <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                  ) : (
+                    <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                  )}
+
                   <Typography
                     variant="caption"
                     sx={{
@@ -371,14 +376,6 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                       ? parseFloat(cardData?.percent_change_24h).toFixed(2) +
                         "%"
                       : "--"}
-                  </Typography>
-                  <Typography variant="caption">
-                    {Math.sign(parseInt(cardData?.percent_change_24h)) ===
-                    -1 ? (
-                      <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                    ) : (
-                      <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                    )}
                   </Typography>
                 </Stack>
               </Stack>

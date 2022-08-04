@@ -121,12 +121,12 @@ const HtmlTable = ({ tableData }: any) => {
                     sx={{ width: 34, height: 34 }}
                   />
                 </TableCell>
-                <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                <TableCell sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}>
                   <Typography variant="caption">{data?.market_cap}</Typography>
                 </TableCell>
                 <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                   <Typography variant="caption">
-                    {data && data?.pc_24h !== null
+                    {data && data?.current_price !== null
                       ? "$" + data?.current_price
                       : "--"}
                   </Typography>
@@ -138,17 +138,16 @@ const HtmlTable = ({ tableData }: any) => {
                     sx={{ alignItems: "center", justifyContent: "center" }}
                     spacing={0}
                   >
-                    <Typography variant="caption">
-                      {data &&
-                      data?.pc_24h !== null &&
-                      Math.sign(parseInt(data?.pc_24h)) === -1 ? (
-                        <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                      ) : (
-                        data?.pc_24h !== null && (
-                          <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                        )
-                      )}
-                    </Typography>
+                    {data &&
+                    data?.pc_24h !== null &&
+                    Math.sign(parseInt(data?.pc_24h)) === -1 ? (
+                      <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                    ) : (
+                      data?.pc_24h !== null && (
+                        <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                      )
+                    )}
+
                     <Typography
                       variant="caption"
                       sx={{
@@ -173,17 +172,16 @@ const HtmlTable = ({ tableData }: any) => {
                     sx={{ alignItems: "center", justifyContent: "center" }}
                     spacing={0}
                   >
-                    <Typography variant="caption">
-                      {data &&
-                      data?.pc_7d !== null &&
-                      Math.sign(parseInt(data?.pc_7d)) === -1 ? (
-                        <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                      ) : (
-                        data?.pc_7d !== null && (
-                          <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                        )
-                      )}
-                    </Typography>
+                    {data &&
+                    data?.pc_7d !== null &&
+                    Math.sign(parseInt(data?.pc_7d)) === -1 ? (
+                      <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                    ) : (
+                      data?.pc_7d !== null && (
+                        <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                      )
+                    )}
+
                     <Typography
                       variant="caption"
                       sx={{

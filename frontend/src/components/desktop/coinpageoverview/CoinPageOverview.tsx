@@ -68,8 +68,14 @@ const CoinPageOverview = () => {
               </Typography>
             </Stack>
             <Stack direction="row" mt={0.9}>
-              <Box sx={{ width: "100%" }}>
-                <LinearProgress value={60} variant="determinate" />
+              <Box sx={{ width: "100%", color: "#6252E7" }}>
+                <LinearProgress
+                  value={60}
+                  variant="determinate"
+                  sx={{
+                    "&.MuiLinearProgress-barColorPrimary": { color: "#6252E7" },
+                  }}
+                />
               </Box>
             </Stack>
             <Stack
@@ -141,7 +147,7 @@ const CoinPageOverview = () => {
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 12, height: 12 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -171,7 +177,7 @@ const CoinPageOverview = () => {
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 12, height: 12 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -201,7 +207,7 @@ const CoinPageOverview = () => {
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 12, height: 12 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -232,7 +238,7 @@ const CoinPageOverview = () => {
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 12, height: 12 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -262,12 +268,165 @@ const CoinPageOverview = () => {
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 12, height: 12 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
                 Dec 13 , 2021
+              </Typography>
+            </Stack>
+
+            <Stack
+              direction="row"
+              sx={{ alignItems: "center", justifyContent: "space-between" }}
+              mt={1}
+            >
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                sx={{ alignItems: "center" }}
+                justifyContent={{
+                  xs: "center",
+                  sm: "center",
+                  md: "center",
+                  lg: "flex-start",
+                }}
+                spacing={1}
+              >
+                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                  1h %
+                </Typography>
+                <Tooltip title="Delete">
+                  <Avatar
+                    src={ToolTipImage}
+                    sx={{ width: 9, height: 9 }}
+                  ></Avatar>
+                </Tooltip>
+              </Stack>
+              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                22
+              </Typography>
+            </Stack>
+
+            <Stack
+              direction="row"
+              sx={{ alignItems: "center", justifyContent: "space-between" }}
+              mt={1}
+            >
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                sx={{ alignItems: "center" }}
+                justifyContent={{
+                  xs: "center",
+                  sm: "center",
+                  md: "center",
+                  lg: "flex-start",
+                }}
+                spacing={1}
+              >
+                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                  24h %
+                </Typography>
+                <Tooltip title="Delete">
+                  <Avatar
+                    src={ToolTipImage}
+                    sx={{ width: 9, height: 9 }}
+                  ></Avatar>
+                </Tooltip>
+              </Stack>
+              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                22
+              </Typography>
+            </Stack>
+
+            <Stack
+              direction="row"
+              sx={{ alignItems: "center", justifyContent: "space-between" }}
+              mt={1}
+            >
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                sx={{ alignItems: "center" }}
+                justifyContent={{
+                  xs: "center",
+                  sm: "center",
+                  md: "center",
+                  lg: "flex-start",
+                }}
+                spacing={1}
+              >
+                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                  7d %
+                </Typography>
+                <Tooltip title="Delete">
+                  <Avatar
+                    src={ToolTipImage}
+                    sx={{ width: 9, height: 9 }}
+                  ></Avatar>
+                </Tooltip>
+              </Stack>
+              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                22
+              </Typography>
+            </Stack>
+            <Stack
+              direction="row"
+              sx={{ alignItems: "center", justifyContent: "space-between" }}
+              mt={1}
+            >
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                sx={{ alignItems: "center" }}
+                justifyContent={{
+                  xs: "center",
+                  sm: "center",
+                  md: "center",
+                  lg: "flex-start",
+                }}
+                spacing={1}
+              >
+                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                  30d %
+                </Typography>
+                <Tooltip title="Delete">
+                  <Avatar
+                    src={ToolTipImage}
+                    sx={{ width: 9, height: 9 }}
+                  ></Avatar>
+                </Tooltip>
+              </Stack>
+              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                22
+              </Typography>
+            </Stack>
+            <Stack
+              direction="row"
+              sx={{ alignItems: "center", justifyContent: "space-between" }}
+              mt={1}
+            >
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                sx={{ alignItems: "center" }}
+                justifyContent={{
+                  xs: "center",
+                  sm: "center",
+                  md: "center",
+                  lg: "flex-start",
+                }}
+                spacing={1}
+              >
+                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                  60d %
+                </Typography>
+                <Tooltip title="Delete">
+                  <Avatar
+                    src={ToolTipImage}
+                    sx={{ width: 9, height: 9 }}
+                  ></Avatar>
+                </Tooltip>
+              </Stack>
+              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                22
               </Typography>
             </Stack>
             <Stack
@@ -292,7 +451,7 @@ const CoinPageOverview = () => {
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 12, height: 12 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -323,7 +482,7 @@ const CoinPageOverview = () => {
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 12, height: 12 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -354,7 +513,7 @@ const CoinPageOverview = () => {
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 12, height: 12 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -385,7 +544,7 @@ const CoinPageOverview = () => {
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 12, height: 12 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>
@@ -415,7 +574,7 @@ const CoinPageOverview = () => {
                 <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
-                    sx={{ width: 12, height: 12 }}
+                    sx={{ width: 9, height: 9 }}
                   ></Avatar>
                 </Tooltip>
               </Stack>

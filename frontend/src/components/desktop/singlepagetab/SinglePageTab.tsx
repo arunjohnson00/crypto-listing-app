@@ -9,6 +9,7 @@ import CoinPageAbout from "../coinpageabout/CoinPageAbout";
 import CoinpageRatings from "../coinpageratings/CoinpageRatings";
 import CoinPageMarket from "../coinpagemarket/CoinPageMarket";
 import CoinPageFAQ from "../coinpagefaq/CoinPageFAQ";
+import { Divider } from "@mui/material";
 
 const SinglePageTab = () => {
   const [value, setValue] = useState("1");
@@ -44,12 +45,13 @@ const SinglePageTab = () => {
             sx={{
               "& .MuiTabs-indicator": {
                 //display: "none",
-                backgroundColor: "#23E2A0",
+                backgroundColor: "#19ffb0",
+                height: 4,
                 // color: "#FFFFF5",
               },
 
               "& .MuiButtonBase-root.MuiTab-root": {
-                color: "#23E2A0",
+                color: "#19ffb0",
                 textTransform: "capitalize",
               },
             }}
@@ -64,6 +66,7 @@ const SinglePageTab = () => {
             <Tab label="KYC Details" value="8" />
             <Tab label="Audit Details" value="9" />
           </TabList>
+          <Divider sx={{ borderColor: "#2D2858", borderBottomWidth: "2px" }} />
         </Box>
         <TabPanel value="1">
           <CoinPageOverview />

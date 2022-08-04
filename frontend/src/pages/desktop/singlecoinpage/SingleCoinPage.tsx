@@ -143,7 +143,9 @@ const SingleCoinPage = () => {
             }}
             py={1}
           >
-            <BreadCrumbs />
+            <BreadCrumbs
+              data={coinDetailFirstBlock && coinDetailFirstBlock[0]}
+            />
           </Grid>
           <Grid
             xs={12}
@@ -183,7 +185,7 @@ const SingleCoinPage = () => {
           xs={12}
           sx={{
             alignItems: "center",
-            paddingTop: 2,
+            paddingTop: 0,
           }}
         >
           <SinglePageTab />

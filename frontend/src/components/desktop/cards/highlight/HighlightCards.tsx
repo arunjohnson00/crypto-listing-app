@@ -34,17 +34,37 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
     return (
       <li
         className={active ? "active" : "inactive"}
-        style={{ paddingTop: 1.5, paddingBottom: 11 }}
+        style={{
+          paddingTop: 1.5,
+          paddingBottom: 21,
+          display: "flex",
+          alignItems: "center",
+        }}
         onClick={() => onClick()}
       >
-        <HorizontalRuleRoundedIcon
-          sx={{
-            color: "#FFFFFF",
-            cursor: "pointer",
-            opacity: active ? 1 : 0.5,
-            fontSize: "1.8rem",
-          }}
-        />
+        {active ? (
+          <Box
+            sx={{
+              width: 50,
+              height: 4,
+              backgroundColor: "#19ffb0",
+              borderRadius: 2,
+              cursor: "pointer",
+              mx: 0.5,
+            }}
+          ></Box>
+        ) : (
+          <Box
+            sx={{
+              width: 25,
+              height: 4,
+              backgroundColor: "#FFFFFF",
+              borderRadius: 2,
+              cursor: "pointer",
+              mx: 0.5,
+            }}
+          ></Box>
+        )}
       </li>
     );
   };
@@ -170,8 +190,17 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                   <Stack
                     direction="row"
                     sx={{ alignItems: "center", justifyContent: "flex-end" }}
-                    spacing={1}
+                    spacing={0}
                   >
+                    {data &&
+                    data?.percent_change !== null &&
+                    Math.sign(parseInt(data?.percent_change)) === -1 ? (
+                      <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                    ) : (
+                      data?.percent_change !== null && (
+                        <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                      )
+                    )}
                     <Typography
                       variant="caption"
                       sx={{
@@ -185,17 +214,6 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                       {data && data?.percent_change !== null
                         ? parseInt(data?.percent_change).toFixed(2) + "%"
                         : "--"}
-                    </Typography>
-                    <Typography variant="caption">
-                      {data &&
-                      data?.percent_change !== null &&
-                      Math.sign(parseInt(data?.percent_change)) === -1 ? (
-                        <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                      ) : (
-                        data?.percent_change !== null && (
-                          <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                        )
-                      )}
                     </Typography>
                   </Stack>
                 </Grid>
@@ -270,8 +288,17 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                   <Stack
                     direction="row"
                     sx={{ alignItems: "center", justifyContent: "flex-end" }}
-                    spacing={1}
+                    spacing={0}
                   >
+                    {data &&
+                    data?.percent_change !== null &&
+                    Math.sign(parseInt(data?.percent_change)) === -1 ? (
+                      <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                    ) : (
+                      data?.percent_change !== null && (
+                        <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                      )
+                    )}
                     <Typography
                       variant="caption"
                       sx={{
@@ -285,17 +312,6 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                       {data && data?.percent_change !== null
                         ? parseInt(data?.percent_change).toFixed(2) + "%"
                         : "--"}
-                    </Typography>
-                    <Typography variant="caption">
-                      {data &&
-                      data?.percent_change !== null &&
-                      Math.sign(parseInt(data?.percent_change)) === -1 ? (
-                        <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                      ) : (
-                        data?.percent_change !== null && (
-                          <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                        )
-                      )}
                     </Typography>
                   </Stack>
                 </Grid>
@@ -370,8 +386,17 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                   <Stack
                     direction="row"
                     sx={{ alignItems: "center", justifyContent: "flex-end" }}
-                    spacing={1}
+                    spacing={0}
                   >
+                    {data &&
+                    data?.percent_change !== null &&
+                    Math.sign(parseInt(data?.percent_change)) === -1 ? (
+                      <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                    ) : (
+                      data?.percent_change !== null && (
+                        <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                      )
+                    )}
                     <Typography
                       variant="caption"
                       sx={{
@@ -385,17 +410,6 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                       {data && data?.percent_change !== null
                         ? parseFloat(data?.percent_change).toFixed(2) + "%"
                         : "--"}
-                    </Typography>
-                    <Typography variant="caption">
-                      {data &&
-                      data?.percent_change !== null &&
-                      Math.sign(parseInt(data?.percent_change)) === -1 ? (
-                        <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                      ) : (
-                        data?.percent_change !== null && (
-                          <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                        )
-                      )}
                     </Typography>
                   </Stack>
                 </Grid>

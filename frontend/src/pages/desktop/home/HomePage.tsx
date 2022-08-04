@@ -37,7 +37,10 @@ import todaysPerformerIcon from "../../../assets/home/todays_performer_icon.png"
 import recentlyAddedIcon from "../../../assets/home/recently_added_icon.png";
 import biggestLosersIcon from "../../../assets/home/biggest_losers_icon.png";
 import biggestGainersIcon from "../../../assets/home/biggest_gainers_icon.png";
-
+import FeaturedCoinLineTopImage from "../../../assets/home/feature-coin-line-top.png";
+import FeaturedCoinLineBottomImage from "../../../assets/home/feature-coin-line-bottom.png";
+import FeaturedCoinLineLeftImage from "../../../assets/home/feature-coin-line-left.png";
+import FeaturedCoinLineRightImage from "../../../assets/home/feature-coin-line-right.png";
 import {
   recentlyAddedRequest,
   biggestGainersRequest,
@@ -97,11 +100,11 @@ const responsiveHighlights = {
     items: 3,
   },
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
+    breakpoint: { max: 3000, min: 1200 },
     items: 3,
   },
   tablet: {
-    breakpoint: { max: 1024, min: 464 },
+    breakpoint: { max: 1200, min: 464 },
     items: 2,
   },
   mobile: {
@@ -374,17 +377,10 @@ const HomePage = ({ windowInnerWidth }: any) => {
             responsive={responsiveHighlights}
             infinite={true}
             removeArrowOnDeviceType={["tablet", "mobile"]}
-            arrows={false}
+            arrows={true}
             autoPlay={false}
             shouldResetAutoplay={false}
           >
-            <Box>
-              <HighlightCards
-                title="Todays Performer"
-                cardData=""
-                icon={todaysPerformerIcon}
-              />
-            </Box>
             <Box>
               <HighlightCards
                 title="Biggest Gainers"
@@ -407,6 +403,13 @@ const HomePage = ({ windowInnerWidth }: any) => {
                 icon={recentlyAddedIcon}
               />
             </Box>
+            <Box>
+              <HighlightCards
+                title="Todays Performer"
+                cardData=""
+                icon={todaysPerformerIcon}
+              />
+            </Box>
           </Carousel>
         </Grid>
 
@@ -427,41 +430,90 @@ const HomePage = ({ windowInnerWidth }: any) => {
               xs={12}
               sm={12}
               md={12}
-              lg={1}
-              xl={1}
+              lg={0.4}
+              xl={0.4}
               sx={{
                 alignItems: "center",
               }}
             >
               <Stack
-                direction="column"
-                sx={{ alignItems: "center" }}
-                py={windowInnerWidth >= 1200 ? 0 : 3}
+                direction={windowInnerWidth >= 1200 ? "column" : "row-reverse"}
+                sx={{
+                  alignItems: "flex-end",
+                }}
+                py={windowInnerWidth >= 1200 ? 0 : 1}
+                spacing={2}
               >
-                <Typography
-                  variant="h5"
-                  sx={{
-                    color: "#FFFFFF",
-                    writingMode: `${
-                      windowInnerWidth &&
-                      windowInnerWidth >= 1200 &&
-                      "vertical-lr"
-                    }`,
-                    textOrientation: `${
-                      windowInnerWidth && windowInnerWidth >= 1200 && "mixed"
-                    }`,
-                    transform: `${
-                      windowInnerWidth &&
-                      windowInnerWidth >= 1200 &&
-                      "rotate(180deg)"
-                    }`,
-                  }}
-                >
-                  Featured Coins
-                </Typography>
+                {windowInnerWidth >= 1200 ? (
+                  <Avatar
+                    alt=""
+                    src={FeaturedCoinLineTopImage}
+                    sx={{
+                      borderRadius: 0,
+                      width: 20,
+                      height: 120,
+                    }}
+                  />
+                ) : (
+                  <Avatar
+                    alt=""
+                    src={FeaturedCoinLineRightImage}
+                    sx={{
+                      borderRadius: 0,
+                      width: 120,
+                      height: 20,
+                    }}
+                  />
+                )}
+
+                <Box sx={{ width: "auto" }}>
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      color: "#FFFFFF",
+                      writingMode: `${
+                        windowInnerWidth &&
+                        windowInnerWidth >= 1200 &&
+                        "vertical-lr"
+                      }`,
+                      textOrientation: `${
+                        windowInnerWidth && windowInnerWidth >= 1200 && "mixed"
+                      }`,
+                      transform: `${
+                        windowInnerWidth &&
+                        windowInnerWidth >= 1200 &&
+                        "rotate(180deg)"
+                      }`,
+                    }}
+                  >
+                    Featured Coins
+                  </Typography>
+                </Box>
+
+                {windowInnerWidth >= 1200 ? (
+                  <Avatar
+                    alt=""
+                    src={FeaturedCoinLineBottomImage}
+                    sx={{
+                      borderRadius: 0,
+                      width: 20,
+                      height: 110,
+                    }}
+                  />
+                ) : (
+                  <Avatar
+                    alt=""
+                    src={FeaturedCoinLineLeftImage}
+                    sx={{
+                      borderRadius: 0,
+                      width: 110,
+                      height: 20,
+                    }}
+                  />
+                )}
               </Stack>
             </Grid>
-            <Grid xs={12} sm={12} md={12} lg={11} xl={11}>
+            <Grid xs={12} sm={12} md={12} lg={11.6} xl={11.6}>
               <Stack
                 direction={{
                   xs: "column",
