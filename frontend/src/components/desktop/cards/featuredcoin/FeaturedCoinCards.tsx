@@ -244,7 +244,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
         <Grid item xs={12} py={0}>
           <Stack
             direction="column"
-            spacing={-0.5}
+            spacing={0}
             sx={{
               justifyContent: "flex-start",
             }}
@@ -259,6 +259,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   alignItems: "center",
                   justifyContent: " space-between",
                 }}
+                height={20}
               >
                 <Typography
                   variant="caption"
@@ -298,6 +299,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   alignItems: "center",
                   justifyContent: " space-between",
                 }}
+                height={20}
               >
                 <Typography
                   variant="caption"
@@ -310,11 +312,15 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   sx={{ alignItems: "center", justifyContent: "center" }}
                   spacing={0}
                 >
-                  {Math.sign(parseInt(cardData?.percent_change_1h)) === -1 ? (
-                    <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                  ) : (
-                    <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                  )}
+                  {Math.sign(parseInt(cardData?.percent_change_1h)) === -1
+                    ? cardData &&
+                      cardData?.percent_change_1h !== null && (
+                        <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                      )
+                    : cardData &&
+                      cardData?.percent_change_1h !== null && (
+                        <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                      )}
 
                   <Typography
                     variant="caption"
@@ -327,9 +333,13 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                       fontSize: ".7rem",
                     }}
                   >
-                    {cardData && cardData?.percent_change_1h !== null
-                      ? parseFloat(cardData?.percent_change_1h).toFixed(2) + "%"
-                      : "--"}
+                    {cardData && cardData?.percent_change_1h !== null ? (
+                      parseFloat(cardData?.percent_change_1h)
+                        .toFixed(2)
+                        .replace("-", "") + "%"
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
                   </Typography>
                 </Stack>
               </Stack>
@@ -343,6 +353,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   alignItems: "center",
                   justifyContent: " space-between",
                 }}
+                height={20}
               >
                 <Typography
                   variant="caption"
@@ -355,11 +366,15 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   sx={{ alignItems: "center", justifyContent: "center" }}
                   spacing={0}
                 >
-                  {Math.sign(parseInt(cardData?.percent_change_24h)) === -1 ? (
-                    <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                  ) : (
-                    <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                  )}
+                  {Math.sign(parseInt(cardData?.percent_change_24h)) === -1
+                    ? cardData &&
+                      cardData?.percent_change_24h !== null && (
+                        <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                      )
+                    : cardData &&
+                      cardData?.percent_change_24h !== null && (
+                        <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                      )}
 
                   <Typography
                     variant="caption"
@@ -372,10 +387,13 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                       fontSize: ".7rem",
                     }}
                   >
-                    {cardData && cardData?.percent_change_24h !== null
-                      ? parseFloat(cardData?.percent_change_24h).toFixed(2) +
-                        "%"
-                      : "--"}
+                    {cardData && cardData?.percent_change_24h !== null ? (
+                      parseFloat(cardData?.percent_change_24h)
+                        .toFixed(2)
+                        .replace("-", "") + "%"
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
                   </Typography>
                 </Stack>
               </Stack>
@@ -389,6 +407,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   alignItems: "center",
                   justifyContent: " space-between",
                 }}
+                height={20}
               >
                 <Typography
                   variant="caption"
@@ -413,7 +432,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   alignItems: "center",
                   justifyContent: " space-between",
                 }}
-                pt={0.7}
+                height={20}
               >
                 <Typography
                   variant="caption"

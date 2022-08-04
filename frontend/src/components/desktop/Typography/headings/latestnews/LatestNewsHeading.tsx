@@ -10,10 +10,12 @@ const LatestNewsHeading = () => {
         justifyContent: "center",
         background: "#2415A2",
         padding: "10px",
-        color: "white",
+        color: "#FFFFFF",
       }}
     >
-      <Typography variant="h6">Latest News</Typography>
+      <Typography sx={{ fontSize: "1.1rem", fontWeight: 400 }}>
+        Latest News
+      </Typography>
     </Box>
   );
 };

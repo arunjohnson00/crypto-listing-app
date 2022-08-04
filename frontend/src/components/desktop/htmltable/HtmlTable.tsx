@@ -126,9 +126,11 @@ const HtmlTable = ({ tableData }: any) => {
                 </TableCell>
                 <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                   <Typography variant="caption">
-                    {data && data?.current_price !== null
-                      ? "$" + data?.current_price
-                      : "--"}
+                    {data && data?.current_price !== null ? (
+                      "$" + data?.current_price
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
                   </Typography>
                 </TableCell>
                 <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
@@ -159,9 +161,12 @@ const HtmlTable = ({ tableData }: any) => {
                         fontSize: ".7rem",
                       }}
                     >
-                      {data && data?.pc_24h !== null
-                        ? parseFloat(data?.pc_24h).toFixed(2) + "%"
-                        : "--"}
+                      {data && data?.pc_24h !== null ? (
+                        parseFloat(data?.pc_24h).toFixed(2).replace("-", "") +
+                        "%"
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </Stack>
                 </TableCell>
@@ -193,9 +198,12 @@ const HtmlTable = ({ tableData }: any) => {
                         fontSize: ".7rem",
                       }}
                     >
-                      {data && data?.pc_7d !== null
-                        ? parseFloat(data?.pc_7d).toFixed(2) + "%"
-                        : "--"}
+                      {data && data?.pc_7d !== null ? (
+                        parseFloat(data?.pc_7d).toFixed(2).replace("-", "") +
+                        "%"
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </Stack>
                 </TableCell>

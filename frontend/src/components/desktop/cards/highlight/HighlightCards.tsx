@@ -130,7 +130,7 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                 direction="row"
                 spacing={4}
                 sx={{ alignItems: "center", justifyContent: "space-between" }}
-                py={0.5}
+                height={33}
               >
                 <Grid item xs={10}>
                   <Stack
@@ -211,9 +211,15 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                         fontWeight: "600",
                       }}
                     >
-                      {data && data?.percent_change !== null
-                        ? parseInt(data?.percent_change).toFixed(2) + "%"
-                        : "--"}
+                      {data &&
+                      data?.percent_change !== null &&
+                      data?.percent_change !== "" ? (
+                        parseInt(data?.percent_change)
+                          .toFixed(2)
+                          .replace("-", "") + "%"
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </Stack>
                 </Grid>
@@ -228,7 +234,7 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                 direction="row"
                 spacing={4}
                 sx={{ alignItems: "center", justifyContent: "space-between" }}
-                py={0.5}
+                height={33}
               >
                 <Grid item xs={10}>
                   <Stack
@@ -309,9 +315,15 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                         fontWeight: "600",
                       }}
                     >
-                      {data && data?.percent_change !== null
-                        ? parseInt(data?.percent_change).toFixed(2) + "%"
-                        : "--"}
+                      {data &&
+                      data?.percent_change !== null &&
+                      data?.percent_change !== "" ? (
+                        parseInt(data?.percent_change)
+                          .toFixed(2)
+                          .replace("-", "") + "%"
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </Stack>
                 </Grid>
@@ -326,7 +338,7 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                 direction="row"
                 spacing={4}
                 sx={{ alignItems: "center", justifyContent: "space-between" }}
-                py={0.5}
+                height={33}
               >
                 <Grid item xs={10}>
                   <Stack
@@ -407,9 +419,15 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                         fontWeight: "600",
                       }}
                     >
-                      {data && data?.percent_change !== null
-                        ? parseFloat(data?.percent_change).toFixed(2) + "%"
-                        : "--"}
+                      {data &&
+                      data?.percent_change !== null &&
+                      data?.percent_change !== "" ? (
+                        parseFloat(data?.percent_change)
+                          .toFixed(2)
+                          .replace("-", "") + "%"
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </Stack>
                 </Grid>
