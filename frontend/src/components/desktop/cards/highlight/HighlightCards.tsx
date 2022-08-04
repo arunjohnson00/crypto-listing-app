@@ -1,14 +1,14 @@
-import { Grid, Link, Stack, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Grid, Stack, Typography, Box, Avatar } from "@mui/material";
+import { Link } from "react-router-dom";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
 import LocalFireDepartmentSharpIcon from "@mui/icons-material/LocalFireDepartmentSharp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import Avatar from "@mui/material/Avatar";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 import HorizontalRuleRoundedIcon from "@mui/icons-material/HorizontalRuleRounded";
 
-const HighlightCards = ({ title, cardData }: any) => {
+const HighlightCards = ({ title, cardData, icon }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
   const responsiveHighlights = {
     superLargeDesktop: {
@@ -50,7 +50,7 @@ const HighlightCards = ({ title, cardData }: any) => {
   };
   return (
     <Box
-      sx={{ backgroundColor: "#010822", height: "auto" }}
+      sx={{ backgroundColor: "#010822", height: 180 }}
       px={2}
       pb={3}
       pt={2}
@@ -68,15 +68,22 @@ const HighlightCards = ({ title, cardData }: any) => {
           spacing={0.7}
           sx={{ alignItems: "center", justifyContent: "space-between" }}
         >
-          <LocalFireDepartmentSharpIcon
-            sx={{ color: "#FFFFFF", fontSize: 30 }}
+          <Avatar
+            alt={title && title}
+            src={icon && icon}
+            sx={{ width: 25, height: 25, pr: 1 }}
           />
           <Typography sx={{ color: "#FFFFFF", fontSize: "1.2rem" }}>
             {title && title}
           </Typography>
         </Stack>
 
-        <Link underline="none">
+        <Link
+          to={{
+            pathname: "/",
+          }}
+          style={{ textDecoration: "none" }}
+        >
           {" "}
           <Typography
             variant="caption"
@@ -138,11 +145,21 @@ const HighlightCards = ({ title, cardData }: any) => {
                         variant="caption"
                         sx={{ color: "white", fontWeight: 500 }}
                       >
-                        {data && data?.name}
+                        <Link
+                          to={{
+                            pathname: `/coin/${data?.name
+                              ?.replace(/ /g, "")
+                              .toLowerCase()}`,
+                          }}
+                          state={{ coin_id: data?.id }}
+                          style={{ textDecoration: "none", color: "#FFFFFF" }}
+                        >
+                          {data && data?.name}
+                        </Link>
                       </Typography>
                       <Typography
                         variant="caption"
-                        sx={{ color: "#8B9CE1", fontWeight: 500 }}
+                        sx={{ color: "#beb4ff", fontWeight: 500 }}
                       >
                         {data && data?.symbol}
                       </Typography>
@@ -160,8 +177,8 @@ const HighlightCards = ({ title, cardData }: any) => {
                       sx={{
                         color:
                           Math.sign(parseInt(data?.percent_change)) === -1
-                            ? "red"
-                            : "#00C080",
+                            ? "#ff0000"
+                            : "#00ff00",
                         fontWeight: "600",
                       }}
                     >
@@ -173,10 +190,10 @@ const HighlightCards = ({ title, cardData }: any) => {
                       {data &&
                       data?.percent_change !== null &&
                       Math.sign(parseInt(data?.percent_change)) === -1 ? (
-                        <ArrowDropDownIcon sx={{ color: "red" }} />
+                        <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                       ) : (
                         data?.percent_change !== null && (
-                          <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                          <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
                         )
                       )}
                     </Typography>
@@ -228,7 +245,17 @@ const HighlightCards = ({ title, cardData }: any) => {
                         variant="caption"
                         sx={{ color: "white", fontWeight: 500 }}
                       >
-                        {data && data?.name}
+                        <Link
+                          to={{
+                            pathname: `/coin/${data?.name
+                              ?.replace(/ /g, "")
+                              .toLowerCase()}`,
+                          }}
+                          state={{ coin_id: data?.id }}
+                          style={{ textDecoration: "none", color: "#FFFFFF" }}
+                        >
+                          {data && data?.name}
+                        </Link>
                       </Typography>
                       <Typography
                         variant="caption"
@@ -250,8 +277,8 @@ const HighlightCards = ({ title, cardData }: any) => {
                       sx={{
                         color:
                           Math.sign(parseInt(data?.percent_change)) === -1
-                            ? "red"
-                            : "#00C080",
+                            ? "#ff0000"
+                            : "#00ff00",
                         fontWeight: "600",
                       }}
                     >
@@ -263,10 +290,10 @@ const HighlightCards = ({ title, cardData }: any) => {
                       {data &&
                       data?.percent_change !== null &&
                       Math.sign(parseInt(data?.percent_change)) === -1 ? (
-                        <ArrowDropDownIcon sx={{ color: "red" }} />
+                        <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                       ) : (
                         data?.percent_change !== null && (
-                          <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                          <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
                         )
                       )}
                     </Typography>
@@ -318,7 +345,17 @@ const HighlightCards = ({ title, cardData }: any) => {
                         variant="caption"
                         sx={{ color: "white", fontWeight: 500 }}
                       >
-                        {data && data?.name}
+                        <Link
+                          to={{
+                            pathname: `/coin/${data?.name
+                              ?.replace(/ /g, "")
+                              .toLowerCase()}`,
+                          }}
+                          state={{ coin_id: data?.id }}
+                          style={{ textDecoration: "none", color: "#FFFFFF" }}
+                        >
+                          {data && data?.name}
+                        </Link>
                       </Typography>
                       <Typography
                         variant="caption"
@@ -340,8 +377,8 @@ const HighlightCards = ({ title, cardData }: any) => {
                       sx={{
                         color:
                           Math.sign(parseInt(data?.percent_change)) === -1
-                            ? "red"
-                            : "#00C080",
+                            ? "#ff0000"
+                            : "#00ff00",
                         fontWeight: "600",
                       }}
                     >
@@ -353,10 +390,10 @@ const HighlightCards = ({ title, cardData }: any) => {
                       {data &&
                       data?.percent_change !== null &&
                       Math.sign(parseInt(data?.percent_change)) === -1 ? (
-                        <ArrowDropDownIcon sx={{ color: "red" }} />
+                        <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                       ) : (
                         data?.percent_change !== null && (
-                          <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                          <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
                         )
                       )}
                     </Typography>

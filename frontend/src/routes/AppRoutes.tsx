@@ -55,7 +55,7 @@ const AppRoutes = () => {
 
         {windowInnerWidth >= 900 ? (
           <Route
-            path="/coin"
+            path="/coin/*"
             element={
               <PublicRoutes>
                 <SingleCoinPage />
@@ -64,7 +64,7 @@ const AppRoutes = () => {
           />
         ) : (
           <Route
-            path="/coin"
+            path="/coin/*"
             element={
               <PublicRoutes>
                 <MobileSingleCoinPage />

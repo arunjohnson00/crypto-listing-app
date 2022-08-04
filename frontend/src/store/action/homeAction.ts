@@ -48,7 +48,7 @@ export const biggestGainersRequest = (
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const biggestLoosersRequest = (
+export const biggestLosersRequest = (
   values: any,
   successHandler: any,
   errorHandler: any

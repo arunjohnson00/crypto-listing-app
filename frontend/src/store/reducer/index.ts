@@ -7,9 +7,11 @@ import { COMMON } from "../types";
 //App Reducers
 
 import homeReducer from "./homeReducer";
+import coinReducer from "./coinReducer";
 
 const allReducers = combineReducers({
   homeReducer,
+  coinReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

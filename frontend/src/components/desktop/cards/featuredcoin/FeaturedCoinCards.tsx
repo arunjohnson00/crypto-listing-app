@@ -7,6 +7,7 @@ import {
   Divider,
   Chip,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import Rating from "@mui/material/Rating";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -66,8 +67,18 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   variant="caption"
                   sx={{ color: "white", fontWeight: "600" }}
                 >
-                  {cardData && cardData?.name?.slice(0, 12)}
-                  {cardData?.name?.length > 12 && ".."}
+                  <Link
+                    to={{
+                      pathname: `/coin/${cardData?.name
+                        ?.replace(/ /g, "")
+                        .toLowerCase()}`,
+                    }}
+                    state={{ coin_id: cardData?.id }}
+                    style={{ textDecoration: "none", color: "#FFFFFF" }}
+                  >
+                    {cardData && cardData?.name?.slice(0, 12)}
+                    {cardData?.name?.length > 12 && ".."}
+                  </Link>
                 </Typography>
                 <Typography
                   variant="caption"
@@ -81,29 +92,35 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                 </Typography>
                 <Typography
                   variant="caption"
-                  sx={{ color: "#31E6B5", fontWeight: "600" }}
+                  sx={{ color: "#1dffc0", fontWeight: "600" }}
                 >
-                  $ {cardData && parseInt(cardData?.current_price).toFixed(1)}
+                  {cardData && cardData?.current_price !== null
+                    ? "$" + parseFloat(cardData?.current_price).toFixed(4)
+                    : "--"}
                 </Typography>
               </Stack>
             </Stack>
             <Stack direction="column" spacing={0} sx={{ alignItems: "center" }}>
-              <Typography
-                variant="h5"
-                sx={{ color: "#FFFFF5", fontWeight: "400" }}
-              >
-                {cardData && cardData?.rating === null
-                  ? 0.0
-                  : parseInt(cardData?.rating).toFixed(1)}
-              </Typography>
-              <Rating
-                name="size-small"
-                defaultValue={0}
-                value={cardData && parseInt(cardData?.rating).toFixed(0)}
-                size="small"
-                readOnly
-                sx={{ fontSize: "0.6rem" }}
-              />
+              {cardData?.rating !== null && (
+                <Typography
+                  variant="h5"
+                  sx={{ color: "#FFFFF5", fontWeight: "400" }}
+                >
+                  {cardData && cardData?.rating === null
+                    ? 0.0
+                    : parseInt(cardData?.rating).toFixed(1)}
+                </Typography>
+              )}
+              {cardData?.rating !== null && (
+                <Rating
+                  name="size-small"
+                  defaultValue={0}
+                  value={cardData && parseInt(cardData?.rating).toFixed(0)}
+                  size="small"
+                  readOnly
+                  sx={{ fontSize: "0.6rem" }}
+                />
+              )}
             </Stack>
           </Stack>
         </Grid>
@@ -298,8 +315,8 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                     sx={{
                       color:
                         Math.sign(parseInt(cardData?.percent_change_1h)) === -1
-                          ? "#D40106"
-                          : "#00C080",
+                          ? "#ff0000"
+                          : "#00ff00",
                       fontWeight: 600,
                       fontSize: ".7rem",
                     }}
@@ -310,9 +327,9 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   </Typography>
                   <Typography variant="caption">
                     {Math.sign(parseInt(cardData?.percent_change_1h)) === -1 ? (
-                      <ArrowDropDownIcon sx={{ color: "#D40106" }} />
+                      <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                     ) : (
-                      <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                      <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
                     )}
                   </Typography>
                 </Stack>
@@ -344,8 +361,8 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                     sx={{
                       color:
                         Math.sign(parseInt(cardData?.percent_change_24h)) === -1
-                          ? "#D40106"
-                          : "#00C080",
+                          ? "#ff0000"
+                          : "#00ff00",
                       fontWeight: 600,
                       fontSize: ".7rem",
                     }}
@@ -358,9 +375,9 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   <Typography variant="caption">
                     {Math.sign(parseInt(cardData?.percent_change_24h)) ===
                     -1 ? (
-                      <ArrowDropDownIcon sx={{ color: "#D40106" }} />
+                      <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                     ) : (
-                      <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                      <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
                     )}
                   </Typography>
                 </Stack>

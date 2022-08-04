@@ -12,6 +12,8 @@ import {
 import Marquee from "react-fast-marquee";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
 import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
@@ -29,13 +31,17 @@ import AdsCardHome from "../../../components/desktop/cards/adscard/AdsCardHome";
 import CardDeal from "../../../components/desktop/banner/carddeal/CardDeal";
 import BannerCardsHome from "../../../components/desktop/banner/bannercardshome/BannerCardsHome";
 import BannerMap from "../../../components/desktop/banner/bannermap/BannerMap";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 import TrendingCoins from "../../../components/desktop/cards/trendingcoins/TrendingCoins";
+
+import todaysPerformerIcon from "../../../assets/home/todays_performer_icon.png";
+import recentlyAddedIcon from "../../../assets/home/recently_added_icon.png";
+import biggestLosersIcon from "../../../assets/home/biggest_losers_icon.png";
+import biggestGainersIcon from "../../../assets/home/biggest_gainers_icon.png";
+
 import {
   recentlyAddedRequest,
   biggestGainersRequest,
-  biggestLoosersRequest,
+  biggestLosersRequest,
   featuredCoinListRequest,
   cryptoCurrenciesListRequest,
   cryptoCurrenciesTodaysBestRequest,
@@ -153,7 +159,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
     const errorHandler = (err: any) => {};
     dispatch(recentlyAddedRequest("noData", successHandler, errorHandler));
     dispatch(biggestGainersRequest("noData", successHandler, errorHandler));
-    dispatch(biggestLoosersRequest("noData", successHandler, errorHandler));
+    dispatch(biggestLosersRequest("noData", successHandler, errorHandler));
     dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
   }, [dispatch]);
 
@@ -343,15 +349,14 @@ const HomePage = ({ windowInnerWidth }: any) => {
           >
             <Grid item xs="auto">
               <Typography
-                variant="h4"
-                sx={{ color: "white", fontWeight: "bold" }}
+                sx={{ color: "#FFFFFF", fontWeight: 500, fontSize: "1.7rem" }}
               >
                 Highlights
               </Typography>
             </Grid>
             <Grid item xs={12}>
               <Divider
-                sx={{ borderColor: "#2D4297", borderBottomWidth: "3px" }}
+                sx={{ borderColor: "#2D4297", borderBottomWidth: "2px" }}
               />
             </Grid>
           </Stack>
@@ -374,23 +379,33 @@ const HomePage = ({ windowInnerWidth }: any) => {
             shouldResetAutoplay={false}
           >
             <Box>
-              <HighlightCards title="Todays Performer" cardData="" />
+              <HighlightCards
+                title="Todays Performer"
+                cardData=""
+                icon={todaysPerformerIcon}
+              />
             </Box>
             <Box>
               <HighlightCards
                 title="Biggest Gainers"
                 cardData={biggestGainers}
+                icon={biggestGainersIcon}
               />
             </Box>
             <Box>
               <HighlightCards
-                title="Biggest Lossers"
+                title="Biggest Losers"
                 cardData={biggestloosers}
+                icon={biggestLosersIcon}
               />
             </Box>
 
             <Box>
-              <HighlightCards title="Recently Added" cardData={recentlyAdded} />
+              <HighlightCards
+                title="Recently Added"
+                cardData={recentlyAdded}
+                icon={recentlyAddedIcon}
+              />
             </Box>
           </Carousel>
         </Grid>
@@ -424,9 +439,9 @@ const HomePage = ({ windowInnerWidth }: any) => {
                 py={windowInnerWidth >= 1200 ? 0 : 3}
               >
                 <Typography
-                  variant="h3"
+                  variant="h5"
                   sx={{
-                    color: "white",
+                    color: "#FFFFFF",
                     writingMode: `${
                       windowInnerWidth &&
                       windowInnerWidth >= 1200 &&
@@ -492,15 +507,14 @@ const HomePage = ({ windowInnerWidth }: any) => {
           >
             <Grid item xs="auto">
               <Typography
-                variant="h4"
-                sx={{ color: "white", fontWeight: "bold" }}
+                sx={{ color: "#FFFFFF", fontWeight: 500, fontSize: "1.7rem" }}
               >
                 Trending Coins
               </Typography>
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={9.5}>
               <Divider
-                sx={{ borderColor: "#2D4297", borderBottomWidth: "3px" }}
+                sx={{ borderColor: "#2D4297", borderBottomWidth: "2px" }}
               />
             </Grid>
           </Stack>
@@ -562,15 +576,14 @@ const HomePage = ({ windowInnerWidth }: any) => {
           >
             <Grid item xs="auto">
               <Typography
-                variant="h4"
-                sx={{ color: "white", fontWeight: "bold" }}
+                sx={{ color: "#FFFFFF", fontWeight: 500, fontSize: "1.7rem" }}
               >
                 CryptoCurrencies
               </Typography>
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={9.2}>
               <Divider
-                sx={{ borderColor: "#2D4297", borderBottomWidth: "3px" }}
+                sx={{ borderColor: "#2D4297", borderBottomWidth: "2px" }}
               />
             </Grid>
           </Stack>
@@ -586,7 +599,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           }}
         >
           <Grid item xs={12} sm={6} md={5} lg={5} xl={5} pb={2}>
-            <Typography sx={{ color: "white" }}>
+            <Typography sx={{ color: "#FFFFFF" }}>
               Subscribe to our newsletters and get business news delivered
               straight into your inbox ; Daily Newsletter. Your daily dose of
               business news, views and updates.
@@ -691,15 +704,14 @@ const HomePage = ({ windowInnerWidth }: any) => {
           >
             <Grid item xs="auto">
               <Typography
-                variant="h4"
-                sx={{ color: "white", fontWeight: "bold" }}
+                sx={{ color: "#FFFFFF", fontWeight: 500, fontSize: "1.7rem" }}
               >
                 NFT Collections
               </Typography>
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={9.5}>
               <Divider
-                sx={{ borderColor: "#2D4297", borderBottomWidth: "3px" }}
+                sx={{ borderColor: "#2D4297", borderBottomWidth: "2px" }}
               />
             </Grid>
           </Stack>
@@ -715,7 +727,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           }}
         >
           <Grid item xs={12} sm={6} md={5} lg={5} xl={5} pb={2}>
-            <Typography sx={{ color: "white" }}>
+            <Typography sx={{ color: "#FFFFFF" }}>
               Subscribe to our newsletters and get business news delivered
               straight into your inbox ; Daily Newsletter. Your daily dose of
               business news, views and updates.
@@ -818,15 +830,14 @@ const HomePage = ({ windowInnerWidth }: any) => {
           >
             <Grid item xs="auto">
               <Typography
-                variant="h4"
-                sx={{ color: "white", fontWeight: "bold" }}
+                sx={{ color: "#FFFFFF", fontWeight: 500, fontSize: "1.7rem" }}
               >
                 Coinxhigh crypto News
               </Typography>
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={8.5}>
               <Divider
-                sx={{ borderColor: "#2D4297", borderBottomWidth: "3px" }}
+                sx={{ borderColor: "#2D4297", borderBottomWidth: "2px" }}
               />
             </Grid>
           </Stack>
@@ -841,7 +852,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           }}
         >
           <Grid item xs={12} sm={6} md={5} lg={5} xl={5} pb={2}>
-            <Typography sx={{ color: "white" }}>
+            <Typography sx={{ color: "#FFFFFF" }}>
               Subscribe to our newsletters and get business news delivered
               straight into your inbox ; Daily Newsletter. Your daily dose of
               business news, views and updates.

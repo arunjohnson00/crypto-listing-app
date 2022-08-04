@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -86,7 +87,20 @@ const HtmlTable = ({ tableData }: any) => {
                 </TableCell>
                 <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                   <Stack direction="column">
-                    <Typography variant="caption">{data?.name}</Typography>
+                    <Typography variant="caption">
+                      {" "}
+                      <Link
+                        to={{
+                          pathname: `/coin/${data?.name
+                            ?.replace(/ /g, "")
+                            .toLowerCase()}`,
+                        }}
+                        state={{ coin_id: data?.id }}
+                        style={{ textDecoration: "none", color: "#FFFFFF" }}
+                      >
+                        {data?.name}
+                      </Link>
+                    </Typography>
                     <Typography
                       variant="caption"
                       sx={{
@@ -128,10 +142,10 @@ const HtmlTable = ({ tableData }: any) => {
                       {data &&
                       data?.pc_24h !== null &&
                       Math.sign(parseInt(data?.pc_24h)) === -1 ? (
-                        <ArrowDropDownIcon sx={{ color: "#D40106" }} />
+                        <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                       ) : (
                         data?.pc_24h !== null && (
-                          <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                          <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
                         )
                       )}
                     </Typography>
@@ -140,8 +154,8 @@ const HtmlTable = ({ tableData }: any) => {
                       sx={{
                         color:
                           Math.sign(parseInt(data?.pc_24h)) === -1
-                            ? "#D40106"
-                            : "#00C080",
+                            ? "#ff0000"
+                            : "#00ff00",
                         fontWeight: 600,
                         fontSize: ".7rem",
                       }}
@@ -163,10 +177,10 @@ const HtmlTable = ({ tableData }: any) => {
                       {data &&
                       data?.pc_7d !== null &&
                       Math.sign(parseInt(data?.pc_7d)) === -1 ? (
-                        <ArrowDropDownIcon sx={{ color: "#D40106" }} />
+                        <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                       ) : (
                         data?.pc_7d !== null && (
-                          <ArrowDropUpIcon sx={{ color: "#00C080" }} />
+                          <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
                         )
                       )}
                     </Typography>
@@ -175,8 +189,8 @@ const HtmlTable = ({ tableData }: any) => {
                       sx={{
                         color:
                           Math.sign(parseInt(data?.pc_7d)) === -1
-                            ? "#D40106"
-                            : "#00C080",
+                            ? "#ff0000"
+                            : "#00ff00",
                         fontWeight: 600,
                         fontSize: ".7rem",
                       }}

@@ -8,6 +8,8 @@ import {
   Divider,
   Avatar,
 } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
 import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
 import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
@@ -17,13 +19,31 @@ import en from "javascript-time-ago/locale/en.json";
 import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
 import SingleCoinHeader from "../../../components/desktop/singlecoinheader/SingleCoinHeader";
 import SinglePageTab from "../../../components/desktop/singlepagetab/SinglePageTab";
+import { coinDetailFirstBlockRequest } from "../../../store/action";
 
 const SingleCoinPage = () => {
-  const { parse } = require("rss-to-json");
+  const coinDetailFirstBlock = useSelector((data: any) => {
+    return data?.coinReducer?.coin_detail_first_block?.data;
+  });
 
+  const { parse } = require("rss-to-json");
+  const location: any = useLocation();
+  const dispatch: any = useDispatch();
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
   const [feed, setFeed] = useState<any>();
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(
+      coinDetailFirstBlockRequest(
+        location?.state?.coin_id,
+        successHandler,
+        errorHandler
+      )
+    );
+  }, [dispatch]);
 
   useEffect(() => {
     (async () => {
@@ -153,7 +173,9 @@ const SingleCoinPage = () => {
             paddingTop: 2,
           }}
         >
-          <SingleCoinHeader />
+          <SingleCoinHeader
+            coinData={coinDetailFirstBlock && coinDetailFirstBlock[0]}
+          />
         </Grid>
 
         <Grid

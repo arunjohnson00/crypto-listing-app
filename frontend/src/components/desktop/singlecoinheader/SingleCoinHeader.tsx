@@ -44,12 +44,17 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import SingleCoinChip from "../coinpagechip/SingleCoinChip";
 import SocialCounterWithGraphCard from "../cards/socialcounterwithgraphcard/SocialCounterWithGraphCard";
 
-const SingleCoinHeader = () => {
+const serverAPIUrl = process.env.REACT_APP_API_URL;
+
+const SingleCoinHeader = ({ coinData }: any) => {
   const theme = useTheme();
   const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
 
   const [copyValue, setCopyValue] = useState(
-    "0xED3F52c46280ad96485323Fb6a51242cb4CA45F5"
+    coinData &&
+      coinData?.address !== null &&
+      coinData?.address !== "" &&
+      coinData?.address
   );
   const [copied, setCopied] = useState(false);
   const [showMoreAnchorEl, setShowMoreAnchorEl] = useState<null | HTMLElement>(
@@ -78,19 +83,26 @@ const SingleCoinHeader = () => {
               sx={{ alignItems: "center" }}
             >
               <Avatar
-                alt="Remy Sharp"
-                src="https://cryptologos.cc/logos/safemoon-safemoon-logo.png?v=022"
+                alt={coinData?.name}
+                src={`${serverAPIUrl}public/uploads/coins/${coinData?.logo}`}
                 sx={{ borderRadius: 0, width: 120, height: 120 }}
               />
               <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
-                <Typography
-                  variant="caption"
-                  sx={{ color: "#FFFFF5" }}
-                  textAlign={{ xs: "center", sm: "center", md: "left" }}
-                >
-                  Presale starts in:
-                  <span style={{ color: "#BDD645" }}> 00days 08 Hours 24</span>
-                </Typography>
+                {coinData &&
+                  coinData?.presale_start_date !== null &&
+                  coinData?.presale_start_date !== "" && (
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "#FFFFF5" }}
+                      textAlign={{ xs: "center", sm: "center", md: "left" }}
+                    >
+                      Presale starts in:
+                      <span style={{ color: "#BDD645" }}>
+                        {" "}
+                        00days 08 Hours 24
+                      </span>
+                    </Typography>
+                  )}
 
                 <Stack
                   direction={{ xs: "row", sm: "row", md: "row" }}
@@ -102,7 +114,7 @@ const SingleCoinHeader = () => {
                     sx={{ color: "#FFFFF5", fontWeight: 800 }}
                     textAlign={{ xs: "center", sm: "center", md: "left" }}
                   >
-                    SafeMoon
+                    {coinData && coinData?.name}
                   </Typography>
 
                   <Stack
@@ -119,7 +131,9 @@ const SingleCoinHeader = () => {
                       }}
                       textAlign={{ xs: "center", sm: "center", md: "left" }}
                     >
-                      SafeMoon
+                      {coinData &&
+                        coinData?.symbol !== null &&
+                        coinData?.symbol}
                     </Typography>
                     <Rating
                       name="size-large"
@@ -139,7 +153,9 @@ const SingleCoinHeader = () => {
                   pt={0.5}
                 >
                   <Typography variant="h4" sx={{ color: "#FFFFF5" }}>
-                    $0.0000090756
+                    {coinData &&
+                      coinData?.current_price !== null &&
+                      coinData?.current_price}
                   </Typography>
                   <Chip
                     icon={<ArrowDropDownIcon />}
@@ -178,7 +194,9 @@ const SingleCoinHeader = () => {
                   </Button>
 
                   <Chip
-                    label="1675 Votes"
+                    label={
+                      coinData && coinData?.vote !== null && coinData?.vote
+                    }
                     sx={{
                       height: "36px",
                       borderRadius: "4px",
@@ -342,7 +360,7 @@ const SingleCoinHeader = () => {
               >
                 {" "}
                 <Typography variant="subtitle2" sx={{ color: "#FFFFF5" }}>
-                  Biance Smart Chain
+                  {coinData && coinData?.network !== null && coinData?.network}
                 </Typography>
                 <IconButton
                   aria-label="more"
@@ -400,12 +418,19 @@ const SingleCoinHeader = () => {
               >
                 {" "}
                 <Typography variant="subtitle2" sx={{ color: "#FFFFF5" }}>
-                  {"0xED3F52c46280ad96485323Fb6a51242cb4CA45F5".substring(
-                    0,
-                    14
-                  ) +
-                    "........." +
-                    "0xED3F52c46280ad96485323Fb6a51242cb4CA45F5".slice(-6)}
+                  {`${
+                    coinData &&
+                    coinData?.address !== null &&
+                    coinData?.address !== "" &&
+                    coinData?.address.substring(0, 14)
+                  } 
+                      .........
+                      ${
+                        coinData &&
+                        coinData?.address !== null &&
+                        coinData?.address !== "" &&
+                        coinData?.address.slice(-6)
+                      }`}
                 </Typography>
                 <CopyToClipboard
                   options={{ message: "" }}
@@ -416,13 +441,19 @@ const SingleCoinHeader = () => {
                     sx={{ paddingLeft: 1 }}
                     onClick={() => {
                       setCopyValue(
-                        "0xED3F52c46280ad96485323Fb6a51242cb4CA45F5"
+                        coinData &&
+                          coinData?.address !== null &&
+                          coinData?.address !== "" &&
+                          coinData?.address
                       );
                     }}
                   >
                     <Tooltip title={`${copied ? "Copied" : "Copy this Token"}`}>
                       <ContentCopyIcon
-                        sx={{ color: `${copied ? "#23D471" : "#75787c"}` }}
+                        sx={{
+                          color: `${copied ? "#23D471" : "#23D471"}`,
+                          fontSize: ".9rem",
+                        }}
                       />
                     </Tooltip>
                   </IconButton>
