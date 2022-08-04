@@ -19,7 +19,10 @@ import en from "javascript-time-ago/locale/en.json";
 import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
 import SingleCoinHeader from "../../../components/desktop/singlecoinheader/SingleCoinHeader";
 import SinglePageTab from "../../../components/desktop/singlepagetab/SinglePageTab";
-import { coinDetailFirstBlockRequest } from "../../../store/action";
+import {
+  coinDetailFirstBlockRequest,
+  coinOverviewBlockRequest,
+} from "../../../store/action";
 
 const SingleCoinPage = () => {
   const coinDetailFirstBlock = useSelector((data: any) => {
@@ -38,6 +41,13 @@ const SingleCoinPage = () => {
     const errorHandler = (err: any) => {};
     dispatch(
       coinDetailFirstBlockRequest(
+        location?.state?.coin_id,
+        successHandler,
+        errorHandler
+      )
+    );
+    dispatch(
+      coinOverviewBlockRequest(
         location?.state?.coin_id,
         successHandler,
         errorHandler
@@ -144,7 +154,11 @@ const SingleCoinPage = () => {
             py={1}
           >
             <BreadCrumbs
-              data={coinDetailFirstBlock && coinDetailFirstBlock[0]}
+              data={
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock !== undefined &&
+                coinDetailFirstBlock[0]
+              }
             />
           </Grid>
           <Grid

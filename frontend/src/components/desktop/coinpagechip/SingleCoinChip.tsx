@@ -5,11 +5,12 @@ const SingleCoinChip = ({ src, title, link }: any) => {
     <Link
       href={link && link}
       sx={{ textDecoration: "none", cursor: "pointer" }}
+      target="_blank"
     >
       {" "}
       <Chip
         avatar={<Avatar alt="Natacha" src={src} />}
-        label={title}
+        label={title && title.length > 21 ? title.slice(0, 21) + "..." : title}
         color="success"
         sx={{
           height: "28px",

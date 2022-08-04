@@ -13,6 +13,7 @@ import Rating from "@mui/material/Rating";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import Chip from "@mui/material/Chip";
 import MoodIcon from "@mui/icons-material/Mood";
 import ArrowUpwardRoundedIcon from "@mui/icons-material/ArrowUpwardRounded";
@@ -159,16 +160,41 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       ? "$" + parseInt(coinData?.current_price).toFixed(2)
                       : "__"}
                   </Typography>
-                  <Chip
-                    icon={<ArrowDropDownIcon />}
-                    label="4.1%"
-                    color="success"
-                    sx={{
-                      height: "24px",
-                      borderRadius: "4px",
-                      backgroundColor: "#05BC34",
-                    }}
-                  />
+                  {Math.sign(parseInt(coinData?.percent_change_1h)) === -1 ? (
+                    <Chip
+                      icon={<ArrowDropDownIcon />}
+                      label={`${parseFloat(
+                        coinData && coinData?.percent_change_1h
+                      ).toFixed(2)}%`}
+                      color="error"
+                      sx={{
+                        height: "24px",
+                        borderRadius: "4px",
+                        backgroundColor: "#ff3708",
+                        paddingX: 0,
+                        "& .MuiChip-label": {
+                          padding: 0.4,
+                        },
+                      }}
+                    />
+                  ) : (
+                    <Chip
+                      icon={<ArrowDropUpIcon />}
+                      label={`${parseFloat(
+                        coinData && coinData?.percent_change_1h
+                      ).toFixed(2)}%`}
+                      color="success"
+                      sx={{
+                        height: "24px",
+                        borderRadius: "4px",
+                        backgroundColor: "#05BC34",
+                        paddingX: 0,
+                        "& .MuiChip-label": {
+                          padding: 0.4,
+                        },
+                      }}
+                    />
+                  )}
                 </Stack>
               </Stack>
             </Stack>
@@ -688,38 +714,61 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 spacing={1}
                 pt={1}
               >
-                <SingleCoinChip src={LinkImage} title="Safemoon.com" />
+                {coinData?.website_url &&
+                  coinData?.website_url[0]?.url !== null &&
+                  coinData?.website_url[0]?.url !== "" &&
+                  coinData?.website_url[0]?.url !== undefined && (
+                    <SingleCoinChip
+                      src={LinkImage}
+                      title={coinData?.website_url[0]?.url}
+                      link={coinData?.website_url[0]?.url}
+                    />
+                  )}
 
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  sx={{ alignItems: "center" }}
-                  spacing={0}
-                  justifyContent={{
-                    xs: "center",
-                    sm: "center",
-                    md: "center",
-                    lg: "flex-start",
-                  }}
-                >
-                  <SingleCoinChip src={LinkImage} title="Safemoonun.com" />
+                {coinData?.website_url &&
+                  coinData?.website_url[1]?.url !== null &&
+                  coinData?.website_url[1]?.url !== "" &&
+                  coinData?.website_url[1]?.url !== undefined && (
+                    <Stack
+                      direction={{ xs: "row", sm: "row", md: "row" }}
+                      sx={{ alignItems: "center" }}
+                      spacing={0}
+                      justifyContent={{
+                        xs: "center",
+                        sm: "center",
+                        md: "center",
+                        lg: "flex-start",
+                      }}
+                    >
+                      <SingleCoinChip
+                        src={LinkImage}
+                        title={coinData?.website_url[1]?.url}
+                        link={coinData?.website_url[1]?.url}
+                      />
 
-                  <IconButton
-                    aria-label="more"
-                    id="long-button"
-                    aria-controls={open ? "long-menu" : undefined}
-                    aria-expanded={open ? "true" : undefined}
-                    aria-haspopup="true"
-                    onClick={handleClick}
-                    sx={{ padding: 0 }}
-                  >
-                    <MoreVertIcon sx={{ color: "#75787c" }} />
-                  </IconButton>
-                  <ShowMoreMenu
-                    showMoreAnchorEl={showMoreAnchorEl}
-                    open={open}
-                    handleClose={handleClose}
-                  />
-                </Stack>
+                      {coinData?.website_url?.length > 2 && (
+                        <Box>
+                          <IconButton
+                            aria-label="more"
+                            id="long-button"
+                            aria-controls={open ? "long-menu" : undefined}
+                            aria-expanded={open ? "true" : undefined}
+                            aria-haspopup="true"
+                            onClick={handleClick}
+                            sx={{ padding: 0 }}
+                          >
+                            <MoreVertIcon sx={{ color: "#75787c" }} />
+                          </IconButton>
+                          <ShowMoreMenu
+                            showMoreAnchorEl={showMoreAnchorEl}
+                            open={open}
+                            handleClose={handleClose}
+                            data={coinData && coinData?.website_url}
+                          />
+                        </Box>
+                      )}
+                    </Stack>
+                  )}
               </Stack>
             </Stack>
 
@@ -767,37 +816,60 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 spacing={1}
                 pt={1}
               >
-                <SingleCoinChip src={BscScanImage} title="BscScan" />
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  sx={{ alignItems: "center" }}
-                  spacing={0}
-                  justifyContent={{
-                    xs: "center",
-                    sm: "center",
-                    md: "center",
-                    lg: "flex-start",
-                  }}
-                >
-                  <SingleCoinChip src={BscScanImage} title="BscScantest" />
+                {coinData?.explorer_link &&
+                  coinData?.explorer_link[0]?.url !== null &&
+                  coinData?.explorer_link[0]?.url !== "" &&
+                  coinData?.explorer_link[0]?.url !== undefined && (
+                    <SingleCoinChip
+                      src={BscScanImage}
+                      title={coinData?.explorer_link[0]?.url}
+                      link={coinData?.explorer_link[0]?.url}
+                    />
+                  )}
+                {coinData?.explorer_link &&
+                  coinData?.explorer_link[1]?.url !== null &&
+                  coinData?.explorer_link[1]?.url !== "" &&
+                  coinData?.explorer_link[1]?.url !== undefined && (
+                    <Stack
+                      direction={{ xs: "row", sm: "row", md: "row" }}
+                      sx={{ alignItems: "center" }}
+                      spacing={0}
+                      justifyContent={{
+                        xs: "center",
+                        sm: "center",
+                        md: "center",
+                        lg: "flex-start",
+                      }}
+                    >
+                      <SingleCoinChip
+                        src={BscScanImage}
+                        title={coinData?.explorer_link[1]?.url}
+                        link={coinData?.explorer_link[1]?.url}
+                      />
 
-                  <IconButton
-                    aria-label="more"
-                    id="long-button"
-                    aria-controls={open ? "long-menu" : undefined}
-                    aria-expanded={open ? "true" : undefined}
-                    aria-haspopup="true"
-                    onClick={handleClick}
-                    sx={{ padding: 0 }}
-                  >
-                    <MoreVertIcon sx={{ color: "#75787c" }} />
-                  </IconButton>
-                  <ShowMoreMenu
-                    showMoreAnchorEl={showMoreAnchorEl}
-                    open={open}
-                    handleClose={handleClose}
-                  />
-                </Stack>
+                      {coinData?.explorer_link?.length > 2 && (
+                        <Box>
+                          <IconButton
+                            aria-label="more"
+                            id="long-button"
+                            aria-controls={open ? "long-menu" : undefined}
+                            aria-expanded={open ? "true" : undefined}
+                            aria-haspopup="true"
+                            onClick={handleClick}
+                            sx={{ padding: 0 }}
+                          >
+                            <MoreVertIcon sx={{ color: "#75787c" }} />
+                          </IconButton>
+                          <ShowMoreMenu
+                            showMoreAnchorEl={showMoreAnchorEl}
+                            open={open}
+                            handleClose={handleClose}
+                            data={coinData && coinData?.explorer_link}
+                          />
+                        </Box>
+                      )}
+                    </Stack>
+                  )}
               </Stack>
             </Stack>
 
@@ -931,7 +1003,11 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     lg: "flex-start",
                   }}
                 >
-                  <SingleCoinChip src={DocsImage} title="Whitepaper" />
+                  <SingleCoinChip
+                    src={DocsImage}
+                    title="Whitepaper"
+                    link={coinData && coinData?.whitepaper_link}
+                  />
                   <SingleCoinChip src={SourcecodeImage} title="Certik" />
 
                   <IconButton
@@ -1071,17 +1147,17 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   variant="h3"
                   sx={{ color: "#FFFFF5", fontWeight: "400" }}
                 >
-                  {coinData && coinData?.score[0]?.trust_score !== null
-                    ? parseInt(coinData?.score[0]?.trust_score).toFixed(1)
+                  {coinData && coinData?.trust_score[0]?.rating !== null
+                    ? parseFloat(coinData?.trust_score[0]?.rating).toFixed(1)
                     : "--"}
                 </Typography>
 
-                {coinData && coinData?.score[0]?.trust_score !== null && (
+                {coinData && coinData?.trust_score[0]?.rating !== null && (
                   <Rating
                     name="size-small"
-                    precision={0.5}
-                    defaultValue={coinData?.score[0]?.trust_score}
-                    value={coinData?.score[0]?.trust_score}
+                    precision={0.1}
+                    defaultValue={coinData?.trust_score[0]?.rating}
+                    value={coinData?.trust_score[0]?.rating}
                     size="small"
                     readOnly
                     sx={{ fontSize: ".9rem" }}

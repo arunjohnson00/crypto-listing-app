@@ -11,16 +11,23 @@ import {
   CardMedia,
   Link,
 } from "@mui/material";
-import React from "react";
+import { useSelector } from "react-redux";
+import moment from "moment";
 import ReactPlayer from "react-player";
 import LinearProgress from "@mui/material/LinearProgress";
 import ToolTipImage from "../../../assets/singlepagecoin/tool-tip.png";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
 import { SlideDown } from "react-slidedown";
 import "react-slidedown/lib/slidedown.css";
 import Iframe from "react-iframe";
 
 const CoinPageOverview = () => {
+  const coinDetailOverview = useSelector((data: any) => {
+    return data?.coinReducer?.coin_overview_block?.data;
+  });
+
   const [viewMore, setViewMore] = useState(true);
 
   const viewmoreHandler = () => {
@@ -64,7 +71,11 @@ const CoinPageOverview = () => {
                 Price
               </Typography>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                $0.00589303
+                {coinDetailOverview &&
+                coinDetailOverview[0]?.current_price !== null &&
+                coinDetailOverview[0]?.current_price !== ""
+                  ? "$" + coinDetailOverview[0]?.current_price
+                  : "NA"}
               </Typography>
             </Stack>
             <Stack direction="row" mt={0.9}>
@@ -85,9 +96,14 @@ const CoinPageOverview = () => {
             >
               <Typography
                 variant="caption"
-                sx={{ color: "#FFFFF5", fontSize: "0.55rem" }}
+                sx={{ color: "#FFFFF5", fontSize: "0.65rem" }}
               >
-                Low:$0
+                Low:{" "}
+                {coinDetailOverview &&
+                coinDetailOverview[0]?.price_low !== null &&
+                coinDetailOverview[0]?.price_low !== ""
+                  ? "$" + coinDetailOverview[0]?.price_low
+                  : "NA"}
               </Typography>
               <Stack direction="row">
                 <NativeSelect
@@ -118,9 +134,14 @@ const CoinPageOverview = () => {
                 </NativeSelect>
                 <Typography
                   variant="caption"
-                  sx={{ color: "#FFFFF5", fontSize: "0.55rem" }}
+                  sx={{ color: "#FFFFF5", fontSize: "0.65rem" }}
                 >
-                  High: $0.00589303
+                  High:{" "}
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.price_high !== null &&
+                  coinDetailOverview[0]?.price_high !== ""
+                    ? "$" + coinDetailOverview[0]?.price_high
+                    : "NA"}
                 </Typography>
               </Stack>
             </Stack>
@@ -152,7 +173,7 @@ const CoinPageOverview = () => {
                 </Tooltip>
               </Stack>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                98,978,88
+                API need
               </Typography>
             </Stack>
             <Stack
@@ -182,7 +203,7 @@ const CoinPageOverview = () => {
                 </Tooltip>
               </Stack>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                4444,333
+                API need
               </Typography>
             </Stack>
             <Stack
@@ -212,7 +233,11 @@ const CoinPageOverview = () => {
                 </Tooltip>
               </Stack>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                $4444,333
+                {coinDetailOverview &&
+                coinDetailOverview[0]?.liquidity_pool_total !== null &&
+                coinDetailOverview[0]?.liquidity_pool_total !== ""
+                  ? coinDetailOverview[0]?.liquidity_pool_total
+                  : "NA"}
               </Typography>
             </Stack>
 
@@ -243,7 +268,11 @@ const CoinPageOverview = () => {
                 </Tooltip>
               </Stack>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                $0.00589303
+                {coinDetailOverview &&
+                coinDetailOverview[0]?.all_time_high !== null &&
+                coinDetailOverview[0]?.all_time_high !== ""
+                  ? coinDetailOverview[0]?.all_time_high
+                  : "NA"}
               </Typography>
             </Stack>
             <Stack
@@ -273,7 +302,13 @@ const CoinPageOverview = () => {
                 </Tooltip>
               </Stack>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                Dec 13 , 2021
+                {coinDetailOverview &&
+                coinDetailOverview[0]?.all_time_high_date !== null &&
+                coinDetailOverview[0]?.all_time_high_date !== ""
+                  ? moment(
+                      new Date(coinDetailOverview[0]?.all_time_high_date)
+                    ).format("MMM DD YY")
+                  : "NA"}
               </Typography>
             </Stack>
 
@@ -303,9 +338,47 @@ const CoinPageOverview = () => {
                   ></Avatar>
                 </Tooltip>
               </Stack>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                22
-              </Typography>
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                spacing={0}
+              >
+                {coinDetailOverview &&
+                coinDetailOverview[0]?.percent_change_1h !== null &&
+                Math.sign(
+                  parseInt(coinDetailOverview[0]?.percent_change_1h)
+                ) === -1 ? (
+                  <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                ) : (
+                  coinDetailOverview &&
+                  coinDetailOverview[0]?.percent_change_1h !== null && (
+                    <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                  )
+                )}
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color:
+                      coinDetailOverview &&
+                      Math.sign(
+                        parseInt(coinDetailOverview[0]?.percent_change_1h)
+                      ) === -1
+                        ? "#ff0000"
+                        : "#00ff00",
+                    fontWeight: 500,
+                  }}
+                >
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.percent_change_1h !== null &&
+                  coinDetailOverview[0]?.percent_change_1h !== "" ? (
+                    parseFloat(coinDetailOverview[0]?.percent_change_1h)
+                      .toFixed(2)
+                      .replace("-", "") + "%"
+                  ) : (
+                    <span style={{ color: "#7a7a7a" }}>--</span>
+                  )}
+                </Typography>
+              </Stack>
             </Stack>
 
             <Stack
@@ -334,9 +407,47 @@ const CoinPageOverview = () => {
                   ></Avatar>
                 </Tooltip>
               </Stack>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                22
-              </Typography>
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                spacing={0}
+              >
+                {coinDetailOverview &&
+                coinDetailOverview[0]?.percent_change_24h !== null &&
+                Math.sign(
+                  parseInt(coinDetailOverview[0]?.percent_change_24h)
+                ) === -1 ? (
+                  <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                ) : (
+                  coinDetailOverview &&
+                  coinDetailOverview[0]?.percent_change_24h !== null && (
+                    <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                  )
+                )}
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color:
+                      coinDetailOverview &&
+                      Math.sign(
+                        parseInt(coinDetailOverview[0]?.percent_change_24h)
+                      ) === -1
+                        ? "#ff0000"
+                        : "#00ff00",
+                    fontWeight: 500,
+                  }}
+                >
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.percent_change_24h !== null &&
+                  coinDetailOverview[0]?.percent_change_24h !== "" ? (
+                    parseFloat(coinDetailOverview[0]?.percent_change_24h)
+                      .toFixed(2)
+                      .replace("-", "") + "%"
+                  ) : (
+                    <span style={{ color: "#7a7a7a" }}>--</span>
+                  )}
+                </Typography>
+              </Stack>
             </Stack>
 
             <Stack
@@ -365,9 +476,47 @@ const CoinPageOverview = () => {
                   ></Avatar>
                 </Tooltip>
               </Stack>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                22
-              </Typography>
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                spacing={0}
+              >
+                {coinDetailOverview &&
+                coinDetailOverview[0]?.percent_change_7d !== null &&
+                Math.sign(
+                  parseInt(coinDetailOverview[0]?.percent_change_7d)
+                ) === -1 ? (
+                  <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                ) : (
+                  coinDetailOverview &&
+                  coinDetailOverview[0]?.percent_change_7d !== null && (
+                    <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                  )
+                )}
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color:
+                      coinDetailOverview &&
+                      Math.sign(
+                        parseInt(coinDetailOverview[0]?.percent_change_7d)
+                      ) === -1
+                        ? "#ff0000"
+                        : "#00ff00",
+                    fontWeight: 500,
+                  }}
+                >
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.percent_change_7d !== null &&
+                  coinDetailOverview[0]?.percent_change_7d !== "" ? (
+                    parseFloat(coinDetailOverview[0]?.percent_change_7d)
+                      .toFixed(2)
+                      .replace("-", "") + "%"
+                  ) : (
+                    <span style={{ color: "#7a7a7a" }}>--</span>
+                  )}
+                </Typography>
+              </Stack>
             </Stack>
             <Stack
               direction="row"
@@ -455,8 +604,15 @@ const CoinPageOverview = () => {
                   ></Avatar>
                 </Tooltip>
               </Stack>
-              <Typography variant="caption" sx={{ color: "#C61F0A" }}>
-                20%
+              <Typography
+                variant="caption"
+                sx={{ color: "#ff0000", fontWeight: 600 }}
+              >
+                {coinDetailOverview &&
+                coinDetailOverview[0]?.volume_24h !== null &&
+                coinDetailOverview[0]?.volume_24h !== ""
+                  ? coinDetailOverview[0]?.volume_24h
+                  : "NA"}
               </Typography>
             </Stack>
 
@@ -487,7 +643,11 @@ const CoinPageOverview = () => {
                 </Tooltip>
               </Stack>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                $77788
+                {coinDetailOverview &&
+                coinDetailOverview[0]?.market_cap !== null &&
+                coinDetailOverview[0]?.market_cap !== ""
+                  ? coinDetailOverview[0]?.market_cap
+                  : "NA"}
               </Typography>
             </Stack>
 
@@ -518,7 +678,13 @@ const CoinPageOverview = () => {
                 </Tooltip>
               </Stack>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                $77788
+                {coinDetailOverview &&
+                coinDetailOverview[0]?.fully_diluted_market_cap !== null &&
+                coinDetailOverview[0]?.fully_diluted_market_cap !== ""
+                  ? parseFloat(
+                      coinDetailOverview[0]?.fully_diluted_market_cap
+                    ).toFixed(3)
+                  : "NA"}
               </Typography>
             </Stack>
 
@@ -549,7 +715,11 @@ const CoinPageOverview = () => {
                 </Tooltip>
               </Stack>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                81OT DOGH
+                {coinDetailOverview &&
+                coinDetailOverview[0]?.circulating_supply !== null &&
+                coinDetailOverview[0]?.circulating_supply !== ""
+                  ? coinDetailOverview[0]?.circulating_supply
+                  : "NA"}
               </Typography>
             </Stack>
             <Stack
@@ -579,7 +749,11 @@ const CoinPageOverview = () => {
                 </Tooltip>
               </Stack>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                81OT DOGH
+                {coinDetailOverview &&
+                coinDetailOverview[0]?.total_supply !== null &&
+                coinDetailOverview[0]?.total_supply !== ""
+                  ? coinDetailOverview[0]?.total_supply
+                  : "NA"}
               </Typography>
             </Stack>
           </Stack>
