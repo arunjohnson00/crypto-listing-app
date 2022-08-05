@@ -12,6 +12,13 @@ import moment from "moment";
 import Rating from "@mui/material/Rating";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import { StyledBadge } from "./style";
+
+import FacebookImage from "../../../../assets/featuredcard/facebook.png";
+import InstagramImage from "../../../../assets/featuredcard/instagram.png";
+import RedditImage from "../../../../assets/featuredcard/reddit.png";
+import TelegramImage from "../../../../assets/featuredcard/telegram.png";
+import TwitterImage from "../../../../assets/featuredcard/twitter.png";
 
 const FeaturedCoinCards = ({ cardData }: any) => {
   const getDifferenceInDays = (date1: any, date2: any) => {
@@ -24,19 +31,25 @@ const FeaturedCoinCards = ({ cardData }: any) => {
 
     //Get Days
     const days = Math.floor(duration.asDays()); // .asDays returns float but we are interested in full days only
-    const daysFormatted = days ? `${days} Days ` : ""; // if no full days then do not display it at all
+    const daysFormatted = days ? `${days}D ` : ""; // if no full days then do not display it at all
 
     //Get Hours
     const hours = duration.hours();
-    const hoursFormatted = `${hours} Hour `;
+    const hoursFormatted = `${hours}H `;
 
     //Get Minutes
     const minutes = duration.minutes();
-    const minutesFormatted = `${minutes}Minutes`;
-
-    return duration?._data?.days <= 0
-      ? "Presale Ended"
-      : [daysFormatted, hoursFormatted, minutesFormatted].join("");
+    const minutesFormatted = `${minutes}M`;
+    //Get Seconds
+    const seconds = duration.seconds();
+    const secondsFormatted = `${seconds}S`;
+    //duration?._data?.days <= 0
+    return [
+      daysFormatted,
+      hoursFormatted,
+      minutesFormatted,
+      secondsFormatted,
+    ].join(" ");
   };
 
   const serverAPIUrl = process.env.REACT_APP_API_URL;
@@ -60,7 +73,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
             <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
               <Avatar
                 alt={cardData && cardData?.name}
-                src={`${serverAPIUrl}public/uploads/coins/${cardData?.logo}`}
+                src={`${serverAPIUrl}public/uploads/coin_logo/${cardData?.logo}`}
               />
               <Stack direction="column" spacing={0}>
                 <Typography
@@ -94,9 +107,15 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   variant="caption"
                   sx={{ color: "#1dffc0", fontWeight: "600" }}
                 >
-                  {cardData && cardData?.current_price !== null
-                    ? "$" + parseFloat(cardData?.current_price).toFixed(4)
-                    : "--"}
+                  {cardData && cardData?.current_price !== null ? (
+                    cardData && Math.abs(cardData?.current_price) > 1 ? (
+                      "$" + parseFloat(cardData?.current_price).toFixed(4)
+                    ) : (
+                      "$" + parseFloat(cardData?.current_price).toFixed(10)
+                    )
+                  ) : (
+                    <span style={{ color: "#7a7a7a" }}>--</span>
+                  )}
                 </Typography>
               </Stack>
             </Stack>
@@ -132,24 +151,61 @@ const FeaturedCoinCards = ({ cardData }: any) => {
             sx={{ alignItems: "center", justifyContent: "space-between" }}
             py={1}
           >
-            <Typography
-              variant="body2"
-              sx={{ color: "#6f737f", fontSize: "0.65rem" }}
-            >
-              Presale Starts in :
-            </Typography>
+            {cardData && parseInt(cardData?.is_presale) === 1 ? (
+              <Typography
+                variant="body2"
+                sx={{ color: "#6f737f", fontSize: "0.65rem" }}
+              >
+                {cardData &&
+                  Math.sign(
+                    moment(new Date(cardData?.presale_date)).diff(new Date())
+                  ) === -1 && (
+                    <StyledBadge
+                      overlap="circular"
+                      anchorOrigin={{ vertical: "top", horizontal: "left" }}
+                      variant="dot"
+                      style={{ marginRight: 10 }}
+                    />
+                  )}
+                Presale{" "}
+                {cardData &&
+                Math.sign(
+                  moment(new Date(cardData?.presale_date)).diff(new Date())
+                ) === -1
+                  ? "Ends"
+                  : "Starts"}{" "}
+                in{" "}
+              </Typography>
+            ) : (
+              <Link
+                to={{
+                  pathname: `/coin/${cardData?.name
+                    ?.replace(/ /g, "")
+                    .toLowerCase()}/${cardData?.id}`,
+                }}
+                state={{ coin_id: cardData?.id }}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                View price chart of {cardData && cardData?.name}
+              </Link>
+            )}
             <Typography
               variant="subtitle1"
               sx={{
                 color:
-                  parseInt(cardData?.is_presale) === 1 ? "#FFFFFF" : "#ff0000",
+                  cardData && parseInt(cardData?.is_presale) === 1
+                    ? "#FFFFFF"
+                    : "#ff0000",
                 fontSize: ".7rem",
               }}
             >
               {
                 //6 Days 7 Hours 19 Minutes
               }
-              {getDifferenceInAll(new Date(), new Date(cardData?.presale_date))}
+              {getDifferenceInAll(
+                new Date(),
+                new Date(cardData?.presale_end_date)
+              )}
             </Typography>
           </Stack>
 
@@ -171,11 +227,11 @@ const FeaturedCoinCards = ({ cardData }: any) => {
               <Chip
                 label="Presale"
                 sx={{
-                  borderRadius: "0px",
+                  borderRadius: "10px",
                   backgroundColor: "#DD0801",
                   color: "#FFFFFF",
                   height: 18,
-                  fontSize: "0.485rem",
+                  fontSize: "0.570rem",
                   marginBottom: "7px",
                   marginRight: "4px",
                 }}
@@ -186,11 +242,11 @@ const FeaturedCoinCards = ({ cardData }: any) => {
               <Chip
                 label="Audited"
                 sx={{
-                  borderRadius: "0px",
+                  borderRadius: "10px",
                   backgroundColor: "#9638FF",
                   color: "#FFFFFF",
                   height: 18,
-                  fontSize: "0.485rem",
+                  fontSize: "0.570rem",
                   marginBottom: "7px",
                   marginRight: "4px",
                 }}
@@ -200,11 +256,11 @@ const FeaturedCoinCards = ({ cardData }: any) => {
               <Chip
                 label="KYC Verified"
                 sx={{
-                  borderRadius: "0px",
+                  borderRadius: "10px",
                   backgroundColor: "#3C38FF",
                   color: "#FFFFFF",
                   height: 18,
-                  fontSize: "0.485rem",
+                  fontSize: "0.570rem",
                   marginBottom: "7px",
                   marginRight: "4px",
                 }}
@@ -214,11 +270,11 @@ const FeaturedCoinCards = ({ cardData }: any) => {
               <Chip
                 label="Airdrop Hosted"
                 sx={{
-                  borderRadius: "0px",
+                  borderRadius: "10px",
                   backgroundColor: "#299E02",
                   color: "#FFFFFF",
                   height: 18,
-                  fontSize: "0.485rem",
+                  fontSize: "0.570rem",
                   marginBottom: "7px",
                   marginRight: "4px",
                 }}
@@ -228,11 +284,11 @@ const FeaturedCoinCards = ({ cardData }: any) => {
               <Chip
                 label="Ownership Renounced"
                 sx={{
-                  borderRadius: "0px",
+                  borderRadius: "10px",
                   backgroundColor: "#DF6803",
                   color: "#FFFFFF",
                   height: 18,
-                  fontSize: "0.485rem",
+                  fontSize: "0.570rem",
                   marginBottom: "7px",
                   marginRight: "4px",
                 }}
@@ -269,15 +325,13 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                     fontSize: ".7rem",
                   }}
                 >
-                  Launch
+                  Community
                 </Typography>
-                <Typography
+                {/* <Typography
                   variant="caption"
                   sx={{ color: "#FFFFF5", fontWeight: 600, fontSize: ".7rem" }}
                 >
-                  {/* {moment(new Date(cardData?.presale_end_date)).from(
-                    new Date()
-                  )} */}
+             
                   In{" "}
                   {cardData &&
                     Math.floor(
@@ -287,7 +341,65 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                       )
                     )}{" "}
                   Days
-                </Typography>
+                </Typography> */}
+
+                <Stack direction="row" spacing={0.5}>
+                  {cardData?.communities[0]?.facebook_link !== null && (
+                    <a
+                      href={cardData && cardData?.communities[0]?.facebook_link}
+                    >
+                      <Avatar
+                        alt="Facebook"
+                        src={FacebookImage}
+                        sx={{ width: 10, height: 10, borderRadius: 0 }}
+                      />
+                    </a>
+                  )}
+                  {cardData?.communities[0]?.twitter_link !== null && (
+                    <a
+                      href={cardData && cardData?.communities[0]?.twitter_link}
+                    >
+                      <Avatar
+                        alt="Twitter"
+                        src={TwitterImage}
+                        sx={{ width: 10, height: 10, borderRadius: 0 }}
+                      />
+                    </a>
+                  )}
+                  {cardData?.communities[0]?.telegram_link !== null && (
+                    <a
+                      href={cardData && cardData?.communities[0]?.telegram_link}
+                    >
+                      <Avatar
+                        alt="Telegram"
+                        src={TelegramImage}
+                        sx={{ width: 10, height: 10, borderRadius: 0 }}
+                      />
+                    </a>
+                  )}
+                  {cardData?.communities[0]?.instagram_link !== null && (
+                    <a
+                      href={
+                        cardData && cardData?.communities[0]?.instagram_link
+                      }
+                    >
+                      <Avatar
+                        alt="Instagram"
+                        src={InstagramImage}
+                        sx={{ width: 10, height: 10, borderRadius: 0 }}
+                      />
+                    </a>
+                  )}
+                  {cardData?.communities[0]?.reddit_link !== null && (
+                    <a href={cardData && cardData?.communities[0]?.reddit_link}>
+                      <Avatar
+                        alt="Reddit"
+                        src={RedditImage}
+                        sx={{ width: 10, height: 10, borderRadius: 0 }}
+                      />
+                    </a>
+                  )}
+                </Stack>
               </Stack>
             </Grid>
 

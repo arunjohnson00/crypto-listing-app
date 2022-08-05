@@ -64,7 +64,7 @@ const HtmlTable = ({ tableData }: any) => {
         </TableHead>
         <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
           {tableData &&
-            tableData.map((data: any, index: number) => (
+            tableData.slice(0, 10).map((data: any, index: number) => (
               <TableRow
                 sx={{
                   "&:last-child td, &:last-child th": { border: 0 },
@@ -74,14 +74,21 @@ const HtmlTable = ({ tableData }: any) => {
                 }}
                 key={index}
               >
-                <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                <TableCell
+                  sx={{
+                    color: "#FFFFFF",
+                    border: 0,
+
+                    maxWidth: 1,
+                  }}
+                >
                   {index + 1}
                 </TableCell>
                 <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                   {" "}
                   <Avatar
                     alt={data?.name}
-                    src={`${serverAPIUrl}public/uploads/coins/${data?.logo}`}
+                    src={`${serverAPIUrl}public/uploads/coin_logo/${data?.logo}`}
                     sx={{ width: 34, height: 34 }}
                   />
                 </TableCell>
@@ -96,9 +103,14 @@ const HtmlTable = ({ tableData }: any) => {
                             .toLowerCase()}/${data?.id}`,
                         }}
                         state={{ coin_id: data?.id }}
-                        style={{ textDecoration: "none", color: "#FFFFFF" }}
+                        style={{
+                          textDecoration: "none",
+                          color: "#FFFFFF",
+                        }}
                       >
-                        {data?.name}
+                        {data && data?.name?.length > 13
+                          ? data?.name?.slice(0, 13) + "..."
+                          : data && data?.name}
                       </Link>
                     </Typography>
                     <Typography
@@ -109,6 +121,7 @@ const HtmlTable = ({ tableData }: any) => {
                         fontSize: "0.6rem",
                       }}
                     >
+                      {"$"}
                       {data?.symbol}
                     </Typography>
                   </Stack>
@@ -127,7 +140,11 @@ const HtmlTable = ({ tableData }: any) => {
                 <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                   <Typography variant="caption">
                     {data && data?.current_price !== null ? (
-                      "$" + data?.current_price
+                      data && Math.abs(data?.current_price) > 1 ? (
+                        "$" + parseFloat(data?.current_price).toFixed(4)
+                      ) : (
+                        "$" + parseFloat(data?.current_price).toFixed(13)
+                      )
                     ) : (
                       <span style={{ color: "#7a7a7a" }}>--</span>
                     )}
@@ -207,7 +224,7 @@ const HtmlTable = ({ tableData }: any) => {
                     </Typography>
                   </Stack>
                 </TableCell>
-                <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                <TableCell sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}>
                   <Typography variant="caption">
                     {" "}
                     {moment(data?.listed, "YYYYMMDD").fromNow()}
@@ -215,13 +232,13 @@ const HtmlTable = ({ tableData }: any) => {
                 </TableCell>
                 <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                   <Stack direction="row" spacing={2} alignItems="center">
-                    <Box sx={{ minWidth: 30 }}>
+                    <Box sx={{}}>
                       <Typography variant="caption"> {data?.vote}</Typography>
                     </Box>
                     <VoteBtn />
                   </Stack>
                 </TableCell>
-                <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                <TableCell sx={{ color: "#FFFFFF", border: 0, minWidth: 120 }}>
                   <Stack
                     direction="row"
                     spacing={0}

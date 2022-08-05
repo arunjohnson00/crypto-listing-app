@@ -62,3 +62,18 @@ export const coinAboutBlockRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const coinOnloadVerificationRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-on-load-verification/${values} `,
+    method: "GET",
+    secure: false,
+    actionType: COIN.COIN_ONLOAD_VERIFICATION,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

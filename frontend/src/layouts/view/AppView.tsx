@@ -14,7 +14,7 @@ const AppView = ({ children }: any) => {
   return (
     <Fragment>
       <Container maxWidth={false}>
-        <Grid item ml={5} px={7}>
+        <Grid item ml={5} px={{ xs: 0.2, sm: 1, md: 3, lg: 4, xl: 25 }}>
           <Grid
             container
             spacing={5}

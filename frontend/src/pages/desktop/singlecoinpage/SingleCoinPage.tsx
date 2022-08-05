@@ -23,6 +23,7 @@ import {
   coinDetailFirstBlockRequest,
   coinOverviewBlockRequest,
   coinAboutBlockRequest,
+  coinOnloadVerificationRequest,
 } from "../../../store/action";
 
 const SingleCoinPage = () => {
@@ -37,33 +38,44 @@ const SingleCoinPage = () => {
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
   const [feed, setFeed] = useState<any>();
-
-  console.log(location?.state?.coin_id);
-
+  console.log(location?.pathname);
   useEffect(() => {
-    //location?.pathname?.split("/").pop() && navigate("/");
-    const successHandler = (res: any) => {};
+    (location?.pathname === "/coin" || location?.pathname === "/coin/") &&
+      navigate("/");
+    const successHandler = (res: any) => {
+      res?.data?.status === true &&
+        dispatch(
+          coinDetailFirstBlockRequest(
+            location?.state?.coin_id !== undefined
+              ? location?.state?.coin_id
+              : location?.pathname?.split("/").pop(),
+            successHandler,
+            errorHandler
+          )
+        );
+      dispatch(
+        coinOverviewBlockRequest(
+          location?.state?.coin_id !== undefined
+            ? location?.state?.coin_id
+            : location?.pathname?.split("/").pop(),
+          successHandler,
+          errorHandler
+        )
+      );
+      dispatch(
+        coinAboutBlockRequest(
+          location?.state?.coin_id !== undefined
+            ? location?.state?.coin_id
+            : location?.pathname?.split("/").pop(),
+          successHandler,
+          errorHandler
+        )
+      );
+    };
     const errorHandler = (err: any) => {};
+
     dispatch(
-      coinDetailFirstBlockRequest(
-        location?.state?.coin_id !== undefined
-          ? location?.state?.coin_id
-          : location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
-    dispatch(
-      coinOverviewBlockRequest(
-        location?.state?.coin_id !== undefined
-          ? location?.state?.coin_id
-          : location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
-    dispatch(
-      coinAboutBlockRequest(
+      coinOnloadVerificationRequest(
         location?.state?.coin_id !== undefined
           ? location?.state?.coin_id
           : location?.pathname?.split("/").pop(),

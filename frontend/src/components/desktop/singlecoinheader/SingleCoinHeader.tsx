@@ -70,6 +70,13 @@ const SingleCoinHeader = ({ coinData }: any) => {
     setShowMoreAnchorEl(null);
   };
 
+  useEffect(() => {
+    coinData &&
+      coinData?.address !== null &&
+      coinData?.address !== "" &&
+      setCopyValue(coinData?.address);
+  }, []);
+
   return (
     <Fragment>
       <Grid xs={12}>
@@ -86,7 +93,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
             >
               <Avatar
                 alt={coinData?.name}
-                src={`${serverAPIUrl}public/uploads/coins/${coinData?.logo}`}
+                src={`${serverAPIUrl}public/uploads/coin_logo/${coinData?.logo}`}
                 sx={{ borderRadius: 0, width: 120, height: 120 }}
               />
               <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
@@ -156,16 +163,24 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   pt={0.5}
                 >
                   <Typography variant="h4" sx={{ color: "#FFFFF5" }}>
-                    {coinData && coinData?.current_price !== null
-                      ? "$" + parseInt(coinData?.current_price).toFixed(2)
-                      : "__"}
+                    {coinData && coinData?.current_price !== null ? (
+                      coinData && Math.abs(coinData?.current_price) > 1 ? (
+                        "$" + parseFloat(coinData?.current_price).toFixed(4)
+                      ) : (
+                        "$" + parseFloat(coinData?.current_price).toFixed(10)
+                      )
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
                   </Typography>
                   {Math.sign(parseInt(coinData?.percent_change_1h)) === -1 ? (
                     <Chip
                       icon={<ArrowDropDownIcon />}
                       label={`${parseFloat(
                         coinData && coinData?.percent_change_1h
-                      ).toFixed(2)}%`}
+                      )
+                        .toFixed(2)
+                        .replace("-", "")}%`}
                       color="error"
                       sx={{
                         height: "24px",
@@ -182,7 +197,9 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       icon={<ArrowDropUpIcon />}
                       label={`${parseFloat(
                         coinData && coinData?.percent_change_1h
-                      ).toFixed(2)}%`}
+                      )
+                        .toFixed(2)
+                        .replace("-", "")}%`}
                       color="success"
                       sx={{
                         height: "24px",
@@ -1152,24 +1169,41 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     title="Whitepaper"
                     link={coinData && coinData?.whitepaper_link}
                   />
-                  <SingleCoinChip src={SourcecodeImage} title="Certik" />
 
-                  <IconButton
-                    aria-label="more"
-                    id="long-button"
-                    aria-controls={open ? "long-menu" : undefined}
-                    aria-expanded={open ? "true" : undefined}
-                    aria-haspopup="true"
-                    onClick={handleClick}
-                    sx={{ padding: 0 }}
-                  >
-                    <MoreVertIcon sx={{ color: "#75787c" }} />
-                  </IconButton>
-                  <ShowMoreMenu
-                    showMoreAnchorEl={showMoreAnchorEl}
-                    open={open}
-                    handleClose={handleClose}
-                  />
+                  {coinData?.audit &&
+                    coinData?.audit[0]?.url !== null &&
+                    coinData?.audit[0]?.url !== "" &&
+                    coinData?.audit[0]?.url !== undefined && (
+                      <SingleCoinChip
+                        src={SourcecodeImage}
+                        title={coinData?.audit[0]?.url}
+                        link={coinData?.audit[0]?.url}
+                      />
+                    )}
+
+                  {/* <SingleCoinChip src={SourcecodeImage} title="Certik" /> */}
+
+                  {coinData?.audit?.length > 1 && (
+                    <Box>
+                      <IconButton
+                        aria-label="more"
+                        id="long-button"
+                        aria-controls={open ? "long-menu" : undefined}
+                        aria-expanded={open ? "true" : undefined}
+                        aria-haspopup="true"
+                        onClick={handleClick}
+                        sx={{ padding: 0 }}
+                      >
+                        <MoreVertIcon sx={{ color: "#75787c" }} />
+                      </IconButton>
+                      <ShowMoreMenu
+                        showMoreAnchorEl={showMoreAnchorEl}
+                        open={open}
+                        handleClose={handleClose}
+                        data={coinData && coinData?.audit}
+                      />
+                    </Box>
+                  )}
                 </Stack>
               </Stack>
             </Stack>
@@ -1208,41 +1242,70 @@ const SingleCoinHeader = ({ coinData }: any) => {
 
               <Stack
                 direction={{ xs: "column", sm: "column", md: "column" }}
-                sx={{ alignItems: "flex-start" }}
+                alignItems={{
+                  xs: "center",
+                  sm: "center",
+                  md: "center",
+                  lg: "flex-start",
+                }}
                 spacing={1}
                 pt={1}
               >
-                <SingleCoinChip src={LinkImage} title="Safemoon.com" />
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  sx={{ alignItems: "center" }}
-                  spacing={0}
-                  justifyContent={{
-                    xs: "center",
-                    sm: "center",
-                    md: "center",
-                    lg: "flex-start",
-                  }}
-                >
-                  <SingleCoinChip src={LinkImage} title="Safemoonun" />
+                {coinData?.chart_link &&
+                  coinData?.chart_link[0]?.url !== null &&
+                  coinData?.chart_link[0]?.url !== "" &&
+                  coinData?.chart_link[0]?.url !== undefined && (
+                    <SingleCoinChip
+                      src={LinkImage}
+                      title={coinData?.chart_link[0]?.url}
+                      link={coinData?.chart_link[0]?.url}
+                    />
+                  )}
 
-                  <IconButton
-                    aria-label="more"
-                    id="long-button"
-                    aria-controls={open ? "long-menu" : undefined}
-                    aria-expanded={open ? "true" : undefined}
-                    aria-haspopup="true"
-                    onClick={handleClick}
-                    sx={{ padding: 0 }}
-                  >
-                    <MoreVertIcon sx={{ color: "#75787c" }} />
-                  </IconButton>
-                  <ShowMoreMenu
-                    showMoreAnchorEl={showMoreAnchorEl}
-                    open={open}
-                    handleClose={handleClose}
-                  />
-                </Stack>
+                {coinData?.chart_link &&
+                  coinData?.chart_link[1]?.url !== null &&
+                  coinData?.chart_link[1]?.url !== "" &&
+                  coinData?.chart_link[1]?.url !== undefined && (
+                    <Stack
+                      direction={{ xs: "row", sm: "row", md: "row" }}
+                      sx={{ alignItems: "center" }}
+                      spacing={0}
+                      justifyContent={{
+                        xs: "center",
+                        sm: "center",
+                        md: "center",
+                        lg: "flex-start",
+                      }}
+                    >
+                      <SingleCoinChip
+                        src={LinkImage}
+                        title={coinData?.chart_link[1]?.url}
+                        link={coinData?.chart_link[1]?.url}
+                      />
+
+                      {coinData?.chart_link?.length > 2 && (
+                        <Box>
+                          <IconButton
+                            aria-label="more"
+                            id="long-button"
+                            aria-controls={open ? "long-menu" : undefined}
+                            aria-expanded={open ? "true" : undefined}
+                            aria-haspopup="true"
+                            onClick={handleClick}
+                            sx={{ padding: 0 }}
+                          >
+                            <MoreVertIcon sx={{ color: "#75787c" }} />
+                          </IconButton>
+                          <ShowMoreMenu
+                            showMoreAnchorEl={showMoreAnchorEl}
+                            open={open}
+                            handleClose={handleClose}
+                            data={coinData && coinData?.chart_link}
+                          />
+                        </Box>
+                      )}
+                    </Stack>
+                  )}
               </Stack>
             </Stack>
 

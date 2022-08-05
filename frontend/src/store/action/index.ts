@@ -15,3 +15,4 @@ export { cryptoCurrenciesTabRequest } from "./homeAction";
 export { coinAboutBlockRequest } from "./coinAction ";
 export { coinOverviewBlockRequest } from "./coinAction ";
 export { coinDetailFirstBlockRequest } from "./coinAction ";
+export { coinOnloadVerificationRequest } from "./coinAction ";
