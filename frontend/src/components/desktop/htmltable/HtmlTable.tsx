@@ -93,7 +93,7 @@ const HtmlTable = ({ tableData }: any) => {
                         to={{
                           pathname: `/coin/${data?.name
                             ?.replace(/ /g, "")
-                            .toLowerCase()}`,
+                            .toLowerCase()}/${data?.id}`,
                         }}
                         state={{ coin_id: data?.id }}
                         style={{ textDecoration: "none", color: "#FFFFFF" }}

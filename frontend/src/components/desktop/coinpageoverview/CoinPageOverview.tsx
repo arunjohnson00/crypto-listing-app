@@ -35,8 +35,8 @@ const CoinPageOverview = () => {
   };
 
   return (
-    <Grid container xs={12}>
-      <Grid xs={12} sm={12} md={4} lg={4} xl={4}>
+    <Grid container>
+      <Grid xs={12} sm={12} md={3.5} lg={3.5} xl={3.5}>
         <Grid xs={12} mb={5}>
           <ReactPlayer
             url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
@@ -79,15 +79,16 @@ const CoinPageOverview = () => {
               </Typography>
             </Stack>
             <Stack direction="row" mt={0.9}>
-              <Box sx={{ width: "100%", color: "#6252E7" }}>
+              <Box
+                sx={{
+                  width: "100%",
+                  color: "#6252e7",
+                }}
+              >
                 <LinearProgress
                   value={60}
                   variant="determinate"
-                  sx={{
-                    "&.MuiLinearProgress-bar1Determinate": {
-                      backgroundColor: "#6252E7",
-                    },
-                  }}
+                  color="inherit"
                 />
               </Box>
             </Stack>
@@ -1072,10 +1073,11 @@ const CoinPageOverview = () => {
       <Grid
         xs={12}
         sm={12}
-        md={8}
-        lg={8}
-        xl={8}
-        px={{ xs: 0, sm: 0, md: 4 }}
+        md={8.5}
+        lg={8.5}
+        xl={8.5}
+        px={{ xs: 0, sm: 0, md: 0 }}
+        pl={{ md: 4 }}
         mt={{ xs: 2, sm: 2, md: 0 }}
       >
         <CardMedia

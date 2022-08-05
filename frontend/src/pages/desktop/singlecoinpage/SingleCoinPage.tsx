@@ -38,30 +38,35 @@ const SingleCoinPage = () => {
   const timeAgo = new TimeAgo("en");
   const [feed, setFeed] = useState<any>();
 
+  console.log(location?.state?.coin_id);
+
   useEffect(() => {
-    (location?.state?.coin_id === undefined ||
-      location?.state?.coin_id === "" ||
-      location?.state?.coin_id === null) &&
-      navigate("/");
+    //location?.pathname?.split("/").pop() && navigate("/");
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
     dispatch(
       coinDetailFirstBlockRequest(
-        location?.state?.coin_id,
+        location?.state?.coin_id !== undefined
+          ? location?.state?.coin_id
+          : location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler
       )
     );
     dispatch(
       coinOverviewBlockRequest(
-        location?.state?.coin_id,
+        location?.state?.coin_id !== undefined
+          ? location?.state?.coin_id
+          : location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler
       )
     );
     dispatch(
       coinAboutBlockRequest(
-        location?.state?.coin_id,
+        location?.state?.coin_id !== undefined
+          ? location?.state?.coin_id
+          : location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler
       )

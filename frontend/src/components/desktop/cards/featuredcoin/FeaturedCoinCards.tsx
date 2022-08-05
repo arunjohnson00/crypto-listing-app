@@ -41,7 +41,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
 
   const serverAPIUrl = process.env.REACT_APP_API_URL;
   return (
-    <Grid item xs={12} sm={11} md={11} lg={11} xl={11} mb={3}>
+    <Grid item xs={12} sm={12} md={12} lg={12} xl={12} mb={3} ml={2}>
       <Box
         sx={{
           borderRadius: "6px",
@@ -71,7 +71,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                     to={{
                       pathname: `/coin/${cardData?.name
                         ?.replace(/ /g, "")
-                        .toLowerCase()}`,
+                        .toLowerCase()}/${cardData?.id}`,
                     }}
                     state={{ coin_id: cardData?.id }}
                     style={{ textDecoration: "none", color: "#FFFFFF" }}

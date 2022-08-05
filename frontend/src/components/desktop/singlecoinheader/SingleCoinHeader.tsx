@@ -151,7 +151,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 </Stack>
                 <Stack
                   direction={{ xs: "row", sm: "row", md: "row" }}
-                  spacing={1}
+                  spacing={2}
                   sx={{ alignItems: "center" }}
                   pt={0.5}
                 >

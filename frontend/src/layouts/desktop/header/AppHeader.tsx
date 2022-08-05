@@ -1,5 +1,6 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
+import { Link } from "react-router-dom";
 import AppBarSearch from "../../../components/desktop/appbarsearch/AppBarSearch";
 import ConnectWalletBtn from "../../../components/desktop/button/connectwalletbtn/ConnectWalletBtn";
 import AddAsset from "../../../components/desktop/button/addasset/AddAsset";
@@ -29,12 +30,13 @@ const AppHeader = ({ windowInnerWidth }: any) => {
               paddingBottom: "40px",
             }}
           >
-            <img
-              src="https://coinxhigh.com/public/assets/images/logo.png"
-              alt="coinxhigh"
-              width="200px"
-            />
-
+            <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+              <img
+                src="https://coinxhigh.com/public/assets/images/logo.png"
+                alt="coinxhigh"
+                width="200px"
+              />
+            </Link>
             <Stack
               direction={{ xs: "column", sm: "column", md: "row" }}
               spacing={1}

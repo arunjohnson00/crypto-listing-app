@@ -17,7 +17,7 @@ const CoinPageAbout = () => {
     return data?.coinReducer?.coin_about_block?.data;
   });
   return (
-    <Grid container xs={12}>
+    <Grid container>
       <Grid xs={12} sm={12} md={4} lg={4} xl={4}>
         <Grid xs={12} mb={5}>
           <Typography
@@ -50,7 +50,8 @@ const CoinPageAbout = () => {
         md={8}
         lg={8}
         xl={8}
-        px={{ xs: 0, sm: 0, md: 4 }}
+        px={{ xs: 0, sm: 0, md: 0 }}
+        pl={{ md: 4 }}
         mt={{ xs: 2, sm: 2, md: 0 }}
       >
         <CardMedia

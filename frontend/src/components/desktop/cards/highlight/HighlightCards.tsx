@@ -169,7 +169,7 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                           to={{
                             pathname: `/coin/${data?.name
                               ?.replace(/ /g, "")
-                              .toLowerCase()}`,
+                              .toLowerCase()}/${data?.id}`,
                           }}
                           state={{ coin_id: data?.id }}
                           style={{ textDecoration: "none", color: "#FFFFFF" }}
@@ -273,7 +273,7 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                           to={{
                             pathname: `/coin/${data?.name
                               ?.replace(/ /g, "")
-                              .toLowerCase()}`,
+                              .toLowerCase()}/${data?.id}`,
                           }}
                           state={{ coin_id: data?.id }}
                           style={{ textDecoration: "none", color: "#FFFFFF" }}
@@ -377,7 +377,7 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                           to={{
                             pathname: `/coin/${data?.name
                               ?.replace(/ /g, "")
-                              .toLowerCase()}`,
+                              .toLowerCase()}/${data?.id}`,
                           }}
                           state={{ coin_id: data?.id }}
                           style={{ textDecoration: "none", color: "#FFFFFF" }}
