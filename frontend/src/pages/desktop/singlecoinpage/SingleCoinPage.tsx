@@ -9,7 +9,7 @@ import {
   Avatar,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
 import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
 import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
@@ -22,6 +22,7 @@ import SinglePageTab from "../../../components/desktop/singlepagetab/SinglePageT
 import {
   coinDetailFirstBlockRequest,
   coinOverviewBlockRequest,
+  coinAboutBlockRequest,
 } from "../../../store/action";
 
 const SingleCoinPage = () => {
@@ -32,11 +33,16 @@ const SingleCoinPage = () => {
   const { parse } = require("rss-to-json");
   const location: any = useLocation();
   const dispatch: any = useDispatch();
+  const navigate: any = useNavigate();
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
   const [feed, setFeed] = useState<any>();
 
   useEffect(() => {
+    (location?.state?.coin_id === undefined ||
+      location?.state?.coin_id === "" ||
+      location?.state?.coin_id === null) &&
+      navigate("/");
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
     dispatch(
@@ -48,6 +54,13 @@ const SingleCoinPage = () => {
     );
     dispatch(
       coinOverviewBlockRequest(
+        location?.state?.coin_id,
+        successHandler,
+        errorHandler
+      )
+    );
+    dispatch(
+      coinAboutBlockRequest(
         location?.state?.coin_id,
         successHandler,
         errorHandler

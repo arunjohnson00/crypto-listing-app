@@ -84,7 +84,9 @@ const CoinPageOverview = () => {
                   value={60}
                   variant="determinate"
                   sx={{
-                    "&.MuiLinearProgress-barColorPrimary": { color: "#6252E7" },
+                    "&.MuiLinearProgress-bar1Determinate": {
+                      backgroundColor: "#6252E7",
+                    },
                   }}
                 />
               </Box>
