@@ -53,6 +53,7 @@ const SinglePageTab = () => {
               "& .MuiButtonBase-root.MuiTab-root": {
                 color: "#FFFFFF",
                 textTransform: "capitalize",
+                opacity: 1,
               },
               "& .MuiTab-root.Mui-selected": {
                 color: "#19ffb0",

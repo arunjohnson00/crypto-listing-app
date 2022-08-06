@@ -12,8 +12,8 @@ import moment from "moment";
 import Rating from "@mui/material/Rating";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import { StyledBadge } from "./style";
 
+import { BounceLoader } from "react-spinners";
 import FacebookImage from "../../../../assets/featuredcard/facebook.png";
 import InstagramImage from "../../../../assets/featuredcard/instagram.png";
 import RedditImage from "../../../../assets/featuredcard/reddit.png";
@@ -152,30 +152,26 @@ const FeaturedCoinCards = ({ cardData }: any) => {
             py={1}
           >
             {cardData && parseInt(cardData?.is_presale) === 1 ? (
-              <Typography
-                variant="body2"
-                sx={{ color: "#6f737f", fontSize: "0.65rem" }}
-              >
+              <Stack direction="row" spacing={0.5} alignItems="center">
                 {cardData &&
                   Math.sign(
                     moment(new Date(cardData?.presale_date)).diff(new Date())
-                  ) === -1 && (
-                    <StyledBadge
-                      overlap="circular"
-                      anchorOrigin={{ vertical: "top", horizontal: "left" }}
-                      variant="dot"
-                      style={{ marginRight: 10 }}
-                    />
-                  )}
-                Presale{" "}
-                {cardData &&
-                Math.sign(
-                  moment(new Date(cardData?.presale_date)).diff(new Date())
-                ) === -1
-                  ? "Ends"
-                  : "Starts"}{" "}
-                in{" "}
-              </Typography>
+                  ) === -1 && <BounceLoader size={8} color="#299E02" />}
+
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#6f737f", fontSize: "0.65rem" }}
+                >
+                  Presale{" "}
+                  {cardData &&
+                  Math.sign(
+                    moment(new Date(cardData?.presale_date)).diff(new Date())
+                  ) === -1
+                    ? "Ends"
+                    : "Starts"}{" "}
+                  in{" "}
+                </Typography>
+              </Stack>
             ) : (
               <Link
                 to={{
@@ -351,7 +347,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                       <Avatar
                         alt="Facebook"
                         src={FacebookImage}
-                        sx={{ width: 10, height: 10, borderRadius: 0 }}
+                        sx={{ width: 12, height: 12, borderRadius: 0 }}
                       />
                     </a>
                   )}
@@ -362,7 +358,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                       <Avatar
                         alt="Twitter"
                         src={TwitterImage}
-                        sx={{ width: 10, height: 10, borderRadius: 0 }}
+                        sx={{ width: 12, height: 12, borderRadius: 0 }}
                       />
                     </a>
                   )}
@@ -373,7 +369,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                       <Avatar
                         alt="Telegram"
                         src={TelegramImage}
-                        sx={{ width: 10, height: 10, borderRadius: 0 }}
+                        sx={{ width: 12, height: 12, borderRadius: 0 }}
                       />
                     </a>
                   )}
@@ -386,7 +382,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                       <Avatar
                         alt="Instagram"
                         src={InstagramImage}
-                        sx={{ width: 10, height: 10, borderRadius: 0 }}
+                        sx={{ width: 12, height: 12, borderRadius: 0 }}
                       />
                     </a>
                   )}
@@ -395,7 +391,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                       <Avatar
                         alt="Reddit"
                         src={RedditImage}
-                        sx={{ width: 10, height: 10, borderRadius: 0 }}
+                        sx={{ width: 12, height: 12, borderRadius: 0 }}
                       />
                     </a>
                   )}

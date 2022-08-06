@@ -8,6 +8,8 @@ import {
   Typography,
   Divider,
   Avatar,
+  Skeleton,
+  CircularProgress,
 } from "@mui/material";
 import Marquee from "react-fast-marquee";
 import TimeAgo from "javascript-time-ago";
@@ -120,6 +122,19 @@ const HomePage = ({ windowInnerWidth }: any) => {
   const [feed, setFeed] = useState<any>();
   const [tableData, setTableData] = useState<any>();
 
+  const [preLoader, setPreLoader] = useState<any>({
+    recently_added: true,
+    biggest_gainers: true,
+    biggest_loosers: true,
+    featured_coin_list: true,
+    todays_performer: true,
+  });
+
+  const [htmlTablePreLoader, setHTMLTablePreLoader] = useState<any>({
+    html_table: true,
+  });
+
+  const featuredCoinSkelton = [1, 2, 3, 4, 5, 6, 7, 8];
   const recentlyAdded = useSelector((data: any) => {
     return data?.homeReducer?.recently_added?.data;
   });
@@ -158,17 +173,37 @@ const HomePage = ({ windowInnerWidth }: any) => {
     })();
   }, []);
   useEffect(() => {
-    const successHandler = (res: any) => {};
+    const successHandler = (res: any) => {
+      setPreLoader({
+        ...preLoader,
+        recently_added: false,
+        biggest_gainers: false,
+        biggest_loosers: false,
+        featured_coin_list: false,
+        todays_performer: false,
+      });
+    };
     const errorHandler = (err: any) => {};
     dispatch(recentlyAddedRequest("noData", successHandler, errorHandler));
     dispatch(biggestGainersRequest("noData", successHandler, errorHandler));
     dispatch(biggestLosersRequest("noData", successHandler, errorHandler));
     dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
-  }, [dispatch]);
+  }, [dispatch, setPreLoader]);
 
   useEffect(() => {
+    setHTMLTablePreLoader({
+      ...htmlTablePreLoader,
+
+      html_table: true,
+    });
     const successHandler = (res: any) => {
       setTableData(res?.data?.data);
+      res?.data?.data !== undefined &&
+        setHTMLTablePreLoader({
+          ...htmlTablePreLoader,
+
+          html_table: false,
+        });
     };
     const errorHandler = (err: any) => {};
 
@@ -192,7 +227,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
       dispatch(
         cryptoCurrenciesPresaleRequest("noData", successHandler, errorHandler)
       );
-  }, [dispatch, tabIndex]);
+  }, [dispatch, tabIndex, setHTMLTablePreLoader]);
 
   return (
     <Fragment>
@@ -377,39 +412,139 @@ const HomePage = ({ windowInnerWidth }: any) => {
             responsive={responsiveHighlights}
             infinite={true}
             removeArrowOnDeviceType={["tablet", "mobile"]}
-            arrows={true}
+            arrows={false}
             autoPlay={false}
             shouldResetAutoplay={false}
           >
             <Box>
-              <HighlightCards
-                title="Biggest Gainers"
-                cardData={biggestGainers}
-                icon={biggestGainersIcon}
-              />
+              {preLoader?.biggest_gainers === true ? (
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    backgroundColor: "#010822",
+                    color: "#3D484F",
+                  }}
+                  m={1}
+                >
+                  <Skeleton
+                    animation="wave"
+                    variant="rectangular"
+                    width={"100%"}
+                    height={186}
+                    sx={{
+                      px: 2,
+                      pb: 2,
+                      pt: 2,
+                      bgcolor: "rgb(245 245 245 / 11%)",
+                      borderRadius: "6px",
+                    }}
+                  />
+                </Box>
+              ) : (
+                <HighlightCards
+                  title="Biggest Gainers"
+                  cardData={biggestGainers}
+                  icon={biggestGainersIcon}
+                />
+              )}
             </Box>
             <Box>
-              <HighlightCards
-                title="Biggest Losers"
-                cardData={biggestloosers}
-                icon={biggestLosersIcon}
-              />
+              {preLoader?.biggest_loosers === true ? (
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    backgroundColor: "#010822",
+                    color: "#3D484F",
+                  }}
+                  m={1}
+                >
+                  <Skeleton
+                    animation="wave"
+                    variant="rectangular"
+                    width={"100%"}
+                    height={186}
+                    sx={{
+                      px: 2,
+                      pb: 2,
+                      pt: 2,
+                      bgcolor: "rgb(245 245 245 / 11%)",
+                      borderRadius: "6px",
+                    }}
+                  />
+                </Box>
+              ) : (
+                <HighlightCards
+                  title="Biggest Losers"
+                  cardData={biggestloosers}
+                  icon={biggestLosersIcon}
+                />
+              )}
             </Box>
 
             <Box>
-              <HighlightCards
-                title="Recently Added"
-                cardData={recentlyAdded}
-                icon={recentlyAddedIcon}
-              />
+              {preLoader?.recently_added === true ? (
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    backgroundColor: "#010822",
+                    color: "#3D484F",
+                  }}
+                  m={1}
+                >
+                  <Skeleton
+                    animation="wave"
+                    variant="rectangular"
+                    width={"100%"}
+                    height={186}
+                    sx={{
+                      px: 2,
+                      pb: 2,
+                      pt: 2,
+                      bgcolor: "rgb(245 245 245 / 11%)",
+                      borderRadius: "6px",
+                    }}
+                  />
+                </Box>
+              ) : (
+                <HighlightCards
+                  title="Recently Added"
+                  cardData={recentlyAdded}
+                  icon={recentlyAddedIcon}
+                />
+              )}
             </Box>
-            <Box>
-              <HighlightCards
-                title="Todays Performer"
-                cardData=""
-                icon={todaysPerformerIcon}
-              />
-            </Box>
+            {/* <Box>
+              {preLoader?.todays_performer === true ? (
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    backgroundColor: "#010822",
+                    color: "#3D484F",
+                    height: 180,
+                  }}
+                  px={2}
+                  pb={3}
+                  pt={2}
+                  m={1}
+                >
+                  <CircularProgress color="inherit" />
+                </Box>
+              ) : (
+                <HighlightCards
+                  title="Todays Performer"
+                  cardData=""
+                  icon={todaysPerformerIcon}
+                />
+              )}
+            </Box> */}
           </Carousel>
         </Grid>
 
@@ -514,27 +649,74 @@ const HomePage = ({ windowInnerWidth }: any) => {
               </Stack>
             </Grid>
             <Grid xs={12} sm={12} md={12} lg={11.6} xl={11.6}>
-              <Stack
-                direction={{
-                  xs: "column",
-                  sm: "column",
-                  md: "row",
-                  lg: "row",
-                }}
-                spacing={0}
-                sx={{
-                  alignItems: "flex-start",
-                  flexWrap: "wrap",
-                  justifyContent: "space-between",
-                }}
-              >
-                {featuredCoinList &&
-                  featuredCoinList?.map((data: any, index: number) => (
-                    <Grid xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
-                      <FeaturedCoinCards cardData={data} />
-                    </Grid>
-                  ))}
-              </Stack>
+              {preLoader?.featured_coin_list === true ? (
+                <Stack
+                  direction={{
+                    xs: "column",
+                    sm: "column",
+                    md: "row",
+                    lg: "row",
+                  }}
+                  spacing={0}
+                  sx={{
+                    alignItems: "flex-start",
+                    flexWrap: "wrap",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  {featuredCoinSkelton &&
+                    featuredCoinSkelton.map((data: any, index: number) => (
+                      <Grid xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            backgroundColor: "#010822",
+                            color: "#3D484F",
+                          }}
+                          m={1}
+                        >
+                          <Skeleton
+                            animation="wave"
+                            variant="rectangular"
+                            width={"100%"}
+                            height={280}
+                            sx={{
+                              px: 2,
+                              pb: 2,
+                              pt: 2,
+                              bgcolor: "rgb(245 245 245 / 11%)",
+                              borderRadius: "6px",
+                            }}
+                          />
+                        </Box>
+                      </Grid>
+                    ))}
+                </Stack>
+              ) : (
+                <Stack
+                  direction={{
+                    xs: "column",
+                    sm: "column",
+                    md: "row",
+                    lg: "row",
+                  }}
+                  spacing={0}
+                  sx={{
+                    alignItems: "flex-start",
+                    flexWrap: "wrap",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  {featuredCoinList &&
+                    featuredCoinList?.map((data: any, index: number) => (
+                      <Grid xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
+                        <FeaturedCoinCards cardData={data} />
+                      </Grid>
+                    ))}
+                </Stack>
+              )}
             </Grid>
           </Stack>
         </Grid>
@@ -709,7 +891,35 @@ const HomePage = ({ windowInnerWidth }: any) => {
               alignItems: "center",
             }}
           >
-            <HtmlTable tableData={tableData && tableData} />
+            {htmlTablePreLoader?.html_table === true ? (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "#010822",
+                  color: "#3D484F",
+                  width: "100%",
+                }}
+                m={1}
+              >
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width={"100%"}
+                  height={100}
+                  sx={{
+                    px: 2,
+                    pb: 2,
+                    pt: 2,
+                    bgcolor: "rgb(245 245 245 / 11%)",
+                    borderRadius: "6px",
+                  }}
+                />
+              </Box>
+            ) : (
+              <HtmlTable tableData={tableData && tableData} />
+            )}
           </Stack>
         </Grid>
 

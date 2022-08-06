@@ -10,7 +10,14 @@ const SingleCoinChip = ({ src, title, link }: any) => {
       {" "}
       <Chip
         avatar={<Avatar alt="Natacha" src={src} />}
-        label={title && title.length > 21 ? title.slice(0, 21) + "..." : title}
+        label={
+          title && title.length > 21
+            ? title
+                .replace(/^https?:\/\//, "")
+                .slice(0, 21)
+                .replace(/\/$/, "") + "..."
+            : title.replace(/^https?:\/\//, "").replace(/\/$/, "")
+        }
         color="success"
         sx={{
           height: "28px",
