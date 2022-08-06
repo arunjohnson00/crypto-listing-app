@@ -14,15 +14,18 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import moment from "moment";
 
+import "./style.css";
+
 const MobileHtmlTable = ({ tableData }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className="tableFixHead">
       <Table
         sx={{ minWidth: 650, backgroundColor: "transparent" }}
         aria-label="simple table"
         size="small"
+        className="table table-bordered"
       >
         <TableHead
           sx={{ backgroundColor: "#000000", color: "#FFFFF5", height: 50 }}
@@ -65,7 +68,7 @@ const MobileHtmlTable = ({ tableData }: any) => {
         </TableHead>
         <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
           {tableData &&
-            tableData.slice(0, 10).map((data: any, index: number) => (
+            tableData.slice(0, 7).map((data: any, index: number) => (
               <TableRow
                 sx={{
                   "&:last-child td, &:last-child th": { border: 0 },

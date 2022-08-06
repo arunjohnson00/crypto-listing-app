@@ -35,6 +35,7 @@ const MobileBottomNav = () => {
         bottom: 0,
         left: 0,
         right: 0,
+        zIndex: 999,
         backgroundColor: "#000000",
         "& .MuiBottomNavigation-root": {
           backgroundColor: "#000000",

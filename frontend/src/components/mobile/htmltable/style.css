@@ -1,0 +1,65 @@
+.tableFixHead {
+  overflow: auto;
+  height: "auto";
+  width: "auto";
+}
+
+.tableFixHead table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tableFixHead th,
+.tableFixHead td {
+  padding: 8px 16px;
+}
+
+td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background-color: #010822;
+}
+th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background-color: #000000;
+}
+td:nth-child(2) {
+  position: sticky;
+  left: 40px;
+  z-index: 1;
+  background-color: #010822;
+}
+th:nth-child(2) {
+  position: sticky;
+  left: 40px;
+  z-index: 1;
+  background-color: #000000;
+}
+
+td:nth-child(3) {
+  position: sticky;
+  left: 100px;
+  z-index: 1;
+  background-color: #010822;
+}
+th:nth-child(3) {
+  position: sticky;
+  left: 100px;
+  z-index: 1;
+  background-color: #000000;
+}
+,
+.tableFixHead th {
+  position: sticky;
+  top: 0;
+
+  z-index: 1;
+}
+th:first-child,
+th:nth-child(2),
+th:nth-child(3) {
+  z-index: 1;
+}
