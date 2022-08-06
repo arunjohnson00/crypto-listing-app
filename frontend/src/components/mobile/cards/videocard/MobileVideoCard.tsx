@@ -1,27 +1,27 @@
-import { Grid, CardMedia, Typography } from "@mui/material";
 import React from "react";
+import { Grid, CardMedia, Typography, Box } from "@mui/material";
+import ReactPlayer from "react-player";
 
-const MobileVideoCard = () => {
+const MobileVideoCard = ({ url }: any) => {
   return (
-    <Grid xs={12} mx={2}>
-      <CardMedia
+    <Box m={1}>
+      {/* <CardMedia
         component="img"
-        width="100%"
-        //height="180"
+        height="130"
         image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
         alt="green iguana"
-      />
-
+      /> */}
+      <ReactPlayer url={url && url} width="100%" height={130} />
       <Typography
-        variant="subtitle2"
-        sx={{ color: "white", paddingTop: 2, paddingBottom: 0 }}
+        variant="body2"
+        sx={{ color: "#828282", paddingTop: 2, paddingBottom: 0 }}
       >
-        What is trust wallet? Tutorial
-      </Typography>
-      <Typography variant="body2" sx={{ color: "#828282" }}>
         Crypto Deep Drive
       </Typography>
-    </Grid>
+      <Typography variant="subtitle2" sx={{ color: "white" }}>
+        What is trust wallet? Tutorial
+      </Typography>
+    </Box>
   );
 };
 

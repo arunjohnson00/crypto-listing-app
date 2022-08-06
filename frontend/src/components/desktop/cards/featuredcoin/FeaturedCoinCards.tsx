@@ -20,37 +20,39 @@ import RedditImage from "../../../../assets/featuredcard/reddit.png";
 import TelegramImage from "../../../../assets/featuredcard/telegram.png";
 import TwitterImage from "../../../../assets/featuredcard/twitter.png";
 
+import { CountDownTimer } from "./countdown/CountDownTimer";
+
 const FeaturedCoinCards = ({ cardData }: any) => {
-  const getDifferenceInDays = (date1: any, date2: any) => {
-    const diffInMs = Math.abs(date2 - date1);
-    return diffInMs / (1000 * 60 * 60 * 24);
-  };
+  // const getDifferenceInDays = (date1: any, date2: any) => {
+  //   const diffInMs = Math.abs(date2 - date1);
+  //   return diffInMs / (1000 * 60 * 60 * 24);
+  // };
 
-  const getDifferenceInAll: any = (start: any, end: any) => {
-    const duration: any = moment.duration(moment(end).diff(moment(start)));
+  // const getDifferenceInAll: any = (start: any, end: any) => {
+  //   const duration: any = moment.duration(moment(end).diff(moment(start)));
 
-    //Get Days
-    const days = Math.floor(duration.asDays()); // .asDays returns float but we are interested in full days only
-    const daysFormatted = days ? `${days}D ` : ""; // if no full days then do not display it at all
+  //   //Get Days
+  //   const days = Math.floor(duration.asDays()); // .asDays returns float but we are interested in full days only
+  //   const daysFormatted = days ? `${days}D ` : ""; // if no full days then do not display it at all
 
-    //Get Hours
-    const hours = duration.hours();
-    const hoursFormatted = `${hours}H `;
+  //   //Get Hours
+  //   const hours = duration.hours();
+  //   const hoursFormatted = `${hours}H `;
 
-    //Get Minutes
-    const minutes = duration.minutes();
-    const minutesFormatted = `${minutes}M`;
-    //Get Seconds
-    const seconds = duration.seconds();
-    const secondsFormatted = `${seconds}S`;
-    //duration?._data?.days <= 0
-    return [
-      daysFormatted,
-      hoursFormatted,
-      minutesFormatted,
-      secondsFormatted,
-    ].join(" ");
-  };
+  //   //Get Minutes
+  //   const minutes = duration.minutes();
+  //   const minutesFormatted = `${minutes}M`;
+  //   //Get Seconds
+  //   const seconds = duration.seconds();
+  //   const secondsFormatted = `${seconds}S`;
+  //   //duration?._data?.days <= 0
+  //   return [
+  //     daysFormatted,
+  //     hoursFormatted,
+  //     minutesFormatted,
+  //     secondsFormatted,
+  //   ].join(" ");
+  // };
 
   const serverAPIUrl = process.env.REACT_APP_API_URL;
   return (
@@ -156,7 +158,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                 {cardData &&
                   Math.sign(
                     moment(new Date(cardData?.presale_date)).diff(new Date())
-                  ) === -1 && <BounceLoader size={8} color="#299E02" />}
+                  ) === -1 && <BounceLoader size={12} color="#00FF00" />}
 
                 <Typography
                   variant="body2"
@@ -197,11 +199,12 @@ const FeaturedCoinCards = ({ cardData }: any) => {
             >
               {
                 //6 Days 7 Hours 19 Minutes
+                CountDownTimer(cardData?.presale_end_date)
               }
-              {getDifferenceInAll(
+              {/* {getDifferenceInAll(
                 new Date(),
                 new Date(cardData?.presale_end_date)
-              )}
+              )} */}
             </Typography>
           </Stack>
 

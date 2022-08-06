@@ -7,10 +7,12 @@ import {
   Typography,
   Divider,
   Avatar,
+  Skeleton,
 } from "@mui/material";
 import Marquee from "react-fast-marquee";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
+import { useDispatch, useSelector } from "react-redux";
 import MobileLatestNewsHeading from "../../../components/mobile/Typography/headings/latestnews/MobileLatestNewsHeading";
 import MobileNewsCardTop from "../../../components/mobile/cards/topnewscard/MobileNewsCardTop";
 import FullWidthSlider from "../../../components/mobile/slider/fullwidthslider/FullWidthSlider";
@@ -32,106 +34,170 @@ import MobileAdsCardHome from "../../../components/mobile/cards/adscard/MobileAd
 import MobileMenuCards from "../../../components/mobile/cards/menucards/MobileMenuCards";
 import MobileBannerMaps from "../../../components/mobile/banner/bannermap/MobileBannerMap";
 
+import {
+  featuredCoinListRequest,
+  cryptoCurrenciesListRequest,
+  cryptoCurrenciesTodaysBestRequest,
+  cryptoCurrenciesNewRequest,
+  cryptoCurrenciesPresaleRequest,
+} from "../../../store/action";
+
 const { parse } = require("rss-to-json");
 
+const responsiveFeatured: any = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 2,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 2,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 1.5,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1.5,
+  },
+};
+const responsiveMenuCard: any = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 2,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 2,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 1.5,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1.5,
+  },
+};
+const responsiveTrending: any = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 4,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 2,
+  },
+};
+
+const responsiveVideos: any = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 4,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 2,
+  },
+};
+
+const responsiveNFT: any = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 4,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 2,
+  },
+};
+
 const MobileHomePage = () => {
-  const responsiveFeatured: any = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 2,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 2,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 1.5,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1.5,
-    },
-  };
-  const responsiveMenuCard: any = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 2,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 2,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 1.5,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1.5,
-    },
-  };
-  const responsiveTrending: any = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 2,
-    },
-  };
+  const [tableData, setTableData] = useState<any>();
+  const [preLoader, setPreLoader] = useState<any>({
+    featured_coin_list: true,
+  });
+  const [htmlTablePreLoader, setHTMLTablePreLoader] = useState<any>({
+    html_table: true,
+  });
 
-  const responsiveVideos: any = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 2,
-    },
-  };
+  const dispatch: any = useDispatch();
+  const featuredCoinList = useSelector((data: any) => {
+    return data?.homeReducer?.featured_coin_list?.data;
+  });
+  const tabIndex = useSelector((data: any) => {
+    return data?.homeReducer?.crypto_currencies_tab;
+  });
 
-  const responsiveNFT: any = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 2,
-    },
-  };
+  useEffect(() => {
+    setHTMLTablePreLoader({
+      ...htmlTablePreLoader,
+
+      html_table: true,
+    });
+    const successHandler = (res: any) => {
+      setTableData(res?.data?.data);
+      res?.data?.data !== undefined &&
+        setHTMLTablePreLoader({
+          ...htmlTablePreLoader,
+
+          html_table: false,
+        });
+    };
+    const errorHandler = (err: any) => {};
+
+    tabIndex === 0 &&
+      dispatch(
+        cryptoCurrenciesListRequest("noData", successHandler, errorHandler)
+      );
+    tabIndex === 2 &&
+      dispatch(
+        cryptoCurrenciesTodaysBestRequest(
+          "noData",
+          successHandler,
+          errorHandler
+        )
+      );
+    tabIndex === 4 &&
+      dispatch(
+        cryptoCurrenciesNewRequest("noData", successHandler, errorHandler)
+      );
+    tabIndex === 6 &&
+      dispatch(
+        cryptoCurrenciesPresaleRequest("noData", successHandler, errorHandler)
+      );
+  }, [dispatch, tabIndex, setHTMLTablePreLoader]);
+
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
   const [feed, setFeed] = useState<any>();
@@ -145,6 +211,20 @@ const MobileHomePage = () => {
       setFeed(rss);
     })();
   }, []);
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      setPreLoader({
+        ...preLoader,
+
+        featured_coin_list: false,
+      });
+    };
+    const errorHandler = (err: any) => {};
+
+    dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
+  }, [dispatch, setPreLoader]);
+
   return (
     <Grid
       container
@@ -266,42 +346,117 @@ const MobileHomePage = () => {
           paddingBottom: "23px",
         }}
       >
-        <Carousel
-          // centerMode={true}
-          responsive={responsiveFeatured}
-          infinite={true}
-          removeArrowOnDeviceType={["tablet", "mobile"]}
-          arrows={true}
-          swipeable={true}
-          partialVisible={true}
-          autoPlay={true}
-          draggable={true}
-        >
-          <Box>
-            <MobileFeaturedCoinCards />
-          </Box>
-          <Box>
-            <MobileFeaturedCoinCards />
-          </Box>
-          <Box>
-            <MobileFeaturedCoinCards />
-          </Box>
-          <Box>
-            <MobileFeaturedCoinCards />
-          </Box>
-          <Box>
-            <MobileFeaturedCoinCards />
-          </Box>
-          <Box>
-            <MobileFeaturedCoinCards />
-          </Box>
-          <Box>
-            <MobileFeaturedCoinCards />
-          </Box>
-          <Box>
-            <MobileFeaturedCoinCards />
-          </Box>
-        </Carousel>
+        {preLoader?.featured_coin_list === true ? (
+          <Carousel
+            // centerMode={true}
+            responsive={responsiveFeatured}
+            infinite={true}
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            arrows={true}
+            swipeable={true}
+            partialVisible={true}
+            autoPlay={true}
+            draggable={true}
+          >
+            <Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "#010822",
+                  color: "#3D484F",
+                }}
+                m={1}
+              >
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width={"100%"}
+                  height={280}
+                  sx={{
+                    px: 2,
+                    pb: 2,
+                    pt: 2,
+                    bgcolor: "rgb(245 245 245 / 11%)",
+                    borderRadius: "6px",
+                  }}
+                />
+              </Box>
+            </Box>
+            <Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "#010822",
+                  color: "#3D484F",
+                }}
+                m={1}
+              >
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width={"100%"}
+                  height={280}
+                  sx={{
+                    px: 2,
+                    pb: 2,
+                    pt: 2,
+                    bgcolor: "rgb(245 245 245 / 11%)",
+                    borderRadius: "6px",
+                  }}
+                />
+              </Box>
+            </Box>
+            <Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "#010822",
+                  color: "#3D484F",
+                }}
+                m={1}
+              >
+                <Skeleton
+                  animation="wave"
+                  variant="rectangular"
+                  width={"100%"}
+                  height={280}
+                  sx={{
+                    px: 2,
+                    pb: 2,
+                    pt: 2,
+                    bgcolor: "rgb(245 245 245 / 11%)",
+                    borderRadius: "6px",
+                  }}
+                />
+              </Box>
+            </Box>
+          </Carousel>
+        ) : (
+          <Carousel
+            // centerMode={true}
+            responsive={responsiveFeatured}
+            infinite={true}
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            arrows={true}
+            swipeable={true}
+            partialVisible={true}
+            autoPlay={true}
+            draggable={true}
+          >
+            {featuredCoinList &&
+              featuredCoinList?.map((data: any, index: number) => (
+                <Box key={index}>
+                  <MobileFeaturedCoinCards cardData={data} />
+                </Box>
+              ))}
+          </Carousel>
+        )}
       </Grid>
 
       <Grid
@@ -424,25 +579,25 @@ const MobileHomePage = () => {
           draggable={true}
         >
           <Box>
-            <MobileVideoCard />
+            <MobileVideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
           </Box>
           <Box>
-            <MobileVideoCard />
+            <MobileVideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
           </Box>
           <Box>
-            <MobileVideoCard />
+            <MobileVideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
           </Box>
           <Box>
-            <MobileVideoCard />
+            <MobileVideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
           </Box>
           <Box>
-            <MobileVideoCard />
+            <MobileVideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
           </Box>
           <Box>
-            <MobileVideoCard />
+            <MobileVideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
           </Box>
           <Box>
-            <MobileVideoCard />
+            <MobileVideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
           </Box>
         </Carousel>
       </Grid>
@@ -488,7 +643,35 @@ const MobileHomePage = () => {
             alignItems: "center",
           }}
         >
-          <MobileHtmlTable />
+          {htmlTablePreLoader?.html_table === true ? (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "#010822",
+                color: "#3D484F",
+                width: "100%",
+              }}
+              m={1}
+            >
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                width={"100%"}
+                height={100}
+                sx={{
+                  px: 2,
+                  pb: 2,
+                  pt: 2,
+                  bgcolor: "rgb(245 245 245 / 11%)",
+                  borderRadius: "6px",
+                }}
+              />
+            </Box>
+          ) : (
+            <MobileHtmlTable tableData={tableData && tableData} />
+          )}
         </Stack>
       </Grid>
 

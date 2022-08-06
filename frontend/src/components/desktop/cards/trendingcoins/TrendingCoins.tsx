@@ -124,71 +124,70 @@ const TrendingCoins = () => {
     },
   };
   return (
-    <Grid xs={12} sm={12} md={12} lg={12} xl={12} mb={2}>
-      <Box
-        sx={{
-          backgroundColor: "#01061C",
-          border: "1px solid #0A1028",
-          borderRadius: 5,
-        }}
-        px={2}
-        py={2}
-      >
-        <Grid xs={12}>
-          <Stack
-            direction={{ xs: "row" }}
-            spacing={0.5}
-            sx={{ alignItems: "center" }}
-          >
-            <Avatar
-              alt="Remy Sharp"
-              src="https://mui.com/static/images/avatar/1.jpg"
-              sx={{ width: 20, height: 20 }}
-            />
-
-            <Stack direction={{ xs: "column" }} spacing={0.3}>
-              <Typography
-                variant="caption"
-                sx={{ color: "#C6C9D2", fontWeight: "600" }}
-              >
-                STEPN
-              </Typography>
-
-              <Typography
-                variant="caption"
-                sx={{
-                  color: "#B9AC78",
-                  fontWeight: "400",
-                  fontSize: "0.55rem",
-                  lineHeight: 0.2,
-                }}
-              >
-                STEPN
-              </Typography>
-            </Stack>
-          </Stack>
-        </Grid>
-
-        <Grid xs={12}>
-          <Chart
-            options={chartData.options}
-            series={chartData.series}
-            type="line"
-            height="auto"
+    <Box
+      sx={{
+        backgroundColor: "#01061C",
+        border: "1px solid #0A1028",
+        borderRadius: 5,
+      }}
+      px={2}
+      py={2}
+      m={0.5}
+    >
+      <Grid xs={12}>
+        <Stack
+          direction={{ xs: "row" }}
+          spacing={0.5}
+          sx={{ alignItems: "center" }}
+        >
+          <Avatar
+            alt="Remy Sharp"
+            src="https://mui.com/static/images/avatar/1.jpg"
+            sx={{ width: 20, height: 20 }}
           />
-        </Grid>
-        <Grid xs={12}>
-          <Stack direction={{ xs: "row" }} sx={{ justifyContent: "flex-end" }}>
+
+          <Stack direction={{ xs: "column" }} spacing={0.3}>
             <Typography
-              variant="body2"
-              sx={{ color: "#00C080", fontWeight: "700" }}
+              variant="caption"
+              sx={{ color: "#C6C9D2", fontWeight: "600" }}
             >
-              14.28%
+              STEPN
+            </Typography>
+
+            <Typography
+              variant="caption"
+              sx={{
+                color: "#B9AC78",
+                fontWeight: "400",
+                fontSize: "0.55rem",
+                lineHeight: 0.2,
+              }}
+            >
+              STEPN
             </Typography>
           </Stack>
-        </Grid>
-      </Box>
-    </Grid>
+        </Stack>
+      </Grid>
+
+      <Grid xs={12}>
+        <Chart
+          options={chartData.options}
+          series={chartData.series}
+          type="line"
+          height="auto"
+        />
+      </Grid>
+      <Grid xs={12}>
+        <Stack direction={{ xs: "row" }} sx={{ justifyContent: "flex-end" }}>
+          <Typography
+            variant="body2"
+            sx={{ color: "#00C080", fontWeight: "700" }}
+          >
+            14.28%
+          </Typography>
+        </Stack>
+      </Grid>
+    </Box>
   );
 };
 

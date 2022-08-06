@@ -75,6 +75,26 @@ const responsiveNFTCollections = {
   },
 };
 
+const responsiveTrendingCoins = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 7,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 7,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 5,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
+
 const responsiveVideo = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -347,22 +367,22 @@ const HomePage = ({ windowInnerWidth }: any) => {
             arrows={true}
           >
             <Box>
-              <VideoCard />
+              <VideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
             </Box>
             <Box>
-              <VideoCard />
+              <VideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
             </Box>
             <Box>
-              <VideoCard />
+              <VideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
             </Box>
             <Box>
-              <VideoCard />
+              <VideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
             </Box>
             <Box>
-              <VideoCard />
+              <VideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
             </Box>
             <Box>
-              <VideoCard />
+              <VideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
             </Box>
           </Carousel>
         </Grid>
@@ -754,40 +774,67 @@ const HomePage = ({ windowInnerWidth }: any) => {
           </Stack>
         </Grid>
 
-        <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
-          <Stack
-            direction={{ xs: "column", sm: "column", md: "row" }}
-            spacing={1}
-            sx={{
-              alignItems: "flex-start",
-              //  flexWrap: "wrap",
-              justifyContent: "space-between",
-              paddingTop: "0px",
-              paddingBottom: "23px",
-            }}
+        <Grid
+          xs={12}
+          sm={12}
+          md={12}
+          lg={12}
+          xl={12}
+          sx={{
+            alignItems: "center",
+            paddingTop: "0px",
+            paddingBottom: "23px",
+          }}
+        >
+          <Carousel
+            responsive={responsiveTrendingCoins}
+            infinite={true}
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            arrows={false}
           >
-            <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
+            <Box>
               <TrendingCoins />
-            </Grid>
-            <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
+            </Box>
+            <Box>
               <TrendingCoins />
-            </Grid>
-            <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
+            </Box>
+            <Box>
               <TrendingCoins />
-            </Grid>
-            <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
+            </Box>
+            <Box>
               <TrendingCoins />
-            </Grid>
-            <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
+            </Box>
+            <Box>
               <TrendingCoins />
-            </Grid>
-            <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
+            </Box>
+            <Box>
               <TrendingCoins />
-            </Grid>
-            <Grid xs={12} sm={6} md={1.71} lg={1.71} xl={1.71}>
+            </Box>
+            <Box>
               <TrendingCoins />
-            </Grid>
-          </Stack>
+            </Box>
+            <Box>
+              <TrendingCoins />
+            </Box>
+            <Box>
+              <TrendingCoins />
+            </Box>
+            <Box>
+              <TrendingCoins />
+            </Box>
+            <Box>
+              <TrendingCoins />
+            </Box>
+            <Box>
+              <TrendingCoins />
+            </Box>
+            <Box>
+              <TrendingCoins />
+            </Box>
+            <Box>
+              <TrendingCoins />
+            </Box>
+          </Carousel>
         </Grid>
 
         <Grid
