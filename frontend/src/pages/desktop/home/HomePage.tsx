@@ -365,6 +365,11 @@ const HomePage = ({ windowInnerWidth }: any) => {
             infinite={true}
             removeArrowOnDeviceType={["tablet", "mobile"]}
             arrows={true}
+            draggable={true}
+            swipeable={true}
+            minimumTouchDrag={10}
+            keyBoardControl={true}
+            shouldResetAutoplay={true}
           >
             <Box>
               <VideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
@@ -434,7 +439,11 @@ const HomePage = ({ windowInnerWidth }: any) => {
             removeArrowOnDeviceType={["tablet", "mobile"]}
             arrows={false}
             autoPlay={false}
-            shouldResetAutoplay={false}
+            draggable={true}
+            swipeable={true}
+            minimumTouchDrag={10}
+            keyBoardControl={true}
+            shouldResetAutoplay={true}
           >
             <Box>
               {preLoader?.biggest_gainers === true ? (
@@ -708,6 +717,10 @@ const HomePage = ({ windowInnerWidth }: any) => {
                               pt: 2,
                               bgcolor: "rgb(245 245 245 / 11%)",
                               borderRadius: "6px",
+                              "::after": {
+                                background:
+                                  "linear-gradient(90deg, transparent, #6252e84f 56%, transparent)",
+                              },
                             }}
                           />
                         </Box>
@@ -791,6 +804,12 @@ const HomePage = ({ windowInnerWidth }: any) => {
             infinite={true}
             removeArrowOnDeviceType={["tablet", "mobile"]}
             arrows={false}
+            autoPlay={true}
+            draggable={true}
+            swipeable={true}
+            minimumTouchDrag={10}
+            keyBoardControl={true}
+            shouldResetAutoplay={true}
           >
             <Box>
               <TrendingCoins />
@@ -1068,6 +1087,12 @@ const HomePage = ({ windowInnerWidth }: any) => {
             infinite={true}
             removeArrowOnDeviceType={["tablet", "mobile"]}
             arrows={true}
+            autoPlay={true}
+            draggable={true}
+            swipeable={true}
+            minimumTouchDrag={10}
+            keyBoardControl={true}
+            shouldResetAutoplay={true}
           >
             <Box>
               <NftCollectionCard />

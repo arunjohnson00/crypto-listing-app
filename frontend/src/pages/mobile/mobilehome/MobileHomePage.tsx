@@ -357,10 +357,13 @@ const MobileHomePage = () => {
             infinite={true}
             removeArrowOnDeviceType={["tablet", "mobile"]}
             arrows={true}
-            swipeable={true}
             partialVisible={true}
-            autoPlay={true}
+            autoPlay={false}
             draggable={true}
+            swipeable={true}
+            minimumTouchDrag={10}
+            keyBoardControl={true}
+            shouldResetAutoplay={true}
           >
             <Box>
               <Box
@@ -450,8 +453,11 @@ const MobileHomePage = () => {
             arrows={true}
             swipeable={true}
             partialVisible={true}
-            autoPlay={true}
+            autoPlay={false}
             draggable={true}
+            minimumTouchDrag={10}
+            keyBoardControl={true}
+            shouldResetAutoplay={true}
           >
             {featuredCoinList &&
               featuredCoinList?.map((data: any, index: number) => (
@@ -503,8 +509,11 @@ const MobileHomePage = () => {
           arrows={true}
           swipeable={true}
           partialVisible={true}
-          autoPlay={true}
+          autoPlay={false}
           draggable={true}
+          minimumTouchDrag={10}
+          keyBoardControl={true}
+          shouldResetAutoplay={true}
         >
           <Box>
             <MobileTrendingCoins />
@@ -579,8 +588,11 @@ const MobileHomePage = () => {
           arrows={true}
           swipeable={true}
           partialVisible={true}
-          autoPlay={true}
+          autoPlay={false}
           draggable={true}
+          minimumTouchDrag={10}
+          keyBoardControl={true}
+          shouldResetAutoplay={true}
         >
           <Box>
             <MobileVideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
@@ -735,7 +747,7 @@ const MobileHomePage = () => {
           arrows={true}
           swipeable={true}
           partialVisible={true}
-          autoPlay={true}
+          autoPlay={false}
           draggable={true}
         >
           <Box>
@@ -897,7 +909,7 @@ const MobileHomePage = () => {
           arrows={true}
           swipeable={true}
           partialVisible={true}
-          autoPlay={true}
+          autoPlay={false}
           draggable={true}
         >
           <Box>

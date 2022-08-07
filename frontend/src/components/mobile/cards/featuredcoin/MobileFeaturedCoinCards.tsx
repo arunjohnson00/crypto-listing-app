@@ -149,7 +149,7 @@ const MobileFeaturedCoinCards = ({ cardData }: any) => {
           <Divider sx={{ borderColor: "#184b7d" }} />
           <Stack
             direction="row"
-            spacing={1}
+            spacing={0.4}
             sx={{ alignItems: "center", justifyContent: "space-between" }}
             py={1}
           >
