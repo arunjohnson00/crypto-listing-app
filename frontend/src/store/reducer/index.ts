@@ -3,13 +3,14 @@ import { update } from "lodash";
 import { COMMON } from "../types";
 
 //Common Reducers
-
+import commonReducer from "./commonReducer";
 //App Reducers
 
 import homeReducer from "./homeReducer";
 import coinReducer from "./coinReducer";
 
 const allReducers = combineReducers({
+  commonReducer,
   homeReducer,
   coinReducer,
 });

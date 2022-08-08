@@ -32,7 +32,15 @@ const CardNewsPage = ({
           }}
           pt={1}
         >
-          {rssFeed?.title.substring(0, 83)}...
+          <a
+            href={rssFeed?.link}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            {" "}
+            {rssFeed && rssFeed?.title.substring(0, 83)}...
+          </a>
         </Typography>
         <Typography
           variant="body2"
@@ -42,7 +50,7 @@ const CardNewsPage = ({
             textTransform: "capitalize",
           }}
         >
-          {rssFeed?.description.substring(0, descriptionLength)}...
+          {rssFeed && rssFeed?.description.substring(0, descriptionLength)}...
         </Typography>
         <Stack
           direction="row"
@@ -56,16 +64,17 @@ const CardNewsPage = ({
             variant="body2"
             sx={{ color: "#0ED5B2", fontWeight: "550" }}
           >
-            {rssFeed?.author}
+            {rssFeed && rssFeed?.author}
           </Typography>
 
           <Typography
             variant="body2"
             sx={{ color: "#EEEFEF", fontWeight: "550" }}
           >
-            {timeAgo.format(
-              new Date(rssFeed?.published ? rssFeed?.published : null)
-            )}
+            {rssFeed &&
+              timeAgo.format(
+                new Date(rssFeed?.published ? rssFeed?.published : null)
+              )}
           </Typography>
         </Stack>
       </Stack>

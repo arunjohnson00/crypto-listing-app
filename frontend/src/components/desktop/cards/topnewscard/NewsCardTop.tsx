@@ -8,13 +8,26 @@ const NewsCardTop = ({ rssFeed, timeAgo }: any) => {
         <Grid item xs={4} sx={{ height: "auto" }} px={2}>
           <Stack
             direction="column"
-            sx={{ maxHeight: 100, minHeight: 50, maxWidth: 300 }}
+            sx={{
+              maxHeight: 100,
+              minHeight: 50,
+              maxWidth: 300,
+              justifyContent: "flex-start",
+            }}
           >
             <Typography
               variant="subtitle2"
               sx={{ color: "white", fontSize: "0.775rem" }}
             >
-              {rssFeed?.title}
+              <a
+                href={rssFeed?.link}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: "inherit", textDecoration: "none" }}
+              >
+                {" "}
+                {rssFeed?.title.substring(0, 80)}...
+              </a>
             </Typography>
             <Typography variant="caption" sx={{ color: "#24D781" }}>
               {timeAgo.format(new Date(rssFeed?.published))}

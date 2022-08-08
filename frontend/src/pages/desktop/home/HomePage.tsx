@@ -53,7 +53,9 @@ import {
   cryptoCurrenciesNewRequest,
   cryptoCurrenciesPresaleRequest,
 } from "../../../store/action";
-const { parse } = require("rss-to-json");
+import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
+import LatestNewsCardScroll from "../../../components/desktop/latestnews/LatestNewsCardScroll";
+import { Link } from "react-router-dom";
 
 const responsiveNFTCollections = {
   superLargeDesktop: {
@@ -180,19 +182,6 @@ const HomePage = ({ windowInnerWidth }: any) => {
   });
 
   useEffect(() => {
-    (async () => {
-      var rss = await parse("https://news.coinxhigh.com/feed/", {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,PATCH,OPTIONS",
-        },
-      });
-
-      setFeed(rss);
-    })();
-  }, []);
-  useEffect(() => {
     const successHandler = (res: any) => {
       setPreLoader({
         ...preLoader,
@@ -259,44 +248,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
         }}
       >
         <Grid xs={12} sx={{ paddingTop: 3 }}>
-          <Stack
-            direction="row"
-            spacing={3}
-            sx={{
-              borderTop: "1px solid #1a1545",
-              borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
-              paddingBottom: "23px",
-              backgroundColor: "#04091d",
-              alignItems: "center",
-            }}
-          >
-            <Grid xs={4} sm={4} md={3} lg={2} xl={2}>
-              <LatestNewsHeading />
-            </Grid>
-            <Grid xs={8} sm={8} md={9} lg={10} xl={10}>
-              <Stack direction="row" spacing={3}>
-                <Marquee
-                  style={{ background: "none" }}
-                  pauseOnHover={true}
-                  gradient={false}
-                  loop={0}
-                  delay={0}
-                  speed={70}
-                >
-                  {feed?.items?.map((rssFeed: any, index: number) => {
-                    return (
-                      <NewsCardTop
-                        rssFeed={rssFeed}
-                        timeAgo={timeAgo}
-                        key={index}
-                      />
-                    );
-                  })}
-                </Marquee>
-              </Stack>
-            </Grid>
-          </Stack>
+          <LatestNewsScroll />
         </Grid>
 
         <Grid
@@ -367,9 +319,10 @@ const HomePage = ({ windowInnerWidth }: any) => {
             arrows={true}
             draggable={true}
             swipeable={true}
+            autoPlay={false}
             minimumTouchDrag={10}
             keyBoardControl={true}
-            shouldResetAutoplay={true}
+            shouldResetAutoplay={false}
           >
             <Box>
               <VideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
@@ -443,7 +396,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
             swipeable={true}
             minimumTouchDrag={10}
             keyBoardControl={true}
-            shouldResetAutoplay={true}
+            shouldResetAutoplay={false}
           >
             <Box>
               {preLoader?.biggest_gainers === true ? (
@@ -804,12 +757,12 @@ const HomePage = ({ windowInnerWidth }: any) => {
             infinite={true}
             removeArrowOnDeviceType={["tablet", "mobile"]}
             arrows={false}
-            autoPlay={true}
+            autoPlay={false}
             draggable={true}
             swipeable={true}
             minimumTouchDrag={10}
             keyBoardControl={true}
-            shouldResetAutoplay={true}
+            shouldResetAutoplay={false}
           >
             <Box>
               <TrendingCoins />
@@ -1087,12 +1040,12 @@ const HomePage = ({ windowInnerWidth }: any) => {
             infinite={true}
             removeArrowOnDeviceType={["tablet", "mobile"]}
             arrows={true}
-            autoPlay={true}
+            autoPlay={false}
             draggable={true}
             swipeable={true}
             minimumTouchDrag={10}
             keyBoardControl={true}
-            shouldResetAutoplay={true}
+            shouldResetAutoplay={false}
           >
             <Box>
               <NftCollectionCard />
@@ -1209,33 +1162,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
             alignItems: "center",
           }}
         >
-          <Stack
-            direction="row"
-            spacing={0}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
-              paddingBottom: "23px",
-
-              alignItems: "center",
-            }}
-          >
-            <Marquee
-              style={{ background: "none" }}
-              pauseOnHover={true}
-              gradient={false}
-              loop={0}
-              delay={0}
-              speed={70}
-            >
-              {feed?.items?.map((rssFeed: any, index: number) => {
-                return (
-                  <NewsCard rssFeed={rssFeed} timeAgo={timeAgo} key={index} />
-                );
-              })}
-            </Marquee>
-          </Stack>
+          <LatestNewsCardScroll />
         </Grid>
 
         <Grid
@@ -1258,7 +1185,13 @@ const HomePage = ({ windowInnerWidth }: any) => {
             }}
           >
             <Typography variant="body2" sx={{ color: "#FFFFF5" }}>
-              More News ˃
+              <Link
+                to="/news"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                {" "}
+                More News{" ˃"}
+              </Link>
             </Typography>
 
             <Stack direction="row" spacing={1}>

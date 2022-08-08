@@ -1,3 +1,7 @@
+//Common
+
+export { latestNewsRequest } from "./commonAction";
+
 //Home Page
 
 export { recentlyAddedRequest } from "./homeAction";

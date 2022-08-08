@@ -1,12 +1,14 @@
-import { Grid, Box, Stack, Typography } from "@mui/material";
-import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
-import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined";
-import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
-import TrendingDownOutlinedIcon from "@mui/icons-material/TrendingDownOutlined";
-import RocketLaunchOutlinedIcon from "@mui/icons-material/RocketLaunchOutlined";
-import EqualizerOutlinedIcon from "@mui/icons-material/EqualizerOutlined";
-import CandlestickChartOutlinedIcon from "@mui/icons-material/CandlestickChartOutlined";
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import { Grid, Box, Stack, Typography, Avatar } from "@mui/material";
+
+import todaysPerformerIcon from "../../../../assets/home/todays_performer_icon.png";
+import recentlyAddedIcon from "../../../../assets/home/recently_added_icon.png";
+import biggestLosersIcon from "../../../../assets/home/biggest_losers_icon.png";
+import biggestGainersIcon from "../../../../assets/home/biggest_gainers_icon.png";
+
+import promoteIcon from "../../../../assets/home/promote_icon.png";
+import ledgerBoardIcon from "../../../../assets/home/leaderboard_icon.png";
+import chartIcon from "../../../../assets/home/chart_icon.png";
+import addAssetIcon from "../../../../assets/home/add_asset_icon.png";
 
 const MobileIconMenuCard = () => {
   return (
@@ -34,8 +36,10 @@ const MobileIconMenuCard = () => {
             spacing={1}
             pt={4}
           >
-            <AccessTimeOutlinedIcon
-              sx={{ color: "#09E2B1", fontSize: "45px" }}
+            <Avatar
+              alt=" Recently added"
+              src={recentlyAddedIcon}
+              sx={{ width: 35, height: 35, borderRadius: 0 }}
             />
             <Typography
               sx={{ color: "#FFFFF5", fontWeight: "bold", textAlign: "center" }}
@@ -52,8 +56,10 @@ const MobileIconMenuCard = () => {
             spacing={1}
             pt={4}
           >
-            <MilitaryTechOutlinedIcon
-              sx={{ color: "#09E2B1", fontSize: "45px" }}
+            <Avatar
+              alt="Today's Performer"
+              src={todaysPerformerIcon}
+              sx={{ width: 35, height: 35, borderRadius: 0 }}
             />
             <Typography
               sx={{ color: "#FFFFF5", fontWeight: "bold", textAlign: "center" }}
@@ -70,8 +76,10 @@ const MobileIconMenuCard = () => {
             spacing={1}
             pt={4}
           >
-            <AutoGraphOutlinedIcon
-              sx={{ color: "#09E2B1", fontSize: "45px" }}
+            <Avatar
+              alt="Biggest Gainers"
+              src={biggestGainersIcon}
+              sx={{ width: 35, height: 35, borderRadius: 0 }}
             />
             <Typography
               sx={{ color: "#FFFFF5", fontWeight: "bold", textAlign: "center" }}
@@ -88,14 +96,16 @@ const MobileIconMenuCard = () => {
             spacing={1}
             pt={4}
           >
-            <TrendingDownOutlinedIcon
-              sx={{ color: "#09E2B1", fontSize: "45px" }}
+            <Avatar
+              alt="Biggest Losers"
+              src={biggestLosersIcon}
+              sx={{ width: 35, height: 35, borderRadius: 0 }}
             />
             <Typography
               sx={{ color: "#FFFFF5", fontWeight: "bold", textAlign: "center" }}
               variant="subtitle2"
             >
-              Top Losers
+              Biggest Losers
             </Typography>
           </Stack>
         </Grid>
@@ -106,8 +116,10 @@ const MobileIconMenuCard = () => {
             spacing={1}
             pt={4}
           >
-            <RocketLaunchOutlinedIcon
-              sx={{ color: "#09E2B1", fontSize: "45px" }}
+            <Avatar
+              alt="Promote"
+              src={promoteIcon}
+              sx={{ width: 35, height: 35, borderRadius: 0 }}
             />
             <Typography
               sx={{ color: "#FFFFF5", fontWeight: "bold", textAlign: "center" }}
@@ -124,8 +136,10 @@ const MobileIconMenuCard = () => {
             spacing={1}
             pt={4}
           >
-            <EqualizerOutlinedIcon
-              sx={{ color: "#09E2B1", fontSize: "45px" }}
+            <Avatar
+              alt=" Ledger Board"
+              src={ledgerBoardIcon}
+              sx={{ width: 35, height: 35, borderRadius: 0 }}
             />
             <Typography
               sx={{ color: "#FFFFF5", fontWeight: "bold", textAlign: "center" }}
@@ -142,8 +156,10 @@ const MobileIconMenuCard = () => {
             spacing={1}
             pt={4}
           >
-            <CandlestickChartOutlinedIcon
-              sx={{ color: "#09E2B1", fontSize: "45px" }}
+            <Avatar
+              alt="Chart"
+              src={chartIcon}
+              sx={{ width: 35, height: 35, borderRadius: 0 }}
             />
             <Typography
               sx={{ color: "#FFFFF5", fontWeight: "bold", textAlign: "center" }}
@@ -160,8 +176,10 @@ const MobileIconMenuCard = () => {
             spacing={1}
             pt={4}
           >
-            <AddCircleOutlineOutlinedIcon
-              sx={{ color: "#09E2B1", fontSize: "45px" }}
+            <Avatar
+              alt="Add Asset"
+              src={addAssetIcon}
+              sx={{ width: 35, height: 35, borderRadius: 0 }}
             />
             <Typography
               sx={{ color: "#FFFFF5", fontWeight: "bold", textAlign: "center" }}

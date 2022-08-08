@@ -363,7 +363,7 @@ const MobileHomePage = () => {
             swipeable={true}
             minimumTouchDrag={10}
             keyBoardControl={true}
-            shouldResetAutoplay={true}
+            shouldResetAutoplay={false}
           >
             <Box>
               <Box
@@ -457,7 +457,7 @@ const MobileHomePage = () => {
             draggable={true}
             minimumTouchDrag={10}
             keyBoardControl={true}
-            shouldResetAutoplay={true}
+            shouldResetAutoplay={false}
           >
             {featuredCoinList &&
               featuredCoinList?.map((data: any, index: number) => (
@@ -513,7 +513,7 @@ const MobileHomePage = () => {
           draggable={true}
           minimumTouchDrag={10}
           keyBoardControl={true}
-          shouldResetAutoplay={true}
+          shouldResetAutoplay={false}
         >
           <Box>
             <MobileTrendingCoins />
@@ -592,7 +592,7 @@ const MobileHomePage = () => {
           draggable={true}
           minimumTouchDrag={10}
           keyBoardControl={true}
-          shouldResetAutoplay={true}
+          shouldResetAutoplay={false}
         >
           <Box>
             <MobileVideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />

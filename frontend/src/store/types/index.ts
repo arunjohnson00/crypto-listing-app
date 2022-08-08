@@ -3,6 +3,7 @@ export const SESSION = {
 };
 export const COMMON = {
   RESET_FIELD: "RESET_FIELD",
+  LATEST_NEWS: "LATEST_NEWS",
 };
 export const HOME = {
   RECENTLY_ADDED: "RECENTLY_ADDED",

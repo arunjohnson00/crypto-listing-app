@@ -23,8 +23,17 @@ const NewsCard = ({ rssFeed, timeAgo }: any) => {
             variant="body2"
             sx={{ color: "#02FC8E", fontWeight: "bold" }}
           >
-            {rssFeed?.title.substring(0, 100)}
+            <a
+              href={rssFeed?.link}
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              {" "}
+              {rssFeed?.title.substring(0, 100)}
+            </a>
           </Typography>
+
           <Typography
             variant="caption"
             sx={{ color: "#FFFFF5", fontWeight: "300", wordWrap: "break-word" }}

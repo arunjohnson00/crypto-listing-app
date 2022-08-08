@@ -13,7 +13,7 @@ const NewsCardNewsPage = ({ rssFeed, timeAgo }: any) => {
           border: "1px solid #243464",
 
           minHeight: 170,
-          height: 250,
+          height: 270,
           maxHeight: 400,
           // maxWidth: 370,
         }}
@@ -25,13 +25,21 @@ const NewsCardNewsPage = ({ rssFeed, timeAgo }: any) => {
             variant="h6"
             sx={{ color: "#F9FBF7", fontWeight: "bold" }}
           >
-            {rssFeed?.title.substring(0, 100)}
+            <a
+              href={rssFeed && rssFeed?.link}
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              {" "}
+              {rssFeed && rssFeed?.title.substring(0, 80)}...
+            </a>
           </Typography>
           <Typography
             variant="caption"
             sx={{ color: "#FFFFF5", fontWeight: "300", wordWrap: "break-word" }}
           >
-            {Parser(rssFeed?.description.substring(0, 200))}
+            {rssFeed && Parser(rssFeed?.description.substring(0, 200))}
           </Typography>
           <Stack
             direction="row"
@@ -42,14 +50,14 @@ const NewsCardNewsPage = ({ rssFeed, timeAgo }: any) => {
               variant="caption"
               sx={{ color: "#595F64", fontWeight: "550" }}
             >
-              {timeAgo.format(new Date(rssFeed?.published))}
+              {rssFeed && timeAgo.format(new Date(rssFeed?.published))}
             </Typography>
 
             <Typography
               variant="caption"
               sx={{ color: "#595F64", fontWeight: "550" }}
             >
-              {rssFeed?.author}
+              {rssFeed && rssFeed?.author}
             </Typography>
           </Stack>
         </Stack>
