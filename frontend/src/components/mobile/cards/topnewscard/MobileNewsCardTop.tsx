@@ -4,25 +4,31 @@ import { Fragment } from "react";
 const MobileNewsCardTop = ({ rssFeed, timeAgo }: any) => {
   return (
     <Fragment>
-      <Fragment>
-        <Grid item xs={4} sx={{ height: "auto" }} px={2}>
-          <Stack
-            direction="column"
-            sx={{ maxHeight: 100, minHeight: 50, maxWidth: 300 }}
+      <Stack
+        direction="column"
+        sx={{ maxHeight: 100, minHeight: 50, maxWidth: 270 }}
+        alignItems="flex-start"
+        px={1}
+      >
+        <Typography sx={{ color: "#FFFFFF", fontSize: ".9rem" }}>
+          <a
+            href={rssFeed && rssFeed?.link}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "inherit", textDecoration: "none" }}
           >
-            <Typography variant="h6" sx={{ color: "white", fontSize: "1rem" }}>
-              {rssFeed?.title}
-            </Typography>
-            <Stack direction="row" sx={{ justifyContent: "flex-end" }}>
-              <Typography variant="caption" sx={{ color: "#24D781" }}>
-                {timeAgo.format(new Date(rssFeed?.published))}
-              </Typography>
-            </Stack>
-          </Stack>
-        </Grid>
+            {" "}
+            {rssFeed && rssFeed?.title.substring(0, 80)}...
+          </a>
+        </Typography>
+        <Stack direction="row" sx={{ justifyContent: "flex-end" }}>
+          <Typography variant="caption" sx={{ color: "#24D781" }}>
+            {rssFeed && timeAgo.format(new Date(rssFeed?.published))}
+          </Typography>
+        </Stack>
+      </Stack>
 
-        <Divider orientation="vertical" flexItem />
-      </Fragment>
+      <Divider orientation="vertical" flexItem />
     </Fragment>
   );
 };

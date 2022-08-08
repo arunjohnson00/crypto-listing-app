@@ -34,7 +34,7 @@ const LatestNewsScroll = () => {
 
       dispatch({ type: latestNewsRequest, payload: rss });
     })();
-  }, []);
+  }, [dispatch]);
 
   return (
     <Stack

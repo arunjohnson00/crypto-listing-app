@@ -39,7 +39,7 @@ const CardNewsPage = ({
             style={{ color: "inherit", textDecoration: "none" }}
           >
             {" "}
-            {rssFeed && rssFeed?.title.substring(0, 83)}...
+            {rssFeed && rssFeed?.title.substring(0, 73)}...
           </a>
         </Typography>
         <Typography
@@ -50,7 +50,9 @@ const CardNewsPage = ({
             textTransform: "capitalize",
           }}
         >
-          {rssFeed && rssFeed?.description.substring(0, descriptionLength)}...
+          {rssFeed &&
+            Parser(rssFeed?.description.substring(0, descriptionLength))}
+          ...
         </Typography>
         <Stack
           direction="row"

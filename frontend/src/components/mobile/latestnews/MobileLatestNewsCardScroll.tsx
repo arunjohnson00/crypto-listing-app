@@ -6,13 +6,15 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 
 import { latestNewsRequest } from "../../../store/action";
-import NewsCard from "../cards/newscard/NewsCard";
+import MobileNewsCardTop from "../cards/topnewscard/MobileNewsCardTop";
+import MobileLatestNewsHeading from "../Typography/headings/latestnews/MobileLatestNewsHeading";
 
-const LatestNewsCardScroll = () => {
+const MobileLatestNewsCardScroll = () => {
   const dispatch = useDispatch();
   const latestNews = useSelector((data: any) => {
     return data?.commonReducer?.latest_news;
   });
+  console.log(latestNews && latestNews);
 
   //const [feed, setFeed] = useState<any>();
   const { parse } = require("rss-to-json");
@@ -48,21 +50,34 @@ const LatestNewsCardScroll = () => {
         alignItems: "center",
       }}
     >
-      <Marquee
-        style={{ background: "none" }}
-        pauseOnHover={true}
-        gradient={false}
-        loop={0}
-        delay={0}
-        speed={70}
-      >
-        {latestNews &&
-          latestNews?.items?.map((rssFeed: any, index: number) => {
-            return <NewsCard rssFeed={rssFeed} timeAgo={timeAgo} key={index} />;
-          })}
-      </Marquee>
+      <Grid xs={4} sm={4} md={3} lg={2} xl={2}>
+        <MobileLatestNewsHeading />
+      </Grid>
+      <Grid xs={8} sm={8} md={9} lg={10} xl={10}>
+        <Stack direction="row" spacing={3}>
+          <Marquee
+            style={{ background: "none" }}
+            pauseOnHover={true}
+            gradient={false}
+            loop={0}
+            delay={0}
+            speed={70}
+          >
+            {latestNews &&
+              latestNews?.items?.map((rssFeed: any, index: number) => {
+                return (
+                  <MobileNewsCardTop
+                    rssFeed={rssFeed}
+                    timeAgo={timeAgo}
+                    key={index}
+                  />
+                );
+              })}
+          </Marquee>
+        </Stack>
+      </Grid>
     </Stack>
   );
 };
 
-export default LatestNewsCardScroll;
+export default MobileLatestNewsCardScroll;

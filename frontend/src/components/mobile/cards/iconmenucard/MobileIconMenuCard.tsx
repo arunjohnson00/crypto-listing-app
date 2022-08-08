@@ -42,7 +42,12 @@ const MobileIconMenuCard = () => {
               sx={{ width: 35, height: 35, borderRadius: 0 }}
             />
             <Typography
-              sx={{ color: "#FFFFF5", fontWeight: "bold", textAlign: "center" }}
+              sx={{
+                color: "#FFFFF5",
+                fontWeight: 400,
+                fontSize: ".8rem",
+                textAlign: "center",
+              }}
               variant="subtitle2"
             >
               Recently added
@@ -62,7 +67,12 @@ const MobileIconMenuCard = () => {
               sx={{ width: 35, height: 35, borderRadius: 0 }}
             />
             <Typography
-              sx={{ color: "#FFFFF5", fontWeight: "bold", textAlign: "center" }}
+              sx={{
+                color: "#FFFFF5",
+                fontWeight: 400,
+                fontSize: ".8rem",
+                textAlign: "center",
+              }}
               variant="subtitle2"
             >
               Today's Performer
@@ -82,7 +92,12 @@ const MobileIconMenuCard = () => {
               sx={{ width: 35, height: 35, borderRadius: 0 }}
             />
             <Typography
-              sx={{ color: "#FFFFF5", fontWeight: "bold", textAlign: "center" }}
+              sx={{
+                color: "#FFFFF5",
+                fontWeight: 400,
+                fontSize: ".8rem",
+                textAlign: "center",
+              }}
               variant="subtitle2"
             >
               Biggest Gainers
@@ -102,7 +117,12 @@ const MobileIconMenuCard = () => {
               sx={{ width: 35, height: 35, borderRadius: 0 }}
             />
             <Typography
-              sx={{ color: "#FFFFF5", fontWeight: "bold", textAlign: "center" }}
+              sx={{
+                color: "#FFFFF5",
+                fontWeight: 400,
+                fontSize: ".8rem",
+                textAlign: "center",
+              }}
               variant="subtitle2"
             >
               Biggest Losers
@@ -122,7 +142,12 @@ const MobileIconMenuCard = () => {
               sx={{ width: 35, height: 35, borderRadius: 0 }}
             />
             <Typography
-              sx={{ color: "#FFFFF5", fontWeight: "bold", textAlign: "center" }}
+              sx={{
+                color: "#FFFFF5",
+                fontWeight: 400,
+                fontSize: ".8rem",
+                textAlign: "center",
+              }}
               variant="subtitle2"
             >
               Promote
@@ -142,7 +167,12 @@ const MobileIconMenuCard = () => {
               sx={{ width: 35, height: 35, borderRadius: 0 }}
             />
             <Typography
-              sx={{ color: "#FFFFF5", fontWeight: "bold", textAlign: "center" }}
+              sx={{
+                color: "#FFFFF5",
+                fontWeight: 400,
+                fontSize: ".8rem",
+                textAlign: "center",
+              }}
               variant="subtitle2"
             >
               Ledger Board
@@ -162,7 +192,12 @@ const MobileIconMenuCard = () => {
               sx={{ width: 35, height: 35, borderRadius: 0 }}
             />
             <Typography
-              sx={{ color: "#FFFFF5", fontWeight: "bold", textAlign: "center" }}
+              sx={{
+                color: "#FFFFF5",
+                fontWeight: 400,
+                fontSize: ".8rem",
+                textAlign: "center",
+              }}
               variant="subtitle2"
             >
               Chart
@@ -182,7 +217,12 @@ const MobileIconMenuCard = () => {
               sx={{ width: 35, height: 35, borderRadius: 0 }}
             />
             <Typography
-              sx={{ color: "#FFFFF5", fontWeight: "bold", textAlign: "center" }}
+              sx={{
+                color: "#FFFFF5",
+                fontWeight: 400,
+                fontSize: ".8rem",
+                textAlign: "center",
+              }}
               variant="subtitle2"
             >
               Add Asset

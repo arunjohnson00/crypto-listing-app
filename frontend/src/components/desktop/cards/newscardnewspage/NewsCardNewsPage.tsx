@@ -13,7 +13,7 @@ const NewsCardNewsPage = ({ rssFeed, timeAgo }: any) => {
           border: "1px solid #243464",
 
           minHeight: 170,
-          height: 270,
+          height: "auto",
           maxHeight: 400,
           // maxWidth: 370,
         }}
@@ -32,14 +32,14 @@ const NewsCardNewsPage = ({ rssFeed, timeAgo }: any) => {
               style={{ color: "inherit", textDecoration: "none" }}
             >
               {" "}
-              {rssFeed && rssFeed?.title.substring(0, 80)}...
+              {rssFeed && rssFeed?.title.substring(0, 45)}...
             </a>
           </Typography>
           <Typography
             variant="caption"
             sx={{ color: "#FFFFF5", fontWeight: "300", wordWrap: "break-word" }}
           >
-            {rssFeed && Parser(rssFeed?.description.substring(0, 200))}
+            {rssFeed && Parser(rssFeed?.description.substring(0, 170))}...
           </Typography>
           <Stack
             direction="row"

@@ -11,8 +11,9 @@ const MobileNewsCard = ({ rssFeed, timeAgo }: any) => {
           backgroundColor: "#020822",
           borderRadius: "6px",
           border: "1px solid #243464",
-          maxHeight: 200,
-          minHeight: 170,
+          // maxHeight: 200,
+          //minHeight: 170,
+          height: "auto",
         }}
         px={2}
         py={2}
@@ -22,13 +23,21 @@ const MobileNewsCard = ({ rssFeed, timeAgo }: any) => {
             variant="body2"
             sx={{ color: "#02FC8E", fontWeight: "bold" }}
           >
-            {rssFeed?.title.substring(0, 100)}
+            <a
+              href={rssFeed && rssFeed?.link}
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              {" "}
+              {rssFeed && rssFeed?.title.substring(0, 100)}...
+            </a>
           </Typography>
           <Typography
             variant="caption"
             sx={{ color: "#FFFFF5", fontWeight: "300", wordWrap: "break-word" }}
           >
-            {Parser(rssFeed?.description.substring(0, 200))}
+            {Parser(rssFeed && rssFeed?.description.substring(0, 200))}
           </Typography>
           <Stack
             direction="row"
@@ -39,14 +48,14 @@ const MobileNewsCard = ({ rssFeed, timeAgo }: any) => {
               variant="caption"
               sx={{ color: "#40444F", fontWeight: "550" }}
             >
-              {timeAgo.format(new Date(rssFeed?.published))}
+              {rssFeed && timeAgo.format(new Date(rssFeed?.published))}
             </Typography>
 
             <Typography
               variant="caption"
               sx={{ color: "#40444F", fontWeight: "550" }}
             >
-              By Coin Telegraph
+              {rssFeed && rssFeed?.author}
             </Typography>
           </Stack>
         </Stack>

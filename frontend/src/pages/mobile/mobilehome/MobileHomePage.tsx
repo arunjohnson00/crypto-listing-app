@@ -13,8 +13,7 @@ import Marquee from "react-fast-marquee";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import { useDispatch, useSelector } from "react-redux";
-import MobileLatestNewsHeading from "../../../components/mobile/Typography/headings/latestnews/MobileLatestNewsHeading";
-import MobileNewsCardTop from "../../../components/mobile/cards/topnewscard/MobileNewsCardTop";
+
 import FullWidthSlider from "../../../components/mobile/slider/fullwidthslider/FullWidthSlider";
 import UpcomingAmaCard from "../../../components/mobile/cards/upcomingamacard/UpcomingAmaCard";
 import MobileIconMenuCard from "../../../components/mobile/cards/iconmenucard/MobileIconMenuCard";
@@ -41,6 +40,7 @@ import {
   cryptoCurrenciesNewRequest,
   cryptoCurrenciesPresaleRequest,
 } from "../../../store/action";
+import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
 
 const { parse } = require("rss-to-json");
 
@@ -147,6 +147,8 @@ const responsiveNFT: any = {
 };
 
 const MobileHomePage = () => {
+  TimeAgo.addDefaultLocale(en);
+  const timeAgo = new TimeAgo("en");
   const [tableData, setTableData] = useState<any>();
   const [preLoader, setPreLoader] = useState<any>({
     featured_coin_list: true,
@@ -154,7 +156,9 @@ const MobileHomePage = () => {
   const [htmlTablePreLoader, setHTMLTablePreLoader] = useState<any>({
     html_table: true,
   });
-
+  const latestNews = useSelector((data: any) => {
+    return data?.commonReducer?.latest_news;
+  });
   const dispatch: any = useDispatch();
   const featuredCoinList = useSelector((data: any) => {
     return data?.homeReducer?.featured_coin_list?.data;
@@ -202,20 +206,6 @@ const MobileHomePage = () => {
       );
   }, [dispatch, tabIndex, setHTMLTablePreLoader]);
 
-  TimeAgo.addDefaultLocale(en);
-  const timeAgo = new TimeAgo("en");
-  const [feed, setFeed] = useState<any>();
-
-  useEffect(() => {
-    (async () => {
-      var rss = await parse(
-        "https://corsanywhere.herokuapp.com/https://news.coinxhigh.com/feed/"
-      );
-
-      setFeed(rss);
-    })();
-  }, []);
-
   useEffect(() => {
     const successHandler = (res: any) => {
       setPreLoader({
@@ -238,51 +228,7 @@ const MobileHomePage = () => {
       }}
     >
       <Grid xs={12} sx={{ paddingTop: 3 }}>
-        <Stack
-          direction="row"
-          spacing={3}
-          sx={{
-            borderTop: "1px solid #1a1545",
-            borderBottom: "1px solid #1a1545",
-            paddingTop: "23px",
-            paddingBottom: "23px",
-            backgroundColor: "#04091d",
-            alignItems: "center",
-          }}
-        >
-          <Grid xs={4} sm={4} md={3} lg={2} xl={2}>
-            <MobileLatestNewsHeading />
-          </Grid>
-          <Grid
-            xs={8}
-            sm={8}
-            md={9}
-            lg={10}
-            xl={10}
-            sx={{ overflowX: "hidden" }}
-          >
-            <Stack direction="row" spacing={3}>
-              <Marquee
-                style={{ background: "none" }}
-                pauseOnHover={true}
-                gradient={false}
-                loop={0}
-                delay={0}
-                speed={70}
-              >
-                {feed?.items?.map((rssFeed: any, index: number) => {
-                  return (
-                    <MobileNewsCardTop
-                      rssFeed={rssFeed}
-                      timeAgo={timeAgo}
-                      key={index}
-                    />
-                  );
-                })}
-              </Marquee>
-            </Stack>
-          </Grid>
-        </Stack>
+        <MobileLatestNewsCardScroll />
       </Grid>
 
       <Grid
@@ -818,11 +764,16 @@ const MobileHomePage = () => {
           alignItems: "center",
         }}
       >
-        {feed?.items?.slice(0, 3).map((rssFeed: any, index: number) => {
-          return (
-            <MobileNewsCard rssFeed={rssFeed} timeAgo={timeAgo} index={index} />
-          );
-        })}
+        {latestNews &&
+          latestNews?.items?.slice(0, 3).map((rssFeed: any, index: number) => {
+            return (
+              <MobileNewsCard
+                rssFeed={rssFeed}
+                timeAgo={timeAgo}
+                index={index}
+              />
+            );
+          })}
       </Grid>
       <Grid
         xs={12}
