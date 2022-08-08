@@ -392,10 +392,10 @@ const HomePage = ({ windowInnerWidth }: any) => {
             removeArrowOnDeviceType={["tablet", "mobile"]}
             arrows={false}
             autoPlay={false}
-            draggable={true}
-            swipeable={true}
+            draggable={false}
+            swipeable={false}
             minimumTouchDrag={10}
-            keyBoardControl={true}
+            keyBoardControl={false}
             shouldResetAutoplay={false}
           >
             <Box>

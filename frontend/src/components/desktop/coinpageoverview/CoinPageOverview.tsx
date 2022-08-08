@@ -934,7 +934,11 @@ const CoinPageOverview = () => {
                 Number of Liquidity Pools
               </Typography>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                43
+                {coinDetailOverview &&
+                coinDetailOverview[0]?.liquidity_pool_number !== null &&
+                coinDetailOverview[0]?.liquidity_pool_number !== ""
+                  ? coinDetailOverview[0]?.liquidity_pool_number
+                  : "NA"}
               </Typography>
             </Stack>
             <Divider
@@ -949,7 +953,11 @@ const CoinPageOverview = () => {
                 Total in Liquidity Pool
               </Typography>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                $203456
+                {coinDetailOverview &&
+                coinDetailOverview[0]?.liquidity_pool_total !== null &&
+                coinDetailOverview[0]?.liquidity_pool_total !== ""
+                  ? "$" + coinDetailOverview[0]?.liquidity_pool_total
+                  : "NA"}
               </Typography>
             </Stack>
           </Stack>
