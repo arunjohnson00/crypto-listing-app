@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
+import { useSelector } from "react-redux";
 import {
   Divider,
   Stack,
@@ -19,6 +20,8 @@ import {
 import Iframe from "react-iframe";
 import { SlideDown } from "react-slidedown";
 import "react-slidedown/lib/slidedown.css";
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en.json";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -26,15 +29,24 @@ import ToolTipImage from "../../../assets/singlepagecoin/tool-tip.png";
 import MobileSinglePageTab from "../singlepagetab/MobileSinglePageTab";
 
 const MobileSingleCoinPageAccordion = () => {
+  const latestNews = useSelector((data: any) => {
+    return data?.commonReducer?.latest_news;
+  });
   const [viewMore, setViewMore] = useState(true);
-
+  const [newsMore, setNewsMore] = useState(true);
   const viewmoreHandler = () => {
     setViewMore(!viewMore);
+  };
+
+  const viewNewsMoreHandler = () => {
+    setNewsMore(!newsMore);
   };
   const [copyValue, setCopyValue] = useState(
     "0xED3F52c46280ad96485323Fb6a51242cb4CA45F5"
   );
   const [copied, setCopied] = useState(false);
+  TimeAgo.addDefaultLocale(en);
+  const timeAgo = new TimeAgo("en");
   return (
     <div style={{ width: "100%" }}>
       <Accordion
@@ -970,63 +982,108 @@ const MobileSingleCoinPageAccordion = () => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Stack direction="column" spacing={1} py={1.5}>
-            <Typography
-              sx={{ color: "#FFFFFF", fontWeight: 600, fontSize: "1.1rem" }}
-            >
-              Safemoon loses almost 80% of its value in 2022 despite v2
-              migration
-            </Typography>
-            <Stack direction="row" spacing={1}>
-              <Typography
-                variant="body2"
-                sx={{ color: "#5FD6E9", fontWeight: 500 }}
-              >
-                Finbold
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{ color: "#494A4A", fontWeight: 500 }}
-              >
-                Jun 19 2022
-              </Typography>
-            </Stack>
-          </Stack>
-          <Divider
-            variant="fullWidth"
-            flexItem
-            orientation={"horizontal"}
-            sx={{ borderColor: "#181921", borderBottomWidth: 2 }}
-          />
-          <Stack direction="column" spacing={1} py={1.5}>
-            <Typography
-              sx={{ color: "#FFFFFF", fontWeight: 600, fontSize: "1.1rem" }}
-            >
-              Safemoon loses almost 80% of its value in 2022 despite v2
-              migration
-            </Typography>
-            <Stack direction="row" spacing={1}>
-              <Typography
-                variant="body2"
-                sx={{ color: "#5FD6E9", fontWeight: 500 }}
-              >
-                Finbold
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{ color: "#494A4A", fontWeight: 500 }}
-              >
-                Jun 19 2022
-              </Typography>
-            </Stack>
-          </Stack>
+          {latestNews &&
+            latestNews?.items?.slice(0, 2).map((item: any, index: number) => (
+              <Fragment key={index}>
+                {" "}
+                <Stack direction="column" spacing={1} py={1.5}>
+                  <Typography
+                    sx={{
+                      color: "#FFFFFF",
+                      fontWeight: 600,
+                      fontSize: "1rem",
+                    }}
+                  >
+                    <a
+                      href={item && item?.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ color: "inherit", textDecoration: "none" }}
+                    >
+                      {" "}
+                      {item && item?.title.substring(0, 80)}...
+                    </a>
+                  </Typography>
+                  <Stack direction="row" spacing={1}>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "#5FD6E9", fontWeight: 500 }}
+                    >
+                      {item && item?.author}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "#494A4A", fontWeight: 500 }}
+                    >
+                      {item && timeAgo.format(new Date(item?.published))}
+                    </Typography>
+                  </Stack>
+                </Stack>
+                <Divider
+                  variant="fullWidth"
+                  flexItem
+                  orientation={"horizontal"}
+                  sx={{ borderColor: "#181921", borderBottomWidth: 2 }}
+                />
+              </Fragment>
+            ))}
 
+          <SlideDown className={"my-dropdown-slidedown"} closed={newsMore}>
+            {latestNews &&
+              latestNews?.items
+                ?.slice(2, latestNews?.items?.length)
+                .map((item: any, index: number) => (
+                  <Fragment key={index}>
+                    {" "}
+                    <Stack direction="column" spacing={1} py={1.5}>
+                      <Typography
+                        sx={{
+                          color: "#FFFFFF",
+                          fontWeight: 600,
+                          fontSize: "1rem",
+                        }}
+                      >
+                        <a
+                          href={item && item?.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{ color: "inherit", textDecoration: "none" }}
+                        >
+                          {" "}
+                          {item && item?.title.substring(0, 80)}...
+                        </a>
+                      </Typography>
+                      <Stack direction="row" spacing={1}>
+                        <Typography
+                          variant="body2"
+                          sx={{ color: "#5FD6E9", fontWeight: 500 }}
+                        >
+                          {item && item?.author}
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{ color: "#494A4A", fontWeight: 500 }}
+                        >
+                          {item && timeAgo.format(new Date(item?.published))}
+                        </Typography>
+                      </Stack>
+                    </Stack>
+                    <Divider
+                      variant="fullWidth"
+                      flexItem
+                      orientation={"horizontal"}
+                      sx={{ borderColor: "#181921", borderBottomWidth: 2 }}
+                    />
+                  </Fragment>
+                ))}
+          </SlideDown>
           <Button
             variant="contained"
             fullWidth
             sx={{ backgroundColor: "#04B865", textTransform: "capitalize" }}
+            onClick={viewNewsMoreHandler}
           >
-            Read More
+            Read {newsMore === true ? "More" : "Less"}
           </Button>
         </AccordionDetails>
       </Accordion>
