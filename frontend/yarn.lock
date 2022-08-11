@@ -12679,6 +12679,18 @@ tiny-warning@^1.0.0, tiny-warning@^1.0.2, tiny-warning@^1.0.3:
   resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
 
+tldts-core@^5.7.88:
+  version "5.7.88"
+  resolved "https://registry.yarnpkg.com/tldts-core/-/tldts-core-5.7.88.tgz#d87e499baac4cd5daef4e132f18aeee59ca39120"
+  integrity sha512-MNSlUtyqgNHAj1Go8X9/Pv2ZYapyMX8K22bNUPD6uX/mBtdSXvolS9MeHvhI4GDAwxeqTxGYqUE3IpbPp52apQ==
+
+tldts@^5.7.88:
+  version "5.7.88"
+  resolved "https://registry.yarnpkg.com/tldts/-/tldts-5.7.88.tgz#64a7c7b0ec4837fafef29c1e5ab7963a2631e4e5"
+  integrity sha512-xcb72286hCHN9cOxnxsbVM8LTaNwzaaPLHuzg8/rt+3rOpO3/4rfqly9RoiVodmpmvTAijlLwj323LrKvtkoUA==
+  dependencies:
+    tldts-core "^5.7.88"
+
 tmpl@1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/tmpl/-/tmpl-1.0.5.tgz#8683e0b902bb9c20c4f726e3c0b69f36518c07cc"

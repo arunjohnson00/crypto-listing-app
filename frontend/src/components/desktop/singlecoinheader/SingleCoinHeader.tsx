@@ -45,6 +45,7 @@ import LinkImage from "../../../assets/singlepagecoin/link.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import SingleCoinChip from "../coinpagechip/SingleCoinChip";
 import SocialCounterWithGraphCard from "../cards/socialcounterwithgraphcard/SocialCounterWithGraphCard";
+import { indexOf } from "lodash";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -876,60 +877,64 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 pt={1}
               >
                 {coinData?.website_url &&
-                  coinData?.website_url[0]?.url !== null &&
-                  coinData?.website_url[0]?.url !== "" &&
-                  coinData?.website_url[0]?.url !== undefined && (
-                    <SingleCoinChip
-                      src={LinkImage}
-                      title={coinData?.website_url[0]?.url}
-                      link={coinData?.website_url[0]?.url}
-                    />
-                  )}
+                  coinData?.website_url
+                    ?.slice(0, 1)
+                    .map((item: any, index: number) => (
+                      <SingleCoinChip
+                        key={index}
+                        src={LinkImage}
+                        title={item?.url}
+                        link={item?.url}
+                        varient="website"
+                      />
+                    ))}
 
                 {coinData?.website_url &&
-                  coinData?.website_url[1]?.url !== null &&
-                  coinData?.website_url[1]?.url !== "" &&
-                  coinData?.website_url[1]?.url !== undefined && (
-                    <Stack
-                      direction={{ xs: "row", sm: "row", md: "row" }}
-                      sx={{ alignItems: "center" }}
-                      spacing={0}
-                      justifyContent={{
-                        xs: "center",
-                        sm: "center",
-                        md: "center",
-                        lg: "flex-start",
-                      }}
-                    >
-                      <SingleCoinChip
-                        src={LinkImage}
-                        title={coinData?.website_url[1]?.url}
-                        link={coinData?.website_url[1]?.url}
-                      />
+                  coinData?.website_url
+                    ?.slice(1, 2)
+                    .map((item: any, index: number) => (
+                      <Stack
+                        key={index}
+                        direction={{ xs: "row", sm: "row", md: "row" }}
+                        sx={{ alignItems: "center" }}
+                        spacing={0}
+                        justifyContent={{
+                          xs: "center",
+                          sm: "center",
+                          md: "center",
+                          lg: "flex-start",
+                        }}
+                      >
+                        <SingleCoinChip
+                          src={LinkImage}
+                          title={item?.url}
+                          link={item?.url}
+                          varient="website"
+                        />
 
-                      {coinData?.website_url?.length > 2 && (
-                        <Box>
-                          <IconButton
-                            aria-label="more"
-                            id="long-button"
-                            aria-controls={open ? "long-menu" : undefined}
-                            aria-expanded={open ? "true" : undefined}
-                            aria-haspopup="true"
-                            onClick={handleClick}
-                            sx={{ padding: 0 }}
-                          >
-                            <MoreVertIcon sx={{ color: "#75787c" }} />
-                          </IconButton>
-                          <ShowMoreMenu
-                            showMoreAnchorEl={showMoreAnchorEl}
-                            open={open}
-                            handleClose={handleClose}
-                            data={coinData && coinData?.website_url}
-                          />
-                        </Box>
-                      )}
-                    </Stack>
-                  )}
+                        {coinData?.website_url?.length > 2 && (
+                          <Box>
+                            <IconButton
+                              aria-label="more"
+                              id="long-button"
+                              aria-controls={open ? "long-menu" : undefined}
+                              aria-expanded={open ? "true" : undefined}
+                              aria-haspopup="true"
+                              onClick={handleClick}
+                              sx={{ padding: 0 }}
+                            >
+                              <MoreVertIcon sx={{ color: "#75787c" }} />
+                            </IconButton>
+                            <ShowMoreMenu
+                              showMoreAnchorEl={showMoreAnchorEl}
+                              open={open}
+                              handleClose={handleClose}
+                              data={coinData && coinData?.website_url}
+                            />
+                          </Box>
+                        )}
+                      </Stack>
+                    ))}
               </Stack>
             </Stack>
 
@@ -978,59 +983,63 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 pt={1}
               >
                 {coinData?.explorer_link &&
-                  coinData?.explorer_link[0]?.url !== null &&
-                  coinData?.explorer_link[0]?.url !== "" &&
-                  coinData?.explorer_link[0]?.url !== undefined && (
-                    <SingleCoinChip
-                      src={BscScanImage}
-                      title={coinData?.explorer_link[0]?.url}
-                      link={coinData?.explorer_link[0]?.url}
-                    />
-                  )}
-                {coinData?.explorer_link &&
-                  coinData?.explorer_link[1]?.url !== null &&
-                  coinData?.explorer_link[1]?.url !== "" &&
-                  coinData?.explorer_link[1]?.url !== undefined && (
-                    <Stack
-                      direction={{ xs: "row", sm: "row", md: "row" }}
-                      sx={{ alignItems: "center" }}
-                      spacing={0}
-                      justifyContent={{
-                        xs: "center",
-                        sm: "center",
-                        md: "center",
-                        lg: "flex-start",
-                      }}
-                    >
+                  coinData?.explorer_link
+                    ?.slice(0, 1)
+                    .map((item: any, index: number) => (
                       <SingleCoinChip
-                        src={BscScanImage}
-                        title={coinData?.explorer_link[1]?.url}
-                        link={coinData?.explorer_link[1]?.url}
+                        key={index}
+                        src={item?.logo}
+                        title={item?.name}
+                        link={item?.url}
+                        varient="explorer"
                       />
+                    ))}
+                {coinData?.explorer_link &&
+                  coinData?.explorer_link
+                    ?.slice(1, 2)
+                    .map((item: any, index: number) => (
+                      <Stack
+                        key={index}
+                        direction={{ xs: "row", sm: "row", md: "row" }}
+                        sx={{ alignItems: "center" }}
+                        spacing={0}
+                        justifyContent={{
+                          xs: "center",
+                          sm: "center",
+                          md: "center",
+                          lg: "flex-start",
+                        }}
+                      >
+                        <SingleCoinChip
+                          src={item?.logo}
+                          title={item?.name}
+                          link={item?.url}
+                          varient="explorer"
+                        />
 
-                      {coinData?.explorer_link?.length > 2 && (
-                        <Box>
-                          <IconButton
-                            aria-label="more"
-                            id="long-button"
-                            aria-controls={open ? "long-menu" : undefined}
-                            aria-expanded={open ? "true" : undefined}
-                            aria-haspopup="true"
-                            onClick={handleClick}
-                            sx={{ padding: 0 }}
-                          >
-                            <MoreVertIcon sx={{ color: "#75787c" }} />
-                          </IconButton>
-                          <ShowMoreMenu
-                            showMoreAnchorEl={showMoreAnchorEl}
-                            open={open}
-                            handleClose={handleClose}
-                            data={coinData && coinData?.explorer_link}
-                          />
-                        </Box>
-                      )}
-                    </Stack>
-                  )}
+                        {coinData?.explorer_link?.length > 2 && (
+                          <Box>
+                            <IconButton
+                              aria-label="more"
+                              id="long-button"
+                              aria-controls={open ? "long-menu" : undefined}
+                              aria-expanded={open ? "true" : undefined}
+                              aria-haspopup="true"
+                              onClick={handleClick}
+                              sx={{ padding: 0 }}
+                            >
+                              <MoreVertIcon sx={{ color: "#75787c" }} />
+                            </IconButton>
+                            <ShowMoreMenu
+                              showMoreAnchorEl={showMoreAnchorEl}
+                              open={open}
+                              handleClose={handleClose}
+                              data={coinData && coinData?.explorer_link}
+                            />
+                          </Box>
+                        )}
+                      </Stack>
+                    ))}
               </Stack>
             </Stack>
 
@@ -1171,15 +1180,16 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   />
 
                   {coinData?.audit &&
-                    coinData?.audit[0]?.url !== null &&
-                    coinData?.audit[0]?.url !== "" &&
-                    coinData?.audit[0]?.url !== undefined && (
-                      <SingleCoinChip
-                        src={SourcecodeImage}
-                        title={coinData?.audit[0]?.url}
-                        link={coinData?.audit[0]?.url}
-                      />
-                    )}
+                    coinData?.audit
+                      ?.slice(0, 1)
+                      .map((item: any, index: number) => (
+                        <SingleCoinChip
+                          key={index}
+                          src={SourcecodeImage}
+                          title={item.name}
+                          link={item.url}
+                        />
+                      ))}
 
                   {/* <SingleCoinChip src={SourcecodeImage} title="Certik" /> */}
 
@@ -1252,60 +1262,62 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 pt={1}
               >
                 {coinData?.chart_link &&
-                  coinData?.chart_link[0]?.url !== null &&
-                  coinData?.chart_link[0]?.url !== "" &&
-                  coinData?.chart_link[0]?.url !== undefined && (
-                    <SingleCoinChip
-                      src={LinkImage}
-                      title={coinData?.chart_link[0]?.url}
-                      link={coinData?.chart_link[0]?.url}
-                    />
-                  )}
+                  coinData?.chart_link
+                    ?.slice(0, 1)
+                    .map((item: any, index: number) => (
+                      <SingleCoinChip
+                        key={index}
+                        src={LinkImage}
+                        title={item?.name}
+                        link={item?.url}
+                      />
+                    ))}
 
                 {coinData?.chart_link &&
-                  coinData?.chart_link[1]?.url !== null &&
-                  coinData?.chart_link[1]?.url !== "" &&
-                  coinData?.chart_link[1]?.url !== undefined && (
-                    <Stack
-                      direction={{ xs: "row", sm: "row", md: "row" }}
-                      sx={{ alignItems: "center" }}
-                      spacing={0}
-                      justifyContent={{
-                        xs: "center",
-                        sm: "center",
-                        md: "center",
-                        lg: "flex-start",
-                      }}
-                    >
-                      <SingleCoinChip
-                        src={LinkImage}
-                        title={coinData?.chart_link[1]?.url}
-                        link={coinData?.chart_link[1]?.url}
-                      />
+                  coinData?.chart_link
+                    ?.slice(1, 2)
+                    .map((item: any, index: number) => (
+                      <Stack
+                        key={index}
+                        direction={{ xs: "row", sm: "row", md: "row" }}
+                        sx={{ alignItems: "center" }}
+                        spacing={0}
+                        justifyContent={{
+                          xs: "center",
+                          sm: "center",
+                          md: "center",
+                          lg: "flex-start",
+                        }}
+                      >
+                        <SingleCoinChip
+                          src={LinkImage}
+                          title={item?.name}
+                          link={item?.url}
+                        />
 
-                      {coinData?.chart_link?.length > 2 && (
-                        <Box>
-                          <IconButton
-                            aria-label="more"
-                            id="long-button"
-                            aria-controls={open ? "long-menu" : undefined}
-                            aria-expanded={open ? "true" : undefined}
-                            aria-haspopup="true"
-                            onClick={handleClick}
-                            sx={{ padding: 0 }}
-                          >
-                            <MoreVertIcon sx={{ color: "#75787c" }} />
-                          </IconButton>
-                          <ShowMoreMenu
-                            showMoreAnchorEl={showMoreAnchorEl}
-                            open={open}
-                            handleClose={handleClose}
-                            data={coinData && coinData?.chart_link}
-                          />
-                        </Box>
-                      )}
-                    </Stack>
-                  )}
+                        {coinData?.chart_link?.length > 2 && (
+                          <Box>
+                            <IconButton
+                              aria-label="more"
+                              id="long-button"
+                              aria-controls={open ? "long-menu" : undefined}
+                              aria-expanded={open ? "true" : undefined}
+                              aria-haspopup="true"
+                              onClick={handleClick}
+                              sx={{ padding: 0 }}
+                            >
+                              <MoreVertIcon sx={{ color: "#75787c" }} />
+                            </IconButton>
+                            <ShowMoreMenu
+                              showMoreAnchorEl={showMoreAnchorEl}
+                              open={open}
+                              handleClose={handleClose}
+                              data={coinData && coinData?.chart_link}
+                            />
+                          </Box>
+                        )}
+                      </Stack>
+                    ))}
               </Stack>
             </Stack>
 

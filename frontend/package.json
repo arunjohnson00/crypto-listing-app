@@ -90,6 +90,7 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.5",
     "timestamp-conv": "^3.0.0",
+    "tldts": "^5.7.88",
     "tty": "^1.0.1",
     "tty-browserify": "^0.0.1",
     "typescript": "^4.4.2",
