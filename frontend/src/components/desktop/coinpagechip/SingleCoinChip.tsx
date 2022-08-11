@@ -47,6 +47,7 @@ const SingleCoinChip = ({ src, title, link, varient }: any) => {
             cursor: "pointer",
             marginRight: 1,
             fontSize: "0.6125rem",
+            textTransform: "capitalize",
             "&.MuiChip-root .MuiChip-avatar": {
               width: 14,
               height: 14,

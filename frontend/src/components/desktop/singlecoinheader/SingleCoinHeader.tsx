@@ -1090,13 +1090,33 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 spacing={0}
                 pt={1}
               >
-                <SingleCoinChip src={FacebookImage} title="Facebook" />
-
-                <SingleCoinChip src={InstagramImage} title="Instagram" />
-                <SingleCoinChip src={RedditImage} title="Reddit" />
-                <SingleCoinChip src={TwitterImage} title="Twitter" />
-                <SingleCoinChip src={TelegramImage} title="Telegram" />
+                {coinData?.communities &&
+                  coinData?.communities?.map((item: any, index: number) => (
+                    <SingleCoinChip
+                      key={index}
+                      src={
+                        item?.name === "twitter"
+                          ? TwitterImage
+                          : item?.name === "telegram"
+                          ? TelegramImage
+                          : item?.name === "reddit"
+                          ? RedditImage
+                          : item?.name === "facebook"
+                          ? FacebookImage
+                          : item?.name === "instagram" && InstagramImage
+                      }
+                      title={item?.name}
+                      link={item?.url}
+                    />
+                  ))}
               </Stack>
+
+              {/* <SingleCoinChip src={FacebookImage} title="Facebook" />
+
+              <SingleCoinChip src={InstagramImage} title="Instagram" />
+              <SingleCoinChip src={RedditImage} title="Reddit" />
+
+              <SingleCoinChip src={TelegramImage} title="Telegram" /> */}
             </Stack>
 
             <Divider
