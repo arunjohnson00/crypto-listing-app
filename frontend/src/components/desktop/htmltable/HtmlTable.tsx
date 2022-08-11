@@ -130,8 +130,8 @@ const HtmlTable = ({ tableData }: any) => {
                   {" "}
                   <Avatar
                     alt={data?.name}
-                    src={`${serverAPIUrl}public/uploads/network_icons/${data?.chain}`}
-                    sx={{ width: 34, height: 34 }}
+                    src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
+                    sx={{ width: 41, height: 11, borderRadius: 0 }}
                   />
                 </TableCell>
                 <TableCell sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}>
