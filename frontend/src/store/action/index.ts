@@ -23,3 +23,5 @@ export { coinOverviewBlockRequest } from "./coinAction ";
 export { coinDetailFirstBlockRequest } from "./coinAction ";
 export { coinOnloadVerificationRequest } from "./coinAction ";
 export { coinSocialGraphRequest } from "./coinAction ";
+
+//Coins Page

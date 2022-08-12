@@ -49,7 +49,7 @@ const MobileSingleCoinPage = () => {
           <MobileLatestNewsCardScroll />
         </Grid>
 
-        <Grid
+        {/* <Grid
           xs={12}
           sx={{
             alignItems: "center",
@@ -69,7 +69,7 @@ const MobileSingleCoinPage = () => {
           >
             <CoinSlider />
           </Stack>
-        </Grid>
+        </Grid> */}
         <Grid
           xs={12}
           sx={{

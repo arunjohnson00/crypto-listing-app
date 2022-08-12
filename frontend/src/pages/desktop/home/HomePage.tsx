@@ -1,5 +1,6 @@
 import { Fragment, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   Grid,
   Stack,
@@ -57,7 +58,6 @@ import {
 } from "../../../store/action";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 import LatestNewsCardScroll from "../../../components/desktop/latestnews/LatestNewsCardScroll";
-import { Link } from "react-router-dom";
 
 const responsiveNFTCollections = {
   superLargeDesktop: {
@@ -293,7 +293,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               <CardMedia
                 component="img"
                 height="95"
-                image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                image="https://iili.io/UtYAiJ.jpg"
                 alt="green iguana"
               />
             </Grid>
@@ -301,7 +301,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               <CardMedia
                 component="img"
                 height="95"
-                image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                image="https://iili.io/UtYuVa.jpg"
                 alt="green iguana"
               />
             </Grid>
@@ -856,7 +856,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           }}
         >
           <Grid item xs={12} sm={6} md={5} lg={5} xl={5} pb={2}>
-            <Typography sx={{ color: "#FFFFFF" }}>
+            <Typography sx={{ color: "#FFFFFF", fontSize: "0.875rem" }}>
               Subscribe to our newsletters and get business news delivered
               straight into your inbox ; Daily Newsletter. Your daily dose of
               business news, views and updates.
@@ -867,7 +867,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
             <CardMedia
               component="img"
               height="95"
-              image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+              image="https://iili.io/UtYAiJ.jpg"
               alt="green iguana"
             />
           </Grid>
@@ -965,7 +965,12 @@ const HomePage = ({ windowInnerWidth }: any) => {
               justifyContent: " flex-end",
             }}
           >
-            <ViewMoreBtn title="View more" />
+            <Link
+              to="/coins"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <ViewMoreBtn title="View more" />
+            </Link>
           </Stack>
         </Grid>
 
@@ -1012,7 +1017,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           }}
         >
           <Grid item xs={12} sm={6} md={5} lg={5} xl={5} pb={2}>
-            <Typography sx={{ color: "#FFFFFF" }}>
+            <Typography sx={{ color: "#FFFFFF", fontSize: "0.875rem" }}>
               Subscribe to our newsletters and get business news delivered
               straight into your inbox ; Daily Newsletter. Your daily dose of
               business news, views and updates.
@@ -1023,7 +1028,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
             <CardMedia
               component="img"
               height="95"
-              image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+              image="https://iili.io/UtYAiJ.jpg"
               alt="green iguana"
             />
           </Grid>
@@ -1143,7 +1148,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           }}
         >
           <Grid item xs={12} sm={6} md={5} lg={5} xl={5} pb={2}>
-            <Typography sx={{ color: "#FFFFFF" }}>
+            <Typography sx={{ color: "#FFFFFF", fontSize: "0.875rem" }}>
               Subscribe to our newsletters and get business news delivered
               straight into your inbox ; Daily Newsletter. Your daily dose of
               business news, views and updates.
@@ -1154,7 +1159,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
             <CardMedia
               component="img"
               height="95"
-              image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+              image="https://iili.io/UtYAiJ.jpg"
               alt="green iguana"
             />
           </Grid>

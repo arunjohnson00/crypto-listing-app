@@ -42,6 +42,7 @@ import {
   menuCardRequest,
 } from "../../../store/action";
 import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
+import { Link } from "react-router-dom";
 
 const { parse } = require("rss-to-json");
 
@@ -665,7 +666,13 @@ const MobileHomePage = () => {
             justifyContent: " flex-end",
           }}
         >
-          <MobileViewMoreBtn title="View more" />
+          <Link
+            to="/coins"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            {" "}
+            <MobileViewMoreBtn title="View more" />
+          </Link>
         </Stack>
       </Grid>
       <Grid

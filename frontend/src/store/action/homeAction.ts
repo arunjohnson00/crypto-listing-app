@@ -85,7 +85,7 @@ export const cryptoCurrenciesListRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/crypto-currencies-list`,
+    url: `api/f/v1/crypto-currencies-list?page=${values}`,
     method: "GET",
     secure: false,
     actionType: HOME.CRYPTO_CURRENCIES_LIST,

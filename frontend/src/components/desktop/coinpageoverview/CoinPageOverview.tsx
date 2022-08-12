@@ -1235,7 +1235,7 @@ const CoinPageOverview = () => {
         <CardMedia
           component="img"
           height="80"
-          image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+          image="https://iili.io/UtY5Kv.jpg"
           alt="green iguana"
         />
 

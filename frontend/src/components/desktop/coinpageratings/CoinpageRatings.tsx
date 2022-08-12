@@ -49,7 +49,7 @@ const CoinpageRatings = () => {
             <CardMedia
               component="img"
               height="70"
-              image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+              image="https://iili.io/UtY5Kv.jpg"
               alt="green iguana"
             />
           </Grid>
