@@ -24,6 +24,7 @@ import {
   coinOverviewBlockRequest,
   coinAboutBlockRequest,
   coinOnloadVerificationRequest,
+  coinSocialGraphRequest,
 } from "../../../store/action";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 
@@ -65,6 +66,16 @@ const SingleCoinPage = () => {
       );
       dispatch(
         coinAboutBlockRequest(
+          location?.state?.coin_id !== undefined
+            ? location?.state?.coin_id
+            : location?.pathname?.split("/").pop(),
+          successHandler,
+          errorHandler
+        )
+      );
+
+      dispatch(
+        coinSocialGraphRequest(
           location?.state?.coin_id !== undefined
             ? location?.state?.coin_id
             : location?.pathname?.split("/").pop(),

@@ -8,25 +8,30 @@ const SocialCounterWithGraphCard = ({
   icon,
   endColor,
   startColor,
+  url,
 }: any) => {
-  const [data, updateData] = useState([1, 2, 3, 4, 5, 6]);
+  // const [data, updateData] = useState([1, 2, 3, 4, 5, 6]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const val = Math.floor(Math.random() * (100 - 30 + 1)) + 30;
-      let array = [...data, val];
-      array.shift();
-      updateData(array);
-    }, 2000);
-    return () => {
-      window.clearInterval(interval);
-    };
-  }, [data]);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const val = Math.floor(Math.random() * (100 - 30 + 1)) + 30;
+  //     let array = [...data, val];
+  //     array.shift();
+  //     updateData(array);
+  //   }, 2000);
+  //   return () => {
+  //     window.clearInterval(interval);
+  //   };
+  // }, [data]);
+
+  const percentageDiff = (a: any, b: any) => {
+    return ((a - b) / a) * 100;
+  };
   const chartData: any = {
     series: [
       {
         name: "Coinxhigh",
-        data: data,
+        data: cardData && cardData,
       },
     ],
 
@@ -159,17 +164,29 @@ const SocialCounterWithGraphCard = ({
           sx={{ alignItems: "center" }}
         >
           <Avatar
-            alt="Remy Sharp"
-            src="https://mui.com/static/images/avatar/1.jpg"
+            alt={title && title}
+            src={icon && icon}
             sx={{ width: 20, height: 20 }}
           />
 
           <Stack direction={{ xs: "column" }} spacing={0.7}>
-            <Typography
-              sx={{ color: "#C6C9D2", fontWeight: 600, fontSize: ".65rem" }}
+            <a
+              href={url && url}
+              target="_blank"
+              rel="noreferrer"
+              style={{ textDecoration: "none", color: "inherit" }}
             >
-              {title && title}
-            </Typography>
+              <Typography
+                sx={{
+                  color: "#C6C9D2",
+                  fontWeight: 600,
+                  fontSize: ".65rem",
+                  textTransform: "capitalize",
+                }}
+              >
+                {title && title}
+              </Typography>
+            </a>
             <Stack
               direction={{ xs: "row" }}
               alignItems="flex-end"
@@ -184,18 +201,36 @@ const SocialCounterWithGraphCard = ({
                   fontSize: ".85rem",
                 }}
               >
-                161,888
+                {cardData && cardData[0]}
               </Typography>
               <Typography
                 sx={{
-                  color: "#03FEB5",
+                  color:
+                    Math.sign(
+                      percentageDiff(
+                        parseInt(cardData[1]),
+                        parseInt(cardData[0])
+                      )
+                    ) === -1
+                      ? "red"
+                      : "#03FEB5",
                   fontWeight: 400,
 
                   lineHeight: 0.2,
                   fontSize: ".65rem",
                 }}
               >
-                +35.77%
+                {cardData &&
+                  Math.sign(
+                    percentageDiff(parseInt(cardData[1]), parseInt(cardData[0]))
+                  ) !== -1 &&
+                  "+"}
+                {cardData &&
+                  percentageDiff(
+                    parseInt(cardData[1]),
+                    parseInt(cardData[0])
+                  ).toFixed(2)}
+                %
               </Typography>
             </Stack>
           </Stack>

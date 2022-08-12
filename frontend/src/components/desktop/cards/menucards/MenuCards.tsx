@@ -22,7 +22,9 @@ const MenuCards = ({
         <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
           <Avatar
             alt={title && title}
-            src={`${serverAPIUrl}public/uploads/menu_cards/${icon && icon}`}
+            src={`${serverAPIUrl}public/uploads/menu_card_icons/${
+              icon && icon
+            }`}
             sx={{ marginBottom: 0, borderRadius: 2 }}
           />
           <Stack
