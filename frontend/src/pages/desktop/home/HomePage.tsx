@@ -295,6 +295,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
                 height="95"
                 image="https://iili.io/UtYAiJ.jpg"
                 alt="green iguana"
+                sx={{ objectFit: "unset" }}
               />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={4} xl={4} mb={2}>
@@ -303,6 +304,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
                 height="95"
                 image="https://iili.io/UtYuVa.jpg"
                 alt="green iguana"
+                sx={{ objectFit: "unset" }}
               />
             </Grid>
           </Stack>
@@ -869,6 +871,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               height="95"
               image="https://iili.io/UtYAiJ.jpg"
               alt="green iguana"
+              sx={{ objectFit: "unset" }}
             />
           </Grid>
         </Grid>
@@ -1030,6 +1033,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               height="95"
               image="https://iili.io/UtYAiJ.jpg"
               alt="green iguana"
+              sx={{ objectFit: "unset" }}
             />
           </Grid>
         </Grid>
@@ -1161,6 +1165,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               height="95"
               image="https://iili.io/UtYAiJ.jpg"
               alt="green iguana"
+              sx={{ objectFit: "unset" }}
             />
           </Grid>
         </Grid>

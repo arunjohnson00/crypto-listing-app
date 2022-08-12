@@ -182,6 +182,7 @@ const SingleCoinPage = () => {
               height="80"
               image="https://iili.io/UtY5Kv.jpg"
               alt="green iguana"
+              sx={{ objectFit: "unset" }}
             />
           </Grid>
         </Grid>
