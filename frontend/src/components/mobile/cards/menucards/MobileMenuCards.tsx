@@ -1,7 +1,14 @@
 import { Box, Grid, Stack, Avatar, Typography } from "@mui/material";
 import React from "react";
 
-const MobileMenuCards = ({ width, marginBottom }: any) => {
+const MobileMenuCards = ({
+  width,
+  marginBottom,
+  title,
+  icon,
+  sub_title,
+  url,
+}: any) => {
   return (
     <Grid item xs={width && width} mx={2}>
       <Box
@@ -16,17 +23,27 @@ const MobileMenuCards = ({ width, marginBottom }: any) => {
             spacing={0}
             sx={{ alignItems: "flex-start" }}
           >
-            <Typography
-              variant="h6"
-              sx={{ color: "#BDBAC5", fontWeight: "", textAlign: "center" }}
+            <a
+              href={url && url}
+              target="_blank"
+              rel="noreferrer"
+              style={{ textDecoration: "none", color: "inherit" }}
             >
-              Best Trending Application
-            </Typography>
+              {" "}
+              <Typography
+                variant="h6"
+                sx={{ color: "#BDBAC5", fontWeight: "", textAlign: "center" }}
+              >
+                {title && title?.length >= 21
+                  ? title && title?.slice(0, 19) + "..."
+                  : title && title}
+              </Typography>
+            </a>
             <Typography
               variant="caption"
               sx={{ color: "#787786", fontWeight: "", textAlign: "center" }}
             >
-              Trade and monitor accounts
+              {sub_title && sub_title}
             </Typography>
           </Stack>
         </Stack>

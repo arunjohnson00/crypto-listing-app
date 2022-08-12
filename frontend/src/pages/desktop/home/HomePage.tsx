@@ -52,6 +52,8 @@ import {
   cryptoCurrenciesTodaysBestRequest,
   cryptoCurrenciesNewRequest,
   cryptoCurrenciesPresaleRequest,
+  nftListingRequest,
+  menuCardRequest,
 } from "../../../store/action";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 import LatestNewsCardScroll from "../../../components/desktop/latestnews/LatestNewsCardScroll";
@@ -197,6 +199,8 @@ const HomePage = ({ windowInnerWidth }: any) => {
     dispatch(biggestGainersRequest("noData", successHandler, errorHandler));
     dispatch(biggestLosersRequest("noData", successHandler, errorHandler));
     dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
+    dispatch(nftListingRequest("noData", successHandler, errorHandler));
+    dispatch(menuCardRequest("noData", successHandler, errorHandler));
   }, [dispatch, setPreLoader]);
 
   useEffect(() => {

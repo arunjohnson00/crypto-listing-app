@@ -139,3 +139,33 @@ export const cryptoCurrenciesTodaysBestRequest = (
 };
 
 export const cryptoCurrenciesTabRequest = HOME.CRYPTO_CURRENCIES_TAB;
+
+export const menuCardRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/menu-cards`,
+    method: "GET",
+    secure: false,
+    actionType: HOME.MENU_CARDS,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const nftListingRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/nft-listings`,
+    method: "GET",
+    secure: false,
+    actionType: HOME.NFT_LISTINGS,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

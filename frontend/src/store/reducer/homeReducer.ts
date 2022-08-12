@@ -10,6 +10,8 @@ const initialState = {
   crypto_currencies_presale: "",
   crypto_currencies_todays_best: "",
   crypto_currencies_tab: 0,
+  menu_cards: "",
+  nft_listings: "",
 };
 const homeReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -72,6 +74,20 @@ const homeReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         crypto_currencies_tab: action?.payload,
+      };
+
+    case HOME.MENU_CARDS:
+      //console.log(action);
+      return {
+        ...state,
+        menu_cards: action?.payload,
+      };
+
+    case HOME.NFT_LISTINGS:
+      //console.log(action);
+      return {
+        ...state,
+        nft_listings: action?.payload,
       };
 
     default:

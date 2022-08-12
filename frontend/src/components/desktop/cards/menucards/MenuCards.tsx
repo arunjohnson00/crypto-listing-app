@@ -1,7 +1,16 @@
 import { Box, Grid, Stack, Avatar, Typography } from "@mui/material";
 import React from "react";
 
-const MenuCards = ({ width, marginBottom }: any) => {
+const serverAPIUrl = process.env.REACT_APP_API_URL;
+
+const MenuCards = ({
+  width,
+  marginBottom,
+  title,
+  icon,
+  sub_title,
+  url,
+}: any) => {
   return (
     <Grid item xs={width && width}>
       <Box
@@ -12,8 +21,8 @@ const MenuCards = ({ width, marginBottom }: any) => {
       >
         <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
           <Avatar
-            alt="Remy Sharp"
-            src="https://mui.com/static/images/avatar/3.jpg"
+            alt={title && title}
+            src={`${serverAPIUrl}public/uploads/menu_cards/${icon && icon}`}
             sx={{ marginBottom: 0, borderRadius: 2 }}
           />
           <Stack
@@ -21,17 +30,25 @@ const MenuCards = ({ width, marginBottom }: any) => {
             spacing={0}
             sx={{ alignItems: "flex-start" }}
           >
-            <Typography
-              variant="h6"
-              sx={{ color: "#BDBAC5", fontWeight: "", textAlign: "center" }}
+            <a
+              href={url && url}
+              target="_blank"
+              rel="noreferrer"
+              style={{ textDecoration: "none", color: "inherit" }}
             >
-              Best Trending Application
-            </Typography>
+              {" "}
+              <Typography
+                variant="h6"
+                sx={{ color: "#BDBAC5", fontWeight: "", textAlign: "center" }}
+              >
+                {title && title}
+              </Typography>
+            </a>
             <Typography
               variant="caption"
               sx={{ color: "#787786", fontWeight: "", textAlign: "center" }}
             >
-              Trade and monitor accounts
+              {sub_title && sub_title}
             </Typography>
           </Stack>
         </Stack>

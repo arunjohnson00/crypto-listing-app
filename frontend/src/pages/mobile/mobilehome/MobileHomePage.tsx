@@ -39,6 +39,7 @@ import {
   cryptoCurrenciesTodaysBestRequest,
   cryptoCurrenciesNewRequest,
   cryptoCurrenciesPresaleRequest,
+  menuCardRequest,
 } from "../../../store/action";
 import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
 
@@ -152,6 +153,7 @@ const MobileHomePage = () => {
   const [tableData, setTableData] = useState<any>();
   const [preLoader, setPreLoader] = useState<any>({
     featured_coin_list: true,
+    menu_card: true,
   });
   const [htmlTablePreLoader, setHTMLTablePreLoader] = useState<any>({
     html_table: true,
@@ -159,6 +161,11 @@ const MobileHomePage = () => {
   const latestNews = useSelector((data: any) => {
     return data?.commonReducer?.latest_news;
   });
+
+  const menuCards = useSelector((data: any) => {
+    return data?.homeReducer?.menu_cards?.data?.data;
+  });
+
   const dispatch: any = useDispatch();
   const featuredCoinList = useSelector((data: any) => {
     return data?.homeReducer?.featured_coin_list?.data;
@@ -212,11 +219,13 @@ const MobileHomePage = () => {
         ...preLoader,
 
         featured_coin_list: false,
+        menu_card: false,
       });
     };
     const errorHandler = (err: any) => {};
 
     dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
+    dispatch(menuCardRequest("noData", successHandler, errorHandler));
   }, [dispatch, setPreLoader]);
 
   return (
@@ -852,39 +861,32 @@ const MobileHomePage = () => {
           paddingBottom: "23px",
         }}
       >
-        <Carousel
-          // centerMode={true}
-          responsive={responsiveMenuCard}
-          infinite={true}
-          removeArrowOnDeviceType={["tablet", "mobile"]}
-          arrows={true}
-          swipeable={true}
-          partialVisible={true}
-          autoPlay={false}
-          draggable={true}
-        >
-          <Box>
-            <MobileMenuCards width="auto" />
-          </Box>
-          <Box>
-            <MobileMenuCards width="auto" />
-          </Box>
-          <Box>
-            <MobileMenuCards width="auto" />
-          </Box>
-          <Box>
-            <MobileMenuCards width="auto" />
-          </Box>
-          <Box>
-            <MobileMenuCards width="auto" />
-          </Box>
-          <Box>
-            <MobileMenuCards width="auto" />
-          </Box>
-          <Box>
-            <MobileMenuCards width="auto" />
-          </Box>
-        </Carousel>
+        {menuCards && (
+          <Carousel
+            // centerMode={true}
+            responsive={responsiveMenuCard}
+            infinite={true}
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            arrows={false}
+            swipeable={true}
+            partialVisible={true}
+            autoPlay={false}
+            draggable={true}
+          >
+            {menuCards &&
+              menuCards?.map((item: any, index: any) => (
+                <Box key={index}>
+                  <MobileMenuCards
+                    width="auto"
+                    title={item?.title}
+                    icon={item?.icon}
+                    sub_title={item?.sub_title}
+                    url={item?.url}
+                  />
+                </Box>
+              ))}
+          </Carousel>
+        )}
       </Grid>
 
       <Grid

@@ -5,6 +5,7 @@ const initialState = {
   coin_overview_block: "",
   coin_about_block: "",
   coin_onload_verification: "",
+  coin_social_graph: "",
 };
 const coinReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -33,6 +34,13 @@ const coinReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         coin_onload_verification: action?.payload?.data,
+      };
+
+    case COIN.COIN_SOCIAL_GRAPH:
+      //console.log(action);
+      return {
+        ...state,
+        coin_social_graph: action?.payload?.data,
       };
 
     default:

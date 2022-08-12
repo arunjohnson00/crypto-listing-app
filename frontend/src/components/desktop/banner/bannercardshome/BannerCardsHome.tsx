@@ -1,5 +1,6 @@
 import { Grid, Stack, Typography } from "@mui/material";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import MenuCards from "../../cards/menucards/MenuCards";
 
 const BannerCardsHome = () => {
@@ -7,6 +8,11 @@ const BannerCardsHome = () => {
   window.addEventListener("resize", function (event) {
     setWindowInnerWidth(window.innerWidth);
   });
+
+  const menuCards = useSelector((data: any) => {
+    return data?.homeReducer?.menu_cards?.data?.data;
+  });
+
   return (
     <Grid container xs={12} px={3} py={4}>
       <Grid container xs={12}>
@@ -28,6 +34,10 @@ const BannerCardsHome = () => {
                   width={`${
                     windowInnerWidth && windowInnerWidth <= 600 ? "Auto" : 11
                   } `}
+                  title={menuCards && menuCards[0]?.title}
+                  icon={menuCards && menuCards[0]?.icon}
+                  sub_title={menuCards && menuCards[0]?.sub_title}
+                  url={menuCards && menuCards[0]?.url}
                 />
               </Stack>
               <Stack
@@ -43,6 +53,10 @@ const BannerCardsHome = () => {
                   width={`${
                     windowInnerWidth && windowInnerWidth <= 600 ? "Auto" : 11
                   } `}
+                  title={menuCards && menuCards[1]?.title}
+                  icon={menuCards && menuCards[1]?.icon}
+                  sub_title={menuCards && menuCards[1]?.sub_title}
+                  url={menuCards && menuCards[1]?.url}
                 />
               </Stack>
               <Stack
@@ -58,6 +72,10 @@ const BannerCardsHome = () => {
                   width={`${
                     windowInnerWidth && windowInnerWidth <= 600 ? "Auto" : 11
                   } `}
+                  title={menuCards && menuCards[2]?.title}
+                  icon={menuCards && menuCards[2]?.icon}
+                  sub_title={menuCards && menuCards[2]?.sub_title}
+                  url={menuCards && menuCards[2]?.url}
                 />
               </Stack>
             </Stack>
@@ -100,11 +118,46 @@ const BannerCardsHome = () => {
           }}
           py={5}
         >
-          <MenuCards width="auto" marginBottom={3} />
-          <MenuCards width="auto" marginBottom={3} />
-          <MenuCards width="auto" marginBottom={3} />
-          <MenuCards width="auto" marginBottom={3} />
-          <MenuCards width="auto" marginBottom={3} />
+          <MenuCards
+            width="auto"
+            marginBottom={3}
+            title={menuCards && menuCards[3]?.title}
+            icon={menuCards && menuCards[3]?.icon}
+            sub_title={menuCards && menuCards[3]?.sub_title}
+            url={menuCards && menuCards[3]?.url}
+          />
+          <MenuCards
+            width="auto"
+            marginBottom={3}
+            title={menuCards && menuCards[4]?.title}
+            icon={menuCards && menuCards[4]?.icon}
+            sub_title={menuCards && menuCards[4]?.sub_title}
+            url={menuCards && menuCards[4]?.url}
+          />
+          <MenuCards
+            width="auto"
+            marginBottom={3}
+            title={menuCards && menuCards[5]?.title}
+            icon={menuCards && menuCards[5]?.icon}
+            sub_title={menuCards && menuCards[5]?.sub_title}
+            url={menuCards && menuCards[5]?.url}
+          />
+          <MenuCards
+            width="auto"
+            marginBottom={3}
+            title={menuCards && menuCards[6]?.title}
+            icon={menuCards && menuCards[6]?.icon}
+            sub_title={menuCards && menuCards[6]?.sub_title}
+            url={menuCards && menuCards[6]?.url}
+          />
+          <MenuCards
+            width="auto"
+            marginBottom={3}
+            title={menuCards && menuCards[7]?.title}
+            icon={menuCards && menuCards[7]?.icon}
+            sub_title={menuCards && menuCards[7]?.sub_title}
+            url={menuCards && menuCards[7]?.url}
+          />
         </Stack>
       </Grid>
     </Grid>

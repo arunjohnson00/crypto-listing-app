@@ -17,6 +17,20 @@ import { COIN } from "../types";
 // };
 // export const adsSummaryRequest = ADS.ADS_SUMMARY;
 // export const removeFromAdsSummaryRequest = ADS.REMOVE_FROM_ADS_SUMMARY;
+export const coinOnloadVerificationRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-on-load-verification/${values} `,
+    method: "GET",
+    secure: false,
+    actionType: COIN.COIN_ONLOAD_VERIFICATION,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
 
 export const coinDetailFirstBlockRequest = (
   values: any,
@@ -63,17 +77,17 @@ export const coinAboutBlockRequest = (
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const coinOnloadVerificationRequest = (
+export const coinSocialGraphRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/coin-on-load-verification/${values} `,
+    url: `api/f/v1/coin-social-graph/${values} `,
     method: "GET",
     secure: false,
-    actionType: COIN.COIN_ONLOAD_VERIFICATION,
+    actionType: COIN.COIN_SOCIAL_GRAPH,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
