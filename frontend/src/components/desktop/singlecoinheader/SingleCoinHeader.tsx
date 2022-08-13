@@ -63,12 +63,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
   const coinSocialGraph = useSelector((data: any) => {
     return data?.coinReducer?.coin_social_graph?.data;
   });
-  const [copyValue, setCopyValue] = useState(
-    coinData &&
-      coinData?.address !== null &&
-      coinData?.address !== "" &&
-      coinData?.address
-  );
+  const [copyValue, setCopyValue] = useState<any>();
   const [copied, setCopied] = useState(false);
   const [showMoreAnchorEl, setShowMoreAnchorEl] = useState<null | HTMLElement>(
     null
@@ -83,9 +78,8 @@ const SingleCoinHeader = ({ coinData }: any) => {
 
   useEffect(() => {
     coinData &&
-      coinData?.address !== null &&
-      coinData?.address !== "" &&
-      setCopyValue(coinData?.address);
+      coinData?.contract_address?.length > 0 &&
+      setCopyValue(coinData?.contract_address[0]?.addresss);
   }, []);
 
   return (
@@ -574,30 +568,50 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 spacing={0}
               >
                 {" "}
-                <Typography
-                  variant="subtitle2"
-                  sx={{ color: "#FFFFF5", fontSize: "0.75rem" }}
-                >
-                  {coinData && coinData?.network !== null
-                    ? coinData?.network
-                    : "NA"}
-                </Typography>
-                <IconButton
-                  aria-label="more"
-                  id="long-button"
-                  aria-controls={open ? "long-menu" : undefined}
-                  aria-expanded={open ? "true" : undefined}
-                  aria-haspopup="true"
-                  onClick={handleClick}
-                  sx={{ padding: 0 }}
-                >
-                  <MoreVertIcon sx={{ color: "#75787c" }} />
-                </IconButton>
-                <ShowMoreMenu
-                  showMoreAnchorEl={showMoreAnchorEl}
-                  open={open}
-                  handleClose={handleClose}
-                />
+                {coinData && coinData?.network?.length > 0 ? (
+                  <a
+                    href={coinData && coinData?.network[0]?.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    {" "}
+                    <Typography
+                      variant="subtitle2"
+                      sx={{ color: "#FFFFF5", fontSize: "0.75rem" }}
+                    >
+                      {coinData && coinData?.network[0]?.name}
+                    </Typography>
+                  </a>
+                ) : (
+                  <Typography
+                    variant="subtitle2"
+                    sx={{ color: "#FFFFF5", fontSize: "0.75rem" }}
+                  >
+                    NA
+                  </Typography>
+                )}
+                {coinData?.network?.length > 1 && (
+                  <Box>
+                    <IconButton
+                      aria-label="more"
+                      id="long-button"
+                      aria-controls={open ? "long-menu" : undefined}
+                      aria-expanded={open ? "true" : undefined}
+                      aria-haspopup="true"
+                      onClick={handleClick}
+                      sx={{ padding: 0 }}
+                    >
+                      <MoreVertIcon sx={{ color: "#75787c" }} />
+                    </IconButton>
+                    <ShowMoreMenu
+                      showMoreAnchorEl={showMoreAnchorEl}
+                      open={open}
+                      handleClose={handleClose}
+                      data={coinData && coinData?.network}
+                    />
+                  </Box>
+                )}
               </Stack>
             </Stack>
 
@@ -645,18 +659,16 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   sx={{ color: "#FFFFF5", fontSize: "0.75rem" }}
                 >
                   {`${
-                    coinData &&
-                    coinData?.address !== null &&
-                    coinData?.address !== ""
-                      ? coinData?.address.substring(0, 14)
+                    coinData && coinData?.contract_address?.length > 0
+                      ? coinData &&
+                        coinData?.contract_address[0]?.address?.substring(0, 14)
                       : "NA"
                   } 
                       .........
                       ${
-                        coinData &&
-                        coinData?.address !== null &&
-                        coinData?.address !== ""
-                          ? coinData?.address.slice(-6)
+                        coinData && coinData?.contract_address?.length > 0
+                          ? coinData &&
+                            coinData?.contract_address[0]?.address?.slice(-6)
                           : "NA"
                       }`}
                 </Typography>
@@ -670,9 +682,8 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     onClick={() => {
                       setCopyValue(
                         coinData &&
-                          coinData?.address !== null &&
-                          coinData?.address !== "" &&
-                          coinData?.address
+                          coinData?.contract_address?.length > 0 &&
+                          coinData?.contract_address[0]?.address
                       );
                     }}
                   >
@@ -1118,8 +1129,8 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 spacing={1}
                 pt={1}
               >
-                {coinData?.explorer_link &&
-                  coinData?.explorer_link
+                {coinData?.network &&
+                  coinData?.network
                     ?.slice(0, 1)
                     .map((item: any, index: number) => (
                       <SingleCoinChip
@@ -1130,8 +1141,8 @@ const SingleCoinHeader = ({ coinData }: any) => {
                         varient="explorer"
                       />
                     ))}
-                {coinData?.explorer_link &&
-                  coinData?.explorer_link
+                {coinData?.network &&
+                  coinData?.network
                     ?.slice(1, 2)
                     .map((item: any, index: number) => (
                       <Stack
@@ -1153,7 +1164,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                           varient="explorer"
                         />
 
-                        {coinData?.explorer_link?.length > 2 && (
+                        {coinData?.network?.length > 2 && (
                           <Box>
                             <IconButton
                               aria-label="more"
@@ -1170,7 +1181,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                               showMoreAnchorEl={showMoreAnchorEl}
                               open={open}
                               handleClose={handleClose}
-                              data={coinData && coinData?.explorer_link}
+                              data={coinData && coinData?.network}
                             />
                           </Box>
                         )}

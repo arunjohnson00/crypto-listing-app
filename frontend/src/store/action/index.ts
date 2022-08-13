@@ -15,6 +15,7 @@ export { cryptoCurrenciesTodaysBestRequest } from "./homeAction";
 export { cryptoCurrenciesTabRequest } from "./homeAction";
 export { nftListingRequest } from "./homeAction";
 export { menuCardRequest } from "./homeAction";
+export { videoListRequest } from "./homeAction";
 
 //Coin Page
 
@@ -25,3 +26,13 @@ export { coinOnloadVerificationRequest } from "./coinAction ";
 export { coinSocialGraphRequest } from "./coinAction ";
 
 //Coins Page
+
+export { coinsRecentlyAddedRequest } from "./coinsAction";
+export { coinsBiggestGainersRequest } from "./coinsAction";
+export { coinsBiggestLosersRequest } from "./coinsAction";
+export { coinsFeaturedCoinListRequest } from "./coinsAction";
+export { coinsCryptoCurrenciesListRequest } from "./coinsAction";
+export { coinsCryptoCurrenciesNewRequest } from "./coinsAction";
+export { coinsCryptoCurrenciesPresaleRequest } from "./coinsAction";
+export { coinsCryptoCurrenciesTodaysBestRequest } from "./coinsAction";
+export { coinsCryptoCurrenciesTabRequest } from "./coinsAction";

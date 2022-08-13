@@ -14,35 +14,43 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import ListingTable from "../../../components/desktop/listingtable/ListingTable";
 import TableButtonGroup from "../../../components/desktop/listingtable/tablebuttongroup/TableButtonGroup";
 import {
-  featuredCoinListRequest,
-  cryptoCurrenciesListRequest,
-  cryptoCurrenciesTodaysBestRequest,
-  cryptoCurrenciesNewRequest,
-  cryptoCurrenciesPresaleRequest,
+  coinsRecentlyAddedRequest,
+  coinsBiggestGainersRequest,
+  coinsBiggestLosersRequest,
+  coinsFeaturedCoinListRequest,
+  coinsCryptoCurrenciesListRequest,
+  coinsCryptoCurrenciesNewRequest,
+  coinsCryptoCurrenciesPresaleRequest,
+  coinsCryptoCurrenciesTodaysBestRequest,
+  coinsCryptoCurrenciesTabRequest,
 } from "../../../store/action";
 
 import FeaturedCoinLineTopImage from "../../../assets/home/feature-coin-line-top.png";
 import FeaturedCoinLineBottomImage from "../../../assets/home/feature-coin-line-bottom.png";
 import FeaturedCoinLineLeftImage from "../../../assets/home/feature-coin-line-left.png";
 import FeaturedCoinLineRightImage from "../../../assets/home/feature-coin-line-right.png";
+import Carousel from "react-multi-carousel";
+import MobileFeaturedCoinCards from "../../../components/mobile/cards/featuredcoin/MobileFeaturedCoinCards";
 
-const responsiveNFT: any = {
+const responsiveFeatured: any = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 5,
+    items: 2,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 5,
+    items: 2,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2.5,
+    items: 1.5,
+    slidesToSlide: 1,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 2.5,
+    items: 1.5,
+    slidesToSlide: 1,
   },
 };
 
@@ -71,11 +79,11 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
   });
   const featuredCoinSkelton = [1, 2, 3, 4, 5, 6, 7, 8];
   const featuredCoinList = useSelector((data: any) => {
-    return data?.homeReducer?.featured_coin_list?.data;
+    return data?.coinsReducer?.featured_coin_list?.data;
   });
 
   const tabIndex = useSelector((data: any) => {
-    return data?.homeReducer?.crypto_currencies_tab;
+    return data?.coinsReducer?.crypto_currencies_tab;
   });
 
   const handleChangePage = (
@@ -105,7 +113,9 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
     };
     const errorHandler = (err: any) => {};
 
-    dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
+    dispatch(
+      coinsFeaturedCoinListRequest("noData", successHandler, errorHandler)
+    );
   }, [dispatch, setPreLoader]);
 
   useEffect(() => {
@@ -126,10 +136,12 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
     const errorHandler = (err: any) => {};
 
     tabIndex === 0 &&
-      dispatch(cryptoCurrenciesListRequest(page, successHandler, errorHandler));
+      dispatch(
+        coinsCryptoCurrenciesListRequest(page + 1, successHandler, errorHandler)
+      );
     tabIndex === 2 &&
       dispatch(
-        cryptoCurrenciesTodaysBestRequest(
+        coinsCryptoCurrenciesTodaysBestRequest(
           "noData",
           successHandler,
           errorHandler
@@ -137,11 +149,15 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
       );
     tabIndex === 4 &&
       dispatch(
-        cryptoCurrenciesNewRequest("noData", successHandler, errorHandler)
+        coinsCryptoCurrenciesNewRequest("noData", successHandler, errorHandler)
       );
     tabIndex === 6 &&
       dispatch(
-        cryptoCurrenciesPresaleRequest("noData", successHandler, errorHandler)
+        coinsCryptoCurrenciesPresaleRequest(
+          "noData",
+          successHandler,
+          errorHandler
+        )
       );
   }, [dispatch, tabIndex, setHTMLTablePreLoader, page]);
 
@@ -223,182 +239,345 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
             <CoinSlider />
           </Stack>
         </Grid> */}
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: "23px",
-            paddingBottom: "23px",
-          }}
-        >
-          <Stack
-            direction={{ xs: "column", sm: "column", md: "column", lg: "row" }}
-            spacing={2}
-            alignItems={{ xs: "center" }}
-          >
+        {windowInnerWidth <= 1200 ? (
+          <Fragment>
             <Grid
               xs={12}
-              sm={12}
-              md={12}
-              lg={0.4}
-              xl={0.4}
               sx={{
                 alignItems: "center",
+                paddingTop: "23px",
+                paddingBottom: "23px",
               }}
             >
               <Stack
-                direction={windowInnerWidth >= 1200 ? "column" : "row-reverse"}
-                sx={{
-                  alignItems: "flex-end",
-                }}
-                py={windowInnerWidth >= 1200 ? 0 : 1}
-                spacing={2}
+                direction="row"
+                sx={{ justifyContent: "space-between", alignItems: "center" }}
               >
-                {windowInnerWidth >= 1200 ? (
-                  <Avatar
-                    alt=""
-                    src={FeaturedCoinLineTopImage}
-                    sx={{
-                      borderRadius: 0,
-                      width: 20,
-                      height: 120,
-                    }}
-                  />
-                ) : (
-                  <Avatar
-                    alt=""
-                    src={FeaturedCoinLineRightImage}
-                    sx={{
-                      borderRadius: 0,
-                      width: 120,
-                      height: 20,
-                    }}
-                  />
-                )}
-
-                <Box sx={{ width: "auto" }}>
-                  <Typography
-                    variant="h5"
-                    sx={{
-                      color: "#FFFFFF",
-                      writingMode: `${
-                        windowInnerWidth &&
-                        windowInnerWidth >= 1200 &&
-                        "vertical-lr"
-                      }`,
-                      textOrientation: `${
-                        windowInnerWidth && windowInnerWidth >= 1200 && "mixed"
-                      }`,
-                      transform: `${
-                        windowInnerWidth &&
-                        windowInnerWidth >= 1200 &&
-                        "rotate(180deg)"
-                      }`,
-                    }}
-                  >
-                    Featured Coins
-                  </Typography>
-                </Box>
-
-                {windowInnerWidth >= 1200 ? (
-                  <Avatar
-                    alt=""
-                    src={FeaturedCoinLineBottomImage}
-                    sx={{
-                      borderRadius: 0,
-                      width: 20,
-                      height: 110,
-                    }}
-                  />
-                ) : (
-                  <Avatar
-                    alt=""
-                    src={FeaturedCoinLineLeftImage}
-                    sx={{
-                      borderRadius: 0,
-                      width: 110,
-                      height: 20,
-                    }}
-                  />
-                )}
+                <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+                  Featured Coin
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#424798", fontWeight: "bold" }}
+                >
+                  View
+                </Typography>
               </Stack>
             </Grid>
-            <Grid xs={12} sm={12} md={12} lg={11.6} xl={11.6}>
+            <Grid
+              xs={12}
+              sx={{
+                alignItems: "center",
+                paddingTop: "0px",
+                paddingBottom: "23px",
+              }}
+            >
               {preLoader?.featured_coin_list === true ? (
-                <Stack
-                  direction={{
-                    xs: "column",
-                    sm: "column",
-                    md: "row",
-                    lg: "row",
-                  }}
-                  spacing={0}
-                  sx={{
-                    alignItems: "flex-start",
-                    flexWrap: "wrap",
-                    justifyContent: "space-between",
-                  }}
+                <Carousel
+                  // centerMode={true}
+                  responsive={responsiveFeatured}
+                  infinite={true}
+                  removeArrowOnDeviceType={["tablet", "mobile"]}
+                  arrows={true}
+                  partialVisible={true}
+                  autoPlay={false}
+                  draggable={true}
+                  swipeable={true}
+                  minimumTouchDrag={10}
+                  keyBoardControl={true}
+                  shouldResetAutoplay={false}
                 >
-                  {featuredCoinSkelton &&
-                    featuredCoinSkelton.map((data: any, index: number) => (
-                      <Grid xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            backgroundColor: "#010822",
-                            color: "#3D484F",
-                          }}
-                          m={1}
-                        >
-                          <Skeleton
-                            animation="wave"
-                            variant="rectangular"
-                            width={"100%"}
-                            height={280}
-                            sx={{
-                              px: 2,
-                              pb: 2,
-                              pt: 2,
-                              bgcolor: "rgb(245 245 245 / 11%)",
-                              borderRadius: "6px",
-                              "::after": {
-                                background:
-                                  "linear-gradient(90deg, transparent, #6252e84f 56%, transparent)",
-                              },
-                            }}
-                          />
-                        </Box>
-                      </Grid>
-                    ))}
-                </Stack>
+                  <Box>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        backgroundColor: "#010822",
+                        color: "#3D484F",
+                      }}
+                      m={1}
+                    >
+                      <Skeleton
+                        animation="wave"
+                        variant="rectangular"
+                        width={"100%"}
+                        height={280}
+                        sx={{
+                          px: 2,
+                          pb: 2,
+                          pt: 2,
+                          bgcolor: "rgb(245 245 245 / 11%)",
+                          borderRadius: "6px",
+                        }}
+                      />
+                    </Box>
+                  </Box>
+                  <Box>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        backgroundColor: "#010822",
+                        color: "#3D484F",
+                      }}
+                      m={1}
+                    >
+                      <Skeleton
+                        animation="wave"
+                        variant="rectangular"
+                        width={"100%"}
+                        height={280}
+                        sx={{
+                          px: 2,
+                          pb: 2,
+                          pt: 2,
+                          bgcolor: "rgb(245 245 245 / 11%)",
+                          borderRadius: "6px",
+                        }}
+                      />
+                    </Box>
+                  </Box>
+                  <Box>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        backgroundColor: "#010822",
+                        color: "#3D484F",
+                      }}
+                      m={1}
+                    >
+                      <Skeleton
+                        animation="wave"
+                        variant="rectangular"
+                        width={"100%"}
+                        height={280}
+                        sx={{
+                          px: 2,
+                          pb: 2,
+                          pt: 2,
+                          bgcolor: "rgb(245 245 245 / 11%)",
+                          borderRadius: "6px",
+                        }}
+                      />
+                    </Box>
+                  </Box>
+                </Carousel>
               ) : (
-                <Stack
-                  direction={{
-                    xs: "column",
-                    sm: "column",
-                    md: "row",
-                    lg: "row",
-                  }}
-                  spacing={0}
-                  sx={{
-                    alignItems: "flex-start",
-                    flexWrap: "wrap",
-                    justifyContent: "space-between",
-                  }}
+                <Carousel
+                  // centerMode={true}
+                  responsive={responsiveFeatured}
+                  infinite={true}
+                  removeArrowOnDeviceType={["tablet", "mobile"]}
+                  arrows={true}
+                  swipeable={true}
+                  partialVisible={true}
+                  autoPlay={false}
+                  draggable={true}
+                  minimumTouchDrag={10}
+                  keyBoardControl={true}
+                  shouldResetAutoplay={false}
                 >
                   {featuredCoinList &&
                     featuredCoinList?.map((data: any, index: number) => (
-                      <Grid xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
-                        <FeaturedCoinCards cardData={data} />
-                      </Grid>
+                      <Box key={index}>
+                        <MobileFeaturedCoinCards cardData={data} />
+                      </Box>
                     ))}
-                </Stack>
+                </Carousel>
               )}
             </Grid>
-          </Stack>
-        </Grid>
+          </Fragment>
+        ) : (
+          <Grid
+            xs={12}
+            sx={{
+              alignItems: "center",
+              paddingTop: "23px",
+              paddingBottom: "23px",
+            }}
+          >
+            <Stack
+              direction={{
+                xs: "column",
+                sm: "column",
+                md: "column",
+                lg: "row",
+              }}
+              spacing={2}
+              alignItems={{ xs: "center" }}
+            >
+              <Grid
+                xs={12}
+                sm={12}
+                md={12}
+                lg={0.4}
+                xl={0.4}
+                sx={{
+                  alignItems: "center",
+                }}
+              >
+                <Stack
+                  direction={
+                    windowInnerWidth >= 1200 ? "column" : "row-reverse"
+                  }
+                  sx={{
+                    alignItems: "flex-end",
+                  }}
+                  py={windowInnerWidth >= 1200 ? 0 : 1}
+                  spacing={2}
+                >
+                  {windowInnerWidth >= 1200 ? (
+                    <Avatar
+                      alt=""
+                      src={FeaturedCoinLineTopImage}
+                      sx={{
+                        borderRadius: 0,
+                        width: 20,
+                        height: 120,
+                      }}
+                    />
+                  ) : (
+                    <Avatar
+                      alt=""
+                      src={FeaturedCoinLineRightImage}
+                      sx={{
+                        borderRadius: 0,
+                        width: 120,
+                        height: 20,
+                      }}
+                    />
+                  )}
+
+                  <Box sx={{ width: "auto" }}>
+                    <Typography
+                      variant="h5"
+                      sx={{
+                        color: "#FFFFFF",
+                        writingMode: `${
+                          windowInnerWidth &&
+                          windowInnerWidth >= 1200 &&
+                          "vertical-lr"
+                        }`,
+                        textOrientation: `${
+                          windowInnerWidth &&
+                          windowInnerWidth >= 1200 &&
+                          "mixed"
+                        }`,
+                        transform: `${
+                          windowInnerWidth &&
+                          windowInnerWidth >= 1200 &&
+                          "rotate(180deg)"
+                        }`,
+                      }}
+                    >
+                      Featured Coins
+                    </Typography>
+                  </Box>
+
+                  {windowInnerWidth >= 1200 ? (
+                    <Avatar
+                      alt=""
+                      src={FeaturedCoinLineBottomImage}
+                      sx={{
+                        borderRadius: 0,
+                        width: 20,
+                        height: 110,
+                      }}
+                    />
+                  ) : (
+                    <Avatar
+                      alt=""
+                      src={FeaturedCoinLineLeftImage}
+                      sx={{
+                        borderRadius: 0,
+                        width: 110,
+                        height: 20,
+                      }}
+                    />
+                  )}
+                </Stack>
+              </Grid>
+              <Grid xs={12} sm={12} md={12} lg={11.6} xl={11.6}>
+                {preLoader?.featured_coin_list === true ? (
+                  <Stack
+                    direction={{
+                      xs: "column",
+                      sm: "column",
+                      md: "row",
+                      lg: "row",
+                    }}
+                    spacing={0}
+                    sx={{
+                      alignItems: "flex-start",
+                      flexWrap: "wrap",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    {featuredCoinSkelton &&
+                      featuredCoinSkelton.map((data: any, index: number) => (
+                        <Grid xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              backgroundColor: "#010822",
+                              color: "#3D484F",
+                            }}
+                            m={1}
+                          >
+                            <Skeleton
+                              animation="wave"
+                              variant="rectangular"
+                              width={"100%"}
+                              height={280}
+                              sx={{
+                                px: 2,
+                                pb: 2,
+                                pt: 2,
+                                bgcolor: "rgb(245 245 245 / 11%)",
+                                borderRadius: "6px",
+                                "::after": {
+                                  background:
+                                    "linear-gradient(90deg, transparent, #6252e84f 56%, transparent)",
+                                },
+                              }}
+                            />
+                          </Box>
+                        </Grid>
+                      ))}
+                  </Stack>
+                ) : (
+                  <Stack
+                    direction={{
+                      xs: "column",
+                      sm: "column",
+                      md: "row",
+                      lg: "row",
+                    }}
+                    spacing={0}
+                    sx={{
+                      alignItems: "flex-start",
+                      flexWrap: "wrap",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    {featuredCoinList &&
+                      featuredCoinList?.map((data: any, index: number) => (
+                        <Grid xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
+                          <FeaturedCoinCards cardData={data} />
+                        </Grid>
+                      ))}
+                  </Stack>
+                )}
+              </Grid>
+            </Stack>
+          </Grid>
+        )}
       </Grid>
       <Grid xs={12} mt={7}>
         <Grid container spacing={5}>

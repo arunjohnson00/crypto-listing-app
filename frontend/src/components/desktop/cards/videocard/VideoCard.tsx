@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, CardMedia, Typography, Box } from "@mui/material";
 import ReactPlayer from "react-player";
 
-const VideoCard = ({ url }: any) => {
+const VideoCard = ({ url, title, sub_title }: any) => {
   return (
     <Box m={1}>
       {/* <CardMedia
@@ -12,14 +12,32 @@ const VideoCard = ({ url }: any) => {
         alt="green iguana"
       /> */}
       <ReactPlayer url={url && url} width="100%" height={130} />
-      <Typography
-        variant="body2"
-        sx={{ color: "#828282", paddingTop: 2, paddingBottom: 0 }}
+      <a
+        href={url && url}
+        target="_blank"
+        rel="noreferrer"
+        style={{ textDecoration: "none", color: "inherit" }}
       >
-        Crypto Deep Drive
-      </Typography>
-      <Typography variant="subtitle2" sx={{ color: "white" }}>
-        What is trust wallet? Tutorial
+        {" "}
+        <Typography
+          variant="body2"
+          sx={{
+            color: "#828282",
+            paddingTop: 2,
+            paddingBottom: 0.2,
+            // fontSize: ".8rem",
+            fontWeight: 500,
+          }}
+        >
+          {title && title.length >= 35
+            ? title && title.slice(0, 35) + "..."
+            : title && title}
+        </Typography>
+      </a>
+      <Typography sx={{ color: "#FFFFFF", fontSize: ".8rem", fontWeight: 400 }}>
+        {sub_title && sub_title.length >= 35
+          ? sub_title && sub_title.slice(0, 35) + "..."
+          : sub_title && sub_title}
       </Typography>
     </Box>
   );

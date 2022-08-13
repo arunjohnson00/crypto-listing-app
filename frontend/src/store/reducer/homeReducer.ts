@@ -12,6 +12,7 @@ const initialState = {
   crypto_currencies_tab: 0,
   menu_cards: "",
   nft_listings: "",
+  video_list: "",
 };
 const homeReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -88,6 +89,13 @@ const homeReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         nft_listings: action?.payload,
+      };
+
+    case HOME.VIDEO_LIST:
+      //console.log(action);
+      return {
+        ...state,
+        video_list: action?.payload,
       };
 
     default:

@@ -8,11 +8,13 @@ import commonReducer from "./commonReducer";
 
 import homeReducer from "./homeReducer";
 import coinReducer from "./coinReducer";
+import coinsReducer from "./coinsReducer";
 
 const allReducers = combineReducers({
   commonReducer,
   homeReducer,
   coinReducer,
+  coinsReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

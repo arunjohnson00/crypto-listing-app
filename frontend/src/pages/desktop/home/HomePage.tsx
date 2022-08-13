@@ -55,6 +55,7 @@ import {
   cryptoCurrenciesPresaleRequest,
   nftListingRequest,
   menuCardRequest,
+  videoListRequest,
 } from "../../../store/action";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 import LatestNewsCardScroll from "../../../components/desktop/latestnews/LatestNewsCardScroll";
@@ -175,9 +176,9 @@ const HomePage = ({ windowInnerWidth }: any) => {
     return data?.homeReducer?.featured_coin_list?.data;
   });
 
-  // const cryptoCurrenciesList = useSelector((data: any) => {
-  //   return data?.homeReducer?.crypto_currencies_list?.data;
-  // });
+  const videoList = useSelector((data: any) => {
+    return data?.homeReducer?.video_list?.data?.data;
+  });
 
   const tabIndex = useSelector((data: any) => {
     return data?.homeReducer?.crypto_currencies_tab;
@@ -201,6 +202,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
     dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
     dispatch(nftListingRequest("noData", successHandler, errorHandler));
     dispatch(menuCardRequest("noData", successHandler, errorHandler));
+    dispatch(videoListRequest("noData", successHandler, errorHandler));
   }, [dispatch, setPreLoader]);
 
   useEffect(() => {
@@ -318,37 +320,31 @@ const HomePage = ({ windowInnerWidth }: any) => {
             paddingBottom: "23px",
           }}
         >
-          <Carousel
-            responsive={responsiveVideo}
-            infinite={true}
-            removeArrowOnDeviceType={["tablet", "mobile"]}
-            arrows={true}
-            draggable={true}
-            swipeable={true}
-            autoPlay={false}
-            minimumTouchDrag={10}
-            keyBoardControl={true}
-            shouldResetAutoplay={false}
-          >
-            <Box>
-              <VideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
-            </Box>
-            <Box>
-              <VideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
-            </Box>
-            <Box>
-              <VideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
-            </Box>
-            <Box>
-              <VideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
-            </Box>
-            <Box>
-              <VideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
-            </Box>
-            <Box>
-              <VideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
-            </Box>
-          </Carousel>
+          {videoList && (
+            <Carousel
+              responsive={responsiveVideo}
+              infinite={true}
+              removeArrowOnDeviceType={["tablet", "mobile"]}
+              arrows={true}
+              draggable={true}
+              swipeable={true}
+              autoPlay={false}
+              minimumTouchDrag={10}
+              keyBoardControl={true}
+              shouldResetAutoplay={false}
+            >
+              {videoList &&
+                videoList?.map((item: any, index: number) => (
+                  <Box key={index}>
+                    <VideoCard
+                      url={item?.v_url}
+                      title={item?.v_title}
+                      sub_title={item?.v_sub_title}
+                    />
+                  </Box>
+                ))}
+            </Carousel>
+          )}
         </Grid>
 
         <Grid

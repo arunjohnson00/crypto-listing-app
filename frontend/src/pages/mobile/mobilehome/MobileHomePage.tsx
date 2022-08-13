@@ -40,6 +40,7 @@ import {
   cryptoCurrenciesNewRequest,
   cryptoCurrenciesPresaleRequest,
   menuCardRequest,
+  videoListRequest,
 } from "../../../store/action";
 import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
 import { Link } from "react-router-dom";
@@ -155,6 +156,7 @@ const MobileHomePage = () => {
   const [preLoader, setPreLoader] = useState<any>({
     featured_coin_list: true,
     menu_card: true,
+    video_list: true,
   });
   const [htmlTablePreLoader, setHTMLTablePreLoader] = useState<any>({
     html_table: true,
@@ -166,7 +168,9 @@ const MobileHomePage = () => {
   const menuCards = useSelector((data: any) => {
     return data?.homeReducer?.menu_cards?.data?.data;
   });
-
+  const videoList = useSelector((data: any) => {
+    return data?.homeReducer?.video_list?.data?.data;
+  });
   const dispatch: any = useDispatch();
   const featuredCoinList = useSelector((data: any) => {
     return data?.homeReducer?.featured_coin_list?.data;
@@ -221,12 +225,14 @@ const MobileHomePage = () => {
 
         featured_coin_list: false,
         menu_card: false,
+        video_list: false,
       });
     };
     const errorHandler = (err: any) => {};
 
     dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
     dispatch(menuCardRequest("noData", successHandler, errorHandler));
+    dispatch(videoListRequest("noData", successHandler, errorHandler));
   }, [dispatch, setPreLoader]);
 
   return (
@@ -536,42 +542,33 @@ const MobileHomePage = () => {
           paddingBottom: "23px",
         }}
       >
-        <Carousel
-          // centerMode={true}
-          responsive={responsiveVideos}
-          infinite={true}
-          removeArrowOnDeviceType={["tablet", "mobile"]}
-          arrows={true}
-          swipeable={true}
-          partialVisible={true}
-          autoPlay={false}
-          draggable={true}
-          minimumTouchDrag={10}
-          keyBoardControl={true}
-          shouldResetAutoplay={false}
-        >
-          <Box>
-            <MobileVideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
-          </Box>
-          <Box>
-            <MobileVideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
-          </Box>
-          <Box>
-            <MobileVideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
-          </Box>
-          <Box>
-            <MobileVideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
-          </Box>
-          <Box>
-            <MobileVideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
-          </Box>
-          <Box>
-            <MobileVideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
-          </Box>
-          <Box>
-            <MobileVideoCard url="https://www.youtube.com/watch?v=8VtnJbS7eOE" />
-          </Box>
-        </Carousel>
+        {videoList && (
+          <Carousel
+            // centerMode={true}
+            responsive={responsiveVideos}
+            infinite={true}
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            arrows={true}
+            swipeable={true}
+            partialVisible={true}
+            autoPlay={false}
+            draggable={true}
+            minimumTouchDrag={10}
+            keyBoardControl={true}
+            shouldResetAutoplay={false}
+          >
+            {videoList &&
+              videoList?.map((item: any, index: number) => (
+                <Box key={index}>
+                  <MobileVideoCard
+                    url={item?.v_url}
+                    title={item?.v_title}
+                    sub_title={item?.v_sub_title}
+                  />
+                </Box>
+              ))}
+          </Carousel>
+        )}
       </Grid>
 
       <Grid

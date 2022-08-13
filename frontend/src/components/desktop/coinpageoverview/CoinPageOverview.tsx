@@ -37,13 +37,18 @@ const CoinPageOverview = () => {
   return (
     <Grid container>
       <Grid xs={12} sm={12} md={3.5} lg={3.5} xl={3.5}>
-        <Grid xs={12} mb={5}>
-          <ReactPlayer
-            url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
-            width="100%"
-            height={300}
-          />
-        </Grid>
+        {coinDetailOverview &&
+          coinDetailOverview[0]?.video_url !== null &&
+          coinDetailOverview[0]?.video_url !== "" &&
+          coinDetailOverview[0]?.video_url !== undefined && (
+            <Grid xs={12} mb={5}>
+              <ReactPlayer
+                url={coinDetailOverview && coinDetailOverview[0]?.video_url}
+                width="100%"
+                height={300}
+              />
+            </Grid>
+          )}
         <Grid xs={12} mb={5}>
           <Typography
             variant="h5"
