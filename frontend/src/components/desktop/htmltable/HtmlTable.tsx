@@ -232,7 +232,7 @@ const HtmlTable = ({ tableData }: any) => {
                 </TableCell>
                 <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                   <Stack direction="row" spacing={2} alignItems="center">
-                    <Box sx={{}}>
+                    <Box sx={{ minWidth: 50 }}>
                       <Typography variant="caption"> {data?.vote}</Typography>
                     </Box>
                     <VoteBtn />
