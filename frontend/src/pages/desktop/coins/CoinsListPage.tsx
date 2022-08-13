@@ -90,7 +90,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
     event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number
   ) => {
-    setPage({ ...page, pagination: newPage, scroll: false });
+    setPage({ ...page, pagination: newPage, scroll: true });
   };
 
   const handleChangeRowsPerPage = (
