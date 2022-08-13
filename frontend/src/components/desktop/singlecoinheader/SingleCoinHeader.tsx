@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import { useLocation } from "react-router-dom";
 import {
   Grid,
   Stack,
@@ -28,6 +29,10 @@ import ShowMoreMenu from "../menu/showmore/ShowMoreMenu";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import { RWebShare } from "react-web-share";
 import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import SingleCoinChip from "../coinpagechip/SingleCoinChip";
+import SocialCounterWithGraphCard from "../cards/socialcounterwithgraphcard/SocialCounterWithGraphCard";
+
 import ToolTipImage from "../../../assets/singlepagecoin/tool-tip.png";
 import CoinGeckoImage from "../../../assets/singlepagecoin/coingecko.png";
 import CoinMarketcapImage from "../../../assets/singlepagecoin/coinmarketcap.png";
@@ -50,15 +55,13 @@ import TelegramGraphImage from "../../../assets/singlepagecoin/graph/telegram.pn
 import TwitterGraphImage from "../../../assets/singlepagecoin/graph/twitter.png";
 import GithubGraphImage from "../../../assets/singlepagecoin/graph/github.png";
 
-import useMediaQuery from "@mui/material/useMediaQuery";
-import SingleCoinChip from "../coinpagechip/SingleCoinChip";
-import SocialCounterWithGraphCard from "../cards/socialcounterwithgraphcard/SocialCounterWithGraphCard";
 import { indexOf } from "lodash";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const SingleCoinHeader = ({ coinData }: any) => {
   const theme = useTheme();
+  const location: any = useLocation();
   const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
   const coinSocialGraph = useSelector((data: any) => {
     return data?.coinReducer?.coin_social_graph?.data;
@@ -80,7 +83,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
     coinData &&
       coinData?.contract_address?.length > 0 &&
       setCopyValue(coinData?.contract_address[0]?.addresss);
-  }, []);
+  }, [setCopyValue]);
 
   return (
     <Fragment>
@@ -460,9 +463,9 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     ></Avatar>
                     <RWebShare
                       data={{
-                        text: "Test Share Text",
-                        url: "http://localhost:3000/coin",
-                        title: "Coinxhigh",
+                        text: "Find out this coin in Coinxhigh",
+                        url: window.location.href,
+                        title: coinData && coinData?.name,
                       }}
                       onClick={() => console.log("shared successfully!")}
                     >

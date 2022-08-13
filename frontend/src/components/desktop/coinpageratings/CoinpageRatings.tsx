@@ -51,6 +51,7 @@ const CoinpageRatings = () => {
               height="70"
               image="https://iili.io/UtY5Kv.jpg"
               alt="green iguana"
+              sx={{ objectFit: "unset" }}
             />
           </Grid>
         </Stack>

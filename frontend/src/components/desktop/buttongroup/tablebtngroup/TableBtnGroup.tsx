@@ -14,10 +14,10 @@ const TableBtnGroup = () => {
   const tabIndex = useSelector((data: any) => {
     return data?.homeReducer?.crypto_currencies_tab;
   });
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     dispatch({ type: cryptoCurrenciesTabRequest, payload: newValue });
   };
-
   return (
     <Fragment>
       <Box

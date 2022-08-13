@@ -63,8 +63,8 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
   const [feed, setFeed] = useState<any>();
-  const [tableData, setTableData] = useState<any>();
-  const [page, setPage] = useState(0);
+  const [tableData, setTableData] = useState<any>([]);
+  const [page, setPage] = useState({ pagination: 0, scroll: true });
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [preLoader, setPreLoader] = useState<any>({
     recently_added: true,
@@ -90,14 +90,14 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
     event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number
   ) => {
-    setPage(newPage);
+    setPage({ ...page, pagination: newPage, scroll: false });
   };
 
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+    setPage({ ...page, pagination: 0 });
   };
 
   useEffect(() => {
@@ -125,7 +125,10 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
       html_table: true,
     });
     const successHandler = (res: any) => {
-      setTableData(res?.data?.data);
+      page?.scroll === true
+        ? setTableData([...tableData, ...res?.data?.data])
+        : setTableData([...res?.data?.data]);
+
       res?.data?.data !== undefined &&
         setHTMLTablePreLoader({
           ...htmlTablePreLoader,
@@ -137,7 +140,11 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
 
     tabIndex === 0 &&
       dispatch(
-        coinsCryptoCurrenciesListRequest(page + 1, successHandler, errorHandler)
+        coinsCryptoCurrenciesListRequest(
+          page.pagination + 1,
+          successHandler,
+          errorHandler
+        )
       );
     tabIndex === 2 &&
       dispatch(
@@ -159,7 +166,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
           errorHandler
         )
       );
-  }, [dispatch, tabIndex, setHTMLTablePreLoader, page]);
+  }, [dispatch, tabIndex, setHTMLTablePreLoader, page, setTableData]);
 
   useEffect(() => {
     (async () => {
@@ -599,6 +606,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
                 handleChangePage={handleChangePage}
                 rowsPerPage={rowsPerPage}
                 handleChangeRowsPerPage={handleChangeRowsPerPage}
+                setPage={setPage}
               />
             </Grid>
           </Box>
