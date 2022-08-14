@@ -127,6 +127,7 @@ const CoinListingEdit = () => {
     website_url: "",
     whitepaper_link: " ",
     youtube_link: "",
+    video_url: "",
   });
 
   const exchangeList = useSelector((exList: any) => {
@@ -1654,6 +1655,43 @@ const CoinListingEdit = () => {
                     </div>
                   );
                 })}
+
+                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
+                  <Stack direction="row" spacing={3}>
+                    <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
+                      <Typography
+                        variant="subtitle1"
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                        }}
+                        mb={1}
+                      >
+                        Coin Video URL
+                      </Typography>
+                      <InputText
+                        placeholder="Eg:https://www.youtube.com/watch?v=4ZSUxzeWLlc"
+                        name="video_url"
+                        id="video_url"
+                        value={editCoin?.video_url}
+                      />
+                    </Grid>
+                    {/* <Grid
+                      item
+                      xl={4}
+                      lg={4}
+                      md={4}
+                      sm={4}
+                      xs={12}
+                      sx={{ paddingTop: "37px" }}
+                    >
+                      <Link onClick={communityaddHandle} underline="none">
+                        Add more +
+                      </Link>
+                    </Grid> */}
+                  </Stack>
+                </Grid>
               </Grid>
               <Divider orientation="vertical" flexItem />
               <Grid item xl={6} lg={6} md={6} sm={6} xs={12}>
