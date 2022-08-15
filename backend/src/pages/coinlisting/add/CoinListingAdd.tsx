@@ -38,7 +38,7 @@ import SocialDetails from "./SocialDetails";
 
 import { addCoinRequest } from "../../../store/action";
 import { listExchangeRequest } from "../../../store/action";
-import { listNetworkRequest } from "../../../store/action";
+import { allNetworkRequest } from "../../../store/action";
 import { listCoinAuditRequest } from "../../../store/action";
 import { listCoinChatRequest } from "../../../store/action";
 import { listCoinSocialRequest } from "../../../store/action";
@@ -56,7 +56,7 @@ const CoinListingAdd = () => {
   });
 
   const networkList = useSelector((ntList: any) => {
-    return ntList.networksReducer.listNetworks.data;
+    return ntList.networksReducer.allNetworks.data;
   });
   const coinAuditList = useSelector((auditList: any) => {
     return auditList.auditReducer.listAudit.data;
@@ -253,7 +253,7 @@ const CoinListingAdd = () => {
     dispatch(
       listExchangeRequest("emptyformData", successHandler, errorHandler)
     );
-    dispatch(listNetworkRequest("emptyformData", successHandler, errorHandler));
+    dispatch(allNetworkRequest("emptyformData", successHandler, errorHandler));
 
     dispatch(
       listCoinAuditRequest("emptyformData", successHandler, errorHandler)
