@@ -299,6 +299,192 @@ const CoinListingAdd = () => {
             py={5}
             mb={5}
           >
+            <Grid container mb={5} mt={5}>
+              <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
+                  Coin Status
+                </Typography>
+
+                <InputRadio
+                  coinStatus={coinStatus}
+                  setCoinStatus={setCoinStatus}
+                />
+              </Grid>
+            </Grid>
+
+            {coinStatus === "Presale" ? (
+              <Grid container mb={5} mt={1}>
+                <Stack direction="row" spacing={3} mb={2}>
+                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        textAlign: "left",
+                        fontSize: ".9rem",
+                        fontWeight: 600,
+                      }}
+                      mb={1}
+                    >
+                      Presale start Date & Time (UTC)
+                    </Typography>
+
+                    <InputDateTime
+                      dateTime={dateTime}
+                      setDateTime={setDateTime}
+                      start_date={true}
+                    />
+                  </Grid>
+
+                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        textAlign: "left",
+                        fontSize: ".9rem",
+                        fontWeight: 600,
+                      }}
+                      mb={1}
+                    >
+                      Presale end Date & Time (UTC)
+                    </Typography>
+
+                    <InputDateTime
+                      dateTime={dateTime}
+                      setDateTime={setDateTime}
+                      start_date={false}
+                    />
+                  </Grid>
+                </Stack>
+
+                <Stack direction="row" spacing={3}>
+                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        textAlign: "left",
+                        fontSize: ".9rem",
+                        fontWeight: 600,
+                      }}
+                      mb={1}
+                    >
+                      Presale address (Optional)
+                    </Typography>
+
+                    <InputText
+                      placeholder="Eg: faffhaafasgdasdsafdywdtdw"
+                      id="presale_address"
+                      name="presale_address"
+                    />
+                  </Grid>
+
+                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        textAlign: "left",
+                        fontSize: ".9rem",
+                        fontWeight: 600,
+                      }}
+                      mb={1}
+                    >
+                      Presale Link
+                    </Typography>
+
+                    <InputText
+                      placeholder="Enter presale address"
+                      name="presale_link"
+                      id="presale_link"
+                    />
+                  </Grid>
+                </Stack>
+              </Grid>
+            ) : (
+              <Grid container mb={5} mt={1}>
+                <Stack direction="row" spacing={3} mb={1}>
+                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        textAlign: "left",
+                        fontSize: ".9rem",
+                        fontWeight: 600,
+                      }}
+                      mb={1}
+                    >
+                      Price
+                    </Typography>
+
+                    <InputText
+                      placeholder="Enter Price(Eg: $5.89)"
+                      id="price"
+                      name="price"
+                    />
+                  </Grid>
+
+                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        textAlign: "left",
+                        fontSize: ".9rem",
+                        fontWeight: 600,
+                      }}
+                      mb={1}
+                    >
+                      Circularity Supply (Optional)
+                    </Typography>
+
+                    <InputText
+                      placeholder="Enter ircularity Supply(Eg: 100,0000)"
+                      id="circulating_supply"
+                      name="circulating_supply"
+                    />
+                  </Grid>
+                </Stack>
+
+                <Stack direction="row" spacing={3} mb={1}>
+                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        textAlign: "left",
+                        fontSize: ".9rem",
+                        fontWeight: 600,
+                      }}
+                      mb={1}
+                    >
+                      Max/Total Supply
+                    </Typography>
+
+                    <InputText
+                      placeholder="Enter Max/Total Supply(Eg: 100,000000)"
+                      id="max_supply"
+                      name="max_supply"
+                    />
+                  </Grid>
+
+                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        textAlign: "left",
+                        fontSize: ".9rem",
+                        fontWeight: 600,
+                      }}
+                      mb={1}
+                    >
+                      Marketap (Optional)
+                    </Typography>
+
+                    <InputText
+                      placeholder="Enter marketcap(Eg: $100,0000)"
+                      id="market_cap"
+                      name="market_cap"
+                    />
+                  </Grid>
+                </Stack>
+              </Grid>
+            )}
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={5}>
               <Typography variant="h6" sx={{ textAlign: "left" }} mb={2}>
                 Basic Details
@@ -405,7 +591,7 @@ const CoinListingAdd = () => {
                 </Grid>
               </Grid>
 
-              <Grid container mb={5} mt={5}>
+              {/* <Grid container mb={5} mt={5}>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                   <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
                     Coin Status
@@ -590,7 +776,7 @@ const CoinListingAdd = () => {
                     </Grid>
                   </Stack>
                 </Grid>
-              )}
+              )} */}
             </Grid>
           </Box>
         </Grid>

@@ -180,6 +180,10 @@ const HomePage = ({ windowInnerWidth }: any) => {
     return data?.homeReducer?.video_list?.data?.data;
   });
 
+  // const videoList = useSelector((data: any) => {
+  //   return data?.homeReducer?.video_list?.data?.data;
+  // });
+
   const tabIndex = useSelector((data: any) => {
     return data?.homeReducer?.crypto_currencies_tab;
   });

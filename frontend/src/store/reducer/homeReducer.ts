@@ -42,6 +42,7 @@ const homeReducer = (state: any = initialState, action: any) => {
         ...state,
         featured_coin_list: action?.payload?.data,
       };
+
     case HOME.CRYPTO_CURRENCIES_LIST:
       //console.log(action);
       return {
