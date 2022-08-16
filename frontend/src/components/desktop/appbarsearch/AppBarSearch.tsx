@@ -180,7 +180,7 @@ const AppBarSearch = () => {
           <Stack
             direction="column"
             spacing={2}
-            pt={2}
+            pt={0}
             sx={{ height: 500, overflowY: "scroll", background: "#000000" }}
             px={1}
           >
@@ -216,6 +216,7 @@ const AppBarSearch = () => {
                       fontSize: ".7rem",
                       padding: 0,
                       minWidth: 0,
+                      cursor: "pointer",
                     }}
                     onClick={coinExpandHandler}
                   >
@@ -307,7 +308,12 @@ const AppBarSearch = () => {
                       <ArrowBackIosIcon sx={{ width: 14, height: 14 }} />
                     }
                     variant="text"
-                    sx={{ fontSize: ".7rem", padding: 0, minWidth: 0 }}
+                    sx={{
+                      fontSize: ".7rem",
+                      padding: 0,
+                      minWidth: 0,
+                      cursor: "pointer",
+                    }}
                     onClick={nftExpandHandler}
                   >
                     Back
