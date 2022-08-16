@@ -84,7 +84,7 @@ const NFTNetworks = () => {
       disableClickEventBubbling: true,
       renderCell: (params: any) => (
         <Avatar
-          src={`${serverAPIUrl}public/uploads/network_icons/${params.row.thumb_icon}`}
+          src={`${serverAPIUrl}public/uploads/nft_networks/${params.row.thumb_icon}`}
           alt={params.thumb_icon}
         />
       ),
@@ -127,7 +127,7 @@ const NFTNetworks = () => {
     },
 
     {
-      field: "url",
+      field: "network_url",
       headerName: "Network URL",
       flex: 2.5,
       align: "left",
@@ -214,7 +214,10 @@ const NFTNetworks = () => {
             xs={12}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/nft-networks/add" style={{ textDecoration: "none" }}>
+            <Link
+              to="/nft-listing-network/add"
+              style={{ textDecoration: "none" }}
+            >
               <LargeBtn Title="Add new NFTnetwork" width={250} />
             </Link>
           </Grid>
@@ -246,8 +249,10 @@ const NFTNetworks = () => {
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Stack spacing={2} sx={{ alignItems: "flex-end" }}>
-          {" "}
-          <Link to="/nft-networks/add" style={{ textDecoration: "none" }}>
+          <Link
+            to="/nft-listing-network/add"
+            style={{ textDecoration: "none" }}
+          >
             <LargeBtn Title="Add new NFT network" width={250} />
           </Link>
         </Stack>

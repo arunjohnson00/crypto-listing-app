@@ -8,7 +8,7 @@ export const listNFTNetworkRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/b/v1/nft-networks?page=${pageData?.pageCount}`,
+    url: `api/b/v1/nft-listing-network?page=${pageData?.pageCount}`,
     method: "GET",
     secure: true,
     actionType: NFT_NETWORKS.LIST_NFT_NETWORKS,
@@ -23,7 +23,7 @@ export const addNFTNetworkRequest = (
 ) => {
   // console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/nft-networks`,
+    url: `api/b/v1/nft-listing-network`,
     method: "POST",
     secure: true,
     body: values,
@@ -39,7 +39,7 @@ export const editNFTNetworkRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/nft-networks/${values.id}/edit`,
+    url: `api/b/v1/nft-listing-network/${values.id}/edit`,
     method: "GET",
     secure: true,
     body: values,
@@ -55,7 +55,7 @@ export const updateNFTNetworkRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/nft-networks/${values.get("id")}`,
+    url: `api/b/v1/nft-listing-network/${values.get("id")}`,
     method: "POST",
     secure: true,
     body: values,
@@ -71,7 +71,7 @@ export const viewNFTNetworkRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/nft-networks/${values.id}/show`,
+    url: `api/b/v1/nft-listing-network/${values.id}/show`,
     method: "GET",
     secure: true,
     body: values,
@@ -87,7 +87,7 @@ export const allNFTNetworkRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/b/v1/nft-networks-all`,
+    url: `api/b/v1/nft-listing-network-all`,
     method: "GET",
     secure: true,
     body: values,
@@ -104,7 +104,7 @@ export const searchNFTNetworkRequest = (
 ) => {
   //console.log(JSON.stringify(values));
   const fetchOptions = {
-    url: `api/b/v1/nft-networks-search/${values}`,
+    url: `api/b/v1/nft-listing-network-search/${values}`,
     method: "GET",
     secure: true,
     body: values,

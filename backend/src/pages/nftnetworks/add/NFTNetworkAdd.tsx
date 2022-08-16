@@ -32,6 +32,7 @@ const NFTNetworkAdd = () => {
     thumb_icon: "",
     chain_id: "",
     explorer_url: "",
+    network_url: "",
     currency_symbol: "",
   });
 
@@ -51,7 +52,7 @@ const NFTNetworkAdd = () => {
         draggable: true,
       });
       setTimeout(() => {
-        navigate("/nftNetworks");
+        navigate("/nft-listing-network");
       }, 3000);
     };
 
@@ -70,7 +71,7 @@ const NFTNetworkAdd = () => {
     const formData = new FormData();
     formData.append("thumb_icon", addNFTNetworkData.thumb_icon);
     formData.append("name", addNFTNetworkData.name);
-    formData.append("url", addNFTNetworkData.url);
+    formData.append("network_url", addNFTNetworkData.network_url);
     formData.append("chain_id", addNFTNetworkData.chain_id);
     formData.append("explorer_url", addNFTNetworkData.explorer_url);
     formData.append("currency_symbol", addNFTNetworkData.currency_symbol);
@@ -88,7 +89,7 @@ const NFTNetworkAdd = () => {
   const nftNetworkURLHandler = (e: any) => {
     //console.log(e);
 
-    setAddNFTNetwork({ ...addNFTNetworkData, url: e });
+    setAddNFTNetwork({ ...addNFTNetworkData, network_url: e });
   };
 
   // const nftNetworkChainIdHandler = (e: any) => {
@@ -119,7 +120,7 @@ const NFTNetworkAdd = () => {
           <IconButton>
             <ArrowBackIosTwoToneIcon
               onClick={() => {
-                navigate("/nft-networks");
+                navigate("/nft-listing-network");
               }}
             />
           </IconButton>

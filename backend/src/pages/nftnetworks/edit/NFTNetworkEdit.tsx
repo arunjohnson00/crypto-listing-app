@@ -35,6 +35,7 @@ const NFTNetworkEdit = () => {
     url: "",
     thumb_icon: "",
     chain_id: "",
+    network_url: "",
     explorer_url: "",
     currency_symbol: "",
   });
@@ -54,7 +55,7 @@ const NFTNetworkEdit = () => {
         draggable: true,
       });
       setTimeout(() => {
-        navigate("/nftNetworks");
+        navigate("/nft-listing-network");
       }, 3000);
     };
 
@@ -76,7 +77,7 @@ const NFTNetworkEdit = () => {
       formData.append("thumb_icon", editNFTNetworkData.thumb_icon);
     formData.append("id", editNFTNetworkData.id);
     formData.append("name", editNFTNetworkData.name);
-    formData.append("url", editNFTNetworkData.url);
+    formData.append("network_url", editNFTNetworkData.network_url);
     formData.append("chain_id", editNFTNetworkData.chain_id);
     formData.append("explorer_url", editNFTNetworkData.explorer_url);
     formData.append("currency_symbol", editNFTNetworkData.currency_symbol);
@@ -95,7 +96,7 @@ const NFTNetworkEdit = () => {
   const nftNetworkURLHandler = (e: any) => {
     //console.log(e);
 
-    setEditNFTNetwork({ ...editNFTNetworkData, url: e });
+    setEditNFTNetwork({ ...editNFTNetworkData, network_url: e });
   };
 
   // const nftNetworkChainIdHandler = (e: any) => {
@@ -138,7 +139,7 @@ const NFTNetworkEdit = () => {
           <IconButton>
             <ArrowBackIosTwoToneIcon
               onClick={() => {
-                navigate("/nft-networks");
+                navigate("/nft-listing-network");
               }}
             />
           </IconButton>
@@ -182,7 +183,7 @@ const NFTNetworkEdit = () => {
             <InputText
               placeholder="Enter NFT Network url"
               inputTextHandler={(e: any) => nftNetworkURLHandler(e)}
-              value={editNFTNetworkData?.url}
+              value={editNFTNetworkData?.network_url}
             />
           </Grid>
           {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
@@ -245,7 +246,7 @@ const NFTNetworkEdit = () => {
             <IconUploader
               setAddIcon={setEditNFTNetwork}
               addIconData={editNFTNetworkData}
-              slug="nftNetwork_icons"
+              slug="nft_networks"
             />
           </Grid>
 

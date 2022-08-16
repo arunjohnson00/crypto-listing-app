@@ -738,7 +738,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/nft-networks"
+          path="/nft-listing-network"
           element={
             <PrivateRoute>
               <NFTNetworks />
@@ -747,7 +747,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/nft-networks/add"
+          path="/nft-listing-network/add"
           element={
             <PrivateRoute>
               <NFTNetworkAdd />
@@ -756,7 +756,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/nft-networks/edit/:id"
+          path="/nft-listing-network/edit/:id"
           element={
             <PrivateRoute>
               <NFTNetworkEdit />
@@ -765,7 +765,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/nft-networks/view/:id"
+          path="/nft-listing-network/view/:id"
           element={
             <PrivateRoute>
               <NFTNetworkView />

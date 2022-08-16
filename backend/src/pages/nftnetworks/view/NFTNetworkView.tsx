@@ -47,7 +47,7 @@ const NFTNetworkView = () => {
           <IconButton>
             <ArrowBackIosTwoToneIcon
               onClick={() => {
-                navigate("/nft-networks");
+                navigate("/nft-listing-network");
               }}
             />
           </IconButton>
