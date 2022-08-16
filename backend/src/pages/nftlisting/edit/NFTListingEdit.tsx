@@ -909,8 +909,8 @@ const NFTListingEdit = () => {
                   NFT Network
                 </Typography>
                 <InputSelectCoin
-                  name="nft_network"
-                  id="nft_network"
+                  name="nft_network_id"
+                  id="nft_network_id"
                   data={allNFTNetwork}
                   height={40}
                   varient="nft_network"

@@ -1,6 +1,7 @@
 //Common
 
 export { latestNewsRequest } from "./commonAction";
+export { topbarSearchRequest } from "./commonAction";
 
 //Home Page
 

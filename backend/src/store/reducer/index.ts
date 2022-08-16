@@ -36,6 +36,7 @@ import dashboardReducer from "./dashboardReducer";
 import emailReducer from "./emailReducer";
 import adsReducer from "./adsReducer";
 import nftNetworksReducer from "./nftNetworksReducer";
+
 const allReducers = combineReducers({
   Auth,
   deleteRowReducer,

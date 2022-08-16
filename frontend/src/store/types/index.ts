@@ -4,6 +4,7 @@ export const SESSION = {
 export const COMMON = {
   RESET_FIELD: "RESET_FIELD",
   LATEST_NEWS: "LATEST_NEWS",
+  TOPBAR_SEARCH: "TOPBAR_SEARCH",
 };
 
 export const HOME = {
