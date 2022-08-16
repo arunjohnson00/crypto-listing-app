@@ -45,6 +45,28 @@ export const StyledInputRoot = styled("div")(
   `
 );
 
+export const StyledInputPopUpRoot = styled("div")(
+  ({ theme }) => `
+    font-family: IBM Plex Sans, sans-serif;
+    display: flex;
+    font-weight: 500;
+    border-radius: 4px;
+    background: #000000;
+    align-items: center;
+    justify-content: center;
+
+  
+    &.${inputUnstyledClasses.focused} {
+  
+    }
+  
+    &:hover {
+      };
+      
+    }
+  `
+);
+
 export const StyledInputElement = styled("input")(
   ({ theme }) => `
     font-size: 0.875rem;
@@ -52,11 +74,11 @@ export const StyledInputElement = styled("input")(
     font-weight: 400;
     line-height: 1.5;
     flex-grow: 1;
-    color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
+    color: #9b9b9b;
     background: inherit;
     border: none;
     border-radius: inherit;
-    padding: 8px 8px;
+    padding: 8px 8px 8px 0px;
     outline: 0;
     height:0px
   `
@@ -72,7 +94,7 @@ export const IconButton = styled(ButtonUnstyled)`
 `;
 
 export const InputAdornment = styled("div")`
-  margin: 8px;
+  margin: 6px;
   display: inline-flex;
   align-items: center;
   justify-content: center;

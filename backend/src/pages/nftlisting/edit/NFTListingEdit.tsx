@@ -41,6 +41,7 @@ import { allNftListingCurrencyRequest } from "../../../store/action";
 import { allNftListingCategoryRequest } from "../../../store/action";
 import { editNftListingRequest } from "../../../store/action";
 import { updateNftListingRequest } from "../../../store/action";
+import { allNFTNetworkRequest } from "../../../store/action";
 
 import InputCoinStatusSelect from "../../../components/form/selectcoinstatus/InputCoinStatusSelect";
 import InputDateTime from "../../../components/form/input/datetime/InputDateTime";
@@ -73,7 +74,9 @@ const NFTListingEdit = () => {
   const nftChatList = useSelector((chatList: any) => {
     return chatList.chatReducer.listChat.data;
   });
-
+  const allNFTNetwork = useSelector((nftNetworkList: any) => {
+    return nftNetworkList.nftNetworksReducer.allNFTNetworks.data;
+  });
   const nftSocialList = useSelector((socialList: any) => {
     return socialList.socialsReducer.listSocials.data;
   });
@@ -273,6 +276,9 @@ const NFTListingEdit = () => {
 
     dispatch(
       listNftMarketPlaceRequest("emptyformData", successHandler, errorHandler)
+    );
+    dispatch(
+      allNFTNetworkRequest("emptyformData", successHandler, errorHandler)
     );
     dispatch(
       allNftListingCurrencyRequest(
@@ -887,6 +893,29 @@ const NFTListingEdit = () => {
                     </Typography>
                   </Stack>
                 </Grid>{" "}
+              </Grid>
+              <Grid item xl={3} lg={3} md={3} sm={12} xs={12}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    textAlign: "left",
+                    fontSize: ".9rem",
+                    fontWeight: 600,
+                    marginleft: 0,
+                  }}
+                  mt={5}
+                  mb={1}
+                >
+                  NFT Network
+                </Typography>
+                <InputSelectCoin
+                  name="nft_network"
+                  id="nft_network"
+                  data={allNFTNetwork}
+                  height={40}
+                  varient="nft_network"
+                  selectedValue={nftListingData?.nft_network}
+                />
               </Grid>
 
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
