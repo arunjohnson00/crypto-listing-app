@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { useLocation } from "react-router-dom";
+import LoadingButton from "@mui/lab/LoadingButton";
 import {
   Grid,
   Stack,
@@ -11,13 +12,16 @@ import {
   Box,
   Divider,
 } from "@mui/material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Rating from "@mui/material/Rating";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import Chip from "@mui/material/Chip";
-import MoodIcon from "@mui/icons-material/Mood";
+import ThumbUpOffAltOutlinedIcon from "@mui/icons-material/ThumbUpOffAltOutlined";
+import ThumbUpAltRoundedIcon from "@mui/icons-material/ThumbUpAltRounded";
 import ArrowUpwardRoundedIcon from "@mui/icons-material/ArrowUpwardRounded";
 import { Fragment } from "react";
 import Tooltip from "@mui/material/Tooltip";
@@ -32,6 +36,8 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import SingleCoinChip from "../coinpagechip/SingleCoinChip";
 import SocialCounterWithGraphCard from "../cards/socialcounterwithgraphcard/SocialCounterWithGraphCard";
+
+import { coinVoteRequest } from "../../../store/action/commonAction";
 
 import ToolTipImage from "../../../assets/singlepagecoin/tool-tip.png";
 import CoinGeckoImage from "../../../assets/singlepagecoin/coingecko.png";
@@ -55,11 +61,10 @@ import TelegramGraphImage from "../../../assets/singlepagecoin/graph/telegram.pn
 import TwitterGraphImage from "../../../assets/singlepagecoin/graph/twitter.png";
 import GithubGraphImage from "../../../assets/singlepagecoin/graph/github.png";
 
-import { indexOf } from "lodash";
-
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const SingleCoinHeader = ({ coinData }: any) => {
+  const dispatch: any = useDispatch();
   const theme = useTheme();
   const location: any = useLocation();
   const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
@@ -67,6 +72,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
     return data?.coinReducer?.coin_social_graph?.data;
   });
   const [copyValue, setCopyValue] = useState<any>();
+  const [vote, setVote] = useState<any>({ initial: false, completed: false });
   const [copied, setCopied] = useState(false);
   const [showMoreAnchorEl, setShowMoreAnchorEl] = useState<null | HTMLElement>(
     null
@@ -77,6 +83,39 @@ const SingleCoinHeader = ({ coinData }: any) => {
   };
   const handleClose = () => {
     setShowMoreAnchorEl(null);
+  };
+
+  const coinVoteHandler = () => {
+    const successHandler = (res: any) => {
+      console.log(res);
+      setVote({ ...vote, initial: true, completed: false });
+      setTimeout(function () {
+        toast.success(`${res?.data?.data}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
+        setVote({ ...vote, initial: false, completed: true });
+      }, 2000);
+    };
+    const errorHandler = (err: any) => {
+      console.log(err);
+    };
+
+    dispatch(
+      coinVoteRequest(
+        location?.state?.coin_id !== undefined
+          ? location?.state?.coin_id
+          : location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
   };
 
   useEffect(() => {
@@ -235,21 +274,55 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   spacing={1.5}
                   sx={{ alignItems: "center", justifyContent: "flex-end" }}
                 >
-                  <Button
-                    variant="contained"
-                    startIcon={<MoodIcon />}
-                    sx={{
-                      backgroundColor: "#6252E7",
-                      textTransform: "capitalize",
-                      fontSize: ".8rem",
-                    }}
-                  >
-                    Buy on pancakeswap
-                  </Button>
+                  {vote &&
+                  vote.initial === false &&
+                  vote.completed === false ? (
+                    <Button
+                      variant="contained"
+                      startIcon={<ThumbUpOffAltOutlinedIcon />}
+                      sx={{
+                        backgroundColor: "#6252E7",
+                        textTransform: "capitalize",
+                        fontSize: ".8rem",
+                      }}
+                      onClick={coinVoteHandler}
+                    >
+                      Vote
+                    </Button>
+                  ) : vote.initial === true ? (
+                    <LoadingButton
+                      loading
+                      variant="outlined"
+                      sx={{
+                        color: "#FFFFFF",
+                        backgroundColor: "#FFFFFF",
+                      }}
+                    >
+                      Submit
+                    </LoadingButton>
+                  ) : (
+                    vote.completed === true && (
+                      <Button
+                        variant="contained"
+                        startIcon={<ThumbUpAltRoundedIcon />}
+                        sx={{
+                          backgroundColor: "#6252E7",
+                          textTransform: "capitalize",
+                          fontSize: ".8rem",
+                        }}
+                      >
+                        Vote
+                      </Button>
+                    )
+                  )}
 
                   <Chip
                     label={`${
-                      coinData && coinData?.vote !== null && coinData?.vote
+                      coinData &&
+                      coinData?.vote !== null &&
+                      vote?.completed === true
+                        ? parseInt(coinData?.vote) + 1
+                        : coinData?.vote
                     } Votes`}
                     sx={{
                       height: "36px",

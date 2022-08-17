@@ -3,6 +3,7 @@ import { COMMON } from "../types";
 const initialState = {
   latest_news: "",
   top_bar_search_result: "",
+  coin_vote: "",
 };
 const commonReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -18,6 +19,13 @@ const commonReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         top_bar_search_result: action?.payload?.data,
+      };
+
+    case COMMON.COIN_VOTE:
+      //console.log(action);
+      return {
+        ...state,
+        coin_vote: action?.payload?.data,
       };
 
     default:

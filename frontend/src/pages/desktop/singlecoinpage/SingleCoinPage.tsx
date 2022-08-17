@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+
 import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
 import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
 import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
@@ -40,49 +41,13 @@ const SingleCoinPage = () => {
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
   const [feed, setFeed] = useState<any>();
+  const [requestStatus, setRequestStatus] = useState<any>(false);
   console.log(location?.pathname);
   useEffect(() => {
     (location?.pathname === "/coin" || location?.pathname === "/coin/") &&
       navigate("/");
     const successHandler = (res: any) => {
-      res?.data?.status === true &&
-        dispatch(
-          coinDetailFirstBlockRequest(
-            location?.state?.coin_id !== undefined
-              ? location?.state?.coin_id
-              : location?.pathname?.split("/").pop(),
-            successHandler,
-            errorHandler
-          )
-        );
-      dispatch(
-        coinOverviewBlockRequest(
-          location?.state?.coin_id !== undefined
-            ? location?.state?.coin_id
-            : location?.pathname?.split("/").pop(),
-          successHandler,
-          errorHandler
-        )
-      );
-      dispatch(
-        coinAboutBlockRequest(
-          location?.state?.coin_id !== undefined
-            ? location?.state?.coin_id
-            : location?.pathname?.split("/").pop(),
-          successHandler,
-          errorHandler
-        )
-      );
-
-      dispatch(
-        coinSocialGraphRequest(
-          location?.state?.coin_id !== undefined
-            ? location?.state?.coin_id
-            : location?.pathname?.split("/").pop(),
-          successHandler,
-          errorHandler
-        )
-      );
+      setRequestStatus(res?.data?.status);
     };
     const errorHandler = (err: any) => {};
 
@@ -96,6 +61,48 @@ const SingleCoinPage = () => {
       )
     );
   }, [dispatch]);
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(
+      coinDetailFirstBlockRequest(
+        location?.state?.coin_id !== undefined
+          ? location?.state?.coin_id
+          : location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+    dispatch(
+      coinOverviewBlockRequest(
+        location?.state?.coin_id !== undefined
+          ? location?.state?.coin_id
+          : location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+    dispatch(
+      coinAboutBlockRequest(
+        location?.state?.coin_id !== undefined
+          ? location?.state?.coin_id
+          : location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+
+    dispatch(
+      coinSocialGraphRequest(
+        location?.state?.coin_id !== undefined
+          ? location?.state?.coin_id
+          : location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  }, [requestStatus]);
 
   useEffect(() => {
     (async () => {
