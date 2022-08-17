@@ -5,7 +5,7 @@ import Link from "@mui/material/Link";
 import { useDropzone } from "react-dropzone";
 import { useStyles } from "./style";
 import ImageIcon from "@mui/icons-material/Image";
-const CoinUploader = ({ addIconData, setAddIcon }: any) => {
+const CoinUploader = ({ addIconData, setAddIcon, image }: any) => {
   const classes = useStyles();
 
   const onDrop = useCallback(
@@ -90,6 +90,8 @@ const CoinUploader = ({ addIconData, setAddIcon }: any) => {
               src={`${
                 acceptedFileItems.length > 0
                   ? URL.createObjectURL(acceptedFiles[0])
+                  : image !== "" && image !== undefined
+                  ? image
                   : "#"
               }`}
               alt="icon"

@@ -45,8 +45,9 @@ import { allNFTNetworkRequest } from "../../../store/action";
 
 import InputCoinStatusSelect from "../../../components/form/selectcoinstatus/InputCoinStatusSelect";
 import InputDateTime from "../../../components/form/input/datetime/InputDateTime";
-
 import dateFormat, { masks } from "dateformat";
+
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const NFTListingEdit = () => {
   let { id } = useParams();
@@ -574,6 +575,7 @@ const NFTListingEdit = () => {
                         id="image"
                         setAddIcon={setCoinLogo}
                         addIconData={addCoinLogo}
+                        image={`${serverAPIUrl}public/uploads/nft_listing_image/${nftListingData?.image}`}
                       />
                     </Grid>
                   </Grid>

@@ -45,6 +45,8 @@ import { allChartProviderRequest } from "../../../store/action";
 import { updateCoinRequest } from "../../../store/action";
 import { editCoinRequest } from "../../../store/action";
 
+const serverAPIUrl = process.env.REACT_APP_API_URL;
+
 const CoinListingEdit = () => {
   const location: any = useLocation();
   const dispatch = useDispatch();
@@ -694,6 +696,7 @@ const CoinListingEdit = () => {
                     id="logo"
                     setAddIcon={setCoinLogo}
                     addIconData={addCoinLogo}
+                    image={`${serverAPIUrl}public/uploads/coin_logo/${editCoin?.logo}`}
                   />
                 </Grid>
               </Grid>
