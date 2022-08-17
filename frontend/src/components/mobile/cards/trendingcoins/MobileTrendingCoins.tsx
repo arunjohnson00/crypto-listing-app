@@ -1,26 +1,29 @@
 import { useState, useEffect } from "react";
 import { Grid, Box, Stack, Avatar, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 import Chart from "react-apexcharts";
 
-const MobileTrendingCoins = () => {
-  const [data, updateData] = useState([1, 2, 3, 4, 5, 6]);
+const serverAPIUrl = process.env.REACT_APP_API_URL;
+const MobileTrendingCoins = ({ data }: any) => {
+  // const [data, updateData] = useState([1, 2, 3, 4, 5, 6]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const val = Math.floor(Math.random() * (100 - 30 + 1)) + 30;
-      let array = [...data, val];
-      array.shift();
-      updateData(array);
-    }, 2000);
-    return () => {
-      window.clearInterval(interval);
-    };
-  }, [data]);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const val = Math.floor(Math.random() * (100 - 30 + 1)) + 30;
+  //     let array = [...data, val];
+  //     array.shift();
+  //     updateData(array);
+  //   }, 2000);
+  //   return () => {
+  //     window.clearInterval(interval);
+  //   };
+  // }, [data]);
+
   const chartData: any = {
     series: [
       {
-        name: "Coinxhigh",
-        data: data,
+        name: data && data?.name,
+        data: data && data?.votes?.reverse(),
       },
     ],
 
@@ -123,72 +126,116 @@ const MobileTrendingCoins = () => {
       // },
     },
   };
-  return (
-    <Grid xs={12} sm={11} md={11} lg={11} xl={11} mb={2} mx={1}>
-      <Box
-        sx={{
-          backgroundColor: "#01061C",
-          border: "1px solid #0A1028",
-          borderRadius: 5,
-        }}
-        px={2}
-        py={2}
-      >
-        <Grid xs={12}>
-          <Stack
-            direction={{ xs: "row" }}
-            spacing={0.5}
-            sx={{ alignItems: "center" }}
-          >
-            <Avatar
-              alt="Remy Sharp"
-              src="https://mui.com/static/images/avatar/1.jpg"
-              sx={{ width: 20, height: 20 }}
-            />
 
-            <Stack direction={{ xs: "column" }} spacing={0.3}>
+  const percentageDiff = (a: any, b: any) => {
+    return ((a - b) / a) * 100;
+  };
+  return (
+    <Box
+      sx={{
+        backgroundColor: "#01061C",
+        border: "1px solid #0A1028",
+        borderRadius: 5,
+      }}
+      px={2}
+      py={2}
+      m={0.5}
+    >
+      <Grid xs={12}>
+        <Stack
+          direction={{ xs: "row" }}
+          spacing={0.5}
+          sx={{ alignItems: "center" }}
+        >
+          <Avatar
+            alt={data && data?.name}
+            src={`${serverAPIUrl}public/uploads/coin_logo/${data?.logo}`}
+            sx={{ width: 18, height: 18 }}
+          />
+
+          <Stack direction={{ xs: "column" }} spacing={0.3}>
+            <Link
+              to={{
+                pathname: `/coin/${data?.name
+                  ?.replace(/ /g, "")
+                  .toLowerCase()}/${data?.id}`,
+              }}
+              state={{ coin_id: data?.id }}
+              style={{ textDecoration: "none", color: "#FFFFFF" }}
+            >
               <Typography
                 variant="caption"
                 sx={{ color: "#C6C9D2", fontWeight: "600" }}
               >
-                STEPN
+                {data && data?.name?.length > 10
+                  ? data && data?.name?.slice(0, 10) + ".."
+                  : data && data?.name}
               </Typography>
+            </Link>
 
-              <Typography
-                variant="caption"
-                sx={{
-                  color: "#B9AC78",
-                  fontWeight: "400",
-                  fontSize: "0.55rem",
-                  lineHeight: 0.2,
-                }}
-              >
-                STEPN
-              </Typography>
-            </Stack>
-          </Stack>
-        </Grid>
-
-        <Grid xs={12}>
-          <Chart
-            options={chartData.options}
-            series={chartData.series}
-            type="line"
-            height="auto"
-          />
-        </Grid>
-        <Grid xs={12}>
-          <Stack direction={{ xs: "row" }} sx={{ justifyContent: "flex-end" }}>
             <Typography
-              variant="body2"
-              sx={{ color: "#00C080", fontWeight: "700" }}
+              variant="caption"
+              sx={{
+                color: "#B9AC78",
+                fontWeight: "400",
+                fontSize: "0.55rem",
+                lineHeight: 0.2,
+              }}
             >
-              14.28%
+              {data && data?.symbol}
             </Typography>
           </Stack>
-        </Grid>
-      </Box>
-    </Grid>
+        </Stack>
+      </Grid>
+
+      <Grid xs={12}>
+        <Chart
+          options={chartData.options}
+          series={chartData.series}
+          type="line"
+          height="auto"
+        />
+      </Grid>
+      <Grid xs={12}>
+        <Stack direction={{ xs: "row" }} sx={{ justifyContent: "flex-end" }}>
+          <Typography
+            variant="body2"
+            sx={{
+              color:
+                Math.sign(
+                  percentageDiff(
+                    parseInt(data && data?.votes?.reverse()[1]),
+                    parseInt(data && data?.votes?.reverse()[0])
+                  )
+                ) === -1
+                  ? "red"
+                  : "#03FEB5",
+              fontWeight: 700,
+
+              lineHeight: 0.2,
+              //fontSize: ".65rem",
+            }}
+          >
+            {data &&
+              data?.votes &&
+              Math.sign(
+                percentageDiff(
+                  parseInt(data && data?.votes?.reverse()[1]),
+                  parseInt(data && data?.votes?.reverse()[0])
+                )
+              ) !== -1 &&
+              "+ "}
+            {data &&
+              data?.votes &&
+              percentageDiff(
+                parseInt(data && data?.votes?.reverse()[1]),
+                parseInt(data && data?.votes?.reverse()[0])
+              ).toFixed(2)}
+            %
+          </Typography>
+        </Stack>
+      </Grid>
+    </Box>
   );
 };
 

@@ -7,9 +7,32 @@ const initialState = {
   crypto_currencies_presale: "",
   crypto_currencies_todays_best: "",
   crypto_currencies_tab: 0,
+  recently_added: "",
+  biggest_gainers: "",
+  biggest_loosers: "",
 };
 const coinsReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
+    case COINS.RECENTLY_ADDED:
+      //console.log(action);
+      return {
+        ...state,
+        recently_added: action?.payload?.data,
+      };
+
+    case COINS.BIGGEST_GAINERS:
+      //console.log(action);
+      return {
+        ...state,
+        biggest_gainers: action?.payload?.data,
+      };
+    case COINS.BIGGEST_LOOSERS:
+      //console.log(action);
+      return {
+        ...state,
+        biggest_loosers: action?.payload?.data,
+      };
+
     case COINS.FEATURED_COIN_LIST:
       //console.log(action);
       return {

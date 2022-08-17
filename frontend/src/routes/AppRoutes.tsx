@@ -83,7 +83,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/coins"
+          path="/coins/*"
           element={
             <PublicRoutes>
               <CoinsListPage windowInnerWidth={windowInnerWidth} />

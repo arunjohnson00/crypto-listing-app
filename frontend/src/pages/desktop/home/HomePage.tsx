@@ -56,6 +56,7 @@ import {
   nftListingRequest,
   menuCardRequest,
   videoListRequest,
+  trendingCoinListRequest,
 } from "../../../store/action";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 import LatestNewsCardScroll from "../../../components/desktop/latestnews/LatestNewsCardScroll";
@@ -180,9 +181,9 @@ const HomePage = ({ windowInnerWidth }: any) => {
     return data?.homeReducer?.video_list?.data?.data;
   });
 
-  // const videoList = useSelector((data: any) => {
-  //   return data?.homeReducer?.video_list?.data?.data;
-  // });
+  const trendingCoinList = useSelector((data: any) => {
+    return data?.homeReducer?.trending_coin_list?.data;
+  });
 
   const tabIndex = useSelector((data: any) => {
     return data?.homeReducer?.crypto_currencies_tab;
@@ -207,6 +208,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
     dispatch(nftListingRequest("noData", successHandler, errorHandler));
     dispatch(menuCardRequest("noData", successHandler, errorHandler));
     dispatch(videoListRequest("noData", successHandler, errorHandler));
+    dispatch(trendingCoinListRequest("noData", successHandler, errorHandler));
   }, [dispatch, setPreLoader]);
 
   useEffect(() => {
@@ -758,61 +760,27 @@ const HomePage = ({ windowInnerWidth }: any) => {
             paddingBottom: "23px",
           }}
         >
-          <Carousel
-            responsive={responsiveTrendingCoins}
-            infinite={true}
-            removeArrowOnDeviceType={["tablet", "mobile"]}
-            arrows={false}
-            autoPlay={false}
-            draggable={true}
-            swipeable={true}
-            minimumTouchDrag={10}
-            keyBoardControl={true}
-            shouldResetAutoplay={false}
-          >
-            <Box>
-              <TrendingCoins />
-            </Box>
-            <Box>
-              <TrendingCoins />
-            </Box>
-            <Box>
-              <TrendingCoins />
-            </Box>
-            <Box>
-              <TrendingCoins />
-            </Box>
-            <Box>
-              <TrendingCoins />
-            </Box>
-            <Box>
-              <TrendingCoins />
-            </Box>
-            <Box>
-              <TrendingCoins />
-            </Box>
-            <Box>
-              <TrendingCoins />
-            </Box>
-            <Box>
-              <TrendingCoins />
-            </Box>
-            <Box>
-              <TrendingCoins />
-            </Box>
-            <Box>
-              <TrendingCoins />
-            </Box>
-            <Box>
-              <TrendingCoins />
-            </Box>
-            <Box>
-              <TrendingCoins />
-            </Box>
-            <Box>
-              <TrendingCoins />
-            </Box>
-          </Carousel>
+          {trendingCoinList && (
+            <Carousel
+              responsive={responsiveTrendingCoins}
+              infinite={true}
+              removeArrowOnDeviceType={["tablet", "mobile"]}
+              arrows={false}
+              autoPlay={false}
+              draggable={true}
+              swipeable={true}
+              minimumTouchDrag={10}
+              keyBoardControl={true}
+              shouldResetAutoplay={false}
+            >
+              {trendingCoinList &&
+                trendingCoinList?.map((item: any, index: number) => (
+                  <Box key={index}>
+                    <TrendingCoins data={item && item[0]} />
+                  </Box>
+                ))}
+            </Carousel>
+          )}
         </Grid>
 
         <Grid

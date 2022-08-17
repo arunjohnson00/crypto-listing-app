@@ -5,6 +5,7 @@ const initialState = {
   biggest_gainers: "",
   biggest_loosers: "",
   featured_coin_list: "",
+  trending_coin_list: "",
   crypto_currencies_list: "",
   crypto_currencies_new: "",
   crypto_currencies_presale: "",
@@ -41,6 +42,13 @@ const homeReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         featured_coin_list: action?.payload?.data,
+      };
+
+    case HOME.TRENDING_COIN_LIST:
+      //console.log(action);
+      return {
+        ...state,
+        trending_coin_list: action?.payload?.data,
       };
 
     case HOME.CRYPTO_CURRENCIES_LIST:

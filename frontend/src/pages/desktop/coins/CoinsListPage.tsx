@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import { Grid, Stack, Typography, Box, Avatar, Skeleton } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 import FeaturedCoinCards from "../../../components/desktop/cards/featuredcoin/FeaturedCoinCards";
 import { useTheme } from "@mui/material/styles";
@@ -55,6 +56,7 @@ const responsiveFeatured: any = {
 };
 
 const CoinsListPage = ({ windowInnerWidth }: any) => {
+  const location = useLocation();
   const theme = useTheme();
   const dispatch: any = useDispatch();
   const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
@@ -63,6 +65,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
   const [feed, setFeed] = useState<any>();
+  const [tableTabvalue, setTableTabValue] = useState("1");
   const [tableData, setTableData] = useState<any>([]);
   const [page, setPage] = useState({ pagination: 0, scroll: true });
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -124,11 +127,13 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
 
       html_table: true,
     });
+
     const successHandler = (res: any) => {
       page?.scroll === true
         ? setTableData([...tableData, ...res?.data?.data])
         : setTableData([...res?.data?.data]);
-
+      // tableTabvalue
+      // ? setTableData(res?.data?.data)
       res?.data?.data !== undefined &&
         setHTMLTablePreLoader({
           ...htmlTablePreLoader,
@@ -138,7 +143,8 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
     };
     const errorHandler = (err: any) => {};
 
-    tabIndex === 0 &&
+    location?.pathname === "/coins" &&
+      tableTabvalue === "2" &&
       dispatch(
         coinsCryptoCurrenciesListRequest(
           page.pagination + 1,
@@ -146,27 +152,22 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
           errorHandler
         )
       );
-    tabIndex === 2 &&
+    location?.pathname === "/coins/recently-added" &&
+      tableTabvalue === "5" &&
       dispatch(
-        coinsCryptoCurrenciesTodaysBestRequest(
-          "noData",
-          successHandler,
-          errorHandler
-        )
+        coinsRecentlyAddedRequest("noData", successHandler, errorHandler)
       );
-    tabIndex === 4 &&
+    location?.pathname === "/coins/biggest-gainers" &&
+      tableTabvalue === "3" &&
       dispatch(
-        coinsCryptoCurrenciesNewRequest("noData", successHandler, errorHandler)
+        coinsBiggestGainersRequest("noData", successHandler, errorHandler)
       );
-    tabIndex === 6 &&
+    location?.pathname === "/coins/biggest-losers" &&
+      tableTabvalue === "3" &&
       dispatch(
-        coinsCryptoCurrenciesPresaleRequest(
-          "noData",
-          successHandler,
-          errorHandler
-        )
+        coinsBiggestLosersRequest("noData", successHandler, errorHandler)
       );
-  }, [dispatch, tabIndex, setHTMLTablePreLoader, page, setTableData]);
+  }, [dispatch, location, page, tableTabvalue]);
 
   useEffect(() => {
     (async () => {
@@ -597,7 +598,15 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
             padding={1.5}
           >
             <Grid xs={12} pt={2}>
-              <TableButtonGroup />
+              <TableButtonGroup
+                tableTabvalue={tableTabvalue}
+                setTableTabValue={setTableTabValue}
+                setTableData={setTableData}
+                tableData={tableData}
+                page={page}
+                setHTMLTablePreLoader={setHTMLTablePreLoader}
+                htmlTablePreLoader={htmlTablePreLoader}
+              />
             </Grid>
             <Grid xs={12}>
               <ListingTable

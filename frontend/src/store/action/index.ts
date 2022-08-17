@@ -17,6 +17,7 @@ export { cryptoCurrenciesTabRequest } from "./homeAction";
 export { nftListingRequest } from "./homeAction";
 export { menuCardRequest } from "./homeAction";
 export { videoListRequest } from "./homeAction";
+export { trendingCoinListRequest } from "./homeAction";
 
 //Coin Page
 

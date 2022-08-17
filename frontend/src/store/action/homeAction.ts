@@ -184,3 +184,18 @@ export const videoListRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const trendingCoinListRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/trending-coin-list`,
+    method: "GET",
+    secure: false,
+    actionType: HOME.TRENDING_COIN_LIST,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

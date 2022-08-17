@@ -346,7 +346,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                           fontSize: ".8rem",
                         }}
                       >
-                        Vote
+                        Voted
                       </Button>
                     )
                   )}

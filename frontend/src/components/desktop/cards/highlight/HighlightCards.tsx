@@ -36,7 +36,7 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
         className={active ? "active" : "inactive"}
         style={{
           paddingTop: 1.5,
-          paddingBottom: 21,
+          paddingBottom: 26,
           display: "flex",
           alignItems: "center",
         }}
@@ -70,7 +70,7 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
   };
   return (
     <Box
-      sx={{ backgroundColor: "#010822", height: 180 }}
+      sx={{ backgroundColor: "#010822", height: 220 }}
       px={2}
       pb={3}
       pt={2}
@@ -100,7 +100,9 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
 
         <Link
           to={{
-            pathname: "/",
+            pathname: `/coins/${
+              title && title?.split(" ").join("-").toLowerCase()
+            }`,
           }}
           style={{ textDecoration: "none" }}
         >
@@ -124,9 +126,9 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
       >
         <Box>
           {cardData &&
-            cardData?.slice(0, 3).map((data: any, index: number) => (
+            cardData?.slice(0, 5).map((data: any, index: number) => (
               <Stack
-                key={index}
+                key={index + 1}
                 direction="row"
                 spacing={4}
                 sx={{ alignItems: "center", justifyContent: "space-between" }}
@@ -228,9 +230,9 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
         </Box>
         <Box>
           {cardData &&
-            cardData?.slice(3, 6).map((data: any, index: number) => (
+            cardData?.slice(5, 10).map((data: any, index: number) => (
               <Stack
-                key={index + 4}
+                key={index + 6}
                 direction="row"
                 spacing={4}
                 sx={{ alignItems: "center", justifyContent: "space-between" }}
@@ -251,7 +253,7 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                         variant="caption"
                         sx={{ color: "#717878", fontWeight: "600" }}
                       >
-                        {index + 4}
+                        {index + 6}
                       </Typography>
                       <Avatar
                         alt={data && data?.name}
@@ -332,9 +334,9 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
         </Box>
         <Box>
           {cardData &&
-            cardData?.slice(6, 9).map((data: any, index: number) => (
+            cardData?.slice(10, 15).map((data: any, index: number) => (
               <Stack
-                key={index + 7}
+                key={index + 11}
                 direction="row"
                 spacing={4}
                 sx={{ alignItems: "center", justifyContent: "space-between" }}
@@ -355,7 +357,7 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                         variant="caption"
                         sx={{ color: "#717878", fontWeight: "600" }}
                       >
-                        {index + 7}
+                        {index + 11}
                       </Typography>
                       <Avatar
                         alt={data && data?.name}
