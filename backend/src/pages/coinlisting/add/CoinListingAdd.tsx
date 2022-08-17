@@ -43,6 +43,7 @@ import { listCoinAuditRequest } from "../../../store/action";
 import { listCoinChatRequest } from "../../../store/action";
 import { listCoinSocialRequest } from "../../../store/action";
 import { listChartProviderRequest } from "../../../store/action";
+import { allExchangeRequest } from "../../../store/action";
 
 const CoinListingAdd = () => {
   const selectOptions = [
@@ -52,7 +53,7 @@ const CoinListingAdd = () => {
   ];
 
   const exchangeList = useSelector((exList: any) => {
-    return exList.exchangesReducer.listExchanges.data;
+    return exList.exchangesReducer.allExchanges.data;
   });
 
   const networkList = useSelector((ntList: any) => {
@@ -250,9 +251,7 @@ const CoinListingAdd = () => {
       //console.log(err);
     };
 
-    dispatch(
-      listExchangeRequest("emptyformData", successHandler, errorHandler)
-    );
+    dispatch(allExchangeRequest("emptyformData", successHandler, errorHandler));
     dispatch(allNetworkRequest("emptyformData", successHandler, errorHandler));
 
     dispatch(
