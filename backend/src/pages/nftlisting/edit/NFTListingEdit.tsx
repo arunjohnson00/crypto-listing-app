@@ -914,7 +914,7 @@ const NFTListingEdit = () => {
                   data={allNFTNetwork}
                   height={40}
                   varient="nft_network"
-                  selectedValue={nftListingData?.nft_network}
+                  selectedValue={nftListingData?.nft_network_id}
                 />
               </Grid>
 
