@@ -11,8 +11,11 @@ import {
   Button,
   Box,
   Divider,
+  Dialog,
+  DialogContent,
 } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
+import ReCAPTCHA from "react-google-recaptcha";
 import "react-toastify/dist/ReactToastify.css";
 import Rating from "@mui/material/Rating";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
@@ -72,7 +75,12 @@ const SingleCoinHeader = ({ coinData }: any) => {
     return data?.coinReducer?.coin_social_graph?.data;
   });
   const [copyValue, setCopyValue] = useState<any>();
-  const [vote, setVote] = useState<any>({ initial: false, completed: false });
+  const [vote, setVote] = useState<any>({
+    initial: false,
+    completed: false,
+    captcha: false,
+  });
+  const [openCaptcha, setOpenCaptcha] = useState<any>(false);
   const [copied, setCopied] = useState(false);
   const [showMoreAnchorEl, setShowMoreAnchorEl] = useState<null | HTMLElement>(
     null
@@ -85,10 +93,20 @@ const SingleCoinHeader = ({ coinData }: any) => {
     setShowMoreAnchorEl(null);
   };
 
+  const captchaHandler = () => {
+    setVote({ ...vote, initial: false, completed: false, captcha: true });
+    setOpenCaptcha(true);
+  };
+
+  // const captchaOnClose = () => {
+  //   setOpenCaptcha(false);
+  //   setVote({ ...vote, initial: false, completed: false, captcha: false });
+  // };
+
   const coinVoteHandler = () => {
     const successHandler = (res: any) => {
-      console.log(res);
-      setVote({ ...vote, initial: true, completed: false });
+      setOpenCaptcha(false);
+      setVote({ ...vote, initial: true, completed: false, captcha: false });
       setTimeout(function () {
         toast.success(`${res?.data?.data}`, {
           position: "top-right",
@@ -100,7 +118,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
           progress: undefined,
         });
 
-        setVote({ ...vote, initial: false, completed: true });
+        setVote({ ...vote, initial: false, completed: true, captcha: false });
       }, 2000);
     };
     const errorHandler = (err: any) => {
@@ -276,7 +294,8 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 >
                   {vote &&
                   vote.initial === false &&
-                  vote.completed === false ? (
+                  vote.completed === false &&
+                  vote.captcha === false ? (
                     <Button
                       variant="contained"
                       startIcon={<ThumbUpOffAltOutlinedIcon />}
@@ -285,11 +304,27 @@ const SingleCoinHeader = ({ coinData }: any) => {
                         textTransform: "capitalize",
                         fontSize: ".8rem",
                       }}
-                      onClick={coinVoteHandler}
+                      onClick={captchaHandler}
                     >
                       Vote
                     </Button>
-                  ) : vote.initial === true ? (
+                  ) : vote.captcha === true ? (
+                    // <Dialog
+                    //   open={openCaptcha}
+                    //   // TransitionComponent={Transition}
+                    //   keepMounted
+                    //   onClose={captchaOnClose}
+                    //   aria-describedby="alert-dialog-slide-description"
+                    // >
+                    //   <DialogContent>
+                    <ReCAPTCHA
+                      sitekey="6LeV-IQhAAAAAMwIIrqVh_eqFPl-8IFn1QQWWrEU"
+                      onChange={coinVoteHandler}
+                      theme="dark"
+                    />
+                  ) : //   </DialogContent>
+                  // </Dialog>
+                  vote.initial === true ? (
                     <LoadingButton
                       loading
                       variant="outlined"
@@ -907,151 +942,172 @@ const SingleCoinHeader = ({ coinData }: any) => {
               </Typography>
             </Stack> */}
 
-            {coinSocialGraph && coinSocialGraph[0]?.twitter.length > 0 && (
-              <SocialCounterWithGraphCard
-                title={`${
-                  coinSocialGraph &&
-                  coinSocialGraph[0]?.twitter[0]?.social_platform
-                } Followers`}
-                cardData={
-                  coinSocialGraph &&
-                  coinSocialGraph[0]?.twitter[0]?.followers
-                    ?.split(",")
-                    .reverse()
-                }
-                // icon={
-                //   coinSocialGraph && coinSocialGraph[0]?.twitter[0]?.social_icon
-                // }
+            {coinSocialGraph &&
+              coinSocialGraph &&
+              coinSocialGraph[0]?.twitter !== undefined &&
+              coinSocialGraph[0]?.twitter.length > 0 && (
+                <SocialCounterWithGraphCard
+                  title={`${
+                    coinSocialGraph &&
+                    coinSocialGraph[0]?.twitter[0]?.social_platform
+                  } Followers`}
+                  cardData={
+                    coinSocialGraph &&
+                    coinSocialGraph[0]?.twitter[0]?.followers
+                      ?.split(",")
+                      .reverse()
+                  }
+                  // icon={
+                  //   coinSocialGraph && coinSocialGraph[0]?.twitter[0]?.social_icon
+                  // }
 
-                icon={TwitterGraphImage}
-                url={
-                  coinSocialGraph && coinSocialGraph[0]?.twitter[0]?.social_url
-                }
-                endColor="#43baff"
-                startColor="#00e8fd"
-              />
-            )}
+                  icon={TwitterGraphImage}
+                  url={
+                    coinSocialGraph &&
+                    coinSocialGraph[0]?.twitter[0]?.social_url
+                  }
+                  endColor="#43baff"
+                  startColor="#00e8fd"
+                />
+              )}
 
-            {coinSocialGraph && coinSocialGraph[0]?.telegram.length > 0 && (
-              <SocialCounterWithGraphCard
-                title={`${
-                  coinSocialGraph &&
-                  coinSocialGraph[0]?.telegram[0]?.social_platform
-                } Followers`}
-                cardData={
-                  coinSocialGraph &&
-                  coinSocialGraph[0]?.telegram[0]?.followers
-                    ?.split(",")
-                    .reverse()
-                }
-                // icon={
-                //   coinSocialGraph &&
-                //   coinSocialGraph[0]?.telegram[0]?.social_icon
-                // }
-                icon={TelegramGraphImage}
-                url={
-                  coinSocialGraph && coinSocialGraph[0]?.telegram[0]?.social_url
-                }
-                endColor="#2e67f6"
-                startColor="#13b0fc"
-              />
-            )}
+            {coinSocialGraph &&
+              coinSocialGraph[0]?.telegram !== undefined &&
+              coinSocialGraph[0]?.telegram?.length > 0 && (
+                <SocialCounterWithGraphCard
+                  title={`${
+                    coinSocialGraph &&
+                    coinSocialGraph[0]?.telegram[0]?.social_platform
+                  } Followers`}
+                  cardData={
+                    coinSocialGraph &&
+                    coinSocialGraph[0]?.telegram[0]?.followers
+                      ?.split(",")
+                      .reverse()
+                  }
+                  // icon={
+                  //   coinSocialGraph &&
+                  //   coinSocialGraph[0]?.telegram[0]?.social_icon
+                  // }
+                  icon={TelegramGraphImage}
+                  url={
+                    coinSocialGraph &&
+                    coinSocialGraph[0]?.telegram[0]?.social_url
+                  }
+                  endColor="#2e67f6"
+                  startColor="#13b0fc"
+                />
+              )}
 
-            {coinSocialGraph && coinSocialGraph[0]?.reddit.length > 0 && (
-              <SocialCounterWithGraphCard
-                title={`${
-                  coinSocialGraph &&
-                  coinSocialGraph[0]?.reddit[0]?.social_platform
-                } Followers`}
-                cardData={
-                  coinSocialGraph &&
-                  coinSocialGraph[0]?.reddit[0]?.followers?.split(",").reverse()
-                }
-                // icon={
-                //   coinSocialGraph && coinSocialGraph[0]?.reddit[0]?.social_icon
-                // }
+            {coinSocialGraph &&
+              coinSocialGraph[0]?.reddit !== undefined &&
+              coinSocialGraph[0]?.reddit?.length > 0 && (
+                <SocialCounterWithGraphCard
+                  title={`${
+                    coinSocialGraph &&
+                    coinSocialGraph[0]?.reddit[0]?.social_platform
+                  } Followers`}
+                  cardData={
+                    coinSocialGraph &&
+                    coinSocialGraph[0]?.reddit[0]?.followers
+                      ?.split(",")
+                      .reverse()
+                  }
+                  // icon={
+                  //   coinSocialGraph && coinSocialGraph[0]?.reddit[0]?.social_icon
+                  // }
 
-                icon={RedditGraphImage}
-                url={
-                  coinSocialGraph && coinSocialGraph[0]?.reddit[0]?.social_url
-                }
-                endColor="#ff6e4c"
-                startColor="#ff3708"
-              />
-            )}
+                  icon={RedditGraphImage}
+                  url={
+                    coinSocialGraph && coinSocialGraph[0]?.reddit[0]?.social_url
+                  }
+                  endColor="#ff6e4c"
+                  startColor="#ff3708"
+                />
+              )}
 
-            {coinSocialGraph && coinSocialGraph[0]?.facebook.length > 0 && (
-              <SocialCounterWithGraphCard
-                title={`${
-                  coinSocialGraph &&
-                  coinSocialGraph[0]?.facebook[0]?.social_platform
-                } Followers`}
-                cardData={
-                  coinSocialGraph &&
-                  coinSocialGraph[0]?.facebook[0]?.followers
-                    ?.split(",")
-                    .reverse()
-                }
-                // icon={
-                //   coinSocialGraph &&
-                //   coinSocialGraph[0]?.facebook[0]?.social_icon
-                // }
-                icon={FacebookGraphImage}
-                url={
-                  coinSocialGraph && coinSocialGraph[0]?.facebook[0]?.social_url
-                }
-                endColor="#ff6e4c"
-                startColor="#ff3708"
-              />
-            )}
+            {coinSocialGraph &&
+              coinSocialGraph[0]?.facebook !== undefined &&
+              coinSocialGraph[0]?.facebook.length > 0 && (
+                <SocialCounterWithGraphCard
+                  title={`${
+                    coinSocialGraph &&
+                    coinSocialGraph[0]?.facebook[0]?.social_platform
+                  } Followers`}
+                  cardData={
+                    coinSocialGraph &&
+                    coinSocialGraph[0]?.facebook[0]?.followers
+                      ?.split(",")
+                      .reverse()
+                  }
+                  // icon={
+                  //   coinSocialGraph &&
+                  //   coinSocialGraph[0]?.facebook[0]?.social_icon
+                  // }
+                  icon={FacebookGraphImage}
+                  url={
+                    coinSocialGraph &&
+                    coinSocialGraph[0]?.facebook[0]?.social_url
+                  }
+                  endColor="#ff6e4c"
+                  startColor="#ff3708"
+                />
+              )}
 
-            {coinSocialGraph && coinSocialGraph[0]?.github.length > 0 && (
-              <SocialCounterWithGraphCard
-                title={`${
-                  coinSocialGraph &&
-                  coinSocialGraph[0]?.github[0]?.social_platform
-                } Followers`}
-                cardData={
-                  coinSocialGraph &&
-                  coinSocialGraph[0]?.github[0]?.followers?.split(",").reverse()
-                }
-                // icon={
-                //   coinSocialGraph && coinSocialGraph[0]?.github[0]?.social_icon
-                // }
+            {coinSocialGraph &&
+              coinSocialGraph[0]?.github !== undefined &&
+              coinSocialGraph[0]?.github.length > 0 && (
+                <SocialCounterWithGraphCard
+                  title={`${
+                    coinSocialGraph &&
+                    coinSocialGraph[0]?.github[0]?.social_platform
+                  } Followers`}
+                  cardData={
+                    coinSocialGraph &&
+                    coinSocialGraph[0]?.github[0]?.followers
+                      ?.split(",")
+                      .reverse()
+                  }
+                  // icon={
+                  //   coinSocialGraph && coinSocialGraph[0]?.github[0]?.social_icon
+                  // }
 
-                icon={GithubGraphImage}
-                url={
-                  coinSocialGraph && coinSocialGraph[0]?.github[0]?.social_url
-                }
-                endColor="#ff6e4c"
-                startColor="#ff3708"
-              />
-            )}
+                  icon={GithubGraphImage}
+                  url={
+                    coinSocialGraph && coinSocialGraph[0]?.github[0]?.social_url
+                  }
+                  endColor="#ff6e4c"
+                  startColor="#ff3708"
+                />
+              )}
 
-            {coinSocialGraph && coinSocialGraph[0]?.discord.length > 0 && (
-              <SocialCounterWithGraphCard
-                title={`${
-                  coinSocialGraph &&
-                  coinSocialGraph[0]?.discord[0]?.social_platform
-                } Followers`}
-                cardData={
-                  coinSocialGraph &&
-                  coinSocialGraph[0]?.discord[0]?.followers
-                    ?.split(",")
-                    .reverse()
-                }
-                // icon={
-                //   coinSocialGraph && coinSocialGraph[0]?.discord[0]?.social_icon
-                // }
+            {coinSocialGraph &&
+              coinSocialGraph[0]?.discord !== undefined &&
+              coinSocialGraph[0]?.discord.length > 0 && (
+                <SocialCounterWithGraphCard
+                  title={`${
+                    coinSocialGraph &&
+                    coinSocialGraph[0]?.discord[0]?.social_platform
+                  } Followers`}
+                  cardData={
+                    coinSocialGraph &&
+                    coinSocialGraph[0]?.discord[0]?.followers
+                      ?.split(",")
+                      .reverse()
+                  }
+                  // icon={
+                  //   coinSocialGraph && coinSocialGraph[0]?.discord[0]?.social_icon
+                  // }
 
-                icon={DiscordGraphImage}
-                url={
-                  coinSocialGraph && coinSocialGraph[0]?.discord[0]?.social_url
-                }
-                endColor="#ff6e4c"
-                startColor="#ff3708"
-              />
-            )}
+                  icon={DiscordGraphImage}
+                  url={
+                    coinSocialGraph &&
+                    coinSocialGraph[0]?.discord[0]?.social_url
+                  }
+                  endColor="#ff6e4c"
+                  startColor="#ff3708"
+                />
+              )}
 
             {/* <Divider
               variant="middle"
