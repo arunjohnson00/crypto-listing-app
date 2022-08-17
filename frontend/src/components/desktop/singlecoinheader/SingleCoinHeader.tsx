@@ -526,14 +526,28 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       lg: "flex-start",
                     }}
                   >
-                    <Avatar
-                      src={CoinGeckoImage}
-                      sx={{ width: 24, height: 24 }}
-                    ></Avatar>
-                    <Avatar
-                      src={CoinMarketcapImage}
-                      sx={{ width: 24, height: 24 }}
-                    ></Avatar>
+                    <a
+                      href={coinData && coinData?.coingecko_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      <Avatar
+                        src={CoinGeckoImage}
+                        sx={{ width: 24, height: 24 }}
+                      ></Avatar>
+                    </a>
+                    <a
+                      href={coinData && coinData?.market_cap_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      <Avatar
+                        src={CoinMarketcapImage}
+                        sx={{ width: 24, height: 24 }}
+                      ></Avatar>
+                    </a>
                     <RWebShare
                       data={{
                         text: "Find out this coin in Coinxhigh",

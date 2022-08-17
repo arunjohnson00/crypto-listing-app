@@ -181,7 +181,11 @@ const CoinPageOverview = () => {
                 </Tooltip>
               </Stack>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                API need
+                {coinDetailOverview &&
+                coinDetailOverview[0]?.total_holders !== null &&
+                coinDetailOverview[0]?.total_holders !== ""
+                  ? coinDetailOverview[0]?.total_holders
+                  : "NA"}
               </Typography>
             </Stack>
             <Stack
