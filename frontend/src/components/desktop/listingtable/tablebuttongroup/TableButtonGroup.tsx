@@ -9,25 +9,13 @@ import Box from "@mui/material/Box";
 import { Divider, Stack } from "@mui/material";
 import StarOutlineRoundedIcon from "@mui/icons-material/StarOutlineRounded";
 
-import {
-  coinsRecentlyAddedRequest,
-  coinsBiggestGainersRequest,
-  coinsBiggestLosersRequest,
-  coinsFeaturedCoinListRequest,
-  coinsCryptoCurrenciesListRequest,
-  coinsCryptoCurrenciesNewRequest,
-  coinsCryptoCurrenciesPresaleRequest,
-  coinsCryptoCurrenciesTodaysBestRequest,
-  coinsCryptoCurrenciesTabRequest,
-} from "../../../../store/action";
-
-const TableButtonGroup = ({ tableTabvalue, setTableTabValue }: any) => {
+const TableButtonGroup = ({
+  tableTabvalue,
+  setTableTabValue,
+  tableTabHandleChange,
+}: any) => {
   const location = useLocation();
   const navigate = useNavigate();
-
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setTableTabValue(newValue);
-  };
 
   useEffect(() => {
     location?.pathname === "/coins" && setTableTabValue("2");
@@ -47,7 +35,7 @@ const TableButtonGroup = ({ tableTabvalue, setTableTabValue }: any) => {
     <Box sx={{ width: "100%" }} pt={1}>
       <Tabs
         value={tableTabvalue}
-        onChange={handleChange}
+        onChange={tableTabHandleChange}
         variant="scrollable"
         scrollButtons
         aria-label="secondary tabs example"

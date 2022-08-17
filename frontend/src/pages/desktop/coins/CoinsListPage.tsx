@@ -103,6 +103,15 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
     setPage({ ...page, pagination: 0 });
   };
 
+  const tableTabHandleChange = (
+    event: React.SyntheticEvent,
+    newValue: string
+  ) => {
+    setTableTabValue(newValue);
+    setTableData("");
+    setPage({ ...page, pagination: 0 });
+  };
+
   useEffect(() => {
     const successHandler = (res: any) => {
       setPreLoader({
@@ -163,7 +172,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
         coinsBiggestGainersRequest("noData", successHandler, errorHandler)
       );
     location?.pathname === "/coins/biggest-losers" &&
-      tableTabvalue === "3" &&
+      tableTabvalue === "4" &&
       dispatch(
         coinsBiggestLosersRequest("noData", successHandler, errorHandler)
       );
@@ -601,11 +610,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
               <TableButtonGroup
                 tableTabvalue={tableTabvalue}
                 setTableTabValue={setTableTabValue}
-                setTableData={setTableData}
-                tableData={tableData}
-                page={page}
-                setHTMLTablePreLoader={setHTMLTablePreLoader}
-                htmlTablePreLoader={htmlTablePreLoader}
+                tableTabHandleChange={tableTabHandleChange}
               />
             </Grid>
             <Grid xs={12}>
