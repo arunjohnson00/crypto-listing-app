@@ -45,7 +45,7 @@ const UpcomingEventsCardSlider = ({ data, variant }: any) => {
               variant="square"
               src="https://cryptologos.cc/logos/ethereum-eth-logo.png"
             />
-            <Stack direction="column" spacing={0.5} width="100%">
+            <Stack direction="column" spacing={0.8} width="100%">
               <Stack direction="column" spacing={0} width="100%">
                 <Typography
                   sx={{
@@ -70,22 +70,28 @@ const UpcomingEventsCardSlider = ({ data, variant }: any) => {
                 direction="row"
                 spacing={0.8}
                 width="100%"
-                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                sx={{
+                  alignItems: "center",
+                  justifyContent:
+                    variant === "ads" ? "space-between" : "flex-end",
+                }}
               >
-                <Button
-                  variant="contained"
-                  startIcon={<ThumbUpOffAltIcon />}
-                  size="small"
-                  sx={{
-                    borderRadius: 10,
-                    textTransform: "capitalize",
-                    fontSize: ".6rem",
-                    color: "#00BEAA",
-                    backgroundColor: "#01061A",
-                  }}
-                >
-                  238 Votes
-                </Button>
+                {variant === "ads" && (
+                  <Button
+                    variant="contained"
+                    startIcon={<ThumbUpOffAltIcon />}
+                    size="small"
+                    sx={{
+                      borderRadius: 10,
+                      textTransform: "capitalize",
+                      fontSize: ".6rem",
+                      color: "#00BEAA",
+                      backgroundColor: "#01061A",
+                    }}
+                  >
+                    238 Votes
+                  </Button>
+                )}
 
                 <Button
                   variant="contained"

@@ -1012,11 +1012,11 @@ const HomePage = ({ windowInnerWidth }: any) => {
             justifyContent: "space-between",
           }}
         >
-          <Grid xs={12} sm={12} md={3} lg={3} xl={3}>
+          <Grid xs={12} sm={12} md={2.7} lg={2.7} xl={2.7}>
             <UpcomingEventsCardSlider variant="ads" />
           </Grid>
 
-          <Grid xs={12} sm={12} md={9} lg={9} xl={9}>
+          <Grid xs={12} sm={12} md={9.3} lg={9.3} xl={9.3}>
             <Carousel
               responsive={responsiveUpcomingEvents}
               infinite={true}
