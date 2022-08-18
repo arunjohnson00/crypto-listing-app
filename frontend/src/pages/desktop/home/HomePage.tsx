@@ -85,11 +85,11 @@ const responsiveUpcomingEvents = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 4,
+    items: 3.5,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 4,
+    items: 3.5,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
@@ -1000,8 +1000,10 @@ const HomePage = ({ windowInnerWidth }: any) => {
             </Grid>
           </Stack>
         </Grid>
+
         <Grid
-          xs={12}
+          container
+          spacing={1}
           sx={{
             alignItems: "center",
             paddingTop: "23px",
@@ -1010,42 +1012,71 @@ const HomePage = ({ windowInnerWidth }: any) => {
             justifyContent: "space-between",
           }}
         >
-          <Carousel
-            responsive={responsiveUpcomingEvents}
-            infinite={true}
-            removeArrowOnDeviceType={["tablet", "mobile"]}
-            arrows={false}
-            autoPlay={false}
-            draggable={true}
-            swipeable={true}
-            minimumTouchDrag={10}
-            keyBoardControl={true}
-            shouldResetAutoplay={false}
-          >
-            <Box>
-              <UpcomingEventsCardSlider variant="ads" />
-            </Box>
-            <Box>
-              <UpcomingEventsCardSlider />
-            </Box>
-            <Box>
-              <UpcomingEventsCardSlider />
-            </Box>
-            <Box>
-              <UpcomingEventsCardSlider />
-            </Box>
-            <Box>
-              <UpcomingEventsCardSlider />
-            </Box>
-            <Box>
-              <UpcomingEventsCardSlider />
-            </Box>
-            <Box>
-              <UpcomingEventsCardSlider />
-            </Box>
-          </Carousel>
-        </Grid>
+          <Grid xs={12} sm={12} md={3} lg={3} xl={3}>
+            <UpcomingEventsCardSlider variant="ads" />
+          </Grid>
 
+          <Grid xs={12} sm={12} md={9} lg={9} xl={9}>
+            <Carousel
+              responsive={responsiveUpcomingEvents}
+              infinite={true}
+              removeArrowOnDeviceType={["tablet", "mobile"]}
+              arrows={false}
+              autoPlay={true}
+              draggable={true}
+              swipeable={true}
+              minimumTouchDrag={10}
+              keyBoardControl={true}
+              shouldResetAutoplay={false}
+            >
+              <Box>
+                <UpcomingEventsCardSlider />
+              </Box>
+              <Box>
+                <UpcomingEventsCardSlider />
+              </Box>
+              <Box>
+                <UpcomingEventsCardSlider />
+              </Box>
+              <Box>
+                <UpcomingEventsCardSlider />
+              </Box>
+              <Box>
+                <UpcomingEventsCardSlider />
+              </Box>
+              <Box>
+                <UpcomingEventsCardSlider />
+              </Box>
+              <Box>
+                <UpcomingEventsCardSlider />
+              </Box>
+            </Carousel>
+          </Grid>
+        </Grid>
+        <Grid
+          xs={12}
+          sx={{
+            alignItems: "center",
+          }}
+        >
+          <Stack
+            direction="row"
+            spacing={3}
+            sx={{
+              //borderTop: "1px solid #1a1545",
+              // borderBottom: "1px solid #1a1545",
+              //marginTop: "0px",
+              // marginBottom: "23px",
+
+              alignItems: "center",
+              justifyContent: " flex-end",
+            }}
+          >
+            <Link to="#" style={{ textDecoration: "none", color: "inherit" }}>
+              <ViewMoreBtn title="View more" />
+            </Link>
+          </Stack>
+        </Grid>
         <Grid
           xs={12}
           sx={{
