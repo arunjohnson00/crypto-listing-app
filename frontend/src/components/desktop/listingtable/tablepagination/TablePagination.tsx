@@ -1,4 +1,5 @@
 import TablePagination from "@mui/material/TablePagination";
+import { Pagination } from "@mui/material";
 import { useSelector } from "react-redux";
 const TableListPagination = ({
   page,
@@ -26,6 +27,22 @@ const TableListPagination = ({
         },
       }}
     />
+
+    // <Pagination
+    //   count={cryptoCurrenciesList && cryptoCurrenciesList?.total}
+    //   page={page}
+    //   onChange={handleChangePage}
+    //   showFirstButton
+    //   showLastButton
+    //   defaultPage={0}
+    //   sx={{
+    //     color: "#FFFFFF",
+    //     "&.MuiSvgIcon-root-MuiSelect-icon": { color: "#FFFFFF" },
+    //     "& .MuiPaginationItem-root": {
+    //       color: "#fff",
+    //     },
+    //   }}
+    // />
   );
 };
 

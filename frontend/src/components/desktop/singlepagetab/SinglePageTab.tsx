@@ -37,7 +37,7 @@ const SinglePageTab = () => {
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <TabList
             variant="scrollable"
-            //scrollButtons={true}
+            scrollButtons={true}
             onChange={handleChange}
             aria-label="lab API tabs example"
             textColor="inherit"
@@ -58,17 +58,28 @@ const SinglePageTab = () => {
               "& .MuiTab-root.Mui-selected": {
                 color: "#19ffb0",
               },
+
+              "&.MuiTabs-root": {
+                color: "#fff",
+              },
+
+              "&.MuiTabs-root .MuiTabs-scrollButtons": {},
+              "&.MuiTabs-root  .Mui-disabled": {
+                display: "none",
+              },
             }}
           >
             <Tab label="Overview" value="1" />
             <Tab label="About" value="2" />
             <Tab label="Ratings" value="3" />
             <Tab label="Markets" value="4" />
-            <Tab label="FAQ" value="5" />
-            <Tab label="Events" value="6" />
-            <Tab label="Presale Details" value="7" />
-            <Tab label="KYC Details" value="8" />
-            <Tab label="Audit Details" value="9" />
+            <Tab label="Historical Data" value="5" />
+            <Tab label="Today's Price" value="6" />
+            <Tab label="FAQ" value="7" />
+            <Tab label="Events" value="8" />
+            <Tab label="Presale Details" value="9" />
+            <Tab label="KYC Details" value="10" />
+            <Tab label="Audit Details" value="11" />
           </TabList>
           <Divider sx={{ borderColor: "#2D2858", borderBottomWidth: "1px" }} />
         </Box>
@@ -84,13 +95,15 @@ const SinglePageTab = () => {
         <TabPanel value="4">
           <CoinPageMarket />
         </TabPanel>
-        <TabPanel value="5">
+        <TabPanel value="5">Item Three</TabPanel>
+        <TabPanel value="6">Item One</TabPanel>
+        <TabPanel value="7">
           <CoinPageFAQ />
         </TabPanel>
-        <TabPanel value="6">Item Three</TabPanel>
-        <TabPanel value="7">Item One</TabPanel>
-        <TabPanel value="8">Item Two</TabPanel>
-        <TabPanel value="9">Item Three</TabPanel>
+        <TabPanel value="8">Item Three</TabPanel>
+        <TabPanel value="9">Item One</TabPanel>
+        <TabPanel value="10">Item Two</TabPanel>
+        <TabPanel value="11">Item Three</TabPanel>
       </TabContext>
     </Box>
   );

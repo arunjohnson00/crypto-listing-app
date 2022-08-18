@@ -75,9 +75,9 @@ const ListingTable = ({
               sx={{ backgroundColor: "#000000", color: "#FFFFF5", height: 50 }}
             >
               <TableRow sx={{ borderBottom: "2px solid black" }}>
-                {/* <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
-                #
-              </TableCell> */}
+                <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
+                  #
+                </TableCell>
                 <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
                   Coin
                 </TableCell>
@@ -123,16 +123,16 @@ const ListingTable = ({
                     }}
                     key={index}
                   >
-                    {/* <TableCell
-                    sx={{
-                      color: "#FFFFFF",
-                      border: 0,
+                    <TableCell
+                      sx={{
+                        color: "#FFFFFF",
+                        border: 0,
 
-                      maxWidth: 1,
-                    }}
-                  >
-                    {data?.id}
-                  </TableCell> */}
+                        maxWidth: 1,
+                      }}
+                    >
+                      {index + 1}
+                    </TableCell>
                     <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                       {" "}
                       <Avatar
