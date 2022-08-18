@@ -760,6 +760,116 @@ const HomePage = ({ windowInnerWidth }: any) => {
               <Typography
                 sx={{ color: "#FFFFFF", fontWeight: 500, fontSize: "1.7rem" }}
               >
+                Upcoming Events
+              </Typography>
+            </Grid>
+            <Grid item xs={9.5}>
+              <Divider
+                sx={{ borderColor: "#2D4297", borderBottomWidth: "2px" }}
+              />
+            </Grid>
+          </Stack>
+        </Grid>
+
+        <Grid
+          container
+          spacing={1}
+          sx={{
+            alignItems: "center",
+            paddingTop: "23px",
+            paddingBottom: "23px",
+
+            justifyContent: "space-between",
+          }}
+        >
+          <Grid xs={12} sm={12} md={2.7} lg={2.7} xl={2.7}>
+            <UpcomingEventsCardSlider variant="ads" />
+          </Grid>
+
+          <Grid xs={12} sm={12} md={9.3} lg={9.3} xl={9.3}>
+            <Carousel
+              responsive={responsiveUpcomingEvents}
+              infinite={true}
+              removeArrowOnDeviceType={["tablet", "mobile"]}
+              arrows={false}
+              autoPlay={true}
+              draggable={true}
+              swipeable={true}
+              minimumTouchDrag={10}
+              keyBoardControl={true}
+              shouldResetAutoplay={false}
+            >
+              <Box>
+                <UpcomingEventsCardSlider />
+              </Box>
+              <Box>
+                <UpcomingEventsCardSlider />
+              </Box>
+              <Box>
+                <UpcomingEventsCardSlider />
+              </Box>
+              <Box>
+                <UpcomingEventsCardSlider />
+              </Box>
+              <Box>
+                <UpcomingEventsCardSlider />
+              </Box>
+              <Box>
+                <UpcomingEventsCardSlider />
+              </Box>
+              <Box>
+                <UpcomingEventsCardSlider />
+              </Box>
+            </Carousel>
+          </Grid>
+        </Grid>
+        <Grid
+          xs={12}
+          sx={{
+            alignItems: "center",
+          }}
+        >
+          <Stack
+            direction="row"
+            spacing={3}
+            sx={{
+              //borderTop: "1px solid #1a1545",
+              // borderBottom: "1px solid #1a1545",
+              //marginTop: "0px",
+              // marginBottom: "23px",
+
+              alignItems: "center",
+              justifyContent: " flex-end",
+            }}
+          >
+            <Link to="#" style={{ textDecoration: "none", color: "inherit" }}>
+              <ViewMoreBtn title="View more" />
+            </Link>
+          </Stack>
+        </Grid>
+
+        <Grid
+          xs={12}
+          sx={{
+            alignItems: "center",
+            paddingTop: "23px",
+            paddingBottom: "23px",
+          }}
+        >
+          <Stack
+            direction="row"
+            spacing={3}
+            sx={{
+              //borderTop: "1px solid #1a1545",
+              // borderBottom: "1px solid #1a1545",
+
+              alignItems: "center",
+            }}
+          >
+            <Grid item xs="auto">
+              <Typography
+                sx={{ color: "#FFFFFF", fontWeight: 500, fontSize: "1.7rem" }}
+              >
                 Trending Coins
               </Typography>
             </Grid>
@@ -968,115 +1078,6 @@ const HomePage = ({ windowInnerWidth }: any) => {
           </Stack>
         </Grid>
 
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: "23px",
-            paddingBottom: "23px",
-          }}
-        >
-          <Stack
-            direction="row"
-            spacing={3}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-
-              alignItems: "center",
-            }}
-          >
-            <Grid item xs="auto">
-              <Typography
-                sx={{ color: "#FFFFFF", fontWeight: 500, fontSize: "1.7rem" }}
-              >
-                Upcoming Events
-              </Typography>
-            </Grid>
-            <Grid item xs={9.5}>
-              <Divider
-                sx={{ borderColor: "#2D4297", borderBottomWidth: "2px" }}
-              />
-            </Grid>
-          </Stack>
-        </Grid>
-
-        <Grid
-          container
-          spacing={1}
-          sx={{
-            alignItems: "center",
-            paddingTop: "23px",
-            paddingBottom: "23px",
-
-            justifyContent: "space-between",
-          }}
-        >
-          <Grid xs={12} sm={12} md={2.7} lg={2.7} xl={2.7}>
-            <UpcomingEventsCardSlider variant="ads" />
-          </Grid>
-
-          <Grid xs={12} sm={12} md={9.3} lg={9.3} xl={9.3}>
-            <Carousel
-              responsive={responsiveUpcomingEvents}
-              infinite={true}
-              removeArrowOnDeviceType={["tablet", "mobile"]}
-              arrows={false}
-              autoPlay={true}
-              draggable={true}
-              swipeable={true}
-              minimumTouchDrag={10}
-              keyBoardControl={true}
-              shouldResetAutoplay={false}
-            >
-              <Box>
-                <UpcomingEventsCardSlider />
-              </Box>
-              <Box>
-                <UpcomingEventsCardSlider />
-              </Box>
-              <Box>
-                <UpcomingEventsCardSlider />
-              </Box>
-              <Box>
-                <UpcomingEventsCardSlider />
-              </Box>
-              <Box>
-                <UpcomingEventsCardSlider />
-              </Box>
-              <Box>
-                <UpcomingEventsCardSlider />
-              </Box>
-              <Box>
-                <UpcomingEventsCardSlider />
-              </Box>
-            </Carousel>
-          </Grid>
-        </Grid>
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-          }}
-        >
-          <Stack
-            direction="row"
-            spacing={3}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              //marginTop: "0px",
-              // marginBottom: "23px",
-
-              alignItems: "center",
-              justifyContent: " flex-end",
-            }}
-          >
-            <Link to="#" style={{ textDecoration: "none", color: "inherit" }}>
-              <ViewMoreBtn title="View more" />
-            </Link>
-          </Stack>
-        </Grid>
         <Grid
           xs={12}
           sx={{

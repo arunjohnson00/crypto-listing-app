@@ -36,8 +36,48 @@ const CoinPageAbout = () => {
             About {coinAboutBlock && coinAboutBlock[0]?.name}
           </Typography>
 
-          <Stack direction="column" mt={2}>
-            <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+          <Stack direction="column" mt={2} spacing={2}>
+            <Typography sx={{ color: "#FFFFF5", fontSize: ".85rem" }}>
+              {coinAboutBlock && coinAboutBlock[0]?.first_pragraph + "."}{" "}
+              {coinAboutBlock &&
+                coinAboutBlock[0]?.first_pragraph &&
+                `The live ${
+                  coinAboutBlock && coinAboutBlock[0]?.name
+                } price today is $5.631145622449 with a 24-hour
+              trading volume of $26,254.16. ${
+                coinAboutBlock && coinAboutBlock[0]?.name
+              } is down 64.74% in the last
+              24 hours and 18.56% up in the Last 1 Hour . The current Coinxhigh
+              ranking is #418, with a live market cap of $45,792,809. It has a
+              circulating supply of 562,103,091,188,157 ${
+                coinAboutBlock && coinAboutBlock[0]?.name
+              } coins and a
+              max. supply of 1,000,000,000,000,000 ${
+                coinAboutBlock && coinAboutBlock[0]?.name
+              } coins. The current
+              rating of ${
+                coinAboutBlock && coinAboutBlock[0]?.name
+              } on Coinxhigh is 4.9. ${
+                  coinAboutBlock && coinAboutBlock[0]?.name
+                } hit an all time
+              high of $0.003382723655 on Jan 05, 2022 (212 Days ago). `}
+            </Typography>
+
+            <Typography sx={{ color: "#FFFFF5", fontSize: ".85rem" }}>
+              You can read the Latest news about safemoon{" "}
+              <a
+                href={`https://news.coinxhigh.com/?s=${
+                  coinAboutBlock && coinAboutBlock[0]?.name.toLowerCase()
+                }`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {" "}
+                here.
+              </a>{" "}
+            </Typography>
+
+            <Typography sx={{ color: "#FFFFF5", fontSize: ".85rem" }}>
               {coinAboutBlock && coinAboutBlock[0]?.second_pragraph}
             </Typography>
           </Stack>
