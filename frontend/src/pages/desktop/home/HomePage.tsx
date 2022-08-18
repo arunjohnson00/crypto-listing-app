@@ -60,6 +60,7 @@ import {
 } from "../../../store/action";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 import LatestNewsCardScroll from "../../../components/desktop/latestnews/LatestNewsCardScroll";
+import UpcomingEventsCardSlider from "../../../components/desktop/cards/upcomingeventscardslider/UpcomingEventsCardSlider";
 
 const responsiveNFTCollections = {
   superLargeDesktop: {
@@ -80,7 +81,25 @@ const responsiveNFTCollections = {
     items: 1,
   },
 };
-
+const responsiveUpcomingEvents = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 4,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 4,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 3,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
 const responsiveTrendingCoins = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -183,6 +202,10 @@ const HomePage = ({ windowInnerWidth }: any) => {
 
   const trendingCoinList = useSelector((data: any) => {
     return data?.homeReducer?.trending_coin_list?.data;
+  });
+
+  const NFTList = useSelector((data: any) => {
+    return data?.homeReducer?.nft_listings?.data;
   });
 
   const tabIndex = useSelector((data: any) => {
@@ -949,6 +972,84 @@ const HomePage = ({ windowInnerWidth }: any) => {
           xs={12}
           sx={{
             alignItems: "center",
+            paddingTop: "23px",
+            paddingBottom: "23px",
+          }}
+        >
+          <Stack
+            direction="row"
+            spacing={3}
+            sx={{
+              //borderTop: "1px solid #1a1545",
+              // borderBottom: "1px solid #1a1545",
+
+              alignItems: "center",
+            }}
+          >
+            <Grid item xs="auto">
+              <Typography
+                sx={{ color: "#FFFFFF", fontWeight: 500, fontSize: "1.7rem" }}
+              >
+                Upcoming Events
+              </Typography>
+            </Grid>
+            <Grid item xs={9.5}>
+              <Divider
+                sx={{ borderColor: "#2D4297", borderBottomWidth: "2px" }}
+              />
+            </Grid>
+          </Stack>
+        </Grid>
+        <Grid
+          xs={12}
+          sx={{
+            alignItems: "center",
+            paddingTop: "23px",
+            paddingBottom: "23px",
+
+            justifyContent: "space-between",
+          }}
+        >
+          <Carousel
+            responsive={responsiveUpcomingEvents}
+            infinite={true}
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            arrows={false}
+            autoPlay={false}
+            draggable={true}
+            swipeable={true}
+            minimumTouchDrag={10}
+            keyBoardControl={true}
+            shouldResetAutoplay={false}
+          >
+            <Box>
+              <UpcomingEventsCardSlider variant="ads" />
+            </Box>
+            <Box>
+              <UpcomingEventsCardSlider />
+            </Box>
+            <Box>
+              <UpcomingEventsCardSlider />
+            </Box>
+            <Box>
+              <UpcomingEventsCardSlider />
+            </Box>
+            <Box>
+              <UpcomingEventsCardSlider />
+            </Box>
+            <Box>
+              <UpcomingEventsCardSlider />
+            </Box>
+            <Box>
+              <UpcomingEventsCardSlider />
+            </Box>
+          </Carousel>
+        </Grid>
+
+        <Grid
+          xs={12}
+          sx={{
+            alignItems: "center",
           }}
         >
           <Stack
@@ -1016,43 +1117,27 @@ const HomePage = ({ windowInnerWidth }: any) => {
             justifyContent: "space-between",
           }}
         >
-          <Carousel
-            responsive={responsiveNFTCollections}
-            infinite={true}
-            removeArrowOnDeviceType={["tablet", "mobile"]}
-            arrows={true}
-            autoPlay={false}
-            draggable={true}
-            swipeable={true}
-            minimumTouchDrag={10}
-            keyBoardControl={true}
-            shouldResetAutoplay={false}
-          >
-            <Box>
-              <NftCollectionCard />
-            </Box>
-            <Box>
-              <NftCollectionCard />
-            </Box>
-            <Box>
-              <NftCollectionCard />
-            </Box>
-            <Box>
-              <NftCollectionCard />
-            </Box>
-            <Box>
-              <NftCollectionCard />
-            </Box>
-            <Box>
-              <NftCollectionCard />
-            </Box>
-            <Box>
-              <NftCollectionCard />
-            </Box>
-            <Box>
-              <NftCollectionCard />
-            </Box>
-          </Carousel>
+          {NFTList && NFTList?.data && (
+            <Carousel
+              responsive={responsiveNFTCollections}
+              infinite={true}
+              removeArrowOnDeviceType={["tablet", "mobile"]}
+              arrows={true}
+              autoPlay={false}
+              draggable={true}
+              swipeable={true}
+              minimumTouchDrag={10}
+              keyBoardControl={true}
+              shouldResetAutoplay={false}
+            >
+              {NFTList &&
+                NFTList?.data?.map((item: any, index: number) => (
+                  <Box key={index}>
+                    <NftCollectionCard data={item && item} />
+                  </Box>
+                ))}
+            </Carousel>
+          )}
         </Grid>
 
         <Grid
@@ -1189,7 +1274,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           </Stack>
         </Grid>
 
-        <Grid
+        {/* <Grid
           container
           xs={12}
           sx={{
@@ -1199,7 +1284,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           }}
         >
           <AdsCardHome />
-        </Grid>
+        </Grid> */}
 
         <Grid
           xs={12}

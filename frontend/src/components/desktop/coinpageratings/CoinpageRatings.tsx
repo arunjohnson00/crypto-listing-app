@@ -16,6 +16,7 @@ import {
 import moment from "moment";
 import WiriteReview from "../writereview/WiriteReview";
 
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 const CoinpageRatings = () => {
   const [openWriteReview, setOpenWriteReview] = useState(false);
   const coinRatingBlock = useSelector((data: any) => {
@@ -360,15 +361,15 @@ const CoinpageRatings = () => {
                   >
                     <Avatar
                       alt="Remy Sharp"
-                      src="https://mui.com/static/images/avatar/1.jpg"
+                      src={`${serverAPIUrl}public/uploads/users/${item?.avatar}`}
                     />
-                    <Stack direction="column">
+                    <Stack direction="column" spacing={0.2}>
                       <Typography
-                        variant="h6"
                         sx={{
                           color: "#FFFFF5",
                           fontWeight: 400,
                           lineHeight: 1,
+                          fontSize: "1.1rem",
                         }}
                       >
                         {item?.name}
@@ -403,7 +404,11 @@ const CoinpageRatings = () => {
                   >
                     <Rating
                       name="large"
-                      defaultValue={5}
+                      defaultValue={0}
+                      value={
+                        coinRatingBlock && parseFloat(item?.rating).toFixed(1)
+                      }
+                      precision={0.1}
                       size="large"
                       readOnly
                       sx={{ fontSize: "1.5rem" }}
