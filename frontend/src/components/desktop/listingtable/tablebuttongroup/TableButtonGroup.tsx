@@ -22,14 +22,14 @@ const TableButtonGroup = ({
     location?.pathname === "/coins/biggest-gainers" && setTableTabValue("3");
     location?.pathname === "/coins/biggest-losers" && setTableTabValue("4");
     location?.pathname === "/coins/recently-added" && setTableTabValue("5");
-  }, [setTableTabValue]);
+  }, [location]);
 
   useEffect(() => {
     tableTabvalue === "2" && navigate("/coins");
     tableTabvalue === "3" && navigate("/coins/biggest-gainers");
     tableTabvalue === "4" && navigate("/coins/biggest-losers");
     tableTabvalue === "5" && navigate("/coins/recently-added");
-  }, [tableTabvalue, navigate]);
+  }, [tableTabvalue]);
 
   return (
     <Box sx={{ width: "100%" }} pt={1}>

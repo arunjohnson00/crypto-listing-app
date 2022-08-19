@@ -74,7 +74,7 @@ const AppRoutes = () => {
         )}
 
         <Route
-          path="/nft"
+          path="/nft/*"
           element={
             <PublicRoutes>
               <SingleNftPage />
@@ -126,7 +126,7 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/nftlisting"
+          path="/nft"
           element={
             <PublicRoutes>
               <NftListingsPage />

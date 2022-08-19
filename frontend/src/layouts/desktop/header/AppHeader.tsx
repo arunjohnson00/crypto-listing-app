@@ -57,7 +57,7 @@ const AppHeader = ({ windowInnerWidth }: any) => {
               <AppBarNavBtn
                 title="Coins"
                 iconStatus={true}
-                path="/coin"
+                path="/coins"
                 menu={coinMenu}
               />
               <AppBarNavBtn
@@ -69,14 +69,27 @@ const AppHeader = ({ windowInnerWidth }: any) => {
               <AppBarNavBtn
                 title="Airdrops"
                 iconStatus={true}
+                path="/airdrops"
                 menu={airdropsMenu}
               />
-              <AppBarNavBtn title="Events" iconStatus={true} />
+              <AppBarNavBtn
+                title="Events"
+                path="/upcoming-events"
+                iconStatus={true}
+              />
               <AppBarNavBtn title="Exchanges" iconStatus={true} />
               <AppBarNavBtn title="Promote" iconStatus={true} />
-              <AppBarNavBtn title="Discover" iconStatus={true} />
-              <AppBarNavBtn title="Chart" iconStatus={true} />
-              <AppBarNavBtn title="Leader Board" iconStatus={true} />
+              <AppBarNavBtn
+                title="Discover"
+                iconStatus={true}
+                path="/discover"
+              />
+              <AppBarNavBtn title="Chart" iconStatus={true} path="/chart" />
+              <AppBarNavBtn
+                title="Leader Board"
+                iconStatus={true}
+                path="/leader-board"
+              />
             </Stack>
           )}
         </AppBar>

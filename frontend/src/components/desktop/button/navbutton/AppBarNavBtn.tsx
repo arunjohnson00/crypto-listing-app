@@ -3,7 +3,7 @@ import { Button, Typography, Stack, Avatar, Box } from "@mui/material";
 import { BsFillCaretUpFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import KeyboardArrowDownTwoToneIcon from "@mui/icons-material/KeyboardArrowDownTwoTone";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+
 const AppBarNavBtn = ({ title, iconStatus, path, menu }: any) => {
   const [menuHover, setMenuHover] = useState(false);
 
