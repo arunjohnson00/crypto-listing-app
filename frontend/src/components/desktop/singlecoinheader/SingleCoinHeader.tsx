@@ -63,6 +63,7 @@ import RedditGraphImage from "../../../assets/singlepagecoin/graph/reddit.png";
 import TelegramGraphImage from "../../../assets/singlepagecoin/graph/telegram.png";
 import TwitterGraphImage from "../../../assets/singlepagecoin/graph/twitter.png";
 import GithubGraphImage from "../../../assets/singlepagecoin/graph/github.png";
+import CoinPageDropDown from "../coinpagedropdown/CoinPageDropDown";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -383,6 +384,24 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   />
                 </Stack>
               </Grid>
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                spacing={0.5}
+                sx={{
+                  alignItems: "flex-start",
+                }}
+                justifyContent={{
+                  xs: "center",
+                  sm: "center",
+                  md: "flex-end",
+                }}
+              >
+                <CoinPageDropDown data="Test One" title="Buy" />
+                <CoinPageDropDown data="Test Two" title="Exchange" />
+                <CoinPageDropDown data="Test Three" title="Gaming" />
+                <CoinPageDropDown data="Test Four" title="Earn Crypto" />
+              </Stack>
+
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
                 spacing={0.5}
