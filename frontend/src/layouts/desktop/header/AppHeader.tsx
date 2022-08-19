@@ -8,6 +8,8 @@ import LoginHeaderBtn from "../../../components/desktop/button/loginheader/Login
 import { Stack, Box, Grid } from "@mui/material";
 import AppBarNavBtn from "../../../components/desktop/button/navbutton/AppBarNavBtn";
 
+import { coinMenu, nftMenu, airdropsMenu } from "./helper";
+
 const AppHeader = ({ windowInnerWidth }: any) => {
   return (
     <Grid xs={12}>
@@ -52,18 +54,29 @@ const AppHeader = ({ windowInnerWidth }: any) => {
               direction="row"
               sx={{ alignItems: "center", justifyContent: "space-between" }}
             >
-              <AppBarNavBtn title="Coins" iconStatus={true} path="/coin" />
-              <AppBarNavBtn title="NFT" iconStatus={true} path="/nft" />
-              <AppBarNavBtn title="Airdrops" iconStatus={true} />
-              <AppBarNavBtn title="AMA" iconStatus={true} />
-              <AppBarNavBtn title="KYC" iconStatus={true} />
-              <AppBarNavBtn title="Audit" iconStatus={true} />
-              <AppBarNavBtn title="Presales" />
-              <AppBarNavBtn title="News" />
-              <AppBarNavBtn title="Upcoming Events" />
-              <AppBarNavBtn title="Leader Board" />
-              <AppBarNavBtn title="Chart" />
+              <AppBarNavBtn
+                title="Coins"
+                iconStatus={true}
+                path="/coin"
+                menu={coinMenu}
+              />
+              <AppBarNavBtn
+                title="NFT"
+                iconStatus={true}
+                path="/nft"
+                menu={nftMenu}
+              />
+              <AppBarNavBtn
+                title="Airdrops"
+                iconStatus={true}
+                menu={airdropsMenu}
+              />
+              <AppBarNavBtn title="Events" iconStatus={true} />
+              <AppBarNavBtn title="Exchanges" iconStatus={true} />
               <AppBarNavBtn title="Promote" iconStatus={true} />
+              <AppBarNavBtn title="Discover" iconStatus={true} />
+              <AppBarNavBtn title="Chart" iconStatus={true} />
+              <AppBarNavBtn title="Leader Board" iconStatus={true} />
             </Stack>
           )}
         </AppBar>
