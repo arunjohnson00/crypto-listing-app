@@ -51,7 +51,7 @@ export const StyledInputPopUpRoot = styled("div")(
     display: flex;
     font-weight: 500;
     border-radius: 4px;
-    background: #000000;
+    background: #0f0f0f;
     align-items: center;
     justify-content: center;
 
