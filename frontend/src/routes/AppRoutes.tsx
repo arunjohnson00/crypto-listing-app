@@ -23,6 +23,7 @@ import MobileSingleCoinPage from "../pages/mobile/mobilesinglecoinpage/MobileSin
 import LeaderBoardPage from "../pages/desktop/leaderboard/LeaderBoardPage";
 import ChartPage from "../pages/desktop/chart/ChartPage";
 import FreeCoinPage from "../pages/desktop/freecoin/FreeCoinPage";
+import MobileSingleNftPage from "../pages/mobile/mobilesinglenftpage/MobileSingleNftPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -73,15 +74,25 @@ const AppRoutes = () => {
           />
         )}
 
-        <Route
-          path="/nft/*"
-          element={
-            <PublicRoutes>
-              <SingleNftPage />
-            </PublicRoutes>
-          }
-        />
-
+        {windowInnerWidth >= 900 ? (
+          <Route
+            path="/nft/*"
+            element={
+              <PublicRoutes>
+                <SingleNftPage />
+              </PublicRoutes>
+            }
+          />
+        ) : (
+          <Route
+            path="/nft/*"
+            element={
+              <PublicRoutes>
+                <MobileSingleNftPage />
+              </PublicRoutes>
+            }
+          />
+        )}
         <Route
           path="/coins/*"
           element={

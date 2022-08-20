@@ -21,6 +21,7 @@ import Rating from "@mui/material/Rating";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { styled } from "@mui/material/styles";
+import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
 
 const SingleNftPage = () => {
   const StyledRating = styled(Rating)({
@@ -115,8 +116,48 @@ const SingleNftPage = () => {
               alignItems: "center",
             }}
           >
-            <CoinSlider />
+            {/* <CoinSlider /> */}
           </Stack>
+        </Grid>
+        <Grid
+          container
+          xs={12}
+          sx={{
+            alignItems: "center",
+          }}
+        >
+          <Grid
+            xs={12}
+            sm={12}
+            md={6}
+            lg={6}
+            xl={6}
+            sx={{
+              alignItems: "center",
+            }}
+            py={1}
+          >
+            <BreadCrumbs data="" home="Home" path="NFT" />
+          </Grid>
+          <Grid
+            xs={12}
+            sm={12}
+            md={6}
+            lg={6}
+            xl={6}
+            sx={{
+              alignItems: "center",
+            }}
+            py={1}
+          >
+            <CardMedia
+              component="img"
+              height="80"
+              image="https://iili.io/UtY5Kv.jpg"
+              alt="green iguana"
+              sx={{ objectFit: "unset" }}
+            />
+          </Grid>
         </Grid>
         <Grid container xs={12} pt={3}>
           <Grid xs={12} sm={12} md={5} lg={5} xl={5} pt={3}>

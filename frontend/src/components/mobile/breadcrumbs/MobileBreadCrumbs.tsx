@@ -7,9 +7,10 @@ function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
   event.preventDefault();
   console.info("You clicked a breadcrumb.");
 }
-const BreadCrumbs = ({ home, path, data }: any) => {
+const MobileBreadCrumbs = ({ home, path, data }: any) => {
   const location = useLocation();
 
+  console.log(location.pathname);
   return (
     <div role="presentation" onClick={handleClick}>
       <Breadcrumbs
@@ -39,4 +40,4 @@ const BreadCrumbs = ({ home, path, data }: any) => {
   );
 };
 
-export default BreadCrumbs;
+export default MobileBreadCrumbs;

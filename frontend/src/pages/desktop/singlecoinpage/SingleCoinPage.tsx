@@ -182,6 +182,8 @@ const SingleCoinPage = () => {
                 coinDetailFirstBlock !== undefined &&
                 coinDetailFirstBlock[0]
               }
+              home="Home"
+              path="Coin"
             />
           </Grid>
           <Grid

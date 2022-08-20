@@ -14,15 +14,16 @@ import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
 import Marquee from "react-fast-marquee";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
-import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
+
 import MobileTopAlertBox from "../../../components/mobile/alert/topalertbox/MobileTopAlertBox";
 import MobileSingleCoinHeader from "../../../components/mobile/singlecoinheader/MobileSingleCoinHeader";
 import MobileSingleCoinPageAccordion from "../../../components/mobile/singlecoinpageaccordion/MobileSingleCoinPageAccordion";
 import MobileLatestNewsHeading from "../../../components/mobile/Typography/headings/latestnews/MobileLatestNewsHeading";
 import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
 import MobileBreadCrumbs from "../../../components/mobile/breadcrumbs/MobileBreadCrumbs";
+import SingleNFTHeader from "../../../components/mobile/signlenftheader/SingleNFTHeader";
 
-const MobileSingleCoinPage = () => {
+const MobileSingleNftPage = () => {
   const { parse } = require("rss-to-json");
 
   TimeAgo.addDefaultLocale(en);
@@ -107,7 +108,7 @@ const MobileSingleCoinPage = () => {
             }}
             py={1}
           >
-            <MobileBreadCrumbs home="Home" path="Coin" />
+            <MobileBreadCrumbs home="Home" path="NFT" />
           </Grid>
           <Grid
             xs={12}
@@ -137,7 +138,7 @@ const MobileSingleCoinPage = () => {
             paddingTop: 2,
           }}
         >
-          <MobileSingleCoinHeader />
+          <SingleNFTHeader />
         </Grid>
 
         <Grid
@@ -147,12 +148,10 @@ const MobileSingleCoinPage = () => {
             alignItems: "center",
             paddingTop: 2,
           }}
-        >
-          <MobileSingleCoinPageAccordion />
-        </Grid>
+        ></Grid>
       </Grid>
     </Fragment>
   );
 };
 
-export default MobileSingleCoinPage;
+export default MobileSingleNftPage;
