@@ -447,27 +447,6 @@ const SingleNFTHeader = () => {
           orientation={"horizontal"}
           sx={{ borderColor: "#02133C", borderBottomWidth: 2 }}
         />
-        <Stack direction="column" spacing={2} px={1.5}>
-          <Typography
-            sx={{ color: "#00FFE0", fontSize: "1.4rem", fontWeight: 600 }}
-          >
-            About Bored Ape
-          </Typography>
-          <Typography
-            sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 400 }}
-          >
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-          </Typography>
-        </Stack>
       </Stack>
     </Box>
   );

@@ -14,7 +14,7 @@ import UserDashboard from "../pages/useradmin/dashboard/UserDashboard";
 import NftListingsPage from "../pages/desktop/nftlisting/NftListingsPage";
 import CoinsListPage from "../pages/desktop/coins/CoinsListPage";
 import ComparisonPage from "../pages/desktop/comparisonpage/ComparisonPage";
-import UpcomingEvents from "../pages/desktop/upcomingevents/UpcomingEvents";
+import CryptoEvents from "../pages/desktop/cryptoevents/CryptoEvents";
 import AirdropPage from "../pages/desktop/airdrops/AirdropPage";
 import EventsViewPage from "../pages/desktop/eventsview/EventsViewPage";
 import PresaleListPage from "../pages/desktop/presales/PresaleListPage";
@@ -153,10 +153,10 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/upcoming-events"
+          path="/crypto-events"
           element={
             <PublicRoutes>
-              <UpcomingEvents />
+              <CryptoEvents />
             </PublicRoutes>
           }
         />

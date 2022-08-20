@@ -13,10 +13,14 @@ import MenuItem from "@mui/material/MenuItem";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { Search, SearchIconWrapper, StyledInputBase } from "./style";
+import SearchDrawer from "../../../components/mobile/searchdrawer/SearchDrawer";
 
 const MobileAppHeader = () => {
   const pages = ["Products", "Pricing", "Blog"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
+  const [openDrawer, setOpenDrawer] = React.useState({
+    top: false,
+  });
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -28,6 +32,9 @@ const MobileAppHeader = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+  const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
+    setOpenDrawer({ ...openDrawer, top: !openDrawer?.top });
   };
 
   return (
@@ -57,8 +64,15 @@ const MobileAppHeader = () => {
               <StyledInputBase
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
+                onClick={toggleDrawer}
               />
             </Search>
+
+            <SearchDrawer
+              openDrawer={openDrawer}
+              setOpenDrawer={setOpenDrawer}
+              toggleDrawer={toggleDrawer}
+            />
           </Box>
 
           <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>

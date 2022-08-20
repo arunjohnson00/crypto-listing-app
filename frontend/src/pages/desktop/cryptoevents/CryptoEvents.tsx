@@ -14,7 +14,7 @@ import dateFormat, { masks } from "dateformat";
 import UpcomingEventsCard from "../../../components/desktop/cards/upcomingeventscard/UpcomingEventsCard";
 import UpcomingEventCalender from "../../../components/desktop/calender/eventcalender/UpcomingEventCalender";
 
-const UpcomingEvents = () => {
+const CryptoEvents = () => {
   const [date, setDate] = useState<any>(new Date());
 
   const { parse } = require("rss-to-json");
@@ -265,4 +265,4 @@ const UpcomingEvents = () => {
   );
 };
 
-export default UpcomingEvents;
+export default CryptoEvents;
