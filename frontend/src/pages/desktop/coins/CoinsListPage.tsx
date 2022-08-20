@@ -56,7 +56,7 @@ const responsiveFeatured: any = {
 };
 
 const CoinsListPage = ({ windowInnerWidth }: any) => {
-  const location = useLocation();
+  const location: any = useLocation();
   const theme = useTheme();
   const dispatch: any = useDispatch();
   const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
@@ -67,7 +67,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
   const [feed, setFeed] = useState<any>();
   const [tableTabvalue, setTableTabValue] = useState("1");
   const [tableData, setTableData] = useState<any>([]);
-  const [page, setPage] = useState({ pagination: 0, scroll: true });
+  const [page, setPage] = useState({ pagination: 1, scroll: true });
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [preLoader, setPreLoader] = useState<any>({
     recently_added: true,
@@ -153,30 +153,26 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
     const errorHandler = (err: any) => {};
 
     location?.pathname === "/coins" &&
-      tableTabvalue === "2" &&
       dispatch(
         coinsCryptoCurrenciesListRequest(
-          page.pagination + 1,
+          page.pagination,
           successHandler,
           errorHandler
         )
       );
     location?.pathname === "/coins/recently-added" &&
-      tableTabvalue === "5" &&
       dispatch(
         coinsRecentlyAddedRequest("noData", successHandler, errorHandler)
       );
     location?.pathname === "/coins/biggest-gainers" &&
-      tableTabvalue === "3" &&
       dispatch(
         coinsBiggestGainersRequest("noData", successHandler, errorHandler)
       );
     location?.pathname === "/coins/biggest-losers" &&
-      tableTabvalue === "4" &&
       dispatch(
         coinsBiggestLosersRequest("noData", successHandler, errorHandler)
       );
-  }, [dispatch, location, page, tableTabvalue]);
+  }, [location, page]);
 
   useEffect(() => {
     (async () => {

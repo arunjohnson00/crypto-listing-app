@@ -27,9 +27,11 @@ const ListingTable = ({
   setPage,
 }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
-
+  console.log(page);
   const scrollHandler = () => {
-    page?.pagination !== 0 && page?.pagination % 5 === 0
+    // page?.pagination !== 0 &&
+
+    page?.pagination % 5 === 0
       ? setPage({
           ...page,
 

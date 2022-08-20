@@ -79,6 +79,9 @@ const AppBarNavBtn = ({ title, iconStatus, path, menu }: any) => {
                 to={{
                   pathname: `${item?.link}`,
                 }}
+                state={{
+                  scroll: false,
+                }}
                 style={{ textDecoration: "none", color: "#FFFFFF" }}
                 key={index}
               >
