@@ -9,6 +9,7 @@ import {
   Divider,
   CardMedia,
 } from "@mui/material";
+import { useSelector } from "react-redux";
 import Iframe from "react-iframe";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -34,6 +35,12 @@ const responsiveFeatured: any = {
   },
 };
 const MobileCoinPageAbout = () => {
+  const coinAboutBlock = useSelector((data: any) => {
+    return data?.coinReducer?.coin_about_block?.data;
+  });
+  const featuredCoinList = useSelector((data: any) => {
+    return data?.homeReducer?.featured_coin_list?.data;
+  });
   return (
     <Grid container xs={12}>
       <Grid xs={12} sm={12} md={4} lg={4} xl={4}>
@@ -51,34 +58,52 @@ const MobileCoinPageAbout = () => {
               },
             }}
           >
-            About Safemoon
+            About {coinAboutBlock && coinAboutBlock[0]?.name}
           </Typography>
 
-          <Stack direction="column" mt={2}>
-            <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-              Safemoon is a cryptocurrency, which are digital currencies that
-              exist solely online and hope to be used as a medium of exchange.
-              Like more popular cryptocurrencies such as Bitcoin and Ethereum,
-              Safemoon is powered by distributed ledger technology such as
-              blockchain. Safemoon was created on the Binance Smart Chain
-              blockchain and only has a market cap of about $1.3 billion (as of
-              Sept. 2, 2021), compared to about $930 billion for Bitcoin.
-              Safemoon was designed in a way to encourage long-term investment
-              and discourage selling. It does this by charging sellers a 10
-              percent fee, with half of the fee going to Safemoon’s existing
-              holders and the other half to be used in a liquidity pool (in an
-              effort to better maintain price stability).
-              <br /> <br /> Blockchain security firm CertiK found during an
-              audit of Safemoon that its owners acquire tokens created from the
-              liquidity pool, giving them control over tokens created as part of
-              the fee. CertiK flagged this as a major issue in its report and
-              recommended Safemoon improve its security features. Safemoon’s
-              developers also manually reduce the amount of Safemoon in
-              circulation regularly in an effort to reduce supply and increase
-              the price. The price did soar shortly after being introduced in
-              March, reaching an all-time high of $0.000014 on April 20,
-              according to CoinMarketCap. It has since fallen around 80 percent
-              from its peak.
+          <Stack direction="column" mt={2} spacing={2}>
+            <Typography sx={{ color: "#FFFFF5", fontSize: ".8rem" }}>
+              {coinAboutBlock && coinAboutBlock[0]?.first_pragraph + "."}{" "}
+              {coinAboutBlock &&
+                coinAboutBlock[0]?.first_pragraph &&
+                `The live ${
+                  coinAboutBlock && coinAboutBlock[0]?.name
+                } price today is $5.631145622449 with a 24-hour
+              trading volume of $26,254.16. ${
+                coinAboutBlock && coinAboutBlock[0]?.name
+              } is down 64.74% in the last
+              24 hours and 18.56% up in the Last 1 Hour . The current Coinxhigh
+              ranking is #418, with a live market cap of $45,792,809. It has a
+              circulating supply of 562,103,091,188,157 ${
+                coinAboutBlock && coinAboutBlock[0]?.name
+              } coins and a
+              max. supply of 1,000,000,000,000,000 ${
+                coinAboutBlock && coinAboutBlock[0]?.name
+              } coins. The current
+              rating of ${
+                coinAboutBlock && coinAboutBlock[0]?.name
+              } on Coinxhigh is 4.9. ${
+                  coinAboutBlock && coinAboutBlock[0]?.name
+                } hit an all time
+              high of $0.003382723655 on Jan 05, 2022 (212 Days ago). `}
+            </Typography>
+
+            <Typography sx={{ color: "#FFFFF5", fontSize: ".8rem" }}>
+              You can read the Latest news about safemoon{" "}
+              <a
+                href={`https://news.coinxhigh.com/?s=${
+                  coinAboutBlock && coinAboutBlock[0]?.name.toLowerCase()
+                }`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {" "}
+                here.
+              </a>{" "}
+            </Typography>
+
+            <Typography sx={{ color: "#FFFFF5", fontSize: ".8rem" }}>
+              {coinAboutBlock && coinAboutBlock[0]?.second_pragraph}
             </Typography>
           </Stack>
         </Grid>
@@ -103,6 +128,7 @@ const MobileCoinPageAbout = () => {
         </Stack>
       </Grid>
       <Grid
+        item
         xs={12}
         sx={{
           alignItems: "center",
@@ -110,42 +136,29 @@ const MobileCoinPageAbout = () => {
           paddingBottom: "23px",
         }}
       >
-        <Carousel
-          // centerMode={true}
-          responsive={responsiveFeatured}
-          infinite={true}
-          removeArrowOnDeviceType={["tablet", "mobile"]}
-          arrows={true}
-          swipeable={true}
-          partialVisible={true}
-          autoPlay={true}
-          draggable={true}
-        >
-          <Box>
-            <MobileFeaturedCoinCards />
-          </Box>
-          <Box>
-            <MobileFeaturedCoinCards />
-          </Box>
-          <Box>
-            <MobileFeaturedCoinCards />
-          </Box>
-          <Box>
-            <MobileFeaturedCoinCards />
-          </Box>
-          <Box>
-            <MobileFeaturedCoinCards />
-          </Box>
-          <Box>
-            <MobileFeaturedCoinCards />
-          </Box>
-          <Box>
-            <MobileFeaturedCoinCards />
-          </Box>
-          <Box>
-            <MobileFeaturedCoinCards />
-          </Box>
-        </Carousel>
+        {featuredCoinList && (
+          <Carousel
+            // centerMode={true}
+            responsive={responsiveFeatured}
+            infinite={true}
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            arrows={true}
+            swipeable={true}
+            partialVisible={true}
+            autoPlay={false}
+            draggable={true}
+            minimumTouchDrag={10}
+            keyBoardControl={true}
+            shouldResetAutoplay={false}
+          >
+            {featuredCoinList &&
+              featuredCoinList?.map((data: any, index: number) => (
+                <Box key={index}>
+                  <MobileFeaturedCoinCards cardData={data} />
+                </Box>
+              ))}
+          </Carousel>
+        )}
       </Grid>
       <Grid
         xs={12}

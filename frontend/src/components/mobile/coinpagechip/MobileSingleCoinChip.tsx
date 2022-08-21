@@ -1,26 +1,62 @@
-import { Chip, Avatar } from "@mui/material";
+import { Chip, Avatar, Link } from "@mui/material";
+import { parse } from "tldts";
 
-const MobileSingleCoinChip = ({ src, title }: any) => {
+const serverAPIUrl = process.env.REACT_APP_API_URL;
+const MobileSingleCoinChip = ({ src, title, link, varient }: any) => {
   return (
-    <Chip
-      avatar={<Avatar alt="Natacha" src={src} />}
-      label={title}
-      color="success"
-      sx={{
-        height: "28px",
-        borderRadius: 3,
-        backgroundColor: "#111138",
-        padding: 0.5,
-        marginBottom: ".5em",
-        marginRight: 1,
-        fontSize: "0.7125rem",
-        "&.MuiChip-root .MuiChip-avatar": {
-          width: 14,
-          height: 14,
-          borderRadius: 0,
-        },
-      }}
-    />
+    <Link
+      href={link && link}
+      sx={{ textDecoration: "none", cursor: "pointer" }}
+      target="_blank"
+    >
+      {" "}
+      {title !== null && link !== null && (
+        <Chip
+          avatar={
+            varient === "explorer" ? (
+              <Avatar
+                alt={title && title}
+                src={`${serverAPIUrl}public/uploads/network_icons/${src}`}
+              />
+            ) : (
+              <Avatar alt={title && title} src={src} />
+            )
+          }
+          label={
+            varient === "website"
+              ? title && title !== null && parse(title).domain
+              : title && title !== null && title?.length > 12
+              ? title.slice(0, 12) + "..."
+              : title && title !== null && title
+            // title && title !== null && title?.length > 21
+            //   ? title
+            //       ?.replace(/^https?:\/\//, "")
+            //       .slice(0, 12)
+            //       .replace(/\/$/, "") + "..."
+            //   : title &&
+            //     title !== null &&
+            //     title?.replace(/^https?:\/\//, "").replace(/\/$/, "")
+          }
+          color="success"
+          sx={{
+            height: "28px",
+            borderRadius: "4px",
+            backgroundColor: "#111138",
+            padding: 0.5,
+            marginBottom: ".5em",
+            cursor: "pointer",
+            marginRight: 1,
+            fontSize: "0.6125rem",
+            textTransform: "capitalize",
+            "&.MuiChip-root .MuiChip-avatar": {
+              width: 14,
+              height: 14,
+              borderRadius: 0,
+            },
+          }}
+        />
+      )}
+    </Link>
   );
 };
 

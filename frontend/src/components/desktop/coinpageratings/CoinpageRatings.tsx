@@ -360,7 +360,7 @@ const CoinpageRatings = () => {
                     my={2}
                   >
                     <Avatar
-                      alt="Remy Sharp"
+                      alt={item?.name}
                       src={`${serverAPIUrl}public/uploads/users/${item?.avatar}`}
                     />
                     <Stack direction="column" spacing={0.2}>

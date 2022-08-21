@@ -11,7 +11,7 @@ import en from "javascript-time-ago/locale/en.json";
 import Chip from "@mui/material/Chip";
 import dateFormat, { masks } from "dateformat";
 
-import UpcomingEventsCard from "../../../components/desktop/cards/upcomingeventscard/UpcomingEventsCard";
+import CryptoEventsCard from "../../../components/desktop/cards/cryptoeventscard/CryptoEventsCard";
 import UpcomingEventCalender from "../../../components/desktop/calender/eventcalender/UpcomingEventCalender";
 
 const CryptoEvents = () => {
@@ -205,16 +205,16 @@ const CryptoEvents = () => {
 
               <Grid container pt={3} spacing={3}>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                  <UpcomingEventsCard />
+                  <CryptoEventsCard />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                  <UpcomingEventsCard />
+                  <CryptoEventsCard />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                  <UpcomingEventsCard />
+                  <CryptoEventsCard />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                  <UpcomingEventsCard />
+                  <CryptoEventsCard />
                 </Grid>
                 <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                   <Divider
@@ -235,16 +235,16 @@ const CryptoEvents = () => {
 
               <Grid container pt={3} spacing={3}>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                  <UpcomingEventsCard />
+                  <CryptoEventsCard />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                  <UpcomingEventsCard />
+                  <CryptoEventsCard />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                  <UpcomingEventsCard />
+                  <CryptoEventsCard />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                  <UpcomingEventsCard />
+                  <CryptoEventsCard />
                 </Grid>
                 <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                   <Divider

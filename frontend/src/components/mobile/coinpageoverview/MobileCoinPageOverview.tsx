@@ -11,6 +11,7 @@ import {
   CardMedia,
   Link,
 } from "@mui/material";
+import { useSelector } from "react-redux";
 import LinearProgress from "@mui/material/LinearProgress";
 import { SlideDown } from "react-slidedown";
 import "react-slidedown/lib/slidedown.css";
@@ -35,6 +36,9 @@ import MobileSingleCoinChip from "../coinpagechip/MobileSingleCoinChip";
 
 const MobileCoinPageOverview = () => {
   const [viewMore, setViewMore] = useState(true);
+  const coinDetailFirstBlock = useSelector((data: any) => {
+    return data?.coinReducer?.coin_detail_first_block?.data;
+  });
 
   const viewmoreHandler = () => {
     setViewMore(!viewMore);
@@ -60,11 +64,20 @@ const MobileCoinPageOverview = () => {
           </Typography>
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
-          <MobileSingleCoinChip src={LinkImage} title="safemoon.com" />
-          <MobileSingleCoinChip
-            src={LinkImage}
-            title="safemooncommunityindia.com"
-          />
+          {coinDetailFirstBlock &&
+            coinDetailFirstBlock[0]?.website_url &&
+            coinDetailFirstBlock &&
+            coinDetailFirstBlock[0]?.website_url
+              ?.slice(0, 1)
+              .map((item: any, index: number) => (
+                <MobileSingleCoinChip
+                  key={index}
+                  src={LinkImage}
+                  title={item?.url}
+                  link={item?.url}
+                  varient="website"
+                />
+              ))}
         </Stack>
       </Stack>
 
@@ -86,8 +99,20 @@ const MobileCoinPageOverview = () => {
           </Typography>
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
-          <MobileSingleCoinChip src={LinkImage} title="BscScan" />
-          <MobileSingleCoinChip src={LinkImage} title="EtherScan" />
+          {coinDetailFirstBlock &&
+            coinDetailFirstBlock[0]?.network &&
+            coinDetailFirstBlock &&
+            coinDetailFirstBlock[0]?.network
+              ?.slice(0, 1)
+              .map((item: any, index: number) => (
+                <MobileSingleCoinChip
+                  key={index}
+                  src={item?.logo}
+                  title={item?.name}
+                  link={item?.url}
+                  varient="explorer"
+                />
+              ))}
         </Stack>
       </Stack>
 
@@ -109,9 +134,29 @@ const MobileCoinPageOverview = () => {
           </Typography>
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
-          <MobileSingleCoinChip src={FacebookImage} title="Facebook" />
-          <MobileSingleCoinChip src={TwitterImage} title="Twitter" />
-          <MobileSingleCoinChip src={InstagramImage} title="Instagram" />
+          {coinDetailFirstBlock &&
+            coinDetailFirstBlock[0]?.communities &&
+            coinDetailFirstBlock &&
+            coinDetailFirstBlock[0]?.communities?.map(
+              (item: any, index: number) => (
+                <MobileSingleCoinChip
+                  key={index}
+                  src={
+                    item?.name === "twitter"
+                      ? TwitterImage
+                      : item?.name === "telegram"
+                      ? TelegramImage
+                      : item?.name === "reddit"
+                      ? RedditImage
+                      : item?.name === "facebook"
+                      ? FacebookImage
+                      : item?.name === "instagram" && InstagramImage
+                  }
+                  title={item?.name}
+                  link={item?.url}
+                />
+              )
+            )}
         </Stack>
       </Stack>
 
@@ -155,7 +200,16 @@ const MobileCoinPageOverview = () => {
           </Typography>
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
-          <MobileSingleCoinChip icon={false} title="Whitepaper" />
+          <MobileSingleCoinChip
+            src={DocsImage}
+            title="Whitepaper"
+            link={
+              coinDetailFirstBlock &&
+              coinDetailFirstBlock[0] &&
+              coinDetailFirstBlock &&
+              coinDetailFirstBlock[0]?.whitepaper_link
+            }
+          />
         </Stack>
       </Stack>
 
@@ -177,8 +231,17 @@ const MobileCoinPageOverview = () => {
           </Typography>
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
-          <MobileSingleCoinChip icon={false} title="Certik" />
-          <MobileSingleCoinChip icon={false} title="Kraken" />
+          {coinDetailFirstBlock &&
+            coinDetailFirstBlock[0]?.audit
+              ?.slice(0, 1)
+              .map((item: any, index: number) => (
+                <MobileSingleCoinChip
+                  key={index}
+                  src={SourcecodeImage}
+                  title={item.name}
+                  link={item.url}
+                />
+              ))}
         </Stack>
       </Stack>
 
@@ -200,9 +263,17 @@ const MobileCoinPageOverview = () => {
           </Typography>
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
-          <MobileSingleCoinChip icon={false} title="Poocoin" />
-          <MobileSingleCoinChip icon={false} title="Dextool" />
-          <MobileSingleCoinChip icon={false} title="Geckoterminal" />
+          {coinDetailFirstBlock &&
+            coinDetailFirstBlock[0]?.chart_link
+              ?.slice(0, 1)
+              .map((item: any, index: number) => (
+                <MobileSingleCoinChip
+                  key={index}
+                  src={LinkImage}
+                  title={item?.name}
+                  link={item?.url}
+                />
+              ))}
         </Stack>
       </Stack>
 
@@ -233,7 +304,13 @@ const MobileCoinPageOverview = () => {
             variant="body2"
             sx={{ color: "#00B1C3", fontWeight: 500 }}
           >
-            4.9
+            {coinDetailFirstBlock &&
+            coinDetailFirstBlock[0]?.trust_score[0]?.rating !== null
+              ? parseFloat(
+                  coinDetailFirstBlock &&
+                    coinDetailFirstBlock[0]?.trust_score[0]?.rating
+                ).toFixed(1)
+              : "--"}
           </Typography>
           <Typography
             variant="body2"

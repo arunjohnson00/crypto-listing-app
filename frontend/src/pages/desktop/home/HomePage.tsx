@@ -60,7 +60,7 @@ import {
 } from "../../../store/action";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 import LatestNewsCardScroll from "../../../components/desktop/latestnews/LatestNewsCardScroll";
-import UpcomingEventsCardSlider from "../../../components/desktop/cards/upcomingeventscardslider/UpcomingEventsCardSlider";
+import CryptoEventsCardSlider from "../../../components/desktop/cards/cryptoeventscardslider/CryptoEventsCardSlider";
 
 const responsiveNFTCollections = {
   superLargeDesktop: {
@@ -81,7 +81,7 @@ const responsiveNFTCollections = {
     items: 1,
   },
 };
-const responsiveUpcomingEvents = {
+const responsiveCryptoEvents = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
@@ -783,12 +783,12 @@ const HomePage = ({ windowInnerWidth }: any) => {
           }}
         >
           <Grid xs={12} sm={12} md={2.7} lg={2.7} xl={2.7}>
-            <UpcomingEventsCardSlider variant="ads" />
+            <CryptoEventsCardSlider variant="ads" />
           </Grid>
 
           <Grid xs={12} sm={12} md={9.3} lg={9.3} xl={9.3}>
             <Carousel
-              responsive={responsiveUpcomingEvents}
+              responsive={responsiveCryptoEvents}
               infinite={true}
               removeArrowOnDeviceType={["tablet", "mobile"]}
               arrows={false}
@@ -800,25 +800,25 @@ const HomePage = ({ windowInnerWidth }: any) => {
               shouldResetAutoplay={false}
             >
               <Box>
-                <UpcomingEventsCardSlider />
+                <CryptoEventsCardSlider />
               </Box>
               <Box>
-                <UpcomingEventsCardSlider />
+                <CryptoEventsCardSlider />
               </Box>
               <Box>
-                <UpcomingEventsCardSlider />
+                <CryptoEventsCardSlider />
               </Box>
               <Box>
-                <UpcomingEventsCardSlider />
+                <CryptoEventsCardSlider />
               </Box>
               <Box>
-                <UpcomingEventsCardSlider />
+                <CryptoEventsCardSlider />
               </Box>
               <Box>
-                <UpcomingEventsCardSlider />
+                <CryptoEventsCardSlider />
               </Box>
               <Box>
-                <UpcomingEventsCardSlider />
+                <CryptoEventsCardSlider />
               </Box>
             </Carousel>
           </Grid>

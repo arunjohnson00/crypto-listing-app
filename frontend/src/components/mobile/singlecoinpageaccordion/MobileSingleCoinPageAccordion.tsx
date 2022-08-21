@@ -18,6 +18,7 @@ import {
   Button,
 } from "@mui/material";
 import Iframe from "react-iframe";
+import moment from "moment";
 import { SlideDown } from "react-slidedown";
 import "react-slidedown/lib/slidedown.css";
 import TimeAgo from "javascript-time-ago";
@@ -27,10 +28,18 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ToolTipImage from "../../../assets/singlepagecoin/tool-tip.png";
 import MobileSinglePageTab from "../singlepagetab/MobileSinglePageTab";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
 const MobileSingleCoinPageAccordion = () => {
   const latestNews = useSelector((data: any) => {
     return data?.commonReducer?.latest_news;
+  });
+  const coinDetailFirstBlock = useSelector((data: any) => {
+    return data?.coinReducer?.coin_detail_first_block?.data;
+  });
+  const coinDetailOverview = useSelector((data: any) => {
+    return data?.coinReducer?.coin_overview_block?.data;
   });
   const [viewMore, setViewMore] = useState(true);
   const [newsMore, setNewsMore] = useState(true);
@@ -79,204 +88,78 @@ const MobileSingleCoinPageAccordion = () => {
           </Stack>
         </AccordionSummary>
         <AccordionDetails>
-          <Grid item xs={12}>
-            <Stack
-              direction="row"
-              sx={{
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-              py={0}
-            >
-              <Stack direction="row" sx={{ alignItems: "center" }} spacing={1}>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="https://mui.com/static/images/avatar/1.jpg"
-                  sx={{ width: 22, height: 22 }}
-                />
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: "#ffffffa1",
-                    fontSize: "0.67rem",
-                    fontWeight: "500",
-                  }}
-                >
-                  Binance Smart Chain
-                </Typography>
-              </Stack>
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                spacing={0}
-              >
-                {" "}
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                  {"0xED3F52c46280ad96485323Fb6a51242cb4CA45F5".substring(
-                    0,
-                    7
-                  ) +
-                    "........." +
-                    "0xED3F52c46280ad96485323Fb6a51242cb4CA45F5".slice(-6)}
-                </Typography>
-                <CopyToClipboard
-                  options={{ message: "" }}
-                  text={copyValue}
-                  onCopy={() => setCopied(true)}
-                >
-                  <IconButton
-                    sx={{ paddingLeft: 1 }}
-                    onClick={() => {
-                      setCopyValue(
-                        "0xED3F52c46280ad96485323Fb6a51242cb4CA45F5"
-                      );
+          {coinDetailFirstBlock &&
+            coinDetailFirstBlock[0]?.contract_address?.map(
+              (item: any, index: number) => (
+                <Grid item xs={12} key={index}>
+                  <Stack
+                    direction="row"
+                    sx={{
+                      alignItems: "center",
+                      justifyContent: "space-between",
                     }}
+                    py={0}
                   >
-                    <Tooltip title={`${copied ? "Copied" : "Copy this Token"}`}>
-                      <ContentCopyIcon
-                        sx={{
-                          color: `${copied ? "#23D471" : "#23D471"}`,
-                          fontSize: 15,
-                        }}
+                    <Stack
+                      direction="row"
+                      sx={{ alignItems: "center" }}
+                      spacing={1}
+                    >
+                      <Avatar
+                        alt="Remy Sharp"
+                        src="https://mui.com/static/images/avatar/1.jpg"
+                        sx={{ width: 22, height: 22 }}
                       />
-                    </Tooltip>
-                  </IconButton>
-                </CopyToClipboard>
-              </Stack>
-            </Stack>
-          </Grid>
-          <Grid item xs={12}>
-            <Stack
-              direction="row"
-              sx={{
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-              py={0}
-            >
-              <Stack direction="row" sx={{ alignItems: "center" }} spacing={1}>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="https://mui.com/static/images/avatar/1.jpg"
-                  sx={{ width: 22, height: 22 }}
-                />
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: "#ffffffa1",
-                    fontSize: "0.67rem",
-                    fontWeight: "500",
-                  }}
-                >
-                  Binance Smart Chain
-                </Typography>
-              </Stack>
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                spacing={0}
-              >
-                {" "}
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                  {"0xED3F52c46280ad96485323Fb6a51242cb4CA45F5".substring(
-                    0,
-                    7
-                  ) +
-                    "........." +
-                    "0xED3F52c46280ad96485323Fb6a51242cb4CA45F5".slice(-6)}
-                </Typography>
-                <CopyToClipboard
-                  options={{ message: "" }}
-                  text={copyValue}
-                  onCopy={() => setCopied(true)}
-                >
-                  <IconButton
-                    sx={{ paddingLeft: 1 }}
-                    onClick={() => {
-                      setCopyValue(
-                        "0xED3F52c46280ad96485323Fb6a51242cb4CA45F5"
-                      );
-                    }}
-                  >
-                    <Tooltip title={`${copied ? "Copied" : "Copy this Token"}`}>
-                      <ContentCopyIcon
+                      <Typography
+                        variant="body2"
                         sx={{
-                          color: `${copied ? "#23D471" : "#23D471"}`,
-                          fontSize: 15,
+                          color: "#ffffffa1",
+                          fontSize: "0.67rem",
+                          fontWeight: "500",
                         }}
-                      />
-                    </Tooltip>
-                  </IconButton>
-                </CopyToClipboard>
-              </Stack>
-            </Stack>
-          </Grid>
-          <Grid item xs={12}>
-            <Stack
-              direction="row"
-              sx={{
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-              py={0}
-            >
-              <Stack direction="row" sx={{ alignItems: "center" }} spacing={1}>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="https://mui.com/static/images/avatar/1.jpg"
-                  sx={{ width: 22, height: 22 }}
-                />
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: "#ffffffa1",
-                    fontSize: "0.67rem",
-                    fontWeight: "500",
-                  }}
-                >
-                  Binance Smart Chain
-                </Typography>
-              </Stack>
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                spacing={0}
-              >
-                {" "}
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                  {"0xED3F52c46280ad96485323Fb6a51242cb4CA45F5".substring(
-                    0,
-                    7
-                  ) +
-                    "........." +
-                    "0xED3F52c46280ad96485323Fb6a51242cb4CA45F5".slice(-6)}
-                </Typography>
-                <CopyToClipboard
-                  options={{ message: "" }}
-                  text={copyValue}
-                  onCopy={() => setCopied(true)}
-                >
-                  <IconButton
-                    sx={{ paddingLeft: 1 }}
-                    onClick={() => {
-                      setCopyValue(
-                        "0xED3F52c46280ad96485323Fb6a51242cb4CA45F5"
-                      );
-                    }}
-                  >
-                    <Tooltip title={`${copied ? "Copied" : "Copy this Token"}`}>
-                      <ContentCopyIcon
-                        sx={{
-                          color: `${copied ? "#23D471" : "#23D471"}`,
-                          fontSize: 15,
-                        }}
-                      />
-                    </Tooltip>
-                  </IconButton>
-                </CopyToClipboard>
-              </Stack>
-            </Stack>
-          </Grid>
+                      >
+                        Binance Smart Chain
+                      </Typography>
+                    </Stack>
+                    <Stack
+                      direction={{ xs: "row", sm: "row", md: "row" }}
+                      sx={{ alignItems: "center" }}
+                      spacing={0}
+                    >
+                      {" "}
+                      <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                        {`${item && item?.address?.substring(0, 14)} 
+                      .........
+                      ${item && item?.address?.slice(-6)}`}
+                      </Typography>
+                      <CopyToClipboard
+                        options={{ message: "" }}
+                        text={copyValue}
+                        onCopy={() => setCopied(true)}
+                      >
+                        <IconButton
+                          sx={{ paddingLeft: 1 }}
+                          onClick={() => {
+                            setCopyValue(item && item?.address);
+                          }}
+                        >
+                          <Tooltip
+                            title={`${copied ? "Copied" : "Copy this Token"}`}
+                          >
+                            <ContentCopyIcon
+                              sx={{
+                                color: `${copied ? "#23D471" : "#23D471"}`,
+                                fontSize: 15,
+                              }}
+                            />
+                          </Tooltip>
+                        </IconButton>
+                      </CopyToClipboard>
+                    </Stack>
+                  </Stack>
+                </Grid>
+              )
+            )}
         </AccordionDetails>
       </Accordion>
       <Divider
@@ -302,7 +185,7 @@ const MobileSingleCoinPageAccordion = () => {
           <Typography
             sx={{ color: "#5FD6E9", fontWeight: 700, fontSize: "1.1rem" }}
           >
-            Safemoon Chart
+            {coinDetailFirstBlock && coinDetailFirstBlock[0]?.name} Chart
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -359,12 +242,25 @@ const MobileSingleCoinPageAccordion = () => {
                   Price
                 </Typography>
                 <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                  $0.00589303
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.current_price !== null &&
+                  coinDetailOverview[0]?.current_price !== ""
+                    ? "$" + coinDetailOverview[0]?.current_price
+                    : "NA"}
                 </Typography>
               </Stack>
               <Stack direction="row" mt={0.9}>
-                <Box sx={{ width: "100%" }}>
-                  <LinearProgress value={60} variant="determinate" />
+                <Box
+                  sx={{
+                    width: "100%",
+                    color: "#6252e7",
+                  }}
+                >
+                  <LinearProgress
+                    value={60}
+                    variant="determinate"
+                    color="inherit"
+                  />
                 </Box>
               </Stack>
               <Stack
@@ -374,42 +270,52 @@ const MobileSingleCoinPageAccordion = () => {
               >
                 <Typography
                   variant="caption"
-                  sx={{ color: "#FFFFF5", fontSize: "0.55rem" }}
+                  sx={{ color: "#FFFFF5", fontSize: "0.65rem" }}
                 >
-                  Low:$0
+                  Low:{" "}
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.price_low !== null &&
+                  coinDetailOverview[0]?.price_low !== ""
+                    ? "$" + coinDetailOverview[0]?.price_low
+                    : "NA"}
                 </Typography>
                 <Stack direction="row">
-                  <NativeSelect
-                    id="select"
-                    sx={{
-                      color: "#B6B6B9",
-                      backgroundColor: "#010519",
-                      fontSize: "0.55rem",
+                  {/* <NativeSelect
+                  id="select"
+                  sx={{
+                    color: "#B6B6B9",
+                    backgroundColor: "#010519",
+                    fontSize: "0.55rem",
+                    borderBottom: 0,
+                    paddingRight: "7px",
+                    "&:before": {
                       borderBottom: 0,
-                      paddingRight: "7px",
-                      "&:before": {
-                        borderBottom: 0,
+                    },
+                    "&:after": {
+                      borderBottom: 0,
+                    },
+                    "&.MuiNativeSelect-select-MuiInputBase-input-MuiInput-input .MuiNativeSelect-icon":
+                      {
+                        color: "red",
                       },
-                      "&:after": {
-                        borderBottom: 0,
-                      },
-                      "&.MuiNativeSelect-select-MuiInputBase-input-MuiInput-input .MuiNativeSelect-icon":
-                        {
-                          color: "red",
-                        },
-                      icon: {
-                        fill: "red",
-                      },
-                    }}
-                  >
-                    <option value="10">24h</option>
-                    <option value="20">7h</option>
-                  </NativeSelect>
+                    icon: {
+                      fill: "red",
+                    },
+                  }}
+                >
+                  <option value="10">24h</option>
+                  <option value="20">7h</option>
+                </NativeSelect> */}
                   <Typography
                     variant="caption"
-                    sx={{ color: "#FFFFF5", fontSize: "0.55rem" }}
+                    sx={{ color: "#FFFFF5", fontSize: "0.65rem" }}
                   >
-                    High: $0.00589303
+                    High:{" "}
+                    {coinDetailOverview &&
+                    coinDetailOverview[0]?.price_high !== null &&
+                    coinDetailOverview[0]?.price_high !== ""
+                      ? "$" + coinDetailOverview[0]?.price_high
+                      : "NA"}
                   </Typography>
                 </Stack>
               </Stack>
@@ -431,20 +337,122 @@ const MobileSingleCoinPageAccordion = () => {
                   spacing={1}
                 >
                   <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    Total Holders
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.total_holders !== null &&
+                  coinDetailOverview[0]?.total_holders !== ""
+                    ? coinDetailOverview[0]?.total_holders
+                    : "NA"}
+                </Typography>
+              </Stack>
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
+              >
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    In Watchlist
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  API need
+                </Typography>
+              </Stack>
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
+              >
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    Total Liqudity in pool
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.liquidity_pool_total !== null &&
+                  coinDetailOverview[0]?.liquidity_pool_total !== ""
+                    ? coinDetailOverview[0]?.liquidity_pool_total
+                    : "NA"}
+                </Typography>
+              </Stack>
+
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
+              >
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
                     All Time High
                   </Typography>
                   <Tooltip title="Delete">
                     <Avatar
                       src={ToolTipImage}
-                      sx={{ width: 12, height: 12 }}
+                      sx={{ width: 9, height: 9 }}
                     ></Avatar>
                   </Tooltip>
                 </Stack>
                 <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                  $0.00589303
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.all_time_high !== null &&
+                  coinDetailOverview[0]?.all_time_high !== ""
+                    ? coinDetailOverview[0]?.all_time_high
+                    : "NA"}
                 </Typography>
               </Stack>
-
               <Stack
                 direction="row"
                 sx={{ alignItems: "center", justifyContent: "space-between" }}
@@ -467,13 +475,430 @@ const MobileSingleCoinPageAccordion = () => {
                   <Tooltip title="Delete">
                     <Avatar
                       src={ToolTipImage}
-                      sx={{ width: 12, height: 12 }}
+                      sx={{ width: 9, height: 9 }}
                     ></Avatar>
                   </Tooltip>
                 </Stack>
                 <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                  Dec 13 , 2021
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.all_time_high_date !== null &&
+                  coinDetailOverview[0]?.all_time_high_date !== ""
+                    ? moment(
+                        new Date(coinDetailOverview[0]?.all_time_high_date)
+                      ).format("MMM DD YY")
+                    : "NA"}
                 </Typography>
+              </Stack>
+
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
+              >
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    1h %
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                  spacing={0}
+                >
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.percent_change_1h !== null &&
+                  Math.sign(
+                    parseInt(coinDetailOverview[0]?.percent_change_1h)
+                  ) === -1 ? (
+                    <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                  ) : (
+                    coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_1h !== null && (
+                      <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                    )
+                  )}
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color:
+                        coinDetailOverview &&
+                        Math.sign(
+                          parseInt(coinDetailOverview[0]?.percent_change_1h)
+                        ) === -1
+                          ? "#ff0000"
+                          : "#00ff00",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_1h !== null &&
+                    coinDetailOverview[0]?.percent_change_1h !== "" ? (
+                      parseFloat(coinDetailOverview[0]?.percent_change_1h)
+                        .toFixed(2)
+                        .replace("-", "") + "%"
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
+                  </Typography>
+                </Stack>
+              </Stack>
+
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
+              >
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    24h %
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                  spacing={0}
+                >
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.percent_change_24h !== null &&
+                  Math.sign(
+                    parseInt(coinDetailOverview[0]?.percent_change_24h)
+                  ) === -1 ? (
+                    <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                  ) : (
+                    coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_24h !== null && (
+                      <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                    )
+                  )}
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color:
+                        coinDetailOverview &&
+                        Math.sign(
+                          parseInt(coinDetailOverview[0]?.percent_change_24h)
+                        ) === -1
+                          ? "#ff0000"
+                          : "#00ff00",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_24h !== null &&
+                    coinDetailOverview[0]?.percent_change_24h !== "" ? (
+                      parseFloat(coinDetailOverview[0]?.percent_change_24h)
+                        .toFixed(2)
+                        .replace("-", "") + "%"
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
+                  </Typography>
+                </Stack>
+              </Stack>
+
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
+              >
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    7d %
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                  spacing={0}
+                >
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.percent_change_7d !== null &&
+                  Math.sign(
+                    parseInt(coinDetailOverview[0]?.percent_change_7d)
+                  ) === -1 ? (
+                    <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                  ) : (
+                    coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_7d !== null && (
+                      <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                    )
+                  )}
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color:
+                        coinDetailOverview &&
+                        Math.sign(
+                          parseInt(coinDetailOverview[0]?.percent_change_7d)
+                        ) === -1
+                          ? "#ff0000"
+                          : "#00ff00",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_7d !== null &&
+                    coinDetailOverview[0]?.percent_change_7d !== "" ? (
+                      parseFloat(coinDetailOverview[0]?.percent_change_7d)
+                        .toFixed(2)
+                        .replace("-", "") + "%"
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
+                  </Typography>
+                </Stack>
+              </Stack>
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
+              >
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    30d %
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                  spacing={0}
+                >
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.percent_change_30d !== null &&
+                  Math.sign(
+                    parseInt(coinDetailOverview[0]?.percent_change_30d)
+                  ) === -1 ? (
+                    <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                  ) : (
+                    coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_30d !== null && (
+                      <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                    )
+                  )}
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color:
+                        coinDetailOverview &&
+                        Math.sign(
+                          parseInt(coinDetailOverview[0]?.percent_change_30d)
+                        ) === -1
+                          ? "#ff0000"
+                          : "#00ff00",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_30d !== null &&
+                    coinDetailOverview[0]?.percent_change_30d !== "" ? (
+                      parseFloat(coinDetailOverview[0]?.percent_change_30d)
+                        .toFixed(2)
+                        .replace("-", "") + "%"
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
+                  </Typography>
+                </Stack>
+              </Stack>
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
+              >
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    60d %
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                  spacing={0}
+                >
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.percent_change_60d !== null &&
+                  Math.sign(
+                    parseInt(coinDetailOverview[0]?.percent_change_60d)
+                  ) === -1 ? (
+                    <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                  ) : (
+                    coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_60d !== null && (
+                      <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                    )
+                  )}
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color:
+                        coinDetailOverview &&
+                        Math.sign(
+                          parseInt(coinDetailOverview[0]?.percent_change_60d)
+                        ) === -1
+                          ? "#ff0000"
+                          : "#00ff00",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_60d !== null &&
+                    coinDetailOverview[0]?.percent_change_60d !== "" ? (
+                      parseFloat(coinDetailOverview[0]?.percent_change_60d)
+                        .toFixed(2)
+                        .replace("-", "") + "%"
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
+                  </Typography>
+                </Stack>
+              </Stack>
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
+              >
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    90d %
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                  spacing={0}
+                >
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.percent_change_90d !== null &&
+                  Math.sign(
+                    parseInt(coinDetailOverview[0]?.percent_change_90d)
+                  ) === -1 ? (
+                    <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                  ) : (
+                    coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_90d !== null && (
+                      <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                    )
+                  )}
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color:
+                        coinDetailOverview &&
+                        Math.sign(
+                          parseInt(coinDetailOverview[0]?.percent_change_90d)
+                        ) === -1
+                          ? "#ff0000"
+                          : "#00ff00",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_90d !== null &&
+                    coinDetailOverview[0]?.percent_change_90d !== "" ? (
+                      parseFloat(coinDetailOverview[0]?.percent_change_90d)
+                        .toFixed(2)
+                        .replace("-", "") + "%"
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
+                  </Typography>
+                </Stack>
               </Stack>
               <Stack
                 direction="row"
@@ -497,12 +922,19 @@ const MobileSingleCoinPageAccordion = () => {
                   <Tooltip title="Delete">
                     <Avatar
                       src={ToolTipImage}
-                      sx={{ width: 12, height: 12 }}
+                      sx={{ width: 9, height: 9 }}
                     ></Avatar>
                   </Tooltip>
                 </Stack>
-                <Typography variant="caption" sx={{ color: "#C61F0A" }}>
-                  20%
+                <Typography
+                  variant="caption"
+                  sx={{ color: "#ff0000", fontWeight: 600 }}
+                >
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.volume_24h !== null &&
+                  coinDetailOverview[0]?.volume_24h !== ""
+                    ? coinDetailOverview[0]?.volume_24h
+                    : "NA"}
                 </Typography>
               </Stack>
 
@@ -528,12 +960,16 @@ const MobileSingleCoinPageAccordion = () => {
                   <Tooltip title="Delete">
                     <Avatar
                       src={ToolTipImage}
-                      sx={{ width: 12, height: 12 }}
+                      sx={{ width: 9, height: 9 }}
                     ></Avatar>
                   </Tooltip>
                 </Stack>
                 <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                  $77788
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.market_cap !== null &&
+                  coinDetailOverview[0]?.market_cap !== ""
+                    ? coinDetailOverview[0]?.market_cap
+                    : "NA"}
                 </Typography>
               </Stack>
 
@@ -559,12 +995,18 @@ const MobileSingleCoinPageAccordion = () => {
                   <Tooltip title="Delete">
                     <Avatar
                       src={ToolTipImage}
-                      sx={{ width: 12, height: 12 }}
+                      sx={{ width: 9, height: 9 }}
                     ></Avatar>
                   </Tooltip>
                 </Stack>
                 <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                  $77788
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.fully_diluted_market_cap !== null &&
+                  coinDetailOverview[0]?.fully_diluted_market_cap !== ""
+                    ? parseFloat(
+                        coinDetailOverview[0]?.fully_diluted_market_cap
+                      ).toFixed(3)
+                    : "NA"}
                 </Typography>
               </Stack>
 
@@ -590,12 +1032,16 @@ const MobileSingleCoinPageAccordion = () => {
                   <Tooltip title="Delete">
                     <Avatar
                       src={ToolTipImage}
-                      sx={{ width: 12, height: 12 }}
+                      sx={{ width: 9, height: 9 }}
                     ></Avatar>
                   </Tooltip>
                 </Stack>
                 <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                  81OT DOGH
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.circulating_supply !== null &&
+                  coinDetailOverview[0]?.circulating_supply !== ""
+                    ? coinDetailOverview[0]?.circulating_supply
+                    : "NA"}
                 </Typography>
               </Stack>
               <Stack
@@ -620,12 +1066,16 @@ const MobileSingleCoinPageAccordion = () => {
                   <Tooltip title="Delete">
                     <Avatar
                       src={ToolTipImage}
-                      sx={{ width: 12, height: 12 }}
+                      sx={{ width: 9, height: 9 }}
                     ></Avatar>
                   </Tooltip>
                 </Stack>
                 <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                  81OT DOGH
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.total_supply !== null &&
+                  coinDetailOverview[0]?.total_supply !== ""
+                    ? coinDetailOverview[0]?.total_supply
+                    : "NA"}
                 </Typography>
               </Stack>
             </Stack>
@@ -667,12 +1117,16 @@ const MobileSingleCoinPageAccordion = () => {
               alignItems="center"
               justifyContent="space-between"
             >
-              <Stack direction="column" spacing={1}>
-                <Typography variant="body2" sx={{ color: "#FFFFF5" }}>
+              <Stack direction="column" spacing={1.6}>
+                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
                   Number of Liquidity Pools
                 </Typography>
-                <Typography variant="body2" sx={{ color: "#FFFFF5" }}>
-                  43
+                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.liquidity_pool_number !== null &&
+                  coinDetailOverview[0]?.liquidity_pool_number !== ""
+                    ? coinDetailOverview[0]?.liquidity_pool_number
+                    : "NA"}
                 </Typography>
               </Stack>
               <Divider
@@ -682,12 +1136,16 @@ const MobileSingleCoinPageAccordion = () => {
                 sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
               />
 
-              <Stack direction="column" spacing={1}>
-                <Typography variant="body2" sx={{ color: "#FFFFF5" }}>
+              <Stack direction="column" spacing={1.6}>
+                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
                   Total in Liquidity Pool
                 </Typography>
-                <Typography variant="body2" sx={{ color: "#FFFFF5" }}>
-                  $203456
+                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.liquidity_pool_total !== null &&
+                  coinDetailOverview[0]?.liquidity_pool_total !== ""
+                    ? "$" + coinDetailOverview[0]?.liquidity_pool_total
+                    : "NA"}
                 </Typography>
               </Stack>
             </Stack>

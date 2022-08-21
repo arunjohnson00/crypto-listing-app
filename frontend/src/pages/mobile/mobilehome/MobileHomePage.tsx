@@ -44,7 +44,9 @@ import {
   trendingCoinListRequest,
 } from "../../../store/action";
 import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
+
 import { Link } from "react-router-dom";
+import MobileCryptoEventsCardSlider from "../../../components/mobile/cards/cryptoeventscardslider/MobileCryptoEventsCardSlider";
 
 const { parse } = require("rss-to-json");
 
@@ -67,6 +69,25 @@ const responsiveFeatured: any = {
     breakpoint: { max: 464, min: 0 },
     items: 1.5,
     slidesToSlide: 1,
+  },
+};
+const responsiveCryptoEvents = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 1,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 1,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 1,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
   },
 };
 const responsiveMenuCard: any = {
@@ -179,6 +200,10 @@ const MobileHomePage = () => {
   const trendingCoinList = useSelector((data: any) => {
     return data?.homeReducer?.trending_coin_list?.data;
   });
+  const NFTList = useSelector((data: any) => {
+    return data?.homeReducer?.nft_listings?.data;
+  });
+
   const tabIndex = useSelector((data: any) => {
     return data?.homeReducer?.crypto_currencies_tab;
   });
@@ -449,6 +474,79 @@ const MobileHomePage = () => {
           sx={{ justifyContent: "space-between", alignItems: "center" }}
         >
           <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+            Upcoming Events
+          </Typography>
+          <Typography
+            variant="body2"
+            sx={{ color: "#424798", fontWeight: "bold" }}
+          >
+            View
+          </Typography>
+        </Stack>
+      </Grid>
+
+      <Grid
+        xs={12}
+        sx={{
+          alignItems: "center",
+          paddingTop: "0px",
+          paddingBottom: "23px",
+        }}
+      >
+        <Grid
+          xs={12}
+          sx={{
+            alignItems: "center",
+            paddingTop: "0px",
+            paddingBottom: "23px",
+          }}
+        >
+          {" "}
+          <MobileCryptoEventsCardSlider variant="ads" />
+        </Grid>
+
+        <Carousel
+          responsive={responsiveCryptoEvents}
+          infinite={true}
+          removeArrowOnDeviceType={["tablet", "mobile"]}
+          arrows={false}
+          autoPlay={false}
+          draggable={true}
+          swipeable={true}
+          minimumTouchDrag={10}
+          keyBoardControl={true}
+          shouldResetAutoplay={false}
+        >
+          <Box>
+            <MobileCryptoEventsCardSlider />
+          </Box>
+          <Box>
+            <MobileCryptoEventsCardSlider />
+          </Box>
+
+          <Box>
+            <MobileCryptoEventsCardSlider />
+          </Box>
+
+          <Box>
+            <MobileCryptoEventsCardSlider />
+          </Box>
+        </Carousel>
+      </Grid>
+
+      <Grid
+        xs={12}
+        sx={{
+          alignItems: "center",
+          paddingTop: "23px",
+          paddingBottom: "23px",
+        }}
+      >
+        <Stack
+          direction="row"
+          sx={{ justifyContent: "space-between", alignItems: "center" }}
+        >
+          <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
             Trending Coin
           </Typography>
           <Typography
@@ -679,36 +777,27 @@ const MobileHomePage = () => {
           paddingBottom: "23px",
         }}
       >
-        <Carousel
-          // centerMode={true}
-          responsive={responsiveNFT}
-          infinite={true}
-          removeArrowOnDeviceType={["tablet", "mobile"]}
-          arrows={true}
-          swipeable={true}
-          partialVisible={true}
-          autoPlay={false}
-          draggable={true}
-        >
-          <Box>
-            <MobileNftCollectionCard />
-          </Box>
-          <Box>
-            <MobileNftCollectionCard />
-          </Box>
-          <Box>
-            <MobileNftCollectionCard />
-          </Box>
-          <Box>
-            <MobileNftCollectionCard />
-          </Box>
-          <Box>
-            <MobileNftCollectionCard />
-          </Box>
-          <Box>
-            <MobileNftCollectionCard />
-          </Box>
-        </Carousel>
+        {NFTList && NFTList?.data && (
+          <Carousel
+            responsive={responsiveNFT}
+            infinite={true}
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            arrows={true}
+            autoPlay={false}
+            draggable={true}
+            swipeable={true}
+            minimumTouchDrag={10}
+            keyBoardControl={true}
+            shouldResetAutoplay={false}
+          >
+            {NFTList &&
+              NFTList?.data?.map((item: any, index: number) => (
+                <Box key={index}>
+                  <MobileNftCollectionCard data={item && item} />
+                </Box>
+              ))}
+          </Carousel>
+        )}
       </Grid>
 
       <Grid
@@ -792,7 +881,7 @@ const MobileHomePage = () => {
         </Stack>
       </Grid>
 
-      <Grid
+      {/* <Grid
         xs={12}
         sx={{
           alignItems: "center",
@@ -801,7 +890,7 @@ const MobileHomePage = () => {
         }}
       >
         <MobileAdsCardHome />
-      </Grid>
+      </Grid> */}
 
       <Grid
         xs={12}

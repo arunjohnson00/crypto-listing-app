@@ -1,7 +1,7 @@
 import { Box, Stack, Typography, Chip, Avatar, Link } from "@mui/material";
 import React from "react";
 
-const UpcomingEventsCard = () => {
+const CryptoEventsCard = () => {
   return (
     <Box
       sx={{
@@ -80,4 +80,4 @@ const UpcomingEventsCard = () => {
   );
 };
 
-export default UpcomingEventsCard;
+export default CryptoEventsCard;

@@ -13,11 +13,17 @@ import {
   Link,
   Tooltip,
 } from "@mui/material";
+import { useSelector } from "react-redux";
+import moment from "moment";
 import MobileWiriteReview from "../writereview/MobileWiriteReview";
 import ToolTipImage from "../../../assets/singlepagecoin/tool-tip.png";
+
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileCoinpageRatings = () => {
   const [openWriteReview, setOpenWriteReview] = useState(false);
-
+  const coinRatingBlock = useSelector((data: any) => {
+    return data?.coinReducer?.coin_rating_block?.data;
+  });
   const handleWriteReviewClickOpen = () => {
     setOpenWriteReview(true);
   };
@@ -75,13 +81,19 @@ const MobileCoinpageRatings = () => {
                     variant="h3"
                     sx={{ color: "#FFFFF5", fontWeight: "400" }}
                   >
-                    4.9
+                    {coinRatingBlock &&
+                      parseFloat(coinRatingBlock[0]?.trust_score).toFixed(1)}
                   </Typography>
                 </Stack>
                 <Rating
                   name="size-small"
-                  defaultValue={5}
+                  defaultValue={0}
+                  value={
+                    coinRatingBlock &&
+                    parseFloat(coinRatingBlock[0]?.trust_score).toFixed(1)
+                  }
                   size="small"
+                  precision={0.1}
                   readOnly
                   sx={{ fontSize: ".9rem" }}
                 />
@@ -90,7 +102,9 @@ const MobileCoinpageRatings = () => {
                   sx={{ color: "#FFFFF5", fontWeight: 400 }}
                   mt={0.4}
                 >
-                  (256)
+                  {`(${
+                    coinRatingBlock && coinRatingBlock[0]?.total_review_count
+                  })`}
                 </Typography>
               </Stack>
               <Stack
@@ -100,19 +114,74 @@ const MobileCoinpageRatings = () => {
                 width="100%"
               >
                 <Box sx={{ flexGrow: 1 }} width="100%">
-                  <LinearProgress value={90} variant="determinate" />
+                  <LinearProgress
+                    value={
+                      coinRatingBlock &&
+                      (
+                        (coinRatingBlock[0]?.review_data?.ratings[4]
+                          ?.rating_count /
+                          coinRatingBlock[0]?.review_data?.total) *
+                        100
+                      ).toFixed(0)
+                    }
+                    variant="determinate"
+                  />
                 </Box>
                 <Box sx={{ flexGrow: 1 }} width="100%">
-                  <LinearProgress value={90} variant="determinate" />
+                  <LinearProgress
+                    value={
+                      coinRatingBlock &&
+                      (
+                        (coinRatingBlock[0]?.review_data?.ratings[3]
+                          ?.rating_count /
+                          coinRatingBlock[0]?.review_data?.total) *
+                        100
+                      ).toFixed(0)
+                    }
+                    variant="determinate"
+                  />
                 </Box>
                 <Box sx={{ flexGrow: 1 }} width="100%">
-                  <LinearProgress value={90} variant="determinate" />
+                  <LinearProgress
+                    value={
+                      coinRatingBlock &&
+                      (
+                        (coinRatingBlock[0]?.review_data?.ratings[2]
+                          ?.rating_count /
+                          coinRatingBlock[0]?.review_data?.total) *
+                        100
+                      ).toFixed(0)
+                    }
+                    variant="determinate"
+                  />
                 </Box>
                 <Box sx={{ flexGrow: 1 }} width="100%">
-                  <LinearProgress value={90} variant="determinate" />
+                  <LinearProgress
+                    value={
+                      coinRatingBlock &&
+                      (
+                        (coinRatingBlock[0]?.review_data?.ratings[1]
+                          ?.rating_count /
+                          coinRatingBlock[0]?.review_data?.total) *
+                        100
+                      ).toFixed(0)
+                    }
+                    variant="determinate"
+                  />
                 </Box>
                 <Box sx={{ flexGrow: 1 }} width="100%">
-                  <LinearProgress value={90} variant="determinate" />
+                  <LinearProgress
+                    value={
+                      coinRatingBlock &&
+                      (
+                        (coinRatingBlock[0]?.review_data?.ratings[0]
+                          ?.rating_count /
+                          coinRatingBlock[0]?.review_data?.total) *
+                        100
+                      ).toFixed(0)
+                    }
+                    variant="determinate"
+                  />
                 </Box>
               </Stack>
             </Stack>
@@ -126,13 +195,14 @@ const MobileCoinpageRatings = () => {
             spacing={-0.4}
           >
             <Typography variant="h6" sx={{ color: "#69EAFF", fontWeight: 600 }}>
-              Safemoon Rating and Reviews
+              {coinRatingBlock && coinRatingBlock[0]?.name} Rating and Reviews
             </Typography>
             <Typography
               variant="caption"
               sx={{ color: "#FFFFFF", fontWeight: 500 }}
             >
-              How do you feel about safemoon?
+              How do you feel about{" "}
+              {coinRatingBlock && coinRatingBlock[0]?.name}?
             </Typography>
           </Stack>
         </Grid>
@@ -197,352 +267,137 @@ const MobileCoinpageRatings = () => {
               </Box>
             </Stack>
           </Grid>
-
-          <Grid xs={12} mb={2}>
-            <Stack
-              direction="column"
-              ml={{ xs: 0, sm: 0, md: 3 }}
-              spacing={0.5}
-            >
-              <Stack
-                direction="row"
-                spacing={3}
-                sx={{ alignItems: "center", justifyContent: "space-between" }}
-                my={1.4}
-              >
-                <Stack
-                  direction="row"
-                  spacing={2}
-                  sx={{ alignItems: "center" }}
-                >
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="https://mui.com/static/images/avatar/1.jpg"
-                  />
-                  <Stack direction="column">
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: "#FFFFF5",
-                        fontWeight: 500,
-                        lineHeight: 1,
-                      }}
-                    >
-                      Padmajan
-                    </Typography>
-                    <Typography
-                      variant="caption"
-                      sx={{
-                        color: "#5299AF",
-                        fontWeight: 400,
-                        fontSize: ".7rem",
-                      }}
-                    >
-                      17 reviews
-                    </Typography>
-                  </Stack>
-                </Stack>
-                <Stack
-                  direction="column"
-                  spacing={0}
-                  sx={{ alignItems: "flex-end", justifyContent: "flex-end" }}
-                >
-                  <Rating
-                    name="large"
-                    defaultValue={5}
-                    size="small"
-                    readOnly
-                    sx={{ fontSize: "1rem" }}
-                  />
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      color: "#FFFFF5",
-                      fontWeight: 400,
-                      fontSize: ".7rem",
-                    }}
+          {coinRatingBlock &&
+            coinRatingBlock[0]?.review_details?.map(
+              (item: any, index: number) => (
+                <Grid xs={12} mb={2} key={index}>
+                  <Stack
+                    direction="column"
+                    ml={{ xs: 0, sm: 0, md: 3 }}
+                    spacing={0.5}
                   >
-                    17 days ago
-                  </Typography>
-                </Stack>
-              </Stack>
-
-              <Divider
-                variant="fullWidth"
-                flexItem
-                orientation="horizontal"
-                sx={{ borderColor: "#091338", borderBottomWidth: 2 }}
-              />
-
-              <Stack
-                direction="row"
-                spacing={3}
-                sx={{ alignItems: "center", justifyContent: "space-between" }}
-              >
-                <Typography
-                  mt={1}
-                  variant="caption"
-                  sx={{
-                    color: "#FFFFF5",
-                    fontWeight: 400,
-                  }}
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting,
-                </Typography>
-              </Stack>
-              <Stack
-                direction="row"
-                spacing={3}
-                sx={{ alignItems: "center", justifyContent: "flex-start" }}
-              >
-                <Typography
-                  my={1}
-                  variant="caption"
-                  sx={{
-                    color: "#FFFFF5",
-                    fontWeight: 400,
-                  }}
-                >
-                  17 Likes
-                </Typography>
-              </Stack>
-            </Stack>
-          </Grid>
-          <Grid xs={12} mb={2}>
-            <Stack
-              direction="column"
-              ml={{ xs: 0, sm: 0, md: 3 }}
-              spacing={0.5}
-            >
-              <Stack
-                direction="row"
-                spacing={3}
-                sx={{ alignItems: "center", justifyContent: "space-between" }}
-                my={1.4}
-              >
-                <Stack
-                  direction="row"
-                  spacing={2}
-                  sx={{ alignItems: "center" }}
-                >
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="https://mui.com/static/images/avatar/1.jpg"
-                  />
-                  <Stack direction="column">
-                    <Typography
-                      variant="body2"
+                    <Stack
+                      direction="row"
+                      spacing={3}
                       sx={{
-                        color: "#FFFFF5",
-                        fontWeight: 500,
-                        lineHeight: 1,
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                      my={1.4}
+                    >
+                      <Stack
+                        direction="row"
+                        spacing={2}
+                        sx={{ alignItems: "center" }}
+                      >
+                        <Avatar
+                          alt={item?.name}
+                          src={`${serverAPIUrl}public/uploads/users/${item?.avatar}`}
+                        />
+                        <Stack direction="column">
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: "#FFFFF5",
+                              fontWeight: 500,
+                              lineHeight: 1,
+                            }}
+                          >
+                            {item?.name}
+                          </Typography>
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: "#5299AF",
+                              fontWeight: 400,
+                              fontSize: ".7rem",
+                            }}
+                          >
+                            17 reviews
+                          </Typography>
+                        </Stack>
+                      </Stack>
+                      <Stack
+                        direction="column"
+                        spacing={0}
+                        sx={{
+                          alignItems: "flex-end",
+                          justifyContent: "flex-end",
+                        }}
+                      >
+                        <Rating
+                          name="large"
+                          defaultValue={0}
+                          value={
+                            coinRatingBlock &&
+                            parseFloat(item?.rating).toFixed(1)
+                          }
+                          size="small"
+                          readOnly
+                          sx={{ fontSize: "1rem" }}
+                        />
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            color: "#FFFFF5",
+                            fontWeight: 400,
+                            fontSize: ".7rem",
+                          }}
+                        >
+                          {moment(item?.created_at, "YYYYMMDD").fromNow()}
+                        </Typography>
+                      </Stack>
+                    </Stack>
+
+                    <Divider
+                      variant="fullWidth"
+                      flexItem
+                      orientation="horizontal"
+                      sx={{ borderColor: "#091338", borderBottomWidth: 2 }}
+                    />
+
+                    <Stack
+                      direction="row"
+                      spacing={3}
+                      sx={{
+                        alignItems: "center",
+                        justifyContent: "space-between",
                       }}
                     >
-                      Padmajan
-                    </Typography>
-                    <Typography
-                      variant="caption"
+                      <Typography
+                        mt={1}
+                        variant="caption"
+                        sx={{
+                          color: "#FFFFF5",
+                          fontWeight: 400,
+                        }}
+                      >
+                        {item?.review}
+                      </Typography>
+                    </Stack>
+                    <Stack
+                      direction="row"
+                      spacing={3}
                       sx={{
-                        color: "#5299AF",
-                        fontWeight: 400,
-                        fontSize: ".7rem",
+                        alignItems: "center",
+                        justifyContent: "flex-start",
                       }}
                     >
-                      17 reviews
-                    </Typography>
+                      {/* <Typography
+                        my={1}
+                        variant="caption"
+                        sx={{
+                          color: "#FFFFF5",
+                          fontWeight: 400,
+                        }}
+                      >
+                        17 Likes
+                      </Typography> */}
+                    </Stack>
                   </Stack>
-                </Stack>
-                <Stack
-                  direction="column"
-                  spacing={0}
-                  sx={{ alignItems: "flex-end", justifyContent: "flex-end" }}
-                >
-                  <Rating
-                    name="large"
-                    defaultValue={5}
-                    size="small"
-                    readOnly
-                    sx={{ fontSize: "1rem" }}
-                  />
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      color: "#FFFFF5",
-                      fontWeight: 400,
-                      fontSize: ".7rem",
-                    }}
-                  >
-                    17 days ago
-                  </Typography>
-                </Stack>
-              </Stack>
-
-              <Divider
-                variant="fullWidth"
-                flexItem
-                orientation="horizontal"
-                sx={{ borderColor: "#091338", borderBottomWidth: 2 }}
-              />
-
-              <Stack
-                direction="row"
-                spacing={3}
-                sx={{ alignItems: "center", justifyContent: "space-between" }}
-              >
-                <Typography
-                  mt={1}
-                  variant="caption"
-                  sx={{
-                    color: "#FFFFF5",
-                    fontWeight: 400,
-                  }}
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting,
-                </Typography>
-              </Stack>
-              <Stack
-                direction="row"
-                spacing={3}
-                sx={{ alignItems: "center", justifyContent: "flex-start" }}
-              >
-                <Typography
-                  my={1}
-                  variant="caption"
-                  sx={{
-                    color: "#FFFFF5",
-                    fontWeight: 400,
-                  }}
-                >
-                  17 Likes
-                </Typography>
-              </Stack>
-            </Stack>
-          </Grid>
-          <Grid xs={12} mb={2}>
-            <Stack
-              direction="column"
-              ml={{ xs: 0, sm: 0, md: 3 }}
-              spacing={0.5}
-            >
-              <Stack
-                direction="row"
-                spacing={3}
-                sx={{ alignItems: "center", justifyContent: "space-between" }}
-                my={1.4}
-              >
-                <Stack
-                  direction="row"
-                  spacing={2}
-                  sx={{ alignItems: "center" }}
-                >
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="https://mui.com/static/images/avatar/1.jpg"
-                  />
-                  <Stack direction="column">
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: "#FFFFF5",
-                        fontWeight: 500,
-                        lineHeight: 1,
-                      }}
-                    >
-                      Padmajan
-                    </Typography>
-                    <Typography
-                      variant="caption"
-                      sx={{
-                        color: "#5299AF",
-                        fontWeight: 400,
-                        fontSize: ".7rem",
-                      }}
-                    >
-                      17 reviews
-                    </Typography>
-                  </Stack>
-                </Stack>
-                <Stack
-                  direction="column"
-                  spacing={0}
-                  sx={{ alignItems: "flex-end", justifyContent: "flex-end" }}
-                >
-                  <Rating
-                    name="large"
-                    defaultValue={5}
-                    size="small"
-                    readOnly
-                    sx={{ fontSize: "1rem" }}
-                  />
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      color: "#FFFFF5",
-                      fontWeight: 400,
-                      fontSize: ".7rem",
-                    }}
-                  >
-                    17 days ago
-                  </Typography>
-                </Stack>
-              </Stack>
-
-              <Divider
-                variant="fullWidth"
-                flexItem
-                orientation="horizontal"
-                sx={{ borderColor: "#091338", borderBottomWidth: 2 }}
-              />
-
-              <Stack
-                direction="row"
-                spacing={3}
-                sx={{ alignItems: "center", justifyContent: "space-between" }}
-              >
-                <Typography
-                  mt={1}
-                  variant="caption"
-                  sx={{
-                    color: "#FFFFF5",
-                    fontWeight: 400,
-                  }}
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting,
-                </Typography>
-              </Stack>
-              <Stack
-                direction="row"
-                spacing={3}
-                sx={{ alignItems: "center", justifyContent: "flex-start" }}
-              >
-                <Typography
-                  my={1}
-                  variant="caption"
-                  sx={{
-                    color: "#FFFFF5",
-                    fontWeight: 400,
-                  }}
-                >
-                  17 Likes
-                </Typography>
-              </Stack>
-            </Stack>
-          </Grid>
+                </Grid>
+              )
+            )}
         </Grid>
 
         {/* <Grid

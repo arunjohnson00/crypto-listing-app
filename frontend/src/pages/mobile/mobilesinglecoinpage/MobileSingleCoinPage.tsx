@@ -8,6 +8,8 @@ import {
   Divider,
   Avatar,
 } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
 import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
 import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
@@ -21,13 +23,110 @@ import MobileSingleCoinPageAccordion from "../../../components/mobile/singlecoin
 import MobileLatestNewsHeading from "../../../components/mobile/Typography/headings/latestnews/MobileLatestNewsHeading";
 import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
 import MobileBreadCrumbs from "../../../components/mobile/breadcrumbs/MobileBreadCrumbs";
+import {
+  coinDetailFirstBlockRequest,
+  coinOverviewBlockRequest,
+  coinAboutBlockRequest,
+  coinOnloadVerificationRequest,
+  coinSocialGraphRequest,
+  coinRatingBlockRequest,
+  featuredCoinListRequest,
+} from "../../../store/action";
 
 const MobileSingleCoinPage = () => {
+  const location: any = useLocation();
+  const dispatch: any = useDispatch();
+  const navigate: any = useNavigate();
+  const [requestStatus, setRequestStatus] = useState<any>(false);
   const { parse } = require("rss-to-json");
-
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
   const [feed, setFeed] = useState<any>();
+
+  const coinDetailFirstBlock = useSelector((data: any) => {
+    return data?.coinReducer?.coin_detail_first_block?.data;
+  });
+
+  useEffect(() => {
+    (location?.pathname === "/coin" || location?.pathname === "/coin/") &&
+      navigate("/");
+    const successHandler = (res: any) => {
+      setRequestStatus(res?.data?.status);
+    };
+    const errorHandler = (err: any) => {};
+
+    dispatch(
+      coinOnloadVerificationRequest(
+        location?.state?.coin_id !== undefined
+          ? location?.state?.coin_id
+          : location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  }, [dispatch]);
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(
+      coinDetailFirstBlockRequest(
+        location?.state?.coin_id !== undefined
+          ? location?.state?.coin_id
+          : location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+    dispatch(
+      coinOverviewBlockRequest(
+        location?.state?.coin_id !== undefined
+          ? location?.state?.coin_id
+          : location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+    dispatch(
+      coinAboutBlockRequest(
+        location?.state?.coin_id !== undefined
+          ? location?.state?.coin_id
+          : location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+
+    dispatch(
+      coinRatingBlockRequest(
+        location?.state?.coin_id !== undefined
+          ? location?.state?.coin_id
+          : location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+
+    dispatch(
+      coinSocialGraphRequest(
+        location?.state?.coin_id !== undefined
+          ? location?.state?.coin_id
+          : location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  }, [requestStatus]);
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
+    // dispatch(menuCardRequest("noData", successHandler, errorHandler));
+    // dispatch(videoListRequest("noData", successHandler, errorHandler));
+    // dispatch(trendingCoinListRequest("noData", successHandler, errorHandler));
+  }, [dispatch]);
 
   useEffect(() => {
     (async () => {
@@ -107,7 +206,15 @@ const MobileSingleCoinPage = () => {
             }}
             py={1}
           >
-            <MobileBreadCrumbs home="Home" path="Coin" />
+            <MobileBreadCrumbs
+              home="Home"
+              path="Coin"
+              data={
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock !== undefined &&
+                coinDetailFirstBlock[0]
+              }
+            />
           </Grid>
           <Grid
             xs={12}
@@ -137,7 +244,9 @@ const MobileSingleCoinPage = () => {
             paddingTop: 2,
           }}
         >
-          <MobileSingleCoinHeader />
+          <MobileSingleCoinHeader
+            coinData={coinDetailFirstBlock && coinDetailFirstBlock[0]}
+          />
         </Grid>
 
         <Grid

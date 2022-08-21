@@ -13,7 +13,7 @@ import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
-const UpcomingEventsCardSlider = ({ data, variant }: any) => {
+const MobileCryptoEventsCardSlider = ({ data, variant }: any) => {
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
       color: "#ff6d75",
@@ -116,4 +116,4 @@ const UpcomingEventsCardSlider = ({ data, variant }: any) => {
   );
 };
 
-export default UpcomingEventsCardSlider;
+export default MobileCryptoEventsCardSlider;

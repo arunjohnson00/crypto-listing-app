@@ -9,6 +9,7 @@ import promoteIcon from "../../../../assets/home/promote_icon.png";
 import ledgerBoardIcon from "../../../../assets/home/leaderboard_icon.png";
 import chartIcon from "../../../../assets/home/chart_icon.png";
 import addAssetIcon from "../../../../assets/home/add_asset_icon.png";
+import { Link } from "react-router-dom";
 
 const MobileIconMenuCard = () => {
   return (
@@ -50,7 +51,16 @@ const MobileIconMenuCard = () => {
               }}
               variant="subtitle2"
             >
-              Recently added
+              <Link
+                to="/coins/recently-added"
+                style={{
+                  textDecoration: "none",
+                  color: "inherit",
+                }}
+              >
+                {" "}
+                Recently added
+              </Link>
             </Typography>
           </Stack>
         </Grid>
@@ -75,7 +85,15 @@ const MobileIconMenuCard = () => {
               }}
               variant="subtitle2"
             >
-              Today's Performer
+              <Link
+                to="/coins/todays-performer"
+                style={{
+                  textDecoration: "none",
+                  color: "inherit",
+                }}
+              >
+                Today's Performer
+              </Link>
             </Typography>
           </Stack>
         </Grid>
@@ -100,7 +118,16 @@ const MobileIconMenuCard = () => {
               }}
               variant="subtitle2"
             >
-              Biggest Gainers
+              <Link
+                to="/coins/biggest-gainers"
+                style={{
+                  textDecoration: "none",
+                  color: "inherit",
+                }}
+              >
+                {" "}
+                Biggest Gainers
+              </Link>
             </Typography>
           </Stack>
         </Grid>
@@ -125,7 +152,15 @@ const MobileIconMenuCard = () => {
               }}
               variant="subtitle2"
             >
-              Biggest Losers
+              <Link
+                to="/coins/biggest-losers"
+                style={{
+                  textDecoration: "none",
+                  color: "inherit",
+                }}
+              >
+                Biggest Losers
+              </Link>
             </Typography>
           </Stack>
         </Grid>

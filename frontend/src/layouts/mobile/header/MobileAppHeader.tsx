@@ -14,6 +14,7 @@ import SearchIcon from "@mui/icons-material/Search";
 
 import { Search, SearchIconWrapper, StyledInputBase } from "./style";
 import SearchDrawer from "../../../components/mobile/searchdrawer/SearchDrawer";
+import { Link } from "react-router-dom";
 
 const MobileAppHeader = () => {
   const pages = ["Products", "Pricing", "Blog"];
@@ -41,13 +42,21 @@ const MobileAppHeader = () => {
     <AppBar position="static" sx={{ backgroundColor: "#01061A" }}>
       <Grid>
         <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
-            <img
-              src="https://coinxhigh.com/public/assets/images/logo.png"
-              alt="coinxhigh"
-              width="90px"
-            />
-          </Box>
+          <Link
+            to="/"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
+          >
+            <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
+              <img
+                src="https://coinxhigh.com/public/assets/images/logo.png"
+                alt="coinxhigh"
+                width="90px"
+              />
+            </Box>{" "}
+          </Link>
 
           <Box
             sx={{

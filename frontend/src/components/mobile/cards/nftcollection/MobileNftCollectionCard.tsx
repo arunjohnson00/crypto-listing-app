@@ -5,7 +5,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import React from "react";
 
-const MobileNftCollectionCard = () => {
+const serverAPIUrl = process.env.REACT_APP_API_URL;
+const MobileNftCollectionCard = ({ data }: any) => {
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
       color: "#ff6d75",
@@ -21,21 +22,20 @@ const MobileNftCollectionCard = () => {
           <CardMedia
             component="img"
             height="143"
-            image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+            src={`${serverAPIUrl}public/uploads/nft_listing_image/${data?.image}`}
             alt="green iguana"
           />
         </Box>
         <Box
           sx={{ flexGrow: 1, background: "#282760", height: "73px" }}
           px={2}
-          pt={2}
-          pb={3}
+          py={2}
         >
           <Typography
             variant="body2"
             sx={{ color: "white", fontSize: "0.778rem" }}
           >
-            Bored Ape Yatch Club
+            {data && data?.title}
           </Typography>
           <Stack
             direction="row"
@@ -54,7 +54,7 @@ const MobileNftCollectionCard = () => {
                 variant="caption"
                 sx={{ color: "white", fontSize: "0.698rem" }}
               >
-                0.07 ETH
+                0.07 {data && data?.symbol}
               </Typography>
             </Stack>
 
