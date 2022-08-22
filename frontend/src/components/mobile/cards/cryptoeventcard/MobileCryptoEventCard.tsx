@@ -4,8 +4,16 @@ import { Link } from "react-router-dom";
 
 const MobileCryptoEventCard = () => {
   return (
-    <Box sx={{ backgroundColor: "#07113F", borderRadius: 6 }} width="100%">
-      <Stack direction="column" spacing={4} p={2} alignItems="center">
+    <Box
+      sx={{
+        background: "linear-gradient(to bottom, #07113F 0%, #01061A 100%)",
+
+        borderRadius: 6,
+        border: "1px solid #07113F",
+      }}
+      width="100%"
+    >
+      <Stack direction="column" spacing={4} alignItems="center" px={3} py={2}>
         <Stack direction="column" spacing={1.5} alignItems="center">
           <Avatar
             alt="Remy Sharp"
@@ -43,7 +51,7 @@ const MobileCryptoEventCard = () => {
           </Typography>
         </Stack>
 
-        <Stack direction="column" spacing={2} alignItems="center" width="100%">
+        <Stack direction="column" spacing={2} alignItems="center">
           <Box
             sx={{
               backgroundColor: "#01061A",

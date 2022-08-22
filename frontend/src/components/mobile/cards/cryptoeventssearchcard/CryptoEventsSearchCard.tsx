@@ -16,13 +16,16 @@ const CryptoEventsSearchCard = () => {
   return (
     <Box
       sx={{ backgroundColor: "#071241", borderRadius: 5 }}
-      p={2}
+      py={2}
+      px={4}
       width="100%"
     >
       <Stack direction="column" spacing={2} justifyContent="center">
         <Stack direction="row" spacing={2} justifyContent="space-between">
           <Stack direction="row" spacing={2} alignItems="center">
-            <Typography sx={{ fontSize: "1rem", color: "#FFFFFF" }}>
+            <Typography
+              sx={{ fontSize: "1rem", color: "#4F5368", fontWeight: 500 }}
+            >
               From
             </Typography>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -63,7 +66,9 @@ const CryptoEventsSearchCard = () => {
             </LocalizationProvider>
           </Stack>
           <Stack direction="row" spacing={2} alignItems="center">
-            <Typography sx={{ fontSize: "1rem", color: "#FFFFFF" }}>
+            <Typography
+              sx={{ fontSize: "1rem", color: "#4F5368", fontWeight: 500 }}
+            >
               To
             </Typography>
             <LocalizationProvider dateAdapter={AdapterDateFns}>

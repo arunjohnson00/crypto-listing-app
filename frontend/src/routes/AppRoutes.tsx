@@ -16,7 +16,7 @@ import CoinsListPage from "../pages/desktop/coins/CoinsListPage";
 import ComparisonPage from "../pages/desktop/comparisonpage/ComparisonPage";
 import CryptoEvents from "../pages/desktop/cryptoevents/CryptoEvents";
 import AirdropPage from "../pages/desktop/airdrops/AirdropPage";
-import EventsViewPage from "../pages/desktop/eventsview/EventsViewPage";
+import SingleCryptoEventsPage from "../pages/desktop/singlecryptoeventspage/SingleCryptoEventsPage";
 import PresaleListPage from "../pages/desktop/presales/PresaleListPage";
 import DiscoverPage from "../pages/desktop/discover/DiscoverPage";
 import MobileSingleCoinPage from "../pages/mobile/mobilesinglecoinpage/MobileSingleCoinPage";
@@ -25,6 +25,7 @@ import ChartPage from "../pages/desktop/chart/ChartPage";
 import FreeCoinPage from "../pages/desktop/freecoin/FreeCoinPage";
 import MobileSingleNftPage from "../pages/mobile/mobilesinglenftpage/MobileSingleNftPage";
 import MobileCryptoEventsPage from "../pages/mobile/mobilecryptoeventspage/MobileCryptoEventsPage";
+import MobileSingleCryptoEventsPage from "../pages/mobile/mobilesinglecryptoeventspage/MobileSingleCryptoEventsPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -180,14 +181,26 @@ const AppRoutes = () => {
             </PublicRoutes>
           }
         />
-        <Route
-          path="/events-view"
-          element={
-            <PublicRoutes>
-              <EventsViewPage />
-            </PublicRoutes>
-          }
-        />
+
+        {windowInnerWidth >= 900 ? (
+          <Route
+            path="/crypto-events/*"
+            element={
+              <PublicRoutes>
+                <SingleCryptoEventsPage />
+              </PublicRoutes>
+            }
+          />
+        ) : (
+          <Route
+            path="/crypto-events/*"
+            element={
+              <PublicRoutes>
+                <MobileSingleCryptoEventsPage />
+              </PublicRoutes>
+            }
+          />
+        )}
 
         <Route
           path="/discover"

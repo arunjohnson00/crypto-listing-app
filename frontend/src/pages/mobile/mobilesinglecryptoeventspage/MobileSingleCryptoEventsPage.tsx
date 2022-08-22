@@ -18,11 +18,10 @@ import en from "javascript-time-ago/locale/en.json";
 import MobileTopAlertBox from "../../../components/mobile/alert/topalertbox/MobileTopAlertBox";
 import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
 import MobileBreadCrumbs from "../../../components/mobile/breadcrumbs/MobileBreadCrumbs";
+import MobileSingleCryptoEventHeader from "../../../components/mobile/singlecryptoeventsheader/MobileSingleCryptoEventHeader";
+import CryptoEventsSinglePageCard from "../../../components/mobile/cards/cryptoeventssinglepagecard/CryptoEventsSinglePageCard";
 
-import CryptoEventsSearchCard from "../../../components/mobile/cards/cryptoeventssearchcard/CryptoEventsSearchCard";
-import CryptoEventsTab from "../../../components/mobile/cryptoeventstab/CryptoEventsTab";
-
-const MobileCryptoEventsPage = () => {
+const MobileSingleCryptoEventsPage = () => {
   const { parse } = require("rss-to-json");
 
   TimeAgo.addDefaultLocale(en);
@@ -107,7 +106,7 @@ const MobileCryptoEventsPage = () => {
             }}
             py={1}
           >
-            <MobileBreadCrumbs home="Home" path="Crypto Events" />
+            <MobileBreadCrumbs home="Home" path="Events" />
           </Grid>
           <Grid
             xs={12}
@@ -131,41 +130,54 @@ const MobileCryptoEventsPage = () => {
 
         <Grid
           container
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: 2,
-          }}
-        >
-          <Typography variant="h6" sx={{ color: "#FFFFFF" }}>
-            Crypto Events
-          </Typography>
-        </Grid>
-
-        <Grid
-          container
-          xs={12}
           sx={{
             alignItems: "center",
             marginTop: 4,
           }}
         >
-          <CryptoEventsSearchCard />
+          <MobileSingleCryptoEventHeader />
         </Grid>
 
         <Grid
           container
-          xs={12}
           sx={{
             alignItems: "center",
             marginTop: 4,
           }}
         >
-          <CryptoEventsTab />
+          {" "}
+          <Divider
+            variant="fullWidth"
+            sx={{
+              borderColor: "#16245E",
+              borderBottomWidth: 1.3,
+              width: "100%",
+            }}
+            flexItem
+          />
+        </Grid>
+
+        <Grid
+          container
+          sx={{
+            alignItems: "center",
+            marginTop: 4,
+          }}
+        >
+          <Stack
+            direction="column"
+            spacing={2}
+            justifyContent="center"
+            width="100%"
+          >
+            <CryptoEventsSinglePageCard />
+            <CryptoEventsSinglePageCard />
+            <CryptoEventsSinglePageCard />
+          </Stack>
         </Grid>
       </Grid>
     </Fragment>
   );
 };
 
-export default MobileCryptoEventsPage;
+export default MobileSingleCryptoEventsPage;

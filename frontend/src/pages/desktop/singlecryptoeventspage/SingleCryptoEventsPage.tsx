@@ -11,7 +11,7 @@ import en from "javascript-time-ago/locale/en.json";
 import AirdropCard from "../../../components/desktop/cards/airdropcard/AirdropCard";
 import EventViewCard from "../../../components/desktop/cards/eventviewcard/EventViewCard";
 
-const EventsViewPage = () => {
+const SingleCryptoEventsPage = () => {
   const [date, setDate] = useState<any>(new Date());
 
   const { parse } = require("rss-to-json");
@@ -107,4 +107,4 @@ const EventsViewPage = () => {
   );
 };
 
-export default EventsViewPage;
+export default SingleCryptoEventsPage;
