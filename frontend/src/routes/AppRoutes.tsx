@@ -24,6 +24,7 @@ import LeaderBoardPage from "../pages/desktop/leaderboard/LeaderBoardPage";
 import ChartPage from "../pages/desktop/chart/ChartPage";
 import FreeCoinPage from "../pages/desktop/freecoin/FreeCoinPage";
 import MobileSingleNftPage from "../pages/mobile/mobilesinglenftpage/MobileSingleNftPage";
+import MobileCryptoEventsPage from "../pages/mobile/mobilecryptoeventspage/MobileCryptoEventsPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -152,14 +153,25 @@ const AppRoutes = () => {
             </PublicRoutes>
           }
         />
-        <Route
-          path="/crypto-events"
-          element={
-            <PublicRoutes>
-              <CryptoEvents />
-            </PublicRoutes>
-          }
-        />
+        {windowInnerWidth >= 900 ? (
+          <Route
+            path="/crypto-events"
+            element={
+              <PublicRoutes>
+                <CryptoEvents />
+              </PublicRoutes>
+            }
+          />
+        ) : (
+          <Route
+            path="/crypto-events"
+            element={
+              <PublicRoutes>
+                <MobileCryptoEventsPage />
+              </PublicRoutes>
+            }
+          />
+        )}
         <Route
           path="/airdrops"
           element={
