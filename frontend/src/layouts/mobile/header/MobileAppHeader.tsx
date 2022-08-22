@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -15,27 +15,20 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Search, SearchIconWrapper, StyledInputBase } from "./style";
 import SearchDrawer from "../../../components/mobile/searchdrawer/SearchDrawer";
 import { Link } from "react-router-dom";
-
+import HeaderMenuDrawer from "../../../components/mobile/headermenudrawer/HeaderMenuDrawer";
+import logoWhite from "../../../assets/logo/logo.png";
 const MobileAppHeader = () => {
-  const pages = ["Products", "Pricing", "Blog"];
-  const settings = ["Profile", "Account", "Dashboard", "Logout"];
-  const [openDrawer, setOpenDrawer] = React.useState({
+  const [openDrawer, setOpenDrawer] = useState({
     top: false,
+    left: false,
   });
 
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
-
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
   const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
     setOpenDrawer({ ...openDrawer, top: !openDrawer?.top });
+  };
+
+  const toggleMenuDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
+    setOpenDrawer({ ...openDrawer, left: !openDrawer?.left });
   };
 
   return (
@@ -50,11 +43,7 @@ const MobileAppHeader = () => {
             }}
           >
             <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
-              <img
-                src="https://coinxhigh.com/public/assets/images/logo.png"
-                alt="coinxhigh"
-                width="90px"
-              />
+              <img src={logoWhite} alt="coinxhigh" width="90px" />
             </Box>{" "}
           </Link>
 
@@ -90,12 +79,12 @@ const MobileAppHeader = () => {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={toggleMenuDrawer}
               color="inherit"
             >
-              <MenuIcon sx={{ fontSize: "3rem", color: "#8f8cb0" }} />
+              <MenuIcon sx={{ fontSize: "2.2rem", color: "#8f8cb0" }} />
             </IconButton>
-            <Menu
+            {/* <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -118,7 +107,13 @@ const MobileAppHeader = () => {
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
-            </Menu>
+            </Menu> */}
+
+            <HeaderMenuDrawer
+              openDrawer={openDrawer}
+              setOpenDrawer={setOpenDrawer}
+              toggleDrawer={toggleMenuDrawer}
+            />
           </Box>
         </Toolbar>
       </Grid>

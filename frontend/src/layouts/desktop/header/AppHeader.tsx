@@ -9,6 +9,7 @@ import { Stack, Box, Grid } from "@mui/material";
 import AppBarNavBtn from "../../../components/desktop/button/navbutton/AppBarNavBtn";
 
 import { coinMenu, nftMenu, airdropsMenu, eventsMenu } from "./helper";
+import logoWhite from "../../../assets/logo/logo.png";
 
 const AppHeader = ({ windowInnerWidth }: any) => {
   return (
@@ -33,11 +34,7 @@ const AppHeader = ({ windowInnerWidth }: any) => {
             }}
           >
             <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-              <img
-                src="https://coinxhigh.com/public/assets/images/logo.png"
-                alt="coinxhigh"
-                width="200px"
-              />
+              <img src={logoWhite} alt="coinxhigh" width="200px" />
             </Link>
             <Stack
               direction={{ xs: "column", sm: "column", md: "row" }}
