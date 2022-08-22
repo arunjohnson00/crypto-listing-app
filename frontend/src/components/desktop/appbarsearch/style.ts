@@ -39,7 +39,7 @@ export const StyledInputRoot = styled("div")(
     }
   
     &:hover {
-      background: #272727};
+      background: #01061A};
       
     }
   `

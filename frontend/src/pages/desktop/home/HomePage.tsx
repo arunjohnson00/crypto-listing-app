@@ -58,6 +58,7 @@ import {
   videoListRequest,
   trendingCoinListRequest,
 } from "../../../store/action";
+import { tableHeader } from "./helper";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 import LatestNewsCardScroll from "../../../components/desktop/latestnews/LatestNewsCardScroll";
 import CryptoEventsCardSlider from "../../../components/desktop/cards/cryptoeventscardslider/CryptoEventsCardSlider";
@@ -304,7 +305,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               alignItems: "center",
             }}
           >
-            {/* <CoinSlider /> */}
+            <CoinSlider />
           </Stack>
         </Grid>
 
@@ -491,7 +492,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
                 </Box>
               ) : (
                 <HighlightCards
-                  title="Biggest Losers"
+                  title="Top Losers"
                   cardData={biggestloosers}
                   icon={biggestLosersIcon}
                 />
@@ -848,7 +849,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           </Stack>
         </Grid>
 
-        <Grid
+        {/* <Grid
           xs={12}
           sx={{
             alignItems: "center",
@@ -914,7 +915,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
                 ))}
             </Carousel>
           )}
-        </Grid>
+        </Grid> */}
 
         <Grid
           xs={12}
@@ -1045,7 +1046,11 @@ const HomePage = ({ windowInnerWidth }: any) => {
                 />
               </Box>
             ) : (
-              <HtmlTable tableData={tableData && tableData} />
+              <HtmlTable
+                tableData={tableData && tableData}
+                tableHeader={tableHeader}
+                variant="crypto_currencies"
+              />
             )}
           </Stack>
         </Grid>

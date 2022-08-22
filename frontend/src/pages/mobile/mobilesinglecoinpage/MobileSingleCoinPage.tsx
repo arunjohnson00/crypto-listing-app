@@ -57,9 +57,7 @@ const MobileSingleCoinPage = () => {
 
     dispatch(
       coinOnloadVerificationRequest(
-        location?.state?.coin_id !== undefined
-          ? location?.state?.coin_id
-          : location?.pathname?.split("/").pop(),
+        location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler
       )
@@ -71,27 +69,21 @@ const MobileSingleCoinPage = () => {
     const errorHandler = (err: any) => {};
     dispatch(
       coinDetailFirstBlockRequest(
-        location?.state?.coin_id !== undefined
-          ? location?.state?.coin_id
-          : location?.pathname?.split("/").pop(),
+        location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler
       )
     );
     dispatch(
       coinOverviewBlockRequest(
-        location?.state?.coin_id !== undefined
-          ? location?.state?.coin_id
-          : location?.pathname?.split("/").pop(),
+        location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler
       )
     );
     dispatch(
       coinAboutBlockRequest(
-        location?.state?.coin_id !== undefined
-          ? location?.state?.coin_id
-          : location?.pathname?.split("/").pop(),
+        location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler
       )
@@ -99,9 +91,7 @@ const MobileSingleCoinPage = () => {
 
     dispatch(
       coinRatingBlockRequest(
-        location?.state?.coin_id !== undefined
-          ? location?.state?.coin_id
-          : location?.pathname?.split("/").pop(),
+        location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler
       )
@@ -109,9 +99,7 @@ const MobileSingleCoinPage = () => {
 
     dispatch(
       coinSocialGraphRequest(
-        location?.state?.coin_id !== undefined
-          ? location?.state?.coin_id
-          : location?.pathname?.split("/").pop(),
+        location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler
       )

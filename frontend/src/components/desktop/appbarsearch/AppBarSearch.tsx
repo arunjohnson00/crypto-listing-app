@@ -100,7 +100,7 @@ const AppBarSearch = () => {
     const errorHandler = (err: any) => {};
     dispatch(topbarSearchRequest(values, successHandler, errorHandler));
   }, [dispatch, values, setValues]);
-  console.log(searchResult && searchResult);
+
   return (
     <Box sx={{ display: "flex", "& > * + *": { ml: 1 } }}>
       <CustomInput
@@ -149,6 +149,7 @@ const AppBarSearch = () => {
           id="outlined-adornment-password"
           type="text"
           value={values}
+          autoFocus={true}
           placeholder="Search coin, pair, contract address or exchange"
           onChange={(e: any) => handleChange(e)}
           style={{
@@ -244,7 +245,7 @@ const AppBarSearch = () => {
                     <Avatar
                       alt="Trending"
                       src={`${serverAPIUrl}public/uploads/coin_logo/${item?.coin_logo}`}
-                      sx={{ width: 16, height: 16 }}
+                      sx={{ width: 20, height: 20 }}
                     />
                     <Link
                       to={{

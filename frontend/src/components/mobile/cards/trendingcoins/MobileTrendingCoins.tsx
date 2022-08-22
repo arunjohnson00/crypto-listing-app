@@ -156,9 +156,7 @@ const MobileTrendingCoins = ({ data }: any) => {
           <Stack direction={{ xs: "column" }} spacing={0.3}>
             <Link
               to={{
-                pathname: `/coin/${data?.name
-                  ?.replace(/ /g, "")
-                  .toLowerCase()}/${data?.id}`,
+                pathname: `/coin/${data?.slug}`,
               }}
               state={{ coin_id: data?.id }}
               style={{ textDecoration: "none", color: "#FFFFFF" }}

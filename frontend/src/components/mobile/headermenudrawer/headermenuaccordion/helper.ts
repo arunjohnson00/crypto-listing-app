@@ -29,7 +29,7 @@ export const coinMenu = [
   {
     icon: biggestLosersCoinIcon,
     title: "Top Losers",
-    link: "/coins/biggest-losers",
+    link: "/coins/top-losers",
   },
   { icon: trendingCoinIcon, title: "Trending", link: "/coins/trending-coins" },
   { icon: mostVotedCoinIcon, title: "Most Voted", link: "/coins/most-voted" },

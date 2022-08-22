@@ -106,3 +106,33 @@ export const coinRatingBlockRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const coinHistoricalDataBlockRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-historical-data/${values} `,
+    method: "GET",
+    secure: false,
+    actionType: COIN.COIN_HISTORICAL_DATA_BLOCK,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const coinTodaysPriceBlockRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-todays-price/${values} `,
+    method: "GET",
+    secure: false,
+    actionType: COIN.COIN_TODAYS_PRICE_BLOCK,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

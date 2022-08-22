@@ -168,7 +168,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
       dispatch(
         coinsBiggestGainersRequest("noData", successHandler, errorHandler)
       );
-    location?.pathname === "/coins/biggest-losers" &&
+    location?.pathname === "/coins/top-losers" &&
       dispatch(
         coinsBiggestLosersRequest("noData", successHandler, errorHandler)
       );

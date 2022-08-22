@@ -43,6 +43,7 @@ import {
   videoListRequest,
   trendingCoinListRequest,
 } from "../../../store/action";
+import { tableHeader } from "./helper";
 import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
 
 import { Link } from "react-router-dom";
@@ -534,7 +535,7 @@ const MobileHomePage = () => {
         </Carousel>
       </Grid>
 
-      <Grid
+      {/* <Grid
         xs={12}
         sx={{
           alignItems: "center",
@@ -587,7 +588,7 @@ const MobileHomePage = () => {
               ))}
           </Carousel>
         )}
-      </Grid>
+      </Grid> */}
 
       <Grid
         xs={12}
@@ -718,7 +719,11 @@ const MobileHomePage = () => {
               />
             </Box>
           ) : (
-            <MobileHtmlTable tableData={tableData && tableData} />
+            <MobileHtmlTable
+              tableData={tableData && tableData}
+              tableHeader={tableHeader}
+              variant="crypto_currencies"
+            />
           )}
         </Stack>
       </Grid>

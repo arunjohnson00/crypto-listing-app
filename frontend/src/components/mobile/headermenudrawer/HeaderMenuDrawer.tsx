@@ -99,7 +99,17 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
           py={2}
         >
           {" "}
-          <img src={logoWhite} alt="coinxhigh" width="120px" />
+          <Link
+            to="/"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
+            onClick={toggleDrawer}
+          >
+            {" "}
+            <img src={logoWhite} alt="coinxhigh" width="120px" />
+          </Link>
           <IconButton edge="end" onClick={toggleDrawer}>
             {
               <CancelIcon

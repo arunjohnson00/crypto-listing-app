@@ -27,6 +27,8 @@ import {
   coinOnloadVerificationRequest,
   coinSocialGraphRequest,
   coinRatingBlockRequest,
+  coinHistoricalDataBlockRequest,
+  coinTodaysPriceBlockRequest,
 } from "../../../store/action";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 
@@ -54,9 +56,7 @@ const SingleCoinPage = () => {
 
     dispatch(
       coinOnloadVerificationRequest(
-        location?.state?.coin_id !== undefined
-          ? location?.state?.coin_id
-          : location?.pathname?.split("/").pop(),
+        location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler
       )
@@ -68,27 +68,21 @@ const SingleCoinPage = () => {
     const errorHandler = (err: any) => {};
     dispatch(
       coinDetailFirstBlockRequest(
-        location?.state?.coin_id !== undefined
-          ? location?.state?.coin_id
-          : location?.pathname?.split("/").pop(),
+        location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler
       )
     );
     dispatch(
       coinOverviewBlockRequest(
-        location?.state?.coin_id !== undefined
-          ? location?.state?.coin_id
-          : location?.pathname?.split("/").pop(),
+        location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler
       )
     );
     dispatch(
       coinAboutBlockRequest(
-        location?.state?.coin_id !== undefined
-          ? location?.state?.coin_id
-          : location?.pathname?.split("/").pop(),
+        location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler
       )
@@ -96,9 +90,7 @@ const SingleCoinPage = () => {
 
     dispatch(
       coinRatingBlockRequest(
-        location?.state?.coin_id !== undefined
-          ? location?.state?.coin_id
-          : location?.pathname?.split("/").pop(),
+        location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler
       )
@@ -106,9 +98,23 @@ const SingleCoinPage = () => {
 
     dispatch(
       coinSocialGraphRequest(
-        location?.state?.coin_id !== undefined
-          ? location?.state?.coin_id
-          : location?.pathname?.split("/").pop(),
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+
+    dispatch(
+      coinHistoricalDataBlockRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+
+    dispatch(
+      coinTodaysPriceBlockRequest(
+        location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler
       )
@@ -154,7 +160,7 @@ const SingleCoinPage = () => {
               alignItems: "center",
             }}
           >
-            {/* <CoinSlider /> */}
+            <CoinSlider />
           </Stack>
         </Grid>
 

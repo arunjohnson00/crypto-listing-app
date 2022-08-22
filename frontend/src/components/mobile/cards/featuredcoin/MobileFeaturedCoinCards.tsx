@@ -84,9 +84,7 @@ const MobileFeaturedCoinCards = ({ cardData }: any) => {
               >
                 <Link
                   to={{
-                    pathname: `/coin/${cardData?.name
-                      ?.replace(/ /g, "")
-                      .toLowerCase()}/${cardData?.id}`,
+                    pathname: `/coin/${cardData?.slug}`,
                   }}
                   state={{ coin_id: cardData?.id }}
                   style={{ textDecoration: "none", color: "#FFFFFF" }}

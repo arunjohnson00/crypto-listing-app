@@ -149,9 +149,7 @@ const ListingTable = ({
                           {" "}
                           <Link
                             to={{
-                              pathname: `/coin/${data?.name
-                                ?.replace(/ /g, "")
-                                .toLowerCase()}/${data?.id}`,
+                              pathname: `/coin/${data?.slug}`,
                             }}
                             state={{ coin_id: data?.id }}
                             style={{

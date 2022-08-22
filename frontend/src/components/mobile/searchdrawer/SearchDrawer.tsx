@@ -84,6 +84,7 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
           id="outlined-adornment-password"
           type="text"
           value={values}
+          autoFocus={true}
           placeholder="Search coin, pair, contract address or exchange"
           onChange={(e: any) => handleChange(e)}
           style={{

@@ -11,6 +11,8 @@ import CoinPageMarket from "../coinpagemarket/CoinPageMarket";
 import CoinPageFAQ from "../coinpagefaq/CoinPageFAQ";
 import { Divider } from "@mui/material";
 import CoinPageCommunity from "../coinpagecommunity/CoinPageCommunity";
+import CoinPageHistoricalData from "../coinpagehistoricaldata/CoinPageHistoricalData";
+import CoinPageTodaysPrice from "../coinpagetodaysprice/CoinPageTodaysPrice";
 
 const SinglePageTab = () => {
   const [value, setValue] = useState("1");
@@ -97,8 +99,12 @@ const SinglePageTab = () => {
         <TabPanel value="4">
           <CoinPageMarket />
         </TabPanel>
-        <TabPanel value="5">Item Three</TabPanel>
-        <TabPanel value="6">Item One</TabPanel>
+        <TabPanel value="5">
+          <CoinPageHistoricalData />
+        </TabPanel>
+        <TabPanel value="6">
+          <CoinPageTodaysPrice />
+        </TabPanel>
         <TabPanel value="7">
           <CoinPageCommunity />
         </TabPanel>
