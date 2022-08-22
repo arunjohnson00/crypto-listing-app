@@ -66,7 +66,7 @@ const AppBarNavBtn = ({ title, iconStatus, path, menu }: any) => {
           <Stack
             direction="column"
             spacing={1}
-            p={2}
+            py={2}
             sx={{
               backgroundColor: "#000000",
               borderRadius: 4,
@@ -85,15 +85,30 @@ const AppBarNavBtn = ({ title, iconStatus, path, menu }: any) => {
                 style={{ textDecoration: "none", color: "#FFFFFF" }}
                 key={index}
               >
-                <Stack direction="row" spacing={0.5} alignItems="center">
+                <Stack
+                  direction="row"
+                  spacing={0.5}
+                  alignItems="center"
+                  px={2}
+                  py={0}
+                  sx={{
+                    "&:hover": {
+                      backgroundColor: "#111138",
+                    },
+                  }}
+                >
                   <Avatar
                     alt={item?.title}
                     src={item?.icon}
-                    sx={{ width: 18, height: 18 }}
+                    sx={{ width: 22, height: 22, borderRadius: 0 }}
                   />
 
                   <Typography
-                    sx={{ p: 1, fontSize: ".8rem", color: "#FFFFFF" }}
+                    sx={{
+                      p: 1,
+                      fontSize: ".8rem",
+                      color: "#FFFFFF",
+                    }}
                   >
                     {item?.title}
                   </Typography>
