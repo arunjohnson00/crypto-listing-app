@@ -1,0 +1,311 @@
+import { useEffect, useState } from "react";
+import Chart from "react-apexcharts";
+import {
+  Grid,
+  Stack,
+  Typography,
+  NativeSelect,
+  Box,
+  Avatar,
+  Tooltip,
+  Divider,
+  CardMedia,
+  Link,
+  Button,
+  ButtonGroup,
+} from "@mui/material";
+
+const CoinCommunityChart = ({
+  // dateTime,
+  // setDateTime,
+  // updateData,
+  data,
+  variant,
+  title,
+  colorTheme,
+}: any) => {
+  const [dateTime, setDateTime] = useState<any>("seven_day");
+
+  const updateData = (timeline: any) => {
+    setDateTime(timeline);
+  };
+
+  useEffect(() => {
+    switch (dateTime) {
+      case "seven_day":
+        ApexCharts.exec(
+          "area-datetime",
+          "zoomX",
+          new Date("28 Jan 2013").getTime(),
+          new Date("27 Feb 2013").getTime()
+        );
+        break;
+      case "fifteen_day":
+        ApexCharts.exec(
+          "area-datetime",
+          "zoomX",
+          new Date("27 Sep 2012").getTime(),
+          new Date("27 Feb 2013").getTime()
+        );
+        break;
+      case "thirty_day":
+        ApexCharts.exec(
+          "area-datetime",
+          "zoomX",
+          new Date("27 Feb 2012").getTime(),
+          new Date("27 Feb 2013").getTime()
+        );
+        break;
+
+      default:
+    }
+  }, [updateData, dateTime, variant]);
+  const chartData: any = {
+    series: [
+      {
+        data: data,
+      },
+    ],
+    options: {
+      chart: {
+        id: "area-datetime",
+        type: "line",
+        height: 350,
+        zoom: {
+          autoScaleYaxis: true,
+        },
+      },
+      grid: {
+        show: true,
+        borderColor: "#90A4AE",
+        strokeDashArray: 0,
+        position: "back",
+        xaxis: {
+          lines: {
+            show: false,
+          },
+        },
+        yaxis: {
+          lines: {
+            show: false,
+          },
+        },
+      },
+      stroke: {
+        show: true,
+        curve: "smooth",
+        lineCap: "butt",
+        colors: [colorTheme && colorTheme],
+        width: 2,
+        dashArray: 0,
+      },
+      annotations: {
+        yaxis: [
+          {
+            y: 30,
+            borderColor: "#999",
+            label: {
+              show: true,
+              text: "Support",
+              style: {
+                color: "#fff",
+                background: "#fff",
+              },
+            },
+          },
+        ],
+        xaxis: [
+          {
+            x: new Date("14 Nov 2012").getTime(),
+            borderColor: "#999",
+            yAxisIndex: 0,
+            label: {
+              show: true,
+              text: "Top Gross",
+              style: {
+                color: ["#fff"],
+                background: "#00ff00",
+              },
+            },
+          },
+        ],
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      markers: {
+        size: 0,
+        style: "hollow",
+      },
+      xaxis: {
+        type: "datetime",
+        min: new Date("01 Mar 2012").getTime(),
+        tickAmount: 6,
+      },
+      tooltip: {
+        x: {
+          format: "dd MMM yyyy",
+        },
+      },
+      fill: {
+        type: "gradient",
+
+        colors: ["#e5ed00"],
+
+        gradient: {
+          shadeIntensity: 0,
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [0, 40],
+        },
+      },
+    },
+  };
+
+  return (
+    <Box sx={{ backgroundColor: "#11122b", borderRadius: 2 }} width="100%">
+      {" "}
+      <Stack direction="column" alignItems="flex-start" spacing={1} p={2}>
+        <Stack
+          direction="row"
+          alignItems="center"
+          spacing={1}
+          justifyContent="space-between"
+          width="100%"
+        >
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Avatar
+              alt="Remy Sharp"
+              src="/static/images/avatar/1.jpg"
+              sx={{ width: 30, height: 30 }}
+            />
+            <Stack direction="column" alignItems="flex-start" spacing={0}>
+              <Typography
+                sx={{
+                  color: "#C6C9D2",
+                  fontWeight: 600,
+                  fontSize: ".9rem",
+                  textTransform: "capitalize",
+                }}
+              >
+                <span style={{ color: colorTheme && colorTheme }}>
+                  {title && title}
+                </span>{" "}
+                Subscribers
+              </Typography>
+              <Typography
+                sx={{
+                  color: "#8B94A3",
+                  fontWeight: 600,
+                  fontSize: ".8rem",
+                  textTransform: "lowercase",
+                }}
+              >
+                /r/binanceexchange
+              </Typography>
+            </Stack>
+          </Stack>
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Stack
+              sx={{
+                padding: 0.5,
+                backgroundColor: "#252D4A",
+                borderRadius: 2,
+              }}
+              direction="row"
+            >
+              <Button
+                size="small"
+                sx={{
+                  textTransform: "capitalize",
+                  backgroundColor:
+                    dateTime === "seven_day" ? "#384571" : "#252D4A",
+                  borderRadius: 2,
+                  boxShadow: "none",
+                  color: "#FFFFFF",
+                  minWidth: 45,
+                }}
+                onClick={() => updateData("seven_day")}
+              >
+                7d
+              </Button>
+
+              <Button
+                size="small"
+                sx={{
+                  textTransform: "capitalize",
+                  boxShadow: "none",
+                  borderRadius: 2,
+                  backgroundColor:
+                    dateTime === "fifteen_day" ? "#384571" : "#252D4A",
+                  color: "#FFFFFF",
+                  minWidth: 45,
+                }}
+                onClick={() => updateData("fifteen_day")}
+              >
+                15d
+              </Button>
+              <Button
+                size="small"
+                sx={{
+                  textTransform: "capitalize",
+                  boxShadow: "none",
+                  borderRadius: 2,
+                  backgroundColor:
+                    dateTime === "thirty_day" ? "#384571" : "#252D4A",
+                  color: "#FFFFFF",
+                  minWidth: 45,
+                }}
+                onClick={() => updateData("thirty_day")}
+              >
+                30d
+              </Button>
+            </Stack>
+          </Stack>
+        </Stack>
+        <Stack direction="column" alignItems="flex-start" spacing={0}>
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Typography
+              sx={{
+                color: "#C6C9D2",
+                fontWeight: 700,
+                fontSize: "1rem",
+                textTransform: "capitalize",
+              }}
+            >
+              3,030
+            </Typography>
+            <Typography
+              sx={{
+                color: "#19FFB0",
+                fontWeight: 700,
+                fontSize: ".85rem",
+                textTransform: "capitalize",
+              }}
+            >
+              +154.5%
+            </Typography>
+          </Stack>
+          <Typography
+            sx={{
+              color: "#8B94A3",
+              fontWeight: 600,
+              fontSize: ".8rem",
+              textTransform: "Capitalize",
+            }}
+          >
+            Total Members
+          </Typography>
+        </Stack>
+      </Stack>
+      <Chart
+        options={chartData.options}
+        series={chartData.series}
+        type="line"
+        height="auto"
+      />
+    </Box>
+  );
+};
+
+export default CoinCommunityChart;

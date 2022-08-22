@@ -10,6 +10,7 @@ import CoinpageRatings from "../coinpageratings/CoinpageRatings";
 import CoinPageMarket from "../coinpagemarket/CoinPageMarket";
 import CoinPageFAQ from "../coinpagefaq/CoinPageFAQ";
 import { Divider } from "@mui/material";
+import CoinPageCommunity from "../coinpagecommunity/CoinPageCommunity";
 
 const SinglePageTab = () => {
   const [value, setValue] = useState("1");
@@ -75,11 +76,12 @@ const SinglePageTab = () => {
             <Tab label="Markets" value="4" />
             <Tab label="Historical Data" value="5" />
             <Tab label="Today's Price" value="6" />
-            <Tab label="FAQ" value="7" />
-            <Tab label="Events" value="8" />
-            <Tab label="Presale Details" value="9" />
-            <Tab label="KYC Details" value="10" />
-            <Tab label="Audit Details" value="11" />
+            <Tab label="Community" value="7" />
+            <Tab label="FAQ" value="8" />
+            <Tab label="Events" value="9" />
+            <Tab label="Presale Details" value="10" />
+            <Tab label="KYC Details" value="11" />
+            <Tab label="Audit Details" value="12" />
           </TabList>
           <Divider sx={{ borderColor: "#2D2858", borderBottomWidth: "1px" }} />
         </Box>
@@ -98,12 +100,15 @@ const SinglePageTab = () => {
         <TabPanel value="5">Item Three</TabPanel>
         <TabPanel value="6">Item One</TabPanel>
         <TabPanel value="7">
+          <CoinPageCommunity />
+        </TabPanel>
+        <TabPanel value="8">
           <CoinPageFAQ />
         </TabPanel>
-        <TabPanel value="8">Item Three</TabPanel>
-        <TabPanel value="9">Item One</TabPanel>
-        <TabPanel value="10">Item Two</TabPanel>
-        <TabPanel value="11">Item Three</TabPanel>
+        <TabPanel value="9">Item Three</TabPanel>
+        <TabPanel value="10">Item One</TabPanel>
+        <TabPanel value="11">Item Two</TabPanel>
+        <TabPanel value="12">Item Three</TabPanel>
       </TabContext>
     </Box>
   );

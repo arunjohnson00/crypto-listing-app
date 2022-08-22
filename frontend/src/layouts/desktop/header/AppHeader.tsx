@@ -8,7 +8,7 @@ import LoginHeaderBtn from "../../../components/desktop/button/loginheader/Login
 import { Stack, Box, Grid } from "@mui/material";
 import AppBarNavBtn from "../../../components/desktop/button/navbutton/AppBarNavBtn";
 
-import { coinMenu, nftMenu, airdropsMenu } from "./helper";
+import { coinMenu, nftMenu, airdropsMenu, eventsMenu } from "./helper";
 
 const AppHeader = ({ windowInnerWidth }: any) => {
   return (
@@ -74,8 +74,9 @@ const AppHeader = ({ windowInnerWidth }: any) => {
               />
               <AppBarNavBtn
                 title="Events"
-                path="/upcoming-events"
+                path="/crypto-events"
                 iconStatus={true}
+                menu={eventsMenu}
               />
               <AppBarNavBtn title="Exchanges" iconStatus={true} />
               <AppBarNavBtn title="Promote" iconStatus={true} />

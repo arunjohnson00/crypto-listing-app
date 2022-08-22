@@ -279,19 +279,11 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     />
                   )}
                 </Stack>
-              </Stack>
-            </Stack>
-          </Grid>
-          <Grid xs={12} sm={12} md={6} lg={6} xl={6} py={2}>
-            <Stack
-              direction={{ xs: "column", sm: "column", md: "column" }}
-              spacing={3}
-            >
-              <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
                 <Stack
                   direction={{ xs: "column", sm: "column", md: "row" }}
                   spacing={1.5}
-                  sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                  sx={{ alignItems: "center", justifyContent: "flex-start" }}
+                  pt={1}
                 >
                   {vote &&
                   vote.initial === false &&
@@ -383,7 +375,14 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     }
                   />
                 </Stack>
-              </Grid>
+              </Stack>
+            </Stack>
+          </Grid>
+          <Grid xs={12} sm={12} md={6} lg={6} xl={6} py={2}>
+            <Stack
+              direction={{ xs: "column", sm: "column", md: "column" }}
+              spacing={3}
+            >
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
                 spacing={0.5}
