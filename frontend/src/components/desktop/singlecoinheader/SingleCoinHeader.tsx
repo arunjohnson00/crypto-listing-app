@@ -239,7 +239,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       <span style={{ color: "#7a7a7a" }}>--</span>
                     )}
                   </Typography>
-                  {Math.sign(parseInt(coinData?.percent_change_1h)) === -1 ? (
+                  {Math.sign(parseFloat(coinData?.percent_change_1h)) === -1 ? (
                     <Chip
                       icon={<ArrowDropDownIcon />}
                       label={`${parseFloat(

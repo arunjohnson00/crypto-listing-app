@@ -249,9 +249,7 @@ const AppBarSearch = () => {
                     />
                     <Link
                       to={{
-                        pathname: `/coin/${item?.coin_name
-                          ?.replace(/ /g, "")
-                          .toLowerCase()}/${item?.coin_id}`,
+                        pathname: `/coin/${item?.coin_slug}`,
                       }}
                       target="_blank"
                       rel="noopener noreferrer"

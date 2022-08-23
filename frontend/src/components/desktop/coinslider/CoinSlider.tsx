@@ -106,7 +106,7 @@ const CoinSlider = () => {
                   >
                     {item &&
                     item?.percent_change !== null &&
-                    Math.sign(parseInt(item?.percent_change)) === -1 ? (
+                    Math.sign(parseFloat(item?.percent_change)) === -1 ? (
                       <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                     ) : (
                       item?.percent_change !== null && (
@@ -117,7 +117,7 @@ const CoinSlider = () => {
                       variant="caption"
                       sx={{
                         color:
-                          Math.sign(parseInt(item?.percent_change)) === -1
+                          Math.sign(parseFloat(item?.percent_change)) === -1
                             ? "#ff0000"
                             : "#00ff00",
                         fontWeight: "600",
@@ -126,7 +126,7 @@ const CoinSlider = () => {
                       {item &&
                       item?.percent_change !== null &&
                       item?.percent_change !== "" ? (
-                        parseInt(item?.percent_change)
+                        parseFloat(item?.percent_change)
                           .toFixed(2)
                           .replace("-", "") + "%"
                       ) : (

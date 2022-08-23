@@ -413,7 +413,7 @@ const MobileFeaturedCoinCards = ({ cardData }: any) => {
                 sx={{ alignItems: "center", justifyContent: "center" }}
                 spacing={0}
               >
-                {Math.sign(parseInt(cardData?.percent_change_1h)) === -1
+                {Math.sign(parseFloat(cardData?.percent_change_1h)) === -1
                   ? cardData &&
                     cardData?.percent_change_1h !== null && (
                       <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
@@ -427,7 +427,7 @@ const MobileFeaturedCoinCards = ({ cardData }: any) => {
                   variant="caption"
                   sx={{
                     color:
-                      Math.sign(parseInt(cardData?.percent_change_1h)) === -1
+                      Math.sign(parseFloat(cardData?.percent_change_1h)) === -1
                         ? "#ff0000"
                         : "#00ff00",
                     fontWeight: 600,
@@ -467,7 +467,7 @@ const MobileFeaturedCoinCards = ({ cardData }: any) => {
                 sx={{ alignItems: "center", justifyContent: "center" }}
                 spacing={0}
               >
-                {Math.sign(parseInt(cardData?.percent_change_24h)) === -1
+                {Math.sign(parseFloat(cardData?.percent_change_24h)) === -1
                   ? cardData &&
                     cardData?.percent_change_24h !== null && (
                       <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
@@ -481,7 +481,7 @@ const MobileFeaturedCoinCards = ({ cardData }: any) => {
                   variant="caption"
                   sx={{
                     color:
-                      Math.sign(parseInt(cardData?.percent_change_24h)) === -1
+                      Math.sign(parseFloat(cardData?.percent_change_24h)) === -1
                         ? "#ff0000"
                         : "#00ff00",
                     fontWeight: 600,

@@ -84,7 +84,7 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
           id="outlined-adornment-password"
           type="text"
           value={values}
-          autoFocus={true}
+          //autoFocus={true}
           placeholder="Search coin, pair, contract address or exchange"
           onChange={(e: any) => handleChange(e)}
           style={{
@@ -178,15 +178,13 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
                     alignItems="center"
                   >
                     <Avatar
-                      alt="Trending"
+                      alt={item?.coin_name}
                       src={`${serverAPIUrl}public/uploads/coin_logo/${item?.coin_logo}`}
-                      sx={{ width: 16, height: 16 }}
+                      sx={{ width: 20, height: 20 }}
                     />
                     <Link
                       to={{
-                        pathname: `/coin/${item?.coin_name
-                          ?.replace(/ /g, "")
-                          .toLowerCase()}/${item?.coin_id}`,
+                        pathname: `/coin/${item?.coin_slug}`,
                       }}
                       target="_blank"
                       rel="noopener noreferrer"

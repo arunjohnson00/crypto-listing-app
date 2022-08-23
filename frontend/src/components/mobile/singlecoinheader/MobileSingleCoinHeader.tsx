@@ -291,7 +291,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                     <span style={{ color: "#7a7a7a" }}>--</span>
                   )}
                 </Typography>
-                {Math.sign(parseInt(coinData?.percent_change_1h)) === -1 ? (
+                {Math.sign(parseFloat(coinData?.percent_change_1h)) === -1 ? (
                   <Chip
                     icon={<ArrowDropDownIcon />}
                     label={`${parseFloat(
@@ -400,7 +400,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                     {coinData &&
                     coinData?.vote !== null &&
                     vote?.completed === true
-                      ? parseInt(coinData?.vote) + 1
+                      ? parseFloat(coinData?.vote) + 1
                       : coinData?.vote}
                   </span>{" "}
                   Votes

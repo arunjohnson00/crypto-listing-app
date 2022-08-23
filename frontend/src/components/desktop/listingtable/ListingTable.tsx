@@ -212,7 +212,7 @@ const ListingTable = ({
                       >
                         {data &&
                         data?.pc_24h !== null &&
-                        Math.sign(parseInt(data?.pc_24h)) === -1 ? (
+                        Math.sign(parseFloat(data?.pc_24h)) === -1 ? (
                           <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                         ) : (
                           data?.pc_24h !== null && (
@@ -224,7 +224,7 @@ const ListingTable = ({
                           variant="caption"
                           sx={{
                             color:
-                              Math.sign(parseInt(data?.pc_24h)) === -1
+                              Math.sign(parseFloat(data?.pc_24h)) === -1
                                 ? "#ff0000"
                                 : "#00ff00",
                             fontWeight: 600,
@@ -250,7 +250,7 @@ const ListingTable = ({
                       >
                         {data &&
                         data?.pc_7d !== null &&
-                        Math.sign(parseInt(data?.pc_7d)) === -1 ? (
+                        Math.sign(parseFloat(data?.pc_7d)) === -1 ? (
                           <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                         ) : (
                           data?.pc_7d !== null && (
@@ -262,7 +262,7 @@ const ListingTable = ({
                           variant="caption"
                           sx={{
                             color:
-                              Math.sign(parseInt(data?.pc_7d)) === -1
+                              Math.sign(parseFloat(data?.pc_7d)) === -1
                                 ? "#ff0000"
                                 : "#00ff00",
                             fontWeight: 600,

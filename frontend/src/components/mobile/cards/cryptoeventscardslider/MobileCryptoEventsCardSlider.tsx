@@ -76,7 +76,7 @@ const MobileCryptoEventsCardSlider = ({ data, variant }: any) => {
                     variant === "ads" ? "space-between" : "flex-end",
                 }}
               >
-                {variant === "ads" && (
+                {/* {variant === "ads" && (
                   <Button
                     variant="contained"
                     startIcon={<ThumbUpOffAltIcon />}
@@ -91,7 +91,7 @@ const MobileCryptoEventsCardSlider = ({ data, variant }: any) => {
                   >
                     238 Votes
                   </Button>
-                )}
+                )} */}
 
                 <Button
                   variant="contained"

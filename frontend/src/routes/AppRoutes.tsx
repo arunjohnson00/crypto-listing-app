@@ -26,6 +26,7 @@ import FreeCoinPage from "../pages/desktop/freecoin/FreeCoinPage";
 import MobileSingleNftPage from "../pages/mobile/mobilesinglenftpage/MobileSingleNftPage";
 import MobileCryptoEventsPage from "../pages/mobile/mobilecryptoeventspage/MobileCryptoEventsPage";
 import MobileSingleCryptoEventsPage from "../pages/mobile/mobilesinglecryptoeventspage/MobileSingleCryptoEventsPage";
+import SingleNftMarketPlacesPage from "../pages/desktop/singlenftmarketplaces/SingleNftMarketPlacesPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -143,6 +144,14 @@ const AppRoutes = () => {
           element={
             <PublicRoutes>
               <NftListingsPage />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path="/nft-marketplaces/*"
+          element={
+            <PublicRoutes>
+              <SingleNftMarketPlacesPage />
             </PublicRoutes>
           }
         />

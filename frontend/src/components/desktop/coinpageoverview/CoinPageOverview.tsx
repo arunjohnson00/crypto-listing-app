@@ -361,7 +361,7 @@ const CoinPageOverview = () => {
                 {coinDetailOverview &&
                 coinDetailOverview[0]?.percent_change_1h !== null &&
                 Math.sign(
-                  parseInt(coinDetailOverview[0]?.percent_change_1h)
+                  parseFloat(coinDetailOverview[0]?.percent_change_1h)
                 ) === -1 ? (
                   <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                 ) : (
@@ -376,7 +376,7 @@ const CoinPageOverview = () => {
                     color:
                       coinDetailOverview &&
                       Math.sign(
-                        parseInt(coinDetailOverview[0]?.percent_change_1h)
+                        parseFloat(coinDetailOverview[0]?.percent_change_1h)
                       ) === -1
                         ? "#ff0000"
                         : "#00ff00",
@@ -430,7 +430,7 @@ const CoinPageOverview = () => {
                 {coinDetailOverview &&
                 coinDetailOverview[0]?.percent_change_24h !== null &&
                 Math.sign(
-                  parseInt(coinDetailOverview[0]?.percent_change_24h)
+                  parseFloat(coinDetailOverview[0]?.percent_change_24h)
                 ) === -1 ? (
                   <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                 ) : (
@@ -445,7 +445,7 @@ const CoinPageOverview = () => {
                     color:
                       coinDetailOverview &&
                       Math.sign(
-                        parseInt(coinDetailOverview[0]?.percent_change_24h)
+                        parseFloat(coinDetailOverview[0]?.percent_change_24h)
                       ) === -1
                         ? "#ff0000"
                         : "#00ff00",
@@ -499,7 +499,7 @@ const CoinPageOverview = () => {
                 {coinDetailOverview &&
                 coinDetailOverview[0]?.percent_change_7d !== null &&
                 Math.sign(
-                  parseInt(coinDetailOverview[0]?.percent_change_7d)
+                  parseFloat(coinDetailOverview[0]?.percent_change_7d)
                 ) === -1 ? (
                   <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                 ) : (
@@ -514,7 +514,7 @@ const CoinPageOverview = () => {
                     color:
                       coinDetailOverview &&
                       Math.sign(
-                        parseInt(coinDetailOverview[0]?.percent_change_7d)
+                        parseFloat(coinDetailOverview[0]?.percent_change_7d)
                       ) === -1
                         ? "#ff0000"
                         : "#00ff00",
@@ -567,7 +567,7 @@ const CoinPageOverview = () => {
                 {coinDetailOverview &&
                 coinDetailOverview[0]?.percent_change_30d !== null &&
                 Math.sign(
-                  parseInt(coinDetailOverview[0]?.percent_change_30d)
+                  parseFloat(coinDetailOverview[0]?.percent_change_30d)
                 ) === -1 ? (
                   <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                 ) : (
@@ -582,7 +582,7 @@ const CoinPageOverview = () => {
                     color:
                       coinDetailOverview &&
                       Math.sign(
-                        parseInt(coinDetailOverview[0]?.percent_change_30d)
+                        parseFloat(coinDetailOverview[0]?.percent_change_30d)
                       ) === -1
                         ? "#ff0000"
                         : "#00ff00",
@@ -635,7 +635,7 @@ const CoinPageOverview = () => {
                 {coinDetailOverview &&
                 coinDetailOverview[0]?.percent_change_60d !== null &&
                 Math.sign(
-                  parseInt(coinDetailOverview[0]?.percent_change_60d)
+                  parseFloat(coinDetailOverview[0]?.percent_change_60d)
                 ) === -1 ? (
                   <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                 ) : (
@@ -650,7 +650,7 @@ const CoinPageOverview = () => {
                     color:
                       coinDetailOverview &&
                       Math.sign(
-                        parseInt(coinDetailOverview[0]?.percent_change_60d)
+                        parseFloat(coinDetailOverview[0]?.percent_change_60d)
                       ) === -1
                         ? "#ff0000"
                         : "#00ff00",
@@ -703,7 +703,7 @@ const CoinPageOverview = () => {
                 {coinDetailOverview &&
                 coinDetailOverview[0]?.percent_change_90d !== null &&
                 Math.sign(
-                  parseInt(coinDetailOverview[0]?.percent_change_90d)
+                  parseFloat(coinDetailOverview[0]?.percent_change_90d)
                 ) === -1 ? (
                   <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                 ) : (
@@ -718,7 +718,7 @@ const CoinPageOverview = () => {
                     color:
                       coinDetailOverview &&
                       Math.sign(
-                        parseInt(coinDetailOverview[0]?.percent_change_90d)
+                        parseFloat(coinDetailOverview[0]?.percent_change_90d)
                       ) === -1
                         ? "#ff0000"
                         : "#00ff00",
