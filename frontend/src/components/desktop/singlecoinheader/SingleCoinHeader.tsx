@@ -63,7 +63,7 @@ import RedditGraphImage from "../../../assets/singlepagecoin/graph/reddit.png";
 import TelegramGraphImage from "../../../assets/singlepagecoin/graph/telegram.png";
 import TwitterGraphImage from "../../../assets/singlepagecoin/graph/twitter.png";
 import GithubGraphImage from "../../../assets/singlepagecoin/graph/github.png";
-import CoinPageDropDown from "../coinpagedropdown/CoinPageDropDown";
+import DropDownAds from "../dropdownads/DropDownAds";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -395,10 +395,14 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   md: "flex-end",
                 }}
               >
-                <CoinPageDropDown data="Test One" title="Buy" />
-                <CoinPageDropDown data="Test Two" title="Exchange" />
-                <CoinPageDropDown data="Test Three" title="Gaming" />
-                <CoinPageDropDown data="Test Four" title="Earn Crypto" />
+                <DropDownAds data="Test One" title="Buy" color="#4AE424" />
+                <DropDownAds data="Test Two" title="Exchange" color="#037BFD" />
+                <DropDownAds data="Test Three" title="Gaming" color="#FF5111" />
+                <DropDownAds
+                  data="Test Four"
+                  title="Earn Crypto"
+                  color="#E13DEE"
+                />
               </Stack>
 
               <Stack

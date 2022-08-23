@@ -1,4 +1,5 @@
-import * as React from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import AppBar from "@mui/material/AppBar";
 import { Link } from "react-router-dom";
 import AppBarSearch from "../../../components/desktop/appbarsearch/AppBarSearch";
@@ -10,8 +11,17 @@ import AppBarNavBtn from "../../../components/desktop/button/navbutton/AppBarNav
 
 import { coinMenu, nftMenu, airdropsMenu, eventsMenu } from "./helper";
 import logoWhite from "../../../assets/logo/logo.png";
+import { trendingCoinListRequest } from "../../../store/action";
 
 const AppHeader = ({ windowInnerWidth }: any) => {
+  const dispatch: any = useDispatch();
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(trendingCoinListRequest("noData", successHandler, errorHandler));
+  }, []);
+
   return (
     <Grid xs={12}>
       <Box sx={{ flexGrow: 1, backgroundColor: "transparent" }} mt={4}>

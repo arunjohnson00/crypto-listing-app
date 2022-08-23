@@ -12,7 +12,10 @@ import { IconButton } from "./style";
 import { Avatar, Button, Popover, Stack, Typography } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import TrendingIcon from "../../../assets/search/trending_icon.svg";
-import { topbarSearchRequest } from "../../../store/action";
+import {
+  topbarSearchRequest,
+  trendingCoinListRequest,
+} from "../../../store/action";
 
 const CustomInput = forwardRef(function CustomInput(
   props: InputUnstyledProps,
@@ -66,7 +69,9 @@ const AppBarSearch = () => {
   // const topBarSearchResult = useSelector((data: any) => {
   //   return data?.commonReducer?.top_bar_search_result?.data;
   // });
-
+  const trendingCoinList = useSelector((data: any) => {
+    return data?.homeReducer?.trending_coin_list?.data;
+  });
   const [searchResult, setSearchResult] = useState<any>();
 
   const handleChange = (event: any) => {
@@ -76,6 +81,11 @@ const AppBarSearch = () => {
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
+
+    // const successHandler = (res: any) => {};
+    // const errorHandler = (err: any) => {};
+
+    // dispatch(trendingCoinListRequest(values, successHandler, errorHandler));
   };
 
   const handleClose = () => {
@@ -177,7 +187,10 @@ const AppBarSearch = () => {
           }
         />
 
-        {searchResult && searchResult?.COINS?.length !== 0 ? (
+        {searchResult &&
+        (searchResult?.COINS?.length !== 0 ||
+          searchResult?.NFT?.length !== 0) &&
+        values?.length !== 0 ? (
           <Stack
             direction="column"
             spacing={2}
@@ -385,10 +398,16 @@ const AppBarSearch = () => {
           <Stack
             direction="column"
             spacing={0.5}
-            sx={{ height: 500, overflowY: "scroll" }}
+            sx={{ height: 500, overflowY: "scroll", pl: 0 }}
           >
-            <Stack direction="row" spacing={0.5} alignItems="center">
-              <Typography sx={{ pl: 2, py: 2, fontSize: ".7rem" }}>
+            <Stack
+              direction="row"
+              spacing={0.5}
+              alignItems="center"
+              pt={2}
+              pb={1}
+            >
+              <Typography sx={{ fontSize: ".78rem", fontWeight: 600 }}>
                 Trending
               </Typography>
               <Avatar
@@ -397,9 +416,61 @@ const AppBarSearch = () => {
                 sx={{ width: 14, height: 14 }}
               />
             </Stack>
+            {trendingCoinList &&
+              (values?.length === 0 || trendingCoinList[0]?.length !== 0) &&
+              trendingCoinList &&
+              trendingCoinList[0]
+                ?.slice(0, 6)
+                .map((item: any, index: number) => (
+                  <Stack
+                    key={index}
+                    direction="row"
+                    spacing={0.5}
+                    alignItems="center"
+                    justifyContent="space-between"
+                  >
+                    <Stack
+                      key={index}
+                      direction="row"
+                      spacing={1}
+                      alignItems="center"
+                    >
+                      <Avatar
+                        alt="Trending"
+                        src={`${serverAPIUrl}public/uploads/coin_logo/${item?.logo}`}
+                        sx={{ width: 16, height: 16 }}
+                      />
+                      <Link
+                        to={{
+                          pathname: `/coin/${item?.slug}`,
+                        }}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        state={{ coin_id: item?.id }}
+                        style={{ textDecoration: "none", color: "#FFFFFF" }}
+                      >
+                        <Typography sx={{ fontSize: ".8rem", fontWeight: 600 }}>
+                          {item?.name}
+                        </Typography>
+                      </Link>
+                      <Typography
+                        sx={{
+                          fontSize: ".7rem",
+                          color: "#767676",
+                          fontWeight: 500,
+                        }}
+                      >
+                        {item?.symbol}
+                      </Typography>
+                    </Stack>
+                    <Typography sx={{ fontSize: ".7rem" }}>
+                      {item?.ranking}
+                    </Typography>
+                  </Stack>
+                ))}
 
-            <Stack direction="row" spacing={0.5} alignItems="center">
-              <Typography sx={{ pl: 2, py: 2, fontSize: ".7rem" }}>
+            <Stack direction="row" spacing={0.5} alignItems="center" pt={4}>
+              <Typography sx={{ fontSize: ".78rem", fontWeight: 600 }}>
                 Recent Searches
               </Typography>
               {/* <Avatar

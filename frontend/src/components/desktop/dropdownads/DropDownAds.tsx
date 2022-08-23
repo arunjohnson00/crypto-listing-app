@@ -6,7 +6,7 @@ import Fade from "@mui/material/Fade";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { Box, Paper } from "@mui/material";
-const CoinPageDropDown = ({ data, title }: any) => {
+const DropDownAds = ({ data, title, color }: any) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -29,8 +29,8 @@ const CoinPageDropDown = ({ data, title }: any) => {
         sx={{
           textTransform: "capitalize",
           fontWeight: 500,
-          borderRadius: 2.5,
-          backgroundColor: "#2444D4",
+          borderRadius: 6,
+          backgroundColor: color && color,
         }}
         size="small"
       >
@@ -65,4 +65,4 @@ const CoinPageDropDown = ({ data, title }: any) => {
   );
 };
 
-export default CoinPageDropDown;
+export default DropDownAds;

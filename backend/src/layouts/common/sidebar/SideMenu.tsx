@@ -298,10 +298,13 @@ const SideMenu = ({ open }: any) => {
                             </ListItemIcon>
 
                             <ListItemText
-                              primary={sublist.title.replace(
-                                /[^a-zA-Z ]/g,
-                                " "
-                              )}
+                              primary={
+                                sublist.title === "coins-chat"
+                                  ? "Chat Platform"
+                                  : sublist.title === "coins-socials"
+                                  ? "Social Platform"
+                                  : sublist?.title.replace(/[^a-zA-Z ]/g, " ")
+                              }
                               primaryTypographyProps={{
                                 fontSize: ".8rem",
                                 textTransform: "capitalize",

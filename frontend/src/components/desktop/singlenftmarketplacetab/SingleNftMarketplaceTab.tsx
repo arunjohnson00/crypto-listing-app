@@ -1,25 +1,16 @@
 import { useState } from "react";
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
+
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import CoinPageOverview from "../coinpageoverview/CoinPageOverview";
-import CoinPageAbout from "../coinpageabout/CoinPageAbout";
-import CoinpageRatings from "../coinpageratings/CoinpageRatings";
-import CoinPageMarket from "../coinpagemarket/CoinPageMarket";
-import CoinPageFAQ from "../coinpagefaq/CoinPageFAQ";
-import { Divider, Stack } from "@mui/material";
-import CoinPageCommunity from "../coinpagecommunity/CoinPageCommunity";
-import CoinPageHistoricalData from "../coinpagehistoricaldata/CoinPageHistoricalData";
-import CoinPageTodaysPrice from "../coinpagetodaysprice/CoinPageTodaysPrice";
-import CoinPageDropDown from "../coinpagedropdown/CoinPageDropDown";
+import { Divider, Stack, useMediaQuery, Tab, Box } from "@mui/material";
+import DropDownAds from "../dropdownads/DropDownAds";
 import NFTMarketPlaceCommunity from "../nftmarketplacecommunity/NFTMarketPlaceCommunity";
 
 const SingleNftMarketplaceTab = () => {
   const [value, setValue] = useState("1");
   const [tabValue, setTabValue] = useState("1");
-
+  const matches = useMediaQuery("(max-width:900px)");
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
     setTabValue(newValue);
@@ -38,6 +29,23 @@ const SingleNftMarketplaceTab = () => {
         },
       }}
     >
+      {matches === true && (
+        <Stack
+          direction={{ xs: "row", sm: "row", md: "row" }}
+          spacing={0.5}
+          sx={{
+            alignItems: "center",
+          }}
+          justifyContent="center"
+          width="100%"
+          pb={3}
+        >
+          <DropDownAds data="Test One" title="Buy" color="#4AE424" />
+          <DropDownAds data="Test Two" title="Exchange" color="#037BFD" />
+          <DropDownAds data="Test Three" title="Gaming" color="#FF5111" />
+          <DropDownAds data="Test Four" title="Earn Crypto" color="#E13DEE" />
+        </Stack>
+      )}
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Divider sx={{ borderColor: "#2D2858", borderBottomWidth: "1px" }} />
@@ -77,20 +85,26 @@ const SingleNftMarketplaceTab = () => {
           >
             <Tab label="Community" value="1" />
             <Tab label="Related NFT Marketplaces" value="2" />
-            <Stack
-              direction={{ xs: "row", sm: "row", md: "row" }}
-              spacing={0.5}
-              sx={{
-                alignItems: "center",
-              }}
-              justifyContent="flex-end"
-              width="100%"
-            >
-              <CoinPageDropDown data="Test One" title="Buy" />
-              <CoinPageDropDown data="Test Two" title="Exchange" />
-              <CoinPageDropDown data="Test Three" title="Gaming" />
-              <CoinPageDropDown data="Test Four" title="Earn Crypto" />
-            </Stack>
+            {matches === false && (
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                spacing={0.5}
+                sx={{
+                  alignItems: "center",
+                }}
+                justifyContent="flex-end"
+                width="100%"
+              >
+                <DropDownAds data="Test One" title="Buy" color="#4AE424" />
+                <DropDownAds data="Test Two" title="Exchange" color="#037BFD" />
+                <DropDownAds data="Test Three" title="Gaming" color="#FF5111" />
+                <DropDownAds
+                  data="Test Four"
+                  title="Earn Crypto"
+                  color="#E13DEE"
+                />
+              </Stack>
+            )}
           </TabList>
           <Divider sx={{ borderColor: "#2D2858", borderBottomWidth: "1px" }} />
         </Box>

@@ -11,7 +11,7 @@ const UserAdminView = ({ children }: any) => {
 
         <Box
           px={3}
-          py={5}
+          py={0}
           sx={{
             margin: "0 auto",
             display: "flex",

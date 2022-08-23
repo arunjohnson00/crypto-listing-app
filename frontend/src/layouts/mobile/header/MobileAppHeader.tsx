@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-
+import { useDispatch } from "react-redux";
 import MenuItem from "@mui/material/MenuItem";
 
 import SearchIcon from "@mui/icons-material/Search";
@@ -17,7 +17,9 @@ import SearchDrawer from "../../../components/mobile/searchdrawer/SearchDrawer";
 import { Link } from "react-router-dom";
 import HeaderMenuDrawer from "../../../components/mobile/headermenudrawer/HeaderMenuDrawer";
 import logoWhite from "../../../assets/logo/logo.png";
+import { trendingCoinListRequest } from "../../../store/action";
 const MobileAppHeader = () => {
+  const dispatch: any = useDispatch();
   const [openDrawer, setOpenDrawer] = useState({
     top: false,
     left: false,
@@ -25,11 +27,23 @@ const MobileAppHeader = () => {
 
   const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
     setOpenDrawer({ ...openDrawer, top: !openDrawer?.top });
+
+    // const successHandler = (res: any) => {};
+    // const errorHandler = (err: any) => {};
+
+    // dispatch(trendingCoinListRequest("noData", successHandler, errorHandler));
   };
 
   const toggleMenuDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
     setOpenDrawer({ ...openDrawer, left: !openDrawer?.left });
   };
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(trendingCoinListRequest("noData", successHandler, errorHandler));
+  }, []);
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "#01061A" }}>

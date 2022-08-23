@@ -21,7 +21,7 @@ import eventCategoryIcon from "../../../assets/icon/gray/event_category_icon_gra
 import rewardIconIcon from "../../../assets/icon/gray/reward_icon_gray.png";
 import nftListingCategoryIcon from "../../../assets/icon/gray/nft_listing_category_icon_gray.png";
 import nftListingCurrencyIcon from "../../../assets/icon/gray/nft_listing_currency_icon_gray.png";
-
+import settingsIcon from "../../../assets/icon/gray/setting_icon_gray.png";
 export const sideBarMenu = [
   { id: "1", title: "Dashboard", icon: dashboardIcon },
   {
@@ -32,10 +32,21 @@ export const sideBarMenu = [
       { id: "21", title: "coins-audit", icon: auditIcon },
       { id: "22", title: "coins-chart-provider", icon: chartIcon },
       //  { id: "23", title: "coins-community", icon: "receipt" },
-      { id: "24", title: "coins-chat", icon: chatIcon },
-      { id: "25", title: "coins-socials", icon: socialIcon },
+      // { id: "24", title: "coins-chat", icon: chatIcon },
+      // { id: "25", title: "coins-socials", icon: socialIcon },
     ],
   },
+
+  {
+    id: "17",
+    title: "General Settings",
+    icon: settingsIcon,
+    subMenu: [
+      { id: "171", title: "coins-chat", icon: chatIcon },
+      { id: "172", title: "coins-socials", icon: socialIcon },
+    ],
+  },
+
   { id: "3", title: "Exchange", icon: exchnageIcon },
   {
     id: "4",

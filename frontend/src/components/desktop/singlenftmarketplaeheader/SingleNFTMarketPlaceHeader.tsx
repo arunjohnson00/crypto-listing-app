@@ -11,7 +11,11 @@ import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 const SingleNFTMarketPlaceHeader = () => {
   return (
     <Box py={2}>
-      <Stack direction="row" spacing={3} alignItems="flex-start">
+      <Stack
+        direction={{ xs: "column", sm: "column", md: "row" }}
+        spacing={3}
+        alignItems={{ xs: "center", sm: "center", md: "flex-start" }}
+      >
         <Stack direction="column" spacing={2} alignItems="center">
           <Avatar
             alt="Remy Sharp"
@@ -32,12 +36,24 @@ const SingleNFTMarketPlaceHeader = () => {
           </Button>
         </Stack>
 
-        <Stack direction="column" spacing={2} alignItems="flex-start">
+        <Stack
+          direction="column"
+          spacing={2}
+          alignItems={{ xs: "center", sm: "center", md: "flex-start" }}
+        >
           <Typography variant="h4" sx={{ color: "#FFFFFF", fontWeight: 700 }}>
             Rarible
           </Typography>
-          <Stack direction="row" spacing={2} alignItems="flex-start">
-            <Stack direction="column" spacing={2}>
+          <Stack
+            direction={{ xs: "column", sm: "column", md: "row" }}
+            spacing={2}
+            alignItems={{ xs: "center", sm: "center", md: "flex-start" }}
+          >
+            <Stack
+              direction="column"
+              spacing={2}
+              alignItems={{ xs: "center", sm: "center", md: "flex-start" }}
+            >
               <Stack direction="row" spacing={1} alignItems="center">
                 <Avatar
                   alt="Remy Sharp"
@@ -80,7 +96,10 @@ const SingleNFTMarketPlaceHeader = () => {
                   sx={{ width: 27, height: 27 }}
                 />
               </Stack>
-              <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
+              <Typography
+                sx={{ color: "#FFFFFF", fontSize: ".85rem" }}
+                textAlign={{ xs: "center", sm: "center", md: "left" }}
+              >
                 Grab Colors From Any Website With The Color Picker Extension.
                 With Color Picker you can find color reading on any point of the
                 browser. Simply copy the code and paste it for your use. It
