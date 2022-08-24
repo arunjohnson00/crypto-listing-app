@@ -409,8 +409,16 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {data?.open?.current_price !== null &&
-                        "$" + parseFloat(data?.open?.current_price).toFixed(4)}
+                      {data && data?.open?.current_price !== null ? (
+                        data && Math.abs(data?.open?.current_price) > 1 ? (
+                          "$" + parseFloat(data?.open?.current_price).toFixed(4)
+                        ) : (
+                          "$" +
+                          parseFloat(data?.open?.current_price).toFixed(13)
+                        )
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
                   <TableCell
@@ -421,8 +429,15 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {data?.high !== null &&
-                        "$" + parseFloat(data?.high).toFixed(4)}
+                      {data && data?.high !== null ? (
+                        data && Math.abs(data?.high) > 1 ? (
+                          "$" + parseFloat(data?.high).toFixed(4)
+                        ) : (
+                          "$" + parseFloat(data?.high).toFixed(13)
+                        )
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
                   <TableCell
@@ -433,9 +448,15 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {" "}
-                      {data?.low !== null &&
-                        "$" + parseFloat(data?.low).toFixed(4)}
+                      {data && data?.low !== null ? (
+                        data && Math.abs(data?.low) > 1 ? (
+                          "$" + parseFloat(data?.low).toFixed(4)
+                        ) : (
+                          "$" + parseFloat(data?.low).toFixed(13)
+                        )
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
                   <TableCell
@@ -446,8 +467,17 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {data?.close?.current_price !== null &&
-                        "$" + parseFloat(data?.close?.current_price).toFixed(4)}
+                      {data && data?.close?.current_price !== null ? (
+                        data && Math.abs(data?.close?.current_price) > 1 ? (
+                          "$" +
+                          parseFloat(data?.close?.current_price).toFixed(4)
+                        ) : (
+                          "$" +
+                          parseFloat(data?.close?.current_price).toFixed(13)
+                        )
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
                   <TableCell
@@ -458,8 +488,15 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {data?.volume !== null &&
-                        "$" + parseFloat(data?.volume).toFixed(4)}
+                      {data && data?.volume !== null ? (
+                        data && Math.abs(data?.volume) > 1 ? (
+                          "$" + parseFloat(data?.volume).toFixed(4)
+                        ) : (
+                          "$" + parseFloat(data?.volume).toFixed(13)
+                        )
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
                   <TableCell
@@ -470,8 +507,15 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {data?.market_cap !== null &&
-                        "$" + parseFloat(data?.market_cap).toFixed(4)}
+                      {data && data?.market_cap !== null ? (
+                        data && Math.abs(data?.market_cap) > 1 ? (
+                          parseFloat(data?.market_cap).toFixed(4)
+                        ) : (
+                          parseFloat(data?.market_cap).toFixed(13)
+                        )
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
                 </TableRow>
@@ -536,8 +580,15 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {data?.current_price !== null &&
-                        "$" + parseFloat(data?.current_price).toFixed(11)}
+                      {data && data?.current_price !== null ? (
+                        data && Math.abs(data?.current_price) > 1 ? (
+                          "$" + parseFloat(data?.current_price).toFixed(4)
+                        ) : (
+                          "$" + parseFloat(data?.current_price).toFixed(13)
+                        )
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
                   <TableCell
@@ -548,8 +599,15 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {data?.volume_24h !== null &&
-                        "$" + parseFloat(data?.volume_24h).toFixed(4)}
+                      {data && data?.volume_24h !== null ? (
+                        data && Math.abs(data?.volume_24h) > 1 ? (
+                          "$" + parseFloat(data?.volume_24h).toFixed(4)
+                        ) : (
+                          "$" + parseFloat(data?.volume_24h).toFixed(13)
+                        )
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
 
@@ -649,8 +707,15 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {data?.market_cap !== null &&
-                        parseFloat(data?.market_cap).toFixed(4)}
+                      {data && data?.market_cap !== null ? (
+                        data && Math.abs(data?.market_cap) > 1 ? (
+                          parseFloat(data?.market_cap).toFixed(4)
+                        ) : (
+                          parseFloat(data?.market_cap).toFixed(13)
+                        )
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
                 </TableRow>

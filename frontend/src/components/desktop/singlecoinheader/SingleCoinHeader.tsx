@@ -128,9 +128,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
 
     dispatch(
       coinVoteRequest(
-        location?.state?.coin_id !== undefined
-          ? location?.state?.coin_id
-          : location?.pathname?.split("/").pop(),
+        location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler
       )
