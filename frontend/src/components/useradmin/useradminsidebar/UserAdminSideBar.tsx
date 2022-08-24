@@ -17,21 +17,20 @@ import "react-pro-sidebar/dist/css/styles.css";
 import CoinXHighLogo from "../../../assets/logo/logo.png";
 import { IconButton, Typography } from "@mui/material";
 
-const UserAdminSideBar = () => {
-  const [collapse, setCollapse] = useState(false);
-
+const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
   const [activeMenu, setActiveMenu] = useState<any>();
 
   return (
     <ProSidebar
       collapsed={collapse}
       style={{
-        position: "relative",
-        height: "auto",
-        backgroundColor: "#1E1C48",
+        position: "sticky",
+        height: "100vh",
+        backgroundColor: "#08022f",
+        top: 0,
       }}
       //breakPoint="sm"
-      width={329}
+      width={"auto"}
       collapsedWidth={75}
     >
       <SidebarHeader

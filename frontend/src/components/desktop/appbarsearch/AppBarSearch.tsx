@@ -417,57 +417,55 @@ const AppBarSearch = () => {
               />
             </Stack>
             {trendingCoinList &&
-              (values?.length === 0 || trendingCoinList[0]?.length !== 0) &&
+              (values?.length === 0 || trendingCoinList?.length !== 0) &&
               trendingCoinList &&
-              trendingCoinList[0]
-                ?.slice(0, 6)
-                .map((item: any, index: number) => (
+              trendingCoinList?.slice(0, 6).map((item: any, index: number) => (
+                <Stack
+                  key={index}
+                  direction="row"
+                  spacing={0.5}
+                  alignItems="center"
+                  justifyContent="space-between"
+                >
                   <Stack
                     key={index}
                     direction="row"
-                    spacing={0.5}
+                    spacing={1}
                     alignItems="center"
-                    justifyContent="space-between"
                   >
-                    <Stack
-                      key={index}
-                      direction="row"
-                      spacing={1}
-                      alignItems="center"
+                    <Avatar
+                      alt="Trending"
+                      src={`${serverAPIUrl}public/uploads/coin_logo/${item?.logo}`}
+                      sx={{ width: 16, height: 16 }}
+                    />
+                    <Link
+                      to={{
+                        pathname: `/coin/${item?.slug}`,
+                      }}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      state={{ coin_id: item?.id }}
+                      style={{ textDecoration: "none", color: "#FFFFFF" }}
                     >
-                      <Avatar
-                        alt="Trending"
-                        src={`${serverAPIUrl}public/uploads/coin_logo/${item?.logo}`}
-                        sx={{ width: 16, height: 16 }}
-                      />
-                      <Link
-                        to={{
-                          pathname: `/coin/${item?.slug}`,
-                        }}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        state={{ coin_id: item?.id }}
-                        style={{ textDecoration: "none", color: "#FFFFFF" }}
-                      >
-                        <Typography sx={{ fontSize: ".8rem", fontWeight: 600 }}>
-                          {item?.name}
-                        </Typography>
-                      </Link>
-                      <Typography
-                        sx={{
-                          fontSize: ".7rem",
-                          color: "#767676",
-                          fontWeight: 500,
-                        }}
-                      >
-                        {item?.symbol}
+                      <Typography sx={{ fontSize: ".8rem", fontWeight: 600 }}>
+                        {item?.name}
                       </Typography>
-                    </Stack>
-                    <Typography sx={{ fontSize: ".7rem" }}>
-                      {item?.ranking}
+                    </Link>
+                    <Typography
+                      sx={{
+                        fontSize: ".7rem",
+                        color: "#767676",
+                        fontWeight: 500,
+                      }}
+                    >
+                      {item?.symbol}
                     </Typography>
                   </Stack>
-                ))}
+                  <Typography sx={{ fontSize: ".7rem" }}>
+                    {item?.ranking}
+                  </Typography>
+                </Stack>
+              ))}
 
             <Stack direction="row" spacing={0.5} alignItems="center" pt={4}>
               <Typography sx={{ fontSize: ".78rem", fontWeight: 600 }}>

@@ -1,21 +1,21 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { Box } from "@mui/material";
+import { Box, CardMedia } from "@mui/material";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 3,
-    slidesToSlide: 3,
+    items: 4,
+    slidesToSlide: 1,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 3,
-    slidesToSlide: 3,
+    items: 4,
+    slidesToSlide: 1,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 1,
+    items: 2,
     slidesToSlide: 1,
   },
   mobile: {
@@ -28,10 +28,7 @@ const MultiSlider = () => {
   return (
     <div
       style={{
-        padding: "10px",
-        width: "70vw",
-        boxSizing: "border-box",
-        margin: "0 auto",
+        width: "100%",
       }}
     >
       <Carousel
@@ -39,7 +36,7 @@ const MultiSlider = () => {
         responsive={responsive}
         infinite={true}
         autoPlay={true}
-        showDots={true}
+        showDots={false}
         removeArrowOnDeviceType={[
           "tablet",
           "mobile",
@@ -47,54 +44,42 @@ const MultiSlider = () => {
           "superLargeDesktop",
         ]}
       >
-        <div>
-          <Box
-            sx={{
-              flexGrow: 1,
-              height: 121,
-              backgroundColor: "#000000",
-              borderRadius: 3,
-            }}
-            mx={1}
-            my={6}
-          ></Box>
-        </div>
-        <div>
-          <Box
-            sx={{
-              flexGrow: 1,
-              height: 121,
-              backgroundColor: "#000000",
-              borderRadius: 3,
-            }}
-            mx={1}
-            my={6}
-          ></Box>
-        </div>
-        <div>
-          <Box
-            sx={{
-              flexGrow: 1,
-              height: 121,
-              backgroundColor: "#000000",
-              borderRadius: 3,
-            }}
-            mx={1}
-            my={6}
-          ></Box>
-        </div>
-        <div>
-          <Box
-            sx={{
-              flexGrow: 1,
-              height: 121,
-              backgroundColor: "#000000",
-              borderRadius: 3,
-            }}
-            mx={1}
-            my={6}
-          ></Box>
-        </div>
+        <Box sx={{ mx: 1.2 }}>
+          <CardMedia
+            component="img"
+            height="80"
+            image="https://iili.io/UtY5Kv.jpg"
+            alt="green iguana"
+            sx={{ objectFit: "unset" }}
+          />
+        </Box>
+        <Box sx={{ mx: 1.2 }}>
+          <CardMedia
+            component="img"
+            height="80"
+            image="https://iili.io/UtY5Kv.jpg"
+            alt="green iguana"
+            sx={{ objectFit: "unset" }}
+          />
+        </Box>
+        <Box sx={{ mx: 1.2 }}>
+          <CardMedia
+            component="img"
+            height="80"
+            image="https://iili.io/UtY5Kv.jpg"
+            alt="green iguana"
+            sx={{ objectFit: "unset" }}
+          />
+        </Box>
+        <Box sx={{ mx: 1.2 }}>
+          <CardMedia
+            component="img"
+            height="80"
+            image="https://iili.io/UtY5Kv.jpg"
+            alt="green iguana"
+            sx={{ objectFit: "unset" }}
+          />
+        </Box>
       </Carousel>
     </div>
   );
