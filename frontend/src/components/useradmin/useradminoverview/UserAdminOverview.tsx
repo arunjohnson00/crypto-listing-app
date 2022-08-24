@@ -455,7 +455,7 @@ const UserAdminOverview = () => {
         sx={{
           flexGrow: 0,
           height: "auto",
-          maxWidth: 400,
+          maxWidth: 350,
         }}
         mt={8}
       >
