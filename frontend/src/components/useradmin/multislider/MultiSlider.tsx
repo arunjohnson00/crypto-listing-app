@@ -44,7 +44,7 @@ const MultiSlider = () => {
           "superLargeDesktop",
         ]}
       >
-        <Box sx={{ mx: 1.2 }}>
+        <Box sx={{ mr: 1.2 }}>
           <CardMedia
             component="img"
             height="80"
@@ -53,7 +53,7 @@ const MultiSlider = () => {
             sx={{ objectFit: "unset" }}
           />
         </Box>
-        <Box sx={{ mx: 1.2 }}>
+        <Box sx={{ mr: 1.2 }}>
           <CardMedia
             component="img"
             height="80"
@@ -62,7 +62,7 @@ const MultiSlider = () => {
             sx={{ objectFit: "unset" }}
           />
         </Box>
-        <Box sx={{ mx: 1.2 }}>
+        <Box sx={{ mr: 1.2 }}>
           <CardMedia
             component="img"
             height="80"
@@ -71,7 +71,7 @@ const MultiSlider = () => {
             sx={{ objectFit: "unset" }}
           />
         </Box>
-        <Box sx={{ mx: 1.2 }}>
+        <Box sx={{ mr: 1.2 }}>
           <CardMedia
             component="img"
             height="80"

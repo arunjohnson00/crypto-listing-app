@@ -5,26 +5,33 @@ import UserAdminSideBar from "../../components/useradmin/useradminsidebar/UserAd
 
 const UserAdminView = ({ children }: any) => {
   const [collapse, setCollapse] = useState(false);
-  const matches = useMediaQuery("(min-width:600px)");
+  const matches = useMediaQuery("(min-width:900px)");
   return (
-    <Box sx={{ backgroundColor: "#161234", height: "auto", width: "100%" }}>
+    <Box
+      sx={{
+        backgroundColor: "#161234",
+        height: "-webkit-fill-available",
+        width: "100%",
+      }}
+    >
       <NotificationBar />
       <Stack direction="row">
         {matches === true && (
           <Box
-            width={collapse === false ? "20%" : matches === true ? "5%" : "5%"}
+            width={collapse === false ? "20%" : "5%"}
             sx={{ transition: "all .5s" }}
           >
             <UserAdminSideBar collapse={collapse} setCollapse={setCollapse} />
           </Box>
         )}
         <Box
-          px={3}
           py={0}
-          width={collapse === false ? "80%" : matches === true ? "92%" : "95%"}
+          width={matches === true || collapse === false ? "80%" : "100%"}
           sx={{ transition: "all .5s" }}
         >
-          {children}
+          <Box pl={3} pr={2}>
+            {children}
+          </Box>
         </Box>
       </Stack>
     </Box>

@@ -6,6 +6,7 @@ import {
   Divider,
   Stack,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
@@ -17,10 +18,20 @@ import TelegramIcon from "../../../assets/userdashboard/telegram.png";
 import TwitterIcon from "../../../assets/userdashboard/twitter.png";
 import AdsImage from "../../../assets/userdashboard/ads.png";
 const UserAdminOverview = () => {
+  const matches = useMediaQuery("(max-width:900px)");
   return (
-    <Stack direction="row" spacing={6}>
-      <Stack direction="column" spacing={3}>
-        <Stack direction="row" spacing={6}>
+    <Stack
+      direction={{ xs: "column", sm: "column", md: "column", lg: "row" }}
+      spacing={6}
+    >
+      <Stack
+        direction={{ xs: "column", sm: "column", md: "column", lg: "column" }}
+        spacing={3}
+      >
+        <Stack
+          direction={{ xs: "column", sm: "column", md: "column", lg: "row" }}
+          spacing={{ xs: 3, sm: 3, md: 3, lg: 6 }}
+        >
           <Stack direction="column" spacing={2}>
             <Typography
               sx={{ fontSize: "1.1rem", fontWeight: 500, color: "#FFFFFF" }}
@@ -148,10 +159,12 @@ const UserAdminOverview = () => {
           </Stack>
           <Divider
             flexItem
-            orientation="vertical"
+            orientation={matches === false ? "horizontal" : "vertical"}
             sx={{
-              borderRightColor: "#281E63",
-              borderRightWidth: 2,
+              borderRightColor: matches === true ? "none" : "#281E63",
+              borderRightWidth: matches === true ? 0 : 2,
+              borderBottomColor: matches === false ? "none" : "#281E63",
+              borderBottomWidth: matches === false ? 0 : 2,
             }}
           />
           <Stack direction="column" spacing={5} justifyContent="flex-start">

@@ -5,11 +5,10 @@ import UserAdminTabs from "../../../components/useradmin/useradmintabs/UserAdmin
 const UserDashboard = () => {
   return (
     <Grid container spacing={1}>
-      <Grid item xs={12}>
-        <Box width="100%" my={6}>
-          <MultiSlider />
-        </Box>
-      </Grid>
+      <Box width="100%" my={6}>
+        <MultiSlider />
+      </Box>
+
       <Grid item xs={12}>
         <Stack direction="row" alignItems="center" spacing={1}>
           <Typography

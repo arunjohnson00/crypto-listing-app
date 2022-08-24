@@ -1,24 +1,24 @@
 import React, { useState } from "react";
-import { Avatar, Box, Divider, Grid, Stack, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Divider,
+  Grid,
+  Stack,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
-import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined";
-import UserAdminShortcuts from "../useradminshortcuts/UserAdminShortcuts";
-import BubbleChartRoundedIcon from "@mui/icons-material/BubbleChartRounded";
-import UserAdminDonutChart from "../useradmindonutchart/UserAdminDonutChart";
-import CampaignIcon from "@mui/icons-material/Campaign";
-import BatchPredictionIcon from "@mui/icons-material/BatchPrediction";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import InsertCommentIcon from "@mui/icons-material/InsertComment";
+
 import UserAdminOverview from "../useradminoverview/UserAdminOverview";
 import UserAdminCoinListing from "../useradmincoinlisting/UserAdminCoinListing";
 
 const UserAdminTabs = () => {
   const [value, setValue] = useState("1");
-
+  const matches = useMediaQuery("(max-width:900px)");
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
@@ -35,6 +35,8 @@ const UserAdminTabs = () => {
           <TabList
             onChange={handleChange}
             aria-label="lab API tabs example"
+            variant={matches === true ? "scrollable" : "standard"}
+            scrollButtons={true}
             sx={{
               "& .MuiTabs-indicator": {
                 //display: "none",
