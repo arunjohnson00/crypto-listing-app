@@ -120,7 +120,7 @@ const AppBarSearch = () => {
         placeholder="Search"
         onClick={handleClick}
         disabled
-        style={{ height: 34, color: "#FFFFFF" }}
+        style={{ height: 34, color: "#FFFFFF", cursor: "text" }}
         startAdornment={
           <InputAdornment>
             <IconButton edge="end">

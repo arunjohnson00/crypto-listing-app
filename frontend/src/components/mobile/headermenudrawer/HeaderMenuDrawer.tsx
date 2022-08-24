@@ -240,15 +240,17 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
               </Typography>
             </Link>
 
-            <Stack
-              direction={{ xs: "row", sm: "row", md: "row" }}
-              spacing={3}
-              width="100%"
-              py={4}
-            >
+            <Stack direction="column" spacing={3} width="100%" py={2}>
               <ConnectWalletBtn />
-              <AddAsset />
-              <LoginHeaderBtn />
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                spacing={3}
+                width="100%"
+                py={0}
+              >
+                <AddAsset />
+                <LoginHeaderBtn />
+              </Stack>
             </Stack>
           </Stack>
         </Stack>

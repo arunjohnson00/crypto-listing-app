@@ -23,6 +23,7 @@ const CoinCommunityChart = ({
   variant,
   title,
   colorTheme,
+  icon,
 }: any) => {
   const [dateTime, setDateTime] = useState<any>("seven_day");
 
@@ -59,7 +60,7 @@ const CoinCommunityChart = ({
 
       default:
     }
-  }, [updateData, dateTime, variant]);
+  }, [dateTime]);
   const chartData: any = {
     series: [
       {
@@ -77,8 +78,9 @@ const CoinCommunityChart = ({
       },
       grid: {
         show: true,
-        borderColor: "#90A4AE",
+        borderColor: "#9199a514",
         strokeDashArray: 0,
+        border: 0.5,
         position: "back",
         xaxis: {
           lines: {
@@ -87,7 +89,7 @@ const CoinCommunityChart = ({
         },
         yaxis: {
           lines: {
-            show: false,
+            show: true,
           },
         },
       },
@@ -176,7 +178,7 @@ const CoinCommunityChart = ({
           <Stack direction="row" alignItems="center" spacing={1}>
             <Avatar
               alt="Remy Sharp"
-              src="/static/images/avatar/1.jpg"
+              src={icon && icon}
               sx={{ width: 30, height: 30 }}
             />
             <Stack direction="column" alignItems="flex-start" spacing={0}>

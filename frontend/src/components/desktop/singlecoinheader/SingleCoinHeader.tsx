@@ -1124,8 +1124,8 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     coinSocialGraph &&
                     coinSocialGraph[0]?.discord[0]?.social_url
                   }
-                  endColor="#ff6e4c"
-                  startColor="#ff3708"
+                  endColor="#2415a2"
+                  startColor="#404EED"
                 />
               )}
 

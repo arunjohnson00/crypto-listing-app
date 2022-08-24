@@ -1,7 +1,12 @@
 import { Grid } from "@mui/material";
 import { useState, useEffect } from "react";
 import CoinCommunityChart from "../coinscommunitychart/CoinCommunityChart";
-
+import FacebookGraphImage from "../../../assets/singlepagecoin/graph/facebook.png";
+import DiscordGraphImage from "../../../assets/singlepagecoin/graph/discord.png";
+import RedditGraphImage from "../../../assets/singlepagecoin/graph/reddit.png";
+import TelegramGraphImage from "../../../assets/singlepagecoin/graph/telegram.png";
+import TwitterGraphImage from "../../../assets/singlepagecoin/graph/twitter.png";
+import GithubGraphImage from "../../../assets/singlepagecoin/graph/github.png";
 const CoinPageCommunity = () => {
   const data = [
     [1327359600000, 30.95],
@@ -292,6 +297,7 @@ const CoinPageCommunity = () => {
           variant="telegram"
           title="Telegram"
           colorTheme="#13b0fc"
+          icon={TelegramGraphImage}
         />
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
@@ -303,6 +309,7 @@ const CoinPageCommunity = () => {
           variant="reddit"
           title="Reddit"
           colorTheme="#ff3708"
+          icon={RedditGraphImage}
         />
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
@@ -314,6 +321,7 @@ const CoinPageCommunity = () => {
           variant="twitter"
           title="Twitter"
           colorTheme="#00e8fd"
+          icon={TwitterGraphImage}
         />
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
@@ -325,6 +333,19 @@ const CoinPageCommunity = () => {
           variant="facebook"
           title="Facebook"
           colorTheme="#097EEB"
+          icon={FacebookGraphImage}
+        />
+      </Grid>
+      <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
+        <CoinCommunityChart
+          //   dateTime={dateTime}
+          //   setDateTime={setDateTime}
+          //   updateData={updateData}
+          data={data}
+          variant="discord"
+          title="Discord"
+          colorTheme="#404EED"
+          icon={DiscordGraphImage}
         />
       </Grid>
     </Grid>

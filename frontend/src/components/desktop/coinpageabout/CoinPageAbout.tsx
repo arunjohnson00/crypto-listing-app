@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   Grid,
   Stack,
@@ -9,13 +10,31 @@ import {
   Divider,
   CardMedia,
 } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import Iframe from "react-iframe";
+import { coinAboutBlockRequest } from "../../../store/action";
 
 const CoinPageAbout = () => {
+  const dispatch: any = useDispatch();
+  const location = useLocation();
   const coinAboutBlock = useSelector((data: any) => {
     return data?.coinReducer?.coin_about_block?.data;
   });
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(
+      coinAboutBlockRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  }, []);
+
   return (
     <Grid container>
       <Grid xs={12} sm={12} md={4} lg={4} xl={4}>

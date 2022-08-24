@@ -1,11 +1,30 @@
+import { useEffect } from "react";
 import { CardMedia, Grid, Stack, Typography } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import HtmlTable from "../htmltable/HtmlTable";
 import { tableHeader } from "./helper";
+import { coinHistoricalDataBlockRequest } from "../../../store/action";
 const CoinPageHistoricalData = () => {
+  const dispatch: any = useDispatch();
+  const location = useLocation();
+
   const coinHistoricalData = useSelector((data: any) => {
     return data?.coinReducer?.coin_historical_data_block?.data;
   });
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(
+      coinHistoricalDataBlockRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  }, []);
 
   return (
     <Grid container xs={12}>

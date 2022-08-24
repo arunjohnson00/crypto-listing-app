@@ -45,7 +45,7 @@ const SingleCoinPage = () => {
   const timeAgo = new TimeAgo("en");
   const [feed, setFeed] = useState<any>();
   const [requestStatus, setRequestStatus] = useState<any>(false);
-  console.log(location?.pathname);
+
   useEffect(() => {
     (location?.pathname === "/coin" || location?.pathname === "/coin/") &&
       navigate("/");
@@ -73,28 +73,28 @@ const SingleCoinPage = () => {
         errorHandler
       )
     );
-    dispatch(
-      coinOverviewBlockRequest(
-        location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
-    dispatch(
-      coinAboutBlockRequest(
-        location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
+    // dispatch(
+    //   coinOverviewBlockRequest(
+    //     location?.pathname?.split("/").pop(),
+    //     successHandler,
+    //     errorHandler
+    //   )
+    // );
+    // dispatch(
+    //   coinAboutBlockRequest(
+    //     location?.pathname?.split("/").pop(),
+    //     successHandler,
+    //     errorHandler
+    //   )
+    // );
 
-    dispatch(
-      coinRatingBlockRequest(
-        location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
+    // dispatch(
+    //   coinRatingBlockRequest(
+    //     location?.pathname?.split("/").pop(),
+    //     successHandler,
+    //     errorHandler
+    //   )
+    // );
 
     dispatch(
       coinSocialGraphRequest(
@@ -104,21 +104,21 @@ const SingleCoinPage = () => {
       )
     );
 
-    dispatch(
-      coinHistoricalDataBlockRequest(
-        location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
+    // dispatch(
+    //   coinHistoricalDataBlockRequest(
+    //     location?.pathname?.split("/").pop(),
+    //     successHandler,
+    //     errorHandler
+    //   )
+    // );
 
-    dispatch(
-      coinTodaysPriceBlockRequest(
-        location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
+    // dispatch(
+    //   coinTodaysPriceBlockRequest(
+    //     location?.pathname?.split("/").pop(),
+    //     successHandler,
+    //     errorHandler
+    //   )
+    // );
   }, [requestStatus]);
 
   useEffect(() => {

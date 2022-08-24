@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import {
   Grid,
   Stack,
@@ -15,9 +16,12 @@ import {
 } from "@mui/material";
 import moment from "moment";
 import WiriteReview from "../writereview/WiriteReview";
+import { coinRatingBlockRequest } from "../../../store/action";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const CoinpageRatings = () => {
+  const dispatch: any = useDispatch();
+  const location = useLocation();
   const [openWriteReview, setOpenWriteReview] = useState(false);
   const coinRatingBlock = useSelector((data: any) => {
     return data?.coinReducer?.coin_rating_block?.data;
@@ -30,6 +34,18 @@ const CoinpageRatings = () => {
     setOpenWriteReview(false);
   };
 
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(
+      coinRatingBlockRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  }, []);
   return (
     <Grid container xs={12}>
       <Grid xs={12}>

@@ -12,7 +12,7 @@ import {
   Link,
   Button,
 } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Chart from "react-apexcharts";
 import moment from "moment";
 import ReactPlayer from "react-player";
@@ -25,8 +25,12 @@ import { SlideDown } from "react-slidedown";
 import "react-slidedown/lib/slidedown.css";
 import Iframe from "react-iframe";
 import CoinPageChart from "../coinpagechart/CoinPageChart";
+import { useLocation } from "react-router-dom";
+import { coinOverviewBlockRequest } from "../../../store/action";
 
 const CoinPageOverview = () => {
+  const dispatch: any = useDispatch();
+  const location = useLocation();
   const coinDetailOverview = useSelector((data: any) => {
     return data?.coinReducer?.coin_overview_block?.data;
   });
@@ -36,6 +40,19 @@ const CoinPageOverview = () => {
   const viewmoreHandler = () => {
     setViewMore(!viewMore);
   };
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(
+      coinOverviewBlockRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  }, []);
 
   return (
     <Grid container>
