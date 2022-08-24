@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Grid, Box, Stack, useMediaQuery } from "@mui/material";
 import NotificationBar from "../../components/useradmin/notificationbar/NotificationBar";
 import UserAdminSideBar from "../../components/useradmin/useradminsidebar/UserAdminSideBar";
+import UserAdminMobileBottomNav from "../../components/useradmin/bottomnavigation/UserAdminMobileBottomNav";
 
 const UserAdminView = ({ children }: any) => {
   const [collapse, setCollapse] = useState(false);
@@ -33,6 +34,8 @@ const UserAdminView = ({ children }: any) => {
             {children}
           </Box>
         </Box>
+
+        {matches === false && <UserAdminMobileBottomNav />}
       </Stack>
     </Box>
   );
