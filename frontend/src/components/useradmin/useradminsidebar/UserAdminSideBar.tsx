@@ -12,10 +12,13 @@ import {
 import { BiCoinStack } from "react-icons/bi";
 import { HiMenuAlt1 } from "react-icons/hi";
 import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
-
+import "./style.css";
 import "react-pro-sidebar/dist/css/styles.css";
 import CoinXHighLogo from "../../../assets/logo/logo.png";
-import { IconButton, Typography } from "@mui/material";
+import { Avatar, IconButton, Typography } from "@mui/material";
+
+import UserDashBoardIcon from "../../../assets/userdashboard/user-dashboard.png";
+import MyListingIcon from "../../../assets/userdashboard/my-listings.png";
 
 const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
   const [activeMenu, setActiveMenu] = useState<any>();
@@ -26,7 +29,7 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
       style={{
         position: "sticky",
         height: "100vh",
-        backgroundColor: "#08022f",
+        background: "#08022f",
         top: 0,
       }}
       //breakPoint="sm"
@@ -68,8 +71,14 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
               setActiveMenu(true);
             }}
             icon={
-              <DashboardRoundedIcon
-                sx={{ color: "#25E594", fontSize: "1.5rem" }}
+              <Avatar
+                alt="User Dashboard"
+                src={UserDashBoardIcon}
+                sx={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 0,
+                }}
               />
             }
           >
@@ -134,8 +143,14 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
               paddingBottom: 10,
             }}
             icon={
-              <DashboardRoundedIcon
-                sx={{ color: "#25E594", fontSize: "1.5rem" }}
+              <Avatar
+                alt="My Listings"
+                src={MyListingIcon}
+                sx={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 0,
+                }}
               />
             }
           >

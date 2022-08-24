@@ -28,27 +28,8 @@ const UserDashboard = () => {
         </Stack>
       </Grid>
       <Grid container spacing={2}>
-        <Grid item xs={8} py={3}>
+        <Grid item xs={12} py={3}>
           <UserAdminTabs />
-        </Grid>
-        <Grid item xs={4} py={3}>
-          <Box
-            sx={{
-              flexGrow: 1,
-              height: "500px",
-
-              background: "linear-gradient(145deg, #2569E6 50%, #25E695 100%)",
-            }}
-            mt={8}
-          >
-            <CardMedia
-              component="img"
-              height="500"
-              image="https://iili.io/UtYAiJ.jpg"
-              alt="green iguana"
-              sx={{ objectFit: "unset" }}
-            />
-          </Box>
         </Grid>
       </Grid>
     </Grid>

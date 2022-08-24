@@ -14,6 +14,7 @@ import BatchPredictionIcon from "@mui/icons-material/BatchPrediction";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import InsertCommentIcon from "@mui/icons-material/InsertComment";
 import UserAdminOverview from "../useradminoverview/UserAdminOverview";
+import UserAdminCoinListing from "../useradmincoinlisting/UserAdminCoinListing";
 
 const UserAdminTabs = () => {
   const [value, setValue] = useState("1");
@@ -82,7 +83,7 @@ const UserAdminTabs = () => {
           <UserAdminOverview />
         </TabPanel>
         <TabPanel value="2" sx={{ padding: 0, paddingY: 3 }}>
-          Item Two
+          <UserAdminCoinListing />
         </TabPanel>
         <TabPanel value="3" sx={{ padding: 0, paddingY: 3 }}>
           Item Three
