@@ -9,6 +9,8 @@ const initialState = {
   coin_rating_block: "",
   coin_historical_data_block: "",
   coin_todays_price_block: "",
+  coin_community_block: "",
+  coin_faq_block: "",
 };
 const coinReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -66,6 +68,18 @@ const coinReducer = (state: any = initialState, action: any) => {
         coin_todays_price_block: action?.payload?.data,
       };
 
+    case COIN.COIN_COMMUNITY_BLOCK:
+      //console.log(action);
+      return {
+        ...state,
+        coin_community_block: action?.payload?.data,
+      };
+    case COIN.COIN_FAQ_BLOCK:
+      //console.log(action);
+      return {
+        ...state,
+        coin_faq_block: action?.payload?.data,
+      };
     default:
       return state;
   }

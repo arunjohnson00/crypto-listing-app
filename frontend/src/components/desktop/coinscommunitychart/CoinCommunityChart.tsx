@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import Chart from "react-apexcharts";
+
 import {
   Grid,
   Stack,
@@ -14,23 +17,44 @@ import {
   Button,
   ButtonGroup,
 } from "@mui/material";
+import { coinCommunityBlockRequest } from "../../../store/action";
 
 const CoinCommunityChart = ({
   // dateTime,
   // setDateTime,
   // updateData,
   chartid,
-  data,
+  //data,
   variant,
   title,
   colorTheme,
   icon,
 }: any) => {
+  const location: any = useLocation();
+  const dispatch: any = useDispatch();
   const [dateTime, setDateTime] = useState<any>("seven_day");
-
+  const [data, setData] = useState<any>();
   const updateData = (timeline: any) => {
     setDateTime(timeline);
   };
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      setData(res?.data?.data);
+    };
+    const errorHandler = (err: any) => {};
+
+    dispatch(
+      coinCommunityBlockRequest(
+        {
+          slug: location?.pathname?.split("/").pop(),
+          name: chartid && chartid,
+        },
+        successHandler,
+        errorHandler
+      )
+    );
+  }, [dispatch]);
 
   useEffect(() => {
     switch (dateTime) {
@@ -65,7 +89,7 @@ const CoinCommunityChart = ({
   const chartData: any = {
     series: [
       {
-        data: data,
+        data: data?.followers,
       },
     ],
     options: {

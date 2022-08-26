@@ -1447,21 +1447,25 @@ const CoinPageOverview = () => {
           sx={{ objectFit: "unset" }}
         />
 
-        <Grid xs={12} pt={4}>
-          <Iframe
-            url="https://coinbrain.com/embed/0x55d398326f99059ff775485246999027b3197955?theme=dark&chart=1&trades=1"
-            width="100%"
-            height="1190"
-            id="myId"
-            className="myClassname"
-            display="block"
-            position="relative"
-            frameBorder={0}
-          />
-        </Grid>
-        <Grid xs={12} pt={4}>
-          <CoinPageChart />
-        </Grid>
+        {coinDetailOverview &&
+        parseInt(coinDetailOverview[0]?.show_widget) === 1 ? (
+          <Grid xs={12} pt={4}>
+            <Iframe
+              url="https://coinbrain.com/embed/bnb-0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c?theme=custom&accent=f5f5f5&padding=28&background=000516&chart=1&trades=1"
+              width="100%"
+              height="1040"
+              id="myId"
+              className="myClassname"
+              display="block"
+              position="relative"
+              frameBorder={0}
+            />
+          </Grid>
+        ) : (
+          <Grid xs={12} pt={4}>
+            <CoinPageChart />
+          </Grid>
+        )}
       </Grid>
     </Grid>
   );

@@ -136,3 +136,33 @@ export const coinTodaysPriceBlockRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const coinCommunityBlockRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-community-graph/${values?.slug}/${values?.name} `,
+    method: "GET",
+    secure: false,
+    actionType: COIN.COIN_COMMUNITY_BLOCK,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const coinFAQBlockRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-faq-block/${values}`,
+    method: "GET",
+    secure: false,
+    actionType: COIN.COIN_FAQ_BLOCK,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

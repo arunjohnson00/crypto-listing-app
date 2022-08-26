@@ -29,6 +29,8 @@ export { coinSocialGraphRequest } from "./coinAction ";
 export { coinRatingBlockRequest } from "./coinAction ";
 export { coinHistoricalDataBlockRequest } from "./coinAction ";
 export { coinTodaysPriceBlockRequest } from "./coinAction ";
+export { coinCommunityBlockRequest } from "./coinAction ";
+export { coinFAQBlockRequest } from "./coinAction ";
 
 //Coins Page
 
