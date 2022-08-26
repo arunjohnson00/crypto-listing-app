@@ -56,30 +56,32 @@ const CoinCommunityChart = ({
     );
   }, [dispatch]);
 
+  console.log(new Date("Tue Jul 30 2019 13:45:29"));
+
   useEffect(() => {
     switch (dateTime) {
       case "seven_day":
         ApexCharts.exec(
           chartid && chartid,
           "zoomX",
-          new Date("28 Jan 2013").getTime(),
-          new Date("27 Feb 2013").getTime()
+          new Date("Tue Jul 30 2019 13:45:29").getTime(),
+          new Date("Tue Jul 29 2022 13:45:29").getTime()
         );
         break;
       case "fifteen_day":
         ApexCharts.exec(
           chartid && chartid,
           "zoomX",
-          new Date("27 Sep 2012").getTime(),
-          new Date("27 Feb 2013").getTime()
+          new Date("Tue Jul 30 2019 13:45:29").getTime(),
+          new Date("Tue Jul 29 2020 13:45:29").getTime()
         );
         break;
       case "thirty_day":
         ApexCharts.exec(
           chartid && chartid,
           "zoomX",
-          new Date("27 Feb 2012").getTime(),
-          new Date("27 Feb 2013").getTime()
+          new Date("27 Feb 2019 13:45:29").getTime(),
+          new Date("27 Feb 2023 13:45:29").getTime()
         );
         break;
 
@@ -89,7 +91,12 @@ const CoinCommunityChart = ({
   const chartData: any = {
     series: [
       {
-        data: data?.followers,
+        data: [
+          ["Tue Jul 30 2019 13:45:29", 38.55],
+          ["Tue Jul 30 2020 13:45:29 ", 38.11],
+          ["Tue Jul 30 2021 13:45:29 ", 38.59],
+          ["Tue Jul 30 2022 13:45:29", 39.6],
+        ],
       },
     ],
     options: {

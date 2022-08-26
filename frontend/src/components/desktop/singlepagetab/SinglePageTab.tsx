@@ -13,6 +13,7 @@ import { Divider } from "@mui/material";
 import CoinPageCommunity from "../coinpagecommunity/CoinPageCommunity";
 import CoinPageHistoricalData from "../coinpagehistoricaldata/CoinPageHistoricalData";
 import CoinPageTodaysPrice from "../coinpagetodaysprice/CoinPageTodaysPrice";
+import CoinPageNews from "../coinpagenews/CoinPageNews";
 
 const SinglePageTab = () => {
   const [value, setValue] = useState("1");
@@ -75,7 +76,7 @@ const SinglePageTab = () => {
             <Tab label="Overview" value="1" />
             <Tab label="About" value="2" />
             <Tab label="Ratings" value="3" />
-            <Tab label="Markets" value="4" />
+            {/* <Tab label="Markets" value="4" /> */}
             <Tab label="Historical Data" value="5" />
             <Tab label="Today's Price" value="6" />
             <Tab label="Community" value="7" />
@@ -84,6 +85,7 @@ const SinglePageTab = () => {
             <Tab label="Presale Details" value="10" />
             <Tab label="KYC Details" value="11" />
             <Tab label="Audit Details" value="12" />
+            <Tab label="News" value="13" />
           </TabList>
           <Divider sx={{ borderColor: "#2D2858", borderBottomWidth: "1px" }} />
         </Box>
@@ -96,9 +98,9 @@ const SinglePageTab = () => {
         <TabPanel value="3">
           <CoinpageRatings />
         </TabPanel>
-        <TabPanel value="4">
+        {/* <TabPanel value="4">
           <CoinPageMarket />
-        </TabPanel>
+        </TabPanel> */}
         <TabPanel value="5">
           <CoinPageHistoricalData />
         </TabPanel>
@@ -111,10 +113,14 @@ const SinglePageTab = () => {
         <TabPanel value="8">
           <CoinPageFAQ />
         </TabPanel>
+
         <TabPanel value="9">Item Three</TabPanel>
         <TabPanel value="10">Item One</TabPanel>
         <TabPanel value="11">Item Two</TabPanel>
         <TabPanel value="12">Item Three</TabPanel>
+        <TabPanel value="13">
+          <CoinPageNews />
+        </TabPanel>
       </TabContext>
     </Box>
   );

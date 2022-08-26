@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Chart from "react-apexcharts";
 import {
   Grid,
@@ -13,6 +15,7 @@ import {
   Link,
   Button,
 } from "@mui/material";
+import { coinPriceGraphBlockRequest } from "../../../store/action";
 
 const chartData: any = {
   series: [
@@ -393,11 +396,29 @@ const chartData: any = {
 };
 
 const CoinPageChart = () => {
-  const [dateTime, setDateTime] = useState<any>("one_year");
-
+  const location: any = useLocation();
+  const dispatch: any = useDispatch();
+  const [dateTime, setDateTime] = useState<any>("seven_day");
+  const [data, setData] = useState<any>();
   const updateData = (timeline: any) => {
     setDateTime(timeline);
   };
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      setData(res?.data?.data);
+    };
+    const errorHandler = (err: any) => {};
+
+    dispatch(
+      coinPriceGraphBlockRequest(
+        location?.pathname?.split("/").pop(),
+
+        successHandler,
+        errorHandler
+      )
+    );
+  }, [dispatch]);
 
   useEffect(() => {
     switch (dateTime) {

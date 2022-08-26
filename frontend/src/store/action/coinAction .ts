@@ -166,3 +166,18 @@ export const coinFAQBlockRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const coinPriceGraphBlockRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-price-widget/${values}`,
+    method: "GET",
+    secure: false,
+    actionType: COIN.COIN_PRICE_GRAPH_BLOCK,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

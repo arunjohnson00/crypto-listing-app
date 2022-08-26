@@ -31,6 +31,7 @@ export { coinHistoricalDataBlockRequest } from "./coinAction ";
 export { coinTodaysPriceBlockRequest } from "./coinAction ";
 export { coinCommunityBlockRequest } from "./coinAction ";
 export { coinFAQBlockRequest } from "./coinAction ";
+export { coinPriceGraphBlockRequest } from "./coinAction ";
 
 //Coins Page
 
