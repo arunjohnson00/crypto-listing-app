@@ -19,6 +19,7 @@ const CoinCommunityChart = ({
   // dateTime,
   // setDateTime,
   // updateData,
+  chartid,
   data,
   variant,
   title,
@@ -35,7 +36,7 @@ const CoinCommunityChart = ({
     switch (dateTime) {
       case "seven_day":
         ApexCharts.exec(
-          "area-datetime",
+          chartid && chartid,
           "zoomX",
           new Date("28 Jan 2013").getTime(),
           new Date("27 Feb 2013").getTime()
@@ -43,7 +44,7 @@ const CoinCommunityChart = ({
         break;
       case "fifteen_day":
         ApexCharts.exec(
-          "area-datetime",
+          chartid && chartid,
           "zoomX",
           new Date("27 Sep 2012").getTime(),
           new Date("27 Feb 2013").getTime()
@@ -51,7 +52,7 @@ const CoinCommunityChart = ({
         break;
       case "thirty_day":
         ApexCharts.exec(
-          "area-datetime",
+          chartid && chartid,
           "zoomX",
           new Date("27 Feb 2012").getTime(),
           new Date("27 Feb 2013").getTime()
@@ -60,7 +61,7 @@ const CoinCommunityChart = ({
 
       default:
     }
-  }, [dateTime]);
+  }, [dateTime, chartid]);
   const chartData: any = {
     series: [
       {
@@ -69,7 +70,7 @@ const CoinCommunityChart = ({
     ],
     options: {
       chart: {
-        id: "area-datetime",
+        id: chartid && chartid,
         type: "line",
         height: 350,
         zoom: {

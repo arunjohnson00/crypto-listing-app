@@ -146,7 +146,7 @@ const UserAdminMobileBottomNav = () => {
             />
           }
         />
-        <BottomNavigationAction
+        {/* <BottomNavigationAction
           label={
             <Typography sx={{ fontSize: ".55rem", color: "#01F970" }} pt={0.3}>
               {" "}
@@ -165,7 +165,7 @@ const UserAdminMobileBottomNav = () => {
               }}
             />
           }
-        />
+        /> */}
       </BottomNavigation>
     </Paper>
   );

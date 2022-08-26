@@ -7,6 +7,7 @@ import RedditGraphImage from "../../../assets/singlepagecoin/graph/reddit.png";
 import TelegramGraphImage from "../../../assets/singlepagecoin/graph/telegram.png";
 import TwitterGraphImage from "../../../assets/singlepagecoin/graph/twitter.png";
 import GithubGraphImage from "../../../assets/singlepagecoin/graph/github.png";
+
 const CoinPageCommunity = () => {
   const data = [
     [1327359600000, 30.95],
@@ -298,6 +299,7 @@ const CoinPageCommunity = () => {
           title="Telegram"
           colorTheme="#13b0fc"
           icon={TelegramGraphImage}
+          chartid="telegram"
         />
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
@@ -310,6 +312,7 @@ const CoinPageCommunity = () => {
           title="Reddit"
           colorTheme="#ff3708"
           icon={RedditGraphImage}
+          chartid="reddit"
         />
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
@@ -322,6 +325,7 @@ const CoinPageCommunity = () => {
           title="Twitter"
           colorTheme="#00e8fd"
           icon={TwitterGraphImage}
+          chartid="twitter"
         />
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
@@ -334,6 +338,7 @@ const CoinPageCommunity = () => {
           title="Facebook"
           colorTheme="#097EEB"
           icon={FacebookGraphImage}
+          chartid="facebook"
         />
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
@@ -346,6 +351,7 @@ const CoinPageCommunity = () => {
           title="Discord"
           colorTheme="#404EED"
           icon={DiscordGraphImage}
+          chartid="discord"
         />
       </Grid>
     </Grid>
