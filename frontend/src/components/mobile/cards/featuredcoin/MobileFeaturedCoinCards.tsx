@@ -108,10 +108,22 @@ const MobileFeaturedCoinCards = ({ cardData }: any) => {
                 sx={{ color: "#1dffc0", fontWeight: "600" }}
               >
                 {cardData && cardData?.current_price !== null ? (
-                  cardData && Math.abs(cardData?.current_price) > 1 ? (
-                    "$" + parseFloat(cardData?.current_price).toFixed(4)
+                  String(Math.trunc(parseFloat(cardData?.current_price)))
+                    .length > 2 ? (
+                    "$" +
+                    Number(
+                      parseFloat(cardData?.current_price).toFixed(2)
+                    ).toLocaleString()
+                  ) : cardData && Math.abs(cardData?.current_price) > 1 ? (
+                    "$" +
+                    parseFloat(cardData?.current_price)
+                      .toFixed(4)
+                      .toLocaleString()
                   ) : (
-                    "$" + parseFloat(cardData?.current_price).toFixed(10)
+                    "$" +
+                    parseFloat(cardData?.current_price)
+                      .toFixed(9)
+                      .toLocaleString()
                   )
                 ) : (
                   <span style={{ color: "#7a7a7a" }}>--</span>

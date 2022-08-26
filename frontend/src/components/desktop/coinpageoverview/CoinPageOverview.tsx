@@ -11,9 +11,12 @@ import {
   CardMedia,
   Link,
   Button,
+  IconButton,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import Chart from "react-apexcharts";
+
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import moment from "moment";
 import ReactPlayer from "react-player";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -36,9 +39,16 @@ const CoinPageOverview = () => {
   });
 
   const [viewMore, setViewMore] = useState(true);
-
+  const [copyValue, setCopyValue] = useState<any>("");
+  const [copied, setCopied] = useState(false);
   const viewmoreHandler = () => {
     setViewMore(!viewMore);
+  };
+  const copyHandler = (e: any) => {
+    setCopied(true);
+    setTimeout(function () {
+      setCopied(false);
+    }, 500);
   };
 
   useEffect(() => {
@@ -97,10 +107,31 @@ const CoinPageOverview = () => {
               </Typography>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
                 {coinDetailOverview &&
-                coinDetailOverview[0]?.current_price !== null &&
-                coinDetailOverview[0]?.current_price !== ""
-                  ? "$" + coinDetailOverview[0]?.current_price
-                  : "NA"}
+                coinDetailOverview[0]?.current_price !== null ? (
+                  String(
+                    Math.trunc(parseFloat(coinDetailOverview[0]?.current_price))
+                  ).length > 2 ? (
+                    "$" +
+                    Number(
+                      parseFloat(coinDetailOverview[0]?.current_price).toFixed(
+                        2
+                      )
+                    ).toLocaleString()
+                  ) : coinDetailOverview &&
+                    Math.abs(coinDetailOverview[0]?.current_price) > 1 ? (
+                    "$" +
+                    parseFloat(coinDetailOverview[0]?.current_price)
+                      .toFixed(4)
+                      .toLocaleString()
+                  ) : (
+                    "$" +
+                    parseFloat(coinDetailOverview[0]?.current_price)
+                      .toFixed(9)
+                      .toLocaleString()
+                  )
+                ) : (
+                  <span style={{ color: "#7a7a7a" }}>--</span>
+                )}
               </Typography>
             </Stack>
             <Stack direction="row" mt={0.9}>
@@ -208,6 +239,99 @@ const CoinPageOverview = () => {
                   : "NA"}
               </Typography>
             </Stack>
+
+            {coinDetailOverview &&
+              coinDetailOverview[0]?.address?.map(
+                (item: any, index: number) => (
+                  <Stack
+                    direction="row"
+                    sx={{ justifyContent: "space-between" }}
+                    mt={1}
+                    alignItems="center"
+                    key={index}
+                  >
+                    <Stack
+                      direction={{ xs: "row", sm: "row", md: "row" }}
+                      sx={{ alignItems: "center" }}
+                      justifyContent={{
+                        xs: "center",
+                        sm: "center",
+                        md: "center",
+                        lg: "flex-start",
+                      }}
+                      spacing={1}
+                    >
+                      <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                        {item && item?.name?.length >= 25
+                          ? item?.name?.slice(0, 25) + "..."
+                          : item?.name}
+                      </Typography>
+                      <Tooltip title="Delete">
+                        <Avatar
+                          src={ToolTipImage}
+                          sx={{ width: 9, height: 9 }}
+                        ></Avatar>
+                      </Tooltip>
+                    </Stack>
+
+                    <Stack
+                      direction={{ xs: "row", sm: "row", md: "row" }}
+                      sx={{ alignItems: "center" }}
+                      spacing={0.8}
+                    >
+                      <a
+                        href={item?.url}
+                        style={{
+                          color: "#8A93C9",
+                          //textDecoration: "none"
+                        }}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <Typography
+                          variant="subtitle2"
+                          sx={{
+                            //color: "#FFFFF5",
+                            fontSize: "0.65rem",
+                          }}
+                        >
+                          {item?.address !== ""
+                            ? item &&
+                              item?.address?.substring(0, 5) +
+                                "..." +
+                                item?.address?.slice(-6)
+                            : "NA"}
+                        </Typography>
+                      </a>
+                      {item?.address !== "" && (
+                        <CopyToClipboard
+                          options={{ message: "Copy" }}
+                          text={item?.address}
+                          onCopy={(e: any) => copyHandler(e)}
+                        >
+                          <IconButton
+                            sx={{ padding: 0 }}
+                            onClick={() => {
+                              setCopyValue(item?.address);
+                            }}
+                          >
+                            <Tooltip
+                              title={`${copied ? "Copied" : "Copy this Token"}`}
+                            >
+                              <ContentCopyIcon
+                                sx={{
+                                  color: `${copied ? "#19ffb0" : "#19ffb0"}`,
+                                  fontSize: ".9rem",
+                                }}
+                              />
+                            </Tooltip>
+                          </IconButton>
+                        </CopyToClipboard>
+                      )}
+                    </Stack>
+                  </Stack>
+                )
+              )}
             <Stack
               direction="row"
               sx={{ alignItems: "center", justifyContent: "space-between" }}
@@ -780,15 +904,28 @@ const CoinPageOverview = () => {
                   ></Avatar>
                 </Tooltip>
               </Stack>
-              <Typography
-                variant="caption"
-                sx={{ color: "#ff0000", fontWeight: 600 }}
-              >
+              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
                 {coinDetailOverview &&
-                coinDetailOverview[0]?.volume_24h !== null &&
-                coinDetailOverview[0]?.volume_24h !== ""
-                  ? coinDetailOverview[0]?.volume_24h
-                  : "NA"}
+                coinDetailOverview[0]?.volume_24h !== null ? (
+                  String(
+                    Math.trunc(parseFloat(coinDetailOverview[0]?.volume_24h))
+                  ).length > 2 ? (
+                    Number(
+                      parseFloat(coinDetailOverview[0]?.volume_24h).toFixed(2)
+                    ).toLocaleString()
+                  ) : coinDetailOverview &&
+                    Math.abs(coinDetailOverview[0]?.volume_24h) > 1 ? (
+                    parseFloat(coinDetailOverview[0]?.volume_24h)
+                      .toFixed(4)
+                      .toLocaleString()
+                  ) : (
+                    parseFloat(coinDetailOverview[0]?.volume_24h)
+                      .toFixed(9)
+                      .toLocaleString()
+                  )
+                ) : (
+                  <span style={{ color: "#7a7a7a" }}>--</span>
+                )}
               </Typography>
             </Stack>
 
@@ -820,10 +957,26 @@ const CoinPageOverview = () => {
               </Stack>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
                 {coinDetailOverview &&
-                coinDetailOverview[0]?.market_cap !== null &&
-                coinDetailOverview[0]?.market_cap !== ""
-                  ? coinDetailOverview[0]?.market_cap
-                  : "NA"}
+                coinDetailOverview[0]?.market_cap !== null ? (
+                  String(
+                    Math.trunc(parseFloat(coinDetailOverview[0]?.market_cap))
+                  ).length > 2 ? (
+                    Number(
+                      parseFloat(coinDetailOverview[0]?.market_cap).toFixed(2)
+                    ).toLocaleString()
+                  ) : coinDetailOverview &&
+                    Math.abs(coinDetailOverview[0]?.market_cap) > 1 ? (
+                    parseFloat(coinDetailOverview[0]?.market_cap)
+                      .toFixed(4)
+                      .toLocaleString()
+                  ) : (
+                    parseFloat(coinDetailOverview[0]?.market_cap)
+                      .toFixed(9)
+                      .toLocaleString()
+                  )
+                ) : (
+                  <span style={{ color: "#7a7a7a" }}>--</span>
+                )}
               </Typography>
             </Stack>
 
@@ -855,12 +1008,33 @@ const CoinPageOverview = () => {
               </Stack>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
                 {coinDetailOverview &&
-                coinDetailOverview[0]?.fully_diluted_market_cap !== null &&
-                coinDetailOverview[0]?.fully_diluted_market_cap !== ""
-                  ? parseFloat(
-                      coinDetailOverview[0]?.fully_diluted_market_cap
-                    ).toFixed(3)
-                  : "NA"}
+                coinDetailOverview[0]?.fully_diluted_market_cap !== null ? (
+                  String(
+                    Math.trunc(
+                      parseFloat(
+                        coinDetailOverview[0]?.fully_diluted_market_cap
+                      )
+                    )
+                  ).length > 2 ? (
+                    Number(
+                      parseFloat(
+                        coinDetailOverview[0]?.fully_diluted_market_cap
+                      ).toFixed(2)
+                    ).toLocaleString()
+                  ) : coinDetailOverview &&
+                    Math.abs(coinDetailOverview[0]?.fully_diluted_market_cap) >
+                      1 ? (
+                    parseFloat(coinDetailOverview[0]?.fully_diluted_market_cap)
+                      .toFixed(4)
+                      .toLocaleString()
+                  ) : (
+                    parseFloat(coinDetailOverview[0]?.fully_diluted_market_cap)
+                      .toFixed(9)
+                      .toLocaleString()
+                  )
+                ) : (
+                  <span style={{ color: "#7a7a7a" }}>--</span>
+                )}
               </Typography>
             </Stack>
 
@@ -894,7 +1068,9 @@ const CoinPageOverview = () => {
                 {coinDetailOverview &&
                 coinDetailOverview[0]?.circulating_supply !== null &&
                 coinDetailOverview[0]?.circulating_supply !== ""
-                  ? coinDetailOverview[0]?.circulating_supply
+                  ? Math.floor(
+                      Math.abs(coinDetailOverview[0]?.circulating_supply)
+                    ).toLocaleString()
                   : "NA"}
               </Typography>
             </Stack>
@@ -928,7 +1104,9 @@ const CoinPageOverview = () => {
                 {coinDetailOverview &&
                 coinDetailOverview[0]?.total_supply !== null &&
                 coinDetailOverview[0]?.total_supply !== ""
-                  ? coinDetailOverview[0]?.total_supply
+                  ? Math.floor(
+                      Math.abs(coinDetailOverview[0]?.total_supply)
+                    ).toLocaleString()
                   : "NA"}
               </Typography>
             </Stack>
@@ -940,7 +1118,7 @@ const CoinPageOverview = () => {
           orientation="horizontal"
           sx={{ borderColor: "#342D61", borderBottomWidth: 2 }}
         />
-        <Grid xs={12} mt={4}>
+        {/* <Grid xs={12} mt={4}>
           <Typography
             variant="h5"
             sx={{
@@ -1248,7 +1426,7 @@ const CoinPageOverview = () => {
               {viewMore === true ? "View More" : "View Less"}
             </Link>
           </Stack>
-        </Grid>
+        </Grid> */}
       </Grid>
 
       <Grid

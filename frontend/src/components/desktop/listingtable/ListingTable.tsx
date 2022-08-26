@@ -187,16 +187,36 @@ const ListingTable = ({
                       sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
                     >
                       <Typography variant="caption">
-                        {data?.market_cap}
+                        {data && data?.market_cap !== null ? (
+                          data &&
+                          "$" +
+                            Math.floor(
+                              Math.abs(data?.market_cap)
+                            ).toLocaleString()
+                        ) : (
+                          <span style={{ color: "#7a7a7a" }}>--</span>
+                        )}
                       </Typography>
                     </TableCell>
                     <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                       <Typography variant="caption">
                         {data && data?.current_price !== null ? (
-                          data && Math.abs(data?.current_price) > 1 ? (
-                            "$" + parseFloat(data?.current_price).toFixed(4)
+                          String(Math.trunc(parseFloat(data?.current_price)))
+                            .length > 2 ? (
+                            "$" +
+                            Number(
+                              parseFloat(data?.current_price).toFixed(2)
+                            ).toLocaleString()
+                          ) : data && Math.abs(data?.current_price) > 1 ? (
+                            "$" +
+                            parseFloat(data?.current_price)
+                              .toFixed(4)
+                              .toLocaleString()
                           ) : (
-                            "$" + parseFloat(data?.current_price).toFixed(13)
+                            "$" +
+                            parseFloat(data?.current_price)
+                              .toFixed(13)
+                              .toLocaleString()
                           )
                         ) : (
                           <span style={{ color: "#7a7a7a" }}>--</span>

@@ -35,6 +35,8 @@ const CoinPageAbout = () => {
     );
   }, []);
 
+  console.log(coinAboutBlock && coinAboutBlock[0]?.first_pragraph[0]?.price);
+
   return (
     <Grid container>
       <Grid xs={12} sm={12} md={4} lg={4} xl={4}>
@@ -56,34 +58,225 @@ const CoinPageAbout = () => {
           </Typography>
 
           <Stack direction="column" mt={2} spacing={2}>
-            <Typography sx={{ color: "#FFFFF5", fontSize: ".85rem" }}>
-              {coinAboutBlock && coinAboutBlock[0]?.first_pragraph + "."}{" "}
+            <Typography sx={{ color: "#FFFFF5", fontSize: ".8rem" }}>
               {coinAboutBlock &&
                 coinAboutBlock[0]?.first_pragraph &&
-                `The live ${
-                  coinAboutBlock && coinAboutBlock[0]?.name
-                } price today is $5.631145622449 with a 24-hour
-              trading volume of $26,254.16. ${
-                coinAboutBlock && coinAboutBlock[0]?.name
-              } is down 64.74% in the last
-              24 hours and 18.56% up in the Last 1 Hour . The current Coinxhigh
-              ranking is #418, with a live market cap of $45,792,809. It has a
-              circulating supply of 562,103,091,188,157 ${
-                coinAboutBlock && coinAboutBlock[0]?.name
-              } coins and a
-              max. supply of 1,000,000,000,000,000 ${
-                coinAboutBlock && coinAboutBlock[0]?.name
-              } coins. The current
-              rating of ${
-                coinAboutBlock && coinAboutBlock[0]?.name
-              } on Coinxhigh is 4.9. ${
-                  coinAboutBlock && coinAboutBlock[0]?.name
-                } hit an all time
+                `The live `}{" "}
+              <span style={{ fontWeight: 700 }}>
+                {" "}
+                {coinAboutBlock && coinAboutBlock[0]?.name}
+              </span>{" "}
+              {`price today is `}
+              <span style={{ color: "#037bfd" }}>
+                {coinAboutBlock &&
+                coinAboutBlock[0]?.first_pragraph[0]?.price !== null ? (
+                  String(
+                    Math.trunc(
+                      parseFloat(coinAboutBlock[0]?.first_pragraph[0]?.price)
+                    )
+                  ).length > 2 ? (
+                    "$" +
+                    Number(
+                      parseFloat(
+                        coinAboutBlock[0]?.first_pragraph[0]?.price
+                      ).toFixed(2)
+                    ).toLocaleString()
+                  ) : coinAboutBlock &&
+                    Math.abs(coinAboutBlock[0]?.first_pragraph[0]?.price) >
+                      1 ? (
+                    "$" +
+                    parseFloat(coinAboutBlock[0]?.first_pragraph[0]?.price)
+                      .toFixed(4)
+                      .toLocaleString()
+                  ) : (
+                    "$" +
+                    parseFloat(coinAboutBlock[0]?.first_pragraph[0]?.price)
+                      .toFixed(13)
+                      .toLocaleString()
+                  )
+                ) : (
+                  <span style={{ color: "#7a7a7a" }}>--</span>
+                )}
+              </span>
+              {` with a 24-hour
+              trading volume of`}{" "}
+              <span style={{ color: "#037bfd" }}>
+                {coinAboutBlock &&
+                coinAboutBlock[0]?.first_pragraph[0]?.volume_24h !== null
+                  ? coinAboutBlock &&
+                    coinAboutBlock[0]?.first_pragraph[0]?.volume_24h
+                  : "NA"}
+              </span>{" "}
+              <span style={{ fontWeight: 700 }}>
+                {" "}
+                {coinAboutBlock && coinAboutBlock[0]?.name}
+              </span>{" "}
+              {
+                <span
+                  style={{
+                    color:
+                      coinAboutBlock &&
+                      Math.sign(
+                        parseFloat(
+                          coinAboutBlock[0]?.first_pragraph[0]
+                            ?.percent_change_24h
+                        )
+                      ) === -1
+                        ? "#ff0000"
+                        : "#00ff00",
+                    // fontWeight: 600,
+                    fontSize: ".85rem",
+                  }}
+                >
+                  {coinAboutBlock &&
+                  Math.sign(
+                    parseFloat(
+                      coinAboutBlock[0]?.first_pragraph[0]?.percent_change_24h
+                    )
+                  ) === -1
+                    ? "is down "
+                    : "is up "}
+                  {coinAboutBlock &&
+                  coinAboutBlock[0]?.first_pragraph[0]?.percent_change_24h !==
+                    null ? (
+                    coinAboutBlock &&
+                    parseFloat(
+                      coinAboutBlock[0]?.first_pragraph[0]?.percent_change_24h
+                    )
+                      .toFixed(2)
+                      .replace("-", "") + "% "
+                  ) : (
+                    <span style={{ color: "#7a7a7a" }}>--</span>
+                  )}
+                </span>
+              }
+              {`in the last
+              24 hours and `}{" "}
+              {
+                <span
+                  style={{
+                    color:
+                      coinAboutBlock &&
+                      Math.sign(
+                        parseFloat(
+                          coinAboutBlock[0]?.first_pragraph[0]
+                            ?.percent_change_1h
+                        )
+                      ) === -1
+                        ? "#ff0000"
+                        : "#00ff00",
+                    // fontWeight: 600,
+                    fontSize: ".85rem",
+                  }}
+                >
+                  {coinAboutBlock &&
+                  coinAboutBlock[0]?.first_pragraph[0]?.percent_change_1h !==
+                    null ? (
+                    coinAboutBlock &&
+                    parseFloat(
+                      coinAboutBlock[0]?.first_pragraph[0]?.percent_change_1h
+                    )
+                      .toFixed(2)
+                      .replace("-", "") + "% "
+                  ) : (
+                    <span style={{ color: "#7a7a7a" }}>--</span>
+                  )}
+                  {coinAboutBlock &&
+                  Math.sign(
+                    parseFloat(
+                      coinAboutBlock[0]?.first_pragraph[0]?.percent_change_1h
+                    )
+                  ) === -1
+                    ? "down "
+                    : "up "}
+                </span>
+              }
+              {` in the Last 1 Hour . The current Coinxhigh
+              ranking is `}
+              <span style={{ color: "#037bfd" }}>
+                {coinAboutBlock &&
+                coinAboutBlock[0]?.first_pragraph[0]?.rank !== null
+                  ? coinAboutBlock &&
+                    "#" + coinAboutBlock[0]?.first_pragraph[0]?.rank
+                  : "NA"}
+              </span>
+              {` , with a live market cap of `}
+              <span style={{ color: "#037bfd" }}>
+                {coinAboutBlock &&
+                coinAboutBlock[0]?.first_pragraph[0]?.market_cap !== null
+                  ? coinAboutBlock &&
+                    "$" +
+                      Math.floor(
+                        Math.abs(
+                          coinAboutBlock[0]?.first_pragraph[0]?.market_cap
+                        )
+                      ).toLocaleString()
+                  : "NA"}
+              </span>
+              {`. It has a
+              circulating supply of `}
+              <span style={{ color: "#037bfd" }}>
+                {coinAboutBlock &&
+                coinAboutBlock[0]?.first_pragraph[0]?.circulating_supply !==
+                  null
+                  ? coinAboutBlock &&
+                    "$" +
+                      Math.floor(
+                        Math.abs(
+                          coinAboutBlock[0]?.first_pragraph[0]
+                            ?.circulating_supply
+                        )
+                      ).toLocaleString()
+                  : "NA"}
+              </span>
+              {` .`}{" "}
+              <span style={{ fontWeight: 700 }}>
+                {" "}
+                {coinAboutBlock && coinAboutBlock[0]?.name}
+              </span>{" "}
+              {` coins and a
+              max. supply of `}
+              <span style={{ color: "#037bfd" }}>
+                {coinAboutBlock &&
+                coinAboutBlock[0]?.first_pragraph[0]?.max_supply !== null
+                  ? coinAboutBlock &&
+                    "$" +
+                      Math.floor(
+                        Math.abs(
+                          coinAboutBlock[0]?.first_pragraph[0]?.max_supply
+                        )
+                      ).toLocaleString()
+                  : "NA"}
+              </span>{" "}
+              <span style={{ fontWeight: 700 }}>
+                {" "}
+                {coinAboutBlock && coinAboutBlock[0]?.name}
+              </span>{" "}
+              {`coins. The current
+              rating of `}{" "}
+              <span style={{ fontWeight: 700 }}>
+                {" "}
+                {coinAboutBlock && coinAboutBlock[0]?.name}
+              </span>{" "}
+              {`on Coinxhigh is `}
+              <span style={{ color: "#037bfd" }}>
+                {coinAboutBlock &&
+                coinAboutBlock[0]?.first_pragraph[0]?.rating !== null
+                  ? coinAboutBlock &&
+                    parseInt(coinAboutBlock[0]?.rating).toFixed(1)
+                  : "NA"}
+              </span>
+              {". "}
+              <span style={{ fontWeight: 700 }}>
+                {" "}
+                {coinAboutBlock && coinAboutBlock[0]?.name}
+              </span>{" "}
+              {`hit an all time
               high of $0.003382723655 on Jan 05, 2022 (212 Days ago). `}
             </Typography>
 
             <Typography sx={{ color: "#FFFFF5", fontSize: ".85rem" }}>
-              You can read the Latest news about safemoon{" "}
+              You can read the{" "}
               <a
                 href={`https://news.coinxhigh.com/?s=${
                   coinAboutBlock && coinAboutBlock[0]?.name.toLowerCase()
@@ -92,7 +285,7 @@ const CoinPageAbout = () => {
                 rel="noreferrer"
               >
                 {" "}
-                here.
+                Latest news about safemoon here.
               </a>{" "}
             </Typography>
 

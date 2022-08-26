@@ -63,6 +63,7 @@ import RedditGraphImage from "../../../assets/singlepagecoin/graph/reddit.png";
 import TelegramGraphImage from "../../../assets/singlepagecoin/graph/telegram.png";
 import TwitterGraphImage from "../../../assets/singlepagecoin/graph/twitter.png";
 import GithubGraphImage from "../../../assets/singlepagecoin/graph/github.png";
+import HeartAnimatedImage from "../../../assets/singlepagecoin/vote-animated.gif";
 import DropDownAds from "../dropdownads/DropDownAds";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
@@ -228,10 +229,22 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 >
                   <Typography variant="h4" sx={{ color: "#FFFFF5" }}>
                     {coinData && coinData?.current_price !== null ? (
-                      coinData && Math.abs(coinData?.current_price) > 1 ? (
-                        "$" + parseFloat(coinData?.current_price).toFixed(4)
+                      String(Math.trunc(parseFloat(coinData?.current_price)))
+                        .length > 2 ? (
+                        "$" +
+                        Number(
+                          parseFloat(coinData?.current_price).toFixed(2)
+                        ).toLocaleString()
+                      ) : coinData && Math.abs(coinData?.current_price) > 1 ? (
+                        "$" +
+                        parseFloat(coinData?.current_price)
+                          .toFixed(4)
+                          .toLocaleString()
                       ) : (
-                        "$" + parseFloat(coinData?.current_price).toFixed(10)
+                        "$" +
+                        parseFloat(coinData?.current_price)
+                          .toFixed(9)
+                          .toLocaleString()
                       )
                     ) : (
                       <span style={{ color: "#7a7a7a" }}>--</span>
@@ -779,85 +792,39 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   lg: "flex-start",
                 }}
               >
-                <Typography
-                  variant="caption"
-                  sx={{ color: "#19ffb0", fontSize: "0.60rem" }}
-                >
-                  Token contract address
-                </Typography>
-                <Tooltip title="Delete">
+                {/* <Tooltip title="Delete">
                   <Avatar
                     src={ToolTipImage}
                     sx={{ width: 9, height: 9 }}
                   ></Avatar>
-                </Tooltip>
+                </Tooltip> */}
               </Stack>
+              <Stack direction="row" spacing={1.2} alignItems="center">
+                <Avatar
+                  alt="Todays Vote"
+                  src={HeartAnimatedImage}
+                  sx={{ width: 35, height: 35 }}
+                />
 
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                spacing={0}
-              >
-                {" "}
-                <Typography
-                  variant="subtitle2"
-                  sx={{ color: "#FFFFF5", fontSize: "0.75rem" }}
-                >
-                  {`${
-                    coinData && coinData?.contract_address?.length > 0
-                      ? coinData &&
-                        coinData?.contract_address[0]?.address?.substring(0, 14)
-                      : "NA"
-                  } 
-                      .........
-                      ${
-                        coinData && coinData?.contract_address?.length > 0
-                          ? coinData &&
-                            coinData?.contract_address[0]?.address?.slice(-6)
-                          : "NA"
-                      }`}
-                </Typography>
-                <CopyToClipboard
-                  options={{ message: "" }}
-                  text={copyValue}
-                  onCopy={() => setCopied(true)}
-                >
-                  <IconButton
-                    sx={{ paddingLeft: 1 }}
-                    onClick={() => {
-                      setCopyValue(
-                        coinData &&
-                          coinData?.contract_address?.length > 0 &&
-                          coinData?.contract_address[0]?.address
-                      );
+                <Stack direction="column" spacing={-0.5}>
+                  {" "}
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "#19ffb0", fontSize: "0.60rem" }}
+                  >
+                    Todays vote
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: "#FFFFFF",
+                      fontSize: "1.2rem",
+                      fontWeight: 600,
                     }}
                   >
-                    <Tooltip title={`${copied ? "Copied" : "Copy this Token"}`}>
-                      <ContentCopyIcon
-                        sx={{
-                          color: `${copied ? "#19ffb0" : "#19ffb0"}`,
-                          fontSize: ".9rem",
-                        }}
-                      />
-                    </Tooltip>
-                  </IconButton>
-                </CopyToClipboard>
-                <IconButton
-                  aria-label="more"
-                  id="long-button"
-                  aria-controls={open ? "long-menu" : undefined}
-                  aria-expanded={open ? "true" : undefined}
-                  aria-haspopup="true"
-                  onClick={handleClick}
-                  sx={{ padding: 0 }}
-                >
-                  <MoreVertIcon sx={{ color: "#75787c" }} />
-                </IconButton>
-                <ShowMoreMenu
-                  showMoreAnchorEl={showMoreAnchorEl}
-                  open={open}
-                  handleClose={handleClose}
-                />
+                    {coinData && coinData?.todays_vote}
+                  </Typography>
+                </Stack>
               </Stack>
             </Stack>
 

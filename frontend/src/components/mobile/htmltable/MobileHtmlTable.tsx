@@ -20,25 +20,31 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
 
   return (
-    <TableContainer component={Paper} className="tableFixHead">
+    <TableContainer component={Paper}>
       <Table
-        sx={{ minWidth: 650, backgroundColor: "transparent" }}
+        sx={{
+          minWidth: 650,
+          backgroundColor: "#010822",
+          "&.MuiTableContainer-root": { backgroundColor: "transparent" },
+          "&.MuiPaper-root": { backgroundColor: "transparent" },
+        }}
         aria-label="simple table"
         size="small"
-        className="table table-bordered"
       >
         <TableHead
           sx={{ backgroundColor: "#000000", color: "#FFFFF5", height: 50 }}
         >
-          {tableHeader &&
-            tableHeader.map((item: any, index: number) => (
-              <TableCell
-                sx={{ color: "#FFFFF5", fontWeight: "bold" }}
-                key={index}
-              >
-                {item}
-              </TableCell>
-            ))}
+          <TableRow sx={{ borderBottom: "2px solid black" }}>
+            {tableHeader &&
+              tableHeader.map((item: any, index: number) => (
+                <TableCell
+                  sx={{ color: "#FFFFF5", fontWeight: "bold" }}
+                  key={index}
+                >
+                  {item}
+                </TableCell>
+              ))}
+          </TableRow>
         </TableHead>
         {variant === "crypto_currencies" && (
           <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
@@ -115,16 +121,36 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
                   >
                     <Typography variant="caption">
-                      {data?.market_cap}
+                      {data && data?.market_cap !== null ? (
+                        data &&
+                        "$" +
+                          Math.floor(
+                            Math.abs(data?.market_cap)
+                          ).toLocaleString()
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     <Typography variant="caption">
                       {data && data?.current_price !== null ? (
-                        data && Math.abs(data?.current_price) > 1 ? (
-                          "$" + parseFloat(data?.current_price).toFixed(4)
+                        String(Math.trunc(parseFloat(data?.current_price)))
+                          .length > 2 ? (
+                          "$" +
+                          Number(
+                            parseFloat(data?.current_price).toFixed(2)
+                          ).toLocaleString()
+                        ) : data && Math.abs(data?.current_price) > 1 ? (
+                          "$" +
+                          parseFloat(data?.current_price)
+                            .toFixed(4)
+                            .toLocaleString()
                         ) : (
-                          "$" + parseFloat(data?.current_price).toFixed(13)
+                          "$" +
+                          parseFloat(data?.current_price)
+                            .toFixed(13)
+                            .toLocaleString()
                         )
                       ) : (
                         <span style={{ color: "#7a7a7a" }}>--</span>
@@ -348,27 +374,27 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
               ))}
 
             {/* <TableRow
-            sx={{
-              "&:last-child td, &:last-child th": { border: 0 },
-              borderBottom: "2px solid black",
-            }}
-          >
-            <TableCell component="th" scope="row" sx={{ color:"#FFFFFF" }}>
-              1
-            </TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>
-              <VoteBtn />
-            </TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          </TableRow> */}
+          sx={{
+            "&:last-child td, &:last-child th": { border: 0 },
+            borderBottom: "2px solid black",
+          }}
+        >
+          <TableCell component="th" scope="row" sx={{ color:"#FFFFFF" }}>
+            1
+          </TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>
+            <VoteBtn />
+          </TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+        </TableRow> */}
           </TableBody>
         )}
 
@@ -406,8 +432,28 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {data?.open?.current_price !== null &&
-                        "$" + parseFloat(data?.open?.current_price).toFixed(4)}
+                      {data && data?.open?.current_price !== null ? (
+                        String(
+                          Math.trunc(parseFloat(data?.open?.current_price))
+                        ).length > 2 ? (
+                          "$" +
+                          Number(
+                            parseFloat(data?.open?.current_price).toFixed(2)
+                          ).toLocaleString()
+                        ) : data && Math.abs(data?.open?.current_price) > 1 ? (
+                          "$" +
+                          parseFloat(data?.open?.current_price)
+                            .toFixed(4)
+                            .toLocaleString()
+                        ) : (
+                          "$" +
+                          parseFloat(data?.open?.current_price)
+                            .toFixed(13)
+                            .toLocaleString()
+                        )
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
                   <TableCell
@@ -418,8 +464,23 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {data?.high !== null &&
-                        "$" + parseFloat(data?.high).toFixed(4)}
+                      {data && data?.high !== null ? (
+                        String(Math.trunc(parseFloat(data?.high))).length >
+                        2 ? (
+                          "$" +
+                          Number(
+                            parseFloat(data?.high).toFixed(2)
+                          ).toLocaleString()
+                        ) : data && Math.abs(data?.high) > 1 ? (
+                          "$" +
+                          parseFloat(data?.high).toFixed(4).toLocaleString()
+                        ) : (
+                          "$" +
+                          parseFloat(data?.high).toFixed(13).toLocaleString()
+                        )
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
                   <TableCell
@@ -430,9 +491,22 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {" "}
-                      {data?.low !== null &&
-                        "$" + parseFloat(data?.low).toFixed(4)}
+                      {data && data?.low !== null ? (
+                        String(Math.trunc(parseFloat(data?.low))).length > 2 ? (
+                          "$" +
+                          Number(
+                            parseFloat(data?.low).toFixed(2)
+                          ).toLocaleString()
+                        ) : data && Math.abs(data?.low) > 1 ? (
+                          "$" +
+                          parseFloat(data?.low).toFixed(4).toLocaleString()
+                        ) : (
+                          "$" +
+                          parseFloat(data?.low).toFixed(13).toLocaleString()
+                        )
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
                   <TableCell
@@ -443,8 +517,28 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {data?.close?.current_price !== null &&
-                        "$" + parseFloat(data?.close?.current_price).toFixed(4)}
+                      {data && data?.close?.current_price !== null ? (
+                        String(
+                          Math.trunc(parseFloat(data?.close?.current_price))
+                        ).length > 2 ? (
+                          "$" +
+                          Number(
+                            parseFloat(data?.close?.current_price).toFixed(2)
+                          ).toLocaleString()
+                        ) : data && Math.abs(data?.close?.current_price) > 1 ? (
+                          "$" +
+                          parseFloat(data?.close?.current_price)
+                            .toFixed(4)
+                            .toLocaleString()
+                        ) : (
+                          "$" +
+                          parseFloat(data?.close?.current_price)
+                            .toFixed(13)
+                            .toLocaleString()
+                        )
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
                   <TableCell
@@ -455,8 +549,13 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {data?.volume !== null &&
-                        "$" + parseFloat(data?.volume).toFixed(4)}
+                      {data && data?.volume !== null ? (
+                        data &&
+                        "$" +
+                          Math.floor(Math.abs(data?.volume)).toLocaleString()
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
                   <TableCell
@@ -467,35 +566,42 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {data?.market_cap !== null &&
-                        "$" + parseFloat(data?.market_cap).toFixed(4)}
+                      {data && data?.market_cap !== null ? (
+                        data &&
+                        "$" +
+                          Math.floor(
+                            Math.abs(data?.market_cap)
+                          ).toLocaleString()
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
                 </TableRow>
               ))}
 
             {/* <TableRow
-            sx={{
-              "&:last-child td, &:last-child th": { border: 0 },
-              borderBottom: "2px solid black",
-            }}
-          >
-            <TableCell component="th" scope="row" sx={{ color:"#FFFFFF" }}>
-              1
-            </TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>
-              <VoteBtn />
-            </TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          </TableRow> */}
+          sx={{
+            "&:last-child td, &:last-child th": { border: 0 },
+            borderBottom: "2px solid black",
+          }}
+        >
+          <TableCell component="th" scope="row" sx={{ color:"#FFFFFF" }}>
+            1
+          </TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>
+            <VoteBtn />
+          </TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+        </TableRow> */}
           </TableBody>
         )}
         {variant === "todays_price" && (
@@ -533,8 +639,27 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {data?.current_price !== null &&
-                        "$" + parseFloat(data?.current_price).toFixed(11)}
+                      {data && data?.current_price !== null ? (
+                        String(Math.trunc(parseFloat(data?.current_price)))
+                          .length > 2 ? (
+                          "$" +
+                          Number(
+                            parseFloat(data?.current_price).toFixed(2)
+                          ).toLocaleString()
+                        ) : data && Math.abs(data?.current_price) > 1 ? (
+                          "$" +
+                          parseFloat(data?.current_price)
+                            .toFixed(4)
+                            .toLocaleString()
+                        ) : (
+                          "$" +
+                          parseFloat(data?.current_price)
+                            .toFixed(13)
+                            .toLocaleString()
+                        )
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
                   <TableCell
@@ -545,8 +670,15 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {data?.volume_24h !== null &&
-                        "$" + parseFloat(data?.volume_24h).toFixed(4)}
+                      {data && data?.volume_24h !== null ? (
+                        data &&
+                        "$" +
+                          Math.floor(
+                            Math.abs(data?.volume_24h)
+                          ).toLocaleString()
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
 
@@ -646,35 +778,42 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     }}
                   >
                     <Typography variant="caption">
-                      {data?.market_cap !== null &&
-                        parseFloat(data?.market_cap).toFixed(4)}
+                      {data && data?.market_cap !== null ? (
+                        data &&
+                        "$" +
+                          Math.floor(
+                            Math.abs(data?.market_cap)
+                          ).toLocaleString()
+                      ) : (
+                        <span style={{ color: "#7a7a7a" }}>--</span>
+                      )}
                     </Typography>
                   </TableCell>
                 </TableRow>
               ))}
 
             {/* <TableRow
-            sx={{
-              "&:last-child td, &:last-child th": { border: 0 },
-              borderBottom: "2px solid black",
-            }}
-          >
-            <TableCell component="th" scope="row" sx={{ color:"#FFFFFF" }}>
-              1
-            </TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>
-              <VoteBtn />
-            </TableCell>
-            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          </TableRow> */}
+          sx={{
+            "&:last-child td, &:last-child th": { border: 0 },
+            borderBottom: "2px solid black",
+          }}
+        >
+          <TableCell component="th" scope="row" sx={{ color:"#FFFFFF" }}>
+            1
+          </TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>
+            <VoteBtn />
+          </TableCell>
+          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+        </TableRow> */}
           </TableBody>
         )}
       </Table>
