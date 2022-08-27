@@ -38,6 +38,9 @@ const CoinPageOverview = () => {
     return data?.coinReducer?.coin_overview_block?.data;
   });
 
+  const coinPriceWidget = useSelector((data: any) => {
+    return data?.coinReducer?.coin_price_graph_block?.data;
+  });
   const [viewMore, setViewMore] = useState(true);
   const [copyValue, setCopyValue] = useState<any>("");
   const [copied, setCopied] = useState(false);
@@ -1463,7 +1466,7 @@ const CoinPageOverview = () => {
           </Grid>
         ) : (
           <Grid xs={12} pt={4}>
-            <CoinPageChart />
+            <CoinPageChart data={coinPriceWidget && coinPriceWidget} />
           </Grid>
         )}
       </Grid>

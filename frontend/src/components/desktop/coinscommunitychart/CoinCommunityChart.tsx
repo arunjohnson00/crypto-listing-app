@@ -40,7 +40,7 @@ const CoinCommunityChart = ({
 
   useEffect(() => {
     const successHandler = (res: any) => {
-      setData(res?.data?.data);
+      setData(res?.data?.data?.followers);
     };
     const errorHandler = (err: any) => {};
 
@@ -56,7 +56,7 @@ const CoinCommunityChart = ({
     );
   }, [dispatch]);
 
-  console.log(new Date("Tue Jul 30 2019 13:45:29"));
+  //console.log(data && data[0]?.[0]);
 
   useEffect(() => {
     switch (dateTime) {
@@ -64,24 +64,24 @@ const CoinCommunityChart = ({
         ApexCharts.exec(
           chartid && chartid,
           "zoomX",
-          new Date("Tue Jul 30 2019 13:45:29").getTime(),
-          new Date("Tue Jul 29 2022 13:45:29").getTime()
+          new Date().getTime(),
+          new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000).getTime()
         );
         break;
       case "fifteen_day":
         ApexCharts.exec(
           chartid && chartid,
           "zoomX",
-          new Date("Tue Jul 30 2019 13:45:29").getTime(),
-          new Date("Tue Jul 29 2020 13:45:29").getTime()
+          new Date().getTime(),
+          new Date(new Date().getTime() - 15 * 24 * 60 * 60 * 1000).getTime()
         );
         break;
       case "thirty_day":
         ApexCharts.exec(
           chartid && chartid,
           "zoomX",
-          new Date("27 Feb 2019 13:45:29").getTime(),
-          new Date("27 Feb 2023 13:45:29").getTime()
+          new Date().getTime(),
+          new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000).getTime()
         );
         break;
 
@@ -91,12 +91,7 @@ const CoinCommunityChart = ({
   const chartData: any = {
     series: [
       {
-        data: [
-          ["Tue Jul 30 2019 13:45:29", 38.55],
-          ["Tue Jul 30 2020 13:45:29 ", 38.11],
-          ["Tue Jul 30 2021 13:45:29 ", 38.59],
-          ["Tue Jul 30 2022 13:45:29", 39.6],
-        ],
+        data: data,
       },
     ],
     options: {
@@ -150,12 +145,13 @@ const CoinCommunityChart = ({
         ],
         xaxis: [
           {
-            x: new Date("14 Nov 2012").getTime(),
+            x: new Date(data && data[0]?.[0]).getTime(),
             borderColor: "#999",
             yAxisIndex: 0,
             label: {
               show: true,
               text: "Top Gross",
+
               style: {
                 color: ["#fff"],
                 background: "#00ff00",
@@ -173,7 +169,10 @@ const CoinCommunityChart = ({
       },
       xaxis: {
         type: "datetime",
-        min: new Date("01 Mar 2012").getTime(),
+        format: "dd/MM",
+
+        min: data && new Date(data[data.length - 1][0]).getTime(),
+        max: data && new Date(data[0][0]).getTime(),
         tickAmount: 6,
       },
       tooltip: {
@@ -332,12 +331,14 @@ const CoinCommunityChart = ({
           </Typography>
         </Stack>
       </Stack>
-      <Chart
-        options={chartData.options}
-        series={chartData.series}
-        type="line"
-        height="auto"
-      />
+      {data && (
+        <Chart
+          options={chartData.options}
+          series={chartData.series}
+          type="line"
+          height="auto"
+        />
+      )}
     </Box>
   );
 };
