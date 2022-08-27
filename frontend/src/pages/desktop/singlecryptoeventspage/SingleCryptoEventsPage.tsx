@@ -99,7 +99,7 @@ const SingleCryptoEventsPage = () => {
 
         <Grid container pt={6} spacing={3}>
           <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-            <EventViewCard />
+            <EventViewCard viewcoin={true} />
           </Grid>
         </Grid>
       </Grid>

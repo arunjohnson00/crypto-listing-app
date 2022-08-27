@@ -12,6 +12,8 @@ const initialState = {
   coin_community_block: "",
   coin_faq_block: "",
   coin_price_graph_block: "",
+  coin_events_block: "",
+  coin_presale_block: "",
 };
 const coinReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -88,6 +90,19 @@ const coinReducer = (state: any = initialState, action: any) => {
         coin_price_graph_block: action?.payload?.data,
       };
 
+    case COIN.COIN_EVENTS_BLOCK:
+      //console.log(action);
+      return {
+        ...state,
+        coin_events_block: action?.payload?.data,
+      };
+
+    case COIN.COIN_PRESALE_BLOCK:
+      //console.log(action);
+      return {
+        ...state,
+        coin_presale_block: action?.payload?.data,
+      };
     default:
       return state;
   }

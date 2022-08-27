@@ -14,6 +14,9 @@ import CoinPageCommunity from "../coinpagecommunity/CoinPageCommunity";
 import CoinPageHistoricalData from "../coinpagehistoricaldata/CoinPageHistoricalData";
 import CoinPageTodaysPrice from "../coinpagetodaysprice/CoinPageTodaysPrice";
 import CoinPageNews from "../coinpagenews/CoinPageNews";
+import CoinPageWidget from "../coinpagewidget/CoinPageWidget";
+import CoinPageEvents from "../coinpageevents/CoinPageEvents";
+import CoinPagePresale from "../coinpagepresale/CoinPagePresale";
 
 const SinglePageTab = () => {
   const [value, setValue] = useState("1");
@@ -82,10 +85,11 @@ const SinglePageTab = () => {
             <Tab label="Community" value="7" />
             <Tab label="FAQ" value="8" />
             <Tab label="Events" value="9" />
-            <Tab label="Presale Details" value="10" />
+            <Tab label="Presale" value="10" />
             <Tab label="KYC Details" value="11" />
-            <Tab label="Audit Details" value="12" />
-            <Tab label="News" value="13" />
+            <Tab label="Widget" value="12" />
+            <Tab label="Audit Details" value="13" />
+            <Tab label="News" value="14" />
           </TabList>
           <Divider sx={{ borderColor: "#2D2858", borderBottomWidth: "1px" }} />
         </Box>
@@ -114,11 +118,19 @@ const SinglePageTab = () => {
           <CoinPageFAQ />
         </TabPanel>
 
-        <TabPanel value="9">Item Three</TabPanel>
-        <TabPanel value="10">Item One</TabPanel>
+        <TabPanel value="9">
+          <CoinPageEvents />
+        </TabPanel>
+        <TabPanel value="10">
+          <CoinPagePresale />
+        </TabPanel>
         <TabPanel value="11">Item Two</TabPanel>
-        <TabPanel value="12">Item Three</TabPanel>
-        <TabPanel value="13">
+        <TabPanel value="12">
+          {" "}
+          <CoinPageWidget />
+        </TabPanel>
+        <TabPanel value="13">sss</TabPanel>
+        <TabPanel value="14">
           <CoinPageNews />
         </TabPanel>
       </TabContext>

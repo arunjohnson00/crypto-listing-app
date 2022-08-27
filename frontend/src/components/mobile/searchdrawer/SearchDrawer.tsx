@@ -326,14 +326,14 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
         ) : (
           <Stack
             direction="column"
-            spacing={0.5}
+            spacing={1}
             sx={{ height: 500, overflowY: "scroll", pl: 0 }}
           >
             <Stack
               direction="row"
               spacing={0.5}
               alignItems="center"
-              pt={2}
+              pt={3}
               pb={1}
             >
               <Typography sx={{ fontSize: ".78rem", fontWeight: 600 }}>

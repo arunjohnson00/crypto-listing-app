@@ -37,7 +37,9 @@ const CoinCommunityChart = ({
   const updateData = (timeline: any) => {
     setDateTime(timeline);
   };
-
+  const percentageDiff = (a: any, b: any) => {
+    return ((a - b) / a) * 100;
+  };
   useEffect(() => {
     const successHandler = (res: any) => {
       setData(res?.data?.data?.followers);
@@ -306,7 +308,7 @@ const CoinCommunityChart = ({
                 textTransform: "capitalize",
               }}
             >
-              3,030
+              {data && data[0][1]}
             </Typography>
             <Typography
               sx={{
@@ -316,7 +318,39 @@ const CoinCommunityChart = ({
                 textTransform: "capitalize",
               }}
             >
-              +154.5%
+              <Typography
+                sx={{
+                  color:
+                    data &&
+                    Math.sign(
+                      percentageDiff(
+                        parseInt(data && data[1][1]),
+                        parseInt(data && data[0][1])
+                      )
+                    ) === -1
+                      ? "red"
+                      : "#19FFB0",
+
+                  fontWeight: 700,
+                  fontSize: ".85rem",
+                  textTransform: "capitalize",
+                }}
+              >
+                {data &&
+                  Math.sign(
+                    percentageDiff(
+                      parseInt(data && data[1][1]),
+                      parseInt(data && data[0][1])
+                    )
+                  ) !== -1 &&
+                  "+"}
+                {data &&
+                  percentageDiff(
+                    parseInt(data && data[1][1]),
+                    parseInt(data && data[0][1])
+                  ).toFixed(2)}
+                %
+              </Typography>
             </Typography>
           </Stack>
           <Typography

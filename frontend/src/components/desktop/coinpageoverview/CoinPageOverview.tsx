@@ -34,10 +34,20 @@ import { coinOverviewBlockRequest } from "../../../store/action";
 const CoinPageOverview = () => {
   const dispatch: any = useDispatch();
   const location = useLocation();
+
+  const [priceFilter, setPriceFilter] = useState(1);
   const coinDetailOverview = useSelector((data: any) => {
     return data?.coinReducer?.coin_overview_block?.data;
   });
 
+  const priceMaxMinHandler = (val: any) => {
+    setPriceFilter(parseInt(val));
+  };
+  const filteredBNB =
+    coinDetailOverview &&
+    coinDetailOverview[0]?.address?.filter(
+      (result: any) => parseInt(result.id) === 2
+    );
   const coinPriceWidget = useSelector((data: any) => {
     return data?.coinReducer?.coin_price_graph_block?.data;
   });
@@ -109,31 +119,27 @@ const CoinPageOverview = () => {
                 Price
               </Typography>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                {coinDetailOverview &&
-                coinDetailOverview[0]?.current_price !== null ? (
-                  String(
-                    Math.trunc(parseFloat(coinDetailOverview[0]?.current_price))
-                  ).length > 2 ? (
+                {coinDetailOverview && coinDetailOverview[0]?.price !== null ? (
+                  String(Math.trunc(parseFloat(coinDetailOverview[0]?.price)))
+                    .length > 2 ? (
                     "$" +
                     Number(
-                      parseFloat(coinDetailOverview[0]?.current_price).toFixed(
-                        2
-                      )
+                      parseFloat(coinDetailOverview[0]?.price).toFixed(2)
                     ).toLocaleString()
                   ) : coinDetailOverview &&
-                    Math.abs(coinDetailOverview[0]?.current_price) > 1 ? (
+                    Math.abs(coinDetailOverview[0]?.price) > 1 ? (
                     "$" +
-                    parseFloat(coinDetailOverview[0]?.current_price)
+                    parseFloat(coinDetailOverview[0]?.price)
                       .toFixed(4)
                       .toLocaleString()
                   ) : (
                     "$" +
-                    parseFloat(coinDetailOverview[0]?.current_price)
+                    parseFloat(coinDetailOverview[0]?.price)
                       .toFixed(9)
                       .toLocaleString()
                   )
                 ) : (
-                  <span style={{ color: "#7a7a7a" }}>--</span>
+                  <span style={{ color: "#7a7a7a" }}>NA</span>
                 )}
               </Typography>
             </Stack>
@@ -145,7 +151,35 @@ const CoinPageOverview = () => {
                 }}
               >
                 <LinearProgress
-                  value={60}
+                  value={
+                    coinDetailOverview && priceFilter === 1
+                      ? (
+                          (coinDetailOverview[0]?.low_high_price?.one?.min /
+                            coinDetailOverview[0]?.low_high_price?.one?.max) *
+                          100
+                        ).toFixed(0)
+                      : coinDetailOverview && priceFilter === 7
+                      ? (
+                          (coinDetailOverview[0]?.low_high_price?.seven?.min /
+                            coinDetailOverview[0]?.low_high_price?.seven?.max) *
+                          100
+                        ).toFixed(0)
+                      : coinDetailOverview && priceFilter === 15
+                      ? (
+                          (coinDetailOverview[0]?.low_high_price?.fifteen?.min /
+                            coinDetailOverview[0]?.low_high_price?.fifteen
+                              ?.max) *
+                          100
+                        ).toFixed(0)
+                      : coinDetailOverview &&
+                        priceFilter === 30 &&
+                        (
+                          (coinDetailOverview[0]?.low_high_price?.thirty?.min /
+                            coinDetailOverview[0]?.low_high_price?.thirty
+                              ?.max) *
+                          100
+                        ).toFixed(0)
+                  }
                   variant="determinate"
                   color="inherit"
                 />
@@ -162,48 +196,335 @@ const CoinPageOverview = () => {
               >
                 Low:{" "}
                 {coinDetailOverview &&
-                coinDetailOverview[0]?.price_low !== null &&
-                coinDetailOverview[0]?.price_low !== ""
-                  ? "$" + coinDetailOverview[0]?.price_low
-                  : "NA"}
+                priceFilter === 1 &&
+                coinDetailOverview[0]?.low_high_price?.one?.min !== null ? (
+                  String(
+                    Math.trunc(
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.one?.min
+                      )
+                    )
+                  ).length > 2 ? (
+                    "$" +
+                    Number(
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.one?.min
+                      ).toFixed(2)
+                    ).toLocaleString()
+                  ) : coinDetailOverview &&
+                    Math.abs(coinDetailOverview[0]?.low_high_price?.one?.min) >
+                      1 ? (
+                    "$" +
+                    parseFloat(coinDetailOverview[0]?.low_high_price?.one?.min)
+                      .toFixed(4)
+                      .toLocaleString()
+                  ) : (
+                    "$" +
+                    parseFloat(coinDetailOverview[0]?.low_high_price?.one?.min)
+                      .toFixed(9)
+                      .toLocaleString()
+                  )
+                ) : (
+                  <span style={{ color: "#7a7a7a" }}></span>
+                )}
+                {coinDetailOverview &&
+                priceFilter === 7 &&
+                coinDetailOverview[0]?.low_high_price?.seven?.min !== null ? (
+                  String(
+                    Math.trunc(
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.seven?.min
+                      )
+                    )
+                  ).length > 2 ? (
+                    "$" +
+                    Number(
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.seven?.min
+                      ).toFixed(2)
+                    ).toLocaleString()
+                  ) : coinDetailOverview &&
+                    Math.abs(
+                      coinDetailOverview[0]?.low_high_price?.seven?.min
+                    ) > 1 ? (
+                    "$" +
+                    parseFloat(
+                      coinDetailOverview[0]?.low_high_price?.seven?.min
+                    )
+                      .toFixed(4)
+                      .toLocaleString()
+                  ) : (
+                    "$" +
+                    parseFloat(
+                      coinDetailOverview[0]?.low_high_price?.seven?.min
+                    )
+                      .toFixed(9)
+                      .toLocaleString()
+                  )
+                ) : (
+                  <span style={{ color: "#7a7a7a" }}></span>
+                )}
+                {coinDetailOverview &&
+                priceFilter === 15 &&
+                coinDetailOverview[0]?.low_high_price?.fifteen?.min !== null ? (
+                  String(
+                    Math.trunc(
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.fifteen?.min
+                      )
+                    )
+                  ).length > 2 ? (
+                    "$" +
+                    Number(
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.fifteen?.min
+                      ).toFixed(2)
+                    ).toLocaleString()
+                  ) : coinDetailOverview &&
+                    Math.abs(
+                      coinDetailOverview[0]?.low_high_price?.fifteen?.min
+                    ) > 1 ? (
+                    "$" +
+                    parseFloat(
+                      coinDetailOverview[0]?.low_high_price?.fifteen?.min
+                    )
+                      .toFixed(4)
+                      .toLocaleString()
+                  ) : (
+                    "$" +
+                    parseFloat(
+                      coinDetailOverview[0]?.low_high_price?.fifteen?.min
+                    )
+                      .toFixed(9)
+                      .toLocaleString()
+                  )
+                ) : (
+                  <span style={{ color: "#7a7a7a" }}></span>
+                )}
+                {coinDetailOverview &&
+                priceFilter === 30 &&
+                coinDetailOverview[0]?.low_high_price?.thirty?.min !== null ? (
+                  String(
+                    Math.trunc(
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.thirty?.min
+                      )
+                    )
+                  ).length > 2 ? (
+                    "$" +
+                    Number(
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.thirty?.min
+                      ).toFixed(2)
+                    ).toLocaleString()
+                  ) : coinDetailOverview &&
+                    Math.abs(
+                      coinDetailOverview[0]?.low_high_price?.thirty?.min
+                    ) > 1 ? (
+                    "$" +
+                    parseFloat(
+                      coinDetailOverview[0]?.low_high_price?.thirty?.min
+                    )
+                      .toFixed(4)
+                      .toLocaleString()
+                  ) : (
+                    "$" +
+                    parseFloat(
+                      coinDetailOverview[0]?.low_high_price?.thirty?.min
+                    )
+                      .toFixed(9)
+                      .toLocaleString()
+                  )
+                ) : (
+                  <span style={{ color: "#7a7a7a" }}></span>
+                )}
               </Typography>
-              <Stack direction="row">
-                {/* <NativeSelect
+              <Stack direction="row" spacing={1}>
+                <NativeSelect
                   id="select"
+                  onChange={(e: any) => priceMaxMinHandler(e.target.value)}
                   sx={{
                     color: "#B6B6B9",
                     backgroundColor: "#010519",
                     fontSize: "0.55rem",
                     borderBottom: 0,
-                    paddingRight: "7px",
+
                     "&:before": {
-                      borderBottom: 0,
+                      border: 0,
                     },
                     "&:after": {
-                      borderBottom: 0,
+                      border: 0,
                     },
-                    "&.MuiNativeSelect-select-MuiInputBase-input-MuiInput-input .MuiNativeSelect-icon":
-                      {
-                        color: "red",
-                      },
+                    "& .MuiNativeSelect-icon": {
+                      color: "#FFFFFF",
+                      width: ".8em",
+                      height: ".8em",
+                    },
                     icon: {
                       fill: "red",
                     },
                   }}
                 >
-                  <option value="10">24h</option>
-                  <option value="20">7h</option>
-                </NativeSelect> */}
+                  <option value="1">1d</option>
+                  <option value="7">7d</option>
+                  <option value="15">15d</option>
+                  <option value="30">30d</option>
+                </NativeSelect>
                 <Typography
                   variant="caption"
                   sx={{ color: "#FFFFF5", fontSize: "0.65rem" }}
                 >
                   High:{" "}
                   {coinDetailOverview &&
-                  coinDetailOverview[0]?.price_high !== null &&
-                  coinDetailOverview[0]?.price_high !== ""
-                    ? "$" + coinDetailOverview[0]?.price_high
-                    : "NA"}
+                  priceFilter === 1 &&
+                  coinDetailOverview[0]?.low_high_price?.one?.max !== null ? (
+                    String(
+                      Math.trunc(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.one?.max
+                        )
+                      )
+                    ).length > 2 ? (
+                      "$" +
+                      Number(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.one?.max
+                        ).toFixed(2)
+                      ).toLocaleString()
+                    ) : coinDetailOverview &&
+                      Math.abs(
+                        coinDetailOverview[0]?.low_high_price?.one?.max
+                      ) > 1 ? (
+                      "$" +
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.one?.max
+                      )
+                        .toFixed(4)
+                        .toLocaleString()
+                    ) : (
+                      "$" +
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.one?.max
+                      )
+                        .toFixed(9)
+                        .toLocaleString()
+                    )
+                  ) : (
+                    <span style={{ color: "#7a7a7a" }}></span>
+                  )}
+                  {coinDetailOverview &&
+                  priceFilter === 7 &&
+                  coinDetailOverview[0]?.low_high_price?.seven?.max !== null ? (
+                    String(
+                      Math.trunc(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.seven?.max
+                        )
+                      )
+                    ).length > 2 ? (
+                      "$" +
+                      Number(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.seven?.max
+                        ).toFixed(2)
+                      ).toLocaleString()
+                    ) : coinDetailOverview &&
+                      Math.abs(
+                        coinDetailOverview[0]?.low_high_price?.seven?.max
+                      ) > 1 ? (
+                      "$" +
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.seven?.max
+                      )
+                        .toFixed(4)
+                        .toLocaleString()
+                    ) : (
+                      "$" +
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.seven?.max
+                      )
+                        .toFixed(9)
+                        .toLocaleString()
+                    )
+                  ) : (
+                    <span style={{ color: "#7a7a7a" }}></span>
+                  )}
+                  {coinDetailOverview &&
+                  priceFilter === 15 &&
+                  coinDetailOverview[0]?.low_high_price?.fifteen?.max !==
+                    null ? (
+                    String(
+                      Math.trunc(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                        )
+                      )
+                    ).length > 2 ? (
+                      "$" +
+                      Number(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                        ).toFixed(2)
+                      ).toLocaleString()
+                    ) : coinDetailOverview &&
+                      Math.abs(
+                        coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                      ) > 1 ? (
+                      "$" +
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                      )
+                        .toFixed(4)
+                        .toLocaleString()
+                    ) : (
+                      "$" +
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                      )
+                        .toFixed(9)
+                        .toLocaleString()
+                    )
+                  ) : (
+                    <span style={{ color: "#7a7a7a" }}></span>
+                  )}
+                  {coinDetailOverview &&
+                  priceFilter === 30 &&
+                  coinDetailOverview[0]?.low_high_price?.thirty?.max !==
+                    null ? (
+                    String(
+                      Math.trunc(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.thirty?.max
+                        )
+                      )
+                    ).length > 2 ? (
+                      "$" +
+                      Number(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.thirty?.max
+                        ).toFixed(2)
+                      ).toLocaleString()
+                    ) : coinDetailOverview &&
+                      Math.abs(
+                        coinDetailOverview[0]?.low_high_price?.thirty?.max
+                      ) > 1 ? (
+                      "$" +
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.thirty?.max
+                      )
+                        .toFixed(4)
+                        .toLocaleString()
+                    ) : (
+                      "$" +
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.thirty?.max
+                      )
+                        .toFixed(9)
+                        .toLocaleString()
+                    )
+                  ) : (
+                    <span style={{ color: "#7a7a7a" }}></span>
+                  )}
                 </Typography>
               </Stack>
             </Stack>
@@ -246,93 +567,103 @@ const CoinPageOverview = () => {
             {coinDetailOverview &&
               coinDetailOverview[0]?.address?.map(
                 (item: any, index: number) => (
-                  <Stack
-                    direction="row"
-                    sx={{ justifyContent: "space-between" }}
-                    mt={1}
-                    alignItems="center"
-                    key={index}
-                  >
-                    <Stack
-                      direction={{ xs: "row", sm: "row", md: "row" }}
-                      sx={{ alignItems: "center" }}
-                      justifyContent={{
-                        xs: "center",
-                        sm: "center",
-                        md: "center",
-                        lg: "flex-start",
-                      }}
-                      spacing={1}
-                    >
-                      <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                        {item && item?.name?.length >= 25
-                          ? item?.name?.slice(0, 25) + "..."
-                          : item?.name}
-                      </Typography>
-                      <Tooltip title="Delete">
-                        <Avatar
-                          src={ToolTipImage}
-                          sx={{ width: 9, height: 9 }}
-                        ></Avatar>
-                      </Tooltip>
-                    </Stack>
-
-                    <Stack
-                      direction={{ xs: "row", sm: "row", md: "row" }}
-                      sx={{ alignItems: "center" }}
-                      spacing={0.8}
-                    >
-                      <a
-                        href={item?.url}
-                        style={{
-                          color: "#8A93C9",
-                          //textDecoration: "none"
-                        }}
-                        target="_blank"
-                        rel="noreferrer"
+                  <Box key={index}>
+                    {item && item?.name !== null && (
+                      <Stack
+                        direction="row"
+                        sx={{ justifyContent: "space-between" }}
+                        mt={1}
+                        alignItems="center"
                       >
-                        <Typography
-                          variant="subtitle2"
-                          sx={{
-                            //color: "#FFFFF5",
-                            fontSize: "0.65rem",
+                        <Stack
+                          direction={{ xs: "row", sm: "row", md: "row" }}
+                          sx={{ alignItems: "center" }}
+                          justifyContent={{
+                            xs: "center",
+                            sm: "center",
+                            md: "center",
+                            lg: "flex-start",
                           }}
+                          spacing={1}
                         >
-                          {item?.address !== ""
-                            ? item &&
-                              item?.address?.substring(0, 5) +
-                                "..." +
-                                item?.address?.slice(-6)
-                            : "NA"}
-                        </Typography>
-                      </a>
-                      {item?.address !== "" && (
-                        <CopyToClipboard
-                          options={{ message: "Copy" }}
-                          text={item?.address}
-                          onCopy={(e: any) => copyHandler(e)}
-                        >
-                          <IconButton
-                            sx={{ padding: 0 }}
-                            onClick={() => {
-                              setCopyValue(item?.address);
-                            }}
+                          <Typography
+                            variant="caption"
+                            sx={{ color: "#B6B6B9" }}
                           >
-                            <Tooltip
-                              title={`${copied ? "Copied" : "Copy this Token"}`}
+                            {item && item?.name?.length >= 25
+                              ? item?.name?.slice(0, 25) + "..."
+                              : item?.name}
+                          </Typography>
+                          <Tooltip title="Delete">
+                            <Avatar
+                              src={ToolTipImage}
+                              sx={{ width: 9, height: 9 }}
+                            ></Avatar>
+                          </Tooltip>
+                        </Stack>
+
+                        <Stack
+                          direction={{ xs: "row", sm: "row", md: "row" }}
+                          sx={{ alignItems: "center" }}
+                          spacing={0.8}
+                        >
+                          <a
+                            href={item?.url}
+                            style={{
+                              color: "#8A93C9",
+                              //textDecoration: "none"
+                            }}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <Typography
+                              variant="subtitle2"
+                              sx={{
+                                //color: "#FFFFF5",
+                                fontSize: "0.65rem",
+                              }}
                             >
-                              <ContentCopyIcon
-                                sx={{
-                                  color: `${copied ? "#19ffb0" : "#19ffb0"}`,
-                                  fontSize: ".9rem",
+                              {item?.address !== ""
+                                ? item &&
+                                  item?.address?.substring(0, 5) +
+                                    "..." +
+                                    item?.address?.slice(-6)
+                                : "NA"}
+                            </Typography>
+                          </a>
+                          {item?.address !== "" && (
+                            <CopyToClipboard
+                              options={{ message: "Copy" }}
+                              text={item?.address}
+                              onCopy={(e: any) => copyHandler(e)}
+                            >
+                              <IconButton
+                                sx={{ padding: 0 }}
+                                onClick={() => {
+                                  setCopyValue(item?.address);
                                 }}
-                              />
-                            </Tooltip>
-                          </IconButton>
-                        </CopyToClipboard>
-                      )}
-                    </Stack>
-                  </Stack>
+                              >
+                                <Tooltip
+                                  title={`${
+                                    copied ? "Copied" : "Copy this Token"
+                                  }`}
+                                >
+                                  <ContentCopyIcon
+                                    sx={{
+                                      color: `${
+                                        copied ? "#19ffb0" : "#19ffb0"
+                                      }`,
+                                      fontSize: ".9rem",
+                                    }}
+                                  />
+                                </Tooltip>
+                              </IconButton>
+                            </CopyToClipboard>
+                          )}
+                        </Stack>
+                      </Stack>
+                    )}
+                  </Box>
                 )
               )}
             <Stack
@@ -365,7 +696,7 @@ const CoinPageOverview = () => {
                 API need
               </Typography>
             </Stack>
-            <Stack
+            {/* <Stack
               direction="row"
               sx={{ alignItems: "center", justifyContent: "space-between" }}
               mt={1}
@@ -398,7 +729,7 @@ const CoinPageOverview = () => {
                   ? coinDetailOverview[0]?.liquidity_pool_total
                   : "NA"}
               </Typography>
-            </Stack>
+            </Stack> */}
 
             <Stack
               direction="row"
@@ -417,7 +748,7 @@ const CoinPageOverview = () => {
                 spacing={1}
               >
                 <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  All Time High
+                  All Time High In Last 15 Days
                 </Typography>
                 <Tooltip title="Delete">
                   <Avatar
@@ -451,7 +782,7 @@ const CoinPageOverview = () => {
                 spacing={1}
               >
                 <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  All Time High Date
+                  All Time High Date In Last 15 Days
                 </Typography>
                 <Tooltip title="Delete">
                   <Avatar
@@ -1454,7 +1785,9 @@ const CoinPageOverview = () => {
         parseInt(coinDetailOverview[0]?.show_widget) === 1 ? (
           <Grid xs={12} pt={4}>
             <Iframe
-              url="https://coinbrain.com/embed/bnb-0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c?theme=custom&accent=f5f5f5&padding=28&background=000516&chart=1&trades=1"
+              url={`https://coinbrain.com/embed/bnb-${
+                coinDetailOverview && filteredBNB[0]?.address
+              }?theme=custom&accent=f5f5f5&padding=28&background=000516&chart=1&trades=1`}
               width="100%"
               height="1040"
               id="myId"
@@ -1466,7 +1799,9 @@ const CoinPageOverview = () => {
           </Grid>
         ) : (
           <Grid xs={12} pt={4}>
-            <CoinPageChart data={coinPriceWidget && coinPriceWidget} />
+            {coinPriceWidget?.price?.length !== 0 && (
+              <CoinPageChart data={coinPriceWidget && coinPriceWidget} />
+            )}
           </Grid>
         )}
       </Grid>

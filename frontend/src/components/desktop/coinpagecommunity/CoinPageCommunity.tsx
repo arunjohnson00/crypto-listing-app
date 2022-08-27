@@ -328,7 +328,7 @@ const CoinPageCommunity = () => {
           chartid="twitter"
         />
       </Grid>
-      <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
+      {/* <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
         <CoinCommunityChart
           //   dateTime={dateTime}
           //   setDateTime={setDateTime}
@@ -340,7 +340,7 @@ const CoinPageCommunity = () => {
           icon={FacebookGraphImage}
           chartid="facebook"
         />
-      </Grid>
+      </Grid> */}
       <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
         <CoinCommunityChart
           //   dateTime={dateTime}

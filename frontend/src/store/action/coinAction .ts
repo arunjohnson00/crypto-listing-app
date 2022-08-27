@@ -181,3 +181,33 @@ export const coinPriceGraphBlockRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const coinEventBlockRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-events/${values}`,
+    method: "GET",
+    secure: false,
+    actionType: COIN.COIN_EVENTS_BLOCK,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const coinPresaleBlockRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-presale/${values}`,
+    method: "GET",
+    secure: false,
+    actionType: COIN.COIN_PRESALE_BLOCK,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

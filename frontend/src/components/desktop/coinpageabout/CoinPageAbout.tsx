@@ -285,7 +285,11 @@ const CoinPageAbout = () => {
                 rel="noreferrer"
               >
                 {" "}
-                Latest news about safemoon here.
+                Latest news about{" "}
+                <span style={{}}>
+                  {coinAboutBlock && coinAboutBlock[0]?.name?.toLowerCase()}
+                </span>{" "}
+                here.
               </a>{" "}
             </Typography>
 

@@ -2,7 +2,7 @@ import { useState, useEffect, Fragment } from "react";
 import { Box, Stack, Typography, Avatar, Divider, Button } from "@mui/material";
 import Chart from "react-apexcharts";
 
-const ChartWidgetCard = () => {
+const ChartWidgetCard = ({ button, width }: any) => {
   const [data, updateData] = useState([1, 2, 3, 4, 5, 6]);
 
   useEffect(() => {
@@ -125,8 +125,8 @@ const ChartWidgetCard = () => {
   };
   return (
     <Fragment>
-      <Box sx={{ border: "2px solid #14151B" }} p={2}>
-        <Stack direction="column" spacing={1}>
+      <Box sx={{ border: "2px solid #14151B", width: "auto" }}>
+        <Stack direction="column" spacing={1} m={2}>
           <Stack direction="row" spacing={2} alignItems="center">
             <Avatar
               alt="Remy Sharp"
@@ -252,21 +252,23 @@ const ChartWidgetCard = () => {
           </Stack>
         </Stack>
       </Box>
-      <Box py={2}>
-        <Button
-          fullWidth
-          variant="contained"
-          sx={{
-            borderRadius: 3,
-            textTransform: "capitalize",
-            fontSize: ".70rem",
-            backgroundColor: "#131D47",
-            height: 40,
-          }}
-        >
-          Copy Widget
-        </Button>
-      </Box>
+      {button === true && (
+        <Box py={2}>
+          <Button
+            fullWidth
+            variant="contained"
+            sx={{
+              borderRadius: 3,
+              textTransform: "capitalize",
+              fontSize: ".70rem",
+              backgroundColor: "#131D47",
+              height: 40,
+            }}
+          >
+            Copy Widget
+          </Button>
+        </Box>
+      )}
     </Fragment>
   );
 };
