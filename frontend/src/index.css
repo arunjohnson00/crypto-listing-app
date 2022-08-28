@@ -31,3 +31,7 @@ code {
 ::-webkit-scrollbar-thumb:hover {
   background: #363a45;
 }
+
+.mat-dialog-container {
+  padding: 0px !important;
+}

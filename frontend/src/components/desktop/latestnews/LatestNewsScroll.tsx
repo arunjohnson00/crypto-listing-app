@@ -21,16 +21,13 @@ const LatestNewsScroll = () => {
   const timeAgo = new TimeAgo("en");
   useEffect(() => {
     (async () => {
-      var rss: any = await parse(
-        "https://cors-anywhere.herokuapp.com/https://news.coinxhigh.com/feed/",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET,PUT,POST,PATCH,OPTIONS",
-          },
-        }
-      );
+      var rss: any = await parse("https://news.coinxhigh.com/feed/", {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,PATCH,OPTIONS",
+        },
+      });
 
       dispatch({ type: latestNewsRequest, payload: rss });
     })();

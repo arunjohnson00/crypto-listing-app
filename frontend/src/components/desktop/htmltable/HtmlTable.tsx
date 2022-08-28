@@ -20,6 +20,8 @@ import {
   Box,
   CircularProgress,
   Button,
+  Dialog,
+  DialogContent,
 } from "@mui/material";
 import VoteBtn from "../button/votebtn/VoteBtn";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -44,12 +46,18 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
 
   const captchaHandler = (index: any) => {
     setVote({ ...vote, initial: false, completed: false, captcha: true });
-    // setOpenCaptcha(true);
+    setOpenCaptcha(true);
 
     setVoteId(index);
   };
 
-  const coinVoteHandler = () => {
+  const captchaOnClose = () => {
+    setOpenCaptcha(false);
+    setVote({ ...vote, initial: false, completed: false, captcha: false });
+  };
+
+  const coinVoteHandler = (slug: any) => {
+    console.log(slug);
     const successHandler = (res: any) => {
       setOpenCaptcha(false);
       setVote({ ...vote, initial: true, completed: false, captcha: false });
@@ -71,16 +79,9 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
       console.log(err);
     };
 
-    dispatch(
-      coinVoteRequest(
-        location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
+    dispatch(coinVoteRequest(slug, successHandler, errorHandler));
   };
 
-  console.log(voteid);
   return (
     <TableContainer component={Paper}>
       <Table
@@ -342,26 +343,34 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                             Vote
                           </Button>
                         ) : vote.captcha === true && voteid === data?.slug ? (
-                          // <Dialog
-                          //   open={openCaptcha}
-                          //   // TransitionComponent={Transition}
-                          //   keepMounted
-                          //   onClose={captchaOnClose}
-                          //   aria-describedby="alert-dialog-slide-description"
-                          // >
-                          //   <DialogContent>
-                          <ReCAPTCHA
-                            sitekey="6LeV-IQhAAAAAMwIIrqVh_eqFPl-8IFn1QQWWrEU"
-                            onChange={coinVoteHandler}
-                            theme="dark"
-                            ref={recaptchaRef}
-                            onExpired={() => {
-                              // here
-                            }}
-                          />
-                        ) : //   </DialogContent>
-                        // </Dialog>
-                        vote.initial === true ? (
+                          <Dialog
+                            open={openCaptcha}
+                            // TransitionComponent={Transition}
+                            keepMounted
+                            onClose={captchaOnClose}
+                            aria-describedby="alert-dialog-slide-description"
+                          >
+                            <DialogContent
+                              sx={{
+                                "&.MuiDialogContent-root": {
+                                  padding: 0,
+                                },
+                              }}
+                            >
+                              <ReCAPTCHA
+                                sitekey="6LeV-IQhAAAAAMwIIrqVh_eqFPl-8IFn1QQWWrEU"
+                                onChange={() =>
+                                  coinVoteHandler(data && data?.slug)
+                                }
+                                theme="dark"
+                                ref={recaptchaRef}
+                                onExpired={() => {
+                                  // here
+                                }}
+                              />
+                            </DialogContent>
+                          </Dialog>
+                        ) : vote.initial === true ? (
                           <LoadingButton
                             loading
                             variant="outlined"
@@ -374,7 +383,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                               height: 23,
                             }}
                           >
-                            Submit
+                            Submiting
                           </LoadingButton>
                         ) : (
                           vote.completed === true && (
@@ -390,7 +399,6 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                                 background:
                                   "linear-gradient(to right, #5652DD 0%, #104EAB 100%)",
                               }}
-                              onClick={captchaHandler}
                             >
                               Voted
                             </Button>

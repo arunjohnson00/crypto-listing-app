@@ -1,5 +1,10 @@
-import * as React from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import ReCAPTCHA from "react-google-recaptcha";
+import "react-toastify/dist/ReactToastify.css";
+
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,16 +13,74 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
-import { Stack, Typography, Box, CircularProgress } from "@mui/material";
+import {
+  Stack,
+  Typography,
+  Box,
+  CircularProgress,
+  Button,
+  DialogContent,
+  Dialog,
+} from "@mui/material";
 import VoteBtn from "../button/votebtn/VoteBtn";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import moment from "moment";
 
 import "./style.css";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { coinVoteRequest } from "../../../store/action/commonAction";
 
 const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
+  const dispatch: any = useDispatch();
+  const [vote, setVote] = useState<any>({
+    initial: false,
+    completed: false,
+    captcha: false,
+  });
+  const [openCaptcha, setOpenCaptcha] = useState<any>(false);
+  const [voteid, setVoteId] = useState<any>();
+
+  const recaptchaRef: any = useRef<ReCAPTCHA>();
+
+  const captchaHandler = (index: any) => {
+    setVote({ ...vote, initial: false, completed: false, captcha: true });
+    setOpenCaptcha(true);
+
+    setVoteId(index);
+  };
+
+  const captchaOnClose = () => {
+    setOpenCaptcha(false);
+    setVote({ ...vote, initial: false, completed: false, captcha: false });
+  };
+
+  const coinVoteHandler = (slug: any) => {
+    console.log(slug);
+    const successHandler = (res: any) => {
+      setOpenCaptcha(false);
+      setVote({ ...vote, initial: true, completed: false, captcha: false });
+      setTimeout(function () {
+        toast.success(`${res?.data?.data}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
+        setVote({ ...vote, initial: false, completed: true, captcha: false });
+      }, 2000);
+    };
+    const errorHandler = (err: any) => {
+      console.log(err);
+    };
+
+    dispatch(coinVoteRequest(slug, successHandler, errorHandler));
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -240,9 +303,108 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     <Stack direction="row" spacing={2} alignItems="center">
                       <Box sx={{ minWidth: 50 }}>
-                        <Typography variant="caption"> {data?.vote}</Typography>
+                        <Typography variant="caption">
+                          {" "}
+                          {data &&
+                          data?.vote !== null &&
+                          vote?.completed === true
+                            ? parseInt(data?.vote) + 1
+                            : data?.vote}
+                        </Typography>
                       </Box>
-                      <VoteBtn />
+                      <Stack
+                        direction={{ xs: "column", sm: "column", md: "row" }}
+                        spacing={1.5}
+                        sx={{
+                          alignItems: "center",
+                          justifyContent: "flex-start",
+                        }}
+                        pt={1}
+                      >
+                        {(vote &&
+                          vote.initial === false &&
+                          vote.completed === false &&
+                          vote.captcha === false) ||
+                        voteid !== data?.slug ? (
+                          <Button
+                            variant="contained"
+                            sx={{
+                              borderRadius: "50px",
+                              textTransform: "capitalize",
+                              fontSize: "0.675rem",
+                              height: 23,
+                            }}
+                            style={{
+                              background:
+                                "linear-gradient(to right, #5652DD 0%, #104EAB 100%)",
+                            }}
+                            onClick={() => captchaHandler(data && data?.slug)}
+                          >
+                            Vote
+                          </Button>
+                        ) : vote.captcha === true && voteid === data?.slug ? (
+                          <Dialog
+                            open={openCaptcha}
+                            // TransitionComponent={Transition}
+                            keepMounted
+                            onClose={captchaOnClose}
+                            aria-describedby="alert-dialog-slide-description"
+                          >
+                            <DialogContent
+                              sx={{
+                                "&.MuiDialogContent-root": {
+                                  padding: 0,
+                                },
+                              }}
+                            >
+                              <ReCAPTCHA
+                                sitekey="6LeV-IQhAAAAAMwIIrqVh_eqFPl-8IFn1QQWWrEU"
+                                onChange={() =>
+                                  coinVoteHandler(data && data?.slug)
+                                }
+                                theme="dark"
+                                ref={recaptchaRef}
+                                onExpired={() => {
+                                  // here
+                                }}
+                              />
+                            </DialogContent>
+                          </Dialog>
+                        ) : vote.initial === true ? (
+                          <LoadingButton
+                            loading
+                            variant="outlined"
+                            sx={{
+                              color: "#FFFFFF",
+                              backgroundColor: "#FFFFFF",
+                              borderRadius: "50px",
+                              textTransform: "capitalize",
+                              fontSize: "0.675rem",
+                              height: 23,
+                            }}
+                          >
+                            Submiting
+                          </LoadingButton>
+                        ) : (
+                          vote.completed === true && (
+                            <Button
+                              variant="contained"
+                              sx={{
+                                borderRadius: "50px",
+                                textTransform: "capitalize",
+                                fontSize: "0.675rem",
+                                height: 23,
+                              }}
+                              style={{
+                                background:
+                                  "linear-gradient(to right, #5652DD 0%, #104EAB 100%)",
+                              }}
+                            >
+                              Voted
+                            </Button>
+                          )
+                        )}
+                      </Stack>
                     </Stack>
                   </TableCell>
                   <TableCell
