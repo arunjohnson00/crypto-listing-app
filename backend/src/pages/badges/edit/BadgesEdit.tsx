@@ -36,6 +36,7 @@ const BadgesEdit = () => {
     url: "",
     thumb_icon: "",
     icon: "",
+    inactive_icon: "",
   });
 
   // Display the key/value pairs
@@ -74,8 +75,8 @@ const BadgesEdit = () => {
 
     editBadgeData.icon !== "" &&
       typeof editBadgeData.icon !== "string" &&
-      formData.append("icom", editBadgeData.icon);
-
+      formData.append("icon", editBadgeData.icon);
+    formData.append("inactive_icon", editBadgeData.inactive_icon);
     formData.append("name", editBadgeData.name);
     formData.append("url", editBadgeData.url);
     formData.append("id", editBadgeData.id);
@@ -171,13 +172,29 @@ const BadgesEdit = () => {
               sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
               mb={1}
             >
-              badge Icon
+              Badge Icon
             </Typography>
 
             <IconUploader
               setAddIcon={setEditbadge}
               addIconData={editBadgeData}
               slug="badge_icons"
+            />
+          </Grid>
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
+              Badge InActive Icon
+            </Typography>
+
+            <IconUploader
+              setAddIcon={setEditbadge}
+              addIconData={editBadgeData}
+              slug="badge_icons"
+              inActive={true}
             />
           </Grid>
 

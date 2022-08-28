@@ -1,6 +1,6 @@
 {
   "name": "backend",
-  "homepage": "https://cxadmin.coinxhigh.com",
+  "homepage": "https://backend.coinxhigh.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

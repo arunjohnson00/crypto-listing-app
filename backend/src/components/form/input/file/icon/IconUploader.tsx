@@ -8,19 +8,25 @@ import Avatar from "@mui/material/Avatar";
 import ImageIcon from "@mui/icons-material/Image";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
-const IconUploader = ({ addIconData, setAddIcon, slug }: any) => {
+const IconUploader = ({ addIconData, setAddIcon, slug, inActive }: any) => {
   const classes = useStyles();
 
   const onDrop = useCallback(
     (acceptedFiles: any) => {
-      setAddIcon({
-        ...addIconData,
-        thumb_icon: acceptedFiles[0],
-        icon: acceptedFiles[0],
-        proof: acceptedFiles[0],
-      });
+      inActive === true
+        ? setAddIcon({
+            ...addIconData,
+
+            inactive_icon: inActive === true ? acceptedFiles[0] : "",
+          })
+        : setAddIcon({
+            ...addIconData,
+            thumb_icon: acceptedFiles[0],
+            icon: acceptedFiles[0],
+            proof: acceptedFiles[0],
+          });
     },
-    [addIconData, setAddIcon]
+    [addIconData, setAddIcon, inActive]
   );
 
   const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
@@ -92,9 +98,18 @@ const IconUploader = ({ addIconData, setAddIcon, slug }: any) => {
               src={`${
                 acceptedFileItems.length > 0
                   ? URL.createObjectURL(acceptedFiles[0])
-                  : (addIconData.thumb_icon !== "" ||
-                      addIconData.thumb_icon !== undefined) &&
-                    `${serverAPIUrl}public/uploads/${slug}/${addIconData.thumb_icon}`
+                  : `${serverAPIUrl}public/uploads/${slug}/${
+                      inActive === true
+                        ? addIconData.inactive_icon
+                        : addIconData.thumb_icon !== "" &&
+                          addIconData.thumb_icon !== undefined &&
+                          addIconData.thumb_icon !== null
+                        ? addIconData.thumb_icon
+                        : addIconData.icon !== "" &&
+                          addIconData.icon !== undefined &&
+                          addIconData.icon !== null &&
+                          addIconData.icon
+                    }`
               }`}
               alt="icon"
             >

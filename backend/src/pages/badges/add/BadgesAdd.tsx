@@ -29,6 +29,7 @@ const BadgesAdd = () => {
     url: "",
     thumb_icon: "",
     icon: "",
+    inactive_icon: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -71,6 +72,7 @@ const BadgesAdd = () => {
     formData.append("icon", addBadgeData.thumb_icon);
     formData.append("name", addBadgeData.name);
     formData.append("url", addBadgeData.url);
+    formData.append("inactive_icon", addBadgeData.inactive_icon);
     formData.append("status", addBadgeData.status);
 
     dispatch(addBadgeRequest(formData, successHandler, errorHandler));
@@ -88,6 +90,7 @@ const BadgesAdd = () => {
     setAddBadge({ ...addBadgeData, url: e });
   };
 
+  console.log(addBadgeData);
   return (
     <Grid container spacing={2}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -154,6 +157,22 @@ const BadgesAdd = () => {
             </Typography>
 
             <IconUploader setAddIcon={setAddBadge} addIconData={addBadgeData} />
+          </Grid>
+
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
+              Badge Inactive Icon
+            </Typography>
+
+            <IconUploader
+              setAddIcon={setAddBadge}
+              addIconData={addBadgeData}
+              inActive={true}
+            />
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
