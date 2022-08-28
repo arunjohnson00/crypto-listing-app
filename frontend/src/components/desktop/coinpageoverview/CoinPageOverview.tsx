@@ -759,10 +759,41 @@ const CoinPageOverview = () => {
               </Stack>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
                 {coinDetailOverview &&
-                coinDetailOverview[0]?.all_time_high !== null &&
-                coinDetailOverview[0]?.all_time_high !== ""
-                  ? coinDetailOverview[0]?.all_time_high
-                  : "NA"}
+                coinDetailOverview[0]?.low_high_price?.fifteen?.max !== null ? (
+                  String(
+                    Math.trunc(
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                      )
+                    )
+                  ).length > 2 ? (
+                    "$" +
+                    Number(
+                      parseFloat(
+                        coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                      ).toFixed(2)
+                    ).toLocaleString()
+                  ) : coinDetailOverview &&
+                    Math.abs(
+                      coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                    ) > 1 ? (
+                    "$" +
+                    parseFloat(
+                      coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                    )
+                      .toFixed(4)
+                      .toLocaleString()
+                  ) : (
+                    "$" +
+                    parseFloat(
+                      coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                    )
+                      .toFixed(9)
+                      .toLocaleString()
+                  )
+                ) : (
+                  <span style={{ color: "#7a7a7a" }}>NA</span>
+                )}
               </Typography>
             </Stack>
             <Stack
@@ -1240,26 +1271,12 @@ const CoinPageOverview = () => {
               </Stack>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
                 {coinDetailOverview &&
-                coinDetailOverview[0]?.volume_24h !== null ? (
-                  String(
-                    Math.trunc(parseFloat(coinDetailOverview[0]?.volume_24h))
-                  ).length > 2 ? (
-                    Number(
-                      parseFloat(coinDetailOverview[0]?.volume_24h).toFixed(2)
+                coinDetailOverview[0]?.volume_24h !== null &&
+                coinDetailOverview[0]?.volume_24h !== ""
+                  ? Math.floor(
+                      Math.abs(coinDetailOverview[0]?.volume_24h)
                     ).toLocaleString()
-                  ) : coinDetailOverview &&
-                    Math.abs(coinDetailOverview[0]?.volume_24h) > 1 ? (
-                    parseFloat(coinDetailOverview[0]?.volume_24h)
-                      .toFixed(4)
-                      .toLocaleString()
-                  ) : (
-                    parseFloat(coinDetailOverview[0]?.volume_24h)
-                      .toFixed(9)
-                      .toLocaleString()
-                  )
-                ) : (
-                  <span style={{ color: "#7a7a7a" }}>--</span>
-                )}
+                  : "NA"}
               </Typography>
             </Stack>
 
@@ -1291,26 +1308,12 @@ const CoinPageOverview = () => {
               </Stack>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
                 {coinDetailOverview &&
-                coinDetailOverview[0]?.market_cap !== null ? (
-                  String(
-                    Math.trunc(parseFloat(coinDetailOverview[0]?.market_cap))
-                  ).length > 2 ? (
-                    Number(
-                      parseFloat(coinDetailOverview[0]?.market_cap).toFixed(2)
+                coinDetailOverview[0]?.market_cap !== null &&
+                coinDetailOverview[0]?.market_cap !== ""
+                  ? Math.floor(
+                      Math.abs(coinDetailOverview[0]?.market_cap)
                     ).toLocaleString()
-                  ) : coinDetailOverview &&
-                    Math.abs(coinDetailOverview[0]?.market_cap) > 1 ? (
-                    parseFloat(coinDetailOverview[0]?.market_cap)
-                      .toFixed(4)
-                      .toLocaleString()
-                  ) : (
-                    parseFloat(coinDetailOverview[0]?.market_cap)
-                      .toFixed(9)
-                      .toLocaleString()
-                  )
-                ) : (
-                  <span style={{ color: "#7a7a7a" }}>--</span>
-                )}
+                  : "NA"}
               </Typography>
             </Stack>
 
@@ -1342,33 +1345,12 @@ const CoinPageOverview = () => {
               </Stack>
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
                 {coinDetailOverview &&
-                coinDetailOverview[0]?.fully_diluted_market_cap !== null ? (
-                  String(
-                    Math.trunc(
-                      parseFloat(
-                        coinDetailOverview[0]?.fully_diluted_market_cap
-                      )
-                    )
-                  ).length > 2 ? (
-                    Number(
-                      parseFloat(
-                        coinDetailOverview[0]?.fully_diluted_market_cap
-                      ).toFixed(2)
+                coinDetailOverview[0]?.fully_diluted_market_cap !== null &&
+                coinDetailOverview[0]?.fully_diluted_market_cap !== ""
+                  ? Math.floor(
+                      Math.abs(coinDetailOverview[0]?.fully_diluted_market_cap)
                     ).toLocaleString()
-                  ) : coinDetailOverview &&
-                    Math.abs(coinDetailOverview[0]?.fully_diluted_market_cap) >
-                      1 ? (
-                    parseFloat(coinDetailOverview[0]?.fully_diluted_market_cap)
-                      .toFixed(4)
-                      .toLocaleString()
-                  ) : (
-                    parseFloat(coinDetailOverview[0]?.fully_diluted_market_cap)
-                      .toFixed(9)
-                      .toLocaleString()
-                  )
-                ) : (
-                  <span style={{ color: "#7a7a7a" }}>--</span>
-                )}
+                  : "NA"}
               </Typography>
             </Stack>
 

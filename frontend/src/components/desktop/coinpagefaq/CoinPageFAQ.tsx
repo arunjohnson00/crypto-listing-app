@@ -87,9 +87,7 @@ const CoinPageFAQ = () => {
                 variant="body2"
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
-                The {coinFAQ && coinFAQ[0]?.name} Protocol is a community
-                driven, fair launched DeFi Token. Three simple functions occur
-                during each trade: Reflection, LP Acquisition, and Burn.
+                {coinFAQ && coinFAQ[0]?.description}
               </Typography>
             </Stack>
 

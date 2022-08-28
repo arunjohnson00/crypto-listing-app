@@ -112,6 +112,12 @@ const CoinPageNews = () => {
                 24 min ago
               </Typography>
             </Stack>
+            <Divider
+              sx={{ borderBottomColor: "#111138", borderBottomWidth: 2 }}
+              flexItem
+              orientation="horizontal"
+              variant="fullWidth"
+            />
           </Stack>
         </Grid>
       </Grid>

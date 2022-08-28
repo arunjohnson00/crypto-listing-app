@@ -139,8 +139,8 @@ const CoinpageRatings = () => {
         <Grid xs={12} mb={5}>
           <Stack direction="column" mt={7} ml={{ xs: 0, sm: 0, md: 5 }}>
             <Typography
-              variant="h5"
-              sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: 30 }}
+              variant="subtitle1"
+              sx={{ color: "#FFFFF5", fontWeight: 500, fontSize: "1.4rem" }}
             >
               Reviwes{" "}
               {coinRatingBlock && coinRatingBlock[0]?.total_review_count}
@@ -158,7 +158,7 @@ const CoinpageRatings = () => {
               />
               <Typography
                 variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: "1rem" }}
+                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
               >
                 Excellent
               </Typography>
@@ -178,7 +178,7 @@ const CoinpageRatings = () => {
               </Box>
               <Typography
                 variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: "1rem" }}
+                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
               >
                 {coinRatingBlock &&
                   (
@@ -201,7 +201,7 @@ const CoinpageRatings = () => {
               />
               <Typography
                 variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: "1rem" }}
+                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
               >
                 Great
               </Typography>
@@ -221,7 +221,7 @@ const CoinpageRatings = () => {
               </Box>
               <Typography
                 variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: "1rem" }}
+                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
               >
                 {coinRatingBlock &&
                   (
@@ -244,7 +244,7 @@ const CoinpageRatings = () => {
               />
               <Typography
                 variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: "1rem" }}
+                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
               >
                 Avarage
               </Typography>
@@ -264,7 +264,7 @@ const CoinpageRatings = () => {
               </Box>
               <Typography
                 variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: "1rem" }}
+                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
               >
                 {coinRatingBlock &&
                   (
@@ -287,7 +287,7 @@ const CoinpageRatings = () => {
               />
               <Typography
                 variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: "1rem" }}
+                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
               >
                 Poor
               </Typography>
@@ -307,7 +307,7 @@ const CoinpageRatings = () => {
               </Box>
               <Typography
                 variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: "1rem" }}
+                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
               >
                 {coinRatingBlock &&
                   (
@@ -331,7 +331,7 @@ const CoinpageRatings = () => {
               />
               <Typography
                 variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: "1rem" }}
+                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
               >
                 Bad
               </Typography>
@@ -351,7 +351,7 @@ const CoinpageRatings = () => {
               </Box>
               <Typography
                 variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: "1rem" }}
+                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
               >
                 {coinRatingBlock &&
                   (
@@ -367,11 +367,15 @@ const CoinpageRatings = () => {
         {coinRatingBlock &&
           coinRatingBlock[0]?.review_details?.map(
             (item: any, index: number) => (
-              <Grid xs={12} key={index}>
-                <Stack direction="column" ml={{ xs: 0, sm: 0, md: 3 }}>
+              <Grid
+                xs={12}
+                key={index}
+                sx={{ backgroundColor: "#0309218a", p: 2, my: 2 }}
+              >
+                <Stack direction="column" spacing={2} px={2}>
                   <Stack
                     direction="row"
-                    spacing={3}
+                    spacing={1.5}
                     sx={{ alignItems: "center" }}
                     my={2}
                   >
@@ -379,13 +383,13 @@ const CoinpageRatings = () => {
                       alt={item?.name}
                       src={`${serverAPIUrl}public/uploads/users/${item?.avatar}`}
                     />
-                    <Stack direction="column" spacing={0.2}>
+                    <Stack direction="column" spacing={0.3}>
                       <Typography
                         sx={{
                           color: "#FFFFF5",
                           fontWeight: 400,
                           lineHeight: 1,
-                          fontSize: "1.1rem",
+                          fontSize: ".9rem",
                         }}
                       >
                         {item?.name}
@@ -458,6 +462,12 @@ const CoinpageRatings = () => {
                       {item?.review}
                     </Typography>
                   </Stack>
+                  <Divider
+                    variant="fullWidth"
+                    flexItem
+                    orientation="horizontal"
+                    sx={{ borderColor: "#091338", borderBottomWidth: 2 }}
+                  />
                   <Stack
                     direction="row"
                     spacing={3}
@@ -517,7 +527,7 @@ const CoinpageRatings = () => {
                 {coinRatingBlock && coinRatingBlock[0]?.name}
               </Typography>
               <Typography
-                variant="subtitle1"
+                //variant="subtitle1"
                 sx={{ color: "#FFFFF5", fontWeight: 500 }}
               >
                 Reviews{" "}

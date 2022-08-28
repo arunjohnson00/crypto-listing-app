@@ -322,7 +322,11 @@ const MobileCoinPageOverview = () => {
             variant="body2"
             sx={{ color: "#00B1C3", fontWeight: 500 }}
           >
-            4349
+            {coinDetailFirstBlock &&
+            coinDetailFirstBlock[0]?.trust_score[0]?.review_count !== null
+              ? coinDetailFirstBlock &&
+                coinDetailFirstBlock[0]?.trust_score[0]?.review_count
+              : "--"}
           </Typography>
           <Typography
             variant="body2"
