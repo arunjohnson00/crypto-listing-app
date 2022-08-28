@@ -254,120 +254,24 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       alignItems="center"
                       sx={{ flexWrap: "wrap" }}
                     >
-                      {data?.badges?.vote?.status === 1 ? (
-                        <Avatar
-                          alt={data?.badges?.vote?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.vote?.active_icon}`}
-                          sx={{
-                            width: 25,
-                            height: 25,
-                            mr: 0.5,
-                            mb: 0.5,
-                          }}
-                        />
-                      ) : (
-                        <Avatar
-                          alt={data?.badges?.vote?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.vote?.inactive_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      )}
-                      {data?.badges?.airdrop?.status === 1 ? (
-                        <Avatar
-                          alt={data?.badges?.airdrop?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.airdrop?.active_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      ) : (
-                        <Avatar
-                          alt={data?.badges?.airdrop?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.airdrop?.inactive_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      )}
-
-                      {data?.badges?.ama?.status === 1 ? (
-                        <Avatar
-                          alt={data?.badges?.ama?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.ama?.active_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      ) : (
-                        <Avatar
-                          alt={data?.badges?.ama?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.ama?.inactive_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      )}
-
-                      {data?.badges?.audit?.status === 1 ? (
-                        <Avatar
-                          alt={data?.badges?.audit?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.audit?.active_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      ) : (
-                        <Avatar
-                          alt={data?.badges?.audit?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.audit?.inactive_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      )}
-
-                      {data?.badges?.kyc?.status === 1 ? (
-                        <Avatar
-                          alt={data?.badges?.kyc?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.kyc?.active_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      ) : (
-                        <Avatar
-                          alt={data?.badges?.kyc?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.kyc?.inactive_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      )}
-                      {data?.badges?.liquidity?.status === 1 ? (
-                        <Avatar
-                          alt={data?.badges?.liquidity?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.liquidity?.active_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      ) : (
-                        <Avatar
-                          alt={data?.badges?.liquidity?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.liquidity?.inactive_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      )}
-
-                      {data?.badges?.ownership?.status === 1 ? (
-                        <Avatar
-                          alt={data?.badges?.ownership?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.ownership?.active_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      ) : (
-                        <Avatar
-                          alt={data?.badges?.ownership?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.ownership?.inactive_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      )}
-
-                      {data?.badges?.presale?.status === 1 ? (
-                        <Avatar
-                          alt={data?.badges?.presale?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.presale?.active_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      ) : (
-                        <Avatar
-                          alt={data?.badges?.presale?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.presale?.inactive_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      )}
+                      {data &&
+                        data?.badges?.map((item: any, index: number) => (
+                          <Avatar
+                            key={index}
+                            alt={item?.name}
+                            src={`${serverAPIUrl}public/uploads/badge_icons/${
+                              parseInt(item?.status) === 1
+                                ? item?.active_icon
+                                : item?.inactive_icon
+                            }`}
+                            sx={{
+                              width: 25,
+                              height: 25,
+                              mr: 0.5,
+                              mb: 0.5,
+                            }}
+                          />
+                        ))}
                     </Stack>
                   </TableCell>
                 </TableRow>

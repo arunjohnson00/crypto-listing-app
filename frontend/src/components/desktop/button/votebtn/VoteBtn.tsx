@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 
-const VoteBtn = () => {
+const VoteBtn = ({ title, handler }: any) => {
   return (
     <Button
       variant="contained"
@@ -13,8 +13,9 @@ const VoteBtn = () => {
       style={{
         background: "linear-gradient(to right, #5652DD 0%, #104EAB 100%)",
       }}
+      onClick={handler}
     >
-      Vote
+      {title && title}
     </Button>
   );
 };

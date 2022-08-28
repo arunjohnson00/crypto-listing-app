@@ -439,7 +439,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       <Avatar
                         key={index}
                         alt={item?.name}
-                        src={`${serverAPIUrl}public/uploads/badges_icons/${
+                        src={`${serverAPIUrl}public/uploads/badge_icons/${
                           parseInt(item?.status) === 1
                             ? item?.active_icon
                             : item?.inactive_icon

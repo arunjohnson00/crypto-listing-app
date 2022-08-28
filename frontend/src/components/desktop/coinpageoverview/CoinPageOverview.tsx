@@ -1799,9 +1799,11 @@ const CoinPageOverview = () => {
           </Grid>
         ) : (
           <Grid xs={12} pt={4}>
-            {resStatus !== false && (
-              <CoinPageChart data={coinPriceWidget && coinPriceWidget} />
-            )}
+            {coinPriceWidget &&
+              coinPriceWidget?.price?.length !== 0 &&
+              resStatus !== false && (
+                <CoinPageChart data={coinPriceWidget && coinPriceWidget} />
+              )}
           </Grid>
         )}
       </Grid>

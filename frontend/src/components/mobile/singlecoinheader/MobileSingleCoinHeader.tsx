@@ -580,152 +580,24 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                 alignItems="center"
                 sx={{ flexWrap: "wrap" }}
               >
-                {coinData && coinData?.badges?.vote?.status === 1 ? (
-                  <Avatar
-                    alt={coinData && coinData?.badges?.vote?.name}
-                    src={`${serverAPIUrl}public/uploads/badges/${
-                      coinData && coinData?.badges?.vote?.active_icon
-                    }`}
-                    sx={{
-                      width: 25,
-                      height: 25,
-                      mr: 0.5,
-                      mb: 0.5,
-                    }}
-                  />
-                ) : (
-                  <Avatar
-                    alt={coinData && coinData?.badges?.vote?.name}
-                    src={`${serverAPIUrl}public/uploads/badges/${
-                      coinData && coinData?.badges?.vote?.inactive_icon
-                    }`}
-                    sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                  />
-                )}
-                {coinData && coinData?.badges?.airdrop?.status === 1 ? (
-                  <Avatar
-                    alt={coinData && coinData?.badges?.airdrop?.name}
-                    src={`${serverAPIUrl}public/uploads/badges/${
-                      coinData && coinData?.badges?.airdrop?.active_icon
-                    }`}
-                    sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                  />
-                ) : (
-                  <Avatar
-                    alt={coinData && coinData?.badges?.airdrop?.name}
-                    src={`${serverAPIUrl}public/uploads/badges/${
-                      coinData && coinData?.badges?.airdrop?.inactive_icon
-                    }`}
-                    sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                  />
-                )}
-
-                {coinData && coinData?.badges?.ama?.status === 1 ? (
-                  <Avatar
-                    alt={coinData && coinData?.badges?.ama?.name}
-                    src={`${serverAPIUrl}public/uploads/badges/${
-                      coinData && coinData?.badges?.ama?.active_icon
-                    }`}
-                    sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                  />
-                ) : (
-                  <Avatar
-                    alt={coinData && coinData?.badges?.ama?.name}
-                    src={`${serverAPIUrl}public/uploads/badges/${
-                      coinData && coinData?.badges?.ama?.inactive_icon
-                    }`}
-                    sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                  />
-                )}
-
-                {coinData && coinData?.badges?.audit?.status === 1 ? (
-                  <Avatar
-                    alt={coinData && coinData?.badges?.audit?.name}
-                    src={`${serverAPIUrl}public/uploads/badges/${
-                      coinData && coinData?.badges?.audit?.active_icon
-                    }`}
-                    sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                  />
-                ) : (
-                  <Avatar
-                    alt={coinData && coinData?.badges?.audit?.name}
-                    src={`${serverAPIUrl}public/uploads/badges/${
-                      coinData && coinData?.badges?.audit?.inactive_icon
-                    }`}
-                    sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                  />
-                )}
-
-                {coinData && coinData?.badges?.kyc?.status === 1 ? (
-                  <Avatar
-                    alt={coinData && coinData?.badges?.kyc?.name}
-                    src={`${serverAPIUrl}public/uploads/badges/${
-                      coinData && coinData?.badges?.kyc?.active_icon
-                    }`}
-                    sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                  />
-                ) : (
-                  <Avatar
-                    alt={coinData && coinData?.badges?.kyc?.name}
-                    src={`${serverAPIUrl}public/uploads/badges/${
-                      coinData && coinData?.badges?.kyc?.inactive_icon
-                    }`}
-                    sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                  />
-                )}
-                {coinData && coinData?.badges?.liquidity?.status === 1 ? (
-                  <Avatar
-                    alt={coinData && coinData?.badges?.liquidity?.name}
-                    src={`${serverAPIUrl}public/uploads/badges/${
-                      coinData && coinData?.badges?.liquidity?.active_icon
-                    }`}
-                    sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                  />
-                ) : (
-                  <Avatar
-                    alt={coinData && coinData?.badges?.liquidity?.name}
-                    src={`${serverAPIUrl}public/uploads/badges/${
-                      coinData && coinData?.badges?.liquidity?.inactive_icon
-                    }`}
-                    sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                  />
-                )}
-
-                {coinData && coinData?.badges?.ownership?.status === 1 ? (
-                  <Avatar
-                    alt={coinData && coinData?.badges?.ownership?.name}
-                    src={`${serverAPIUrl}public/uploads/badges/${
-                      coinData && coinData?.badges?.ownership?.active_icon
-                    }`}
-                    sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                  />
-                ) : (
-                  <Avatar
-                    alt={coinData && coinData?.badges?.ownership?.name}
-                    src={`${serverAPIUrl}public/uploads/badges/${
-                      coinData && coinData?.badges?.ownership?.inactive_icon
-                    }`}
-                    sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                  />
-                )}
-
-                {coinData && coinData?.badges?.presale?.status === 1 ? (
-                  <Avatar
-                    alt={coinData && coinData?.badges?.presale?.name}
-                    src={`${serverAPIUrl}public/uploads/badges/${
-                      coinData && coinData?.badges?.presale?.active_icon
-                    }`}
-                    sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                  />
-                ) : (
-                  <Avatar
-                    alt={coinData && coinData?.badges?.presale?.name}
-                    src={`${serverAPIUrl}public/uploads/badges/${
-                      coinData && coinData?.badges?.presale?.inactive_icon
-                    }`}
-                    sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                  />
-                )}
+                {coinData &&
+                  coinData?.badges?.map((item: any, index: number) => (
+                    <Avatar
+                      key={index}
+                      alt={item?.name}
+                      src={`${serverAPIUrl}public/uploads/badge_icons/${
+                        parseInt(item?.status) === 1
+                          ? item?.active_icon
+                          : item?.inactive_icon
+                      }`}
+                      sx={{
+                        width: 25,
+                        height: 25,
+                        mr: 0.5,
+                        mb: 0.5,
+                      }}
+                    />
+                  ))}
               </Stack>
             </Stack>
 
