@@ -11,8 +11,14 @@ import TimelapseOutlinedIcon from "@mui/icons-material/TimelapseOutlined";
 import NewspaperOutlinedIcon from "@mui/icons-material/NewspaperOutlined";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 
-import UserDashBoardIcon from "../../../assets/userdashboard/user-dashboard.png";
-import MyListingIcon from "../../../assets/userdashboard/my-listings.png";
+import UserDashBoardIcon from "../../../assets/userdashboard/dashboard_menu.png";
+import MyListingIcon from "../../../assets/userdashboard/mylistings_menu.png";
+
+import AddCoinIcon from "../../../assets/userdashboard/coin_menu.png";
+import AddNFTIcon from "../../../assets/userdashboard/nft_menu.png";
+import AddAirdropIcon from "../../../assets/userdashboard/airdrop_menu.png";
+import SettingsIcon from "../../../assets/userdashboard/settings_menu.png";
+import AdsIcon from "../../../assets/userdashboard/ads_menu.png";
 import { Avatar, Typography } from "@mui/material";
 
 const UserAdminMobileBottomNav = () => {
@@ -79,7 +85,7 @@ const UserAdminMobileBottomNav = () => {
           icon={
             <Avatar
               alt="User Dashboard"
-              src={UserDashBoardIcon}
+              src={AddCoinIcon}
               sx={{
                 width: 25,
                 height: 25,
@@ -98,7 +104,7 @@ const UserAdminMobileBottomNav = () => {
           icon={
             <Avatar
               alt="User Dashboard"
-              src={UserDashBoardIcon}
+              src={AddNFTIcon}
               sx={{
                 width: 25,
                 height: 25,
@@ -117,7 +123,7 @@ const UserAdminMobileBottomNav = () => {
           icon={
             <Avatar
               alt="User Dashboard"
-              src={UserDashBoardIcon}
+              src={AddAirdropIcon}
               sx={{
                 width: 25,
                 height: 25,

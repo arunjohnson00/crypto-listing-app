@@ -17,9 +17,13 @@ import "react-pro-sidebar/dist/css/styles.css";
 import CoinXHighLogo from "../../../assets/logo/logo.png";
 import { Avatar, IconButton, Typography } from "@mui/material";
 
-import UserDashBoardIcon from "../../../assets/userdashboard/user-dashboard.png";
-import MyListingIcon from "../../../assets/userdashboard/my-listings.png";
-
+import UserDashBoardIcon from "../../../assets/userdashboard/dashboard_menu.png";
+import MyListingIcon from "../../../assets/userdashboard/mylistings_menu.png";
+import AddCoinIcon from "../../../assets/userdashboard/coin_menu.png";
+import AddNFTIcon from "../../../assets/userdashboard/nft_menu.png";
+import AddAirdropIcon from "../../../assets/userdashboard/airdrop_menu.png";
+import SettingsIcon from "../../../assets/userdashboard/settings_menu.png";
+import AdsIcon from "../../../assets/userdashboard/ads_menu.png";
 const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
   const [activeMenu, setActiveMenu] = useState<any>();
 
@@ -94,7 +98,15 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
               paddingBottom: 10,
             }}
             icon={
-              <BiCoinStack style={{ color: "#25E594", fontSize: "1.5rem" }} />
+              <Avatar
+                alt="User Dashboard"
+                src={AddCoinIcon}
+                sx={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 0,
+                }}
+              />
             }
           >
             <Typography variant="body2" ml={2}>
@@ -109,8 +121,14 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
               paddingBottom: 10,
             }}
             icon={
-              <DashboardRoundedIcon
-                sx={{ color: "#25E594", fontSize: "1.5rem" }}
+              <Avatar
+                alt="User Dashboard"
+                src={AddNFTIcon}
+                sx={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 0,
+                }}
               />
             }
           >
@@ -126,8 +144,14 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
               paddingBottom: 10,
             }}
             icon={
-              <DashboardRoundedIcon
-                sx={{ color: "#25E594", fontSize: "1.5rem" }}
+              <Avatar
+                alt="User Dashboard"
+                src={AddAirdropIcon}
+                sx={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 0,
+                }}
               />
             }
           >
@@ -162,8 +186,14 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
 
           <MenuItem
             icon={
-              <DashboardRoundedIcon
-                sx={{ color: "#25E594", fontSize: "1.5rem" }}
+              <Avatar
+                alt="User Dashboard"
+                src={AdsIcon}
+                sx={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 0,
+                }}
               />
             }
           >
@@ -172,6 +202,26 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
               Ads
             </Typography>
           </MenuItem>
+
+          <MenuItem
+            icon={
+              <Avatar
+                alt="User Dashboard"
+                src={SettingsIcon}
+                sx={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 0,
+                }}
+              />
+            }
+          >
+            <Typography variant="body2" ml={2}>
+              {" "}
+              Settings
+            </Typography>
+          </MenuItem>
+
           {/* <SubMenu title="Components">
             <MenuItem>Component 1</MenuItem>
             <MenuItem>Component 2</MenuItem>

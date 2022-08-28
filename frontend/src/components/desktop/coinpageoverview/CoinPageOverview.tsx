@@ -29,12 +29,15 @@ import "react-slidedown/lib/slidedown.css";
 import Iframe from "react-iframe";
 import CoinPageChart from "../coinpagechart/CoinPageChart";
 import { useLocation } from "react-router-dom";
-import { coinOverviewBlockRequest } from "../../../store/action";
+import {
+  coinOverviewBlockRequest,
+  coinPriceGraphBlockRequest,
+} from "../../../store/action";
 
 const CoinPageOverview = () => {
   const dispatch: any = useDispatch();
   const location = useLocation();
-
+  const [resStatus, setResStatus] = useState<any>();
   const [priceFilter, setPriceFilter] = useState(1);
   const coinDetailOverview = useSelector((data: any) => {
     return data?.coinReducer?.coin_overview_block?.data;
@@ -70,6 +73,21 @@ const CoinPageOverview = () => {
 
     dispatch(
       coinOverviewBlockRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  }, []);
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {
+      setResStatus(err?.error?.message?.response?.data?.response);
+    };
+
+    dispatch(
+      coinPriceGraphBlockRequest(
         location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler
@@ -1781,7 +1799,7 @@ const CoinPageOverview = () => {
           </Grid>
         ) : (
           <Grid xs={12} pt={4}>
-            {coinPriceWidget?.price?.length !== 0 && (
+            {resStatus !== false && (
               <CoinPageChart data={coinPriceWidget && coinPriceWidget} />
             )}
           </Grid>

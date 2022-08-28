@@ -15,7 +15,6 @@ import {
   Link,
   Button,
 } from "@mui/material";
-import { coinPriceGraphBlockRequest } from "../../../store/action";
 
 const CoinPageChart = ({ data }: any) => {
   const chartData: any = {
@@ -160,19 +159,6 @@ const CoinPageChart = ({ data }: any) => {
       default:
     }
   };
-
-  useEffect(() => {
-    const successHandler = (res: any) => {};
-    const errorHandler = (err: any) => {};
-
-    dispatch(
-      coinPriceGraphBlockRequest(
-        location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
-  }, [dispatch]);
 
   // useEffect(() => {
   //   switch (dateTime) {
