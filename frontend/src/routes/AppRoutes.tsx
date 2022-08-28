@@ -27,6 +27,7 @@ import MobileSingleNftPage from "../pages/mobile/mobilesinglenftpage/MobileSingl
 import MobileCryptoEventsPage from "../pages/mobile/mobilecryptoeventspage/MobileCryptoEventsPage";
 import MobileSingleCryptoEventsPage from "../pages/mobile/mobilesinglecryptoeventspage/MobileSingleCryptoEventsPage";
 import SingleNftMarketPlacesPage from "../pages/desktop/singlenftmarketplaces/SingleNftMarketPlacesPage";
+import BoostPublishPage from "../pages/desktop/boostpublish/BoostPublishPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -240,6 +241,14 @@ const AppRoutes = () => {
           element={
             <PublicRoutes>
               <AppRegisterPage />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path="/boost-publish"
+          element={
+            <PublicRoutes>
+              <BoostPublishPage />
             </PublicRoutes>
           }
         />

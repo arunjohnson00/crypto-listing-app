@@ -1,0 +1,47 @@
+.boostcard-gradient-borders {
+  width: auto;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  /* border: double 2px transparent; */
+  border-radius: 8px;
+
+  /* background-image: linear-gradient(#01061a, #01061a),
+    radial-gradient(circle at top left, #910fc2, #1a2cb7);
+  background-origin: border-box;
+  background-clip: content-box, border-box; */
+  /* animation: animatedgradient 0.5s ease alternate infinite; */
+}
+
+.boostcard-gradient-borders:after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2.5px;
+  height: 117px;
+  width: 317px;
+  background: linear-gradient(0deg, #8b0cc4, #1e2cbc);
+  border-radius: 8px;
+  z-index: -1;
+  animation: animatedboost 1s ease infinite;
+  background-size: 300% 300%;
+}
+
+@keyframes animatedboost {
+  0% {
+    background: linear-gradient(0deg, #8b0cc4, #1e2cbc);
+  }
+  50% {
+    background: linear-gradient(90deg, #8b0cc4, #1e2cbc);
+  }
+  100% {
+    background: linear-gradient(180deg, #8b0cc4, #1e2cbc);
+  }
+}
+
+.price:after {
+  content: "\\";
+  position: absolute;
+  left: 29px;
+  color: #ff0000;
+}
