@@ -47,15 +47,14 @@ const NftCollectionCard = ({ data }: any) => {
               <Avatar
                 sx={{ width: 24, height: 24 }}
                 variant="square"
-                src="https://cryptologos.cc/logos/ethereum-eth-logo.png"
-              >
-                N
-              </Avatar>
+                src={`${serverAPIUrl}public/uploads/nft_currency_icons/${data?.currency_icon}`}
+              />
+
               <Typography
                 variant="caption"
                 sx={{ color: "white", fontSize: "0.698rem" }}
               >
-                0.07 {data && data?.symbol}
+                {data && data?.public_mint_price} {data && data?.symbol}
               </Typography>
             </Stack>
 

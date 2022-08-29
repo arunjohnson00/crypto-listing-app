@@ -13,6 +13,7 @@ import "./style.css";
 import WallClockIcon from "../../../assets/selectplan/wall-clock.png";
 import TickIcon from "../../../assets/selectplan/tick.png";
 import DotIcon from "../../../assets/selectplan/dot4.png";
+import { Link } from "react-router-dom";
 
 const SelectPlanPage = () => {
   return (
@@ -299,7 +300,12 @@ const SelectPlanPage = () => {
                         width: 150,
                       }}
                     >
-                      Manual Payment
+                      <Link
+                        to="/select-plan-mail"
+                        style={{ textDecoration: "none", color: "inherit" }}
+                      >
+                        Manual Payment
+                      </Link>
                     </Button>
                   </Stack>
                 </Stack>

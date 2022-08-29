@@ -74,7 +74,7 @@ const SelectPlanMailPage = () => {
           </Stack>
         </Stack>
         <Stack direction="column" spacing={2} pt={9} pb={25}>
-          <Stack direction="row" spacing={2} pt={9}>
+          <Stack direction="row" spacing={2} pt={0}>
             <Box
               sx={{
                 backgroundColor: "#01061A",
