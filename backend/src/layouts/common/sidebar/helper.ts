@@ -24,6 +24,7 @@ import nftListingCurrencyIcon from "../../../assets/icon/gray/nft_listing_curren
 import settingsIcon from "../../../assets/icon/gray/setting_icon_gray.png";
 export const sideBarMenu = [
   { id: "1", title: "Dashboard", icon: dashboardIcon },
+  { id: "1123", title: "coin-listing-fee", icon: dashboardIcon },
   {
     id: "2",
     title: "Coins",

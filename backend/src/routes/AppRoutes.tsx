@@ -102,6 +102,7 @@ import NFTNetworks from "../pages/nftnetworks/NFTNetworks";
 import NFTNetworkAdd from "../pages/nftnetworks/add/NFTNetworkAdd";
 import NFTNetworkEdit from "../pages/nftnetworks/edit/NFTNetworkEdit";
 import NFTNetworkView from "../pages/nftnetworks/view/NFTNetworkView";
+import CoinListingFee from "../pages/coinlistingfee/CoinListingFee";
 
 const AppRoutes = () => {
   return (
@@ -123,6 +124,16 @@ const AppRoutes = () => {
             </PrivateRoute>
           }
         />
+
+        <Route
+          path="/coin-listing-fee"
+          element={
+            <PrivateRoute>
+              <CoinListingFee />
+            </PrivateRoute>
+          }
+        />
+
         <Route
           path="/coin-status-count"
           element={
