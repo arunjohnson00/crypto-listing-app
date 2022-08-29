@@ -1,7 +1,7 @@
 import appRequest from "../../utils/fetchhandler";
 import { COMMON } from "../types";
 
-export const latestNewsRequest = COMMON.LATEST_NEWS;
+// export const latestNewsRequest = COMMON.LATEST_NEWS;
 
 export const topbarSearchRequest = (
   values: any,
@@ -38,12 +38,30 @@ export const recentSearchRequest = (
   successHandler: any,
   errorHandler: any
 ) => {
+  // console.log(values);
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/recent-search/${values}`,
+    url: `api/f/v1/recent-search`,
+    method: "POST",
+    secure: false,
+    body: values,
+    fileUpload: true,
+    actionType: COMMON.RECENT_SEARCH,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const latestNewsRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/news-feed/20`,
     method: "GET",
     secure: false,
-    actionType: COMMON.RECENT_SEARCH,
+    actionType: COMMON.LATEST_NEWS_FEED,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };

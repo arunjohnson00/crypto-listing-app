@@ -1,19 +1,20 @@
 import { COMMON } from "../types";
 
 const initialState = {
-  latest_news: "",
+  //latest_news: "",
   top_bar_search_result: "",
   coin_vote: "",
   recent_search: "",
+  latest_news_feed: "",
 };
 const commonReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
-    case COMMON.LATEST_NEWS:
-      //console.log(action);
-      return {
-        ...state,
-        latest_news: action?.payload,
-      };
+    // case COMMON.LATEST_NEWS:
+    //   //console.log(action);
+    //   return {
+    //     ...state,
+    //     latest_news: action?.payload,
+    //   };
 
     case COMMON.TOPBAR_SEARCH:
       //console.log(action);
@@ -34,6 +35,12 @@ const commonReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         recent_search: action?.payload?.data,
+      };
+    case COMMON.LATEST_NEWS_FEED:
+      //console.log(action);
+      return {
+        ...state,
+        latest_news_feed: action?.payload?.data,
       };
 
     default:

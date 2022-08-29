@@ -2,7 +2,8 @@ import { useEffect, useState, forwardRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Drawer from "@mui/material/Drawer";
 import { Avatar, Button, Popover, Stack, Typography, Box } from "@mui/material";
-
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import InputUnstyled, { InputUnstyledProps } from "@mui/base/InputUnstyled";
 import { Link } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
@@ -15,6 +16,7 @@ import { IconButton } from "./style";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import TrendingIcon from "../../../assets/search/trending_icon.svg";
 import { topbarSearchRequest } from "../../../store/action";
+import MobileRecentSearchCard from "../cards/recentsearchcard/MobileRecentSearchCard";
 
 const CustomInputPopup = forwardRef(function CustomInput(
   props: InputUnstyledProps,
@@ -37,7 +39,25 @@ const CustomInputPopup = forwardRef(function CustomInput(
   );
 });
 const serverAPIUrl = process.env.REACT_APP_API_URL;
-
+const responsiveRecentSearch = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 3.5,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3.5,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 3.5,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 3.5,
+  },
+};
 const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
   const dispatch: any = useDispatch();
   const [values, setValues] = useState<any>();
@@ -48,9 +68,9 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
   const trendingCoinList = useSelector((data: any) => {
     return data?.homeReducer?.trending_coin_list?.data;
   });
-  // const topBarSearchResult = useSelector((data: any) => {
-  //   return data?.commonReducer?.top_bar_search_result?.data;
-  // });
+  const recentSearchResult = useSelector((data: any) => {
+    return data?.commonReducer?.recent_search?.data;
+  });
 
   const [searchResult, setSearchResult] = useState<any>();
 
@@ -73,10 +93,10 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
     const errorHandler = (err: any) => {};
     dispatch(topbarSearchRequest(values, successHandler, errorHandler));
   }, [dispatch, values, setValues]);
-
   const newArray: any = JSON.parse(
     localStorage.getItem("recent_search") as any
   );
+
   const saveSearchHandler = (slug: any) => {
     // Put the object into storage
     if (
@@ -430,60 +450,34 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
           src={TrendingIcon}
           sx={{ width: 14, height: 14 }}
         /> */}
-
-              <Stack
-                direction="row"
-                spacing={0.5}
-                alignItems="center"
-                pt={1}
-                width="100%"
-              >
-                <Box
-                  sx={{
-                    backgroundColor: "#151720",
-                    padding: 1.5,
-                    borderRadius: 3,
-                  }}
-                  my={1}
-                  mr={1}
-                >
-                  <Stack direction="column" spacing={1} alignItems="center">
-                    <Avatar
-                      alt="Trending"
-                      src={`${serverAPIUrl}public/uploads/coin_logo/${""}`}
-                      sx={{ width: 23, height: 23 }}
-                    />
-                    <Stack direction="column" spacing={0} alignItems="center">
-                      <Link
-                        to={{
-                          pathname: `/coin/${"item?.slug"}`,
-                        }}
-                        onClick={() => saveSearchHandler("item?.slug")}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        state={{ coin_id: "item?.id" }}
-                        style={{ textDecoration: "none", color: "#FFFFFF" }}
-                      >
-                        <Typography sx={{ fontSize: ".7rem", fontWeight: 600 }}>
-                          {/* {item?.name} */}
-                          Name
-                        </Typography>
-                      </Link>
-                      <Typography
-                        sx={{
-                          fontSize: ".6rem",
-                          color: "#767676",
-                          fontWeight: 500,
-                        }}
-                      >
-                        {/* {item?.symbol} */}
-                        Symbol
-                      </Typography>
-                    </Stack>
-                  </Stack>
-                </Box>
-              </Stack>
             </Stack>
+            <Box pt={1}>
+              {recentSearchResult && (
+                <Carousel
+                  responsive={responsiveRecentSearch}
+                  infinite={true}
+                  removeArrowOnDeviceType={["tablet", "mobile"]}
+                  arrows={false}
+                  autoPlay={false}
+                  draggable={true}
+                  swipeable={true}
+                  minimumTouchDrag={10}
+                  keyBoardControl={true}
+                  shouldResetAutoplay={false}
+                >
+                  {recentSearchResult &&
+                    recentSearchResult?.map((item: any, index: number) => (
+                      <Box key={index}>
+                        <MobileRecentSearchCard
+                          item={item}
+                          index={index}
+                          saveSearchHandler={saveSearchHandler}
+                        />
+                      </Box>
+                    ))}
+                </Carousel>
+              )}
+            </Box>
           </Stack>
         )}
       </Stack>

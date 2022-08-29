@@ -9,27 +9,18 @@ import { latestNewsRequest } from "../../../store/action";
 import NewsCard from "../cards/newscard/NewsCard";
 
 const LatestNewsCardScroll = () => {
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
   const latestNews = useSelector((data: any) => {
-    return data?.commonReducer?.latest_news;
+    return data?.commonReducer?.latest_news_feed;
   });
 
-  //const [feed, setFeed] = useState<any>();
-  const { parse } = require("rss-to-json");
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
   useEffect(() => {
-    (async () => {
-      var rss: any = await parse("https://news.coinxhigh.com/feed/", {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,PATCH,OPTIONS",
-        },
-      });
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
 
-      dispatch({ type: latestNewsRequest, payload: rss });
-    })();
+    dispatch(latestNewsRequest("noData", successHandler, errorHandler));
   }, [dispatch]);
 
   return (

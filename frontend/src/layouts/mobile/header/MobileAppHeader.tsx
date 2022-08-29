@@ -17,7 +17,10 @@ import SearchDrawer from "../../../components/mobile/searchdrawer/SearchDrawer";
 import { Link } from "react-router-dom";
 import HeaderMenuDrawer from "../../../components/mobile/headermenudrawer/HeaderMenuDrawer";
 import logoWhite from "../../../assets/logo/logo.png";
-import { trendingCoinListRequest } from "../../../store/action";
+import {
+  recentSearchRequest,
+  trendingCoinListRequest,
+} from "../../../store/action";
 const MobileAppHeader = () => {
   const dispatch: any = useDispatch();
   const [openDrawer, setOpenDrawer] = useState({
@@ -25,13 +28,20 @@ const MobileAppHeader = () => {
     left: false,
   });
 
+  const newArray: any = JSON.parse(
+    localStorage.getItem("recent_search") as any
+  );
+
+  const formData: any = new FormData();
+  formData.append("q", newArray?.toString());
+
   const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
     setOpenDrawer({ ...openDrawer, top: !openDrawer?.top });
 
-    // const successHandler = (res: any) => {};
-    // const errorHandler = (err: any) => {};
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
 
-    // dispatch(trendingCoinListRequest("noData", successHandler, errorHandler));
+    dispatch(recentSearchRequest(formData, successHandler, errorHandler));
   };
 
   const toggleMenuDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {

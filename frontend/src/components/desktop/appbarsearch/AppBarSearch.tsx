@@ -12,10 +12,14 @@ import { IconButton } from "./style";
 import { Avatar, Button, Popover, Stack, Typography } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import TrendingIcon from "../../../assets/search/trending_icon.svg";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import {
+  recentSearchRequest,
   topbarSearchRequest,
   trendingCoinListRequest,
 } from "../../../store/action";
+import RecentSearchCard from "../cards/recentsearchcard/RecentSearchCard";
 
 const CustomInput = forwardRef(function CustomInput(
   props: InputUnstyledProps,
@@ -58,6 +62,26 @@ const CustomInputPopup = forwardRef(function CustomInput(
     />
   );
 });
+
+const responsiveRecentSearch = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 3.5,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3.5,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 3,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 3,
+  },
+};
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const AppBarSearch = () => {
   const dispatch: any = useDispatch();
@@ -67,14 +91,19 @@ const AppBarSearch = () => {
     nft: false,
   });
 
-  // const topBarSearchResult = useSelector((data: any) => {
-  //   return data?.commonReducer?.top_bar_search_result?.data;
-  // });
+  const recentSearchResult = useSelector((data: any) => {
+    return data?.commonReducer?.recent_search?.data;
+  });
   const trendingCoinList = useSelector((data: any) => {
     return data?.homeReducer?.trending_coin_list?.data;
   });
   const [searchResult, setSearchResult] = useState<any>();
+  const newArray: any = JSON.parse(
+    localStorage.getItem("recent_search") as any
+  );
 
+  const formData: any = new FormData();
+  formData.append("q", newArray?.toString());
   const handleChange = (event: any) => {
     setValues(event.target.value);
   };
@@ -83,10 +112,10 @@ const AppBarSearch = () => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
 
-    // const successHandler = (res: any) => {};
-    // const errorHandler = (err: any) => {};
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
 
-    // dispatch(trendingCoinListRequest(values, successHandler, errorHandler));
+    dispatch(recentSearchRequest(formData, successHandler, errorHandler));
   };
 
   const handleClose = () => {
@@ -112,9 +141,6 @@ const AppBarSearch = () => {
     dispatch(topbarSearchRequest(values, successHandler, errorHandler));
   }, [dispatch, values, setValues]);
 
-  const newArray: any = JSON.parse(
-    localStorage.getItem("recent_search") as any
-  );
   const saveSearchHandler = (slug: any) => {
     // Put the object into storage
     if (
@@ -500,58 +526,42 @@ const AppBarSearch = () => {
             sx={{ width: 14, height: 14 }}
           /> */}
             </Stack>
-            <Stack
+            {/* <Stack
               direction="row"
-              spacing={0.5}
+              spacing={1}
               alignItems="center"
               pt={1}
               width="100%"
-            >
-              <Box
-                sx={{
-                  backgroundColor: "#151720",
-                  padding: 1.5,
-                  borderRadius: 3,
-                }}
-                my={1}
-                mr={1}
-              >
-                <Stack direction="column" spacing={1} alignItems="center">
-                  <Avatar
-                    alt="Trending"
-                    src={`${serverAPIUrl}public/uploads/coin_logo/${""}`}
-                    sx={{ width: 23, height: 23 }}
-                  />
-                  <Stack direction="column" spacing={0} alignItems="center">
-                    <Link
-                      to={{
-                        pathname: `/coin/${"item?.slug"}`,
-                      }}
-                      onClick={() => saveSearchHandler("item?.slug")}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      state={{ coin_id: "item?.id" }}
-                      style={{ textDecoration: "none", color: "#FFFFFF" }}
-                    >
-                      <Typography sx={{ fontSize: ".7rem", fontWeight: 600 }}>
-                        {/* {item?.name} */}
-                        Name
-                      </Typography>
-                    </Link>
-                    <Typography
-                      sx={{
-                        fontSize: ".6rem",
-                        color: "#767676",
-                        fontWeight: 500,
-                      }}
-                    >
-                      {/* {item?.symbol} */}
-                      Symbol
-                    </Typography>
-                  </Stack>
-                </Stack>
-              </Box>
-            </Stack>
+              sx={{ background: "red", height: 50 }}
+            > */}
+            <Box pt={1}>
+              {recentSearchResult && (
+                <Carousel
+                  responsive={responsiveRecentSearch}
+                  infinite={true}
+                  removeArrowOnDeviceType={["tablet", "mobile"]}
+                  arrows={false}
+                  autoPlay={false}
+                  draggable={true}
+                  swipeable={true}
+                  minimumTouchDrag={10}
+                  keyBoardControl={true}
+                  shouldResetAutoplay={false}
+                >
+                  {recentSearchResult &&
+                    recentSearchResult?.map((item: any, index: number) => (
+                      <Box key={index}>
+                        <RecentSearchCard
+                          item={item}
+                          index={index}
+                          saveSearchHandler={saveSearchHandler}
+                        />
+                      </Box>
+                    ))}
+                </Carousel>
+              )}
+            </Box>
+            {/* </Stack> */}
           </Stack>
         )}
       </Popover>

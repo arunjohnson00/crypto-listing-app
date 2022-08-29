@@ -60,11 +60,9 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
   const theme = useTheme();
   const dispatch: any = useDispatch();
   const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
-  const { parse } = require("rss-to-json");
 
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
-  const [feed, setFeed] = useState<any>();
   const [tableTabvalue, setTableTabValue] = useState("1");
   const [tableData, setTableData] = useState<any>([]);
   const [page, setPage] = useState({ pagination: 1, scroll: true });
@@ -174,14 +172,6 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
       );
   }, [location, page]);
 
-  useEffect(() => {
-    (async () => {
-      var rss = await parse("https://news.coinxhigh.com/feed/");
-
-      setFeed(rss);
-    })();
-  }, []);
-
   return (
     <Fragment>
       <Grid
@@ -216,17 +206,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
                   loop={0}
                   delay={0}
                   speed={70}
-                >
-                  {feed?.items?.map((rssFeed: any, index: number) => {
-                    return (
-                      <NewsCardTop
-                        rssFeed={rssFeed}
-                        timeAgo={timeAgo}
-                        key={index}
-                      />
-                    );
-                  })}
-                </Marquee>
+                ></Marquee>
               </Stack>
             </Grid>
           </Stack>
