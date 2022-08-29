@@ -21,7 +21,7 @@ const BoostPublishCard = ({ title, data, button, offer, normal }: any) => {
             normal === true
               ? "#050E35"
               : "linear-gradient(180deg, #01061A, #0C0A49)",
-          borderRadius: 2,
+          borderRadius: 4,
           border: "2px solid #0C0A49",
           position: "relative",
 
@@ -31,7 +31,7 @@ const BoostPublishCard = ({ title, data, button, offer, normal }: any) => {
         {offer === true && (
           <Badge
             overlap="circular"
-            sx={{ position: "relative", top: -30, left: 140 }}
+            sx={{ position: "relative", top: -40, left: 130 }}
             badgeContent={
               <Stack
                 direction="column"

@@ -29,6 +29,8 @@ import MobileSingleCryptoEventsPage from "../pages/mobile/mobilesinglecryptoeven
 import SingleNftMarketPlacesPage from "../pages/desktop/singlenftmarketplaces/SingleNftMarketPlacesPage";
 import BoostPublishPage from "../pages/desktop/boostpublish/BoostPublishPage";
 import UserSettings from "../pages/useradmin/usersettings/UserSettings";
+import SelectPlanPage from "../pages/desktop/selectplanpage/SelectPlanPage";
+import SelectPlanMailPage from "../pages/desktop/selectplanmailpage/SelectPlanMailPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -250,6 +252,24 @@ const AppRoutes = () => {
           element={
             <PublicRoutes>
               <BoostPublishPage />
+            </PublicRoutes>
+          }
+        />
+
+        <Route
+          path="/select-plan"
+          element={
+            <PublicRoutes>
+              <SelectPlanPage />
+            </PublicRoutes>
+          }
+        />
+
+        <Route
+          path="/select-plan-mail"
+          element={
+            <PublicRoutes>
+              <SelectPlanMailPage />
             </PublicRoutes>
           }
         />
