@@ -24,6 +24,7 @@ import AddNFTIcon from "../../../assets/userdashboard/nft_menu.png";
 import AddAirdropIcon from "../../../assets/userdashboard/airdrop_menu.png";
 import SettingsIcon from "../../../assets/userdashboard/settings_menu.png";
 import AdsIcon from "../../../assets/userdashboard/ads_menu.png";
+import { Link } from "react-router-dom";
 const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
   const [activeMenu, setActiveMenu] = useState<any>();
 
@@ -185,6 +186,10 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
           </MenuItem>
 
           <MenuItem
+            style={{
+              paddingTop: 10,
+              paddingBottom: 10,
+            }}
             icon={
               <Avatar
                 alt="User Dashboard"
@@ -204,6 +209,10 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
           </MenuItem>
 
           <MenuItem
+            style={{
+              paddingTop: 10,
+              paddingBottom: 10,
+            }}
             icon={
               <Avatar
                 alt="User Dashboard"
@@ -216,10 +225,16 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
               />
             }
           >
-            <Typography variant="body2" ml={2}>
+            <Link
+              to="/user-dashboard/settings"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
               {" "}
-              Settings
-            </Typography>
+              <Typography variant="body2" ml={2}>
+                {" "}
+                Settings
+              </Typography>
+            </Link>
           </MenuItem>
 
           {/* <SubMenu title="Components">

@@ -28,6 +28,7 @@ import MobileCryptoEventsPage from "../pages/mobile/mobilecryptoeventspage/Mobil
 import MobileSingleCryptoEventsPage from "../pages/mobile/mobilesinglecryptoeventspage/MobileSingleCryptoEventsPage";
 import SingleNftMarketPlacesPage from "../pages/desktop/singlenftmarketplaces/SingleNftMarketPlacesPage";
 import BoostPublishPage from "../pages/desktop/boostpublish/BoostPublishPage";
+import UserSettings from "../pages/useradmin/usersettings/UserSettings";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -262,6 +263,14 @@ const AppRoutes = () => {
           }
         />
 
+        <Route
+          path="/user-dashboard/settings"
+          element={
+            <PrivateRoute>
+              <UserSettings />
+            </PrivateRoute>
+          }
+        />
         {/* <Route path="/" element={<Navigate replace to="/dashboard" />} /> */}
         <Route path="*" element={<p>Theres nothing </p>} />
       </Routes>
