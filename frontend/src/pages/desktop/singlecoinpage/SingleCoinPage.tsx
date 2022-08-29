@@ -44,6 +44,7 @@ const SingleCoinPage = () => {
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
   const [feed, setFeed] = useState<any>();
+
   const [requestStatus, setRequestStatus] = useState<any>(false);
 
   useEffect(() => {
@@ -51,7 +52,10 @@ const SingleCoinPage = () => {
       navigate("/");
     const successHandler = (res: any) => {
       setRequestStatus(res?.data?.status);
+
+      // Put the object into storage
     };
+
     const errorHandler = (err: any) => {};
 
     dispatch(

@@ -40,7 +40,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import SingleCoinChip from "../coinpagechip/SingleCoinChip";
 import SocialCounterWithGraphCard from "../cards/socialcounterwithgraphcard/SocialCounterWithGraphCard";
 
-import { coinVoteRequest } from "../../../store/action/commonAction";
+import { coinVoteRequest } from "../../../store/action";
 
 import ToolTipImage from "../../../assets/singlepagecoin/tool-tip.png";
 import CoinGeckoImage from "../../../assets/singlepagecoin/coingecko.png";

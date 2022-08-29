@@ -66,6 +66,7 @@ const AppBarSearch = () => {
     coin: false,
     nft: false,
   });
+
   // const topBarSearchResult = useSelector((data: any) => {
   //   return data?.commonReducer?.top_bar_search_result?.data;
   // });
@@ -110,6 +111,26 @@ const AppBarSearch = () => {
     const errorHandler = (err: any) => {};
     dispatch(topbarSearchRequest(values, successHandler, errorHandler));
   }, [dispatch, values, setValues]);
+
+  const newArray: any = JSON.parse(
+    localStorage.getItem("recent_search") as any
+  );
+  const saveSearchHandler = (slug: any) => {
+    // Put the object into storage
+    if (
+      (localStorage.getItem("recent_search") as any) === null ||
+      (localStorage.getItem("recent_search") as any) === undefined ||
+      localStorage.hasOwnProperty("recent_search") === false
+    ) {
+      localStorage.setItem("recent_search", JSON.stringify([slug]));
+    } else {
+      newArray.push(slug);
+      localStorage.setItem(
+        "recent_search",
+        JSON.stringify(Array.from(new Set([...newArray])))
+      );
+    }
+  };
 
   return (
     <Box sx={{ display: "flex", "& > * + *": { ml: 1 } }}>
@@ -264,6 +285,7 @@ const AppBarSearch = () => {
                       to={{
                         pathname: `/coin/${item?.coin_slug}`,
                       }}
+                      onClick={() => saveSearchHandler(item?.slug)}
                       target="_blank"
                       rel="noopener noreferrer"
                       state={{ coin_id: item?.coin_id }}
@@ -442,6 +464,7 @@ const AppBarSearch = () => {
                       to={{
                         pathname: `/coin/${item?.slug}`,
                       }}
+                      onClick={() => saveSearchHandler(item?.slug)}
                       target="_blank"
                       rel="noopener noreferrer"
                       state={{ coin_id: item?.id }}
@@ -476,6 +499,58 @@ const AppBarSearch = () => {
             src={TrendingIcon}
             sx={{ width: 14, height: 14 }}
           /> */}
+            </Stack>
+            <Stack
+              direction="row"
+              spacing={0.5}
+              alignItems="center"
+              pt={1}
+              width="100%"
+            >
+              <Box
+                sx={{
+                  backgroundColor: "#151720",
+                  padding: 1.5,
+                  borderRadius: 3,
+                }}
+                my={1}
+                mr={1}
+              >
+                <Stack direction="column" spacing={1} alignItems="center">
+                  <Avatar
+                    alt="Trending"
+                    src={`${serverAPIUrl}public/uploads/coin_logo/${""}`}
+                    sx={{ width: 23, height: 23 }}
+                  />
+                  <Stack direction="column" spacing={0} alignItems="center">
+                    <Link
+                      to={{
+                        pathname: `/coin/${"item?.slug"}`,
+                      }}
+                      onClick={() => saveSearchHandler("item?.slug")}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      state={{ coin_id: "item?.id" }}
+                      style={{ textDecoration: "none", color: "#FFFFFF" }}
+                    >
+                      <Typography sx={{ fontSize: ".7rem", fontWeight: 600 }}>
+                        {/* {item?.name} */}
+                        Name
+                      </Typography>
+                    </Link>
+                    <Typography
+                      sx={{
+                        fontSize: ".6rem",
+                        color: "#767676",
+                        fontWeight: 500,
+                      }}
+                    >
+                      {/* {item?.symbol} */}
+                      Symbol
+                    </Typography>
+                  </Stack>
+                </Stack>
+              </Box>
             </Stack>
           </Stack>
         )}

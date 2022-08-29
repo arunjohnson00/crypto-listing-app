@@ -6,6 +6,7 @@ export const COMMON = {
   LATEST_NEWS: "LATEST_NEWS",
   TOPBAR_SEARCH: "TOPBAR_SEARCH",
   COIN_VOTE: "COIN_VOTE",
+  RECENT_SEARCH: "RECENT_SEARCH",
 };
 
 export const HOME = {

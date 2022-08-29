@@ -4,6 +4,7 @@ const initialState = {
   latest_news: "",
   top_bar_search_result: "",
   coin_vote: "",
+  recent_search: "",
 };
 const commonReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -26,6 +27,13 @@ const commonReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         coin_vote: action?.payload?.data,
+      };
+
+    case COMMON.RECENT_SEARCH:
+      //console.log(action);
+      return {
+        ...state,
+        recent_search: action?.payload?.data,
       };
 
     default:

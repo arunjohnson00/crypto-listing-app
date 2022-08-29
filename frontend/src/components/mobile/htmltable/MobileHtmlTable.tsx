@@ -29,7 +29,7 @@ import moment from "moment";
 
 import "./style.css";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { coinVoteRequest } from "../../../store/action/commonAction";
+import { coinVoteRequest } from "../../../store/action";
 
 const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
@@ -130,15 +130,36 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       maxWidth: 1,
                     }}
                   >
-                    {index + 1}
+                    <Link
+                      to={{
+                        pathname: `/coin/${data?.slug}`,
+                      }}
+                      state={{ coin_id: data?.id }}
+                      style={{
+                        textDecoration: "none",
+                        color: "#FFFFFF",
+                      }}
+                    >
+                      {index + 1}
+                    </Link>
                   </TableCell>
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
-                    {" "}
-                    <Avatar
-                      alt={data?.name}
-                      src={`${serverAPIUrl}public/uploads/coin_logo/${data?.logo}`}
-                      sx={{ width: 34, height: 34 }}
-                    />
+                    <Link
+                      to={{
+                        pathname: `/coin/${data?.slug}`,
+                      }}
+                      state={{ coin_id: data?.id }}
+                      style={{
+                        textDecoration: "none",
+                        color: "#FFFFFF",
+                      }}
+                    >
+                      <Avatar
+                        alt={data?.name}
+                        src={`${serverAPIUrl}public/uploads/coin_logo/${data?.logo}`}
+                        sx={{ width: 34, height: 34 }}
+                      />
+                    </Link>
                   </TableCell>
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     <Stack direction="column">
@@ -184,120 +205,174 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
                   >
                     <Typography variant="caption">
-                      {data && data?.market_cap !== null ? (
-                        data &&
-                        "$" +
-                          Math.floor(
-                            Math.abs(data?.market_cap)
-                          ).toLocaleString()
-                      ) : (
-                        <span style={{ color: "#7a7a7a" }}>--</span>
-                      )}
+                      <Link
+                        to={{
+                          pathname: `/coin/${data?.slug}`,
+                        }}
+                        state={{ coin_id: data?.id }}
+                        style={{
+                          textDecoration: "none",
+                          color: "#FFFFFF",
+                        }}
+                      >
+                        {data && data?.market_cap !== null ? (
+                          data &&
+                          "$" +
+                            Math.floor(
+                              Math.abs(data?.market_cap)
+                            ).toLocaleString()
+                        ) : (
+                          <span style={{ color: "#7a7a7a" }}>--</span>
+                        )}
+                      </Link>
                     </Typography>
                   </TableCell>
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     <Typography variant="caption">
-                      {data && data?.current_price !== null ? (
-                        String(Math.trunc(parseFloat(data?.current_price)))
-                          .length > 2 ? (
-                          "$" +
-                          Number(
-                            parseFloat(data?.current_price).toFixed(2)
-                          ).toLocaleString()
-                        ) : data && Math.abs(data?.current_price) > 1 ? (
-                          "$" +
-                          parseFloat(data?.current_price)
-                            .toFixed(4)
-                            .toLocaleString()
+                      <Link
+                        to={{
+                          pathname: `/coin/${data?.slug}`,
+                        }}
+                        state={{ coin_id: data?.id }}
+                        style={{
+                          textDecoration: "none",
+                          color: "#FFFFFF",
+                        }}
+                      >
+                        {data && data?.current_price !== null ? (
+                          String(Math.trunc(parseFloat(data?.current_price)))
+                            .length > 2 ? (
+                            "$" +
+                            Number(
+                              parseFloat(data?.current_price).toFixed(2)
+                            ).toLocaleString()
+                          ) : data && Math.abs(data?.current_price) > 1 ? (
+                            "$" +
+                            parseFloat(data?.current_price)
+                              .toFixed(4)
+                              .toLocaleString()
+                          ) : (
+                            "$" +
+                            parseFloat(data?.current_price)
+                              .toFixed(13)
+                              .toLocaleString()
+                          )
                         ) : (
-                          "$" +
-                          parseFloat(data?.current_price)
-                            .toFixed(13)
-                            .toLocaleString()
-                        )
-                      ) : (
-                        <span style={{ color: "#7a7a7a" }}>--</span>
-                      )}
+                          <span style={{ color: "#7a7a7a" }}>--</span>
+                        )}
+                      </Link>
                     </Typography>
                   </TableCell>
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
-                    {" "}
-                    <Stack
-                      direction="row"
-                      sx={{ alignItems: "center", justifyContent: "center" }}
-                      spacing={0}
+                    <Link
+                      to={{
+                        pathname: `/coin/${data?.slug}`,
+                      }}
+                      state={{ coin_id: data?.id }}
+                      style={{
+                        textDecoration: "none",
+                        color: "#FFFFFF",
+                      }}
                     >
-                      {data &&
-                      data?.pc_24h !== null &&
-                      Math.sign(parseFloat(data?.pc_24h)) === -1 ? (
-                        <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                      ) : (
-                        data?.pc_24h !== null && (
-                          <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                        )
-                      )}
-
-                      <Typography
-                        variant="caption"
-                        sx={{
-                          color:
-                            Math.sign(parseFloat(data?.pc_24h)) === -1
-                              ? "#ff0000"
-                              : "#00ff00",
-                          fontWeight: 600,
-                          fontSize: ".7rem",
-                        }}
+                      <Stack
+                        direction="row"
+                        sx={{ alignItems: "center", justifyContent: "center" }}
+                        spacing={0}
                       >
-                        {data && data?.pc_24h !== null ? (
-                          parseFloat(data?.pc_24h).toFixed(2).replace("-", "") +
-                          "%"
+                        {data &&
+                        data?.pc_24h !== null &&
+                        Math.sign(parseFloat(data?.pc_24h)) === -1 ? (
+                          <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                         ) : (
-                          <span style={{ color: "#7a7a7a" }}>--</span>
+                          data?.pc_24h !== null && (
+                            <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                          )
                         )}
-                      </Typography>
-                    </Stack>
+
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            color:
+                              Math.sign(parseFloat(data?.pc_24h)) === -1
+                                ? "#ff0000"
+                                : "#00ff00",
+                            fontWeight: 600,
+                            fontSize: ".7rem",
+                          }}
+                        >
+                          {data && data?.pc_24h !== null ? (
+                            parseFloat(data?.pc_24h)
+                              .toFixed(2)
+                              .replace("-", "") + "%"
+                          ) : (
+                            <span style={{ color: "#7a7a7a" }}>--</span>
+                          )}
+                        </Typography>
+                      </Stack>
+                    </Link>
                   </TableCell>
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
-                    {" "}
-                    <Stack
-                      direction="row"
-                      sx={{ alignItems: "center", justifyContent: "center" }}
-                      spacing={0}
+                    <Link
+                      to={{
+                        pathname: `/coin/${data?.slug}`,
+                      }}
+                      state={{ coin_id: data?.id }}
+                      style={{
+                        textDecoration: "none",
+                        color: "#FFFFFF",
+                      }}
                     >
-                      {data &&
-                      data?.pc_7d !== null &&
-                      Math.sign(parseFloat(data?.pc_7d)) === -1 ? (
-                        <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                      ) : (
-                        data?.pc_7d !== null && (
-                          <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                        )
-                      )}
-
-                      <Typography
-                        variant="caption"
-                        sx={{
-                          color:
-                            Math.sign(parseFloat(data?.pc_7d)) === -1
-                              ? "#ff0000"
-                              : "#00ff00",
-                          fontWeight: 600,
-                          fontSize: ".7rem",
-                        }}
+                      <Stack
+                        direction="row"
+                        sx={{ alignItems: "center", justifyContent: "center" }}
+                        spacing={0}
                       >
-                        {data && data?.pc_7d !== null ? (
-                          parseFloat(data?.pc_7d).toFixed(2).replace("-", "") +
-                          "%"
+                        {data &&
+                        data?.pc_7d !== null &&
+                        Math.sign(parseFloat(data?.pc_7d)) === -1 ? (
+                          <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                         ) : (
-                          <span style={{ color: "#7a7a7a" }}>--</span>
+                          data?.pc_7d !== null && (
+                            <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                          )
                         )}
-                      </Typography>
-                    </Stack>
+
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            color:
+                              Math.sign(parseFloat(data?.pc_7d)) === -1
+                                ? "#ff0000"
+                                : "#00ff00",
+                            fontWeight: 600,
+                            fontSize: ".7rem",
+                          }}
+                        >
+                          {data && data?.pc_7d !== null ? (
+                            parseFloat(data?.pc_7d)
+                              .toFixed(2)
+                              .replace("-", "") + "%"
+                          ) : (
+                            <span style={{ color: "#7a7a7a" }}>--</span>
+                          )}
+                        </Typography>
+                      </Stack>
+                    </Link>
                   </TableCell>
                   <TableCell sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}>
                     <Typography variant="caption">
-                      {" "}
-                      {moment(data?.listed, "YYYYMMDD").fromNow()}
+                      <Link
+                        to={{
+                          pathname: `/coin/${data?.slug}`,
+                        }}
+                        state={{ coin_id: data?.id }}
+                        style={{
+                          textDecoration: "none",
+                          color: "#FFFFFF",
+                        }}
+                      >
+                        {moment(data?.listed, "YYYYMMDD").fromNow()}
+                      </Link>
                     </Typography>
                   </TableCell>
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
@@ -467,7 +542,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
         {variant === "historical_data" && (
           <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
             {tableData &&
-              tableData.map((data: any, index: number) => (
+              tableData?.slice(1).map((data: any, index: number) => (
                 <TableRow
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },

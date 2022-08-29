@@ -32,3 +32,18 @@ export const coinVoteRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const recentSearchRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/recent-search/${values}`,
+    method: "GET",
+    secure: false,
+    actionType: COMMON.RECENT_SEARCH,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

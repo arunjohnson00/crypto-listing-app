@@ -37,7 +37,7 @@ import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import { RWebShare } from "react-web-share";
 import { useTheme } from "@mui/material/styles";
 
-import { coinVoteRequest } from "../../../store/action/commonAction";
+import { coinVoteRequest } from "../../../store/action";
 
 import ToolTipImage from "../../../assets/singlepagecoin/tool-tip.png";
 import CoinGeckoImage from "../../../assets/singlepagecoin/coingecko.png";
