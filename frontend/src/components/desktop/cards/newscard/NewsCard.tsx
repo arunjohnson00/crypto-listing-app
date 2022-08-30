@@ -38,7 +38,7 @@ const NewsCard = ({ rssFeed, timeAgo }: any) => {
             variant="caption"
             sx={{ color: "#FFFFF5", fontWeight: "300", wordWrap: "break-word" }}
           >
-            {Parser(rssFeed?.description.substring(0, 200))}
+            {Parser(rssFeed?.excerpt.substring(0, 200))}
           </Typography>
           <Stack
             direction="row"
@@ -49,7 +49,7 @@ const NewsCard = ({ rssFeed, timeAgo }: any) => {
               variant="caption"
               sx={{ color: "#40444F", fontWeight: "550" }}
             >
-              {timeAgo.format(new Date(rssFeed?.published))}
+              {timeAgo.format(new Date(rssFeed?.date))}
             </Typography>
 
             <Typography

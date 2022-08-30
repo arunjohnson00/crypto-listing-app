@@ -22,6 +22,7 @@ import MobileLatestNewsHeading from "../../../components/mobile/Typography/headi
 import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
 import MobileBreadCrumbs from "../../../components/mobile/breadcrumbs/MobileBreadCrumbs";
 import SingleNFTHeader from "../../../components/mobile/signlenftheader/SingleNFTHeader";
+import MobileCoinSlider from "../../../components/mobile/coinslider/MobileCoinSlider";
 
 const MobileSingleNftPage = () => {
   const { parse } = require("rss-to-json");
@@ -49,6 +50,10 @@ const MobileSingleNftPage = () => {
       >
         <Grid xs={12} sx={{ paddingTop: 3 }}>
           <MobileLatestNewsCardScroll />
+        </Grid>
+
+        <Grid xs={12} sx={{ paddingTop: 0 }}>
+          <MobileCoinSlider />
         </Grid>
 
         {/* <Grid

@@ -11,7 +11,7 @@ import NewsCard from "../cards/newscard/NewsCard";
 const LatestNewsCardScroll = () => {
   const dispatch: any = useDispatch();
   const latestNews = useSelector((data: any) => {
-    return data?.commonReducer?.latest_news_feed;
+    return data?.commonReducer?.latest_news_feed?.data;
   });
 
   TimeAgo.addDefaultLocale(en);
@@ -20,7 +20,7 @@ const LatestNewsCardScroll = () => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
 
-    dispatch(latestNewsRequest("noData", successHandler, errorHandler));
+    dispatch(latestNewsRequest({ count: 50 }, successHandler, errorHandler));
   }, [dispatch]);
 
   return (
@@ -45,7 +45,7 @@ const LatestNewsCardScroll = () => {
         speed={70}
       >
         {latestNews &&
-          latestNews?.items?.map((rssFeed: any, index: number) => {
+          latestNews?.map((rssFeed: any, index: number) => {
             return <NewsCard rssFeed={rssFeed} timeAgo={timeAgo} key={index} />;
           })}
       </Marquee>

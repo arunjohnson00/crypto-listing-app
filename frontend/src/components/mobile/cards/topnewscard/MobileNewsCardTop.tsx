@@ -23,7 +23,7 @@ const MobileNewsCardTop = ({ rssFeed, timeAgo }: any) => {
         </Typography>
         <Stack direction="row" sx={{ justifyContent: "flex-end" }}>
           <Typography variant="caption" sx={{ color: "#24D781" }}>
-            {rssFeed && timeAgo.format(new Date(rssFeed?.published))}
+            {rssFeed && timeAgo.format(new Date(rssFeed?.date))}
           </Typography>
         </Stack>
       </Stack>

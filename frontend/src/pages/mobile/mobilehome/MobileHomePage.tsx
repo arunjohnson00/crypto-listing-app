@@ -42,12 +42,14 @@ import {
   menuCardRequest,
   videoListRequest,
   trendingCoinListRequest,
+  latestNewsRequest,
 } from "../../../store/action";
 import { tableHeader } from "./helper";
 import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
 
 import { Link } from "react-router-dom";
 import MobileCryptoEventsCardSlider from "../../../components/mobile/cards/cryptoeventscardslider/MobileCryptoEventsCardSlider";
+import MobileCoinSlider from "../../../components/mobile/coinslider/MobileCoinSlider";
 
 const { parse } = require("rss-to-json");
 
@@ -185,7 +187,7 @@ const MobileHomePage = () => {
     html_table: true,
   });
   const latestNews = useSelector((data: any) => {
-    return data?.commonReducer?.latest_news;
+    return data?.commonReducer?.latest_news_feed?.data;
   });
 
   const menuCards = useSelector((data: any) => {
@@ -249,6 +251,13 @@ const MobileHomePage = () => {
   }, [dispatch, tabIndex, setHTMLTablePreLoader]);
 
   useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(latestNewsRequest({ count: 50 }, successHandler, errorHandler));
+  }, [dispatch]);
+
+  useEffect(() => {
     const successHandler = (res: any) => {
       setPreLoader({
         ...preLoader,
@@ -276,6 +285,10 @@ const MobileHomePage = () => {
     >
       <Grid xs={12} sx={{ paddingTop: 3 }}>
         <MobileLatestNewsCardScroll />
+      </Grid>
+
+      <Grid xs={12} sx={{ paddingTop: 0 }}>
+        <MobileCoinSlider />
       </Grid>
 
       <Grid
@@ -853,7 +866,7 @@ const MobileHomePage = () => {
         }}
       >
         {latestNews &&
-          latestNews?.items?.slice(0, 3).map((rssFeed: any, index: number) => {
+          latestNews?.slice(0, 3).map((rssFeed: any, index: number) => {
             return (
               <MobileNewsCard
                 rssFeed={rssFeed}
@@ -882,7 +895,10 @@ const MobileHomePage = () => {
             justifyContent: " flex-end",
           }}
         >
-          <MobileViewMoreBtn title="View more" />
+          <Link to="/news" style={{ textDecoration: "none" }}>
+            {" "}
+            <MobileViewMoreBtn title="View more" />
+          </Link>
         </Stack>
       </Grid>
 

@@ -29,7 +29,7 @@ const NewsCardTop = ({ rssFeed, timeAgo }: any) => {
           </a>
         </Typography>
         <Typography variant="caption" sx={{ color: "#24D781" }}>
-          {timeAgo.format(new Date(rssFeed?.published))}
+          {timeAgo.format(new Date(rssFeed?.date))}
         </Typography>
       </Stack>
 

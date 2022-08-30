@@ -58,7 +58,7 @@ export const latestNewsRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/news-feed/20`,
+    url: `api/f/v1/news-feed/${values?.count}/${values?.term}`,
     method: "GET",
     secure: false,
     actionType: COMMON.LATEST_NEWS_FEED,

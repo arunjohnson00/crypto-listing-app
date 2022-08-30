@@ -50,8 +50,7 @@ const CardNewsPage = ({
             textTransform: "capitalize",
           }}
         >
-          {rssFeed &&
-            Parser(rssFeed?.description.substring(0, descriptionLength))}
+          {rssFeed && Parser(rssFeed?.excerpt?.substring(0, descriptionLength))}
           ...
         </Typography>
         <Stack
@@ -74,9 +73,7 @@ const CardNewsPage = ({
             sx={{ color: "#EEEFEF", fontWeight: "550" }}
           >
             {rssFeed &&
-              timeAgo.format(
-                new Date(rssFeed?.published ? rssFeed?.published : null)
-              )}
+              timeAgo.format(new Date(rssFeed?.date ? rssFeed?.date : null))}
           </Typography>
         </Stack>
       </Stack>

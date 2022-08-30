@@ -21,21 +21,10 @@ import MobileBreadCrumbs from "../../../components/mobile/breadcrumbs/MobileBrea
 
 import CryptoEventsSearchCard from "../../../components/mobile/cards/cryptoeventssearchcard/CryptoEventsSearchCard";
 import CryptoEventsTab from "../../../components/mobile/cryptoeventstab/CryptoEventsTab";
+import MobileCoinSlider from "../../../components/mobile/coinslider/MobileCoinSlider";
 
 const MobileCryptoEventsPage = () => {
-  const { parse } = require("rss-to-json");
-
   TimeAgo.addDefaultLocale(en);
-  const timeAgo = new TimeAgo("en");
-  const [feed, setFeed] = useState<any>();
-
-  useEffect(() => {
-    (async () => {
-      var rss = await parse("https://news.coinxhigh.com/feed/");
-
-      setFeed(rss);
-    })();
-  }, []);
 
   return (
     <Fragment>
@@ -50,27 +39,9 @@ const MobileCryptoEventsPage = () => {
           <MobileLatestNewsCardScroll />
         </Grid>
 
-        {/* <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-          }}
-        >
-          <Stack
-            direction="row"
-            spacing={1}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "0px",
-              paddingBottom: "0px",
-
-              alignItems: "center",
-            }}
-          >
-            <CoinSlider />
-          </Stack>
-        </Grid> */}
+        <Grid xs={12} sx={{ paddingTop: 0 }}>
+          <MobileCoinSlider />
+        </Grid>
         <Grid
           xs={12}
           sx={{

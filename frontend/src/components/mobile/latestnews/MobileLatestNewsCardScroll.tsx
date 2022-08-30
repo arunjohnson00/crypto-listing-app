@@ -10,31 +10,19 @@ import MobileNewsCardTop from "../cards/topnewscard/MobileNewsCardTop";
 import MobileLatestNewsHeading from "../Typography/headings/latestnews/MobileLatestNewsHeading";
 
 const MobileLatestNewsCardScroll = () => {
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
   const latestNews = useSelector((data: any) => {
-    return data?.commonReducer?.latest_news;
+    return data?.commonReducer?.latest_news_feed?.data;
   });
-  console.log(latestNews && latestNews);
 
-  //const [feed, setFeed] = useState<any>();
-  const { parse } = require("rss-to-json");
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
-  useEffect(() => {
-    (async () => {
-      var rss: any = await parse(
-        "https://cors-anywhere.herokuapp.com/https://news.coinxhigh.com/feed/",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET,PUT,POST,PATCH,OPTIONS",
-          },
-        }
-      );
 
-      dispatch({ type: latestNewsRequest, payload: rss });
-    })();
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(latestNewsRequest({ count: 50 }, successHandler, errorHandler));
   }, [dispatch]);
 
   return (
@@ -64,7 +52,7 @@ const MobileLatestNewsCardScroll = () => {
             speed={70}
           >
             {latestNews &&
-              latestNews?.items?.map((rssFeed: any, index: number) => {
+              latestNews?.map((rssFeed: any, index: number) => {
                 return (
                   <MobileNewsCardTop
                     rssFeed={rssFeed}

@@ -1,5 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Grid,
   Stack,
@@ -11,7 +11,6 @@ import {
   Avatar,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-
 import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
@@ -22,18 +21,28 @@ import CardNewsPage from "../../../components/desktop/cards/cardnews/CardNewsPag
 
 import NewsCardNewsPage from "../../../components/desktop/cards/newscardnewspage/NewsCardNewsPage";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
+import { latestNewsRequest } from "../../../store/action";
 
 const AppNewsPage = () => {
   const theme = useTheme();
   const now = new Date();
-  const latestNews = useSelector((data: any) => {
-    return data?.commonReducer?.latest_news;
-  });
+  const dispatch: any = useDispatch();
 
   const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
 
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
+
+  const latestNews = useSelector((data: any) => {
+    return data?.commonReducer?.latest_news_feed?.data;
+  });
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(latestNewsRequest({ count: 50 }, successHandler, errorHandler));
+  }, [dispatch]);
 
   return (
     <Fragment>
@@ -139,7 +148,7 @@ const AppNewsPage = () => {
               px={{ xs: 0, sm: 0, md: 2 }}
             >
               <CardNewsPage
-                rssFeed={latestNews && latestNews?.items[0]}
+                rssFeed={latestNews && latestNews[0]}
                 timeAgo={timeAgo}
                 height={xsBreakPoint ? "auto" : 363}
                 spacing={4}
@@ -157,7 +166,7 @@ const AppNewsPage = () => {
             >
               <Stack direction="column" spacing={6}>
                 <CardNewsPage
-                  rssFeed={latestNews && latestNews?.items[1]}
+                  rssFeed={latestNews && latestNews[1]}
                   timeAgo={timeAgo}
                   height={xsBreakPoint ? "auto" : 181}
                   spacing={2}
@@ -165,7 +174,7 @@ const AppNewsPage = () => {
                   descriptionLength={200}
                 />
                 <CardNewsPage
-                  rssFeed={latestNews && latestNews?.items[2]}
+                  rssFeed={latestNews && latestNews[2]}
                   timeAgo={timeAgo}
                   height={xsBreakPoint ? "auto" : 181}
                   spacing={2}
@@ -186,7 +195,7 @@ const AppNewsPage = () => {
             px={{ xs: 0, sm: 0, md: 0 }}
           >
             {latestNews &&
-              latestNews?.items?.slice(3).map((rssFeed: any, index: number) => {
+              latestNews?.slice(3).map((rssFeed: any, index: number) => {
                 return (
                   <Grid
                     xs={12}

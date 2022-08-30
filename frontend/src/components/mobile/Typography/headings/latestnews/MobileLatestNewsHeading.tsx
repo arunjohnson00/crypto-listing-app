@@ -13,7 +13,9 @@ const MobileLatestNewsHeading = () => {
         color: "white",
       }}
     >
-      <Typography variant="h6">News</Typography>
+      <Typography variant="h6" sx={{ fontSize: "1rem" }}>
+        News
+      </Typography>
     </Box>
   );
 };

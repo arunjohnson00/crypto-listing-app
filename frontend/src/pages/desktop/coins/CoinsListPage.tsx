@@ -32,6 +32,7 @@ import FeaturedCoinLineLeftImage from "../../../assets/home/feature-coin-line-le
 import FeaturedCoinLineRightImage from "../../../assets/home/feature-coin-line-right.png";
 import Carousel from "react-multi-carousel";
 import MobileFeaturedCoinCards from "../../../components/mobile/cards/featuredcoin/MobileFeaturedCoinCards";
+import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 
 const responsiveFeatured: any = {
   superLargeDesktop: {
@@ -182,36 +183,9 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
         }}
       >
         <Grid xs={12} sx={{ paddingTop: 3 }}>
-          <Stack
-            direction="row"
-            spacing={3}
-            sx={{
-              borderTop: "1px solid #1a1545",
-              borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
-              paddingBottom: "23px",
-              backgroundColor: "#04091d",
-              alignItems: "center",
-            }}
-          >
-            <Grid xs={4} sm={4} md={3} lg={2} xl={2}>
-              <LatestNewsHeading />
-            </Grid>
-            <Grid xs={8} sm={8} md={9} lg={10} xl={10}>
-              <Stack direction="row" spacing={3}>
-                <Marquee
-                  style={{ background: "none" }}
-                  pauseOnHover={true}
-                  gradient={false}
-                  loop={0}
-                  delay={0}
-                  speed={70}
-                ></Marquee>
-              </Stack>
-            </Grid>
-          </Stack>
+          <LatestNewsScroll />
         </Grid>
-        {/* <Grid
+        <Grid
           xs={12}
           sx={{
             alignItems: "center",
@@ -231,7 +205,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
           >
             <CoinSlider />
           </Stack>
-        </Grid> */}
+        </Grid>
         {windowInnerWidth <= 1200 ? (
           <Fragment>
             <Grid

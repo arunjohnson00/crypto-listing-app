@@ -51,7 +51,7 @@ const AppHeader = ({ windowInnerWidth }: any) => {
               spacing={1}
             >
               <AppBarSearch />
-              <ConnectWalletBtn />
+              {/* <ConnectWalletBtn /> */}
               <AddAsset />
               <LoginHeaderBtn />
             </Stack>

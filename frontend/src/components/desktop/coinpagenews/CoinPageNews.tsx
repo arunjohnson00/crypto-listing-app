@@ -13,8 +13,10 @@ import {
   Link,
   Button,
 } from "@mui/material";
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en.json";
 import MoodIcon from "@mui/icons-material/Mood";
-import { coinFAQBlockRequest } from "../../../store/action";
+import { latestNewsRequest } from "../../../store/action";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -22,11 +24,11 @@ import { useEffect } from "react";
 const CoinPageNews = () => {
   const location: any = useLocation();
   const dispatch: any = useDispatch();
-  const coinFAQ = useSelector((data: any) => {
-    return data?.coinReducer?.coin_faq_block?.data;
-  });
-
+  const timeAgo = new TimeAgo("en");
   const [expand, setExpand] = useState(false);
+  const latestNews = useSelector((data: any) => {
+    return data?.commonReducer?.latest_news_feed?.data;
+  });
 
   const readmoreHandler = () => {
     setExpand(!expand);
@@ -36,8 +38,8 @@ const CoinPageNews = () => {
     const errorHandler = (err: any) => {};
 
     dispatch(
-      coinFAQBlockRequest(
-        location?.pathname?.split("/").pop(),
+      latestNewsRequest(
+        { count: 100, term: location?.pathname?.split("/").pop() },
         successHandler,
         errorHandler
       )
@@ -82,42 +84,73 @@ const CoinPageNews = () => {
             mx={{ xs: 0, sm: 0, md: 0 }}
             spacing={2}
           >
-            <Stack direction="column" spacing={0.8}>
-              <Typography
-                variant="h6"
-                sx={{ color: "#FFFFFF", fontWeight: 600 }}
-              >
-                In American culture, there exists a brutal expectation to be
-                happy, said ...
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
-              >
-                According to reports, the US SEC Securities and Exchange
-                Commission has refused to reach a verdict on VanEcks BTC spot
-                ETF Exchange-traded Fund. The regulator noted that it would make
-                a decision in the next 45 days. Meanwhile, the company submitted
-                the application in July. US SEC Postpones Verdict on VanEcks
-                Spot ETF Application by{" "}
-                <span
-                  style={{ color: "#108B73" }}
-                  onClick={readmoreHandler}
-                >{`(${expand === true ? "read less" : "read more"})`}</span>
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{ color: "#FDA400", fontWeight: 400, fontSize: ".85rem" }}
-              >
-                24 min ago
-              </Typography>
-            </Stack>
-            <Divider
-              sx={{ borderBottomColor: "#111138", borderBottomWidth: 2 }}
-              flexItem
-              orientation="horizontal"
-              variant="fullWidth"
-            />
+            {latestNews &&
+              latestNews?.map((item: any, index: number) => (
+                <Stack direction="column" spacing={3} key={index}>
+                  <Stack direction="column" spacing={0.8}>
+                    <Typography
+                      variant="h6"
+                      sx={{ color: "#FFFFFF", fontWeight: 600 }}
+                    >
+                      <a
+                        href={item?.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ color: "inherit", textDecoration: "none" }}
+                      >
+                        {" "}
+                        {item?.title}
+                      </a>
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#FFFFFF",
+                        fontWeight: 400,
+                        fontSize: ".85rem",
+                      }}
+                    >
+                      {item?.excerpt}
+                      <span
+                        style={{ color: "#108B73" }}
+                        onClick={readmoreHandler}
+                      >
+                        <a
+                          href={item?.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{ color: "inherit", textDecoration: "none" }}
+                        >
+                          Read More
+                        </a>
+                      </span>
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#FDA400",
+                        fontWeight: 400,
+                        fontSize: ".85rem",
+                      }}
+                    >
+                      {item &&
+                        timeAgo.format(
+                          new Date(item?.date ? item?.date : null)
+                        )}
+                    </Typography>
+                  </Stack>
+
+                  <Divider
+                    sx={{
+                      borderBottomColor: "#111138",
+                      borderBottomWidth: 2,
+                    }}
+                    flexItem
+                    orientation="horizontal"
+                    variant="fullWidth"
+                  />
+                </Stack>
+              ))}
           </Stack>
         </Grid>
       </Grid>

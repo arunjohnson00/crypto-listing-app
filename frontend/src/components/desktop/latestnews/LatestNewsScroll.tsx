@@ -21,7 +21,7 @@ const LatestNewsScroll = () => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
 
-    dispatch(latestNewsRequest("noData", successHandler, errorHandler));
+    dispatch(latestNewsRequest({ count: 50 }, successHandler, errorHandler));
   }, [dispatch]);
 
   return (
@@ -50,7 +50,7 @@ const LatestNewsScroll = () => {
             delay={0}
             speed={70}
           >
-            {/* {latestNews &&
+            {latestNews &&
               latestNews?.map((rssFeed: any, index: number) => {
                 return (
                   <NewsCardTop
@@ -59,7 +59,7 @@ const LatestNewsScroll = () => {
                     key={index}
                   />
                 );
-              })} */}
+              })}
           </Marquee>
         </Stack>
       </Grid>

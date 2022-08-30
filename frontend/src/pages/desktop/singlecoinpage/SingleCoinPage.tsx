@@ -125,14 +125,6 @@ const SingleCoinPage = () => {
     // );
   }, [requestStatus]);
 
-  useEffect(() => {
-    (async () => {
-      var rss = await parse("https://news.coinxhigh.com/feed/");
-
-      setFeed(rss);
-    })();
-  }, []);
-
   return (
     <Fragment>
       <Grid
@@ -145,7 +137,6 @@ const SingleCoinPage = () => {
         <Grid xs={12} sx={{ paddingTop: 3 }}>
           <LatestNewsScroll />
         </Grid>
-
         <Grid
           xs={12}
           sx={{
