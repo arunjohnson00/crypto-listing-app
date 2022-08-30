@@ -30,6 +30,7 @@ import TablePagination from "./tablepagination/TablePagination";
 import TableListPagination from "./tablepagination/TablePagination";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { coinVoteRequest } from "../../../store/action";
+import { defaultColor } from "../../../common/common";
 
 const ListingTable = ({
   tableData,
@@ -217,11 +218,26 @@ const ListingTable = ({
                           color: "#FFFFFF",
                         }}
                       >
-                        <Avatar
-                          alt={data?.name}
-                          src={`${serverAPIUrl}public/uploads/coin_logo/${data?.logo}`}
-                          sx={{ width: 34, height: 34 }}
-                        />
+                        {data && data?.logo === null ? (
+                          <Avatar
+                            sx={{
+                              bgcolor: defaultColor[index],
+                              width: 34,
+                              height: 34,
+                            }}
+                          >
+                            <Typography sx={{ fontSize: ".6rem" }}>
+                              {data && data?.name[0]}
+                            </Typography>
+                          </Avatar>
+                        ) : (
+                          <Avatar
+                            alt={data && data?.name}
+                            src={`${serverAPIUrl}public/uploads/coin_logo/${data?.logo}`}
+                            //src="https://mui.com/static/images/avatar/1.jpg"
+                            sx={{ width: 34, height: 34 }}
+                          />
+                        )}
                       </Link>
                     </TableCell>
                     <TableCell sx={{ color: "#FFFFFF", border: 0 }}>

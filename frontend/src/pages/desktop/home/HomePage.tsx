@@ -730,7 +730,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
                   {featuredCoinList &&
                     featuredCoinList?.map((data: any, index: number) => (
                       <Grid xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
-                        <FeaturedCoinCards cardData={data} />
+                        <FeaturedCoinCards cardData={data} index={index} />
                       </Grid>
                     ))}
                 </Stack>
@@ -1170,7 +1170,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               {NFTList &&
                 NFTList?.data?.map((item: any, index: number) => (
                   <Box key={index}>
-                    <NftCollectionCard data={item && item} />
+                    <NftCollectionCard data={item && item} index={index} />
                   </Box>
                 ))}
             </Carousel>

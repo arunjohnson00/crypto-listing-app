@@ -9,6 +9,7 @@ import trendingCoinIcon from "../../../assets/common/trending_icon.png";
 import { biggestGainersRequest } from "../../../store/action";
 import { Link } from "react-router-dom";
 import { BounceLoader } from "react-spinners";
+import { defaultColor } from "../../../common/common";
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const CoinSlider = () => {
   const dispatch: any = useDispatch();
@@ -48,6 +49,7 @@ const CoinSlider = () => {
               src={trendingCoinIcon}
               sx={{ width: 24, height: 24 }}
             />
+
             <Typography
               sx={{ fontSize: ".9rem", color: "#FFFFFF", fontWeight: 600 }}
             >
@@ -76,11 +78,27 @@ const CoinSlider = () => {
                   alignItems="center"
                   key={index}
                 >
-                  <Avatar
-                    alt={item?.name}
-                    src={`${serverAPIUrl}public/uploads/coin_logo/${item?.logo}`}
-                    sx={{ width: 24, height: 24 }}
-                  />
+                  {item && item?.logo === null ? (
+                    <Avatar
+                      sx={{
+                        bgcolor: defaultColor[index],
+                        width: 24,
+                        height: 24,
+                      }}
+                    >
+                      <Typography sx={{ fontSize: ".7rem" }}>
+                        {item && item?.name[0]}
+                      </Typography>
+                    </Avatar>
+                  ) : (
+                    <Avatar
+                      alt={item && item?.name}
+                      src={`${serverAPIUrl}public/uploads/coin_logo/${item?.logo}`}
+                      sx={{ width: 24, height: 24 }}
+                      //src="https://mui.com/static/images/avatar/1.jpg"
+                    />
+                  )}
+
                   <Link
                     to={{
                       pathname: `/coin/${item?.slug}`,

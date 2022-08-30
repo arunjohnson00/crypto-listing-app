@@ -65,6 +65,7 @@ import TwitterGraphImage from "../../../assets/singlepagecoin/graph/twitter.png"
 import GithubGraphImage from "../../../assets/singlepagecoin/graph/github.png";
 import HeartAnimatedImage from "../../../assets/singlepagecoin/vote-animated.gif";
 import DropDownAds from "../dropdownads/DropDownAds";
+import { defaultColor } from "../../../common/common";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -156,11 +157,28 @@ const SingleCoinHeader = ({ coinData }: any) => {
               spacing={4}
               sx={{ alignItems: "center" }}
             >
-              <Avatar
-                alt={coinData?.name}
-                src={`${serverAPIUrl}public/uploads/coin_logo/${coinData?.logo}`}
-                sx={{ borderRadius: 0, width: 120, height: 120 }}
-              />
+              {coinData && coinData?.logo === null ? (
+                <Avatar
+                  sx={{
+                    bgcolor: defaultColor[coinData?.name?.length],
+                    borderRadius: 0,
+                    width: 120,
+                    height: 120,
+                  }}
+                >
+                  <Typography sx={{ fontSize: "2rem" }}>
+                    {coinData && coinData?.name[0]}
+                  </Typography>
+                </Avatar>
+              ) : (
+                <Avatar
+                  alt={coinData && coinData?.name}
+                  src={`${serverAPIUrl}public/uploads/coin_logo/${coinData?.logo}`}
+                  //src="https://mui.com/static/images/avatar/1.jpg"
+                  sx={{ borderRadius: 0, width: 120, height: 120 }}
+                />
+              )}
+
               <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
                 {coinData &&
                   coinData?.presale_start_date !== null &&

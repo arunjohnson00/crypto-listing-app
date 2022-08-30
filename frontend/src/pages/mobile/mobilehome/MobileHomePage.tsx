@@ -798,7 +798,7 @@ const MobileHomePage = () => {
             {NFTList &&
               NFTList?.data?.map((item: any, index: number) => (
                 <Box key={index}>
-                  <MobileNftCollectionCard data={item && item} />
+                  <MobileNftCollectionCard data={item && item} index={index} />
                 </Box>
               ))}
           </Carousel>

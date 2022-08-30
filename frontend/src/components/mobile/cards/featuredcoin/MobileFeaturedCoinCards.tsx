@@ -21,8 +21,9 @@ import TelegramImage from "../../../../assets/featuredcard/telegram.png";
 import TwitterImage from "../../../../assets/featuredcard/twitter.png";
 
 import { CountDownTimer } from "./countdown/CountDownTimer";
+import { defaultColor } from "../../../../common/common";
 
-const MobileFeaturedCoinCards = ({ cardData }: any) => {
+const MobileFeaturedCoinCards = ({ cardData, index }: any) => {
   // const getDifferenceInDays = (date1: any, date2: any) => {
   //   const diffInMs = Math.abs(date2 - date1);
   //   return diffInMs / (1000 * 60 * 60 * 24);
@@ -73,10 +74,23 @@ const MobileFeaturedCoinCards = ({ cardData }: any) => {
             sx={{ alignItems: "center", justifyContent: "space-between" }}
           >
             <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-              <Avatar
-                alt={cardData && cardData?.name}
-                src={`${serverAPIUrl}public/uploads/coin_logo/${cardData?.logo}`}
-              />
+              {cardData && cardData?.logo === null ? (
+                <Avatar
+                  sx={{
+                    bgcolor: defaultColor[index],
+                  }}
+                >
+                  <Typography sx={{ fontSize: ".6rem" }}>
+                    {cardData && cardData?.name[0]}
+                  </Typography>
+                </Avatar>
+              ) : (
+                <Avatar
+                  alt={cardData && cardData?.name}
+                  src={`${serverAPIUrl}public/uploads/coin_logo/${cardData?.logo}`}
+                  //src="https://mui.com/static/images/avatar/1.jpg"
+                />
+              )}
               <Stack direction="column" spacing={0}>
                 <Typography
                   variant="caption"

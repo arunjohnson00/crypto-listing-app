@@ -55,6 +55,7 @@ import DocsImage from "../../../assets/singlepagecoin/doc.png";
 
 import LinkImage from "../../../assets/singlepagecoin/link.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { defaultColor } from "../../../common/common";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileSingleCoinHeader = ({ coinData }: any) => {
@@ -154,11 +155,27 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
               width="100%"
             >
               <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-                <Avatar
-                  alt={coinData?.name}
-                  src={`${serverAPIUrl}public/uploads/coin_logo/${coinData?.logo}`}
-                  sx={{ borderRadius: 0, width: 25, height: 25 }}
-                />
+                {coinData && coinData?.logo === null ? (
+                  <Avatar
+                    sx={{
+                      bgcolor: defaultColor[coinData?.name?.length],
+                      borderRadius: 0,
+                      width: 25,
+                      height: 25,
+                    }}
+                  >
+                    <Typography sx={{ fontSize: ".7rem" }}>
+                      {coinData && coinData?.name[0]}
+                    </Typography>
+                  </Avatar>
+                ) : (
+                  <Avatar
+                    alt={coinData && coinData?.name}
+                    src={`${serverAPIUrl}public/uploads/coin_logo/${coinData?.logo}`}
+                    //src="https://mui.com/static/images/avatar/1.jpg"
+                    sx={{ borderRadius: 0, width: 25, height: 25 }}
+                  />
+                )}
 
                 {coinData &&
                   coinData?.presale_start_date !== null &&

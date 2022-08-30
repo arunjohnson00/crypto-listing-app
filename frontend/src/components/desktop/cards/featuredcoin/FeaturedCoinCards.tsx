@@ -21,8 +21,9 @@ import TelegramImage from "../../../../assets/featuredcard/telegram.png";
 import TwitterImage from "../../../../assets/featuredcard/twitter.png";
 
 import { CountDownTimer } from "./countdown/CountDownTimer";
+import { defaultColor } from "../../../../common/common";
 
-const FeaturedCoinCards = ({ cardData }: any) => {
+const FeaturedCoinCards = ({ cardData, index }: any) => {
   // const getDifferenceInDays = (date1: any, date2: any) => {
   //   const diffInMs = Math.abs(date2 - date1);
   //   return diffInMs / (1000 * 60 * 60 * 24);
@@ -53,7 +54,9 @@ const FeaturedCoinCards = ({ cardData }: any) => {
   //     secondsFormatted,
   //   ].join(" ");
   // };
-
+  // console.log(
+  //   Math.sign(moment(new Date(cardData?.presale_date)).diff(new Date()))
+  // );
   const serverAPIUrl = process.env.REACT_APP_API_URL;
   return (
     <Grid item xs={12} sm={12} md={12} lg={12} xl={12} mb={3} ml={2}>
@@ -73,10 +76,23 @@ const FeaturedCoinCards = ({ cardData }: any) => {
             sx={{ alignItems: "center", justifyContent: "space-between" }}
           >
             <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-              <Avatar
-                alt={cardData && cardData?.name}
-                src={`${serverAPIUrl}public/uploads/coin_logo/${cardData?.logo}`}
-              />
+              {cardData && cardData?.logo === null ? (
+                <Avatar
+                  sx={{
+                    bgcolor: defaultColor[index],
+                  }}
+                >
+                  <Typography sx={{ fontSize: ".6rem" }}>
+                    {cardData && cardData?.name[0]}
+                  </Typography>
+                </Avatar>
+              ) : (
+                <Avatar
+                  alt={cardData && cardData?.name}
+                  src={`${serverAPIUrl}public/uploads/coin_logo/${cardData?.logo}`}
+                  //src="https://mui.com/static/images/avatar/1.jpg"
+                />
+              )}
               <Stack direction="column" spacing={0}>
                 <Typography
                   variant="caption"
@@ -168,7 +184,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                 {cardData &&
                   Math.sign(
                     moment(new Date(cardData?.presale_date)).diff(new Date())
-                  ) === -1 && <BounceLoader size={12} color="#00FF00" />}
+                  ) !== -1 && <BounceLoader size={12} color="#00FF00" />}
 
                 <Typography
                   variant="body2"
@@ -178,7 +194,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
                   {cardData &&
                   Math.sign(
                     moment(new Date(cardData?.presale_date)).diff(new Date())
-                  ) === -1
+                  ) !== -1
                     ? "Ends"
                     : "Starts"}{" "}
                   in{" "}
@@ -187,9 +203,7 @@ const FeaturedCoinCards = ({ cardData }: any) => {
             ) : (
               <Link
                 to={{
-                  pathname: `/coin/${cardData?.name
-                    ?.replace(/ /g, "")
-                    .toLowerCase()}/${cardData?.id}`,
+                  pathname: `/coin/${cardData?.slug}`,
                 }}
                 state={{ coin_id: cardData?.id }}
                 style={{ textDecoration: "none", color: "inherit" }}

@@ -7,6 +7,7 @@ import LocalFireDepartmentSharpIcon from "@mui/icons-material/LocalFireDepartmen
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import HorizontalRuleRoundedIcon from "@mui/icons-material/HorizontalRuleRounded";
+import { defaultColor } from "../../../../common/common";
 
 const HighlightCards = ({ title, cardData, icon }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
@@ -147,16 +148,34 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                     >
                       <Typography
                         variant="caption"
-                        sx={{ color: "#717878", fontWeight: "600" }}
+                        sx={{
+                          color: "#717878",
+                          fontWeight: "600",
+                          minWidth: 13,
+                        }}
                       >
                         {index + 1}
                       </Typography>
-                      <Avatar
-                        alt={data && data?.name}
-                        src={`${serverAPIUrl}public/uploads/coin_logo/${data?.logo}`}
-                        //src="https://mui.com/static/images/avatar/1.jpg"
-                        sx={{ width: 18, height: 18 }}
-                      />
+                      {data && data?.logo === null ? (
+                        <Avatar
+                          sx={{
+                            bgcolor: defaultColor[index + 1],
+                            width: 18,
+                            height: 18,
+                          }}
+                        >
+                          <Typography sx={{ fontSize: ".6rem" }}>
+                            {data && data?.name[0]}
+                          </Typography>
+                        </Avatar>
+                      ) : (
+                        <Avatar
+                          alt={data && data?.name}
+                          src={`${serverAPIUrl}public/uploads/coin_logo/${data?.logo}`}
+                          //src="https://mui.com/static/images/avatar/1.jpg"
+                          sx={{ width: 18, height: 18 }}
+                        />
+                      )}
                     </Stack>
                     <Stack
                       direction="row"
@@ -249,16 +268,34 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                     >
                       <Typography
                         variant="caption"
-                        sx={{ color: "#717878", fontWeight: "600" }}
+                        sx={{
+                          color: "#717878",
+                          fontWeight: "600",
+                          minWidth: 13,
+                        }}
                       >
                         {index + 6}
                       </Typography>
-                      <Avatar
-                        alt={data && data?.name}
-                        src={`${serverAPIUrl}public/uploads/coin_logo/${data?.logo}`}
-                        //src="https://mui.com/static/images/avatar/1.jpg"
-                        sx={{ width: 18, height: 18 }}
-                      />
+                      {data && data?.logo === null ? (
+                        <Avatar
+                          sx={{
+                            bgcolor: defaultColor[index + 6],
+                            width: 18,
+                            height: 18,
+                          }}
+                        >
+                          <Typography sx={{ fontSize: ".6rem" }}>
+                            {data && data?.name[0]}
+                          </Typography>
+                        </Avatar>
+                      ) : (
+                        <Avatar
+                          alt={data && data?.name}
+                          src={`${serverAPIUrl}public/uploads/coin_logo/${data?.logo}`}
+                          //src="https://mui.com/static/images/avatar/1.jpg"
+                          sx={{ width: 18, height: 18 }}
+                        />
+                      )}
                     </Stack>
                     <Stack
                       direction="row"
@@ -351,16 +388,34 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                     >
                       <Typography
                         variant="caption"
-                        sx={{ color: "#717878", fontWeight: "600" }}
+                        sx={{
+                          color: "#717878",
+                          fontWeight: "600",
+                          minWidth: 13,
+                        }}
                       >
                         {index + 11}
                       </Typography>
-                      <Avatar
-                        alt={data && data?.name}
-                        src={`${serverAPIUrl}public/uploads/coin_logo/${data?.logo}`}
-                        //src="https://mui.com/static/images/avatar/1.jpg"
-                        sx={{ width: 18, height: 18 }}
-                      />
+                      {data && data?.logo === null ? (
+                        <Avatar
+                          sx={{
+                            bgcolor: defaultColor[index + 11],
+                            width: 18,
+                            height: 18,
+                          }}
+                        >
+                          <Typography sx={{ fontSize: ".6rem" }}>
+                            {data && data?.name[0]}
+                          </Typography>
+                        </Avatar>
+                      ) : (
+                        <Avatar
+                          alt={data && data?.name}
+                          src={`${serverAPIUrl}public/uploads/coin_logo/${data?.logo}`}
+                          //src="https://mui.com/static/images/avatar/1.jpg"
+                          sx={{ width: 18, height: 18 }}
+                        />
+                      )}
                     </Stack>
                     <Stack
                       direction="row"

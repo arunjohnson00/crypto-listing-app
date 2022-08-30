@@ -4,9 +4,10 @@ import { styled } from "@mui/material/styles";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import React from "react";
+import { defaultColor } from "../../../../common/common";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
-const MobileNftCollectionCard = ({ data }: any) => {
+const MobileNftCollectionCard = ({ data, index }: any) => {
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
       color: "#ff6d75",
@@ -43,11 +44,28 @@ const MobileNftCollectionCard = ({ data }: any) => {
             pt={2}
           >
             <Stack direction="row" spacing={0.8} sx={{ alignItems: "center" }}>
-              <Avatar
-                sx={{ width: 24, height: 24 }}
-                variant="square"
-                src={`${serverAPIUrl}public/uploads/nft_currency_icons/${data?.currency_icon}`}
-              />
+              {data && data?.currency_icon === null ? (
+                <Avatar
+                  variant="square"
+                  sx={{
+                    bgcolor: defaultColor[index],
+                    width: 24,
+                    height: 24,
+                  }}
+                >
+                  <Typography sx={{ fontSize: ".6rem" }}>
+                    {data && data?.title[0]}
+                  </Typography>
+                </Avatar>
+              ) : (
+                <Avatar
+                  variant="square"
+                  alt={data && data?.name}
+                  src={`${serverAPIUrl}public/uploads/nft_currency_icons/${data?.currency_icon}`}
+                  //src="https://mui.com/static/images/avatar/1.jpg"
+                  sx={{ width: 24, height: 24 }}
+                />
+              )}
 
               <Typography
                 variant="caption"
