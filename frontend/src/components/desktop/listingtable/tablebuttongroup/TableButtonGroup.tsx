@@ -18,17 +18,23 @@ const TableButtonGroup = ({
   const navigate = useNavigate();
 
   useEffect(() => {
+    location?.pathname === "/coins/watch-list" && setTableTabValue("1");
     location?.pathname === "/coins" && setTableTabValue("2");
     location?.pathname === "/coins/biggest-gainers" && setTableTabValue("3");
     location?.pathname === "/coins/top-losers" && setTableTabValue("4");
     location?.pathname === "/coins/recently-added" && setTableTabValue("5");
+    location?.pathname === "/coins/presales" && setTableTabValue("8");
+    location?.pathname === "/coins/most-visited" && setTableTabValue("7");
   }, [location]);
 
   useEffect(() => {
+    tableTabvalue === "1" && navigate("/coins/watch-list");
     tableTabvalue === "2" && navigate("/coins");
     tableTabvalue === "3" && navigate("/coins/biggest-gainers");
     tableTabvalue === "4" && navigate("/coins/top-losers");
     tableTabvalue === "5" && navigate("/coins/recently-added");
+    tableTabvalue === "7" && navigate("/coins/most-visited");
+    tableTabvalue === "8" && navigate("/coins/presales");
   }, [tableTabvalue]);
 
   return (
@@ -86,8 +92,10 @@ const TableButtonGroup = ({
         <Tab value="3" label="Biggest Gainers" />
         <Tab value="4" label="Biggest Losers" />
         <Tab value="5" label="Recently Added" />
-        <Tab value="6" label="Trending Coins" />
+
+        {/* <Tab value="6" label="Trending Coins" /> */}
         <Tab value="7" label="Most Visited" />
+        <Tab value="8" label="Presales" />
       </Tabs>
     </Box>
   );

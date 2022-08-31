@@ -37,6 +37,7 @@ const CustomInput = forwardRef(function CustomInput(
       ref={ref}
       style={{
         color: "#FFFFFF",
+        cursor: "text",
       }}
     />
   );
@@ -311,7 +312,7 @@ const AppBarSearch = () => {
                       to={{
                         pathname: `/coin/${item?.coin_slug}`,
                       }}
-                      onClick={() => saveSearchHandler(item?.slug)}
+                      onClick={() => saveSearchHandler(item?.coin_slug)}
                       target="_blank"
                       rel="noopener noreferrer"
                       state={{ coin_id: item?.coin_id }}
@@ -516,16 +517,18 @@ const AppBarSearch = () => {
                 </Stack>
               ))}
 
-            <Stack direction="row" spacing={0.5} alignItems="center" pt={4}>
-              <Typography sx={{ fontSize: ".78rem", fontWeight: 600 }}>
-                Recent Searches
-              </Typography>
-              {/* <Avatar
+            {recentSearchResult && (
+              <Stack direction="row" spacing={0.5} alignItems="center" pt={4}>
+                <Typography sx={{ fontSize: ".78rem", fontWeight: 600 }}>
+                  Recent Searches
+                </Typography>
+                {/* <Avatar
             alt="Trending"
             src={TrendingIcon}
             sx={{ width: 14, height: 14 }}
           /> */}
-            </Stack>
+              </Stack>
+            )}
             {/* <Stack
               direction="row"
               spacing={1}

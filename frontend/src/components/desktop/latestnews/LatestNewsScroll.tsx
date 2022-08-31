@@ -46,7 +46,7 @@ const LatestNewsScroll = () => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
 
-    dispatch(latestNewsRequest({ count: 50 }, successHandler, errorHandler));
+    dispatch(latestNewsRequest({ count: 30 }, successHandler, errorHandler));
   }, [dispatch]);
 
   return (

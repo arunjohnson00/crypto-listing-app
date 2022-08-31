@@ -33,7 +33,7 @@ const AirdropPage = () => {
             alignItems: "center",
           }}
         >
-          <Stack
+          {/* <Stack
             direction="row"
             spacing={1}
             sx={{
@@ -46,7 +46,7 @@ const AirdropPage = () => {
             }}
           >
             <CoinSlider />
-          </Stack>
+          </Stack> */}
         </Grid>
         <Grid xs={12} pt={3}>
           <Stack direction="column" spacing={0.5}>

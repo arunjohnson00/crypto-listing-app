@@ -76,7 +76,7 @@ const CoinPageChart = ({ data }: any) => {
         ],
         xaxis: [
           {
-            x: data && new Date(data?.price[12][0]).getTime(),
+            //  x: data && new Date(data?.price[12][0]).getTime(),
             borderColor: "#999",
             yAxisIndex: 0,
             label: {
@@ -124,8 +124,7 @@ const CoinPageChart = ({ data }: any) => {
     },
     selection: "seven_day",
   };
-  const location: any = useLocation();
-  const dispatch: any = useDispatch();
+
   const [dateTime, setDateTime] = useState<any>("seven_day");
 
   const updateData = (timeline: any) => {
@@ -136,7 +135,7 @@ const CoinPageChart = ({ data }: any) => {
         ApexCharts.exec(
           "area-datetime",
           "zoomX",
-          new Date(new Date().getTime() - 2 * 24 * 60 * 60 * 1000).getTime()
+          new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000).getTime()
         );
         break;
       case "fifteen_day":
@@ -144,7 +143,7 @@ const CoinPageChart = ({ data }: any) => {
           "area-datetime",
           "zoomX",
           new Date().getTime(),
-          new Date(new Date().getTime() - 5 * 24 * 60 * 60 * 1000).getTime()
+          new Date(new Date().getTime() - 2 * 24 * 60 * 60 * 1000).getTime()
         );
         break;
       case "thirty_day":
@@ -152,7 +151,7 @@ const CoinPageChart = ({ data }: any) => {
           "area-datetime",
           "zoomX",
           new Date().getTime(),
-          new Date(new Date().getTime() - 10 * 24 * 60 * 60 * 1000).getTime()
+          new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000).getTime()
         );
         break;
 

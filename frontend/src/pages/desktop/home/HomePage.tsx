@@ -63,6 +63,8 @@ import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsS
 import LatestNewsCardScroll from "../../../components/desktop/latestnews/LatestNewsCardScroll";
 import CryptoEventsCardSlider from "../../../components/desktop/cards/cryptoeventscardslider/CryptoEventsCardSlider";
 
+import TelegramGraphImage from "../../../assets/singlepagecoin/graph/telegram.png";
+
 const responsiveNFTCollections = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -1300,11 +1302,20 @@ const HomePage = ({ windowInnerWidth }: any) => {
             <Stack direction="row" spacing={1}>
               <Avatar
                 alt="Remy Sharp"
-                src="https://mui.com/static/images/avatar/1.jpg"
+                src={TelegramGraphImage}
                 sx={{ width: 18, height: 18 }}
               />
+
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                Subscribe to our Telegram
+                <a
+                  href="https://telegram.me/coinXhigh"
+                  rel="noreferrer"
+                  target="_blank"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  {" "}
+                  Subscribe to our Telegram{" "}
+                </a>
               </Typography>
             </Stack>
           </Stack>

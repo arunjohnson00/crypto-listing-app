@@ -32,6 +32,8 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
+import { Link } from "react-router-dom";
 
 const AppLoginPage = () => {
   const [showPassword, setShowPassword] = useState<any>({
@@ -52,21 +54,10 @@ const AppLoginPage = () => {
   };
   const theme = useTheme();
   const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
-  const { parse } = require("rss-to-json");
 
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
-  const [feed, setFeed] = useState<any>();
 
-  useEffect(() => {
-    (async () => {
-      var rss = await parse(
-        "https://corsanywhere.herokuapp.com/https://news.coinxhigh.com/feed/"
-      );
-
-      setFeed(rss);
-    })();
-  }, []);
   return (
     <Fragment>
       <Grid
@@ -78,65 +69,7 @@ const AppLoginPage = () => {
       >
         {" "}
         <Grid xs={12} sx={{ paddingTop: 3 }}>
-          <Stack
-            direction="row"
-            spacing={3}
-            sx={{
-              borderTop: "1px solid #1a1545",
-              borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
-              paddingBottom: "23px",
-              backgroundColor: "#04091d",
-              alignItems: "center",
-            }}
-          >
-            <Grid xs={4} sm={4} md={3} lg={2} xl={2}>
-              <LatestNewsHeading />
-            </Grid>
-            <Grid xs={8} sm={8} md={9} lg={10} xl={10}>
-              <Stack direction="row" spacing={3}>
-                <Marquee
-                  style={{ background: "none" }}
-                  pauseOnHover={true}
-                  gradient={false}
-                  loop={0}
-                  delay={0}
-                  speed={70}
-                >
-                  {feed?.items?.map((rssFeed: any, index: number) => {
-                    return (
-                      <NewsCardTop
-                        rssFeed={rssFeed}
-                        timeAgo={timeAgo}
-                        key={index}
-                      />
-                    );
-                  })}
-                </Marquee>
-              </Stack>
-            </Grid>
-          </Stack>
-        </Grid>
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-          }}
-        >
-          <Stack
-            direction="row"
-            spacing={1}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "0px",
-              paddingBottom: "0px",
-
-              alignItems: "center",
-            }}
-          >
-            <CoinSlider />
-          </Stack>
+          <LatestNewsScroll />
         </Grid>
         <Grid container xs={12} pt={3}>
           <Grid xs={12} sm={12} md={6} lg={6} xl={6} pt={3}>
@@ -370,12 +303,18 @@ const AppLoginPage = () => {
                       >
                         Forgot Password?
                       </Typography>
-                      <Typography
-                        variant="body2"
-                        sx={{ color: "#1597B5", fontWeight: 500 }}
+                      <Link
+                        to="/register"
+                        style={{ textDecoration: "none", color: "inherit" }}
                       >
-                        Register Now
-                      </Typography>
+                        {" "}
+                        <Typography
+                          variant="body2"
+                          sx={{ color: "#1597B5", fontWeight: 500 }}
+                        >
+                          Register Now
+                        </Typography>
+                      </Link>
                     </Stack>
                   </form>
                 </Box>

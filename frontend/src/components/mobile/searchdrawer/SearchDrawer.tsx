@@ -233,6 +233,7 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
                       to={{
                         pathname: `/coin/${item?.coin_slug}`,
                       }}
+                      onClick={() => saveSearchHandler(item?.coin_slug)}
                       target="_blank"
                       rel="noopener noreferrer"
                       state={{ coin_id: item?.coin_id }}
@@ -411,6 +412,7 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
                       to={{
                         pathname: `/coin/${item?.slug}`,
                       }}
+                      onClick={() => saveSearchHandler(item?.slug)}
                       target="_blank"
                       rel="noopener noreferrer"
                       state={{ coin_id: item?.id }}

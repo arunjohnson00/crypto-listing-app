@@ -32,15 +32,17 @@ export const StyledInputRoot = styled("div")(
     background: #01061A;
     align-items: center;
     justify-content: center;
+    cursor:text;
 
   
     &.${inputUnstyledClasses.focused} {
       outline: 1px solid #6252E8;
+      cursor:text;
     }
   
     &:hover {
       background: #01061A};
-      
+      cursor:text;
     }
   `
 );
@@ -80,7 +82,10 @@ export const StyledInputElement = styled("input")(
     border-radius: inherit;
     padding: 8px 8px 8px 0px;
     outline: 0;
-    height:0px
+    height:0px;
+    cursor:text;
+
+  
   `
 );
 

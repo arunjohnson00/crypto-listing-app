@@ -53,7 +53,13 @@ const AppHeader = ({ windowInnerWidth }: any) => {
               <AppBarSearch />
               {/* <ConnectWalletBtn /> */}
               <AddAsset />
-              <LoginHeaderBtn />
+              <Link
+                to="/login"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                {" "}
+                <LoginHeaderBtn />
+              </Link>
             </Stack>
           </Stack>
           {windowInnerWidth >= 900 && (

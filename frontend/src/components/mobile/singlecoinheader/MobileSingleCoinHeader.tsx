@@ -26,7 +26,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ThumbUpOffAltOutlinedIcon from "@mui/icons-material/ThumbUpOffAltOutlined";
 import ThumbUpAltRoundedIcon from "@mui/icons-material/ThumbUpAltRounded";
-
+import HeartAnimatedImage from "../../../assets/singlepagecoin/vote-animated.gif";
 import { Fragment } from "react";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
@@ -415,7 +415,11 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                   spacing={1}
                 >
                   <Typography variant="subtitle2" sx={{ color: "#FFFFFFae" }}>
-                    <ArrowUpwardRoundedIcon sx={{ fontSize: 18 }} />
+                    <Avatar
+                      alt="Todays Vote"
+                      src={HeartAnimatedImage}
+                      sx={{ width: 25, height: 25 }}
+                    />
                   </Typography>
                 </Stack>
 
@@ -428,7 +432,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                     coinData?.vote !== null &&
                     vote?.completed === true
                       ? parseFloat(coinData?.vote) + 1
-                      : coinData?.vote}
+                      : coinData?.vote?.toLocaleString()}
                   </span>{" "}
                   Votes
                 </Typography>

@@ -172,6 +172,20 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
       dispatch(
         coinsBiggestLosersRequest("noData", successHandler, errorHandler)
       );
+    location?.pathname === "/coins/most-visited" &&
+      dispatch(
+        coinsBiggestLosersRequest("noData", successHandler, errorHandler)
+      );
+
+    location?.pathname === "/coins/watch-list" &&
+      dispatch(
+        coinsBiggestLosersRequest("noData", successHandler, errorHandler)
+      );
+
+    location?.pathname === "/coins/presales" &&
+      dispatch(
+        coinsBiggestLosersRequest("noData", successHandler, errorHandler)
+      );
   }, [location, page]);
 
   return (
@@ -569,14 +583,22 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
               />
             </Grid>
             <Grid xs={12}>
-              <ListingTable
-                tableData={tableData && tableData}
-                page={page}
-                handleChangePage={handleChangePage}
-                rowsPerPage={rowsPerPage}
-                handleChangeRowsPerPage={handleChangeRowsPerPage}
-                setPage={setPage}
-              />
+              {location?.pathname === "/coins/watch-list" ? (
+                <Box p={5.5}>
+                  <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
+                    Sorry!. you are not adding any coin to the watchlist yet.
+                  </Typography>
+                </Box>
+              ) : (
+                <ListingTable
+                  tableData={tableData && tableData}
+                  page={page}
+                  handleChangePage={handleChangePage}
+                  rowsPerPage={rowsPerPage}
+                  handleChangeRowsPerPage={handleChangeRowsPerPage}
+                  setPage={setPage}
+                />
+              )}
             </Grid>
           </Box>
         </Grid>

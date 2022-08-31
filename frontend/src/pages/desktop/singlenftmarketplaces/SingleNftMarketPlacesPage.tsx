@@ -26,6 +26,7 @@ import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
 import SingleNFTMarketPlaceHeader from "../../../components/desktop/singlenftmarketplaeheader/SingleNFTMarketPlaceHeader";
 import SingleNftMarketplaceTab from "../../../components/desktop/singlenftmarketplacetab/SingleNftMarketplaceTab";
 import NFTMarketPlaceSimilarAppCard from "../../../components/desktop/cards/nftmarketplacesimilarappcard/NFTMarketPlaceSimilarAppCard";
+import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 
 const SingleNftMarketPlacesPage = () => {
   const responsiveNFT: any = {
@@ -50,19 +51,10 @@ const SingleNftMarketPlacesPage = () => {
 
   const theme = useTheme();
   const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
-  const { parse } = require("rss-to-json");
 
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
-  const [feed, setFeed] = useState<any>();
 
-  useEffect(() => {
-    (async () => {
-      var rss = await parse("https://news.coinxhigh.com/feed/");
-
-      setFeed(rss);
-    })();
-  }, []);
   return (
     <Fragment>
       <Grid
@@ -73,65 +65,7 @@ const SingleNftMarketPlacesPage = () => {
         }}
       >
         <Grid xs={12} sx={{ paddingTop: 3 }}>
-          <Stack
-            direction="row"
-            spacing={3}
-            sx={{
-              borderTop: "1px solid #1a1545",
-              borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
-              paddingBottom: "23px",
-              backgroundColor: "#04091d",
-              alignItems: "center",
-            }}
-          >
-            <Grid xs={4} sm={4} md={3} lg={2} xl={2}>
-              <LatestNewsHeading />
-            </Grid>
-            <Grid xs={8} sm={8} md={9} lg={10} xl={10}>
-              <Stack direction="row" spacing={3}>
-                <Marquee
-                  style={{ background: "none" }}
-                  pauseOnHover={true}
-                  gradient={false}
-                  loop={0}
-                  delay={0}
-                  speed={70}
-                >
-                  {feed?.items?.map((rssFeed: any, index: number) => {
-                    return (
-                      <NewsCardTop
-                        rssFeed={rssFeed}
-                        timeAgo={timeAgo}
-                        key={index}
-                      />
-                    );
-                  })}
-                </Marquee>
-              </Stack>
-            </Grid>
-          </Stack>
-        </Grid>
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-          }}
-        >
-          <Stack
-            direction="row"
-            spacing={1}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "0px",
-              paddingBottom: "0px",
-
-              alignItems: "center",
-            }}
-          >
-            <CoinSlider />
-          </Stack>
+          <LatestNewsScroll />
         </Grid>
         <Grid
           xs={12}

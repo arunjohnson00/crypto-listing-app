@@ -379,13 +379,13 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       coinData?.vote !== null &&
                       vote?.completed === true
                         ? parseInt(coinData?.vote) + 1
-                        : coinData?.vote
+                        : coinData?.vote?.toLocaleString()
                     } Votes`}
                     sx={{
                       height: "36px",
                       borderRadius: "4px",
                       color: "#FFFFF5",
-                      backgroundColor: "#13133B",
+                      backgroundColor: "transparent",
                       fontSize: "1.025rem",
                       "&.MuiChip-deleteIcon": {
                         color: "#FFFFF5",
@@ -393,13 +393,10 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     }}
                     onDelete={() => {}}
                     deleteIcon={
-                      <ArrowUpwardRoundedIcon
-                        sx={{
-                          color: "rgb(255 255 255 / 72%)",
-                          "&.MuiChip-deleteIcon": {
-                            color: "#FFFFF5",
-                          },
-                        }}
+                      <Avatar
+                        alt="Todays Vote"
+                        src={HeartAnimatedImage}
+                        sx={{ width: 35, height: 35 }}
                       />
                     }
                   />

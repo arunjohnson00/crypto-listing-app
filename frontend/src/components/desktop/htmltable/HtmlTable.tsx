@@ -211,11 +211,15 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   </TableCell>
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     {" "}
-                    <Avatar
-                      alt={data?.name}
-                      src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
-                      sx={{ width: 41, height: 11, borderRadius: 0 }}
-                    />
+                    {data && data?.network_icon !== null ? (
+                      <Avatar
+                        alt={data?.name}
+                        src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
+                        sx={{ width: 41, height: 11, borderRadius: 0 }}
+                      />
+                    ) : (
+                      <Typography variant="caption">--</Typography>
+                    )}
                   </TableCell>
                   <TableCell
                     sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
@@ -396,11 +400,15 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       <Box sx={{ minWidth: 50 }}>
                         <Typography variant="caption">
                           {" "}
-                          {data &&
-                          data?.vote !== null &&
-                          vote?.completed === true
-                            ? parseInt(data?.vote) + 1
-                            : data?.vote}
+                          {data && data?.vote !== null ? (
+                            vote?.completed === true ? (
+                              parseInt(data?.vote) + 1
+                            ) : (
+                              data?.vote
+                            )
+                          ) : (
+                            <Typography variant="caption">--</Typography>
+                          )}
                         </Typography>
                       </Box>
                       <Stack
