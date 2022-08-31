@@ -6,10 +6,9 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
-import LatestNewsHeading from "../Typography/headings/latestnews/LatestNewsHeading";
-import NewsCardTop from "../cards/topnewscard/NewsCardTop";
 
 import { latestNewsRequest } from "../../../store/action";
+import MobileNewsCardTop from "../cards/topnewscard/MobileNewsCardTop";
 
 const responsiveNewsSlider = {
   superLargeDesktop: {
@@ -25,7 +24,7 @@ const responsiveNewsSlider = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2,
+    items: 1,
     slidesToSlide: 1,
   },
   mobile: {
@@ -34,7 +33,7 @@ const responsiveNewsSlider = {
     slidesToSlide: 1,
   },
 };
-const LatestNewsScroll = () => {
+const MobileLatestNewsCardScrollTop = () => {
   const dispatch: any = useDispatch();
   const latestNews = useSelector((data: any) => {
     return data?.commonReducer?.latest_news_feed?.data;
@@ -56,16 +55,16 @@ const LatestNewsScroll = () => {
       sx={{
         borderTop: "1px solid #1a1545",
         borderBottom: "1px solid #1a1545",
-        paddingTop: "15px",
-        paddingBottom: "15px",
+        paddingTop: "7px",
+        paddingBottom: "0px",
         backgroundColor: "#04091d",
         alignItems: "center",
       }}
     >
-      <Grid xs={4} sm={4} md={3} lg={2} xl={2}>
+      {/* <Grid xs={4} sm={4} md={3} lg={2} xl={2}>
         <LatestNewsHeading />
-      </Grid>
-      <Grid xs={8} sm={8} md={9} lg={10} xl={10}>
+      </Grid> */}
+      <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
         <Stack direction="row" spacing={3}>
           {/* <Marquee
             style={{ background: "none" }}
@@ -105,7 +104,7 @@ const LatestNewsScroll = () => {
                   latestNews?.map((rssFeed: any, index: number) => {
                     return (
                       <Box key={index}>
-                        <NewsCardTop
+                        <MobileNewsCardTop
                           rssFeed={rssFeed}
                           timeAgo={timeAgo}
                           key={index}
@@ -122,4 +121,4 @@ const LatestNewsScroll = () => {
   );
 };
 
-export default LatestNewsScroll;
+export default MobileLatestNewsCardScrollTop;

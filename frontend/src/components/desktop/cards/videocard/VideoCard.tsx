@@ -4,7 +4,7 @@ import ReactPlayer from "react-player";
 
 const VideoCard = ({ url, title, sub_title }: any) => {
   return (
-    <Box m={1}>
+    <Box mx={1}>
       {/* <CardMedia
         component="img"
         height="130"

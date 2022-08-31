@@ -8,33 +8,20 @@ import {
   Divider,
   Avatar,
 } from "@mui/material";
-import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
-import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
-import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
-import Marquee from "react-fast-marquee";
+
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 
 import MobileTopAlertBox from "../../../components/mobile/alert/topalertbox/MobileTopAlertBox";
-import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
 import MobileBreadCrumbs from "../../../components/mobile/breadcrumbs/MobileBreadCrumbs";
 import MobileSingleCryptoEventHeader from "../../../components/mobile/singlecryptoeventsheader/MobileSingleCryptoEventHeader";
 import CryptoEventsSinglePageCard from "../../../components/mobile/cards/cryptoeventssinglepagecard/CryptoEventsSinglePageCard";
+import MobileCoinSlider from "../../../components/mobile/coinslider/MobileCoinSlider";
+import MobileLatestNewsCardScrollTop from "../../../components/mobile/latestnews/MobileLatestNewsCardScrollTop";
 
 const MobileSingleCryptoEventsPage = () => {
-  const { parse } = require("rss-to-json");
-
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
-  const [feed, setFeed] = useState<any>();
-
-  useEffect(() => {
-    (async () => {
-      var rss = await parse("https://news.coinxhigh.com/feed/");
-
-      setFeed(rss);
-    })();
-  }, []);
 
   return (
     <Fragment>
@@ -46,30 +33,12 @@ const MobileSingleCryptoEventsPage = () => {
         }}
       >
         <Grid xs={12} sx={{ paddingTop: 3 }}>
-          <MobileLatestNewsCardScroll />
+          <MobileLatestNewsCardScrollTop />
         </Grid>
 
-        {/* <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-          }}
-        >
-          <Stack
-            direction="row"
-            spacing={1}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "0px",
-              paddingBottom: "0px",
-
-              alignItems: "center",
-            }}
-          >
-            <CoinSlider />
-          </Stack>
-        </Grid> */}
+        <Grid xs={12} sx={{ paddingTop: 0 }}>
+          <MobileCoinSlider />
+        </Grid>
         <Grid
           xs={12}
           sx={{

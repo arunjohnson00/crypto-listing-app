@@ -25,10 +25,9 @@ const BreadCrumbs = ({ home, path, data }: any) => {
         </Link>
         <Link
           to={{
-            pathname: `/${path && path?.toLowerCase()}/${data?.name
-              ?.replace(/ /g, "")
-              .toLowerCase()}`,
+            pathname: `/${path && path?.toLowerCase()}/${data?.slug}`,
           }}
+          target="_blank"
           state={{ coin_id: data?.id }}
           style={{ textDecoration: "none", color: "inherit" }}
         >

@@ -1,14 +1,37 @@
 import { useEffect, useState } from "react";
-import { Grid, Stack } from "@mui/material";
+import { Box, Grid, Stack } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import Marquee from "react-fast-marquee";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
-
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import { latestNewsRequest } from "../../../store/action";
-import MobileNewsCardTop from "../cards/topnewscard/MobileNewsCardTop";
-import MobileLatestNewsHeading from "../Typography/headings/latestnews/MobileLatestNewsHeading";
+import MobileNewsCard from "../cards/newscard/MobileNewsCard";
 
+const responsiveNewsSlider = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 3,
+    slidesToSlide: 1,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+    slidesToSlide: 1,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 1,
+    slidesToSlide: 1,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+    slidesToSlide: 1,
+  },
+};
 const MobileLatestNewsCardScroll = () => {
   const dispatch: any = useDispatch();
   const latestNews = useSelector((data: any) => {
@@ -17,7 +40,6 @@ const MobileLatestNewsCardScroll = () => {
 
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
-
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
@@ -38,32 +60,42 @@ const MobileLatestNewsCardScroll = () => {
         alignItems: "center",
       }}
     >
-      <Grid xs={4} sm={4} md={3} lg={2} xl={2}>
-        <MobileLatestNewsHeading />
-      </Grid>
-      <Grid xs={8} sm={8} md={9} lg={10} xl={10}>
-        <Stack direction="row" spacing={3}>
-          <Marquee
-            style={{ background: "none" }}
-            pauseOnHover={true}
-            gradient={false}
-            loop={0}
-            delay={0}
-            speed={70}
+      {/* <Marquee
+        style={{ background: "none" }}
+        pauseOnHover={true}
+        gradient={false}
+        loop={0}
+        delay={0}
+        speed={70}
+      > */}
+      {/* {latestNews &&
+          latestNews?.map((rssFeed: any, index: number) => {
+            return <NewsCard rssFeed={rssFeed} timeAgo={timeAgo} key={index} />;
+          })} */}
+      {/* </Marquee> */}
+      <Box sx={{ width: "100%" }}>
+        {latestNews && (
+          <Carousel
+            responsive={responsiveNewsSlider}
+            infinite={true}
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            arrows={false}
+            autoPlay={true}
+            draggable={true}
+            swipeable={true}
+            minimumTouchDrag={10}
+            keyBoardControl={true}
+            shouldResetAutoplay={false}
           >
             {latestNews &&
-              latestNews?.map((rssFeed: any, index: number) => {
-                return (
-                  <MobileNewsCardTop
-                    rssFeed={rssFeed}
-                    timeAgo={timeAgo}
-                    key={index}
-                  />
-                );
-              })}
-          </Marquee>
-        </Stack>
-      </Grid>
+              latestNews?.map((item: any, index: number) => (
+                <Box key={index}>
+                  <MobileNewsCard rssFeed={item} timeAgo={timeAgo} />
+                </Box>
+              ))}
+          </Carousel>
+        )}
+      </Box>
     </Stack>
   );
 };

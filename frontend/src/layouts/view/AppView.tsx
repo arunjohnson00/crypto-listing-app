@@ -1,11 +1,12 @@
 import { Fragment, useState } from "react";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import AppHeader from "../desktop/header/AppHeader";
 import AppFooter from "../desktop/footer/AppFooter";
 import MobileAppHeader from "../mobile/header/MobileAppHeader";
 import MobileAppFooter from "../mobile/footer/MobileAppFooter";
 import MobileBottomNav from "../../components/mobile/bottomnavigation/MobileBottomNav";
 import Container from "@mui/material/Container";
+import CoinSlider from "../../components/desktop/coinslider/CoinSlider";
 const AppView = ({ children }: any) => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
   window.addEventListener("resize", function (event) {
@@ -45,7 +46,9 @@ const AppView = ({ children }: any) => {
           }}
         >
           {windowInnerWidth >= 900 ? (
-            <AppFooter />
+            <Grid item ml={5} px={{ xs: 0.2, sm: 1, md: 3, lg: 4, xl: 25 }}>
+              <AppFooter />
+            </Grid>
           ) : (
             <Fragment>
               <MobileAppFooter />
@@ -53,6 +56,21 @@ const AppView = ({ children }: any) => {
             </Fragment>
           )}
         </Grid>
+
+        {windowInnerWidth >= 900 && (
+          <Box
+            sx={{
+              position: "fixed",
+              bottom: 0,
+              left: 0,
+              width: "100%",
+              zIndex: 999,
+            }}
+          >
+            {" "}
+            <CoinSlider />
+          </Box>
+        )}
       </Container>
     </Fragment>
   );

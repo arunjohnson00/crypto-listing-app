@@ -33,6 +33,7 @@ import FeaturedCoinLineRightImage from "../../../assets/home/feature-coin-line-r
 import Carousel from "react-multi-carousel";
 import MobileFeaturedCoinCards from "../../../components/mobile/cards/featuredcoin/MobileFeaturedCoinCards";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
+import MobileLatestNewsCardScrollTop from "../../../components/mobile/latestnews/MobileLatestNewsCardScrollTop";
 
 const responsiveFeatured: any = {
   superLargeDesktop: {
@@ -183,9 +184,13 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
         }}
       >
         <Grid xs={12} sx={{ paddingTop: 3 }}>
-          <LatestNewsScroll />
+          {windowInnerWidth >= 900 ? (
+            <LatestNewsScroll />
+          ) : (
+            <MobileLatestNewsCardScrollTop />
+          )}
         </Grid>
-        <Grid
+        {/* <Grid
           xs={12}
           sx={{
             alignItems: "center",
@@ -205,8 +210,8 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
           >
             <CoinSlider />
           </Stack>
-        </Grid>
-        {windowInnerWidth <= 1200 ? (
+        </Grid> */}
+        {windowInnerWidth <= 900 ? (
           <Fragment>
             <Grid
               xs={12}

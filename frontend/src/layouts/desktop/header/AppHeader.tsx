@@ -98,6 +98,7 @@ const AppHeader = ({ windowInnerWidth }: any) => {
                 iconStatus={true}
                 path="/leader-board"
               />
+              <AppBarNavBtn title="News" iconStatus={true} path="/news" />
             </Stack>
           )}
         </AppBar>

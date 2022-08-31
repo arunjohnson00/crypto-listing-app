@@ -54,10 +54,10 @@ const AppNewsPage = () => {
         }}
       >
         {" "}
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+        {/* <Grid xs={12} sx={{ paddingTop: 3 }}>
           <LatestNewsScroll />
-        </Grid>
-        <Grid
+        </Grid> */}
+        {/* <Grid
           xs={12}
           sx={{
             alignItems: "center",
@@ -77,7 +77,7 @@ const AppNewsPage = () => {
           >
             <CoinSlider />
           </Stack>
-        </Grid>
+        </Grid> */}
         <Grid container xs={12}>
           <Grid
             xs={12}
@@ -105,7 +105,7 @@ const AppNewsPage = () => {
               >
                 {date.format(now, "DD MMM YYYY - dddd hh:mm A")}
               </Typography>
-              <Typography
+              {/* <Typography
                 variant="subtitle1"
                 sx={{
                   color: "#00FF88",
@@ -135,7 +135,7 @@ const AppNewsPage = () => {
                 from more than 100 biggest crypto medio proforubcribe to our
                 Telegram channel for 24/7 access to latest information on crypto
                 and blockchain
-              </Typography>
+              </Typography> */}
             </Stack>
           </Grid>
           <Grid container xs={12} pt={8}>

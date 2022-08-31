@@ -28,8 +28,7 @@ import MobileTableFilterBtn from "../../../components/mobile/buttongroup/tablefi
 import MobileHtmlTable from "../../../components/mobile/htmltable/MobileHtmlTable";
 import MobileViewMoreBtn from "../../../components/mobile/button/viewmorebtn/MobileViewMoreBtn";
 import MobileNftCollectionCard from "../../../components/mobile/cards/nftcollection/MobileNftCollectionCard";
-import MobileNewsCard from "../../../components/mobile/cards/newscard/MobileNewsCard";
-import MobileAdsCardHome from "../../../components/mobile/cards/adscard/MobileAdsCardHome";
+
 import MobileMenuCards from "../../../components/mobile/cards/menucards/MobileMenuCards";
 import MobileBannerMaps from "../../../components/mobile/banner/bannermap/MobileBannerMap";
 
@@ -45,11 +44,11 @@ import {
   latestNewsRequest,
 } from "../../../store/action";
 import { tableHeader } from "./helper";
-import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
-
 import { Link } from "react-router-dom";
 import MobileCryptoEventsCardSlider from "../../../components/mobile/cards/cryptoeventscardslider/MobileCryptoEventsCardSlider";
 import MobileCoinSlider from "../../../components/mobile/coinslider/MobileCoinSlider";
+import MobileLatestNewsCardScrollTop from "../../../components/mobile/latestnews/MobileLatestNewsCardScrollTop";
+import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
 
 const { parse } = require("rss-to-json");
 
@@ -186,9 +185,6 @@ const MobileHomePage = () => {
   const [htmlTablePreLoader, setHTMLTablePreLoader] = useState<any>({
     html_table: true,
   });
-  const latestNews = useSelector((data: any) => {
-    return data?.commonReducer?.latest_news_feed?.data;
-  });
 
   const menuCards = useSelector((data: any) => {
     return data?.homeReducer?.menu_cards?.data?.data;
@@ -251,13 +247,6 @@ const MobileHomePage = () => {
   }, [dispatch, tabIndex, setHTMLTablePreLoader]);
 
   useEffect(() => {
-    const successHandler = (res: any) => {};
-    const errorHandler = (err: any) => {};
-
-    dispatch(latestNewsRequest({ count: 50 }, successHandler, errorHandler));
-  }, [dispatch]);
-
-  useEffect(() => {
     const successHandler = (res: any) => {
       setPreLoader({
         ...preLoader,
@@ -284,7 +273,7 @@ const MobileHomePage = () => {
       }}
     >
       <Grid xs={12} sx={{ paddingTop: 3 }}>
-        <MobileLatestNewsCardScroll />
+        <MobileLatestNewsCardScrollTop />
       </Grid>
 
       <Grid xs={12} sx={{ paddingTop: 0 }}>
@@ -865,16 +854,7 @@ const MobileHomePage = () => {
           alignItems: "center",
         }}
       >
-        {latestNews &&
-          latestNews?.slice(0, 3).map((rssFeed: any, index: number) => {
-            return (
-              <MobileNewsCard
-                rssFeed={rssFeed}
-                timeAgo={timeAgo}
-                index={index}
-              />
-            );
-          })}
+        <MobileLatestNewsCardScroll />
       </Grid>
       <Grid
         xs={12}

@@ -16,12 +16,13 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 
 import MobileTopAlertBox from "../../../components/mobile/alert/topalertbox/MobileTopAlertBox";
-import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
+
 import MobileBreadCrumbs from "../../../components/mobile/breadcrumbs/MobileBreadCrumbs";
 
 import CryptoEventsSearchCard from "../../../components/mobile/cards/cryptoeventssearchcard/CryptoEventsSearchCard";
 import CryptoEventsTab from "../../../components/mobile/cryptoeventstab/CryptoEventsTab";
 import MobileCoinSlider from "../../../components/mobile/coinslider/MobileCoinSlider";
+import MobileLatestNewsCardScrollTop from "../../../components/mobile/latestnews/MobileLatestNewsCardScrollTop";
 
 const MobileCryptoEventsPage = () => {
   TimeAgo.addDefaultLocale(en);
@@ -36,7 +37,7 @@ const MobileCryptoEventsPage = () => {
         }}
       >
         <Grid xs={12} sx={{ paddingTop: 3 }}>
-          <MobileLatestNewsCardScroll />
+          <MobileLatestNewsCardScrollTop />
         </Grid>
 
         <Grid xs={12} sx={{ paddingTop: 0 }}>

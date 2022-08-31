@@ -8,36 +8,20 @@ import {
   Divider,
   Avatar,
 } from "@mui/material";
-import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
-import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
-import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
-import Marquee from "react-fast-marquee";
+
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 
 import MobileTopAlertBox from "../../../components/mobile/alert/topalertbox/MobileTopAlertBox";
-import MobileSingleCoinHeader from "../../../components/mobile/singlecoinheader/MobileSingleCoinHeader";
-import MobileSingleCoinPageAccordion from "../../../components/mobile/singlecoinpageaccordion/MobileSingleCoinPageAccordion";
-import MobileLatestNewsHeading from "../../../components/mobile/Typography/headings/latestnews/MobileLatestNewsHeading";
-import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
+
 import MobileBreadCrumbs from "../../../components/mobile/breadcrumbs/MobileBreadCrumbs";
 import SingleNFTHeader from "../../../components/mobile/signlenftheader/SingleNFTHeader";
 import MobileCoinSlider from "../../../components/mobile/coinslider/MobileCoinSlider";
+import MobileLatestNewsCardScrollTop from "../../../components/mobile/latestnews/MobileLatestNewsCardScrollTop";
 
 const MobileSingleNftPage = () => {
-  const { parse } = require("rss-to-json");
-
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
-  const [feed, setFeed] = useState<any>();
-
-  useEffect(() => {
-    (async () => {
-      var rss = await parse("https://news.coinxhigh.com/feed/");
-
-      setFeed(rss);
-    })();
-  }, []);
 
   return (
     <Fragment>
@@ -49,7 +33,7 @@ const MobileSingleNftPage = () => {
         }}
       >
         <Grid xs={12} sx={{ paddingTop: 3 }}>
-          <MobileLatestNewsCardScroll />
+          <MobileLatestNewsCardScrollTop />
         </Grid>
 
         <Grid xs={12} sx={{ paddingTop: 0 }}>

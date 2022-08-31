@@ -4,7 +4,7 @@ import Parser from "html-react-parser";
 
 const NewsCard = ({ rssFeed, timeAgo }: any) => {
   return (
-    <Grid item xs={11} px={2}>
+    <Grid item xs={12} mx={0.5}>
       <Box
         sx={{
           flexGrow: 1,

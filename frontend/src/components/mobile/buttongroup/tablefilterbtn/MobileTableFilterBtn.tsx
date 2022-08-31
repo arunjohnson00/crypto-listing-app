@@ -9,7 +9,7 @@ const MobileTableFilterBtn = () => {
       variant="contained"
       size="small"
       aria-label="outlined primary button group"
-      sx={{ borderRadius: "11px", overflow: "hidden" }}
+      sx={{ borderRadius: "11px", overflow: "hidden", width: 320 }}
     >
       <Button
         sx={{

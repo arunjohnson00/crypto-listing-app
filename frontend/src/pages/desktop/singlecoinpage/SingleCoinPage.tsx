@@ -137,7 +137,7 @@ const SingleCoinPage = () => {
         <Grid xs={12} sx={{ paddingTop: 3 }}>
           <LatestNewsScroll />
         </Grid>
-        <Grid
+        {/* <Grid
           xs={12}
           sx={{
             alignItems: "center",
@@ -157,13 +157,13 @@ const SingleCoinPage = () => {
           >
             <CoinSlider />
           </Stack>
-        </Grid>
+        </Grid> */}
 
         <Grid
           container
           xs={12}
           sx={{
-            alignItems: "center",
+            alignItems: "flex-start",
           }}
         >
           <Grid

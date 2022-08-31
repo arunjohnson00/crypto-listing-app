@@ -239,9 +239,29 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
                 Leader Board
               </Typography>
             </Link>
-
+            <Link
+              to={{
+                pathname: `/news`,
+              }}
+              state={{
+                scroll: false,
+              }}
+              style={{ textDecoration: "none", color: "#FFFFFF" }}
+              onClick={toggleDrawer}
+            >
+              {" "}
+              <Typography
+                sx={{
+                  p: 1,
+                  fontSize: ".8rem",
+                  color: "#FFFFFF",
+                }}
+              >
+                News
+              </Typography>
+            </Link>
             <Stack direction="column" spacing={3} width="100%" py={2}>
-              <ConnectWalletBtn />
+              {/* <ConnectWalletBtn /> */}
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
                 spacing={3}

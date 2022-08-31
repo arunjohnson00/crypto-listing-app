@@ -59,7 +59,7 @@ const TableMultiSelectFilterMenu = ({
 
   return (
     <div>
-      <FormControl sx={{ m: 0, width: 150 }}>
+      <FormControl sx={{ m: 0, width: 100 }}>
         <Select
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"

@@ -6,26 +6,38 @@ const MobileNewsCardTop = ({ rssFeed, timeAgo }: any) => {
     <Fragment>
       <Stack
         direction="column"
-        sx={{ maxHeight: 100, minHeight: 50, maxWidth: 270 }}
-        alignItems="flex-start"
-        px={1}
+        sx={{
+          maxHeight: 100,
+          minHeight: 50,
+          // maxWidth: 270,
+          width: "auto",
+          justifyContent: "flex-start",
+        }}
+        px={0.7}
       >
-        <Typography sx={{ color: "#FFFFFF", fontSize: ".9rem" }}>
+        <Typography
+          variant="subtitle2"
+          sx={{ color: "white", fontSize: "0.775rem" }}
+        >
           <a
-            href={rssFeed && rssFeed?.link}
+            href={rssFeed?.link}
             target="_blank"
             rel="noreferrer"
-            style={{ color: "inherit", textDecoration: "none" }}
+            style={{
+              color: "inherit",
+              textDecoration: "none",
+              wordBreak: "break-all",
+            }}
           >
             {" "}
-            {rssFeed && rssFeed?.title.substring(0, 80)}...
+            {rssFeed && rssFeed?.title?.length >= 95
+              ? rssFeed?.title.substring(0, 92) + "..."
+              : rssFeed?.title}
           </a>
         </Typography>
-        <Stack direction="row" sx={{ justifyContent: "flex-end" }}>
-          <Typography variant="caption" sx={{ color: "#24D781" }}>
-            {rssFeed && timeAgo.format(new Date(rssFeed?.date))}
-          </Typography>
-        </Stack>
+        <Typography variant="caption" sx={{ color: "#24D781" }}>
+          {timeAgo.format(new Date(rssFeed?.date))}
+        </Typography>
       </Stack>
 
       <Divider orientation="vertical" flexItem />

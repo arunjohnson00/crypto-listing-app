@@ -20,6 +20,7 @@ const TableFilterBtn = () => {
         display: "flex",
         overflow: "hidden",
         alignItems: "center",
+        maxWidth: 400,
       }}
       direction="row"
       spacing={0.4}

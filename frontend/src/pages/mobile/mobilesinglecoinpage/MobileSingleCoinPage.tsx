@@ -21,7 +21,7 @@ import MobileTopAlertBox from "../../../components/mobile/alert/topalertbox/Mobi
 import MobileSingleCoinHeader from "../../../components/mobile/singlecoinheader/MobileSingleCoinHeader";
 import MobileSingleCoinPageAccordion from "../../../components/mobile/singlecoinpageaccordion/MobileSingleCoinPageAccordion";
 import MobileLatestNewsHeading from "../../../components/mobile/Typography/headings/latestnews/MobileLatestNewsHeading";
-import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
+
 import MobileBreadCrumbs from "../../../components/mobile/breadcrumbs/MobileBreadCrumbs";
 import {
   coinDetailFirstBlockRequest,
@@ -33,6 +33,7 @@ import {
   featuredCoinListRequest,
 } from "../../../store/action";
 import MobileCoinSlider from "../../../components/mobile/coinslider/MobileCoinSlider";
+import MobileLatestNewsCardScrollTop from "../../../components/mobile/latestnews/MobileLatestNewsCardScrollTop";
 
 const MobileSingleCoinPage = () => {
   const location: any = useLocation();
@@ -126,12 +127,13 @@ const MobileSingleCoinPage = () => {
         }}
       >
         <Grid xs={12} sx={{ paddingTop: 3 }}>
-          <MobileLatestNewsCardScroll />
+          <MobileLatestNewsCardScrollTop />
         </Grid>
 
         <Grid xs={12} sx={{ paddingTop: 0 }}>
           <MobileCoinSlider />
         </Grid>
+
         <Grid
           xs={12}
           sx={{

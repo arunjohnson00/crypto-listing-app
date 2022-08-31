@@ -30,10 +30,12 @@ const CoinSlider = () => {
       container
       sx={{
         background: "linear-gradient(to left, #0a0538 0%, #040920 100%)",
+        margin: 0,
+        padding: 0,
       }}
-      my={2}
+      my={0}
     >
-      <Grid item xs={12} sm={12} md={12} lg={2} xl={2}>
+      <Grid item xs={12} sm={12} md={12} lg={1.5} xl={1.5}>
         <Box
           sx={{
             background: "linear-gradient(to left, #0a0538 0%, #040920 100%)",
@@ -59,7 +61,7 @@ const CoinSlider = () => {
           </Stack>
         </Box>
       </Grid>
-      <Grid item xs={12} sm={12} md={12} lg={10} xl={10} py={1}>
+      <Grid item xs={12} sm={12} md={12} lg={10.5} xl={10.5} py={1}>
         <Box>
           <Marquee
             style={{ background: "none" }}

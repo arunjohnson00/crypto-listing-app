@@ -27,10 +27,26 @@ const CoinPageEvents = () => {
       )
     );
   }, [dispatch]);
-  console.log(resStatus);
+
   return (
     <Grid item xs={12} pt={2}>
-      {resStatus === false ? (
+      {resStatus === true ? (
+        <Stack direction="column" spacing={8}>
+          {" "}
+          <Stack direction="column" spacing={2} alignItems="flex-start">
+            <Typography sx={{ color: "#FFFFFF", fontSize: "1.2rem" }}>
+              Upcoming Events
+            </Typography>
+            <EventViewCard viewcoin={false} />
+          </Stack>
+          <Stack direction="column" spacing={2} alignItems="flex-start">
+            <Typography sx={{ color: "#FFFFFF", fontSize: "1.2rem" }}>
+              Past Events
+            </Typography>
+            <EventViewCard viewcoin={false} />
+          </Stack>
+        </Stack>
+      ) : (
         <Stack
           direction="row"
           spacing={2}
@@ -50,22 +66,6 @@ const CoinPageEvents = () => {
           >
             Add Event
           </Button>
-        </Stack>
-      ) : (
-        <Stack direction="column" spacing={8}>
-          {" "}
-          <Stack direction="column" spacing={2} alignItems="flex-start">
-            <Typography sx={{ color: "#FFFFFF", fontSize: "1.2rem" }}>
-              Upcoming Events
-            </Typography>
-            <EventViewCard viewcoin={false} />
-          </Stack>
-          <Stack direction="column" spacing={2} alignItems="flex-start">
-            <Typography sx={{ color: "#FFFFFF", fontSize: "1.2rem" }}>
-              Past Events
-            </Typography>
-            <EventViewCard viewcoin={false} />
-          </Stack>
         </Stack>
       )}
     </Grid>

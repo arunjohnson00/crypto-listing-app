@@ -22,7 +22,7 @@ const MobileTableBtnGroup = () => {
     <Fragment>
       <Box
         sx={{
-          maxWidth: { xs: 500, sm: 500 },
+          maxWidth: { xs: 320, sm: 320 },
           bgcolor: "#010E3A",
           borderRadius: 4,
           overflow: "hidden",
@@ -41,8 +41,9 @@ const MobileTableBtnGroup = () => {
               color: "red",
             },
           }}
-          variant="standard"
-          scrollButtons={false}
+          variant="scrollable"
+          scrollButtons
+          allowScrollButtonsMobile
           aria-label="scrollable auto tabs example"
           sx={{
             ".MuiTab-root": {
@@ -52,6 +53,14 @@ const MobileTableBtnGroup = () => {
               padding: 0,
               minHeight: 38,
               paddingX: 1,
+            },
+            ".MuiTabs-scrollButtons": { padding: 0 },
+            ".MuiTabs-scrollButtons.Mui-disabled": {
+              display: "none",
+            },
+            ".MuiTabScrollButton-root": {
+              padding: 0,
+              maxHeight: 42,
             },
           }}
         >

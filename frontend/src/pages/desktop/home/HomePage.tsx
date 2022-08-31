@@ -287,7 +287,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           <LatestNewsScroll />
         </Grid>
 
-        <Grid
+        {/* <Grid
           xs={12}
           sx={{
             alignItems: "center",
@@ -307,14 +307,14 @@ const HomePage = ({ windowInnerWidth }: any) => {
           >
             <CoinSlider />
           </Stack>
-        </Grid>
+        </Grid> */}
 
         <Grid
           xs={12}
           sx={{
             alignItems: "center",
-            paddingTop: "0px",
-            paddingBottom: "23px",
+            paddingTop: "5px",
+            // paddingBottom: "5px",
           }}
         >
           <Stack
@@ -346,8 +346,8 @@ const HomePage = ({ windowInnerWidth }: any) => {
           xs={12}
           sx={{
             alignItems: "center",
-            paddingTop: "23px",
-            paddingBottom: "23px",
+            // paddingTop: "0px",
+            paddingBottom: "13px",
           }}
         >
           {videoList && (
@@ -567,7 +567,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           sx={{
             alignItems: "center",
             paddingTop: "0px",
-            paddingBottom: "23px",
+            paddingBottom: "0px",
           }}
         >
           <Stack
@@ -743,8 +743,8 @@ const HomePage = ({ windowInnerWidth }: any) => {
           xs={12}
           sx={{
             alignItems: "center",
-            paddingTop: "23px",
-            paddingBottom: "23px",
+            paddingTop: "13px",
+            paddingBottom: "0px",
           }}
         >
           <Stack
@@ -1095,7 +1095,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
             sx={{
               //borderTop: "1px solid #1a1545",
               // borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
+              paddingTop: "0px",
               paddingBottom: "23px",
 
               alignItems: "center",
@@ -1190,8 +1190,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               //borderTop: "1px solid #1a1545",
               // borderBottom: "1px solid #1a1545",
               marginTop: "0px",
-              paddingBottom: "23px",
-
+              paddingBottom: "0px",
               alignItems: "center",
               justifyContent: " flex-end",
             }}
@@ -1212,7 +1211,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
             sx={{
               //borderTop: "1px solid #1a1545",
               // borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
+              paddingTop: "13px",
               paddingBottom: "0px",
 
               alignItems: "center",

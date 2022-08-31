@@ -86,9 +86,9 @@ const SinglePageTab = () => {
             <Tab label="FAQ" value="8" />
             <Tab label="Events" value="9" />
             <Tab label="Presale" value="10" />
-            <Tab label="KYC Details" value="11" />
+            {/* <Tab label="KYC Details" value="11" /> */}
             <Tab label="Widget" value="12" />
-            <Tab label="Audit Details" value="13" />
+            {/* <Tab label="Audit Details" value="13" /> */}
             <Tab label="News" value="14" />
           </TabList>
           <Divider sx={{ borderColor: "#2D2858", borderBottomWidth: "1px" }} />
@@ -124,12 +124,12 @@ const SinglePageTab = () => {
         <TabPanel value="10">
           <CoinPagePresale />
         </TabPanel>
-        <TabPanel value="11">Item Two</TabPanel>
+        {/* <TabPanel value="11">Item Two</TabPanel> */}
         <TabPanel value="12">
           {" "}
           <CoinPageWidget />
         </TabPanel>
-        <TabPanel value="13">sss</TabPanel>
+        {/* <TabPanel value="13">sss</TabPanel> */}
         <TabPanel value="14">
           <CoinPageNews />
         </TabPanel>

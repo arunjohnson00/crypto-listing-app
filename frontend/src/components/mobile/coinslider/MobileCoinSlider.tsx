@@ -33,7 +33,7 @@ const MobileCoinSlider = () => {
       }}
       my={0.5}
     >
-      <Grid item xs={4.5} sm={4.5} md={4.5} lg={2} xl={2}>
+      <Grid item xs={3.7} sm={3.7} md={3.7} lg={2} xl={2}>
         <Box
           sx={{
             background: "linear-gradient(to left, #0a0538 0%, #040920 100%)",
@@ -41,25 +41,26 @@ const MobileCoinSlider = () => {
             boxShadow: "8px 1px 9px #00000038",
           }}
           py={2}
-          px={2}
+          px={1}
+          mt={0.5}
         >
-          <Stack direction={"row"} spacing={2} alignItems="center">
+          <Stack direction={"row"} spacing={0.5} alignItems="center">
             <Avatar
               alt="Remy Sharp"
               src={trendingCoinIcon}
-              sx={{ width: 24, height: 24 }}
+              sx={{ width: 15, height: 15 }}
             />
 
             <Typography
-              sx={{ fontSize: ".9rem", color: "#FFFFFF", fontWeight: 600 }}
+              sx={{ fontSize: ".6rem", color: "#FFFFFF", fontWeight: 600 }}
             >
               TRENDING
             </Typography>
-            <BounceLoader size={12} color="#00FF00" />
+            <BounceLoader size={10} color="#00FF00" />
           </Stack>
         </Box>
       </Grid>
-      <Grid item xs={7.5} sm={7.5} md={7.5} lg={10} xl={10} py={1}>
+      <Grid item xs={8.3} sm={8.3} md={8.3} lg={10} xl={10} py={1}>
         <Box>
           <Marquee
             style={{ background: "none" }}

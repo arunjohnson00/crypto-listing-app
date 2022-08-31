@@ -9,10 +9,11 @@ const NewsCardTop = ({ rssFeed, timeAgo }: any) => {
         sx={{
           maxHeight: 100,
           minHeight: 50,
-          maxWidth: 270,
+          // maxWidth: 270,
+          width: "auto",
           justifyContent: "flex-start",
         }}
-        px={1}
+        px={0.7}
       >
         <Typography
           variant="subtitle2"
@@ -22,10 +23,16 @@ const NewsCardTop = ({ rssFeed, timeAgo }: any) => {
             href={rssFeed?.link}
             target="_blank"
             rel="noreferrer"
-            style={{ color: "inherit", textDecoration: "none" }}
+            style={{
+              color: "inherit",
+              textDecoration: "none",
+              wordBreak: "break-all",
+            }}
           >
             {" "}
-            {rssFeed?.title.substring(0, 80)}...
+            {rssFeed && rssFeed?.title?.length >= 65
+              ? rssFeed?.title.substring(0, 60) + "..."
+              : rssFeed?.title}
           </a>
         </Typography>
         <Typography variant="caption" sx={{ color: "#24D781" }}>
