@@ -65,7 +65,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
 
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
-  const [tableTabvalue, setTableTabValue] = useState("1");
+  const [tableTabvalue, setTableTabValue] = useState("2");
   const [tableData, setTableData] = useState<any>([]);
   const [page, setPage] = useState({ pagination: 1, scroll: true });
   const [rowsPerPage, setRowsPerPage] = useState(10);

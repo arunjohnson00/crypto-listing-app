@@ -8,6 +8,7 @@ const CardNewsPage = ({
   spacing,
   paddingY,
   descriptionLength,
+  index,
 }: any) => {
   return (
     <Box
@@ -18,8 +19,32 @@ const CardNewsPage = ({
         height: height,
         paddingX: 7,
         paddingY: paddingY,
+        position: "relative",
       }}
     >
+      {index && (
+        <Box
+          sx={{
+            position: "absolute",
+            backgroundColor: "#0D1956",
+            border: "2px solid #2A3674",
+            padding: 2,
+            borderRadius: 10,
+            width: 25,
+            height: 25,
+            left: -20,
+            top: -30,
+            display: "flex",
+            color: "#FFFFFF",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: "1.5rem",
+            fontWeight: 600,
+          }}
+        >
+          {index}
+        </Box>
+      )}
       <Stack direction="column" spacing={spacing} sx={{}}>
         <Typography
           variant="h5"
@@ -39,7 +64,7 @@ const CardNewsPage = ({
             style={{ color: "inherit", textDecoration: "none" }}
           >
             {" "}
-            {rssFeed && rssFeed?.title.substring(0, 73)}...
+            {rssFeed && Parser(rssFeed?.title.substring(0, 73))}...
           </a>
         </Typography>
         <Typography
@@ -51,8 +76,19 @@ const CardNewsPage = ({
           }}
         >
           {rssFeed && Parser(rssFeed?.excerpt?.substring(0, descriptionLength))}
-          ...
         </Typography>
+        <a
+          href={rssFeed && rssFeed?.link}
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            color: "#02D47C",
+            textDecoration: "none",
+            fontSize: ".7rem",
+          }}
+        >
+          Read More
+        </a>
         <Stack
           direction="row"
           spacing={1}

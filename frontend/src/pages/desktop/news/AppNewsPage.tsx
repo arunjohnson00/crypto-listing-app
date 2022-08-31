@@ -41,7 +41,7 @@ const AppNewsPage = () => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
 
-    dispatch(latestNewsRequest({ count: 50 }, successHandler, errorHandler));
+    dispatch(latestNewsRequest({ count: 51 }, successHandler, errorHandler));
   }, [dispatch]);
 
   return (
@@ -151,9 +151,10 @@ const AppNewsPage = () => {
                 rssFeed={latestNews && latestNews[0]}
                 timeAgo={timeAgo}
                 height={xsBreakPoint ? "auto" : 363}
-                spacing={4}
+                spacing={1}
                 paddingY={7}
                 descriptionLength={300}
+                index={1}
               />
             </Grid>
             <Grid
@@ -164,22 +165,24 @@ const AppNewsPage = () => {
               xl={7}
               px={{ xs: 0, sm: 0, md: 2 }}
             >
-              <Stack direction="column" spacing={6}>
+              <Stack direction="column" spacing={2}>
                 <CardNewsPage
                   rssFeed={latestNews && latestNews[1]}
                   timeAgo={timeAgo}
                   height={xsBreakPoint ? "auto" : 181}
-                  spacing={2}
+                  spacing={0.5}
                   paddingY={2}
                   descriptionLength={200}
+                  index={2}
                 />
                 <CardNewsPage
                   rssFeed={latestNews && latestNews[2]}
                   timeAgo={timeAgo}
                   height={xsBreakPoint ? "auto" : 181}
-                  spacing={2}
+                  spacing={0.5}
                   paddingY={2}
                   descriptionLength={200}
+                  index={3}
                 />
               </Stack>
             </Grid>
@@ -207,7 +210,11 @@ const AppNewsPage = () => {
                     px={{ xs: 0, sm: 0, md: 0 }}
                     key={index}
                   >
-                    <NewsCardNewsPage rssFeed={rssFeed} timeAgo={timeAgo} />
+                    <NewsCardNewsPage
+                      rssFeed={rssFeed}
+                      timeAgo={timeAgo}
+                      index={index + 4}
+                    />
                   </Grid>
                 );
               })}

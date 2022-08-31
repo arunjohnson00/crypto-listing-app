@@ -378,7 +378,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       coinData &&
                       coinData?.vote !== null &&
                       vote?.completed === true
-                        ? parseInt(coinData?.vote) + 1
+                        ? (parseInt(coinData?.vote) + 1).toLocaleString()
                         : coinData?.vote?.toLocaleString()
                     } Votes`}
                     sx={{

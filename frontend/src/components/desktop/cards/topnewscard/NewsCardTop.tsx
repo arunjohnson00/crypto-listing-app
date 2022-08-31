@@ -1,6 +1,6 @@
 import { Stack, Divider, Grid, Typography } from "@mui/material";
 import { Fragment } from "react";
-
+import Parser from "html-react-parser";
 const NewsCardTop = ({ rssFeed, timeAgo }: any) => {
   return (
     <Fragment>
@@ -31,8 +31,8 @@ const NewsCardTop = ({ rssFeed, timeAgo }: any) => {
           >
             {" "}
             {rssFeed && rssFeed?.title?.length >= 65
-              ? rssFeed?.title.substring(0, 60) + "..."
-              : rssFeed?.title}
+              ? Parser(rssFeed?.title.substring(0, 60)) + "..."
+              : Parser(rssFeed?.title)}
           </a>
         </Typography>
         <Typography variant="caption" sx={{ color: "#24D781" }}>

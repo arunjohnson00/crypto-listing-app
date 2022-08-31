@@ -30,7 +30,7 @@ const MobileNewsCard = ({ rssFeed, timeAgo }: any) => {
               style={{ color: "inherit", textDecoration: "none" }}
             >
               {" "}
-              {rssFeed && rssFeed?.title.substring(0, 100)}...
+              {Parser(rssFeed && rssFeed?.title.substring(0, 100))}...
             </a>
           </Typography>
           <Typography
