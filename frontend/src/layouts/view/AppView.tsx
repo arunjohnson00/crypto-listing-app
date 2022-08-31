@@ -1,5 +1,12 @@
-import { Fragment, useState } from "react";
-import { Box, Grid } from "@mui/material";
+import { Fragment, useState, useEffect } from "react";
+import {
+  Box,
+  CardMedia,
+  Grid,
+  LinearProgress,
+  Stack,
+  Typography,
+} from "@mui/material";
 import AppHeader from "../desktop/header/AppHeader";
 import AppFooter from "../desktop/footer/AppFooter";
 import MobileAppHeader from "../mobile/header/MobileAppHeader";
@@ -7,13 +14,81 @@ import MobileAppFooter from "../mobile/footer/MobileAppFooter";
 import MobileBottomNav from "../../components/mobile/bottomnavigation/MobileBottomNav";
 import Container from "@mui/material/Container";
 import CoinSlider from "../../components/desktop/coinslider/CoinSlider";
+import logoWhite from "../../assets/logo/logo.png";
 const AppView = ({ children }: any) => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
   window.addEventListener("resize", function (event) {
     setWindowInnerWidth(window.innerWidth);
   });
+  const req: any = new XMLHttpRequest();
+  const [preloader, setPreloader] = useState<any>(true);
+  useEffect(() => {
+    window.onload = function () {
+      setTimeout(() => setPreloader(false), 4000);
+    };
+  }, []);
+  console.log(preloader, req.readyState);
   return (
     <Fragment>
+      {preloader === true && (
+        <Box
+          sx={{
+            position: "fixed",
+            height: "100vh",
+            width: "100vw",
+            zIndex: 9999,
+            backgroundColor: "#21324E",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            top: 0,
+          }}
+        >
+          <Stack
+            direction="column"
+            spacing={7}
+            alignItems="center"
+            justifyItems="center"
+          >
+            <Stack
+              direction="column"
+              spacing={1}
+              alignItems="center"
+              justifyItems="center"
+            >
+              <img src={logoWhite} alt="coinxhigh" width="200px" />
+              <Box sx={{ width: "200px" }}>
+                <LinearProgress sx={{ height: 6 }} />
+              </Box>
+              <Typography
+                sx={{
+                  fontSize: ".6rem",
+                  color: "#FFFFFF",
+                  textAlign: "center",
+                }}
+                mt={1}
+              >
+                Connection...
+              </Typography>
+            </Stack>
+            <Box sx={{ width: "100%" }}>
+              <CardMedia
+                component="img"
+                height="80"
+                image="https://iili.io/UtY5Kv.jpg"
+                alt="green iguana"
+                sx={{ objectFit: "unset" }}
+              />
+              <Typography
+                sx={{ fontSize: ".6rem", color: "#FFFFFF", textAlign: "right" }}
+                pt={1}
+              >
+                Sponsored
+              </Typography>
+            </Box>
+          </Stack>
+        </Box>
+      )}
       <Container maxWidth={false}>
         <Grid item ml={5} px={{ xs: 0.2, sm: 1, md: 3, lg: 4, xl: 25 }}>
           <Grid
