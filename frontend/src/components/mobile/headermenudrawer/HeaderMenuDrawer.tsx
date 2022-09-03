@@ -268,7 +268,12 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
                 width="100%"
                 py={0}
               >
-                <AddAsset />
+                <Link
+                  to="/add-asset"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <AddAsset />
+                </Link>
                 <Link
                   to="/login"
                   style={{ textDecoration: "none", color: "inherit" }}

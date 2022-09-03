@@ -20,17 +20,17 @@ const AppView = ({ children }: any) => {
   window.addEventListener("resize", function (event) {
     setWindowInnerWidth(window.innerWidth);
   });
-  const req: any = new XMLHttpRequest();
+  //const req: any = new XMLHttpRequest();
   const [preloader, setPreloader] = useState<any>(true);
   useEffect(() => {
     window.onload = function () {
       setTimeout(() => setPreloader(false), 4000);
     };
   }, []);
-  console.log(preloader, req.readyState);
+
   return (
     <Fragment>
-      {preloader === true && (
+      {windowInnerWidth >= 900 && preloader === true && (
         <Box
           sx={{
             position: "fixed",

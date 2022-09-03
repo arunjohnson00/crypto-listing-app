@@ -52,7 +52,12 @@ const AppHeader = ({ windowInnerWidth }: any) => {
             >
               <AppBarSearch />
               {/* <ConnectWalletBtn /> */}
-              <AddAsset />
+              <Link
+                to="/add-asset"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <AddAsset />
+              </Link>
               <Link
                 to="/login"
                 style={{ textDecoration: "none", color: "inherit" }}

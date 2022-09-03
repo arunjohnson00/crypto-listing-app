@@ -31,6 +31,7 @@ import BoostPublishPage from "../pages/desktop/boostpublish/BoostPublishPage";
 import UserSettings from "../pages/useradmin/usersettings/UserSettings";
 import SelectPlanPage from "../pages/desktop/selectplanpage/SelectPlanPage";
 import SelectPlanMailPage from "../pages/desktop/selectplanmailpage/SelectPlanMailPage";
+import AddAssetPage from "../pages/desktop/addasset/AddAssetPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -123,6 +124,15 @@ const AppRoutes = () => {
           element={
             <PublicRoutes>
               <LeaderBoardPage windowInnerWidth={windowInnerWidth} />
+            </PublicRoutes>
+          }
+        />
+
+        <Route
+          path="/add-asset"
+          element={
+            <PublicRoutes>
+              <AddAssetPage windowInnerWidth={windowInnerWidth} />
             </PublicRoutes>
           }
         />

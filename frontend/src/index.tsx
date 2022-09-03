@@ -7,9 +7,9 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { ToastContainer, toast } from "react-toastify";
-
+import ScrollToTop from "react-scroll-to-top";
 import "react-toastify/dist/ReactToastify.css";
-
+import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
@@ -28,6 +28,14 @@ root.render(
       pauseOnFocusLoss
       draggable
       pauseOnHover
+    />
+    <ScrollToTop
+      smooth
+      style={{ bottom: 70, right: 15, background: "#23B184" }}
+      color="#23B184"
+      width="20"
+      height="20"
+      component={<KeyboardDoubleArrowUpIcon sx={{ color: "#FFFFFF" }} />}
     />
   </React.StrictMode>
 );
