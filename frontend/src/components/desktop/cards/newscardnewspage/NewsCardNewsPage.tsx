@@ -57,14 +57,14 @@ const NewsCardNewsPage = ({ rssFeed, timeAgo, index }: any) => {
               style={{ color: "inherit", textDecoration: "none" }}
             >
               {" "}
-              {Parser(rssFeed && rssFeed?.title.substring(0, 45))}...
+              {Parser(rssFeed && rssFeed?.title)}
             </a>
           </Typography>
           <Typography
             variant="caption"
             sx={{ color: "#FFFFF5", fontWeight: "300", wordWrap: "break-word" }}
           >
-            {rssFeed && Parser(rssFeed?.excerpt.substring(0, 170))}{" "}
+            {rssFeed && Parser(rssFeed?.excerpt.substring(0, 170) + "......")}
           </Typography>
           <a
             href={rssFeed && rssFeed?.link}

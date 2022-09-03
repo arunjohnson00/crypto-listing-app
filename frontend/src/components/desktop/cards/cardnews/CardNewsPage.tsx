@@ -64,7 +64,7 @@ const CardNewsPage = ({
             style={{ color: "inherit", textDecoration: "none" }}
           >
             {" "}
-            {rssFeed && Parser(rssFeed?.title.substring(0, 73))}...
+            {rssFeed && Parser(rssFeed?.title)}
           </a>
         </Typography>
         <Typography
@@ -75,7 +75,10 @@ const CardNewsPage = ({
             textTransform: "capitalize",
           }}
         >
-          {rssFeed && Parser(rssFeed?.excerpt?.substring(0, descriptionLength))}
+          {rssFeed &&
+            Parser(
+              rssFeed?.excerpt?.substring(0, descriptionLength) + "......"
+            )}
         </Typography>
         <a
           href={rssFeed && rssFeed?.link}
