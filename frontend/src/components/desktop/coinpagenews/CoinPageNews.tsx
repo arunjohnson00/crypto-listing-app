@@ -7,6 +7,7 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 
 import {
+  coinlatestNewsRequest,
   coinsBiggestLosersRequest,
   latestNewsRequest,
 } from "../../../store/action";
@@ -17,7 +18,7 @@ const CoinPageNews = () => {
   const timeAgo = new TimeAgo("en");
   const [expand, setExpand] = useState(false);
   const latestNews = useSelector((data: any) => {
-    return data?.commonReducer?.latest_news_feed?.data;
+    return data?.coinReducer?.news_block?.data;
   });
 
   const readmoreHandler = () => {
@@ -28,14 +29,10 @@ const CoinPageNews = () => {
     const errorHandler = (err: any) => {};
 
     dispatch(
-      latestNewsRequest(
+      coinlatestNewsRequest(
         {
           count: 100,
-          term: location?.pathname
-            ?.split("/")
-            .pop()
-            .slice(0, location?.pathname?.split("/").pop().lastIndexOf("-"))
-            .replaceAll("-", " "),
+          term: location?.pathname?.split("/").pop().split("-")[0],
         },
         successHandler,
         errorHandler

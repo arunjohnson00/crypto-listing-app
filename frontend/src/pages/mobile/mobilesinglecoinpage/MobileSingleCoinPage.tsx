@@ -31,6 +31,7 @@ import {
   coinSocialGraphRequest,
   coinRatingBlockRequest,
   featuredCoinListRequest,
+  coinVisitedCounterRequest,
 } from "../../../store/action";
 import MobileCoinSlider from "../../../components/mobile/coinslider/MobileCoinSlider";
 import MobileLatestNewsCardScrollTop from "../../../components/mobile/latestnews/MobileLatestNewsCardScrollTop";
@@ -100,6 +101,13 @@ const MobileSingleCoinPage = () => {
 
     dispatch(
       coinSocialGraphRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+    dispatch(
+      coinVisitedCounterRequest(
         location?.pathname?.split("/").pop(),
         successHandler,
         errorHandler

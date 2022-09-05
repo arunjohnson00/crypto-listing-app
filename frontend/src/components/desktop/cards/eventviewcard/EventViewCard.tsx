@@ -13,8 +13,10 @@ import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-
-const EventViewCard = ({ viewcoin }: any) => {
+import moment from "moment";
+import { CountDownTimer } from "./countdown/CountDownTimer";
+const serverAPIUrl = process.env.REACT_APP_API_URL;
+const EventViewCard = ({ viewcoin, data }: any) => {
   return (
     <Box
       sx={{
@@ -36,8 +38,8 @@ const EventViewCard = ({ viewcoin }: any) => {
         >
           <Stack direction="row" sx={{ alignItems: "center" }} spacing={2}>
             <Avatar
-              alt="Remy Sharp"
-              src="https://mui.com/static/images/avatar/1.jpg"
+              src={`${serverAPIUrl}public/uploads/coin_logo/${data?.coin_logo}`}
+              alt={data && data?.title}
               sx={{ width: 50, height: 50 }}
             />
             <Stack
@@ -46,7 +48,7 @@ const EventViewCard = ({ viewcoin }: any) => {
               spacing={0}
             >
               <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
-                SafeMoon
+                {data && data?.coin}
               </Typography>
               {viewcoin === true && (
                 <Stack
@@ -134,7 +136,8 @@ const EventViewCard = ({ viewcoin }: any) => {
                     variant="h5"
                     sx={{ color: "#FEFEFE", fontWeight: 500 }}
                   >
-                    24 JUNE 2022
+                    {data &&
+                      moment(new Date(data?.event_date)).format("DD MMM  YYYY")}
                   </Typography>
                   <Divider
                     variant="fullWidth"
@@ -154,13 +157,20 @@ const EventViewCard = ({ viewcoin }: any) => {
                       variant="body2"
                       sx={{ color: "#B7BEC6", fontWeight: 500 }}
                     >
-                      Event starts in
+                      {moment(new Date(data?.event_date)).isBefore(
+                        new Date()
+                      ) === false && "Event starts in"}
                     </Typography>
                     <Typography
                       variant="h6"
                       sx={{ color: "#ECE055", fontWeight: 500 }}
                     >
-                      7D : 12H: 33M : 45S
+                      {/* 7D : 12H: 33M : 45S */}
+                      {moment(new Date(data?.event_date)).isBefore(
+                        new Date()
+                      ) === true
+                        ? "Event Completed"
+                        : CountDownTimer(data?.event_date)}
                     </Typography>
                   </Stack>
                 </Stack>
@@ -179,7 +189,7 @@ const EventViewCard = ({ viewcoin }: any) => {
                   variant="h4"
                   sx={{ color: "#03FEBF", fontWeight: 500 }}
                 >
-                  Bitsmart Lising
+                  {data && data?.title}
                 </Typography>
                 <Stack
                   direction="row"
@@ -208,10 +218,7 @@ const EventViewCard = ({ viewcoin }: any) => {
                 variant="caption"
                 sx={{ color: "#FFFFF5", fontSize: "0.78rem" }}
               >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-                mollitia, molestiae quas vel sint commodi repudiandae
-                consequuntur voluptatum laborum numquam blanditiis harum
-                quisquam eius sed odit fugiat iusto fuga praesentium optio,
+                {data && data?.description}
               </Typography>
             </Stack>
           </Stack>
@@ -246,7 +253,7 @@ const EventViewCard = ({ viewcoin }: any) => {
             spacing={0.3}
           >
             <Link
-              href="#"
+              href={data && data?.source_link}
               underline="none"
               sx={{ color: "#AEAEAE", fontWeight: 500, fontSize: "1.1rem" }}
             >

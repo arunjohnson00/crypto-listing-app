@@ -211,3 +211,37 @@ export const coinPresaleBlockRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const coinVisitedCounterRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-visit-counter/${values}`,
+    method: "GET",
+    secure: false,
+    actionType: COIN.MOST_VISITED,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const coinlatestNewsRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+
+    url:
+      values?.term === "" || values?.term === undefined
+        ? `api/f/v1/news-feed/${values?.count}`
+        : `api/f/v1/news-feed/${values?.count}/${values?.term}`,
+    method: "GET",
+    secure: false,
+    actionType: COIN.NEWS_BLOCK,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

@@ -17,6 +17,7 @@ const SingleCoinChip = ({ src, title, link, varient }: any) => {
               <Avatar
                 alt={title && title}
                 src={`${serverAPIUrl}public/uploads/network_icons/${src}`}
+                sx={{ width: 23, height: 11, borderRadius: 0 }}
               />
             ) : (
               <Avatar alt={title && title} src={src} />
@@ -49,7 +50,7 @@ const SingleCoinChip = ({ src, title, link, varient }: any) => {
             fontSize: "0.6125rem",
             textTransform: "capitalize",
             "&.MuiChip-root .MuiChip-avatar": {
-              width: 14,
+              width: varient === "explorer" ? 47 : 14,
               height: 14,
               borderRadius: 0,
             },

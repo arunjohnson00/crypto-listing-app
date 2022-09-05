@@ -24,6 +24,7 @@ import {
   coinsCryptoCurrenciesPresaleRequest,
   coinsCryptoCurrenciesTodaysBestRequest,
   coinsCryptoCurrenciesTabRequest,
+  coinsCryptoCurrenciesMostVisitedRequest,
 } from "../../../store/action";
 
 import FeaturedCoinLineTopImage from "../../../assets/home/feature-coin-line-top.png";
@@ -65,7 +66,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
 
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
-  const [tableTabvalue, setTableTabValue] = useState("2");
+  const [tableTabvalue, setTableTabValue] = useState<any>("");
   const [tableData, setTableData] = useState<any>([]);
   const [page, setPage] = useState({ pagination: 1, scroll: true });
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -162,29 +163,41 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
       );
     location?.pathname === "/coins/recently-added" &&
       dispatch(
-        coinsRecentlyAddedRequest("noData", successHandler, errorHandler)
+        coinsRecentlyAddedRequest(page.pagination, successHandler, errorHandler)
       );
     location?.pathname === "/coins/biggest-gainers" &&
       dispatch(
-        coinsBiggestGainersRequest("noData", successHandler, errorHandler)
+        coinsBiggestGainersRequest(
+          page.pagination,
+          successHandler,
+          errorHandler
+        )
       );
     location?.pathname === "/coins/top-losers" &&
       dispatch(
-        coinsBiggestLosersRequest("noData", successHandler, errorHandler)
+        coinsBiggestLosersRequest(page.pagination, successHandler, errorHandler)
       );
     location?.pathname === "/coins/most-visited" &&
       dispatch(
-        coinsBiggestLosersRequest("noData", successHandler, errorHandler)
+        coinsCryptoCurrenciesMostVisitedRequest(
+          page.pagination,
+          successHandler,
+          errorHandler
+        )
       );
 
     location?.pathname === "/coins/watch-list" &&
       dispatch(
-        coinsBiggestLosersRequest("noData", successHandler, errorHandler)
+        coinsBiggestLosersRequest(page.pagination, successHandler, errorHandler)
       );
 
     location?.pathname === "/coins/presales" &&
       dispatch(
-        coinsBiggestLosersRequest("noData", successHandler, errorHandler)
+        coinsCryptoCurrenciesPresaleRequest(
+          "noData",
+          successHandler,
+          errorHandler
+        )
       );
   }, [location, page]);
 

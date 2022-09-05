@@ -17,7 +17,7 @@ import { coinFAQBlockRequest } from "../../../store/action";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-
+import moment from "moment";
 const CoinPageFAQ = () => {
   const location: any = useLocation();
   const dispatch: any = useDispatch();
@@ -146,7 +146,7 @@ const CoinPageFAQ = () => {
                 variant="body2"
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
-                The total supply of Safemoon is{" "}
+                The total supply of {coinFAQ && coinFAQ[0]?.name} is{" "}
                 <span style={{ color: "#037bfd" }}>
                   {coinFAQ && coinFAQ[0]?.total_supply !== null ? (
                     coinFAQ &&
@@ -188,7 +188,7 @@ const CoinPageFAQ = () => {
                 variant="body2"
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
-                The marketcap of safemoon is{" "}
+                The marketcap of {coinFAQ && coinFAQ[0]?.name} is{" "}
                 <span style={{ color: "#037bfd" }}>
                   {coinFAQ && coinFAQ[0]?.market_cap !== null ? (
                     coinFAQ &&
@@ -231,7 +231,7 @@ const CoinPageFAQ = () => {
                 variant="body2"
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
-                Current rating of Safemoon is{" "}
+                Current rating of {coinFAQ && coinFAQ[0]?.name} is{" "}
                 <span style={{ color: "#037bfd" }}>
                   {coinFAQ && coinFAQ[0]?.rating !== null ? (
                     coinFAQ && parseFloat(coinFAQ[0]?.rating).toFixed(1)
@@ -303,8 +303,52 @@ const CoinPageFAQ = () => {
                 variant="body2"
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
-                {coinFAQ && coinFAQ[0]?.name} hit an all time high of
-                $0.003382723655 on Jan 05, 2022 (212 days ago).
+                {coinFAQ && coinFAQ[0]?.name} hit an all time high of $
+                <span style={{ color: "#037bfd" }}>
+                  {coinFAQ && coinFAQ[0]?.ath_value !== null ? (
+                    coinFAQ &&
+                    String(Math.trunc(parseFloat(coinFAQ[0]?.ath_value)))
+                      .length > 2 ? (
+                      coinFAQ &&
+                      "$" +
+                        Number(
+                          parseFloat(coinFAQ[0]?.ath_value).toFixed(2)
+                        ).toLocaleString()
+                    ) : coinFAQ && Math.abs(coinFAQ[0]?.ath_value) > 1 ? (
+                      coinFAQ &&
+                      "$" +
+                        parseFloat(coinFAQ[0]?.ath_value)
+                          .toFixed(4)
+                          .toLocaleString()
+                    ) : (
+                      coinFAQ &&
+                      "$" +
+                        parseFloat(coinFAQ[0]?.ath_value)
+                          .toFixed(13)
+                          .toLocaleString()
+                    )
+                  ) : (
+                    <span style={{ color: "#7a7a7a" }}>--</span>
+                  )}
+                </span>{" "}
+                on{" "}
+                <span style={{ color: "#037bfd" }}>
+                  {coinFAQ && coinFAQ[0]?.ath_date !== null ? (
+                    coinFAQ &&
+                    moment(new Date(coinFAQ[0]?.ath_date)).format("DD MMM YYYY")
+                  ) : (
+                    <span style={{ color: "#7a7a7a" }}>--</span>
+                  )}
+                </span>{" "}
+                ({" "}
+                <span style={{ color: "#037bfd" }}>
+                  {coinFAQ && coinFAQ[0]?.ath_date !== null ? (
+                    coinFAQ && moment(new Date(coinFAQ[0]?.ath_date)).fromNow()
+                  ) : (
+                    <span style={{ color: "#7a7a7a" }}>--</span>
+                  )}
+                </span>{" "}
+                ).
               </Typography>
             </Stack>
 
@@ -438,7 +482,7 @@ const CoinPageFAQ = () => {
               </Typography>
             </Stack>
 
-            <Stack direction="column" spacing={0.8} mt={3}>
+            {/* <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 600 }}
@@ -454,7 +498,7 @@ const CoinPageFAQ = () => {
                 liquidity pools. That's approximately 4.37% of{" "}
                 {coinFAQ && coinFAQ[0]?.name} current Market Cap.
               </Typography>
-            </Stack>
+            </Stack> */}
 
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
@@ -494,7 +538,15 @@ const CoinPageFAQ = () => {
                   )}
                 </span>{" "}
                 people are following the {coinFAQ && coinFAQ[0]?.name} Twitter
-                account @safemoon.
+                account
+                <Link
+                  href={coinFAQ && coinFAQ[0]?.twitter?.social_url}
+                  target="_blank"
+                  style={{ textDecoration: "none" }}
+                >
+                  @{coinFAQ && coinFAQ[0]?.name}
+                </Link>{" "}
+                .
               </Typography>
             </Stack>
 
@@ -518,7 +570,15 @@ const CoinPageFAQ = () => {
                     <span style={{ color: "#7a7a7a" }}>--</span>
                   )}
                 </span>{" "}
-                members on the @safemoonv2 Telegram channel.
+                members on the{" "}
+                <Link
+                  href={coinFAQ && coinFAQ[0]?.telegram?.social_url}
+                  target="_blank"
+                  style={{ textDecoration: "none" }}
+                >
+                  @{coinFAQ && coinFAQ[0]?.name}
+                </Link>{" "}
+                Telegram channel.
               </Typography>
             </Stack>
 
@@ -542,7 +602,15 @@ const CoinPageFAQ = () => {
                     <span style={{ color: "#7a7a7a" }}>--</span>
                   )}
                 </span>{" "}
-                members on {coinFAQ && coinFAQ[0]?.name} Discord Server.
+                members on {coinFAQ && coinFAQ[0]?.name}{" "}
+                <Link
+                  href={coinFAQ && coinFAQ[0]?.discord?.social_url}
+                  target="_blank"
+                  style={{ textDecoration: "none" }}
+                >
+                  Discord
+                </Link>{" "}
+                Server.
               </Typography>
             </Stack>
 
@@ -566,7 +634,15 @@ const CoinPageFAQ = () => {
                     <span style={{ color: "#7a7a7a" }}>--</span>
                   )}
                 </span>{" "}
-                subscribers on /r/safemoon subreddit.
+                subscribers on{" "}
+                <Link
+                  href={coinFAQ && coinFAQ[0]?.reddit?.social_url}
+                  target="_blank"
+                  style={{ textDecoration: "none" }}
+                >
+                  {coinFAQ && coinFAQ[0]?.name}
+                </Link>{" "}
+                subreddit.
               </Typography>
             </Stack>
 
@@ -582,7 +658,7 @@ const CoinPageFAQ = () => {
                 variant="body2"
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
-                You can read the latest news about safemoon{" "}
+                You can read the latest news about {coinFAQ && coinFAQ[0]?.name}{" "}
                 <a
                   href={`https://news.coinxhigh.com/?s=${
                     coinFAQ && coinFAQ[0]?.name?.toLowerCase()

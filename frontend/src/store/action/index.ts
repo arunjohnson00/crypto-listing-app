@@ -19,6 +19,7 @@ export { nftListingRequest } from "./homeAction";
 export { menuCardRequest } from "./homeAction";
 export { videoListRequest } from "./homeAction";
 export { trendingCoinListRequest } from "./homeAction";
+export { eventListRequest } from "./homeAction";
 
 //Coin Page
 
@@ -35,6 +36,8 @@ export { coinFAQBlockRequest } from "./coinAction ";
 export { coinPriceGraphBlockRequest } from "./coinAction ";
 export { coinEventBlockRequest } from "./coinAction ";
 export { coinPresaleBlockRequest } from "./coinAction ";
+export { coinVisitedCounterRequest } from "./coinAction ";
+export { coinlatestNewsRequest } from "./coinAction ";
 //Coins Page
 
 export { coinsRecentlyAddedRequest } from "./coinsAction";
@@ -45,4 +48,9 @@ export { coinsCryptoCurrenciesListRequest } from "./coinsAction";
 export { coinsCryptoCurrenciesNewRequest } from "./coinsAction";
 export { coinsCryptoCurrenciesPresaleRequest } from "./coinsAction";
 export { coinsCryptoCurrenciesTodaysBestRequest } from "./coinsAction";
+export { coinsCryptoCurrenciesMostVisitedRequest } from "./coinsAction";
 export { coinsCryptoCurrenciesTabRequest } from "./coinsAction";
+
+//NFT
+
+export { nftPageListingRequest } from "./nftAction";

@@ -199,3 +199,18 @@ export const trendingCoinListRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const eventListRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-events`,
+    method: "GET",
+    secure: false,
+    actionType: HOME.EVENTS_BLOCK,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

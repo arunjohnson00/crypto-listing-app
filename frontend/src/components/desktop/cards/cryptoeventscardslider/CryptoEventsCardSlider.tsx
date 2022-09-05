@@ -11,9 +11,10 @@ import Rating from "@mui/material/Rating";
 import { styled } from "@mui/material/styles";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-
+import moment from "moment";
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const CryptoEventsCardSlider = ({ data, variant }: any) => {
+  console.log(data);
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
       color: "#ff6d75",
@@ -43,7 +44,8 @@ const CryptoEventsCardSlider = ({ data, variant }: any) => {
             <Avatar
               sx={{ width: 50, height: 50 }}
               variant="square"
-              src="https://cryptologos.cc/logos/ethereum-eth-logo.png"
+              src={`${serverAPIUrl}public/uploads/coin_logo/${data?.coin_logo}`}
+              alt={data && data?.title}
             />
             <Stack direction="column" spacing={0.8} width="100%">
               <Stack direction="column" spacing={0} width="100%">
@@ -54,7 +56,7 @@ const CryptoEventsCardSlider = ({ data, variant }: any) => {
                     fontWeight: 500,
                   }}
                 >
-                  Etherium Merge
+                  {data && data?.title}
                 </Typography>
                 <Typography
                   sx={{
@@ -63,7 +65,8 @@ const CryptoEventsCardSlider = ({ data, variant }: any) => {
                     fontWeight: 500,
                   }}
                 >
-                  15 Sept 2022
+                  {data &&
+                    moment(new Date(data?.event_date)).format("DD MMM  YYYY")}
                 </Typography>
               </Stack>
               <Stack
@@ -99,13 +102,13 @@ const CryptoEventsCardSlider = ({ data, variant }: any) => {
                   size="small"
                   sx={{
                     borderRadius: 10,
-                    textTransform: "capitalize",
+                    textTransform: "inherit",
                     fontSize: ".6rem",
                     color: "#FFFFFF",
                     backgroundColor: "#2415A2",
                   }}
                 >
-                  126 Days to go
+                  {data && moment(new Date(data?.event_date)).fromNow()}
                 </Button>
               </Stack>
             </Stack>

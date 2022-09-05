@@ -766,7 +766,7 @@ const CoinPageOverview = () => {
                 spacing={1}
               >
                 <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  All Time High In Last 15 Days
+                  ATH In Last 15 Days
                 </Typography>
                 <Tooltip title="Delete">
                   <Avatar
@@ -831,7 +831,7 @@ const CoinPageOverview = () => {
                 spacing={1}
               >
                 <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  All Time High Date In Last 15 Days
+                  ATH Date In Last 15 Days
                 </Typography>
                 <Tooltip title="Delete">
                   <Avatar
@@ -846,7 +846,7 @@ const CoinPageOverview = () => {
                 coinDetailOverview[0]?.all_time_high_date !== ""
                   ? moment(
                       new Date(coinDetailOverview[0]?.all_time_high_date)
-                    ).format("MMM DD YY")
+                    ).format(" DD MMM YY")
                   : "NA"}
               </Typography>
             </Stack>

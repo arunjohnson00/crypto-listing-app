@@ -10,10 +10,11 @@ const initialState = {
   crypto_currencies_new: "",
   crypto_currencies_presale: "",
   crypto_currencies_todays_best: "",
-  crypto_currencies_tab: 0,
+  crypto_currencies_tab: 4,
   menu_cards: "",
   nft_listings: "",
   video_list: "",
+  events_list: "",
 };
 const homeReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -105,6 +106,13 @@ const homeReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         video_list: action?.payload,
+      };
+
+    case HOME.EVENTS_BLOCK:
+      //console.log(action);
+      return {
+        ...state,
+        events_list: action?.payload?.data,
       };
 
     default:

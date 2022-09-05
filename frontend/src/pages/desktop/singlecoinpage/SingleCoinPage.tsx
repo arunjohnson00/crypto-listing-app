@@ -29,6 +29,7 @@ import {
   coinRatingBlockRequest,
   coinHistoricalDataBlockRequest,
   coinTodaysPriceBlockRequest,
+  coinVisitedCounterRequest,
 } from "../../../store/action";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 
@@ -77,13 +78,13 @@ const SingleCoinPage = () => {
         errorHandler
       )
     );
-    // dispatch(
-    //   coinOverviewBlockRequest(
-    //     location?.pathname?.split("/").pop(),
-    //     successHandler,
-    //     errorHandler
-    //   )
-    // );
+    dispatch(
+      coinVisitedCounterRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
     // dispatch(
     //   coinAboutBlockRequest(
     //     location?.pathname?.split("/").pop(),

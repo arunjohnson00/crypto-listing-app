@@ -9,6 +9,7 @@ import {
   Box,
   Avatar,
 } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
 import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
@@ -23,8 +24,14 @@ import "react-multi-carousel/lib/styles.css";
 import NftCollectionCard from "../../../components/desktop/cards/nftcollection/NftCollectionCard";
 import NftTab from "../../../components/desktop/nfttab/NftTab";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
+import { nftPageListingRequest } from "../../../store/action";
 
 const NftListingsPage = () => {
+  const dispatch: any = useDispatch();
+  const NFTList = useSelector((data: any) => {
+    return data?.nftReducer?.nft_listings?.data;
+  });
+
   const responsiveNFT: any = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -50,6 +57,12 @@ const NftListingsPage = () => {
 
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(nftPageListingRequest("noData", successHandler, errorHandler));
+  }, [dispatch]);
 
   return (
     <Fragment>
@@ -86,36 +99,27 @@ const NftListingsPage = () => {
               paddingBottom: "23px",
             }}
           >
-            <Carousel
-              // centerMode={true}
-              responsive={responsiveNFT}
-              infinite={true}
-              removeArrowOnDeviceType={["tablet", "mobile"]}
-              arrows={true}
-              swipeable={true}
-              partialVisible={true}
-              autoPlay={true}
-              draggable={true}
-            >
-              <Box>
-                <NftCollectionCard />
-              </Box>
-              <Box>
-                <NftCollectionCard />
-              </Box>
-              <Box>
-                <NftCollectionCard />
-              </Box>
-              <Box>
-                <NftCollectionCard />
-              </Box>
-              <Box>
-                <NftCollectionCard />
-              </Box>
-              <Box>
-                <NftCollectionCard />
-              </Box>
-            </Carousel>
+            {NFTList && NFTList?.data && (
+              <Carousel
+                responsive={responsiveNFT}
+                infinite={true}
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+                arrows={true}
+                autoPlay={false}
+                draggable={true}
+                swipeable={true}
+                minimumTouchDrag={10}
+                keyBoardControl={true}
+                shouldResetAutoplay={false}
+              >
+                {NFTList &&
+                  NFTList?.data?.map((item: any, index: number) => (
+                    <Box key={index}>
+                      <NftCollectionCard data={item && item} index={index} />
+                    </Box>
+                  ))}
+              </Carousel>
+            )}
           </Grid>
         </Grid>
 

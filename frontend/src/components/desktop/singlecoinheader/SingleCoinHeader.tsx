@@ -1160,7 +1160,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       <SingleCoinChip
                         key={index}
                         src={item?.logo}
-                        title={item?.name}
+                        //title={item?.name}
                         link={item?.url}
                         varient="explorer"
                       />

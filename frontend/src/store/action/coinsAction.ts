@@ -25,7 +25,7 @@ export const coinsRecentlyAddedRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/recently-added`,
+    url: `api/f/v1/recently-added?page=${values}`,
     method: "GET",
     secure: false,
     actionType: COINS.RECENTLY_ADDED,
@@ -40,7 +40,7 @@ export const coinsBiggestGainersRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/biggest-gainers`,
+    url: `api/f/v1/biggest-gainers?page=${values}`,
     method: "GET",
     secure: false,
     actionType: COINS.BIGGEST_GAINERS,
@@ -55,7 +55,7 @@ export const coinsBiggestLosersRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/biggest-loosers`,
+    url: `api/f/v1/biggest-loosers?page=${values}`,
     method: "GET",
     secure: false,
     actionType: COINS.BIGGEST_LOOSERS,
@@ -100,7 +100,7 @@ export const coinsCryptoCurrenciesNewRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/crypto-currencies-new`,
+    url: `api/f/v1/crypto-currencies-new?page=${values}`,
     method: "GET",
     secure: false,
     actionType: COINS.CRYPTO_CURRENCIES_NEW,
@@ -115,7 +115,7 @@ export const coinsCryptoCurrenciesPresaleRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/crypto-currencies-presale`,
+    url: `api/f/v1/crypto-currencies-presale?page=${values}`,
     method: "GET",
     secure: false,
     actionType: COINS.CRYPTO_CURRENCIES_PRESALE,
@@ -130,10 +130,25 @@ export const coinsCryptoCurrenciesTodaysBestRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/crypto-currencies-todays-best`,
+    url: `api/f/v1/crypto-currencies-todays-best?page=${values}`,
     method: "GET",
     secure: false,
     actionType: COINS.CRYPTO_CURRENCIES_TODAYS_BEST,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const coinsCryptoCurrenciesMostVisitedRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-visit-counter?page=${values}`,
+    method: "GET",
+    secure: false,
+    actionType: COINS.MOST_VISITED,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };

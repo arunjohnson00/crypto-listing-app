@@ -57,6 +57,7 @@ import {
   menuCardRequest,
   videoListRequest,
   trendingCoinListRequest,
+  eventListRequest,
 } from "../../../store/action";
 import { tableHeader } from "./helper";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
@@ -211,6 +212,9 @@ const HomePage = ({ windowInnerWidth }: any) => {
     return data?.homeReducer?.nft_listings?.data;
   });
 
+  const eventList = useSelector((data: any) => {
+    return data?.homeReducer?.events_list?.data;
+  });
   const tabIndex = useSelector((data: any) => {
     return data?.homeReducer?.crypto_currencies_tab;
   });
@@ -235,6 +239,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
     dispatch(menuCardRequest("noData", successHandler, errorHandler));
     dispatch(videoListRequest("noData", successHandler, errorHandler));
     dispatch(trendingCoinListRequest("noData", successHandler, errorHandler));
+    dispatch(eventListRequest("noData", successHandler, errorHandler));
   }, [dispatch, setPreLoader]);
 
   useEffect(() => {
@@ -790,40 +795,27 @@ const HomePage = ({ windowInnerWidth }: any) => {
           </Grid>
 
           <Grid xs={12} sm={12} md={9.3} lg={9.3} xl={9.3}>
-            <Carousel
-              responsive={responsiveCryptoEvents}
-              infinite={true}
-              removeArrowOnDeviceType={["tablet", "mobile"]}
-              arrows={false}
-              autoPlay={true}
-              draggable={true}
-              swipeable={true}
-              minimumTouchDrag={10}
-              keyBoardControl={true}
-              shouldResetAutoplay={false}
-            >
-              <Box>
-                <CryptoEventsCardSlider />
-              </Box>
-              <Box>
-                <CryptoEventsCardSlider />
-              </Box>
-              <Box>
-                <CryptoEventsCardSlider />
-              </Box>
-              <Box>
-                <CryptoEventsCardSlider />
-              </Box>
-              <Box>
-                <CryptoEventsCardSlider />
-              </Box>
-              <Box>
-                <CryptoEventsCardSlider />
-              </Box>
-              <Box>
-                <CryptoEventsCardSlider />
-              </Box>
-            </Carousel>
+            {eventList && (
+              <Carousel
+                responsive={responsiveCryptoEvents}
+                infinite={true}
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+                arrows={false}
+                autoPlay={true}
+                draggable={true}
+                swipeable={true}
+                minimumTouchDrag={10}
+                keyBoardControl={true}
+                shouldResetAutoplay={false}
+              >
+                {eventList &&
+                  eventList?.map((item: any, index: number) => (
+                    <Box key={index}>
+                      <CryptoEventsCardSlider data={item} />
+                    </Box>
+                  ))}
+              </Carousel>
+            )}
           </Grid>
         </Grid>
         <Grid
@@ -1197,7 +1189,9 @@ const HomePage = ({ windowInnerWidth }: any) => {
               justifyContent: " flex-end",
             }}
           >
-            <ViewMoreBtn title="See collections" />
+            <Link to="/nft">
+              <ViewMoreBtn title="See collections" />
+            </Link>
           </Stack>
         </Grid>
 

@@ -534,7 +534,15 @@ const MobileFeaturedCoinCards = ({ cardData, index }: any) => {
                   variant="caption"
                   sx={{ color: "#FFFFF5", fontWeight: 600, fontSize: ".7rem" }}
                 >
-                  {cardData && cardData?.network?.slice(0, 18)}..
+                  {cardData && cardData?.network_icon === null ? (
+                    <Typography sx={{ fontSize: ".6rem" }}>--</Typography>
+                  ) : (
+                    <Avatar
+                      alt={cardData && cardData?.name}
+                      src={`${serverAPIUrl}public/uploads/network_icons/${cardData?.network_icon}`}
+                      sx={{ width: 45, height: 11, borderRadius: 0 }}
+                    />
+                  )}
                 </Typography>
               </Stack>
             </Grid>

@@ -10,6 +10,7 @@ const initialState = {
   recently_added: "",
   biggest_gainers: "",
   biggest_loosers: "",
+  most_visited: "",
 };
 const coinsReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -72,6 +73,12 @@ const coinsReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         crypto_currencies_tab: action?.payload,
+      };
+    case COINS.MOST_VISITED:
+      //console.log(action);
+      return {
+        ...state,
+        most_visited: action?.payload,
       };
 
     default:

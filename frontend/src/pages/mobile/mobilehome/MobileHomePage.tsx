@@ -42,6 +42,8 @@ import {
   videoListRequest,
   trendingCoinListRequest,
   latestNewsRequest,
+  eventListRequest,
+  nftListingRequest,
 } from "../../../store/action";
 import { tableHeader } from "./helper";
 import { Link } from "react-router-dom";
@@ -203,6 +205,10 @@ const MobileHomePage = () => {
     return data?.homeReducer?.nft_listings?.data;
   });
 
+  const eventList = useSelector((data: any) => {
+    return data?.homeReducer?.events_list?.data;
+  });
+
   const tabIndex = useSelector((data: any) => {
     return data?.homeReducer?.crypto_currencies_tab;
   });
@@ -262,6 +268,8 @@ const MobileHomePage = () => {
     dispatch(menuCardRequest("noData", successHandler, errorHandler));
     dispatch(videoListRequest("noData", successHandler, errorHandler));
     dispatch(trendingCoinListRequest("noData", successHandler, errorHandler));
+    dispatch(nftListingRequest("noData", successHandler, errorHandler));
+    dispatch(eventListRequest("noData", successHandler, errorHandler));
   }, [dispatch, setPreLoader]);
 
   return (
@@ -508,33 +516,27 @@ const MobileHomePage = () => {
           <MobileCryptoEventsCardSlider variant="ads" />
         </Grid>
 
-        <Carousel
-          responsive={responsiveCryptoEvents}
-          infinite={true}
-          removeArrowOnDeviceType={["tablet", "mobile"]}
-          arrows={false}
-          autoPlay={false}
-          draggable={true}
-          swipeable={true}
-          minimumTouchDrag={10}
-          keyBoardControl={true}
-          shouldResetAutoplay={false}
-        >
-          <Box>
-            <MobileCryptoEventsCardSlider />
-          </Box>
-          <Box>
-            <MobileCryptoEventsCardSlider />
-          </Box>
-
-          <Box>
-            <MobileCryptoEventsCardSlider />
-          </Box>
-
-          <Box>
-            <MobileCryptoEventsCardSlider />
-          </Box>
-        </Carousel>
+        {eventList && (
+          <Carousel
+            responsive={responsiveCryptoEvents}
+            infinite={true}
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            arrows={false}
+            autoPlay={true}
+            draggable={true}
+            swipeable={true}
+            minimumTouchDrag={10}
+            keyBoardControl={true}
+            shouldResetAutoplay={false}
+          >
+            {eventList &&
+              eventList?.map((item: any, index: number) => (
+                <Box key={index}>
+                  <MobileCryptoEventsCardSlider data={item} />
+                </Box>
+              ))}
+          </Carousel>
+        )}
       </Grid>
 
       {/* <Grid
