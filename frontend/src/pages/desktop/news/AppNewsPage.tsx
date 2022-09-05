@@ -194,20 +194,21 @@ const AppNewsPage = () => {
             md={12}
             lg={12}
             xl={12}
-            pt={1}
+            pt={10}
             px={{ xs: 0, sm: 0, md: 0 }}
           >
             {latestNews &&
               latestNews?.slice(3).map((rssFeed: any, index: number) => {
                 return (
-                  <Grid
-                    xs={12}
-                    sm={12}
-                    md={4}
-                    lg={4}
-                    xl={4}
-                    pt={5}
-                    px={{ xs: 0, sm: 0, md: 0 }}
+                  <Stack
+                    direction={{
+                      xs: "column",
+                      sm: "column",
+                      md: "row",
+                      lg: "row",
+                      xl: "row",
+                    }}
+                    flexWrap="wrap"
                     key={index}
                   >
                     <NewsCardNewsPage
@@ -215,7 +216,7 @@ const AppNewsPage = () => {
                       timeAgo={timeAgo}
                       index={index + 4}
                     />
-                  </Grid>
+                  </Stack>
                 );
               })}
           </Grid>

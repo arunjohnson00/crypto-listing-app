@@ -64,7 +64,7 @@ const CardNewsPage = ({
             style={{ color: "inherit", textDecoration: "none" }}
           >
             {" "}
-            {rssFeed && Parser(rssFeed?.title)}
+            {rssFeed && Parser(rssFeed?.title)}.
           </a>
         </Typography>
         <Typography
