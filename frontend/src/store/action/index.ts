@@ -54,3 +54,8 @@ export { coinsCryptoCurrenciesTabRequest } from "./coinsAction";
 //NFT
 
 export { nftPageListingRequest } from "./nftAction";
+
+//user
+
+export { userRegisterRequest } from "./userAction";
+export { userLoginRequest } from "./userAction";

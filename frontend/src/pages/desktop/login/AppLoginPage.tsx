@@ -10,10 +10,9 @@ import {
   Avatar,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
-import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
-import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
-import Marquee from "react-fast-marquee";
+import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -34,8 +33,10 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 import { Link } from "react-router-dom";
+import { userLoginRequest } from "../../../store/action";
 
 const AppLoginPage = () => {
+  const dispatch: any = useDispatch();
   const [showPassword, setShowPassword] = useState<any>({
     showPassword: false,
   });
@@ -57,6 +58,34 @@ const AppLoginPage = () => {
 
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
+
+  const loginHandler = () => {
+    const formData = new FormData(document.querySelector("#login") as any);
+    const successHandler = (res: any) => {
+      toast.success(`${"Login Successfully"}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    };
+    const errorHandler = (err: any) => {
+      toast.success(`${JSON.stringify(err?.error?.message?.response?.data)}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    };
+
+    dispatch(userLoginRequest(formData, successHandler, errorHandler));
+  };
 
   return (
     <Fragment>
@@ -105,17 +134,17 @@ const AppLoginPage = () => {
                 px={{ xs: 0, sm: 0, md: 8 }}
                 py={{ xs: 0, sm: 0, md: 1 }}
               >
-                <Box
-                  sx={{
-                    flexGrow: 1,
-                    background: "linear-gradient(180deg, #020822, #030619)",
-                    borderRadius: 4,
-                    height: 363,
-                  }}
-                  px={{ xs: 2, sm: 2, md: 7 }}
-                  py={{ xs: 5, sm: 5, md: 7 }}
-                >
-                  <form>
+                <form id="login">
+                  <Box
+                    sx={{
+                      flexGrow: 1,
+                      background: "linear-gradient(180deg, #020822, #030619)",
+                      borderRadius: 4,
+                      height: 363,
+                    }}
+                    px={{ xs: 2, sm: 2, md: 7 }}
+                    py={{ xs: 5, sm: 5, md: 7 }}
+                  >
                     <Stack
                       direction="column"
                       spacing={2}
@@ -133,9 +162,10 @@ const AppLoginPage = () => {
                           Email address
                         </Typography>
                         <TextField
-                          id="outlined-basic"
+                          id="email"
                           variant="filled"
                           placeholder="Enter email address"
+                          name="email"
                           fullWidth
                           sx={{
                             backgroundColor: "#020822",
@@ -169,7 +199,10 @@ const AppLoginPage = () => {
                             startAdornment: (
                               <InputAdornment position="start">
                                 <EmailOutlinedIcon
-                                  sx={{ color: "#D2D7E2", marginTop: "-16px" }}
+                                  sx={{
+                                    color: "#D2D7E2",
+                                    marginTop: "-16px",
+                                  }}
                                 />
                               </InputAdornment>
                             ),
@@ -194,10 +227,11 @@ const AppLoginPage = () => {
                           Password
                         </Typography>
                         <TextField
-                          id="outlined-basic"
+                          id="password"
                           variant="filled"
                           placeholder="Enter Password"
                           fullWidth
+                          name="password"
                           type={showPassword.showPassword ? "text" : "password"}
                           sx={{
                             backgroundColor: "#020822",
@@ -230,7 +264,10 @@ const AppLoginPage = () => {
                             startAdornment: (
                               <InputAdornment position="start">
                                 <LockOutlinedIcon
-                                  sx={{ color: "#D2D7E2", marginTop: "-16px" }}
+                                  sx={{
+                                    color: "#D2D7E2",
+                                    marginTop: "-16px",
+                                  }}
                                 />
                               </InputAdornment>
                             ),
@@ -287,6 +324,7 @@ const AppLoginPage = () => {
                           textTransform: "capitalize",
                           paddingX: 15,
                         }}
+                        onClick={loginHandler}
                       >
                         Log in
                       </Button>
@@ -316,8 +354,8 @@ const AppLoginPage = () => {
                         </Typography>
                       </Link>
                     </Stack>
-                  </form>
-                </Box>
+                  </Box>
+                </form>
               </Grid>
             </Stack>
           </Grid>

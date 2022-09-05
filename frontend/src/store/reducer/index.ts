@@ -10,6 +10,7 @@ import homeReducer from "./homeReducer";
 import coinReducer from "./coinReducer";
 import coinsReducer from "./coinsReducer";
 import nftReducer from "./nftReducer";
+import userReducer from "./userReducer";
 
 const allReducers = combineReducers({
   commonReducer,
@@ -17,6 +18,7 @@ const allReducers = combineReducers({
   coinReducer,
   coinsReducer,
   nftReducer,
+  userReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

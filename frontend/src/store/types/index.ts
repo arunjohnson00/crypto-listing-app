@@ -61,3 +61,8 @@ export const COINS = {
 export const NFT = {
   NFT_LISTINGS: "NFT_LISTINGS",
 };
+
+export const USER = {
+  USER_REGISTER: "USER_REGISTER",
+  USER_LOGIN: "USER_LOGIN",
+};
