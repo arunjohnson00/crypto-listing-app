@@ -12,7 +12,7 @@ import moment from "moment";
 import Rating from "@mui/material/Rating";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-
+import "./style.css";
 import { BounceLoader } from "react-spinners";
 import FacebookImage from "../../../../assets/featuredcard/facebook.png";
 import InstagramImage from "../../../../assets/featuredcard/instagram.png";
@@ -182,7 +182,10 @@ const MobileFeaturedCoinCards = ({ cardData, index }: any) => {
                 {cardData &&
                   Math.sign(
                     moment(new Date(cardData?.presale_date)).diff(new Date())
-                  ) === -1 && <BounceLoader size={12} color="#00FF00" />}
+                  ) === -1 && (
+                    // <BounceLoader size={12} color="#00FF00" />
+                    <span className="ripplefeaturedcoincardmob"></span>
+                  )}
 
                 <Typography
                   variant="body2"

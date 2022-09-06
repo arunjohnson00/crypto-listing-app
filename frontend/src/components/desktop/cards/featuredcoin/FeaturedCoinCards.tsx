@@ -22,7 +22,7 @@ import TwitterImage from "../../../../assets/featuredcard/twitter.png";
 
 import { CountDownTimer } from "./countdown/CountDownTimer";
 import { defaultColor } from "../../../../common/common";
-
+import "./style.css";
 const FeaturedCoinCards = ({ cardData, index }: any) => {
   // const getDifferenceInDays = (date1: any, date2: any) => {
   //   const diffInMs = Math.abs(date2 - date1);
@@ -184,7 +184,11 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
                 {cardData &&
                   Math.sign(
                     moment(new Date(cardData?.presale_date)).diff(new Date())
-                  ) !== -1 && <BounceLoader size={12} color="#00FF00" />}
+                  ) !== -1 && (
+                    //  <BounceLoader size={12} color="#00FF00" />
+
+                    <span className="ripplefeaturedcoin"></span>
+                  )}
 
                 <Typography
                   variant="body2"

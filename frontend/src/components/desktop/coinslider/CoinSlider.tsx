@@ -10,6 +10,9 @@ import { biggestGainersRequest } from "../../../store/action";
 import { Link } from "react-router-dom";
 import { BounceLoader } from "react-spinners";
 import { defaultColor } from "../../../common/common";
+
+import "./style.css";
+
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const CoinSlider = () => {
   const dispatch: any = useDispatch();
@@ -58,7 +61,10 @@ const CoinSlider = () => {
             >
               TRENDING
             </Typography>
-            <BounceLoader size={12} color="#00FF00" />
+            {/* <BounceLoader size={12} color="#00FF00" /> */}
+            <div>
+              <span className="ripplecoinslider"></span>
+            </div>
           </Stack>
         </Box>
       </Grid>

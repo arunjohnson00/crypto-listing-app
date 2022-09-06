@@ -10,6 +10,8 @@ import { biggestGainersRequest } from "../../../store/action";
 import { Link } from "react-router-dom";
 import { BounceLoader } from "react-spinners";
 import { defaultColor } from "../../../common/common";
+import "./style.css";
+
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileCoinSlider = () => {
   const dispatch: any = useDispatch();
@@ -37,7 +39,7 @@ const MobileCoinSlider = () => {
         <Box
           sx={{
             background: "linear-gradient(to left, #0a0538 0%, #040920 100%)",
-            borderRadius: 5,
+            borderRadius: 6,
             boxShadow: "8px 1px 9px #00000038",
           }}
           py={2}
@@ -56,7 +58,11 @@ const MobileCoinSlider = () => {
             >
               TRENDING
             </Typography>
-            <BounceLoader size={10} color="#00FF00" />
+            {/* <BounceLoader size={10} color="#00FF00" /> */}
+
+            <div>
+              <span className="ripplecoinslidermob"></span>
+            </div>
           </Stack>
         </Box>
       </Grid>
