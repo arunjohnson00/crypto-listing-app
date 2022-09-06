@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { Typography } from "@mui/material";
+import { Fragment, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { cryptoCurrenciesListRequest } from "../../../store/action";
+import { userCoinListRequest } from "../../../store/action";
 import UserAdminHtmlTable from "../htmltable/UserAdminHtmlTable";
 import { tableHeader } from "./helper";
 const UserAdminCoinListing = () => {
@@ -13,17 +14,23 @@ const UserAdminCoinListing = () => {
     };
     const errorHandler = (err: any) => {};
 
-    dispatch(
-      cryptoCurrenciesListRequest("noData", successHandler, errorHandler)
-    );
+    dispatch(userCoinListRequest("noData", successHandler, errorHandler));
   }, [dispatch]);
 
   return (
-    <UserAdminHtmlTable
-      tableData={tableData && tableData}
-      tableHeader={tableHeader}
-      variant="crypto_currencies"
-    />
+    <Fragment>
+      {tableData?.data?.length !== 0 ? (
+        <UserAdminHtmlTable
+          tableData={tableData && tableData?.data}
+          tableHeader={tableHeader}
+          variant="crypto_currencies"
+        />
+      ) : (
+        <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
+          No data available !
+        </Typography>
+      )}
+    </Fragment>
   );
 };
 

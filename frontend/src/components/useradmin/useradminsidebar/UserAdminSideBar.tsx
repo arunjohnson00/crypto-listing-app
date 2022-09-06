@@ -9,14 +9,15 @@ import {
   SubMenu,
 } from "react-pro-sidebar";
 
-import { BiCoinStack } from "react-icons/bi";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { HiMenuAlt1 } from "react-icons/hi";
-import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
+
 import "./style.css";
 import "react-pro-sidebar/dist/css/styles.css";
 import CoinXHighLogo from "../../../assets/logo/logo.png";
 import { Avatar, IconButton, Typography } from "@mui/material";
-
+import { logoutHandler } from "../../../utils/logoutHandler";
 import UserDashBoardIcon from "../../../assets/userdashboard/dashboard_menu.png";
 import MyListingIcon from "../../../assets/userdashboard/mylistings_menu.png";
 import AddCoinIcon from "../../../assets/userdashboard/coin_menu.png";
@@ -27,7 +28,11 @@ import AdsIcon from "../../../assets/userdashboard/ads_menu.png";
 import { Link } from "react-router-dom";
 const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
   const [activeMenu, setActiveMenu] = useState<any>();
-
+  const dispatch: any = useDispatch();
+  const navigate: any = useNavigate();
+  const loginControll = () => {
+    logoutHandler(navigate, dispatch);
+  };
   return (
     <ProSidebar
       collapsed={collapse}
@@ -235,6 +240,30 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
                 Settings
               </Typography>
             </Link>
+          </MenuItem>
+
+          <MenuItem
+            style={{
+              paddingTop: 10,
+              paddingBottom: 10,
+            }}
+            onClick={loginControll}
+            icon={
+              <Avatar
+                alt="User Dashboard"
+                src={SettingsIcon}
+                sx={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 0,
+                }}
+              />
+            }
+          >
+            <Typography variant="body2" ml={2}>
+              {" "}
+              Logout
+            </Typography>
           </MenuItem>
 
           {/* <SubMenu title="Components">

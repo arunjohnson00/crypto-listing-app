@@ -59,3 +59,5 @@ export { nftPageListingRequest } from "./nftAction";
 
 export { userRegisterRequest } from "./userAction";
 export { userLoginRequest } from "./userAction";
+export { userLogoutRequest } from "./userAction";
+export { userCoinListRequest } from "./userAction";

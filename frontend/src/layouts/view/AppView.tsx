@@ -30,7 +30,7 @@ const AppView = ({ children }: any) => {
 
   return (
     <Fragment>
-      {windowInnerWidth >= 900 && preloader === true && (
+      {/* {windowInnerWidth >= 900 && preloader === true && (
         <Box
           sx={{
             position: "fixed",
@@ -88,7 +88,7 @@ const AppView = ({ children }: any) => {
             </Box>
           </Stack>
         </Box>
-      )}
+      )} */}
       <Container maxWidth={false}>
         <Grid item ml={5} px={{ xs: 0.2, sm: 1, md: 3, lg: 4, xl: 25 }}>
           <Grid

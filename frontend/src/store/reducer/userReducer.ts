@@ -4,6 +4,8 @@ const initialState = {
   //latest_news: "",
   user_register: "",
   user_login: "",
+  user_logout: "",
+  user_coin_list: "",
 };
 const userReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -19,6 +21,20 @@ const userReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         user_login: action?.payload?.data,
+      };
+
+    case USER.USER_LOGOUT:
+      //console.log(action);
+      return {
+        ...state,
+        user_logout: action?.payload?.data,
+      };
+
+    case USER.USER_COIN_LIST:
+      //console.log(action);
+      return {
+        ...state,
+        user_coin_list: action?.payload?.data,
       };
 
     default:

@@ -16,10 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Rating from "@mui/material/Rating";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { styled } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
@@ -37,9 +34,12 @@ import { userLoginRequest } from "../../../store/action";
 
 const AppLoginPage = () => {
   const dispatch: any = useDispatch();
+  const navigate: any = useNavigate();
   const [showPassword, setShowPassword] = useState<any>({
     showPassword: false,
   });
+
+  const [remember, setRemember] = useState<any>(true);
 
   const handleClickShowPassword = () => {
     setShowPassword({
@@ -59,9 +59,30 @@ const AppLoginPage = () => {
   TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en");
 
+  const rememberMeHandler = () => {
+    setRemember(!remember);
+  };
+
   const loginHandler = () => {
     const formData = new FormData(document.querySelector("#login") as any);
     const successHandler = (res: any) => {
+      if (res?.data?.access_token) {
+        sessionStorage.setItem(
+          "authToken",
+          JSON.stringify(res?.data?.access_token)
+        );
+
+        sessionStorage.setItem("authUser", JSON.stringify(res?.data?.user));
+
+        if (remember === true) {
+          localStorage.setItem(
+            "authToken",
+            JSON.stringify(res.data.access_token)
+          );
+
+          localStorage.setItem("authUser", JSON.stringify(res?.data?.user));
+        }
+      }
       toast.success(`${"Login Successfully"}`, {
         position: "top-right",
         autoClose: 5000,
@@ -71,6 +92,8 @@ const AppLoginPage = () => {
         draggable: true,
         progress: undefined,
       });
+
+      navigate("/user-dashboard");
     };
     const errorHandler = (err: any) => {
       toast.success(`${JSON.stringify(err?.error?.message?.response?.data)}`, {
@@ -300,7 +323,8 @@ const AppLoginPage = () => {
                             sx={{ color: "#20B5CC" }}
                             control={
                               <Checkbox
-                                defaultChecked
+                                //defaultChecked
+                                checked={remember}
                                 size="small"
                                 sx={{
                                   color: "#20B5CC",
@@ -308,6 +332,7 @@ const AppLoginPage = () => {
                                     color: "#20B5CC",
                                   },
                                 }}
+                                onChange={rememberMeHandler}
                               />
                             }
                             label="Remember me"

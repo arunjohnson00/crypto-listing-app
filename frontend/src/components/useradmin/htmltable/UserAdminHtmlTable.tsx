@@ -54,7 +54,7 @@ const UserAdminHtmlTable = ({ tableData, variant, tableHeader }: any) => {
         {variant === "crypto_currencies" && (
           <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
             {tableData &&
-              tableData.slice(0, 10).map((data: any, index: number) => (
+              tableData?.map((data: any, index: number) => (
                 <TableRow
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
