@@ -61,3 +61,18 @@ export { userRegisterRequest } from "./userAction";
 export { userLoginRequest } from "./userAction";
 export { userLogoutRequest } from "./userAction";
 export { userCoinListRequest } from "./userAction";
+
+//dashboard coin
+
+export {
+  dashboardCoinNetworkListRequest,
+  dashboardCoinExchangeListRequest,
+  dashboardCoinAuditListRequest,
+  dashboardCoinChartProviderListRequest,
+  dashboardCoinChatPlatformListRequest,
+  dashboardCoinSocialPlatformListRequest,
+  dashboardAddCoinRequest,
+  dashboardEditCoinRequest,
+  dashboardUpdateCoinRequest,
+  dashboardDeleteCoinRequest,
+} from "./dashboardCoinAction";

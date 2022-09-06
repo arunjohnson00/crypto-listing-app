@@ -12,9 +12,11 @@ import {
   Link,
 } from "@mui/material";
 import dateFormat, { masks } from "dateformat";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
-import "material-react-toastify/dist/ReactToastify.css";
+// import "material-react-toastify/dist/ReactToastify.css";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 
 import InputText from "../../../../components/useradmin/form/input/text/InputText";
@@ -34,15 +36,15 @@ import ChartDetails from "./ChartDetails";
 import CommunityDetails from "./CommunityDetails";
 import ChatDetails from "./ChatDetails";
 import SocialDetails from "./SocialDetails";
-
-// import { addCoinRequest } from "../../../store/action";
-// import { listExchangeRequest } from "../../../store/action";
-// import { allNetworkRequest } from "../../../store/action";
-// import { listCoinAuditRequest } from "../../../store/action";
-// import { listCoinChatRequest } from "../../../store/action";
-// import { listCoinSocialRequest } from "../../../store/action";
-// import { listChartProviderRequest } from "../../../store/action";
-// import { allExchangeRequest } from "../../../store/action";
+import {
+  dashboardAddCoinRequest,
+  dashboardCoinAuditListRequest,
+  dashboardCoinChartProviderListRequest,
+  dashboardCoinChatPlatformListRequest,
+  dashboardCoinExchangeListRequest,
+  dashboardCoinNetworkListRequest,
+  dashboardCoinSocialPlatformListRequest,
+} from "../../../../store/action";
 
 const CoinListingAdd = () => {
   const selectOptions = [
@@ -52,25 +54,25 @@ const CoinListingAdd = () => {
   ];
 
   const exchangeList = useSelector((exList: any) => {
-    return exList.exchangesReducer.allExchanges.data;
+    return exList.dashboardCoinReducer.exchange_list.data;
   });
 
   const networkList = useSelector((ntList: any) => {
-    return ntList.networksReducer.allNetworks.data;
+    return ntList.dashboardCoinReducer.network_list.data;
   });
   const coinAuditList = useSelector((auditList: any) => {
-    return auditList.auditReducer.listAudit.data;
+    return auditList.dashboardCoinReducer.audit_list.data;
   });
   const coinChartProviderList = useSelector((chartProviderList: any) => {
-    return chartProviderList.chartProviderReducer.listChartProvider.data;
+    return chartProviderList.dashboardCoinReducer.chart_provider_list.data;
   });
 
   const coinChatList = useSelector((chatList: any) => {
-    return chatList.chatReducer.listChat.data;
+    return chatList.dashboardCoinReducer.chat_platform_list.data;
   });
 
   const coinSocialList = useSelector((socialList: any) => {
-    return socialList.socialsReducer.listSocials.data;
+    return socialList.dashboardCoinReducer.social_platform_list.data;
   });
 
   const [coinStatus, setCoinStatus] = useState("Presale");
@@ -176,95 +178,123 @@ const CoinListingAdd = () => {
   });
 
   //console.log(coinPublishStatus);
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
 
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
 
-  // const coinAddHandler = (e: any) => {
-  //   var formData = new FormData(document.querySelector("#coinForm") as any);
-  //   //var formData = new FormData();
-  //   formData.append("logo", addCoinLogo.coinLogo);
+  const coinAddHandler = (e: any) => {
+    var formData = new FormData(document.querySelector("#coinForm") as any);
+    //var formData = new FormData();
+    formData.append("logo", addCoinLogo.coinLogo);
 
-  //   formData.append(
-  //     "presale_start_date",
-  //     dateFormat(dateTime.start_date, "yyyy-mm-dd")
-  //   );
-  //   formData.append(
-  //     "presale_end_date",
-  //     dateFormat(dateTime.end_date, "yyyy-mm-dd")
-  //   );
-  //   formData.append("status", coinPublishStatus.status);
-  //   formData.append(
-  //     "schedule_date",
-  //     dateFormat(coinPublishStatus.statusDateTime, "dd-mm-yyyy H:MM:ss")
-  //   );
-  //   formData.append("is_scheduled", coinPublishStatus.is_scheduled);
+    formData.append(
+      "presale_start_date",
+      dateFormat(dateTime.start_date, "yyyy-mm-dd")
+    );
+    formData.append(
+      "presale_end_date",
+      dateFormat(dateTime.end_date, "yyyy-mm-dd")
+    );
+    formData.append("status", coinPublishStatus.status);
+    formData.append(
+      "schedule_date",
+      dateFormat(coinPublishStatus.statusDateTime, "dd-mm-yyyy H:MM:ss")
+    );
+    formData.append("is_scheduled", coinPublishStatus.is_scheduled);
 
-  //   const presaleStatus: any = coinStatus === "Presale" ? 1 : 0;
-  //   formData.append("is_presale", presaleStatus);
+    const presaleStatus: any = coinStatus === "Presale" ? 1 : 0;
+    formData.append("is_presale", presaleStatus);
 
-  //   const launchedStatus: any = coinStatus === "Launched" ? 1 : 0;
-  //   formData.append("is_launched", launchedStatus);
+    const launchedStatus: any = coinStatus === "Launched" ? 1 : 0;
+    formData.append("is_launched", launchedStatus);
 
-  //   //console.log(...formData);
-  //   const successHandler = (res: any) => {
-  //     setLoading(true);
-  //     toast.success(`${res.data.message}`, {
-  //       position: "top-right",
-  //       autoClose: 7000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //     });
-  //     setTimeout(() => {
-  //       navigate("/coins");
-  //     }, 3000);
-  //   };
+    //console.log(...formData);
+    const successHandler = (res: any) => {
+      setLoading(true);
+      toast.success(`${res.data.message}`, {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      setTimeout(() => {
+        navigate("/coins");
+      }, 3000);
+    };
 
-  //   const errorHandler = (err: any) => {
-  //     console.log(err);
+    const errorHandler = (err: any) => {
+      console.log(err);
 
-  //     toast.error(`${err.error.message.response.request.responseText}`, {
-  //       position: "top-right",
-  //       autoClose: 7000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //     });
-  //   };
+      toast.error(`${err.error.message.response.request.responseText}`, {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    };
 
-  //   dispatch(addCoinRequest(formData, successHandler, errorHandler));
-  // };
+    dispatch(dashboardAddCoinRequest(formData, successHandler, errorHandler));
+  };
 
-  // useEffect(() => {
-  //   const successHandler = (res: any) => {
-  //     //console.log(res);
-  //   };
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      //console.log(res);
+    };
 
-  //   const errorHandler = (err: any) => {
-  //     //console.log(err);
-  //   };
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
 
-  //   dispatch(allExchangeRequest("emptyformData", successHandler, errorHandler));
-  //   dispatch(allNetworkRequest("emptyformData", successHandler, errorHandler));
+    dispatch(
+      dashboardCoinExchangeListRequest(
+        "emptyformData",
+        successHandler,
+        errorHandler
+      )
+    );
+    dispatch(
+      dashboardCoinNetworkListRequest(
+        "emptyformData",
+        successHandler,
+        errorHandler
+      )
+    );
 
-  //   dispatch(
-  //     listCoinAuditRequest("emptyformData", successHandler, errorHandler)
-  //   );
-  //   dispatch(
-  //     listChartProviderRequest("emptyformData", successHandler, errorHandler)
-  //   );
-  //   dispatch(
-  //     listCoinChatRequest("emptyformData", successHandler, errorHandler)
-  //   );
-  //   dispatch(
-  //     listCoinSocialRequest("emptyformData", successHandler, errorHandler)
-  //   );
-  // }, [dispatch]);
+    dispatch(
+      dashboardCoinAuditListRequest(
+        "emptyformData",
+        successHandler,
+        errorHandler
+      )
+    );
+    dispatch(
+      dashboardCoinChartProviderListRequest(
+        "emptyformData",
+        successHandler,
+        errorHandler
+      )
+    );
+    dispatch(
+      dashboardCoinChatPlatformListRequest(
+        "emptyformData",
+        successHandler,
+        errorHandler
+      )
+    );
+    dispatch(
+      dashboardCoinSocialPlatformListRequest(
+        "emptyformData",
+        successHandler,
+        errorHandler
+      )
+    );
+  }, [dispatch]);
   return (
     <Grid container spacing={0}>
       <form id="coinForm">
@@ -1755,10 +1785,7 @@ const CoinListingAdd = () => {
                       Saving...Wait
                     </LoadingButton>
                   ) : (
-                    <LargeBtn
-                      Title="Add Coin"
-                      //  lgBtnHandler={coinAddHandler}
-                    />
+                    <LargeBtn Title="Add Coin" lgBtnHandler={coinAddHandler} />
                   )}
                 </Grid>
               </Stack>
