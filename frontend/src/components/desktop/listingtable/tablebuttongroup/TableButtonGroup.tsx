@@ -90,7 +90,7 @@ const TableButtonGroup = ({
         <Tab value="2" label="Coins" />
 
         <Tab value="3" label="Biggest Gainers" />
-        <Tab value="4" label="Biggest Losers" />
+        <Tab value="4" label="Top Losers" />
         <Tab value="5" label="Recently Added" />
 
         {/* <Tab value="6" label="Trending Coins" /> */}

@@ -1,79 +1,141 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Grid, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Chart from "react-apexcharts";
+import { coinPriceGraphBlockRequest } from "../../../../store/action";
 
 const OnlineAnalysisCard = () => {
-  const [data, updateData] = useState([1, 2, 3, 4, 5, 6]);
+  // const [data, updateData] = useState([1, 2, 3, 4, 5, 6]);
 
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const val = Math.floor(Math.random() * (100 - 30 + 1)) + 30;
+  //     let array = [...data, val];
+  //     array.shift();
+  //     updateData(array);
+  //   }, 2000);
+  //   return () => {
+  //     window.clearInterval(interval);
+  //   };
+  // }, [data]);
+
+  const dispatch: any = useDispatch();
+  const graphData = useSelector((data: any) => {
+    return data?.coinReducer?.coin_price_graph_block?.data;
+  });
   useEffect(() => {
-    const interval = setInterval(() => {
-      const val = Math.floor(Math.random() * (100 - 30 + 1)) + 30;
-      let array = [...data, val];
-      array.shift();
-      updateData(array);
-    }, 2000);
-    return () => {
-      window.clearInterval(interval);
-    };
-  }, [data]);
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(
+      coinPriceGraphBlockRequest("bitcoin-btc", successHandler, errorHandler)
+    );
+  }, [dispatch]);
 
   const chartData: any = {
     series: [
       {
-        name: "Coinxhigh",
-        data: data,
+        data: graphData && graphData?.price,
       },
+      // {
+      //   data: data?.market_cap,
+      // },
     ],
-
     options: {
-      colors: ["#03fb83"],
       chart: {
-        height: "auto",
+        id: "area-datetime",
         type: "area",
-        toolbar: {
-          show: false,
+        height: "auto",
+        zoom: {
+          autoScaleYaxis: true,
         },
       },
-      fill: {
-        type: "gradient",
-        gradient: {
-          shade: "dark",
-          gradientToColors: ["#4e3ce5"],
-          shadeIntensity: 1,
-          type: "horizontal",
-          opacityFrom: 1,
-          opacityTo: 1,
-          stops: [0, 100, 100, 100],
-        },
-      },
-
       grid: {
-        show: false, // you can either change hear to disable all grids
-        padding: {
-          left: -5,
-          bottom: -5,
-        },
+        show: true,
+        borderColor: "#38363F",
+        strokeDashArray: 0,
+        position: "back",
         xaxis: {
           lines: {
-            show: false, //or just here to disable only x axis grids
+            show: false,
           },
         },
-        animations: {
-          enabled: true,
-          easing: "linear",
-          speed: 800,
-          animateGradually: {
-            enabled: true,
-            delay: 150,
-          },
-          dynamicAnimation: {
-            enabled: true,
-            speed: 350,
+        yaxis: {
+          lines: {
+            show: false,
           },
         },
       },
+      stroke: {
+        show: true,
+        curve: "smooth",
+        lineCap: "butt",
+        colors: ["#f6ff02"],
+        width: 2,
+        dashArray: 0,
+      },
+      annotations: {
+        yaxis: [
+          {
+            y: 30,
+            borderColor: "#999",
+            label: {
+              show: true,
+              text: "Support",
+              style: {
+                color: "#fff",
+                background: "#fff",
+              },
+            },
+          },
+        ],
+        xaxis: [
+          {
+            //  x: data && new Date(data?.price[12][0]).getTime(),
+            borderColor: "#999",
+            yAxisIndex: 0,
+
+            label: {
+              show: false,
+              text: "Top Gross",
+              style: {
+                color: ["#fff"],
+                background: "#00ff00",
+              },
+            },
+          },
+        ],
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      markers: {
+        size: 0,
+        style: "hollow",
+      },
       xaxis: {
+        type: "datetime",
+        show: false,
+        labels: {
+          show: false,
+        },
+        axisBorder: {
+          show: false,
+        },
+        axisTicks: {
+          show: false,
+        },
+
+        min:
+          graphData &&
+          new Date(graphData?.price[graphData?.price?.length - 1][0]).getTime(),
+        //max: data && new Date(data?.price[0][0]).getTime(),
+        tickAmount: 6,
+      },
+
+      yaxis: {
+        // type: "datetime",
+        show: false,
         labels: {
           show: false,
         },
@@ -84,23 +146,25 @@ const OnlineAnalysisCard = () => {
           show: false,
         },
       },
-      yaxis: {
-        labels: {
-          show: false,
+      tooltip: {
+        x: {
+          format: "dd MMM yyyy",
         },
       },
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        curve: "smooth",
-        width: 2,
-      },
+      fill: {
+        type: "gradient",
 
-      legend: {
-        show: false,
+        colors: ["#e5ed00"],
+
+        gradient: {
+          shadeIntensity: 0.5,
+          opacityFrom: 0.7,
+          opacityTo: 0.0,
+          stops: [0, 40],
+        },
       },
     },
+    selection: "seven_day",
   };
 
   return (
@@ -148,7 +212,7 @@ const OnlineAnalysisCard = () => {
             <Chart
               options={chartData.options}
               series={chartData.series}
-              type="line"
+              type="area"
               height="auto"
             />
           </Box>

@@ -115,10 +115,16 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
               />
             }
           >
-            <Typography variant="body2" ml={2}>
+            <Link
+              to="/user-dashboard/coin/add"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
               {" "}
-              Add Coin
-            </Typography>
+              <Typography variant="body2" ml={2}>
+                {" "}
+                Add Coin
+              </Typography>
+            </Link>
           </MenuItem>
 
           <MenuItem

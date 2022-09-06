@@ -15,6 +15,7 @@ const AddAssetCard = ({ icon, title, link }: any) => {
           maxWidth: 90,
           minWidth: 80,
           padding: 3,
+          border: "2px solid transparent",
           cursor: "ponter",
           "&:hover": {
             background: "#000209",

@@ -96,7 +96,7 @@ const AppHeader = ({ windowInnerWidth }: any) => {
                 iconStatus={true}
                 menu={eventsMenu}
               />
-              <AppBarNavBtn title="Exchanges" iconStatus={true} />
+              {/* <AppBarNavBtn title="Exchanges" iconStatus={true} /> */}
               <AppBarNavBtn title="Promote" iconStatus={true} />
               <AppBarNavBtn
                 title="Discover"
