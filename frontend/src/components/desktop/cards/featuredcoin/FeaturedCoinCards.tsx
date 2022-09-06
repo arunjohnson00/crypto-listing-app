@@ -179,31 +179,40 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
             sx={{ alignItems: "center", justifyContent: "space-between" }}
             py={1}
           >
-            {cardData && parseInt(cardData?.is_presale) === 1 ? (
-              <Stack direction="row" spacing={0.5} alignItems="center">
-                {cardData &&
-                  Math.sign(
-                    moment(new Date(cardData?.presale_date)).diff(new Date())
-                  ) !== -1 && (
-                    //  <BounceLoader size={12} color="#00FF00" />
-
+            {cardData &&
+            parseInt(cardData?.is_presale) === 1 &&
+            Math.sign(
+              moment(new Date(cardData?.presale_date)).diff(new Date())
+            ) === -1 &&
+            Math.sign(
+              moment(new Date(cardData?.presale_end_date)).diff(new Date())
+            ) === 1 ? (
+              <span>
+                {
+                  //  <BounceLoader size={12} color="#00FF00" />
+                  <Stack direction="row" spacing={0.5} alignItems="center">
                     <span className="ripplefeaturedcoin"></span>
-                  )}
-
-                <Typography
-                  variant="body2"
-                  sx={{ color: "#6f737f", fontSize: "0.65rem" }}
-                >
-                  Presale{" "}
-                  {cardData &&
-                  Math.sign(
-                    moment(new Date(cardData?.presale_date)).diff(new Date())
-                  ) !== -1
-                    ? "Ends"
-                    : "Starts"}{" "}
-                  in{" "}
-                </Typography>
-              </Stack>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "#6f737f", fontSize: "0.65rem" }}
+                    >
+                      Presale ends in{" "}
+                    </Typography>
+                  </Stack>
+                }
+              </span>
+            ) : Math.sign(
+                moment(new Date(cardData?.presale_date)).diff(new Date())
+              ) === 1 &&
+              Math.sign(
+                moment(new Date(cardData?.presale_end_date)).diff(new Date())
+              ) === -1 ? (
+              <Typography
+                variant="body2"
+                sx={{ color: "#6f737f", fontSize: "0.65rem" }}
+              >
+                Presale starts in{" "}
+              </Typography>
             ) : (
               <Link
                 to={{
@@ -212,28 +221,62 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
                 state={{ coin_id: cardData?.id }}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                View price chart of {cardData && cardData?.name}
+                {" "}
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#dadada", fontSize: "0.7rem" }}
+                >
+                  View price chart of{" "}
+                  <span
+                    style={{
+                      color: "rgb(35 177 132)",
+                      fontWeight: 600,
+                      fontSize: "0.75rem",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {" "}
+                    {cardData && cardData?.name}
+                  </span>
+                </Typography>
               </Link>
             )}
-            <Typography
-              variant="subtitle1"
-              sx={{
-                color:
-                  cardData && parseInt(cardData?.is_presale) === 1
-                    ? "#FFFFFF"
-                    : "#ff0000",
-                fontSize: ".7rem",
-              }}
-            >
-              {
-                //6 Days 7 Hours 19 Minutes
-                CountDownTimer(cardData?.presale_end_date)
-              }
-              {/* {getDifferenceInAll(
-                new Date(),
-                new Date(cardData?.presale_end_date)
-              )} */}
-            </Typography>
+
+            {cardData &&
+            parseInt(cardData?.is_presale) === 1 &&
+            Math.sign(
+              moment(new Date(cardData?.presale_date)).diff(new Date())
+            ) === -1 &&
+            Math.sign(
+              moment(new Date(cardData?.presale_end_date)).diff(new Date())
+            ) === 1 ? (
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  color: "#FFFFFF",
+
+                  fontSize: ".7rem",
+                }}
+              >
+                {CountDownTimer(cardData?.presale_end_date)}
+              </Typography>
+            ) : (
+              cardData &&
+              Math.sign(
+                moment(new Date(cardData?.presale_end_date)).diff(new Date())
+              ) === 1 && (
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    color: "#ff0000",
+
+                    fontSize: ".7rem",
+                  }}
+                >
+                  {CountDownTimer(cardData?.presale_date)}
+                </Typography>
+              )
+            )}
           </Stack>
 
           <Divider sx={{ borderColor: "#184b7d" }} />
@@ -560,14 +603,20 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
                   variant="caption"
                   sx={{ color: "#FFFFF5", fontWeight: 600, fontSize: ".7rem" }}
                 >
-                  {cardData && cardData?.network_icon === null ? (
+                  {cardData && cardData?.networks?.length === 0 ? (
                     <Typography sx={{ fontSize: ".6rem" }}>--</Typography>
                   ) : (
-                    <Avatar
-                      alt={cardData && cardData?.name}
-                      src={`${serverAPIUrl}public/uploads/network_icons/${cardData?.network_icon}`}
-                      sx={{ width: 45, height: 11, borderRadius: 0 }}
-                    />
+                    <Stack direction="row" spacing={1}>
+                      {cardData &&
+                        cardData?.networks?.map((item: any, index: number) => (
+                          <Avatar
+                            key={index}
+                            alt={item && item?.name}
+                            src={`${serverAPIUrl}public/uploads/network_icons/${item?.network_icon}`}
+                            sx={{ width: 45, height: 11, borderRadius: 0 }}
+                          />
+                        ))}
+                    </Stack>
                   )}
                 </Typography>
               </Stack>

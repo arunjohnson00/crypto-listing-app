@@ -112,9 +112,9 @@ export const dashboardAddCoinRequest = (
     url: `api/f/v1/coin/create`,
     method: "POST",
     secure: true,
-    body: JSON.stringify(Object.fromEntries(values)),
+    body: values,
     // body: values,
-    fileUpload: false,
+    fileUpload: true,
     actionType: DASHBOARD_COIN.ADD_COIN,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);

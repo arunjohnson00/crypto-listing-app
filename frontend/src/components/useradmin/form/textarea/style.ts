@@ -1,10 +1,11 @@
 export const textareaStyle = {
   width: "100%",
-  background: "#f6f6f6",
+  maxWidth: 500,
+  background: "#010619",
   borderRadius: "8px",
-  color: "#000000",
+  color: "#ffffffe8",
   fontSize: ".9rem",
-  borderColor: "rgb(200, 200, 200)",
+  borderColor: "#090F2C",
   padding: "10px 20px 10px 20px",
   fontWeight: 500,
 };

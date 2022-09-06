@@ -3,13 +3,13 @@ import { green, red } from "@mui/material/colors";
 
 export const useStyles = makeStyles({
   mainWrapper: {
-    width: "374px",
+    maxWidth: "330px",
     height: "95px",
-    background: "rgb(246, 246, 246)",
+    background: "#010619",
     borderRadius: "8px",
-    color: "rgb(168 168 168)",
+    color: "#818181e8",
     padding: "9px",
-    border: "1.5px solid silver",
+    border: "1.5px solid #090F2C",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-around",

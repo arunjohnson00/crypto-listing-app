@@ -15,7 +15,12 @@ const CommunityDetails = ({
         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
           <Typography
             variant="subtitle1"
-            sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+            sx={{
+              textAlign: "left",
+              fontSize: ".9rem",
+              fontWeight: 600,
+              color: "#13C086",
+            }}
             mb={1}
           >
             Website URL {index + 2}
@@ -41,7 +46,7 @@ const CommunityDetails = ({
               size="large"
               onClick={() => communityremoveHandle(index)}
             >
-              <DeleteIcon fontSize="inherit" />
+              <DeleteIcon fontSize="inherit" sx={{ color: "#fff9" }} />
             </IconButton>
           </Grid>
         )}

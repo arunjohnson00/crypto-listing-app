@@ -47,9 +47,9 @@ const InputCheckbox = ({
       inputProps={{ "aria-label": "controlled" }}
       sx={{
         fontSize: ".85rem",
-        color: "rgb(54, 48, 98)",
+        color: "#FFFFFF",
         "&.Mui-checked": {
-          color: "rgb(54, 48, 98)",
+          color: "#FFFFFF",
         },
         "& .MuiSvgIcon-root": { fontSize: 24 },
       }}

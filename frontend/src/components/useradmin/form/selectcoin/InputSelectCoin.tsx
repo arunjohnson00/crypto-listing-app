@@ -23,9 +23,10 @@ const InputSelectCoin = ({
           id: `${id}`,
         }}
         sx={{
-          background: "#FFFFFF",
+          background: "#010619",
           borderRadius: "7px",
-          border: "1px solid #bbbbbb",
+          color: "#525562",
+          border: "1px solid #090F2C",
           height: height && height,
           minWidth: width && width,
           fontSize: ".85rem",
@@ -35,6 +36,11 @@ const InputSelectCoin = ({
           "&::after": {
             border: "none",
           },
+          "&.MuiNativeSelect-icon": {
+            color: "red",
+            background: "red",
+          },
+
           paddingLeft: "10px",
         }}
       >

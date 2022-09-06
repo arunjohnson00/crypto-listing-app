@@ -11,7 +11,12 @@ const ChartDetails = ({ chartCount, chartremoveHandle, index, data }: any) => {
         <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
           <Typography
             variant="subtitle1"
-            sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+            sx={{
+              textAlign: "left",
+              fontSize: ".9rem",
+              fontWeight: 600,
+              color: "#13C086",
+            }}
             mb={1}
           >
             Chart Provider {index + 2}
@@ -26,7 +31,12 @@ const ChartDetails = ({ chartCount, chartremoveHandle, index, data }: any) => {
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
           <Typography
             variant="subtitle1"
-            sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+            sx={{
+              textAlign: "left",
+              fontSize: ".9rem",
+              fontWeight: 600,
+              color: "#13C086",
+            }}
             mb={1}
           >
             Chart URL {index + 2}
@@ -52,7 +62,7 @@ const ChartDetails = ({ chartCount, chartremoveHandle, index, data }: any) => {
               size="large"
               onClick={() => chartremoveHandle(index)}
             >
-              <DeleteIcon fontSize="inherit" />
+              <DeleteIcon fontSize="inherit" sx={{ color: "#fff9" }} />
             </IconButton>
           </Grid>
         )}

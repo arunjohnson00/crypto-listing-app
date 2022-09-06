@@ -537,14 +537,20 @@ const MobileFeaturedCoinCards = ({ cardData, index }: any) => {
                   variant="caption"
                   sx={{ color: "#FFFFF5", fontWeight: 600, fontSize: ".7rem" }}
                 >
-                  {cardData && cardData?.network_icon === null ? (
+                  {cardData && cardData?.networks?.length === 0 ? (
                     <Typography sx={{ fontSize: ".6rem" }}>--</Typography>
                   ) : (
-                    <Avatar
-                      alt={cardData && cardData?.name}
-                      src={`${serverAPIUrl}public/uploads/network_icons/${cardData?.network_icon}`}
-                      sx={{ width: 45, height: 11, borderRadius: 0 }}
-                    />
+                    <Stack direction="row" spacing={1}>
+                      {cardData &&
+                        cardData?.networks?.map((item: any, index: number) => (
+                          <Avatar
+                            key={index}
+                            alt={item && item?.name}
+                            src={`${serverAPIUrl}public/uploads/network_icons/${item?.network_icon}`}
+                            sx={{ width: 45, height: 11, borderRadius: 0 }}
+                          />
+                        ))}
+                    </Stack>
                   )}
                 </Typography>
               </Stack>

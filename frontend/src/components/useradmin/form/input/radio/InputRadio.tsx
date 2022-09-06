@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import Radio, { RadioProps } from "@mui/material/Radio";
-import { RadioGroup, FormControlLabel, FormControl } from "@mui/material";
+import {
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+  Typography,
+} from "@mui/material";
 
 import { BpIcon, BpCheckedIcon } from "./style";
 
@@ -55,12 +60,34 @@ const InputRadio = ({
         <FormControlLabel
           value={"Presale"}
           control={<BpRadio />}
-          label="Presale"
+          label={
+            <Typography
+              sx={{
+                textAlign: "left",
+                fontSize: ".9rem",
+                fontWeight: 600,
+                color: "#13C086",
+              }}
+            >
+              Presale
+            </Typography>
+          }
         />
         <FormControlLabel
           value="Launched"
           control={<BpRadio />}
-          label="Launched"
+          label={
+            <Typography
+              sx={{
+                textAlign: "left",
+                fontSize: ".9rem",
+                fontWeight: 600,
+                color: "#13C086",
+              }}
+            >
+              Launched
+            </Typography>
+          }
           sx={{ marginLeft: "40px" }}
         />
       </RadioGroup>

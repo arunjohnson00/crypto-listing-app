@@ -212,8 +212,9 @@ const CoinListingAdd = () => {
 
     //console.log(...formData);
     const successHandler = (res: any) => {
+      console.log(res);
       setLoading(true);
-      toast.success(`${res.data.message}`, {
+      toast.success(`${res.data.data.original.message}`, {
         position: "top-right",
         autoClose: 7000,
         hideProgressBar: false,
@@ -222,7 +223,7 @@ const CoinListingAdd = () => {
         draggable: true,
       });
       setTimeout(() => {
-        navigate("/coins");
+        navigate("/user-dashboard");
       }, 3000);
     };
 
@@ -296,35 +297,53 @@ const CoinListingAdd = () => {
     );
   }, [dispatch]);
   return (
-    <Grid container spacing={0}>
+    <Box sx={{ width: "90%" }}>
       <form id="coinForm">
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={2} mb={2}>
-          <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-            <IconButton
+          <Stack
+            direction="column"
+            spacing={0.5}
+            sx={{ alignItems: "flex-start" }}
+            px={2}
+            pt={3}
+          >
+            {/* <IconButton
               onClick={() => {
                 navigate("/coins");
               }}
             >
               <ArrowBackIosTwoToneIcon />
-            </IconButton>
+            </IconButton> */}
 
-            <Typography variant="h5" sx={{ textAlign: "left" }}>
+            <Typography
+              variant="h5"
+              sx={{ textAlign: "left", color: "#FFFFFF" }}
+            >
               Add new coin
-              <Typography variant="caption">({coinStatus})</Typography>
+              {/* <Typography variant="caption"> ({coinStatus})</Typography> */}
+            </Typography>
+            <Typography variant="caption" sx={{ color: "#FFFFFF" }}>
+              {" "}
+              After submission, our expert team verifies the coin details and
+              your coin will be visible on the New Listing page.{" "}
             </Typography>
           </Stack>
         </Grid>
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}></Grid>
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
           <Box
-            sx={{ width: "100%", background: "white", borderRadius: "7px" }}
+            sx={{ width: "100%", background: "#030921", borderRadius: "7px" }}
             px={5}
             py={5}
             mb={5}
           >
             <Grid container mb={5} mt={5}>
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
+                <Typography
+                  variant="h6"
+                  sx={{ textAlign: "left", color: "#D7DADB" }}
+                  mb={0}
+                >
                   Status of coin
                 </Typography>
 
@@ -336,7 +355,11 @@ const CoinListingAdd = () => {
             </Grid>
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={2}>
-              <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
+              <Typography
+                variant="h6"
+                sx={{ textAlign: "left", color: "#D7DADB" }}
+                mb={0}
+              >
                 Basic Details
               </Typography>
               {/* <Typography
@@ -374,6 +397,7 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -390,6 +414,7 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -399,7 +424,10 @@ const CoinListingAdd = () => {
                       sx={{ textAlign: "left" }}
                       mb={1}
                     >
-                      (Don't put a $ sign if there is none in the ticker){" "}
+                      <span style={{ color: "#234A84", fontWeight: 600 }}>
+                        {" "}
+                        (Don't put a $ sign if there is none in the ticker)
+                      </span>
                     </Typography>
                   </Typography>
 
@@ -417,6 +445,7 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -633,18 +662,29 @@ const CoinListingAdd = () => {
 
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
           <Box
-            sx={{ width: "100%", background: "white", borderRadius: "7px" }}
+            sx={{ width: "100%", background: "#030921", borderRadius: "7px" }}
             px={5}
             py={5}
             mb={5}
           >
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-              <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pb={2}>
+              <Typography
+                variant="h6"
+                sx={{ textAlign: "left", color: "#D7DADB" }}
+                mb={0}
+              >
                 Network Details
               </Typography>
-              <Typography variant="caption" sx={{ textAlign: "left" }} mb={2}>
-                Please specify the chain that you are on (Eg:Binance Smart
-                Chain, Etherieum, Heco)
+              <Typography
+                variant="caption"
+                sx={{ textAlign: "left", color: "#b4b4b4" }}
+                mb={2}
+              >
+                Please specify the chain that you are on
+                <span style={{ color: "#234A84", fontWeight: 600 }}>
+                  {" "}
+                  (Eg:Binance Smart Chain, Etherieum, Heco)
+                </span>
               </Typography>
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -656,6 +696,7 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -675,6 +716,7 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -693,6 +735,7 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -714,7 +757,11 @@ const CoinListingAdd = () => {
                   xs={12}
                   sx={{ paddingTop: "37px" }}
                 >
-                  <Link onClick={networkaddHandle} underline="none">
+                  <Link
+                    onClick={networkaddHandle}
+                    underline="none"
+                    sx={{ color: "#75ABCF", fontSize: ".8rem" }}
+                  >
                     Add more +
                   </Link>
                 </Grid>
@@ -736,11 +783,19 @@ const CoinListingAdd = () => {
                 </div>
               );
             })}
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={4}>
-              <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={4} pb={2}>
+              <Typography
+                variant="h6"
+                sx={{ textAlign: "left", color: "#D7DADB" }}
+                mb={0}
+              >
                 Exchange Details
               </Typography>
-              <Typography variant="caption" sx={{ textAlign: "left" }} mb={2}>
+              <Typography
+                variant="caption"
+                sx={{ textAlign: "left", color: "#b4b4b4" }}
+                mb={2}
+              >
                 Provide exchange details where token is listed.
               </Typography>
             </Grid>
@@ -753,6 +808,7 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -772,6 +828,7 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -806,7 +863,11 @@ const CoinListingAdd = () => {
                   xs={12}
                   sx={{ paddingTop: "37px" }}
                 >
-                  <Link onClick={exchangeaddHandle} underline="none">
+                  <Link
+                    onClick={exchangeaddHandle}
+                    underline="none"
+                    sx={{ color: "#75ABCF", fontSize: ".8rem" }}
+                  >
                     Add more +
                   </Link>
                 </Grid>
@@ -830,7 +891,7 @@ const CoinListingAdd = () => {
         </Grid>
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
           <Box
-            sx={{ width: "100%", background: "white", borderRadius: "7px" }}
+            sx={{ width: "100%", background: "#030921", borderRadius: "7px" }}
             px={5}
             py={5}
             mb={5}
@@ -845,6 +906,7 @@ const CoinListingAdd = () => {
                         textAlign: "left",
                         fontSize: ".9rem",
                         fontWeight: 600,
+                        color: "#13C086",
                       }}
                       mb={1}
                     >
@@ -865,6 +927,7 @@ const CoinListingAdd = () => {
                         textAlign: "left",
                         fontSize: ".9rem",
                         fontWeight: 600,
+                        color: "#13C086",
                       }}
                       mb={1}
                     >
@@ -887,10 +950,21 @@ const CoinListingAdd = () => {
                         textAlign: "left",
                         fontSize: ".9rem",
                         fontWeight: 600,
+                        color: "#13C086",
                       }}
                       mb={1}
                     >
-                      Presale address (Optional)
+                      Presale address{" "}
+                      <span
+                        style={{
+                          color: "#234A84",
+                          fontWeight: 600,
+                          fontSize: ".7rem",
+                        }}
+                      >
+                        {" "}
+                        (Optional)
+                      </span>
                     </Typography>
 
                     <InputText
@@ -907,6 +981,7 @@ const CoinListingAdd = () => {
                         textAlign: "left",
                         fontSize: ".9rem",
                         fontWeight: 600,
+                        color: "#13C086",
                       }}
                       mb={1}
                     >
@@ -929,10 +1004,21 @@ const CoinListingAdd = () => {
                         textAlign: "left",
                         fontSize: ".9rem",
                         fontWeight: 600,
+                        color: "#13C086",
                       }}
                       mb={1}
                     >
-                      Circulating Supply (Optional)
+                      Circulating Supply{" "}
+                      <span
+                        style={{
+                          color: "#234A84",
+                          fontWeight: 600,
+                          fontSize: ".7rem",
+                        }}
+                      >
+                        {" "}
+                        (Optional)
+                      </span>
                     </Typography>
 
                     <InputText
@@ -948,6 +1034,7 @@ const CoinListingAdd = () => {
                         textAlign: "left",
                         fontSize: ".9rem",
                         fontWeight: 600,
+                        color: "#13C086",
                       }}
                       mb={1}
                     >
@@ -968,10 +1055,21 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
-                    Marketap (Optional)
+                    Marketap{" "}
+                    <span
+                      style={{
+                        color: "#234A84",
+                        fontWeight: 600,
+                        fontSize: ".7rem",
+                      }}
+                    >
+                      {" "}
+                      (Optional)
+                    </span>
                   </Typography>
 
                   <InputText
@@ -991,6 +1089,7 @@ const CoinListingAdd = () => {
                         textAlign: "left",
                         fontSize: ".9rem",
                         fontWeight: 600,
+                        color: "#13C086",
                       }}
                       mb={1}
                     >
@@ -1011,10 +1110,21 @@ const CoinListingAdd = () => {
                         textAlign: "left",
                         fontSize: ".9rem",
                         fontWeight: 600,
+                        color: "#13C086",
                       }}
                       mb={1}
                     >
-                      Circulating Supply (Optional)
+                      Circulating Supply{" "}
+                      <span
+                        style={{
+                          color: "#234A84",
+                          fontWeight: 600,
+                          fontSize: ".7rem",
+                        }}
+                      >
+                        {" "}
+                        (Optional)
+                      </span>
                     </Typography>
 
                     <InputText
@@ -1033,6 +1143,7 @@ const CoinListingAdd = () => {
                         textAlign: "left",
                         fontSize: ".9rem",
                         fontWeight: 600,
+                        color: "#13C086",
                       }}
                       mb={1}
                     >
@@ -1053,10 +1164,21 @@ const CoinListingAdd = () => {
                         textAlign: "left",
                         fontSize: ".9rem",
                         fontWeight: 600,
+                        color: "#13C086",
                       }}
                       mb={1}
                     >
-                      Marketap (Optional)
+                      Marketap{" "}
+                      <span
+                        style={{
+                          color: "#234A84",
+                          fontWeight: 600,
+                          fontSize: ".7rem",
+                        }}
+                      >
+                        {" "}
+                        (Optional)
+                      </span>
                     </Typography>
 
                     <InputText
@@ -1072,16 +1194,24 @@ const CoinListingAdd = () => {
         </Grid>
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
           <Box
-            sx={{ width: "100%", background: "white", borderRadius: "7px" }}
+            sx={{ width: "100%", background: "#030921", borderRadius: "7px" }}
             px={5}
             py={5}
             mb={5}
           >
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={4}>
-              <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={4} pb={2}>
+              <Typography
+                variant="h6"
+                sx={{ textAlign: "left", color: "#D7DADB" }}
+                mb={0}
+              >
                 Source Code ,Docs & Whitepaper Details
               </Typography>
-              <Typography variant="caption" sx={{ textAlign: "left" }} mb={2}>
+              <Typography
+                variant="caption"
+                sx={{ textAlign: "left", color: "#b4b4b4" }}
+                mb={2}
+              >
                 Please provide information about coin.
               </Typography>
             </Grid>
@@ -1094,6 +1224,7 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -1112,6 +1243,7 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -1134,6 +1266,7 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -1152,6 +1285,7 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -1165,11 +1299,19 @@ const CoinListingAdd = () => {
                 </Grid>
               </Stack>
             </Grid>
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
-              <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2} pb={2}>
+              <Typography
+                variant="h6"
+                sx={{ textAlign: "left", color: "#D7DADB" }}
+                mb={0}
+              >
                 Audit Details
               </Typography>
-              <Typography variant="caption" sx={{ textAlign: "left" }} mb={2}>
+              <Typography
+                variant="caption"
+                sx={{ textAlign: "left", color: "#b4b4b4" }}
+                mb={2}
+              >
                 Please Provide the information about coin
               </Typography>
             </Grid>
@@ -1182,6 +1324,7 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -1201,6 +1344,7 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -1221,7 +1365,11 @@ const CoinListingAdd = () => {
                   xs={12}
                   sx={{ paddingTop: "37px" }}
                 >
-                  <Link onClick={auditaddHandle} underline="none">
+                  <Link
+                    onClick={auditaddHandle}
+                    underline="none"
+                    sx={{ color: "#75ABCF", fontSize: ".8rem" }}
+                  >
                     Add more +
                   </Link>
                 </Grid>
@@ -1241,11 +1389,19 @@ const CoinListingAdd = () => {
               );
             })}
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
-              <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2} pb={2}>
+              <Typography
+                variant="h6"
+                sx={{ textAlign: "left", color: "#D7DADB" }}
+                mb={0}
+              >
                 Chart Details
               </Typography>
-              <Typography variant="caption" sx={{ textAlign: "left" }} mb={2}>
+              <Typography
+                variant="caption"
+                sx={{ textAlign: "left", color: "#b4b4b4" }}
+                mb={2}
+              >
                 Please Provide the information about coin
               </Typography>
             </Grid>
@@ -1258,6 +1414,7 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -1277,6 +1434,7 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -1297,7 +1455,11 @@ const CoinListingAdd = () => {
                   xs={12}
                   sx={{ paddingTop: "37px" }}
                 >
-                  <Link onClick={chartaddHandle} underline="none">
+                  <Link
+                    onClick={chartaddHandle}
+                    underline="none"
+                    sx={{ color: "#75ABCF", fontSize: ".8rem" }}
+                  >
                     Add more +
                   </Link>
                 </Grid>
@@ -1318,13 +1480,26 @@ const CoinListingAdd = () => {
             })}
             <Stack direction="row" spacing={3} pt={3}>
               <Grid item xl={6} lg={6} md={6} sm={6} xs={12}>
-                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
-                  <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
+                <Grid
+                  item
+                  xl={12}
+                  lg={12}
+                  md={12}
+                  sm={12}
+                  xs={12}
+                  pt={2}
+                  pb={2}
+                >
+                  <Typography
+                    variant="h6"
+                    sx={{ textAlign: "left", color: "#D7DADB" }}
+                    mb={0}
+                  >
                     Community Details
                   </Typography>
                   <Typography
                     variant="caption"
-                    sx={{ textAlign: "left" }}
+                    sx={{ textAlign: "left", color: "#b4b4b4" }}
                     mb={2}
                   >
                     Please Provide the information about coin
@@ -1339,6 +1514,7 @@ const CoinListingAdd = () => {
                           textAlign: "left",
                           fontSize: ".9rem",
                           fontWeight: 600,
+                          color: "#13C086",
                         }}
                         mb={1}
                       >
@@ -1359,7 +1535,11 @@ const CoinListingAdd = () => {
                       xs={12}
                       sx={{ paddingTop: "37px" }}
                     >
-                      <Link onClick={communityaddHandle} underline="none">
+                      <Link
+                        onClick={communityaddHandle}
+                        underline="none"
+                        sx={{ color: "#75ABCF", fontSize: ".8rem" }}
+                      >
                         Add more +
                       </Link>
                     </Grid>
@@ -1400,6 +1580,7 @@ const CoinListingAdd = () => {
                           textAlign: "left",
                           fontSize: ".9rem",
                           fontWeight: 600,
+                          color: "#13C086",
                         }}
                         mb={1}
                       >
@@ -1429,8 +1610,12 @@ const CoinListingAdd = () => {
               </Grid>
               <Divider orientation="vertical" flexItem />
               <Grid item xl={6} lg={6} md={6} sm={6} xs={12}>
-                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
-                  <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
+                {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
+                  <Typography
+                    variant="h6"
+                    sx={{ textAlign: "left", color: "#D7DADB" }}
+                    mb={0}
+                  >
                     Listed on
                   </Typography>
                 </Grid>
@@ -1496,19 +1681,32 @@ const CoinListingAdd = () => {
                       </Stack>
                     </Grid>
                   </Stack>
-                </Grid>
+                </Grid> */}
               </Grid>
             </Stack>
 
             <Stack direction="row" spacing={3} pt={4}>
               <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
-                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
-                  <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
+                <Grid
+                  item
+                  xl={12}
+                  lg={12}
+                  md={12}
+                  sm={12}
+                  xs={12}
+                  pt={2}
+                  pb={2}
+                >
+                  <Typography
+                    variant="h6"
+                    sx={{ textAlign: "left", color: "#D7DADB" }}
+                    mb={0}
+                  >
                     Chat Details
                   </Typography>
                   <Typography
                     variant="caption"
-                    sx={{ textAlign: "left" }}
+                    sx={{ textAlign: "left", color: "#b4b4b4" }}
                     mb={2}
                   >
                     Please Provide the information about coin
@@ -1523,6 +1721,7 @@ const CoinListingAdd = () => {
                           textAlign: "left",
                           fontSize: ".9rem",
                           fontWeight: 600,
+                          color: "#13C086",
                         }}
                         mb={1}
                       >
@@ -1542,6 +1741,7 @@ const CoinListingAdd = () => {
                           textAlign: "left",
                           fontSize: ".9rem",
                           fontWeight: 600,
+                          color: "#13C086",
                         }}
                         mb={1}
                       >
@@ -1563,7 +1763,11 @@ const CoinListingAdd = () => {
                       xs={12}
                       sx={{ paddingTop: "37px" }}
                     >
-                      <Link onClick={chataddHandle} underline="none">
+                      <Link
+                        onClick={chataddHandle}
+                        underline="none"
+                        sx={{ color: "#75ABCF", fontSize: ".8rem" }}
+                      >
                         Add more +
                       </Link>
                     </Grid>
@@ -1583,13 +1787,26 @@ const CoinListingAdd = () => {
                     </div>
                   );
                 })}
-                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
-                  <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
+                <Grid
+                  item
+                  xl={12}
+                  lg={12}
+                  md={12}
+                  sm={12}
+                  xs={12}
+                  pt={2}
+                  pb={2}
+                >
+                  <Typography
+                    variant="h6"
+                    sx={{ textAlign: "left", color: "#D7DADB" }}
+                    mb={0}
+                  >
                     Socials
                   </Typography>
                   <Typography
                     variant="caption"
-                    sx={{ textAlign: "left" }}
+                    sx={{ textAlign: "left", color: "#b4b4b4" }}
                     mb={2}
                   >
                     Please Provide the information about coin
@@ -1604,6 +1821,7 @@ const CoinListingAdd = () => {
                           textAlign: "left",
                           fontSize: ".9rem",
                           fontWeight: 600,
+                          color: "#13C086",
                         }}
                         mb={1}
                       >
@@ -1623,6 +1841,7 @@ const CoinListingAdd = () => {
                           textAlign: "left",
                           fontSize: ".9rem",
                           fontWeight: 600,
+                          color: "#13C086",
                         }}
                         mb={1}
                       >
@@ -1643,7 +1862,11 @@ const CoinListingAdd = () => {
                       xs={12}
                       sx={{ paddingTop: "37px" }}
                     >
-                      <Link onClick={socialaddHandle} underline="none">
+                      <Link
+                        onClick={socialaddHandle}
+                        underline="none"
+                        sx={{ color: "#75ABCF", fontSize: ".8rem" }}
+                      >
                         Add more +
                       </Link>
                     </Grid>
@@ -1666,13 +1889,14 @@ const CoinListingAdd = () => {
               </Grid>
               <Divider orientation="vertical" flexItem />
               <Grid item xl={4} lg={4} md={4} sm={4} xs={12} pt={3}>
-                <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                   <Typography
                     variant="subtitle1"
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -1692,6 +1916,7 @@ const CoinListingAdd = () => {
                       textAlign: "left",
                       fontSize: ".9rem",
                       fontWeight: 600,
+                      color: "#13C086",
                     }}
                     mb={1}
                   >
@@ -1714,7 +1939,7 @@ const CoinListingAdd = () => {
                       />
                     )}
                   </Stack>
-                </Grid>
+                </Grid> */}
               </Grid>
             </Stack>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={5}>
@@ -1733,7 +1958,9 @@ const CoinListingAdd = () => {
                         />
                       }
                       label={
-                        <Typography sx={{ fontSize: ".9rem" }}>
+                        <Typography
+                          sx={{ fontSize: ".8rem", color: "#FFFFFF" }}
+                        >
                           I agree terms and conditions
                         </Typography>
                       }
@@ -1753,7 +1980,9 @@ const CoinListingAdd = () => {
                         />
                       }
                       label={
-                        <Typography sx={{ fontSize: ".9rem" }}>
+                        <Typography
+                          sx={{ fontSize: ".8rem", color: "#FFFFFF" }}
+                        >
                           I declare the information provided on this form is
                           accurate and complete to the best of my knowledge and
                           the failure to fullfill the requirements may render my
@@ -1793,7 +2022,7 @@ const CoinListingAdd = () => {
           </Box>
         </Grid>
       </form>
-    </Grid>
+    </Box>
   );
 };
 
