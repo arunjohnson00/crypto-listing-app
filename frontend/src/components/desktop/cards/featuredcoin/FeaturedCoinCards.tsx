@@ -179,67 +179,70 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
             sx={{ alignItems: "center", justifyContent: "space-between" }}
             py={1}
           >
-            {cardData &&
-            parseInt(cardData?.is_presale) === 1 &&
-            Math.sign(
-              moment(new Date(cardData?.presale_date)).diff(new Date())
-            ) === -1 &&
-            Math.sign(
-              moment(new Date(cardData?.presale_end_date)).diff(new Date())
-            ) === 1 ? (
+            {cardData && parseInt(cardData?.is_presale) === 1 ? (
               <span>
-                {
-                  //  <BounceLoader size={12} color="#00FF00" />
-                  <Stack direction="row" spacing={0.5} alignItems="center">
-                    <span className="ripplefeaturedcoin"></span>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "#6f737f", fontSize: "0.65rem" }}
-                    >
-                      Presale ends in{" "}
-                    </Typography>
-                  </Stack>
-                }
-              </span>
-            ) : Math.sign(
-                moment(new Date(cardData?.presale_date)).diff(new Date())
-              ) === 1 &&
-              Math.sign(
-                moment(new Date(cardData?.presale_end_date)).diff(new Date())
-              ) === -1 ? (
-              <Typography
-                variant="body2"
-                sx={{ color: "#6f737f", fontSize: "0.65rem" }}
-              >
-                Presale starts in{" "}
-              </Typography>
-            ) : (
-              <Link
-                to={{
-                  pathname: `/coin/${cardData?.slug}`,
-                }}
-                state={{ coin_id: cardData?.id }}
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-                {" "}
-                <Typography
-                  variant="body2"
-                  sx={{ color: "#dadada", fontSize: "0.7rem" }}
-                >
-                  View price chart of{" "}
-                  <span
-                    style={{
-                      color: "rgb(35 177 132)",
-                      fontWeight: 600,
-                      fontSize: "0.75rem",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    {" "}
-                    {cardData && cardData?.name}
+                {Math.sign(
+                  moment(new Date(cardData?.presale_date)).diff(new Date())
+                ) === -1 &&
+                Math.sign(
+                  moment(new Date(cardData?.presale_end_date)).diff(new Date())
+                ) === 1 ? (
+                  <span>
+                    {
+                      //  <BounceLoader size={12} color="#00FF00" />
+                      <Stack direction="row" spacing={0.5} alignItems="center">
+                        <span className="ripplefeaturedcoin"></span>
+                        <Typography
+                          variant="body2"
+                          sx={{ color: "#6f737f", fontSize: "0.65rem" }}
+                        >
+                          Presale ends in{" "}
+                        </Typography>
+                      </Stack>
+                    }
                   </span>
-                </Typography>
-              </Link>
+                ) : (
+                  <Typography
+                    variant="body2"
+                    sx={{ color: "#6f737f", fontSize: "0.65rem" }}
+                  >
+                    Presale starts in{" "}
+                  </Typography>
+                )}
+              </span>
+            ) : (
+              cardData && (
+                <Link
+                  to={{
+                    pathname: `/coin/${cardData?.slug}`,
+                  }}
+                  state={{ coin_id: cardData?.id }}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  {" "}
+                  <Typography
+                    variant="body2"
+                    sx={{ color: "#dadada", fontSize: "0.7rem" }}
+                  >
+                    Presale Ended{" "}
+                    <span
+                      style={{
+                        color: "rgb(35 177 132)",
+                        fontWeight: 600,
+                        fontSize: "0.75rem",
+                        textTransform: "capitalize",
+                      }}
+                    >
+                      {" "}
+                      {/* {cardData && cardData?.name} */}
+                      {moment(
+                        new Date(cardData?.presale_end_date),
+                        "YYYYMMDD"
+                      ).fromNow()}
+                    </span>
+                  </Typography>
+                </Link>
+              )
             )}
 
             {cardData &&
@@ -261,21 +264,7 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
                 {CountDownTimer(cardData?.presale_end_date)}
               </Typography>
             ) : (
-              cardData &&
-              Math.sign(
-                moment(new Date(cardData?.presale_end_date)).diff(new Date())
-              ) === 1 && (
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    color: "#ff0000",
-
-                    fontSize: ".7rem",
-                  }}
-                >
-                  {CountDownTimer(cardData?.presale_date)}
-                </Typography>
-              )
+              ""
             )}
           </Stack>
 
