@@ -24,6 +24,7 @@ const UserAdminCoinListing = () => {
           tableData={tableData && tableData?.data}
           tableHeader={tableHeader}
           variant="crypto_currencies"
+          section="coin"
         />
       ) : (
         <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>

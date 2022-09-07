@@ -1,5 +1,8 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -21,8 +24,60 @@ import {
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import moment from "moment";
-const UserAdminHtmlTable = ({ tableData, variant, tableHeader }: any) => {
+import { useDispatch } from "react-redux";
+import { dashboardDeleteCoinRequest } from "../../../store/action";
+const UserAdminHtmlTable = ({
+  tableData,
+  variant,
+  tableHeader,
+  section,
+}: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
+  const navigate: any = useNavigate();
+  const dispatch: any = useDispatch();
+  const formData = new FormData();
+
+  const handleDeleteClick = (id: any) => {
+    const successHandler = (res: any) => {
+      toast.success(`${res.data.message}`, {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      setTimeout(() => {
+        navigate(0);
+      }, 3000);
+    };
+
+    const errorHandler = (err: any) => {};
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (section === "coin") {
+          formData.append("coin_id", id);
+          dispatch(
+            dashboardDeleteCoinRequest(formData, successHandler, errorHandler)
+          );
+        }
+
+        Swal.fire("Deleted!", "Your data has been deleted.", "success");
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        //navigate(`${location.pathname}`);
+        navigate(0);
+      }
+    });
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -359,15 +414,23 @@ const UserAdminHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   </TableCell>
                   <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
                     <Stack direction="row" spacing={1}>
-                      <Typography
-                        sx={{
-                          color: "#FFFFFF",
-                          fontSize: ".85rem",
-                          textTransform: "capitalize",
+                      <Link
+                        to={{
+                          pathname: `/user-dashboard/coin/edit`,
                         }}
+                        state={{ id: data && data?.id }}
+                        style={{ textDecoration: "none" }}
                       >
-                        Edit
-                      </Typography>
+                        <Typography
+                          sx={{
+                            color: "#FFFFFF",
+                            fontSize: ".85rem",
+                            textTransform: "capitalize",
+                          }}
+                        >
+                          Edit
+                        </Typography>{" "}
+                      </Link>
 
                       <Divider
                         flexItem
@@ -381,6 +444,7 @@ const UserAdminHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                           fontSize: ".85rem",
                           textTransform: "capitalize",
                         }}
+                        onClick={() => handleDeleteClick(data && data?.id)}
                       >
                         Delete
                       </Typography>

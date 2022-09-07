@@ -1,75 +1,75 @@
 import appRequest from "../../utils/fetchhandler";
-import { DASHBOARD_COIN } from "../types";
+import { DASHBOARD_NFT_LISTING } from "../types";
 
-export const dashboardCoinNetworkListRequest = (
+export const dashboardNFTListingNetworkListRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/list/networks`,
+    url: `api/f/v1/list/nft_networks`,
     method: "GET",
     secure: true,
     // body: JSON.stringify(Object.fromEntries(values)),
     body: values,
     fileUpload: false,
-    actionType: DASHBOARD_COIN.NETWORK_LIST,
+    actionType: DASHBOARD_NFT_LISTING.NFT_NETWORK_LIST,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const dashboardCoinExchangeListRequest = (
+export const dashboardNFTListingMarketPlaceListRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/list/exchanges`,
+    url: `api/f/v1/list/nft_marketplace`,
     method: "GET",
     secure: true,
     // body: JSON.stringify(Object.fromEntries(values)),
     body: values,
     fileUpload: false,
-    actionType: DASHBOARD_COIN.EXCHANGE_LIST,
+    actionType: DASHBOARD_NFT_LISTING.NFT_MARKETPLACES_LIST,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const dashboardCoinAuditListRequest = (
+export const dashboardNFTListingEventCategoryListRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/list/auditors`,
+    url: `api/f/v1/list/event_categories`,
     method: "GET",
     secure: true,
     // body: JSON.stringify(Object.fromEntries(values)),
     body: values,
     fileUpload: false,
-    actionType: DASHBOARD_COIN.AUDIT_LIST,
+    actionType: DASHBOARD_NFT_LISTING.NFT_EVENT_CATEGORY_LIST,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const dashboardCoinChartProviderListRequest = (
+export const dashboardNFTListingNFTCurrencyListRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/list/chart-providers`,
+    url: `api/f/v1/list/nft-currency`,
     method: "GET",
     secure: true,
     // body: JSON.stringify(Object.fromEntries(values)),
     body: values,
     fileUpload: false,
-    actionType: DASHBOARD_COIN.CHART_PROVIDER_LIST,
+    actionType: DASHBOARD_NFT_LISTING.NFT_CURRENCY_LIST,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const dashboardCoinChatPlatformListRequest = (
+export const dashboardNFTListingChatPlatformListRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
@@ -81,12 +81,12 @@ export const dashboardCoinChatPlatformListRequest = (
     // body: JSON.stringify(Object.fromEntries(values)),
     body: values,
     fileUpload: false,
-    actionType: DASHBOARD_COIN.CHAT_PLATFORM_LIST,
+    actionType: DASHBOARD_NFT_LISTING.CHAT_PLATFORM_LIST,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const dashboardCoinSocialPlatformListRequest = (
+export const dashboardNFTListingSocialPlatformListRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
@@ -98,74 +98,74 @@ export const dashboardCoinSocialPlatformListRequest = (
     // body: JSON.stringify(Object.fromEntries(values)),
     body: values,
     fileUpload: false,
-    actionType: DASHBOARD_COIN.SOCIAL_PLATFORM_LIST,
+    actionType: DASHBOARD_NFT_LISTING.SOCIAL_PLATFORM_LIST,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const dashboardAddCoinRequest = (
+export const dashboardAddNFTListingRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/coin/create`,
+    url: `api/f/v1/nft/create`,
     method: "POST",
     secure: true,
     body: values,
     // body: values,
     fileUpload: true,
-    actionType: DASHBOARD_COIN.ADD_COIN,
+    actionType: DASHBOARD_NFT_LISTING.ADD_NFT_LISTING,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const dashboardEditCoinRequest = (
+export const dashboardEditNFTListingRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/coin/edit`,
+    url: `api/f/v1/nft/edit`,
     method: "POST",
     secure: true,
     body: values,
     fileUpload: true,
-    actionType: DASHBOARD_COIN.EDIT_COIN,
+    actionType: DASHBOARD_NFT_LISTING.EDIT_NFT_LISTING,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const dashboardUpdateCoinRequest = (
+export const dashboardUpdateNFTListingRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/coin/update`,
-    method: "POST",
-    secure: true,
-    //body: JSON.stringify(Object.fromEntries(values)),
-    body: values,
-    fileUpload: true,
-    actionType: DASHBOARD_COIN.UPDATE_COIN,
-  };
-  return appRequest(fetchOptions, successHandler, errorHandler);
-};
-
-export const dashboardDeleteCoinRequest = (
-  values: any,
-  successHandler: any,
-  errorHandler: any
-) => {
-  const fetchOptions = {
-    url: `api/f/v1/coin/delete`,
+    url: `api/f/v1/nft/update`,
     method: "POST",
     secure: true,
     //body: JSON.stringify(Object.fromEntries(values)),
     body: values,
     fileUpload: true,
-    actionType: DASHBOARD_COIN.DELETE_COIN,
+    actionType: DASHBOARD_NFT_LISTING.UPDATE_NFT_LISTING,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const dashboardDeleteNFTListingRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/f/v1/nft/delete`,
+    method: "POST",
+    secure: true,
+    //body: JSON.stringify(Object.fromEntries(values)),
+    body: values,
+    fileUpload: true,
+    actionType: DASHBOARD_NFT_LISTING.DELETE_NFT_LISTING,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };

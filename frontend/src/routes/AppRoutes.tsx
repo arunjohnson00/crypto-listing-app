@@ -33,6 +33,7 @@ import SelectPlanPage from "../pages/desktop/selectplanpage/SelectPlanPage";
 import SelectPlanMailPage from "../pages/desktop/selectplanmailpage/SelectPlanMailPage";
 import AddAssetPage from "../pages/desktop/addasset/AddAssetPage";
 import CoinListingAdd from "../pages/useradmin/coin/add/CoinListingAdd";
+import CoinListingEdit from "../pages/useradmin/coin/edit/CoinListingEdit";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -308,6 +309,15 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <CoinListingAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/user-dashboard/coin/edit"
+          element={
+            <PrivateRoute>
+              <CoinListingEdit />
             </PrivateRoute>
           }
         />
