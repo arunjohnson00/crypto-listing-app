@@ -6,6 +6,8 @@ const initialState = {
   user_login: "",
   user_logout: "",
   user_coin_list: "",
+  user_nft_list: "",
+  user_events_list: "",
 };
 const userReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -35,6 +37,19 @@ const userReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         user_coin_list: action?.payload?.data,
+      };
+    case USER.USER_NFT_LIST:
+      //console.log(action);
+      return {
+        ...state,
+        user_nft_list: action?.payload?.data,
+      };
+
+    case USER.USER_EVENTS_LIST:
+      //console.log(action);
+      return {
+        ...state,
+        user_events_list: action?.payload?.data,
       };
 
     default:

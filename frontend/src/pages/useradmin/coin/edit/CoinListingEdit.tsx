@@ -12,8 +12,8 @@ import {
 } from "@mui/material";
 import dateFormat, { masks } from "dateformat";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { toast } from "material-react-toastify";
-import "material-react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 
 import InputText from "../../../../components/useradmin/form/input/text/InputText";
@@ -294,11 +294,11 @@ const CoinListingEdit = () => {
 
     const launchedStatus: any = coinStatus === "Launched" ? 1 : 0;
     formData.append("is_launched", launchedStatus);
-
+    formData.append("coin_id", location?.state?.id);
     const successHandler = (res: any) => {
-      console.log(res);
+      console.log(res?.data?.message);
       setLoading(true);
-      toast.success(`${res.data.data.original.message}`, {
+      toast.success(`${res.data.message}`, {
         position: "top-right",
         autoClose: 7000,
         hideProgressBar: false,
@@ -380,7 +380,7 @@ const CoinListingEdit = () => {
       )
     );
   }, [dispatch]);
-  console.log(location);
+
   const formData = new FormData();
   formData.append("coin_id", location?.state?.id);
   useEffect(() => {
@@ -402,7 +402,7 @@ const CoinListingEdit = () => {
 
   console.log(location?.state?.id);
   return (
-    <Box sx={{ width: "90%" }}>
+    <Box width="93%">
       <form id="coinForm">
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={2} mb={2}>
           <Stack

@@ -64,3 +64,35 @@ export const userCoinListRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const userNFTListRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/f/v1/nft/list`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: USER.USER_NFT_LIST,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const userEventsListRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/f/v1/event/list`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: USER.USER_EVENTS_LIST,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

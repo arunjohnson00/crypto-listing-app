@@ -297,7 +297,7 @@ const CoinListingAdd = () => {
     );
   }, [dispatch]);
   return (
-    <Box sx={{ width: "90%" }}>
+    <Box width="93%">
       <form id="coinForm">
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={2} mb={2}>
           <Stack

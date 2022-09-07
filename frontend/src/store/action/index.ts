@@ -61,7 +61,8 @@ export { userRegisterRequest } from "./userAction";
 export { userLoginRequest } from "./userAction";
 export { userLogoutRequest } from "./userAction";
 export { userCoinListRequest } from "./userAction";
-
+export { userNFTListRequest } from "./userAction";
+export { userEventsListRequest } from "./userAction";
 //dashboard coin
 
 export {
@@ -91,3 +92,13 @@ export {
   dashboardNFTListingMarketPlaceListRequest,
   dashboardNFTListingNetworkListRequest,
 } from "./dashboardNFTListingAction";
+
+export {
+  dashboardDeleteEventsRequest,
+  dashboardUpdateEventsRequest,
+  dashboardEditEventsRequest,
+  dashboardAddEventsRequest,
+  dashboardEventsCategoryListRequest,
+  dashboardEventsCoinListRequest,
+  dashboardEventsRewardAddressListRequest,
+} from "./dashboardEventsAction";

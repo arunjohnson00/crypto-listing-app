@@ -92,10 +92,15 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
               />
             }
           >
-            <Typography variant="body2" ml={2}>
-              {" "}
-              Dashboard{" "}
-            </Typography>
+            <Link
+              to="/user-dashboard"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <Typography variant="body2" ml={2}>
+                {" "}
+                Dashboard{" "}
+              </Typography>
+            </Link>
           </MenuItem>
 
           <MenuItem
@@ -144,10 +149,44 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
               />
             }
           >
-            <Typography variant="body2" ml={2}>
+            <Link
+              to="/user-dashboard/nft/add"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
               {" "}
-              Add NFT
-            </Typography>
+              <Typography variant="body2" ml={2}>
+                {" "}
+                Add NFT
+              </Typography>
+            </Link>
+          </MenuItem>
+
+          <MenuItem
+            style={{
+              paddingTop: 10,
+              paddingBottom: 10,
+            }}
+            icon={
+              <Avatar
+                alt="User Dashboard"
+                src={AddAirdropIcon}
+                sx={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 0,
+                }}
+              />
+            }
+          >
+            <Link
+              to="/user-dashboard/events/add"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <Typography variant="body2" ml={2}>
+                {" "}
+                Add Events
+              </Typography>
+            </Link>
           </MenuItem>
 
           <MenuItem

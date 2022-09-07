@@ -7,7 +7,7 @@ export const dashboardNFTListingNetworkListRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/list/nft_networks`,
+    url: `api/f/v1/list/nft-networks`,
     method: "GET",
     secure: true,
     // body: JSON.stringify(Object.fromEntries(values)),
@@ -24,7 +24,7 @@ export const dashboardNFTListingMarketPlaceListRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/list/nft_marketplace`,
+    url: `api/f/v1/list/nft-marketplace`,
     method: "GET",
     secure: true,
     // body: JSON.stringify(Object.fromEntries(values)),
@@ -41,7 +41,7 @@ export const dashboardNFTListingEventCategoryListRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/list/event_categories`,
+    url: `api/f/v1/list/event-categories`,
     method: "GET",
     secure: true,
     // body: JSON.stringify(Object.fromEntries(values)),
@@ -58,7 +58,7 @@ export const dashboardNFTListingNFTCurrencyListRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/list/nft-currency`,
+    url: `api/f/v1/list/nft-currency-lists`,
     method: "GET",
     secure: true,
     // body: JSON.stringify(Object.fromEntries(values)),

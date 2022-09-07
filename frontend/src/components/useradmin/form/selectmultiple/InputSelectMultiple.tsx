@@ -113,12 +113,17 @@ const InputSelectMultiple = ({
         sx={{
           height: "auto",
           width: "auto",
-          background: "#f6f6f6",
-          borderRadius: "8px",
-          color: "rgb(200, 200, 200)",
+
           fontSize: "14px",
           fontWeight: "100",
           fontStyle: "normal",
+          background: "#010619",
+          borderRadius: "7px",
+          color: "#525562",
+          border: "1px solid #090F2C",
+          ".MuiSelect-icon": {
+            color: "#FFFFFF",
+          },
         }}
         renderValue={(selected) => (
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>

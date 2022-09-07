@@ -36,11 +36,9 @@ const InputSelectCoin = ({
           "&::after": {
             border: "none",
           },
-          "&.MuiNativeSelect-icon": {
-            color: "red",
-            background: "red",
+          ".MuiNativeSelect-icon": {
+            color: "#FFFFFF",
           },
-
           paddingLeft: "10px",
         }}
       >

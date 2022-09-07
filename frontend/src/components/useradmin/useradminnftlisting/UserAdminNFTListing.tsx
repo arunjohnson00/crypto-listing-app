@@ -1,10 +1,10 @@
 import { Typography } from "@mui/material";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { userCoinListRequest } from "../../../store/action";
+import { userNFTListRequest } from "../../../store/action";
 import UserAdminHtmlTable from "../htmltable/UserAdminHtmlTable";
 import { tableHeader } from "./helper";
-const UserAdminCoinListing = () => {
+const UserAdminNFTListing = () => {
   const dispatch: any = useDispatch();
 
   const [tableData, setTableData] = useState<any>();
@@ -14,7 +14,7 @@ const UserAdminCoinListing = () => {
     };
     const errorHandler = (err: any) => {};
 
-    dispatch(userCoinListRequest("noData", successHandler, errorHandler));
+    dispatch(userNFTListRequest("noData", successHandler, errorHandler));
   }, [dispatch]);
 
   return (
@@ -23,8 +23,8 @@ const UserAdminCoinListing = () => {
         <UserAdminHtmlTable
           tableData={tableData && tableData?.data}
           tableHeader={tableHeader}
-          variant="coin"
-          section="coin"
+          variant="nft"
+          section="nft"
         />
       ) : (
         <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
@@ -35,4 +35,4 @@ const UserAdminCoinListing = () => {
   );
 };
 
-export default UserAdminCoinListing;
+export default UserAdminNFTListing;

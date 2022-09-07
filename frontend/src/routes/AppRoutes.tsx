@@ -34,6 +34,9 @@ import SelectPlanMailPage from "../pages/desktop/selectplanmailpage/SelectPlanMa
 import AddAssetPage from "../pages/desktop/addasset/AddAssetPage";
 import CoinListingAdd from "../pages/useradmin/coin/add/CoinListingAdd";
 import CoinListingEdit from "../pages/useradmin/coin/edit/CoinListingEdit";
+import NFTListingAdd from "../pages/useradmin/nftlisting/add/NFTListingAdd";
+import NFTListingEdit from "../pages/useradmin/nftlisting/edit/NFTListingEdit";
+import EventsAdd from "../pages/useradmin/events/add/EventsAdd";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -318,6 +321,33 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <CoinListingEdit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/user-dashboard/nft/add"
+          element={
+            <PrivateRoute>
+              <NFTListingAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/user-dashboard/nft/edit"
+          element={
+            <PrivateRoute>
+              <NFTListingEdit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/user-dashboard/events/add"
+          element={
+            <PrivateRoute>
+              <EventsAdd />
             </PrivateRoute>
           }
         />

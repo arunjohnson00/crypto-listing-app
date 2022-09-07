@@ -220,6 +220,20 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     ) : (
                       <Typography variant="caption">--</Typography>
                     )}
+                    {/* <Stack direction="column" spacing={0.2}>
+                      {data && data?.network_icon?.length !== 0 ? (
+                        data &&
+                        data?.network_icon?.map((item: any, index: number) => (
+                          <Avatar
+                            alt={data?.name}
+                            src={`${serverAPIUrl}public/uploads/network_icons/${item[index]}`}
+                            sx={{ width: 41, height: 11, borderRadius: 0 }}
+                          />
+                        ))
+                      ) : (
+                        <Typography variant="caption">--</Typography>
+                      )}
+                    </Stack> */}
                   </TableCell>
                   <TableCell
                     sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
