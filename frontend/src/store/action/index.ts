@@ -63,6 +63,8 @@ export { userLogoutRequest } from "./userAction";
 export { userCoinListRequest } from "./userAction";
 export { userNFTListRequest } from "./userAction";
 export { userEventsListRequest } from "./userAction";
+export { userReviewListRequest } from "./userAction";
+export { userAirdropsListRequest } from "./userAction";
 //dashboard coin
 
 export {
@@ -102,3 +104,11 @@ export {
   dashboardEventsCoinListRequest,
   dashboardEventsRewardAddressListRequest,
 } from "./dashboardEventsAction";
+
+export {
+  dashboardAirdropsCoinListRequest,
+  dashboardAddAirdropsRequest,
+  dashboardEditAirdropsRequest,
+  dashboardUpdateAirdropsRequest,
+  dashboardDeleteAirdropsRequest,
+} from "./dashboardAirdropsAction";

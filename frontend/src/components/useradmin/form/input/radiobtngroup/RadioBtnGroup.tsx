@@ -55,6 +55,7 @@ const RadioBtnGroup = ({ radioValue, setRadioValue, name }: any) => {
         (name === "is_follow_twitter" && radioValue.is_follow_twitter)
       }
       onChange={handleChange}
+      sx={{ color: "#FFFFFF" }}
     >
       <Stack direction="row">
         <MyFormControlLabel
@@ -72,6 +73,7 @@ const RadioBtnGroup = ({ radioValue, setRadioValue, name }: any) => {
                   parseInt(radioValue.is_follow_twitter) === 2 &&
                   true)
               }
+              sx={{ color: "#FFFFFF" }}
             />
           }
         />
@@ -90,6 +92,7 @@ const RadioBtnGroup = ({ radioValue, setRadioValue, name }: any) => {
                   parseInt(radioValue.is_follow_twitter) === 1 &&
                   true)
               }
+              sx={{ color: "#FFFFFF" }}
             />
           }
         />

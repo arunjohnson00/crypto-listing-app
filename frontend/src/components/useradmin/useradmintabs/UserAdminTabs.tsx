@@ -16,6 +16,9 @@ import TabPanel from "@mui/lab/TabPanel";
 import UserAdminOverview from "../useradminoverview/UserAdminOverview";
 import UserAdminCoinListing from "../useradmincoinlisting/UserAdminCoinListing";
 import UserAdminNFTListing from "../useradminnftlisting/UserAdminNFTListing";
+import UserAdminEventsListing from "../useradmineventslisting/UserAdminEventsListing";
+import UserAdminAirdropsListing from "../useradminairdropslisting/UserAdminAirdropsListing";
+import UserAdminReviewListing from "../useradminreviewlisting/UserAdminReviewListing";
 
 const UserAdminTabs = () => {
   const [value, setValue] = useState("1");
@@ -92,13 +95,13 @@ const UserAdminTabs = () => {
           <UserAdminNFTListing />
         </TabPanel>
         <TabPanel value="4" sx={{ padding: 0, paddingY: 3 }}>
-          test
+          <UserAdminEventsListing />
         </TabPanel>
         <TabPanel value="5" sx={{ padding: 0, paddingY: 3 }}>
-          Item Two
+          <UserAdminAirdropsListing />
         </TabPanel>
         <TabPanel value="6" sx={{ padding: 0, paddingY: 3 }}>
-          Item Three
+          <UserAdminReviewListing />
         </TabPanel>
         <TabPanel value="7" sx={{ padding: 0, paddingY: 3 }}>
           test

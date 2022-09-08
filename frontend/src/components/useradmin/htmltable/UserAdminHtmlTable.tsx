@@ -26,7 +26,9 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import {
+  dashboardDeleteAirdropsRequest,
   dashboardDeleteCoinRequest,
+  dashboardDeleteEventsRequest,
   dashboardDeleteNFTListingRequest,
 } from "../../../store/action";
 const UserAdminHtmlTable = ({
@@ -78,6 +80,24 @@ const UserAdminHtmlTable = ({
           formData.append("nft_id", id);
           dispatch(
             dashboardDeleteNFTListingRequest(
+              formData,
+              successHandler,
+              errorHandler
+            )
+          );
+        }
+
+        if (section === "events") {
+          formData.append("event_id", id);
+          dispatch(
+            dashboardDeleteEventsRequest(formData, successHandler, errorHandler)
+          );
+        }
+
+        if (section === "airdrops") {
+          formData.append("airdrop_id", id);
+          dispatch(
+            dashboardDeleteAirdropsRequest(
               formData,
               successHandler,
               errorHandler
@@ -502,6 +522,576 @@ const UserAdminHtmlTable = ({
         )}
 
         {variant === "nft" && (
+          <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
+            {tableData &&
+              tableData?.map((data: any, index: number) => (
+                <TableRow
+                  sx={{
+                    "&:last-child td, &:last-child th": { border: 0 },
+
+                    border: 0,
+                    height: 20,
+                  }}
+                  key={index}
+                >
+                  <TableCell
+                    sx={{
+                      color: "#FFFFFF",
+                      border: 0,
+
+                      maxWidth: 1,
+                    }}
+                  >
+                    {index + 1}
+                  </TableCell>
+                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                    {" "}
+                    <Avatar
+                      alt={data?.title}
+                      src={`${serverAPIUrl}public/uploads/nft_listing_image/${data?.image}`}
+                      sx={{ width: 34, height: 34 }}
+                    />
+                  </TableCell>
+                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                    <Stack direction="column">
+                      <Typography variant="caption">
+                        {" "}
+                        <Link
+                          to={{
+                            pathname: `/coin/${data?.slug}`,
+                          }}
+                          state={{ coin_id: data?.id }}
+                          style={{
+                            textDecoration: "none",
+                            color: "#FFFFFF",
+                          }}
+                        >
+                          {data && data?.title?.length > 13
+                            ? data?.title?.slice(0, 13) + "..."
+                            : data && data?.title}
+                        </Link>
+                      </Typography>
+                      {/* <Typography
+                        variant="caption"
+                        sx={{
+                          color: "#0F68A1",
+                          fontWeight: "bold",
+                          fontSize: "0.6rem",
+                        }}
+                      >
+                        {"$"}
+                        {data?.symbol}
+                      </Typography> */}
+                    </Stack>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">{data?.currency}</Typography>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">
+                      {data?.currency_icon}
+                    </Typography>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">{data?.network}</Typography>
+                  </TableCell>
+                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                    <Stack direction="column" spacing={0.2}>
+                      <Avatar
+                        alt={data?.title}
+                        src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
+                        sx={{ width: 41, height: 11, borderRadius: 0 }}
+                      />
+                    </Stack>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">
+                      {data?.pre_sale_mint_price}
+                    </Typography>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">
+                      {data?.public_mint_price}
+                    </Typography>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">
+                      {data?.max_num_items}
+                    </Typography>
+                  </TableCell>
+                  <TableCell sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}>
+                    <Typography variant="caption">
+                      {" "}
+                      {moment(data?.created_at, "YYYYMMDD").fromNow()}
+                    </Typography>
+                  </TableCell>
+
+                  <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
+                    <Typography variant="caption">
+                      {" "}
+                      {parseInt(data?.status) === 1 ? "active" : "deactive"}
+                    </Typography>
+                  </TableCell>
+                  <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
+                    <Stack direction="row" spacing={1}>
+                      <Link
+                        to={{
+                          pathname: `/user-dashboard/nft/edit`,
+                        }}
+                        state={{ id: data && data?.id }}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <Typography
+                          sx={{
+                            color: "#FFFFFF",
+                            fontSize: ".85rem",
+                            textTransform: "capitalize",
+                          }}
+                        >
+                          Edit
+                        </Typography>{" "}
+                      </Link>
+
+                      <Divider
+                        flexItem
+                        variant="middle"
+                        orientation="vertical"
+                        sx={{ borderRightColor: "#FFFFFF", height: 20 }}
+                      />
+                      <Typography
+                        sx={{
+                          color: "#CE0519",
+                          fontSize: ".85rem",
+                          textTransform: "capitalize",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => handleDeleteClick(data && data?.id)}
+                      >
+                        Delete
+                      </Typography>
+                    </Stack>
+                  </TableCell>
+                </TableRow>
+              ))}
+
+            {/* <TableRow
+            sx={{
+              "&:last-child td, &:last-child th": { border: 0 },
+              borderBottom: "2px solid black",
+            }}
+          >
+            <TableCell component="th" scope="row" sx={{ color:"#FFFFFF" }}>
+              1
+            </TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>
+              <VoteBtn />
+            </TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          </TableRow> */}
+          </TableBody>
+        )}
+
+        {variant === "events" && (
+          <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
+            {tableData &&
+              tableData?.map((data: any, index: number) => (
+                <TableRow
+                  sx={{
+                    "&:last-child td, &:last-child th": { border: 0 },
+
+                    border: 0,
+                    height: 20,
+                  }}
+                  key={index}
+                >
+                  <TableCell
+                    sx={{
+                      color: "#FFFFFF",
+                      border: 0,
+
+                      maxWidth: 1,
+                    }}
+                  >
+                    {index + 1}
+                  </TableCell>
+                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                    {" "}
+                    <Avatar
+                      alt={data?.title}
+                      src={`${serverAPIUrl}public/uploads/nft_listing_image/${data?.image}`}
+                      sx={{ width: 34, height: 34 }}
+                    />
+                  </TableCell>
+                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                    <Stack direction="column">
+                      <Typography variant="caption">
+                        {" "}
+                        <Link
+                          to={{
+                            pathname: `/coin/${data?.slug}`,
+                          }}
+                          state={{ coin_id: data?.id }}
+                          style={{
+                            textDecoration: "none",
+                            color: "#FFFFFF",
+                          }}
+                        >
+                          {data && data?.title?.length > 13
+                            ? data?.title?.slice(0, 13) + "..."
+                            : data && data?.title}
+                        </Link>
+                      </Typography>
+                      {/* <Typography
+                        variant="caption"
+                        sx={{
+                          color: "#0F68A1",
+                          fontWeight: "bold",
+                          fontSize: "0.6rem",
+                        }}
+                      >
+                        {"$"}
+                        {data?.symbol}
+                      </Typography> */}
+                    </Stack>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">{data?.currency}</Typography>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">
+                      {data?.currency_icon}
+                    </Typography>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">{data?.network}</Typography>
+                  </TableCell>
+                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                    <Stack direction="column" spacing={0.2}>
+                      <Avatar
+                        alt={data?.title}
+                        src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
+                        sx={{ width: 41, height: 11, borderRadius: 0 }}
+                      />
+                    </Stack>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">
+                      {data?.pre_sale_mint_price}
+                    </Typography>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">
+                      {data?.public_mint_price}
+                    </Typography>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">
+                      {data?.max_num_items}
+                    </Typography>
+                  </TableCell>
+                  <TableCell sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}>
+                    <Typography variant="caption">
+                      {" "}
+                      {moment(data?.created_at, "YYYYMMDD").fromNow()}
+                    </Typography>
+                  </TableCell>
+
+                  <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
+                    <Typography variant="caption">
+                      {" "}
+                      {parseInt(data?.status) === 1 ? "active" : "deactive"}
+                    </Typography>
+                  </TableCell>
+                  <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
+                    <Stack direction="row" spacing={1}>
+                      <Link
+                        to={{
+                          pathname: `/user-dashboard/nft/edit`,
+                        }}
+                        state={{ id: data && data?.id }}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <Typography
+                          sx={{
+                            color: "#FFFFFF",
+                            fontSize: ".85rem",
+                            textTransform: "capitalize",
+                          }}
+                        >
+                          Edit
+                        </Typography>{" "}
+                      </Link>
+
+                      <Divider
+                        flexItem
+                        variant="middle"
+                        orientation="vertical"
+                        sx={{ borderRightColor: "#FFFFFF", height: 20 }}
+                      />
+                      <Typography
+                        sx={{
+                          color: "#CE0519",
+                          fontSize: ".85rem",
+                          textTransform: "capitalize",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => handleDeleteClick(data && data?.id)}
+                      >
+                        Delete
+                      </Typography>
+                    </Stack>
+                  </TableCell>
+                </TableRow>
+              ))}
+
+            {/* <TableRow
+            sx={{
+              "&:last-child td, &:last-child th": { border: 0 },
+              borderBottom: "2px solid black",
+            }}
+          >
+            <TableCell component="th" scope="row" sx={{ color:"#FFFFFF" }}>
+              1
+            </TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>
+              <VoteBtn />
+            </TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          </TableRow> */}
+          </TableBody>
+        )}
+
+        {variant === "airdrops" && (
+          <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
+            {tableData &&
+              tableData?.map((data: any, index: number) => (
+                <TableRow
+                  sx={{
+                    "&:last-child td, &:last-child th": { border: 0 },
+
+                    border: 0,
+                    height: 20,
+                  }}
+                  key={index}
+                >
+                  <TableCell
+                    sx={{
+                      color: "#FFFFFF",
+                      border: 0,
+
+                      maxWidth: 1,
+                    }}
+                  >
+                    {index + 1}
+                  </TableCell>
+                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                    {" "}
+                    <Avatar
+                      alt={data?.title}
+                      src={`${serverAPIUrl}public/uploads/nft_listing_image/${data?.image}`}
+                      sx={{ width: 34, height: 34 }}
+                    />
+                  </TableCell>
+                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                    <Stack direction="column">
+                      <Typography variant="caption">
+                        {" "}
+                        <Link
+                          to={{
+                            pathname: `/coin/${data?.slug}`,
+                          }}
+                          state={{ coin_id: data?.id }}
+                          style={{
+                            textDecoration: "none",
+                            color: "#FFFFFF",
+                          }}
+                        >
+                          {data && data?.title?.length > 13
+                            ? data?.title?.slice(0, 13) + "..."
+                            : data && data?.title}
+                        </Link>
+                      </Typography>
+                      {/* <Typography
+                        variant="caption"
+                        sx={{
+                          color: "#0F68A1",
+                          fontWeight: "bold",
+                          fontSize: "0.6rem",
+                        }}
+                      >
+                        {"$"}
+                        {data?.symbol}
+                      </Typography> */}
+                    </Stack>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">{data?.currency}</Typography>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">
+                      {data?.currency_icon}
+                    </Typography>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">{data?.network}</Typography>
+                  </TableCell>
+                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                    <Stack direction="column" spacing={0.2}>
+                      <Avatar
+                        alt={data?.title}
+                        src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
+                        sx={{ width: 41, height: 11, borderRadius: 0 }}
+                      />
+                    </Stack>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">
+                      {data?.pre_sale_mint_price}
+                    </Typography>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">
+                      {data?.public_mint_price}
+                    </Typography>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                  >
+                    <Typography variant="caption">
+                      {data?.max_num_items}
+                    </Typography>
+                  </TableCell>
+                  <TableCell sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}>
+                    <Typography variant="caption">
+                      {" "}
+                      {moment(data?.created_at, "YYYYMMDD").fromNow()}
+                    </Typography>
+                  </TableCell>
+
+                  <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
+                    <Typography variant="caption">
+                      {" "}
+                      {parseInt(data?.status) === 1 ? "active" : "deactive"}
+                    </Typography>
+                  </TableCell>
+                  <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
+                    <Stack direction="row" spacing={1}>
+                      <Link
+                        to={{
+                          pathname: `/user-dashboard/nft/edit`,
+                        }}
+                        state={{ id: data && data?.id }}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <Typography
+                          sx={{
+                            color: "#FFFFFF",
+                            fontSize: ".85rem",
+                            textTransform: "capitalize",
+                          }}
+                        >
+                          Edit
+                        </Typography>{" "}
+                      </Link>
+
+                      <Divider
+                        flexItem
+                        variant="middle"
+                        orientation="vertical"
+                        sx={{ borderRightColor: "#FFFFFF", height: 20 }}
+                      />
+                      <Typography
+                        sx={{
+                          color: "#CE0519",
+                          fontSize: ".85rem",
+                          textTransform: "capitalize",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => handleDeleteClick(data && data?.id)}
+                      >
+                        Delete
+                      </Typography>
+                    </Stack>
+                  </TableCell>
+                </TableRow>
+              ))}
+
+            {/* <TableRow
+            sx={{
+              "&:last-child td, &:last-child th": { border: 0 },
+              borderBottom: "2px solid black",
+            }}
+          >
+            <TableCell component="th" scope="row" sx={{ color:"#FFFFFF" }}>
+              1
+            </TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>
+              <VoteBtn />
+            </TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          </TableRow> */}
+          </TableBody>
+        )}
+
+        {variant === "review" && (
           <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
             {tableData &&
               tableData?.map((data: any, index: number) => (

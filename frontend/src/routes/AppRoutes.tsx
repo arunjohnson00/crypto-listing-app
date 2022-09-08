@@ -37,6 +37,9 @@ import CoinListingEdit from "../pages/useradmin/coin/edit/CoinListingEdit";
 import NFTListingAdd from "../pages/useradmin/nftlisting/add/NFTListingAdd";
 import NFTListingEdit from "../pages/useradmin/nftlisting/edit/NFTListingEdit";
 import EventsAdd from "../pages/useradmin/events/add/EventsAdd";
+import EventsEdit from "../pages/useradmin/events/edit/EventsEdit";
+import AirDropsAdd from "../pages/useradmin/airdrops/add/AirDropsAdd";
+import AirDropsEdit from "../pages/useradmin/airdrops/edit/AirDropsEdit";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -351,6 +354,34 @@ const AppRoutes = () => {
             </PrivateRoute>
           }
         />
+
+        <Route
+          path="/user-dashboard/events/edit"
+          element={
+            <PrivateRoute>
+              <EventsEdit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/user-dashboard/airdrops/add"
+          element={
+            <PrivateRoute>
+              <AirDropsAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/user-dashboard/airdrops/edit"
+          element={
+            <PrivateRoute>
+              <AirDropsEdit />
+            </PrivateRoute>
+          }
+        />
+
         {/* <Route path="/" element={<Navigate replace to="/dashboard" />} /> */}
         <Route path="*" element={<p>Theres nothing </p>} />
       </Routes>

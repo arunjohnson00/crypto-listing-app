@@ -25,6 +25,12 @@ const CheckboxWithLabel = ({ label, name, value }: any) => {
             inputProps={{ "aria-label": "controlled" }}
             value={checked ? 1 : 2}
             name={name}
+            sx={{
+              color: "#FFFFFF",
+              "&.Mui-checked": {
+                color: "#FFFFFF",
+              },
+            }}
           />
         }
         label={label}

@@ -96,3 +96,35 @@ export const userEventsListRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const userAirdropsListRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/f/v1/airdrop/list`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: USER.USER_AIRDROP_LIST,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const userReviewListRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/f/v1/review/list`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: USER.USER_REVIEW_LIST,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

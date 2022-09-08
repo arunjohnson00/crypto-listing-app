@@ -1,6 +1,6 @@
 export const tableHeader = [
   "#",
-  "Image",
+  "Icon",
   "Title",
   "Currency",
   "Currency Icon",
@@ -9,7 +9,7 @@ export const tableHeader = [
   "Presale Mint Price",
   "Public Mint Price",
   "Max Items",
-  "Created",
+  "Submitted",
   "Status",
   "Action",
 ];

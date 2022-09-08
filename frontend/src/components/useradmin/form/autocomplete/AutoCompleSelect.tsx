@@ -8,10 +8,11 @@ import {
   Avatar,
   Stack,
 } from "@mui/material";
-// import { allCoinRequest } from "../../../store/action";
-// import { allNftListingRequest } from "../../../store/action";
-// import { airDropListSearchWithCoinSearchRequest } from "../../../store/action";
-// import { eventsListSearchWithCoinSearchRequest } from "../../../store/action";
+import {
+  dashboardAirdropsCoinListRequest,
+  dashboardEventsCoinListRequest,
+} from "../../../../store/action";
+
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const AutoCompleSelect = ({
@@ -26,19 +27,35 @@ const AutoCompleSelect = ({
   const [opt, setOpt] = useState<any>();
   const [defaultVal, setDefaultval] = useState<any>();
 
-  // useEffect(() => {
-  //   const successHandler = (res: any) => {
-  //     setOpt(res?.data?.data && res?.data?.data);
-  //   };
-  //   const errorHandler: any = (err: any) => {};
-  //   variant &&
-  //     variant === "coin" &&
-  //     dispatch(allCoinRequest("emptyData", successHandler, errorHandler));
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      setOpt(res?.data?.data && res?.data?.data);
+    };
+    const errorHandler: any = (err: any) => {};
+    variant &&
+      variant === "coin" &&
+      dispatch(
+        dashboardEventsCoinListRequest(
+          "emptyData",
+          successHandler,
+          errorHandler
+        )
+      );
 
-  //   variant &&
-  //     variant === "nft" &&
-  //     dispatch(allNftListingRequest("emptyData", successHandler, errorHandler));
-  // }, [dispatch]);
+    variant &&
+      variant === "airdrop" &&
+      dispatch(
+        dashboardAirdropsCoinListRequest(
+          "emptyData",
+          successHandler,
+          errorHandler
+        )
+      );
+
+    // variant &&
+    //   variant === "nft" &&
+    //   dispatch(allNftListingRequest("emptyData", successHandler, errorHandler));
+  }, [dispatch]);
 
   useEffect(() => {
     const defaultCoinFilter =
@@ -57,7 +74,11 @@ const AutoCompleSelect = ({
   }, [opt, serverRef]);
 
   const options = [
-    variant === "nft" ? "loading..." : variant === "coin" && "loading...",
+    variant === "nft"
+      ? "loading..."
+      : variant === "coin"
+      ? "loading..."
+      : variant === "airdrop" && "loading...",
   ];
 
   // const requestSendHandler: any = (itemId: any) => {
@@ -91,7 +112,8 @@ const AutoCompleSelect = ({
           ? inputAutoValue?.item_name
           : variant === "nft"
           ? "Please Choose a NFT"
-          : variant === "coin" && "Please Choose a Coin"
+          : (variant === "coin" || variant === "airdrop") &&
+            "Please Choose a Coin"
       }`}
       id="combo-box-demo"
       size="small"
@@ -151,9 +173,15 @@ const AutoCompleSelect = ({
           paddingLeft: 2,
           paddingRight: 0,
           height: "39px",
-          borderRadius: "8px",
+
           fontSize: ".8rem",
-          background: "white",
+          background: "#010619",
+          borderRadius: "7px",
+          color: "#525562",
+          border: "1px solid #090F2C",
+          ".MuiSvgIcon-root": {
+            color: "#FFFFFF",
+          },
         },
       }}
       renderInput={(params) => (

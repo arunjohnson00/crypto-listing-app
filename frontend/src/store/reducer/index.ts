@@ -14,6 +14,7 @@ import userReducer from "./userReducer";
 import dashboardCoinReducer from "./dashboardCoinReducer";
 import dashboardNFTListingReducer from "./dashboardNFTListingReducer";
 import dashboardEventReducer from "./dashboardEventReducer";
+import dashboardAirdropsReducer from "./dashboardAirdropsReducer";
 
 const allReducers = combineReducers({
   commonReducer,
@@ -25,6 +26,7 @@ const allReducers = combineReducers({
   dashboardCoinReducer,
   dashboardNFTListingReducer,
   dashboardEventReducer,
+  dashboardAirdropsReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

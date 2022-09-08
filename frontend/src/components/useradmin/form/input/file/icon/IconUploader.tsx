@@ -67,7 +67,10 @@ const IconUploader = ({ addIconData, setAddIcon, slug, inActive }: any) => {
             {acceptedFileItems.length === 0 &&
             fileRejectionItems.length === 0 ? (
               <>
-                <Typography variant="h6" sx={{ fontSize: "1rem" }}>
+                <Typography
+                  variant="h6"
+                  sx={{ fontSize: "1rem", color: "#818181e8" }}
+                >
                   Choose file
                 </Typography>
               </>

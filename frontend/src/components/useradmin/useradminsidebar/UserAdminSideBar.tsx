@@ -206,10 +206,15 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
               />
             }
           >
-            <Typography variant="body2" ml={2}>
-              {" "}
-              Add AirDrop
-            </Typography>
+            <Link
+              to="/user-dashboard/airdrops/add"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <Typography variant="body2" ml={2}>
+                {" "}
+                Add AirDrop
+              </Typography>
+            </Link>
           </MenuItem>
 
           <MenuItem
