@@ -612,7 +612,7 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
                   {cardData && cardData?.networks?.length === 0 ? (
                     <Typography sx={{ fontSize: ".6rem" }}>--</Typography>
                   ) : (
-                    <Stack direction="row" spacing={1}>
+                    <Stack direction="row" spacing={0.2}>
                       {cardData &&
                         cardData?.networks?.map((item: any, index: number) => (
                           <Avatar

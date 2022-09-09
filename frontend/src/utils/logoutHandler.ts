@@ -13,7 +13,8 @@ export const logoutHandler = (navigate: any, dispatch: any) => {
       draggable: true,
     });
     sessionStorage.clear();
-    localStorage.clear();
+    localStorage.removeItem("authUser");
+    localStorage.removeItem("authToken");
     navigate("/login");
   };
   const errorHandler = (err: any) => {};

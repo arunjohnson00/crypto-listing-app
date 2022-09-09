@@ -13,9 +13,11 @@ import dateFormat, { masks } from "dateformat";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
-import { toast } from "material-react-toastify";
+// import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
-import "material-react-toastify/dist/ReactToastify.css";
+// import "material-react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { FormControlLabel } from "@mui/material";
 
