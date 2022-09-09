@@ -457,7 +457,7 @@ const UserAdminOverview = () => {
           height: "auto",
           maxWidth: 350,
         }}
-        mt={8}
+        pb={10}
       >
         <CardMedia
           component="img"

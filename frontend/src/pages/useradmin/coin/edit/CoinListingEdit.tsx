@@ -400,9 +400,8 @@ const CoinListingEdit = () => {
     dispatch(dashboardEditCoinRequest(formData, successHandler, errorHandler));
   }, [dispatch]);
 
-  console.log(location?.state?.id);
   return (
-    <Box width="93%">
+    <Box width={{ xs: "99%", sm: "99%", md: "93%" }} pb={10}>
       <form id="coinForm">
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={2} mb={2}>
           <Stack
@@ -437,8 +436,8 @@ const CoinListingEdit = () => {
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}></Grid>
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
           <Box
-            sx={{ width: "100%", background: "#030921", borderRadius: "7px" }}
-            px={5}
+            sx={{ width: "auto", background: "#030921", borderRadius: "7px" }}
+            px={{ xs: 3, sm: 3, md: 5 }}
             py={5}
             mb={5}
           >
@@ -476,7 +475,7 @@ const CoinListingEdit = () => {
               >
                 Enter contract address
               </Typography>
-              <Stack direction="row" spacing={3}>
+              <Stack direction={{xs:"column",sm:"column",md:"row"}} spacing={3}>
                 <Grid item xl={4} lg={4} md={4} sm={6} xs={12}>
                   <InputText
                     placeholder="Eg: 09s8jgggffffay63733773"
@@ -603,7 +602,7 @@ const CoinListingEdit = () => {
               </Grid>
               {coinStatus === "Presale" ? (
                 <Grid container mb={5} mt={1}>
-                  <Stack direction="row" spacing={3} mb={2}>
+                  <Stack direction={{xs:"column",sm:"column",md:"row"}} spacing={3} mb={2}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                       <Typography
                         variant="subtitle1"
@@ -647,7 +646,7 @@ const CoinListingEdit = () => {
                     </Grid>
                   </Stack>
 
-                  <Stack direction="row" spacing={3}>
+                  <Stack direction={{xs:"column",sm:"column",md:"row"}} spacing={3}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                       <Typography
                         variant="subtitle1"
@@ -693,7 +692,7 @@ const CoinListingEdit = () => {
                 </Grid>
               ) : (
                 <Grid container mb={5} mt={1}>
-                  <Stack direction="row" spacing={3} mb={1}>
+                  <Stack direction={{xs:"column",sm:"column",md:"row"}} spacing={3} mb={1}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                       <Typography
                         variant="subtitle1"
@@ -737,7 +736,7 @@ const CoinListingEdit = () => {
                     </Grid>
                   </Stack>
 
-                  <Stack direction="row" spacing={3} mb={1}>
+                  <Stack direction={{xs:"column",sm:"column",md:"row"}} spacing={3} mb={1}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                       <Typography
                         variant="subtitle1"
@@ -788,8 +787,8 @@ const CoinListingEdit = () => {
 
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
           <Box
-            sx={{ width: "100%", background: "#030921", borderRadius: "7px" }}
-            px={5}
+            sx={{ width: "auto", background: "#030921", borderRadius: "7px" }}
+            px={{ xs: 3, sm: 3, md: 5 }}
             py={5}
             mb={5}
           >
@@ -829,7 +828,7 @@ const CoinListingEdit = () => {
                       key={index}
                     >
                       <Stack
-                        direction="row"
+                        direction={{ xs: "column", sm: "column", md: "row" }}
                         spacing={3}
                         sx={{ alignItems: "center" }}
                         id={`network${index}`}
@@ -853,6 +852,7 @@ const CoinListingEdit = () => {
                             data={networkList}
                             selectedValue={networks.network_id}
                             height={40}
+                            width={300}
                           />
                         </Grid>
                         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -903,7 +903,7 @@ const CoinListingEdit = () => {
                           md={2}
                           sm={2}
                           xs={12}
-                          sx={{ paddingTop: "37px" }}
+                          pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                         >
                           {editCoin?.has_many_networks.length - 1 === index && (
                             <Link
@@ -922,7 +922,10 @@ const CoinListingEdit = () => {
               )
             ) : (
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                <Stack direction="row" spacing={3}>
+                <Stack
+                  direction={{ xs: "column", sm: "column", md: "row" }}
+                  spacing={3}
+                >
                   <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
                     <Typography
                       variant="subtitle1"
@@ -941,6 +944,7 @@ const CoinListingEdit = () => {
                       id={`network_1`}
                       data={networkList}
                       height={40}
+                      width={300}
                     />
                   </Grid>
                   <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -989,7 +993,7 @@ const CoinListingEdit = () => {
                     md={2}
                     sm={2}
                     xs={12}
-                    sx={{ paddingTop: "37px" }}
+                    pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                   >
                     <Link
                       onClick={networkaddHandle}
@@ -1055,7 +1059,10 @@ const CoinListingEdit = () => {
                       xs={12}
                       key={index}
                     >
-                      <Stack direction="row" spacing={3}>
+                      <Stack
+                        direction={{ xs: "column", sm: "column", md: "row" }}
+                        spacing={3}
+                      >
                         <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
                           <Typography
                             variant="subtitle1"
@@ -1075,6 +1082,7 @@ const CoinListingEdit = () => {
                             data={exchangeList}
                             selectedValue={exchanges.exchange_id}
                             height={40}
+                            width={300}
                           />
                         </Grid>
                         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1119,7 +1127,7 @@ const CoinListingEdit = () => {
                           md={2}
                           sm={2}
                           xs={12}
-                          sx={{ paddingTop: "37px" }}
+                          pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                         >
                           {editCoin?.has_many_exchanges.length - 1 ===
                             index && (
@@ -1139,7 +1147,10 @@ const CoinListingEdit = () => {
               )
             ) : (
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                <Stack direction="row" spacing={3}>
+                <Stack
+                  direction={{ xs: "column", sm: "column", md: "row" }}
+                  spacing={3}
+                >
                   <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
                     <Typography
                       variant="subtitle1"
@@ -1158,6 +1169,7 @@ const CoinListingEdit = () => {
                       id={`exchange_id_1`}
                       data={exchangeList}
                       height={40}
+                      width={300}
                     />
                   </Grid>
                   <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1200,7 +1212,7 @@ const CoinListingEdit = () => {
                     md={2}
                     sm={2}
                     xs={12}
-                    sx={{ paddingTop: "37px" }}
+                    pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                   >
                     <Link
                       onClick={exchangeaddHandle}
@@ -1236,14 +1248,18 @@ const CoinListingEdit = () => {
         </Grid>
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
           <Box
-            sx={{ width: "100%", background: "#030921", borderRadius: "7px" }}
-            px={5}
+            sx={{ width: "auto", background: "#030921", borderRadius: "7px" }}
+            px={{ xs: 3, sm: 3, md: 5 }}
             py={5}
             mb={5}
           >
             {coinStatus === "Presale" ? (
               <Grid container mb={5} mt={1}>
-                <Stack direction="row" spacing={3} mb={2}>
+                <Stack
+                  direction={{ xs: "column", sm: "column", md: "row" }}
+                  spacing={3}
+                  mb={2}
+                >
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                     <Typography
                       variant="subtitle1"
@@ -1289,7 +1305,10 @@ const CoinListingEdit = () => {
                   </Grid>
                 </Stack>
 
-                <Stack direction="row" spacing={3}>
+                <Stack
+                  direction={{ xs: "column", sm: "column", md: "row" }}
+                  spacing={3}
+                >
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                     <Typography
                       variant="subtitle1"
@@ -1334,7 +1353,12 @@ const CoinListingEdit = () => {
                     />
                   </Grid>
                 </Stack>
-                <Stack direction="row" spacing={3} mb={1} pt={2}>
+                <Stack
+                  direction={{ xs: "column", sm: "column", md: "row" }}
+                  spacing={3}
+                  mb={1}
+                  pt={2}
+                >
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                     <Typography
                       variant="subtitle1"
@@ -1402,7 +1426,11 @@ const CoinListingEdit = () => {
               </Grid>
             ) : (
               <Grid container mb={5} mt={1}>
-                <Stack direction="row" spacing={3} mb={1}>
+                <Stack
+                  direction={{ xs: "column", sm: "column", md: "row" }}
+                  spacing={3}
+                  mb={1}
+                >
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                     <Typography
                       variant="subtitle1"
@@ -1448,7 +1476,11 @@ const CoinListingEdit = () => {
                   </Grid>
                 </Stack>
 
-                <Stack direction="row" spacing={3} mb={1}>
+                <Stack
+                  direction={{ xs: "column", sm: "column", md: "row" }}
+                  spacing={3}
+                  mb={1}
+                >
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                     <Typography
                       variant="subtitle1"
@@ -1499,8 +1531,8 @@ const CoinListingEdit = () => {
         </Grid>
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
           <Box
-            sx={{ width: "100%", background: "#030921", borderRadius: "7px" }}
-            px={5}
+            sx={{ width: "auto", background: "#030921", borderRadius: "7px" }}
+            px={{ xs: 3, sm: 3, md: 5 }}
             py={5}
             mb={5}
           >
@@ -1521,7 +1553,11 @@ const CoinListingEdit = () => {
               </Typography>
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-              <Stack direction="row" spacing={3} pb={2}>
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "row" }}
+                spacing={3}
+                pb={2}
+              >
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
                     variant="subtitle1"
@@ -1565,7 +1601,10 @@ const CoinListingEdit = () => {
               </Stack>
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-              <Stack direction="row" spacing={3}>
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "row" }}
+                spacing={3}
+              >
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
                     variant="subtitle1"
@@ -1638,7 +1677,10 @@ const CoinListingEdit = () => {
                     xs={12}
                     key={index}
                   >
-                    <Stack direction="row" spacing={3}>
+                    <Stack
+                      direction={{ xs: "column", sm: "column", md: "row" }}
+                      spacing={3}
+                    >
                       <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
                         <Typography
                           variant="subtitle1"
@@ -1658,6 +1700,7 @@ const CoinListingEdit = () => {
                           data={coinAuditList}
                           selectedValue={parseInt(audits.audited_by)}
                           height={40}
+                          width={300}
                         />
                       </Grid>
                       <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1687,7 +1730,7 @@ const CoinListingEdit = () => {
                         md={2}
                         sm={2}
                         xs={12}
-                        sx={{ paddingTop: "37px" }}
+                        pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                       >
                         {editCoin?.has_many_audits.length - 1 === index && (
                           <Link
@@ -1705,7 +1748,10 @@ const CoinListingEdit = () => {
               })
             ) : (
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                <Stack direction="row" spacing={3}>
+                <Stack
+                  direction={{ xs: "column", sm: "column", md: "row" }}
+                  spacing={3}
+                >
                   <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
                     <Typography
                       variant="subtitle1"
@@ -1724,6 +1770,7 @@ const CoinListingEdit = () => {
                       id="audited_by_1"
                       data={coinAuditList}
                       height={40}
+                      width={300}
                     />
                   </Grid>
                   <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1752,7 +1799,7 @@ const CoinListingEdit = () => {
                     md={2}
                     sm={2}
                     xs={12}
-                    sx={{ paddingTop: "37px" }}
+                    pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                   >
                     <Link
                       onClick={auditaddHandle}
@@ -1815,7 +1862,10 @@ const CoinListingEdit = () => {
                     xs={12}
                     key={index}
                   >
-                    <Stack direction="row" spacing={3}>
+                    <Stack
+                      direction={{ xs: "column", sm: "column", md: "row" }}
+                      spacing={3}
+                    >
                       <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
                         <Typography
                           variant="subtitle1"
@@ -1835,6 +1885,7 @@ const CoinListingEdit = () => {
                           data={coinChartProviderList}
                           selectedValue={parseInt(charts.chart_provider)}
                           height={40}
+                          width={300}
                         />
                       </Grid>
                       <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1864,7 +1915,7 @@ const CoinListingEdit = () => {
                         md={2}
                         sm={2}
                         xs={12}
-                        sx={{ paddingTop: "37px" }}
+                        pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                       >
                         {editCoin?.has_many_charts.length - 1 === index && (
                           <Link
@@ -1882,7 +1933,10 @@ const CoinListingEdit = () => {
               })
             ) : (
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                <Stack direction="row" spacing={3}>
+                <Stack
+                  direction={{ xs: "column", sm: "column", md: "row" }}
+                  spacing={3}
+                >
                   <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
                     <Typography
                       variant="subtitle1"
@@ -1901,6 +1955,7 @@ const CoinListingEdit = () => {
                       id="chart_provider_1"
                       data={coinChartProviderList}
                       height={40}
+                      width={300}
                     />
                   </Grid>
                   <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1929,7 +1984,7 @@ const CoinListingEdit = () => {
                     md={2}
                     sm={2}
                     xs={12}
-                    sx={{ paddingTop: "37px" }}
+                    pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                   >
                     <Link
                       onClick={chartaddHandle}
@@ -1960,7 +2015,11 @@ const CoinListingEdit = () => {
                 </div>
               );
             })}
-            <Stack direction="row" spacing={3} pt={3}>
+            <Stack
+              direction={{ xs: "column", sm: "column", md: "row" }}
+              spacing={3}
+              pt={3}
+            >
               <Grid item xl={6} lg={6} md={6} sm={6} xs={12}>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
                   <Typography
@@ -1993,7 +2052,14 @@ const CoinListingEdit = () => {
                           xs={12}
                           key={index}
                         >
-                          <Stack direction="row" spacing={3}>
+                          <Stack
+                            direction={{
+                              xs: "column",
+                              sm: "column",
+                              md: "row",
+                            }}
+                            spacing={3}
+                          >
                             <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                               <Typography
                                 variant="subtitle1"
@@ -2021,7 +2087,7 @@ const CoinListingEdit = () => {
                               md={4}
                               sm={4}
                               xs={12}
-                              sx={{ paddingTop: "37px" }}
+                              pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                             >
                               {editCoin?.has_many_communitys.length - 1 ===
                                 index && (
@@ -2041,7 +2107,10 @@ const CoinListingEdit = () => {
                   )
                 ) : (
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                    <Stack direction="row" spacing={3}>
+                    <Stack
+                      direction={{ xs: "column", sm: "column", md: "row" }}
+                      spacing={3}
+                    >
                       <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                         <Typography
                           variant="subtitle1"
@@ -2068,7 +2137,7 @@ const CoinListingEdit = () => {
                         md={4}
                         sm={4}
                         xs={12}
-                        sx={{ paddingTop: "37px" }}
+                        pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                       >
                         <Link
                           onClick={communityaddHandle}
@@ -2101,7 +2170,10 @@ const CoinListingEdit = () => {
                 })}
 
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
-                  <Stack direction="row" spacing={3}>
+                  <Stack
+                    direction={{ xs: "column", sm: "column", md: "row" }}
+                    spacing={3}
+                  >
                     <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                       <Typography
                         variant="subtitle1"
@@ -2129,7 +2201,7 @@ const CoinListingEdit = () => {
                       md={4}
                       sm={4}
                       xs={12}
-                      sx={{ paddingTop: "37px" }}
+                             pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                     >
                       <Link onClick={communityaddHandle} underline="none"  sx={{ color: "#75ABCF", fontSize: ".8rem" }}>
                         Add more +
@@ -2152,7 +2224,7 @@ const CoinListingEdit = () => {
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                   <Stack direction="column" spacing={3} pt={3}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                      <Stack direction="row" spacing={3}>
+                      <Stack direction={{xs:"column",sm:"column",md:"row"}} spacing={3}>
                         <FormControlLabel
                           control={
                             <InputCheckbox
@@ -2184,7 +2256,7 @@ const CoinListingEdit = () => {
                     </Grid>
 
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                      <Stack direction="row" spacing={3}>
+                      <Stack direction={{xs:"column",sm:"column",md:"row"}} spacing={3}>
                         <FormControlLabel
                           control={
                             <InputCheckbox
@@ -2218,7 +2290,11 @@ const CoinListingEdit = () => {
                 </Grid>
               </Grid> */}
             </Stack>
-            <Stack direction="row" spacing={3} pt={4}>
+            <Stack
+              direction={{ xs: "column", sm: "column", md: "row" }}
+              spacing={3}
+              pt={4}
+            >
               <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
                   <Typography
@@ -2250,7 +2326,10 @@ const CoinListingEdit = () => {
                         xs={12}
                         key={index}
                       >
-                        <Stack direction="row" spacing={3}>
+                        <Stack
+                          direction={{ xs: "column", sm: "column", md: "row" }}
+                          spacing={3}
+                        >
                           <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                             <Typography
                               variant="subtitle1"
@@ -2270,6 +2349,7 @@ const CoinListingEdit = () => {
                               data={coinChatList}
                               selectedValue={parseInt(chats.chat_platform)}
                               height={40}
+                              width={300}
                             />
                           </Grid>
                           <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -2300,7 +2380,7 @@ const CoinListingEdit = () => {
                             md={4}
                             sm={4}
                             xs={12}
-                            sx={{ paddingTop: "37px" }}
+                            pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                           >
                             {" "}
                             {editCoin?.has_many_chats.length - 1 === index && (
@@ -2319,7 +2399,10 @@ const CoinListingEdit = () => {
                   })
                 ) : (
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                    <Stack direction="row" spacing={3}>
+                    <Stack
+                      direction={{ xs: "column", sm: "column", md: "row" }}
+                      spacing={3}
+                    >
                       <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                         <Typography
                           variant="subtitle1"
@@ -2338,6 +2421,7 @@ const CoinListingEdit = () => {
                           id="chat_platform_1"
                           data={coinChatList}
                           height={40}
+                          width={300}
                         />
                       </Grid>
                       <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -2367,7 +2451,7 @@ const CoinListingEdit = () => {
                         md={4}
                         sm={4}
                         xs={12}
-                        sx={{ paddingTop: "37px" }}
+                        pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                       >
                         <Link
                           onClick={chataddHandle}
@@ -2430,7 +2514,14 @@ const CoinListingEdit = () => {
                           xs={12}
                           key={index}
                         >
-                          <Stack direction="row" spacing={3}>
+                          <Stack
+                            direction={{
+                              xs: "column",
+                              sm: "column",
+                              md: "row",
+                            }}
+                            spacing={3}
+                          >
                             <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                               <Typography
                                 variant="subtitle1"
@@ -2452,6 +2543,7 @@ const CoinListingEdit = () => {
                                   socials.social_platform
                                 )}
                                 height={40}
+                                width={300}
                               />
                             </Grid>
                             <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -2481,7 +2573,7 @@ const CoinListingEdit = () => {
                               md={4}
                               sm={4}
                               xs={12}
-                              sx={{ paddingTop: "37px" }}
+                              pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                             >
                               {editCoin?.has_many_socials.length - 1 ===
                                 index && (
@@ -2501,7 +2593,10 @@ const CoinListingEdit = () => {
                   )
                 ) : (
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                    <Stack direction="row" spacing={3}>
+                    <Stack
+                      direction={{ xs: "column", sm: "column", md: "row" }}
+                      spacing={3}
+                    >
                       <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                         <Typography
                           variant="subtitle1"
@@ -2520,6 +2615,7 @@ const CoinListingEdit = () => {
                           id="social_platform_1"
                           data={coinSocialList}
                           height={40}
+                          width={300}
                         />
                       </Grid>
                       <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -2548,7 +2644,7 @@ const CoinListingEdit = () => {
                         md={4}
                         sm={4}
                         xs={12}
-                        sx={{ paddingTop: "37px" }}
+                        pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                       >
                         <Link
                           onClick={socialaddHandle}
@@ -2615,7 +2711,7 @@ const CoinListingEdit = () => {
                   >
                     Publishing Status
                   </Typography>
-                  <Stack direction="row" spacing={3}>
+                  <Stack direction={{xs:"column",sm:"column",md:"row"}} spacing={3}>
                     <InputCoinStatusSelect
                       name="status"
                       id="status"
@@ -2637,7 +2733,10 @@ const CoinListingEdit = () => {
               </Grid> */}
             </Stack>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={5}>
-              <Stack direction="row" spacing={3}>
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "row" }}
+                spacing={3}
+              >
                 <Grid item xl={7} lg={7} md={7} sm={7} xs={12}>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                     <FormControlLabel

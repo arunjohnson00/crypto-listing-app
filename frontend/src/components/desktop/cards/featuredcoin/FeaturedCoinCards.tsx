@@ -23,6 +23,7 @@ import TwitterImage from "../../../../assets/featuredcard/twitter.png";
 import { CountDownTimer } from "./countdown/CountDownTimer";
 import { defaultColor } from "../../../../common/common";
 import "./style.css";
+import { Fragment } from "react";
 const FeaturedCoinCards = ({ cardData, index }: any) => {
   // const getDifferenceInDays = (date1: any, date2: any) => {
   //   const diffInMs = Math.abs(date2 - date1);
@@ -173,102 +174,118 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
         </Grid>
         <Grid item xs={12} py={0}>
           <Divider sx={{ borderColor: "#184b7d" }} />
-          <Stack
-            direction="row"
-            spacing={1}
-            sx={{ alignItems: "center", justifyContent: "space-between" }}
-            py={1}
-          >
-            {cardData && parseInt(cardData?.is_presale) === 1 ? (
-              <span>
-                {Math.sign(
-                  moment(new Date(cardData?.presale_date)).diff(new Date())
-                ) === -1 &&
-                Math.sign(
-                  moment(new Date(cardData?.presale_end_date)).diff(new Date())
-                ) === 1 ? (
-                  <span>
-                    {
-                      //  <BounceLoader size={12} color="#00FF00" />
-                      <Stack direction="row" spacing={0.5} alignItems="center">
-                        <span className="ripplefeaturedcoin"></span>
+          {cardData &&
+            cardData?.presale_date !== null &&
+            cardData?.presale_end_date !== null && (
+              <Fragment>
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ alignItems: "center", justifyContent: "space-between" }}
+                  py={1}
+                >
+                  {cardData && parseInt(cardData?.is_presale) === 1 ? (
+                    <span>
+                      {Math.sign(
+                        moment(new Date(cardData?.presale_date)).diff(
+                          new Date()
+                        )
+                      ) === -1 &&
+                      Math.sign(
+                        moment(new Date(cardData?.presale_end_date)).diff(
+                          new Date()
+                        )
+                      ) === 1 ? (
+                        <span>
+                          {
+                            //  <BounceLoader size={12} color="#00FF00" />
+                            <Stack
+                              direction="row"
+                              spacing={0.5}
+                              alignItems="center"
+                            >
+                              <span className="ripplefeaturedcoin"></span>
+                              <Typography
+                                variant="body2"
+                                sx={{ color: "#6f737f", fontSize: "0.65rem" }}
+                              >
+                                Presale ends in{" "}
+                              </Typography>
+                            </Stack>
+                          }
+                        </span>
+                      ) : (
                         <Typography
                           variant="body2"
                           sx={{ color: "#6f737f", fontSize: "0.65rem" }}
                         >
-                          Presale ends in{" "}
+                          Presale starts in{" "}
                         </Typography>
-                      </Stack>
-                    }
-                  </span>
-                ) : (
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "#6f737f", fontSize: "0.65rem" }}
-                  >
-                    Presale starts in{" "}
-                  </Typography>
-                )}
-              </span>
-            ) : (
-              cardData && (
-                <Link
-                  to={{
-                    pathname: `/coin/${cardData?.slug}`,
-                  }}
-                  state={{ coin_id: cardData?.id }}
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  {" "}
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "#dadada", fontSize: "0.7rem" }}
-                  >
-                    Presale Ended{" "}
-                    <span
-                      style={{
-                        color: "rgb(35 177 132)",
-                        fontWeight: 600,
-                        fontSize: "0.75rem",
-                        textTransform: "capitalize",
+                      )}
+                    </span>
+                  ) : (
+                    cardData && (
+                      <Link
+                        to={{
+                          pathname: `/coin/${cardData?.slug}`,
+                        }}
+                        state={{ coin_id: cardData?.id }}
+                        style={{ textDecoration: "none", color: "inherit" }}
+                      >
+                        {" "}
+                        <Typography
+                          variant="body2"
+                          sx={{ color: "#dadada", fontSize: "0.7rem" }}
+                        >
+                          Presale Ended{" "}
+                          <span
+                            style={{
+                              color: "rgb(35 177 132)",
+                              fontWeight: 600,
+                              fontSize: "0.75rem",
+                              textTransform: "capitalize",
+                            }}
+                          >
+                            {" "}
+                            {/* {cardData && cardData?.name} */}
+                            {moment(
+                              new Date(cardData?.presale_end_date),
+                              "YYYYMMDD"
+                            ).fromNow()}
+                          </span>
+                        </Typography>
+                      </Link>
+                    )
+                  )}
+
+                  {cardData &&
+                  parseInt(cardData?.is_presale) === 1 &&
+                  Math.sign(
+                    moment(new Date(cardData?.presale_date)).diff(new Date())
+                  ) === -1 &&
+                  Math.sign(
+                    moment(new Date(cardData?.presale_end_date)).diff(
+                      new Date()
+                    )
+                  ) === 1 ? (
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        color: "#FFFFFF",
+
+                        fontSize: ".7rem",
                       }}
                     >
-                      {" "}
-                      {/* {cardData && cardData?.name} */}
-                      {moment(
-                        new Date(cardData?.presale_end_date),
-                        "YYYYMMDD"
-                      ).fromNow()}
-                    </span>
-                  </Typography>
-                </Link>
-              )
+                      {CountDownTimer(cardData?.presale_end_date)}
+                    </Typography>
+                  ) : (
+                    ""
+                  )}
+                </Stack>
+
+                <Divider sx={{ borderColor: "#184b7d" }} />
+              </Fragment>
             )}
-
-            {cardData &&
-            parseInt(cardData?.is_presale) === 1 &&
-            Math.sign(
-              moment(new Date(cardData?.presale_date)).diff(new Date())
-            ) === -1 &&
-            Math.sign(
-              moment(new Date(cardData?.presale_end_date)).diff(new Date())
-            ) === 1 ? (
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  color: "#FFFFFF",
-
-                  fontSize: ".7rem",
-                }}
-              >
-                {CountDownTimer(cardData?.presale_end_date)}
-              </Typography>
-            ) : (
-              ""
-            )}
-          </Stack>
-
-          <Divider sx={{ borderColor: "#184b7d" }} />
         </Grid>
 
         <Grid item xs={12} py={0}>

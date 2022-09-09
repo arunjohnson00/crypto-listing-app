@@ -13,40 +13,68 @@ const AddAssetPage = ({ windowInnerWidth }: any) => {
     <Box
       sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       pt={7}
+      width="100%"
+      ml={-2.5}
     >
-      <Box className="rounded-corners-gradient-borders-asset">
-        <Box
-          sx={{
-            //   border: "2px solid #5803AA",
-            backgroundColor: "#000000",
-            borderRadius: 4,
-            paddingX: 6,
-            paddingY: 4,
-          }}
-        >
-          <Stack direction="column" alignItems="center" spacing={0}>
+      <Box width={{ xs: "100%", sm: "100%", md: "60%" }}>
+        <Box className="rounded-corners-gradient-borders-asset" width="100%">
+          <Box
+            sx={{
+              //   border: "2px solid #5803AA",
+              backgroundColor: "#000000",
+              borderRadius: 4,
+              // paddingX: 6,
+              paddingY: 4,
+            }}
+            width={{ xs: "99%", sm: "99%", md: "auto" }}
+          >
             <Stack
-              direction="row"
+              direction="column"
               alignItems="center"
-              sx={{ flexWrap: "wrap" }}
+              spacing={0}
+              width="100%"
             >
-              <AddAssetCard icon={coinIcon} title="Add Coin" link="" />
-              <AddAssetCard
-                icon={presaleIcon}
-                title="Add Presale Coin"
-                link=""
-              />
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "row" }}
+                alignItems="center"
+                sx={{ flexWrap: "wrap" }}
+              >
+                <AddAssetCard
+                  icon={coinIcon}
+                  title="Add Coin"
+                  link="/user-dashboard/coin/add"
+                  state="Launched"
+                />
+                <AddAssetCard
+                  icon={presaleIcon}
+                  title="Add Presale Coin"
+                  link="/user-dashboard/coin/add"
+                  state="Presale"
+                />
+              </Stack>
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "row" }}
+                alignItems="center"
+                sx={{ flexWrap: "wrap" }}
+              >
+                <AddAssetCard
+                  icon={nftIcon}
+                  title="Add NFT"
+                  link="/user-dashboard/nft/add"
+                />
+                <AddAssetCard
+                  icon={airdropIcon}
+                  title="Add Airdrop"
+                  link="/user-dashboard/airdrops/add"
+                />
+                <AddAssetCard
+                  icon={eventIcon}
+                  title="Add Event"
+                  link="/user-dashboard/events/add"
+                />
+              </Stack>
             </Stack>
-            <Stack
-              direction="row"
-              alignItems="center"
-              sx={{ flexWrap: "wrap" }}
-            >
-              <AddAssetCard icon={nftIcon} title="Add NFT" link="" />
-              <AddAssetCard icon={airdropIcon} title="Add Airdrop" link="" />
-              <AddAssetCard icon={eventIcon} title="Add Event" link="" />
-            </Stack>
-          </Stack>
+          </Box>
         </Box>
       </Box>
     </Box>

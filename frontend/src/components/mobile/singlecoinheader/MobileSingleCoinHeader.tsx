@@ -38,7 +38,7 @@ import { RWebShare } from "react-web-share";
 import { useTheme } from "@mui/material/styles";
 
 import { coinVoteRequest } from "../../../store/action";
-
+import { CountDownTimer } from "./countdown/CountDownTimer";
 import ToolTipImage from "../../../assets/singlepagecoin/tool-tip.png";
 import CoinGeckoImage from "../../../assets/singlepagecoin/coingecko.png";
 import CoinMarketcapImage from "../../../assets/singlepagecoin/coinmarketcap.png";
@@ -56,6 +56,7 @@ import DocsImage from "../../../assets/singlepagecoin/doc.png";
 import LinkImage from "../../../assets/singlepagecoin/link.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { defaultColor } from "../../../common/common";
+import { Link } from "react-router-dom";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileSingleCoinHeader = ({ coinData }: any) => {
@@ -177,7 +178,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                   />
                 )}
 
-                {coinData &&
+                {/* {coinData &&
                   coinData?.presale_start_date !== null &&
                   coinData?.presale_start_date !== "" && (
                     <Stack
@@ -201,6 +202,123 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                         {" "}
                         00days 08 Hours 24
                       </Typography>
+                    </Stack>
+                  )} */}
+
+                {coinData &&
+                  coinData?.presale_start_date !== null &&
+                  coinData?.presale_end_date !== null && (
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      sx={{
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                      py={1}
+                    >
+                      {coinData && parseInt(coinData?.is_presale) === 1 ? (
+                        <span>
+                          {Math.sign(
+                            moment(new Date(coinData?.presale_start_date)).diff(
+                              new Date()
+                            )
+                          ) === -1 &&
+                          Math.sign(
+                            moment(new Date(coinData?.presale_end_date)).diff(
+                              new Date()
+                            )
+                          ) === 1 ? (
+                            <span>
+                              {
+                                //  <BounceLoader size={12} color="#00FF00" />
+                                <Stack
+                                  direction="row"
+                                  spacing={0.5}
+                                  alignItems="center"
+                                >
+                                  <span className="ripplefeaturedcoin"></span>
+                                  <Typography
+                                    variant="body2"
+                                    sx={{
+                                      color: "#6f737f",
+                                      fontSize: "0.65rem",
+                                    }}
+                                  >
+                                    Presale ends in{" "}
+                                  </Typography>
+                                </Stack>
+                              }
+                            </span>
+                          ) : (
+                            <Typography
+                              variant="body2"
+                              sx={{ color: "#6f737f", fontSize: "0.65rem" }}
+                            >
+                              Presale starts in{" "}
+                            </Typography>
+                          )}
+                        </span>
+                      ) : (
+                        coinData && (
+                          <Link
+                            to={{
+                              pathname: `/coin/${coinData?.slug}`,
+                            }}
+                            state={{ coin_id: coinData?.id }}
+                            style={{ textDecoration: "none", color: "inherit" }}
+                          >
+                            {" "}
+                            <Typography
+                              variant="body2"
+                              sx={{ color: "#dadada", fontSize: "0.7rem" }}
+                            >
+                              Presale Ended{" "}
+                              <span
+                                style={{
+                                  color: "rgb(35 177 132)",
+                                  fontWeight: 600,
+                                  fontSize: "0.75rem",
+                                  textTransform: "capitalize",
+                                }}
+                              >
+                                {" "}
+                                {/* {coinData && coinData?.name} */}
+                                {moment(
+                                  new Date(coinData?.presale_end_date),
+                                  "YYYYMMDD"
+                                ).fromNow()}
+                              </span>
+                            </Typography>
+                          </Link>
+                        )
+                      )}
+
+                      {coinData &&
+                      parseInt(coinData?.is_presale) === 1 &&
+                      Math.sign(
+                        moment(new Date(coinData?.presale_start_date)).diff(
+                          new Date()
+                        )
+                      ) === -1 &&
+                      Math.sign(
+                        moment(new Date(coinData?.presale_end_date)).diff(
+                          new Date()
+                        )
+                      ) === 1 ? (
+                        <Typography
+                          variant="subtitle1"
+                          sx={{
+                            color: "#FFFFFF",
+
+                            fontSize: ".7rem",
+                          }}
+                        >
+                          {CountDownTimer(coinData?.presale_end_date)}
+                        </Typography>
+                      ) : (
+                        ""
+                      )}
                     </Stack>
                   )}
               </Stack>

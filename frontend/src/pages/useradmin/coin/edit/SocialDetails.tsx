@@ -12,7 +12,11 @@ const SocialDetails = ({
 }: any) => {
   return (
     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-      <Stack direction="row" spacing={3} pt={1}>
+      <Stack
+        direction={{ xs: "column", sm: "column", md: "row" }}
+        spacing={3}
+        pt={1}
+      >
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
           <Typography
             variant="subtitle1"
@@ -60,7 +64,7 @@ const SocialDetails = ({
             md={4}
             sm={4}
             xs={12}
-            sx={{ paddingTop: "23px" }}
+            pt={{ xs: 0, sm: 0, md: 3, lg: 3, xl: 3 }}
           >
             <IconButton
               aria-label="delete"

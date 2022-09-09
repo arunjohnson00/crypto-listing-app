@@ -29,6 +29,7 @@ const InputSelectCoin = ({
           border: "1px solid #090F2C",
           height: height && height,
           minWidth: width && width,
+          width: width,
           fontSize: ".85rem",
           "&::before": {
             border: "none",

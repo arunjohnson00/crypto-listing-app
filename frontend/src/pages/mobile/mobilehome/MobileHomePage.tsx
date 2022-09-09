@@ -504,7 +504,7 @@ const MobileHomePage = () => {
           paddingBottom: "23px",
         }}
       >
-        <Grid
+        {/* <Grid
           xs={12}
           sx={{
             alignItems: "center",
@@ -514,7 +514,7 @@ const MobileHomePage = () => {
         >
           {" "}
           <MobileCryptoEventsCardSlider variant="ads" />
-        </Grid>
+        </Grid> */}
 
         {eventList && (
           <Carousel

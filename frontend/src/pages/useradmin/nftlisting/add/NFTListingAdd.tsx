@@ -316,13 +316,13 @@ const NFTListingAdd = () => {
   }, [dispatch]);
 
   return (
-    <Box width="94%">
+    <Box width={{ xs: "99%", sm: "99%", md: "94%" }}>
       <form id="coinForm">
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3} pb={2}>
           <Stack
-            direction="row"
+            direction={{ xs: "row", sm: "row", md: "row" }}
             spacing={1}
-            sx={{ alignItems: "center" }}
+            sx={{ alignItems: "flex-start", justifyContent: "flex-start" }}
             px={2}
             pt={3}
           >
@@ -344,13 +344,16 @@ const NFTListingAdd = () => {
         </Grid>
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12} spacing={0}>
           <Box
-            sx={{ width: "100%", background: "#030921", borderRadius: "5px" }}
-            pt={3}
-            pl={4}
-            pr={4}
+            sx={{ width: "auto", background: "#030921", borderRadius: "7px" }}
+            px={{ xs: 3, sm: 3, md: 5 }}
+            py={5}
+            mb={5}
           >
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-              <Stack direction="row" spacing={2}>
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "row" }}
+                spacing={2}
+              >
                 <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={5}>
                     <Typography
@@ -398,7 +401,11 @@ const NFTListingAdd = () => {
                     </Typography>
 
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                      <Stack direction="row" spacing={3} mb={2}>
+                      <Stack
+                        direction={{ xs: "column", sm: "column", md: "row" }}
+                        spacing={3}
+                        mb={2}
+                      >
                         <Grid item xl={3} lg={3} md={3} sm={3} xs={12}>
                           <Typography
                             variant="subtitle1"
@@ -446,7 +453,7 @@ const NFTListingAdd = () => {
                           md={3}
                           sm={3}
                           xs={12}
-                          sx={{ paddingTop: "37px" }}
+                          pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                         >
                           <Link
                             onClick={eventMarketaddHandle}
@@ -543,7 +550,11 @@ const NFTListingAdd = () => {
                   </Grid>
 
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={5}>
-                    <Stack direction="row" spacing={3} mb={2}>
+                    <Stack
+                      direction={{ xs: "column", sm: "column", md: "row" }}
+                      spacing={3}
+                      mb={2}
+                    >
                       <Typography
                         variant="subtitle1"
                         sx={{
@@ -601,7 +612,12 @@ const NFTListingAdd = () => {
                   >
                     Presale start date time
                   </Typography>
-                  <Stack direction="row" spacing={3} mb={2} mt={1}>
+                  <Stack
+                    direction={{ xs: "column", sm: "column", md: "row" }}
+                    spacing={3}
+                    mb={2}
+                    mt={1}
+                  >
                     <Grid item xl={4} lg={4} md={4} sm={4} xs={12} pt={0}>
                       <InputDate
                         date={presaleDate}
@@ -648,7 +664,12 @@ const NFTListingAdd = () => {
                     >
                       Presale end date time
                     </Typography>
-                    <Stack direction="row" spacing={3} mb={2} mt={0}>
+                    <Stack
+                      direction={{ xs: "column", sm: "column", md: "row" }}
+                      spacing={3}
+                      mb={2}
+                      mt={0}
+                    >
                       <Grid item xl={4} lg={4} md={4} sm={4} xs={12} pt={0}>
                         <InputDate
                           date={presaleDate}
@@ -698,7 +719,12 @@ const NFTListingAdd = () => {
                   >
                     Public mint start date time
                   </Typography>
-                  <Stack direction="row" spacing={3} mb={2} mt={1}>
+                  <Stack
+                    direction={{ xs: "column", sm: "column", md: "row" }}
+                    spacing={3}
+                    mb={2}
+                    mt={1}
+                  >
                     <Grid item xl={4} lg={4} md={4} sm={4} xs={12} pt={0}>
                       <InputDate
                         date={publicMintDate}
@@ -745,7 +771,12 @@ const NFTListingAdd = () => {
                     >
                       Presale end date time
                     </Typography>
-                    <Stack direction="row" spacing={3} mb={2} mt={0}>
+                    <Stack
+                      direction={{ xs: "column", sm: "column", md: "row" }}
+                      spacing={3}
+                      mb={2}
+                      mt={0}
+                    >
                       <Grid item xl={4} lg={4} md={4} sm={4} xs={12} pt={0}>
                         <InputDate
                           date={publicMintDate}
@@ -784,11 +815,15 @@ const NFTListingAdd = () => {
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
                 <Grid item xl={7} lg={7} md={7} sm={7} xs={12} pt={0}>
                   <Stack
-                    direction="row"
-                    spacing={3}
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    spacing={1}
                     mb={2}
                     mt={0}
-                    sx={{ alignItems: "center" }}
+                    alignItems={{
+                      xs: "center",
+                      sm: "center",
+                      md: "center",
+                    }}
                   >
                     <InputCheckbox
                       name="is_launch"
@@ -840,11 +875,15 @@ const NFTListingAdd = () => {
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
                 <Grid item xl={8} lg={8} md={8} sm={8} xs={12} pt={0}>
                   <Stack
-                    direction="row"
-                    spacing={3}
+                    direction={{ xs: "column", sm: "column", md: "row" }}
+                    spacing={{ xs: 0, sm: 0, md: 3 }}
                     mb={2}
                     mt={0}
-                    sx={{ alignItems: "center" }}
+                    alignItems={{
+                      xs: "flex-start",
+                      sm: "flex-start",
+                      md: "center",
+                    }}
                   >
                     <Grid item xl={6} lg={6} md={6} sm={6} xs={12} pt={0}>
                       <Typography
@@ -856,7 +895,7 @@ const NFTListingAdd = () => {
                           marginleft: 0,
                           color: "#13C086",
                         }}
-                        mt={5}
+                        mt={{ xs: 3, sm: 3, md: 5 }}
                         mb={1}
                       >
                         Pre-Sale Mint Price
@@ -898,7 +937,7 @@ const NFTListingAdd = () => {
                           marginleft: 0,
                           color: "#13C086",
                         }}
-                        mt={5}
+                        mt={{ xs: 3, sm: 3, md: 5 }}
                         mb={1}
                       >
                         Public Mint Price
@@ -960,7 +999,10 @@ const NFTListingAdd = () => {
                     </Typography>
                   </Grid>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                    <Stack direction="row" spacing={3}>
+                    <Stack
+                      direction={{ xs: "column", sm: "column", md: "row" }}
+                      spacing={3}
+                    >
                       <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                         <Typography
                           variant="subtitle1"
@@ -987,7 +1029,7 @@ const NFTListingAdd = () => {
                         md={4}
                         sm={4}
                         xs={12}
-                        sx={{ paddingTop: "37px" }}
+                        pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                       >
                         <Link
                           onClick={communityaddHandle}
@@ -1038,7 +1080,10 @@ const NFTListingAdd = () => {
                     </Typography>
                   </Grid>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                    <Stack direction="row" spacing={3}>
+                    <Stack
+                      direction={{ xs: "column", sm: "column", md: "row" }}
+                      spacing={3}
+                    >
                       <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                         <Typography
                           variant="subtitle1"
@@ -1086,7 +1131,7 @@ const NFTListingAdd = () => {
                         md={4}
                         sm={4}
                         xs={12}
-                        sx={{ paddingTop: "37px" }}
+                        pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                       >
                         <Link
                           onClick={chataddHandle}
@@ -1138,7 +1183,10 @@ const NFTListingAdd = () => {
                     </Typography>
                   </Grid>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                    <Stack direction="row" spacing={3}>
+                    <Stack
+                      direction={{ xs: "column", sm: "column", md: "row" }}
+                      spacing={3}
+                    >
                       <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                         <Typography
                           variant="subtitle1"
@@ -1185,7 +1233,7 @@ const NFTListingAdd = () => {
                         md={4}
                         sm={4}
                         xs={12}
-                        sx={{ paddingTop: "37px" }}
+                        pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                       >
                         <Link
                           onClick={socialaddHandle}
@@ -1265,7 +1313,7 @@ const NFTListingAdd = () => {
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3} mt={5}>
               <Stack
-                direction="row"
+                direction={{ xs: "column", sm: "column", md: "row" }}
                 spacing={2}
                 sx={{
                   alignItems: "center",

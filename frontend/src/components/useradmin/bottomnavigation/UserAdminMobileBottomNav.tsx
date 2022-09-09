@@ -20,6 +20,7 @@ import AddAirdropIcon from "../../../assets/userdashboard/airdrop_menu.png";
 import SettingsIcon from "../../../assets/userdashboard/settings_menu.png";
 import AdsIcon from "../../../assets/userdashboard/ads_menu.png";
 import { Avatar, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const UserAdminMobileBottomNav = () => {
   const BottomNavigationAction = styled(MuiBottomNavigationAction)(`
@@ -64,15 +65,20 @@ const UserAdminMobileBottomNav = () => {
           }
           value="dashboard"
           icon={
-            <Avatar
-              alt="User Dashboard"
-              src={UserDashBoardIcon}
-              sx={{
-                width: 25,
-                height: 25,
-                borderRadius: 0,
-              }}
-            />
+            <Link
+              to="/user-dashboard"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <Avatar
+                alt="User Dashboard"
+                src={UserDashBoardIcon}
+                sx={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 0,
+                }}
+              />
+            </Link>
           }
         />
         <BottomNavigationAction
@@ -83,15 +89,20 @@ const UserAdminMobileBottomNav = () => {
           }
           value="addcoin"
           icon={
-            <Avatar
-              alt="User Dashboard"
-              src={AddCoinIcon}
-              sx={{
-                width: 25,
-                height: 25,
-                borderRadius: 0,
-              }}
-            />
+            <Link
+              to="/user-dashboard/coin/add"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <Avatar
+                alt="User Dashboard"
+                src={AddCoinIcon}
+                sx={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 0,
+                }}
+              />
+            </Link>
           }
         />
         <BottomNavigationAction
@@ -102,17 +113,23 @@ const UserAdminMobileBottomNav = () => {
           }
           value="addnft"
           icon={
-            <Avatar
-              alt="User Dashboard"
-              src={AddNFTIcon}
-              sx={{
-                width: 25,
-                height: 25,
-                borderRadius: 0,
-              }}
-            />
+            <Link
+              to="/user-dashboard/nft/add"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <Avatar
+                alt="User Dashboard"
+                src={AddNFTIcon}
+                sx={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 0,
+                }}
+              />
+            </Link>
           }
         />
+
         <BottomNavigationAction
           label={
             <Typography sx={{ fontSize: ".55rem", color: "#01F970" }} pt={0.3}>
@@ -121,15 +138,21 @@ const UserAdminMobileBottomNav = () => {
           }
           value="addairdrops"
           icon={
-            <Avatar
-              alt="User Dashboard"
-              src={AddAirdropIcon}
-              sx={{
-                width: 25,
-                height: 25,
-                borderRadius: 0,
-              }}
-            />
+            <Link
+              to="/user-dashboard/airdrops/add"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              {" "}
+              <Avatar
+                alt="User Dashboard"
+                src={AddAirdropIcon}
+                sx={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 0,
+                }}
+              />
+            </Link>
           }
         />
 

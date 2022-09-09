@@ -60,51 +60,59 @@ const BannerMap = () => {
 
   return (
     <Grid item xs={12} px={10} py={4}>
-      <Stack direction={{ xs: "column", sm: "column", md: "row" }}>
-        <Grid item xs={12} py={3} px={3}>
+      <Stack
+        direction={{
+          xs: "column",
+          sm: "column",
+          md: "column",
+          lg: "row",
+          xl: "row",
+        }}
+      >
+        <Grid item xs={12} py={3} px={3} sx={{ position: "relative" }}>
           <div>
             <span
               className="ripple"
-              style={{ left: "103px", top: "221px" }}
+              style={{ left: "103px", top: "021px" }}
             ></span>
           </div>
           <div>
             <span
               className="ripple"
-              style={{ left: "222px", top: "160px" }}
+              style={{ left: "222px", top: "-30px" }}
             ></span>
           </div>
           <div>
             <span
               className="ripple"
-              style={{ left: "307px", top: "157px" }}
+              style={{ left: "307px", top: "-57px" }}
             ></span>
           </div>
           <div>
             <span
               className="ripple"
-              style={{ left: "293px", top: "177px" }}
+              style={{ left: "293px", top: "-27px" }}
             ></span>
           </div>
           <div>
             <span
               className="ripple"
-              style={{ left: "365px", top: "217px" }}
+              style={{ left: "365px", top: "017px" }}
             ></span>
           </div>
           <div>
             <span
               className="ripple"
-              style={{ left: "243px", top: "169px" }}
+              style={{ left: "243px", top: "-19px" }}
             ></span>
           </div>
           <div>
             <span
               className="ripple"
-              style={{ left: "141px", top: "153px" }}
+              style={{ left: "141px", top: "-53px" }}
             ></span>
           </div>
-          <div>
+          <div style={{ position: "absolute", top: 0 }}>
             <img
               src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
               width="100%"

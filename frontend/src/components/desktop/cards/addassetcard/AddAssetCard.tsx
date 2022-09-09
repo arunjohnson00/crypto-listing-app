@@ -1,19 +1,20 @@
 import { Avatar, Box, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const AddAssetCard = ({ icon, title, link }: any) => {
+const AddAssetCard = ({ icon, title, link, state }: any) => {
   return (
     <Link
       to={link && link}
       style={{ textDecoration: "none", color: "inherit" }}
+      state={{ currentState: state && state }}
     >
       <Box
         sx={{
           //border: "1px solid #5803AA",
           backgroundColor: "#01061A",
           borderRadius: 4,
-          maxWidth: 90,
-          minWidth: 80,
+          //maxWidth: 90,
+          // minWidth: 80,
           padding: 3,
           border: "2px solid transparent",
           cursor: "ponter",
@@ -23,6 +24,7 @@ const AddAssetCard = ({ icon, title, link }: any) => {
             cursor: "ponter",
           },
         }}
+        minWidth={{ xs: 200, sm: 200, md: 90 }}
         m={1}
       >
         <Stack direction="column" spacing={2} alignItems="center">

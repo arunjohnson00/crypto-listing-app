@@ -790,11 +790,11 @@ const HomePage = ({ windowInnerWidth }: any) => {
             justifyContent: "space-between",
           }}
         >
-          <Grid xs={12} sm={12} md={2.7} lg={2.7} xl={2.7}>
+          {/* <Grid xs={12} sm={12} md={2.7} lg={2.7} xl={2.7}>
             <CryptoEventsCardSlider variant="ads" />
-          </Grid>
+          </Grid> */}
 
-          <Grid xs={12} sm={12} md={9.3} lg={9.3} xl={9.3}>
+          <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
             {eventList && (
               <Carousel
                 responsive={responsiveCryptoEvents}
@@ -1189,7 +1189,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               justifyContent: " flex-end",
             }}
           >
-            <Link to="/nft">
+            <Link to="/nft" style={{ textDecoration: "none" }}>
               <ViewMoreBtn title="See collections" />
             </Link>
           </Stack>
