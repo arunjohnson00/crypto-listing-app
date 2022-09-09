@@ -35,7 +35,7 @@
     "@types/react-toastify": "^4.1.0",
     "@types/redux-logger": "^3.0.9",
     "@types/redux-thunk": "^2.1.0",
-    "apexcharts": "^3.35.2",
+    "apexcharts": "^3.35.5",
     "boxicons": "^2.1.2",
     "count-time-down": "^1.0.5",
     "date-and-time": "^2.3.1",

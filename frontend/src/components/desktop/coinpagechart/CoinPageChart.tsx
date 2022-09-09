@@ -99,8 +99,8 @@ const CoinPageChart = ({ data }: any) => {
       },
       xaxis: {
         type: "datetime",
-        min:
-          data && new Date(data?.price[data?.price?.length - 1][0]).getTime(),
+        // min:
+        //   data && new Date(data?.price[data?.price?.length - 1][0]).getTime(),
         //max: data && new Date(data?.price[0][0]).getTime(),
         tickAmount: 6,
       },
@@ -125,69 +125,70 @@ const CoinPageChart = ({ data }: any) => {
     selection: "seven_day",
   };
 
-  const [dateTime, setDateTime] = useState<any>("seven_day");
+  const [dateTime, setDateTime] = useState<any>("");
 
   const updateData = (timeline: any) => {
     setDateTime(timeline);
-    console.log(timeline);
-    switch (timeline) {
+
+    // switch (timeline) {
+    //   case "seven_day":
+    //     ApexCharts.exec(
+    //       "area-datetime",
+    //       "zoomX",
+    //       new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000).getTime()
+    //     );
+    //     break;
+    //     // case "fifteen_day":
+    //     //   ApexCharts.exec(
+    //     //     "area-datetime",
+    //     //     "zoomX",
+    //     //     new Date().getTime(),
+    //     //     new Date(new Date().getTime() - 15 * 24 * 60 * 60 * 1000).getTime()
+    //     //   );
+    //     //   break;
+    //     // case "thirty_day":
+    //     //   ApexCharts.exec(
+    //     //     "area-datetime",
+    //     //     "zoomX",
+    //     //     new Date().getTime(),
+    //     //     new Date(new Date().getTime() - 20 * 24 * 60 * 60 * 1000).getTime()
+    //     //   );
+    //     break;
+
+    //   default:
+    // }
+  };
+
+  useEffect(() => {
+    switch (dateTime) {
       case "seven_day":
         ApexCharts.exec(
           "area-datetime",
           "zoomX",
-          new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000).getTime()
+
+          new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000).getTime()
         );
         break;
       case "fifteen_day":
         ApexCharts.exec(
           "area-datetime",
           "zoomX",
-          new Date().getTime(),
-          new Date(new Date().getTime() - 2 * 24 * 60 * 60 * 1000).getTime()
+
+          new Date(new Date().getTime() - 15 * 24 * 60 * 60 * 1000).getTime()
         );
         break;
       case "thirty_day":
         ApexCharts.exec(
           "area-datetime",
           "zoomX",
-          new Date().getTime(),
-          new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000).getTime()
+
+          new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000).getTime()
         );
         break;
 
       default:
     }
-  };
-
-  // useEffect(() => {
-  //   switch (dateTime) {
-  //     case "seven_day":
-  //       ApexCharts.exec(
-  //         "area-datetime",
-  //         "zoomX",
-  //         new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000).getTime()
-  //       );
-  //       break;
-  //     case "fifteen_day":
-  //       ApexCharts.exec(
-  //         "area-datetime",
-  //         "zoomX",
-  //         new Date().getTime(),
-  //         new Date(new Date().getTime() - 15 * 24 * 60 * 60 * 1000).getTime()
-  //       );
-  //       break;
-  //     case "thirty_day":
-  //       ApexCharts.exec(
-  //         "area-datetime",
-  //         "zoomX",
-  //         new Date().getTime(),
-  //         new Date().getTime()
-  //       );
-  //       break;
-
-  //     default:
-  //   }
-  // }, [dateTime]);
+  }, [dateTime]);
 
   return (
     <Box sx={{ backgroundColor: "none" }} py={2}>

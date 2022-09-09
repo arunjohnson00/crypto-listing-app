@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Chart from "react-apexcharts";
@@ -32,7 +32,7 @@ const CoinCommunityChart = ({
 }: any) => {
   const location: any = useLocation();
   const dispatch: any = useDispatch();
-  const [dateTime, setDateTime] = useState<any>("seven_day");
+  const [dateTime, setDateTime] = useState<any>("");
   const [data, setData] = useState<any>();
   const updateData = (timeline: any) => {
     setDateTime(timeline);
@@ -42,7 +42,7 @@ const CoinCommunityChart = ({
   };
   useEffect(() => {
     const successHandler = (res: any) => {
-      setData(res?.data?.data?.followers);
+      setData(res?.data);
     };
     const errorHandler = (err: any) => {};
 
@@ -66,7 +66,7 @@ const CoinCommunityChart = ({
         ApexCharts.exec(
           chartid && chartid,
           "zoomX",
-          new Date().getTime(),
+
           new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000).getTime()
         );
         break;
@@ -74,7 +74,7 @@ const CoinCommunityChart = ({
         ApexCharts.exec(
           chartid && chartid,
           "zoomX",
-          new Date().getTime(),
+
           new Date(new Date().getTime() - 15 * 24 * 60 * 60 * 1000).getTime()
         );
         break;
@@ -82,18 +82,18 @@ const CoinCommunityChart = ({
         ApexCharts.exec(
           chartid && chartid,
           "zoomX",
-          new Date().getTime(),
+
           new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000).getTime()
         );
         break;
 
       default:
     }
-  }, [dateTime, chartid]);
+  }, [dateTime]);
   const chartData: any = {
     series: [
       {
-        data: data,
+        data: data && data?.data?.followers,
       },
     ],
     options: {
@@ -147,7 +147,7 @@ const CoinCommunityChart = ({
         ],
         xaxis: [
           {
-            x: new Date(data && data[0]?.[0]).getTime(),
+            x: new Date(data && data?.data?.followers[0]?.[0]).getTime(),
             borderColor: "#999",
             yAxisIndex: 0,
             label: {
@@ -173,8 +173,12 @@ const CoinCommunityChart = ({
         type: "datetime",
         format: "dd/MM",
 
-        min: data && new Date(data[data.length - 1][0]).getTime(),
-        max: data && new Date(data[0][0]).getTime(),
+        min:
+          data &&
+          new Date(
+            data?.data?.followers[data?.data?.followers.length - 1][0]
+          ).getTime(),
+        max: data && new Date(data?.data?.followers[0][0]).getTime(),
         tickAmount: 6,
       },
       tooltip: {
@@ -198,182 +202,186 @@ const CoinCommunityChart = ({
   };
 
   return (
-    <Box sx={{ backgroundColor: "#11122b", borderRadius: 2 }} width="100%">
-      {" "}
-      <Stack direction="column" alignItems="flex-start" spacing={1} p={2}>
-        <Stack
-          direction="row"
-          alignItems="center"
-          spacing={1}
-          justifyContent="space-between"
-          width="100%"
-        >
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <Avatar
-              alt="Remy Sharp"
-              src={icon && icon}
-              sx={{ width: 30, height: 30 }}
-            />
+    <Fragment>
+      {data && data?.response === true && (
+        <Box sx={{ backgroundColor: "#11122b", borderRadius: 2 }} width="100%">
+          {" "}
+          <Stack direction="column" alignItems="flex-start" spacing={1} p={2}>
+            <Stack
+              direction="row"
+              alignItems="center"
+              spacing={1}
+              justifyContent="space-between"
+              width="100%"
+            >
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <Avatar
+                  alt="Remy Sharp"
+                  src={icon && icon}
+                  sx={{ width: 30, height: 30 }}
+                />
+                <Stack direction="column" alignItems="flex-start" spacing={0}>
+                  <Typography
+                    sx={{
+                      color: "#C6C9D2",
+                      fontWeight: 600,
+                      fontSize: ".9rem",
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    <span style={{ color: colorTheme && colorTheme }}>
+                      {title && title}
+                    </span>{" "}
+                    Subscribers
+                  </Typography>
+                  <Typography
+                    sx={{
+                      color: "#8B94A3",
+                      fontWeight: 600,
+                      fontSize: ".8rem",
+                      textTransform: "lowercase",
+                    }}
+                  >
+                    {data && data?.data?.social_url}
+                  </Typography>
+                </Stack>
+              </Stack>
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <Stack
+                  sx={{
+                    padding: 0.5,
+                    backgroundColor: "#252D4A",
+                    borderRadius: 2,
+                  }}
+                  direction="row"
+                >
+                  <Button
+                    size="small"
+                    sx={{
+                      textTransform: "capitalize",
+                      backgroundColor:
+                        dateTime === "seven_day" ? "#384571" : "#252D4A",
+                      borderRadius: 2,
+                      boxShadow: "none",
+                      color: "#FFFFFF",
+                      minWidth: 45,
+                    }}
+                    onClick={() => updateData("seven_day")}
+                  >
+                    7d
+                  </Button>
+
+                  <Button
+                    size="small"
+                    sx={{
+                      textTransform: "capitalize",
+                      boxShadow: "none",
+                      borderRadius: 2,
+                      backgroundColor:
+                        dateTime === "fifteen_day" ? "#384571" : "#252D4A",
+                      color: "#FFFFFF",
+                      minWidth: 45,
+                    }}
+                    onClick={() => updateData("fifteen_day")}
+                  >
+                    15d
+                  </Button>
+                  <Button
+                    size="small"
+                    sx={{
+                      textTransform: "capitalize",
+                      boxShadow: "none",
+                      borderRadius: 2,
+                      backgroundColor:
+                        dateTime === "thirty_day" ? "#384571" : "#252D4A",
+                      color: "#FFFFFF",
+                      minWidth: 45,
+                    }}
+                    onClick={() => updateData("thirty_day")}
+                  >
+                    30d
+                  </Button>
+                </Stack>
+              </Stack>
+            </Stack>
             <Stack direction="column" alignItems="flex-start" spacing={0}>
-              <Typography
-                sx={{
-                  color: "#C6C9D2",
-                  fontWeight: 600,
-                  fontSize: ".9rem",
-                  textTransform: "capitalize",
-                }}
-              >
-                <span style={{ color: colorTheme && colorTheme }}>
-                  {title && title}
-                </span>{" "}
-                Subscribers
-              </Typography>
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <Typography
+                  sx={{
+                    color: "#C6C9D2",
+                    fontWeight: 700,
+                    fontSize: "1rem",
+                    textTransform: "capitalize",
+                  }}
+                >
+                  {data && data?.data?.followers[0][1]}
+                </Typography>
+                <Typography
+                  sx={{
+                    color: "#19FFB0",
+                    fontWeight: 700,
+                    fontSize: ".85rem",
+                    textTransform: "capitalize",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      color:
+                        data &&
+                        Math.sign(
+                          percentageDiff(
+                            parseInt(data && data?.data?.followers[1][1]),
+                            parseInt(data && data?.data?.followers[0][1])
+                          )
+                        ) === -1
+                          ? "red"
+                          : "#19FFB0",
+
+                      fontWeight: 700,
+                      fontSize: ".85rem",
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    {data &&
+                      Math.sign(
+                        percentageDiff(
+                          parseInt(data && data?.data?.followers[1][1]),
+                          parseInt(data && data?.data?.followers[0][1])
+                        )
+                      ) !== -1 &&
+                      "+"}
+                    {data &&
+                      percentageDiff(
+                        parseInt(data && data?.data?.followers[1][1]),
+                        parseInt(data && data?.data?.followers[0][1])
+                      ).toFixed(2)}
+                    %
+                  </Typography>
+                </Typography>
+              </Stack>
               <Typography
                 sx={{
                   color: "#8B94A3",
                   fontWeight: 600,
                   fontSize: ".8rem",
-                  textTransform: "lowercase",
+                  textTransform: "Capitalize",
                 }}
               >
-                /r/binanceexchange
+                Total Members
               </Typography>
             </Stack>
           </Stack>
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <Stack
-              sx={{
-                padding: 0.5,
-                backgroundColor: "#252D4A",
-                borderRadius: 2,
-              }}
-              direction="row"
-            >
-              <Button
-                size="small"
-                sx={{
-                  textTransform: "capitalize",
-                  backgroundColor:
-                    dateTime === "seven_day" ? "#384571" : "#252D4A",
-                  borderRadius: 2,
-                  boxShadow: "none",
-                  color: "#FFFFFF",
-                  minWidth: 45,
-                }}
-                onClick={() => updateData("seven_day")}
-              >
-                7d
-              </Button>
-
-              <Button
-                size="small"
-                sx={{
-                  textTransform: "capitalize",
-                  boxShadow: "none",
-                  borderRadius: 2,
-                  backgroundColor:
-                    dateTime === "fifteen_day" ? "#384571" : "#252D4A",
-                  color: "#FFFFFF",
-                  minWidth: 45,
-                }}
-                onClick={() => updateData("fifteen_day")}
-              >
-                15d
-              </Button>
-              <Button
-                size="small"
-                sx={{
-                  textTransform: "capitalize",
-                  boxShadow: "none",
-                  borderRadius: 2,
-                  backgroundColor:
-                    dateTime === "thirty_day" ? "#384571" : "#252D4A",
-                  color: "#FFFFFF",
-                  minWidth: 45,
-                }}
-                onClick={() => updateData("thirty_day")}
-              >
-                30d
-              </Button>
-            </Stack>
-          </Stack>
-        </Stack>
-        <Stack direction="column" alignItems="flex-start" spacing={0}>
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <Typography
-              sx={{
-                color: "#C6C9D2",
-                fontWeight: 700,
-                fontSize: "1rem",
-                textTransform: "capitalize",
-              }}
-            >
-              {data && data[0][1]}
-            </Typography>
-            <Typography
-              sx={{
-                color: "#19FFB0",
-                fontWeight: 700,
-                fontSize: ".85rem",
-                textTransform: "capitalize",
-              }}
-            >
-              <Typography
-                sx={{
-                  color:
-                    data &&
-                    Math.sign(
-                      percentageDiff(
-                        parseInt(data && data[1][1]),
-                        parseInt(data && data[0][1])
-                      )
-                    ) === -1
-                      ? "red"
-                      : "#19FFB0",
-
-                  fontWeight: 700,
-                  fontSize: ".85rem",
-                  textTransform: "capitalize",
-                }}
-              >
-                {data &&
-                  Math.sign(
-                    percentageDiff(
-                      parseInt(data && data[1][1]),
-                      parseInt(data && data[0][1])
-                    )
-                  ) !== -1 &&
-                  "+"}
-                {data &&
-                  percentageDiff(
-                    parseInt(data && data[1][1]),
-                    parseInt(data && data[0][1])
-                  ).toFixed(2)}
-                %
-              </Typography>
-            </Typography>
-          </Stack>
-          <Typography
-            sx={{
-              color: "#8B94A3",
-              fontWeight: 600,
-              fontSize: ".8rem",
-              textTransform: "Capitalize",
-            }}
-          >
-            Total Members
-          </Typography>
-        </Stack>
-      </Stack>
-      {data && (
-        <Chart
-          options={chartData.options}
-          series={chartData.series}
-          type="line"
-          height="auto"
-        />
+          {data && (
+            <Chart
+              options={chartData.options}
+              series={chartData.series}
+              type="line"
+              height="auto"
+            />
+          )}
+        </Box>
       )}
-    </Box>
+    </Fragment>
   );
 };
 
