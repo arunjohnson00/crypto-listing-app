@@ -24,7 +24,7 @@ import {
   coinsCryptoCurrenciesPresaleRequest,
   coinsCryptoCurrenciesTodaysBestRequest,
   coinsCryptoCurrenciesTabRequest,
-  coinsCryptoCurrenciesMostVisitedRequest,
+  coinsCryptoCurrenciesMostVotedRequest,
 } from "../../../store/action";
 
 import FeaturedCoinLineTopImage from "../../../assets/home/feature-coin-line-top.png";
@@ -177,9 +177,9 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
       dispatch(
         coinsBiggestLosersRequest(page.pagination, successHandler, errorHandler)
       );
-    location?.pathname === "/coins/most-visited" &&
+    location?.pathname === "/coins/most-voted" &&
       dispatch(
-        coinsCryptoCurrenciesMostVisitedRequest(
+        coinsCryptoCurrenciesMostVotedRequest(
           page.pagination,
           successHandler,
           errorHandler

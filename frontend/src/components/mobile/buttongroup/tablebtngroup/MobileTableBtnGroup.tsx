@@ -78,7 +78,7 @@ const MobileTableBtnGroup = () => {
             variant="middle"
             sx={{ height: 25, alignSelf: "center", borderColor: "#1565C0" }}
           />
-          <Tab label=" New Listings" />
+          <Tab label="Recently Added" />
           <Divider
             flexItem
             orientation="vertical"

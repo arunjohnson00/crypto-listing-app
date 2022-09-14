@@ -48,7 +48,7 @@ export { coinsCryptoCurrenciesListRequest } from "./coinsAction";
 export { coinsCryptoCurrenciesNewRequest } from "./coinsAction";
 export { coinsCryptoCurrenciesPresaleRequest } from "./coinsAction";
 export { coinsCryptoCurrenciesTodaysBestRequest } from "./coinsAction";
-export { coinsCryptoCurrenciesMostVisitedRequest } from "./coinsAction";
+export { coinsCryptoCurrenciesMostVotedRequest } from "./coinsAction";
 export { coinsCryptoCurrenciesTabRequest } from "./coinsAction";
 
 //NFT
@@ -65,6 +65,7 @@ export { userNFTListRequest } from "./userAction";
 export { userEventsListRequest } from "./userAction";
 export { userReviewListRequest } from "./userAction";
 export { userAirdropsListRequest } from "./userAction";
+export { userWatchListRequest } from "./userAction";
 //dashboard coin
 
 export {

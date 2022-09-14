@@ -272,9 +272,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
         )
       );
     tabIndex === 4 &&
-      dispatch(
-        cryptoCurrenciesNewRequest("noData", successHandler, errorHandler)
-      );
+      dispatch(recentlyAddedRequest("noData", successHandler, errorHandler));
     tabIndex === 6 &&
       dispatch(
         cryptoCurrenciesPresaleRequest("noData", successHandler, errorHandler)

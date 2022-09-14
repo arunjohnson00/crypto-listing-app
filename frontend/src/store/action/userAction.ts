@@ -128,3 +128,19 @@ export const userReviewListRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const userWatchListRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/f/v1/watchlist/list`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: USER.USER_WATCHLIST_LIST,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

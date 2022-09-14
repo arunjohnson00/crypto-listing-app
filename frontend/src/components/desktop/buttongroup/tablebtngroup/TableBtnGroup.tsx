@@ -62,14 +62,14 @@ const TableBtnGroup = () => {
             variant="middle"
             sx={{ height: 25, alignSelf: "center", borderColor: "#1565C0" }}
           />
-          <Tab label=" Today's Best" />
+          <Tab label="Today's Best" />
           <Divider
             flexItem
             orientation="vertical"
             variant="middle"
             sx={{ height: 25, alignSelf: "center", borderColor: "#1565C0" }}
           />
-          <Tab label=" New Listings" />
+          <Tab label="Recently Added" />
           <Divider
             flexItem
             orientation="vertical"

@@ -19,6 +19,7 @@ import UserAdminNFTListing from "../useradminnftlisting/UserAdminNFTListing";
 import UserAdminEventsListing from "../useradmineventslisting/UserAdminEventsListing";
 import UserAdminAirdropsListing from "../useradminairdropslisting/UserAdminAirdropsListing";
 import UserAdminReviewListing from "../useradminreviewlisting/UserAdminReviewListing";
+import UserAdminWatchListListing from "../useradminwatchlistlisting/UserAdminWatchListListing";
 
 const UserAdminTabs = () => {
   const [value, setValue] = useState("1");
@@ -104,7 +105,7 @@ const UserAdminTabs = () => {
           <UserAdminReviewListing />
         </TabPanel>
         <TabPanel value="7" sx={{ padding: 0, paddingY: 3 }}>
-          test
+          <UserAdminWatchListListing />
         </TabPanel>
         <TabPanel value="8" sx={{ padding: 0, paddingY: 3 }}>
           Item Two

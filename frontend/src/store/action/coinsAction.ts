@@ -138,14 +138,14 @@ export const coinsCryptoCurrenciesTodaysBestRequest = (
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
-export const coinsCryptoCurrenciesMostVisitedRequest = (
+export const coinsCryptoCurrenciesMostVotedRequest = (
   values: any,
   successHandler: any,
   errorHandler: any
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/coin-visit-counter?page=${values}`,
+    url: `api/f/v1/most-voted?page=${values}`,
     method: "GET",
     secure: false,
     actionType: COINS.MOST_VISITED,
