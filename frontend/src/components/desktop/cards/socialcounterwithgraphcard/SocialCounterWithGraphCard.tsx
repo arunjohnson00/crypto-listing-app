@@ -8,6 +8,7 @@ const SocialCounterWithGraphCard = ({
   icon,
   endColor,
   startColor,
+  coinData,
   url,
 }: any) => {
   // const [data, updateData] = useState([1, 2, 3, 4, 5, 6]);
@@ -23,7 +24,7 @@ const SocialCounterWithGraphCard = ({
   //     window.clearInterval(interval);
   //   };
   // }, [data]);
-
+  // console.log(coinData && coinData);
   const percentageDiff = (a: any, b: any) => {
     return ((a - b) / a) * 100;
   };
@@ -31,7 +32,7 @@ const SocialCounterWithGraphCard = ({
     series: [
       {
         name: "Coinxhigh",
-        data: cardData && cardData,
+        data: coinData && coinData,
       },
     ],
 
@@ -201,37 +202,43 @@ const SocialCounterWithGraphCard = ({
                   fontSize: ".85rem",
                 }}
               >
-                {cardData && cardData[0]}
+                {coinData && coinData[0]}
               </Typography>
-              <Typography
-                sx={{
-                  color:
+              {coinData && coinData?.length > 1 && (
+                <Typography
+                  sx={{
+                    color:
+                      coinData &&
+                      Math.sign(
+                        percentageDiff(
+                          parseInt(coinData[1]),
+                          parseInt(coinData[0])
+                        )
+                      ) === -1
+                        ? "red"
+                        : "#03FEB5",
+                    fontWeight: 400,
+
+                    lineHeight: 0.2,
+                    fontSize: ".65rem",
+                  }}
+                >
+                  {coinData &&
                     Math.sign(
                       percentageDiff(
-                        parseInt(cardData[1]),
-                        parseInt(cardData[0])
+                        parseInt(coinData[1]),
+                        parseInt(coinData[0])
                       )
-                    ) === -1
-                      ? "red"
-                      : "#03FEB5",
-                  fontWeight: 400,
-
-                  lineHeight: 0.2,
-                  fontSize: ".65rem",
-                }}
-              >
-                {cardData &&
-                  Math.sign(
-                    percentageDiff(parseInt(cardData[1]), parseInt(cardData[0]))
-                  ) !== -1 &&
-                  "+"}
-                {cardData &&
-                  percentageDiff(
-                    parseInt(cardData[1]),
-                    parseInt(cardData[0])
-                  ).toFixed(2)}
-                %
-              </Typography>
+                    ) !== -1 &&
+                    "+"}
+                  {coinData &&
+                    percentageDiff(
+                      parseInt(coinData[1]),
+                      parseInt(coinData[0])
+                    ).toFixed(2)}
+                  %
+                </Typography>
+              )}
             </Stack>
           </Stack>
         </Stack>
