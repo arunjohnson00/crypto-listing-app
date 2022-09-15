@@ -6,6 +6,7 @@ import DiscoverLatestCoinPresale from "../discoverlatestcoinpresale/DiscoverLate
 import DiscoverLatestEvents from "../discoverlatestevents/DiscoverLatestEvents";
 import DiscoverLatestGaindLosers from "../discoverlatestgainandlosers/DiscoverLatestGaindLosers";
 import DiscoverLatestNews from "../discoverlatestnews/DiscoverLatestNews";
+import DiscoverLatestNft from "../discoverlatestnft/DiscoverLatestNft";
 
 const DiscoverLatest = () => {
   return (
@@ -23,6 +24,7 @@ const DiscoverLatest = () => {
         <DiscoverLatestAirDrops />
         <DiscoverLatestEvents />
         <DiscoverLatestAma />
+        {/* <DiscoverLatestNft /> */}
       </Grid>
     </Grid>
   );

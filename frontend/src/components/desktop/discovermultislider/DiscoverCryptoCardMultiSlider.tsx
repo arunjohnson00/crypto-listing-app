@@ -6,13 +6,13 @@ const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 6,
-    slidesToSlide: 6,
+    items: 4,
+    slidesToSlide: 4,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 5,
-    slidesToSlide: 5,
+    items: 4,
+    slidesToSlide: 4,
   },
 
   tablet: {
@@ -35,7 +35,7 @@ const CustomLeftArrow = ({ onClick, ...rest }: any) => {
   // onMove means if dragging or swiping in progress.
   return null;
 };
-const DiscoverCryptoCardMultiSlider = () => {
+const DiscoverCryptoCardMultiSlider = ({ data }: any) => {
   return (
     <div
       style={{
@@ -45,42 +45,29 @@ const DiscoverCryptoCardMultiSlider = () => {
         margin: "0 auto",
       }}
     >
-      <Carousel
-        focusOnSelect={true}
-        responsive={responsive}
-        infinite={true}
-        autoPlay={true}
-        showDots={false}
-        removeArrowOnDeviceType={[
-          "tablet",
-          "mobile",
-          // "desktop",
-          // "superLargeDesktop",
-        ]}
-        customLeftArrow={<CustomLeftArrow />}
-      >
-        <div>
-          <DiscoverRecentCryptoCard />
-        </div>
-        <div>
-          <DiscoverRecentCryptoCard />
-        </div>
-        <div>
-          <DiscoverRecentCryptoCard />
-        </div>
-        <div>
-          <DiscoverRecentCryptoCard />
-        </div>
-        <div>
-          <DiscoverRecentCryptoCard />
-        </div>
-        <div>
-          <DiscoverRecentCryptoCard />
-        </div>
-        <div>
-          <DiscoverRecentCryptoCard />
-        </div>
-      </Carousel>
+      {data && (
+        <Carousel
+          focusOnSelect={true}
+          responsive={responsive}
+          infinite={true}
+          autoPlay={true}
+          showDots={false}
+          removeArrowOnDeviceType={[
+            "tablet",
+            "mobile",
+            // "desktop",
+            // "superLargeDesktop",
+          ]}
+          customLeftArrow={<CustomLeftArrow />}
+        >
+          {data &&
+            data?.map((item: any, index: number) => (
+              <div key={index}>
+                <DiscoverRecentCryptoCard item={item} />
+              </div>
+            ))}
+        </Carousel>
+      )}
     </div>
   );
 };

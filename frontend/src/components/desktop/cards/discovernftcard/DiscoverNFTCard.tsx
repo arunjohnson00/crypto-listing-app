@@ -3,8 +3,8 @@ import { Box, Stack, Typography, IconButton, CardMedia } from "@mui/material";
 import LanguageIcon from "@mui/icons-material/Language";
 import Telegram from "@mui/icons-material/Telegram";
 import Twitter from "@mui/icons-material/Twitter";
-
-const DiscoverNFTCard = () => {
+const serverAPIUrl = process.env.REACT_APP_API_URL;
+const DiscoverNFTCard = ({ item }: any) => {
   return (
     <Box
       sx={{
@@ -25,8 +25,8 @@ const DiscoverNFTCard = () => {
         <CardMedia
           component="img"
           height="127px"
-          image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
+          alt={item && item?.title}
+          src={`${serverAPIUrl}public/uploads/nft_listing_image/${item?.image}`}
         />
 
         <Typography
@@ -34,7 +34,7 @@ const DiscoverNFTCard = () => {
           sx={{ color: "#FFFFF5", fontWeight: 600 }}
           textAlign="center"
         >
-          Bored Ape Yatched Club
+          {item && item?.title}
         </Typography>
       </Stack>
 
@@ -46,7 +46,7 @@ const DiscoverNFTCard = () => {
           variant="subtitle1"
           sx={{ color: "#2ADDB6", fontWeight: 500 }}
         >
-          0.2365ETH
+          {item && item?.public_mint_price} {item && item?.symbol}
         </Typography>
         <Typography
           variant="caption"

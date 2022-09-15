@@ -316,7 +316,7 @@ const NFTListingAdd = () => {
   }, [dispatch]);
 
   return (
-    <Box width={{ xs: "99%", sm: "99%", md: "94%" }}>
+    <Box width={{ xs: "99%", sm: "99%", md: "94%" }} pb={10}>
       <form id="coinForm">
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3} pb={2}>
           <Stack

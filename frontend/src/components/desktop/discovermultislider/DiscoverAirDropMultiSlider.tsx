@@ -35,7 +35,7 @@ const CustomLeftArrow = ({ onClick, ...rest }: any) => {
   // onMove means if dragging or swiping in progress.
   return null;
 };
-const DiscoverAirDropMultiSlider = ({}: any) => {
+const DiscoverAirDropMultiSlider = ({ data }: any) => {
   return (
     <div
       style={{
@@ -45,42 +45,29 @@ const DiscoverAirDropMultiSlider = ({}: any) => {
         margin: "0 auto",
       }}
     >
-      <Carousel
-        focusOnSelect={true}
-        responsive={responsive}
-        infinite={true}
-        autoPlay={true}
-        showDots={false}
-        removeArrowOnDeviceType={[
-          "tablet",
-          "mobile",
-          // "desktop",
-          // "superLargeDesktop",
-        ]}
-        customLeftArrow={<CustomLeftArrow />}
-      >
-        <div>
-          <DiscoverAirDropCard />
-        </div>
-        <div>
-          <DiscoverAirDropCard />
-        </div>
-        <div>
-          <DiscoverAirDropCard />
-        </div>
-        <div>
-          <DiscoverAirDropCard />
-        </div>
-        <div>
-          <DiscoverAirDropCard />
-        </div>
-        <div>
-          <DiscoverAirDropCard />
-        </div>
-        <div>
-          <DiscoverAirDropCard />
-        </div>
-      </Carousel>
+      {data && (
+        <Carousel
+          focusOnSelect={true}
+          responsive={responsive}
+          infinite={true}
+          autoPlay={true}
+          showDots={false}
+          removeArrowOnDeviceType={[
+            "tablet",
+            "mobile",
+            // "desktop",
+            // "superLargeDesktop",
+          ]}
+          customLeftArrow={<CustomLeftArrow />}
+        >
+          {data &&
+            data?.map((item: any, index: number) => (
+              <div key={index}>
+                <DiscoverAirDropCard item={item} />
+              </div>
+            ))}
+        </Carousel>
+      )}
     </div>
   );
 };

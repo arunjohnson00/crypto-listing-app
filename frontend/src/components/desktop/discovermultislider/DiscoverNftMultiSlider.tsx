@@ -34,7 +34,7 @@ const CustomLeftArrow = ({ onClick, ...rest }: any) => {
   // onMove means if dragging or swiping in progress.
   return null;
 };
-const DiscoverNftMultiSlider = () => {
+const DiscoverNftMultiSlider = ({ data }: any) => {
   return (
     <div
       style={{
@@ -44,42 +44,29 @@ const DiscoverNftMultiSlider = () => {
         margin: "0 auto",
       }}
     >
-      <Carousel
-        focusOnSelect={true}
-        responsive={responsive}
-        infinite={true}
-        autoPlay={true}
-        showDots={false}
-        removeArrowOnDeviceType={[
-          "tablet",
-          "mobile",
-          // "desktop",
-          // "superLargeDesktop",
-        ]}
-        customLeftArrow={<CustomLeftArrow />}
-      >
-        <div>
-          <DiscoverNFTCard />
-        </div>
-        <div>
-          <DiscoverNFTCard />
-        </div>
-        <div>
-          <DiscoverNFTCard />
-        </div>
-        <div>
-          <DiscoverNFTCard />
-        </div>
-        <div>
-          <DiscoverNFTCard />
-        </div>
-        <div>
-          <DiscoverNFTCard />
-        </div>
-        <div>
-          <DiscoverNFTCard />
-        </div>
-      </Carousel>
+      {data && (
+        <Carousel
+          focusOnSelect={true}
+          responsive={responsive}
+          infinite={true}
+          autoPlay={true}
+          showDots={false}
+          removeArrowOnDeviceType={[
+            "tablet",
+            "mobile",
+            // "desktop",
+            // "superLargeDesktop",
+          ]}
+          customLeftArrow={<CustomLeftArrow />}
+        >
+          {data &&
+            data?.map((item: any, index: number) => (
+              <div key={index}>
+                <DiscoverNFTCard item={item} />
+              </div>
+            ))}
+        </Carousel>
+      )}
     </div>
   );
 };

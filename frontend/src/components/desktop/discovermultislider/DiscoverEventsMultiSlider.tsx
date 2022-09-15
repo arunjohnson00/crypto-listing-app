@@ -6,18 +6,18 @@ const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 6,
-    slidesToSlide: 6,
+    items: 4,
+    slidesToSlide: 1,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 5,
-    slidesToSlide: 5,
+    items: 4,
+    slidesToSlide: 1,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
     items: 2,
-    slidesToSlide: 2,
+    slidesToSlide: 1,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
@@ -34,7 +34,7 @@ const CustomLeftArrow = ({ onClick, ...rest }: any) => {
   // onMove means if dragging or swiping in progress.
   return null;
 };
-const DiscoverEventsMultiSlider = () => {
+const DiscoverEventsMultiSlider = ({ data }: any) => {
   return (
     <div
       style={{
@@ -44,42 +44,29 @@ const DiscoverEventsMultiSlider = () => {
         margin: "0 auto",
       }}
     >
-      <Carousel
-        focusOnSelect={true}
-        responsive={responsive}
-        infinite={true}
-        autoPlay={true}
-        showDots={false}
-        removeArrowOnDeviceType={[
-          "tablet",
-          "mobile",
-          // "desktop",
-          // "superLargeDesktop",
-        ]}
-        customLeftArrow={<CustomLeftArrow />}
-      >
-        <div>
-          <DiscoverEventsCard />
-        </div>
-        <div>
-          <DiscoverEventsCard />
-        </div>
-        <div>
-          <DiscoverEventsCard />
-        </div>
-        <div>
-          <DiscoverEventsCard />
-        </div>
-        <div>
-          <DiscoverEventsCard />
-        </div>
-        <div>
-          <DiscoverEventsCard />
-        </div>
-        <div>
-          <DiscoverEventsCard />
-        </div>
-      </Carousel>
+      {data && (
+        <Carousel
+          focusOnSelect={true}
+          responsive={responsive}
+          infinite={true}
+          autoPlay={true}
+          showDots={false}
+          removeArrowOnDeviceType={[
+            "tablet",
+            "mobile",
+            // "desktop",
+            // "superLargeDesktop",
+          ]}
+          customLeftArrow={<CustomLeftArrow />}
+        >
+          {data &&
+            data?.map((item: any, index: number) => (
+              <div key={index}>
+                <DiscoverEventsCard item={item} />
+              </div>
+            ))}
+        </Carousel>
+      )}
     </div>
   );
 };

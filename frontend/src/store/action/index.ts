@@ -113,3 +113,16 @@ export {
   dashboardUpdateAirdropsRequest,
   dashboardDeleteAirdropsRequest,
 } from "./dashboardAirdropsAction";
+
+export {
+  discoverNFTMarketplacesRequest,
+  discoverVideoListRequest,
+  discoverLatestEventsRequest,
+  discoverLatestNFTRequest,
+  discoverLatestAirdropRequest,
+  discoverLatestNewsListRequest,
+  discoverLatestPresaleRequest,
+  discoverBiggestLosersRequest,
+  discoverBiggestGainersRequest,
+  discoverLatestCoinRequest,
+} from "./discoverAction";

@@ -8,7 +8,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 import DiscoverLatestCommonCard from "../cards/dicoverlatestcommoncard/DiscoverLatestCommonCard";
-import { discoverLatestEventsRequest } from "../../../store/action";
+import { discoverLatestNFTRequest } from "../../../store/action";
 
 const responsiveLatestEvents = {
   superLargeDesktop: {
@@ -30,18 +30,16 @@ const responsiveLatestEvents = {
   },
 };
 
-const DiscoverLatestEvents = () => {
+const DiscoverLatestNft = () => {
   const dispatch: any = useDispatch();
-  const latestEvents = useSelector((data: any) => {
-    return data?.discoverReducer?.latest_events?.data;
+  const latestNft = useSelector((data: any) => {
+    return data?.discoverReducer?.latest_nft?.data;
   });
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
 
-    dispatch(
-      discoverLatestEventsRequest("noData", successHandler, errorHandler)
-    );
+    dispatch(discoverLatestNFTRequest("noData", successHandler, errorHandler));
   }, [dispatch]);
   return (
     <Grid xs={12}>
@@ -72,7 +70,7 @@ const DiscoverLatestEvents = () => {
                 variant="h6"
                 sx={{ color: "#2DCEAF", fontWeight: 500 }}
               >
-                Events
+                NFT's
               </Typography>
             </Stack>
             {/* <Stack
@@ -102,7 +100,7 @@ const DiscoverLatestEvents = () => {
                   paddingBottom: "13px",
                 }}
               >
-                {latestEvents && (
+                {latestNft && (
                   <Carousel
                     responsive={responsiveLatestEvents}
                     infinite={true}
@@ -115,21 +113,21 @@ const DiscoverLatestEvents = () => {
                     keyBoardControl={true}
                     shouldResetAutoplay={false}
                   >
-                    {latestEvents &&
-                      latestEvents?.map((item: any, index: number) => (
+                    {latestNft &&
+                      latestNft?.map((item: any, index: number) => (
                         <Box key={index}>
                           <DiscoverLatestCommonCard
                             item={item}
-                            path="coin_logo"
-                            varient="events"
-                            image={item?.coin_logo}
+                            path="nft_listing_image"
+                            varient="nft"
+                            image={item?.image}
                             date={
                               item &&
-                              moment(new Date(item?.event_date)).format("DD")
+                              moment(new Date(item?.created_at)).format("DD")
                             }
                             month={
                               item &&
-                              moment(new Date(item?.event_date)).format("MMM")
+                              moment(new Date(item?.created_at)).format("MMM")
                             }
                             title={item?.title}
                             subtitle={item?.coin}
@@ -148,4 +146,4 @@ const DiscoverLatestEvents = () => {
   );
 };
 
-export default DiscoverLatestEvents;
+export default DiscoverLatestNft;

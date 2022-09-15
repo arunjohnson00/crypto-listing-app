@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, Grid, Stack } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import Marquee from "react-fast-marquee";
 import Carousel from "react-multi-carousel";
@@ -10,17 +10,17 @@ import LatestNewsHeading from "../Typography/headings/latestnews/LatestNewsHeadi
 import NewsCardTop from "../cards/topnewscard/NewsCardTop";
 
 import { latestNewsRequest } from "../../../store/action";
-
+import "./style.css";
 const responsiveNewsSlider = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 4,
+    items: 5,
     slidesToSlide: 1,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 4,
+    items: 5,
     slidesToSlide: 1,
   },
   tablet: {
@@ -50,22 +50,25 @@ const LatestNewsScroll = () => {
   }, [dispatch]);
 
   return (
-    <Stack
-      direction="row"
-      spacing={3}
-      sx={{
-        borderTop: "1px solid #1a1545",
-        borderBottom: "1px solid #1a1545",
-        paddingTop: "15px",
-        paddingBottom: "15px",
-        backgroundColor: "#04091d",
-        alignItems: "center",
-      }}
-    >
-      <Grid xs={4} sm={4} md={3} lg={2} xl={2}>
+    <Box>
+      {/* <Grid xs={4} sm={4} md={3} lg={2} xl={2}>
         <LatestNewsHeading />
-      </Grid>
-      <Grid xs={8} sm={8} md={9} lg={10} xl={10}>
+      </Grid> */}
+      <Stack direction="row" spacing={1} alignItems="center" py={1}>
+        <Typography
+          sx={{
+            color: "#FFFFFF",
+            textTransform: "uppercase",
+            fontSize: ".85rem",
+          }}
+        >
+          Live News{" "}
+        </Typography>
+        <div>
+          <span className="ripplelatestnews"></span>
+        </div>
+      </Stack>
+      <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
         <Stack direction="row" spacing={3}>
           {/* <Marquee
             style={{ background: "none" }}
@@ -118,7 +121,7 @@ const LatestNewsScroll = () => {
           </Box>
         </Stack>
       </Grid>
-    </Stack>
+    </Box>
   );
 };
 

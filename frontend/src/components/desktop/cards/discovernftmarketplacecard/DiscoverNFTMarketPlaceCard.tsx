@@ -1,6 +1,6 @@
 import { Box, Stack, Typography, Avatar } from "@mui/material";
 import { Fragment } from "react";
-
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 const DiscoverNFTMarketPlaceCard = () => {
   return (
     <Fragment>

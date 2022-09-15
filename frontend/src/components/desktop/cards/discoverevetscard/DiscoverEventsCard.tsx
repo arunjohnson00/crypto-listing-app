@@ -1,6 +1,9 @@
 import { Box, Stack, Avatar, Typography } from "@mui/material";
+import moment from "moment";
 
-const DiscoverEventsCard = () => {
+const serverAPIUrl = process.env.REACT_APP_API_URL;
+
+const DiscoverEventsCard = ({ item }: any) => {
   return (
     <Box
       sx={{
@@ -26,12 +29,12 @@ const DiscoverEventsCard = () => {
               fontSize: "0.65rem",
             }}
           >
-            Bitmart Listing
+            {item && item?.title}
           </Typography>
         </Stack>
         <Avatar
-          alt="Remy Sharp"
-          src="https://mui.com/static/images/avatar/1.jpg"
+          alt={item && item?.title}
+          src={`${serverAPIUrl}public/uploads/coin_logo/${item?.coin_logo}`}
           sx={{ width: 50, height: 50 }}
         />
       </Stack>
@@ -46,7 +49,7 @@ const DiscoverEventsCard = () => {
           variant="subtitle1"
           sx={{ color: "#FFFFF5", fontWeight: 500 }}
         >
-          Safemoon
+          {item && item?.coin}
         </Typography>
 
         <Stack
@@ -57,17 +60,17 @@ const DiscoverEventsCard = () => {
         >
           <Stack direction="column" spacing={0} sx={{ alignItems: "center" }}>
             <Typography variant="h4" sx={{ color: "#23DB90", fontWeight: 600 }}>
-              28
+              {item && moment(new Date(item?.event_date)).format("DD")}
             </Typography>
             <Typography variant="h5" sx={{ color: "#FFFFF5", fontWeight: 400 }}>
-              MAY
+              {item && moment(new Date(item?.event_date)).format("MMM")}
             </Typography>
           </Stack>
           <Typography
             variant="caption"
             sx={{ color: "#23C1D4", fontWeight: 600 }}
           >
-            2022
+            {item && moment(new Date(item?.event_date)).format("YYYY")}
           </Typography>
         </Stack>
       </Stack>

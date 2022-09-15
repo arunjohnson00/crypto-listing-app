@@ -1,6 +1,7 @@
 import { Box, Stack, Typography, Chip, Avatar } from "@mui/material";
-
-const DiscoverListEventsCard = () => {
+import moment from "moment";
+const serverAPIUrl = process.env.REACT_APP_API_URL;
+const DiscoverListEventsCard = ({ item }: any) => {
   return (
     <Box
       sx={{
@@ -25,27 +26,33 @@ const DiscoverListEventsCard = () => {
             spacing={0}
           >
             <Typography variant="h6" sx={{ color: "#FFFFF5", fontWeight: 500 }}>
-              SafeMoon
+              {item && item?.coin}
             </Typography>
             <Typography
               variant="caption"
               sx={{ color: "#FFFFF5", fontWeight: "300" }}
             >
-              SFM
+              {item && item?.coin_symbol}
             </Typography>
           </Stack>
         </Stack>
         <Stack direction="column" sx={{ alignItems: "flex-end" }} spacing={0.7}>
-          <Chip
-            label="Mainnet Release"
-            color="primary"
+          <Box
             sx={{
               backgroundColor: "#43C211",
               color: "#FFFFF5",
               fontSize: "0.6125rem",
+              borderRadius: 4,
+              height: 25,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
-            size="small"
-          />
+            px={1}
+          >
+            {item && item?.title}
+          </Box>
+
           <Stack direction="row" sx={{ alignItems: "center" }} spacing={0.5}>
             <Typography
               variant="caption"
@@ -57,7 +64,8 @@ const DiscoverListEventsCard = () => {
               variant="body2"
               sx={{ color: "#D1D10E", fontWeight: "500", fontSize: 13 }}
             >
-              1Day 24 Min 16 Sec
+              {/* 1Day 24 Min 16 Sec    */}
+              {item && moment(new Date(item?.event_date)).fromNow()}
             </Typography>
           </Stack>
         </Stack>

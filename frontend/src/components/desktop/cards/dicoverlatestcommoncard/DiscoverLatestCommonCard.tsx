@@ -1,13 +1,27 @@
-import { Avatar, Box, Stack, Typography, Divider } from "@mui/material";
+import { Avatar, Box, Stack, Typography, Divider, Link } from "@mui/material";
 import React from "react";
+import moment from "moment";
+import { defaultColor } from "../../../../common/common";
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 
-const DiscoverLatestCommonCard = () => {
+const DiscoverLatestCommonCard = ({
+  item,
+  path,
+  varient,
+  image,
+  title,
+  subtitle,
+  link,
+  date,
+  month,
+  index,
+}: any) => {
   return (
     <Box
       sx={{
         flexGrow: 1,
         backgroundColor: "#081243",
-        borderRadius: 15,
+        borderRadius: 5,
         padding: 3,
         margin: 1,
       }}
@@ -16,27 +30,39 @@ const DiscoverLatestCommonCard = () => {
         direction={{ xs: "column", sm: "column", md: "column" }}
         spacing={2}
       >
-        <Avatar
-          alt="Remy Sharp"
-          src="https://mui.com/static/images/avatar/1.jpg"
-          sx={{ width: 35, height: 35 }}
-        />
+        {image === null || image === undefined ? (
+          <Avatar
+            alt={title}
+            src={``}
+            sx={{ width: 35, height: 35, backgrounColor: defaultColor[index] }}
+          >
+            {title && title[0]}
+          </Avatar>
+        ) : (
+          <Avatar
+            alt={title}
+            src={`${serverAPIUrl}public/uploads/${path}/${image}`}
+            sx={{ width: 35, height: 35 }}
+          />
+        )}
+
         <Stack
           direction={{ xs: "column", sm: "column", md: "column" }}
           spacing={0.8}
         >
-          <Typography
-            variant="caption"
-            sx={{ color: "#FFFFF5", fontWeight: 400 }}
-          >
-            New Crypotocoin
-            <br /> general
-          </Typography>
+          <Link href={link} target="_blank" sx={{ textDecoration: "none" }}>
+            <Typography
+              variant="body2"
+              sx={{ color: "#FFFFF5", fontWeight: 400 }}
+            >
+              {title}
+            </Typography>
+          </Link>
           <Typography
             variant="caption"
             sx={{ color: "#FFFFF5", fontWeight: 600, fontSize: 11 }}
           >
-            Tokens Unlock
+            {subtitle}
           </Typography>
         </Stack>
         <Stack
@@ -46,7 +72,7 @@ const DiscoverLatestCommonCard = () => {
           pt={4}
         >
           <Typography variant="h6" sx={{ color: "#FFFFF5", fontWeight: 400 }}>
-            31
+            {date}
           </Typography>
           <Divider
             variant="middle"
@@ -55,7 +81,7 @@ const DiscoverLatestCommonCard = () => {
             sx={{ borderRightColor: "#FFFFF5", borderRightWidth: 2 }}
           />
           <Typography variant="h6" sx={{ color: "#FFFFF5", fontWeight: 500 }}>
-            May
+            {month}
           </Typography>
         </Stack>
       </Stack>

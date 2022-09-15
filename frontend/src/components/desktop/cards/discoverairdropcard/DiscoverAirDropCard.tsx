@@ -1,6 +1,6 @@
 import { Box, Stack, Avatar, Typography } from "@mui/material";
-
-const DiscoverAirDropCard = () => {
+const serverAPIUrl = process.env.REACT_APP_API_URL;
+const DiscoverAirDropCard = ({ item }: any) => {
   return (
     <Box
       sx={{
