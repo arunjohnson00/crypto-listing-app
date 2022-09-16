@@ -20,7 +20,7 @@ const responsiveNewsSlider = {
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 5,
+    items: 4,
     slidesToSlide: 1,
   },
   tablet: {
@@ -46,11 +46,11 @@ const LatestNewsScroll = () => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
 
-    dispatch(latestNewsRequest({ count: 15 }, successHandler, errorHandler));
+    dispatch(latestNewsRequest({ count: 9 }, successHandler, errorHandler));
   }, [dispatch]);
 
   return (
-    <Box>
+    <Box my={1}>
       {/* <Grid xs={4} sm={4} md={3} lg={2} xl={2}>
         <LatestNewsHeading />
       </Grid> */}
@@ -61,6 +61,7 @@ const LatestNewsScroll = () => {
             textTransform: "uppercase",
             fontSize: ".85rem",
           }}
+          pl={1}
         >
           Live News{" "}
         </Typography>

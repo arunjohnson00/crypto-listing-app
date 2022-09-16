@@ -4,12 +4,11 @@ import Marquee from "react-fast-marquee";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import dateFormat, { masks } from "dateformat";
-import GaugeChart from "react-gauge-chart";
+
 import DiscoverVerticalTab from "../../../components/desktop/discoververticaltab/DiscoverVerticalTab";
-import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
-import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
-import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
+
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
+import FearAndGreedcard from "../../../components/desktop/cards/fearandgreedcard/FearAndGreedcard";
 
 const DiscoverPage = () => {
   TimeAgo.addLocale(en);
@@ -42,7 +41,7 @@ const DiscoverPage = () => {
                 <Box height={{ xs: "auto", sm: "auto", md: 50 }}>
                   <Stack
                     direction={{ xs: "column", sm: "column", md: "row" }}
-                    spacing={3}
+                    spacing={2}
                     alignItems="center"
                   >
                     <Stack direction="row" spacing={0.4}>
@@ -154,25 +153,14 @@ const DiscoverPage = () => {
                   spacing={0}
                   alignItems={{ xs: "center", sm: "center", md: "flex-end" }}
                 >
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "#FFFFF5", fontWeight: 500 }}
-                  >
-                    Market is{" "}
-                    <span style={{ color: "#FF2B31" }}>Extreme Fear</span>
-                  </Typography>
-
-                  <GaugeChart
-                    id="gauge-chart2"
-                    nrOfLevels={20}
-                    percent={0.86}
-                  />
                   {/* <Typography
                     variant="h6"
                     sx={{ color: "#FFFFF5", fontWeight: 500 }}
                   >
                     <span style={{ color: "#FF2B31" }}>42</span>/100
                   </Typography> */}
+
+                  <FearAndGreedcard />
                 </Stack>
               </Stack>
             </Stack>

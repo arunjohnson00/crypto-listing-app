@@ -7,13 +7,17 @@ const NewsCardTop = ({ rssFeed, timeAgo }: any) => {
       <Stack
         direction="column"
         sx={{
-          maxHeight: 100,
-          minHeight: 50,
+          maxHeight: 80,
+          minHeight: 60,
           // maxWidth: 270,
+
+          border: "1px solid #091851",
           width: "auto",
           justifyContent: "flex-start",
+          borderRadius: 2,
         }}
-        px={0.7}
+        p={1.2}
+        mx={1}
       >
         <Typography
           variant="subtitle2"
@@ -30,8 +34,8 @@ const NewsCardTop = ({ rssFeed, timeAgo }: any) => {
             }}
           >
             {" "}
-            {rssFeed && rssFeed?.title?.length >= 65
-              ? Parser(rssFeed?.title.substring(0, 60)) + "..."
+            {rssFeed && rssFeed?.title?.length >= 55
+              ? Parser(rssFeed?.title.substring(0, 55)) + "..."
               : Parser(rssFeed?.title)}
           </a>
         </Typography>
