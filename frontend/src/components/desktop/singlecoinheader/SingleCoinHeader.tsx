@@ -430,7 +430,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 </Stack>
                 <Stack
                   direction={{ xs: "column", sm: "column", md: "row" }}
-                  spacing={1.5}
+                  spacing={0}
                   sx={{ alignItems: "center", justifyContent: "flex-start" }}
                   pt={1}
                 >
@@ -520,6 +520,18 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       />
                     }
                   />
+                  <RWebShare
+                    data={{
+                      text: "Find out this coin in Coinxhigh",
+                      url: window.location.href,
+                      title: coinData && coinData?.name,
+                    }}
+                    onClick={() => console.log("shared successfully!")}
+                  >
+                    <IconButton sx={{ padding: 0 }}>
+                      <ShareOutlinedIcon sx={{ color: "#575385" }} />
+                    </IconButton>
+                  </RWebShare>
                 </Stack>
               </Stack>
             </Stack>
@@ -580,8 +592,8 @@ const SingleCoinHeader = ({ coinData }: any) => {
                             : item?.inactive_icon
                         }`}
                         sx={{
-                          width: 25,
-                          height: 25,
+                          width: 35,
+                          height: 35,
                           mr: 0.5,
                           mb: 0.5,
                         }}
@@ -609,7 +621,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     >
                       <Avatar
                         src={CoinGeckoImage}
-                        sx={{ width: 24, height: 24 }}
+                        sx={{ width: 35, height: 35 }}
                       ></Avatar>
                     </a>
                     <a
@@ -620,21 +632,9 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     >
                       <Avatar
                         src={CoinMarketcapImage}
-                        sx={{ width: 24, height: 24 }}
+                        sx={{ width: 35, height: 35 }}
                       ></Avatar>
                     </a>
-                    <RWebShare
-                      data={{
-                        text: "Find out this coin in Coinxhigh",
-                        url: window.location.href,
-                        title: coinData && coinData?.name,
-                      }}
-                      onClick={() => console.log("shared successfully!")}
-                    >
-                      <IconButton sx={{ padding: 0 }}>
-                        <ShareOutlinedIcon sx={{ color: "#575385" }} />
-                      </IconButton>
-                    </RWebShare>
                   </Stack>
                 </Box>
               </Stack>

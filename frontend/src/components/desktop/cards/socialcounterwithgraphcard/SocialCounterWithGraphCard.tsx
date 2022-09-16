@@ -202,7 +202,7 @@ const SocialCounterWithGraphCard = ({
                   fontSize: ".85rem",
                 }}
               >
-                {coinData && coinData[0]}
+                {coinData && parseInt(coinData[0]).toLocaleString()}
               </Typography>
               {coinData && coinData?.length > 1 && (
                 <Typography

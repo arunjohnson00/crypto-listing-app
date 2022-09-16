@@ -197,7 +197,7 @@ const SingleCoinPage = () => {
             sx={{
               alignItems: "center",
             }}
-            py={1}
+            pt={1}
           >
             <CardMedia
               component="img"
@@ -214,7 +214,7 @@ const SingleCoinPage = () => {
           xs={12}
           sx={{
             alignItems: "center",
-            paddingTop: 2,
+            paddingTop: 0,
           }}
         >
           <SingleCoinHeader

@@ -147,7 +147,26 @@ const DiscoverPage = () => {
                       </Typography>
                     </Stack>
                   </Stack>
-                  <Stack direction="column" spacing={0.5} pt={6}>
+                </Box>
+                <Stack
+                  direction="column"
+                  spacing={0}
+                  alignItems={{ xs: "center", sm: "center", md: "flex-end" }}
+                >
+                  {/* <Typography
+                    variant="h6"
+                    sx={{ color: "#FFFFF5", fontWeight: 500 }}
+                  >
+                    <span style={{ color: "#FF2B31" }}>42</span>/100
+                  </Typography> */}
+                  {/* 
+                  <FearAndGreedcard width={250} size="small" /> */}
+                  <Stack
+                    direction="column"
+                    spacing={0.5}
+                    pt={0}
+                    alignItems="flex-end"
+                  >
                     <Typography
                       variant="h5"
                       sx={{ color: "#FFFFF5", fontWeight: "bold" }}
@@ -176,27 +195,13 @@ const DiscoverPage = () => {
                       </Typography>
                     </Stack>
                   </Stack>
-                </Box>
-                <Stack
-                  direction="column"
-                  spacing={0}
-                  alignItems={{ xs: "center", sm: "center", md: "flex-end" }}
-                >
-                  {/* <Typography
-                    variant="h6"
-                    sx={{ color: "#FFFFF5", fontWeight: 500 }}
-                  >
-                    <span style={{ color: "#FF2B31" }}>42</span>/100
-                  </Typography> */}
-
-                  <FearAndGreedcard width={250} size="small" />
                 </Stack>
               </Stack>
             </Stack>
           </Grid>
         </Grid>
 
-        <Grid container pt={8} spacing={3}>
+        <Grid container pt={0} spacing={3}>
           <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
             <DiscoverVerticalTab />
           </Grid>

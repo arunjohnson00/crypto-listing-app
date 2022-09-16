@@ -1446,12 +1446,12 @@ const CoinPageOverview = () => {
             </Stack>
           </Stack>
         </Grid>
-        <Divider
+        {/* <Divider
           variant="fullWidth"
           flexItem
           orientation="horizontal"
           sx={{ borderColor: "#342D61", borderBottomWidth: 2 }}
-        />
+        /> */}
         {/* <Grid xs={12} mt={4}>
           <Typography
             variant="h5"

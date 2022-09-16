@@ -147,7 +147,7 @@ const CoinCommunityChart = ({
         ],
         xaxis: [
           {
-            x: new Date(data && data?.data?.followers[0]?.[0]).getTime(),
+            // x: new Date(data && data?.data?.followers[0]?.[0]).getTime(),
             borderColor: "#999",
             yAxisIndex: 0,
             label: {
@@ -239,16 +239,22 @@ const CoinCommunityChart = ({
                       </span>{" "}
                       Subscribers
                     </Typography>
-                    <Typography
-                      sx={{
-                        color: "#8B94A3",
-                        fontWeight: 600,
-                        fontSize: ".8rem",
-                        textTransform: "lowercase",
-                      }}
+                    <Link
+                      href={data && data?.data?.social_url}
+                      target="_blank"
+                      style={{ textDecoration: "none" }}
                     >
-                      {data && "@" + getLastItem(data?.data?.social_url)}
-                    </Typography>
+                      <Typography
+                        sx={{
+                          color: "#8B94A3",
+                          fontWeight: 600,
+                          fontSize: ".8rem",
+                          textTransform: "lowercase",
+                        }}
+                      >
+                        {data && "@" + getLastItem(data?.data?.social_url)}
+                      </Typography>
+                    </Link>
                   </Stack>
                 </Stack>
                 <Stack direction="row" alignItems="center" spacing={1}>
@@ -321,7 +327,7 @@ const CoinCommunityChart = ({
                   >
                     {data &&
                       data?.data?.followers?.length > 1 &&
-                      data?.data?.followers[0][1]}
+                      parseInt(data?.data?.followers[0][1])?.toLocaleString()}
                   </Typography>
                   <Typography
                     sx={{

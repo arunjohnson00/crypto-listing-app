@@ -6,7 +6,7 @@ import Timestamp from "react-timestamp";
 import { useDispatch, useSelector } from "react-redux";
 import { fearGreedIndexRequest } from "../../../../store/action";
 
-const FearAndGreedcard = ({ width, size }: any) => {
+const FearAndGreedcard = ({ width, size, height }: any) => {
   const fearGreedIndex = useSelector((data: any) => {
     return data?.commonReducer?.fear_greed_index;
   });
@@ -27,6 +27,7 @@ const FearAndGreedcard = ({ width, size }: any) => {
             borderRadius: 5,
             minWidth: width && width,
             width: width && width,
+            height: height && height,
           }}
           p={2}
         >

@@ -42,7 +42,7 @@ const SingleCoinChip = ({ src, title, link, varient }: any) => {
           sx={{
             height: "28px",
             borderRadius: "4px",
-            backgroundColor: "#111138",
+            backgroundColor: varient === "explorer" ? "transparent" : "#111138",
             padding: 0.5,
             marginBottom: ".5em",
             cursor: "pointer",

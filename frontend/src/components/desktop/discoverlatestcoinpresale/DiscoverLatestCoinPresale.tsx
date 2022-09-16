@@ -10,6 +10,7 @@ import {
   discoverLatestCoinRequest,
   discoverLatestPresaleRequest,
 } from "../../../store/action";
+import FearAndGreedcard from "../cards/fearandgreedcard/FearAndGreedcard";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const DiscoverLatestCoinPresale = () => {
@@ -33,112 +34,121 @@ const DiscoverLatestCoinPresale = () => {
 
   return (
     <Grid xs={12}>
-      <Box
-        sx={{
-          flexGrow: 1,
-
-          padding: 4,
-          borderRadius: 4,
-          backgroundColor: "#020727",
-        }}
-        mb={7}
+      <Stack
+        direction={{ xs: "column", sm: "column", md: "row" }}
+        spacing={5}
+        justifyContent="center"
       >
-        <Stack
-          direction={{ xs: "column", sm: "column", md: "row" }}
-          spacing={5}
-          justifyContent="space-around"
+        <Box
+          sx={{
+            flexGrow: 1,
+
+            padding: 4,
+            borderRadius: 4,
+            backgroundColor: "#020727",
+          }}
+          mb={7}
         >
-          <Box
-            sx={{
-              flexGrow: 1,
-              width: "100%",
-            }}
+          <Stack
+            direction={{ xs: "column", sm: "column", md: "row" }}
+            spacing={5}
+            justifyContent="space-around"
           >
-            <Stack
-              direction={{ xs: "column", sm: "column", md: "column" }}
-              spacing={2}
+            <Box
+              sx={{
+                flexGrow: 1,
+                width: "100%",
+              }}
             >
               <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                alignItems="center"
-                spacing={1}
-              >
-                <PaidOutlinedIcon sx={{ color: "#2DCEAF", fontSize: 20 }} />
-                <Typography
-                  variant="h6"
-                  sx={{ color: "#2DCEAF", fontWeight: 500 }}
-                >
-                  Coins
-                </Typography>
-              </Stack>
-              <Stack
                 direction={{ xs: "column", sm: "column", md: "column" }}
-                spacing={0.5}
+                spacing={2}
               >
-                {latestCoin &&
-                  latestCoin.slice(0, 10).map((item: any, index: number) => (
-                    <Stack
-                      key={index}
-                      direction={{ xs: "row", sm: "row", md: "row" }}
-                      alignItems="center"
-                      // spacing={10}
-                      justifyContent="space-between"
-                      pl={{ xs: 0, sm: 0, md: 3.8 }}
-                      pt={0}
-                    >
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  alignItems="center"
+                  spacing={1}
+                >
+                  <PaidOutlinedIcon sx={{ color: "#2DCEAF", fontSize: 20 }} />
+                  <Typography
+                    variant="h6"
+                    sx={{ color: "#2DCEAF", fontWeight: 500 }}
+                  >
+                    Coins
+                  </Typography>
+                </Stack>
+                <Stack
+                  direction={{ xs: "column", sm: "column", md: "column" }}
+                  spacing={0.5}
+                >
+                  {latestCoin &&
+                    latestCoin.slice(0, 10).map((item: any, index: number) => (
                       <Stack
+                        key={index}
                         direction={{ xs: "row", sm: "row", md: "row" }}
                         alignItems="center"
-                        spacing={1}
+                        // spacing={10}
+                        justifyContent="space-between"
+                        pl={{ xs: 0, sm: 0, md: 3.8 }}
+                        pt={0}
                       >
-                        <Avatar
-                          alt={item && item?.name}
-                          src={`${serverAPIUrl}public/uploads/coin_logo/${item?.logo}`}
-                          sx={{ width: 18, height: 18 }}
-                        />
-                        <Link
-                          to={`../coin/${item?.slug}`}
-                          style={{ textDecoration: "none" }}
-                          target="_blank"
+                        <Stack
+                          direction={{ xs: "row", sm: "row", md: "row" }}
+                          alignItems="center"
+                          spacing={1}
                         >
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#FFFFF5",
-                              fontWeight: 300,
-                              fontSize: 12,
-                              textTransform: "capitalize",
-                            }}
-                          >
-                            {item && item?.name?.length > 25
-                              ? item?.name?.slice(0, 25) + "..."
-                              : item?.name}{" "}
-                            Listed
-                          </Typography>
-                        </Link>
-                        <Link
-                          to={`../coin/${item?.slug}`}
-                          style={{ textDecoration: "none" }}
-                          target="_blank"
-                        >
-                          <OpenInNewIcon
-                            sx={{ color: "#21C879", fontSize: 14 }}
+                          <Avatar
+                            alt={item && item?.name}
+                            src={`${serverAPIUrl}public/uploads/coin_logo/${item?.logo}`}
+                            sx={{ width: 18, height: 18 }}
                           />
-                        </Link>
-                      </Stack>
+                          <Link
+                            to={`../coin/${item?.slug}`}
+                            style={{ textDecoration: "none" }}
+                            target="_blank"
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: "#FFFFF5",
+                                fontWeight: 300,
+                                fontSize: 12,
+                                textTransform: "capitalize",
+                              }}
+                            >
+                              {item && item?.name?.length > 25
+                                ? item?.name?.slice(0, 25) + "..."
+                                : item?.name}{" "}
+                              Listed
+                            </Typography>
+                          </Link>
+                          <Link
+                            to={`../coin/${item?.slug}`}
+                            style={{ textDecoration: "none" }}
+                            target="_blank"
+                          >
+                            <OpenInNewIcon
+                              sx={{ color: "#21C879", fontSize: 14 }}
+                            />
+                          </Link>
+                        </Stack>
 
-                      <Typography
-                        variant="caption"
-                        sx={{ color: "#21C879", fontWeight: 600, fontSize: 10 }}
-                      >
-                        {item && moment(new Date(item?.listed)).fromNow()}
-                      </Typography>
-                    </Stack>
-                  ))}
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            color: "#21C879",
+                            fontWeight: 600,
+                            fontSize: 10,
+                          }}
+                        >
+                          {item && moment(new Date(item?.listed)).fromNow()}
+                        </Typography>
+                      </Stack>
+                    ))}
+                </Stack>
               </Stack>
-            </Stack>
-          </Box>
-          <Divider
+            </Box>
+            {/* <Divider
             variant="middle"
             orientation="vertical"
             flexItem
@@ -380,9 +390,11 @@ const DiscoverLatestCoinPresale = () => {
                 </Stack>
               </Stack>
             </Stack>
-          </Box>
-        </Stack>
-      </Box>
+          </Box> */}
+          </Stack>
+        </Box>
+        <FearAndGreedcard width={250} size="small" height={220} />
+      </Stack>
     </Grid>
   );
 };
