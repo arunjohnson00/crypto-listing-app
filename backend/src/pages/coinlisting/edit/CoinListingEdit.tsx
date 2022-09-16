@@ -10,6 +10,7 @@ import {
   IconButton,
   FormControlLabel,
 } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import dateFormat, { masks } from "dateformat";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { toast } from "material-react-toastify";
@@ -131,7 +132,7 @@ const CoinListingEdit = () => {
     youtube_link: "",
     video_url: "",
   });
-
+  console.log(editCoin?.has_many_socials);
   const exchangeList = useSelector((exList: any) => {
     return exList.exchangesReducer.allExchanges.data;
   });
@@ -185,6 +186,12 @@ const CoinListingEdit = () => {
     let networkListDlt = [...networkCount];
     networkListDlt.splice(-1, 1);
     setNetworkCount(networkListDlt);
+    const networklist = editCoin?.has_many_networks?.filter((item: any) => {
+      return item?.id !== index;
+    });
+
+    //console.log(sociallist, index);
+    setEditCoin({ ...editCoin, has_many_networks: networklist });
   };
 
   const [exchangeCount, setExchangeCount] = useState<any[]>([]);
@@ -196,6 +203,12 @@ const CoinListingEdit = () => {
     let exchangeList = [...exchangeCount];
     exchangeList.splice(-1, 1);
     setExchangeCount(exchangeList);
+    const exchangelist = editCoin?.has_many_exchanges?.filter((item: any) => {
+      return item?.id !== index;
+    });
+
+    //console.log(sociallist, index);
+    setEditCoin({ ...editCoin, has_many_exchanges: exchangelist });
   };
   const [auditCount, setauditCount] = useState<any[]>([]);
 
@@ -207,6 +220,12 @@ const CoinListingEdit = () => {
     let auditList = [...auditCount];
     auditList.splice(-1, 1);
     setauditCount(auditList);
+    const auditlist = editCoin?.has_many_audits?.filter((item: any) => {
+      return item?.id !== index;
+    });
+
+    //console.log(sociallist, index);
+    setEditCoin({ ...editCoin, has_many_audits: auditlist });
   };
 
   const [chartCount, setchartCount] = useState<any[]>([]);
@@ -219,6 +238,12 @@ const CoinListingEdit = () => {
     let chartList = [...chartCount];
     chartList.splice(-1, 1);
     setchartCount(chartList);
+    const chartlist = editCoin?.has_many_charts?.filter((item: any) => {
+      return item?.id !== index;
+    });
+
+    //console.log(sociallist, index);
+    setEditCoin({ ...editCoin, has_many_charts: chartlist });
   };
 
   const [communityCount, setcommunityCount] = useState<any[]>([]);
@@ -231,6 +256,13 @@ const CoinListingEdit = () => {
     let communityList = [...communityCount];
     communityList.splice(-1, 1);
     setcommunityCount(communityList);
+
+    const communitylist = editCoin?.has_many_communitys?.filter((item: any) => {
+      return item?.id !== index;
+    });
+
+    //console.log(sociallist, index);
+    setEditCoin({ ...editCoin, has_many_communitys: communitylist });
   };
 
   const [chatCount, setchatCount] = useState<any[]>([]);
@@ -243,6 +275,13 @@ const CoinListingEdit = () => {
     let chatList = [...chatCount];
     chatList.splice(-1, 1);
     setchatCount(chatList);
+
+    const chatlist = editCoin?.has_many_chats?.filter((item: any) => {
+      return item?.id !== index;
+    });
+
+    //console.log(sociallist, index);
+    setEditCoin({ ...editCoin, has_many_chats: chatlist });
   };
 
   const [socialCount, setsocialCount] = useState<any[]>([]);
@@ -255,6 +294,13 @@ const CoinListingEdit = () => {
     let socialList = [...socialCount];
     socialList.splice(-1, 1);
     setsocialCount(socialList);
+
+    const sociallist = editCoin?.has_many_socials?.filter((item: any) => {
+      return item?.id !== index;
+    });
+
+    //console.log(sociallist, index);
+    setEditCoin({ ...editCoin, has_many_socials: sociallist });
   };
 
   const [coinPublishStatus, setPublishCoinStatus] = useState<any>({
@@ -835,10 +881,18 @@ const CoinListingEdit = () => {
                           xs={12}
                           sx={{ paddingTop: "37px" }}
                         >
-                          {editCoin?.has_many_networks.length - 1 === index && (
+                          {editCoin?.has_many_networks.length - 1 === index ? (
                             <Link onClick={networkaddHandle} underline="none">
                               Add more +
                             </Link>
+                          ) : (
+                            <IconButton
+                              aria-label="delete"
+                              size="large"
+                              onClick={() => networkremoveHandle(networks?.id)}
+                            >
+                              <DeleteIcon fontSize="inherit" />
+                            </IconButton>
                           )}
                         </Grid>
                       </Stack>
@@ -1030,11 +1084,20 @@ const CoinListingEdit = () => {
                           xs={12}
                           sx={{ paddingTop: "37px" }}
                         >
-                          {editCoin?.has_many_exchanges.length - 1 ===
-                            index && (
+                          {editCoin?.has_many_exchanges.length - 1 === index ? (
                             <Link onClick={exchangeaddHandle} underline="none">
                               Add more +
                             </Link>
+                          ) : (
+                            <IconButton
+                              aria-label="delete"
+                              size="large"
+                              onClick={() =>
+                                exchangeremoveHandle(exchanges?.id)
+                              }
+                            >
+                              <DeleteIcon fontSize="inherit" />
+                            </IconButton>
                           )}
                         </Grid>
                       </Stack>
@@ -1555,10 +1618,18 @@ const CoinListingEdit = () => {
                         xs={12}
                         sx={{ paddingTop: "37px" }}
                       >
-                        {editCoin?.has_many_audits.length - 1 === index && (
+                        {editCoin?.has_many_audits.length - 1 === index ? (
                           <Link onClick={auditaddHandle} underline="none">
                             Add more +
                           </Link>
+                        ) : (
+                          <IconButton
+                            aria-label="delete"
+                            size="large"
+                            onClick={() => auditremoveHandle(audits?.id)}
+                          >
+                            <DeleteIcon fontSize="inherit" />
+                          </IconButton>
                         )}
                       </Grid>
                     </Stack>
@@ -1712,10 +1783,18 @@ const CoinListingEdit = () => {
                         xs={12}
                         sx={{ paddingTop: "37px" }}
                       >
-                        {editCoin?.has_many_charts.length - 1 === index && (
+                        {editCoin?.has_many_charts.length - 1 === index ? (
                           <Link onClick={chartaddHandle} underline="none">
                             Add more +
                           </Link>
+                        ) : (
+                          <IconButton
+                            aria-label="delete"
+                            size="large"
+                            onClick={() => chartremoveHandle(charts?.id)}
+                          >
+                            <DeleteIcon fontSize="inherit" />
+                          </IconButton>
                         )}
                       </Grid>
                     </Stack>
@@ -1855,13 +1934,23 @@ const CoinListingEdit = () => {
                               sx={{ paddingTop: "37px" }}
                             >
                               {editCoin?.has_many_communitys.length - 1 ===
-                                index && (
+                              index ? (
                                 <Link
                                   onClick={communityaddHandle}
                                   underline="none"
                                 >
                                   Add more +
                                 </Link>
+                              ) : (
+                                <IconButton
+                                  aria-label="delete"
+                                  size="large"
+                                  onClick={() =>
+                                    communityremoveHandle(communitys?.id)
+                                  }
+                                >
+                                  <DeleteIcon fontSize="inherit" />
+                                </IconButton>
                               )}
                             </Grid>
                           </Stack>
@@ -2117,10 +2206,18 @@ const CoinListingEdit = () => {
                             sx={{ paddingTop: "37px" }}
                           >
                             {" "}
-                            {editCoin?.has_many_chats.length - 1 === index && (
+                            {editCoin?.has_many_chats.length - 1 === index ? (
                               <Link onClick={chataddHandle} underline="none">
                                 Add more +
                               </Link>
+                            ) : (
+                              <IconButton
+                                aria-label="delete"
+                                size="large"
+                                onClick={() => chatremoveHandle(chats?.id)}
+                              >
+                                <DeleteIcon fontSize="inherit" />
+                              </IconButton>
                             )}
                           </Grid>
                         </Stack>
@@ -2282,13 +2379,23 @@ const CoinListingEdit = () => {
                               sx={{ paddingTop: "37px" }}
                             >
                               {editCoin?.has_many_socials.length - 1 ===
-                                index && (
+                              index ? (
                                 <Link
                                   onClick={socialaddHandle}
                                   underline="none"
                                 >
                                   Add more +
                                 </Link>
+                              ) : (
+                                <IconButton
+                                  aria-label="delete"
+                                  size="large"
+                                  onClick={() =>
+                                    socialremoveHandle(socials?.id)
+                                  }
+                                >
+                                  <DeleteIcon fontSize="inherit" />
+                                </IconButton>
                               )}
                             </Grid>
                           </Stack>

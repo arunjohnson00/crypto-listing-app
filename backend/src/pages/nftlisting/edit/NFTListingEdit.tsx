@@ -199,6 +199,17 @@ const NFTListingEdit = () => {
     let eventMarketList = [...eventMarketCount];
     eventMarketList.splice(-1, 1);
     setEventMarketCount(eventMarketList);
+    const eventmarketlist = nftListingData?.has_many_marketplaces?.filter(
+      (item: any) => {
+        return item?.id !== index;
+      }
+    );
+
+    //console.log(sociallist, index);
+    setNftListingData({
+      ...nftListingData,
+      has_many_marketplaces: eventmarketlist,
+    });
   };
 
   const [presaleEndDateTime, setPresaleEndDateTime] = useState<boolean>(false);
@@ -231,6 +242,17 @@ const NFTListingEdit = () => {
     let communityList = [...communityCount];
     communityList.splice(-1, 1);
     setcommunityCount(communityList);
+    const communitylist = nftListingData?.has_many_communitys?.filter(
+      (item: any) => {
+        return item?.id !== index;
+      }
+    );
+
+    //console.log(sociallist, index);
+    setNftListingData({
+      ...nftListingData,
+      has_many_communitys: communitylist,
+    });
   };
 
   const [chatCount, setchatCount] = useState<any[]>([]);
@@ -243,6 +265,12 @@ const NFTListingEdit = () => {
     let chatList = [...chatCount];
     chatList.splice(-1, 1);
     setchatCount(chatList);
+    const chatlist = nftListingData?.has_many_chats?.filter((item: any) => {
+      return item?.id !== index;
+    });
+
+    //console.log(sociallist, index);
+    setNftListingData({ ...nftListingData, has_many_chats: chatlist });
   };
 
   const [socialCount, setsocialCount] = useState<any[]>([]);
@@ -255,6 +283,13 @@ const NFTListingEdit = () => {
     let socialList = [...socialCount];
     socialList.splice(-1, 1);
     setsocialCount(socialList);
+
+    const sociallist = nftListingData?.has_many_socials?.filter((item: any) => {
+      return item?.id !== index;
+    });
+
+    //console.log(sociallist, index);
+    setNftListingData({ ...nftListingData, has_many_socials: sociallist });
   };
 
   const [launchDate, setLaunchDate] = useState<boolean>(false);
@@ -464,15 +499,28 @@ const NFTListingEdit = () => {
                                   xs={12}
                                   sx={{ paddingTop: "37px" }}
                                 >
-                                  {nftListingData?.has_many_communitys?.length -
+                                  {nftListingData?.has_many_marketplaces
+                                    ?.length -
                                     1 ===
-                                    index && (
+                                  index ? (
                                     <Link
                                       onClick={eventMarketaddHandle}
                                       underline="none"
                                     >
                                       Add MarketPlace +
                                     </Link>
+                                  ) : (
+                                    <IconButton
+                                      aria-label="delete"
+                                      size="large"
+                                      onClick={() =>
+                                        eventMarketremoveHandle(
+                                          marketplaces?.id
+                                        )
+                                      }
+                                    >
+                                      <DeleteIcon fontSize="inherit" />
+                                    </IconButton>
                                   )}
                                 </Grid>
                               </Stack>
@@ -1074,13 +1122,23 @@ const NFTListingEdit = () => {
                               >
                                 {nftListingData?.has_many_communitys?.length -
                                   1 ===
-                                  index && (
+                                index ? (
                                   <Link
                                     onClick={communityaddHandle}
                                     underline="none"
                                   >
                                     Add more +
                                   </Link>
+                                ) : (
+                                  <IconButton
+                                    aria-label="delete"
+                                    size="large"
+                                    onClick={() =>
+                                      communityremoveHandle(communitys?.id)
+                                    }
+                                  >
+                                    <DeleteIcon fontSize="inherit" />
+                                  </IconButton>
                                 )}
                               </Grid>
                             </Stack>
@@ -1220,13 +1278,21 @@ const NFTListingEdit = () => {
                                 sx={{ paddingTop: "37px" }}
                               >
                                 {nftListingData?.has_many_chats?.length - 1 ===
-                                  index && (
+                                index ? (
                                   <Link
                                     onClick={chataddHandle}
                                     underline="none"
                                   >
                                     Add more +
                                   </Link>
+                                ) : (
+                                  <IconButton
+                                    aria-label="delete"
+                                    size="large"
+                                    onClick={() => chatremoveHandle(chats?.id)}
+                                  >
+                                    <DeleteIcon fontSize="inherit" />
+                                  </IconButton>
                                 )}
                               </Grid>
                             </Stack>
@@ -1384,13 +1450,23 @@ const NFTListingEdit = () => {
                               >
                                 {nftListingData?.has_many_socials?.length -
                                   1 ===
-                                  index && (
+                                index ? (
                                   <Link
                                     onClick={socialaddHandle}
                                     underline="none"
                                   >
                                     Add more +
                                   </Link>
+                                ) : (
+                                  <IconButton
+                                    aria-label="delete"
+                                    size="large"
+                                    onClick={() =>
+                                      socialremoveHandle(socials?.id)
+                                    }
+                                  >
+                                    <DeleteIcon fontSize="inherit" />
+                                  </IconButton>
                                 )}
                               </Grid>
                             </Stack>
