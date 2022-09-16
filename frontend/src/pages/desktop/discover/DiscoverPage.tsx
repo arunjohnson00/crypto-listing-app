@@ -147,7 +147,7 @@ const DiscoverPage = () => {
                       </Typography>
                     </Stack>
                   </Stack>
-                  <Stack direction="column" spacing={0.5} pt={25}>
+                  <Stack direction="column" spacing={0.5} pt={6}>
                     <Typography
                       variant="h5"
                       sx={{ color: "#FFFFF5", fontWeight: "bold" }}
@@ -189,7 +189,7 @@ const DiscoverPage = () => {
                     <span style={{ color: "#FF2B31" }}>42</span>/100
                   </Typography> */}
 
-                  <FearAndGreedcard width={350} size="large" />
+                  <FearAndGreedcard width={250} size="small" />
                 </Stack>
               </Stack>
             </Stack>
