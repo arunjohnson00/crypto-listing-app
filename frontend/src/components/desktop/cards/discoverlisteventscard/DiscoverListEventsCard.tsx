@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, Chip, Avatar } from "@mui/material";
+import { Box, Stack, Typography, Chip, Avatar, Link } from "@mui/material";
 import moment from "moment";
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const DiscoverListEventsCard = ({ item }: any) => {
@@ -37,21 +37,28 @@ const DiscoverListEventsCard = ({ item }: any) => {
           </Stack>
         </Stack>
         <Stack direction="column" sx={{ alignItems: "flex-end" }} spacing={0.7}>
-          <Box
-            sx={{
-              backgroundColor: "#43C211",
-              color: "#FFFFF5",
-              fontSize: "0.6125rem",
-              borderRadius: 4,
-              height: 25,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-            px={1}
+          <Link
+            href={item?.source_link}
+            target="_blank"
+            sx={{ textDecoration: "none" }}
           >
-            {item && item?.title}
-          </Box>
+            {" "}
+            <Box
+              sx={{
+                backgroundColor: "#43C211",
+                color: "#FFFFF5",
+                fontSize: "0.6125rem",
+                borderRadius: 4,
+                height: 25,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              px={1}
+            >
+              {item && item?.title}
+            </Box>
+          </Link>
 
           <Stack direction="row" sx={{ alignItems: "center" }} spacing={0.5}>
             <Typography

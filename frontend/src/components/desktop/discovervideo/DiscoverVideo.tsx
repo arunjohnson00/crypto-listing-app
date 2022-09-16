@@ -26,7 +26,6 @@ const DiscoverVideo = () => {
     dispatch(discoverVideoListRequest("noData", successHandler, errorHandler));
   }, [dispatch]);
 
-  console.log(latestVideo);
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -42,7 +41,7 @@ const DiscoverVideo = () => {
                 key={index}
                 sx={{
                   flexGrow: 1,
-                  padding: 4,
+                  padding: 2,
                   borderRadius: 0,
                   backgroundColor: "#020419",
                 }}

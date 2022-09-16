@@ -98,11 +98,7 @@ const DiscoverNews = () => {
                                 : Parser(item?.title)}. */}
                                 {Parser(item?.title)}.{" "}
                                 <OpenInNewIcon
-                                  sx={{
-                                    color: "#21C879",
-                                    fontSize: 14,
-                                    marginTop: 0.5,
-                                  }}
+                                  sx={{ color: "#21C879", fontSize: 14 }}
                                 />
                               </Typography>
                             </Link>
