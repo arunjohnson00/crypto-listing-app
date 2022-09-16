@@ -51,6 +51,8 @@ import InstagramImage from "../../../assets/singlepagecoin/instagram.png";
 import RedditImage from "../../../assets/singlepagecoin/reddit.png";
 import TelegramImage from "../../../assets/singlepagecoin/telegram.png";
 import TwitterImage from "../../../assets/singlepagecoin/twitter.png";
+import DiscordImage from "../../../assets/singlepagecoin/discord.png";
+import GithubImage from "../../../assets/singlepagecoin/github.png";
 
 import SourcecodeImage from "../../../assets/singlepagecoin/sourcecode.png";
 import WhitepaperImage from "../../../assets/singlepagecoin/Whitepaper.png";
@@ -1392,7 +1394,11 @@ const SingleCoinHeader = ({ coinData }: any) => {
                           ? RedditImage
                           : item?.name === "facebook"
                           ? FacebookImage
-                          : item?.name === "instagram" && InstagramImage
+                          : item?.name === "instagram"
+                          ? InstagramImage
+                          : item?.name === "discord"
+                          ? DiscordImage
+                          : item?.name === "github" && GithubImage
                       }
                       title={item?.name}
                       link={item?.url}

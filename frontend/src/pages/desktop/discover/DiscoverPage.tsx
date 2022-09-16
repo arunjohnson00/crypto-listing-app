@@ -147,6 +147,35 @@ const DiscoverPage = () => {
                       </Typography>
                     </Stack>
                   </Stack>
+                  <Stack direction="column" spacing={0.5} pt={25}>
+                    <Typography
+                      variant="h5"
+                      sx={{ color: "#FFFFF5", fontWeight: "bold" }}
+                    >
+                      Discover
+                    </Typography>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{ color: "#FFFFF5", fontWeight: 500 }}
+                    >
+                      What happening here?
+                    </Typography>
+
+                    <Stack direction="row" spacing={1.5}>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "#FFFFF5", fontWeight: 500 }}
+                      >
+                        {dateFormat(new Date(), "dd mmmm yyyy")}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "#C3E978", fontWeight: 600 }}
+                      >
+                        {dateFormat(new Date(), "hh.MM TT")}
+                      </Typography>
+                    </Stack>
+                  </Stack>
                 </Box>
                 <Stack
                   direction="column"
@@ -160,46 +189,13 @@ const DiscoverPage = () => {
                     <span style={{ color: "#FF2B31" }}>42</span>/100
                   </Typography> */}
 
-                  <FearAndGreedcard />
+                  <FearAndGreedcard width={350} size="large" />
                 </Stack>
               </Stack>
             </Stack>
           </Grid>
         </Grid>
 
-        <Grid container pt={1.5} spacing={3}>
-          <Grid item xs={12} sm={12} md={12} lg={12} xl={12} px={0.5}>
-            <Stack direction="column" spacing={0.5}>
-              <Typography
-                variant="h5"
-                sx={{ color: "#FFFFF5", fontWeight: "bold" }}
-              >
-                Discover
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                sx={{ color: "#FFFFF5", fontWeight: 500 }}
-              >
-                What happening here?
-              </Typography>
-
-              <Stack direction="row" spacing={1.5}>
-                <Typography
-                  variant="body2"
-                  sx={{ color: "#FFFFF5", fontWeight: 500 }}
-                >
-                  {dateFormat(new Date(), "dd mmmm yyyy")}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{ color: "#C3E978", fontWeight: 600 }}
-                >
-                  {dateFormat(new Date(), "hh.MM TT")}
-                </Typography>
-              </Stack>
-            </Stack>
-          </Grid>
-        </Grid>
         <Grid container pt={8} spacing={3}>
           <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
             <DiscoverVerticalTab />

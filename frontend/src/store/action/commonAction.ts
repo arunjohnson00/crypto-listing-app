@@ -69,3 +69,18 @@ export const latestNewsRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const fearGreedIndexRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/b/v1/fear-index`,
+    method: "GET",
+    secure: false,
+    actionType: COMMON.FEAR_GREED_INDEX,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

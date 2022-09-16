@@ -65,6 +65,7 @@ import LatestNewsCardScroll from "../../../components/desktop/latestnews/LatestN
 import CryptoEventsCardSlider from "../../../components/desktop/cards/cryptoeventscardslider/CryptoEventsCardSlider";
 
 import TelegramGraphImage from "../../../assets/singlepagecoin/graph/telegram.png";
+import FearAndGreedcard from "../../../components/desktop/cards/fearandgreedcard/FearAndGreedcard";
 
 const responsiveNFTCollections = {
   superLargeDesktop: {
@@ -128,15 +129,15 @@ const responsiveVideo = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 5.5,
+    items: 4,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 5.5,
+    items: 4,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 3,
+    items: 2,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
@@ -355,31 +356,53 @@ const HomePage = ({ windowInnerWidth }: any) => {
             paddingBottom: "13px",
           }}
         >
-          {videoList && (
-            <Carousel
-              responsive={responsiveVideo}
-              infinite={true}
-              removeArrowOnDeviceType={["tablet", "mobile"]}
-              arrows={true}
-              draggable={true}
-              swipeable={true}
-              autoPlay={false}
-              minimumTouchDrag={10}
-              keyBoardControl={true}
-              shouldResetAutoplay={false}
+          <Grid container>
+            <Grid
+              xs={8.6}
+              sx={{
+                alignItems: "center",
+                // paddingTop: "0px",
+                paddingBottom: "13px",
+              }}
             >
-              {videoList &&
-                videoList?.map((item: any, index: number) => (
-                  <Box key={index}>
-                    <VideoCard
-                      url={item?.v_url}
-                      title={item?.v_title}
-                      sub_title={item?.v_sub_title}
-                    />
-                  </Box>
-                ))}
-            </Carousel>
-          )}
+              {" "}
+              {videoList && (
+                <Carousel
+                  responsive={responsiveVideo}
+                  infinite={true}
+                  removeArrowOnDeviceType={["tablet", "mobile"]}
+                  arrows={true}
+                  draggable={true}
+                  swipeable={true}
+                  autoPlay={false}
+                  minimumTouchDrag={10}
+                  keyBoardControl={true}
+                  shouldResetAutoplay={false}
+                >
+                  {videoList &&
+                    videoList?.map((item: any, index: number) => (
+                      <Box key={index}>
+                        <VideoCard
+                          url={item?.v_url}
+                          title={item?.v_title}
+                          sub_title={item?.v_sub_title}
+                        />
+                      </Box>
+                    ))}
+                </Carousel>
+              )}
+            </Grid>
+            <Grid
+              xs={3.4}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
+              }}
+            >
+              <FearAndGreedcard width={250} size="small" />
+            </Grid>
+          </Grid>
         </Grid>
 
         <Grid

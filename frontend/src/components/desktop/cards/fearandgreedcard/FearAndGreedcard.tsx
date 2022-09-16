@@ -3,32 +3,20 @@ import { Fragment, useEffect, useState } from "react";
 import moment from "moment";
 import GaugeChart from "react-gauge-chart";
 import Timestamp from "react-timestamp";
+import { useDispatch, useSelector } from "react-redux";
+import { fearGreedIndexRequest } from "../../../../store/action";
 
-const FearAndGreedcard = () => {
-  const [fearGreedIndex, setFearGreedIndex] = useState<any>();
+const FearAndGreedcard = ({ width, size }: any) => {
+  const fearGreedIndex = useSelector((data: any) => {
+    return data?.commonReducer?.fear_greed_index;
+  });
+  const dispatch: any = useDispatch();
   useEffect(() => {
-    const url = "https://api.alternative.me/fng";
-
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url, {
-          method: "GET",
-          mode: "no-cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const json = await response.json();
-        // console.log(json);
-        setFearGreedIndex(json);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(fearGreedIndexRequest("noData", successHandler, errorHandler));
+  }, [dispatch]);
+  console.log(fearGreedIndex);
   return (
     <Fragment>
       {fearGreedIndex && fearGreedIndex?.data[0] && (
@@ -37,12 +25,18 @@ const FearAndGreedcard = () => {
             border: "1px solid #202131",
             background: "#01061A",
             borderRadius: 5,
-            minWidth: 350,
+            minWidth: width && width,
+            width: width && width,
           }}
           p={2}
         >
           <Stack direction="row" spacing={0} justifyContent="space-between">
-            <Stack direction="column" spacing={0}>
+            <Stack
+              direction="column"
+              spacing={
+                size && size === "large" ? 0 : size && size === "small" && -0.6
+              }
+            >
               <Typography
                 variant="caption"
                 sx={{ color: "#40424B", fontWeight: 600 }}
@@ -50,7 +44,11 @@ const FearAndGreedcard = () => {
                 Now
               </Typography>
               <Typography
-                variant="h5"
+                variant={
+                  size && size === "large"
+                    ? "h5"
+                    : size && size === "small" && "body1"
+                }
                 sx={{ color: " #F15F27", fontWeight: 500 }}
               >
                 {fearGreedIndex &&
@@ -58,7 +56,11 @@ const FearAndGreedcard = () => {
               </Typography>
 
               <Typography
-                variant="h4"
+                variant={
+                  size && size === "large"
+                    ? "h4"
+                    : size && size === "small" && "h6"
+                }
                 sx={{ color: " #F15F27", fontWeight: 700 }}
               >
                 {fearGreedIndex && fearGreedIndex?.data[0]?.value}
@@ -68,24 +70,50 @@ const FearAndGreedcard = () => {
             <Stack direction="column" spacing={0}>
               <Typography
                 variant="caption"
-                sx={{ color: "#FFFFFF", fontWeight: 600 }}
+                sx={{
+                  color: "#FFFFFF",
+                  fontWeight: 600,
+                  fontSize:
+                    size && size === "large"
+                      ? ".75rem"
+                      : size && size === "small" && ".65rem",
+                }}
               >
                 {fearGreedIndex && fearGreedIndex?.name}
               </Typography>
             </Stack>
           </Stack>
-          <Stack direction="column" spacing={2} alignItems="center">
+          <Stack
+            direction="column"
+            spacing={
+              size && size === "large" ? 2 : size && size === "small" && 0
+            }
+            alignItems="center"
+          >
             <GaugeChart
               id="gauge-chart2"
               nrOfLevels={20}
               colors={["#ef2828", "#008e49"]}
+              style={{
+                width:
+                  size && size === "large"
+                    ? "auto"
+                    : size && size === "small" && 200,
+              }}
               percent={
                 fearGreedIndex && parseInt(fearGreedIndex?.data[0]?.value) / 100
               }
             />
             <Typography
               variant="caption"
-              sx={{ color: "#40424B", fontWeight: 600 }}
+              sx={{
+                color: "#40424B",
+                fontWeight: 600,
+                fontSize:
+                  size && size === "large"
+                    ? ".75rem"
+                    : size && size === "small" && ".65rem",
+              }}
             >
               Last Updated:{" "}
               <Timestamp

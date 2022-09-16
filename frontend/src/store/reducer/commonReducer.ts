@@ -6,6 +6,7 @@ const initialState = {
   coin_vote: "",
   recent_search: "",
   latest_news_feed: "",
+  fear_greed_index: "",
 };
 const commonReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -41,6 +42,12 @@ const commonReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         latest_news_feed: action?.payload?.data,
+      };
+    case COMMON.FEAR_GREED_INDEX:
+      //console.log(action);
+      return {
+        ...state,
+        fear_greed_index: action?.payload?.data,
       };
 
     default:

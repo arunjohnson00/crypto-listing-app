@@ -200,7 +200,8 @@ const CoinCommunityChart = ({
       },
     },
   };
-
+  const getLastItem = (thePath: any) =>
+    thePath.substring(thePath.lastIndexOf("/") + 1);
   return (
     <Fragment>
       {data && data?.response === true && (
@@ -246,7 +247,7 @@ const CoinCommunityChart = ({
                         textTransform: "lowercase",
                       }}
                     >
-                      {data && data?.data?.social_url}
+                      {data && "@" + getLastItem(data?.data?.social_url)}
                     </Typography>
                   </Stack>
                 </Stack>
