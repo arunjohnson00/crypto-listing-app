@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Grid, Box, Stack, useMediaQuery } from "@mui/material";
 import NotificationBar from "../../components/useradmin/notificationbar/NotificationBar";
 import UserAdminSideBar from "../../components/useradmin/useradminsidebar/UserAdminSideBar";
 import UserAdminMobileBottomNav from "../../components/useradmin/bottomnavigation/UserAdminMobileBottomNav";
 
 const UserAdminView = ({ children }: any) => {
+  const location: any = useLocation();
   const [collapse, setCollapse] = useState(false);
   const matches = useMediaQuery("(min-width:900px)");
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
   return (
     <Box
       sx={{

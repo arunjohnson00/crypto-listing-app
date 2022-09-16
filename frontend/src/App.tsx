@@ -1,10 +1,10 @@
-import "./App.css";
-
 import { Grid } from "@mui/material";
 import AppView from "./layouts/view/AppView";
 import AppRoutes from "./routes/AppRoutes";
 import { ThemeProvider } from "@mui/material";
 import { customTheme } from "./utils/theme/customTheme";
+import "./App.css";
+import { useLocation } from "react-router-dom";
 
 function App() {
   return (

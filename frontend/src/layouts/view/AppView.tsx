@@ -7,6 +7,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { useLocation } from "react-router-dom";
 import AppHeader from "../desktop/header/AppHeader";
 import AppFooter from "../desktop/footer/AppFooter";
 import MobileAppHeader from "../mobile/header/MobileAppHeader";
@@ -16,6 +17,7 @@ import Container from "@mui/material/Container";
 import CoinSlider from "../../components/desktop/coinslider/CoinSlider";
 import logoWhite from "../../assets/logo/logo.png";
 const AppView = ({ children }: any) => {
+  const location: any = useLocation();
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
   window.addEventListener("resize", function (event) {
     setWindowInnerWidth(window.innerWidth);
@@ -28,6 +30,9 @@ const AppView = ({ children }: any) => {
     };
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
   return (
     <Fragment>
       {/* {windowInnerWidth >= 900 && preloader === true && (
