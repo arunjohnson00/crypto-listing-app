@@ -198,7 +198,7 @@ const CoinPageChart = ({ data }: any) => {
           sx={{
             textTransform: "capitalize",
             fontSize: ".8rem",
-            backgroundColor: dateTime === "seven_day" ? "red" : "#1976d2",
+            backgroundColor: dateTime === "seven_day" ? "#6252e7" : "#272c5f",
           }}
           onClick={() => updateData("seven_day")}
         >
@@ -209,7 +209,7 @@ const CoinPageChart = ({ data }: any) => {
           sx={{
             textTransform: "capitalize",
             fontSize: ".8rem",
-            backgroundColor: dateTime === "fifteen_day" ? "red" : "#1976d2",
+            backgroundColor: dateTime === "fifteen_day" ? "#6252e7" : "#272c5f",
           }}
           onClick={() => updateData("fifteen_day")}
         >
@@ -220,7 +220,7 @@ const CoinPageChart = ({ data }: any) => {
           sx={{
             textTransform: "capitalize",
             fontSize: ".8rem",
-            backgroundColor: dateTime === "thirty_day" ? "red" : "#1976d2",
+            backgroundColor: dateTime === "thirty_day" ? "#6252e7" : "#272c5f",
           }}
           onClick={() => updateData("thirty_day")}
         >

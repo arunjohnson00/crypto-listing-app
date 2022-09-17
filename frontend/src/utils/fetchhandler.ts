@@ -24,7 +24,7 @@ const appRequest = (
         type: actionType,
         payload: response,
       });
-
+      console.log(response?.data?.token_status);
       return successHandler ? successHandler(response) : null;
     };
 

@@ -175,10 +175,14 @@ const CoinCommunityChart = ({
 
         min:
           data &&
+          data?.data?.followers?.length > 0 &&
           new Date(
             data?.data?.followers[data?.data?.followers.length - 1][0]
           ).getTime(),
-        max: data && new Date(data?.data?.followers[0][0]).getTime(),
+        max:
+          data &&
+          data?.data?.followers?.length > 0 &&
+          new Date(data?.data?.followers[0][0]).getTime(),
         tickAmount: 6,
       },
       tooltip: {
@@ -204,7 +208,7 @@ const CoinCommunityChart = ({
     thePath.substring(thePath.lastIndexOf("/") + 1);
   return (
     <Fragment>
-      {data && data?.response === true && (
+      {data && data?.response === true && data?.data?.followers?.length > 0 && (
         <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
           <Box
             sx={{ backgroundColor: "#11122b", borderRadius: 2 }}
@@ -326,8 +330,10 @@ const CoinCommunityChart = ({
                     }}
                   >
                     {data &&
-                      data?.data?.followers?.length > 1 &&
-                      parseInt(data?.data?.followers[0][1])?.toLocaleString()}
+                    data?.data?.followers?.length > 1 &&
+                    parseInt(data?.data?.followers[0][1]) !== 0
+                      ? parseInt(data?.data?.followers[0][1])?.toLocaleString()
+                      : 0}
                   </Typography>
                   <Typography
                     sx={{
@@ -370,8 +376,7 @@ const CoinCommunityChart = ({
                         percentageDiff(
                           parseInt(data && data?.data?.followers[1][1]),
                           parseInt(data && data?.data?.followers[0][1])
-                        ).toFixed(2)}
-                      %
+                        ).toFixed(2) + "%"}
                     </Typography>
                   </Typography>
                 </Stack>

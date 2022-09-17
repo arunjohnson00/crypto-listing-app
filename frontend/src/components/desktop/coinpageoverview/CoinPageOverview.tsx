@@ -546,175 +546,177 @@ const CoinPageOverview = () => {
                 </Typography>
               </Stack>
             </Stack>
-
-            <Stack
-              direction="row"
-              sx={{ alignItems: "center", justifyContent: "space-between" }}
-              mt={4}
-            >
+            <Stack direction="column" spacing={1.5}>
               <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={4}
               >
-                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  Total Holders
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    Total Holders
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.total_holders !== null &&
+                  coinDetailOverview[0]?.total_holders !== ""
+                    ? coinDetailOverview[0]?.total_holders
+                    : "NA"}
                 </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 9, height: 9 }}
-                  ></Avatar>
-                </Tooltip>
               </Stack>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                {coinDetailOverview &&
-                coinDetailOverview[0]?.total_holders !== null &&
-                coinDetailOverview[0]?.total_holders !== ""
-                  ? coinDetailOverview[0]?.total_holders
-                  : "NA"}
-              </Typography>
-            </Stack>
 
-            {coinDetailOverview &&
-              coinDetailOverview[0]?.address?.map(
-                (item: any, index: number) => (
-                  <Box key={index}>
-                    {item && item?.name !== null && (
-                      <Stack
-                        direction="row"
-                        sx={{ justifyContent: "space-between" }}
-                        mt={1}
-                        alignItems="center"
-                      >
+              {coinDetailOverview &&
+                coinDetailOverview[0]?.address?.map(
+                  (item: any, index: number) => (
+                    <Box key={index}>
+                      {item && item?.name !== null && (
                         <Stack
-                          direction={{ xs: "row", sm: "row", md: "row" }}
-                          sx={{ alignItems: "center" }}
-                          justifyContent={{
-                            xs: "center",
-                            sm: "center",
-                            md: "center",
-                            lg: "flex-start",
-                          }}
-                          spacing={1}
+                          direction="row"
+                          sx={{ justifyContent: "space-between" }}
+                          mt={0}
+                          alignItems="center"
                         >
-                          <Typography
-                            variant="caption"
-                            sx={{ color: "#B6B6B9" }}
-                          >
-                            {item && item?.name?.length >= 25
-                              ? item?.name?.slice(0, 25) + "..."
-                              : item?.name}
-                          </Typography>
-                          <Tooltip title="Delete">
-                            <Avatar
-                              src={ToolTipImage}
-                              sx={{ width: 9, height: 9 }}
-                            ></Avatar>
-                          </Tooltip>
-                        </Stack>
-
-                        <Stack
-                          direction={{ xs: "row", sm: "row", md: "row" }}
-                          sx={{ alignItems: "center" }}
-                          spacing={0.8}
-                        >
-                          <a
-                            href={item?.url}
-                            style={{
-                              color: "#8A93C9",
-                              //textDecoration: "none"
+                          <Stack
+                            direction={{ xs: "row", sm: "row", md: "row" }}
+                            sx={{ alignItems: "center" }}
+                            justifyContent={{
+                              xs: "center",
+                              sm: "center",
+                              md: "center",
+                              lg: "flex-start",
                             }}
-                            target="_blank"
-                            rel="noreferrer"
+                            spacing={1}
                           >
                             <Typography
-                              variant="subtitle2"
-                              sx={{
-                                //color: "#FFFFF5",
-                                fontSize: "0.65rem",
-                              }}
+                              variant="caption"
+                              sx={{ color: "#B6B6B9" }}
                             >
-                              {item?.address !== ""
-                                ? item &&
-                                  item?.address?.substring(0, 5) +
-                                    "..." +
-                                    item?.address?.slice(-6)
-                                : "NA"}
+                              {item && item?.name?.length >= 25
+                                ? item?.name?.slice(0, 25) + "..."
+                                : item?.name}
                             </Typography>
-                          </a>
-                          {item?.address !== "" && (
-                            <CopyToClipboard
-                              options={{ message: "Copy" }}
-                              text={item?.address}
-                              onCopy={(e: any) => copyHandler(e)}
+                            <Tooltip title="Delete">
+                              <Avatar
+                                src={ToolTipImage}
+                                sx={{ width: 9, height: 9 }}
+                              ></Avatar>
+                            </Tooltip>
+                          </Stack>
+
+                          <Stack
+                            direction={{ xs: "row", sm: "row", md: "row" }}
+                            sx={{ alignItems: "center" }}
+                            spacing={0.8}
+                          >
+                            <a
+                              href={item?.url}
+                              style={{
+                                color: "#8A93C9",
+                                //textDecoration: "none"
+                              }}
+                              target="_blank"
+                              rel="noreferrer"
                             >
-                              <IconButton
-                                sx={{ padding: 0 }}
-                                onClick={() => {
-                                  setCopyValue(item?.address);
-                                }}
+                              <Typography
+                                variant="caption"
+                                sx={
+                                  {
+                                    //color: "#FFFFF5",
+                                    //fontSize: "0.65rem",
+                                  }
+                                }
                               >
-                                <Tooltip
-                                  title={`${
-                                    copied ? "Copied" : "Copy this Token"
-                                  }`}
+                                {item?.address !== ""
+                                  ? item &&
+                                    item?.address?.substring(0, 5) +
+                                      "..." +
+                                      item?.address?.slice(-6)
+                                  : "NA"}
+                              </Typography>
+                            </a>
+                            {item?.address !== "" && (
+                              <CopyToClipboard
+                                options={{ message: "Copy" }}
+                                text={item?.address}
+                                onCopy={(e: any) => copyHandler(e)}
+                              >
+                                <IconButton
+                                  sx={{ padding: 0 }}
+                                  onClick={() => {
+                                    setCopyValue(item?.address);
+                                  }}
                                 >
-                                  <ContentCopyIcon
-                                    sx={{
-                                      color: `${
-                                        copied ? "#19ffb0" : "#19ffb0"
-                                      }`,
-                                      fontSize: ".9rem",
-                                    }}
-                                  />
-                                </Tooltip>
-                              </IconButton>
-                            </CopyToClipboard>
-                          )}
+                                  <Tooltip
+                                    title={`${
+                                      copied ? "Copied" : "Copy this Token"
+                                    }`}
+                                  >
+                                    <ContentCopyIcon
+                                      sx={{
+                                        color: `${
+                                          copied ? "#19ffb0" : "#19ffb0"
+                                        }`,
+                                        fontSize: ".9rem",
+                                      }}
+                                    />
+                                  </Tooltip>
+                                </IconButton>
+                              </CopyToClipboard>
+                            )}
+                          </Stack>
                         </Stack>
-                      </Stack>
-                    )}
-                  </Box>
-                )
-              )}
-            <Stack
-              direction="row"
-              sx={{ alignItems: "center", justifyContent: "space-between" }}
-              mt={1}
-            >
+                      )}
+                    </Box>
+                  )
+                )}
               <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
               >
-                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  In Watchlist
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    In Watchlist
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  API need
                 </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 9, height: 9 }}
-                  ></Avatar>
-                </Tooltip>
               </Stack>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                API need
-              </Typography>
-            </Stack>
-            {/* <Stack
+              {/* <Stack
               direction="row"
               sx={{ alignItems: "center", justifyContent: "space-between" }}
               mt={1}
@@ -749,700 +751,704 @@ const CoinPageOverview = () => {
               </Typography>
             </Stack> */}
 
-            <Stack
-              direction="row"
-              sx={{ alignItems: "center", justifyContent: "space-between" }}
-              mt={1}
-            >
               <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
               >
-                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  ATH In Last 15 Days
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 9, height: 9 }}
-                  ></Avatar>
-                </Tooltip>
-              </Stack>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                {coinDetailOverview &&
-                coinDetailOverview[0]?.low_high_price?.fifteen?.max !== null ? (
-                  String(
-                    Math.trunc(
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    ATH In Last 15 Days
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.low_high_price?.fifteen?.max !==
+                    null ? (
+                    String(
+                      Math.trunc(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                        )
+                      )
+                    ).length > 2 ? (
+                      "$" +
+                      Number(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                        ).toFixed(2)
+                      ).toLocaleString()
+                    ) : coinDetailOverview &&
+                      Math.abs(
+                        coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                      ) > 1 ? (
+                      "$" +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.fifteen?.max
                       )
-                    )
-                  ).length > 2 ? (
-                    "$" +
-                    Number(
+                        .toFixed(4)
+                        .toLocaleString()
+                    ) : (
+                      "$" +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.fifteen?.max
-                      ).toFixed(2)
-                    ).toLocaleString()
-                  ) : coinDetailOverview &&
-                    Math.abs(
-                      coinDetailOverview[0]?.low_high_price?.fifteen?.max
-                    ) > 1 ? (
-                    "$" +
-                    parseFloat(
-                      coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                      )
+                        .toFixed(9)
+                        .toLocaleString()
                     )
-                      .toFixed(4)
-                      .toLocaleString()
                   ) : (
-                    "$" +
-                    parseFloat(
-                      coinDetailOverview[0]?.low_high_price?.fifteen?.max
-                    )
-                      .toFixed(9)
-                      .toLocaleString()
-                  )
-                ) : (
-                  <span style={{ color: "#7a7a7a" }}>NA</span>
-                )}
-              </Typography>
-            </Stack>
-            <Stack
-              direction="row"
-              sx={{ alignItems: "center", justifyContent: "space-between" }}
-              mt={1}
-            >
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
-              >
-                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  ATH Date In Last 15 Days
+                    <span style={{ color: "#7a7a7a" }}>NA</span>
+                  )}
                 </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 9, height: 9 }}
-                  ></Avatar>
-                </Tooltip>
-              </Stack>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                {coinDetailOverview &&
-                coinDetailOverview[0]?.all_time_high_date !== null &&
-                coinDetailOverview[0]?.all_time_high_date !== ""
-                  ? moment(
-                      new Date(coinDetailOverview[0]?.all_time_high_date)
-                    ).format(" DD MMM YY")
-                  : "NA"}
-              </Typography>
-            </Stack>
-
-            <Stack
-              direction="row"
-              sx={{ alignItems: "center", justifyContent: "space-between" }}
-              mt={1}
-            >
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
-              >
-                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  1h %
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 9, height: 9 }}
-                  ></Avatar>
-                </Tooltip>
               </Stack>
               <Stack
                 direction="row"
-                sx={{ alignItems: "center", justifyContent: "flex-end" }}
-                spacing={0}
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
               >
-                {coinDetailOverview &&
-                coinDetailOverview[0]?.percent_change_1h !== null &&
-                Math.sign(
-                  parseFloat(coinDetailOverview[0]?.percent_change_1h)
-                ) === -1 ? (
-                  <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                ) : (
-                  coinDetailOverview &&
-                  coinDetailOverview[0]?.percent_change_1h !== null && (
-                    <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                  )
-                )}
-                <Typography
-                  variant="caption"
-                  sx={{
-                    color:
-                      coinDetailOverview &&
-                      Math.sign(
-                        parseFloat(coinDetailOverview[0]?.percent_change_1h)
-                      ) === -1
-                        ? "#ff0000"
-                        : "#00ff00",
-                    fontWeight: 500,
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
                   }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    ATH Date In Last 15 Days
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.all_time_high_date !== null &&
+                  coinDetailOverview[0]?.all_time_high_date !== ""
+                    ? moment(
+                        new Date(coinDetailOverview[0]?.all_time_high_date)
+                      ).format(" DD MMM YY")
+                    : "NA"}
+                </Typography>
+              </Stack>
+
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
+              >
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    1h %
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                  spacing={0}
                 >
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.percent_change_1h !== null &&
-                  coinDetailOverview[0]?.percent_change_1h !== "" ? (
+                  Math.sign(
                     parseFloat(coinDetailOverview[0]?.percent_change_1h)
-                      .toFixed(2)
-                      .replace("-", "") + "%"
+                  ) === -1 ? (
+                    <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_1h !== null && (
+                      <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                    )
                   )}
-                </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color:
+                        coinDetailOverview &&
+                        Math.sign(
+                          parseFloat(coinDetailOverview[0]?.percent_change_1h)
+                        ) === -1
+                          ? "#ff0000"
+                          : "#00ff00",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_1h !== null &&
+                    coinDetailOverview[0]?.percent_change_1h !== "" ? (
+                      parseFloat(coinDetailOverview[0]?.percent_change_1h)
+                        .toFixed(2)
+                        .replace("-", "") + "%"
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
+                  </Typography>
+                </Stack>
               </Stack>
-            </Stack>
 
-            <Stack
-              direction="row"
-              sx={{ alignItems: "center", justifyContent: "space-between" }}
-              mt={1}
-            >
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
-              >
-                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  24h %
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 9, height: 9 }}
-                  ></Avatar>
-                </Tooltip>
-              </Stack>
               <Stack
                 direction="row"
-                sx={{ alignItems: "center", justifyContent: "flex-end" }}
-                spacing={0}
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
               >
-                {coinDetailOverview &&
-                coinDetailOverview[0]?.percent_change_24h !== null &&
-                Math.sign(
-                  parseFloat(coinDetailOverview[0]?.percent_change_24h)
-                ) === -1 ? (
-                  <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                ) : (
-                  coinDetailOverview &&
-                  coinDetailOverview[0]?.percent_change_24h !== null && (
-                    <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                  )
-                )}
-                <Typography
-                  variant="caption"
-                  sx={{
-                    color:
-                      coinDetailOverview &&
-                      Math.sign(
-                        parseFloat(coinDetailOverview[0]?.percent_change_24h)
-                      ) === -1
-                        ? "#ff0000"
-                        : "#00ff00",
-                    fontWeight: 500,
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
                   }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    24h %
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                  spacing={0}
                 >
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.percent_change_24h !== null &&
-                  coinDetailOverview[0]?.percent_change_24h !== "" ? (
+                  Math.sign(
                     parseFloat(coinDetailOverview[0]?.percent_change_24h)
-                      .toFixed(2)
-                      .replace("-", "") + "%"
+                  ) === -1 ? (
+                    <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_24h !== null && (
+                      <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                    )
                   )}
-                </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color:
+                        coinDetailOverview &&
+                        Math.sign(
+                          parseFloat(coinDetailOverview[0]?.percent_change_24h)
+                        ) === -1
+                          ? "#ff0000"
+                          : "#00ff00",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_24h !== null &&
+                    coinDetailOverview[0]?.percent_change_24h !== "" ? (
+                      parseFloat(coinDetailOverview[0]?.percent_change_24h)
+                        .toFixed(2)
+                        .replace("-", "") + "%"
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
+                  </Typography>
+                </Stack>
               </Stack>
-            </Stack>
 
-            <Stack
-              direction="row"
-              sx={{ alignItems: "center", justifyContent: "space-between" }}
-              mt={1}
-            >
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
-              >
-                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  7d %
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 9, height: 9 }}
-                  ></Avatar>
-                </Tooltip>
-              </Stack>
               <Stack
                 direction="row"
-                sx={{ alignItems: "center", justifyContent: "flex-end" }}
-                spacing={0}
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
               >
-                {coinDetailOverview &&
-                coinDetailOverview[0]?.percent_change_7d !== null &&
-                Math.sign(
-                  parseFloat(coinDetailOverview[0]?.percent_change_7d)
-                ) === -1 ? (
-                  <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                ) : (
-                  coinDetailOverview &&
-                  coinDetailOverview[0]?.percent_change_7d !== null && (
-                    <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                  )
-                )}
-                <Typography
-                  variant="caption"
-                  sx={{
-                    color:
-                      coinDetailOverview &&
-                      Math.sign(
-                        parseFloat(coinDetailOverview[0]?.percent_change_7d)
-                      ) === -1
-                        ? "#ff0000"
-                        : "#00ff00",
-                    fontWeight: 500,
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
                   }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    7d %
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                  spacing={0}
                 >
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.percent_change_7d !== null &&
-                  coinDetailOverview[0]?.percent_change_7d !== "" ? (
+                  Math.sign(
                     parseFloat(coinDetailOverview[0]?.percent_change_7d)
-                      .toFixed(2)
-                      .replace("-", "") + "%"
+                  ) === -1 ? (
+                    <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_7d !== null && (
+                      <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                    )
                   )}
-                </Typography>
-              </Stack>
-            </Stack>
-            <Stack
-              direction="row"
-              sx={{ alignItems: "center", justifyContent: "space-between" }}
-              mt={1}
-            >
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
-              >
-                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  30d %
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 9, height: 9 }}
-                  ></Avatar>
-                </Tooltip>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color:
+                        coinDetailOverview &&
+                        Math.sign(
+                          parseFloat(coinDetailOverview[0]?.percent_change_7d)
+                        ) === -1
+                          ? "#ff0000"
+                          : "#00ff00",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_7d !== null &&
+                    coinDetailOverview[0]?.percent_change_7d !== "" ? (
+                      parseFloat(coinDetailOverview[0]?.percent_change_7d)
+                        .toFixed(2)
+                        .replace("-", "") + "%"
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
+                  </Typography>
+                </Stack>
               </Stack>
               <Stack
                 direction="row"
-                sx={{ alignItems: "center", justifyContent: "flex-end" }}
-                spacing={0}
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
               >
-                {coinDetailOverview &&
-                coinDetailOverview[0]?.percent_change_30d !== null &&
-                Math.sign(
-                  parseFloat(coinDetailOverview[0]?.percent_change_30d)
-                ) === -1 ? (
-                  <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                ) : (
-                  coinDetailOverview &&
-                  coinDetailOverview[0]?.percent_change_30d !== null && (
-                    <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                  )
-                )}
-                <Typography
-                  variant="caption"
-                  sx={{
-                    color:
-                      coinDetailOverview &&
-                      Math.sign(
-                        parseFloat(coinDetailOverview[0]?.percent_change_30d)
-                      ) === -1
-                        ? "#ff0000"
-                        : "#00ff00",
-                    fontWeight: 500,
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
                   }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    30d %
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                  spacing={0}
                 >
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.percent_change_30d !== null &&
-                  coinDetailOverview[0]?.percent_change_30d !== "" ? (
+                  Math.sign(
                     parseFloat(coinDetailOverview[0]?.percent_change_30d)
-                      .toFixed(2)
-                      .replace("-", "") + "%"
+                  ) === -1 ? (
+                    <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_30d !== null && (
+                      <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                    )
                   )}
-                </Typography>
-              </Stack>
-            </Stack>
-            <Stack
-              direction="row"
-              sx={{ alignItems: "center", justifyContent: "space-between" }}
-              mt={1}
-            >
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
-              >
-                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  60d %
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 9, height: 9 }}
-                  ></Avatar>
-                </Tooltip>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color:
+                        coinDetailOverview &&
+                        Math.sign(
+                          parseFloat(coinDetailOverview[0]?.percent_change_30d)
+                        ) === -1
+                          ? "#ff0000"
+                          : "#00ff00",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_30d !== null &&
+                    coinDetailOverview[0]?.percent_change_30d !== "" ? (
+                      parseFloat(coinDetailOverview[0]?.percent_change_30d)
+                        .toFixed(2)
+                        .replace("-", "") + "%"
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
+                  </Typography>
+                </Stack>
               </Stack>
               <Stack
                 direction="row"
-                sx={{ alignItems: "center", justifyContent: "flex-end" }}
-                spacing={0}
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
               >
-                {coinDetailOverview &&
-                coinDetailOverview[0]?.percent_change_60d !== null &&
-                Math.sign(
-                  parseFloat(coinDetailOverview[0]?.percent_change_60d)
-                ) === -1 ? (
-                  <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                ) : (
-                  coinDetailOverview &&
-                  coinDetailOverview[0]?.percent_change_60d !== null && (
-                    <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                  )
-                )}
-                <Typography
-                  variant="caption"
-                  sx={{
-                    color:
-                      coinDetailOverview &&
-                      Math.sign(
-                        parseFloat(coinDetailOverview[0]?.percent_change_60d)
-                      ) === -1
-                        ? "#ff0000"
-                        : "#00ff00",
-                    fontWeight: 500,
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
                   }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    60d %
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                  spacing={0}
                 >
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.percent_change_60d !== null &&
-                  coinDetailOverview[0]?.percent_change_60d !== "" ? (
+                  Math.sign(
                     parseFloat(coinDetailOverview[0]?.percent_change_60d)
-                      .toFixed(2)
-                      .replace("-", "") + "%"
+                  ) === -1 ? (
+                    <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_60d !== null && (
+                      <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                    )
                   )}
-                </Typography>
-              </Stack>
-            </Stack>
-            <Stack
-              direction="row"
-              sx={{ alignItems: "center", justifyContent: "space-between" }}
-              mt={1}
-            >
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
-              >
-                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  90d %
-                </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 9, height: 9 }}
-                  ></Avatar>
-                </Tooltip>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color:
+                        coinDetailOverview &&
+                        Math.sign(
+                          parseFloat(coinDetailOverview[0]?.percent_change_60d)
+                        ) === -1
+                          ? "#ff0000"
+                          : "#00ff00",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_60d !== null &&
+                    coinDetailOverview[0]?.percent_change_60d !== "" ? (
+                      parseFloat(coinDetailOverview[0]?.percent_change_60d)
+                        .toFixed(2)
+                        .replace("-", "") + "%"
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
+                  </Typography>
+                </Stack>
               </Stack>
               <Stack
                 direction="row"
-                sx={{ alignItems: "center", justifyContent: "flex-end" }}
-                spacing={0}
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
               >
-                {coinDetailOverview &&
-                coinDetailOverview[0]?.percent_change_90d !== null &&
-                Math.sign(
-                  parseFloat(coinDetailOverview[0]?.percent_change_90d)
-                ) === -1 ? (
-                  <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                ) : (
-                  coinDetailOverview &&
-                  coinDetailOverview[0]?.percent_change_90d !== null && (
-                    <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                  )
-                )}
-                <Typography
-                  variant="caption"
-                  sx={{
-                    color:
-                      coinDetailOverview &&
-                      Math.sign(
-                        parseFloat(coinDetailOverview[0]?.percent_change_90d)
-                      ) === -1
-                        ? "#ff0000"
-                        : "#00ff00",
-                    fontWeight: 500,
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
                   }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    90d %
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                  spacing={0}
                 >
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.percent_change_90d !== null &&
-                  coinDetailOverview[0]?.percent_change_90d !== "" ? (
+                  Math.sign(
                     parseFloat(coinDetailOverview[0]?.percent_change_90d)
-                      .toFixed(2)
-                      .replace("-", "") + "%"
+                  ) === -1 ? (
+                    <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_90d !== null && (
+                      <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                    )
                   )}
-                </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color:
+                        coinDetailOverview &&
+                        Math.sign(
+                          parseFloat(coinDetailOverview[0]?.percent_change_90d)
+                        ) === -1
+                          ? "#ff0000"
+                          : "#00ff00",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_90d !== null &&
+                    coinDetailOverview[0]?.percent_change_90d !== "" ? (
+                      parseFloat(coinDetailOverview[0]?.percent_change_90d)
+                        .toFixed(2)
+                        .replace("-", "") + "%"
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
+                  </Typography>
+                </Stack>
               </Stack>
-            </Stack>
-            <Stack
-              direction="row"
-              sx={{ alignItems: "center", justifyContent: "space-between" }}
-              mt={1}
-            >
               <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
               >
-                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  Volume 24h
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    Volume 24h
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.volume_24h !== null &&
+                  coinDetailOverview[0]?.volume_24h !== ""
+                    ? Math.floor(
+                        Math.abs(coinDetailOverview[0]?.volume_24h)
+                      ).toLocaleString()
+                    : "NA"}
                 </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 9, height: 9 }}
-                  ></Avatar>
-                </Tooltip>
               </Stack>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                {coinDetailOverview &&
-                coinDetailOverview[0]?.volume_24h !== null &&
-                coinDetailOverview[0]?.volume_24h !== ""
-                  ? Math.floor(
-                      Math.abs(coinDetailOverview[0]?.volume_24h)
-                    ).toLocaleString()
-                  : "NA"}
-              </Typography>
-            </Stack>
 
-            <Stack
-              direction="row"
-              sx={{ alignItems: "center", justifyContent: "space-between" }}
-              mt={1}
-            >
               <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
               >
-                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  Market Cap
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    Market Cap
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.market_cap !== null &&
+                  coinDetailOverview[0]?.market_cap !== ""
+                    ? Math.floor(
+                        Math.abs(coinDetailOverview[0]?.market_cap)
+                      ).toLocaleString()
+                    : "NA"}
                 </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 9, height: 9 }}
-                  ></Avatar>
-                </Tooltip>
               </Stack>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                {coinDetailOverview &&
-                coinDetailOverview[0]?.market_cap !== null &&
-                coinDetailOverview[0]?.market_cap !== ""
-                  ? Math.floor(
-                      Math.abs(coinDetailOverview[0]?.market_cap)
-                    ).toLocaleString()
-                  : "NA"}
-              </Typography>
-            </Stack>
 
-            <Stack
-              direction="row"
-              sx={{ alignItems: "center", justifyContent: "space-between" }}
-              mt={1}
-            >
               <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
               >
-                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  Fully Diluted Market Cap
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    Fully Diluted Market Cap
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.fully_diluted_market_cap !== null &&
+                  coinDetailOverview[0]?.fully_diluted_market_cap !== ""
+                    ? Math.floor(
+                        Math.abs(
+                          coinDetailOverview[0]?.fully_diluted_market_cap
+                        )
+                      ).toLocaleString()
+                    : "NA"}
                 </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 9, height: 9 }}
-                  ></Avatar>
-                </Tooltip>
               </Stack>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                {coinDetailOverview &&
-                coinDetailOverview[0]?.fully_diluted_market_cap !== null &&
-                coinDetailOverview[0]?.fully_diluted_market_cap !== ""
-                  ? Math.floor(
-                      Math.abs(coinDetailOverview[0]?.fully_diluted_market_cap)
-                    ).toLocaleString()
-                  : "NA"}
-              </Typography>
-            </Stack>
 
-            <Stack
-              direction="row"
-              sx={{ alignItems: "center", justifyContent: "space-between" }}
-              mt={1}
-            >
               <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
               >
-                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  Circulating Supply
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    Circulating Supply
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.circulating_supply !== null &&
+                  coinDetailOverview[0]?.circulating_supply !== ""
+                    ? Math.floor(
+                        Math.abs(coinDetailOverview[0]?.circulating_supply)
+                      ).toLocaleString()
+                    : "NA"}
                 </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 9, height: 9 }}
-                  ></Avatar>
-                </Tooltip>
               </Stack>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                {coinDetailOverview &&
-                coinDetailOverview[0]?.circulating_supply !== null &&
-                coinDetailOverview[0]?.circulating_supply !== ""
-                  ? Math.floor(
-                      Math.abs(coinDetailOverview[0]?.circulating_supply)
-                    ).toLocaleString()
-                  : "NA"}
-              </Typography>
-            </Stack>
-            <Stack
-              direction="row"
-              sx={{ alignItems: "center", justifyContent: "space-between" }}
-              mt={1}
-            >
               <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                sx={{ alignItems: "center" }}
-                justifyContent={{
-                  xs: "center",
-                  sm: "center",
-                  md: "center",
-                  lg: "flex-start",
-                }}
-                spacing={1}
+                direction="row"
+                sx={{ alignItems: "center", justifyContent: "space-between" }}
+                mt={1}
               >
-                <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
-                  Total Supply
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center" }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "flex-start",
+                  }}
+                  spacing={1}
+                >
+                  <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+                    Total Supply
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.total_supply !== null &&
+                  coinDetailOverview[0]?.total_supply !== ""
+                    ? Math.floor(
+                        Math.abs(coinDetailOverview[0]?.total_supply)
+                      ).toLocaleString()
+                    : "NA"}
                 </Typography>
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 9, height: 9 }}
-                  ></Avatar>
-                </Tooltip>
               </Stack>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                {coinDetailOverview &&
-                coinDetailOverview[0]?.total_supply !== null &&
-                coinDetailOverview[0]?.total_supply !== ""
-                  ? Math.floor(
-                      Math.abs(coinDetailOverview[0]?.total_supply)
-                    ).toLocaleString()
-                  : "NA"}
-              </Typography>
             </Stack>
           </Stack>
         </Grid>
