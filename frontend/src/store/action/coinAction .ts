@@ -245,3 +245,18 @@ export const coinlatestNewsRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const coinRecentlyAddedRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/recently-added?page=${values}`,
+    method: "GET",
+    secure: false,
+    actionType: COIN.COIN_RECENTLY_ADDED,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

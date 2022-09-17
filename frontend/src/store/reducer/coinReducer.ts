@@ -16,6 +16,7 @@ const initialState = {
   coin_presale_block: "",
   most_visited: "",
   news_block: "",
+  recently_added: "",
 };
 const coinReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -118,6 +119,13 @@ const coinReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         news_block: action?.payload?.data,
+      };
+
+    case COIN.COIN_RECENTLY_ADDED:
+      //console.log(action);
+      return {
+        ...state,
+        recently_added: action?.payload?.data,
       };
 
     default:

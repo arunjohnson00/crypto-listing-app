@@ -40,6 +40,7 @@ import EventsAdd from "../pages/useradmin/events/add/EventsAdd";
 import EventsEdit from "../pages/useradmin/events/edit/EventsEdit";
 import AirDropsAdd from "../pages/useradmin/airdrops/add/AirDropsAdd";
 import AirDropsEdit from "../pages/useradmin/airdrops/edit/AirDropsEdit";
+import SupportPage from "../pages/desktop/supportpage/SupportPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -291,7 +292,14 @@ const AppRoutes = () => {
             </PublicRoutes>
           }
         />
-
+        <Route
+          path="/support"
+          element={
+            <PublicRoutes>
+              <SupportPage />
+            </PublicRoutes>
+          }
+        />
         <Route
           path="/user-dashboard"
           element={

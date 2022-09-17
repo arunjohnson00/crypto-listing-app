@@ -977,20 +977,20 @@ const AppFooter = () => {
             </Stack>
           </Grid>
         </Grid>
-        {/* <Divider
-          variant="middle"
-          orientation="horizontal"
-          flexItem
-          sx={{ borderColor: "#3D444D" }}
-        />
 
         <Stack
-          direction={{ xs: "column", sm: "column", md: "row" }}
-          py={2}
-          sx={{ alignItems: "center", justifyContent: "space-between" }}
+          direction={{ xs: "column", sm: "column", md: "column" }}
+          py={5}
+          sx={{ alignItems: "flex-start", justifyContent: "space-between" }}
           px={0}
           spacing={2}
         >
+          <Divider
+            variant="fullWidth"
+            orientation="horizontal"
+            flexItem
+            sx={{ borderColor: "#3D444D" }}
+          />
           <Typography
             variant="body2"
             sx={{
@@ -999,9 +999,9 @@ const AppFooter = () => {
               fontSize: "0.8rem",
             }}
           >
-            Become a parner
+            © 2022 CoinXhigh. All rights reserved
           </Typography>{" "}
-          <Box>
+          {/* <Box>
             {" "}
             <Stack direction="row" spacing={1}>
               <Avatar
@@ -1025,8 +1025,8 @@ const AppFooter = () => {
                 sx={{ width: 35, height: 35 }}
               />
             </Stack>
-          </Box>
-        </Stack> */}
+          </Box> */}
+        </Stack>
       </Box>
     </Grid>
   );

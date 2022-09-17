@@ -39,6 +39,7 @@ export { coinEventBlockRequest } from "./coinAction ";
 export { coinPresaleBlockRequest } from "./coinAction ";
 export { coinVisitedCounterRequest } from "./coinAction ";
 export { coinlatestNewsRequest } from "./coinAction ";
+export { coinRecentlyAddedRequest } from "./coinAction ";
 //Coins Page
 
 export { coinsRecentlyAddedRequest } from "./coinsAction";
