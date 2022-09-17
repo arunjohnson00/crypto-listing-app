@@ -63,7 +63,6 @@ const DiscoverVerticalTab = () => {
         backgroundColor: "#020419",
         display: "flex",
         color: "#FFFFF5",
-        //paddingLeft: "62px",
       }}
       flexDirection={{ xs: "column", sm: "column", md: "row", lg: "row" }}
     >
@@ -196,7 +195,7 @@ const DiscoverVerticalTab = () => {
           }}
         />
       </Tabs>
-      <Box sx={{ width: "80%" }}>
+      <Box sx={{ width: "82%" }} p={0}>
         <TabPanel value={value} index={0}>
           <DiscoverLatest />
         </TabPanel>

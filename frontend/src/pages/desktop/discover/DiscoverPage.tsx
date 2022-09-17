@@ -201,7 +201,7 @@ const DiscoverPage = () => {
           </Grid>
         </Grid>
 
-        <Grid container pt={0} spacing={3}>
+        <Grid container pt={2} spacing={3}>
           <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
             <DiscoverVerticalTab />
           </Grid>

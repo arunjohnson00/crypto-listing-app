@@ -32,7 +32,7 @@ const CoinPageChart = ({ data }: any) => {
         type: "area",
         height: "auto",
         zoom: {
-          autoScaleYaxis: true,
+          autoScaleYaxis: false,
         },
       },
       grid: {

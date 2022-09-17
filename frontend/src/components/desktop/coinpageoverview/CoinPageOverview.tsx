@@ -42,12 +42,12 @@ const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 3,
+    items: 5,
     slidesToSlide: 1,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 3,
+    items: 5,
     slidesToSlide: 1,
   },
 
@@ -1851,44 +1851,43 @@ const CoinPageOverview = () => {
               )}
           </Grid>
         )}
-
-        <Grid xs={12} pt={5}>
-          <Typography variant="h6" sx={{ color: "#FFFFF5" }} mb={1}>
-            Recently Added
-          </Typography>
-          <div
-            style={{
-              paddingTop: "10px",
-              width: "100%",
-              boxSizing: "border-box",
-              margin: "0 auto",
-            }}
-          >
-            {latestCoin && (
-              <Carousel
-                focusOnSelect={true}
-                responsive={responsive}
-                infinite={true}
-                autoPlay={true}
-                showDots={false}
-                removeArrowOnDeviceType={[
-                  "tablet",
-                  "mobile",
-                  // "desktop",
-                  // "superLargeDesktop",
-                ]}
-                //customLeftArrow={<CustomLeftArrow />}
-              >
-                {latestCoin &&
-                  latestCoin?.map((item: any, index: number) => (
-                    <div key={index}>
-                      <DiscoverRecentCryptoCard item={item} />
-                    </div>
-                  ))}
-              </Carousel>
-            )}
-          </div>
-        </Grid>
+      </Grid>
+      <Grid xs={12} pt={2}>
+        <Typography variant="h6" sx={{ color: "#FFFFF5" }} mb={1}>
+          Recently Added
+        </Typography>
+        <div
+          style={{
+            paddingTop: "10px",
+            width: "100%",
+            boxSizing: "border-box",
+            margin: "0 auto",
+          }}
+        >
+          {latestCoin && (
+            <Carousel
+              focusOnSelect={true}
+              responsive={responsive}
+              infinite={true}
+              autoPlay={true}
+              showDots={false}
+              removeArrowOnDeviceType={[
+                "tablet",
+                "mobile",
+                // "desktop",
+                // "superLargeDesktop",
+              ]}
+              //customLeftArrow={<CustomLeftArrow />}
+            >
+              {latestCoin &&
+                latestCoin?.map((item: any, index: number) => (
+                  <div key={index}>
+                    <DiscoverRecentCryptoCard item={item} />
+                  </div>
+                ))}
+            </Carousel>
+          )}
+        </div>
       </Grid>
     </Grid>
   );
