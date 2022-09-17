@@ -189,6 +189,26 @@ const NFTListingEdit = () => {
     dispatch(updateNftListingRequest(formData, successHandler, errorHandler));
   };
 
+  const [presaleEndDateTime, setPresaleEndDateTime] = useState<boolean>(false);
+
+  const presaleEndTimeOpenHandler = () => {
+    setPresaleEndDateTime(true);
+  };
+
+  const presaleEndTimeCloseHandler = () => {
+    setPresaleEndDateTime(false);
+  };
+  const [publicMintEndDateTime, setPublicMintEndDateTime] =
+    useState<boolean>(false);
+
+  const publicMintEndTimeOpenHandler = () => {
+    setPublicMintEndDateTime(true);
+  };
+
+  const publicMintEndTimeCloseHandler = () => {
+    setPublicMintEndDateTime(false);
+  };
+
   const [eventMarketCount, setEventMarketCount] = useState<any[]>([]);
 
   const eventMarketaddHandle = () => {
@@ -210,26 +230,6 @@ const NFTListingEdit = () => {
       ...nftListingData,
       has_many_marketplaces: eventmarketlist,
     });
-  };
-
-  const [presaleEndDateTime, setPresaleEndDateTime] = useState<boolean>(false);
-
-  const presaleEndTimeOpenHandler = () => {
-    setPresaleEndDateTime(true);
-  };
-
-  const presaleEndTimeCloseHandler = () => {
-    setPresaleEndDateTime(false);
-  };
-  const [publicMintEndDateTime, setPublicMintEndDateTime] =
-    useState<boolean>(false);
-
-  const publicMintEndTimeOpenHandler = () => {
-    setPublicMintEndDateTime(true);
-  };
-
-  const publicMintEndTimeCloseHandler = () => {
-    setPublicMintEndDateTime(false);
   };
 
   const [communityCount, setcommunityCount] = useState<any[]>([]);

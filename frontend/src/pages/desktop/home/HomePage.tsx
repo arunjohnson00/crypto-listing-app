@@ -358,7 +358,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
         >
           <Grid container>
             <Grid
-              xs={8.6}
+              xs={9}
               sx={{
                 alignItems: "center",
                 // paddingTop: "0px",
@@ -393,14 +393,14 @@ const HomePage = ({ windowInnerWidth }: any) => {
               )}
             </Grid>
             <Grid
-              xs={3.4}
+              xs={3}
               sx={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "flex-end",
               }}
             >
-              <FearAndGreedcard width={250} size="small" />
+              <FearAndGreedcard width={"auto"} size="small" />
             </Grid>
           </Grid>
         </Grid>
