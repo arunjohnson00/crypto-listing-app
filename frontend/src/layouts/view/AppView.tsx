@@ -6,6 +6,7 @@ import {
   LinearProgress,
   Stack,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import AppHeader from "../desktop/header/AppHeader";
@@ -33,6 +34,8 @@ const AppView = ({ children }: any) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
+
+  const matchesXL = useMediaQuery("(max-width:1536px)");
   return (
     <Fragment>
       {/* {windowInnerWidth >= 900 && preloader === true && (
@@ -95,7 +98,11 @@ const AppView = ({ children }: any) => {
         </Box>
       )} */}
       <Container maxWidth={false}>
-        <Grid item ml={5} px={{ xs: 0.2, sm: 1, md: 3, lg: 4, xl: 25 }}>
+        <Grid
+          item
+          ml={5}
+          px={{ xs: 0.2, sm: 1, md: 3, lg: 4, xl: matchesXL ? 7 : 25 }}
+        >
           <Grid
             container
             spacing={5}
@@ -126,7 +133,11 @@ const AppView = ({ children }: any) => {
           }}
         >
           {windowInnerWidth >= 900 ? (
-            <Grid item ml={5} px={{ xs: 0.2, sm: 1, md: 3, lg: 4, xl: 25 }}>
+            <Grid
+              item
+              ml={5}
+              px={{ xs: 0.2, sm: 1, md: 3, lg: 4, xl: matchesXL ? 7 : 25 }}
+            >
               <AppFooter />
             </Grid>
           ) : (
