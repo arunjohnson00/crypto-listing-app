@@ -1,13 +1,8 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {
-  TextField,
-  Autocomplete,
-  Typography,
-  Box,
-  Avatar,
-  Stack,
-} from "@mui/material";
+import { TextField, Typography, Box, Avatar, Stack } from "@mui/material";
+import Autocomplete, { autocompleteClasses } from "@mui/material/Autocomplete";
+import SearchIcon from "@mui/icons-material/Search";
 import {
   dashboardAirdropsCoinListRequest,
   dashboardEventsCoinListRequest,
@@ -105,6 +100,9 @@ const AutoCompleSelect = ({
     <Autocomplete
       // disablePortal
       // defaultValue={`${defaultVal !== undefined && defaultVal}`}
+      disableClearable
+      disablePortal
+      popupIcon={<SearchIcon />}
       value={`${
         defaultVal !== undefined
           ? defaultVal
@@ -160,6 +158,9 @@ const AutoCompleSelect = ({
         </Stack>
       )}
       sx={{
+        [`& .${autocompleteClasses.popupIndicator}`]: {
+          transform: "none",
+        },
         width: "auto",
         marginBottom: 1,
         fontSize: ".8rem",

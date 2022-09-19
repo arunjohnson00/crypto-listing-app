@@ -82,7 +82,7 @@ const CoinPageCommunity = () => {
         variant="github"
         title="Github"
         colorTheme="#404EED"
-        icon={DiscordGraphImage}
+        icon={GithubGraphImage}
         chartid="github"
       />
     </Grid>

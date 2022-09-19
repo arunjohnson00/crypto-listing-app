@@ -14,6 +14,7 @@ import ArrowDropUp from "@mui/icons-material/ArrowDropUp";
 import LanguageIcon from "@mui/icons-material/Language";
 import Telegram from "@mui/icons-material/Telegram";
 import Twitter from "@mui/icons-material/Twitter";
+import { Link } from "react-router-dom";
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const DiscoverRecentCryptoCard = ({ item }: any) => {
   // const prevCountRef = useRef();
@@ -292,26 +293,31 @@ const DiscoverRecentCryptoCard = ({ item }: any) => {
           alignItems="center"
           mt={2}
         >
-          <Typography
-            variant="subtitle1"
-            sx={{
-              color: "#C6C9D2",
-              fontWeight: 500,
-              fontSize: ".9rem",
-              textAlign: "center",
-            }}
+          <Link
+            to={`/coin/${item && item?.slug}`}
+            style={{ textDecoration: "none" }}
           >
-            {item && item?.name?.length >= 20
-              ? item && item?.name?.slice(0, 20) + "..."
-              : item && item?.name}
-          </Typography>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                color: "#C6C9D2",
+                fontWeight: 500,
+                fontSize: ".9rem",
+                textAlign: "center",
+              }}
+            >
+              {item && item?.name?.length >= 20
+                ? item && item?.name?.slice(0, 20) + "..."
+                : item && item?.name}
+            </Typography>
+          </Link>
           <Typography
             variant="caption"
             sx={{ color: "#C6C9D2", fontWeight: "400", fontSize: 10 }}
           >
             {item && item?.symbol}
           </Typography>
-          <Stack direction="column" spacing={0} sx={{ alignItems: "center" }}>
+          {/* <Stack direction="column" spacing={0} sx={{ alignItems: "center" }}>
             <Typography
               variant="h5"
               sx={{ color: "#FFFFF5", fontWeight: "400" }}
@@ -325,7 +331,7 @@ const DiscoverRecentCryptoCard = ({ item }: any) => {
               readOnly
               sx={{ fontSize: ".9rem" }}
             />
-          </Stack>
+          </Stack> */}
         </Stack>
         <Stack direction="row" justifyContent="center" pt={2} pb={2}>
           <IconButton aria-label="delete">

@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
   TextField,
-  Autocomplete,
+  //Autocomplete,
   Typography,
   Box,
   Avatar,
   Stack,
 } from "@mui/material";
+import Autocomplete, { autocompleteClasses } from "@mui/material/Autocomplete";
 import { allCoinRequest } from "../../../store/action";
 import { allNftListingRequest } from "../../../store/action";
 import { airDropListSearchWithCoinSearchRequest } from "../../../store/action";
@@ -82,8 +83,9 @@ const AutoCompleSelect = ({
   };
   return (
     <Autocomplete
-      // disablePortal
+      disablePortal
       // defaultValue={`${defaultVal !== undefined && defaultVal}`}
+      disableClearable
       value={`${
         defaultVal !== undefined
           ? defaultVal
@@ -138,6 +140,9 @@ const AutoCompleSelect = ({
         </Stack>
       )}
       sx={{
+        [`& .${autocompleteClasses.popupIndicator}`]: {
+          transform: "none",
+        },
         width: "auto",
         marginBottom: 1,
         fontSize: ".8rem",

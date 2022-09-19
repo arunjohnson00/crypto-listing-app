@@ -29,16 +29,16 @@ const VideoCard = ({ url, title, sub_title }: any) => {
             fontWeight: 500,
           }}
         >
-          {title && title.length >= 35
-            ? title && title.slice(0, 35) + "..."
+          {title && title.length >= 40
+            ? title && title.slice(0, 40) + "..."
             : title && title}
         </Typography>
       </a>
-      <Typography sx={{ color: "#FFFFFF", fontSize: ".8rem", fontWeight: 400 }}>
+      {/* <Typography sx={{ color: "#FFFFFF", fontSize: ".8rem", fontWeight: 400 }}>
         {sub_title && sub_title.length >= 35
           ? sub_title && sub_title.slice(0, 35) + "..."
           : sub_title && sub_title}
-      </Typography>
+      </Typography> */}
     </Box>
   );
 };

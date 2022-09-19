@@ -140,11 +140,12 @@ const SocialCounterWithGraphCard = ({
       //     "2018-09-19T06:30:00.000Z",
       //   ],
       // },
-      // tooltip: {
-      //   x: {
-      //     format: "dd/MM/yy HH:mm",
-      //   },
-      // },
+      tooltip: {
+        enabled: false,
+        x: {
+          format: "dd/MM/yy HH:mm",
+        },
+      },
     },
   };
   return (

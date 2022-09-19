@@ -106,7 +106,7 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
     ) {
       localStorage.setItem("recent_search", JSON.stringify([slug]));
     } else {
-      newArray.push(slug);
+      newArray.unshift(slug);
       localStorage.setItem(
         "recent_search",
         JSON.stringify(Array.from(new Set([...newArray])))
@@ -468,15 +468,17 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
                   shouldResetAutoplay={false}
                 >
                   {recentSearchResult &&
-                    recentSearchResult?.map((item: any, index: number) => (
-                      <Box key={index}>
-                        <MobileRecentSearchCard
-                          item={item}
-                          index={index}
-                          saveSearchHandler={saveSearchHandler}
-                        />
-                      </Box>
-                    ))}
+                    recentSearchResult
+                      ?.slice(0, 10)
+                      .map((item: any, index: number) => (
+                        <Box key={index}>
+                          <MobileRecentSearchCard
+                            item={item}
+                            index={index}
+                            saveSearchHandler={saveSearchHandler}
+                          />
+                        </Box>
+                      ))}
                 </Carousel>
               )}
             </Box>

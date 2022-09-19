@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Chart from "react-apexcharts";
 import {
   Grid,
@@ -17,9 +17,16 @@ import {
 } from "@mui/material";
 
 const CoinPageChart = ({ data }: any) => {
+  const coinDetailFirstBlock = useSelector((data: any) => {
+    return data?.coinReducer?.coin_detail_first_block?.data;
+  });
   const chartData: any = {
     series: [
       {
+        name:
+          coinDetailFirstBlock &&
+          coinDetailFirstBlock !== undefined &&
+          coinDetailFirstBlock[0]?.name,
         data: data?.price,
       },
       // {
@@ -27,6 +34,13 @@ const CoinPageChart = ({ data }: any) => {
       // },
     ],
     options: {
+      colors: [
+        coinDetailFirstBlock &&
+        coinDetailFirstBlock !== undefined &&
+        Math.sign(parseFloat(coinDetailFirstBlock[0]?.percent_change_1h)) === -1
+          ? "#ff0000"
+          : "#00ff00",
+      ],
       chart: {
         id: "area-datetime",
         type: "area",
@@ -37,7 +51,7 @@ const CoinPageChart = ({ data }: any) => {
       },
       grid: {
         show: true,
-        borderColor: "#90A4AE",
+        borderColor: "#030923",
         strokeDashArray: 0,
         position: "back",
         xaxis: {
@@ -47,7 +61,7 @@ const CoinPageChart = ({ data }: any) => {
         },
         yaxis: {
           lines: {
-            show: false,
+            show: true,
           },
         },
       },
@@ -59,43 +73,45 @@ const CoinPageChart = ({ data }: any) => {
         width: 2,
         dashArray: 0,
       },
-      annotations: {
-        yaxis: [
-          {
-            y: 30,
-            borderColor: "#999",
-            label: {
-              show: true,
-              text: "Support",
-              style: {
-                color: "#fff",
-                background: "#fff",
-              },
+      yaxis: [
+        {
+          axisTicks: {
+            show: false,
+          },
+          axisBorder: {
+            show: false,
+            color: "#ababad",
+          },
+          labels: {
+            style: {
+              colors: "#ababad",
             },
           },
-        ],
-        xaxis: [
-          {
-            //  x: data && new Date(data?.price[12][0]).getTime(),
-            borderColor: "#999",
-            yAxisIndex: 0,
-            label: {
-              show: true,
-              text: "Top Gross",
-              style: {
-                color: ["#fff"],
-                background: "#00ff00",
-              },
-            },
-          },
-        ],
-      },
+          // title: {
+          //   text: "Series A",
+          //   style: {
+          //     color: "#FF1654",
+          //   },
+          // },
+        },
+      ],
       dataLabels: {
         enabled: false,
       },
       markers: {
-        size: 0,
-        style: "hollow",
+        size: 3,
+        //style: "hollow",
+        colors: "#6252E7",
+        strokeColors: "#fff",
+        strokeWidth: 0,
+        strokeOpacity: 0.9,
+        strokeDashArray: 0,
+        fillOpacity: 1,
+        showNullDataPoints: false,
+        hover: {
+          size: 3,
+          sizeOffset: 0,
+        },
       },
       xaxis: {
         type: "datetime",
@@ -103,10 +119,17 @@ const CoinPageChart = ({ data }: any) => {
         //   data && new Date(data?.price[data?.price?.length - 1][0]).getTime(),
         //max: data && new Date(data?.price[0][0]).getTime(),
         tickAmount: 6,
+        labels: {
+          style: {
+            colors: "#ababad",
+          },
+        },
       },
       tooltip: {
+        enabled: true,
         x: {
-          format: "dd MMM yyyy",
+          //format: "dd/MM/yy HH:mm",
+          format: "dd MMM yyyy HH:mm",
         },
       },
       fill: {

@@ -34,11 +34,11 @@ const MobileVideoCard = ({ url, title, sub_title }: any) => {
             : title && title}
         </Typography>
       </a>
-      <Typography sx={{ color: "#FFFFFF", fontSize: ".8rem", fontWeight: 400 }}>
+      {/* <Typography sx={{ color: "#FFFFFF", fontSize: ".8rem", fontWeight: 400 }}>
         {sub_title && sub_title.length >= 25
           ? sub_title && sub_title.slice(0, 25) + "..."
           : sub_title && sub_title}
-      </Typography>
+      </Typography> */}
     </Box>
   );
 };

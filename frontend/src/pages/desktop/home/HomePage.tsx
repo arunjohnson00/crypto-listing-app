@@ -288,6 +288,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
         sx={{
           dispaly: "flex",
         }}
+        px={1}
       >
         <Grid xs={12} sx={{ paddingTop: 3 }}>
           <LatestNewsScroll />
@@ -319,7 +320,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           xs={12}
           sx={{
             alignItems: "center",
-            paddingTop: "5px",
+            paddingTop: "10px",
             // paddingBottom: "5px",
           }}
         >
@@ -356,9 +357,9 @@ const HomePage = ({ windowInnerWidth }: any) => {
             paddingBottom: "13px",
           }}
         >
-          <Grid container>
+          <Grid container spacing={0} pt={2}>
             <Grid
-              xs={9}
+              xs={9.5}
               sx={{
                 alignItems: "center",
                 // paddingTop: "0px",
@@ -393,14 +394,14 @@ const HomePage = ({ windowInnerWidth }: any) => {
               )}
             </Grid>
             <Grid
-              xs={3}
+              xs={2.5}
               sx={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "flex-end",
               }}
             >
-              <FearAndGreedcard width={"auto"} size="small" />
+              <FearAndGreedcard width={"85%"} size="small" />
             </Grid>
           </Grid>
         </Grid>

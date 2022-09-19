@@ -24,7 +24,15 @@ const appRequest = (
         type: actionType,
         payload: response,
       });
-      console.log(response?.data?.token_status);
+      if (
+        response?.data?.token_status !== undefined &&
+        response?.data?.token_status === 1
+      ) {
+        sessionStorage.clear();
+        localStorage.removeItem("authUser");
+        localStorage.removeItem("authToken");
+        window.location.replace("/login");
+      }
       return successHandler ? successHandler(response) : null;
     };
 

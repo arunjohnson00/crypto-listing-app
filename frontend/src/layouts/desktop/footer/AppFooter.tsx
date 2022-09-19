@@ -19,10 +19,10 @@ import DiscordImage from "../../../assets/footer/discord.png";
 
 const AppFooter = () => {
   return (
-    <Grid xs={12} mb={10}>
-      <Box py={5}>
+    <Grid item xs={12}>
+      <Box py={5} mb={10}>
         <Grid container columnSpacing={2}>
-          <Grid xs={2.2}>
+          <Grid xs={2.4}>
             <Stack
               direction="column"
               spacing={0.5}
@@ -113,7 +113,7 @@ const AppFooter = () => {
               </Stack>
             </Stack>
           </Grid>
-          <Grid item xs={2.2}>
+          <Grid item xs={2.4}>
             <Stack
               direction="column"
               spacing={1.5}
@@ -301,7 +301,7 @@ const AppFooter = () => {
               </Link>
             </Stack>
           </Grid>
-          <Grid item xs={2.2}>
+          <Grid item xs={2.4}>
             <Stack
               direction="column"
               spacing={1.5}
@@ -546,7 +546,7 @@ const AppFooter = () => {
               </Link>
             </Stack>
           </Grid>
-          <Grid item xs={2.2}>
+          <Grid item xs={2.4}>
             <Stack
               direction="column"
               spacing={1.5}
@@ -785,7 +785,7 @@ const AppFooter = () => {
               </Link>
             </Stack>
           </Grid>
-          <Grid item xs={2.2}>
+          <Grid item xs={2.4}>
             <Stack
               direction="column"
               spacing={1.5}

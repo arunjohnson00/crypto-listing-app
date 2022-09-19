@@ -61,7 +61,7 @@ const LatestNewsScroll = () => {
             textTransform: "uppercase",
             fontSize: ".85rem",
           }}
-          pl={1}
+          pl={0}
         >
           Live News{" "}
         </Typography>

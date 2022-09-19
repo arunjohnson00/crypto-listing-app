@@ -20,6 +20,7 @@ import HeaderMenuAccordion from "./headermenuaccordion/HeaderMenuAccordion";
 import ConnectWalletBtn from "../button/connectwalletbtn/ConnectWalletBtn";
 import AddAsset from "../button/addasset/AddAsset";
 import LoginHeaderBtn from "../button/loginheader/LoginHeaderBtn";
+import { logoutHandler } from "../../../utils/logoutHandler";
 
 const CustomInputPopup = forwardRef(function CustomInput(
   props: InputUnstyledProps,
@@ -54,6 +55,8 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
   //   return data?.commonReducer?.top_bar_search_result?.data;
   // });
 
+  const auth =
+    sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
   const [searchResult, setSearchResult] = useState<any>();
 
   const handleChange = (event: any) => {
@@ -274,13 +277,17 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
                 >
                   <AddAsset />
                 </Link>
-                <Link
-                  to="/login"
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  {" "}
-                  <LoginHeaderBtn />
-                </Link>
+
+                {!auth ? (
+                  <Link
+                    to="/login"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    <LoginHeaderBtn title="Login" />
+                  </Link>
+                ) : (
+                  <LoginHeaderBtn title="Logout" handler={logoutHandler} />
+                )}
               </Stack>
             </Stack>
           </Stack>

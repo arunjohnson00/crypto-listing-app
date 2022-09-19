@@ -1074,8 +1074,8 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   url={
                     coinSocialGraph && coinSocialGraph[0]?.github[0]?.social_url
                   }
-                  endColor="#ff6e4c"
-                  startColor="#ff3708"
+                  endColor="#ffffff"
+                  startColor="#5C6BC0"
                 />
               )}
 
