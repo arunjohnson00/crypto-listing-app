@@ -27,6 +27,7 @@ const AppBarNavBtn = ({ title, iconStatus, path, menu }: any) => {
         //aria-haspopup="true"
         //aria-expanded={false}
         onMouseEnter={handleonMouseEnter}
+        sx={{ padding: 0, "&:hover": { background: "none" } }}
       >
         <Link
           to={{
@@ -36,7 +37,11 @@ const AppBarNavBtn = ({ title, iconStatus, path, menu }: any) => {
         >
           <Typography
             variant="subtitle2"
-            sx={{ textTransform: "capitalize", color: "#FFFFFF" }}
+            sx={{
+              textTransform: "capitalize",
+              color: "#FFFFFF",
+              fontWeight: 400,
+            }}
           >
             {title && title}
           </Typography>

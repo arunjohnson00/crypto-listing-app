@@ -137,25 +137,31 @@ const CoinPageOverview = () => {
               sx={{ alignItems: "center", justifyContent: "space-between" }}
               mt={1.5}
             >
-              <Typography variant="caption" sx={{ color: "#B6B6B9" }}>
+              <Typography
+                variant="caption"
+                sx={{ color: "#B6B6B9", fontSize: "0.75rem" }}
+              >
                 Price
               </Typography>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+              <Typography
+                variant="caption"
+                sx={{ color: "#FFFFF5", fontSize: "0.75rem" }}
+              >
                 {coinDetailOverview && coinDetailOverview[0]?.price !== null ? (
                   String(Math.trunc(parseFloat(coinDetailOverview[0]?.price)))
                     .length > 2 ? (
-                    "$" +
+                    "$ " +
                     Number(
                       parseFloat(coinDetailOverview[0]?.price).toFixed(2)
                     ).toLocaleString()
                   ) : coinDetailOverview &&
                     Math.abs(coinDetailOverview[0]?.price) > 1 ? (
-                    "$" +
+                    "$ " +
                     parseFloat(coinDetailOverview[0]?.price)
                       .toFixed(4)
                       .toLocaleString()
                   ) : (
-                    "$" +
+                    "$ " +
                     parseFloat(coinDetailOverview[0]?.price)
                       .toFixed(9)
                       .toLocaleString()
@@ -214,7 +220,7 @@ const CoinPageOverview = () => {
             >
               <Typography
                 variant="caption"
-                sx={{ color: "#FFFFF5", fontSize: "0.65rem" }}
+                sx={{ color: "#FFFFF5", fontSize: "0.75rem" }}
               >
                 Low:{" "}
                 {coinDetailOverview &&
@@ -227,7 +233,7 @@ const CoinPageOverview = () => {
                       )
                     )
                   ).length > 2 ? (
-                    "$" +
+                    "$ " +
                     Number(
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.one?.min
@@ -236,12 +242,12 @@ const CoinPageOverview = () => {
                   ) : coinDetailOverview &&
                     Math.abs(coinDetailOverview[0]?.low_high_price?.one?.min) >
                       1 ? (
-                    "$" +
+                    "$ " +
                     parseFloat(coinDetailOverview[0]?.low_high_price?.one?.min)
                       .toFixed(4)
                       .toLocaleString()
                   ) : (
-                    "$" +
+                    "$ " +
                     parseFloat(coinDetailOverview[0]?.low_high_price?.one?.min)
                       .toFixed(9)
                       .toLocaleString()
@@ -259,7 +265,7 @@ const CoinPageOverview = () => {
                       )
                     )
                   ).length > 2 ? (
-                    "$" +
+                    "$ " +
                     Number(
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.seven?.min
@@ -269,14 +275,14 @@ const CoinPageOverview = () => {
                     Math.abs(
                       coinDetailOverview[0]?.low_high_price?.seven?.min
                     ) > 1 ? (
-                    "$" +
+                    "$ " +
                     parseFloat(
                       coinDetailOverview[0]?.low_high_price?.seven?.min
                     )
                       .toFixed(4)
                       .toLocaleString()
                   ) : (
-                    "$" +
+                    "$ " +
                     parseFloat(
                       coinDetailOverview[0]?.low_high_price?.seven?.min
                     )
@@ -296,7 +302,7 @@ const CoinPageOverview = () => {
                       )
                     )
                   ).length > 2 ? (
-                    "$" +
+                    "$ " +
                     Number(
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.fifteen?.min
@@ -306,14 +312,14 @@ const CoinPageOverview = () => {
                     Math.abs(
                       coinDetailOverview[0]?.low_high_price?.fifteen?.min
                     ) > 1 ? (
-                    "$" +
+                    "$ " +
                     parseFloat(
                       coinDetailOverview[0]?.low_high_price?.fifteen?.min
                     )
                       .toFixed(4)
                       .toLocaleString()
                   ) : (
-                    "$" +
+                    "$ " +
                     parseFloat(
                       coinDetailOverview[0]?.low_high_price?.fifteen?.min
                     )
@@ -333,7 +339,7 @@ const CoinPageOverview = () => {
                       )
                     )
                   ).length > 2 ? (
-                    "$" +
+                    "$ " +
                     Number(
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.thirty?.min
@@ -343,14 +349,14 @@ const CoinPageOverview = () => {
                     Math.abs(
                       coinDetailOverview[0]?.low_high_price?.thirty?.min
                     ) > 1 ? (
-                    "$" +
+                    "$ " +
                     parseFloat(
                       coinDetailOverview[0]?.low_high_price?.thirty?.min
                     )
                       .toFixed(4)
                       .toLocaleString()
                   ) : (
-                    "$" +
+                    "$ " +
                     parseFloat(
                       coinDetailOverview[0]?.low_high_price?.thirty?.min
                     )
@@ -368,7 +374,7 @@ const CoinPageOverview = () => {
                   sx={{
                     color: "#B6B6B9",
                     backgroundColor: "#010519",
-                    fontSize: "0.55rem",
+                    fontSize: "0.75rem",
                     borderBottom: 0,
 
                     "&:before": {
@@ -394,7 +400,7 @@ const CoinPageOverview = () => {
                 </NativeSelect>
                 <Typography
                   variant="caption"
-                  sx={{ color: "#FFFFF5", fontSize: "0.65rem" }}
+                  sx={{ color: "#FFFFF5", fontSize: "0.75rem" }}
                 >
                   High:{" "}
                   {coinDetailOverview &&
@@ -407,7 +413,7 @@ const CoinPageOverview = () => {
                         )
                       )
                     ).length > 2 ? (
-                      "$" +
+                      "$ " +
                       Number(
                         parseFloat(
                           coinDetailOverview[0]?.low_high_price?.one?.max
@@ -417,14 +423,14 @@ const CoinPageOverview = () => {
                       Math.abs(
                         coinDetailOverview[0]?.low_high_price?.one?.max
                       ) > 1 ? (
-                      "$" +
+                      "$ " +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.one?.max
                       )
                         .toFixed(4)
                         .toLocaleString()
                     ) : (
-                      "$" +
+                      "$ " +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.one?.max
                       )
@@ -444,7 +450,7 @@ const CoinPageOverview = () => {
                         )
                       )
                     ).length > 2 ? (
-                      "$" +
+                      "$ " +
                       Number(
                         parseFloat(
                           coinDetailOverview[0]?.low_high_price?.seven?.max
@@ -454,14 +460,14 @@ const CoinPageOverview = () => {
                       Math.abs(
                         coinDetailOverview[0]?.low_high_price?.seven?.max
                       ) > 1 ? (
-                      "$" +
+                      "$ " +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.seven?.max
                       )
                         .toFixed(4)
                         .toLocaleString()
                     ) : (
-                      "$" +
+                      "$ " +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.seven?.max
                       )
@@ -482,7 +488,7 @@ const CoinPageOverview = () => {
                         )
                       )
                     ).length > 2 ? (
-                      "$" +
+                      "$ " +
                       Number(
                         parseFloat(
                           coinDetailOverview[0]?.low_high_price?.fifteen?.max
@@ -492,14 +498,14 @@ const CoinPageOverview = () => {
                       Math.abs(
                         coinDetailOverview[0]?.low_high_price?.fifteen?.max
                       ) > 1 ? (
-                      "$" +
+                      "$ " +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.fifteen?.max
                       )
                         .toFixed(4)
                         .toLocaleString()
                     ) : (
-                      "$" +
+                      "$ " +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.fifteen?.max
                       )
@@ -520,7 +526,7 @@ const CoinPageOverview = () => {
                         )
                       )
                     ).length > 2 ? (
-                      "$" +
+                      "$ " +
                       Number(
                         parseFloat(
                           coinDetailOverview[0]?.low_high_price?.thirty?.max
@@ -530,14 +536,14 @@ const CoinPageOverview = () => {
                       Math.abs(
                         coinDetailOverview[0]?.low_high_price?.thirty?.max
                       ) > 1 ? (
-                      "$" +
+                      "$ " +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.thirty?.max
                       )
                         .toFixed(4)
                         .toLocaleString()
                     ) : (
-                      "$" +
+                      "$ " +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.thirty?.max
                       )

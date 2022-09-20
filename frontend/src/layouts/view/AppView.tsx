@@ -100,20 +100,19 @@ const AppView = ({ children }: any) => {
       <Container maxWidth={false}>
         <Grid
           item
-          ml={5}
+          // ml={5}
           px={{ xs: 0.2, sm: 1, md: 3, lg: 4, xl: matchesXL ? 7 : 25 }}
         >
           <Grid
             container
-            spacing={5}
+            // spacing={5}
             sx={{
               dispaly: "flex",
               //
-              paddingTop: "40px",
-              paddingBottom: "22px",
+              paddingTop: "0px",
             }}
           >
-            <Grid xs={12}>
+            <Grid item xs={12}>
               {windowInnerWidth >= 900 ? (
                 <AppHeader windowInnerWidth={windowInnerWidth} />
               ) : (
@@ -126,6 +125,7 @@ const AppView = ({ children }: any) => {
         </Grid>
 
         <Grid
+          item
           xs={12}
           sx={{
             paddingTop: "50px",
@@ -135,7 +135,7 @@ const AppView = ({ children }: any) => {
           {windowInnerWidth >= 900 ? (
             <Grid
               item
-              ml={5}
+              //ml={5}
               px={{ xs: 0.2, sm: 1, md: 3, lg: 4, xl: matchesXL ? 7 : 25 }}
             >
               <AppFooter />

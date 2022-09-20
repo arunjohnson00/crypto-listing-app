@@ -27,7 +27,7 @@ const DiscoverNFTs = () => {
       </Grid>
 
       <Stack direction="row" flexWrap="wrap">
-        <ImageList sx={{ height: "auto" }} cols={3}>
+        <ImageList sx={{ height: "auto" }} cols={4}>
           {latestNft &&
             latestNft?.map((item: any, index: number) => (
               <ImageListItem key={index}>

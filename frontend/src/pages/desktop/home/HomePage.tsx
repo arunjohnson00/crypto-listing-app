@@ -282,90 +282,40 @@ const HomePage = ({ windowInnerWidth }: any) => {
 
   return (
     <Fragment>
-      <Grid
-        container
-        spacing={5}
-        sx={{
-          dispaly: "flex",
-        }}
-        px={1}
-      >
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+      <Grid container rowSpacing={2}>
+        <Grid item xs={12}>
           <LatestNewsScroll />
         </Grid>
 
-        {/* <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-          }}
-        >
-          <Stack
-            direction="row"
-            spacing={1}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "0px",
-              paddingBottom: "0px",
-
-              alignItems: "center",
-            }}
-          >
-            <CoinSlider />
-          </Stack>
-        </Grid> */}
-
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: "10px",
-            // paddingBottom: "5px",
-          }}
-        >
+        <Grid item xs={12}>
           <Stack
             direction={{ xs: "column", sm: "column", md: "row" }}
             spacing={2}
           >
-            <Grid item xs={12} sm={6} md={8} lg={8} xl={8} mb={2}>
+            <Grid item xs={12} sm={6} md={8} lg={8} xl={8}>
               <CardMedia
                 component="img"
                 height="95"
                 image="https://iili.io/UtYAiJ.jpg"
                 alt="green iguana"
-                sx={{ objectFit: "unset" }}
+                sx={{ objectFit: "unset", borderRadius: 3 }}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={4} lg={4} xl={4} mb={2}>
+            <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
               <CardMedia
                 component="img"
                 height="95"
                 image="https://iili.io/UtYuVa.jpg"
                 alt="green iguana"
-                sx={{ objectFit: "unset" }}
+                sx={{ objectFit: "unset", borderRadius: 3 }}
               />
             </Grid>
           </Stack>
         </Grid>
 
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-            // paddingTop: "0px",
-            paddingBottom: "13px",
-          }}
-        >
-          <Grid container spacing={0} pt={2}>
-            <Grid
-              xs={9.5}
-              sx={{
-                alignItems: "center",
-                // paddingTop: "0px",
-                paddingBottom: "13px",
-              }}
-            >
+        <Grid item xs={12}>
+          <Grid container spacing={2} pt={0.7}>
+            <Grid item xs={9.5}>
               {" "}
               {videoList && (
                 <Carousel
@@ -394,6 +344,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               )}
             </Grid>
             <Grid
+              item
               xs={2.5}
               sx={{
                 display: "flex",
@@ -406,24 +357,8 @@ const HomePage = ({ windowInnerWidth }: any) => {
           </Grid>
         </Grid>
 
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-          }}
-        >
-          <Stack
-            direction="row"
-            spacing={3}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
-              paddingBottom: "23px",
-
-              alignItems: "center",
-            }}
-          >
+        <Grid item xs={12}>
+          <Stack direction="row" spacing={3} alignItems="center">
             <Grid item xs="auto">
               <Typography
                 sx={{ color: "#FFFFFF", fontWeight: 500, fontSize: "1.7rem" }}
@@ -433,20 +368,13 @@ const HomePage = ({ windowInnerWidth }: any) => {
             </Grid>
             <Grid item xs={12}>
               <Divider
-                sx={{ borderColor: "#2D4297", borderBottomWidth: "2px" }}
+                sx={{ borderColor: "#041143", borderBottomWidth: "1px" }}
               />
             </Grid>
           </Stack>
         </Grid>
 
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: "0px",
-            paddingBottom: "23px",
-          }}
-        >
+        <Grid item xs={12}>
           <Carousel
             responsive={responsiveHighlights}
             infinite={true}
@@ -460,107 +388,32 @@ const HomePage = ({ windowInnerWidth }: any) => {
             shouldResetAutoplay={false}
           >
             <Box>
-              {preLoader?.biggest_gainers === true ? (
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    backgroundColor: "#010822",
-                    color: "#3D484F",
-                  }}
-                  m={1}
-                >
-                  <Skeleton
-                    animation="wave"
-                    variant="rectangular"
-                    width={"100%"}
-                    height={186}
-                    sx={{
-                      px: 2,
-                      pb: 2,
-                      pt: 2,
-                      bgcolor: "rgb(245 245 245 / 11%)",
-                      borderRadius: "6px",
-                    }}
-                  />
-                </Box>
-              ) : (
+              {
                 <HighlightCards
                   title="Biggest Gainers"
                   cardData={biggestGainers}
                   icon={biggestGainersIcon}
                 />
-              )}
+              }
             </Box>
             <Box>
-              {preLoader?.biggest_loosers === true ? (
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    backgroundColor: "#010822",
-                    color: "#3D484F",
-                  }}
-                  m={1}
-                >
-                  <Skeleton
-                    animation="wave"
-                    variant="rectangular"
-                    width={"100%"}
-                    height={186}
-                    sx={{
-                      px: 2,
-                      pb: 2,
-                      pt: 2,
-                      bgcolor: "rgb(245 245 245 / 11%)",
-                      borderRadius: "6px",
-                    }}
-                  />
-                </Box>
-              ) : (
+              {
                 <HighlightCards
                   title="Top Losers"
                   cardData={biggestloosers}
                   icon={biggestLosersIcon}
                 />
-              )}
+              }
             </Box>
 
             <Box>
-              {preLoader?.recently_added === true ? (
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    backgroundColor: "#010822",
-                    color: "#3D484F",
-                  }}
-                  m={1}
-                >
-                  <Skeleton
-                    animation="wave"
-                    variant="rectangular"
-                    width={"100%"}
-                    height={186}
-                    sx={{
-                      px: 2,
-                      pb: 2,
-                      pt: 2,
-                      bgcolor: "rgb(245 245 245 / 11%)",
-                      borderRadius: "6px",
-                    }}
-                  />
-                </Box>
-              ) : (
+              {
                 <HighlightCards
                   title="Recently Added"
                   cardData={recentlyAdded}
                   icon={recentlyAddedIcon}
                 />
-              )}
+              }
             </Box>
             {/* <Box>
               {preLoader?.todays_performer === true ? (
@@ -591,33 +444,14 @@ const HomePage = ({ windowInnerWidth }: any) => {
           </Carousel>
         </Grid>
 
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: "0px",
-            paddingBottom: "0px",
-          }}
-        >
-          <Stack
-            direction={{ xs: "column", sm: "column", md: "column", lg: "row" }}
-            spacing={2}
-            alignItems={{ xs: "center" }}
-          >
-            <Grid
-              xs={12}
-              sm={12}
-              md={12}
-              lg={0.4}
-              xl={0.4}
-              sx={{
-                alignItems: "center",
-              }}
-            >
+        <Grid item xs={12}>
+          <Grid container columnSpacing={2} alignItems="center" pt={4}>
+            <Grid item xs={12} sm={12} md={12} lg={0.4} xl={0.4}>
               <Stack
                 direction={windowInnerWidth >= 1200 ? "column" : "row-reverse"}
                 sx={{
                   alignItems: "flex-end",
+                  justifyContent: "center",
                 }}
                 py={windowInnerWidth >= 1200 ? 0 : 1}
                 spacing={2}
@@ -691,57 +525,8 @@ const HomePage = ({ windowInnerWidth }: any) => {
                 )}
               </Stack>
             </Grid>
-            <Grid xs={12} sm={12} md={12} lg={11.6} xl={11.6}>
-              {preLoader?.featured_coin_list === true ? (
-                <Stack
-                  direction={{
-                    xs: "column",
-                    sm: "column",
-                    md: "row",
-                    lg: "row",
-                  }}
-                  spacing={0}
-                  sx={{
-                    alignItems: "flex-start",
-                    flexWrap: "wrap",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  {featuredCoinSkelton &&
-                    featuredCoinSkelton.map((data: any, index: number) => (
-                      <Grid xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            backgroundColor: "#010822",
-                            color: "#3D484F",
-                          }}
-                          m={1}
-                        >
-                          <Skeleton
-                            animation="wave"
-                            variant="rectangular"
-                            width={"100%"}
-                            height={280}
-                            sx={{
-                              px: 2,
-                              pb: 2,
-                              pt: 2,
-                              bgcolor: "rgb(245 245 245 / 11%)",
-                              borderRadius: "6px",
-                              "::after": {
-                                background:
-                                  "linear-gradient(90deg, transparent, #6252e84f 56%, transparent)",
-                              },
-                            }}
-                          />
-                        </Box>
-                      </Grid>
-                    ))}
-                </Stack>
-              ) : (
+            <Grid item xs={12} sm={12} md={12} lg={11.6} xl={11.6}>
+              {
                 <Stack
                   direction={{
                     xs: "column",
@@ -763,19 +548,12 @@ const HomePage = ({ windowInnerWidth }: any) => {
                       </Grid>
                     ))}
                 </Stack>
-              )}
+              }
             </Grid>
-          </Stack>
+          </Grid>
         </Grid>
 
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: "13px",
-            paddingBottom: "0px",
-          }}
-        >
+        <Grid item xs={12}>
           <Stack
             direction="row"
             spacing={3}
@@ -785,6 +563,8 @@ const HomePage = ({ windowInnerWidth }: any) => {
 
               alignItems: "center",
             }}
+            pb={3}
+            pt={4}
           >
             <Grid item xs="auto">
               <Typography
@@ -793,74 +573,49 @@ const HomePage = ({ windowInnerWidth }: any) => {
                 Upcoming Events
               </Typography>
             </Grid>
-            <Grid item xs={9.5}>
+            <Grid item xs={12}>
               <Divider
-                sx={{ borderColor: "#2D4297", borderBottomWidth: "2px" }}
+                sx={{ borderColor: "#041143", borderBottomWidth: "1px" }}
               />
             </Grid>
           </Stack>
         </Grid>
 
-        <Grid
-          container
-          spacing={1}
-          sx={{
-            alignItems: "center",
-            paddingTop: "23px",
-            paddingBottom: "23px",
-
-            justifyContent: "space-between",
-          }}
-        >
-          {/* <Grid xs={12} sm={12} md={2.7} lg={2.7} xl={2.7}>
-            <CryptoEventsCardSlider variant="ads" />
-          </Grid> */}
-
-          <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
-            {eventList && (
-              <Carousel
-                responsive={responsiveCryptoEvents}
-                infinite={true}
-                removeArrowOnDeviceType={["tablet", "mobile"]}
-                arrows={false}
-                autoPlay={true}
-                draggable={true}
-                swipeable={true}
-                minimumTouchDrag={10}
-                keyBoardControl={true}
-                shouldResetAutoplay={false}
-              >
-                {eventList &&
-                  eventList?.map((item: any, index: number) => (
-                    <Box key={index}>
-                      <CryptoEventsCardSlider data={item} />
-                    </Box>
-                  ))}
-              </Carousel>
-            )}
-          </Grid>
+        <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+          {eventList && (
+            <Carousel
+              responsive={responsiveCryptoEvents}
+              infinite={true}
+              removeArrowOnDeviceType={["tablet", "mobile"]}
+              arrows={false}
+              autoPlay={true}
+              draggable={true}
+              swipeable={true}
+              minimumTouchDrag={10}
+              keyBoardControl={true}
+              shouldResetAutoplay={false}
+            >
+              {eventList &&
+                eventList?.map((item: any, index: number) => (
+                  <Box key={index}>
+                    <CryptoEventsCardSlider data={item} />
+                  </Box>
+                ))}
+            </Carousel>
+          )}
         </Grid>
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-          }}
-        >
+
+        <Grid item xs={12}>
           <Stack
             direction="row"
             spacing={3}
             sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              //marginTop: "0px",
-              // marginBottom: "23px",
-
               alignItems: "center",
               justifyContent: " flex-end",
             }}
           >
             <Link to="#" style={{ textDecoration: "none", color: "inherit" }}>
-              <ViewMoreBtn title="View more" />
+              <ViewMoreBtn title="More events" />
             </Link>
           </Stack>
         </Grid>
@@ -892,7 +647,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
             </Grid>
             <Grid item xs={9.5}>
               <Divider
-                sx={{ borderColor: "#2D4297", borderBottomWidth: "2px" }}
+                sx={{ borderColor: "#041143", borderBottomWidth: "1px"  }}
               />
             </Grid>
           </Stack>
@@ -934,6 +689,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
         </Grid> */}
 
         <Grid
+          item
           xs={12}
           sx={{
             alignItems: "center",
@@ -943,13 +699,9 @@ const HomePage = ({ windowInnerWidth }: any) => {
             direction="row"
             spacing={3}
             sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
-              paddingBottom: "0px",
-
               alignItems: "center",
             }}
+            pb={3}
           >
             <Grid item xs="auto">
               <Typography
@@ -958,23 +710,15 @@ const HomePage = ({ windowInnerWidth }: any) => {
                 CryptoCurrencies
               </Typography>
             </Grid>
-            <Grid item xs={9.2}>
+            <Grid item xs={12}>
               <Divider
-                sx={{ borderColor: "#2D4297", borderBottomWidth: "2px" }}
+                sx={{ borderColor: "#041143", borderBottomWidth: "1px" }}
               />
             </Grid>
           </Stack>
         </Grid>
 
-        <Grid
-          container
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: "13px",
-            paddingBottom: "13px",
-          }}
-        >
+        <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={5} lg={5} xl={5} pb={2}>
             <Typography sx={{ color: "#FFFFFF", fontSize: "0.875rem" }}>
               Subscribe to our newsletters and get business news delivered
@@ -994,15 +738,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           </Grid>
         </Grid>
 
-        <Grid
-          container
-          xs={12}
-          sx={{
-            alignItems: "center",
-            marginTop: "30px",
-            paddingBottom: "23px",
-          }}
-        >
+        <Grid item xs={12}>
           <Stack
             direction={{ xs: "column", sm: "column", md: "row" }}
             spacing={3}
@@ -1018,6 +754,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
         </Grid>
 
         <Grid
+          item
           xs={12}
           sx={{
             alignItems: "center",
@@ -1027,51 +764,21 @@ const HomePage = ({ windowInnerWidth }: any) => {
             direction="row"
             spacing={3}
             sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "23px",
-              paddingBottom: "23px",
-
               alignItems: "center",
             }}
           >
-            {htmlTablePreLoader?.html_table === true ? (
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: "#010822",
-                  color: "#3D484F",
-                  width: "100%",
-                }}
-                m={1}
-              >
-                <Skeleton
-                  animation="wave"
-                  variant="rectangular"
-                  width={"100%"}
-                  height={100}
-                  sx={{
-                    px: 2,
-                    pb: 2,
-                    pt: 2,
-                    bgcolor: "rgb(245 245 245 / 11%)",
-                    borderRadius: "6px",
-                  }}
-                />
-              </Box>
-            ) : (
+            {
               <HtmlTable
                 tableData={tableData && tableData}
                 tableHeader={tableHeader}
                 variant="crypto_currencies"
               />
-            )}
+            }
           </Stack>
         </Grid>
 
         <Grid
+          item
           xs={12}
           sx={{
             alignItems: "center",
@@ -1081,11 +788,6 @@ const HomePage = ({ windowInnerWidth }: any) => {
             direction="row"
             spacing={3}
             sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              marginTop: "0px",
-              paddingBottom: "23px",
-
               alignItems: "center",
               justifyContent: " flex-end",
             }}
@@ -1100,6 +802,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
         </Grid>
 
         <Grid
+          item
           xs={12}
           sx={{
             alignItems: "center",
@@ -1109,13 +812,10 @@ const HomePage = ({ windowInnerWidth }: any) => {
             direction="row"
             spacing={3}
             sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "0px",
-              paddingBottom: "23px",
-
               alignItems: "center",
             }}
+            pb={3}
+            pt={4}
           >
             <Grid item xs="auto">
               <Typography
@@ -1124,23 +824,15 @@ const HomePage = ({ windowInnerWidth }: any) => {
                 NFT Collections
               </Typography>
             </Grid>
-            <Grid item xs={9.5}>
+            <Grid item xs={12}>
               <Divider
-                sx={{ borderColor: "#2D4297", borderBottomWidth: "2px" }}
+                sx={{ borderColor: "#041143", borderBottomWidth: "1px" }}
               />
             </Grid>
           </Stack>
         </Grid>
 
-        <Grid
-          container
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: "13px",
-            paddingBottom: "13px",
-          }}
-        >
+        <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={5} lg={5} xl={5} pb={2}>
             <Typography sx={{ color: "#FFFFFF", fontSize: "0.875rem" }}>
               Subscribe to our newsletters and get business news delivered
@@ -1160,16 +852,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           </Grid>
         </Grid>
 
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: "23px",
-            paddingBottom: "23px",
-
-            justifyContent: "space-between",
-          }}
-        >
+        <Grid item xs={12}>
           {NFTList && NFTList?.data && (
             <Carousel
               responsive={responsiveNFTCollections}
@@ -1193,20 +876,11 @@ const HomePage = ({ windowInnerWidth }: any) => {
           )}
         </Grid>
 
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-          }}
-        >
+        <Grid item xs={12}>
           <Stack
             direction="row"
             spacing={3}
             sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              marginTop: "0px",
-              paddingBottom: "0px",
               alignItems: "center",
               justifyContent: " flex-end",
             }}
@@ -1217,23 +891,15 @@ const HomePage = ({ windowInnerWidth }: any) => {
           </Stack>
         </Grid>
 
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-          }}
-        >
+        <Grid item xs={12}>
           <Stack
             direction="row"
             spacing={3}
             sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "13px",
-              paddingBottom: "0px",
-
               alignItems: "center",
             }}
+            pb={3}
+            pt={4}
           >
             <Grid item xs="auto">
               <Typography
@@ -1242,22 +908,14 @@ const HomePage = ({ windowInnerWidth }: any) => {
                 Coinxhigh crypto News
               </Typography>
             </Grid>
-            <Grid item xs={8.5}>
+            <Grid item xs={12}>
               <Divider
-                sx={{ borderColor: "#2D4297", borderBottomWidth: "2px" }}
+                sx={{ borderColor: "#041143", borderBottomWidth: "1px" }}
               />
             </Grid>
           </Stack>
         </Grid>
-        <Grid
-          container
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: "13px",
-            paddingBottom: "13px",
-          }}
-        >
+        <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={5} lg={5} xl={5} pb={2}>
             <Typography sx={{ color: "#FFFFFF", fontSize: "0.875rem" }}>
               Subscribe to our newsletters and get business news delivered
@@ -1278,6 +936,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
         </Grid>
 
         <Grid
+          item
           xs={12}
           sx={{
             alignItems: "center",
@@ -1286,12 +945,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           <LatestNewsCardScroll />
         </Grid>
 
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-          }}
-        >
+        <Grid item xs={12}>
           <Stack
             direction="row"
             spacing={3}
@@ -1305,7 +959,15 @@ const HomePage = ({ windowInnerWidth }: any) => {
               alignItems: "center",
             }}
           >
-            <Typography variant="body2" sx={{ color: "#FFFFF5" }}>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#FFFFF5",
+                "&:hover": {
+                  color: "#1a52ca",
+                },
+              }}
+            >
               <Link
                 to="/news"
                 style={{ textDecoration: "none", color: "inherit" }}
@@ -1322,7 +984,15 @@ const HomePage = ({ windowInnerWidth }: any) => {
                 sx={{ width: 18, height: 18 }}
               />
 
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: "#FFFFF5",
+                  "&:hover": {
+                    color: "#1a52ca",
+                  },
+                }}
+              >
                 <a
                   href="https://telegram.me/coinXhigh"
                   rel="noreferrer"
@@ -1349,48 +1019,14 @@ const HomePage = ({ windowInnerWidth }: any) => {
           <AdsCardHome />
         </Grid> */}
 
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-          }}
-        >
-          <Stack
-            direction="row"
-            spacing={3}
-            sx={{
-              //borderTop: "1px solid #1a1545",
-              // borderBottom: "1px solid #1a1545",
-              paddingTop: "50px",
-              paddingBottom: "23px",
-
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <CardDeal />
-          </Stack>
+        <Grid item xs={12}>
+          <CardDeal />
         </Grid>
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: "50px",
-            paddingBottom: "23px",
-            marginTop: 10,
-          }}
-        >
+        <Grid item xs={12}>
           <BannerCardsHome />
         </Grid>
 
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: "50px",
-            paddingBottom: "23px",
-          }}
-        >
+        <Grid item xs={12}>
           <BannerMap />
         </Grid>
       </Grid>

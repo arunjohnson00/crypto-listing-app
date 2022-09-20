@@ -14,7 +14,7 @@ const DiscoverNftMarketPlaces = () => {
       </Grid>
 
       <Stack direction="row" flexWrap="wrap">
-        <ImageList sx={{ height: "auto" }} cols={4}>
+        <ImageList sx={{ height: "auto" }} cols={5}>
           <ImageListItem>
             <DiscoverNFTMarketPlaceCard />
           </ImageListItem>

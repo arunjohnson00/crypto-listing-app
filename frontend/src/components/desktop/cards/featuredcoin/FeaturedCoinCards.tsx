@@ -62,15 +62,15 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
   return (
     <Box
       sx={{
-        borderRadius: "6px",
-        border: "1px solid #243464",
-        background: "linear-gradient(90deg, #01061c 20%, #0B1A51)",
+        borderRadius: 4,
+        border: "1px solid #091851",
+        background: "linear-gradient(90deg, #01061c 20%, #020f3d)",
         maxHeight: 220,
         minHeight: 220,
       }}
       px={2}
       py={2}
-      mx={0.7}
+      mr={1.4}
       mb={1.4}
     >
       <Grid item xs={12} pb={0.5}>
@@ -95,19 +95,24 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
                 alt={cardData && cardData?.name}
                 src={`${serverAPIUrl}public/uploads/coin_logo/${cardData?.logo}`}
                 //src="https://mui.com/static/images/avatar/1.jpg"
+                // sx={{ width: 50, height: 50 }}
               />
             )}
             <Stack direction="column" spacing={0}>
               <Typography
                 variant="caption"
-                sx={{ color: "white", fontWeight: "600" }}
+                sx={{ color: "#FFFFFF", fontWeight: 600 }}
               >
                 <Link
                   to={{
                     pathname: `/coin/${cardData?.slug}`,
                   }}
                   state={{ coin_id: cardData?.id }}
-                  style={{ textDecoration: "none", color: "#FFFFFF" }}
+                  style={{
+                    textDecoration: "none",
+                    color: "#FFFFFF",
+                    fontSize: ".8rem",
+                  }}
                 >
                   {cardData && cardData?.name?.slice(0, 12)}
                   {cardData?.name?.length > 12 && ".."}
@@ -116,31 +121,33 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
               <Typography
                 variant="caption"
                 sx={{
-                  color: "#FFFFFF",
+                  color: "#545454",
                   fontWeight: 500,
-                  fontSize: "0.53rem",
+                  fontSize: "0.7rem",
                 }}
               >
-                {cardData && cardData?.symbol}
+                {cardData &&
+                  cardData?.symbol !== null &&
+                  "$" + cardData?.symbol}
               </Typography>
               <Typography
                 variant="caption"
-                sx={{ color: "#1dffc0", fontWeight: "600" }}
+                sx={{ color: "#1dffc0", fontWeight: 400, fontSize: ".85rem" }}
               >
                 {cardData && cardData?.current_price !== null ? (
                   String(Math.trunc(parseFloat(cardData?.current_price)))
                     .length > 2 ? (
-                    "$" +
+                    "$ " +
                     Number(
                       parseFloat(cardData?.current_price).toFixed(2)
                     ).toLocaleString()
                   ) : cardData && Math.abs(cardData?.current_price) > 1 ? (
-                    "$" +
+                    "$ " +
                     parseFloat(cardData?.current_price)
                       .toFixed(4)
                       .toLocaleString()
                   ) : (
-                    "$" +
+                    "$ " +
                     parseFloat(cardData?.current_price)
                       .toFixed(9)
                       .toLocaleString()
@@ -176,7 +183,7 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
         </Stack>
       </Grid>
       <Grid item xs={12} py={0}>
-        <Divider sx={{ borderColor: "#184b7d" }} />
+        <Divider sx={{ borderColor: "#031d36" }} />
         {
           <Fragment>
             <Stack
@@ -238,12 +245,12 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
                     {" "}
                     <Typography
                       variant="body2"
-                      sx={{ color: "#dadada", fontSize: "0.7rem" }}
+                      sx={{ color: "#4f4f4f", fontSize: "0.7rem" }}
                     >
-                      Listed{" "}
+                      Listed{": "}
                       <span
                         style={{
-                          color: "rgb(35 177 132)",
+                          color: "#2c4195",
                           fontWeight: 600,
                           fontSize: "0.75rem",
                           textTransform: "capitalize",
@@ -287,10 +294,9 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
                 ""
               )}
             </Stack>
-
-            <Divider sx={{ borderColor: "#184b7d" }} />
           </Fragment>
         }
+        <Divider sx={{ borderColor: "#031d36" }} />
       </Grid>
 
       <Grid item xs={12} py={0}>
@@ -643,7 +649,7 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
                 variant="caption"
                 sx={{ color: "#FFFFF5", fontWeight: 600, fontSize: ".7rem" }}
               >
-                {cardData && cardData?.vote}
+                {cardData && cardData?.vote?.toLocaleString()}
               </Typography>
             </Stack>
           </Grid>

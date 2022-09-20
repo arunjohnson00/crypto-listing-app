@@ -4,14 +4,16 @@ import ReactPlayer from "react-player";
 
 const VideoCard = ({ url, title, sub_title }: any) => {
   return (
-    <Box mx={1}>
+    <Box mr={2}>
       {/* <CardMedia
         component="img"
         height="130"
         image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
         alt="green iguana"
       /> */}
-      <ReactPlayer url={url && url} width="100%" height={130} />
+      <Box sx={{ borderRadius: 3, height: 130, overflow: "hidden" }}>
+        <ReactPlayer url={url && url} width="100%" height={130} />
+      </Box>
       <a
         href={url && url}
         target="_blank"
@@ -22,16 +24,17 @@ const VideoCard = ({ url, title, sub_title }: any) => {
         <Typography
           variant="body2"
           sx={{
-            color: "#828282",
+            color: "#FFFFFF",
             paddingTop: 2,
             paddingBottom: 0.2,
             // fontSize: ".8rem",
             fontWeight: 500,
           }}
         >
-          {title && title.length >= 40
-            ? title && title.slice(0, 40) + "..."
+          {title && title.length >= 59
+            ? title && title.slice(0, 59) + "..."
             : title && title}
+          .
         </Typography>
       </a>
       {/* <Typography sx={{ color: "#FFFFFF", fontSize: ".8rem", fontWeight: 400 }}>

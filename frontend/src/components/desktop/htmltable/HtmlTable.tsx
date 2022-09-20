@@ -96,13 +96,13 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
         size="small"
       >
         <TableHead
-          sx={{ backgroundColor: "#000000", color: "#FFFFF5", height: 50 }}
+          sx={{ backgroundColor: "#000000", color: "#686868", height: 50 }}
         >
           <TableRow sx={{ borderBottom: "2px solid black" }}>
             {tableHeader &&
               tableHeader.map((item: any, index: number) => (
                 <TableCell
-                  sx={{ color: "#FFFFF5", fontWeight: "bold" }}
+                  sx={{ color: "#686868", fontWeight: 500 }}
                   key={index}
                 >
                   {item}
@@ -118,8 +118,11 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
 
-                    border: 0,
+                    borderBottom: "1px solid #031323",
                     height: 20,
+                    "&:hover": {
+                      //backgroundColor: "red",
+                    },
                   }}
                   key={index}
                 >
@@ -138,7 +141,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       state={{ coin_id: data?.id }}
                       style={{
                         textDecoration: "none",
-                        color: "#FFFFFF",
+                        color: "#686868",
                       }}
                     >
                       {index + 1}
@@ -199,9 +202,9 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       <Typography
                         variant="caption"
                         sx={{
-                          color: "#0F68A1",
-                          fontWeight: "bold",
-                          fontSize: "0.6rem",
+                          color: "#1dffc0",
+                          fontWeight: 400,
+                          fontSize: "0.7rem",
                         }}
                       >
                         {"$"}
@@ -251,7 +254,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       >
                         {data && data?.market_cap !== null ? (
                           data &&
-                          "$" +
+                          "$ " +
                             Math.floor(
                               Math.abs(data?.market_cap)
                             ).toLocaleString()
@@ -276,17 +279,17 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                         {data && data?.current_price !== null ? (
                           String(Math.trunc(parseFloat(data?.current_price)))
                             .length > 2 ? (
-                            "$" +
+                            "$ " +
                             Number(
                               parseFloat(data?.current_price).toFixed(2)
                             ).toLocaleString()
                           ) : data && Math.abs(data?.current_price) > 1 ? (
-                            "$" +
+                            "$ " +
                             parseFloat(data?.current_price)
                               .toFixed(4)
                               .toLocaleString()
                           ) : (
-                            "$" +
+                            "$ " +
                             parseFloat(data?.current_price)
                               .toFixed(13)
                               .toLocaleString()
@@ -418,7 +421,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                             vote?.completed === true ? (
                               parseInt(data?.vote) + 1
                             ) : (
-                              data?.vote
+                              data?.vote?.toLocaleString()
                             )
                           ) : (
                             <Typography variant="caption">--</Typography>

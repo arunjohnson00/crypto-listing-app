@@ -71,11 +71,16 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
   };
   return (
     <Box
-      sx={{ backgroundColor: "#010822", height: 220 }}
+      sx={{
+        backgroundColor: "#010822",
+        height: 220,
+        //border: "1px solid #091851",
+        borderRadius: 3,
+      }}
       px={2}
       pb={3}
       pt={2}
-      m={1}
+      mr={2}
     >
       <Stack
         direction="row"

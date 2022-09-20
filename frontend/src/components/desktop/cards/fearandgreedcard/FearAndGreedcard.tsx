@@ -28,6 +28,9 @@ const FearAndGreedcard = ({ width, size, height }: any) => {
             minWidth: width && width,
             width: width && width,
             height: height && height,
+            "&:hover": {
+              backgroundColor: "#020c36",
+            },
           }}
           p={2}
         >
@@ -50,7 +53,28 @@ const FearAndGreedcard = ({ width, size, height }: any) => {
                     ? "h5"
                     : size && size === "small" && "body1"
                 }
-                sx={{ color: " #F15F27", fontWeight: 500 }}
+                sx={{
+                  color:
+                    fearGreedIndex &&
+                    fearGreedIndex?.data[0]?.value_classification <=
+                      "Extreme Fear"
+                      ? "#EF2828"
+                      : fearGreedIndex &&
+                        fearGreedIndex?.data[0]?.value_classification <= "Fear"
+                      ? "#EC840E"
+                      : fearGreedIndex &&
+                        fearGreedIndex?.data[0]?.value_classification <=
+                          "Neutral"
+                      ? "#A8CE08"
+                      : fearGreedIndex &&
+                        fearGreedIndex?.data[0]?.value_classification <= "Greed"
+                      ? "#1DAF03"
+                      : fearGreedIndex &&
+                        fearGreedIndex?.data[0]?.value_classification <=
+                          "Extreme Greed" &&
+                        "#008E49",
+                  fontWeight: 500,
+                }}
               >
                 {fearGreedIndex &&
                   fearGreedIndex?.data[0]?.value_classification}
@@ -59,10 +83,31 @@ const FearAndGreedcard = ({ width, size, height }: any) => {
               <Typography
                 variant={
                   size && size === "large"
-                    ? "h4"
-                    : size && size === "small" && "h6"
+                    ? "h3"
+                    : size && size === "small" && "h4"
                 }
-                sx={{ color: " #F15F27", fontWeight: 700 }}
+                sx={{
+                  color:
+                    fearGreedIndex &&
+                    fearGreedIndex?.data[0]?.value_classification <=
+                      "Extreme Fear"
+                      ? "#EF2828"
+                      : fearGreedIndex &&
+                        fearGreedIndex?.data[0]?.value_classification <= "Fear"
+                      ? "#EC840E"
+                      : fearGreedIndex &&
+                        fearGreedIndex?.data[0]?.value_classification <=
+                          "Neutral"
+                      ? "#A8CE08"
+                      : fearGreedIndex &&
+                        fearGreedIndex?.data[0]?.value_classification <= "Greed"
+                      ? "#1DAF03"
+                      : fearGreedIndex &&
+                        fearGreedIndex?.data[0]?.value_classification <=
+                          "Extreme Greed" &&
+                        "#008E49",
+                  fontWeight: 700,
+                }}
               >
                 {fearGreedIndex && fearGreedIndex?.data[0]?.value}
               </Typography>
@@ -73,7 +118,7 @@ const FearAndGreedcard = ({ width, size, height }: any) => {
                 variant="caption"
                 sx={{
                   color: "#FFFFFF",
-                  fontWeight: 600,
+                  fontWeight: 400,
                   fontSize:
                     size && size === "large"
                       ? ".75rem"
@@ -104,6 +149,7 @@ const FearAndGreedcard = ({ width, size, height }: any) => {
               percent={
                 fearGreedIndex && parseInt(fearGreedIndex?.data[0]?.value) / 100
               }
+              formatTextValue={(value: any) => value}
             />
             <Typography
               variant="caption"

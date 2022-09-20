@@ -9,7 +9,7 @@ const AddAsset = () => {
     >
       <Typography
         variant="subtitle2"
-        sx={{ textTransform: "capitalize", color: "white" }}
+        sx={{ textTransform: "capitalize", color: "#ffffff", fontWeight: 400 }}
       >
         Add Asset
       </Typography>

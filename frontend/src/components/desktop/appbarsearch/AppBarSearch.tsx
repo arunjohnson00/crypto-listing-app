@@ -288,7 +288,7 @@ const AppBarSearch = () => {
               </Stack>
               {searchResult?.COINS?.slice(
                 0,
-                expand?.coin === false ? 4 : searchResult?.COINS?.length
+                expand?.coin === false ? 6 : searchResult?.COINS?.length
               ).map((item: any, index: number) => (
                 <Stack
                   key={index}
@@ -306,7 +306,7 @@ const AppBarSearch = () => {
                     <Avatar
                       alt="Trending"
                       src={`${serverAPIUrl}public/uploads/coin_logo/${item?.coin_logo}`}
-                      sx={{ width: 20, height: 20 }}
+                      sx={{ width: 25, height: 25 }}
                     />
                     <Link
                       to={{
@@ -333,6 +333,7 @@ const AppBarSearch = () => {
                     </Typography>
                   </Stack>
                   <Typography sx={{ fontSize: ".7rem" }}>
+                    {"#"}
                     {item?.ranking}
                   </Typography>
                 </Stack>
@@ -346,102 +347,104 @@ const AppBarSearch = () => {
                 {`(${searchResult?.COINS?.length})`}
               </Button>
             </Stack>
-            <Stack direction="column" spacing={2} pt={0}>
-              <Stack
-                direction="row"
-                spacing={0.5}
-                alignItems="flex-start"
-                sx={{
-                  position: "sticky",
-                  top: 0,
-                  background: "#000000",
-                  zIndex: 99,
-                  py: 1.5,
-                }}
-              >
-                {expand?.nft === false ? (
-                  <Typography sx={{ fontSize: ".78rem", fontWeight: 600 }}>
-                    NFT
-                  </Typography>
-                ) : (
-                  <Button
-                    startIcon={
-                      <ArrowBackIosIcon sx={{ width: 14, height: 14 }} />
-                    }
-                    variant="text"
-                    sx={{
-                      fontSize: ".7rem",
-                      padding: 0,
-                      minWidth: 0,
-                      cursor: "pointer",
-                    }}
-                    onClick={nftExpandHandler}
-                  >
-                    Back
-                  </Button>
-                )}
-              </Stack>
-              {searchResult?.NFT?.slice(
-                0,
-                expand?.nft === false ? 4 : searchResult?.NFT?.length
-              ).map((item: any, index: number) => (
+            {searchResult?.NFT?.length !== 0 && (
+              <Stack direction="column" spacing={2} pt={0}>
                 <Stack
-                  key={index}
                   direction="row"
                   spacing={0.5}
-                  alignItems="center"
-                  justifyContent="space-between"
+                  alignItems="flex-start"
+                  sx={{
+                    position: "sticky",
+                    top: 0,
+                    background: "#000000",
+                    zIndex: 99,
+                    py: 1.5,
+                  }}
                 >
+                  {expand?.nft === false ? (
+                    <Typography sx={{ fontSize: ".78rem", fontWeight: 600 }}>
+                      NFT
+                    </Typography>
+                  ) : (
+                    <Button
+                      startIcon={
+                        <ArrowBackIosIcon sx={{ width: 14, height: 14 }} />
+                      }
+                      variant="text"
+                      sx={{
+                        fontSize: ".7rem",
+                        padding: 0,
+                        minWidth: 0,
+                        cursor: "pointer",
+                      }}
+                      onClick={nftExpandHandler}
+                    >
+                      Back
+                    </Button>
+                  )}
+                </Stack>
+                {searchResult?.NFT?.slice(
+                  0,
+                  expand?.nft === false ? 4 : searchResult?.NFT?.length
+                ).map((item: any, index: number) => (
                   <Stack
                     key={index}
                     direction="row"
-                    spacing={1}
+                    spacing={0.5}
                     alignItems="center"
+                    justifyContent="space-between"
                   >
-                    <Avatar
-                      alt="Trending"
-                      src={`${serverAPIUrl}public/uploads/nft_listing_image/${item?.nft_logo}`}
-                      sx={{ width: 16, height: 16 }}
-                    />
-                    <Link
-                      to={{
-                        pathname: `/coin/${item?.nft_name
-                          ?.replace(/ /g, "")
-                          .toLowerCase()}/${item?.nft_id}`,
-                      }}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      state={{ coin_id: item?.nft_id }}
-                      style={{ textDecoration: "none", color: "#FFFFFF" }}
+                    <Stack
+                      key={index}
+                      direction="row"
+                      spacing={1}
+                      alignItems="center"
                     >
-                      <Typography sx={{ fontSize: ".8rem", fontWeight: 600 }}>
-                        {item?.nft_name}
+                      <Avatar
+                        alt="Trending"
+                        src={`${serverAPIUrl}public/uploads/nft_listing_image/${item?.nft_logo}`}
+                        sx={{ width: 25, height: 25 }}
+                      />
+                      <Link
+                        to={{
+                          pathname: `/coin/${item?.nft_name
+                            ?.replace(/ /g, "")
+                            .toLowerCase()}/${item?.nft_id}`,
+                        }}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        state={{ coin_id: item?.nft_id }}
+                        style={{ textDecoration: "none", color: "#FFFFFF" }}
+                      >
+                        <Typography sx={{ fontSize: ".8rem", fontWeight: 600 }}>
+                          {item?.nft_name}
+                        </Typography>
+                      </Link>
+                      <Typography
+                        sx={{
+                          fontSize: ".7rem",
+                          color: "#767676",
+                          fontWeight: 500,
+                        }}
+                      >
+                        {/* {item?.coin_symbol} */}
                       </Typography>
-                    </Link>
-                    <Typography
-                      sx={{
-                        fontSize: ".7rem",
-                        color: "#767676",
-                        fontWeight: 500,
-                      }}
-                    >
-                      {/* {item?.coin_symbol} */}
+                    </Stack>
+                    <Typography sx={{ fontSize: ".7rem" }}>
+                      {/* {item?.ranking} */}
                     </Typography>
                   </Stack>
-                  <Typography sx={{ fontSize: ".7rem" }}>
-                    {/* {item?.ranking} */}
-                  </Typography>
-                </Stack>
-              ))}
-              <Button
-                variant="text"
-                sx={{ fontSize: ".7rem" }}
-                onClick={nftExpandHandler}
-              >
-                {expand?.nft === false ? "See all result" : "Hide result"}{" "}
-                {`(${searchResult?.NFT?.length})`}
-              </Button>
-            </Stack>
+                ))}
+                <Button
+                  variant="text"
+                  sx={{ fontSize: ".7rem" }}
+                  onClick={nftExpandHandler}
+                >
+                  {expand?.nft === false ? "See all result" : "Hide result"}{" "}
+                  {`(${searchResult?.NFT?.length})`}
+                </Button>
+              </Stack>
+            )}
           </Stack>
         ) : (
           <Stack
@@ -485,7 +488,7 @@ const AppBarSearch = () => {
                     <Avatar
                       alt="Trending"
                       src={`${serverAPIUrl}public/uploads/coin_logo/${item?.logo}`}
-                      sx={{ width: 16, height: 16 }}
+                      sx={{ width: 25, height: 25 }}
                     />
                     <Link
                       to={{
@@ -512,6 +515,7 @@ const AppBarSearch = () => {
                     </Typography>
                   </Stack>
                   <Typography sx={{ fontSize: ".7rem" }}>
+                    {"#"}
                     {item?.ranking}
                   </Typography>
                 </Stack>

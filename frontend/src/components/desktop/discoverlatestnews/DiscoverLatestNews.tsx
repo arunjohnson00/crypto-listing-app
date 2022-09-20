@@ -29,10 +29,15 @@ const DiscoverLatestNews = () => {
       }}
       mb={7}
     >
-      <Stack direction={{ xs: "column", sm: "column", md: "row" }} spacing={5}>
+      <Stack
+        direction={{ xs: "column", sm: "column", md: "row" }}
+        spacing={5}
+        width="100%"
+      >
         <Stack
           direction={{ xs: "column", sm: "column", md: "column" }}
           spacing={2}
+          width="100%"
         >
           <Stack
             direction={{ xs: "row", sm: "row", md: "row" }}
@@ -80,8 +85,8 @@ const DiscoverLatestNews = () => {
                         variant="body2"
                         sx={{ color: "#FFFFF5", fontWeight: 300, fontSize: 12 }}
                       >
-                        {item && item?.title?.length >= 80
-                          ? Parser(item?.title.slice(0, 80)) + "..."
+                        {item && item?.title?.length >= 150
+                          ? Parser(item?.title.slice(0, 150)) + "..."
                           : Parser(item?.title)}
                         .
                       </Typography>

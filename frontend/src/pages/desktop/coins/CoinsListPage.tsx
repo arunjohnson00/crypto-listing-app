@@ -205,7 +205,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
     <Fragment>
       <Grid
         container
-        spacing={5}
+        spacing={0}
         sx={{
           dispaly: "flex",
         }}
@@ -578,8 +578,8 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
           </Grid>
         )}
       </Grid>
-      <Grid xs={12} mt={7}>
-        <Grid container spacing={5}>
+      <Grid xs={12} mt={3}>
+        <Grid container spacing={0}>
           <Box
             sx={{
               backgroundColor: "#03091d",

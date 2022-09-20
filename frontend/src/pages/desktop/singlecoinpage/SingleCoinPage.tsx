@@ -128,8 +128,8 @@ const SingleCoinPage = () => {
 
   return (
     <Fragment>
-      <Grid container spacing={5} px={1}>
-        <Grid xs={12} sx={{ paddingTop: 3 }} mx={0}>
+      <Grid container rowSpacing={2} px={0}>
+        <Grid xs={12}>
           <LatestNewsScroll />
         </Grid>
         {/* <Grid

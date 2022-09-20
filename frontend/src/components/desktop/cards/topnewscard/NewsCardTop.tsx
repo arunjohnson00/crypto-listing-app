@@ -14,15 +14,19 @@ const NewsCardTop = ({ rssFeed }: any) => {
 
           border: "1px solid #091851",
           width: "auto",
-          justifyContent: "flex-start",
+          justifyContent: "space-between",
+
           borderRadius: 2,
+          "&:hover": {
+            backgroundColor: "#020c36",
+          },
         }}
         p={1.2}
-        mx={1}
+        mr={1}
       >
         <Typography
           variant="subtitle2"
-          sx={{ color: "white", fontSize: "0.775rem" }}
+          sx={{ color: "#FFFFFF", fontSize: "0.775rem" }}
         >
           <a
             href={rssFeed?.link}
@@ -35,9 +39,10 @@ const NewsCardTop = ({ rssFeed }: any) => {
             }}
           >
             {" "}
-            {rssFeed && rssFeed?.title?.length >= 55
-              ? Parser(rssFeed?.title.substring(0, 55)) + "..."
+            {rssFeed && rssFeed?.title?.length >= 155
+              ? Parser(rssFeed?.title.substring(0, 155)) + "..."
               : Parser(rssFeed?.title)}
+            .
           </a>
         </Typography>
         <Typography variant="caption" sx={{ color: "#24D781" }}>

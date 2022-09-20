@@ -69,7 +69,7 @@ const LatestNewsScroll = () => {
           <span className="ripplelatestnews"></span>
         </div>
       </Stack>
-      <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
+      <Grid xs={12} sm={12} md={12} lg={12} xl={12} pt={1}>
         <Stack direction="row" spacing={3}>
           {/* <Marquee
             style={{ background: "none" }}

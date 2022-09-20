@@ -69,7 +69,7 @@ const CoinPageChart = ({ data }: any) => {
         show: true,
         curve: "smooth",
         lineCap: "butt",
-        colors: ["#f6ff02"],
+        colors: ["#F3CC08"],
         width: 2,
         dashArray: 0,
       },
@@ -99,8 +99,8 @@ const CoinPageChart = ({ data }: any) => {
         enabled: false,
       },
       markers: {
-        size: 3,
-        //style: "hollow",
+        size: 0,
+        style: "hollow",
         colors: "#6252E7",
         strokeColors: "#fff",
         strokeWidth: 0,
@@ -135,13 +135,13 @@ const CoinPageChart = ({ data }: any) => {
       fill: {
         type: "gradient",
 
-        colors: ["#e5ed00"],
+        colors: ["#1dffc0"],
 
         gradient: {
           shadeIntensity: 0.5,
           opacityFrom: 0.7,
           opacityTo: 0.0,
-          stops: [0, 40],
+          stops: [0, 0],
         },
       },
     },

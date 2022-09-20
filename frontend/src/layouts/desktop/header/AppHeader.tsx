@@ -27,7 +27,7 @@ const AppHeader = ({ windowInnerWidth }: any) => {
 
   return (
     <Grid xs={12}>
-      <Box sx={{ flexGrow: 1, backgroundColor: "transparent" }} mt={4}>
+      <Box sx={{ flexGrow: 1, backgroundColor: "transparent" }} mt={2}>
         <AppBar
           position="static"
           sx={{
