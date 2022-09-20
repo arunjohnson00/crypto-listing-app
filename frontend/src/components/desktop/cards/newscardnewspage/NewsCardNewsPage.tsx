@@ -1,12 +1,14 @@
 import { Grid, Box, Typography, Stack } from "@mui/material";
 import React from "react";
 import Parser from "html-react-parser";
+import moment from "moment";
 
-const NewsCardNewsPage = ({ rssFeed, timeAgo, index }: any) => {
+const NewsCardNewsPage = ({ rssFeed, index }: any) => {
   return (
     <Box
       sx={{
         flexGrow: 1,
+
         backgroundColor: "#020822",
         borderRadius: "6px",
         border: "1px solid #243464",
@@ -15,8 +17,8 @@ const NewsCardNewsPage = ({ rssFeed, timeAgo, index }: any) => {
         height: "auto",
         maxHeight: 400,
         position: "relative",
-        maxWidth: 300,
       }}
+      maxWidth={{ xs: "100%", sm: "100%", md: "20.5%" }}
       px={2}
       py={2}
       my={2}
@@ -86,7 +88,8 @@ const NewsCardNewsPage = ({ rssFeed, timeAgo, index }: any) => {
             variant="caption"
             sx={{ color: "#595F64", fontWeight: "550" }}
           >
-            {rssFeed && timeAgo.format(new Date(rssFeed?.date))}
+            {rssFeed &&
+              moment(new Date(rssFeed?.date ? rssFeed?.date : null)).fromNow()}
           </Typography>
 
           <Typography

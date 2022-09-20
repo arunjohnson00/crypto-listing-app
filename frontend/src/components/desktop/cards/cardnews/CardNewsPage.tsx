@@ -1,9 +1,9 @@
 import { Box, Grid, Typography, Stack } from "@mui/material";
 import Parser from "html-react-parser";
-
+import moment from "moment";
 const CardNewsPage = ({
   rssFeed,
-  timeAgo,
+
   height,
   spacing,
   paddingY,
@@ -112,7 +112,7 @@ const CardNewsPage = ({
             sx={{ color: "#EEEFEF", fontWeight: "550" }}
           >
             {rssFeed &&
-              timeAgo.format(new Date(rssFeed?.date ? rssFeed?.date : null))}
+              moment(new Date(rssFeed?.date ? rssFeed?.date : null)).fromNow()}
           </Typography>
         </Stack>
       </Stack>

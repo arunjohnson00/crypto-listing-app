@@ -1,8 +1,9 @@
 import { Grid, Box, Typography, Stack } from "@mui/material";
 import React from "react";
 import Parser from "html-react-parser";
+import moment from "moment";
 
-const NewsCard = ({ rssFeed, timeAgo }: any) => {
+const NewsCard = ({ rssFeed }: any) => {
   return (
     <Grid item xs={12} mx={0.5}>
       <Box
@@ -49,7 +50,7 @@ const NewsCard = ({ rssFeed, timeAgo }: any) => {
               variant="caption"
               sx={{ color: "#40444F", fontWeight: "550" }}
             >
-              {timeAgo.format(new Date(rssFeed?.date))}
+              {moment(new Date(rssFeed?.date)).fromNow()}
             </Typography>
 
             <Typography

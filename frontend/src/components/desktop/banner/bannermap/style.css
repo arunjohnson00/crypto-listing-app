@@ -23,10 +23,244 @@
 }
 
 .ripple:first-child::before {
-  animation-delay: 0.2s;
+  animation-delay: 0s;
 }
 
 @keyframes ripple {
+  from {
+    opacity: 1;
+    transform: scale(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(4);
+  }
+}
+
+.ripple1 {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin: 0 5px;
+  position: relative;
+}
+
+.ripple1::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  border-radius: 50%;
+  z-index: 1;
+  animation: ripple1 1.5s ease-out infinite;
+}
+
+.ripple1:first-child {
+  background-color: #7709ee;
+}
+
+.ripple1:first-child::before {
+  animation-delay: 0.5s;
+}
+
+@keyframes ripple1 {
+  from {
+    opacity: 1;
+    transform: scale(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(4);
+  }
+}
+
+.ripple2 {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin: 0 5px;
+  position: relative;
+}
+
+.ripple2::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  border-radius: 50%;
+  z-index: 1;
+  animation: ripple2 1.5s ease-out infinite;
+}
+
+.ripple2:first-child {
+  background-color: #7709ee;
+}
+
+.ripple:first-child::before {
+  animation-delay: 0.7s;
+}
+
+@keyframes ripple2 {
+  from {
+    opacity: 1;
+    transform: scale(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(4);
+  }
+}
+
+.ripple3 {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin: 0 5px;
+  position: relative;
+}
+
+.ripple3::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  border-radius: 50%;
+  z-index: 1;
+  animation: ripple3 1.5s ease-out infinite;
+}
+
+.ripple3:first-child {
+  background-color: #7709ee;
+}
+
+.ripple:first-child::before {
+  animation-delay: 1.1s;
+}
+
+@keyframes ripple3 {
+  from {
+    opacity: 1;
+    transform: scale(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(4);
+  }
+}
+
+.ripple4 {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin: 0 5px;
+  position: relative;
+}
+
+.ripple4::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  border-radius: 50%;
+  z-index: 1;
+  animation: ripple4 1.5s ease-out infinite;
+}
+
+.ripple4:first-child {
+  background-color: #7709ee;
+}
+
+.ripple4:first-child::before {
+  animation-delay: 1.2s;
+}
+
+@keyframes ripple4 {
+  from {
+    opacity: 1;
+    transform: scale(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(4);
+  }
+}
+
+.ripple5 {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin: 0 5px;
+  position: relative;
+}
+
+.ripple5::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  border-radius: 50%;
+  z-index: 1;
+  animation: ripple5 1.5s ease-out infinite;
+}
+
+.ripple5:first-child {
+  background-color: #7709ee;
+}
+
+.ripple5:first-child::before {
+  animation-delay: 1.5s;
+}
+
+@keyframes ripple5 {
+  from {
+    opacity: 1;
+    transform: scale(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(4);
+  }
+}
+
+.ripple6 {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin: 0 5px;
+  position: relative;
+}
+
+.ripple6::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  border-radius: 50%;
+  z-index: 1;
+  animation: ripple5 1.5s ease-out infinite;
+}
+
+.ripple6:first-child {
+  background-color: #7709ee;
+}
+
+.ripple6:first-child::before {
+  animation-delay: 2s;
+}
+
+@keyframes ripple6 {
   from {
     opacity: 1;
     transform: scale(0);

@@ -78,25 +78,25 @@ const BannerMap = () => {
           </div>
           <div>
             <span
-              className="ripple"
+              className="ripple1"
               style={{ left: "222px", top: "-30px" }}
             ></span>
           </div>
           <div>
             <span
-              className="ripple"
+              className="ripple5"
               style={{ left: "307px", top: "-57px" }}
             ></span>
           </div>
           <div>
             <span
-              className="ripple"
+              className="ripple3"
               style={{ left: "293px", top: "-27px" }}
             ></span>
           </div>
           <div>
             <span
-              className="ripple"
+              className="ripple4"
               style={{ left: "365px", top: "017px" }}
             ></span>
           </div>
@@ -108,7 +108,7 @@ const BannerMap = () => {
           </div>
           <div>
             <span
-              className="ripple"
+              className="ripple6"
               style={{ left: "141px", top: "-53px" }}
             ></span>
           </div>

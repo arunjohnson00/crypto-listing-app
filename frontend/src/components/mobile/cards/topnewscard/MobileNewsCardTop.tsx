@@ -1,7 +1,8 @@
 import { Stack, Divider, Grid, Typography } from "@mui/material";
 import { Fragment } from "react";
 import Parser from "html-react-parser";
-const MobileNewsCardTop = ({ rssFeed, timeAgo }: any) => {
+import moment from "moment";
+const MobileNewsCardTop = ({ rssFeed }: any) => {
   return (
     <Fragment>
       <Stack
@@ -36,7 +37,7 @@ const MobileNewsCardTop = ({ rssFeed, timeAgo }: any) => {
           </a>
         </Typography>
         <Typography variant="caption" sx={{ color: "#24D781" }}>
-          {timeAgo.format(new Date(rssFeed?.date))}
+          {moment(new Date(rssFeed?.date)).fromNow()}
         </Typography>
       </Stack>
 

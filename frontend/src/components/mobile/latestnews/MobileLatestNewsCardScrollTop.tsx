@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Marquee from "react-fast-marquee";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import TimeAgo from "javascript-time-ago";
+// import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 
 import { latestNewsRequest } from "../../../store/action";
@@ -39,8 +39,8 @@ const MobileLatestNewsCardScrollTop = () => {
     return data?.commonReducer?.latest_news_feed?.data;
   });
 
-  TimeAgo.addDefaultLocale(en);
-  const timeAgo = new TimeAgo("en");
+  // TimeAgo.addDefaultLocale(en);
+  // const timeAgo = new TimeAgo("en");
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
@@ -106,7 +106,7 @@ const MobileLatestNewsCardScrollTop = () => {
                       <Box key={index}>
                         <MobileNewsCardTop
                           rssFeed={rssFeed}
-                          timeAgo={timeAgo}
+                          // timeAgo={timeAgo}
                           key={index}
                         />
                       </Box>

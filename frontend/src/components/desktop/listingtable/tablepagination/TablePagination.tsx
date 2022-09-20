@@ -18,6 +18,7 @@ const TableListPagination = ({
       page={page?.pagination}
       onPageChange={handleChangePage}
       rowsPerPage={rowsPerPage}
+      rowsPerPageOptions={[]}
       onRowsPerPageChange={handleChangeRowsPerPage}
       sx={{
         color: "#FFFFFF",

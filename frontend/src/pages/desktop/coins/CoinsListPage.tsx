@@ -69,7 +69,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
   const [tableTabvalue, setTableTabValue] = useState<any>("");
   const [tableData, setTableData] = useState<any>([]);
   const [page, setPage] = useState({ pagination: 1, scroll: true });
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(20);
   const [preLoader, setPreLoader] = useState<any>({
     recently_added: true,
     biggest_gainers: true,
@@ -100,8 +100,8 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage({ ...page, pagination: 0 });
+    setRowsPerPage(parseInt(event.target.value, 20));
+    setPage({ ...page, pagination: 1 });
   };
 
   const tableTabHandleChange = (
@@ -110,7 +110,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
   ) => {
     setTableTabValue(newValue);
     setTableData("");
-    setPage({ ...page, pagination: 0 });
+    setPage({ ...page, pagination: 1 });
   };
 
   useEffect(() => {

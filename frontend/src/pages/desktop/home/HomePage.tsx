@@ -13,7 +13,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import Marquee from "react-fast-marquee";
-import TimeAgo from "javascript-time-ago";
+// import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -167,8 +167,8 @@ const responsiveHighlights = {
 
 const HomePage = ({ windowInnerWidth }: any) => {
   const dispatch: any = useDispatch();
-  TimeAgo.addDefaultLocale(en);
-  const timeAgo = new TimeAgo("en");
+  // TimeAgo.addDefaultLocale(en);
+  // const timeAgo = new TimeAgo("en");
   const [feed, setFeed] = useState<any>();
   const [tableData, setTableData] = useState<any>();
 
