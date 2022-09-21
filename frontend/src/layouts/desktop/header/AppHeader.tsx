@@ -117,6 +117,11 @@ const AppHeader = ({ windowInnerWidth }: any) => {
                 path="/leader-board"
               />
               <AppBarNavBtn title="News" iconStatus={true} path="/news" />
+              <AppBarNavBtn
+                title="F&G Index"
+                iconStatus={false}
+                path="/fear-greed-index"
+              />
             </Stack>
           )}
         </AppBar>

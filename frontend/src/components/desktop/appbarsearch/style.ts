@@ -28,11 +28,12 @@ export const StyledInputRoot = styled("div")(
     display: flex;
     font-weight: 500;
     border: 1px solid #6252E8;
-    border-radius: 4px;
+    border-radius: 8px;
     background: #01061A;
     align-items: center;
     justify-content: center;
     cursor:text;
+    width:309px;
 
   
     &.${inputUnstyledClasses.focused} {

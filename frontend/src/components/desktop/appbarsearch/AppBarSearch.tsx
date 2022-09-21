@@ -188,8 +188,8 @@ const AppBarSearch = () => {
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: -1,
-          horizontal: -2,
+          vertical: 0,
+          horizontal: -110,
         }}
         PaperProps={{
           style: {
