@@ -15,6 +15,8 @@ import {
   Link,
 } from "@mui/material";
 import moment from "moment";
+import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
+import ThumbUpAltRoundedIcon from "@mui/icons-material/ThumbUpAltRounded";
 import WiriteReview from "../writereview/WiriteReview";
 import { coinRatingBlockRequest } from "../../../store/action";
 
@@ -48,9 +50,9 @@ const CoinpageRatings = () => {
   }, []);
   return (
     <Grid container xs={12}>
-      <Grid xs={12}>
+      <Grid item xs={12}>
         <Stack direction={{ xs: "column", sm: "column", md: "row" }} mt={2}>
-          <Grid xs={12}>
+          <Grid item xs={12}>
             <Typography
               variant="h5"
               sx={{
@@ -67,7 +69,7 @@ const CoinpageRatings = () => {
               {coinRatingBlock && coinRatingBlock[0]?.name} Rating & Reviews
             </Typography>
           </Grid>
-          <Grid xs={12} mt={{ xs: 2, sm: 2, md: 0 }}>
+          <Grid item xs={12} mt={{ xs: 2, sm: 2, md: 0 }}>
             <CardMedia
               component="img"
               height="70"
@@ -78,15 +80,16 @@ const CoinpageRatings = () => {
           </Grid>
         </Stack>
       </Grid>
-      <Grid xs={12} sm={12} md={8} lg={8} xl={8}>
-        <Grid xs={12} mb={5}>
+      <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+        <Grid item xs={12} mb={5}>
           <Stack direction="column" mt={3}>
             <Box
               sx={{
                 height: 70,
                 flexGrow: 1,
-                backgroundColor: "#091338",
+                backgroundColor: "#030923",
                 borderRadius: 2,
+                border: "1px solid #050e35",
               }}
             >
               <Stack
@@ -114,8 +117,11 @@ const CoinpageRatings = () => {
                       color: "#FFFFF5",
                       fontWeight: 400,
                       cursor: "pointer",
+                      textDecoration: "undeline",
+                      textDecorationStyle: "dotted",
+                      textUnderlineOffset: "4px",
                     }}
-                    underline="none"
+                    //underline="none"
                     onClick={handleWriteReviewClickOpen}
                   >
                     Write a review
@@ -136,243 +142,326 @@ const CoinpageRatings = () => {
             </Box>
           </Stack>
         </Grid>
-        <Grid xs={12} mb={5}>
-          <Stack direction="column" mt={7} ml={{ xs: 0, sm: 0, md: 5 }}>
-            <Typography
-              variant="subtitle1"
-              sx={{ color: "#FFFFF5", fontWeight: 500, fontSize: "1.4rem" }}
-            >
-              Reviwes{" "}
-              {coinRatingBlock && coinRatingBlock[0]?.total_review_count}
-            </Typography>
-            <Stack direction="row" mt={1} spacing={1.5} alignItems={"center"}>
-              <Checkbox
-                defaultChecked
-                size="small"
-                sx={{
-                  color: "#6252E8",
-                  "&.Mui-checked": {
-                    color: "#6252E8",
-                  },
-                }}
-              />
+        <Grid item xs={12} mb={5}>
+          <Box
+            sx={{
+              borderRadius: 3,
+              backgroundColor: "#030923",
+              border: "1px solid #050e35",
+            }}
+          >
+            <Stack direction="column" mx={{ xs: 0, sm: 0, md: 5 }} py={3}>
               <Typography
-                variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
+                variant="subtitle1"
+                sx={{ color: "#FFFFF5", fontWeight: 500, fontSize: "1.4rem" }}
               >
-                Excellent
+                Reviews{" "}
+                {coinRatingBlock && coinRatingBlock[0]?.total_review_count}
               </Typography>
-              <Box sx={{ flexGrow: 1 }}>
-                <LinearProgress
-                  value={
-                    coinRatingBlock &&
+              <Stack direction="row" mt={0} spacing={1.5} alignItems={"center"}>
+                <Checkbox
+                  defaultChecked
+                  readOnly
+                  disabled
+                  size="small"
+                  sx={{
+                    color: "#00b67a",
+                    "&.Mui-checked": {
+                      color: "#00b67a",
+                    },
+                  }}
+                />
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#FFFFF5",
+                    fontWeight: 400,
+                    fontSize: ".85rem",
+                    minWidth: 80,
+                  }}
+                >
+                  Excellent
+                </Typography>
+                <Box sx={{ flexGrow: 1, color: "#00b67a" }}>
+                  <LinearProgress
+                    value={
+                      coinRatingBlock &&
+                      (
+                        (coinRatingBlock[0]?.review_data?.ratings[4]
+                          ?.rating_count /
+                          coinRatingBlock[0]?.review_data?.total) *
+                        100
+                      ).toFixed(0)
+                    }
+                    variant="determinate"
+                    sx={{
+                      borderRadius: 5,
+                      height: 9,
+                      maxWidth: 430,
+                    }}
+                    color="inherit"
+                  />
+                </Box>
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
+                >
+                  {coinRatingBlock &&
                     (
                       (coinRatingBlock[0]?.review_data?.ratings[4]
                         ?.rating_count /
                         coinRatingBlock[0]?.review_data?.total) *
                       100
-                    ).toFixed(0)
-                  }
-                  variant="determinate"
+                    ).toFixed(0) + "%"}
+                </Typography>
+              </Stack>
+              <Stack direction="row" mt={0} spacing={1.5} alignItems={"center"}>
+                <Checkbox
+                  defaultChecked
+                  readOnly
+                  disabled
+                  size="small"
+                  sx={{
+                    color: "#73cf11",
+                    "&.Mui-checked": {
+                      color: "#73cf11",
+                    },
+                  }}
                 />
-              </Box>
-              <Typography
-                variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
-              >
-                {coinRatingBlock &&
-                  (
-                    (coinRatingBlock[0]?.review_data?.ratings[4]?.rating_count /
-                      coinRatingBlock[0]?.review_data?.total) *
-                    100
-                  ).toFixed(0) + "%"}
-              </Typography>
-            </Stack>
-            <Stack direction="row" mt={1} spacing={1.5} alignItems={"center"}>
-              <Checkbox
-                defaultChecked
-                size="small"
-                sx={{
-                  color: "#6252E8",
-                  "&.Mui-checked": {
-                    color: "#6252E8",
-                  },
-                }}
-              />
-              <Typography
-                variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
-              >
-                Great
-              </Typography>
-              <Box sx={{ flexGrow: 1 }}>
-                <LinearProgress
-                  value={
-                    coinRatingBlock &&
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#FFFFF5",
+                    fontWeight: 400,
+                    fontSize: ".85rem",
+                    minWidth: 80,
+                  }}
+                >
+                  Great
+                </Typography>
+                <Box sx={{ flexGrow: 1, color: "#73cf11" }}>
+                  <LinearProgress
+                    value={
+                      coinRatingBlock &&
+                      (
+                        (coinRatingBlock[0]?.review_data?.ratings[3]
+                          ?.rating_count /
+                          coinRatingBlock[0]?.review_data?.total) *
+                        100
+                      ).toFixed(0)
+                    }
+                    variant="determinate"
+                    sx={{
+                      borderRadius: 5,
+                      height: 9,
+                      maxWidth: 430,
+                    }}
+                    color="inherit"
+                  />
+                </Box>
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
+                >
+                  {coinRatingBlock &&
                     (
                       (coinRatingBlock[0]?.review_data?.ratings[3]
                         ?.rating_count /
                         coinRatingBlock[0]?.review_data?.total) *
                       100
-                    ).toFixed(0)
-                  }
-                  variant="determinate"
+                    ).toFixed(0) + "%"}
+                </Typography>
+              </Stack>
+              <Stack direction="row" mt={0} spacing={1.5} alignItems={"center"}>
+                <Checkbox
+                  defaultChecked
+                  readOnly
+                  disabled
+                  size="small"
+                  sx={{
+                    color: "#ffce00",
+                    "&.Mui-checked": {
+                      color: "#ffce00",
+                    },
+                  }}
                 />
-              </Box>
-              <Typography
-                variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
-              >
-                {coinRatingBlock &&
-                  (
-                    (coinRatingBlock[0]?.review_data?.ratings[3]?.rating_count /
-                      coinRatingBlock[0]?.review_data?.total) *
-                    100
-                  ).toFixed(0) + "%"}
-              </Typography>
-            </Stack>
-            <Stack direction="row" mt={1} spacing={1.5} alignItems={"center"}>
-              <Checkbox
-                defaultChecked
-                size="small"
-                sx={{
-                  color: "#6252E8",
-                  "&.Mui-checked": {
-                    color: "#6252E8",
-                  },
-                }}
-              />
-              <Typography
-                variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
-              >
-                Avarage
-              </Typography>
-              <Box sx={{ flexGrow: 1 }}>
-                <LinearProgress
-                  value={
-                    coinRatingBlock &&
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#FFFFF5",
+                    fontWeight: 400,
+                    fontSize: ".85rem",
+                    minWidth: 80,
+                  }}
+                >
+                  Avarage
+                </Typography>
+                <Box sx={{ flexGrow: 1, color: "#ffce00" }}>
+                  <LinearProgress
+                    value={
+                      coinRatingBlock &&
+                      (
+                        (coinRatingBlock[0]?.review_data?.ratings[2]
+                          ?.rating_count /
+                          coinRatingBlock[0]?.review_data?.total) *
+                        100
+                      ).toFixed(0)
+                    }
+                    variant="determinate"
+                    sx={{
+                      borderRadius: 5,
+                      height: 9,
+                      maxWidth: 430,
+                    }}
+                    color="inherit"
+                  />
+                </Box>
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
+                >
+                  {coinRatingBlock &&
                     (
                       (coinRatingBlock[0]?.review_data?.ratings[2]
                         ?.rating_count /
                         coinRatingBlock[0]?.review_data?.total) *
                       100
-                    ).toFixed(0)
-                  }
-                  variant="determinate"
+                    ).toFixed(0) + "%"}
+                </Typography>
+              </Stack>
+              <Stack direction="row" mt={0} spacing={1.5} alignItems={"center"}>
+                <Checkbox
+                  defaultChecked
+                  readOnly
+                  disabled
+                  size="small"
+                  sx={{
+                    color: "#ff8622",
+                    "&.Mui-checked": {
+                      color: "#ff8622",
+                    },
+                  }}
                 />
-              </Box>
-              <Typography
-                variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
-              >
-                {coinRatingBlock &&
-                  (
-                    (coinRatingBlock[0]?.review_data?.ratings[2]?.rating_count /
-                      coinRatingBlock[0]?.review_data?.total) *
-                    100
-                  ).toFixed(0) + "%"}
-              </Typography>
-            </Stack>
-            <Stack direction="row" mt={1} spacing={1.5} alignItems={"center"}>
-              <Checkbox
-                defaultChecked
-                size="small"
-                sx={{
-                  color: "#6252E8",
-                  "&.Mui-checked": {
-                    color: "#6252E8",
-                  },
-                }}
-              />
-              <Typography
-                variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
-              >
-                Poor
-              </Typography>
-              <Box sx={{ flexGrow: 1 }}>
-                <LinearProgress
-                  value={
-                    coinRatingBlock &&
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#FFFFF5",
+                    fontWeight: 400,
+                    fontSize: ".85rem",
+                    minWidth: 80,
+                  }}
+                >
+                  Poor
+                </Typography>
+                <Box sx={{ flexGrow: 1, color: "#ff8622" }}>
+                  <LinearProgress
+                    value={
+                      coinRatingBlock &&
+                      (
+                        (coinRatingBlock[0]?.review_data?.ratings[1]
+                          ?.rating_count /
+                          coinRatingBlock[0]?.review_data?.total) *
+                        100
+                      ).toFixed(0)
+                    }
+                    variant="determinate"
+                    sx={{
+                      borderRadius: 5,
+                      height: 9,
+                      maxWidth: 430,
+                    }}
+                    color="inherit"
+                  />
+                </Box>
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
+                >
+                  {coinRatingBlock &&
                     (
                       (coinRatingBlock[0]?.review_data?.ratings[1]
                         ?.rating_count /
                         coinRatingBlock[0]?.review_data?.total) *
                       100
-                    ).toFixed(0)
-                  }
-                  variant="determinate"
-                />
-              </Box>
-              <Typography
-                variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
-              >
-                {coinRatingBlock &&
-                  (
-                    (coinRatingBlock[0]?.review_data?.ratings[1]?.rating_count /
-                      coinRatingBlock[0]?.review_data?.total) *
-                    100
-                  ).toFixed(0) + "%"}
-              </Typography>
-            </Stack>
+                    ).toFixed(0) + "%"}
+                </Typography>
+              </Stack>
 
-            <Stack direction="row" mt={1} spacing={1.5} alignItems={"center"}>
-              <Checkbox
-                defaultChecked
-                size="small"
-                sx={{
-                  color: "#6252E8",
-                  "&.Mui-checked": {
-                    color: "#6252E8",
-                  },
-                }}
-              />
-              <Typography
-                variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
-              >
-                Bad
-              </Typography>
-              <Box sx={{ flexGrow: 1 }}>
-                <LinearProgress
-                  value={
-                    coinRatingBlock &&
+              <Stack direction="row" mt={0} spacing={1.5} alignItems={"center"}>
+                <Checkbox
+                  defaultChecked
+                  readOnly
+                  disabled
+                  size="small"
+                  sx={{
+                    color: "#ff3722",
+                    "&.Mui-checked": {
+                      color: "#ff3722",
+                    },
+                  }}
+                />
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#FFFFF5",
+                    fontWeight: 400,
+                    fontSize: ".85rem",
+                    minWidth: 80,
+                  }}
+                >
+                  Bad
+                </Typography>
+                <Box sx={{ flexGrow: 1, color: "#ff3722" }}>
+                  <LinearProgress
+                    value={
+                      coinRatingBlock &&
+                      (
+                        (coinRatingBlock[0]?.review_data?.ratings[0]
+                          ?.rating_count /
+                          coinRatingBlock[0]?.review_data?.total) *
+                        100
+                      ).toFixed(0)
+                    }
+                    variant="determinate"
+                    sx={{
+                      borderRadius: 5,
+                      height: 9,
+                      maxWidth: 430,
+                    }}
+                    color="inherit"
+                  />
+                </Box>
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
+                >
+                  {coinRatingBlock &&
                     (
                       (coinRatingBlock[0]?.review_data?.ratings[0]
                         ?.rating_count /
                         coinRatingBlock[0]?.review_data?.total) *
                       100
-                    ).toFixed(0)
-                  }
-                  variant="determinate"
-                />
-              </Box>
-              <Typography
-                variant="body2"
-                sx={{ color: "#FFFFF5", fontWeight: 400, fontSize: ".85rem" }}
-              >
-                {coinRatingBlock &&
-                  (
-                    (coinRatingBlock[0]?.review_data?.ratings[0]?.rating_count /
-                      coinRatingBlock[0]?.review_data?.total) *
-                    100
-                  ).toFixed(0) + "%"}
-              </Typography>
+                    ).toFixed(0) + "%"}
+                </Typography>
+              </Stack>
             </Stack>
-          </Stack>
+          </Box>
         </Grid>
 
         {coinRatingBlock &&
           coinRatingBlock[0]?.review_details?.map(
             (item: any, index: number) => (
-              <Grid
-                xs={12}
+              <Box
                 key={index}
-                sx={{ backgroundColor: "#0309218a", p: 2, my: 2 }}
+                sx={{
+                  backgroundColor: "#030923",
+                  p: 2,
+                  my: 2,
+                  borderRadius: 3,
+                  border: "1px solid #050e35",
+                }}
               >
-                <Stack direction="column" spacing={2} px={2}>
+                <Stack direction="column" spacing={2} px={2} py={2}>
                   <Stack
                     direction="row"
                     spacing={1.5}
@@ -386,7 +475,7 @@ const CoinpageRatings = () => {
                     <Stack direction="column" spacing={0.3}>
                       <Typography
                         sx={{
-                          color: "#FFFFF5",
+                          color: "#1dffc0",
                           fontWeight: 400,
                           lineHeight: 1,
                           fontSize: ".9rem",
@@ -410,7 +499,7 @@ const CoinpageRatings = () => {
                     variant="fullWidth"
                     flexItem
                     orientation="horizontal"
-                    sx={{ borderColor: "#091338", borderBottomWidth: 2 }}
+                    sx={{ borderColor: "#050e35", borderBottomWidth: 1 }}
                   />
 
                   <Stack
@@ -466,14 +555,31 @@ const CoinpageRatings = () => {
                     variant="fullWidth"
                     flexItem
                     orientation="horizontal"
-                    sx={{ borderColor: "#091338", borderBottomWidth: 2 }}
+                    sx={{ borderColor: "#050e35", borderBottomWidth: 1 }}
                   />
                   <Stack
                     direction="row"
-                    spacing={3}
+                    spacing={1}
                     sx={{ alignItems: "center", justifyContent: "flex-start" }}
                     my={2}
                   >
+                    <Rating
+                      name="size-medium"
+                      defaultValue={0}
+                      max={1}
+                      icon={
+                        <ThumbUpAltOutlinedIcon
+                          fontSize="inherit"
+                          sx={{ color: "#1dffc0", fontSize: "1rem" }}
+                        />
+                      }
+                      emptyIcon={
+                        <ThumbUpAltOutlinedIcon
+                          fontSize="inherit"
+                          sx={{ color: "#FFFFFF", fontSize: "1rem" }}
+                        />
+                      }
+                    />
                     <Typography
                       variant="caption"
                       sx={{
@@ -481,9 +587,10 @@ const CoinpageRatings = () => {
                         fontWeight: 400,
                       }}
                     >
-                      17 Likes
+                      17 Likes{" "}
                     </Typography>
-                    <Typography
+
+                    {/* <Typography
                       variant="caption"
                       sx={{
                         color: "#FFFFF5",
@@ -491,108 +598,133 @@ const CoinpageRatings = () => {
                       }}
                     >
                       Share
-                    </Typography>
+                    </Typography> */}
                   </Stack>
                 </Stack>
-              </Grid>
+              </Box>
             )
           )}
       </Grid>
 
       <Grid
+        item
         xs={12}
         sm={12}
-        md={4}
-        lg={4}
-        xl={4}
+        md={6}
+        lg={6}
+        xl={6}
         px={{ xs: 0, sm: 0, md: 4 }}
         mt={{ xs: 2, sm: 2, md: 0 }}
       >
-        <Grid xs={12} pt={6}>
-          <Stack direction="column" spacing={1.5} sx={{ alignItems: "center" }}>
-            <Typography variant="body2" sx={{ color: "#FFFFF5" }}>
-              People are supporting
-            </Typography>
-            <Divider
-              variant="fullWidth"
-              flexItem
-              orientation="horizontal"
-              sx={{ borderColor: "#091338", borderBottomWidth: 2 }}
-            />
-            <Stack direction="column" spacing={0} sx={{ alignItems: "center" }}>
-              <Typography
-                variant="h4"
-                sx={{ color: "#FFFFF5", fontWeight: 600 }}
-              >
-                {coinRatingBlock && coinRatingBlock[0]?.name}
+        <Grid item xs={12} pt={6}>
+          <Stack
+            direction="column"
+            alignItems="flex-start"
+            sx={{ width: "100%" }}
+          >
+            <Stack
+              direction="column"
+              spacing={1.5}
+              sx={{ alignItems: "center", width: 350, maxWidth: 550 }}
+            >
+              <Typography variant="body2" sx={{ color: "#FFFFF5" }}>
+                People are supporting
               </Typography>
-              <Typography
-                //variant="subtitle1"
-                sx={{ color: "#FFFFF5", fontWeight: 500 }}
-              >
-                Reviews{" "}
-                {coinRatingBlock && coinRatingBlock[0]?.total_review_count}
-              </Typography>
+              <Divider
+                variant="middle"
+                flexItem
+                orientation="horizontal"
+                sx={{
+                  borderColor: "#091338",
+                  borderBottomWidth: 2,
+                  width: "80%",
+                  alignSelf: "center",
+                }}
+              />
               <Stack
                 direction="column"
                 spacing={0}
                 sx={{ alignItems: "center" }}
-                mt={2}
               >
                 <Typography
-                  variant="h6"
-                  sx={{ color: "#1EC08C", fontWeight: "400" }}
+                  variant="h4"
+                  sx={{ color: "#FFFFF5", fontWeight: 600 }}
                 >
-                  Trust Scrore
+                  {coinRatingBlock && coinRatingBlock[0]?.name}
                 </Typography>
                 <Typography
-                  variant="h1"
-                  sx={{ color: "#FFFFF5", fontWeight: "400" }}
+                  //variant="subtitle1"
+                  sx={{ color: "#FFFFF5", fontWeight: 500 }}
                 >
-                  {coinRatingBlock &&
-                    parseFloat(coinRatingBlock[0]?.trust_score).toFixed(1)}
+                  Reviews{" "}
+                  {coinRatingBlock && coinRatingBlock[0]?.total_review_count}
                 </Typography>
-                <Rating
-                  name="large"
-                  defaultValue={0}
-                  size="large"
-                  value={
-                    coinRatingBlock &&
-                    parseFloat(coinRatingBlock[0]?.trust_score).toFixed(1)
-                  }
-                  readOnly
-                  precision={0.1}
-                  sx={{ fontSize: "1.5rem" }}
-                />
-                <Typography
-                  variant="h6"
-                  sx={{ color: "#9C9C9B", fontWeight: "400" }}
-                  pt={1}
+                <Stack
+                  direction="column"
+                  spacing={0}
+                  sx={{ alignItems: "center" }}
+                  mt={2}
                 >
-                  {coinRatingBlock &&
-                  parseFloat(coinRatingBlock[0]?.trust_score) >= 5
-                    ? "Excellent"
-                    : coinRatingBlock &&
-                      parseFloat(coinRatingBlock[0]?.trust_score) >= 4
-                    ? "Great"
-                    : coinRatingBlock &&
-                      parseFloat(coinRatingBlock[0]?.trust_score) >= 3
-                    ? "Avarage"
-                    : coinRatingBlock &&
-                      parseFloat(coinRatingBlock[0]?.trust_score) >= 2
-                    ? "Poor"
-                    : coinRatingBlock &&
-                      parseFloat(coinRatingBlock[0]?.trust_score) >= 1 &&
-                      "Bad"}
-                </Typography>
+                  <Typography
+                    variant="h6"
+                    sx={{ color: "#1EC08C", fontWeight: "400" }}
+                  >
+                    Trust Scrore
+                  </Typography>
+                  <Typography
+                    variant="h1"
+                    sx={{ color: "#FFFFF5", fontWeight: "400" }}
+                  >
+                    {coinRatingBlock &&
+                      parseFloat(coinRatingBlock[0]?.trust_score).toFixed(1)}
+                  </Typography>
+                  <Rating
+                    name="large"
+                    defaultValue={0}
+                    size="large"
+                    value={
+                      coinRatingBlock &&
+                      parseFloat(coinRatingBlock[0]?.trust_score).toFixed(1)
+                    }
+                    readOnly
+                    precision={0.1}
+                    sx={{ fontSize: "1.5rem" }}
+                  />
+                  <Typography
+                    variant="h6"
+                    sx={{ color: "#9C9C9B", fontWeight: "400" }}
+                    pt={1}
+                  >
+                    {coinRatingBlock &&
+                    parseFloat(coinRatingBlock[0]?.trust_score) >= 5
+                      ? "Excellent"
+                      : coinRatingBlock &&
+                        parseFloat(coinRatingBlock[0]?.trust_score) >= 4
+                      ? "Great"
+                      : coinRatingBlock &&
+                        parseFloat(coinRatingBlock[0]?.trust_score) >= 3
+                      ? "Avarage"
+                      : coinRatingBlock &&
+                        parseFloat(coinRatingBlock[0]?.trust_score) >= 2
+                      ? "Poor"
+                      : coinRatingBlock &&
+                        parseFloat(coinRatingBlock[0]?.trust_score) >= 1 &&
+                        "Bad"}
+                  </Typography>
+                </Stack>
               </Stack>
+              <Divider
+                variant="middle"
+                flexItem
+                orientation="horizontal"
+                sx={{
+                  borderColor: "#091338",
+                  borderBottomWidth: 2,
+                  width: "80%",
+                  alignSelf: "center",
+                }}
+              />
             </Stack>
-            <Divider
-              variant="fullWidth"
-              flexItem
-              orientation="horizontal"
-              sx={{ borderColor: "#091338", borderBottomWidth: 2 }}
-            />
           </Stack>
         </Grid>
       </Grid>

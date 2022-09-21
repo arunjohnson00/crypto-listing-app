@@ -29,7 +29,7 @@ const DropDownAds = ({ data, title, color }: any) => {
         sx={{
           textTransform: "capitalize",
           fontWeight: 500,
-          borderRadius: 6,
+          borderRadius: 2,
           backgroundColor: color && color,
         }}
         size="small"

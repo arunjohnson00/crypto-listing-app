@@ -250,7 +250,7 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
                       Listed{": "}
                       <span
                         style={{
-                          color: "#2c4195",
+                          color: "#667ddc",
                           fontWeight: 600,
                           fontSize: "0.75rem",
                           textTransform: "capitalize",

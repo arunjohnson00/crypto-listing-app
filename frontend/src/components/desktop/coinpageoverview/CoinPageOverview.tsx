@@ -145,7 +145,7 @@ const CoinPageOverview = () => {
               </Typography>
               <Typography
                 variant="caption"
-                sx={{ color: "#FFFFF5", fontSize: "0.75rem" }}
+                sx={{ color: "#FFFFF5", fontSize: "0.85rem", fontWeight: 500 }}
               >
                 {coinDetailOverview && coinDetailOverview[0]?.price !== null ? (
                   String(Math.trunc(parseFloat(coinDetailOverview[0]?.price)))
@@ -179,6 +179,10 @@ const CoinPageOverview = () => {
                 }}
               >
                 <LinearProgress
+                  sx={{
+                    borderRadius: 5,
+                    height: 8,
+                  }}
                   value={
                     coinDetailOverview && priceFilter === 1
                       ? (
@@ -220,152 +224,166 @@ const CoinPageOverview = () => {
             >
               <Typography
                 variant="caption"
-                sx={{ color: "#FFFFF5", fontSize: "0.75rem" }}
+                sx={{ color: "#B6B6B9", fontSize: "0.75rem" }}
               >
                 Low:{" "}
-                {coinDetailOverview &&
-                priceFilter === 1 &&
-                coinDetailOverview[0]?.low_high_price?.one?.min !== null ? (
-                  String(
-                    Math.trunc(
+                <span
+                  style={{
+                    color: "#FFFFFF",
+                    // fontWeight: 500
+                  }}
+                >
+                  {coinDetailOverview &&
+                  priceFilter === 1 &&
+                  coinDetailOverview[0]?.low_high_price?.one?.min !== null ? (
+                    String(
+                      Math.trunc(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.one?.min
+                        )
+                      )
+                    ).length > 2 ? (
+                      "$ " +
+                      Number(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.one?.min
+                        ).toFixed(2)
+                      ).toLocaleString()
+                    ) : coinDetailOverview &&
+                      Math.abs(
+                        coinDetailOverview[0]?.low_high_price?.one?.min
+                      ) > 1 ? (
+                      "$ " +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.one?.min
                       )
-                    )
-                  ).length > 2 ? (
-                    "$ " +
-                    Number(
+                        .toFixed(4)
+                        .toLocaleString()
+                    ) : (
+                      "$ " +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.one?.min
-                      ).toFixed(2)
-                    ).toLocaleString()
-                  ) : coinDetailOverview &&
-                    Math.abs(coinDetailOverview[0]?.low_high_price?.one?.min) >
-                      1 ? (
-                    "$ " +
-                    parseFloat(coinDetailOverview[0]?.low_high_price?.one?.min)
-                      .toFixed(4)
-                      .toLocaleString()
+                      )
+                        .toFixed(9)
+                        .toLocaleString()
+                    )
                   ) : (
-                    "$ " +
-                    parseFloat(coinDetailOverview[0]?.low_high_price?.one?.min)
-                      .toFixed(9)
-                      .toLocaleString()
-                  )
-                ) : (
-                  <span style={{ color: "#7a7a7a" }}></span>
-                )}
-                {coinDetailOverview &&
-                priceFilter === 7 &&
-                coinDetailOverview[0]?.low_high_price?.seven?.min !== null ? (
-                  String(
-                    Math.trunc(
+                    <span style={{ color: "#7a7a7a" }}></span>
+                  )}
+                  {coinDetailOverview &&
+                  priceFilter === 7 &&
+                  coinDetailOverview[0]?.low_high_price?.seven?.min !== null ? (
+                    String(
+                      Math.trunc(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.seven?.min
+                        )
+                      )
+                    ).length > 2 ? (
+                      "$ " +
+                      Number(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.seven?.min
+                        ).toFixed(2)
+                      ).toLocaleString()
+                    ) : coinDetailOverview &&
+                      Math.abs(
+                        coinDetailOverview[0]?.low_high_price?.seven?.min
+                      ) > 1 ? (
+                      "$ " +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.seven?.min
                       )
-                    )
-                  ).length > 2 ? (
-                    "$ " +
-                    Number(
+                        .toFixed(4)
+                        .toLocaleString()
+                    ) : (
+                      "$ " +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.seven?.min
-                      ).toFixed(2)
-                    ).toLocaleString()
-                  ) : coinDetailOverview &&
-                    Math.abs(
-                      coinDetailOverview[0]?.low_high_price?.seven?.min
-                    ) > 1 ? (
-                    "$ " +
-                    parseFloat(
-                      coinDetailOverview[0]?.low_high_price?.seven?.min
+                      )
+                        .toFixed(9)
+                        .toLocaleString()
                     )
-                      .toFixed(4)
-                      .toLocaleString()
                   ) : (
-                    "$ " +
-                    parseFloat(
-                      coinDetailOverview[0]?.low_high_price?.seven?.min
-                    )
-                      .toFixed(9)
-                      .toLocaleString()
-                  )
-                ) : (
-                  <span style={{ color: "#7a7a7a" }}></span>
-                )}
-                {coinDetailOverview &&
-                priceFilter === 15 &&
-                coinDetailOverview[0]?.low_high_price?.fifteen?.min !== null ? (
-                  String(
-                    Math.trunc(
+                    <span style={{ color: "#7a7a7a" }}></span>
+                  )}
+                  {coinDetailOverview &&
+                  priceFilter === 15 &&
+                  coinDetailOverview[0]?.low_high_price?.fifteen?.min !==
+                    null ? (
+                    String(
+                      Math.trunc(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.fifteen?.min
+                        )
+                      )
+                    ).length > 2 ? (
+                      "$ " +
+                      Number(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.fifteen?.min
+                        ).toFixed(2)
+                      ).toLocaleString()
+                    ) : coinDetailOverview &&
+                      Math.abs(
+                        coinDetailOverview[0]?.low_high_price?.fifteen?.min
+                      ) > 1 ? (
+                      "$ " +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.fifteen?.min
                       )
-                    )
-                  ).length > 2 ? (
-                    "$ " +
-                    Number(
+                        .toFixed(4)
+                        .toLocaleString()
+                    ) : (
+                      "$ " +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.fifteen?.min
-                      ).toFixed(2)
-                    ).toLocaleString()
-                  ) : coinDetailOverview &&
-                    Math.abs(
-                      coinDetailOverview[0]?.low_high_price?.fifteen?.min
-                    ) > 1 ? (
-                    "$ " +
-                    parseFloat(
-                      coinDetailOverview[0]?.low_high_price?.fifteen?.min
+                      )
+                        .toFixed(9)
+                        .toLocaleString()
                     )
-                      .toFixed(4)
-                      .toLocaleString()
                   ) : (
-                    "$ " +
-                    parseFloat(
-                      coinDetailOverview[0]?.low_high_price?.fifteen?.min
-                    )
-                      .toFixed(9)
-                      .toLocaleString()
-                  )
-                ) : (
-                  <span style={{ color: "#7a7a7a" }}></span>
-                )}
-                {coinDetailOverview &&
-                priceFilter === 30 &&
-                coinDetailOverview[0]?.low_high_price?.thirty?.min !== null ? (
-                  String(
-                    Math.trunc(
+                    <span style={{ color: "#7a7a7a" }}></span>
+                  )}
+                  {coinDetailOverview &&
+                  priceFilter === 30 &&
+                  coinDetailOverview[0]?.low_high_price?.thirty?.min !==
+                    null ? (
+                    String(
+                      Math.trunc(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.thirty?.min
+                        )
+                      )
+                    ).length > 2 ? (
+                      "$ " +
+                      Number(
+                        parseFloat(
+                          coinDetailOverview[0]?.low_high_price?.thirty?.min
+                        ).toFixed(2)
+                      ).toLocaleString()
+                    ) : coinDetailOverview &&
+                      Math.abs(
+                        coinDetailOverview[0]?.low_high_price?.thirty?.min
+                      ) > 1 ? (
+                      "$ " +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.thirty?.min
                       )
-                    )
-                  ).length > 2 ? (
-                    "$ " +
-                    Number(
+                        .toFixed(4)
+                        .toLocaleString()
+                    ) : (
+                      "$ " +
                       parseFloat(
                         coinDetailOverview[0]?.low_high_price?.thirty?.min
-                      ).toFixed(2)
-                    ).toLocaleString()
-                  ) : coinDetailOverview &&
-                    Math.abs(
-                      coinDetailOverview[0]?.low_high_price?.thirty?.min
-                    ) > 1 ? (
-                    "$ " +
-                    parseFloat(
-                      coinDetailOverview[0]?.low_high_price?.thirty?.min
+                      )
+                        .toFixed(9)
+                        .toLocaleString()
                     )
-                      .toFixed(4)
-                      .toLocaleString()
                   ) : (
-                    "$ " +
-                    parseFloat(
-                      coinDetailOverview[0]?.low_high_price?.thirty?.min
-                    )
-                      .toFixed(9)
-                      .toLocaleString()
-                  )
-                ) : (
-                  <span style={{ color: "#7a7a7a" }}></span>
-                )}
+                    <span style={{ color: "#7a7a7a" }}></span>
+                  )}
+                </span>
               </Typography>
               <Stack direction="row" spacing={1}>
                 <NativeSelect
@@ -400,162 +418,180 @@ const CoinPageOverview = () => {
                 </NativeSelect>
                 <Typography
                   variant="caption"
-                  sx={{ color: "#FFFFF5", fontSize: "0.75rem" }}
+                  sx={{ color: "#B6B6B9", fontSize: "0.75rem" }}
                 >
                   High:{" "}
-                  {coinDetailOverview &&
-                  priceFilter === 1 &&
-                  coinDetailOverview[0]?.low_high_price?.one?.max !== null ? (
-                    String(
-                      Math.trunc(
+                  <span
+                    style={{
+                      color: "#FFFFFF",
+                      // fontWeight: 500
+                    }}
+                  >
+                    {coinDetailOverview &&
+                    priceFilter === 1 &&
+                    coinDetailOverview[0]?.low_high_price?.one?.max !== null ? (
+                      String(
+                        Math.trunc(
+                          parseFloat(
+                            coinDetailOverview[0]?.low_high_price?.one?.max
+                          )
+                        )
+                      ).length > 2 ? (
+                        "$ " +
+                        Number(
+                          parseFloat(
+                            coinDetailOverview[0]?.low_high_price?.one?.max
+                          ).toFixed(2)
+                        ).toLocaleString()
+                      ) : coinDetailOverview &&
+                        Math.abs(
+                          coinDetailOverview[0]?.low_high_price?.one?.max
+                        ) > 1 ? (
+                        "$ " +
                         parseFloat(
                           coinDetailOverview[0]?.low_high_price?.one?.max
                         )
-                      )
-                    ).length > 2 ? (
-                      "$ " +
-                      Number(
+                          .toFixed(4)
+                          .toLocaleString()
+                      ) : (
+                        "$ " +
                         parseFloat(
                           coinDetailOverview[0]?.low_high_price?.one?.max
-                        ).toFixed(2)
-                      ).toLocaleString()
-                    ) : coinDetailOverview &&
-                      Math.abs(
-                        coinDetailOverview[0]?.low_high_price?.one?.max
-                      ) > 1 ? (
-                      "$ " +
-                      parseFloat(
-                        coinDetailOverview[0]?.low_high_price?.one?.max
+                        )
+                          .toFixed(9)
+                          .toLocaleString()
                       )
-                        .toFixed(4)
-                        .toLocaleString()
                     ) : (
-                      "$ " +
-                      parseFloat(
-                        coinDetailOverview[0]?.low_high_price?.one?.max
-                      )
-                        .toFixed(9)
-                        .toLocaleString()
-                    )
-                  ) : (
-                    <span style={{ color: "#7a7a7a" }}></span>
-                  )}
-                  {coinDetailOverview &&
-                  priceFilter === 7 &&
-                  coinDetailOverview[0]?.low_high_price?.seven?.max !== null ? (
-                    String(
-                      Math.trunc(
+                      <span style={{ color: "#7a7a7a" }}></span>
+                    )}
+                    {coinDetailOverview &&
+                    priceFilter === 7 &&
+                    coinDetailOverview[0]?.low_high_price?.seven?.max !==
+                      null ? (
+                      String(
+                        Math.trunc(
+                          parseFloat(
+                            coinDetailOverview[0]?.low_high_price?.seven?.max
+                          )
+                        )
+                      ).length > 2 ? (
+                        "$ " +
+                        Number(
+                          parseFloat(
+                            coinDetailOverview[0]?.low_high_price?.seven?.max
+                          ).toFixed(2)
+                        ).toLocaleString()
+                      ) : coinDetailOverview &&
+                        Math.abs(
+                          coinDetailOverview[0]?.low_high_price?.seven?.max
+                        ) > 1 ? (
+                        "$ " +
                         parseFloat(
                           coinDetailOverview[0]?.low_high_price?.seven?.max
                         )
-                      )
-                    ).length > 2 ? (
-                      "$ " +
-                      Number(
+                          .toFixed(4)
+                          .toLocaleString()
+                      ) : (
+                        "$ " +
                         parseFloat(
                           coinDetailOverview[0]?.low_high_price?.seven?.max
-                        ).toFixed(2)
-                      ).toLocaleString()
-                    ) : coinDetailOverview &&
-                      Math.abs(
-                        coinDetailOverview[0]?.low_high_price?.seven?.max
-                      ) > 1 ? (
-                      "$ " +
-                      parseFloat(
-                        coinDetailOverview[0]?.low_high_price?.seven?.max
+                        )
+                          .toFixed(9)
+                          .toLocaleString()
                       )
-                        .toFixed(4)
-                        .toLocaleString()
                     ) : (
-                      "$ " +
-                      parseFloat(
-                        coinDetailOverview[0]?.low_high_price?.seven?.max
-                      )
-                        .toFixed(9)
-                        .toLocaleString()
-                    )
-                  ) : (
-                    <span style={{ color: "#7a7a7a" }}></span>
-                  )}
-                  {coinDetailOverview &&
-                  priceFilter === 15 &&
-                  coinDetailOverview[0]?.low_high_price?.fifteen?.max !==
-                    null ? (
-                    String(
-                      Math.trunc(
+                      <span style={{ color: "#7a7a7a" }}></span>
+                    )}
+                    {coinDetailOverview &&
+                    priceFilter === 15 &&
+                    coinDetailOverview[0]?.low_high_price?.fifteen?.max !==
+                      null ? (
+                      String(
+                        Math.trunc(
+                          parseFloat(
+                            coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                          )
+                        )
+                      ).length > 2 ? (
+                        "$ " +
+                        Number(
+                          parseFloat(
+                            coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                          ).toFixed(2)
+                        ).toLocaleString()
+                      ) : coinDetailOverview &&
+                        Math.abs(
+                          coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                        ) > 1 ? (
+                        "$ " +
                         parseFloat(
                           coinDetailOverview[0]?.low_high_price?.fifteen?.max
                         )
-                      )
-                    ).length > 2 ? (
-                      "$ " +
-                      Number(
+                          .toFixed(4)
+                          .toLocaleString()
+                      ) : (
+                        "$ " +
                         parseFloat(
                           coinDetailOverview[0]?.low_high_price?.fifteen?.max
-                        ).toFixed(2)
-                      ).toLocaleString()
-                    ) : coinDetailOverview &&
-                      Math.abs(
-                        coinDetailOverview[0]?.low_high_price?.fifteen?.max
-                      ) > 1 ? (
-                      "$ " +
-                      parseFloat(
-                        coinDetailOverview[0]?.low_high_price?.fifteen?.max
+                        )
+                          .toFixed(9)
+                          .toLocaleString()
                       )
-                        .toFixed(4)
-                        .toLocaleString()
                     ) : (
-                      "$ " +
-                      parseFloat(
-                        coinDetailOverview[0]?.low_high_price?.fifteen?.max
-                      )
-                        .toFixed(9)
-                        .toLocaleString()
-                    )
-                  ) : (
-                    <span style={{ color: "#7a7a7a" }}></span>
-                  )}
-                  {coinDetailOverview &&
-                  priceFilter === 30 &&
-                  coinDetailOverview[0]?.low_high_price?.thirty?.max !==
-                    null ? (
-                    String(
-                      Math.trunc(
+                      <span style={{ color: "#7a7a7a" }}></span>
+                    )}
+                    {coinDetailOverview &&
+                    priceFilter === 30 &&
+                    coinDetailOverview[0]?.low_high_price?.thirty?.max !==
+                      null ? (
+                      String(
+                        Math.trunc(
+                          parseFloat(
+                            coinDetailOverview[0]?.low_high_price?.thirty?.max
+                          )
+                        )
+                      ).length > 2 ? (
+                        "$ " +
+                        Number(
+                          parseFloat(
+                            coinDetailOverview[0]?.low_high_price?.thirty?.max
+                          ).toFixed(2)
+                        ).toLocaleString()
+                      ) : coinDetailOverview &&
+                        Math.abs(
+                          coinDetailOverview[0]?.low_high_price?.thirty?.max
+                        ) > 1 ? (
+                        "$ " +
                         parseFloat(
                           coinDetailOverview[0]?.low_high_price?.thirty?.max
                         )
-                      )
-                    ).length > 2 ? (
-                      "$ " +
-                      Number(
+                          .toFixed(4)
+                          .toLocaleString()
+                      ) : (
+                        "$ " +
                         parseFloat(
                           coinDetailOverview[0]?.low_high_price?.thirty?.max
-                        ).toFixed(2)
-                      ).toLocaleString()
-                    ) : coinDetailOverview &&
-                      Math.abs(
-                        coinDetailOverview[0]?.low_high_price?.thirty?.max
-                      ) > 1 ? (
-                      "$ " +
-                      parseFloat(
-                        coinDetailOverview[0]?.low_high_price?.thirty?.max
+                        )
+                          .toFixed(9)
+                          .toLocaleString()
                       )
-                        .toFixed(4)
-                        .toLocaleString()
                     ) : (
-                      "$ " +
-                      parseFloat(
-                        coinDetailOverview[0]?.low_high_price?.thirty?.max
-                      )
-                        .toFixed(9)
-                        .toLocaleString()
-                    )
-                  ) : (
-                    <span style={{ color: "#7a7a7a" }}></span>
-                  )}
+                      <span style={{ color: "#7a7a7a" }}></span>
+                    )}
+                  </span>
                 </Typography>
               </Stack>
             </Stack>
+
+            <Box mt={3}>
+              {" "}
+              <Divider
+                variant="fullWidth"
+                flexItem
+                orientation="horizontal"
+                sx={{ borderColor: "#0b1640", borderBottomWidth: 1 }}
+              />
+            </Box>
             <Stack direction="column" spacing={1.5}>
               <Stack
                 direction="row"
@@ -583,7 +619,14 @@ const CoinPageOverview = () => {
                     ></Avatar>
                   </Tooltip>
                 </Stack>
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "#FFFFF5",
+                    fontSize: "0.85rem",
+                    fontWeight: 500,
+                  }}
+                >
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.total_holders !== null &&
                   coinDetailOverview[0]?.total_holders !== ""
@@ -648,7 +691,7 @@ const CoinPageOverview = () => {
                                 variant="caption"
                                 sx={
                                   {
-                                    //color: "#FFFFF5",
+                                    //color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500,,
                                     //fontSize: "0.65rem",
                                   }
                                 }
@@ -722,7 +765,14 @@ const CoinPageOverview = () => {
                     ></Avatar>
                   </Tooltip>
                 </Stack>
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "#FFFFF5",
+                    fontSize: "0.85rem",
+                    fontWeight: 500,
+                  }}
+                >
                   API need
                 </Typography>
               </Stack>
@@ -752,7 +802,7 @@ const CoinPageOverview = () => {
                   ></Avatar>
                 </Tooltip>
               </Stack>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+              <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                 {coinDetailOverview &&
                 coinDetailOverview[0]?.liquidity_pool_total !== null &&
                 coinDetailOverview[0]?.liquidity_pool_total !== ""
@@ -787,7 +837,14 @@ const CoinPageOverview = () => {
                     ></Avatar>
                   </Tooltip>
                 </Stack>
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "#FFFFF5",
+                    fontSize: "0.85rem",
+                    fontWeight: 500,
+                  }}
+                >
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.low_high_price?.fifteen?.max !==
                     null ? (
@@ -853,7 +910,14 @@ const CoinPageOverview = () => {
                     ></Avatar>
                   </Tooltip>
                 </Stack>
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "#FFFFF5",
+                    fontSize: "0.85rem",
+                    fontWeight: 500,
+                  }}
+                >
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.all_time_high_date !== null &&
                   coinDetailOverview[0]?.all_time_high_date !== ""
@@ -863,7 +927,18 @@ const CoinPageOverview = () => {
                     : "NA"}
                 </Typography>
               </Stack>
-
+              <Box>
+                <Divider
+                  variant="fullWidth"
+                  flexItem
+                  orientation="horizontal"
+                  sx={{
+                    borderColor: "#0b1640",
+                    borderBottomWidth: 1,
+                    marginY: 2,
+                  }}
+                />
+              </Box>
               <Stack
                 direction="row"
                 sx={{ alignItems: "center", justifyContent: "space-between" }}
@@ -918,6 +993,7 @@ const CoinPageOverview = () => {
                           ? "#ff0000"
                           : "#00ff00",
                       fontWeight: 500,
+                      fontSize: "0.85rem",
                     }}
                   >
                     {coinDetailOverview &&
@@ -987,6 +1063,7 @@ const CoinPageOverview = () => {
                           ? "#ff0000"
                           : "#00ff00",
                       fontWeight: 500,
+                      fontSize: "0.85rem",
                     }}
                   >
                     {coinDetailOverview &&
@@ -1056,6 +1133,7 @@ const CoinPageOverview = () => {
                           ? "#ff0000"
                           : "#00ff00",
                       fontWeight: 500,
+                      fontSize: "0.85rem",
                     }}
                   >
                     {coinDetailOverview &&
@@ -1124,6 +1202,7 @@ const CoinPageOverview = () => {
                           ? "#ff0000"
                           : "#00ff00",
                       fontWeight: 500,
+                      fontSize: "0.85rem",
                     }}
                   >
                     {coinDetailOverview &&
@@ -1192,6 +1271,7 @@ const CoinPageOverview = () => {
                           ? "#ff0000"
                           : "#00ff00",
                       fontWeight: 500,
+                      fontSize: "0.85rem",
                     }}
                   >
                     {coinDetailOverview &&
@@ -1260,6 +1340,7 @@ const CoinPageOverview = () => {
                           ? "#ff0000"
                           : "#00ff00",
                       fontWeight: 500,
+                      fontSize: "0.85rem",
                     }}
                   >
                     {coinDetailOverview &&
@@ -1274,6 +1355,19 @@ const CoinPageOverview = () => {
                   </Typography>
                 </Stack>
               </Stack>
+
+              <Box>
+                <Divider
+                  variant="fullWidth"
+                  flexItem
+                  orientation="horizontal"
+                  sx={{
+                    borderColor: "#0b1640",
+                    borderBottomWidth: 1,
+                    marginY: 2,
+                  }}
+                />
+              </Box>
               <Stack
                 direction="row"
                 sx={{ alignItems: "center", justifyContent: "space-between" }}
@@ -1300,7 +1394,14 @@ const CoinPageOverview = () => {
                     ></Avatar>
                   </Tooltip>
                 </Stack>
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "#FFFFF5",
+                    fontSize: "0.85rem",
+                    fontWeight: 500,
+                  }}
+                >
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.volume_24h !== null &&
                   coinDetailOverview[0]?.volume_24h !== ""
@@ -1337,7 +1438,14 @@ const CoinPageOverview = () => {
                     ></Avatar>
                   </Tooltip>
                 </Stack>
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "#FFFFF5",
+                    fontSize: "0.85rem",
+                    fontWeight: 500,
+                  }}
+                >
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.market_cap !== null &&
                   coinDetailOverview[0]?.market_cap !== ""
@@ -1374,7 +1482,14 @@ const CoinPageOverview = () => {
                     ></Avatar>
                   </Tooltip>
                 </Stack>
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "#FFFFF5",
+                    fontSize: "0.85rem",
+                    fontWeight: 500,
+                  }}
+                >
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.fully_diluted_market_cap !== null &&
                   coinDetailOverview[0]?.fully_diluted_market_cap !== ""
@@ -1413,7 +1528,14 @@ const CoinPageOverview = () => {
                     ></Avatar>
                   </Tooltip>
                 </Stack>
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "#FFFFF5",
+                    fontSize: "0.85rem",
+                    fontWeight: 500,
+                  }}
+                >
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.circulating_supply !== null &&
                   coinDetailOverview[0]?.circulating_supply !== ""
@@ -1449,7 +1571,14 @@ const CoinPageOverview = () => {
                     ></Avatar>
                   </Tooltip>
                 </Stack>
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "#FFFFF5",
+                    fontSize: "0.85rem",
+                    fontWeight: 500,
+                  }}
+                >
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.total_supply !== null &&
                   coinDetailOverview[0]?.total_supply !== ""
@@ -1473,7 +1602,7 @@ const CoinPageOverview = () => {
             variant="h5"
             sx={{
               fontWeight: 700,
-              color: "#FFFFF5",
+              color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500,,
               "&::after": {
                 content: '""',
                 display: "block",
@@ -1487,10 +1616,10 @@ const CoinPageOverview = () => {
 
           <Stack direction="row" mt={3} spacing={3}>
             <Stack direction="column" spacing={1.6}>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+              <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                 Number of Liquidity Pools
               </Typography>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+              <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                 {coinDetailOverview &&
                 coinDetailOverview[0]?.liquidity_pool_number !== null &&
                 coinDetailOverview[0]?.liquidity_pool_number !== ""
@@ -1506,10 +1635,10 @@ const CoinPageOverview = () => {
             />
 
             <Stack direction="column" spacing={1.6}>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+              <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                 Total in Liquidity Pool
               </Typography>
-              <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+              <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                 {coinDetailOverview &&
                 coinDetailOverview[0]?.liquidity_pool_total !== null &&
                 coinDetailOverview[0]?.liquidity_pool_total !== ""
@@ -1531,12 +1660,12 @@ const CoinPageOverview = () => {
                   orientation="vertical"
                   sx={{ borderColor: "#FFFFF5", borderRightWidth: 2 }}
                 />
-                <Typography variant="body2" sx={{ color: "#FFFFF5" }}>
+                <Typography variant="body2" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                   SFM/BUSD LP Holding :
                 </Typography>
               </Stack>
               <Stack direction="row" spacing={0.8}>
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                   20,3456,555 BUSD
                 </Typography>
                 <Typography
@@ -1559,12 +1688,12 @@ const CoinPageOverview = () => {
                   orientation="vertical"
                   sx={{ borderColor: "#FFFFF5", borderRightWidth: 2 }}
                 />
-                <Typography variant="body2" sx={{ color: "#FFFFF5" }}>
+                <Typography variant="body2" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                   SFM/BNB LP Holding :
                 </Typography>
               </Stack>
               <Stack direction="row" spacing={0.8}>
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                   20,3456,555 BNB
                 </Typography>
                 <Typography
@@ -1587,12 +1716,12 @@ const CoinPageOverview = () => {
                   orientation="vertical"
                   sx={{ borderColor: "#FFFFF5", borderRightWidth: 2 }}
                 />
-                <Typography variant="body2" sx={{ color: "#FFFFF5" }}>
+                <Typography variant="body2" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                   SFM/BNB LP Holding :
                 </Typography>
               </Stack>
               <Stack direction="row" spacing={0.8}>
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                   20,3456,555 BNB
                 </Typography>
                 <Typography
@@ -1614,12 +1743,12 @@ const CoinPageOverview = () => {
                   orientation="vertical"
                   sx={{ borderColor: "#FFFFF5", borderRightWidth: 2 }}
                 />
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                   SFM/BUSD LP Holding :
                 </Typography>
               </Stack>
               <Stack direction="row" spacing={0.8}>
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                   20,3456,555 BUSD
                 </Typography>
                 <Typography
@@ -1642,12 +1771,12 @@ const CoinPageOverview = () => {
                   orientation="vertical"
                   sx={{ borderColor: "#FFFFF5", borderRightWidth: 2 }}
                 />
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                   SFM/BUSDT LP Holding :
                 </Typography>
               </Stack>
               <Stack direction="row" spacing={0.8}>
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                   20,3456,555 BUSDT
                 </Typography>
                 <Typography
@@ -1670,12 +1799,12 @@ const CoinPageOverview = () => {
                   orientation="vertical"
                   sx={{ borderColor: "#FFFFF5", borderRightWidth: 2 }}
                 />
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                   SFM/Cake LP Holding :
                 </Typography>
               </Stack>
               <Stack direction="row" spacing={0.8}>
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                   20,3456,555 Cake
                 </Typography>
                 <Typography
@@ -1698,12 +1827,12 @@ const CoinPageOverview = () => {
                   orientation="vertical"
                   sx={{ borderColor: "#FFFFF5", borderRightWidth: 2 }}
                 />
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                   SFM/ETH LP Holding :
                 </Typography>
               </Stack>
               <Stack direction="row" spacing={0.8}>
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                   20,3456,555 ETH
                 </Typography>
                 <Typography
@@ -1726,12 +1855,12 @@ const CoinPageOverview = () => {
                   orientation="vertical"
                   sx={{ borderColor: "#FFFFF5", borderRightWidth: 2 }}
                 />
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                   SFM/BTC LP Holding :
                 </Typography>
               </Stack>
               <Stack direction="row" spacing={0.8}>
-                <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                   20,3456,555 BTC
                 </Typography>
                 <Typography
@@ -1755,12 +1884,12 @@ const CoinPageOverview = () => {
                     orientation="vertical"
                     sx={{ borderColor: "#FFFFF5", borderRightWidth: 2 }}
                   />
-                  <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                     SFM/BTC LP Holding :
                   </Typography>
                 </Stack>
                 <Stack direction="row" spacing={0.8}>
-                  <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
+                  <Typography variant="caption" sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }}>
                     20,3456,555 BTC
                   </Typography>
                   <Typography
@@ -1772,7 +1901,7 @@ const CoinPageOverview = () => {
                 </Stack>
               </Stack>
             </SlideDown>
-            <Link sx={{ color: "#FFFFF5" }} onClick={viewmoreHandler}>
+            <Link sx={{ color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500, }} onClick={viewmoreHandler}>
               {viewMore === true ? "View More" : "View Less"}
             </Link>
           </Stack>

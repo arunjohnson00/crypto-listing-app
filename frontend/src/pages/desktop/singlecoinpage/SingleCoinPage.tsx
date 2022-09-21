@@ -41,12 +41,12 @@ const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 5,
+    items: 6,
     slidesToSlide: 1,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 5,
+    items: 6,
     slidesToSlide: 1,
   },
 
@@ -246,6 +246,7 @@ const SingleCoinPage = () => {
                 infinite={true}
                 autoPlay={true}
                 showDots={false}
+                arrows={false}
                 removeArrowOnDeviceType={[
                   "tablet",
                   "mobile",

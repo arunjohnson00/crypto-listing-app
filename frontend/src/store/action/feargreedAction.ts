@@ -24,7 +24,7 @@ export const feargreedDataRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/fear-greed`,
+    url: `api/f/v1/fear-index-graph`,
     method: "GET",
     secure: false,
     actionType: FEAR_GREED_INDEX.FREAR_GREED_DATA,

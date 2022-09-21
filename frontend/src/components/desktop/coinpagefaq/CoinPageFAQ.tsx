@@ -79,7 +79,7 @@ const CoinPageFAQ = () => {
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
                 What is {coinFAQ && coinFAQ[0]?.name} coin?
               </Typography>
@@ -94,7 +94,7 @@ const CoinPageFAQ = () => {
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
                 What is the price of {coinFAQ && coinFAQ[0]?.name} today?
               </Typography>
@@ -104,7 +104,7 @@ const CoinPageFAQ = () => {
               >
                 One {coinFAQ && coinFAQ[0]?.name} coin can currently be
                 purchased for approximately{" "}
-                <span style={{ color: "#037bfd" }}>
+                <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ && coinFAQ[0]?.price !== null ? (
                     coinFAQ &&
                     String(Math.trunc(parseFloat(coinFAQ[0]?.price))).length >
@@ -138,7 +138,7 @@ const CoinPageFAQ = () => {
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
                 What is the Total supply of {coinFAQ && coinFAQ[0]?.name}?
               </Typography>
@@ -147,7 +147,7 @@ const CoinPageFAQ = () => {
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
                 The total supply of {coinFAQ && coinFAQ[0]?.name} is{" "}
-                <span style={{ color: "#037bfd" }}>
+                <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ && coinFAQ[0]?.total_supply !== null ? (
                     coinFAQ &&
                     String(Math.trunc(parseFloat(coinFAQ[0]?.total_supply)))
@@ -180,7 +180,7 @@ const CoinPageFAQ = () => {
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
                 What is the Marketcap of {coinFAQ && coinFAQ[0]?.name}?
               </Typography>
@@ -189,7 +189,7 @@ const CoinPageFAQ = () => {
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
                 The marketcap of {coinFAQ && coinFAQ[0]?.name} is{" "}
-                <span style={{ color: "#037bfd" }}>
+                <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ && coinFAQ[0]?.market_cap !== null ? (
                     coinFAQ &&
                     String(Math.trunc(parseFloat(coinFAQ[0]?.market_cap)))
@@ -223,7 +223,7 @@ const CoinPageFAQ = () => {
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
                 What is the Rating of {coinFAQ && coinFAQ[0]?.name}?
               </Typography>
@@ -232,7 +232,7 @@ const CoinPageFAQ = () => {
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
                 Current rating of {coinFAQ && coinFAQ[0]?.name} is{" "}
-                <span style={{ color: "#037bfd" }}>
+                <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ && coinFAQ[0]?.rating !== null ? (
                     coinFAQ && parseFloat(coinFAQ[0]?.rating).toFixed(1)
                   ) : (
@@ -250,7 +250,11 @@ const CoinPageFAQ = () => {
                 <Stack direction="column" spacing={0.8} mt={3}>
                   <Typography
                     variant="h6"
-                    sx={{ color: "#19FFB0", fontWeight: 600 }}
+                    sx={{
+                      color: "#19FFB0",
+                      fontWeight: 400,
+                      fontSize: "1.05rem",
+                    }}
                   >
                     How many Reviews got {coinFAQ && coinFAQ[0]?.name}?
                   </Typography>
@@ -263,7 +267,7 @@ const CoinPageFAQ = () => {
                     }}
                   >
                     There are{" "}
-                    <span style={{ color: "#037bfd" }}>
+                    <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                       {coinFAQ && coinFAQ[0]?.review_count !== null ? (
                         coinFAQ &&
                         parseFloat(coinFAQ[0]?.review_count).toFixed(0)
@@ -279,7 +283,7 @@ const CoinPageFAQ = () => {
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
                 How do I buy {coinFAQ && coinFAQ[0]?.name}?
               </Typography>
@@ -295,7 +299,7 @@ const CoinPageFAQ = () => {
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
                 What was the highest price for {coinFAQ && coinFAQ[0]?.name}?
               </Typography>
@@ -304,7 +308,7 @@ const CoinPageFAQ = () => {
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
                 {coinFAQ && coinFAQ[0]?.name} hit an all time high of $
-                <span style={{ color: "#037bfd" }}>
+                <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ && coinFAQ[0]?.ath_value !== null ? (
                     coinFAQ &&
                     String(Math.trunc(parseFloat(coinFAQ[0]?.ath_value)))
@@ -332,7 +336,7 @@ const CoinPageFAQ = () => {
                   )}
                 </span>{" "}
                 on{" "}
-                <span style={{ color: "#037bfd" }}>
+                <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ && coinFAQ[0]?.ath_date !== null ? (
                     coinFAQ &&
                     moment(new Date(coinFAQ[0]?.ath_date)).format("DD MMM YYYY")
@@ -341,7 +345,7 @@ const CoinPageFAQ = () => {
                   )}
                 </span>{" "}
                 ({" "}
-                <span style={{ color: "#037bfd" }}>
+                <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ && coinFAQ[0]?.ath_date !== null ? (
                     coinFAQ && moment(new Date(coinFAQ[0]?.ath_date)).fromNow()
                   ) : (
@@ -355,7 +359,7 @@ const CoinPageFAQ = () => {
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
                 What is {coinFAQ && coinFAQ[0]?.name} smart contract address?
               </Typography>
@@ -364,7 +368,7 @@ const CoinPageFAQ = () => {
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
                 {coinFAQ && coinFAQ[0]?.name} official smart contract address is{" "}
-                <span style={{ color: "#037bfd" }}>
+                <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ &&
                   coinFAQ[0]?.contract_address?.contract_address !== null ? (
                     coinFAQ && coinFAQ[0]?.contract_address?.contract_address
@@ -379,7 +383,7 @@ const CoinPageFAQ = () => {
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
                 What is {coinFAQ && coinFAQ[0]?.name} official website?
               </Typography>
@@ -395,7 +399,7 @@ const CoinPageFAQ = () => {
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
                 What is the {coinFAQ && coinFAQ[0]?.name} Market Cap today?
               </Typography>
@@ -404,7 +408,7 @@ const CoinPageFAQ = () => {
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
                 {coinFAQ && coinFAQ[0]?.name} Market Cap is{" "}
-                <span style={{ color: "#037bfd" }}>
+                <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ && coinFAQ[0]?.market_cap !== null ? (
                     coinFAQ &&
                     String(Math.trunc(parseFloat(coinFAQ[0]?.market_cap)))
@@ -438,7 +442,7 @@ const CoinPageFAQ = () => {
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
                 What's the last 24h {coinFAQ && coinFAQ[0]?.name} trading
                 volume?
@@ -449,7 +453,7 @@ const CoinPageFAQ = () => {
               >
                 Trading volume of {coinFAQ && coinFAQ[0]?.name} in the last 24h
                 was{" "}
-                <span style={{ color: "#037bfd" }}>
+                <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ && coinFAQ[0]?.volume_24h !== null ? (
                     coinFAQ &&
                     String(Math.trunc(parseFloat(coinFAQ[0]?.volume_24h)))
@@ -485,7 +489,7 @@ const CoinPageFAQ = () => {
             {/* <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400,fontSize:"1.05rem", }}
               >
                 How much money is in {coinFAQ && coinFAQ[0]?.name} Liquidity
                 Pool?
@@ -503,7 +507,7 @@ const CoinPageFAQ = () => {
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
                 How many people are holding {coinFAQ && coinFAQ[0]?.name}?
               </Typography>
@@ -520,7 +524,7 @@ const CoinPageFAQ = () => {
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
                 How many followers does {coinFAQ && coinFAQ[0]?.name} have on
                 Twitter?
@@ -530,7 +534,7 @@ const CoinPageFAQ = () => {
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
                 {" "}
-                <span style={{ color: "#037bfd" }}>
+                <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ && coinFAQ[0]?.twitter?.follower_count !== null ? (
                     coinFAQ && coinFAQ[0]?.twitter?.follower_count
                   ) : (
@@ -542,7 +546,11 @@ const CoinPageFAQ = () => {
                 <Link
                   href={coinFAQ && coinFAQ[0]?.twitter?.social_url}
                   target="_blank"
-                  style={{ textDecoration: "none" }}
+                  style={{
+                    textDecoration: "none",
+                    color: "#6d79ec",
+                    fontWeight: 700,
+                  }}
                 >
                   @{coinFAQ && coinFAQ[0]?.name}
                 </Link>{" "}
@@ -553,7 +561,7 @@ const CoinPageFAQ = () => {
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
                 How many members does the {coinFAQ && coinFAQ[0]?.name} Telegram
                 channel have?
@@ -563,7 +571,7 @@ const CoinPageFAQ = () => {
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
                 {coinFAQ && coinFAQ[0]?.name} has{" "}
-                <span style={{ color: "#037bfd" }}>
+                <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ && coinFAQ[0]?.telegram?.follower_count !== null ? (
                     coinFAQ && coinFAQ[0]?.telegram?.follower_count
                   ) : (
@@ -574,7 +582,11 @@ const CoinPageFAQ = () => {
                 <Link
                   href={coinFAQ && coinFAQ[0]?.telegram?.social_url}
                   target="_blank"
-                  style={{ textDecoration: "none" }}
+                  style={{
+                    textDecoration: "none",
+                    color: "#6d79ec",
+                    fontWeight: 700,
+                  }}
                 >
                   @{coinFAQ && coinFAQ[0]?.name}
                 </Link>{" "}
@@ -585,7 +597,7 @@ const CoinPageFAQ = () => {
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
                 How many members does the {coinFAQ && coinFAQ[0]?.name} Discord
                 server have?
@@ -595,7 +607,7 @@ const CoinPageFAQ = () => {
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
                 There are{" "}
-                <span style={{ color: "#037bfd" }}>
+                <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ && coinFAQ[0]?.discord?.follower_count !== null ? (
                     coinFAQ && coinFAQ[0]?.discord?.follower_count
                   ) : (
@@ -606,7 +618,11 @@ const CoinPageFAQ = () => {
                 <Link
                   href={coinFAQ && coinFAQ[0]?.discord?.social_url}
                   target="_blank"
-                  style={{ textDecoration: "none" }}
+                  style={{
+                    textDecoration: "none",
+                    color: "#6d79ec",
+                    fontWeight: 700,
+                  }}
                 >
                   Discord
                 </Link>{" "}
@@ -617,7 +633,7 @@ const CoinPageFAQ = () => {
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
                 How many subscribers are there on {coinFAQ && coinFAQ[0]?.name}{" "}
                 Reddit?
@@ -627,7 +643,7 @@ const CoinPageFAQ = () => {
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
                 {coinFAQ && coinFAQ[0]?.name} has{" "}
-                <span style={{ color: "#037bfd" }}>
+                <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ && coinFAQ[0]?.reddit?.follower_count !== null ? (
                     coinFAQ && coinFAQ[0]?.reddit?.follower_count
                   ) : (
@@ -638,7 +654,11 @@ const CoinPageFAQ = () => {
                 <Link
                   href={coinFAQ && coinFAQ[0]?.reddit?.social_url}
                   target="_blank"
-                  style={{ textDecoration: "none" }}
+                  style={{
+                    textDecoration: "none",
+                    color: "#6d79ec",
+                    fontWeight: 700,
+                  }}
                 >
                   {coinFAQ && coinFAQ[0]?.name}
                 </Link>{" "}
@@ -649,7 +669,7 @@ const CoinPageFAQ = () => {
             <Stack direction="column" spacing={0.8} mt={3}>
               <Typography
                 variant="h6"
-                sx={{ color: "#19FFB0", fontWeight: 600 }}
+                sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
                 Where i can read the Latest News about{" "}
                 {coinFAQ && coinFAQ[0]?.name}?
@@ -665,6 +685,7 @@ const CoinPageFAQ = () => {
                   }`}
                   rel="noreferrer"
                   target="_blank"
+                  style={{ color: "#6d79ec", fontWeight: 700 }}
                 >
                   here.
                 </a>

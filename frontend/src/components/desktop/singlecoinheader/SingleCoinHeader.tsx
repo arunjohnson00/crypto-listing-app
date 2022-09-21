@@ -160,28 +160,50 @@ const SingleCoinHeader = ({ coinData }: any) => {
               spacing={4}
               sx={{ alignItems: "center" }}
             >
-              {coinData && coinData?.logo === null ? (
-                <Avatar
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "column" }}
+                spacing={1}
+                alignItems="center"
+              >
+                {coinData && coinData?.logo === null ? (
+                  <Avatar
+                    sx={{
+                      bgcolor: defaultColor[coinData?.name?.length],
+                      borderRadius: 0,
+                      width: 120,
+                      height: 120,
+                    }}
+                  >
+                    <Typography sx={{ fontSize: "2rem" }}>
+                      {coinData && coinData?.name[0]}
+                    </Typography>
+                  </Avatar>
+                ) : (
+                  <Avatar
+                    alt={coinData && coinData?.name}
+                    src={`${serverAPIUrl}public/uploads/coin_logo/${coinData?.logo}`}
+                    //src="https://mui.com/static/images/avatar/1.jpg"
+                    sx={{ borderRadius: 0, width: 120, height: 120 }}
+                  />
+                )}
+                <Chip
+                  label={
+                    <Typography sx={{ fontSize: "0.7rem" }}>
+                      {" "}
+                      <span>Rank </span>#18000
+                    </Typography>
+                  }
+                  color="primary"
+                  size="small"
                   sx={{
-                    bgcolor: defaultColor[coinData?.name?.length],
-                    borderRadius: 0,
-                    width: 120,
-                    height: 120,
+                    maxWidth: 90,
+                    backgroundColor: "#020e3f",
+                    fontSize: "0.7rem",
+                    borderRadius: 1.3,
+                    color: "#8d8d8d",
                   }}
-                >
-                  <Typography sx={{ fontSize: "2rem" }}>
-                    {coinData && coinData?.name[0]}
-                  </Typography>
-                </Avatar>
-              ) : (
-                <Avatar
-                  alt={coinData && coinData?.name}
-                  src={`${serverAPIUrl}public/uploads/coin_logo/${coinData?.logo}`}
-                  //src="https://mui.com/static/images/avatar/1.jpg"
-                  sx={{ borderRadius: 0, width: 120, height: 120 }}
                 />
-              )}
-
+              </Stack>
               <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
                 {/* {coinData &&
                   coinData?.presale_start_date !== null &&
@@ -584,6 +606,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   {coinData &&
                     coinData?.badges?.map((item: any, index: number) => (
                       <Avatar
+                        variant="square"
                         key={index}
                         alt={item?.name}
                         src={`${serverAPIUrl}public/uploads/badge_icons/${
@@ -1371,6 +1394,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 sx={{
                   alignItems: "flex-start",
                   flexWrap: "wrap",
+                  maxWidth: 300,
                 }}
                 justifyContent={{
                   xs: "center",

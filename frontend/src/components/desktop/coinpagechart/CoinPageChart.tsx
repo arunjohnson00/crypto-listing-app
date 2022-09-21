@@ -145,7 +145,7 @@ const CoinPageChart = ({ data }: any) => {
         },
       },
     },
-    selection: "seven_day",
+    selection: "all_day",
   };
 
   const [dateTime, setDateTime] = useState<any>("");
@@ -208,6 +208,14 @@ const CoinPageChart = ({ data }: any) => {
           new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000).getTime()
         );
         break;
+      case "all_day":
+        ApexCharts.exec(
+          "area-datetime",
+          "zoomX",
+
+          new Date(new Date().getTime()).getTime()
+        );
+        break;
 
       default:
     }
@@ -248,6 +256,17 @@ const CoinPageChart = ({ data }: any) => {
           onClick={() => updateData("thirty_day")}
         >
           30d
+        </Button>
+        <Button
+          variant="contained"
+          sx={{
+            textTransform: "capitalize",
+            fontSize: ".8rem",
+            backgroundColor: dateTime === "all_day" ? "#6252e7" : "#272c5f",
+          }}
+          onClick={() => updateData("all_day")}
+        >
+          All
         </Button>
       </Stack>
 

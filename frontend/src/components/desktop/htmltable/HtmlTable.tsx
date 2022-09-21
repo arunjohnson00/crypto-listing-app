@@ -595,7 +595,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                 >
                   <TableCell
                     sx={{
-                      color: "#FFFFFF",
+                      color: "#c8c1ff",
                       border: 0,
                       borderBottom: "1px solid #09090970",
                       maxWidth: 1,
@@ -618,17 +618,17 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                         String(
                           Math.trunc(parseFloat(data?.open?.current_price))
                         ).length > 2 ? (
-                          "$" +
+                          "$ " +
                           Number(
                             parseFloat(data?.open?.current_price).toFixed(2)
                           ).toLocaleString()
                         ) : data && Math.abs(data?.open?.current_price) > 1 ? (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.open?.current_price)
                             .toFixed(4)
                             .toLocaleString()
                         ) : (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.open?.current_price)
                             .toFixed(13)
                             .toLocaleString()
@@ -649,15 +649,15 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       {data && data?.high !== null ? (
                         String(Math.trunc(parseFloat(data?.high))).length >
                         2 ? (
-                          "$" +
+                          "$ " +
                           Number(
                             parseFloat(data?.high).toFixed(2)
                           ).toLocaleString()
                         ) : data && Math.abs(data?.high) > 1 ? (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.high).toFixed(4).toLocaleString()
                         ) : (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.high).toFixed(13).toLocaleString()
                         )
                       ) : (
@@ -675,15 +675,15 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     <Typography variant="caption">
                       {data && data?.low !== null ? (
                         String(Math.trunc(parseFloat(data?.low))).length > 2 ? (
-                          "$" +
+                          "$ " +
                           Number(
                             parseFloat(data?.low).toFixed(2)
                           ).toLocaleString()
                         ) : data && Math.abs(data?.low) > 1 ? (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.low).toFixed(4).toLocaleString()
                         ) : (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.low).toFixed(13).toLocaleString()
                         )
                       ) : (
@@ -703,17 +703,17 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                         String(
                           Math.trunc(parseFloat(data?.close?.current_price))
                         ).length > 2 ? (
-                          "$" +
+                          "$ " +
                           Number(
                             parseFloat(data?.close?.current_price).toFixed(2)
                           ).toLocaleString()
                         ) : data && Math.abs(data?.close?.current_price) > 1 ? (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.close?.current_price)
                             .toFixed(4)
                             .toLocaleString()
                         ) : (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.close?.current_price)
                             .toFixed(13)
                             .toLocaleString()
@@ -725,7 +725,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   </TableCell>
                   <TableCell
                     sx={{
-                      color: "#FFFFFF",
+                      color: "#1dffc0",
                       border: 0,
                       borderBottom: "1px solid #09090970",
                     }}
@@ -733,7 +733,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     <Typography variant="caption">
                       {data && data?.volume !== null ? (
                         data &&
-                        "$" +
+                        "$ " +
                           Math.floor(Math.abs(data?.volume)).toLocaleString()
                       ) : (
                         <span style={{ color: "#7a7a7a" }}>--</span>
@@ -742,7 +742,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   </TableCell>
                   <TableCell
                     sx={{
-                      color: "#FFFFFF",
+                      color: "#02ccff",
                       border: 0,
                       borderBottom: "1px solid #09090970",
                     }}
@@ -750,7 +750,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     <Typography variant="caption">
                       {data && data?.market_cap !== null ? (
                         data &&
-                        "$" +
+                        "$ " +
                           Math.floor(
                             Math.abs(data?.market_cap)
                           ).toLocaleString()
@@ -801,7 +801,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                 >
                   <TableCell
                     sx={{
-                      color: "#FFFFFF",
+                      color: "#c8c1ff",
                       border: 0,
                       borderBottom: "1px solid #09090970",
                       maxWidth: 1,
@@ -824,17 +824,17 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       {data && data?.current_price !== null ? (
                         String(Math.trunc(parseFloat(data?.current_price)))
                           .length > 2 ? (
-                          "$" +
+                          "$ " +
                           Number(
                             parseFloat(data?.current_price).toFixed(2)
                           ).toLocaleString()
                         ) : data && Math.abs(data?.current_price) > 1 ? (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.current_price)
                             .toFixed(4)
                             .toLocaleString()
                         ) : (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.current_price)
                             .toFixed(13)
                             .toLocaleString()
@@ -846,7 +846,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   </TableCell>
                   <TableCell
                     sx={{
-                      color: "#FFFFFF",
+                      color: "#1dffc0",
                       border: 0,
                       borderBottom: "1px solid #09090970",
                     }}
@@ -854,7 +854,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     <Typography variant="caption">
                       {data && data?.volume_24h !== null ? (
                         data &&
-                        "$" +
+                        "$ " +
                           Math.floor(
                             Math.abs(data?.volume_24h)
                           ).toLocaleString()
@@ -873,7 +873,10 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   >
                     <Stack
                       direction="row"
-                      sx={{ alignItems: "center", justifyContent: "center" }}
+                      sx={{
+                        alignItems: "center",
+                        justifyContent: "flex-start",
+                      }}
                       spacing={0}
                     >
                       {data &&
@@ -917,7 +920,10 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   >
                     <Stack
                       direction="row"
-                      sx={{ alignItems: "center", justifyContent: "center" }}
+                      sx={{
+                        alignItems: "center",
+                        justifyContent: "flex-start",
+                      }}
                       spacing={0}
                     >
                       {data &&
@@ -954,7 +960,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   </TableCell>
                   <TableCell
                     sx={{
-                      color: "#FFFFFF",
+                      color: "#02ccff",
                       border: 0,
                       borderBottom: "1px solid #09090970",
                     }}
@@ -962,7 +968,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     <Typography variant="caption">
                       {data && data?.market_cap !== null ? (
                         data &&
-                        "$" +
+                        "$ " +
                           Math.floor(
                             Math.abs(data?.market_cap)
                           ).toLocaleString()
