@@ -203,14 +203,8 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
 
   return (
     <Fragment>
-      <Grid
-        container
-        spacing={0}
-        sx={{
-          dispaly: "flex",
-        }}
-      >
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+      <Grid container>
+        <Grid item xs={12}>
           {windowInnerWidth >= 900 ? (
             <LatestNewsScroll />
           ) : (
@@ -241,6 +235,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
         {windowInnerWidth <= 900 ? (
           <Fragment>
             <Grid
+              item
               xs={12}
               sx={{
                 alignItems: "center",
@@ -264,6 +259,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
               </Stack>
             </Grid>
             <Grid
+              item
               xs={12}
               sx={{
                 alignItems: "center",
@@ -392,6 +388,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
           </Fragment>
         ) : (
           <Grid
+            item
             xs={12}
             sx={{
               alignItems: "center",
@@ -578,7 +575,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
           </Grid>
         )}
       </Grid>
-      <Grid xs={12} mt={3}>
+      <Grid item xs={12} mt={3}>
         <Grid container spacing={0}>
           <Box
             sx={{

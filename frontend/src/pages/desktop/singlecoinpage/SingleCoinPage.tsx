@@ -128,7 +128,7 @@ const SingleCoinPage = () => {
 
   return (
     <Fragment>
-      <Grid container rowSpacing={2} px={0}>
+      <Grid container px={0}>
         <Grid xs={12}>
           <LatestNewsScroll />
         </Grid>

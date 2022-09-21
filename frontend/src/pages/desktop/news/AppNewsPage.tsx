@@ -47,13 +47,7 @@ const AppNewsPage = () => {
 
   return (
     <Fragment>
-      <Grid
-        container
-        spacing={5}
-        sx={{
-          dispaly: "flex",
-        }}
-      >
+      <Grid container>
         {" "}
         {/* <Grid xs={12} sx={{ paddingTop: 3 }}>
           <LatestNewsScroll />
@@ -79,8 +73,9 @@ const AppNewsPage = () => {
             <CoinSlider />
           </Stack>
         </Grid> */}
-        <Grid container xs={12}>
+        <Grid container>
           <Grid
+            item
             xs={12}
             sm={12}
             md={12}
@@ -94,7 +89,7 @@ const AppNewsPage = () => {
                 variant="h3"
                 sx={{ color: "#FFFFF5", fontWeight: 900, textAlign: "center" }}
               >
-                COINXHIGH NEWS
+                LATEST NEWS
               </Typography>
               <Typography
                 variant="h6"
@@ -139,8 +134,9 @@ const AppNewsPage = () => {
               </Typography> */}
             </Stack>
           </Grid>
-          <Grid container xs={12} pt={8}>
+          <Grid container pt={8}>
             <Grid
+              item
               xs={12}
               sm={12}
               md={5}

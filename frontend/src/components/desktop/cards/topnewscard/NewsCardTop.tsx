@@ -39,8 +39,8 @@ const NewsCardTop = ({ rssFeed }: any) => {
             }}
           >
             {" "}
-            {rssFeed && rssFeed?.title?.length >= 155
-              ? Parser(rssFeed?.title.substring(0, 155)) + "..."
+            {rssFeed && rssFeed?.title?.length >= 105
+              ? Parser(rssFeed?.title.substring(0, 105)) + "..."
               : Parser(rssFeed?.title)}
             .
           </a>

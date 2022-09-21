@@ -36,25 +36,12 @@ const FreeCoinPage = ({ windowInnerWidth }: any) => {
 
   return (
     <Fragment>
-      <Grid
-        container
-        spacing={5}
-        sx={{
-          dispaly: "flex",
-        }}
-      >
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+      <Grid>
+        <Grid item xs={12}>
           <LatestNewsScroll />
         </Grid>
 
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: "13px",
-            paddingBottom: "13px",
-          }}
-        >
+        <Grid item xs={12}>
           <Stack
             direction={{ xs: "column", sm: "column", md: "column" }}
             spacing={{ xs: 1, sm: 1, md: 2 }}
@@ -93,19 +80,8 @@ const FreeCoinPage = ({ windowInnerWidth }: any) => {
           </Stack>
         </Grid>
 
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: "13px",
-            paddingBottom: "13px",
-          }}
-        >
-          <Stack
-            direction={{ xs: "column", sm: "column", md: "row" }}
-            spacing={{ xs: 1, sm: 1, md: 2 }}
-            pt={5}
-          >
+        <Grid item xs={12}>
+          <Grid container columnSpacing={2}>
             <Grid item xs={12} sm={12} md={8.5} lg={8.5} xl={8.5} mb={1}>
               <Stack direction="column" spacing={5}>
                 <Stack direction="column" spacing={3}>
@@ -258,7 +234,7 @@ const FreeCoinPage = ({ windowInnerWidth }: any) => {
                 <CoinxHighPlayCard />
               </Grid>
             </Grid>
-          </Stack>
+          </Grid>
           <Grid item xs={12} sm={12} md={12} lg={12} xl={12} mb={1}>
             {" "}
             <Stack direction="column" spacing={2} alignItems="flex-start">

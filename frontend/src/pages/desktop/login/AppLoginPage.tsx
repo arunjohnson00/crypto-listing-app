@@ -112,321 +112,325 @@ const AppLoginPage = () => {
 
   return (
     <Fragment>
-      <Grid
-        container
-        spacing={5}
-        sx={{
-          dispaly: "flex",
-        }}
-      >
+      <Grid container>
         {" "}
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+        <Grid item xs={12}>
           <LatestNewsScroll />
         </Grid>
-        <Grid container xs={12} pt={3}>
-          <Grid xs={12} sm={12} md={6} lg={6} xl={6} pt={3}>
-            <Stack direction="column" spacing={3} sx={{ alignItems: "center" }}>
-              <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
-                <Stack
-                  direction="column"
-                  sx={{ alignItems: "center" }}
-                  spacing={2.2}
-                >
-                  <Typography
-                    variant="h5"
-                    sx={{ color: "#02AC60", fontWeight: 500 }}
-                  >
-                    Sign In
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "#FFFFF5", fontWeight: 500 }}
-                  >
-                    Login to get access your CoinXHigh account
-                  </Typography>
-                </Stack>
-              </Grid>
-
-              <Grid
-                xs={12}
-                sm={12}
-                md={12}
-                lg={12}
-                xl={12}
-                sx={{ width: "100%" }}
-                px={{ xs: 0, sm: 0, md: 8 }}
-                py={{ xs: 0, sm: 0, md: 1 }}
-              >
-                <form id="login">
-                  <Box
-                    sx={{
-                      flexGrow: 1,
-                      background: "linear-gradient(180deg, #020822, #030619)",
-                      borderRadius: 4,
-                      height: 363,
-                    }}
-                    px={{ xs: 2, sm: 2, md: 7 }}
-                    py={{ xs: 5, sm: 5, md: 7 }}
-                  >
-                    <Stack
-                      direction="column"
-                      spacing={2}
-                      sx={{ alignItems: "center" }}
-                    >
-                      <Stack
-                        direction="column"
-                        spacing={1}
-                        sx={{ alignItems: "flex-start", width: "100%" }}
-                      >
-                        <Typography
-                          variant="body2"
-                          sx={{ color: "#00E27D", fontWeight: 500 }}
-                        >
-                          Email address
-                        </Typography>
-                        <TextField
-                          id="email"
-                          variant="filled"
-                          placeholder="Enter email address"
-                          name="email"
-                          fullWidth
-                          sx={{
-                            backgroundColor: "#020822",
-                            height: 42,
-                            borderRadius: 4,
-                            marginBottom: 0,
-
-                            "& .MuiInputBase-root": {
-                              paddingTop: 0,
-                            },
-
-                            "& .MuiFilledInput-root": {
-                              background: "#020822",
-                              height: 42,
-                              borderRadius: 4,
-                              marginBottom: 0,
-
-                              border: "1px solid #111836",
-                            },
-                            "& .MuiFilledInput-input": {
-                              paddingTop: 1,
-                            },
-                            "&input:-webkit-autofill": {
-                              borderRadius: "0px",
-                              backgroundColor: "none",
-                            },
-                          }}
-                          InputProps={{
-                            disableUnderline: true,
-
-                            startAdornment: (
-                              <InputAdornment position="start">
-                                <EmailOutlinedIcon
-                                  sx={{
-                                    color: "#D2D7E2",
-                                    marginTop: "-16px",
-                                  }}
-                                />
-                              </InputAdornment>
-                            ),
-                            style: {
-                              color: "#2C3344",
-                              paddingTop: 0,
-                              marginTop: 0,
-                            },
-                          }}
-                        />
-                      </Stack>
-                      <Stack
-                        direction="column"
-                        spacing={1}
-                        sx={{ alignItems: "flex-start", width: "100%" }}
-                        pb={2}
-                      >
-                        <Typography
-                          variant="body2"
-                          sx={{ color: "#00E27D", fontWeight: 500 }}
-                        >
-                          Password
-                        </Typography>
-                        <TextField
-                          id="password"
-                          variant="filled"
-                          placeholder="Enter Password"
-                          fullWidth
-                          name="password"
-                          type={showPassword.showPassword ? "text" : "password"}
-                          sx={{
-                            backgroundColor: "#020822",
-                            height: 42,
-                            borderRadius: 4,
-                            marginBottom: 0,
-
-                            "& .MuiInputBase-root": {
-                              paddingTop: 0,
-                            },
-
-                            "& .MuiFilledInput-root": {
-                              background: "#02071F",
-                              height: 42,
-                              borderRadius: 4,
-                              marginBottom: 0,
-
-                              border: "1px solid #111836",
-                            },
-                            "& .MuiFilledInput-input": {
-                              paddingTop: 1,
-                            },
-                            "&:-webkit-autofill": {
-                              backgroundColor: "none",
-                            },
-                          }}
-                          InputProps={{
-                            disableUnderline: true,
-                            autoComplete: "off",
-                            startAdornment: (
-                              <InputAdornment position="start">
-                                <LockOutlinedIcon
-                                  sx={{
-                                    color: "#D2D7E2",
-                                    marginTop: "-16px",
-                                  }}
-                                />
-                              </InputAdornment>
-                            ),
-                            endAdornment: (
-                              <InputAdornment position="end">
-                                <IconButton
-                                  aria-label="toggle password visibility"
-                                  onClick={handleClickShowPassword}
-                                  onMouseDown={handleMouseDownPassword}
-                                  edge="end"
-                                >
-                                  {showPassword.showPassword ? (
-                                    <VisibilityOff sx={{ color: "#D2D7E2" }} />
-                                  ) : (
-                                    <Visibility sx={{ color: "#D2D7E2" }} />
-                                  )}
-                                </IconButton>
-                              </InputAdornment>
-                            ),
-                            style: {
-                              color: "#2C3344",
-                              paddingTop: 0,
-                              marginTop: 0,
-                            },
-                          }}
-                        />
-
-                        <FormGroup>
-                          <FormControlLabel
-                            sx={{ color: "#20B5CC" }}
-                            control={
-                              <Checkbox
-                                //defaultChecked
-                                checked={remember}
-                                size="small"
-                                sx={{
-                                  color: "#20B5CC",
-                                  "&.Mui-checked": {
-                                    color: "#20B5CC",
-                                  },
-                                }}
-                                onChange={rememberMeHandler}
-                              />
-                            }
-                            label="Remember me"
-                          />
-                        </FormGroup>
-                      </Stack>
-
-                      <Button
-                        variant="contained"
-                        sx={{
-                          backgroundColor: "#1239C4",
-                          borderRadius: 4,
-                          height: 42,
-                          textTransform: "capitalize",
-                          paddingX: 15,
-                        }}
-                        onClick={loginHandler}
-                      >
-                        Log in
-                      </Button>
-                    </Stack>
-                    <Stack
-                      direction="column"
-                      sx={{ alignItems: "center" }}
-                      spacing={1}
-                      pt={3}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{ color: "#18F496", fontWeight: 500 }}
-                      >
-                        Forgot Password?
-                      </Typography>
-                      <Link
-                        to="/register"
-                        style={{ textDecoration: "none", color: "inherit" }}
-                      >
-                        {" "}
-                        <Typography
-                          variant="body2"
-                          sx={{ color: "#1597B5", fontWeight: 500 }}
-                        >
-                          Register Now
-                        </Typography>
-                      </Link>
-                    </Stack>
-                  </Box>
-                </form>
-              </Grid>
-            </Stack>
-          </Grid>
-
-          <Grid
-            xs={12}
-            sm={12}
-            md={6}
-            lg={6}
-            xl={6}
-            pl={{ sx: 0, sm: 0, md: 4 }}
-            mt={{ xs: 7, sm: 7, md: 3 }}
-          >
-            <Stack
-              direction="column"
-              sx={{ alignItems: "center" }}
-              spacing={1}
-              pt={{ xs: 0, sm: 0, md: 25 }}
-            >
-              <Avatar
-                alt="Remy Sharp"
-                src="https://mui.com/static/images/avatar/1.jpg"
-                sx={{ width: 126, height: 126 }}
-              />
+        <Grid item xs={12}>
+          <Grid container pt={0}>
+            <Grid xs={12} sm={12} md={6} lg={6} xl={6} pt={3}>
               <Stack
                 direction="column"
-                spacing={0.5}
-                pt={3}
-                alignItems={{ xs: "center", sm: "center", md: "flex-start" }}
+                spacing={3}
+                sx={{ alignItems: "center" }}
               >
-                <Typography
-                  variant="h4"
-                  sx={{ color: "#FFFFF5", fontWeight: 700 }}
-                  textAlign={{ xs: "center", sm: "center", md: "left" }}
+                <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
+                  <Stack
+                    direction="column"
+                    sx={{ alignItems: "center" }}
+                    spacing={2.2}
+                  >
+                    <Typography
+                      variant="h5"
+                      sx={{ color: "#02AC60", fontWeight: 500 }}
+                    >
+                      Sign In
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "#FFFFF5", fontWeight: 500 }}
+                    >
+                      Login to get access your CoinXHigh account
+                    </Typography>
+                  </Stack>
+                </Grid>
+
+                <Grid
+                  xs={12}
+                  sm={12}
+                  md={12}
+                  lg={12}
+                  xl={12}
+                  sx={{ width: "100%" }}
+                  px={{ xs: 0, sm: 0, md: 8 }}
+                  py={{ xs: 0, sm: 0, md: 1 }}
                 >
-                  Words fast emerging
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  sx={{ color: "#5A5B63", fontWeight: 600 }}
-                  textAlign={{ xs: "center", sm: "center", md: "left" }}
-                >
-                  Crypto Listing & News Platform
-                </Typography>
+                  <form id="login">
+                    <Box
+                      sx={{
+                        flexGrow: 1,
+                        background: "linear-gradient(180deg, #020822, #030619)",
+                        borderRadius: 4,
+                        height: 363,
+                      }}
+                      px={{ xs: 2, sm: 2, md: 7 }}
+                      py={{ xs: 5, sm: 5, md: 7 }}
+                    >
+                      <Stack
+                        direction="column"
+                        spacing={2}
+                        sx={{ alignItems: "center" }}
+                      >
+                        <Stack
+                          direction="column"
+                          spacing={1}
+                          sx={{ alignItems: "flex-start", width: "100%" }}
+                        >
+                          <Typography
+                            variant="body2"
+                            sx={{ color: "#00E27D", fontWeight: 500 }}
+                          >
+                            Email address
+                          </Typography>
+                          <TextField
+                            id="email"
+                            variant="filled"
+                            placeholder="Enter email address"
+                            name="email"
+                            fullWidth
+                            sx={{
+                              backgroundColor: "#020822",
+                              height: 42,
+                              borderRadius: 4,
+                              marginBottom: 0,
+
+                              "& .MuiInputBase-root": {
+                                paddingTop: 0,
+                              },
+
+                              "& .MuiFilledInput-root": {
+                                background: "#020822",
+                                height: 42,
+                                borderRadius: 4,
+                                marginBottom: 0,
+
+                                border: "1px solid #111836",
+                              },
+                              "& .MuiFilledInput-input": {
+                                paddingTop: 1,
+                              },
+                              "&input:-webkit-autofill": {
+                                borderRadius: "0px",
+                                backgroundColor: "none",
+                              },
+                            }}
+                            InputProps={{
+                              disableUnderline: true,
+
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <EmailOutlinedIcon
+                                    sx={{
+                                      color: "#D2D7E2",
+                                      marginTop: "-16px",
+                                    }}
+                                  />
+                                </InputAdornment>
+                              ),
+                              style: {
+                                color: "#2C3344",
+                                paddingTop: 0,
+                                marginTop: 0,
+                              },
+                            }}
+                          />
+                        </Stack>
+                        <Stack
+                          direction="column"
+                          spacing={1}
+                          sx={{ alignItems: "flex-start", width: "100%" }}
+                          pb={2}
+                        >
+                          <Typography
+                            variant="body2"
+                            sx={{ color: "#00E27D", fontWeight: 500 }}
+                          >
+                            Password
+                          </Typography>
+                          <TextField
+                            id="password"
+                            variant="filled"
+                            placeholder="Enter Password"
+                            fullWidth
+                            name="password"
+                            type={
+                              showPassword.showPassword ? "text" : "password"
+                            }
+                            sx={{
+                              backgroundColor: "#020822",
+                              height: 42,
+                              borderRadius: 4,
+                              marginBottom: 0,
+
+                              "& .MuiInputBase-root": {
+                                paddingTop: 0,
+                              },
+
+                              "& .MuiFilledInput-root": {
+                                background: "#02071F",
+                                height: 42,
+                                borderRadius: 4,
+                                marginBottom: 0,
+
+                                border: "1px solid #111836",
+                              },
+                              "& .MuiFilledInput-input": {
+                                paddingTop: 1,
+                              },
+                              "&:-webkit-autofill": {
+                                backgroundColor: "none",
+                              },
+                            }}
+                            InputProps={{
+                              disableUnderline: true,
+                              autoComplete: "off",
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <LockOutlinedIcon
+                                    sx={{
+                                      color: "#D2D7E2",
+                                      marginTop: "-16px",
+                                    }}
+                                  />
+                                </InputAdornment>
+                              ),
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    edge="end"
+                                  >
+                                    {showPassword.showPassword ? (
+                                      <VisibilityOff
+                                        sx={{ color: "#D2D7E2" }}
+                                      />
+                                    ) : (
+                                      <Visibility sx={{ color: "#D2D7E2" }} />
+                                    )}
+                                  </IconButton>
+                                </InputAdornment>
+                              ),
+                              style: {
+                                color: "#2C3344",
+                                paddingTop: 0,
+                                marginTop: 0,
+                              },
+                            }}
+                          />
+
+                          <FormGroup>
+                            <FormControlLabel
+                              sx={{ color: "#20B5CC" }}
+                              control={
+                                <Checkbox
+                                  //defaultChecked
+                                  checked={remember}
+                                  size="small"
+                                  sx={{
+                                    color: "#20B5CC",
+                                    "&.Mui-checked": {
+                                      color: "#20B5CC",
+                                    },
+                                  }}
+                                  onChange={rememberMeHandler}
+                                />
+                              }
+                              label="Remember me"
+                            />
+                          </FormGroup>
+                        </Stack>
+
+                        <Button
+                          variant="contained"
+                          sx={{
+                            backgroundColor: "#1239C4",
+                            borderRadius: 4,
+                            height: 42,
+                            textTransform: "capitalize",
+                            paddingX: 15,
+                          }}
+                          onClick={loginHandler}
+                        >
+                          Log in
+                        </Button>
+                      </Stack>
+                      <Stack
+                        direction="column"
+                        sx={{ alignItems: "center" }}
+                        spacing={1}
+                        pt={3}
+                      >
+                        <Typography
+                          variant="body2"
+                          sx={{ color: "#18F496", fontWeight: 500 }}
+                        >
+                          Forgot Password?
+                        </Typography>
+                        <Link
+                          to="/register"
+                          style={{ textDecoration: "none", color: "inherit" }}
+                        >
+                          {" "}
+                          <Typography
+                            variant="body2"
+                            sx={{ color: "#1597B5", fontWeight: 500 }}
+                          >
+                            Register Now
+                          </Typography>
+                        </Link>
+                      </Stack>
+                    </Box>
+                  </form>
+                </Grid>
               </Stack>
-            </Stack>
+            </Grid>
+
+            <Grid
+              xs={12}
+              sm={12}
+              md={6}
+              lg={6}
+              xl={6}
+              pl={{ sx: 0, sm: 0, md: 4 }}
+              mt={{ xs: 7, sm: 7, md: 3 }}
+            >
+              <Stack
+                direction="column"
+                sx={{ alignItems: "center" }}
+                spacing={1}
+                pt={{ xs: 0, sm: 0, md: 25 }}
+              >
+                <Avatar
+                  alt="Remy Sharp"
+                  src="https://mui.com/static/images/avatar/1.jpg"
+                  sx={{ width: 126, height: 126 }}
+                />
+                <Stack
+                  direction="column"
+                  spacing={0.5}
+                  pt={3}
+                  alignItems={{ xs: "center", sm: "center", md: "flex-start" }}
+                >
+                  <Typography
+                    variant="h4"
+                    sx={{ color: "#FFFFF5", fontWeight: 700 }}
+                    textAlign={{ xs: "center", sm: "center", md: "left" }}
+                  >
+                    Words fast emerging
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{ color: "#5A5B63", fontWeight: 600 }}
+                    textAlign={{ xs: "center", sm: "center", md: "left" }}
+                  >
+                    Crypto Listing & News Platform
+                  </Typography>
+                </Stack>
+              </Stack>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

@@ -6,15 +6,9 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 const SupportPage = () => {
   return (
     <Fragment>
-      <Grid
-        container
-        spacing={5}
-        sx={{
-          dispaly: "flex",
-        }}
-      >
+      <Grid container>
         {" "}
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+        <Grid item xs={12}>
           <Box mt={5}>
             <Stack direction="column" spacing={6}>
               <Stack direction="column" spacing={1}>

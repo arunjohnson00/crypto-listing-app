@@ -44,17 +44,11 @@ const ComparisonPage = () => {
 
   return (
     <Fragment>
-      <Grid
-        container
-        spacing={5}
-        sx={{
-          dispaly: "flex",
-        }}
-      >
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+      <Grid container rowSpacing={3}>
+        <Grid item xs={12}>
           <LatestNewsScroll />
         </Grid>
-        <Grid xs={12} pt={3}>
+        <Grid item xs={12}>
           <Stack direction="column" spacing={0.5}>
             <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
               Cryptocurrency comparison table
@@ -67,7 +61,7 @@ const ComparisonPage = () => {
           </Stack>
         </Grid>
 
-        <Grid xs={12} pt={3}>
+        <Grid item xs={12}>
           <Box
             sx={{
               background: "linear-gradient(180deg, #030C2D 50%, #01061A);",

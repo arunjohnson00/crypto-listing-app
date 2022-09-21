@@ -34,18 +34,13 @@ const ChartPage = ({ windowInnerWidth }: any) => {
 
   return (
     <Fragment>
-      <Grid
-        container
-        spacing={5}
-        sx={{
-          dispaly: "flex",
-        }}
-      >
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+      <Grid container>
+        <Grid item xs={12}>
           <LatestNewsScroll />
         </Grid>
 
         <Grid
+          item
           xs={12}
           sx={{
             alignItems: "center",
@@ -77,6 +72,7 @@ const ChartPage = ({ windowInnerWidth }: any) => {
         </Grid>
 
         <Grid
+          item
           xs={12}
           sx={{
             alignItems: "center",
@@ -182,6 +178,7 @@ const ChartPage = ({ windowInnerWidth }: any) => {
         </Grid>
 
         <Grid
+          item
           xs={12}
           sx={{
             alignItems: "center",

@@ -66,17 +66,11 @@ const NftListingsPage = () => {
 
   return (
     <Fragment>
-      <Grid
-        container
-        spacing={5}
-        sx={{
-          dispaly: "flex",
-        }}
-      >
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+      <Grid container spacing={0}>
+        <Grid item xs={12} sx={{ paddingTop: 3 }}>
           <LatestNewsScroll />
         </Grid>
-        <Grid xs={12} pt={6}>
+        <Grid item xs={12} pt={6}>
           <Stack direction="column" spacing={0.1}>
             <Typography variant="h4" sx={{ color: "#53EAC3" }}>
               NFT Listings
@@ -86,7 +80,7 @@ const NftListingsPage = () => {
             </Typography>
           </Stack>
         </Grid>
-        <Grid xs={12} pt={3}>
+        <Grid item xs={12} pt={3}>
           <Stack direction="column" spacing={0.1}>
             <SponsoredBtn title="Sponsored NFT's" width={240} />
           </Stack>
@@ -123,7 +117,7 @@ const NftListingsPage = () => {
           </Grid>
         </Grid>
 
-        <Grid xs={12} pt={3}>
+        <Grid item xs={12} pt={3}>
           <CardMedia
             component="img"
             height="105"
@@ -131,7 +125,7 @@ const NftListingsPage = () => {
             alt="green iguana"
           />
         </Grid>
-        <Grid xs={12} pt={3}>
+        <Grid item xs={12} pt={3}>
           <NftTab />
         </Grid>
       </Grid>

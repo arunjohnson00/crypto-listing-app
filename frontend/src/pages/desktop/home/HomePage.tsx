@@ -314,6 +314,23 @@ const HomePage = ({ windowInnerWidth }: any) => {
         </Grid>
 
         <Grid item xs={12}>
+          <Stack direction="row" spacing={3} alignItems="center" pt={1}>
+            <Grid item xs="auto">
+              <Typography
+                sx={{ color: "#FFFFFF", fontWeight: 500, fontSize: "1.7rem" }}
+              >
+                Videos
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Divider
+                sx={{ borderColor: "#041143", borderBottomWidth: "1px" }}
+              />
+            </Grid>
+          </Stack>
+        </Grid>
+
+        <Grid item xs={12}>
           <Grid container spacing={2} pt={0.7}>
             <Grid item xs={9.5}>
               {" "}
@@ -905,7 +922,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               <Typography
                 sx={{ color: "#FFFFFF", fontWeight: 500, fontSize: "1.7rem" }}
               >
-                Coinxhigh crypto News
+                Coinxhigh Crypto News
               </Typography>
             </Grid>
             <Grid item xs={12}>

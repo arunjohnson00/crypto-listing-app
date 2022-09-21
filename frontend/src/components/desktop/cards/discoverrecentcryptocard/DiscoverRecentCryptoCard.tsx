@@ -156,14 +156,14 @@ const DiscoverRecentCryptoCard = ({ item }: any) => {
 
         backgroundColor: "#050A28",
         color: "#FFFFF5",
-        margin: 1,
+
         borderRadius: 2,
       }}
       // px={2}
-      //my={4}
+      mr={1}
     >
       <Box
-        mx={2}
+        mr={2}
         // my={4}
       >
         <Stack

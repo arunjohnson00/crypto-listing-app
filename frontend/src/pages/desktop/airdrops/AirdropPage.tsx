@@ -17,17 +17,12 @@ const AirdropPage = () => {
 
   return (
     <Fragment>
-      <Grid
-        container
-        spacing={5}
-        sx={{
-          dispaly: "flex",
-        }}
-      >
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+      <Grid container>
+        <Grid item xs={12}>
           <LatestNewsScroll />
         </Grid>
         <Grid
+          item
           xs={12}
           sx={{
             alignItems: "center",
@@ -48,7 +43,7 @@ const AirdropPage = () => {
             <CoinSlider />
           </Stack> */}
         </Grid>
-        <Grid xs={12} pt={3}>
+        <Grid item xs={12} pt={3}>
           <Stack direction="column" spacing={0.5}>
             <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
               Crypto Airdrops
@@ -58,28 +53,29 @@ const AirdropPage = () => {
             </Typography>
           </Stack>
         </Grid>
-
-        <Grid container pt={6} spacing={3}>
-          <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-            <AirdropCard />
-          </Grid>
-          <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-            <AirdropCard />
-          </Grid>
-          <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-            <AirdropCard />
-          </Grid>
-          <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-            <AirdropCard />
-          </Grid>
-          <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-            <AirdropCard />
-          </Grid>
-          <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-            <AirdropCard />
-          </Grid>
-          <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-            <AirdropCard />
+        <Grid item xs={12}>
+          <Grid container pt={6} spacing={3}>
+            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
+              <AirdropCard />
+            </Grid>
+            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
+              <AirdropCard />
+            </Grid>
+            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
+              <AirdropCard />
+            </Grid>
+            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
+              <AirdropCard />
+            </Grid>
+            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
+              <AirdropCard />
+            </Grid>
+            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
+              <AirdropCard />
+            </Grid>
+            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
+              <AirdropCard />
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

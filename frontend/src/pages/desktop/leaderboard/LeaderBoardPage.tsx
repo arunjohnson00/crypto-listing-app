@@ -50,14 +50,8 @@ const LeaderBoardPage = ({ windowInnerWidth }: any) => {
 
   return (
     <Fragment>
-      <Grid
-        container
-        spacing={5}
-        sx={{
-          dispaly: "flex",
-        }}
-      >
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+      <Grid container>
+        <Grid item xs={12}>
           <LatestNewsScroll />
         </Grid>
 
@@ -76,6 +70,7 @@ const LeaderBoardPage = ({ windowInnerWidth }: any) => {
         </Grid>
 
         <Grid
+          item
           xs={12}
           sx={{
             alignItems: "center",
@@ -121,6 +116,7 @@ const LeaderBoardPage = ({ windowInnerWidth }: any) => {
         </Grid>
 
         <Grid
+          item
           xs={12}
           sx={{
             alignItems: "center",
@@ -138,6 +134,7 @@ const LeaderBoardPage = ({ windowInnerWidth }: any) => {
           </Grid>
         </Grid>
         <Grid
+          item
           xs={12}
           sx={{
             alignItems: "center",

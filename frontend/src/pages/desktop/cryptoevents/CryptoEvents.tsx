@@ -23,17 +23,11 @@ const CryptoEvents = () => {
 
   return (
     <Fragment>
-      <Grid
-        container
-        spacing={5}
-        sx={{
-          dispaly: "flex",
-        }}
-      >
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+      <Grid container>
+        <Grid item xs={12}>
           <LatestNewsScroll />
         </Grid>
-        <Grid xs={12} pt={3}>
+        <Grid item xs={12} pt={3}>
           <Stack direction="column" spacing={0.5}>
             <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
               Upcoming Events
@@ -45,7 +39,7 @@ const CryptoEvents = () => {
             </Typography>
           </Stack>
         </Grid>
-        <Grid xs={12} pt={2}>
+        <Grid item xs={12} pt={2}>
           <Stack
             direction="row"
             //  direction={{ xs: "column", sm: "column", md: "row" }}
@@ -126,72 +120,73 @@ const CryptoEvents = () => {
             />
           </Stack>
         </Grid>
+        <Grid item xs={12}>
+          <Grid container pt={6} spacing={3}>
+            <Grid item xs={12} sm={12} md={12} lg={8} xl={8}>
+              <Grid item xs={12} pb={3}>
+                <Grid item xs={12}>
+                  <Typography variant="h6" sx={{ color: "#FFFFF5" }}>
+                    {dateFormat(date, "dd mmmm  yyyy")}
+                    {/* {`28 May 2022 ${date}`} */}
+                  </Typography>
+                </Grid>
 
-        <Grid container pt={6} spacing={3}>
-          <Grid item xs={12} sm={12} md={12} lg={8} xl={8}>
-            <Grid item xs={12} pb={3}>
-              <Grid item xs={12}>
-                <Typography variant="h6" sx={{ color: "#FFFFF5" }}>
-                  {dateFormat(date, "dd mmmm  yyyy")}
-                  {/* {`28 May 2022 ${date}`} */}
-                </Typography>
+                <Grid container pt={3} spacing={3}>
+                  <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                    <CryptoEventsCard />
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                    <CryptoEventsCard />
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                    <CryptoEventsCard />
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                    <CryptoEventsCard />
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                    <Divider
+                      variant="fullWidth"
+                      sx={{ borderColor: "#0D1436", borderBottomWidth: 2.5 }}
+                      flexItem
+                    />
+                  </Grid>
+                </Grid>
               </Grid>
 
-              <Grid container pt={3} spacing={3}>
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                  <CryptoEventsCard />
+              <Grid item xs={12} pb={3}>
+                <Grid item xs={12}>
+                  <Typography variant="h6" sx={{ color: "#FFFFF5" }}>
+                    28 May 2022
+                  </Typography>
                 </Grid>
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                  <CryptoEventsCard />
-                </Grid>
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                  <CryptoEventsCard />
-                </Grid>
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                  <CryptoEventsCard />
-                </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                  <Divider
-                    variant="fullWidth"
-                    sx={{ borderColor: "#0D1436", borderBottomWidth: 2.5 }}
-                    flexItem
-                  />
+
+                <Grid container pt={3} spacing={3}>
+                  <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                    <CryptoEventsCard />
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                    <CryptoEventsCard />
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                    <CryptoEventsCard />
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                    <CryptoEventsCard />
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                    <Divider
+                      variant="fullWidth"
+                      sx={{ borderColor: "#0D1436", borderBottomWidth: 2.5 }}
+                      flexItem
+                    />
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
-
-            <Grid item xs={12} pb={3}>
-              <Grid item xs={12}>
-                <Typography variant="h6" sx={{ color: "#FFFFF5" }}>
-                  28 May 2022
-                </Typography>
-              </Grid>
-
-              <Grid container pt={3} spacing={3}>
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                  <CryptoEventsCard />
-                </Grid>
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                  <CryptoEventsCard />
-                </Grid>
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                  <CryptoEventsCard />
-                </Grid>
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                  <CryptoEventsCard />
-                </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                  <Divider
-                    variant="fullWidth"
-                    sx={{ borderColor: "#0D1436", borderBottomWidth: 2.5 }}
-                    flexItem
-                  />
-                </Grid>
-              </Grid>
+            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
+              <UpcomingEventCalender date={date} setDate={setDate} />
             </Grid>
-          </Grid>
-          <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-            <UpcomingEventCalender date={date} setDate={setDate} />
           </Grid>
         </Grid>
       </Grid>

@@ -124,14 +124,7 @@ const AppView = ({ children }: any) => {
           <Grid xs={12}>{children}</Grid>
         </Grid>
 
-        <Grid
-          item
-          xs={12}
-          sx={{
-            paddingTop: "50px",
-            paddingBottom: "23px",
-          }}
-        >
+        <Grid item xs={12}>
           {windowInnerWidth >= 900 ? (
             <Grid
               item

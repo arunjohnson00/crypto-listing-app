@@ -57,22 +57,11 @@ const SingleNftMarketPlacesPage = () => {
 
   return (
     <Fragment>
-      <Grid
-        container
-        spacing={5}
-        sx={{
-          dispaly: "flex",
-        }}
-      >
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+      <Grid container spacing={5}>
+        <Grid item xs={12}>
           <LatestNewsScroll />
         </Grid>
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-          }}
-        >
+        <Grid item xs={12}>
           <Stack
             direction="row"
             spacing={1}
@@ -96,34 +85,14 @@ const SingleNftMarketPlacesPage = () => {
             />
           </Stack>
         </Grid>
-        <Grid
-          container
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: 2,
-          }}
-        >
+
+        <Grid item xs={12}>
           <SingleNFTMarketPlaceHeader />
         </Grid>
-        <Grid
-          container
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: 2,
-          }}
-        >
+        <Grid item xs={12}>
           <SingleNftMarketplaceTab />
         </Grid>
-        <Grid
-          container
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: 2,
-          }}
-        >
+        <Grid item xs={12}>
           <NFTMarketPlaceSimilarAppCard />
         </Grid>
       </Grid>
