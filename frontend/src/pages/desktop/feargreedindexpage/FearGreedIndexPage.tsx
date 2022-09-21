@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import moment from "moment";
 import FearAndGreedcard from "../../../components/desktop/cards/fearandgreedcard/FearAndGreedcard";
 import FearAndGreedIndexChart from "../../../components/desktop/fearandgreedindexchart/FearAndGreedIndexChart";
@@ -8,6 +8,9 @@ import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsS
 
 import { tableHeader } from "./helper";
 import FearAndGreedIndexPieChart from "../../../components/desktop/fearandgreedindexpiechart/FearAndGreedIndexPieChart";
+import { feargreedDataRequest } from "../../../store/action";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 const FearGreedIndexPage = () => {
   const data = [
     ["Wed Sep 21 2022 7:00:09", 18922.122606522],
@@ -732,6 +735,28 @@ const FearGreedIndexPage = () => {
     ["Mon Aug 22 2022 1:30:04", 21420.962821155],
     ["Mon Aug 22 2022 0:30:01", 21484.191152764],
   ];
+
+  const dispatch: any = useDispatch();
+  const location = useLocation();
+
+  const fearGreedData = useSelector((data: any) => {
+    return data?.feargreedReducer?.feer_greed_data?.data;
+  });
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(
+      feargreedDataRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  }, []);
+
+  console.log(fearGreedData);
   return (
     <Fragment>
       <Grid container rowSpacing={3}>

@@ -16,6 +16,7 @@ import dashboardNFTListingReducer from "./dashboardNFTListingReducer";
 import dashboardEventReducer from "./dashboardEventReducer";
 import dashboardAirdropsReducer from "./dashboardAirdropsReducer";
 import discoverReducer from "./discoverReducer";
+import feargreedReducer from "./feargreedReducer";
 
 const allReducers = combineReducers({
   commonReducer,
@@ -29,6 +30,7 @@ const allReducers = combineReducers({
   dashboardEventReducer,
   dashboardAirdropsReducer,
   discoverReducer,
+  feargreedReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

@@ -128,3 +128,7 @@ export {
   discoverBiggestGainersRequest,
   discoverLatestCoinRequest,
 } from "./discoverAction";
+
+//Fear Greed
+
+export { feargreedDataRequest } from "./feargreedAction";

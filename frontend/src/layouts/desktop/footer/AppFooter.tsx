@@ -19,7 +19,7 @@ import DiscordImage from "../../../assets/footer/discord.png";
 
 const AppFooter = () => {
   return (
-    <Box my={10}>
+    <Box py={10}>
       <Grid container columnSpacing={1}>
         <Grid item xs={2.4}>
           <Stack
@@ -131,6 +131,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Assests
@@ -147,6 +150,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Recetly added coins
@@ -164,6 +170,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Recetly added NFT
@@ -181,6 +190,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Upcoming Events
@@ -198,6 +210,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Latest Airdrops
@@ -215,6 +230,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Discover
@@ -231,6 +249,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Chart
@@ -260,6 +281,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Register
@@ -276,6 +300,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Login
@@ -293,6 +320,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Watchlists
@@ -324,6 +354,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Telegram Channel
@@ -341,6 +374,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Help Centre
@@ -358,6 +394,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Promote
@@ -375,6 +414,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Terms & Conditions
@@ -392,6 +434,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Disclaimer
@@ -409,6 +454,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Privacy Policy
@@ -426,6 +474,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Sitemap
@@ -442,6 +493,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Donations
@@ -471,6 +525,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Add coin
@@ -487,6 +544,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Add Presale Coin
@@ -504,6 +564,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Add NFT
@@ -521,6 +584,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Add Airdrop
@@ -538,6 +604,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Add Events
@@ -569,6 +638,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Latest News
@@ -585,6 +657,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Ethereum News
@@ -601,6 +676,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Bitcoin News
@@ -617,6 +695,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Altcoin News
@@ -633,6 +714,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Avalanche News
@@ -649,6 +733,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Binance Coin- BNB News
@@ -665,6 +752,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Blockchain News
@@ -681,6 +771,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Dogecoin News
@@ -697,6 +790,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Polkadot News
@@ -713,6 +809,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Ripple - XRP News
@@ -729,6 +828,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Solana News
@@ -745,6 +847,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Terra - Luna News
@@ -761,6 +866,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Tether News
@@ -777,6 +885,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Tron News
@@ -808,6 +919,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Facebook
@@ -824,6 +938,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Twitter
@@ -840,6 +957,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Instagram
@@ -856,6 +976,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 LinkedIn
@@ -872,6 +995,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Pinterest
@@ -888,6 +1014,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Telegram Group
@@ -904,6 +1033,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Telegram Channel
@@ -920,6 +1052,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Medium
@@ -936,6 +1071,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Blogger
@@ -952,6 +1090,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 VKontakte
@@ -968,6 +1109,9 @@ const AppFooter = () => {
                   color: "#838385",
                   fontWeight: "400",
                   fontSize: "0.8rem",
+                  "&:hover": {
+                    color: "#1dffc0",
+                  },
                 }}
               >
                 Tumblr
@@ -996,6 +1140,9 @@ const AppFooter = () => {
             color: "#838385",
             fontWeight: "400",
             fontSize: "0.8rem",
+            "&:hover": {
+              color: "#1dffc0",
+            },
           }}
         >
           © 2022 CoinXhigh. All rights reserved
