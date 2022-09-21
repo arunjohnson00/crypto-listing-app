@@ -148,7 +148,7 @@ const CoinPageChart = ({ data }: any) => {
     selection: "all_day",
   };
 
-  const [dateTime, setDateTime] = useState<any>("");
+  const [dateTime, setDateTime] = useState<any>("all_day");
 
   const updateData = (timeline: any) => {
     setDateTime(timeline);
@@ -213,7 +213,7 @@ const CoinPageChart = ({ data }: any) => {
           "area-datetime",
           "zoomX",
 
-          new Date(new Date().getTime()).getTime()
+          new Date(data && data?.price[data?.price?.length - 1][0]).getTime()
         );
         break;
 

@@ -152,7 +152,7 @@ const FearAndGreedIndexChart = ({ data }: any) => {
     selection: "seven_day",
   };
 
-  const [dateTime, setDateTime] = useState<any>("");
+  const [dateTime, setDateTime] = useState<any>("all_day");
 
   const updateData = (timeline: any) => {
     setDateTime(timeline);
@@ -212,6 +212,14 @@ const FearAndGreedIndexChart = ({ data }: any) => {
           new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000).getTime()
         );
         break;
+      case "all_day":
+        ApexCharts.exec(
+          "area-datetime",
+          "zoomX",
+
+          new Date(data && data[data?.length - 1][0]).getTime()
+        );
+        break;
 
       default:
     }
@@ -262,6 +270,18 @@ const FearAndGreedIndexChart = ({ data }: any) => {
           onClick={() => updateData("thirty_day")}
         >
           30d
+        </Button>
+        <Button
+          variant="contained"
+          sx={{
+            textTransform: "capitalize",
+            fontSize: ".8rem",
+            backgroundColor: dateTime === "all_day" ? "#6252e7" : "#072170",
+            borderRadius: 5,
+          }}
+          onClick={() => updateData("all_day")}
+        >
+          All
         </Button>
       </Stack>
 

@@ -32,7 +32,7 @@ const CoinCommunityChart = ({
 }: any) => {
   const location: any = useLocation();
   const dispatch: any = useDispatch();
-  const [dateTime, setDateTime] = useState<any>("");
+  const [dateTime, setDateTime] = useState<any>("all_day");
   const [data, setData] = useState<any>();
   const updateData = (timeline: any) => {
     setDateTime(timeline);
@@ -84,6 +84,16 @@ const CoinCommunityChart = ({
           "zoomX",
 
           new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000).getTime()
+        );
+        break;
+      case "all_day":
+        ApexCharts.exec(
+          "area-datetime",
+          "zoomX",
+
+          new Date(
+            data && data?.data?.followers[data?.data?.followers.length - 1][0]
+          ).getTime()
         );
         break;
 
@@ -315,6 +325,21 @@ const CoinCommunityChart = ({
                       onClick={() => updateData("thirty_day")}
                     >
                       30d
+                    </Button>
+                    <Button
+                      size="small"
+                      sx={{
+                        textTransform: "capitalize",
+                        boxShadow: "none",
+                        borderRadius: 2,
+                        backgroundColor:
+                          dateTime === "all_day" ? "#384571" : "#252D4A",
+                        color: "#FFFFFF",
+                        minWidth: 45,
+                      }}
+                      onClick={() => updateData("all_day")}
+                    >
+                      All
                     </Button>
                   </Stack>
                 </Stack>
