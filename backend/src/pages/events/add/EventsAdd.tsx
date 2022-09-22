@@ -33,8 +33,8 @@ import { allEventsRewardAddressRequest } from "../../../store/action";
 const EventsAdd = () => {
   const selectOptions = [
     { title: "Approved", value: 1 },
-    { title: "Processing", value: 2 },
-    { title: "Rejected/Blocked", value: 3 },
+    { title: "Suspended", value: 2 },
+    { title: "Processing", value: 3 },
   ];
 
   const dispatch = useDispatch();

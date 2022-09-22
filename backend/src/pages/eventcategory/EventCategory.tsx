@@ -80,16 +80,16 @@ const EventCategory = () => {
       flex: 1,
       renderCell: (params: any) => (
         <span>
-          {params.row.status === 1 && (
-            <span style={{ color: "#64dd17" }}>Approved</span>
+          {parseInt(params.row.status) === 1 && (
+            <span style={{ color: "#00e396" }}>Approved</span>
           )}
 
-          {params.row.status === 2 && (
-            <span style={{ color: "#d50000" }}>Pending</span>
+          {parseInt(params.row.status) === 2 && (
+            <span style={{ color: "#ff0023" }}>Suspended</span>
           )}
 
-          {params.row.status === 3 && (
-            <span style={{ color: "#6a1b9a" }}>Suspended</span>
+          {parseInt(params.row.status) === 3 && (
+            <span style={{ color: "#c105ffd4" }}>Processing</span>
           )}
         </span>
       ),

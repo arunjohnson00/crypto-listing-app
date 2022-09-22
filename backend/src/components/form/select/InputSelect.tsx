@@ -14,7 +14,6 @@ const InputSelect = ({
   //   (optionData: any) => optionData.value === currentStatus
   // );
 
-  //  console.log(optionSelected);
   const handleChange = (event: SelectChangeEvent) => {
     setInputSelectValue({ ...getInputSelectvalue, status: event.target.value });
     toast.success(
@@ -22,8 +21,8 @@ const InputSelect = ({
         parseInt(event.target.value) === 1
           ? "Approved"
           : parseInt(event.target.value) === 2
-          ? "Processing"
-          : parseInt(event.target.value) === 3 && "Rejected"
+          ? "Suspended"
+          : parseInt(event.target.value) === 3 && "Processing"
       }`,
       {
         position: "top-right",
@@ -50,11 +49,11 @@ const InputSelect = ({
           borderRadius: "8px",
           color:
             getInputSelectvalue?.status === 1
-              ? "#73eb1b"
+              ? "#00e396"
               : getInputSelectvalue?.status === 2
-              ? "#c105ffd4"
+              ? "#ff0023"
               : getInputSelectvalue?.status === 3
-              ? "#ff0000"
+              ? "#c105ffd4"
               : "#000000",
           fontSize: "14px",
           fontWeight: 600,

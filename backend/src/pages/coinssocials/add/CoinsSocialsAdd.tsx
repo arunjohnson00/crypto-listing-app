@@ -16,6 +16,12 @@ import InputSelect from "../../../components/form/select/InputSelect";
 import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 
 const CoinsSocialsAdd = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Suspended", value: 2 },
+    { title: "Processing", value: 3 },
+  ];
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -84,11 +90,6 @@ const CoinsSocialsAdd = () => {
     setAddSocialData({ ...addCoinSocialData, url: e });
   };
 
-  const selectOptions = [
-    { title: "Approved", value: 1 },
-    { title: "Processing", value: 2 },
-    { title: "Rejected/Blocked", value: 3 },
-  ];
   return (
     <div>
       {" "}

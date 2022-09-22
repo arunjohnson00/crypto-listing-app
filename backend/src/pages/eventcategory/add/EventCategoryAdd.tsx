@@ -15,6 +15,12 @@ import { addEventsCategoryRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
 
 const EventCategoryAdd = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Suspended", value: 2 },
+    { title: "Processing", value: 3 },
+  ];
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -73,11 +79,6 @@ const EventCategoryAdd = () => {
     setAddEventCategory({ ...addEventCategoryData, name: e });
   };
 
-  const selectOptions = [
-    { title: "Approved", value: 1 },
-    { title: "Processing", value: 2 },
-    { title: "Rejected/Blocked", value: 3 },
-  ];
   return (
     <div>
       {" "}

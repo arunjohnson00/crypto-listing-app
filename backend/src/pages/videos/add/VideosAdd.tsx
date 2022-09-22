@@ -12,6 +12,12 @@ import "material-react-toastify/dist/ReactToastify.css";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import { addVideoRequest } from "../../../store/action";
 const VideosAdd = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Suspended", value: 2 },
+    { title: "Processing", value: 3 },
+  ];
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();

@@ -160,19 +160,15 @@ const CoinListing = () => {
       renderCell: (params: any) => (
         <span>
           {parseInt(params.row.status) === 1 && (
-            <span style={{ color: "#64dd17" }}>Approved</span>
+            <span style={{ color: "#00e396" }}>Approved</span>
           )}
 
           {parseInt(params.row.status) === 2 && (
-            <span style={{ color: "#d50000" }}>Scheduled</span>
+            <span style={{ color: "#ff0023" }}>Suspended</span>
           )}
 
           {parseInt(params.row.status) === 3 && (
-            <span style={{ color: "#6a1b9a" }}>Suspended</span>
-          )}
-
-          {parseInt(params.row.status) === 4 && (
-            <span style={{ color: "#ed840e" }}>Processing</span>
+            <span style={{ color: "#c105ffd4" }}>Processing</span>
           )}
         </span>
       ),

@@ -18,8 +18,8 @@ import { editNFTNetworkRequest } from "../../../store/action";
 const NFTNetworkEdit = () => {
   const selectOptions = [
     { title: "Approved", value: 1 },
-    { title: "Processing", value: 2 },
-    { title: "Rejected/Blocked", value: 3 },
+    { title: "Suspended", value: 2 },
+    { title: "Processing", value: 3 },
   ];
 
   const navigate = useNavigate();

@@ -248,19 +248,15 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                 >
                   <span>
                     {parseInt(data?.status) === 1 && (
-                      <span style={{ color: "#00E396" }}>Approved</span>
+                      <span style={{ color: "#00e396" }}>Approved</span>
                     )}
 
                     {parseInt(data?.status) === 2 && (
-                      <span style={{ color: "#FEB019" }}>Suspended</span>
+                      <span style={{ color: "#ff0023" }}>Suspended</span>
                     )}
 
                     {parseInt(data?.status) === 3 && (
-                      <span style={{ color: "#FF0000" }}>Blocked</span>
-                    )}
-
-                    {parseInt(data?.status) === 4 && (
-                      <span style={{ color: "#775DD0" }}>Processing</span>
+                      <span style={{ color: "#c105ffd4" }}>Processing</span>
                     )}
                   </span>
                 </TableCell>
@@ -452,19 +448,15 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                 >
                   <span>
                     {parseInt(data?.status) === 1 && (
-                      <span style={{ color: "#00E396" }}>Approved</span>
+                      <span style={{ color: "#00e396" }}>Approved</span>
                     )}
 
                     {parseInt(data?.status) === 2 && (
-                      <span style={{ color: "#FEB019" }}>Suspended</span>
+                      <span style={{ color: "#ff0023" }}>Suspended</span>
                     )}
 
                     {parseInt(data?.status) === 3 && (
-                      <span style={{ color: "#FF0000" }}>Blocked</span>
-                    )}
-
-                    {parseInt(data?.status) === 4 && (
-                      <span style={{ color: "#775DD0" }}>Processing</span>
+                      <span style={{ color: "#c105ffd4" }}>Processing</span>
                     )}
                   </span>
                 </TableCell>

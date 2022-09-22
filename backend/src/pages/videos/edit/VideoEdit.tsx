@@ -16,6 +16,12 @@ import { updateVideoRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
 
 const VideoEdit = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Suspended", value: 2 },
+    { title: "Processing", value: 3 },
+  ];
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location: any = useLocation();
@@ -114,12 +120,6 @@ const VideoEdit = () => {
 
     setEditVideos({ ...editVideosData, button_url: e });
   };
-
-  const selectOptions = [
-    { title: "Approved", value: 1, color: "#6FDF27" },
-    { title: "Processing", value: 2, color: "#DC3434" },
-    { title: "Rejected/Blocked", value: 3, color: "#8D52B1" },
-  ];
 
   useEffect(() => {
     const successHandler = (res: any) => {

@@ -56,8 +56,8 @@ const CoinListingEdit = () => {
 
   const selectOptions = [
     { title: "Approved", value: 1 },
-    { title: "Scheduled", value: 2 },
-    { title: "Rejected/Blocked", value: 3 },
+    { title: "Suspended", value: 2 },
+    { title: "Processing", value: 3 },
   ];
 
   const [editCoin, setEditCoin] = useState<any>({

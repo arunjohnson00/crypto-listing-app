@@ -16,12 +16,14 @@ import { editNftMarketPlaceRequest } from "../../../store/action";
 import { updateNftMarketPlaceRequest } from "../../../store/action";
 
 const NftMarketPlaceEdit = () => {
-  let { id } = useParams();
   const selectOptions = [
     { title: "Approved", value: 1 },
-    { title: "Processing", value: 2 },
-    { title: "Rejected/Blocked", value: 3 },
+    { title: "Suspended", value: 2 },
+    { title: "Processing", value: 3 },
   ];
+
+  let { id } = useParams();
+
   const dispatch = useDispatch();
   //const location: any = useLocation();
 

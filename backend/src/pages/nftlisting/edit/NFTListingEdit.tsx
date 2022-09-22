@@ -50,15 +50,15 @@ import dateFormat, { masks } from "dateformat";
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const NFTListingEdit = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Suspended", value: 2 },
+    { title: "Processing", value: 3 },
+  ];
+
   let { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const selectOptions = [
-    { title: "Approved", value: 1 },
-    { title: "Scheduled", value: 2 },
-    { title: "Rejected/Blocked", value: 3 },
-  ];
 
   const nftListingCurrencyList = useSelector((nftCurrencyList: any) => {
     return nftCurrencyList.nftListingCurrencyReducer.allNftListingCurrency.data;

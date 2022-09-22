@@ -16,6 +16,12 @@ import { updateNftListingCategoryRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
 
 const NftEventCategoryEdit = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Suspended", value: 2 },
+    { title: "Processing", value: 3 },
+  ];
+
   let { id } = useParams();
 
   const nftEventCategoryEdit = useSelector((nftCategoryList: any) => {
@@ -86,12 +92,6 @@ const NftEventCategoryEdit = () => {
 
     setUpdateNFTCategory({ ...updateNFTCategoryData, name: e });
   };
-
-  const selectOptions = [
-    { title: "Approved", value: 1 },
-    { title: "Processing", value: 2 },
-    { title: "Rejected/Blocked", value: 3 },
-  ];
 
   useEffect(() => {
     const successHandler = (res: any) => {

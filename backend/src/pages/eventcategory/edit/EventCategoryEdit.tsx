@@ -16,6 +16,12 @@ import { updateEventsCategoryRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
 
 const EventCategoryEdit = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Suspended", value: 2 },
+    { title: "Processing", value: 3 },
+  ];
+
   let { id } = useParams();
 
   const navigate = useNavigate();
@@ -77,12 +83,6 @@ const EventCategoryEdit = () => {
 
     setUpdateEventCategory({ ...updateEventCategoryData, name: e });
   };
-
-  const selectOptions = [
-    { title: "Approved", value: 1 },
-    { title: "Processing", value: 2 },
-    { title: "Rejected/Blocked", value: 3 },
-  ];
 
   useEffect(() => {
     const successHandler = (res: any) => {

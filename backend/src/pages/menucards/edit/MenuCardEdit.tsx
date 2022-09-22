@@ -16,6 +16,12 @@ import { updateMenuCardRequest } from "../../../store/action";
 import { editMenuCardRequest } from "../../../store/action";
 
 const MenuCardEdit = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Suspended", value: 2 },
+    { title: "Processing", value: 3 },
+  ];
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -99,12 +105,6 @@ const MenuCardEdit = () => {
 
     setAddMenuCard({ ...addMenuCardData, url: e });
   };
-
-  const selectOptions = [
-    { title: "Approved", value: 1 },
-    { title: "Processing", value: 2 },
-    { title: "Rejected/Blocked", value: 3 },
-  ];
 
   useEffect(() => {
     const successHandler = (res: any) => {

@@ -16,15 +16,16 @@ import { editExchangeRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
 
 const ExchangeEdit = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Suspended", value: 2 },
+    { title: "Processing", value: 3 },
+  ];
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let { id } = useParams();
 
-  const selectOptions = [
-    { title: "Approved", value: 1 },
-    { title: "Processing", value: 2 },
-    { title: "Rejected/Blocked", value: 3 },
-  ];
   const [loading, setLoading] = useState(false);
   const [editExchangeData, setEditExchange] = useState({
     id: "",

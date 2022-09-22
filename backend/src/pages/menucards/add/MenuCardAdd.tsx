@@ -14,6 +14,12 @@ import HorizonatalList from "../../../components/list/horizontal/HorizonatalList
 import { addMenuCardRequest } from "../../../store/action";
 
 const MenuCardAdd = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Suspended", value: 2 },
+    { title: "Processing", value: 3 },
+  ];
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();

@@ -15,6 +15,12 @@ import { addCoinAuditRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
 
 const CoinsAuditAdd = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Suspended", value: 2 },
+    { title: "Processing", value: 3 },
+  ];
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -84,11 +90,6 @@ const CoinsAuditAdd = () => {
     setAddCoinAudit({ ...addCoinAuditData, url: e });
   };
 
-  const selectOptions = [
-    { title: "Approved", value: 1 },
-    { title: "Processing", value: 2 },
-    { title: "Rejected/Blocked", value: 3 },
-  ];
   return (
     <div>
       {" "}

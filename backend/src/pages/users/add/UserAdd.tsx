@@ -14,6 +14,12 @@ import HorizonatalList from "../../../components/list/horizontal/HorizonatalList
 import { addUserRequest } from "../../../store/action";
 
 const UserAdd = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Suspended", value: 2 },
+    { title: "Processing", value: 3 },
+  ];
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();

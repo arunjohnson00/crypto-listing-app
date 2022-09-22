@@ -15,6 +15,12 @@ import { addNftListingCurrencyRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
 
 const NftTokenCurrencyAdd = () => {
+  const selectOptions = [
+    { title: "Approved", value: 1 },
+    { title: "Suspended", value: 2 },
+    { title: "Processing", value: 3 },
+  ];
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -83,11 +89,6 @@ const NftTokenCurrencyAdd = () => {
     setAddNFTListingCurrency({ ...addNFTListingCurrencyData, symbol: e });
   };
 
-  const selectOptions = [
-    { title: "Approved", value: 1 },
-    { title: "Processing", value: 2 },
-    { title: "Rejected/Blocked", value: 3 },
-  ];
   return (
     <div>
       {" "}
