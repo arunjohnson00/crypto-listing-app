@@ -83,12 +83,39 @@ const SingleCoinPage = () => {
     (location?.pathname === "/coin" || location?.pathname === "/coin/") &&
       navigate("/");
     const successHandler = (res: any) => {
-      setRequestStatus(res?.data?.status);
-
-      // Put the object into storage
+      //setRequestStatus(res?.data?.status);
+      console.log(res?.data?.status, "hi");
+      if (res?.data?.status === true) {
+        dispatch(
+          coinDetailFirstBlockRequest(
+            location?.pathname?.split("/").pop(),
+            successHandler,
+            errorHandler
+          )
+        );
+        dispatch(
+          coinVisitedCounterRequest(
+            location?.pathname?.split("/").pop(),
+            successHandler,
+            errorHandler
+          )
+        );
+        dispatch(
+          coinSocialGraphRequest(
+            location?.pathname?.split("/").pop(),
+            successHandler,
+            errorHandler
+          )
+        );
+        dispatch(
+          coinRecentlyAddedRequest("noData", successHandler, errorHandler)
+        );
+      }
     };
 
-    const errorHandler = (err: any) => {};
+    const errorHandler = (err: any) => {
+      err?.error?.message?.response?.data?.status === false && navigate("/");
+    };
 
     dispatch(
       coinOnloadVerificationRequest(
@@ -98,33 +125,6 @@ const SingleCoinPage = () => {
       )
     );
   }, [dispatch]);
-
-  useEffect(() => {
-    const successHandler = (res: any) => {};
-    const errorHandler = (err: any) => {};
-    dispatch(
-      coinDetailFirstBlockRequest(
-        location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
-    dispatch(
-      coinVisitedCounterRequest(
-        location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
-    dispatch(
-      coinSocialGraphRequest(
-        location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
-    dispatch(coinRecentlyAddedRequest("noData", successHandler, errorHandler));
-  }, [requestStatus]);
 
   return (
     <Fragment>

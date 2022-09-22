@@ -15,6 +15,8 @@ import {
   Link,
 } from "@mui/material";
 import moment from "moment";
+import InfiniteScroll from "react-infinite-scroll-component";
+
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import ThumbUpAltRoundedIcon from "@mui/icons-material/ThumbUpAltRounded";
 import WiriteReview from "../writereview/WiriteReview";
@@ -25,6 +27,7 @@ const CoinpageRatings = () => {
   const dispatch: any = useDispatch();
   const location = useLocation();
   const [openWriteReview, setOpenWriteReview] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
   const coinRatingBlock = useSelector((data: any) => {
     return data?.coinReducer?.coin_rating_block?.data;
   });
@@ -36,6 +39,11 @@ const CoinpageRatings = () => {
     setOpenWriteReview(false);
   };
 
+  const fetchMoreData = () => {
+    coinRatingBlock &&
+      coinRatingBlock[0]?.review_details?.length >= 1 &&
+      setHasMore(false);
+  };
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
@@ -448,149 +456,168 @@ const CoinpageRatings = () => {
           </Box>
         </Grid>
 
-        {coinRatingBlock &&
-          coinRatingBlock[0]?.review_details?.map(
-            (item: any, index: number) => (
-              <Box
-                key={index}
-                sx={{
-                  backgroundColor: "#030923",
-                  p: 2,
-                  my: 2,
-                  borderRadius: 3,
-                  border: "1px solid #050e35",
-                }}
-              >
-                <Stack direction="column" spacing={2} px={2} py={2}>
-                  <Stack
-                    direction="row"
-                    spacing={1.5}
-                    sx={{ alignItems: "center" }}
-                    my={2}
-                  >
-                    <Avatar
-                      alt={item?.name}
-                      src={`${serverAPIUrl}public/uploads/users/${item?.avatar}`}
-                    />
-                    <Stack direction="column" spacing={0.3}>
-                      <Typography
-                        sx={{
-                          color: "#1dffc0",
-                          fontWeight: 400,
-                          lineHeight: 1,
-                          fontSize: ".9rem",
-                        }}
-                      >
-                        {item?.name}
-                      </Typography>
-                      <Typography
-                        variant="caption"
-                        sx={{
-                          color: "#FFFFF5",
-                          fontWeight: 400,
-                        }}
-                      >
-                        17 reviews
-                      </Typography>
-                    </Stack>
-                  </Stack>
-
-                  <Divider
-                    variant="fullWidth"
-                    flexItem
-                    orientation="horizontal"
-                    sx={{ borderColor: "#050e35", borderBottomWidth: 1 }}
-                  />
-
-                  <Stack
-                    direction="row"
-                    spacing={3}
+        {coinRatingBlock && coinRatingBlock[0]?.review_details?.length > 0 && (
+          <InfiniteScroll
+            dataLength={
+              coinRatingBlock && coinRatingBlock[0]?.review_details?.length
+            }
+            next={fetchMoreData}
+            hasMore={hasMore}
+            loader={<h4 style={{ color: "#FFFFFF" }}>Loading...</h4>}
+            height={700}
+            endMessage={
+              <p style={{ textAlign: "center", color: "#FFFFFF" }}>
+                <b>Yay! You have seen it all</b>
+              </p>
+            }
+          >
+            {coinRatingBlock &&
+              coinRatingBlock[0]?.review_details?.map(
+                (item: any, index: number) => (
+                  <Box
+                    key={index}
                     sx={{
-                      alignItems: "center",
-                      justifyContent: "space-between",
+                      backgroundColor: "#030923",
+                      p: 2,
+                      my: 2,
+                      borderRadius: 3,
+                      border: "1px solid #050e35",
                     }}
-                    my={2}
                   >
-                    <Rating
-                      name="large"
-                      defaultValue={0}
-                      value={
-                        coinRatingBlock && parseFloat(item?.rating).toFixed(1)
-                      }
-                      precision={0.1}
-                      size="large"
-                      readOnly
-                      sx={{ fontSize: "1.5rem" }}
-                    />
-                    <Typography
-                      variant="caption"
-                      sx={{
-                        color: "#FFFFF5",
-                        fontWeight: 400,
-                      }}
-                    >
-                      {moment(item?.created_at, "YYYYMMDD").fromNow()}
-                    </Typography>
-                  </Stack>
-                  <Stack
-                    direction="row"
-                    spacing={3}
-                    sx={{
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                    my={0}
-                  >
-                    <Typography
-                      variant="caption"
-                      sx={{
-                        color: "#FFFFF5",
-                        fontWeight: 400,
-                      }}
-                    >
-                      {item?.review}
-                    </Typography>
-                  </Stack>
-                  <Divider
-                    variant="fullWidth"
-                    flexItem
-                    orientation="horizontal"
-                    sx={{ borderColor: "#050e35", borderBottomWidth: 1 }}
-                  />
-                  <Stack
-                    direction="row"
-                    spacing={1}
-                    sx={{ alignItems: "center", justifyContent: "flex-start" }}
-                    my={2}
-                  >
-                    <Rating
-                      name="size-medium"
-                      defaultValue={0}
-                      max={1}
-                      icon={
-                        <ThumbUpAltOutlinedIcon
-                          fontSize="inherit"
-                          sx={{ color: "#1dffc0", fontSize: "1rem" }}
+                    <Stack direction="column" spacing={2} px={2} py={2}>
+                      <Stack
+                        direction="row"
+                        spacing={1.5}
+                        sx={{ alignItems: "center" }}
+                        my={2}
+                      >
+                        <Avatar
+                          alt={item?.name}
+                          src={`${serverAPIUrl}public/uploads/users/${item?.avatar}`}
                         />
-                      }
-                      emptyIcon={
-                        <ThumbUpAltOutlinedIcon
-                          fontSize="inherit"
-                          sx={{ color: "#FFFFFF", fontSize: "1rem" }}
-                        />
-                      }
-                    />
-                    <Typography
-                      variant="caption"
-                      sx={{
-                        color: "#FFFFF5",
-                        fontWeight: 400,
-                      }}
-                    >
-                      17 Likes{" "}
-                    </Typography>
+                        <Stack direction="column" spacing={0.3}>
+                          <Typography
+                            sx={{
+                              color: "#1dffc0",
+                              fontWeight: 400,
+                              lineHeight: 1,
+                              fontSize: ".9rem",
+                            }}
+                          >
+                            {item?.name}
+                          </Typography>
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: "#FFFFF5",
+                              fontWeight: 400,
+                            }}
+                          >
+                            17 reviews
+                          </Typography>
+                        </Stack>
+                      </Stack>
 
-                    {/* <Typography
+                      <Divider
+                        variant="fullWidth"
+                        flexItem
+                        orientation="horizontal"
+                        sx={{ borderColor: "#050e35", borderBottomWidth: 1 }}
+                      />
+
+                      <Stack
+                        direction="row"
+                        spacing={3}
+                        sx={{
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                        }}
+                        my={2}
+                      >
+                        <Rating
+                          name="large"
+                          defaultValue={0}
+                          value={
+                            coinRatingBlock &&
+                            parseFloat(item?.rating).toFixed(1)
+                          }
+                          precision={0.1}
+                          size="large"
+                          readOnly
+                          sx={{ fontSize: "1.5rem" }}
+                        />
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            color: "#FFFFF5",
+                            fontWeight: 400,
+                          }}
+                        >
+                          {moment(item?.created_at, "YYYYMMDD").fromNow()}
+                        </Typography>
+                      </Stack>
+                      <Stack
+                        direction="row"
+                        spacing={3}
+                        sx={{
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                        }}
+                        my={0}
+                      >
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            color: "#FFFFF5",
+                            fontWeight: 400,
+                          }}
+                        >
+                          {item?.review}
+                        </Typography>
+                      </Stack>
+                      <Divider
+                        variant="fullWidth"
+                        flexItem
+                        orientation="horizontal"
+                        sx={{ borderColor: "#050e35", borderBottomWidth: 1 }}
+                      />
+                      <Stack
+                        direction="row"
+                        spacing={1}
+                        sx={{
+                          alignItems: "center",
+                          justifyContent: "flex-start",
+                        }}
+                        my={2}
+                      >
+                        <Rating
+                          name="size-medium"
+                          defaultValue={0}
+                          max={1}
+                          icon={
+                            <ThumbUpAltOutlinedIcon
+                              fontSize="inherit"
+                              sx={{ color: "#1dffc0", fontSize: "1rem" }}
+                            />
+                          }
+                          emptyIcon={
+                            <ThumbUpAltOutlinedIcon
+                              fontSize="inherit"
+                              sx={{ color: "#FFFFFF", fontSize: "1rem" }}
+                            />
+                          }
+                        />
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            color: "#FFFFF5",
+                            fontWeight: 400,
+                          }}
+                        >
+                          17 Likes{" "}
+                        </Typography>
+
+                        {/* <Typography
                       variant="caption"
                       sx={{
                         color: "#FFFFF5",
@@ -599,11 +626,13 @@ const CoinpageRatings = () => {
                     >
                       Share
                     </Typography> */}
-                  </Stack>
-                </Stack>
-              </Box>
-            )
-          )}
+                      </Stack>
+                    </Stack>
+                  </Box>
+                )
+              )}
+          </InfiniteScroll>
+        )}
       </Grid>
 
       <Grid

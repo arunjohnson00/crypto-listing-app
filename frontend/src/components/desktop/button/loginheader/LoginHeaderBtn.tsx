@@ -1,15 +1,15 @@
 import { Button, Typography } from "@mui/material";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-const LoginHeaderBtn = ({ title, handler }: any) => {
+const LoginHeaderBtn = ({ title, handler, icon }: any) => {
   const navigate: any = useNavigate();
   const dispatch: any = useDispatch();
   return (
     <Button
       variant="text"
-      startIcon={<ExitToAppIcon sx={{ color: "#23B184" }} />}
+      startIcon={icon}
       onClick={() => handler(navigate, dispatch)}
     >
       <Typography

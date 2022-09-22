@@ -339,10 +339,10 @@ const HomePage = ({ windowInnerWidth }: any) => {
                   responsive={responsiveVideo}
                   infinite={true}
                   removeArrowOnDeviceType={["tablet", "mobile"]}
-                  arrows={true}
+                  arrows={false}
                   draggable={true}
                   swipeable={true}
-                  autoPlay={false}
+                  autoPlay={true}
                   minimumTouchDrag={10}
                   keyBoardControl={true}
                   shouldResetAutoplay={false}

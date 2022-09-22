@@ -773,7 +773,13 @@ const CoinPageOverview = () => {
                     fontWeight: 500,
                   }}
                 >
-                  API need
+                  {coinDetailOverview &&
+                  coinDetailOverview[0]?.watchlist_count !== null &&
+                  coinDetailOverview[0]?.watchlist_count !== "" ? (
+                    coinDetailOverview && coinDetailOverview[0]?.watchlist_count
+                  ) : (
+                    <span style={{ color: "#7a7a7a" }}>--</span>
+                  )}
                 </Typography>
               </Stack>
               {/* <Stack

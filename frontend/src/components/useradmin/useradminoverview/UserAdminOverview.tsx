@@ -17,6 +17,7 @@ import AddAirdropIcon from "../../../assets/userdashboard/add-airdrop.png";
 import TelegramIcon from "../../../assets/userdashboard/telegram.png";
 import TwitterIcon from "../../../assets/userdashboard/twitter.png";
 import AdsImage from "../../../assets/userdashboard/ads.png";
+import { Link } from "react-router-dom";
 const UserAdminOverview = () => {
   const matches = useMediaQuery("(max-width:900px)");
   return (
@@ -40,121 +41,140 @@ const UserAdminOverview = () => {
             </Typography>
 
             <Stack direction="column" spacing={1.5}>
-              <Button
-                variant="contained"
-                startIcon={
-                  <Avatar
-                    alt="Add Coin"
-                    src={AddCoinIcon}
-                    sx={{
-                      width: 30,
-                      height: 30,
-                      borderRadius: 2,
-                      mr: 2,
-                      background: "#081855ab",
-                      p: 0.5,
-                    }}
-                  />
-                }
-                sx={{
-                  borderRadius: 2,
-                  background:
-                    "linear-gradient(90deg, #0C218E 33%, #3E02C4 79%)",
-                  width: 300,
-                  height: 50,
-                  justifyContent: "flex-start",
-                  textTransform: "capitalize",
-                }}
+              <Link
+                to="/user-dashboard/coin/add"
+                style={{ textDecoration: "none", color: "inherit" }}
               >
-                Add Coin
-              </Button>
+                <Button
+                  variant="contained"
+                  startIcon={
+                    <Avatar
+                      alt="Add Coin"
+                      src={AddCoinIcon}
+                      sx={{
+                        width: 30,
+                        height: 30,
+                        borderRadius: 2,
+                        mr: 2,
+                        background: "#081855ab",
+                        p: 0.5,
+                      }}
+                    />
+                  }
+                  sx={{
+                    borderRadius: 2,
+                    background:
+                      "linear-gradient(90deg, #0C218E 33%, #3E02C4 79%)",
+                    width: 300,
+                    height: 50,
+                    justifyContent: "flex-start",
+                    textTransform: "capitalize",
+                  }}
+                >
+                  Add Coin
+                </Button>
+              </Link>
+              <Link
+                to="/user-dashboard/nft/add"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <Button
+                  variant="contained"
+                  startIcon={
+                    <Avatar
+                      alt="Add NFT"
+                      src={AddNFTIcon}
+                      sx={{
+                        width: 30,
+                        height: 30,
+                        borderRadius: 2,
+                        mr: 2,
+                        background: "#081855ab",
+                        p: 0.5,
+                      }}
+                    />
+                  }
+                  sx={{
+                    borderRadius: 2,
+                    background:
+                      "linear-gradient(90deg, #008331 33%, #04B34A 79%)",
+                    width: 300,
+                    height: 50,
+                    justifyContent: "flex-start",
+                    textTransform: "capitalize",
+                  }}
+                >
+                  Add NFT
+                </Button>
+              </Link>
+              <Link
+                to="/user-dashboard/events/add"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <Button
+                  variant="contained"
+                  startIcon={
+                    <Avatar
+                      alt="Add Events"
+                      src={AddEventsIcon}
+                      sx={{
+                        width: 30,
+                        height: 30,
+                        borderRadius: 2,
+                        mr: 2,
+                        background: "#081855ab",
+                        p: 0.5,
+                      }}
+                    />
+                  }
+                  sx={{
+                    borderRadius: 2,
+                    background:
+                      "linear-gradient(90deg, #6C0280 33%, #A70EC1 79%)",
+                    width: 300,
+                    height: 50,
+                    justifyContent: "flex-start",
+                    textTransform: "capitalize",
+                  }}
+                >
+                  Add Events
+                </Button>
+              </Link>
 
-              <Button
-                variant="contained"
-                startIcon={
-                  <Avatar
-                    alt="Add NFT"
-                    src={AddNFTIcon}
-                    sx={{
-                      width: 30,
-                      height: 30,
-                      borderRadius: 2,
-                      mr: 2,
-                      background: "#081855ab",
-                      p: 0.5,
-                    }}
-                  />
-                }
-                sx={{
-                  borderRadius: 2,
-                  background:
-                    "linear-gradient(90deg, #008331 33%, #04B34A 79%)",
-                  width: 300,
-                  height: 50,
-                  justifyContent: "flex-start",
-                  textTransform: "capitalize",
-                }}
+              <Link
+                to="/user-dashboard/airdrops/add"
+                style={{ textDecoration: "none", color: "inherit" }}
               >
-                Add NFT
-              </Button>
-
-              <Button
-                variant="contained"
-                startIcon={
-                  <Avatar
-                    alt="Add Events"
-                    src={AddEventsIcon}
-                    sx={{
-                      width: 30,
-                      height: 30,
-                      borderRadius: 2,
-                      mr: 2,
-                      background: "#081855ab",
-                      p: 0.5,
-                    }}
-                  />
-                }
-                sx={{
-                  borderRadius: 2,
-                  background:
-                    "linear-gradient(90deg, #6C0280 33%, #A70EC1 79%)",
-                  width: 300,
-                  height: 50,
-                  justifyContent: "flex-start",
-                  textTransform: "capitalize",
-                }}
-              >
-                Add Events
-              </Button>
-
-              <Button
-                variant="contained"
-                startIcon={
-                  <Avatar
-                    alt="Add AirDrops"
-                    src={AddAirdropIcon}
-                    sx={{
-                      width: 30,
-                      height: 30,
-                      borderRadius: 2,
-                      mr: 2,
-                      background: "#081855ab",
-                      p: 0.5,
-                    }}
-                  />
-                }
-                sx={{
-                  borderRadius: 2,
-                  background:
-                    "linear-gradient(90deg, #AC4F02 33%, #E76702 79%)",
-                  width: 300,
-                  height: 50,
-                  justifyContent: "flex-start",
-                  textTransform: "capitalize",
-                }}
-              >
-                Add Airdrop
-              </Button>
+                {" "}
+                <Button
+                  variant="contained"
+                  startIcon={
+                    <Avatar
+                      alt="Add AirDrops"
+                      src={AddAirdropIcon}
+                      sx={{
+                        width: 30,
+                        height: 30,
+                        borderRadius: 2,
+                        mr: 2,
+                        background: "#081855ab",
+                        p: 0.5,
+                      }}
+                    />
+                  }
+                  sx={{
+                    borderRadius: 2,
+                    background:
+                      "linear-gradient(90deg, #AC4F02 33%, #E76702 79%)",
+                    width: 300,
+                    height: 50,
+                    justifyContent: "flex-start",
+                    textTransform: "capitalize",
+                  }}
+                >
+                  Add Airdrop
+                </Button>
+              </Link>
             </Stack>
           </Stack>
           <Divider

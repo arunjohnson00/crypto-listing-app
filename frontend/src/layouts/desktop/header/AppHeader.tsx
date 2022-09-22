@@ -12,6 +12,8 @@ import { logoutHandler } from "../../../utils/logoutHandler";
 import { coinMenu, nftMenu, airdropsMenu, eventsMenu } from "./helper";
 import logoWhite from "../../../assets/logo/logo.png";
 import { trendingCoinListRequest } from "../../../store/action";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import PersonIcon from "@mui/icons-material/Person";
 
 const AppHeader = ({ windowInnerWidth }: any) => {
   const dispatch: any = useDispatch();
@@ -67,10 +69,22 @@ const AppHeader = ({ windowInnerWidth }: any) => {
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
                   {" "}
-                  <LoginHeaderBtn title="Login" />{" "}
+                  <LoginHeaderBtn
+                    title="Login"
+                    icon={<ExitToAppIcon sx={{ color: "#23B184" }} />}
+                  />{" "}
                 </Link>
               ) : (
-                <LoginHeaderBtn title="Logout" handler={logoutHandler} />
+                <Link
+                  to="/user-dashboard"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <LoginHeaderBtn
+                    title="My account"
+                    //handler={logoutHandler}
+                    icon={<PersonIcon sx={{ color: "#23B184" }} />}
+                  />
+                </Link>
               )}
             </Stack>
           </Stack>
