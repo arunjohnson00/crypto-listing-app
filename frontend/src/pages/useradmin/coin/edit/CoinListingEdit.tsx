@@ -9,6 +9,8 @@ import {
   Divider,
   IconButton,
   FormControlLabel,
+  Backdrop,
+  CircularProgress,
 } from "@mui/material";
 import dateFormat, { masks } from "dateformat";
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -446,6 +448,12 @@ const CoinListingEdit = () => {
 
   return (
     <Box width={{ xs: "99%", sm: "99%", md: "93%" }} pb={10}>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <form id="coinForm">
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={2} mb={2}>
           <Stack
@@ -2313,7 +2321,7 @@ const CoinListingEdit = () => {
                 </Grid>
               </Grid>
               <Divider orientation="vertical" flexItem />
-              {/* <Grid item xl={6} lg={6} md={6} sm={6} xs={12}>
+              <Grid item xl={6} lg={6} md={6} sm={6} xs={12}>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
                   <Typography
                     variant="h6"
@@ -2326,7 +2334,10 @@ const CoinListingEdit = () => {
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                   <Stack direction="column" spacing={3} pt={3}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                      <Stack direction={{xs:"column",sm:"column",md:"row"}} spacing={3}>
+                      <Stack
+                        direction={{ xs: "column", sm: "column", md: "row" }}
+                        spacing={3}
+                      >
                         <FormControlLabel
                           control={
                             <InputCheckbox
@@ -2340,7 +2351,9 @@ const CoinListingEdit = () => {
                             />
                           }
                           label={
-                            <Typography sx={{ fontSize: ".85rem" }}>
+                            <Typography
+                              sx={{ fontSize: ".85rem", color: "#13C086" }}
+                            >
                               Coin Marketcap
                             </Typography>
                           }
@@ -2358,7 +2371,10 @@ const CoinListingEdit = () => {
                     </Grid>
 
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                      <Stack direction={{xs:"column",sm:"column",md:"row"}} spacing={3}>
+                      <Stack
+                        direction={{ xs: "column", sm: "column", md: "row" }}
+                        spacing={3}
+                      >
                         <FormControlLabel
                           control={
                             <InputCheckbox
@@ -2372,7 +2388,9 @@ const CoinListingEdit = () => {
                             />
                           }
                           label={
-                            <Typography sx={{ fontSize: ".85rem" }}>
+                            <Typography
+                              sx={{ fontSize: ".85rem", color: "#13C086" }}
+                            >
                               Coingecko
                             </Typography>
                           }
@@ -2390,7 +2408,7 @@ const CoinListingEdit = () => {
                     </Grid>
                   </Stack>
                 </Grid>
-              </Grid> */}
+              </Grid>
             </Stack>
             <Stack
               direction={{ xs: "column", sm: "column", md: "row" }}

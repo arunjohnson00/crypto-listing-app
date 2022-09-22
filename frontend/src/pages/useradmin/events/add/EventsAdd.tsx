@@ -1,5 +1,14 @@
 import { useState, useEffect } from "react";
-import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Box,
+  Stack,
+  IconButton,
+  Checkbox,
+  Backdrop,
+  CircularProgress,
+} from "@mui/material";
 
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -34,6 +43,12 @@ const EventsAdd = () => {
     { title: "Rejected/Blocked", value: 3 },
   ];
 
+  const [coinChecked, setcoinChecked] = useState(true);
+
+  const coinCheckboxHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setcoinChecked(event.target.checked);
+  };
+
   const dispatch: any = useDispatch();
   const navigate = useNavigate();
 
@@ -49,7 +64,7 @@ const EventsAdd = () => {
     reward_address_id: "",
     address: "",
     twitter_account: "",
-    status: 1,
+    status: "",
     proof: "",
   });
 
@@ -74,7 +89,7 @@ const EventsAdd = () => {
       });
 
       setTimeout(() => {
-        navigate("/events");
+        navigate("/user-dashboard");
       }, 3000);
     };
 
@@ -167,6 +182,12 @@ const EventsAdd = () => {
   }, [dispatch]);
   return (
     <Grid container spacing={2} pb={10}>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Stack
           direction="row"
@@ -209,12 +230,23 @@ const EventsAdd = () => {
               >
                 Select coin
               </Typography>
+              <Stack direction="row" spacing={1} alignItems={"center"}>
+                <Checkbox
+                  checked={coinChecked}
+                  onChange={coinCheckboxHandler}
+                  inputProps={{ "aria-label": "controlled" }}
+                  name={"has_coin"}
+                  sx={{ color: "#FFFFFF" }}
+                />
 
-              <AutoCompleSelect
-                inputAutoValue={addEventsData}
-                setInputAutoValue={setAddEvents}
-                variant="coin"
-              />
+                {coinChecked === true && (
+                  <AutoCompleSelect
+                    inputAutoValue={addEventsData}
+                    setInputAutoValue={setAddEvents}
+                    variant="coin"
+                  />
+                )}
+              </Stack>
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography

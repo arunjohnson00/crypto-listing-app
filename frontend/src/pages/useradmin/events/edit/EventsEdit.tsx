@@ -1,5 +1,14 @@
 import { useState, useEffect } from "react";
-import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Box,
+  Stack,
+  IconButton,
+  Checkbox,
+  Backdrop,
+  CircularProgress,
+} from "@mui/material";
 import LargeBtn from "../../../../components/useradmin/form/button/large/LargeBtn";
 import IconUploader from "../../../../components/useradmin/form/input/file/icon/IconUploader";
 import InputText from "../../../../components/useradmin/form/input/text/InputText";
@@ -35,6 +44,12 @@ const EventsEdit = () => {
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
+
+  const [coinChecked, setcoinChecked] = useState(true);
+
+  const coinCheckboxHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setcoinChecked(event.target.checked);
+  };
 
   const dispatch: any = useDispatch();
   const navigate: any = useNavigate();
@@ -78,7 +93,7 @@ const EventsEdit = () => {
       });
 
       setTimeout(() => {
-        navigate("/events");
+        navigate("/user-dashboard");
       }, 3000);
     };
 
@@ -192,6 +207,12 @@ const EventsEdit = () => {
   }, [dispatch]);
   return (
     <Grid container spacing={2} pb={10}>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Stack
           direction="row"
@@ -235,11 +256,24 @@ const EventsEdit = () => {
                 Select coin
               </Typography>
 
-              <AutoCompleSelect
-                inputAutoValue={editEventsData}
-                setInputAutoValue={setEditEvents}
-                variant="coin"
-              />
+              <Stack direction="row" spacing={1} alignItems={"center"}>
+                <Checkbox
+                  checked={coinChecked}
+                  onChange={coinCheckboxHandler}
+                  inputProps={{ "aria-label": "controlled" }}
+                  name={"has_coin"}
+                  sx={{ color: "#FFFFFF" }}
+                />
+
+                {coinChecked === true && (
+                  <AutoCompleSelect
+                    inputAutoValue={editEventsData}
+                    setInputAutoValue={setEditEvents}
+                    variant="coin"
+                    serverRef={editEventsData && editEventsData?.coin_id}
+                  />
+                )}
+              </Stack>
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography

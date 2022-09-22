@@ -1,7 +1,7 @@
 export const tableHeader = [
   "#",
+  "Coin Logo",
   "Coin Name",
-  "Coin ID",
   "Start Date",
   "No. of Days",
   "Total Amount",

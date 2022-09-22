@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
-import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Box,
+  Stack,
+  IconButton,
+  Backdrop,
+  CircularProgress,
+} from "@mui/material";
 import LargeBtn from "../../../../components/useradmin/form/button/large/LargeBtn";
 import IconUploader from "../../../../components/useradmin/form/input/file/icon/IconUploader";
 import InputText from "../../../../components/useradmin/form/input/text/InputText";
@@ -125,6 +133,12 @@ const AirDropsAdd = () => {
   //   }, [dispatch]);
   return (
     <Grid container spacing={2} pb={10}>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Stack
           direction="row"
