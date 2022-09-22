@@ -114,7 +114,8 @@ const SingleCoinPage = () => {
     };
 
     const errorHandler = (err: any) => {
-      err?.error?.message?.response?.data?.status === false && navigate("/");
+      err?.error?.message?.response?.data?.status === false &&
+        window.location.replace("/");
     };
 
     dispatch(

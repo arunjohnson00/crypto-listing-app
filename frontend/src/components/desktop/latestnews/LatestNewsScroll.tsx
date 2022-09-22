@@ -111,7 +111,7 @@ const LatestNewsScroll = () => {
                       <Box key={index}>
                         <NewsCardTop
                           rssFeed={rssFeed}
-                          // timeAgo={timeAgo}
+                          index={index + 1}
                           key={index}
                         />
                       </Box>

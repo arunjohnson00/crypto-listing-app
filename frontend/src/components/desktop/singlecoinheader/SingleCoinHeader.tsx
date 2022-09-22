@@ -682,7 +682,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
           <Stack
             direction={{ xs: "column", sm: "column", md: "column", lg: "row" }}
             spacing={1}
-            sx={{ alignItems: "center", justifyContent: "space-between" }}
+            sx={{ alignItems: "flex-start", justifyContent: "space-between" }}
           >
             <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
               <Stack
@@ -1146,7 +1146,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
           <Stack
             direction={{ xs: "column", sm: "column", md: "column", lg: "row" }}
             spacing={1}
-            sx={{ alignItems: "center", justifyContent: "space-between" }}
+            sx={{ alignItems: "flex-start", justifyContent: "space-between" }}
           >
             <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
               <Stack

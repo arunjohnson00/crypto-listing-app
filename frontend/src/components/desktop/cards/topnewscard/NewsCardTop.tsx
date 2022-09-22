@@ -2,14 +2,14 @@ import { Stack, Divider, Grid, Typography } from "@mui/material";
 import { Fragment } from "react";
 import Parser from "html-react-parser";
 import moment from "moment";
-const NewsCardTop = ({ rssFeed }: any) => {
+const NewsCardTop = ({ rssFeed, index }: any) => {
   return (
     <Fragment>
       <Stack
         direction="column"
         sx={{
           maxHeight: 80,
-          minHeight: 60,
+          minHeight: 80,
           // maxWidth: 270,
 
           border: "1px solid #091851",
@@ -45,9 +45,18 @@ const NewsCardTop = ({ rssFeed }: any) => {
             .
           </a>
         </Typography>
-        <Typography variant="caption" sx={{ color: "#24D781" }}>
-          {moment(new Date(rssFeed?.date)).fromNow()}
-        </Typography>
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="flex-end"
+        >
+          <Typography variant="caption" sx={{ color: "#24D781" }}>
+            {moment(new Date(rssFeed?.date)).fromNow()}
+          </Typography>
+          <Typography variant="caption" sx={{ color: "#FFFFFF" }}>
+            #<span style={{ fontSize: "1.3rem" }}>{index}</span>
+          </Typography>
+        </Stack>
       </Stack>
 
       <Divider orientation="vertical" flexItem />
