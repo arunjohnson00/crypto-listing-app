@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Box,
+  Stack,
+  IconButton,
+  Checkbox,
+} from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 import InputText from "../../../components/form/input/text/InputText";
@@ -52,7 +59,12 @@ const EventsAdd = () => {
   const [loading, setLoading] = useState(false);
   const [eventsCategory, setEventsCategory] = useState();
   const [eventsRewardAddress, setEventsRewardAddress] = useState();
-  console.log(eventsCategory);
+  const [coinChecked, setcoinChecked] = useState(true);
+
+  const coinCheckboxHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setcoinChecked(event.target.checked);
+  };
+
   // Display the key/value pairs
 
   const eventsAddHandler = () => {
@@ -75,7 +87,7 @@ const EventsAdd = () => {
     };
 
     const errorHandler = (err: any) => {
-      console.log(err);
+      //console.log(err);
 
       toast.error(`${err.error.message.response.request.responseText}`, {
         position: "top-right",
@@ -186,11 +198,22 @@ const EventsAdd = () => {
                 Select coin
               </Typography>
 
-              <AutoCompleSelect
-                inputAutoValue={addEventsData}
-                setInputAutoValue={setAddEvents}
-                variant="coin"
-              />
+              <Stack direction="row" spacing={1} alignItems={"center"}>
+                <Checkbox
+                  checked={coinChecked}
+                  onChange={coinCheckboxHandler}
+                  inputProps={{ "aria-label": "controlled" }}
+                  name={"has_coin"}
+                />
+
+                {coinChecked === true && (
+                  <AutoCompleSelect
+                    inputAutoValue={addEventsData}
+                    setInputAutoValue={setAddEvents}
+                    variant="coin"
+                  />
+                )}
+              </Stack>
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography

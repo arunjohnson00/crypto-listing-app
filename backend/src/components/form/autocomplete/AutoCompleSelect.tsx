@@ -9,6 +9,8 @@ import {
   Stack,
 } from "@mui/material";
 import Autocomplete, { autocompleteClasses } from "@mui/material/Autocomplete";
+import SearchIcon from "@mui/icons-material/Search";
+
 import { allCoinRequest } from "../../../store/action";
 import { allNftListingRequest } from "../../../store/action";
 import { airDropListSearchWithCoinSearchRequest } from "../../../store/action";
@@ -55,6 +57,12 @@ const AutoCompleSelect = ({
           defaultCoinFilter !== undefined &&
           defaultCoinFilter[0]?.name
       );
+
+    serverRef &&
+      setInputAutoValue({
+        ...inputAutoValue,
+        item_id: serverRef,
+      });
   }, [opt, serverRef]);
 
   const options = [
@@ -86,6 +94,7 @@ const AutoCompleSelect = ({
       disablePortal
       // defaultValue={`${defaultVal !== undefined && defaultVal}`}
       disableClearable
+      popupIcon={<SearchIcon />}
       value={`${
         defaultVal !== undefined
           ? defaultVal

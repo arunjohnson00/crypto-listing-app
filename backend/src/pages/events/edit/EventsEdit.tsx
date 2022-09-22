@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Box,
+  Stack,
+  IconButton,
+  Checkbox,
+} from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 import InputText from "../../../components/form/input/text/InputText";
@@ -31,6 +38,11 @@ const EventsEdit = () => {
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
+  const [coinChecked, setcoinChecked] = useState(true);
+
+  const coinCheckboxHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setcoinChecked(event.target.checked);
+  };
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -52,7 +64,7 @@ const EventsEdit = () => {
     status: "",
     proof: "",
   });
-
+  console.log(editEventsData);
   const [loading, setLoading] = useState(false);
   const [eventsCategory, setEventsCategory] = useState();
   const [eventsRewardAddress, setEventsRewardAddress] = useState();
@@ -188,7 +200,7 @@ const EventsEdit = () => {
           </IconButton>
 
           <Typography variant="h5" sx={{ textAlign: "left" }}>
-            Add Events
+            Edit Events
           </Typography>
         </Stack>
       </Grid>
@@ -206,14 +218,25 @@ const EventsEdit = () => {
                 sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
                 mb={1}
               >
-                select coin
+                Select coin
               </Typography>
+              <Stack direction="row" spacing={1} alignItems={"center"}>
+                <Checkbox
+                  checked={coinChecked}
+                  onChange={coinCheckboxHandler}
+                  inputProps={{ "aria-label": "controlled" }}
+                  name={"has_coin"}
+                />
 
-              <AutoCompleSelect
-                inputAutoValue={editEventsData}
-                setInputAutoValue={setEditEvents}
-                variant="coin"
-              />
+                {coinChecked === true && (
+                  <AutoCompleSelect
+                    inputAutoValue={editEventsData}
+                    setInputAutoValue={setEditEvents}
+                    variant="coin"
+                    serverRef={editEventsData && editEventsData?.coin_id}
+                  />
+                )}
+              </Stack>
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography
@@ -407,7 +430,7 @@ const EventsEdit = () => {
                   </LoadingButton>
                 ) : (
                   <LargeBtn
-                    Title="Add Events"
+                    Title="Update Events"
                     lgBtnHandler={eventsUpdateHandler}
                   />
                 )}

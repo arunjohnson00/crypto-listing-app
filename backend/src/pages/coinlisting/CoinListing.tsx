@@ -170,6 +170,10 @@ const CoinListing = () => {
           {parseInt(params.row.status) === 3 && (
             <span style={{ color: "#6a1b9a" }}>Suspended</span>
           )}
+
+          {parseInt(params.row.status) === 4 && (
+            <span style={{ color: "#ed840e" }}>Processing</span>
+          )}
         </span>
       ),
     },

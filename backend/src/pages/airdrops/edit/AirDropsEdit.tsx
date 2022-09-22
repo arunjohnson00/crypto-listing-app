@@ -317,7 +317,7 @@ const AirDropsEdit = () => {
                 </LoadingButton>
               ) : (
                 <LargeBtn
-                  Title="Add Airdrops"
+                  Title="Update Airdrops"
                   lgBtnHandler={airdropsAddHandler}
                 />
               )}
