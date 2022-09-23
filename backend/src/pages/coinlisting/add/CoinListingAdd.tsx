@@ -1081,12 +1081,12 @@ const CoinListingAdd = () => {
                     }}
                     mb={1}
                   >
-                    Github URL
+                    SourceCode URL
                   </Typography>
                   <InputText
                     placeholder="Enter github url"
-                    id="github_link"
-                    name="github_link"
+                    id="source_code_url"
+                    name="source_code_url"
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
