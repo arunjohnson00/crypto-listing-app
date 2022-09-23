@@ -18,8 +18,29 @@ import {
 } from "@mui/material";
 
 const FearAndGreedIndexPieChart = ({ data }: any) => {
+  const [pieData, setPieData] = useState<any>([]);
+  const extremeFear =
+    data &&
+    data.filter((item: any) => item?.value_classification === "Extreme Fear");
+  const fear =
+    data && data.filter((item: any) => item?.value_classification === "Fear");
+  const neutral =
+    data &&
+    data.filter((item: any) => item?.value_classification === "Neutral");
+  const greed =
+    data && data.filter((item: any) => item?.value_classification === "Greed");
+  const extremeGreed =
+    data &&
+    data.filter((item: any) => item?.value_classification === "Extreme Greed");
+
   const chartData: any = {
-    series: [44, 55, 13, 43, 22],
+    series: [
+      extremeGreed?.length,
+      extremeFear?.length,
+      fear?.length,
+      neutral?.length,
+      greed?.length,
+    ],
     options: {
       chart: {
         width: 450,
@@ -193,8 +214,123 @@ const FearAndGreedIndexPieChart = ({ data }: any) => {
             direction="column"
             alignItems="flex-start"
             justifyContent="space-between"
-            spacing={0}
+            spacing={2}
           >
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <Box
+                sx={{
+                  color: "#FFFFFF",
+                  fontSize: ".8rem",
+                  fontWeight: 600,
+                  backgroundColor: "#008E49",
+                  borderRadius: 8,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: 15,
+                  width: 40,
+                }}
+                p={0.5}
+              >
+                {data &&
+                  extremeGreed &&
+                  ((extremeGreed?.length / data?.length) * 100).toFixed(1)}{" "}
+                %
+              </Box>
+
+              <Typography
+                sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
+              >
+                Extreme Greed
+              </Typography>
+            </Stack>
+
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <Box
+                sx={{
+                  color: "#FFFFFF",
+                  fontSize: ".8rem",
+                  fontWeight: 600,
+                  backgroundColor: "#1DAF03",
+                  borderRadius: 8,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: 15,
+                  width: 40,
+                }}
+                p={0.5}
+              >
+                {data &&
+                  greed &&
+                  ((greed?.length / data?.length) * 100).toFixed(1)}{" "}
+                %
+              </Box>
+
+              <Typography
+                sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
+              >
+                Greed
+              </Typography>
+            </Stack>
+
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <Box
+                sx={{
+                  color: "#FFFFFF",
+                  fontSize: ".8rem",
+                  fontWeight: 600,
+                  backgroundColor: "#A8CE08",
+                  borderRadius: 8,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: 15,
+                  width: 40,
+                }}
+                p={0.5}
+              >
+                {data &&
+                  neutral &&
+                  ((neutral?.length / data?.length) * 100).toFixed(1)}{" "}
+                %
+              </Box>
+
+              <Typography
+                sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
+              >
+                Neutral
+              </Typography>
+            </Stack>
+
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <Box
+                sx={{
+                  color: "#FFFFFF",
+                  fontSize: ".8rem",
+                  fontWeight: 600,
+                  backgroundColor: "#EC840E",
+                  borderRadius: 8,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: 15,
+                  width: 40,
+                }}
+                p={0.5}
+              >
+                {data &&
+                  fear &&
+                  ((fear?.length / data?.length) * 100).toFixed(1)}{" "}
+                %
+              </Box>
+
+              <Typography
+                sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
+              >
+                Fear
+              </Typography>
+            </Stack>
             <Stack direction="row" alignItems="center" spacing={1}>
               <Box
                 sx={{
@@ -211,7 +347,10 @@ const FearAndGreedIndexPieChart = ({ data }: any) => {
                 }}
                 p={0.5}
               >
-                23%
+                {data &&
+                  extremeFear &&
+                  ((extremeFear?.length / data?.length) * 100).toFixed(1)}{" "}
+                %
               </Box>
 
               <Typography
@@ -250,7 +389,35 @@ const FearAndGreedIndexPieChart = ({ data }: any) => {
               <Typography
                 sx={{ color: "#F12828", fontSize: "1rem", fontWeight: 600 }}
               >
-                Extreme Fear
+                {extremeFear?.length > fear?.length &&
+                  neutral?.length &&
+                  greed?.length &&
+                  extremeGreed?.length &&
+                  "Extreme Fear"}
+
+                {fear?.length > extremeFear?.length &&
+                  neutral?.length &&
+                  greed?.length &&
+                  extremeGreed?.length &&
+                  "Fear"}
+
+                {neutral?.length > extremeFear?.length &&
+                  fear?.length &&
+                  greed?.length &&
+                  extremeGreed?.length &&
+                  "Neutral"}
+
+                {greed?.length > extremeFear?.length &&
+                  fear?.length &&
+                  neutral?.length &&
+                  extremeGreed?.length &&
+                  "Greed"}
+
+                {extremeGreed?.length > extremeFear?.length &&
+                  fear?.length &&
+                  greed?.length &&
+                  neutral?.length &&
+                  "Extreme Greed"}
               </Typography>
             </Stack>
           </Stack>

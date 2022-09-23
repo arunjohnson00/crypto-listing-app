@@ -1,0 +1,13 @@
+.review {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "segoe ui", Roboto,
+    Helvetica, Arial, sans-serif;
+}
+
+textarea:focus {
+  border: "none";
+  outline: "none";
+}
+
+*:focus {
+  outline: none;
+}

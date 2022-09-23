@@ -31,3 +31,18 @@ export const feargreedDataRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const feargreedHistoricalDataRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/fear-index-historical-data`,
+    method: "GET",
+    secure: false,
+    actionType: FEAR_GREED_INDEX.FREAR_GREED_HISTORICAL_DATA,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

@@ -56,21 +56,22 @@ const FearAndGreedcard = ({ width, size, height }: any) => {
                 sx={{
                   color:
                     fearGreedIndex &&
-                    fearGreedIndex?.data[0]?.value_classification <=
+                    fearGreedIndex?.data[0]?.value_classification ===
                       "Extreme Fear"
                       ? "#EF2828"
                       : fearGreedIndex &&
-                        fearGreedIndex?.data[0]?.value_classification <= "Fear"
+                        fearGreedIndex?.data[0]?.value_classification === "Fear"
                       ? "#EC840E"
                       : fearGreedIndex &&
-                        fearGreedIndex?.data[0]?.value_classification <=
+                        fearGreedIndex?.data[0]?.value_classification ===
                           "Neutral"
                       ? "#A8CE08"
                       : fearGreedIndex &&
-                        fearGreedIndex?.data[0]?.value_classification <= "Greed"
+                        fearGreedIndex?.data[0]?.value_classification ===
+                          "Greed"
                       ? "#1DAF03"
                       : fearGreedIndex &&
-                        fearGreedIndex?.data[0]?.value_classification <=
+                        fearGreedIndex?.data[0]?.value_classification ===
                           "Extreme Greed" &&
                         "#008E49",
                   fontWeight: 500,

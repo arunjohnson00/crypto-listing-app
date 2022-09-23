@@ -94,8 +94,8 @@ const SingleCoinChip = ({ src, title, link, variant, shape }: any) => {
             fontSize: "0.6125rem",
 
             "&.MuiChip-root .MuiChip-avatar": {
-              width: variant === "explorer" ? 30 : 17,
-              height: variant === "explorer" ? 30 : 17,
+              width: variant === "website" ? 22 : 17,
+              height: variant === "website" ? 22 : 17,
               borderRadius: 0,
             },
           }}

@@ -30,6 +30,7 @@ const FearAndGreedIndexHTMLTable = ({
   tableData,
   variant,
   tableHeader,
+  filterValue,
 }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -40,7 +41,7 @@ const FearAndGreedIndexHTMLTable = ({
     <TableContainer sx={{ borderRadius: 4, border: "1px solid #202131" }}>
       <Table
         sx={{
-          minWidth: 650,
+          //minWidth: 650,
           backgroundColor: "#010822",
 
           borderRadius: 4,
@@ -67,47 +68,12 @@ const FearAndGreedIndexHTMLTable = ({
         </TableHead>
 
         <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
-          {tableData &&
-            tableData.slice(0, 10).map((data: any, index: number) => (
-              <TableRow
-                sx={{
-                  "&:last-child td, &:last-child th": { border: 0 },
-
-                  borderBottom: "1px solid #031323",
-                  height: 20,
-                  "&:hover": {
-                    //backgroundColor: "red",
-                  },
-                }}
-                key={index}
-              >
-                <TableCell
-                  sx={{
-                    color: "#FFFFFF",
-                    border: 0,
-
-                    maxWidth: 1,
-                  }}
-                >
-                  <Link
-                    to={{
-                      pathname: `/coin/${data?.slug}`,
-                    }}
-                    state={{ coin_id: data?.id }}
-                    style={{
-                      textDecoration: "none",
-                      color: "#686868",
-                    }}
-                  >
-                    {index + 1}
-                  </Link>
-                </TableCell>
-              </TableRow>
-            ))}
-
           <TableRow
             sx={{
-              "&:last-child td, &:last-child th": { border: 0 },
+              "&:last-child td, &:last-child th": {
+                border: 0,
+                paddingBottom: 1,
+              },
 
               borderBottom: "1px solid #031323",
               height: 20,
@@ -125,67 +91,146 @@ const FearAndGreedIndexHTMLTable = ({
               }}
             >
               <Typography
-                sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
-              >
-                Today
-              </Typography>
-            </TableCell>
-            <TableCell
-              sx={{
-                color: "#FFFFFF",
-                border: 0,
-
-                maxWidth: 1,
-              }}
-            >
-              <Typography
-                sx={{ color: "#F12828", fontSize: ".85rem", fontWeight: 600 }}
-              >
-                Extreme Fear
-              </Typography>
-            </TableCell>
-
-            <TableCell
-              sx={{
-                color: "#FFFFFF",
-                border: 0,
-
-                maxWidth: 1,
-              }}
-            >
-              <Box
                 sx={{
                   color: "#FFFFFF",
                   fontSize: ".85rem",
                   fontWeight: 600,
-                  backgroundColor: "#F12828",
-                  borderRadius: 4,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: 25,
-                  width: 25,
                 }}
-                p={0.5}
               >
-                23
-              </Box>
-            </TableCell>
-            <TableCell
-              sx={{
-                color: "#FFFFFF",
-                border: 0,
-
-                maxWidth: 1,
-              }}
-            >
-              <Typography
-                sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
-              >
-                20/Sep/2022
+                Next update happen in{" "}
+                {moment(
+                  new Date(
+                    new Date(new Date()).setDate(
+                      new Date(new Date()).getDate() + 1
+                    )
+                  )
+                ).fromNow()}
               </Typography>
             </TableCell>
           </TableRow>
+          {tableData &&
+            tableData
+              .slice(0, filterValue && filterValue)
+              .map((data: any, index: number) => (
+                <TableRow
+                  sx={{
+                    "&:last-child td, &:last-child th": {
+                      border: 0,
+                      paddingBottom: 1,
+                    },
+
+                    borderBottom: "1px solid #031323",
+                    height: 20,
+                    "&:hover": {
+                      //backgroundColor: "red",
+                    },
+                  }}
+                >
+                  <TableCell
+                    sx={{
+                      color: "#FFFFFF",
+                      border: 0,
+
+                      maxWidth: 1,
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        color: "#FFFFFF",
+                        fontSize: ".85rem",
+                        fontWeight: 600,
+                      }}
+                    >
+                      {moment(new Date(data?.timestamp)).fromNow()}
+                    </Typography>
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      color: "#FFFFFF",
+                      border: 0,
+
+                      maxWidth: 1,
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        color:
+                          data && data?.value_classification === "Extreme Fear"
+                            ? "#EF2828"
+                            : data && data?.value_classification === "Fear"
+                            ? "#EC840E"
+                            : data && data?.value_classification === "Neutral"
+                            ? "#A8CE08"
+                            : data && data?.value_classification === "Greed"
+                            ? "#1DAF03"
+                            : data &&
+                              data?.value_classification === "Extreme Greed" &&
+                              "#008E49",
+                        fontSize: ".85rem",
+                        fontWeight: 600,
+                      }}
+                    >
+                      {data?.value_classification}
+                    </Typography>
+                  </TableCell>
+
+                  <TableCell
+                    sx={{
+                      color: "#FFFFFF",
+                      border: 0,
+
+                      maxWidth: 1,
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        color: "#FFFFFF",
+                        fontSize: ".85rem",
+                        fontWeight: 600,
+                        backgroundColor:
+                          data && data?.value_classification === "Extreme Fear"
+                            ? "#EF2828"
+                            : data && data?.value_classification === "Fear"
+                            ? "#EC840E"
+                            : data && data?.value_classification === "Neutral"
+                            ? "#A8CE08"
+                            : data && data?.value_classification === "Greed"
+                            ? "#1DAF03"
+                            : data &&
+                              data?.value_classification === "Extreme Greed" &&
+                              "#008E49",
+                        borderRadius: 4,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        height: 25,
+                        width: 25,
+                      }}
+                      p={0.5}
+                    >
+                      {data?.value}
+                    </Box>
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      color: "#FFFFFF",
+                      border: 0,
+
+                      maxWidth: 1,
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        color: "#FFFFFF",
+                        fontSize: ".85rem",
+                        fontWeight: 600,
+                      }}
+                    >
+                      {moment(new Date(data?.timestamp)).format("DD/MMM/YYYY")}
+                    </Typography>
+                  </TableCell>
+                </TableRow>
+              ))}
         </TableBody>
       </Table>
     </TableContainer>

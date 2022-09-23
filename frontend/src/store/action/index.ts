@@ -131,4 +131,7 @@ export {
 
 //Fear Greed
 
-export { feargreedDataRequest } from "./feargreedAction";
+export {
+  feargreedDataRequest,
+  feargreedHistoricalDataRequest,
+} from "./feargreedAction";
