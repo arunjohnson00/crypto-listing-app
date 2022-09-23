@@ -67,6 +67,9 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
         background: "linear-gradient(90deg, #01061c 20%, #020f3d)",
         maxHeight: 220,
         minHeight: 220,
+        "&:hover": {
+          background: "#020c36",
+        },
       }}
       px={2}
       py={2}

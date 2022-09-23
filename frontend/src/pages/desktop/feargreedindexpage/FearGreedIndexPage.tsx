@@ -69,6 +69,7 @@ const FearGreedIndexPage = () => {
                 <Stack direction="row" alignItems="center" spacing={1} px={2}>
                   <Button
                     variant="contained"
+                    size="small"
                     sx={{
                       textTransform: "capitalize",
                       fontSize: ".8rem",
@@ -83,6 +84,7 @@ const FearGreedIndexPage = () => {
                   </Button>
                   <Button
                     variant="contained"
+                    size="small"
                     sx={{
                       textTransform: "capitalize",
                       fontSize: ".8rem",
@@ -97,6 +99,7 @@ const FearGreedIndexPage = () => {
                   </Button>
                   <Button
                     variant="contained"
+                    size="small"
                     sx={{
                       textTransform: "capitalize",
                       fontSize: ".8rem",
@@ -127,6 +130,7 @@ const FearGreedIndexPage = () => {
                 <Stack direction="row" alignItems="center" spacing={1} px={2}>
                   <Button
                     variant="contained"
+                    size="small"
                     sx={{
                       textTransform: "capitalize",
                       fontSize: ".8rem",
@@ -141,6 +145,7 @@ const FearGreedIndexPage = () => {
                   </Button>
                   <Button
                     variant="contained"
+                    size="small"
                     sx={{
                       textTransform: "capitalize",
                       fontSize: ".8rem",
@@ -155,6 +160,7 @@ const FearGreedIndexPage = () => {
                   </Button>
                   <Button
                     variant="contained"
+                    size="small"
                     sx={{
                       textTransform: "capitalize",
                       fontSize: ".8rem",

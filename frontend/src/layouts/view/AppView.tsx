@@ -38,7 +38,7 @@ const AppView = ({ children }: any) => {
   const matchesXL = useMediaQuery("(max-width:1536px)");
   return (
     <Fragment>
-      {/* {windowInnerWidth >= 900 && preloader === true && (
+      {windowInnerWidth >= 900 && preloader === true && (
         <Box
           sx={{
             position: "fixed",
@@ -96,7 +96,7 @@ const AppView = ({ children }: any) => {
             </Box>
           </Stack>
         </Box>
-      )} */}
+      )}
       <Container maxWidth={false}>
         <Grid
           item

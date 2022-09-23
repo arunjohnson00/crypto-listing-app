@@ -237,6 +237,7 @@ const FearAndGreedIndexChart = ({ data }: any) => {
       <Stack direction="row" alignItems="center" spacing={1} px={2}>
         <Button
           variant="contained"
+          size="small"
           sx={{
             textTransform: "capitalize",
             fontSize: ".8rem",
@@ -249,6 +250,7 @@ const FearAndGreedIndexChart = ({ data }: any) => {
         </Button>
         <Button
           variant="contained"
+          size="small"
           sx={{
             textTransform: "capitalize",
             fontSize: ".8rem",
@@ -261,6 +263,7 @@ const FearAndGreedIndexChart = ({ data }: any) => {
         </Button>
         <Button
           variant="contained"
+          size="small"
           sx={{
             textTransform: "capitalize",
             fontSize: ".8rem",
@@ -273,6 +276,7 @@ const FearAndGreedIndexChart = ({ data }: any) => {
         </Button>
         <Button
           variant="contained"
+          size="small"
           sx={{
             textTransform: "capitalize",
             fontSize: ".8rem",
