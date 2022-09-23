@@ -42,6 +42,7 @@ import AirDropsAdd from "../pages/useradmin/airdrops/add/AirDropsAdd";
 import AirDropsEdit from "../pages/useradmin/airdrops/edit/AirDropsEdit";
 import SupportPage from "../pages/desktop/supportpage/SupportPage";
 import FearGreedIndexPage from "../pages/desktop/feargreedindexpage/FearGreedIndexPage";
+import ReviewEdit from "../pages/useradmin/review/edit/ReviewEdit";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -396,6 +397,15 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <AirDropsEdit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/user-dashboard/review/edit"
+          element={
+            <PrivateRoute>
+              <ReviewEdit />
             </PrivateRoute>
           }
         />

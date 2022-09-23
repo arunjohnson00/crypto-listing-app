@@ -18,6 +18,7 @@ const initialState = {
   news_block: "",
   recently_added: "",
   coin_review_submit: "",
+  coin_market_list: "",
 };
 const coinReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -133,6 +134,13 @@ const coinReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         coin_review_submit: action?.payload?.data,
+      };
+
+    case COIN.COIN_MARKET_LIST:
+      //console.log(action);
+      return {
+        ...state,
+        coin_market_list: action?.payload?.data,
       };
 
     default:

@@ -277,3 +277,20 @@ export const coinReviewSubmitRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const coinMarketListRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-market-lists/${values}`,
+    method: "GET",
+    secure: false,
+    //body: values,
+    fileUpload: false,
+    actionType: COIN.COIN_MARKET_LIST,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

@@ -18,7 +18,7 @@ import CoinPageWidget from "../coinpagewidget/CoinPageWidget";
 import CoinPageEvents from "../coinpageevents/CoinPageEvents";
 import CoinPagePresale from "../coinpagepresale/CoinPagePresale";
 
-const SinglePageTab = () => {
+const SinglePageTab = ({ data }: any) => {
   const [value, setValue] = useState("1");
   const [tabValue, setTabValue] = useState("1");
 
@@ -84,8 +84,10 @@ const SinglePageTab = () => {
             <Tab label="Today's Price" value="6" />
             <Tab label="Community" value="7" />
             <Tab label="FAQ" value="8" />
-            <Tab label="Events" value="9" />
-            <Tab label="Presale" value="10" />
+            {data && data?.is_event === 1 && <Tab label="Events" value="9" />}
+            {data && data?.is_presale === 1 && (
+              <Tab label="Presale" value="10" />
+            )}
             {/* <Tab label="KYC Details" value="11" /> */}
             <Tab label="Widget" value="12" />
             {/* <Tab label="Audit Details" value="13" /> */}

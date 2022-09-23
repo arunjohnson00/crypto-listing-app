@@ -136,3 +136,10 @@ export {
   feargreedDataRequest,
   feargreedHistoricalDataRequest,
 } from "./feargreedAction";
+
+export {
+  dashboardAddReviewRequest,
+  dashboardEditReviewRequest,
+  dashboardUpdateReviewRequest,
+  dashboardDeleteReviewRequest,
+} from "./dashboardReviewAction";

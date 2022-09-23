@@ -30,6 +30,7 @@ import {
   dashboardDeleteCoinRequest,
   dashboardDeleteEventsRequest,
   dashboardDeleteNFTListingRequest,
+  dashboardDeleteReviewRequest,
 } from "../../../store/action";
 const UserAdminHtmlTable = ({
   tableData,
@@ -102,6 +103,13 @@ const UserAdminHtmlTable = ({
               successHandler,
               errorHandler
             )
+          );
+        }
+
+        if (section === "review") {
+          formData.append("review_id", id);
+          dispatch(
+            dashboardDeleteReviewRequest(formData, successHandler, errorHandler)
           );
         }
 
@@ -1028,90 +1036,31 @@ const UserAdminHtmlTable = ({
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     {" "}
                     <Avatar
-                      alt={data?.title}
-                      src={`${serverAPIUrl}public/uploads/nft_listing_image/${data?.image}`}
+                      alt={data?.name}
+                      src={`${serverAPIUrl}public/uploads/coin_logo/${data?.logo}`}
                       sx={{ width: 34, height: 34 }}
                     />
                   </TableCell>
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
-                    <Stack direction="column">
-                      <Typography variant="caption">
-                        {" "}
-                        <Link
-                          to={{
-                            pathname: `/coin/${data?.slug}`,
-                          }}
-                          state={{ coin_id: data?.id }}
-                          style={{
-                            textDecoration: "none",
-                            color: "#FFFFFF",
-                          }}
-                        >
-                          {data && data?.title?.length > 13
-                            ? data?.title?.slice(0, 13) + "..."
-                            : data && data?.title}
-                        </Link>
-                      </Typography>
-                      {/* <Typography
-                        variant="caption"
-                        sx={{
-                          color: "#0F68A1",
-                          fontWeight: "bold",
-                          fontSize: "0.6rem",
-                        }}
-                      >
-                        {"$"}
-                        {data?.symbol}
-                      </Typography> */}
-                    </Stack>
-                  </TableCell>
-                  <TableCell
-                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
-                  >
-                    <Typography variant="caption">{data?.currency}</Typography>
-                  </TableCell>
-                  <TableCell
-                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
-                  >
                     <Typography variant="caption">
-                      {data?.currency_icon}
+                      {" "}
+                      {data && data?.name?.length > 13
+                        ? data?.name?.slice(0, 13) + "..."
+                        : data && data?.name}
                     </Typography>
                   </TableCell>
                   <TableCell
                     sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
                   >
-                    <Typography variant="caption">{data?.network}</Typography>
+                    <Typography variant="caption">{data?.rating}</Typography>
                   </TableCell>
-                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
-                    <Stack direction="column" spacing={0.2}>
-                      <Avatar
-                        alt={data?.title}
-                        src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
-                        sx={{ width: 41, height: 11, borderRadius: 0 }}
-                      />
-                    </Stack>
-                  </TableCell>
+
                   <TableCell
                     sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
                   >
-                    <Typography variant="caption">
-                      {data?.pre_sale_mint_price}
-                    </Typography>
+                    <Typography variant="caption">{data?.review}</Typography>
                   </TableCell>
-                  <TableCell
-                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
-                  >
-                    <Typography variant="caption">
-                      {data?.public_mint_price}
-                    </Typography>
-                  </TableCell>
-                  <TableCell
-                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
-                  >
-                    <Typography variant="caption">
-                      {data?.max_num_items}
-                    </Typography>
-                  </TableCell>
+
                   <TableCell sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}>
                     <Typography variant="caption">
                       {" "}
@@ -1129,7 +1078,7 @@ const UserAdminHtmlTable = ({
                     <Stack direction="row" spacing={1}>
                       <Link
                         to={{
-                          pathname: `/user-dashboard/nft/edit`,
+                          pathname: `/user-dashboard/review/edit`,
                         }}
                         state={{ id: data && data?.id }}
                         style={{ textDecoration: "none" }}

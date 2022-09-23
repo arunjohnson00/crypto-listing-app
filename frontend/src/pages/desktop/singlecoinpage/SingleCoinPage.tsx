@@ -225,7 +225,9 @@ const SingleCoinPage = () => {
             paddingTop: 0,
           }}
         >
-          <SinglePageTab />
+          <SinglePageTab
+            data={coinDetailFirstBlock && coinDetailFirstBlock[0]}
+          />
         </Grid>
 
         <Grid xs={12} pt={2}>

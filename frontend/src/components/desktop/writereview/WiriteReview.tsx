@@ -21,7 +21,7 @@ import { useLocation } from "react-router-dom";
 const WiriteReview = ({ openWriteReview, handleClose }: any) => {
   const dispatch: any = useDispatch();
   const location: any = useLocation();
-  const [rating, setRating] = useState<any>(5);
+  const [rating, setRating] = useState<any>(0);
   const [hover, setHover] = useState<any>();
   const [reviewCount, setReviewCount] = useState<any>();
   const [reviewText, setReviewText] = useState<any>();
@@ -36,7 +36,7 @@ const WiriteReview = ({ openWriteReview, handleClose }: any) => {
 
     const successHandler = (res: any) => {
       setTimeout(function () {
-        toast.success(`${res?.data?.data}`, {
+        toast.success(`${res?.data?.message}`, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -100,7 +100,7 @@ const WiriteReview = ({ openWriteReview, handleClose }: any) => {
           <Box px={3}>
             <Rating
               name="half-rating"
-              defaultValue={5}
+              defaultValue={0}
               value={rating}
               onChange={(event, newValue) => {
                 setRating(newValue);

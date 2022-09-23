@@ -69,6 +69,7 @@ import HeartAnimatedImage from "../../../assets/singlepagecoin/vote-animated.gif
 import DropDownAds from "../dropdownads/DropDownAds";
 import { defaultColor } from "../../../common/common";
 import { Link } from "react-router-dom";
+import { coinMarketListRequest } from "../../../store/action/coinAction ";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -79,6 +80,10 @@ const SingleCoinHeader = ({ coinData }: any) => {
   const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
   const coinSocialGraph = useSelector((data: any) => {
     return data?.coinReducer?.coin_social_graph?.data;
+  });
+
+  const coinMarketLists = useSelector((data: any) => {
+    return data?.coinReducer?.coin_market_list?.data;
   });
   const [copyValue, setCopyValue] = useState<any>();
   const [vote, setVote] = useState<any>({
@@ -146,6 +151,18 @@ const SingleCoinHeader = ({ coinData }: any) => {
       coinData?.contract_address?.length > 0 &&
       setCopyValue(coinData?.contract_address[0]?.addresss);
   }, [setCopyValue]);
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(
+      coinMarketListRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  }, [dispatch]);
 
   return (
     <Fragment>
@@ -457,108 +474,176 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 </Stack>
                 <Stack
                   direction={{ xs: "column", sm: "column", md: "row" }}
-                  spacing={0}
+                  spacing={1}
                   sx={{ alignItems: "center", justifyContent: "flex-start" }}
                   pt={1}
                 >
-                  {vote &&
-                  vote.initial === false &&
-                  vote.completed === false &&
-                  vote.captcha === false ? (
-                    <Button
-                      variant="contained"
-                      startIcon={<ThumbUpOffAltOutlinedIcon />}
-                      sx={{
-                        backgroundColor: "#6252E7",
-                        textTransform: "capitalize",
-                        fontSize: ".8rem",
-                      }}
-                      onClick={captchaHandler}
-                    >
-                      Vote
-                    </Button>
-                  ) : vote.captcha === true ? (
-                    // <Dialog
-                    //   open={openCaptcha}
-                    //   // TransitionComponent={Transition}
-                    //   keepMounted
-                    //   onClose={captchaOnClose}
-                    //   aria-describedby="alert-dialog-slide-description"
-                    // >
-                    //   <DialogContent>
-                    <ReCAPTCHA
-                      sitekey="6LeV-IQhAAAAAMwIIrqVh_eqFPl-8IFn1QQWWrEU"
-                      onChange={coinVoteHandler}
-                      theme="dark"
-                    />
-                  ) : //   </DialogContent>
-                  // </Dialog>
-                  vote.initial === true ? (
-                    <LoadingButton
-                      loading
-                      variant="outlined"
-                      sx={{
-                        color: "#FFFFFF",
-                        backgroundColor: "#FFFFFF",
-                      }}
-                    >
-                      Submit
-                    </LoadingButton>
-                  ) : (
-                    vote.completed === true && (
+                  <Stack
+                    direction={{ xs: "column", sm: "column", md: "row" }}
+                    spacing={0}
+                    sx={{ alignItems: "center", justifyContent: "flex-start" }}
+                  >
+                    {vote &&
+                    vote.initial === false &&
+                    vote.completed === false &&
+                    vote.captcha === false ? (
                       <Button
                         variant="contained"
-                        startIcon={<ThumbUpAltRoundedIcon />}
+                        startIcon={<ThumbUpOffAltOutlinedIcon />}
                         sx={{
                           backgroundColor: "#6252E7",
                           textTransform: "capitalize",
                           fontSize: ".8rem",
                         }}
+                        onClick={captchaHandler}
                       >
-                        Voted
+                        Vote
                       </Button>
-                    )
-                  )}
-
-                  <Chip
-                    label={`${
-                      coinData &&
-                      coinData?.vote !== null &&
-                      vote?.completed === true
-                        ? (parseInt(coinData?.vote) + 1).toLocaleString()
-                        : coinData?.vote?.toLocaleString()
-                    } Votes`}
-                    sx={{
-                      height: "36px",
-                      borderRadius: "4px",
-                      color: "#FFFFF5",
-                      backgroundColor: "transparent",
-                      fontSize: "1.025rem",
-                      "&.MuiChip-deleteIcon": {
-                        color: "#FFFFF5",
-                      },
-                    }}
-                    onDelete={() => {}}
-                    deleteIcon={
-                      <Avatar
-                        alt="Todays Vote"
-                        src={HeartAnimatedImage}
-                        sx={{ width: 35, height: 35 }}
+                    ) : vote.captcha === true ? (
+                      // <Dialog
+                      //   open={openCaptcha}
+                      //   // TransitionComponent={Transition}
+                      //   keepMounted
+                      //   onClose={captchaOnClose}
+                      //   aria-describedby="alert-dialog-slide-description"
+                      // >
+                      //   <DialogContent>
+                      <ReCAPTCHA
+                        sitekey="6LeV-IQhAAAAAMwIIrqVh_eqFPl-8IFn1QQWWrEU"
+                        onChange={coinVoteHandler}
+                        theme="dark"
                       />
-                    }
-                  />
-                  <RWebShare
-                    data={{
-                      text: "Find out this coin in Coinxhigh",
-                      url: window.location.href,
-                      title: coinData && coinData?.name,
+                    ) : //   </DialogContent>
+                    // </Dialog>
+                    vote.initial === true ? (
+                      <LoadingButton
+                        loading
+                        variant="outlined"
+                        sx={{
+                          color: "#FFFFFF",
+                          backgroundColor: "#FFFFFF",
+                        }}
+                      >
+                        Submit
+                      </LoadingButton>
+                    ) : (
+                      vote.completed === true && (
+                        <Button
+                          variant="contained"
+                          startIcon={<ThumbUpAltRoundedIcon />}
+                          sx={{
+                            backgroundColor: "#6252E7",
+                            textTransform: "capitalize",
+                            fontSize: ".8rem",
+                          }}
+                        >
+                          Voted
+                        </Button>
+                      )
+                    )}
+
+                    <Chip
+                      label={`${
+                        coinData &&
+                        coinData?.vote !== null &&
+                        vote?.completed === true
+                          ? (parseInt(coinData?.vote) + 1).toLocaleString()
+                          : coinData?.vote?.toLocaleString()
+                      } Votes`}
+                      sx={{
+                        height: "36px",
+                        borderRadius: "4px",
+                        color: "#FFFFF5",
+                        backgroundColor: "transparent",
+                        fontSize: "1.025rem",
+                        "&.MuiChip-deleteIcon": {
+                          color: "#FFFFF5",
+                        },
+                      }}
+                      onDelete={() => {}}
+                      deleteIcon={
+                        <Avatar
+                          alt="Todays Vote"
+                          src={HeartAnimatedImage}
+                          sx={{ width: 35, height: 35 }}
+                        />
+                      }
+                    />
+                    <RWebShare
+                      data={{
+                        text: "Find out this coin in Coinxhigh",
+                        url: window.location.href,
+                        title: coinData && coinData?.name,
+                      }}
+                      onClick={() => console.log("shared successfully!")}
+                    >
+                      <IconButton sx={{ padding: 0 }}>
+                        <ShareOutlinedIcon sx={{ color: "#575385" }} />
+                      </IconButton>
+                    </RWebShare>
+                  </Stack>
+                  <Stack
+                    direction={{ xs: "column", sm: "column", md: "row" }}
+                    spacing={1}
+                    sx={{
+                      alignItems: "center",
+                      justifyContent: "flex-start",
                     }}
-                    onClick={() => console.log("shared successfully!")}
+                    pt={1}
                   >
-                    <IconButton sx={{ padding: 0 }}>
-                      <ShareOutlinedIcon sx={{ color: "#575385" }} />
-                    </IconButton>
-                  </RWebShare>
+                    {" "}
+                    <Divider
+                      variant="middle"
+                      flexItem
+                      orientation={xsBreakPoint ? "horizontal" : "vertical"}
+                      sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
+                    />
+                    <Stack
+                      direction={{ xs: "column", sm: "column", md: "column" }}
+                      spacing={1}
+                    >
+                      <Stack
+                        direction={{ xs: "row", sm: "row", md: "row" }}
+                        sx={{ alignItems: "center" }}
+                        justifyContent={{
+                          xs: "center",
+                          sm: "center",
+                          md: "center",
+                          lg: "flex-start",
+                        }}
+                        spacing={1}
+                      >
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            color: "#787878",
+                            fontSize: "0.65rem",
+                          }}
+                        >
+                          Available on
+                        </Typography>
+                        <Tooltip title="Delete">
+                          <Avatar
+                            src={ToolTipImage}
+                            sx={{ width: 9, height: 9 }}
+                          ></Avatar>
+                        </Tooltip>
+                      </Stack>
+
+                      <Stack direction="row" spacing={0.8}>
+                        {coinMarketLists &&
+                          coinMarketLists?.map((item: any, index: number) => (
+                            <Link to={item?.url} target="_blank" key={index}>
+                              <Avatar
+                                alt={item?.market}
+                                src={`${serverAPIUrl}public/uploads/exchange_icons/${item?.thumb_icon}`}
+                                sx={{ width: 20, height: 20 }}
+                              />
+                            </Link>
+                          ))}
+                      </Stack>
+                    </Stack>
+                  </Stack>
                 </Stack>
               </Stack>
             </Stack>
