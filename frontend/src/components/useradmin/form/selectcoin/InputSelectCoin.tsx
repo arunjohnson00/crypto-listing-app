@@ -3,6 +3,8 @@ import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
 import { toast } from "material-react-toastify";
 import { Fragment } from "react";
+import { Avatar, Box } from "@mui/material";
+import "./style.css";
 
 const InputSelectCoin = ({
   name,
@@ -41,6 +43,9 @@ const InputSelectCoin = ({
             color: "#FFFFFF",
           },
           paddingLeft: "10px",
+          "&option": {
+            paddingY: 2,
+          },
         }}
       >
         {data &&
@@ -59,7 +64,15 @@ const InputSelectCoin = ({
                     {`${list.name} (Selected) `}
                   </option>
                 )}
-                <option value={list.id}>
+
+                <option
+                  value={list.id}
+                  style={{
+                    background: "#2B2C36",
+                    color: "#FFFFFF",
+                    textIndent: 5,
+                  }}
+                >
                   {type === "events"
                     ? list.title
                     : type === "airdrop"

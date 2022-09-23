@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
-import { Grid, Typography, Box, Stack, IconButton } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Box,
+  Stack,
+  IconButton,
+  Backdrop,
+  CircularProgress,
+} from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import AvatarUploder from "../../../components/form/input/file/avatar/AvatarUploder";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
@@ -117,6 +125,12 @@ const UserEdit = () => {
   }, [dispatch, id]);
   return (
     <Grid container spacing={2}>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <HorizonatalList />
       </Grid>

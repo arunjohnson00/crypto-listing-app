@@ -9,6 +9,8 @@ import {
   Divider,
   IconButton,
   FormControlLabel,
+  Backdrop,
+  CircularProgress,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import dateFormat, { masks } from "dateformat";
@@ -408,6 +410,12 @@ const CoinListingEdit = () => {
 
   return (
     <Grid container spacing={0}>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <form id="coinForm">
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={2} ml={2}>
           <HorizonatalList />
