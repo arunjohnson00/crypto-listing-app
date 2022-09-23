@@ -40,6 +40,7 @@ export { coinPresaleBlockRequest } from "./coinAction ";
 export { coinVisitedCounterRequest } from "./coinAction ";
 export { coinlatestNewsRequest } from "./coinAction ";
 export { coinRecentlyAddedRequest } from "./coinAction ";
+export { coinReviewSubmitRequest } from "./coinAction ";
 //Coins Page
 
 export { coinsRecentlyAddedRequest } from "./coinsAction";

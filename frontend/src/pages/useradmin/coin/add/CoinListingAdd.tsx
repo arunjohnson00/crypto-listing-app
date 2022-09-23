@@ -1275,7 +1275,7 @@ const CoinListingAdd = () => {
                     }}
                     mb={1}
                   >
-                    Github URL
+                    SourceCode URL
                   </Typography>
                   <InputText
                     placeholder="Enter github url"

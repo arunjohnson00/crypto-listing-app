@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Grid,
   Stack,
@@ -25,7 +25,8 @@ import { coinRatingBlockRequest } from "../../../store/action";
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const CoinpageRatings = () => {
   const dispatch: any = useDispatch();
-  const location = useLocation();
+  const location: any = useLocation();
+  const navigate: any = useNavigate();
   const [openWriteReview, setOpenWriteReview] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const coinRatingBlock = useSelector((data: any) => {
@@ -56,6 +57,8 @@ const CoinpageRatings = () => {
       )
     );
   }, []);
+  const auth =
+    sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
   return (
     <Grid container xs={12}>
       <Grid item xs={12}>
@@ -120,20 +123,37 @@ const CoinpageRatings = () => {
                     src="https://mui.com/static/images/avatar/1.jpg"
                   />
 
-                  <Link
-                    sx={{
-                      color: "#FFFFF5",
-                      fontWeight: 400,
-                      cursor: "pointer",
-                      textDecoration: "undeline",
-                      textDecorationStyle: "dotted",
-                      textUnderlineOffset: "4px",
-                    }}
-                    //underline="none"
-                    onClick={handleWriteReviewClickOpen}
-                  >
-                    Write a review
-                  </Link>
+                  {!auth ? (
+                    <Link
+                      sx={{
+                        color: "#FFFFF5",
+                        fontWeight: 400,
+                        cursor: "pointer",
+                        textDecoration: "undeline",
+                        textDecorationStyle: "dotted",
+                        textUnderlineOffset: "4px",
+                      }}
+                      //underline="none"
+                      onClick={() => navigate("/login")}
+                    >
+                      login to write a review
+                    </Link>
+                  ) : (
+                    <Link
+                      sx={{
+                        color: "#FFFFF5",
+                        fontWeight: 400,
+                        cursor: "pointer",
+                        textDecoration: "undeline",
+                        textDecorationStyle: "dotted",
+                        textUnderlineOffset: "4px",
+                      }}
+                      //underline="none"
+                      onClick={handleWriteReviewClickOpen}
+                    >
+                      Write a review
+                    </Link>
+                  )}
 
                   <WiriteReview
                     openWriteReview={openWriteReview}

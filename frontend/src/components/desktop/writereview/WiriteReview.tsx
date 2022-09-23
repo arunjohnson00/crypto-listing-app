@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -11,10 +13,14 @@ import { Rating, Stack, Box, Typography } from "@mui/material";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
+import { coinReviewSubmitRequest } from "../../../store/action";
+import { useLocation } from "react-router-dom";
 
 const WiriteReview = ({ openWriteReview, handleClose }: any) => {
+  const dispatch: any = useDispatch();
+  const location: any = useLocation();
   const [rating, setRating] = useState<any>(5);
   const [hover, setHover] = useState<any>();
   const [reviewCount, setReviewCount] = useState<any>();
@@ -22,6 +28,41 @@ const WiriteReview = ({ openWriteReview, handleClose }: any) => {
   const coinRatingBlock = useSelector((data: any) => {
     return data?.coinReducer?.coin_rating_block?.data;
   });
+  const reviewSubmitHandler = () => {
+    const formData = new FormData();
+    formData.append("slug", location && location?.pathname?.split("/").pop());
+    formData.append("review", reviewText);
+    formData.append("rating", rating);
+
+    const successHandler = (res: any) => {
+      setTimeout(function () {
+        toast.success(`${res?.data?.data}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }, 2000);
+      handleClose();
+    };
+    const errorHandler = (err: any) => {
+      toast.warn(`${err?.error?.message?.response?.data?.message}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    };
+
+    dispatch(coinReviewSubmitRequest(formData, successHandler, errorHandler));
+  };
+
   return (
     <div>
       <Dialog
@@ -45,7 +86,12 @@ const WiriteReview = ({ openWriteReview, handleClose }: any) => {
                 {
                   <span style={{ fontWeight: 700 }}>
                     {" "}
-                    {hover <= 0 ? 0 : hover} Star
+                    {hover <= 0 && rating > 0
+                      ? rating
+                      : hover <= 0
+                      ? 0
+                      : hover}{" "}
+                    Star
                   </span>
                 }
               </span>
@@ -204,7 +250,7 @@ const WiriteReview = ({ openWriteReview, handleClose }: any) => {
               Cancel
             </Button>
             <Button
-              onClick={handleClose}
+              onClick={() => reviewSubmitHandler()}
               variant="contained"
               sx={{ backgroundColor: "#6252E7", textTransform: "capitalize" }}
             >

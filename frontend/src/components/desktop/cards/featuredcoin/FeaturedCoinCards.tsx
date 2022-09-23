@@ -613,14 +613,14 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
                 {cardData && cardData?.networks?.length === 0 ? (
                   <Typography sx={{ fontSize: ".6rem" }}>--</Typography>
                 ) : (
-                  <Stack direction="row" spacing={0.2}>
+                  <Stack direction="row" spacing={0.5}>
                     {cardData &&
                       cardData?.networks?.map((item: any, index: number) => (
                         <Avatar
                           key={index}
-                          alt={item && item?.name}
+                          alt={item && item?.network}
                           src={`${serverAPIUrl}public/uploads/network_icons/${item?.network_icon}`}
-                          sx={{ width: 45, height: 11, borderRadius: 0 }}
+                          sx={{ width: 15, height: 15, borderRadius: 0 }}
                         />
                       ))}
                   </Stack>

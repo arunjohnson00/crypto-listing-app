@@ -94,7 +94,7 @@ const AppLoginPage = () => {
         progress: undefined,
       });
 
-      navigate("/user-dashboard");
+      navigate(-1);
     };
     const errorHandler = (err: any) => {
       toast.success(`${JSON.stringify(err?.error?.message?.response?.data)}`, {

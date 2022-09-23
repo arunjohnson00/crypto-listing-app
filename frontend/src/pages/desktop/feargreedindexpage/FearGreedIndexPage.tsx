@@ -18,8 +18,8 @@ const FearGreedIndexPage = () => {
   const dispatch: any = useDispatch();
   const location = useLocation();
 
-  const [historicalDataFilter, setHistoricalDatafilter] = useState<any>(100);
-
+  const [historicalDataFilter, setHistoricalDatafilter] = useState<any>(30);
+  const [pieChartDataFilter, setPieChartDatafilter] = useState<any>(30);
   const fearGreedData = useSelector((data: any) => {
     return data?.feargreedReducer?.feer_greed_data?.data;
   });
@@ -72,8 +72,9 @@ const FearGreedIndexPage = () => {
                     sx={{
                       textTransform: "capitalize",
                       fontSize: ".8rem",
-                      //backgroundColor: dateTime === "thirty_day" ? "#6252e7" : "#072170",
-                      backgroundColor: "#072170",
+                      backgroundColor:
+                        historicalDataFilter === 7 ? "#6252e7" : "#072170",
+                      //backgroundColor: "#072170",
                       borderRadius: 5,
                     }}
                     onClick={() => setHistoricalDatafilter(7)}
@@ -85,8 +86,9 @@ const FearGreedIndexPage = () => {
                     sx={{
                       textTransform: "capitalize",
                       fontSize: ".8rem",
-                      //backgroundColor: dateTime === "thirty_day" ? "#6252e7" : "#072170",
-                      backgroundColor: "#072170",
+                      backgroundColor:
+                        historicalDataFilter === 15 ? "#6252e7" : "#072170",
+                      //backgroundColor: "#072170",
                       borderRadius: 5,
                     }}
                     onClick={() => setHistoricalDatafilter(15)}
@@ -98,8 +100,9 @@ const FearGreedIndexPage = () => {
                     sx={{
                       textTransform: "capitalize",
                       fontSize: ".8rem",
-                      //backgroundColor: dateTime === "thirty_day" ? "#6252e7" : "#072170",
-                      backgroundColor: "#072170",
+                      backgroundColor:
+                        historicalDataFilter === 30 ? "#6252e7" : "#072170",
+                      //backgroundColor: "#072170",
                       borderRadius: 5,
                     }}
                     onClick={() => setHistoricalDatafilter(30)}
@@ -119,7 +122,7 @@ const FearGreedIndexPage = () => {
             <Grid item xs={12} sm={12} md={7} lg={7} xl={7}>
               <Stack direction="row" spacing={2}>
                 <Typography variant="h5" color="#FFFFFF">
-                  Last 30 Days Overview
+                  Last {pieChartDataFilter && pieChartDataFilter} Days Overview
                 </Typography>
                 <Stack direction="row" alignItems="center" spacing={1} px={2}>
                   <Button
@@ -127,11 +130,12 @@ const FearGreedIndexPage = () => {
                     sx={{
                       textTransform: "capitalize",
                       fontSize: ".8rem",
-                      //backgroundColor: dateTime === "thirty_day" ? "#6252e7" : "#072170",
-                      backgroundColor: "#072170",
+                      backgroundColor:
+                        pieChartDataFilter === 7 ? "#6252e7" : "#072170",
+                      //backgroundColor: "#072170",
                       borderRadius: 5,
                     }}
-                    //onClick={() => updateData("seven_day")}
+                    onClick={() => setPieChartDatafilter(7)}
                   >
                     7d
                   </Button>
@@ -140,11 +144,12 @@ const FearGreedIndexPage = () => {
                     sx={{
                       textTransform: "capitalize",
                       fontSize: ".8rem",
-                      //backgroundColor: dateTime === "thirty_day" ? "#6252e7" : "#072170",
-                      backgroundColor: "#072170",
+                      backgroundColor:
+                        pieChartDataFilter === 15 ? "#6252e7" : "#072170",
+                      //backgroundColor: "#072170",
                       borderRadius: 5,
                     }}
-                    //onClick={() => updateData("fifteen_day")}
+                    onClick={() => setPieChartDatafilter(15)}
                   >
                     15d
                   </Button>
@@ -153,11 +158,12 @@ const FearGreedIndexPage = () => {
                     sx={{
                       textTransform: "capitalize",
                       fontSize: ".8rem",
-                      //backgroundColor: dateTime === "thirty_day" ? "#6252e7" : "#072170",
-                      backgroundColor: "#072170",
+                      backgroundColor:
+                        pieChartDataFilter === 30 ? "#6252e7" : "#072170",
+                      //backgroundColor: "#072170",
                       borderRadius: 5,
                     }}
-                    //onClick={() => updateData("thirty_day")}
+                    onClick={() => setPieChartDatafilter(30)}
                   >
                     30d
                   </Button>
@@ -165,7 +171,14 @@ const FearGreedIndexPage = () => {
               </Stack>
               <Box pt={3}>
                 <FearAndGreedIndexPieChart
-                  data={fearGreedHistoricalData && fearGreedHistoricalData}
+                  data={
+                    fearGreedHistoricalData &&
+                    fearGreedHistoricalData.slice(
+                      0,
+                      pieChartDataFilter && pieChartDataFilter
+                    )
+                  }
+                  filterValue={pieChartDataFilter && pieChartDataFilter}
                 />
               </Box>
             </Grid>

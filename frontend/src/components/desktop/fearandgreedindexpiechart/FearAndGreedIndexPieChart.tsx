@@ -17,8 +17,7 @@ import {
   Button,
 } from "@mui/material";
 
-const FearAndGreedIndexPieChart = ({ data }: any) => {
-  const [pieData, setPieData] = useState<any>([]);
+const FearAndGreedIndexPieChart = ({ data, filterValue }: any) => {
   const extremeFear =
     data &&
     data.filter((item: any) => item?.value_classification === "Extreme Fear");
@@ -49,7 +48,7 @@ const FearAndGreedIndexPieChart = ({ data }: any) => {
       stroke: {
         colors: [""],
       },
-      labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+      labels: ["Extreme Greed", "Extreme Fear", "Fear", "Neutral", "Greed"],
       responsive: [
         {
           breakpoint: 480,
@@ -361,7 +360,7 @@ const FearAndGreedIndexPieChart = ({ data }: any) => {
             </Stack>
           </Stack>
           <Stack direction="row" alignItems="center" spacing={1}>
-            <Box
+            {/* <Box
               sx={{
                 color: "#FFFFFF",
                 fontSize: "1.3rem",
@@ -377,48 +376,143 @@ const FearAndGreedIndexPieChart = ({ data }: any) => {
               p={0.5}
             >
               23
-            </Box>
+            </Box> */}
 
-            <Stack direction="column" alignItems="flex-start" spacing={0}>
+            <Stack direction="column" alignItems="center" spacing={1.5}>
               <Typography
-                sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
+                sx={{ color: "#FFFFFF", fontSize: ".9rem", fontWeight: 600 }}
               >
-                This month
+                In the last{" "}
+                <span style={{ color: "#E3F195" }}>
+                  {filterValue && filterValue}
+                </span>{" "}
+                Days, Market is
               </Typography>
 
-              <Typography
-                sx={{ color: "#F12828", fontSize: "1rem", fontWeight: 600 }}
-              >
-                {extremeFear?.length > fear?.length &&
-                  neutral?.length &&
-                  greed?.length &&
-                  extremeGreed?.length &&
-                  "Extreme Fear"}
+              {extremeFear?.length > fear?.length &&
+                extremeFear?.length > neutral?.length &&
+                extremeFear?.length > greed?.length &&
+                extremeFear?.length > extremeGreed?.length && (
+                  <span
+                    style={{
+                      backgroundColor: "#EF2828",
+                      borderRadius: 50,
+                      height: 43,
+                      minWidth: 140,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "1.2rem",
+                      fontWeight: 600,
+                      color: "#FFFFFF",
+                      padding: 2,
+                      paddingLeft: 25,
+                      paddingRight: 25,
+                    }}
+                  >
+                    Extreme Fear
+                  </span>
+                )}
 
-                {fear?.length > extremeFear?.length &&
-                  neutral?.length &&
-                  greed?.length &&
-                  extremeGreed?.length &&
-                  "Fear"}
+              {fear?.length > extremeFear?.length &&
+                fear?.length > neutral?.length &&
+                fear?.length > greed?.length &&
+                fear?.length > extremeGreed?.length && (
+                  <span
+                    style={{
+                      backgroundColor: "#EC840E",
+                      borderRadius: 50,
+                      height: 43,
+                      minWidth: 140,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "1.2rem",
+                      fontWeight: 600,
+                      color: "#FFFFFF",
+                      padding: 2,
+                      paddingLeft: 25,
+                      paddingRight: 25,
+                    }}
+                  >
+                    Fear
+                  </span>
+                )}
 
-                {neutral?.length > extremeFear?.length &&
-                  fear?.length &&
-                  greed?.length &&
-                  extremeGreed?.length &&
-                  "Neutral"}
+              {neutral?.length > extremeFear?.length &&
+                neutral?.length > fear?.length &&
+                neutral?.length > greed?.length &&
+                neutral?.length > extremeGreed?.length && (
+                  <span
+                    style={{
+                      backgroundColor: "#A8CE08",
+                      borderRadius: 50,
+                      height: 43,
+                      minWidth: 140,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "1.2rem",
+                      fontWeight: 600,
+                      color: "#000000",
+                      padding: 2,
+                      paddingLeft: 25,
+                      paddingRight: 25,
+                    }}
+                  >
+                    Neutral
+                  </span>
+                )}
 
-                {greed?.length > extremeFear?.length &&
-                  fear?.length &&
-                  neutral?.length &&
-                  extremeGreed?.length &&
-                  "Greed"}
+              {greed?.length > extremeFear?.length &&
+                greed?.length > fear?.length &&
+                greed?.length > neutral?.length &&
+                greed?.length > extremeGreed?.length && (
+                  <span
+                    style={{
+                      backgroundColor: "#1DAF03",
+                      borderRadius: 50,
+                      height: 43,
+                      minWidth: 140,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "1.2rem",
+                      fontWeight: 600,
+                      color: "#FFFFFF",
+                      padding: 2,
+                      paddingLeft: 25,
+                      paddingRight: 25,
+                    }}
+                  >
+                    Greed
+                  </span>
+                )}
 
-                {extremeGreed?.length > extremeFear?.length &&
-                  fear?.length &&
-                  greed?.length &&
-                  neutral?.length &&
-                  "Extreme Greed"}
-              </Typography>
+              {extremeGreed?.length > extremeFear?.length &&
+                extremeGreed?.length > fear?.length &&
+                extremeGreed?.length > greed?.length &&
+                extremeGreed?.length > neutral?.length && (
+                  <span
+                    style={{
+                      backgroundColor: "#008E49",
+                      borderRadius: 50,
+                      height: 43,
+                      minWidth: 140,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "1.2rem",
+                      fontWeight: 600,
+                      color: "#FFFFFF",
+                      padding: 2,
+                      paddingLeft: 25,
+                      paddingRight: 25,
+                    }}
+                  >
+                    Extreme Greed
+                  </span>
+                )}
             </Stack>
           </Stack>
         </Stack>
