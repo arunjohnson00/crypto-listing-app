@@ -11,10 +11,11 @@ import {
   Avatar,
   Skeleton,
   CircularProgress,
+  Backdrop,
+  LinearProgress,
 } from "@mui/material";
 import Marquee from "react-fast-marquee";
-// import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en.json";
+import { Preloader, Oval, ThreeDots } from "react-preloader-icon";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -172,13 +173,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
   const [feed, setFeed] = useState<any>();
   const [tableData, setTableData] = useState<any>();
 
-  const [preLoader, setPreLoader] = useState<any>({
-    recently_added: true,
-    biggest_gainers: true,
-    biggest_loosers: true,
-    featured_coin_list: true,
-    todays_performer: true,
-  });
+  const [preLoader, setPreLoader] = useState<any>(false);
 
   const [htmlTablePreLoader, setHTMLTablePreLoader] = useState<any>({
     html_table: true,
@@ -222,16 +217,10 @@ const HomePage = ({ windowInnerWidth }: any) => {
 
   useEffect(() => {
     const successHandler = (res: any) => {
-      setPreLoader({
-        ...preLoader,
-        recently_added: false,
-        biggest_gainers: false,
-        biggest_loosers: false,
-        featured_coin_list: false,
-        todays_performer: false,
-      });
+      setPreLoader(false);
     };
     const errorHandler = (err: any) => {};
+    setPreLoader(true);
     dispatch(recentlyAddedRequest("noData", successHandler, errorHandler));
     dispatch(biggestGainersRequest("noData", successHandler, errorHandler));
     dispatch(biggestLosersRequest("noData", successHandler, errorHandler));
@@ -244,22 +233,12 @@ const HomePage = ({ windowInnerWidth }: any) => {
   }, [dispatch, setPreLoader]);
 
   useEffect(() => {
-    setHTMLTablePreLoader({
-      ...htmlTablePreLoader,
-
-      html_table: true,
-    });
     const successHandler = (res: any) => {
       setTableData(res?.data?.data);
-      res?.data?.data !== undefined &&
-        setHTMLTablePreLoader({
-          ...htmlTablePreLoader,
-
-          html_table: false,
-        });
+      setPreLoader(false);
     };
     const errorHandler = (err: any) => {};
-
+    setPreLoader(true);
     tabIndex === 0 &&
       dispatch(
         cryptoCurrenciesListRequest("noData", successHandler, errorHandler)
@@ -283,6 +262,19 @@ const HomePage = ({ windowInnerWidth }: any) => {
   return (
     <Fragment>
       <Grid container rowSpacing={2}>
+        <Backdrop
+          sx={{ color: "#1dffc0", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={preLoader}
+        >
+          <CircularProgress color="inherit" />
+          {/* <Preloader
+            use={ThreeDots}
+            size={32}
+            strokeWidth={8}
+            strokeColor="#F0AD4E"
+            duration={800}
+          /> */}
+        </Backdrop>
         <Grid item xs={12}>
           <LatestNewsScroll />
         </Grid>

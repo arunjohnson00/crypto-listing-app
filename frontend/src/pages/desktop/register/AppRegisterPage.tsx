@@ -33,6 +33,7 @@ import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsS
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userRegisterRequest } from "../../../store/action";
+import "./style.css";
 
 const AppRegisterPage = () => {
   const dispatch: any = useDispatch();

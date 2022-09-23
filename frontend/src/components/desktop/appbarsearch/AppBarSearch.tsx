@@ -139,7 +139,8 @@ const AppBarSearch = () => {
       setSearchResult(res?.data?.data);
     };
     const errorHandler = (err: any) => {};
-    dispatch(topbarSearchRequest(values, successHandler, errorHandler));
+    values !== undefined &&
+      dispatch(topbarSearchRequest(values, successHandler, errorHandler));
   }, [dispatch, values, setValues]);
 
   const saveSearchHandler = (slug: any) => {

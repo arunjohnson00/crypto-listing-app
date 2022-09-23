@@ -31,6 +31,7 @@ import Checkbox from "@mui/material/Checkbox";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 import { Link } from "react-router-dom";
 import { userLoginRequest } from "../../../store/action";
+import "./style.css";
 
 const AppLoginPage = () => {
   const dispatch: any = useDispatch();
