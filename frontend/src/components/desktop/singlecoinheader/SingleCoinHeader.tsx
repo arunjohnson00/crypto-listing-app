@@ -474,7 +474,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 </Stack>
                 <Stack
                   direction={{ xs: "column", sm: "column", md: "row" }}
-                  spacing={1}
+                  spacing={0.5}
                   sx={{ alignItems: "center", justifyContent: "flex-start" }}
                   pt={1}
                 >
@@ -584,12 +584,11 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   </Stack>
                   <Stack
                     direction={{ xs: "column", sm: "column", md: "row" }}
-                    spacing={1}
+                    spacing={0.5}
                     sx={{
                       alignItems: "center",
                       justifyContent: "flex-start",
                     }}
-                    pt={1}
                   >
                     {" "}
                     <Divider
@@ -599,17 +598,17 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
                     />
                     <Stack
-                      direction={{ xs: "column", sm: "column", md: "column" }}
+                      direction={{ xs: "column", sm: "column", md: "row" }}
                       spacing={1}
                     >
                       <Stack
                         direction={{ xs: "row", sm: "row", md: "row" }}
-                        sx={{ alignItems: "center" }}
+                        sx={{ alignItems: "center", minWidth: 80 }}
                         justifyContent={{
                           xs: "center",
                           sm: "center",
                           md: "center",
-                          lg: "flex-start",
+                          lg: "center",
                         }}
                         spacing={1}
                       >
@@ -637,7 +636,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                               <Avatar
                                 alt={item?.market}
                                 src={`${serverAPIUrl}public/uploads/exchange_icons/${item?.thumb_icon}`}
-                                sx={{ width: 20, height: 20 }}
+                                sx={{ width: 22, height: 22 }}
                               />
                             </Link>
                           ))}
