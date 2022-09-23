@@ -2,7 +2,7 @@ import { Chip, Avatar, Link, Box } from "@mui/material";
 import { parse } from "tldts";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
-const SingleCoinChip = ({ src, title, link, variant }: any) => {
+const SingleCoinChip = ({ src, title, link, variant, shape }: any) => {
   return (
     <Link
       href={link && link}
@@ -10,14 +10,27 @@ const SingleCoinChip = ({ src, title, link, variant }: any) => {
       target="_blank"
     >
       {" "}
-      {
+      {shape === "square" ? (
+        <Avatar
+          alt={title && title}
+          src={`${serverAPIUrl}public/uploads/network_icons/${src}`}
+          sx={{
+            width: 25,
+            height: 25,
+            borderRadius: 0,
+            marginRight: 0.5,
+            marginBottom: 0.7,
+            flexWrap: "wrap",
+          }}
+        />
+      ) : (
         <Chip
           avatar={
             variant === "explorer" ? (
               <Avatar
                 alt={title && title}
                 src={`${serverAPIUrl}public/uploads/network_icons/${src}`}
-                sx={{ width: 23, height: 11, borderRadius: 0 }}
+                sx={{ borderRadius: 0 }}
               />
             ) : variant === "communities" ? (
               <Avatar
@@ -37,6 +50,8 @@ const SingleCoinChip = ({ src, title, link, variant }: any) => {
                 src={`${serverAPIUrl}public/uploads/coins_chart_provider/${src}`}
                 sx={{ borderRadius: 0 }}
               />
+            ) : variant === "website" ? (
+              <Avatar alt={title && title} src={src} sx={{ borderRadius: 0 }} />
             ) : (
               <Avatar alt={title && title} src={src} sx={{ borderRadius: 0 }} />
             )
@@ -68,7 +83,8 @@ const SingleCoinChip = ({ src, title, link, variant }: any) => {
           }
           color="success"
           sx={{
-            height: variant === "explorer" ? "12px" : "28px",
+            height: variant === "explorer" ? 30 : "28px",
+            width: variant === "explorer" ? 30 : "auto",
             borderRadius: "4px",
             backgroundColor: variant === "explorer" ? "transparent" : "#111138",
             padding: 0.5,
@@ -78,13 +94,13 @@ const SingleCoinChip = ({ src, title, link, variant }: any) => {
             fontSize: "0.6125rem",
 
             "&.MuiChip-root .MuiChip-avatar": {
-              width: variant === "explorer" ? 47 : 14,
-              height: 14,
+              width: variant === "explorer" ? 30 : 17,
+              height: variant === "explorer" ? 30 : 17,
               borderRadius: 0,
             },
           }}
         />
-      }
+      )}
     </Link>
   );
 };

@@ -57,7 +57,7 @@ import GithubImage from "../../../assets/singlepagecoin/github.png";
 import SourcecodeImage from "../../../assets/singlepagecoin/sourcecode.png";
 import WhitepaperImage from "../../../assets/singlepagecoin/Whitepaper.png";
 import DocsImage from "../../../assets/singlepagecoin/doc.png";
-import LinkImage from "../../../assets/singlepagecoin/link.png";
+import LinkImage from "../../../assets/singlepagecoin/globe.gif";
 
 import FacebookGraphImage from "../../../assets/singlepagecoin/graph/facebook.png";
 import DiscordGraphImage from "../../../assets/singlepagecoin/graph/discord.png";
@@ -1219,7 +1219,10 @@ const SingleCoinHeader = ({ coinData }: any) => {
               sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
             />
 
-            <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
+            <Stack
+              direction={{ xs: "column", sm: "column", md: "column" }}
+              spacing={2}
+            >
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
                 sx={{ alignItems: "center" }}
@@ -1246,30 +1249,30 @@ const SingleCoinHeader = ({ coinData }: any) => {
               </Stack>
               <Stack direction="row" spacing={0.3} alignItems="flex-end">
                 <Stack
-                  direction={{ xs: "column", sm: "column", md: "column" }}
+                  direction={{ xs: "column", sm: "column", md: "row" }}
                   alignItems={{
                     xs: "center",
                     sm: "center",
                     md: "center",
                     lg: "flex-start",
                   }}
-                  spacing={1}
-                  pt={1}
+                  maxWidth={124}
+                  flexWrap="wrap"
+                  spacing={0}
                 >
                   {coinData?.network &&
-                    coinData?.network
-                      ?.slice(0, 2)
-                      .map((item: any, index: number) => (
-                        <SingleCoinChip
-                          key={index}
-                          src={item?.logo}
-                          //title={item?.name}
-                          link={item?.url}
-                          variant="explorer"
-                        />
-                      ))}
+                    coinData?.network?.map((item: any, index: number) => (
+                      <SingleCoinChip
+                        key={index}
+                        src={item?.logo}
+                        //title={item?.name}
+                        link={item?.url}
+                        variant="explorer"
+                        shape="square"
+                      />
+                    ))}
                 </Stack>
-                {coinData?.network && coinData?.network?.length > 2 && (
+                {/* {coinData?.network && coinData?.network?.length > 2 && (
                   <Box pb={1}>
                     <ShowMoreMenu
                       showMoreAnchorEl={showMoreAnchorEl}
@@ -1279,7 +1282,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       variant="network"
                     />
                   </Box>
-                )}
+                )} */}
               </Stack>
             </Stack>
 

@@ -51,7 +51,7 @@ const ShowMoreMenu = ({ data, variant }: any) => {
               zIndex: 99,
               borderRadius: 3,
               maxWidth: 350,
-              minWidth: 170,
+              minWidth: 180,
             }}
           >
             <ArrowDropUpIcon
@@ -130,11 +130,11 @@ const ShowMoreMenu = ({ data, variant }: any) => {
                           <Avatar
                             alt={item?.name}
                             src={`${serverAPIUrl}public/uploads/network_icons/${item?.logo}`}
-                            sx={{ width: 45, height: 11, borderRadius: 0 }}
+                            sx={{ width: 16, height: 16, borderRadius: 0 }}
                           />{" "}
                           <span>
-                            {item?.name?.length > 14
-                              ? item?.name?.slice(0, 11) + "..."
+                            {item?.name?.length > 25
+                              ? item?.name?.slice(0, 25) + "..."
                               : item?.name}
                           </span>
                         </Stack>
@@ -175,8 +175,8 @@ const ShowMoreMenu = ({ data, variant }: any) => {
                             sx={{ width: 16, height: 16, borderRadius: 0 }}
                           />{" "}
                           <span>
-                            {item?.name?.length > 14
-                              ? item?.name?.slice(0, 14) + "..."
+                            {item?.name?.length > 25
+                              ? item?.name?.slice(0, 25) + "..."
                               : item?.name}
                           </span>
                         </Stack>
@@ -217,8 +217,8 @@ const ShowMoreMenu = ({ data, variant }: any) => {
                             sx={{ width: 16, height: 16, borderRadius: 0 }}
                           />{" "}
                           <span>
-                            {item?.name?.length > 14
-                              ? item?.name?.slice(0, 14) + "..."
+                            {item?.name?.length > 25
+                              ? item?.name?.slice(0, 25) + "..."
                               : item?.name}
                           </span>
                         </Stack>

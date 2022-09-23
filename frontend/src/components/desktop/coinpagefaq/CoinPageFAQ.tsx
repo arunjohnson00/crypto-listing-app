@@ -81,7 +81,7 @@ const CoinPageFAQ = () => {
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
-                What is {coinFAQ && coinFAQ[0]?.name} coin?
+                1. What is {coinFAQ && coinFAQ[0]?.name} coin?
               </Typography>
               <Typography
                 variant="body2"
@@ -96,7 +96,7 @@ const CoinPageFAQ = () => {
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
-                What is the price of {coinFAQ && coinFAQ[0]?.name} today?
+                2. What is the price of {coinFAQ && coinFAQ[0]?.name} today?
               </Typography>
               <Typography
                 variant="body2"
@@ -128,7 +128,7 @@ const CoinPageFAQ = () => {
                           .toLocaleString()
                     )
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    <span style={{ color: "#C51F15" }}>Not Available</span>
                   )}
                 </span>
                 .
@@ -140,7 +140,7 @@ const CoinPageFAQ = () => {
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
-                What is the Total supply of {coinFAQ && coinFAQ[0]?.name}?
+                3. What is the Total supply of {coinFAQ && coinFAQ[0]?.name}?
               </Typography>
               <Typography
                 variant="body2"
@@ -171,7 +171,7 @@ const CoinPageFAQ = () => {
                           .toLocaleString()
                     )
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    <span style={{ color: "#C51F15" }}>Not Available</span>
                   )}
                 </span>
                 .
@@ -182,7 +182,7 @@ const CoinPageFAQ = () => {
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
-                What is the Marketcap of {coinFAQ && coinFAQ[0]?.name}?
+                4. What is the Marketcap of {coinFAQ && coinFAQ[0]?.name}?
               </Typography>
               <Typography
                 variant="body2"
@@ -213,7 +213,7 @@ const CoinPageFAQ = () => {
                           .toLocaleString()
                     )
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    <span style={{ color: "#C51F15" }}>Not Available</span>
                   )}
                 </span>
                 .
@@ -225,7 +225,7 @@ const CoinPageFAQ = () => {
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
-                What is the Rating of {coinFAQ && coinFAQ[0]?.name}?
+                5. What is the Rating of {coinFAQ && coinFAQ[0]?.name}?
               </Typography>
               <Typography
                 variant="body2"
@@ -236,7 +236,7 @@ const CoinPageFAQ = () => {
                   {coinFAQ && coinFAQ[0]?.rating !== null ? (
                     coinFAQ && parseFloat(coinFAQ[0]?.rating).toFixed(1)
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    <span style={{ color: "#C51F15" }}>Not Available</span>
                   )}
                 </span>
                 .
@@ -256,7 +256,7 @@ const CoinPageFAQ = () => {
                       fontSize: "1.05rem",
                     }}
                   >
-                    How many Reviews got {coinFAQ && coinFAQ[0]?.name}?
+                    6. How many Reviews got {coinFAQ && coinFAQ[0]?.name}?
                   </Typography>
                   <Typography
                     variant="body2"
@@ -272,7 +272,7 @@ const CoinPageFAQ = () => {
                         coinFAQ &&
                         parseFloat(coinFAQ[0]?.review_count).toFixed(0)
                       ) : (
-                        <span style={{ color: "#7a7a7a" }}>--</span>
+                        <span style={{ color: "#C51F15" }}>Not Available</span>
                       )}
                     </span>{" "}
                     Reviews received.
@@ -285,7 +285,7 @@ const CoinPageFAQ = () => {
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
-                How do I buy {coinFAQ && coinFAQ[0]?.name}?
+                7. How do I buy {coinFAQ && coinFAQ[0]?.name}?
               </Typography>
               <Typography
                 variant="body2"
@@ -301,14 +301,15 @@ const CoinPageFAQ = () => {
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
-                What was the highest price for {coinFAQ && coinFAQ[0]?.name}?
+                8. What was the highest price for {coinFAQ && coinFAQ[0]?.name}?
               </Typography>
               <Typography
                 variant="body2"
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
-                {coinFAQ && coinFAQ[0]?.name} hit an all time high of $
+                {coinFAQ && coinFAQ[0]?.name} hit an all time high of
                 <span style={{ color: "#6d79ec", fontWeight: 700 }}>
+                  {" "}
                   {coinFAQ && coinFAQ[0]?.ath_value !== null ? (
                     coinFAQ &&
                     String(Math.trunc(parseFloat(coinFAQ[0]?.ath_value)))
@@ -332,7 +333,7 @@ const CoinPageFAQ = () => {
                           .toLocaleString()
                     )
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    <span style={{ color: "#C51F15" }}>Not Available</span>
                   )}
                 </span>{" "}
                 on{" "}
@@ -341,7 +342,7 @@ const CoinPageFAQ = () => {
                     coinFAQ &&
                     moment(new Date(coinFAQ[0]?.ath_date)).format("DD MMM YYYY")
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    <span style={{ color: "#C51F15" }}>Not Available</span>
                   )}
                 </span>{" "}
                 ({" "}
@@ -349,7 +350,7 @@ const CoinPageFAQ = () => {
                   {coinFAQ && coinFAQ[0]?.ath_date !== null ? (
                     coinFAQ && moment(new Date(coinFAQ[0]?.ath_date)).fromNow()
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    <span style={{ color: "#C51F15" }}>Not Available</span>
                   )}
                 </span>{" "}
                 ).
@@ -361,7 +362,7 @@ const CoinPageFAQ = () => {
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
-                What is {coinFAQ && coinFAQ[0]?.name} smart contract address?
+                9. What is {coinFAQ && coinFAQ[0]?.name} smart contract address?
               </Typography>
               <Typography
                 variant="body2"
@@ -373,7 +374,7 @@ const CoinPageFAQ = () => {
                   coinFAQ[0]?.contract_address?.contract_address !== null ? (
                     coinFAQ && coinFAQ[0]?.contract_address?.contract_address
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    <span style={{ color: "#C51F15" }}>Not Available</span>
                   )}
                 </span>{" "}
                 .
@@ -385,14 +386,26 @@ const CoinPageFAQ = () => {
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
-                What is {coinFAQ && coinFAQ[0]?.name} official website?
+                10. What is {coinFAQ && coinFAQ[0]?.name} official website?
               </Typography>
               <Typography
                 variant="body2"
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
                 The official website of {coinFAQ && coinFAQ[0]?.name} is
-                safemoon.net.
+                <Link href={coinFAQ && coinFAQ[0]?.url} target="_blank">
+                  <span
+                    style={{
+                      color: "#6d79ec",
+                      fontWeight: 700,
+                      fontSize: "1rem",
+                    }}
+                  >
+                    {" "}
+                    {coinFAQ && coinFAQ[0]?.url}
+                  </span>
+                  .{" "}
+                </Link>
               </Typography>
             </Stack>
 
@@ -401,7 +414,7 @@ const CoinPageFAQ = () => {
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
-                What is the {coinFAQ && coinFAQ[0]?.name} Market Cap today?
+                11. What is the {coinFAQ && coinFAQ[0]?.name} Market Cap today?
               </Typography>
               <Typography
                 variant="body2"
@@ -432,7 +445,7 @@ const CoinPageFAQ = () => {
                           .toLocaleString()
                     )
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    <span style={{ color: "#C51F15" }}>Not Available</span>
                   )}
                 </span>{" "}
                 today.
@@ -444,7 +457,7 @@ const CoinPageFAQ = () => {
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
-                What's the last 24h {coinFAQ && coinFAQ[0]?.name} trading
+                12. What's the last 24h {coinFAQ && coinFAQ[0]?.name} trading
                 volume?
               </Typography>
               <Typography
@@ -477,7 +490,7 @@ const CoinPageFAQ = () => {
                           .toLocaleString()
                     )
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    <span style={{ color: "#C51F15" }}>Not Available</span>
                   )}
                 </span>
                 , which is approximately 0.20% of its current market cap. That
@@ -509,15 +522,21 @@ const CoinPageFAQ = () => {
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
-                How many people are holding {coinFAQ && coinFAQ[0]?.name}?
+                13. How many people are holding {coinFAQ && coinFAQ[0]?.name}?
               </Typography>
               <Typography
                 variant="body2"
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
-                There are 688,793 holders of {coinFAQ && coinFAQ[0]?.name},
-                which includes 18 large holders (wallets with more than 634B
-                SFM).
+                There are{" "}
+                <span style={{ color: "#6d79ec", fontWeight: 700 }}>
+                  {coinFAQ && coinFAQ[0]?.total_holders !== null ? (
+                    coinFAQ && coinFAQ[0]?.total_holders?.toLocaleString()
+                  ) : (
+                    <span style={{ color: "#C51F15" }}>Not Available</span>
+                  )}
+                </span>{" "}
+                holders of {coinFAQ && coinFAQ[0]?.name}.
               </Typography>
             </Stack>
 
@@ -526,8 +545,8 @@ const CoinPageFAQ = () => {
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
-                How many followers does {coinFAQ && coinFAQ[0]?.name} have on
-                Twitter?
+                14. How many followers does {coinFAQ && coinFAQ[0]?.name} have
+                on Twitter?
               </Typography>
               <Typography
                 variant="body2"
@@ -536,9 +555,10 @@ const CoinPageFAQ = () => {
                 {" "}
                 <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ && coinFAQ[0]?.twitter?.follower_count !== null ? (
-                    coinFAQ && coinFAQ[0]?.twitter?.follower_count
+                    coinFAQ &&
+                    coinFAQ[0]?.twitter?.follower_count?.toLocaleString()
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    <span style={{ color: "#C51F15" }}>Not Available</span>
                   )}
                 </span>{" "}
                 people are following the {coinFAQ && coinFAQ[0]?.name} Twitter
@@ -563,8 +583,8 @@ const CoinPageFAQ = () => {
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
-                How many members does the {coinFAQ && coinFAQ[0]?.name} Telegram
-                channel have?
+                15. How many members does the {coinFAQ && coinFAQ[0]?.name}{" "}
+                Telegram channel have?
               </Typography>
               <Typography
                 variant="body2"
@@ -573,9 +593,10 @@ const CoinPageFAQ = () => {
                 {coinFAQ && coinFAQ[0]?.name} has{" "}
                 <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ && coinFAQ[0]?.telegram?.follower_count !== null ? (
-                    coinFAQ && coinFAQ[0]?.telegram?.follower_count
+                    coinFAQ &&
+                    coinFAQ[0]?.telegram?.follower_count?.toLocaleString()
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    <span style={{ color: "#C51F15" }}>Not Available</span>
                   )}
                 </span>{" "}
                 members on the{" "}
@@ -599,8 +620,8 @@ const CoinPageFAQ = () => {
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
-                How many members does the {coinFAQ && coinFAQ[0]?.name} Discord
-                server have?
+                16. How many members does the {coinFAQ && coinFAQ[0]?.name}{" "}
+                Discord server have?
               </Typography>
               <Typography
                 variant="body2"
@@ -609,9 +630,10 @@ const CoinPageFAQ = () => {
                 There are{" "}
                 <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ && coinFAQ[0]?.discord?.follower_count !== null ? (
-                    coinFAQ && coinFAQ[0]?.discord?.follower_count
+                    coinFAQ &&
+                    coinFAQ[0]?.discord?.follower_count?.toLocaleString()
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    <span style={{ color: "#C51F15" }}>Not Available</span>
                   )}
                 </span>{" "}
                 members on {coinFAQ && coinFAQ[0]?.name}{" "}
@@ -635,8 +657,8 @@ const CoinPageFAQ = () => {
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
-                How many subscribers are there on {coinFAQ && coinFAQ[0]?.name}{" "}
-                Reddit?
+                17. How many subscribers are there on{" "}
+                {coinFAQ && coinFAQ[0]?.name} Reddit?
               </Typography>
               <Typography
                 variant="body2"
@@ -645,9 +667,10 @@ const CoinPageFAQ = () => {
                 {coinFAQ && coinFAQ[0]?.name} has{" "}
                 <span style={{ color: "#6d79ec", fontWeight: 700 }}>
                   {coinFAQ && coinFAQ[0]?.reddit?.follower_count !== null ? (
-                    coinFAQ && coinFAQ[0]?.reddit?.follower_count
+                    coinFAQ &&
+                    coinFAQ[0]?.reddit?.follower_count?.toLocaleString()
                   ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
+                    <span style={{ color: "#C51F15" }}>Not Available</span>
                   )}
                 </span>{" "}
                 subscribers on{" "}
@@ -671,7 +694,7 @@ const CoinPageFAQ = () => {
                 variant="h6"
                 sx={{ color: "#19FFB0", fontWeight: 400, fontSize: "1.05rem" }}
               >
-                Where i can read the Latest News about{" "}
+                18. Where i can read the Latest News about{" "}
                 {coinFAQ && coinFAQ[0]?.name}?
               </Typography>
               <Typography

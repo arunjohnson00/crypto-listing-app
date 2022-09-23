@@ -13,15 +13,23 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Iframe from "react-iframe";
-import { coinAboutBlockRequest } from "../../../store/action";
+import moment from "moment";
+import {
+  coinAboutBlockRequest,
+  coinPriceGraphBlockRequest,
+} from "../../../store/action";
+import CoinPageChart from "../coinpagechart/CoinPageChart";
 
 const CoinPageAbout = () => {
   const dispatch: any = useDispatch();
   const location = useLocation();
+  const [resStatus, setResStatus] = useState<any>();
   const coinAboutBlock = useSelector((data: any) => {
     return data?.coinReducer?.coin_about_block?.data;
   });
-
+  const coinPriceWidget = useSelector((data: any) => {
+    return data?.coinReducer?.coin_price_graph_block?.data;
+  });
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
@@ -35,7 +43,20 @@ const CoinPageAbout = () => {
     );
   }, []);
 
-  console.log(coinAboutBlock && coinAboutBlock[0]?.first_pragraph[0]?.price);
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {
+      setResStatus(err?.error?.message?.response?.data?.response);
+    };
+
+    dispatch(
+      coinPriceGraphBlockRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  }, []);
 
   return (
     <Grid container>
@@ -67,7 +88,7 @@ const CoinPageAbout = () => {
                 {coinAboutBlock && coinAboutBlock[0]?.name}
               </span>{" "}
               {`price today is `}
-              <span style={{ color: "#037bfd" }}>
+              <span style={{ color: "#19ffb0" }}>
                 {coinAboutBlock &&
                 coinAboutBlock[0]?.first_pragraph[0]?.price !== null ? (
                   String(
@@ -100,13 +121,15 @@ const CoinPageAbout = () => {
               </span>
               {` with a 24-hour
               trading volume of`}{" "}
-              <span style={{ color: "#037bfd" }}>
+              <span style={{ color: "#19ffb0" }}>
+                {"$"}
                 {coinAboutBlock &&
                 coinAboutBlock[0]?.first_pragraph[0]?.volume_24h !== null
                   ? coinAboutBlock &&
                     coinAboutBlock[0]?.first_pragraph[0]?.volume_24h
                   : "NA"}
-              </span>{" "}
+              </span>
+              {".  "}
               <span style={{ fontWeight: 700 }}>
                 {" "}
                 {coinAboutBlock && coinAboutBlock[0]?.name}
@@ -191,9 +214,12 @@ const CoinPageAbout = () => {
                     : "up "}
                 </span>
               }
-              {` in the Last 1 Hour . The current Coinxhigh
+              {` in the Last 1 Hour .`}
+              <br />
+              <br />
+              {` The current Coinxhigh
               ranking is `}
-              <span style={{ color: "#037bfd" }}>
+              <span style={{ color: "#19ffb0" }}>
                 {coinAboutBlock &&
                 coinAboutBlock[0]?.first_pragraph[0]?.rank !== null
                   ? coinAboutBlock &&
@@ -201,7 +227,7 @@ const CoinPageAbout = () => {
                   : "NA"}
               </span>
               {` , with a live market cap of `}
-              <span style={{ color: "#037bfd" }}>
+              <span style={{ color: "#19ffb0" }}>
                 {coinAboutBlock &&
                 coinAboutBlock[0]?.first_pragraph[0]?.market_cap !== null
                   ? coinAboutBlock &&
@@ -215,51 +241,45 @@ const CoinPageAbout = () => {
               </span>
               {`. It has a
               circulating supply of `}
-              <span style={{ color: "#037bfd" }}>
+              <span style={{ color: "#19ffb0" }}>
                 {coinAboutBlock &&
                 coinAboutBlock[0]?.first_pragraph[0]?.circulating_supply !==
                   null
                   ? coinAboutBlock &&
-                    "$" +
-                      Math.floor(
-                        Math.abs(
-                          coinAboutBlock[0]?.first_pragraph[0]
-                            ?.circulating_supply
-                        )
-                      ).toLocaleString()
+                    Math.floor(
+                      Math.abs(
+                        coinAboutBlock[0]?.first_pragraph[0]?.circulating_supply
+                      )
+                    ).toLocaleString()
                   : "NA"}
-              </span>
-              {` .`}{" "}
+              </span>{" "}
               <span style={{ fontWeight: 700 }}>
                 {" "}
                 {coinAboutBlock && coinAboutBlock[0]?.name}
               </span>{" "}
-              {` coins and a
+              {`'s  and a
               max. supply of `}
-              <span style={{ color: "#037bfd" }}>
+              <span style={{ color: "#19ffb0" }}>
                 {coinAboutBlock &&
                 coinAboutBlock[0]?.first_pragraph[0]?.max_supply !== null
                   ? coinAboutBlock &&
-                    "$" +
-                      Math.floor(
-                        Math.abs(
-                          coinAboutBlock[0]?.first_pragraph[0]?.max_supply
-                        )
-                      ).toLocaleString()
+                    Math.floor(
+                      Math.abs(coinAboutBlock[0]?.first_pragraph[0]?.max_supply)
+                    ).toLocaleString()
                   : "NA"}
               </span>{" "}
               <span style={{ fontWeight: 700 }}>
                 {" "}
                 {coinAboutBlock && coinAboutBlock[0]?.name}
               </span>{" "}
-              {`coins. The current
+              {`'s. The current
               rating of `}{" "}
               <span style={{ fontWeight: 700 }}>
                 {" "}
                 {coinAboutBlock && coinAboutBlock[0]?.name}
               </span>{" "}
               {`on Coinxhigh is `}
-              <span style={{ color: "#037bfd" }}>
+              <span style={{ color: "#19ffb0" }}>
                 {coinAboutBlock &&
                 coinAboutBlock[0]?.first_pragraph[0]?.rating !== null
                   ? coinAboutBlock &&
@@ -272,7 +292,24 @@ const CoinPageAbout = () => {
                 {coinAboutBlock && coinAboutBlock[0]?.name}
               </span>{" "}
               {`hit an all time
-              high of $0.003382723655 on Jan 05, 2022 (212 Days ago). `}
+              high of  `}
+              <span style={{ color: "#19ffb0" }}>
+                {"$"}
+                {coinAboutBlock && coinAboutBlock[0]?.all_time_high}
+              </span>
+              {` (last 15 days) on `}
+              <span style={{ color: "#19ffb0" }}>
+                {coinAboutBlock &&
+                  moment(
+                    new Date(coinAboutBlock[0]?.all_time_high_date)
+                  ).format("DD MMM YYYY")}
+              </span>
+              {" ("}{" "}
+              {coinAboutBlock &&
+                moment(
+                  new Date(coinAboutBlock[0]?.all_time_high_date)
+                ).fromNow()}
+              {")"}
             </Typography>
 
             <Typography sx={{ color: "#FFFFF5", fontSize: ".85rem" }}>
@@ -283,6 +320,7 @@ const CoinPageAbout = () => {
                 }`}
                 target="_blank"
                 rel="noreferrer"
+                style={{ color: "#5b86fb" }}
               >
                 {" "}
                 Latest news about{" "}
@@ -319,16 +357,30 @@ const CoinPageAbout = () => {
         />
 
         <Grid xs={12} pt={4}>
-          <Iframe
-            url="https://coinbrain.com/embed/0x55d398326f99059ff775485246999027b3197955?theme=dark&chart=1&trades=1"
-            width="100%"
-            height="1190"
-            id="myId"
-            className="myClassname"
-            display="block"
-            position="relative"
-            frameBorder={0}
-          />
+          {coinAboutBlock && parseInt(coinAboutBlock[0]?.address) !== null ? (
+            <Grid xs={12} pt={4}>
+              <Iframe
+                url={`https://coinbrain.com/embed/bnb-${
+                  coinAboutBlock && coinAboutBlock[0]?.address
+                }?theme=custom&accent=f5f5f5&padding=28&background=000516&chart=1&trades=1`}
+                width="100%"
+                height="1040"
+                id="myId"
+                className="myClassname"
+                display="block"
+                position="relative"
+                frameBorder={0}
+              />
+            </Grid>
+          ) : (
+            <Grid xs={12} pt={4}>
+              {coinAboutBlock &&
+                coinAboutBlock?.price?.length !== 0 &&
+                resStatus !== false && (
+                  <CoinPageChart data={coinPriceWidget && coinPriceWidget} />
+                )}
+            </Grid>
+          )}
         </Grid>
         <Grid xs={12} pt={4}></Grid>
       </Grid>
