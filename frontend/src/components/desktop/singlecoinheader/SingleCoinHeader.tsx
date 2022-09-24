@@ -507,6 +507,12 @@ const SingleCoinHeader = ({ coinData }: any) => {
                         keepMounted
                         onClose={captchaOnClose}
                         aria-describedby="alert-dialog-slide-description"
+                        PaperProps={{
+                          style: {
+                            backgroundColor: "transparent",
+                            boxShadow: "none",
+                          },
+                        }}
                       >
                         <DialogContent
                           sx={{
@@ -514,10 +520,6 @@ const SingleCoinHeader = ({ coinData }: any) => {
                               padding: 0,
                               borderRadius: 3,
                               background: "none",
-                            },
-                            "&.MuiDialog-paper": {
-                              backgroundColor: "none",
-                              borderRadius: 3,
                             },
                           }}
                         >

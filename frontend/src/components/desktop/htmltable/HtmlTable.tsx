@@ -483,13 +483,15 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                             keepMounted
                             onClose={captchaOnClose}
                             aria-describedby="alert-dialog-slide-description"
+                            PaperProps={{
+                              style: {
+                                backgroundColor: "transparent",
+                                boxShadow: "none",
+                              },
+                            }}
                             sx={{
                               backgroundColor: "none",
                               borderRadius: 3,
-                              "&.MuiPaper-root-MuiDialog-paper": {
-                                backgroundColor: "none",
-                                borderRadius: 3,
-                              },
                             }}
                           >
                             <DialogContent

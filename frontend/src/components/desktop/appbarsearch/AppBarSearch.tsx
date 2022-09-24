@@ -1,4 +1,4 @@
-import { useEffect, useState, forwardRef } from "react";
+import { useEffect, useState, forwardRef, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Box from "@mui/material/Box";
 import InputUnstyled, { InputUnstyledProps } from "@mui/base/InputUnstyled";
@@ -93,6 +93,7 @@ const responsiveRecentSearch = {
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const AppBarSearch = () => {
   const dispatch: any = useDispatch();
+  const selectInputRef = useRef<any>("");
   const [values, setValues] = useState<any>();
   const [expand, setExpand] = useState<any>({
     coin: false,
@@ -116,7 +117,6 @@ const AppBarSearch = () => {
     setValues(event.target.value);
   };
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
 
@@ -176,7 +176,7 @@ const AppBarSearch = () => {
         autoFocus={false}
         placeholder="Search"
         onClick={handleClick}
-        //disabled
+        disabled={open}
         readOnly
         style={{ height: 34, color: "#FFFFFF", cursor: "text" }}
         startAdornment={
@@ -218,10 +218,11 @@ const AppBarSearch = () => {
           sx={{ borderRadius: 10 }}
         >
           <CustomInputPopup
-            id="outlined-adornment-password"
+            id="search"
             type="text"
             value={values}
             autoFocus={true}
+            ref={selectInputRef}
             placeholder="Search coin, pair, contract address or exchange"
             onChange={(e: any) => handleChange(e)}
             style={{
@@ -253,7 +254,7 @@ const AppBarSearch = () => {
               </InputAdornment>
             }
           />
-          <Stack direction="column" spacing={6}>
+          <Stack direction="column" spacing={2}>
             {searchResult &&
             (searchResult?.COINS?.length !== 0 ||
               searchResult?.NFT?.length !== 0) &&
@@ -637,8 +638,8 @@ const AppBarSearch = () => {
                     </Typography>
                     <Typography
                       sx={{
-                        fontSize: ".837rem",
-                        fontWeight: 500,
+                        fontSize: ".8rem",
+                        fontWeight: 400,
                         //wordWrap: "wrap",
                         wordBreak: "break-word",
                       }}

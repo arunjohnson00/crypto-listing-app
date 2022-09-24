@@ -535,6 +535,12 @@ const ListingTable = ({
                               keepMounted
                               onClose={captchaOnClose}
                               aria-describedby="alert-dialog-slide-description"
+                              PaperProps={{
+                                style: {
+                                  backgroundColor: "transparent",
+                                  boxShadow: "none",
+                                },
+                              }}
                             >
                               <DialogContent
                                 sx={{
