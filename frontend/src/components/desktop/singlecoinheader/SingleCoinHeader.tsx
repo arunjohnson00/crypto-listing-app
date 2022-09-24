@@ -704,13 +704,18 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       <Stack direction="row" spacing={0.8}>
                         {coinMarketLists &&
                           coinMarketLists?.map((item: any, index: number) => (
-                            <Link to={item?.url} target="_blank" key={index}>
+                            <a
+                              href={item?.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              key={index}
+                            >
                               <Avatar
                                 alt={item?.market}
                                 src={`${serverAPIUrl}public/uploads/exchange_icons/${item?.thumb_icon}`}
                                 sx={{ width: 22, height: 22 }}
                               />
-                            </Link>
+                            </a>
                           ))}
                       </Stack>
                     </Stack>
@@ -724,7 +729,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               direction={{ xs: "column", sm: "column", md: "column" }}
               spacing={3}
             >
-              <Stack
+              {/* <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
                 spacing={0.5}
                 sx={{
@@ -744,7 +749,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   title="Earn Crypto"
                   color="#E13DEE"
                 />
-              </Stack>
+              </Stack> */}
 
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
