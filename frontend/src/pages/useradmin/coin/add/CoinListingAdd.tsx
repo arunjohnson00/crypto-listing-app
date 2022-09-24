@@ -1769,7 +1769,7 @@ const CoinListingAdd = () => {
               pt={4}
             >
               <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
-                <Grid
+                {/* <Grid
                   item
                   xl={12}
                   lg={12}
@@ -1872,7 +1872,7 @@ const CoinListingAdd = () => {
                       />
                     </div>
                   );
-                })}
+                })} */}
                 <Grid
                   item
                   xl={12}
