@@ -158,9 +158,9 @@ const SingleCoinPage = () => {
           <Grid
             xs={12}
             sm={12}
-            md={6}
-            lg={6}
-            xl={6}
+            md={12}
+            lg={12}
+            xl={12}
             sx={{
               alignItems: "center",
             }}
@@ -176,7 +176,7 @@ const SingleCoinPage = () => {
               path="Coin"
             />
           </Grid>
-          <Grid
+          {/* <Grid
             xs={12}
             sm={12}
             md={6}
@@ -194,7 +194,7 @@ const SingleCoinPage = () => {
               alt="green iguana"
               sx={{ objectFit: "unset" }}
             />
-          </Grid>
+          </Grid> */}
         </Grid>
 
         <Grid

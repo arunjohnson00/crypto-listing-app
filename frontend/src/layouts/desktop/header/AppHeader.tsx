@@ -6,7 +6,7 @@ import AppBarSearch from "../../../components/desktop/appbarsearch/AppBarSearch"
 import ConnectWalletBtn from "../../../components/desktop/button/connectwalletbtn/ConnectWalletBtn";
 import AddAsset from "../../../components/desktop/button/addasset/AddAsset";
 import LoginHeaderBtn from "../../../components/desktop/button/loginheader/LoginHeaderBtn";
-import { Stack, Box, Grid } from "@mui/material";
+import { Stack, Box, Grid, CardMedia } from "@mui/material";
 import AppBarNavBtn from "../../../components/desktop/button/navbutton/AppBarNavBtn";
 import { logoutHandler } from "../../../utils/logoutHandler";
 import { coinMenu, nftMenu, airdropsMenu, eventsMenu } from "./helper";
@@ -29,7 +29,19 @@ const AppHeader = ({ windowInnerWidth }: any) => {
 
   return (
     <Grid xs={12}>
-      <Box sx={{ flexGrow: 1, backgroundColor: "transparent" }} mt={2}>
+      <Stack direction="row" alignItems="center" justifyContent="center">
+        <Box py={2} width="70%">
+          <CardMedia
+            component="img"
+            height="90"
+            image="https://iili.io/UtY5Kv.jpg"
+            alt="green iguana"
+            sx={{ objectFit: "unset" }}
+          />
+        </Box>
+      </Stack>
+
+      <Box sx={{ flexGrow: 1, backgroundColor: "transparent" }} mt={0}>
         <AppBar
           position="static"
           sx={{

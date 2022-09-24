@@ -279,7 +279,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           <LatestNewsScroll />
         </Grid>
 
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <Stack
             direction={{ xs: "column", sm: "column", md: "row" }}
             spacing={2}
@@ -303,10 +303,10 @@ const HomePage = ({ windowInnerWidth }: any) => {
               />
             </Grid>
           </Stack>
-        </Grid>
+        </Grid> */}
 
         <Grid item xs={12}>
-          <Stack direction="row" spacing={3} alignItems="center" pt={1}>
+          <Stack direction="row" spacing={3} alignItems="center" pt={0}>
             <Grid item xs="auto">
               <Typography
                 sx={{ color: "#FFFFFF", fontWeight: 500, fontSize: "1.7rem" }}
@@ -505,6 +505,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
                         windowInnerWidth >= 1200 &&
                         "rotate(180deg)"
                       }`,
+                      lineHeight: 2,
                     }}
                   >
                     Featured Coins

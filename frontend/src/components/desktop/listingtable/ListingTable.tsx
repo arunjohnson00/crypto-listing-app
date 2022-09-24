@@ -21,6 +21,7 @@ import {
   Button,
   Dialog,
   DialogContent,
+  CardMedia,
 } from "@mui/material";
 import VoteBtn from "../button/votebtn/VoteBtn";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -278,7 +279,7 @@ const ListingTable = ({
                         <Avatar
                           alt={data?.name}
                           src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
-                          sx={{ width: 41, height: 11, borderRadius: 0 }}
+                          sx={{ width: 25, height: 25, borderRadius: 0 }}
                         />
                       ) : (
                         <Typography variant="caption">--</Typography>
@@ -542,17 +543,77 @@ const ListingTable = ({
                                   },
                                 }}
                               >
-                                <ReCAPTCHA
-                                  sitekey="6LeV-IQhAAAAAMwIIrqVh_eqFPl-8IFn1QQWWrEU"
-                                  onChange={() =>
-                                    coinVoteHandler(data && data?.slug)
-                                  }
-                                  theme="dark"
-                                  ref={recaptchaRef}
-                                  onExpired={() => {
-                                    // here
+                                <Box
+                                  p={4}
+                                  sx={{
+                                    width: 500,
+                                    height: "auto",
+                                    backgroundColor: "#000000",
+                                    border: "2px solid #121528",
+                                    borderRadius: 3,
                                   }}
-                                />
+                                >
+                                  <Stack
+                                    direction="column"
+                                    spacing={3}
+                                    alignItems="center"
+                                    justifyContent="center"
+                                  >
+                                    <Typography
+                                      variant="body2"
+                                      sx={{
+                                        color: "#FFFFFF",
+                                        fontWeight: 400,
+                                        fontSize: "1rem",
+                                      }}
+                                    >
+                                      Vote for{" "}
+                                      <span
+                                        style={{
+                                          color: "#1FD47E",
+                                          fontWeight: 500,
+                                        }}
+                                      >
+                                        {data && data?.name}
+                                      </span>{" "}
+                                      & prove that you are not a robot
+                                    </Typography>
+                                    <ReCAPTCHA
+                                      sitekey="6LeV-IQhAAAAAMwIIrqVh_eqFPl-8IFn1QQWWrEU"
+                                      onChange={() =>
+                                        coinVoteHandler(data && data?.slug)
+                                      }
+                                      theme="dark"
+                                      ref={recaptchaRef}
+                                      onExpired={() => {
+                                        // here
+                                      }}
+                                    />
+
+                                    <CardMedia
+                                      component="img"
+                                      height="auto"
+                                      image="https://coindcx.com/blog/wp-content/uploads/2022/02/image-3-1000x600.png"
+                                      alt="green iguana"
+                                      sx={{
+                                        objectFit: "unset",
+                                        borderRadius: 0,
+                                      }}
+                                    />
+
+                                    <Button
+                                      variant="contained"
+                                      sx={{
+                                        borderRadius: 10,
+                                        backgroundColor: "#00B6FC",
+                                        textTransform: "none",
+                                      }}
+                                      onClick={captchaOnClose}
+                                    >
+                                      Close this window
+                                    </Button>
+                                  </Stack>
+                                </Box>
                               </DialogContent>
                             </Dialog>
                           ) : vote.initial === true ? (

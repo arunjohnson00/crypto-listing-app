@@ -15,7 +15,10 @@ import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
-import { coinReviewSubmitRequest } from "../../../store/action";
+import {
+  coinRatingBlockRequest,
+  coinReviewSubmitRequest,
+} from "../../../store/action";
 import { useLocation } from "react-router-dom";
 
 const WiriteReview = ({ openWriteReview, handleClose }: any) => {
@@ -45,6 +48,7 @@ const WiriteReview = ({ openWriteReview, handleClose }: any) => {
           draggable: true,
           progress: undefined,
         });
+        reviewLoader();
       }, 2000);
       handleClose();
     };
@@ -61,6 +65,19 @@ const WiriteReview = ({ openWriteReview, handleClose }: any) => {
     };
 
     dispatch(coinReviewSubmitRequest(formData, successHandler, errorHandler));
+  };
+
+  const reviewLoader = () => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(
+      coinRatingBlockRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
   };
 
   return (

@@ -40,7 +40,7 @@ const CryptoEventsCardSlider = ({ data, variant }: any) => {
           py={1.5}
           mx={1}
         >
-          <Stack direction="row" spacing={0.8} sx={{ alignItems: "center" }}>
+          <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
             <Avatar
               sx={{ width: 50, height: 50 }}
               variant="square"

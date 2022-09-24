@@ -1924,17 +1924,17 @@ const CoinPageOverview = () => {
         pl={{ md: 4 }}
         mt={{ xs: 2, sm: 2, md: 0 }}
       >
-        <CardMedia
+        {/* <CardMedia
           component="img"
           height="80"
           image="https://iili.io/UtY5Kv.jpg"
           alt="green iguana"
           sx={{ objectFit: "unset" }}
-        />
+        /> */}
 
         {coinDetailOverview &&
         parseInt(coinDetailOverview[0]?.show_widget) === 1 ? (
-          <Grid xs={12} pt={4}>
+          <Grid xs={12} pt={0}>
             <Iframe
               url={`https://coinbrain.com/embed/bnb-${
                 coinDetailOverview && filteredBNB[0]?.address
@@ -1949,7 +1949,7 @@ const CoinPageOverview = () => {
             />
           </Grid>
         ) : (
-          <Grid xs={12} pt={4}>
+          <Grid xs={12} pt={0}>
             {coinPriceWidget &&
               coinPriceWidget?.price?.length !== 0 &&
               resStatus !== false && (

@@ -13,6 +13,7 @@ import {
   Divider,
   Dialog,
   DialogContent,
+  CardMedia,
 } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -110,10 +111,10 @@ const SingleCoinHeader = ({ coinData }: any) => {
     setOpenCaptcha(true);
   };
 
-  // const captchaOnClose = () => {
-  //   setOpenCaptcha(false);
-  //   setVote({ ...vote, initial: false, completed: false, captcha: false });
-  // };
+  const captchaOnClose = () => {
+    setOpenCaptcha(false);
+    setVote({ ...vote, initial: false, completed: false, captcha: false });
+  };
 
   const coinVoteHandler = () => {
     const successHandler = (res: any) => {
@@ -500,22 +501,91 @@ const SingleCoinHeader = ({ coinData }: any) => {
                         Vote
                       </Button>
                     ) : vote.captcha === true ? (
-                      // <Dialog
-                      //   open={openCaptcha}
-                      //   // TransitionComponent={Transition}
-                      //   keepMounted
-                      //   onClose={captchaOnClose}
-                      //   aria-describedby="alert-dialog-slide-description"
-                      // >
-                      //   <DialogContent>
-                      <ReCAPTCHA
-                        sitekey="6LeV-IQhAAAAAMwIIrqVh_eqFPl-8IFn1QQWWrEU"
-                        onChange={coinVoteHandler}
-                        theme="dark"
-                      />
-                    ) : //   </DialogContent>
-                    // </Dialog>
-                    vote.initial === true ? (
+                      <Dialog
+                        open={openCaptcha}
+                        // TransitionComponent={Transition}
+                        keepMounted
+                        onClose={captchaOnClose}
+                        aria-describedby="alert-dialog-slide-description"
+                      >
+                        <DialogContent
+                          sx={{
+                            "&.MuiDialogContent-root": {
+                              padding: 0,
+                              borderRadius: 3,
+                              background: "none",
+                            },
+                            "&.MuiDialog-paper": {
+                              backgroundColor: "none",
+                              borderRadius: 3,
+                            },
+                          }}
+                        >
+                          <Box
+                            p={4}
+                            sx={{
+                              width: 500,
+                              height: "auto",
+                              backgroundColor: "#000000",
+                              border: "2px solid #121528",
+                              borderRadius: 3,
+                            }}
+                          >
+                            <Stack
+                              direction="column"
+                              spacing={3}
+                              alignItems="center"
+                              justifyContent="center"
+                            >
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  color: "#FFFFFF",
+                                  fontWeight: 400,
+                                  fontSize: "1rem",
+                                }}
+                              >
+                                Vote for{" "}
+                                <span
+                                  style={{
+                                    color: "#1FD47E",
+                                    fontWeight: 500,
+                                  }}
+                                >
+                                  {coinData && coinData?.name}
+                                </span>{" "}
+                                & prove that you are not a robot
+                              </Typography>
+                              <ReCAPTCHA
+                                sitekey="6LeV-IQhAAAAAMwIIrqVh_eqFPl-8IFn1QQWWrEU"
+                                onChange={coinVoteHandler}
+                                theme="dark"
+                              />
+
+                              <CardMedia
+                                component="img"
+                                height="auto"
+                                image="https://coindcx.com/blog/wp-content/uploads/2022/02/image-3-1000x600.png"
+                                alt="green iguana"
+                                sx={{ objectFit: "unset", borderRadius: 0 }}
+                              />
+
+                              <Button
+                                variant="contained"
+                                sx={{
+                                  borderRadius: 10,
+                                  backgroundColor: "#00B6FC",
+                                  textTransform: "none",
+                                }}
+                                onClick={captchaOnClose}
+                              >
+                                Close this window
+                              </Button>
+                            </Stack>
+                          </Box>
+                        </DialogContent>
+                      </Dialog>
+                    ) : vote.initial === true ? (
                       <LoadingButton
                         loading
                         variant="outlined"
