@@ -79,7 +79,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
   const location: any = useLocation();
   const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
   const coinSocialGraph = useSelector((data: any) => {
-    return data?.coinReducer?.coin_social_graph?.data;
+    return data?.coinReducer?.coin_social_graph;
   });
 
   const coinMarketLists = useSelector((data: any) => {
@@ -1043,28 +1043,28 @@ const SingleCoinHeader = ({ coinData }: any) => {
             </Stack> */}
 
             {coinSocialGraph &&
-              coinSocialGraph &&
-              coinSocialGraph[0]?.twitter !== undefined &&
-              coinSocialGraph[0]?.twitter.length > 0 && (
+              coinSocialGraph?.response === true &&
+              coinSocialGraph?.data[0]?.twitter !== undefined &&
+              coinSocialGraph?.data[0]?.twitter.length > 0 && (
                 <SocialCounterWithGraphCard
                   title={`${
                     coinSocialGraph &&
-                    coinSocialGraph[0]?.twitter[0]?.social_platform
+                    coinSocialGraph?.data[0]?.twitter[0]?.social_platform
                   } Followers`}
                   coinData={
                     coinSocialGraph &&
-                    coinSocialGraph[0]?.twitter[0]?.followers
+                    coinSocialGraph?.data[0]?.twitter[0]?.followers
                       ?.split(",")
                       .reverse()
                   }
                   // icon={
-                  //   coinSocialGraph && coinSocialGraph[0]?.twitter[0]?.social_icon
+                  //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
                   // }
 
                   icon={TwitterGraphImage}
                   url={
                     coinSocialGraph &&
-                    coinSocialGraph[0]?.twitter[0]?.social_url
+                    coinSocialGraph?.data[0]?.twitter[0]?.social_url
                   }
                   endColor="#43baff"
                   startColor="#00e8fd"
@@ -1072,27 +1072,28 @@ const SingleCoinHeader = ({ coinData }: any) => {
               )}
 
             {coinSocialGraph &&
-              coinSocialGraph[0]?.telegram !== undefined &&
-              coinSocialGraph[0]?.telegram?.length > 0 && (
+              coinSocialGraph?.response === true &&
+              coinSocialGraph?.data[0]?.telegram !== undefined &&
+              coinSocialGraph?.data[0]?.telegram?.length > 0 && (
                 <SocialCounterWithGraphCard
                   title={`${
                     coinSocialGraph &&
-                    coinSocialGraph[0]?.telegram[0]?.social_platform
+                    coinSocialGraph?.data[0]?.telegram[0]?.social_platform
                   } Followers`}
                   coinData={
                     coinSocialGraph &&
-                    coinSocialGraph[0]?.telegram[0]?.followers
+                    coinSocialGraph?.data[0]?.telegram[0]?.followers
                       ?.split(",")
                       .reverse()
                   }
                   // icon={
                   //   coinSocialGraph &&
-                  //   coinSocialGraph[0]?.telegram[0]?.social_icon
+                  //   coinSocialGraph?.data[0]?.telegram[0]?.social_icon
                   // }
                   icon={TelegramGraphImage}
                   url={
                     coinSocialGraph &&
-                    coinSocialGraph[0]?.telegram[0]?.social_url
+                    coinSocialGraph?.data[0]?.telegram[0]?.social_url
                   }
                   endColor="#2e67f6"
                   startColor="#13b0fc"
@@ -1100,26 +1101,28 @@ const SingleCoinHeader = ({ coinData }: any) => {
               )}
 
             {coinSocialGraph &&
-              coinSocialGraph[0]?.reddit !== undefined &&
-              coinSocialGraph[0]?.reddit?.length > 0 && (
+              coinSocialGraph?.response === true &&
+              coinSocialGraph?.data[0]?.reddit !== undefined &&
+              coinSocialGraph?.data[0]?.reddit?.length > 0 && (
                 <SocialCounterWithGraphCard
                   title={`${
                     coinSocialGraph &&
-                    coinSocialGraph[0]?.reddit[0]?.social_platform
+                    coinSocialGraph?.data[0]?.reddit[0]?.social_platform
                   } Followers`}
                   coinData={
                     coinSocialGraph &&
-                    coinSocialGraph[0]?.reddit[0]?.followers
+                    coinSocialGraph?.data[0]?.reddit[0]?.followers
                       ?.split(",")
                       .reverse()
                   }
                   // icon={
-                  //   coinSocialGraph && coinSocialGraph[0]?.reddit[0]?.social_icon
+                  //   coinSocialGraph && coinSocialGraph?.data[0]?.reddit[0]?.social_icon
                   // }
 
                   icon={RedditGraphImage}
                   url={
-                    coinSocialGraph && coinSocialGraph[0]?.reddit[0]?.social_url
+                    coinSocialGraph &&
+                    coinSocialGraph?.data[0]?.reddit[0]?.social_url
                   }
                   endColor="#ff6e4c"
                   startColor="#ff3708"
@@ -1127,27 +1130,28 @@ const SingleCoinHeader = ({ coinData }: any) => {
               )}
 
             {coinSocialGraph &&
-              coinSocialGraph[0]?.facebook !== undefined &&
-              coinSocialGraph[0]?.facebook.length > 0 && (
+              coinSocialGraph?.response === true &&
+              coinSocialGraph?.data[0]?.facebook !== undefined &&
+              coinSocialGraph?.data[0]?.facebook.length > 0 && (
                 <SocialCounterWithGraphCard
                   title={`${
                     coinSocialGraph &&
-                    coinSocialGraph[0]?.facebook[0]?.social_platform
+                    coinSocialGraph?.data[0]?.facebook[0]?.social_platform
                   } Followers`}
                   coinData={
                     coinSocialGraph &&
-                    coinSocialGraph[0]?.facebook[0]?.followers
+                    coinSocialGraph?.data[0]?.facebook[0]?.followers
                       ?.split(",")
                       .reverse()
                   }
                   // icon={
                   //   coinSocialGraph &&
-                  //   coinSocialGraph[0]?.facebook[0]?.social_icon
+                  //   coinSocialGraph?.data[0]?.facebook[0]?.social_icon
                   // }
                   icon={FacebookGraphImage}
                   url={
                     coinSocialGraph &&
-                    coinSocialGraph[0]?.facebook[0]?.social_url
+                    coinSocialGraph?.data[0]?.facebook[0]?.social_url
                   }
                   endColor="#ff6e4c"
                   startColor="#ff3708"
@@ -1155,26 +1159,28 @@ const SingleCoinHeader = ({ coinData }: any) => {
               )}
 
             {coinSocialGraph &&
-              coinSocialGraph[0]?.github !== undefined &&
-              coinSocialGraph[0]?.github.length > 0 && (
+              coinSocialGraph?.response === true &&
+              coinSocialGraph?.data[0]?.github !== undefined &&
+              coinSocialGraph?.data[0]?.github.length > 0 && (
                 <SocialCounterWithGraphCard
                   title={`${
                     coinSocialGraph &&
-                    coinSocialGraph[0]?.github[0]?.social_platform
+                    coinSocialGraph?.data[0]?.github[0]?.social_platform
                   } Followers`}
                   coinData={
                     coinSocialGraph &&
-                    coinSocialGraph[0]?.github[0]?.followers
+                    coinSocialGraph?.data[0]?.github[0]?.followers
                       ?.split(",")
                       .reverse()
                   }
                   // icon={
-                  //   coinSocialGraph && coinSocialGraph[0]?.github[0]?.social_icon
+                  //   coinSocialGraph && coinSocialGraph?.data[0]?.github[0]?.social_icon
                   // }
 
                   icon={GithubGraphImage}
                   url={
-                    coinSocialGraph && coinSocialGraph[0]?.github[0]?.social_url
+                    coinSocialGraph &&
+                    coinSocialGraph?.data[0]?.github[0]?.social_url
                   }
                   endColor="#ffffff"
                   startColor="#5C6BC0"
@@ -1182,27 +1188,28 @@ const SingleCoinHeader = ({ coinData }: any) => {
               )}
 
             {coinSocialGraph &&
-              coinSocialGraph[0]?.discord !== undefined &&
-              coinSocialGraph[0]?.discord.length > 0 && (
+              coinSocialGraph?.response === true &&
+              coinSocialGraph?.data[0]?.discord !== undefined &&
+              coinSocialGraph?.data[0]?.discord.length > 0 && (
                 <SocialCounterWithGraphCard
                   title={`${
                     coinSocialGraph &&
-                    coinSocialGraph[0]?.discord[0]?.social_platform
+                    coinSocialGraph?.data[0]?.discord[0]?.social_platform
                   } Followers`}
                   coinData={
                     coinSocialGraph &&
-                    coinSocialGraph[0]?.discord[0]?.followers
+                    coinSocialGraph?.data[0]?.discord[0]?.followers
                       ?.split(",")
                       .reverse()
                   }
                   // icon={
-                  //   coinSocialGraph && coinSocialGraph[0]?.discord[0]?.social_icon
+                  //   coinSocialGraph && coinSocialGraph?.data[0]?.discord[0]?.social_icon
                   // }
 
                   icon={DiscordGraphImage}
                   url={
                     coinSocialGraph &&
-                    coinSocialGraph[0]?.discord[0]?.social_url
+                    coinSocialGraph?.data[0]?.discord[0]?.social_url
                   }
                   endColor="#2415a2"
                   startColor="#404EED"

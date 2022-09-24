@@ -21,18 +21,18 @@ const CountDownTimer = (targetDate: any) => {
 const getReturnValues = (countDown: any) => {
   // calculate time left
   const days = Math.floor(countDown / (1000 * 60 * 60 * 24));
-  const daysFormatted = days ? `${days}Days ` : "0Days ";
+  const daysFormatted = days ? `${days}Days ` : "0 Days ";
   const hours = Math.floor(
     (countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
   );
-  const hoursFormatted = hours ? `${hours}Hours ` : "0Hours ";
+  const hoursFormatted = hours ? `${hours} Hours ` : "0 Hours ";
   const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60));
-  const minutesFormatted = minutes ? `${minutes}Minutes ` : "0Minutes ";
+  const minutesFormatted = minutes ? `${minutes} Minutes ` : "0 Minutes ";
   const seconds = Math.floor((countDown % (1000 * 60)) / 1000);
-  const secondsFormatted = seconds ? `${seconds}Seconds ` : "0Seconds ";
+  const secondsFormatted = seconds ? `${seconds} Seconds ` : "0 Seconds ";
 
   return [
-    daysFormatted,
+    // daysFormatted,
     hoursFormatted,
     minutesFormatted,
     secondsFormatted,

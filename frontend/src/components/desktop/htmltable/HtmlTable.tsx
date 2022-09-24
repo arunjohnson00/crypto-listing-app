@@ -22,6 +22,7 @@ import {
   Button,
   Dialog,
   DialogContent,
+  AvatarGroup,
 } from "@mui/material";
 import VoteBtn from "../button/votebtn/VoteBtn";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -215,11 +216,14 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     {" "}
                     {data && data?.network_icon !== null ? (
-                      <Avatar
-                        alt={data?.name}
-                        src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
-                        sx={{ width: 41, height: 11, borderRadius: 0 }}
-                      />
+                      <AvatarGroup total={24} max={2} variant="square">
+                        <Avatar
+                          variant="square"
+                          alt={data?.name}
+                          src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
+                          sx={{ width: 25, height: 25 }}
+                        />
+                      </AvatarGroup>
                     ) : (
                       <Typography variant="caption">--</Typography>
                     )}
@@ -547,6 +551,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                               height: 25,
                               mr: 0.5,
                               mb: 0.5,
+                              borderRadius: 0,
                             }}
                           />
                         ))}

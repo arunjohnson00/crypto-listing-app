@@ -12,12 +12,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
-import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
-import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
-import Marquee from "react-fast-marquee";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en.json";
 import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
 import SingleCoinHeader from "../../../components/desktop/singlecoinheader/SingleCoinHeader";
 import SinglePageTab from "../../../components/desktop/singlepagetab/SinglePageTab";
@@ -69,12 +63,11 @@ const SingleCoinPage = () => {
   const latestCoin = useSelector((data: any) => {
     return data?.coinReducer?.recently_added?.data;
   });
-  const { parse } = require("rss-to-json");
+
   const location: any = useLocation();
   const dispatch: any = useDispatch();
   const navigate: any = useNavigate();
-  TimeAgo.addDefaultLocale(en);
-  const timeAgo = new TimeAgo("en");
+
   const [feed, setFeed] = useState<any>();
 
   const [requestStatus, setRequestStatus] = useState<any>(false);

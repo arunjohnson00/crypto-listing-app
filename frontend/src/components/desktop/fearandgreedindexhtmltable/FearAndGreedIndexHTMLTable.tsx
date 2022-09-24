@@ -97,8 +97,9 @@ const FearAndGreedIndexHTMLTable = ({
               <Typography
                 sx={{
                   color: "#FFFFFF",
-                  fontSize: ".85rem",
-                  fontWeight: 600,
+                  fontSize: ".8rem",
+                  fontWeight: 500,
+                  textAlign: "center",
                 }}
               >
                 Next update happen in{" "}

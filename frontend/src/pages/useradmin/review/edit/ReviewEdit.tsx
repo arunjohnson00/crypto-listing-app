@@ -28,18 +28,18 @@ const ReviewEdit = () => {
   const dispatch: any = useDispatch();
   const navigate: any = useNavigate();
   const location: any = useLocation();
-  const [rating, setRating] = useState<any>(0);
+  // const [rating, setRating] = useState<any>(0);
   const [hover, setHover] = useState<any>();
   const [reviewCount, setReviewCount] = useState<any>();
-  const [reviewText, setReviewText] = useState<any>();
+  // const [reviewText, setReviewText] = useState<any>();
   const [loading, setLoading] = useState(false);
   const [editReviewData, setEditReview] = useState<any>();
 
   const reviewSubmitHandler = () => {
     const formData = new FormData();
     formData.append("review_id", editReviewData && editReviewData?.id);
-    formData.append("review", reviewText);
-    formData.append("rating", rating);
+    formData.append("review", editReviewData && editReviewData?.review);
+    formData.append("rating", editReviewData && editReviewData?.rating);
     setLoading(true);
     const successHandler = (res: any) => {
       setLoading(false);
@@ -53,6 +53,7 @@ const ReviewEdit = () => {
           draggable: true,
           progress: undefined,
         });
+        navigate(-1);
       }, 2000);
     };
     const errorHandler = (err: any) => {
@@ -133,8 +134,11 @@ const ReviewEdit = () => {
                     {
                       <span style={{ fontWeight: 700 }}>
                         {" "}
-                        {hover <= 0 && rating > 0
-                          ? rating
+                        {hover <= 0 &&
+                        editReviewData &&
+                        editReviewData &&
+                        editReviewData?.rating > 0
+                          ? editReviewData && editReviewData?.rating
                           : hover <= 0
                           ? 0
                           : hover}{" "}
@@ -145,80 +149,104 @@ const ReviewEdit = () => {
                 }
               </Box>
               <Box px={0}>
-                <Rating
-                  name="half-rating"
-                  defaultValue={0}
-                  value={rating}
-                  onChange={(event, newValue) => {
-                    setRating(newValue);
-                  }}
-                  onChangeActive={(event, newHover) => {
-                    setHover(newHover);
-                  }}
-                  precision={1}
-                  size="large"
-                  icon={
-                    <Box
-                      py={0.5}
-                      px={1}
-                      sx={{
-                        border: "1px solid #172140",
-                        background: "#040d2f",
-                        borderRadius: 2,
-                      }}
-                      mr={1}
-                    >
-                      <StarRoundedIcon
-                        fontSize="inherit"
+                {editReviewData && (
+                  <Rating
+                    name="half-rating"
+                    value={
+                      editReviewData &&
+                      parseFloat(editReviewData?.rating).toFixed(0)
+                    }
+                    onChange={(event, newValue) => {
+                      setEditReview({ ...editReviewData, rating: newValue });
+                    }}
+                    onChangeActive={(event, newHover) => {
+                      setHover(newHover);
+                    }}
+                    precision={1}
+                    size="large"
+                    icon={
+                      <Box
+                        py={0.5}
+                        px={1}
                         sx={{
-                          color:
-                            hover <= 1 && rating <= 1
-                              ? "#FF3722"
-                              : hover <= 2 && rating <= 2
-                              ? "#FF8622"
-                              : hover <= 3 && rating <= 3
-                              ? "#FFCE00"
-                              : hover <= 4 && rating <= 4
-                              ? "#73CF11"
-                              : hover <= 5 && rating <= 5
-                              ? "#00B67A"
-                              : "#00B67A",
+                          border: "1px solid #172140",
+                          background: "#040d2f",
+                          borderRadius: 2,
                         }}
-                      />
-                    </Box>
-                  }
-                  emptyIcon={
-                    <Box
-                      py={0.5}
-                      px={1}
-                      sx={{
-                        border: "1px solid #172140",
-                        background: "#040d2f",
-                        borderRadius: 2,
-                      }}
-                      mr={1}
-                    >
-                      {" "}
-                      <StarBorderRoundedIcon
-                        fontSize="inherit"
+                        mr={1}
+                      >
+                        <StarRoundedIcon
+                          fontSize="inherit"
+                          sx={{
+                            color:
+                              hover <= 1 &&
+                              editReviewData &&
+                              editReviewData?.rating <= 1
+                                ? "#FF3722"
+                                : hover <= 2 &&
+                                  editReviewData &&
+                                  editReviewData?.rating <= 2
+                                ? "#FF8622"
+                                : hover <= 3 &&
+                                  editReviewData &&
+                                  editReviewData?.rating <= 3
+                                ? "#FFCE00"
+                                : hover <= 4 &&
+                                  editReviewData &&
+                                  editReviewData?.rating <= 4
+                                ? "#73CF11"
+                                : hover <= 5 &&
+                                  editReviewData &&
+                                  editReviewData?.rating <= 5
+                                ? "#00B67A"
+                                : "#00B67A",
+                          }}
+                        />
+                      </Box>
+                    }
+                    emptyIcon={
+                      <Box
+                        py={0.5}
+                        px={1}
                         sx={{
-                          color:
-                            hover <= 1 && rating <= 1
-                              ? "#FF3722"
-                              : hover <= 2 && rating <= 2
-                              ? "#FF8622"
-                              : hover <= 3 && rating <= 3
-                              ? "#FFCE00"
-                              : hover <= 4 && rating <= 4
-                              ? "#73CF11"
-                              : hover <= 5 && rating <= 5
-                              ? "#00B67A"
-                              : "#00B67A",
+                          border: "1px solid #172140",
+                          background: "#040d2f",
+                          borderRadius: 2,
                         }}
-                      />
-                    </Box>
-                  }
-                />
+                        mr={1}
+                      >
+                        {" "}
+                        <StarBorderRoundedIcon
+                          fontSize="inherit"
+                          sx={{
+                            color:
+                              hover <= 1 &&
+                              editReviewData &&
+                              editReviewData?.rating <= 1
+                                ? "#FF3722"
+                                : hover <= 2 &&
+                                  editReviewData &&
+                                  editReviewData?.rating <= 2
+                                ? "#FF8622"
+                                : hover <= 3 &&
+                                  editReviewData &&
+                                  editReviewData?.rating <= 3
+                                ? "#FFCE00"
+                                : hover <= 4 &&
+                                  editReviewData &&
+                                  editReviewData?.rating <= 4
+                                ? "#73CF11"
+                                : hover <= 5 &&
+                                  editReviewData &&
+                                  editReviewData?.rating <= 5
+                                ? "#00B67A"
+                                : "#00B67A",
+                          }}
+                        />
+                      </Box>
+                    }
+                  />
+                )}
               </Box>
             </Stack>{" "}
             <span
@@ -240,7 +268,7 @@ const ReviewEdit = () => {
               className="review"
               aria-label="minimum height"
               minRows={13}
-              value={reviewText}
+              value={editReviewData && editReviewData?.review}
               placeholder={`Write your review for ${
                 editReviewData && editReviewData?.name
               }
@@ -268,7 +296,10 @@ const ReviewEdit = () => {
                   setReviewCount(e?.target?.value?.length);
 
                 e?.target?.value?.length <= 600 &&
-                  setReviewText(e?.target?.value);
+                  setEditReview({
+                    ...editReviewData,
+                    review: e?.target?.value,
+                  });
               }}
             />
             {

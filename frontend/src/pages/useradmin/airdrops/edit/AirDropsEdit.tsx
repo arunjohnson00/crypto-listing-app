@@ -91,7 +91,7 @@ const AirDropsEdit = () => {
 
     const formData = new FormData();
     formData.append("id", editAirdropsData?.id);
-    formData.append("coin_id", editAirdropsData?.coin_id);
+    formData.append("coin_id", editAirdropsData?.item_id);
     formData.append(
       "start_date",
       dateFormat(new Date(editAirdropsData.start_date), "yyyy-mm-dd")
@@ -193,7 +193,7 @@ const AirDropsEdit = () => {
             <AutoCompleSelect
               inputAutoValue={editAirdropsData}
               setInputAutoValue={setEditAirdrops}
-              serverRef={editAirdropsData?.coin_id}
+              serverRef={editAirdropsData?.item_id}
               variant="airdrop"
             />
           </Grid>
