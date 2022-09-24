@@ -1486,7 +1486,7 @@ const CoinListingAdd = () => {
 
             <Stack direction="row" spacing={3} pt={4}>
               <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
-                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
+                {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
                   <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
                     Chat Details
                   </Typography>
@@ -1566,7 +1566,7 @@ const CoinListingAdd = () => {
                       />
                     </div>
                   );
-                })}
+                })} */}
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
                   <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
                     Socials
