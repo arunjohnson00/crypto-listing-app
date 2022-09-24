@@ -1,4 +1,4 @@
-import { Grid, Typography, Stack } from "@mui/material";
+import { Grid, Typography, Stack, Avatar } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,7 +12,7 @@ import {
   searchNftListingCurrencyRequest,
 } from "../../store/action";
 
-//const serverAPIUrl = process.env.REACT_APP_API_URL;
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const NftTokenCurrency = () => {
   const nftEventCurrencyList = useSelector((nftCurrencyList: any) => {
@@ -73,9 +73,27 @@ const NftTokenCurrency = () => {
         <span style={{ color: "#bebebe", fontWeight: 600 }}>{params?.id}</span>
       ),
     },
+    // {
+    //   field: "thumb_icon",
+    //   headerName: "Icon",
+    //   flex: 1,
+    //   sortable: false,
+    //   disableClickEventBubbling: true,
+    //   renderCell: (params: any) => (
+    //     <Avatar
+    //       src={`${serverAPIUrl}public/uploads/nft_currency_icons/${params.row.thumb_icon}`}
+    //       alt={params.thumb_icon}
+    //     />
+    //   ),
+    // },
     {
       field: "name",
       headerName: "Name",
+      flex: 1,
+    },
+    {
+      field: "symbol",
+      headerName: "Symbol",
       flex: 1,
     },
     {

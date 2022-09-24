@@ -22,6 +22,7 @@ import { editNftListingCurrencyRequest } from "../../../store/action";
 import { updateNftListingCurrencyRequest } from "../../../store/action";
 
 import InputSelect from "../../../components/form/select/InputSelect";
+import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 
 const NftTokenCurrencyEdit = () => {
   const selectOptions = [
@@ -49,6 +50,7 @@ const NftTokenCurrencyEdit = () => {
     id: "",
     name: "",
     symbol: "",
+    thumb_icon: "",
     status: "",
   });
 
@@ -86,7 +88,7 @@ const NftTokenCurrencyEdit = () => {
 
     const formData = new FormData();
     formData.append("id", updateNFTCurrencyData?.id);
-
+    formData.append("thumb_icon", updateNFTCurrencyData.thumb_icon);
     formData.append("name", updateNFTCurrencyData?.name);
 
     formData.append("status", updateNFTCurrencyData?.status);
@@ -185,6 +187,21 @@ const NftTokenCurrencyEdit = () => {
                 placeholder="Enter  Event Currency Title"
                 inputTextHandler={(e: any) => nftCurrencySymbolHandler(e)}
                 value={updateNFTCurrencyData?.symbol}
+              />
+            </Grid>
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
+                Currency Icon
+              </Typography>
+
+              <IconUploader
+                setAddIcon={setUpdateNFTCurrency}
+                addIconData={updateNFTCurrencyData}
               />
             </Grid>
 

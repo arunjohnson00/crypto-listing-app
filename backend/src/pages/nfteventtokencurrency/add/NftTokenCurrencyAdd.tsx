@@ -21,6 +21,7 @@ import "material-react-toastify/dist/ReactToastify.css";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import { addNftListingCurrencyRequest } from "../../../store/action";
 import InputSelect from "../../../components/form/select/InputSelect";
+import IconUploader from "../../../components/form/input/file/icon/IconUploader";
 
 const NftTokenCurrencyAdd = () => {
   const selectOptions = [
@@ -37,6 +38,7 @@ const NftTokenCurrencyAdd = () => {
     name: "",
     status: 1,
     symbol: "",
+    thumb_icon: "",
   });
 
   console.log(addNFTListingCurrencyData);
@@ -159,6 +161,20 @@ const NftTokenCurrencyAdd = () => {
                 inputTextHandler={(e: any) =>
                   nftListingCurrencySymbolHandler(e)
                 }
+              />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
+                Currency Icon
+              </Typography>
+
+              <IconUploader
+                setAddIcon={setAddNFTListingCurrency}
+                addIconData={addNFTListingCurrencyData}
               />
             </Grid>
 
