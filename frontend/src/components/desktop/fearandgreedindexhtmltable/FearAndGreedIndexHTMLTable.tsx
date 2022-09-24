@@ -23,7 +23,7 @@ import {
   Dialog,
   DialogContent,
 } from "@mui/material";
-
+import { CountDownTimer } from "./countdown/CountDownTimer";
 import moment from "moment";
 
 const FearAndGreedIndexHTMLTable = ({
@@ -33,7 +33,7 @@ const FearAndGreedIndexHTMLTable = ({
   filterValue,
 }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
-
+  const ref = useRef<any>();
   const dispatch: any = useDispatch();
   const location: any = useLocation();
 
@@ -58,7 +58,10 @@ const FearAndGreedIndexHTMLTable = ({
             {tableHeader &&
               tableHeader.map((item: any, index: number) => (
                 <TableCell
-                  sx={{ color: "#686868", fontWeight: 500 }}
+                  sx={{
+                    color: "#686868",
+                    fontWeight: 500,
+                  }}
                   key={index}
                 >
                   {item}
@@ -76,7 +79,7 @@ const FearAndGreedIndexHTMLTable = ({
               },
 
               borderBottom: "1px solid #031323",
-              height: 20,
+              height: 60,
               "&:hover": {
                 //backgroundColor: "red",
               },
@@ -87,8 +90,9 @@ const FearAndGreedIndexHTMLTable = ({
                 color: "#FFFFFF",
                 border: 0,
 
-                maxWidth: 1,
+                flexGrow: 0,
               }}
+              colSpan={4}
             >
               <Typography
                 sx={{
@@ -98,13 +102,11 @@ const FearAndGreedIndexHTMLTable = ({
                 }}
               >
                 Next update happen in{" "}
-                {moment(
-                  new Date(
-                    new Date(new Date()).setDate(
-                      new Date(new Date()).getDate() + 1
-                    )
-                  )
-                ).fromNow()}
+                <span style={{ color: "#c9d509" }}>
+                  {CountDownTimer(
+                    moment(new Date().setHours(5, 30, 0, 0)).add(1, "days")
+                  )}
+                </span>
               </Typography>
             </TableCell>
           </TableRow>
