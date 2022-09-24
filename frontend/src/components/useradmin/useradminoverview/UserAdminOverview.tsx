@@ -18,8 +18,10 @@ import TelegramIcon from "../../../assets/userdashboard/telegram.png";
 import TwitterIcon from "../../../assets/userdashboard/twitter.png";
 import AdsImage from "../../../assets/userdashboard/ads.png";
 import { Link } from "react-router-dom";
+
 const UserAdminOverview = () => {
   const matches = useMediaQuery("(max-width:900px)");
+
   return (
     <Stack
       direction={{ xs: "column", sm: "column", md: "column", lg: "row" }}
