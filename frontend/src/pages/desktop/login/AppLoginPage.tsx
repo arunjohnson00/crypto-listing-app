@@ -13,8 +13,6 @@ import { useTheme } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en.json";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
@@ -56,9 +54,6 @@ const AppLoginPage = () => {
   };
   const theme = useTheme();
   const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
-
-  TimeAgo.addDefaultLocale(en);
-  const timeAgo = new TimeAgo("en");
 
   const rememberMeHandler = () => {
     setRemember(!remember);

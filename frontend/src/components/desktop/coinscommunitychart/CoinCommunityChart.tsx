@@ -61,49 +61,58 @@ const CoinCommunityChart = ({
   //console.log(data && data[0]?.[0]);
 
   useEffect(() => {
-    switch (dateTime) {
-      case "seven_day":
-        ApexCharts.exec(
-          chartid && chartid,
-          "zoomX",
+    if (data && data?.response === true && data?.data?.followers?.length > 0) {
+      switch (dateTime) {
+        case "seven_day":
+          ApexCharts.exec(
+            chartid && chartid,
+            "zoomX",
 
-          new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000).getTime()
-        );
-        break;
-      case "fifteen_day":
-        ApexCharts.exec(
-          chartid && chartid,
-          "zoomX",
+            new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000).getTime()
+          );
+          break;
+        case "fifteen_day":
+          ApexCharts.exec(
+            chartid && chartid,
+            "zoomX",
 
-          new Date(new Date().getTime() - 15 * 24 * 60 * 60 * 1000).getTime()
-        );
-        break;
-      case "thirty_day":
-        ApexCharts.exec(
-          chartid && chartid,
-          "zoomX",
+            new Date(new Date().getTime() - 15 * 24 * 60 * 60 * 1000).getTime()
+          );
+          break;
+        case "thirty_day":
+          ApexCharts.exec(
+            chartid && chartid,
+            "zoomX",
 
-          new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000).getTime()
-        );
-        break;
-      case "all_day":
-        ApexCharts.exec(
-          "area-datetime",
-          "zoomX",
+            new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000).getTime()
+          );
+          break;
+        case "all_day":
+          ApexCharts.exec(
+            "area-datetime",
+            "zoomX",
 
-          new Date(
-            data && data?.data?.followers[data?.data?.followers.length - 1][0]
-          ).getTime()
-        );
-        break;
+            new Date(
+              data &&
+                data?.response === true &&
+                data?.data?.followers?.length > 0 &&
+                data?.data?.followers[data?.data?.followers.length - 1][0]
+            ).getTime()
+          );
+          break;
 
-      default:
+        default:
+      }
     }
   }, [dateTime]);
   const chartData: any = {
     series: [
       {
-        data: data && data?.data?.followers,
+        data:
+          data &&
+          data?.response === true &&
+          data?.data?.followers?.length > 0 &&
+          data?.data?.followers,
       },
     ],
     options: {
@@ -185,12 +194,14 @@ const CoinCommunityChart = ({
 
         min:
           data &&
+          data?.response === true &&
           data?.data?.followers?.length > 0 &&
           new Date(
             data?.data?.followers[data?.data?.followers.length - 1][0]
           ).getTime(),
         max:
           data &&
+          data?.response === true &&
           data?.data?.followers?.length > 0 &&
           new Date(data?.data?.followers[0][0]).getTime(),
         tickAmount: 6,
