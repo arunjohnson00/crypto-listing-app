@@ -134,7 +134,9 @@ const CoinpageRatings = () => {
                         textUnderlineOffset: "4px",
                       }}
                       //underline="none"
-                      onClick={() => navigate("/login")}
+                      onClick={() =>
+                        navigate("/login", { state: location?.pathname })
+                      }
                     >
                       login to write a review
                     </Link>

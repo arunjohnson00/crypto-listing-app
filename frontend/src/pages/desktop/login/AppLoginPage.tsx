@@ -14,7 +14,7 @@ import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
@@ -34,6 +34,7 @@ import "./style.css";
 const AppLoginPage = () => {
   const dispatch: any = useDispatch();
   const navigate: any = useNavigate();
+  const location: any = useLocation();
   const [showPassword, setShowPassword] = useState<any>({
     showPassword: false,
   });

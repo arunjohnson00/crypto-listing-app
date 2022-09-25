@@ -122,10 +122,10 @@ const SingleCoinPage = () => {
 
   return (
     <Fragment>
-      <Grid container px={0}>
-        <Grid xs={12}>
+      <Grid container px={0} pt={1}>
+        {/* <Grid xs={12}>
           <LatestNewsScroll />
-        </Grid>
+        </Grid> */}
         {/* <Grid
           xs={12}
           sx={{
@@ -260,6 +260,9 @@ const SingleCoinPage = () => {
               </Carousel>
             )}
           </div>
+        </Grid>
+        <Grid xs={12} pt={1}>
+          <LatestNewsScroll />
         </Grid>
       </Grid>
     </Fragment>
