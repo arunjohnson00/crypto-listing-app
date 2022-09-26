@@ -17,10 +17,12 @@ import {
   Backdrop,
   CircularProgress,
 } from "@mui/material";
+import { css } from "glamor";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
 import {
@@ -54,31 +56,54 @@ const WiriteReview = ({
     const successHandler = (res: any) => {
       setLoading(true);
       setTimeout(function () {
-        toast.success(`${res?.data?.message}`, {
-          icon: CheckCircleIcon,
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.success(
+          <Box>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <CheckCircleRoundedIcon sx={{ color: "#5CE32D", fontSize: 50 }} />
+              <Typography sx={{ fontSize: ".85rem" }}>
+                {res?.data?.message}
+              </Typography>
+            </Stack>
+          </Box>,
+          {
+            icon: false,
+            //theme: "colored",
+            className: "toast-success-container toast-success-container-after",
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
         reviewLoader();
         setLoading(false);
       }, 2000);
       handleClose();
     };
     const errorHandler = (err: any) => {
-      toast.warn(`${err?.error?.message?.response?.data?.message}`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.warn(
+        <Box>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <CancelRoundedIcon sx={{ color: "#ff3722", fontSize: 50 }} />
+            <Typography sx={{ fontSize: ".85rem" }}>
+              {err?.error?.message?.response?.data?.message}
+            </Typography>
+          </Stack>
+        </Box>,
+        {
+          position: "top-right",
+          className: "toast-error-container toast-error-container-after",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
     };
 
     dispatch(coinReviewSubmitRequest(formData, successHandler, errorHandler));
