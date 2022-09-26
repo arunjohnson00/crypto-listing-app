@@ -34,7 +34,7 @@ const responsiveNewsSlider = {
     slidesToSlide: 1,
   },
 };
-const LatestNewsScroll = () => {
+const LatestNewsScroll = ({ live }: any) => {
   const dispatch: any = useDispatch();
   const latestNews = useSelector((data: any) => {
     return data?.commonReducer?.latest_news_feed?.data;
@@ -54,21 +54,23 @@ const LatestNewsScroll = () => {
       {/* <Grid xs={4} sm={4} md={3} lg={2} xl={2}>
         <LatestNewsHeading />
       </Grid> */}
-      <Stack direction="row" spacing={1} alignItems="center" py={1}>
-        <Typography
-          sx={{
-            color: "#FFFFFF",
-            textTransform: "uppercase",
-            fontSize: ".85rem",
-          }}
-          pl={0}
-        >
-          Live News{" "}
-        </Typography>
-        <div>
-          <span className="ripplelatestnews"></span>
-        </div>
-      </Stack>
+      {live !== false && (
+        <Stack direction="row" spacing={1} alignItems="center" py={1}>
+          <Typography
+            sx={{
+              color: "#FFFFFF",
+              textTransform: "uppercase",
+              fontSize: ".85rem",
+            }}
+            pl={0}
+          >
+            Live News{" "}
+          </Typography>
+          <div>
+            <span className="ripplelatestnews"></span>
+          </div>
+        </Stack>
+      )}
       <Grid xs={12} sm={12} md={12} lg={12} xl={12} pt={1}>
         <Stack direction="row" spacing={3}>
           {/* <Marquee

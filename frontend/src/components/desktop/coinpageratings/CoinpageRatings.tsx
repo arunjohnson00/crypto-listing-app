@@ -13,6 +13,8 @@ import {
   Checkbox,
   LinearProgress,
   Link,
+  Backdrop,
+  CircularProgress,
 } from "@mui/material";
 import moment from "moment";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -27,6 +29,7 @@ const CoinpageRatings = () => {
   const dispatch: any = useDispatch();
   const location: any = useLocation();
   const navigate: any = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [openWriteReview, setOpenWriteReview] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const coinRatingBlock = useSelector((data: any) => {
@@ -61,6 +64,12 @@ const CoinpageRatings = () => {
     sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
   return (
     <Grid container xs={12}>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Grid item xs={12}>
         <Stack direction={{ xs: "column", sm: "column", md: "row" }} mt={2}>
           <Grid item xs={12}>
@@ -80,7 +89,7 @@ const CoinpageRatings = () => {
               {coinRatingBlock && coinRatingBlock[0]?.name} Rating & Reviews
             </Typography>
           </Grid>
-          <Grid item xs={12} mt={{ xs: 2, sm: 2, md: 0 }}>
+          {/* <Grid item xs={12} mt={{ xs: 2, sm: 2, md: 0 }}>
             <CardMedia
               component="img"
               height="70"
@@ -88,7 +97,7 @@ const CoinpageRatings = () => {
               alt="green iguana"
               sx={{ objectFit: "unset" }}
             />
-          </Grid>
+          </Grid> */}
         </Stack>
       </Grid>
       <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -160,6 +169,8 @@ const CoinpageRatings = () => {
                   <WiriteReview
                     openWriteReview={openWriteReview}
                     handleClose={handleWriteReviewClose}
+                    loading={loading}
+                    setLoading={setLoading}
                   />
                 </Stack>
                 <Rating

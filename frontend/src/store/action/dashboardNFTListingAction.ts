@@ -41,7 +41,7 @@ export const dashboardNFTListingEventCategoryListRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/list/event-categories`,
+    url: `api/b/v1/nft-listing-category`,
     method: "GET",
     secure: true,
     // body: JSON.stringify(Object.fromEntries(values)),

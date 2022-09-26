@@ -14,7 +14,6 @@ const AddAssetPage = ({ windowInnerWidth }: any) => {
       sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       pt={7}
       width="100%"
-      ml={-2.5}
     >
       <Box width={{ xs: "100%", sm: "100%", md: "60%" }}>
         <Box className="rounded-corners-gradient-borders-asset" width="100%">
@@ -25,8 +24,12 @@ const AddAssetPage = ({ windowInnerWidth }: any) => {
               borderRadius: 4,
               // paddingX: 6,
               paddingY: 4,
+              height: 400,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
-            width={{ xs: "99%", sm: "99%", md: "auto" }}
+            width={{ xs: "100%", sm: "100%", md: "auto" }}
           >
             <Stack
               direction="column"

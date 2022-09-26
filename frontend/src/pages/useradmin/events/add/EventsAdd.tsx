@@ -8,6 +8,7 @@ import {
   Checkbox,
   Backdrop,
   CircularProgress,
+  FormControlLabel,
 } from "@mui/material";
 
 import { useDispatch } from "react-redux";
@@ -222,7 +223,7 @@ const EventsAdd = () => {
                 variant="subtitle1"
                 sx={{
                   textAlign: "left",
-                  fontSize: ".9rem",
+                  fontSize: "1.2rem",
                   fontWeight: 600,
                   color: "#13C086",
                 }}
@@ -230,13 +231,28 @@ const EventsAdd = () => {
               >
                 Select coin
               </Typography>
-              <Stack direction="row" spacing={1} alignItems={"center"}>
-                <Checkbox
-                  checked={coinChecked}
-                  onChange={coinCheckboxHandler}
-                  inputProps={{ "aria-label": "controlled" }}
-                  name={"has_coin"}
-                  sx={{ color: "#FFFFFF" }}
+              <Stack
+                direction="column"
+                spacing={1}
+                alignItems={"flex-start"}
+                pt={1}
+                pb={2}
+              >
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={coinChecked}
+                      onChange={coinCheckboxHandler}
+                      inputProps={{ "aria-label": "controlled" }}
+                      name={"has_coin"}
+                      sx={{ color: "#FFFFFF" }}
+                    />
+                  }
+                  label={
+                    <Typography sx={{ color: "#13C086" }}>
+                      This event is base on a coin listed on coinxhigh.com
+                    </Typography>
+                  }
                 />
 
                 {coinChecked === true && (
@@ -369,7 +385,7 @@ const EventsAdd = () => {
               />
             </Grid>
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+            {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography
                 variant="subtitle1"
                 sx={{
@@ -410,7 +426,7 @@ const EventsAdd = () => {
                 placeholder="  Address"
                 inputTextHandler={(e: any) => eventsAddressHandler(e)}
               />
-            </Grid>
+            </Grid> */}
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography

@@ -12,7 +12,7 @@ import LargeBtn from "../../../../components/useradmin/form/button/large/LargeBt
 import IconUploader from "../../../../components/useradmin/form/input/file/icon/IconUploader";
 import InputText from "../../../../components/useradmin/form/input/text/InputText";
 import { useDispatch } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -187,7 +187,15 @@ const AirDropsEdit = () => {
               }}
               mb={1}
             >
-              Search your coin
+              Search your coin{" "}
+              <span style={{ color: "#FFFFFF" }}>
+                ( This event is base on a coin listed on coinxhigh.com. if coin
+                is not listed{" "}
+                <Link to="/user-dashboard/coin/add">
+                  <span>Add Now</span>
+                </Link>
+              </span>{" "}
+              )
             </Typography>
 
             <AutoCompleSelect

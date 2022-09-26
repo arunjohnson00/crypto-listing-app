@@ -9,10 +9,18 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
-import { Rating, Stack, Box, Typography } from "@mui/material";
+import {
+  Rating,
+  Stack,
+  Box,
+  Typography,
+  Backdrop,
+  CircularProgress,
+} from "@mui/material";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
 import {
@@ -21,11 +29,17 @@ import {
 } from "../../../store/action";
 import { useLocation } from "react-router-dom";
 
-const WiriteReview = ({ openWriteReview, handleClose }: any) => {
+const WiriteReview = ({
+  openWriteReview,
+  handleClose,
+  loading,
+  setLoading,
+}: any) => {
   const dispatch: any = useDispatch();
   const location: any = useLocation();
   const [rating, setRating] = useState<any>(0);
   const [hover, setHover] = useState<any>();
+
   const [reviewCount, setReviewCount] = useState<any>();
   const [reviewText, setReviewText] = useState<any>();
   const coinRatingBlock = useSelector((data: any) => {
@@ -38,8 +52,10 @@ const WiriteReview = ({ openWriteReview, handleClose }: any) => {
     formData.append("rating", rating);
 
     const successHandler = (res: any) => {
+      setLoading(true);
       setTimeout(function () {
         toast.success(`${res?.data?.message}`, {
+          icon: CheckCircleIcon,
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -49,6 +65,7 @@ const WiriteReview = ({ openWriteReview, handleClose }: any) => {
           progress: undefined,
         });
         reviewLoader();
+        setLoading(false);
       }, 2000);
       handleClose();
     };

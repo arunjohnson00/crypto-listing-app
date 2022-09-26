@@ -254,7 +254,12 @@ const AppBarSearch = () => {
               </InputAdornment>
             }
           />
-          <Stack direction="column" spacing={2}>
+          <Stack
+            direction="column"
+            spacing={2}
+            sx={{ height: 420 }}
+            justifyContent="space-between"
+          >
             {searchResult &&
             (searchResult?.COINS?.length !== 0 ||
               searchResult?.NFT?.length !== 0) &&
@@ -265,7 +270,7 @@ const AppBarSearch = () => {
                 pt={0}
                 sx={{
                   height: "auto",
-                  maxHeight: 300,
+                  maxHeight: 350,
                   overflowY: "scroll",
                   background: "#000000",
                 }}

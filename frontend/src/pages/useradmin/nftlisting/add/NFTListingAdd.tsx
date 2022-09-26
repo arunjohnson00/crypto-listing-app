@@ -1062,7 +1062,7 @@ const NFTListingAdd = () => {
                     );
                   })}
 
-                  <Grid
+                  {/* <Grid
                     item
                     xl={12}
                     lg={12}
@@ -1086,8 +1086,8 @@ const NFTListingAdd = () => {
                     >
                       Please provide information about NFT.
                     </Typography>
-                  </Grid>
-                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                  </Grid> */}
+                  {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                     <Stack
                       direction={{ xs: "column", sm: "column", md: "row" }}
                       spacing={3}
@@ -1150,9 +1150,9 @@ const NFTListingAdd = () => {
                         </Link>
                       </Grid>
                     </Stack>
-                  </Grid>
+                  </Grid> */}
 
-                  {chatCount.map((chat, index) => {
+                  {/* {chatCount.map((chat, index) => {
                     return (
                       <div>
                         <ChatNFTDetails
@@ -1164,7 +1164,7 @@ const NFTListingAdd = () => {
                         />
                       </div>
                     );
-                  })}
+                  })} */}
                   <Grid
                     item
                     xl={12}

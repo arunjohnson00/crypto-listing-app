@@ -58,7 +58,7 @@ const CoinPageFAQ = () => {
               {coinFAQ && coinFAQ[0]?.name} FAQ's
             </Typography>
           </Grid>
-          <Grid xs={12} sm={12} md={8} mt={{ xs: 2, sm: 2, md: 0 }}>
+          {/* <Grid xs={12} sm={12} md={8} mt={{ xs: 2, sm: 2, md: 0 }}>
             <CardMedia
               component="img"
               height="70"
@@ -66,7 +66,7 @@ const CoinPageFAQ = () => {
               alt="green iguana"
               sx={{ objectFit: "unset" }}
             />
-          </Grid>
+          </Grid> */}
         </Stack>
       </Grid>
       <Grid xs={12} sm={12} md={12} lg={12} xl={12}>

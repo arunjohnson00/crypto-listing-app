@@ -3,8 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Parser from "html-react-parser";
 import { Grid, Stack, Typography, Divider } from "@mui/material";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en.json";
+import moment from "moment";
 
 import {
   coinlatestNewsRequest,
@@ -15,7 +14,6 @@ import {
 const CoinPageNews = () => {
   const location: any = useLocation();
   const dispatch: any = useDispatch();
-  const timeAgo = new TimeAgo("en");
   const [expand, setExpand] = useState(false);
   const latestNews = useSelector((data: any) => {
     return data?.coinReducer?.news_block?.data;
@@ -154,9 +152,9 @@ const CoinPageNews = () => {
                         }}
                       >
                         {item &&
-                          timeAgo.format(
+                          moment(
                             new Date(item?.date ? item?.date : null)
-                          )}
+                          ).fromNow()}
                       </Typography>
                     </Stack>
 

@@ -164,7 +164,7 @@ const SingleCoinPage = () => {
             sx={{
               alignItems: "center",
             }}
-            py={1}
+            py={2}
           >
             <BreadCrumbs
               data={
@@ -222,11 +222,13 @@ const SingleCoinPage = () => {
             data={coinDetailFirstBlock && coinDetailFirstBlock[0]}
           />
         </Grid>
-
-        <Grid xs={12} pt={2}>
+        <Grid xs={12} pt={5}>
+          {" "}
           <Typography variant="h6" sx={{ color: "#FFFFF5" }} mb={1}>
             Recently Added
           </Typography>
+        </Grid>
+        <Grid xs={12} pt={2}>
           <div
             style={{
               paddingTop: "3px",
@@ -261,8 +263,14 @@ const SingleCoinPage = () => {
             )}
           </div>
         </Grid>
-        <Grid xs={12} pt={1}>
-          <LatestNewsScroll />
+        <Grid xs={12} pt={5}>
+          {" "}
+          <Typography variant="h6" sx={{ color: "#FFFFF5" }} mb={1}>
+            Latest Crypto News
+          </Typography>
+        </Grid>
+        <Grid xs={12} pt={0}>
+          <LatestNewsScroll live={false} />
         </Grid>
       </Grid>
     </Fragment>

@@ -87,16 +87,16 @@ const AppHeader = ({ windowInnerWidth }: any) => {
                   />{" "}
                 </Link>
               ) : (
-                <Link
-                  to="/user-dashboard"
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  <LoginHeaderBtn
-                    title="My account"
-                    //handler={logoutHandler}
-                    icon={<PersonIcon sx={{ color: "#23B184" }} />}
-                  />
-                </Link>
+                // <Link
+                //   to="/user-dashboard"
+                //   style={{ textDecoration: "none", color: "inherit" }}
+                // >
+                <LoginHeaderBtn
+                  title="My account"
+                  //handler={logoutHandler}
+                  icon={<PersonIcon sx={{ color: "#23B184" }} />}
+                />
+                // </Link>
               )}
             </Stack>
           </Stack>

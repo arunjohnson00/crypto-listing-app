@@ -77,6 +77,7 @@ const AppBarNavBtn = ({ title, iconStatus, path, menu }: any) => {
               borderRadius: 4,
               color: "#FFFFFF",
               boxShadow: "0px 18px 20px #00000033",
+              border: "2px solid #080C28",
             }}
           >
             {menu?.map((item: any, index: number) => (

@@ -1373,7 +1373,7 @@ const NFTListingEdit = () => {
                       </div>
                     );
                   })}
-
+                  {/* 
                   <Grid
                     item
                     xl={12}
@@ -1582,7 +1582,7 @@ const NFTListingEdit = () => {
                         />
                       </div>
                     );
-                  })}
+                  })} */}
                   <Grid
                     item
                     xl={12}

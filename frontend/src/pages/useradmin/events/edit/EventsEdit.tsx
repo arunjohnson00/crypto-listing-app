@@ -8,6 +8,7 @@ import {
   Checkbox,
   Backdrop,
   CircularProgress,
+  FormControlLabel,
 } from "@mui/material";
 import LargeBtn from "../../../../components/useradmin/form/button/large/LargeBtn";
 import IconUploader from "../../../../components/useradmin/form/input/file/icon/IconUploader";
@@ -247,7 +248,7 @@ const EventsEdit = () => {
                 variant="subtitle1"
                 sx={{
                   textAlign: "left",
-                  fontSize: ".9rem",
+                  fontSize: "1.2rem",
                   fontWeight: 600,
                   color: "#13C086",
                 }}
@@ -256,13 +257,28 @@ const EventsEdit = () => {
                 Select coin
               </Typography>
 
-              <Stack direction="row" spacing={1} alignItems={"center"}>
-                <Checkbox
-                  checked={coinChecked}
-                  onChange={coinCheckboxHandler}
-                  inputProps={{ "aria-label": "controlled" }}
-                  name={"has_coin"}
-                  sx={{ color: "#FFFFFF" }}
+              <Stack
+                direction="column"
+                spacing={1}
+                alignItems={"flex-start"}
+                pt={1}
+                pb={2}
+              >
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={coinChecked}
+                      onChange={coinCheckboxHandler}
+                      inputProps={{ "aria-label": "controlled" }}
+                      name={"has_coin"}
+                      sx={{ color: "#FFFFFF" }}
+                    />
+                  }
+                  label={
+                    <Typography sx={{ color: "#13C086" }}>
+                      This event is base on a coin listed on coinxhigh.com
+                    </Typography>
+                  }
                 />
 
                 {coinChecked === true && (
@@ -401,7 +417,7 @@ const EventsEdit = () => {
               />
             </Grid>
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+            {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography
                 variant="subtitle1"
                 sx={{
@@ -444,7 +460,7 @@ const EventsEdit = () => {
                 inputTextHandler={(e: any) => eventsUpdateressHandler(e)}
                 value={editEventsData?.address}
               />
-            </Grid>
+            </Grid> */}
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography

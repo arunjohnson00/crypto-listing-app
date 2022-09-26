@@ -22,6 +22,7 @@ import {
   Button,
   Dialog,
   DialogContent,
+  TablePagination,
 } from "@mui/material";
 import { CountDownTimer } from "./countdown/CountDownTimer";
 import moment from "moment";
@@ -36,7 +37,17 @@ const FearAndGreedIndexHTMLTable = ({
   const ref = useRef<any>();
   const dispatch: any = useDispatch();
   const location: any = useLocation();
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
+  const handleChangePage = (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ) => {
+    setPage(newPage);
+  };
+
+  console.log(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
   return (
     <TableContainer sx={{ borderRadius: 4, border: "1px solid #202131" }}>
       <Table
@@ -114,6 +125,7 @@ const FearAndGreedIndexHTMLTable = ({
           {tableData &&
             tableData
               .slice(0, filterValue && filterValue)
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((data: any, index: number) => (
                 <TableRow
                   sx={{
@@ -236,6 +248,26 @@ const FearAndGreedIndexHTMLTable = ({
               ))}
         </TableBody>
       </Table>
+      <TablePagination
+        sx={{
+          ".MuiTablePagination-displayedRows": {
+            color: "#ffffff",
+          },
+          ".MuiIconButton-root": {
+            color: "#ffffff",
+          },
+          ".Mui-disabled": {
+            color: "#bbbbbb",
+          },
+        }}
+        component="div"
+        count={tableData && tableData?.length}
+        page={page}
+        onPageChange={handleChangePage}
+        rowsPerPage={rowsPerPage}
+        rowsPerPageOptions={[]}
+        // onRowsPerPageChange={handleChangeRowsPerPage}
+      />
     </TableContainer>
   );
 };

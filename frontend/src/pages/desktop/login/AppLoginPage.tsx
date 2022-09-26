@@ -90,7 +90,7 @@ const AppLoginPage = () => {
         progress: undefined,
       });
 
-      navigate(-1);
+      navigate("/user-dashboard");
     };
     const errorHandler = (err: any) => {
       toast.success(`${JSON.stringify(err?.error?.message?.response?.data)}`, {
@@ -106,6 +106,12 @@ const AppLoginPage = () => {
 
     dispatch(userLoginRequest(formData, successHandler, errorHandler));
   };
+
+  const auth =
+    sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
+  useEffect(() => {
+    auth && navigate("/user-dashboard");
+  }, []);
 
   return (
     <Fragment>

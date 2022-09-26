@@ -25,6 +25,7 @@ import RadioBtnGroup from "../../../../components/useradmin/form/input/radiobtng
 
 import dateFormat, { masks } from "dateformat";
 import { dashboardAddAirdropsRequest } from "../../../../store/action";
+import { Link } from "react-router-dom";
 
 const AirDropsAdd = () => {
   const selectOptions = [
@@ -177,7 +178,15 @@ const AirDropsAdd = () => {
               }}
               mb={1}
             >
-              Search your coin
+              Search your coin{" "}
+              <span style={{ color: "#FFFFFF" }}>
+                ( This event is base on a coin listed on coinxhigh.com. if coin
+                is not listed{" "}
+                <Link to="/user-dashboard/coin/add">
+                  <span>Add Now</span>
+                </Link>
+              </span>{" "}
+              )
             </Typography>
 
             <AutoCompleSelect

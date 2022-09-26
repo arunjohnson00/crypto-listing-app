@@ -19,7 +19,11 @@ const InputDateTime = ({
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateTimePicker
-        minDate={new Date()}
+        minDate={
+          new Date(
+            new Date(new Date()).setDate(new Date(new Date()).getDate() - 30)
+          )
+        }
         renderInput={(props: any) => (
           <TextField
             {...props}

@@ -218,7 +218,7 @@ const UserAdminHtmlTable = ({
                         data?.network_icon?.map((item: any, index: number) => (
                           <Avatar
                             alt={data?.name}
-                            src={`${serverAPIUrl}public/uploads/network_icons/${item[index]}`}
+                            src={`${serverAPIUrl}public/uploads/network_icons/${item}`}
                             sx={{ width: 41, height: 11, borderRadius: 0 }}
                           />
                         ))
