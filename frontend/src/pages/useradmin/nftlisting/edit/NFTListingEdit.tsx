@@ -22,6 +22,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { FormControlLabel } from "@mui/material";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 
 import CommunityNFTDetails from "./CommunityNFTDetails";
 import SocialNFTDetails from "./SocialNFTDetails";
@@ -165,31 +167,53 @@ const NFTListingEdit = () => {
     const successHandler = (res: any) => {
       //console.log(res);
       setLoading(true);
-      toast.success(`${res.data.message}`, {
-        position: "top-right",
-        autoClose: 7000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-
+      toast.success(
+        <Box>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <CheckCircleRoundedIcon sx={{ color: "#5CE32D", fontSize: 50 }} />
+            <Typography sx={{ fontSize: ".85rem" }}>
+              {res?.data?.message}
+            </Typography>
+          </Stack>
+        </Box>,
+        {
+          position: "top-right",
+          icon: false,
+          //theme: "colored",
+          className: "toast-success-container toast-success-container-after",
+          autoClose: 7000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        }
+      );
       setTimeout(() => {
         navigate("/user-dashboard");
       }, 3000);
     };
 
     const errorHandler = (err: any) => {
-      console.log(err);
-
-      toast.error(`${err.error.message.response.request.responseText}`, {
-        position: "top-right",
-        autoClose: 7000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      toast.error(
+        <Box>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <CancelRoundedIcon sx={{ color: "#ff3722", fontSize: 50 }} />
+            <Typography sx={{ fontSize: ".85rem" }}>
+              {err.error.message.response.request.responseText}
+            </Typography>
+          </Stack>
+        </Box>,
+        {
+          icon: false,
+          position: "top-right",
+          className: "toast-error-container toast-error-container-after",
+          autoClose: 7000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        }
+      );
     };
 
     dispatch(

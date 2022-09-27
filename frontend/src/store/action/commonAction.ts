@@ -84,3 +84,20 @@ export const fearGreedIndexRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const addWatchListRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/watchlist/create`,
+    method: "POST",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: COMMON.ADD_WATCHLIST,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

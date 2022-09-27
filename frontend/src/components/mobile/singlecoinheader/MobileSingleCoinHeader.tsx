@@ -57,6 +57,7 @@ import LinkImage from "../../../assets/singlepagecoin/link.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { defaultColor } from "../../../common/common";
 import { Link } from "react-router-dom";
+import MobileSinglePageTab from "../singlepagetab/MobileSinglePageTab";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileSingleCoinHeader = ({ coinData }: any) => {
@@ -748,6 +749,10 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
             /> */}
           </Stack>
         </Box>
+      </Grid>
+
+      <Grid item xs={12}>
+        <MobileSinglePageTab />
       </Grid>
     </Fragment>
   );

@@ -94,6 +94,7 @@ const WiriteReview = ({
           </Stack>
         </Box>,
         {
+          icon: false,
           position: "top-right",
           className: "toast-error-container toast-error-container-after",
           autoClose: 5000,

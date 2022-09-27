@@ -32,10 +32,11 @@ const MobileCoinSlider = () => {
       container
       sx={{
         background: "linear-gradient(to left, #0a0538 0%, #040920 100%)",
+        alignItems: "center",
       }}
-      my={0.5}
+      my={0}
     >
-      <Grid item xs={3.7} sm={3.7} md={3.7} lg={2} xl={2}>
+      <Grid item xs={3.7} sm={3.7} md={3.7} lg={2} xl={2} mt={0}>
         <Box
           sx={{
             background: "linear-gradient(to left, #0a0538 0%, #040920 100%)",
@@ -44,7 +45,7 @@ const MobileCoinSlider = () => {
           }}
           py={2}
           px={1}
-          mt={0.5}
+          mt={0}
         >
           <Stack direction={"row"} spacing={0.5} alignItems="center">
             <Avatar
@@ -52,17 +53,18 @@ const MobileCoinSlider = () => {
               src={trendingCoinIcon}
               sx={{ width: 15, height: 15 }}
             />
+            <Stack direction={"row"} spacing={0.7} alignItems="center">
+              <Typography
+                sx={{ fontSize: ".6rem", color: "#FFFFFF", fontWeight: 600 }}
+              >
+                TRENDING
+              </Typography>
+              {/* <BounceLoader size={10} color="#00FF00" /> */}
 
-            <Typography
-              sx={{ fontSize: ".6rem", color: "#FFFFFF", fontWeight: 600 }}
-            >
-              TRENDING
-            </Typography>
-            {/* <BounceLoader size={10} color="#00FF00" /> */}
-
-            <div>
-              <span className="ripplecoinslidermob"></span>
-            </div>
+              <div>
+                <span className="ripplecoinslidermob"></span>
+              </div>
+            </Stack>
           </Stack>
         </Box>
       </Grid>

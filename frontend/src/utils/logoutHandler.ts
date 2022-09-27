@@ -6,6 +6,9 @@ export const logoutHandler = (navigate: any, dispatch: any) => {
   const successHandler = (res: any) => {
     toast.success(`${res.data.message}`, {
       position: "top-right",
+      icon: false,
+      //theme: "colored",
+      className: "toast-success-container toast-success-container-after",
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,

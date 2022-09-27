@@ -17,6 +17,8 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 
 import InputSelect from "../../../../components/useradmin/form/select/InputSelect";
 import AutoCompleSelect from "../../../../components/useradmin/form/autocomplete/AutoCompleSelect";
@@ -24,9 +26,9 @@ import InputDate from "../../../../components/useradmin/form/input/date/InputDat
 import RadioBtnGroup from "../../../../components/useradmin/form/input/radiobtngroup/RadioBtnGroup";
 
 import dateFormat, { masks } from "dateformat";
-import { dashboardAddAirdropsRequest } from "../../../../store/action";
+import { dashboardAddReviewRequest } from "../../../../store/action";
 
-const AirDropsAdd = () => {
+const ReviewAdd = () => {
   const selectOptions = [
     { title: "Approved", value: 1 },
     { title: "Processing", value: 2 },
@@ -36,7 +38,7 @@ const AirDropsAdd = () => {
   const dispatch: any = useDispatch();
   const navigate: any = useNavigate();
 
-  const [addAirdropsData, setAddAirdrops] = useState<any>({
+  const [addReviewData, setAddReview] = useState<any>({
     item_id: "",
     start_date: new Date(),
     no_of_days: "",
@@ -52,19 +54,30 @@ const AirDropsAdd = () => {
 
   // Display the key/value pairs
 
-  const airdropsAddHandler = () => {
+  const reviewAddHandler = () => {
     const successHandler = (res: any) => {
-      console.log(res);
-
       setLoading(true);
-      toast.success(`${res.data.message}`, {
-        position: "top-right",
-        autoClose: 7000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      toast.success(
+        <Box>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <CheckCircleRoundedIcon sx={{ color: "#5CE32D", fontSize: 50 }} />
+            <Typography sx={{ fontSize: ".85rem" }}>
+              {res?.data?.message}
+            </Typography>
+          </Stack>
+        </Box>,
+        {
+          position: "top-right",
+          icon: false,
+          //theme: "colored",
+          className: "toast-success-container toast-success-container-after",
+          autoClose: 7000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        }
+      );
 
       setTimeout(() => {
         navigate("/user-dashboard");
@@ -72,52 +85,60 @@ const AirDropsAdd = () => {
     };
 
     const errorHandler = (err: any) => {
-      console.log(err);
-
-      toast.error(`${err.error.message.response.request.responseText}`, {
-        position: "top-right",
-        autoClose: 7000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      toast.error(
+        <Box>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <CancelRoundedIcon sx={{ color: "#ff3722", fontSize: 50 }} />
+            <Typography sx={{ fontSize: ".85rem" }}>
+              {err.error.message.response.request.responseText}
+            </Typography>
+          </Stack>
+        </Box>,
+        {
+          icon: false,
+          position: "top-right",
+          className: "toast-error-container toast-error-container-after",
+          autoClose: 7000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        }
+      );
     };
 
     const formData = new FormData();
-    formData.append("coin_id", addAirdropsData?.item_id);
+    formData.append("coin_id", addReviewData?.item_id);
     formData.append(
       "start_date",
-      dateFormat(new Date(addAirdropsData.start_date), "yyyy-mm-dd")
+      dateFormat(new Date(addReviewData.start_date), "yyyy-mm-dd")
     );
-    formData.append("no_of_days", addAirdropsData?.no_of_days);
-    formData.append("total_amount", addAirdropsData?.total_amount);
-    formData.append("no_of_winners", addAirdropsData?.no_of_winners);
-    formData.append("is_follow_twitter", addAirdropsData?.is_follow_twitter);
-    formData.append("join_telegram", addAirdropsData?.join_telegram);
-    formData.append("status", addAirdropsData?.status);
+    formData.append("no_of_days", addReviewData?.no_of_days);
+    formData.append("total_amount", addReviewData?.total_amount);
+    formData.append("no_of_winners", addReviewData?.no_of_winners);
+    formData.append("is_follow_twitter", addReviewData?.is_follow_twitter);
+    formData.append("join_telegram", addReviewData?.join_telegram);
+    formData.append("status", addReviewData?.status);
 
-    dispatch(
-      dashboardAddAirdropsRequest(formData, successHandler, errorHandler)
-    );
+    dispatch(dashboardAddReviewRequest(formData, successHandler, errorHandler));
   };
 
-  const airdropsNumDaysHandler = (e: any) => {
+  const reviewNumDaysHandler = (e: any) => {
     //console.log(e);
 
-    setAddAirdrops({ ...addAirdropsData, no_of_days: e });
+    setAddReview({ ...addReviewData, no_of_days: e });
   };
 
-  const airdropsTotalAmountHandler = (e: any) => {
+  const reviewTotalAmountHandler = (e: any) => {
     //console.log(e);
 
-    setAddAirdrops({ ...addAirdropsData, total_amount: e });
+    setAddReview({ ...addReviewData, total_amount: e });
   };
 
-  const airdropsNumbWinnersHandler = (e: any) => {
+  const reviewNumbWinnersHandler = (e: any) => {
     //console.log(e);
 
-    setAddAirdrops({ ...addAirdropsData, no_of_winners: e });
+    setAddReview({ ...addReviewData, no_of_winners: e });
   };
 
   //   useEffect(() => {
@@ -150,13 +171,13 @@ const AirDropsAdd = () => {
           {/* <IconButton>
             <ArrowBackIosTwoToneIcon
               onClick={() => {
-                navigate("/airdrops");
+                navigate("/review");
               }}
             />
           </IconButton> */}
 
           <Typography variant="h5" sx={{ textAlign: "left", color: "#FFFFFF" }}>
-            Add Airdrops
+            Add Review
           </Typography>
         </Stack>
       </Grid>
@@ -181,8 +202,8 @@ const AirDropsAdd = () => {
             </Typography>
 
             <AutoCompleSelect
-              inputAutoValue={addAirdropsData}
-              setInputAutoValue={setAddAirdrops}
+              inputAutoValue={addReviewData}
+              setInputAutoValue={setAddReview}
               variant="airdrop"
             />
           </Grid>
@@ -202,8 +223,8 @@ const AirDropsAdd = () => {
 
             <InputDate
               airdropStart={true}
-              date={addAirdropsData}
-              setDate={setAddAirdrops}
+              date={addReviewData}
+              setDate={setAddReview}
             />
           </Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
@@ -222,7 +243,7 @@ const AirDropsAdd = () => {
 
             <InputText
               placeholder=" Number of Days"
-              inputTextHandler={(e: any) => airdropsNumDaysHandler(e)}
+              inputTextHandler={(e: any) => reviewNumDaysHandler(e)}
             />
           </Grid>
 
@@ -242,7 +263,7 @@ const AirDropsAdd = () => {
 
             <InputText
               placeholder="  Total Airdrop Amount"
-              inputTextHandler={(e: any) => airdropsTotalAmountHandler(e)}
+              inputTextHandler={(e: any) => reviewTotalAmountHandler(e)}
             />
           </Grid>
 
@@ -261,8 +282,8 @@ const AirDropsAdd = () => {
             </Typography>
 
             <InputText
-              placeholder="Enter Airdrops url"
-              inputTextHandler={(e: any) => airdropsNumbWinnersHandler(e)}
+              placeholder="Enter Review url"
+              inputTextHandler={(e: any) => reviewNumbWinnersHandler(e)}
             />
           </Grid>
 
@@ -281,8 +302,8 @@ const AirDropsAdd = () => {
             </Typography>
 
             <RadioBtnGroup
-              radioValue={addAirdropsData}
-              setRadioValue={setAddAirdrops}
+              radioValue={addReviewData}
+              setRadioValue={setAddReview}
               name="is_follow_twitter"
             />
           </Grid>
@@ -302,20 +323,20 @@ const AirDropsAdd = () => {
             </Typography>
 
             <RadioBtnGroup
-              radioValue={addAirdropsData}
-              setRadioValue={setAddAirdrops}
+              radioValue={addReviewData}
+              setRadioValue={setAddReview}
               name="join_telegram"
             />
           </Grid>
 
           {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography variant="subtitle1" sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }} mb={1}>
-              Airdrops Icon
+              Review Icon
             </Typography>
 
             <IconUploader
-              setAddIcon={setAddAirdrops}
-              addIconData={addAirdropsData}
+              setAddIcon={setAddReview}
+              addIconData={addReviewData}
             />
           </Grid> */}
 
@@ -336,8 +357,8 @@ const AirDropsAdd = () => {
             <InputSelect
               selectOptions={selectOptions}
               // currentStatus={newArrList[0].status}
-              setInputSelectValue={setAddAirdrops}
-              getInputSelectvalue={addAirdropsData}
+              setInputSelectValue={setAddReview}
+              getInputSelectvalue={addReviewData}
               // serverStatus={newArrList[0].status}
             />
           </Grid> */}
@@ -364,10 +385,7 @@ const AirDropsAdd = () => {
                   Saving...Wait
                 </LoadingButton>
               ) : (
-                <LargeBtn
-                  Title="Add Airdrops"
-                  lgBtnHandler={airdropsAddHandler}
-                />
+                <LargeBtn Title="Add Review" lgBtnHandler={reviewAddHandler} />
               )}
             </Stack>
           </Grid>
@@ -377,4 +395,4 @@ const AirDropsAdd = () => {
   );
 };
 
-export default AirDropsAdd;
+export default ReviewAdd;

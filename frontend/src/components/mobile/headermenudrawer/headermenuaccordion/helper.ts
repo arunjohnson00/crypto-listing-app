@@ -31,7 +31,7 @@ export const coinMenu = [
     title: "Top Losers",
     link: "/coins/top-losers",
   },
-  { icon: trendingCoinIcon, title: "Trending", link: "/coins/trending-coins" },
+  // { icon: trendingCoinIcon, title: "Trending", link: "/coins/trending-coins" },
   { icon: mostVotedCoinIcon, title: "Most Voted", link: "/coins/most-voted" },
 ];
 

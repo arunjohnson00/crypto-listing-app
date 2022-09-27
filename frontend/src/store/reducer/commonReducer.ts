@@ -7,6 +7,8 @@ const initialState = {
   recent_search: "",
   latest_news_feed: "",
   fear_greed_index: "",
+  add_watch_list: "",
+  remove_watch_list: "",
 };
 const commonReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -48,6 +50,19 @@ const commonReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         fear_greed_index: action?.payload?.data,
+      };
+    case COMMON.ADD_WATCHLIST:
+      //console.log(action);
+      return {
+        ...state,
+        add_watch_list: action?.payload?.data,
+      };
+
+    case COMMON.REMOVE_WATCHLIST:
+      //console.log(action);
+      return {
+        ...state,
+        remove_watch_list: action?.payload?.data,
       };
 
     default:

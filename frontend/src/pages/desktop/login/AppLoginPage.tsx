@@ -22,7 +22,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -80,28 +81,53 @@ const AppLoginPage = () => {
           localStorage.setItem("authUser", JSON.stringify(res?.data?.user));
         }
       }
-      toast.success(`${"Login Successfully"}`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.success(
+        <Box>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <CheckCircleRoundedIcon sx={{ color: "#5CE32D", fontSize: 50 }} />
+            <Typography sx={{ fontSize: ".85rem" }}>
+              Login Successfully
+            </Typography>
+          </Stack>
+        </Box>,
+        {
+          position: "top-right",
+          icon: false,
+          //theme: "colored",
+          className: "toast-success-container toast-success-container-after",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
 
       navigate("/user-dashboard");
     };
     const errorHandler = (err: any) => {
-      toast.success(`${JSON.stringify(err?.error?.message?.response?.data)}`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.success(
+        <Box>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <CancelRoundedIcon sx={{ color: "#ff3722", fontSize: 50 }} />
+            <Typography sx={{ fontSize: ".85rem" }}>
+              {JSON.stringify(err?.error?.message?.response?.data)}
+            </Typography>
+          </Stack>
+        </Box>,
+        {
+          icon: false,
+          className: "toast-error-container toast-error-container-after",
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
     };
 
     dispatch(userLoginRequest(formData, successHandler, errorHandler));

@@ -4,7 +4,7 @@ import Drawer from "@mui/material/Drawer";
 import { Avatar, Button, Popover, Stack, Typography, Box } from "@mui/material";
 
 import InputUnstyled, { InputUnstyledProps } from "@mui/base/InputUnstyled";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { StyledInputRoot, StyledInputPopUpRoot } from "./style";
@@ -46,6 +46,7 @@ const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
   const dispatch: any = useDispatch();
+  const navigate: any = useNavigate();
   const [values, setValues] = useState<any>();
   const [expand, setExpand] = useState<any>({
     coin: false,
@@ -78,6 +79,11 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
     const errorHandler = (err: any) => {};
     dispatch(topbarSearchRequest(values, successHandler, errorHandler));
   }, [dispatch, values, setValues]);
+
+  const logoutRequest = (navigate: any, dispatch: any) => {
+    logoutHandler(navigate, dispatch);
+    toggleDrawer();
+  };
   return (
     <Drawer anchor={"left"} open={openDrawer?.left} onClose={toggleDrawer}>
       <Stack
@@ -137,7 +143,7 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
             justifyContent="space-between"
             px={2}
           >
-            <Link
+            {/* <Link
               to={{
                 pathname: `#`,
               }}
@@ -157,7 +163,7 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
               >
                 Exchange
               </Typography>
-            </Link>
+            </Link> */}
             <Link
               to={{
                 pathname: `#`,
@@ -181,7 +187,7 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
             </Link>
             <Link
               to={{
-                pathname: `#`,
+                pathname: `/discover`,
               }}
               state={{
                 scroll: false,
@@ -202,7 +208,7 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
             </Link>
             <Link
               to={{
-                pathname: `#`,
+                pathname: `/chart`,
               }}
               state={{
                 scroll: false,
@@ -223,7 +229,7 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
             </Link>
             <Link
               to={{
-                pathname: `#`,
+                pathname: `/leader-board`,
               }}
               state={{
                 scroll: false,
@@ -263,6 +269,27 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
                 News
               </Typography>
             </Link>
+            <Link
+              to={{
+                pathname: `/fear-greed-index`,
+              }}
+              state={{
+                scroll: false,
+              }}
+              style={{ textDecoration: "none", color: "#FFFFFF" }}
+              onClick={toggleDrawer}
+            >
+              {" "}
+              <Typography
+                sx={{
+                  p: 1,
+                  fontSize: ".8rem",
+                  color: "#FFFFFF",
+                }}
+              >
+                F&G Index
+              </Typography>
+            </Link>
             <Stack direction="column" spacing={3} width="100%" py={2}>
               {/* <ConnectWalletBtn /> */}
               <Stack
@@ -275,7 +302,7 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
                   to="/add-asset"
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  <AddAsset />
+                  <AddAsset handler={toggleDrawer} />
                 </Link>
 
                 {!auth ? (
@@ -286,7 +313,7 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
                     <LoginHeaderBtn title="Login" />
                   </Link>
                 ) : (
-                  <LoginHeaderBtn title="Logout" handler={logoutHandler} />
+                  <LoginHeaderBtn title="Logout" handler={logoutRequest} />
                 )}
               </Stack>
             </Stack>

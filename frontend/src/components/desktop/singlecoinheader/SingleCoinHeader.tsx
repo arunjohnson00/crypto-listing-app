@@ -40,8 +40,10 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import SingleCoinChip from "../coinpagechip/SingleCoinChip";
 import SocialCounterWithGraphCard from "../cards/socialcounterwithgraphcard/SocialCounterWithGraphCard";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 
-import { coinVoteRequest } from "../../../store/action";
+import { addWatchListRequest, coinVoteRequest } from "../../../store/action";
 import { CountDownTimer } from "./countdown/CountDownTimer";
 import ToolTipImage from "../../../assets/singlepagecoin/tool-tip.png";
 import CoinGeckoImage from "../../../assets/singlepagecoin/coingecko.png";
@@ -120,16 +122,30 @@ const SingleCoinHeader = ({ coinData }: any) => {
     const successHandler = (res: any) => {
       setOpenCaptcha(false);
       setVote({ ...vote, initial: true, completed: false, captcha: false });
+
       setTimeout(function () {
-        toast.success(`${res?.data?.data}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.success(
+          <Box>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <CheckCircleRoundedIcon sx={{ color: "#5CE32D", fontSize: 50 }} />
+              <Typography sx={{ fontSize: ".85rem" }}>
+                {res?.data?.data}
+              </Typography>
+            </Stack>
+          </Box>,
+          {
+            position: "top-right",
+            icon: false,
+            //theme: "colored",
+            className: "toast-success-container toast-success-container-after",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
 
         setVote({ ...vote, initial: false, completed: true, captcha: false });
       }, 2000);
@@ -147,6 +163,47 @@ const SingleCoinHeader = ({ coinData }: any) => {
     );
   };
 
+  const addWatchListHandler = () => {
+    const formData = new FormData();
+    formData.append("slug", location?.pathname?.split("/").pop());
+    const successHandler = (res: any) => {
+      console.log(res);
+      setOpenCaptcha(false);
+      setVote({ ...vote, initial: true, completed: false, captcha: false });
+
+      setTimeout(function () {
+        toast.success(
+          <Box>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <CheckCircleRoundedIcon sx={{ color: "#5CE32D", fontSize: 50 }} />
+              <Typography sx={{ fontSize: ".85rem" }}>
+                {res?.data?.data}
+              </Typography>
+            </Stack>
+          </Box>,
+          {
+            position: "top-right",
+            icon: false,
+            //theme: "colored",
+            className: "toast-success-container toast-success-container-after",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
+
+        setVote({ ...vote, initial: false, completed: true, captcha: false });
+      }, 2000);
+    };
+    const errorHandler = (err: any) => {
+      console.log(err);
+    };
+
+    dispatch(addWatchListRequest(formData, successHandler, errorHandler));
+  };
   useEffect(() => {
     coinData &&
       coinData?.contract_address?.length > 0 &&
@@ -401,6 +458,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       emptyIcon={
                         <StarBorderRoundedIcon sx={{ color: "#FFFFF5" }} />
                       }
+                      onChange={addWatchListHandler}
                     />
                   </Stack>
                 </Stack>

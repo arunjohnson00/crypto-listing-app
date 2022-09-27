@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Box, Grid, Stack } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import Marquee from "react-fast-marquee";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 // import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
+import "./style.css";
 
 import { latestNewsRequest } from "../../../store/action";
 import MobileNewsCardTop from "../cards/topnewscard/MobileNewsCardTop";
@@ -33,7 +34,7 @@ const responsiveNewsSlider = {
     slidesToSlide: 1,
   },
 };
-const MobileLatestNewsCardScrollTop = () => {
+const MobileLatestNewsCardScrollTop = ({ live }: any) => {
   const dispatch: any = useDispatch();
   const latestNews = useSelector((data: any) => {
     return data?.commonReducer?.latest_news_feed?.data;
@@ -49,22 +50,28 @@ const MobileLatestNewsCardScrollTop = () => {
   }, [dispatch]);
 
   return (
-    <Stack
-      direction="row"
-      spacing={3}
-      sx={{
-        borderTop: "1px solid #1a1545",
-        borderBottom: "1px solid #1a1545",
-        paddingTop: "7px",
-        paddingBottom: "0px",
-        backgroundColor: "#04091d",
-        alignItems: "center",
-      }}
-    >
+    <Box mb={0}>
       {/* <Grid xs={4} sm={4} md={3} lg={2} xl={2}>
         <LatestNewsHeading />
       </Grid> */}
-      <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
+      {live !== false && (
+        <Stack direction="row" spacing={1} alignItems="center" pb={1}>
+          <Typography
+            sx={{
+              color: "#FFFFFF",
+              textTransform: "uppercase",
+              fontSize: ".85rem",
+            }}
+            pl={0}
+          >
+            Live News{" "}
+          </Typography>
+          <div>
+            <span className="ripplelatestnews"></span>
+          </div>
+        </Stack>
+      )}
+      <Grid xs={12} sm={12} md={12} lg={12} xl={12} pb={1}>
         <Stack direction="row" spacing={3}>
           {/* <Marquee
             style={{ background: "none" }}
@@ -106,7 +113,7 @@ const MobileLatestNewsCardScrollTop = () => {
                       <Box key={index}>
                         <MobileNewsCardTop
                           rssFeed={rssFeed}
-                          // timeAgo={timeAgo}
+                          index={index + 1}
                           key={index}
                         />
                       </Box>
@@ -117,7 +124,7 @@ const MobileLatestNewsCardScrollTop = () => {
           </Box>
         </Stack>
       </Grid>
-    </Stack>
+    </Box>
   );
 };
 

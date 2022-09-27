@@ -274,7 +274,7 @@ const MobileHomePage = () => {
   return (
     <Grid
       container
-      spacing={5}
+      spacing={0}
       sx={{
         dispaly: "flex",
       }}

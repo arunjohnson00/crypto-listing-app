@@ -5,6 +5,7 @@ export { topbarSearchRequest } from "./commonAction";
 export { recentSearchRequest } from "./commonAction";
 export { coinVoteRequest } from "./commonAction";
 export { fearGreedIndexRequest } from "./commonAction";
+export { addWatchListRequest } from "./commonAction";
 //Home Page
 
 export { recentlyAddedRequest } from "./homeAction";

@@ -32,6 +32,8 @@ import TableListPagination from "./tablepagination/TablePagination";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { coinVoteRequest } from "../../../store/action";
 import { defaultColor } from "../../../common/common";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 
 const ListingTable = ({
   tableData,
@@ -82,20 +84,32 @@ const ListingTable = ({
   };
 
   const coinVoteHandler = (slug: any) => {
-    console.log(slug);
     const successHandler = (res: any) => {
       setOpenCaptcha(false);
       setVote({ ...vote, initial: true, completed: false, captcha: false });
       setTimeout(function () {
-        toast.success(`${res?.data?.data}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.success(
+          <Box>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <CheckCircleRoundedIcon sx={{ color: "#5CE32D", fontSize: 50 }} />
+              <Typography sx={{ fontSize: ".85rem" }}>
+                {res?.data?.data}
+              </Typography>
+            </Stack>
+          </Box>,
+          {
+            position: "top-right",
+            icon: false,
+            //theme: "colored",
+            className: "toast-success-container toast-success-container-after",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
 
         setVote({ ...vote, initial: false, completed: true, captcha: false });
       }, 2000);

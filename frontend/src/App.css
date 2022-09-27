@@ -2,3 +2,28 @@
   font-family: Inter, -apple-system, BlinkMacSystemFont, "segoe ui", Roboto,
     Helvetica, Arial, sans-serif;
 }
+.toast-success-container {
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  background: #000000 !important;
+  border: 1px solid #0e101c !important;
+  /* box-shadow: 0px 1px 5px rgba(248, 175, 175, 0.1) !important; */
+}
+
+.toast-success-container-after {
+  overflow: hidden;
+  position: relative;
+}
+
+.toast-error-container {
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  background: #000000 !important;
+  border: 1px solid #0e101c !important;
+  /* box-shadow: 0px 1px 5px rgba(248, 175, 175, 0.1) !important; */
+}
+
+.toast-error-container-after {
+  overflow: hidden;
+  position: relative;
+}

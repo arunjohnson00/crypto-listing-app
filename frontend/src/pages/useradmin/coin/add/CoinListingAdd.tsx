@@ -20,6 +20,8 @@ import "react-toastify/dist/ReactToastify.css";
 import LoadingButton from "@mui/lab/LoadingButton";
 // import "material-react-toastify/dist/ReactToastify.css";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 
 import InputText from "../../../../components/useradmin/form/input/text/InputText";
 import InputSelectCoin from "../../../../components/useradmin/form/selectcoin/InputSelectCoin";
@@ -215,32 +217,54 @@ const CoinListingAdd = () => {
 
     //console.log(...formData);
     const successHandler = (res: any) => {
-      console.log(res);
       setLoading(true);
-      toast.success(`${res.data.data.original.message}`, {
-        position: "top-right",
-        autoClose: 7000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      toast.success(
+        <Box>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <CheckCircleRoundedIcon sx={{ color: "#5CE32D", fontSize: 50 }} />
+            <Typography sx={{ fontSize: ".85rem" }}>
+              {res.data.data.original.message}
+            </Typography>
+          </Stack>
+        </Box>,
+        {
+          position: "top-right",
+          icon: false,
+          //theme: "colored",
+          className: "toast-success-container toast-success-container-after",
+          autoClose: 7000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        }
+      );
       setTimeout(() => {
         navigate("/user-dashboard");
       }, 3000);
     };
 
     const errorHandler = (err: any) => {
-      console.log(err);
-
-      toast.error(`${err.error.message.response.request.responseText}`, {
-        position: "top-right",
-        autoClose: 7000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      toast.error(
+        <Box>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <CancelRoundedIcon sx={{ color: "#ff3722", fontSize: 50 }} />
+            <Typography sx={{ fontSize: ".85rem" }}>
+              {err.error.message.response.request.responseText}
+            </Typography>
+          </Stack>
+        </Box>,
+        {
+          position: "top-right",
+          icon: false,
+          className: "toast-error-container toast-error-container-after",
+          autoClose: 7000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        }
+      );
     };
 
     dispatch(dashboardAddCoinRequest(formData, successHandler, errorHandler));

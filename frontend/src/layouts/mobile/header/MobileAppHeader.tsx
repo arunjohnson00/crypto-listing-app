@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import { Grid } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
@@ -56,30 +56,32 @@ const MobileAppHeader = () => {
   }, []);
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#01061A" }}>
-      <Grid>
+    <AppBar
+      position="static"
+      sx={{ backgroundColor: "#01061A", paddingY: 0.5 }}
+    >
+      <Grid item xs={12}>
         <Toolbar disableGutters>
-          <Link
-            to="/"
-            style={{
-              textDecoration: "none",
-              color: "inherit",
-            }}
+          <Stack
+            direction="row"
+            spacing={1}
+            alignItems="center"
+            justifyContent="space-between"
+            width="100%"
           >
-            <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
-              <img src={logoWhite} alt="coinxhigh" width="90px" />
-            </Box>{" "}
-          </Link>
-
-          <Box
-            sx={{
-              flexGrow: 2,
-              display: { xs: "flex", md: "none" },
-              justifyContent: "flex-end",
-            }}
-            ml={2}
-          >
-            <Search>
+            <Link
+              to="/"
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+              }}
+            >
+              <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
+                <img src={logoWhite} alt="coinxhigh" width="100px" />
+              </Box>{" "}
+            </Link>
+            <Stack direction="row" spacing={1} alignItems="center">
+              {/* <Search>
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
@@ -88,27 +90,27 @@ const MobileAppHeader = () => {
                 inputProps={{ "aria-label": "search" }}
                 onClick={toggleDrawer}
               />
-            </Search>
+            </Search> */}
+              <SearchIcon onClick={toggleDrawer} sx={{ cursor: "pointer" }} />
 
-            <SearchDrawer
-              openDrawer={openDrawer}
-              setOpenDrawer={setOpenDrawer}
-              toggleDrawer={toggleDrawer}
-            />
-          </Box>
+              <SearchDrawer
+                openDrawer={openDrawer}
+                setOpenDrawer={setOpenDrawer}
+                toggleDrawer={toggleDrawer}
+              />
 
-          <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={toggleMenuDrawer}
-              color="inherit"
-            >
-              <MenuIcon sx={{ fontSize: "2.2rem", color: "#8f8cb0" }} />
-            </IconButton>
-            {/* <Menu
+              <Box>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={toggleMenuDrawer}
+                  color="inherit"
+                >
+                  <MenuIcon sx={{ fontSize: "2.2rem", color: "#8f8cb0" }} />
+                </IconButton>
+                {/* <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -133,12 +135,14 @@ const MobileAppHeader = () => {
               ))}
             </Menu> */}
 
-            <HeaderMenuDrawer
-              openDrawer={openDrawer}
-              setOpenDrawer={setOpenDrawer}
-              toggleDrawer={toggleMenuDrawer}
-            />
-          </Box>
+                <HeaderMenuDrawer
+                  openDrawer={openDrawer}
+                  setOpenDrawer={setOpenDrawer}
+                  toggleDrawer={toggleMenuDrawer}
+                />
+              </Box>
+            </Stack>
+          </Stack>
         </Toolbar>
       </Grid>
     </AppBar>

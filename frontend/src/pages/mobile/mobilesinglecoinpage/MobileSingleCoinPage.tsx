@@ -35,6 +35,7 @@ import {
 } from "../../../store/action";
 import MobileCoinSlider from "../../../components/mobile/coinslider/MobileCoinSlider";
 import MobileLatestNewsCardScrollTop from "../../../components/mobile/latestnews/MobileLatestNewsCardScrollTop";
+import MobileSinglePageTab from "../../../components/mobile/singlepagetab/MobileSinglePageTab";
 
 const MobileSingleCoinPage = () => {
   const location: any = useLocation();
@@ -127,22 +128,17 @@ const MobileSingleCoinPage = () => {
 
   return (
     <Fragment>
-      <Grid
-        container
-        spacing={5}
-        sx={{
-          dispaly: "flex",
-        }}
-      >
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+      <Grid container rowSpacing={1}>
+        <Grid item xs={12} sx={{ marginTop: 1.5 }}>
           <MobileLatestNewsCardScrollTop />
         </Grid>
 
-        <Grid xs={12} sx={{ paddingTop: 0 }}>
+        <Grid item xs={12} sx={{ paddingTop: 0 }}>
           <MobileCoinSlider />
         </Grid>
 
-        <Grid
+        {/* <Grid
+          item
           xs={12}
           sx={{
             alignItems: "center",
@@ -158,37 +154,32 @@ const MobileSingleCoinPage = () => {
           >
             <MobileTopAlertBox />
           </Stack>
-        </Grid>
+        </Grid> */}
 
         <Grid
-          container
+          item
           xs={12}
+          sm={12}
+          md={6}
+          lg={6}
+          xl={6}
           sx={{
             alignItems: "center",
           }}
+          mt={2}
         >
-          <Grid
-            xs={12}
-            sm={12}
-            md={6}
-            lg={6}
-            xl={6}
-            sx={{
-              alignItems: "center",
-            }}
-            py={1}
-          >
-            <MobileBreadCrumbs
-              home="Home"
-              path="Coin"
-              data={
-                coinDetailFirstBlock &&
-                coinDetailFirstBlock !== undefined &&
-                coinDetailFirstBlock[0]
-              }
-            />
-          </Grid>
-          <Grid
+          <MobileBreadCrumbs
+            home="Home"
+            path="Coin"
+            data={
+              coinDetailFirstBlock &&
+              coinDetailFirstBlock !== undefined &&
+              coinDetailFirstBlock[0]
+            }
+          />
+        </Grid>
+        {/* <Grid
+            item
             xs={12}
             sm={12}
             md={6}
@@ -205,11 +196,10 @@ const MobileSingleCoinPage = () => {
               image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
               alt="green iguana"
             />
-          </Grid>
-        </Grid>
+          </Grid> */}
 
         <Grid
-          container
+          item
           xs={12}
           sx={{
             alignItems: "center",
@@ -222,7 +212,7 @@ const MobileSingleCoinPage = () => {
         </Grid>
 
         <Grid
-          container
+          item
           xs={12}
           sx={{
             alignItems: "center",

@@ -10,7 +10,6 @@ function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 const MobileBreadCrumbs = ({ home, path, data }: any) => {
   const location = useLocation();
 
-  console.log(location.pathname);
   return (
     <div role="presentation" onClick={handleClick}>
       <Breadcrumbs
@@ -31,7 +30,7 @@ const MobileBreadCrumbs = ({ home, path, data }: any) => {
               .toLowerCase()}`,
           }}
           state={{ coin_id: data?.id }}
-          style={{ textDecoration: "none", color: "inherit" }}
+          style={{ textDecoration: "none", color: "#9c9c9c" }}
         >
           {data && data?.name}
         </Link>
