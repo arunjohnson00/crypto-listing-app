@@ -386,7 +386,7 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
               spacing={1}
               sx={{
                 height: "auto",
-                maxHeight: 300,
+                maxHeight: "86vh",
                 overflowY: "scroll",
                 pl: 0,
               }}
