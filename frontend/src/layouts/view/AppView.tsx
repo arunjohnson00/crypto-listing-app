@@ -134,10 +134,16 @@ const AppView = ({ children }: any) => {
               <AppFooter />
             </Grid>
           ) : (
-            <Fragment>
-              <MobileAppFooter />
-              <MobileBottomNav />
-            </Fragment>
+            <Grid
+              item
+              //ml={5}
+              px={{ xs: 0.2, sm: 1, md: 3, lg: 4, xl: matchesXL ? 7 : 25 }}
+            >
+              <Fragment>
+                <MobileAppFooter />
+                <MobileBottomNav />
+              </Fragment>
+            </Grid>
           )}
         </Grid>
 

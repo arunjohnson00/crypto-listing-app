@@ -55,13 +55,27 @@ const MobileSinglePageTab = () => {
             sx={{
               "& .MuiTabs-indicator": {
                 //display: "none",
-                backgroundColor: "#23E2A0",
+                backgroundColor: "#19ffb0",
+                height: 4,
                 // color: "#FFFFF5",
               },
 
               "& .MuiButtonBase-root.MuiTab-root": {
-                color: "#23E2A0",
+                color: "#FFFFFF",
                 textTransform: "capitalize",
+                opacity: 1,
+              },
+              "& .MuiTab-root.Mui-selected": {
+                color: "#19ffb0",
+              },
+
+              "&.MuiTabs-root": {
+                color: "#fff",
+              },
+
+              "&.MuiTabs-root .MuiTabs-scrollButtons": {},
+              "&.MuiTabs-root  .Mui-disabled": {
+                display: "none",
               },
             }}
           >
