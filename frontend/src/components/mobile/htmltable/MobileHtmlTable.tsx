@@ -1,10 +1,11 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef, createRef } from "react";
+import { useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import ReCAPTCHA from "react-google-recaptcha";
 import "react-toastify/dist/ReactToastify.css";
-
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -13,28 +14,31 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import {
   Stack,
   Typography,
   Box,
   CircularProgress,
   Button,
-  DialogContent,
   Dialog,
+  DialogContent,
+  AvatarGroup,
+  CardMedia,
 } from "@mui/material";
 import VoteBtn from "../button/votebtn/VoteBtn";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import moment from "moment";
-
-import "./style.css";
-import LoadingButton from "@mui/lab/LoadingButton";
 import { coinVoteRequest } from "../../../store/action";
+import LoadingButton from "@mui/lab/LoadingButton";
 import { defaultColor } from "../../../common/common";
-
 const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
+
   const dispatch: any = useDispatch();
+  const location: any = useLocation();
   const [vote, setVote] = useState<any>({
     initial: false,
     completed: false,
@@ -63,15 +67,28 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
       setOpenCaptcha(false);
       setVote({ ...vote, initial: true, completed: false, captcha: false });
       setTimeout(function () {
-        toast.success(`${res?.data?.data}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.success(
+          <Box>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <CheckCircleRoundedIcon sx={{ color: "#5CE32D", fontSize: 50 }} />
+              <Typography sx={{ fontSize: ".85rem" }}>
+                {res?.data?.data}
+              </Typography>
+            </Stack>
+          </Box>,
+          {
+            position: "top-right",
+            icon: false,
+            //theme: "colored",
+            className: "toast-success-container toast-success-container-after",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
 
         setVote({ ...vote, initial: false, completed: true, captcha: false });
       }, 2000);
@@ -96,13 +113,13 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
         size="small"
       >
         <TableHead
-          sx={{ backgroundColor: "#000000", color: "#FFFFF5", height: 50 }}
+          sx={{ backgroundColor: "#000000", color: "#686868", height: 50 }}
         >
           <TableRow sx={{ borderBottom: "2px solid black" }}>
             {tableHeader &&
               tableHeader.map((item: any, index: number) => (
                 <TableCell
-                  sx={{ color: "#FFFFF5", fontWeight: "bold" }}
+                  sx={{ color: "#686868", fontWeight: 500 }}
                   key={index}
                 >
                   {item}
@@ -118,8 +135,11 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
 
-                    border: 0,
+                    borderBottom: "1px solid #031323",
                     height: 20,
+                    "&:hover": {
+                      //backgroundColor: "red",
+                    },
                   }}
                   key={index}
                 >
@@ -138,7 +158,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       state={{ coin_id: data?.id }}
                       style={{
                         textDecoration: "none",
-                        color: "#FFFFFF",
+                        color: "#686868",
                       }}
                     >
                       {index + 1}
@@ -199,9 +219,9 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       <Typography
                         variant="caption"
                         sx={{
-                          color: "#0F68A1",
-                          fontWeight: "bold",
-                          fontSize: "0.6rem",
+                          color: "#1dffc0",
+                          fontWeight: 400,
+                          fontSize: "0.7rem",
                         }}
                       >
                         {"$"}
@@ -210,14 +230,30 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     </Stack>
                   </TableCell>
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
-                    {" "}
+                    {/* // <AvatarGroup total={24} max={2} variant="square">
+                      //   <Avatar
+                      //     variant="square"
+                      //     alt={data?.name}
+                      //     src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
+                      //     sx={{ width: 25, height: 25 }}
+                      //   />
+                      // </AvatarGroup> */}
                     {data && data?.network_icon !== null ? (
                       <Avatar
+                        variant="square"
                         alt={data?.name}
                         src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
-                        sx={{ width: 41, height: 11, borderRadius: 0 }}
+                        sx={{ width: 25, height: 25 }}
                       />
                     ) : (
+                      // <AvatarGroup total={24} max={2} variant="square">
+                      //   <Avatar
+                      //     variant="square"
+                      //     alt={data?.name}
+                      //     src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
+                      //     sx={{ width: 25, height: 25 }}
+                      //   />
+                      // </AvatarGroup>
                       <Typography variant="caption">--</Typography>
                     )}
                     {/* <Stack direction="column" spacing={0.2}>
@@ -251,7 +287,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       >
                         {data && data?.market_cap !== null ? (
                           data &&
-                          "$" +
+                          "$ " +
                             Math.floor(
                               Math.abs(data?.market_cap)
                             ).toLocaleString()
@@ -276,17 +312,17 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                         {data && data?.current_price !== null ? (
                           String(Math.trunc(parseFloat(data?.current_price)))
                             .length > 2 ? (
-                            "$" +
+                            "$ " +
                             Number(
                               parseFloat(data?.current_price).toFixed(2)
                             ).toLocaleString()
                           ) : data && Math.abs(data?.current_price) > 1 ? (
-                            "$" +
+                            "$ " +
                             parseFloat(data?.current_price)
                               .toFixed(4)
                               .toLocaleString()
                           ) : (
-                            "$" +
+                            "$ " +
                             parseFloat(data?.current_price)
                               .toFixed(13)
                               .toLocaleString()
@@ -418,7 +454,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                             vote?.completed === true ? (
                               parseInt(data?.vote) + 1
                             ) : (
-                              data?.vote
+                              data?.vote?.toLocaleString()
                             )
                           ) : (
                             <Typography variant="caption">--</Typography>
@@ -462,25 +498,94 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                             keepMounted
                             onClose={captchaOnClose}
                             aria-describedby="alert-dialog-slide-description"
+                            PaperProps={{
+                              style: {
+                                backgroundColor: "transparent",
+                                boxShadow: "none",
+                              },
+                            }}
+                            sx={{
+                              backgroundColor: "none",
+                              borderRadius: 3,
+                            }}
                           >
                             <DialogContent
                               sx={{
                                 "&.MuiDialogContent-root": {
                                   padding: 0,
+                                  backgroundColor: "none",
+                                  borderRadius: 3,
                                 },
                               }}
                             >
-                              <ReCAPTCHA
-                                sitekey="6LeV-IQhAAAAAMwIIrqVh_eqFPl-8IFn1QQWWrEU"
-                                onChange={() =>
-                                  coinVoteHandler(data && data?.slug)
-                                }
-                                theme="dark"
-                                ref={recaptchaRef}
-                                onExpired={() => {
-                                  // here
+                              <Box
+                                p={4}
+                                sx={{
+                                  width: 500,
+                                  height: "auto",
+                                  backgroundColor: "#000000",
+                                  border: "2px solid #121528",
+                                  borderRadius: 3,
                                 }}
-                              />
+                              >
+                                <Stack
+                                  direction="column"
+                                  spacing={3}
+                                  alignItems="center"
+                                  justifyContent="center"
+                                >
+                                  <Typography
+                                    variant="body2"
+                                    sx={{
+                                      color: "#FFFFFF",
+                                      fontWeight: 400,
+                                      fontSize: "1rem",
+                                    }}
+                                  >
+                                    Vote for{" "}
+                                    <span
+                                      style={{
+                                        color: "#1FD47E",
+                                        fontWeight: 500,
+                                      }}
+                                    >
+                                      {data && data?.name}
+                                    </span>{" "}
+                                    & prove that you are not a robot
+                                  </Typography>
+                                  <ReCAPTCHA
+                                    sitekey="6LeV-IQhAAAAAMwIIrqVh_eqFPl-8IFn1QQWWrEU"
+                                    onChange={() =>
+                                      coinVoteHandler(data && data?.slug)
+                                    }
+                                    theme="dark"
+                                    ref={recaptchaRef}
+                                    onExpired={() => {
+                                      // here
+                                    }}
+                                  />
+
+                                  <CardMedia
+                                    component="img"
+                                    height="auto"
+                                    image="https://coindcx.com/blog/wp-content/uploads/2022/02/image-3-1000x600.png"
+                                    alt="green iguana"
+                                    sx={{ objectFit: "unset", borderRadius: 0 }}
+                                  />
+
+                                  <Button
+                                    variant="contained"
+                                    sx={{
+                                      borderRadius: 10,
+                                      backgroundColor: "#00B6FC",
+                                      textTransform: "none",
+                                    }}
+                                    onClick={captchaOnClose}
+                                  >
+                                    Close this window
+                                  </Button>
+                                </Stack>
+                              </Box>
                             </DialogContent>
                           </Dialog>
                         ) : vote.initial === true ? (
@@ -544,6 +649,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                               height: 25,
                               mr: 0.5,
                               mb: 0.5,
+                              borderRadius: 0,
                             }}
                           />
                         ))}
@@ -553,27 +659,27 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
               ))}
 
             {/* <TableRow
-          sx={{
-            "&:last-child td, &:last-child th": { border: 0 },
-            borderBottom: "2px solid black",
-          }}
-        >
-          <TableCell component="th" scope="row" sx={{ color:"#FFFFFF" }}>
-            1
-          </TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>
-            <VoteBtn />
-          </TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-        </TableRow> */}
+            sx={{
+              "&:last-child td, &:last-child th": { border: 0 },
+              borderBottom: "2px solid black",
+            }}
+          >
+            <TableCell component="th" scope="row" sx={{ color:"#FFFFFF" }}>
+              1
+            </TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>
+              <VoteBtn />
+            </TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          </TableRow> */}
           </TableBody>
         )}
 
@@ -592,7 +698,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                 >
                   <TableCell
                     sx={{
-                      color: "#FFFFFF",
+                      color: "#c8c1ff",
                       border: 0,
                       borderBottom: "1px solid #09090970",
                       maxWidth: 1,
@@ -615,17 +721,17 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                         String(
                           Math.trunc(parseFloat(data?.open?.current_price))
                         ).length > 2 ? (
-                          "$" +
+                          "$ " +
                           Number(
                             parseFloat(data?.open?.current_price).toFixed(2)
                           ).toLocaleString()
                         ) : data && Math.abs(data?.open?.current_price) > 1 ? (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.open?.current_price)
                             .toFixed(4)
                             .toLocaleString()
                         ) : (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.open?.current_price)
                             .toFixed(13)
                             .toLocaleString()
@@ -646,15 +752,15 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       {data && data?.high !== null ? (
                         String(Math.trunc(parseFloat(data?.high))).length >
                         2 ? (
-                          "$" +
+                          "$ " +
                           Number(
                             parseFloat(data?.high).toFixed(2)
                           ).toLocaleString()
                         ) : data && Math.abs(data?.high) > 1 ? (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.high).toFixed(4).toLocaleString()
                         ) : (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.high).toFixed(13).toLocaleString()
                         )
                       ) : (
@@ -672,15 +778,15 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     <Typography variant="caption">
                       {data && data?.low !== null ? (
                         String(Math.trunc(parseFloat(data?.low))).length > 2 ? (
-                          "$" +
+                          "$ " +
                           Number(
                             parseFloat(data?.low).toFixed(2)
                           ).toLocaleString()
                         ) : data && Math.abs(data?.low) > 1 ? (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.low).toFixed(4).toLocaleString()
                         ) : (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.low).toFixed(13).toLocaleString()
                         )
                       ) : (
@@ -700,17 +806,17 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                         String(
                           Math.trunc(parseFloat(data?.close?.current_price))
                         ).length > 2 ? (
-                          "$" +
+                          "$ " +
                           Number(
                             parseFloat(data?.close?.current_price).toFixed(2)
                           ).toLocaleString()
                         ) : data && Math.abs(data?.close?.current_price) > 1 ? (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.close?.current_price)
                             .toFixed(4)
                             .toLocaleString()
                         ) : (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.close?.current_price)
                             .toFixed(13)
                             .toLocaleString()
@@ -722,7 +828,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   </TableCell>
                   <TableCell
                     sx={{
-                      color: "#FFFFFF",
+                      color: "#1dffc0",
                       border: 0,
                       borderBottom: "1px solid #09090970",
                     }}
@@ -730,7 +836,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     <Typography variant="caption">
                       {data && data?.volume !== null ? (
                         data &&
-                        "$" +
+                        "$ " +
                           Math.floor(Math.abs(data?.volume)).toLocaleString()
                       ) : (
                         <span style={{ color: "#7a7a7a" }}>--</span>
@@ -739,7 +845,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   </TableCell>
                   <TableCell
                     sx={{
-                      color: "#FFFFFF",
+                      color: "#02ccff",
                       border: 0,
                       borderBottom: "1px solid #09090970",
                     }}
@@ -747,7 +853,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     <Typography variant="caption">
                       {data && data?.market_cap !== null ? (
                         data &&
-                        "$" +
+                        "$ " +
                           Math.floor(
                             Math.abs(data?.market_cap)
                           ).toLocaleString()
@@ -760,27 +866,27 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
               ))}
 
             {/* <TableRow
-          sx={{
-            "&:last-child td, &:last-child th": { border: 0 },
-            borderBottom: "2px solid black",
-          }}
-        >
-          <TableCell component="th" scope="row" sx={{ color:"#FFFFFF" }}>
-            1
-          </TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>
-            <VoteBtn />
-          </TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-        </TableRow> */}
+            sx={{
+              "&:last-child td, &:last-child th": { border: 0 },
+              borderBottom: "2px solid black",
+            }}
+          >
+            <TableCell component="th" scope="row" sx={{ color:"#FFFFFF" }}>
+              1
+            </TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>
+              <VoteBtn />
+            </TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          </TableRow> */}
           </TableBody>
         )}
         {variant === "todays_price" && (
@@ -798,7 +904,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                 >
                   <TableCell
                     sx={{
-                      color: "#FFFFFF",
+                      color: "#c8c1ff",
                       border: 0,
                       borderBottom: "1px solid #09090970",
                       maxWidth: 1,
@@ -821,17 +927,17 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       {data && data?.current_price !== null ? (
                         String(Math.trunc(parseFloat(data?.current_price)))
                           .length > 2 ? (
-                          "$" +
+                          "$ " +
                           Number(
                             parseFloat(data?.current_price).toFixed(2)
                           ).toLocaleString()
                         ) : data && Math.abs(data?.current_price) > 1 ? (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.current_price)
                             .toFixed(4)
                             .toLocaleString()
                         ) : (
-                          "$" +
+                          "$ " +
                           parseFloat(data?.current_price)
                             .toFixed(13)
                             .toLocaleString()
@@ -843,7 +949,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   </TableCell>
                   <TableCell
                     sx={{
-                      color: "#FFFFFF",
+                      color: "#1dffc0",
                       border: 0,
                       borderBottom: "1px solid #09090970",
                     }}
@@ -851,7 +957,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     <Typography variant="caption">
                       {data && data?.volume_24h !== null ? (
                         data &&
-                        "$" +
+                        "$ " +
                           Math.floor(
                             Math.abs(data?.volume_24h)
                           ).toLocaleString()
@@ -870,7 +976,10 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   >
                     <Stack
                       direction="row"
-                      sx={{ alignItems: "center", justifyContent: "center" }}
+                      sx={{
+                        alignItems: "center",
+                        justifyContent: "flex-start",
+                      }}
                       spacing={0}
                     >
                       {data &&
@@ -914,7 +1023,10 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   >
                     <Stack
                       direction="row"
-                      sx={{ alignItems: "center", justifyContent: "center" }}
+                      sx={{
+                        alignItems: "center",
+                        justifyContent: "flex-start",
+                      }}
                       spacing={0}
                     >
                       {data &&
@@ -951,7 +1063,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   </TableCell>
                   <TableCell
                     sx={{
-                      color: "#FFFFFF",
+                      color: "#02ccff",
                       border: 0,
                       borderBottom: "1px solid #09090970",
                     }}
@@ -959,7 +1071,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     <Typography variant="caption">
                       {data && data?.market_cap !== null ? (
                         data &&
-                        "$" +
+                        "$ " +
                           Math.floor(
                             Math.abs(data?.market_cap)
                           ).toLocaleString()
@@ -972,27 +1084,27 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
               ))}
 
             {/* <TableRow
-          sx={{
-            "&:last-child td, &:last-child th": { border: 0 },
-            borderBottom: "2px solid black",
-          }}
-        >
-          <TableCell component="th" scope="row" sx={{ color:"#FFFFFF" }}>
-            1
-          </TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>
-            <VoteBtn />
-          </TableCell>
-          <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
-        </TableRow> */}
+            sx={{
+              "&:last-child td, &:last-child th": { border: 0 },
+              borderBottom: "2px solid black",
+            }}
+          >
+            <TableCell component="th" scope="row" sx={{ color:"#FFFFFF" }}>
+              1
+            </TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>
+              <VoteBtn />
+            </TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          </TableRow> */}
           </TableBody>
         )}
       </Table>

@@ -491,6 +491,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       <span style={{ color: "#7a7a7a" }}>--</span>
                     )}
                   </Typography>
+
                   {Math.sign(parseFloat(coinData?.percent_change_1h)) === -1 ? (
                     <Chip
                       icon={<ArrowDropDownIcon />}
@@ -1639,8 +1640,13 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   <SingleCoinChip
                     src={SourcecodeImage}
                     title="Source code"
+                    link={coinData && coinData?.source_code_url}
                   />{" "}
-                  <SingleCoinChip src={WhitepaperImage} title="Docs" />
+                  <SingleCoinChip
+                    src={WhitepaperImage}
+                    title="Whitepaper"
+                    link={coinData && coinData?.whitepaper_link}
+                  />
                 </Stack>
 
                 <Stack
@@ -1656,8 +1662,8 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 >
                   <SingleCoinChip
                     src={DocsImage}
-                    title="Whitepaper"
-                    link={coinData && coinData?.whitepaper_link}
+                    title="Docs"
+                    link={coinData && coinData?.docs_url}
                   />
 
                   {coinData?.audit &&

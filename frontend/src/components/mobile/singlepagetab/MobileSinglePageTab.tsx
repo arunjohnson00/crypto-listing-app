@@ -10,11 +10,21 @@ import MobileCoinpageRatings from "../coinpageratings/MobileCoinpageRatings";
 import MobileCoinPageMarket from "../coinpagemarket/MobileCoinPageMarket";
 import MobileCoinPageFAQ from "../coinpagefaq/MobileCoinPageFAQ";
 import MobileCoinPageEvents from "../coinpageevents/MobileCoinPageEvents";
+import MobileSingleCoinPageAccordion from "../singlecoinpageaccordion/MobileSingleCoinPageAccordion";
+import MobileCoinPageHistoricalData from "../coinpagehistoricaldata/MobileCoinPageHistoricalData";
+import MobileCoinPageTodaysPrice from "../coinpagetodaysprice/MobileCoinPageTodaysPrice";
+import MobileCoinPageCommunity from "../coinpagecommunity/MobileCoinPageCommunity";
+import MobileCoinPagePresale from "../coinpagepresale/MobileCoinPagePresale";
+import MobileCoinPageWidget from "../coinpagewidget/MobileCoinPageWidget";
+import MobileCoinPageNews from "../coinpagenews/MobileCoinPageNews";
+import { useSelector } from "react-redux";
 
 const MobileSinglePageTab = () => {
   const [value, setValue] = useState("1");
   const [tabValue, setTabValue] = useState("1");
-
+  const coinDetailFirstBlock = useSelector((data: any) => {
+    return data?.coinReducer?.coin_detail_first_block?.data;
+  });
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
     setTabValue(newValue);
@@ -58,16 +68,26 @@ const MobileSinglePageTab = () => {
             <Tab label="Overview" value="1" />
             <Tab label="About" value="2" />
             <Tab label="Ratings" value="3" />
-            <Tab label="Markets" value="4" />
-            <Tab label="FAQ" value="5" />
-            <Tab label="Events" value="6" />
-            <Tab label="Presale Details" value="7" />
-            <Tab label="KYC Details" value="8" />
-            <Tab label="Audit Details" value="9" />
+            <Tab label="Historical Data" value="4" />
+            <Tab label="Today's Price" value="5" />
+            <Tab label="Community" value="6" />
+            {/* <Tab label="Markets" value="4" /> */}
+            <Tab label="FAQ" value="7" />
+            {coinDetailFirstBlock &&
+              coinDetailFirstBlock[0]?.is_event === 1 && (
+                <Tab label="Events" value="8" />
+              )}
+            {coinDetailFirstBlock &&
+              coinDetailFirstBlock[0]?.is_presale === 1 && (
+                <Tab label="Presale" value="9" />
+              )}
+            <Tab label="Widget" value="10" />
+            <Tab label="News" value="11" />
           </TabList>
         </Box>
         <TabPanel value="1">
           <MobileCoinPageOverview />
+          <MobileSingleCoinPageAccordion />
         </TabPanel>
         <TabPanel value="2">
           <MobileCoinPageAbout />
@@ -75,18 +95,38 @@ const MobileSinglePageTab = () => {
         <TabPanel value="3">
           <MobileCoinpageRatings />
         </TabPanel>
+
         <TabPanel value="4">
-          <MobileCoinPageMarket />
+          <MobileCoinPageHistoricalData />
         </TabPanel>
         <TabPanel value="5">
-          <MobileCoinPageFAQ />
+          <MobileCoinPageTodaysPrice />
         </TabPanel>
         <TabPanel value="6">
+          <MobileCoinPageCommunity />
+        </TabPanel>
+
+        {/* <TabPanel value="4">
+          <MobileCoinPageMarket />
+        </TabPanel> */}
+        <TabPanel value="7">
+          <MobileCoinPageFAQ />
+        </TabPanel>
+
+        <TabPanel value="8">
           <MobileCoinPageEvents />
         </TabPanel>
-        <TabPanel value="7">Item One</TabPanel>
-        <TabPanel value="8">Item Two</TabPanel>
-        <TabPanel value="9">Item Three</TabPanel>
+
+        <TabPanel value="9">
+          <MobileCoinPagePresale />
+        </TabPanel>
+
+        <TabPanel value="10">
+          <MobileCoinPageWidget />
+        </TabPanel>
+        <TabPanel value="11">
+          <MobileCoinPageNews />
+        </TabPanel>
       </TabContext>
     </Box>
   );

@@ -5,6 +5,8 @@ import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import ReCAPTCHA from "react-google-recaptcha";
 import "react-toastify/dist/ReactToastify.css";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 
 import {
   Grid,
@@ -14,6 +16,9 @@ import {
   Button,
   Box,
   Divider,
+  CardMedia,
+  Dialog,
+  DialogContent,
 } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import Rating from "@mui/material/Rating";
@@ -58,6 +63,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { defaultColor } from "../../../common/common";
 import { Link } from "react-router-dom";
 import MobileSinglePageTab from "../singlepagetab/MobileSinglePageTab";
+import { coinMarketListRequest } from "../../../store/action/coinAction ";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileSingleCoinHeader = ({ coinData }: any) => {
@@ -67,6 +73,9 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
   const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
   const coinSocialGraph = useSelector((data: any) => {
     return data?.coinReducer?.coin_social_graph?.data;
+  });
+  const coinMarketLists = useSelector((data: any) => {
+    return data?.coinReducer?.coin_market_list?.data;
   });
   const [copyValue, setCopyValue] = useState<any>();
   const [vote, setVote] = useState<any>({
@@ -92,25 +101,38 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
     setOpenCaptcha(true);
   };
 
-  // const captchaOnClose = () => {
-  //   setOpenCaptcha(false);
-  //   setVote({ ...vote, initial: false, completed: false, captcha: false });
-  // };
+  const captchaOnClose = () => {
+    setOpenCaptcha(false);
+    setVote({ ...vote, initial: false, completed: false, captcha: false });
+  };
 
   const coinVoteHandler = () => {
     const successHandler = (res: any) => {
       setOpenCaptcha(false);
       setVote({ ...vote, initial: true, completed: false, captcha: false });
       setTimeout(function () {
-        toast.success(`${res?.data?.data}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.success(
+          <Box>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <CheckCircleRoundedIcon sx={{ color: "#5CE32D", fontSize: 50 }} />
+              <Typography sx={{ fontSize: ".85rem" }}>
+                {res?.data?.data}
+              </Typography>
+            </Stack>
+          </Box>,
+          {
+            position: "top-right",
+            icon: false,
+            //theme: "colored",
+            className: "toast-success-container toast-success-container-after",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
 
         setVote({ ...vote, initial: false, completed: true, captcha: false });
       }, 2000);
@@ -134,6 +156,18 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
       setCopyValue(coinData?.contract_address[0]?.addresss);
   }, [setCopyValue]);
 
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(
+      coinMarketListRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  }, [dispatch]);
+
   return (
     <Fragment>
       <Grid container>
@@ -145,9 +179,9 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
         >
           <Stack
             direction={{ xs: "column", sm: "column", md: "row" }}
-            spacing={2}
+            spacing={0.7}
             sx={{ alignItems: "center" }}
-            py={1}
+            pt={1}
             width="100%"
           >
             <Stack
@@ -216,7 +250,6 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                         alignItems: "center",
                         justifyContent: "space-between",
                       }}
-                      py={1}
                     >
                       {coinData && parseInt(coinData?.is_presale) === 1 ? (
                         <span>
@@ -366,25 +399,27 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
               width="100%"
             >
               <Stack
-                direction={{ xs: "column", sm: "column", md: "column" }}
-                spacing={-0.5}
-                sx={{ alignItems: "flex-start" }}
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                spacing={1}
+                sx={{ alignItems: "baseline" }}
                 width="100%"
               >
                 <Typography
                   sx={{ color: "#FFFFF5", fontWeight: 800, fontSize: "1.8rem" }}
                   textAlign={{ xs: "center", sm: "center", md: "left" }}
                 >
-                  {coinData && coinData?.name}
+                  {coinData && coinData?.name.length > 18
+                    ? coinData?.name.slice(0, 18) + "..."
+                    : coinData?.name}
                 </Typography>
 
                 <Stack
                   direction={{ xs: "row", sm: "row", md: "row" }}
                   spacing={0.5}
-                  sx={{ alignItems: "center" }}
+                  sx={{ alignItems: "flex-end" }}
                 >
                   <Typography
-                    variant="h6"
+                    variant="body2"
                     sx={{
                       color: "#27D6A2",
                       fontWeight: 400,
@@ -564,12 +599,12 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
             spacing={3}
             width="100%"
             alignItems="flex-start"
+            py={2}
           >
             <Stack
               direction={{ xs: "row", sm: "row", md: "row" }}
               spacing={1.5}
               sx={{ alignItems: "center", justifyContent: "flex-start" }}
-              py={2}
             >
               <Stack
                 direction={{ xs: "column", sm: "column", md: "row" }}
@@ -593,19 +628,92 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                     Vote
                   </Button>
                 ) : vote.captcha === true ? (
-                  // <Dialog
-                  //   open={openCaptcha}
-                  //   // TransitionComponent={Transition}
-                  //   keepMounted
-                  //   onClose={captchaOnClose}
-                  //   aria-describedby="alert-dialog-slide-description"
-                  // >
-                  //   <DialogContent>
-                  <ReCAPTCHA
-                    sitekey="6LeV-IQhAAAAAMwIIrqVh_eqFPl-8IFn1QQWWrEU"
-                    onChange={coinVoteHandler}
-                    theme="dark"
-                  />
+                  <Dialog
+                    open={openCaptcha}
+                    // TransitionComponent={Transition}
+                    keepMounted
+                    onClose={captchaOnClose}
+                    aria-describedby="alert-dialog-slide-description"
+                    PaperProps={{
+                      style: {
+                        backgroundColor: "transparent",
+                        boxShadow: "none",
+                      },
+                    }}
+                  >
+                    <DialogContent
+                      sx={{
+                        "&.MuiDialogContent-root": {
+                          padding: 0,
+                          borderRadius: 3,
+                          background: "none",
+                        },
+                      }}
+                    >
+                      <Box
+                        p={4}
+                        sx={{
+                          width: "auto",
+                          height: "auto",
+                          backgroundColor: "#000000",
+                          border: "2px solid #121528",
+                          borderRadius: 3,
+                        }}
+                      >
+                        <Stack
+                          direction="column"
+                          spacing={3}
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: "#FFFFFF",
+                              fontWeight: 400,
+                              fontSize: "1rem",
+                            }}
+                          >
+                            Vote for{" "}
+                            <span
+                              style={{
+                                color: "#1FD47E",
+                                fontWeight: 500,
+                              }}
+                            >
+                              {coinData && coinData?.name}
+                            </span>{" "}
+                            & prove that you are not a robot
+                          </Typography>
+                          <ReCAPTCHA
+                            sitekey="6LeV-IQhAAAAAMwIIrqVh_eqFPl-8IFn1QQWWrEU"
+                            onChange={coinVoteHandler}
+                            theme="dark"
+                          />
+
+                          <CardMedia
+                            component="img"
+                            height="auto"
+                            image="https://coindcx.com/blog/wp-content/uploads/2022/02/image-3-1000x600.png"
+                            alt="green iguana"
+                            sx={{ objectFit: "unset", borderRadius: 0 }}
+                          />
+
+                          <Button
+                            variant="contained"
+                            sx={{
+                              borderRadius: 10,
+                              backgroundColor: "#00B6FC",
+                              textTransform: "none",
+                            }}
+                            onClick={captchaOnClose}
+                          >
+                            Close this window
+                          </Button>
+                        </Stack>
+                      </Box>
+                    </DialogContent>
+                  </Dialog>
                 ) : //   </DialogContent>
                 // </Dialog>
                 vote.initial === true ? (
@@ -680,6 +788,73 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                     <ShareOutlinedIcon sx={{ color: "#575385" }} />
                   </IconButton>
                 </RWebShare>
+              </Stack>
+            </Stack>
+
+            <Stack
+              direction={{ xs: "row", sm: "row", md: "row" }}
+              spacing={0.5}
+              sx={{
+                alignItems: "center",
+                justifyContent: "flex-start",
+              }}
+            >
+              {" "}
+              {/* <Divider
+                variant="middle"
+                flexItem
+                orientation={xsBreakPoint ? "horizontal" : "vertical"}
+                sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
+              /> */}
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                spacing={1}
+              >
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "center", minWidth: 80 }}
+                  justifyContent={{
+                    xs: "center",
+                    sm: "center",
+                    md: "center",
+                    lg: "center",
+                  }}
+                  spacing={1}
+                >
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: "#787878",
+                      fontSize: "0.65rem",
+                    }}
+                  >
+                    Available on
+                  </Typography>
+                  <Tooltip title="Delete">
+                    <Avatar
+                      src={ToolTipImage}
+                      sx={{ width: 9, height: 9 }}
+                    ></Avatar>
+                  </Tooltip>
+                </Stack>
+
+                <Stack direction="row" spacing={0.8}>
+                  {coinMarketLists &&
+                    coinMarketLists?.map((item: any, index: number) => (
+                      <a
+                        href={item?.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        key={index}
+                      >
+                        <Avatar
+                          alt={item?.market}
+                          src={`${serverAPIUrl}public/uploads/exchange_icons/${item?.thumb_icon}`}
+                          sx={{ width: 22, height: 22 }}
+                        />
+                      </a>
+                    ))}
+                </Stack>
               </Stack>
             </Stack>
           </Stack>

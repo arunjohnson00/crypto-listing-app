@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
 import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
 import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
@@ -32,10 +34,35 @@ import {
   coinRatingBlockRequest,
   featuredCoinListRequest,
   coinVisitedCounterRequest,
+  coinRecentlyAddedRequest,
 } from "../../../store/action";
 import MobileCoinSlider from "../../../components/mobile/coinslider/MobileCoinSlider";
-import MobileLatestNewsCardScrollTop from "../../../components/mobile/latestnews/MobileLatestNewsCardScrollTop";
-import MobileSinglePageTab from "../../../components/mobile/singlepagetab/MobileSinglePageTab";
+import DiscoverRecentCryptoCard from "../../../components/desktop/cards/discoverrecentcryptocard/DiscoverRecentCryptoCard";
+
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 6,
+    slidesToSlide: 1,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 6,
+    slidesToSlide: 1,
+  },
+
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2.5,
+    slidesToSlide: 1,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1.5,
+    slidesToSlide: 1,
+  },
+};
 
 const MobileSingleCoinPage = () => {
   const location: any = useLocation();
@@ -43,11 +70,11 @@ const MobileSingleCoinPage = () => {
   const navigate: any = useNavigate();
   const [requestStatus, setRequestStatus] = useState<any>(false);
 
-  TimeAgo.addDefaultLocale(en);
-  const timeAgo = new TimeAgo("en");
-
   const coinDetailFirstBlock = useSelector((data: any) => {
     return data?.coinReducer?.coin_detail_first_block?.data;
+  });
+  const latestCoin = useSelector((data: any) => {
+    return data?.coinReducer?.recently_added?.data;
   });
 
   useEffect(() => {
@@ -65,6 +92,7 @@ const MobileSingleCoinPage = () => {
         errorHandler
       )
     );
+    dispatch(coinRecentlyAddedRequest("noData", successHandler, errorHandler));
   }, [dispatch]);
 
   useEffect(() => {
@@ -129,9 +157,9 @@ const MobileSingleCoinPage = () => {
   return (
     <Fragment>
       <Grid container rowSpacing={1}>
-        <Grid item xs={12} sx={{ marginTop: 1.5 }}>
-          <MobileLatestNewsCardScrollTop />
-        </Grid>
+        {/* {<Grid item xs={12} sx={{ marginTop: 1.5 }}>
+            <MobileLatestNewsCardScrollTop />
+          </Grid>} */}
 
         <Grid item xs={12} sx={{ paddingTop: 0 }}>
           <MobileCoinSlider />
@@ -211,7 +239,7 @@ const MobileSingleCoinPage = () => {
           />
         </Grid>
 
-        <Grid
+        {/* <Grid
           item
           xs={12}
           sx={{
@@ -220,7 +248,47 @@ const MobileSingleCoinPage = () => {
           }}
         >
           <MobileSingleCoinPageAccordion />
-        </Grid>
+        </Grid> */}
+      </Grid>
+      <Grid xs={12} pt={0}>
+        {" "}
+        <Typography variant="h6" sx={{ color: "#FFFFF5" }} mb={1}>
+          Recently Added
+        </Typography>
+      </Grid>
+      <Grid xs={12} pt={2} pb={5}>
+        <div
+          style={{
+            width: "100%",
+            boxSizing: "border-box",
+            margin: "0 auto",
+          }}
+        >
+          {latestCoin && (
+            <Carousel
+              focusOnSelect={true}
+              responsive={responsive}
+              infinite={true}
+              autoPlay={true}
+              showDots={false}
+              arrows={false}
+              removeArrowOnDeviceType={[
+                "tablet",
+                "mobile",
+                // "desktop",
+                // "superLargeDesktop",
+              ]}
+              //customLeftArrow={<CustomLeftArrow />}
+            >
+              {latestCoin &&
+                latestCoin?.map((item: any, index: number) => (
+                  <div key={index}>
+                    <DiscoverRecentCryptoCard item={item} />
+                  </div>
+                ))}
+            </Carousel>
+          )}
+        </div>
       </Grid>
     </Fragment>
   );

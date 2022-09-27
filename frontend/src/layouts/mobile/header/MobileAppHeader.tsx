@@ -91,7 +91,10 @@ const MobileAppHeader = () => {
                 onClick={toggleDrawer}
               />
             </Search> */}
-              <SearchIcon onClick={toggleDrawer} sx={{ cursor: "pointer" }} />
+              <SearchIcon
+                onClick={toggleDrawer}
+                sx={{ cursor: "pointer", color: "#8f8cb0" }}
+              />
 
               <SearchDrawer
                 openDrawer={openDrawer}

@@ -1,59 +1,100 @@
-import {
-  Grid,
-  Stack,
-  Typography,
-  Rating,
-  Divider,
-  CardMedia,
-  Box,
-  Avatar,
-  Checkbox,
-  LinearProgress,
-  Link,
-  Button,
-} from "@mui/material";
-import MoodIcon from "@mui/icons-material/Mood";
-import MobileEventViewCard from "../cards/eventviewcard/MobileEventViewCard";
+import { useState, useEffect, Fragment } from "react";
+import { useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Button, Grid, Stack, Typography } from "@mui/material";
+import moment from "moment";
+
+import { coinEventBlockRequest } from "../../../store/action";
+
+import MobileEventViewCardCoinPage from "../cards/eventviewcardcoinpage/MobileEventViewCardCoinPage";
 
 const MobileCoinPageEvents = () => {
+  const location: any = useLocation();
+  const dispatch: any = useDispatch();
+  const [resStatus, setResStatus] = useState<any>();
+  const coinEvents = useSelector((data: any) => {
+    return data?.coinReducer?.coin_events_block?.data;
+  });
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      setResStatus(res?.data?.response);
+    };
+    const errorHandler = (err: any) => {};
+
+    dispatch(
+      coinEventBlockRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  }, [dispatch]);
+
   return (
-    <Grid container xs={12}>
-      <Grid xs={12}>
-        <Stack direction={{ xs: "column", sm: "column", md: "row" }} mt={0}>
-          {/* <Grid xs={12} sm={12} md={4}>
-            <Typography
-              variant="h5"
-              sx={{
-                fontWeight: 700,
-                color: "#FFFFF5",
-                "&::after": {
-                  content: '""',
-                  display: "block",
-                  width: "20%",
-                  borderBottom: "2px solid #23E2A0",
-                },
-              }}
-            >
-              Safemoon FAQ's
+    <Grid item xs={12} pt={2}>
+      {resStatus === true ? (
+        <Stack direction="column" spacing={8}>
+          {" "}
+          <Stack direction="column" spacing={2} alignItems="flex-start">
+            <Typography sx={{ color: "#FFFFFF", fontSize: "1.2rem" }}>
+              Upcoming Events
             </Typography>
-          </Grid> */}
-          {/* <Grid xs={12} sm={12} md={8} mt={{ xs: 2, sm: 2, md: 0 }}>
-            <CardMedia
-              component="img"
-              height="70"
-              image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-              alt="green iguana"
-            />
-          </Grid> */}
+
+            {coinEvents &&
+              coinEvents?.map((item: any, index: number) => (
+                <Fragment>
+                  {moment(new Date(item?.event_date)).isBefore(new Date()) ===
+                    false && (
+                    <MobileEventViewCardCoinPage
+                      viewcoin={false}
+                      key={index}
+                      data={item}
+                    />
+                  )}
+                </Fragment>
+              ))}
+          </Stack>
+          <Stack direction="column" spacing={2} alignItems="flex-start">
+            <Typography sx={{ color: "#FFFFFF", fontSize: "1.2rem" }}>
+              Past Events
+            </Typography>
+            {coinEvents &&
+              coinEvents?.map((item: any, index: number) => (
+                <Fragment>
+                  {moment(new Date(item?.event_date)).isBefore(new Date()) ===
+                    true && (
+                    <MobileEventViewCardCoinPage
+                      viewcoin={false}
+                      key={index}
+                      data={item}
+                    />
+                  )}
+                </Fragment>
+              ))}
+          </Stack>
         </Stack>
-      </Grid>
-      <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
-        <Grid container spacing={1}>
-          <Grid xs={12} sm={12} md={4} lg={4} xl={4}>
-            <MobileEventViewCard />
-          </Grid>
-        </Grid>
-      </Grid>
+      ) : (
+        <Stack
+          direction="row"
+          spacing={2}
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
+            Currently there is no event for this coin
+          </Typography>
+          <Button
+            variant="contained"
+            sx={{
+              textTransform: "capitalize",
+              fontSize: ".85rem",
+              borderRadius: 5,
+            }}
+          >
+            Add Event
+          </Button>
+        </Stack>
+      )}
     </Grid>
   );
 };

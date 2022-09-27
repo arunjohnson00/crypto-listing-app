@@ -31,7 +31,7 @@ import SourcecodeImage from "../../../assets/singlepagecoin/sourcecode.png";
 import WhitepaperImage from "../../../assets/singlepagecoin/Whitepaper.png";
 import DocsImage from "../../../assets/singlepagecoin/doc.png";
 
-import LinkImage from "../../../assets/singlepagecoin/link.png";
+import LinkImage from "../../../assets/singlepagecoin/globe.gif";
 import MobileSingleCoinChip from "../coinpagechip/MobileSingleCoinChip";
 
 const MobileCoinPageOverview = () => {
@@ -67,9 +67,8 @@ const MobileCoinPageOverview = () => {
           {coinDetailFirstBlock &&
             coinDetailFirstBlock[0]?.website_url &&
             coinDetailFirstBlock &&
-            coinDetailFirstBlock[0]?.website_url
-              ?.slice(0, 1)
-              .map((item: any, index: number) => (
+            coinDetailFirstBlock[0]?.website_url?.map(
+              (item: any, index: number) => (
                 <MobileSingleCoinChip
                   key={index}
                   src={LinkImage}
@@ -77,7 +76,8 @@ const MobileCoinPageOverview = () => {
                   link={item?.url}
                   varient="website"
                 />
-              ))}
+              )
+            )}
         </Stack>
       </Stack>
 
@@ -102,17 +102,18 @@ const MobileCoinPageOverview = () => {
           {coinDetailFirstBlock &&
             coinDetailFirstBlock[0]?.network &&
             coinDetailFirstBlock &&
-            coinDetailFirstBlock[0]?.network
-              ?.slice(0, 1)
-              .map((item: any, index: number) => (
+            coinDetailFirstBlock[0]?.network?.map(
+              (item: any, index: number) => (
                 <MobileSingleCoinChip
                   key={index}
                   src={item?.logo}
                   title={item?.name}
                   link={item?.url}
-                  varient="explorer"
+                  variant="explorer"
+                  //shape="square"
                 />
-              ))}
+              )
+            )}
         </Stack>
       </Stack>
 
@@ -140,20 +141,10 @@ const MobileCoinPageOverview = () => {
             coinDetailFirstBlock[0]?.communities?.map(
               (item: any, index: number) => (
                 <MobileSingleCoinChip
-                  key={index}
-                  src={
-                    item?.name === "twitter"
-                      ? TwitterImage
-                      : item?.name === "telegram"
-                      ? TelegramImage
-                      : item?.name === "reddit"
-                      ? RedditImage
-                      : item?.name === "facebook"
-                      ? FacebookImage
-                      : item?.name === "instagram" && InstagramImage
-                  }
+                  src={item?.logo}
                   title={item?.name}
                   link={item?.url}
+                  variant="communities"
                 />
               )
             )}
@@ -178,10 +169,16 @@ const MobileCoinPageOverview = () => {
           </Typography>
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
-          <MobileSingleCoinChip icon={false} title="Github" />
+          <MobileSingleCoinChip
+            src={SourcecodeImage}
+            icon={true}
+            title="Source Code"
+            link={
+              coinDetailFirstBlock && coinDetailFirstBlock[0]?.source_code_url
+            }
+          />
         </Stack>
       </Stack>
-
       <Stack direction="row" spacing={1.5} alignItems="flex-start">
         <Stack
           direction="row"
@@ -201,14 +198,37 @@ const MobileCoinPageOverview = () => {
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
           <MobileSingleCoinChip
-            src={DocsImage}
+            src={WhitepaperImage}
             title="Whitepaper"
             link={
-              coinDetailFirstBlock &&
-              coinDetailFirstBlock[0] &&
-              coinDetailFirstBlock &&
-              coinDetailFirstBlock[0]?.whitepaper_link
+              coinDetailFirstBlock && coinDetailFirstBlock[0]?.whitepaper_link
             }
+          />
+        </Stack>
+      </Stack>
+
+      <Stack direction="row" spacing={1.5} alignItems="flex-start">
+        <Stack
+          direction="row"
+          spacing={1.5}
+          alignItems="center"
+          sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
+        >
+          <Tooltip title="Delete">
+            <Avatar src={ToolTipImage} sx={{ width: 14, height: 14 }}></Avatar>
+          </Tooltip>
+          <Typography
+            variant="body2"
+            sx={{ color: "#23E2A0", fontWeight: 500 }}
+          >
+            Docs
+          </Typography>
+        </Stack>
+        <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
+          <MobileSingleCoinChip
+            src={DocsImage}
+            title="Docs"
+            link={coinDetailFirstBlock && coinDetailFirstBlock[0]?.docs_url}
           />
         </Stack>
       </Stack>
@@ -232,16 +252,15 @@ const MobileCoinPageOverview = () => {
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
           {coinDetailFirstBlock &&
-            coinDetailFirstBlock[0]?.audit
-              ?.slice(0, 1)
-              .map((item: any, index: number) => (
-                <MobileSingleCoinChip
-                  key={index}
-                  src={SourcecodeImage}
-                  title={item.name}
-                  link={item.url}
-                />
-              ))}
+            coinDetailFirstBlock[0]?.audit?.map((item: any, index: number) => (
+              <MobileSingleCoinChip
+                key={index}
+                src={item?.thumb_icon}
+                title={item.name}
+                link={item.url}
+                variant="audit"
+              />
+            ))}
         </Stack>
       </Stack>
 
@@ -264,16 +283,17 @@ const MobileCoinPageOverview = () => {
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
           {coinDetailFirstBlock &&
-            coinDetailFirstBlock[0]?.chart_link
-              ?.slice(0, 1)
-              .map((item: any, index: number) => (
+            coinDetailFirstBlock[0]?.chart_link?.map(
+              (item: any, index: number) => (
                 <MobileSingleCoinChip
                   key={index}
-                  src={LinkImage}
+                  src={item?.thumb_icon}
                   title={item?.name}
                   link={item?.url}
+                  variant="chart"
                 />
-              ))}
+              )
+            )}
         </Stack>
       </Stack>
 

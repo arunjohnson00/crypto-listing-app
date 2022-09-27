@@ -8,13 +8,14 @@ import {
   Link,
 } from "@mui/material";
 import React from "react";
-
+import moment from "moment";
 import FacebookImage from "../../../assets/footer/facebook.png";
 import InstagramImage from "../../../assets/footer/instagram.png";
 import RedditImage from "../../../assets/footer/reddit.png";
 import TelegramImage from "../../../assets/footer/telegram.png";
 import TwitterImage from "../../../assets/footer/twitter.png";
 import DiscordImage from "../../../assets/footer/discord.png";
+import logoWhite from "../../../assets/logo/logo.png";
 //import GithubImage from "../../../assets/footer/github.png";
 
 const AppFooter = () => {
@@ -27,11 +28,7 @@ const AppFooter = () => {
             spacing={0.5}
             sx={{ alignItems: "flex-start" }}
           >
-            <img
-              src="https://coinxhigh.com/public/assets/images/logo.png"
-              alt="coinxhigh"
-              width="150px"
-            />
+            <img src={logoWhite} alt="coinxhigh" width="150px" />
             <Typography
               variant="body2"
               sx={{
@@ -1145,7 +1142,7 @@ const AppFooter = () => {
             },
           }}
         >
-          © 2022 CoinXhigh. All rights reserved
+          © {moment(new Date()).format("YYYY")} CoinXhigh. All rights reserved
         </Typography>{" "}
         {/* <Box>
             {" "}
