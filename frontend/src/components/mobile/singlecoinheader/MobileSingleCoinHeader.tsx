@@ -193,12 +193,12 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
           direction={{ xs: "column", sm: "column", md: "row" }}
           px={0}
           width="100%"
-          sx={{ alignItems: "center" }}
+          sx={{ alignItems: "flex-start" }}
         >
           <Stack
             direction={{ xs: "column", sm: "column", md: "row" }}
-            spacing={0.7}
-            sx={{ alignItems: "center" }}
+            spacing={1.3}
+            sx={{ alignItems: "flex-start" }}
             pt={1}
             width="100%"
           >
@@ -227,7 +227,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                     alt={coinData && coinData?.name}
                     src={`${serverAPIUrl}public/uploads/coin_logo/${coinData?.logo}`}
                     //src="https://mui.com/static/images/avatar/1.jpg"
-                    sx={{ borderRadius: 0, width: 25, height: 25 }}
+                    sx={{ borderRadius: 0, width: 30, height: 30 }}
                   />
                 )}
 
@@ -377,7 +377,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
               <Stack
                 direction="column"
                 spacing={0}
-                sx={{ alignItems: "center" }}
+                sx={{ alignItems: "flex-end" }}
               >
                 <Stack
                   direction="row"
@@ -392,12 +392,12 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                       ? parseFloat(coinData?.trust_score[0]?.rating).toFixed(1)
                       : "--"}
                   </Typography>
-                  <Tooltip title="Delete">
+                  {/* <Tooltip title="Delete">
                     <Avatar
                       src={ToolTipImage}
                       sx={{ width: 14, height: 14 }}
                     ></Avatar>
-                  </Tooltip>
+                  </Tooltip> */}
                 </Stack>
                 {coinData && coinData?.trust_score[0]?.rating !== null && (
                   <Rating
@@ -410,6 +410,15 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                     sx={{ fontSize: ".9rem" }}
                   />
                 )}
+                <Typography
+                  variant="caption"
+                  sx={{ color: "#959595", fontWeight: 400, fontSize: ".65rem" }}
+                >
+                  {coinData && coinData?.trust_score[0]?.review_count !== null
+                    ? coinData &&
+                      coinData?.trust_score[0]?.review_count + " Reviews"
+                    : "--"}
+                </Typography>
               </Stack>
             </Stack>
             <Stack
@@ -439,7 +448,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                   <Typography
                     variant="body2"
                     sx={{
-                      color: "#27D6A2",
+                      color: "#19ffb0",
                       fontWeight: 400,
                       textTransform: "uppercase",
                     }}
@@ -532,52 +541,103 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
               </Stack>
             </Stack>
             <Stack
-              direction={{ xs: "row", sm: "row", md: "row" }}
-              spacing={2}
-              sx={{ alignItems: "flex-start", justifyContent: "flex-start" }}
-              width="100%"
+              direction={{ xs: "column", sm: "column", md: "column" }}
+              spacing={0.7}
             >
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                spacing={0.5}
-                sx={{ alignItems: "center" }}
-              >
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  sx={{ alignItems: "center" }}
-                  justifyContent={{
-                    xs: "center",
-                    sm: "center",
-                    md: "center",
-                    lg: "flex-start",
-                  }}
-                  spacing={1}
-                >
-                  <Typography variant="subtitle2" sx={{ color: "#FFFFFFae" }}>
-                    Listed :
-                  </Typography>
-                </Stack>
-
-                <Typography variant="subtitle2" sx={{ color: "#00B96E" }}>
-                  {coinData && coinData?.approved_at !== null
-                    ? moment(new Date(coinData?.approved_at)).fromNow()
-                    : "NA"}
-                </Typography>
-              </Stack>
               <Divider
-                variant="middle"
+                variant="fullWidth"
                 flexItem
-                orientation={"vertical"}
-                sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
+                orientation={"horizontal"}
+                sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
               />
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
-                spacing={0.5}
-                sx={{ alignItems: "center" }}
+                spacing={2}
+                sx={{ alignItems: "flex-start", justifyContent: "flex-start" }}
+                width="100%"
               >
                 <Stack
                   direction={{ xs: "row", sm: "row", md: "row" }}
+                  spacing={0.5}
                   sx={{ alignItems: "center" }}
+                >
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    sx={{ alignItems: "center" }}
+                    justifyContent={{
+                      xs: "center",
+                      sm: "center",
+                      md: "center",
+                      lg: "flex-start",
+                    }}
+                    spacing={1}
+                  >
+                    <Typography variant="subtitle2" sx={{ color: "#FFFFFFae" }}>
+                      Listed :
+                    </Typography>
+                  </Stack>
+
+                  <Typography variant="subtitle2" sx={{ color: "#00B96E" }}>
+                    {coinData && coinData?.approved_at !== null
+                      ? moment(new Date(coinData?.approved_at)).fromNow()
+                      : "NA"}
+                  </Typography>
+                </Stack>
+                <Divider
+                  variant="middle"
+                  flexItem
+                  orientation={"vertical"}
+                  sx={{ borderColor: "#0b1640", borderRightWTodayidth: 1 }}
+                />
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  spacing={0.5}
+                  sx={{ alignItems: "center" }}
+                >
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    sx={{ alignItems: "center" }}
+                    justifyContent={{
+                      xs: "center",
+                      sm: "center",
+                      md: "center",
+                      lg: "flex-start",
+                    }}
+                    spacing={1}
+                  >
+                    <Typography variant="subtitle2" sx={{ color: "#FFFFFFae" }}>
+                      <Avatar
+                        alt="Todays Vote"
+                        src={HeartAnimatedImage}
+                        sx={{ width: 25, height: 25 }}
+                      />
+                    </Typography>
+                  </Stack>
+
+                  <Typography
+                    variant="subtitle2"
+                    sx={{ color: "#FFFFFFae", fontWeight: 600 }}
+                  >
+                    <span style={{ color: "#06E9DC" }}>
+                      {coinData &&
+                      coinData?.vote !== null &&
+                      vote?.completed === true
+                        ? parseInt(coinData?.vote).toLocaleString()
+                        : coinData?.vote?.toLocaleString()}
+                    </span>{" "}
+                    Votes
+                  </Typography>
+                </Stack>
+              </Stack>
+
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                spacing={0.5}
+                sx={{ alignItems: "flex-start" }}
+              >
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  sx={{ alignItems: "flex-start" }}
                   justifyContent={{
                     xs: "center",
                     sm: "center",
@@ -587,28 +647,56 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                   spacing={1}
                 >
                   <Typography variant="subtitle2" sx={{ color: "#FFFFFFae" }}>
-                    <Avatar
-                      alt="Todays Vote"
-                      src={HeartAnimatedImage}
-                      sx={{ width: 25, height: 25 }}
-                    />
+                    Today :
                   </Typography>
                 </Stack>
 
-                <Typography
-                  variant="subtitle2"
-                  sx={{ color: "#FFFFFFae", fontWeight: 600 }}
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  spacing={0.5}
+                  sx={{ alignItems: "center" }}
                 >
-                  <span style={{ color: "#06E9DC" }}>
-                    {coinData &&
-                    coinData?.vote !== null &&
-                    vote?.completed === true
-                      ? parseInt(coinData?.vote).toLocaleString()
-                      : coinData?.vote?.toLocaleString()}
-                  </span>{" "}
-                  Votes
-                </Typography>
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    sx={{ alignItems: "center" }}
+                    justifyContent={{
+                      xs: "center",
+                      sm: "center",
+                      md: "center",
+                      lg: "flex-start",
+                    }}
+                    spacing={1}
+                  >
+                    <Typography variant="subtitle2" sx={{ color: "#FFFFFFae" }}>
+                      <Avatar
+                        alt="Todays Vote"
+                        src={HeartAnimatedImage}
+                        sx={{ width: 25, height: 25 }}
+                      />
+                    </Typography>
+                  </Stack>
+
+                  <Typography
+                    variant="subtitle2"
+                    sx={{ color: "#FFFFFFae", fontWeight: 600 }}
+                  >
+                    <span style={{ color: "#06E9DC" }}>
+                      {coinData &&
+                      coinData?.todays_vote !== null &&
+                      vote?.completed === true
+                        ? parseInt(coinData?.todays_vote).toLocaleString()
+                        : coinData?.todays_vote?.toLocaleString()}
+                    </span>{" "}
+                    Votes
+                  </Typography>
+                </Stack>
               </Stack>
+              <Divider
+                variant="fullWidth"
+                flexItem
+                orientation={"horizontal"}
+                sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
+              />
             </Stack>
           </Stack>
 
@@ -822,7 +910,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                 variant="middle"
                 flexItem
                 orientation={xsBreakPoint ? "horizontal" : "vertical"}
-                sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
+                sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
               /> */}
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
@@ -882,8 +970,8 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
         <Box
           sx={{
             flexGrow: 1,
-            borderTop: "2px solid #292654",
-            borderBottom: "2px solid #292654",
+            borderTop: "1px solid #0b1640",
+            // borderBottom: "2px solid #292654",
           }}
         >
           <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
@@ -894,18 +982,18 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
               py={2}
             >
               <Stack direction="row" spacing={1} alignItems="center">
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
-                  ></Avatar>
-                </Tooltip>
                 <Typography
                   variant="body2"
-                  sx={{ color: "#23E2A0", fontWeight: 500 }}
+                  sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
                 >
                   Badges
                 </Typography>
+                <Tooltip title="Delete">
+                  <Avatar
+                    src={ToolTipImage}
+                    sx={{ width: 9, height: 9 }}
+                  ></Avatar>
+                </Tooltip>
               </Stack>
               <Stack
                 direction="row"
@@ -938,7 +1026,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
               variant="middle"
               flexItem
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
+              sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
             /> */}
           </Stack>
         </Box>
@@ -948,7 +1036,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
           sx={{
             flexGrow: 1,
             // borderTop: "2px solid #292654",
-            borderBottom: "2px solid #292654",
+            borderBottom: "1px solid #0b1640",
           }}
         >
           <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
@@ -1158,7 +1246,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
               variant="middle"
               flexItem
               orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
+              sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
             /> */}
           </Stack>
         </Box>

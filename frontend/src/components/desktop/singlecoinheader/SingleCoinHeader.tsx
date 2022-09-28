@@ -1001,7 +1001,15 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       variant="caption"
                       sx={{ color: "#696969", fontSize: "0.70rem" }}
                     >
-                      ( +{coinData?.network?.slice(1).length} Networks )
+                      {coinData && coinData?.network?.slice(1).length > 0 && (
+                        <span style={{ color: "#00b8ff", fontWeight: 500 }}>
+                          +{coinData && coinData?.network?.slice(1).length}{" "}
+                          <span style={{ color: "#00b8ff", fontWeight: 400 }}>
+                            {" "}
+                            Networks
+                          </span>{" "}
+                        </span>
+                      )}
                     </Typography>
                   </Stack>
                 ) : (
@@ -1408,42 +1416,59 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   ></Avatar>
                 </Tooltip>
               </Stack>
-              <Stack direction="row" spacing={0.3} alignItems="flex-end">
-                <Stack
-                  direction={{ xs: "column", sm: "column", md: "column" }}
-                  alignItems={{
-                    xs: "center",
-                    sm: "center",
-                    md: "center",
-                    lg: "flex-start",
-                  }}
-                  spacing={1}
-                  pt={1}
-                >
-                  {coinData?.website_url &&
-                    coinData?.website_url
-                      ?.slice(0, 2)
-                      .map((item: any, index: number) => (
-                        <SingleCoinChip
-                          key={index}
-                          src={LinkImage}
-                          title={item?.url}
-                          link={item?.url}
-                          variant="website"
-                        />
-                      ))}
+              <Stack direction="column" spacing={0.5} alignItems="flex-start">
+                <Stack direction="row" spacing={0.3} alignItems="flex-end">
+                  <Stack
+                    direction={{ xs: "column", sm: "column", md: "column" }}
+                    alignItems={{
+                      xs: "center",
+                      sm: "center",
+                      md: "center",
+                      lg: "flex-start",
+                    }}
+                    spacing={1}
+                    pt={1}
+                  >
+                    {coinData?.website_url &&
+                      coinData?.website_url
+                        ?.slice(0, 2)
+                        .map((item: any, index: number) => (
+                          <SingleCoinChip
+                            key={index}
+                            src={LinkImage}
+                            title={item?.url}
+                            link={item?.url}
+                            variant="website"
+                          />
+                        ))}
+                  </Stack>
+                  {coinData?.website_url && coinData?.website_url?.length > 2 && (
+                    <Box pb={1}>
+                      <ShowMoreMenu
+                        showMoreAnchorEl={showMoreAnchorEl}
+                        open={open}
+                        handleClose={handleClose}
+                        data={coinData && coinData?.website_url?.slice(2)}
+                        variant="website"
+                      />
+                    </Box>
+                  )}
                 </Stack>
-                {coinData?.website_url && coinData?.website_url?.length > 2 && (
-                  <Box pb={1}>
-                    <ShowMoreMenu
-                      showMoreAnchorEl={showMoreAnchorEl}
-                      open={open}
-                      handleClose={handleClose}
-                      data={coinData && coinData?.website_url?.slice(2)}
-                      variant="website"
-                    />
-                  </Box>
-                )}
+
+                <Typography
+                  variant="caption"
+                  sx={{ color: "#696969", fontSize: "0.70rem" }}
+                >
+                  {coinData && coinData?.website_url?.slice(2).length > 0 && (
+                    <span style={{ color: "#00b8ff", fontWeight: 500 }}>
+                      +{coinData && coinData?.website_url?.slice(2).length}{" "}
+                      <span style={{ color: "#00b8ff", fontWeight: 400 }}>
+                        {" "}
+                        Website
+                      </span>{" "}
+                    </span>
+                  )}
+                </Typography>
               </Stack>
             </Stack>
 
@@ -1656,11 +1681,10 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     link={coinData && coinData?.whitepaper_link}
                   />
                 </Stack>
-
                 <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  sx={{ alignItems: "center" }}
-                  spacing={0}
+                  direction={{ xs: "column", sm: "column", md: "column" }}
+                  sx={{ alignItems: "flex-start" }}
+                  spacing={0.5}
                   justifyContent={{
                     xs: "center",
                     sm: "center",
@@ -1668,38 +1692,64 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     lg: "flex-start",
                   }}
                 >
-                  <SingleCoinChip
-                    src={DocsImage}
-                    title="Docs"
-                    link={coinData && coinData?.docs_url}
-                  />
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    sx={{ alignItems: "center" }}
+                    spacing={0}
+                    justifyContent={{
+                      xs: "center",
+                      sm: "center",
+                      md: "center",
+                      lg: "flex-start",
+                    }}
+                  >
+                    <SingleCoinChip
+                      src={DocsImage}
+                      title="Docs"
+                      link={coinData && coinData?.docs_url}
+                    />
 
-                  {coinData?.audit &&
-                    coinData?.audit
-                      ?.slice(0, 1)
-                      .map((item: any, index: number) => (
-                        <SingleCoinChip
-                          key={index}
-                          src={item?.thumb_icon}
-                          title={item.name}
-                          link={item.url}
+                    {coinData?.audit &&
+                      coinData?.audit
+                        ?.slice(0, 1)
+                        .map((item: any, index: number) => (
+                          <SingleCoinChip
+                            key={index}
+                            src={item?.thumb_icon}
+                            title={item.name}
+                            link={item.url}
+                            variant="audit"
+                          />
+                        ))}
+
+                    {/* <SingleCoinChip src={SourcecodeImage} title="Certik" /> */}
+
+                    {coinData?.audit && coinData?.audit?.length > 2 && (
+                      <Box pb={1}>
+                        <ShowMoreMenu
+                          showMoreAnchorEl={showMoreAnchorEl}
+                          open={open}
+                          handleClose={handleClose}
+                          data={coinData && coinData?.audit?.slice(1)}
                           variant="audit"
                         />
-                      ))}
-
-                  {/* <SingleCoinChip src={SourcecodeImage} title="Certik" /> */}
-
-                  {coinData?.audit && coinData?.audit?.length > 2 && (
-                    <Box pb={1}>
-                      <ShowMoreMenu
-                        showMoreAnchorEl={showMoreAnchorEl}
-                        open={open}
-                        handleClose={handleClose}
-                        data={coinData && coinData?.audit?.slice(1)}
-                        variant="audit"
-                      />
-                    </Box>
-                  )}
+                      </Box>
+                    )}
+                  </Stack>
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "#696969", fontSize: "0.70rem" }}
+                  >
+                    {coinData && coinData?.audit?.slice(1).length > 0 && (
+                      <span style={{ color: "#00b8ff", fontWeight: 500 }}>
+                        +{coinData && coinData?.audit?.slice(1).length}{" "}
+                        <span style={{ color: "#00b8ff", fontWeight: 400 }}>
+                          {" "}
+                          Audits
+                        </span>{" "}
+                      </span>
+                    )}
+                  </Typography>
                 </Stack>
               </Stack>
             </Stack>
@@ -1735,43 +1785,65 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   ></Avatar>
                 </Tooltip>
               </Stack>
-              <Stack direction="row" spacing={0.3} alignItems="flex-end">
-                <Stack
-                  direction={{ xs: "column", sm: "column", md: "column" }}
-                  alignItems={{
-                    xs: "center",
-                    sm: "center",
-                    md: "center",
-                    lg: "flex-start",
-                  }}
-                  spacing={1}
-                  pt={1}
-                >
-                  {coinData?.chart_link &&
-                    coinData?.chart_link
-                      ?.slice(0, 2)
-                      .map((item: any, index: number) => (
-                        <SingleCoinChip
-                          key={index}
-                          src={item?.thumb_icon}
-                          title={item?.name}
-                          link={item?.url}
-                          variant="chart"
-                        />
-                      ))}
-                </Stack>
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "column" }}
+                alignItems={{
+                  lg: "flex-start",
+                }}
+                spacing={0.5}
+              >
+                <Stack direction="row" spacing={0.3} alignItems="flex-end">
+                  <Stack
+                    direction={{ xs: "column", sm: "column", md: "column" }}
+                    alignItems={{
+                      xs: "center",
+                      sm: "center",
+                      md: "center",
+                      lg: "flex-start",
+                    }}
+                    spacing={1}
+                    pt={1}
+                  >
+                    {coinData?.chart_link &&
+                      coinData?.chart_link
+                        ?.slice(0, 2)
+                        .map((item: any, index: number) => (
+                          <SingleCoinChip
+                            key={index}
+                            src={item?.thumb_icon}
+                            title={item?.name}
+                            link={item?.url}
+                            variant="chart"
+                          />
+                        ))}
+                  </Stack>
 
-                {coinData?.chart_link && coinData?.chart_link?.length > 2 && (
-                  <Box pb={1}>
-                    <ShowMoreMenu
-                      showMoreAnchorEl={showMoreAnchorEl}
-                      open={open}
-                      handleClose={handleClose}
-                      data={coinData && coinData?.chart_link?.slice(2)}
-                      variant="chart"
-                    />
-                  </Box>
-                )}
+                  {coinData?.chart_link && coinData?.chart_link?.length > 2 && (
+                    <Box pb={1}>
+                      <ShowMoreMenu
+                        showMoreAnchorEl={showMoreAnchorEl}
+                        open={open}
+                        handleClose={handleClose}
+                        data={coinData && coinData?.chart_link?.slice(2)}
+                        variant="chart"
+                      />
+                    </Box>
+                  )}
+                </Stack>
+                <Typography
+                  variant="caption"
+                  sx={{ color: "#696969", fontSize: "0.70rem" }}
+                >
+                  {coinData && coinData?.chart_link?.slice(2).length > 0 && (
+                    <span style={{ color: "#00b8ff", fontWeight: 500 }}>
+                      +{coinData && coinData?.chart_link?.slice(2).length}{" "}
+                      <span style={{ color: "#00b8ff", fontWeight: 400 }}>
+                        {" "}
+                        Charts
+                      </span>{" "}
+                    </span>
+                  )}
+                </Typography>
               </Stack>
             </Stack>
 

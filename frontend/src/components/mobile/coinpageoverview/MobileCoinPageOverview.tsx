@@ -53,15 +53,15 @@ const MobileCoinPageOverview = () => {
           alignItems="center"
           sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
         >
-          <Tooltip title="Delete">
-            <Avatar src={ToolTipImage} sx={{ width: 14, height: 14 }}></Avatar>
-          </Tooltip>
           <Typography
             variant="body2"
-            sx={{ color: "#23E2A0", fontWeight: 500 }}
+            sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
           >
             Website
           </Typography>
+          <Tooltip title="Delete">
+            <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
+          </Tooltip>
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
           {coinDetailFirstBlock &&
@@ -88,15 +88,15 @@ const MobileCoinPageOverview = () => {
           alignItems="center"
           sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
         >
-          <Tooltip title="Delete">
-            <Avatar src={ToolTipImage} sx={{ width: 14, height: 14 }}></Avatar>
-          </Tooltip>
           <Typography
             variant="body2"
-            sx={{ color: "#23E2A0", fontWeight: 500 }}
+            sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
           >
             Explorers
           </Typography>
+          <Tooltip title="Delete">
+            <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
+          </Tooltip>
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
           {coinDetailFirstBlock &&
@@ -124,15 +124,15 @@ const MobileCoinPageOverview = () => {
           alignItems="center"
           sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
         >
-          <Tooltip title="Delete">
-            <Avatar src={ToolTipImage} sx={{ width: 14, height: 14 }}></Avatar>
-          </Tooltip>
           <Typography
             variant="body2"
-            sx={{ color: "#23E2A0", fontWeight: 500 }}
+            sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
           >
             Community
           </Typography>
+          <Tooltip title="Delete">
+            <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
+          </Tooltip>
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
           {coinDetailFirstBlock &&
@@ -158,15 +158,15 @@ const MobileCoinPageOverview = () => {
           alignItems="center"
           sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
         >
-          <Tooltip title="Delete">
-            <Avatar src={ToolTipImage} sx={{ width: 14, height: 14 }}></Avatar>
-          </Tooltip>
           <Typography
             variant="body2"
-            sx={{ color: "#23E2A0", fontWeight: 500 }}
+            sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
           >
             Sourcecode
           </Typography>
+          <Tooltip title="Delete">
+            <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
+          </Tooltip>
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
           <MobileSingleCoinChip
@@ -186,15 +186,15 @@ const MobileCoinPageOverview = () => {
           alignItems="center"
           sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
         >
-          <Tooltip title="Delete">
-            <Avatar src={ToolTipImage} sx={{ width: 14, height: 14 }}></Avatar>
-          </Tooltip>
           <Typography
             variant="body2"
-            sx={{ color: "#23E2A0", fontWeight: 500 }}
+            sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
           >
             Whitepaper
           </Typography>
+          <Tooltip title="Delete">
+            <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
+          </Tooltip>
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
           <MobileSingleCoinChip
@@ -214,15 +214,15 @@ const MobileCoinPageOverview = () => {
           alignItems="center"
           sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
         >
-          <Tooltip title="Delete">
-            <Avatar src={ToolTipImage} sx={{ width: 14, height: 14 }}></Avatar>
-          </Tooltip>
           <Typography
             variant="body2"
-            sx={{ color: "#23E2A0", fontWeight: 500 }}
+            sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
           >
             Docs
           </Typography>
+          <Tooltip title="Delete">
+            <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
+          </Tooltip>
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
           <MobileSingleCoinChip
@@ -240,15 +240,15 @@ const MobileCoinPageOverview = () => {
           alignItems="center"
           sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
         >
-          <Tooltip title="Delete">
-            <Avatar src={ToolTipImage} sx={{ width: 14, height: 14 }}></Avatar>
-          </Tooltip>
           <Typography
             variant="body2"
-            sx={{ color: "#23E2A0", fontWeight: 500 }}
+            sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
           >
             Audit Report
           </Typography>
+          <Tooltip title="Delete">
+            <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
+          </Tooltip>
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
           {coinDetailFirstBlock &&
@@ -271,15 +271,15 @@ const MobileCoinPageOverview = () => {
           alignItems="center"
           sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
         >
-          <Tooltip title="Delete">
-            <Avatar src={ToolTipImage} sx={{ width: 14, height: 14 }}></Avatar>
-          </Tooltip>
           <Typography
             variant="body2"
-            sx={{ color: "#23E2A0", fontWeight: 500 }}
+            sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
           >
             Chart
           </Typography>
+          <Tooltip title="Delete">
+            <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
+          </Tooltip>
         </Stack>
         <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
           {coinDetailFirstBlock &&
@@ -304,15 +304,15 @@ const MobileCoinPageOverview = () => {
           alignItems="center"
           sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
         >
-          <Tooltip title="Delete">
-            <Avatar src={ToolTipImage} sx={{ width: 14, height: 14 }}></Avatar>
-          </Tooltip>
           <Typography
             variant="body2"
-            sx={{ color: "#23E2A0", fontWeight: 500 }}
+            sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
           >
             Rating
           </Typography>
+          <Tooltip title="Delete">
+            <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
+          </Tooltip>
         </Stack>
         <Stack
           direction="row"

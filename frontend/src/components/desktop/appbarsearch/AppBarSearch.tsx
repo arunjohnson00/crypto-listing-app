@@ -210,7 +210,7 @@ const AppBarSearch = () => {
               width: 380,
               backgroundColor: "#000000",
               color: "#9b9b9b",
-              border: "1px solid #1b2756",
+              border: "1px solid #6252E8",
               borderRadius: 10,
               padding: 20,
             },
@@ -485,7 +485,7 @@ const AppBarSearch = () => {
             ) : (
               <Stack
                 direction="column"
-                spacing={1}
+                spacing={2}
                 sx={{
                   height: "auto",
                   maxHeight: 300,

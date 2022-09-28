@@ -103,7 +103,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
 
-    dispatch(latestNewsRequest({ count: 10 }, successHandler, errorHandler));
+    dispatch(latestNewsRequest({ count: 15 }, successHandler, errorHandler));
   }, [dispatch]);
   return (
     <div style={{ width: "100%" }}>
@@ -126,21 +126,21 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
               id="panel1a-header"
             >
               <Stack direction="row" spacing={1} alignItems="center">
-                <Tooltip title="Delete">
-                  <Avatar
-                    src={ToolTipImage}
-                    sx={{ width: 14, height: 14 }}
-                  ></Avatar>
-                </Tooltip>
                 <Typography
                   variant="body2"
-                  sx={{ color: "#23E2A0", fontWeight: 500 }}
+                  sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
                 >
                   Contact Address
                 </Typography>
+                <Tooltip title="Delete">
+                  <Avatar
+                    src={ToolTipImage}
+                    sx={{ width: 9, height: 9 }}
+                  ></Avatar>
+                </Tooltip>
               </Stack>
             </AccordionSummary>
-            <AccordionDetails sx={{ padding: 0 }}>
+            <AccordionDetails sx={{ padding: 0, paddingBottom: 1 }}>
               {coinDetailFirstBlock &&
                 coinDetailFirstBlock[0]?.contract_address?.map(
                   (item: any, index: number) => (
@@ -224,7 +224,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
             variant="fullWidth"
             flexItem
             orientation={"horizontal"}
-            sx={{ borderColor: "#342D61", borderBottomWidth: 2 }}
+            sx={{ borderColor: "#0b1640", borderBottomWidth: 1 }}
           />
         </>
       )}
@@ -248,7 +248,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
             {coinDetailFirstBlock && coinDetailFirstBlock[0]?.name} Chart
           </Typography>
         </AccordionSummary>
-        <AccordionDetails sx={{ padding: 0 }}>
+        <AccordionDetails sx={{ padding: 0, paddingBottom: 3 }}>
           {coinDetailOverview &&
           parseInt(coinDetailOverview[0]?.show_widget) === 1 ? (
             <Iframe
@@ -281,7 +281,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
         variant="fullWidth"
         flexItem
         orientation={"horizontal"}
-        sx={{ borderColor: "#342D61", borderBottomWidth: 2 }}
+        sx={{ borderColor: "#0b1640", borderBottomWidth: 1 }}
       />
 
       <Accordion
@@ -304,7 +304,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
             Information
           </Typography>
         </AccordionSummary>
-        <AccordionDetails sx={{ padding: 0 }}>
+        <AccordionDetails sx={{ padding: 0, paddingBottom: 3 }}>
           <Stack direction="column" mt={1.2}>
             <Stack
               direction="row"
@@ -1776,7 +1776,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
         variant="fullWidth"
         flexItem
         orientation={"horizontal"}
-        sx={{ borderColor: "#342D61", borderBottomWidth: 2 }}
+        sx={{ borderColor: "#0b1640", borderBottomWidth: 1 }}
       />
       {/* <Accordion
         disableGutters={true}
@@ -1823,7 +1823,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
                 variant="middle"
                 flexItem
                 orientation="vertical"
-                sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
+                sx={{ borderColor: "#0b1640", borderRightWidth: 2 }}
               />
 
               <Stack direction="column" spacing={1.6}>
@@ -2107,7 +2107,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
         variant="fullWidth"
         flexItem
         orientation={"horizontal"}
-        sx={{ borderColor: "#342D61", borderBottomWidth: 2 }}
+        sx={{ borderColor: "#0b1640", borderBottomWidth: 1 }}
       /> */}
       <Accordion
         disableGutters={true}
@@ -2129,9 +2129,9 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
             Latest News
           </Typography>
         </AccordionSummary>
-        <AccordionDetails sx={{ padding: 0 }}>
+        <AccordionDetails sx={{ padding: 0, paddingBottom: 1 }}>
           {latestNews &&
-            latestNews?.slice(0, 2).map((item: any, index: number) => (
+            latestNews?.slice(0, 4).map((item: any, index: number) => (
               <Fragment key={index}>
                 {" "}
                 <Stack direction="column" spacing={1} py={1.5}>
@@ -2154,6 +2154,22 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
                       </a>
                     </Typography>
                     <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#747474",
+                        fontWeight: 500,
+                        fontSize: ".75rem",
+                      }}
+                      pt={0.3}
+                    >
+                      {item &&
+                        moment(new Date(item?.date)).format("DD MMM YYYY")}{" "}
+                      -{" "}
+                      <span style={{ color: "#e6fe0d" }}>
+                        {item && moment(new Date(item?.date)).fromNow()}
+                      </span>
+                    </Typography>
+                    <Typography
                       sx={{
                         color: "#FFFFFF",
                         fontWeight: 400,
@@ -2166,23 +2182,23 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
                   <Stack direction="row" spacing={1}>
                     <Typography
                       variant="body2"
-                      sx={{ color: "#5FD6E9", fontWeight: 500 }}
+                      sx={{ color: "#5FD6E9", fontWeight: 400 }}
                     >
                       {item && item?.author}
                     </Typography>
-                    <Typography
+                    {/* <Typography
                       variant="body2"
                       sx={{ color: "#494A4A", fontWeight: 500 }}
                     >
                       {item && moment(new Date(item?.date)).fromNow()}
-                    </Typography>
+                    </Typography> */}
                   </Stack>
                 </Stack>
                 <Divider
                   variant="fullWidth"
                   flexItem
                   orientation={"horizontal"}
-                  sx={{ borderColor: "#181921", borderBottomWidth: 2 }}
+                  sx={{ borderColor: "#181921", borderBottomWidth: 1 }}
                 />
               </Fragment>
             ))}
@@ -2190,7 +2206,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
           <SlideDown className={"my-dropdown-slidedown"} closed={newsMore}>
             {latestNews &&
               latestNews
-                .slice(2, latestNews?.length)
+                .slice(4, latestNews?.length)
                 ?.map((item: any, index: number) => (
                   <Fragment key={index}>
                     {" "}
@@ -2212,6 +2228,24 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
                             {" "}
                             {item && Parser(item?.title.substring(0, 80))}...
                           </a>
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#747474",
+                            fontWeight: 500,
+                            fontSize: ".75rem",
+                          }}
+                          pt={0.3}
+                        >
+                          {item &&
+                            moment(new Date(item?.date)).format(
+                              "DD MMM YYYY"
+                            )}{" "}
+                          -{" "}
+                          <span style={{ color: "#e6fe0d" }}>
+                            {item && moment(new Date(item?.date)).fromNow()}
+                          </span>
                         </Typography>
                         <Typography
                           sx={{
@@ -2242,7 +2276,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
                       variant="fullWidth"
                       flexItem
                       orientation={"horizontal"}
-                      sx={{ borderColor: "#181921", borderBottomWidth: 2 }}
+                      sx={{ borderColor: "#181921", borderBottomWidth: 1 }}
                     />
                   </Fragment>
                 ))}

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import { Grid, Stack } from "@mui/material";
+import { CardMedia, Grid, Stack } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
@@ -57,10 +57,21 @@ const MobileAppHeader = () => {
 
   return (
     <AppBar
-      position="static"
-      sx={{ backgroundColor: "#01061A", paddingY: 0.5 }}
+      position="sticky"
+      sx={{ backgroundColor: "#01061A", paddingY: 0.5, top: 0 }}
     >
       <Grid item xs={12}>
+        <Stack direction="row" alignItems="center" justifyContent="center">
+          <Box py={0.4} width="100%">
+            <CardMedia
+              component="img"
+              height="auto"
+              image="https://iili.io/UtY5Kv.jpg"
+              alt="green iguana"
+              sx={{ objectFit: "unset" }}
+            />
+          </Box>
+        </Stack>
         <Toolbar disableGutters>
           <Stack
             direction="row"

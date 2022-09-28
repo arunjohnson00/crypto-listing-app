@@ -30,7 +30,7 @@ const MobileBreadCrumbs = ({ home, path, data }: any) => {
               .toLowerCase()}`,
           }}
           state={{ coin_id: data?.id }}
-          style={{ textDecoration: "none", color: "#19ffb0" }}
+          style={{ textDecoration: "none", color: "#898989" }}
         >
           {data && data?.name}
         </Link>
