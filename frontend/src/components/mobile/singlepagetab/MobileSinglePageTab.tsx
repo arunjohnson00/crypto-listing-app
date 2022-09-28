@@ -101,10 +101,11 @@ const MobileSinglePageTab = () => {
         </Box>
         <TabPanel value="1">
           <MobileCoinPageOverview />
-          <MobileSingleCoinPageAccordion />
+          <MobileSingleCoinPageAccordion variant="full" />
         </TabPanel>
         <TabPanel value="2">
           <MobileCoinPageAbout />
+          <MobileSingleCoinPageAccordion />
         </TabPanel>
         <TabPanel value="3">
           <MobileCoinpageRatings />

@@ -357,7 +357,7 @@ const MobileCoinPageAbout = () => {
           sx={{ objectFit: "unset" }}
         /> */}
 
-        <Grid xs={12} pt={0}>
+        {/* <Grid xs={12} pt={0}>
           {coinAboutBlock && parseInt(coinAboutBlock[0]?.address) !== null ? (
             <Grid xs={12} pt={0}>
               <Iframe
@@ -384,7 +384,7 @@ const MobileCoinPageAbout = () => {
                 )}
             </Grid>
           )}
-        </Grid>
+        </Grid> */}
         <Grid xs={12} pt={4}></Grid>
       </Grid>
     </Grid>

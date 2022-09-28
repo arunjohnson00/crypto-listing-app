@@ -40,7 +40,7 @@ import {
 import { useLocation } from "react-router-dom";
 import MobileCoinPageChart from "../coinpagechart/MobileCoinPageChart";
 
-const MobileSingleCoinPageAccordion = () => {
+const MobileSingleCoinPageAccordion = ({ variant }: any) => {
   const location: any = useLocation();
   const dispatch: any = useDispatch();
   const [resStatus, setResStatus] = useState<any>();
@@ -107,116 +107,127 @@ const MobileSingleCoinPageAccordion = () => {
   }, [dispatch]);
   return (
     <div style={{ width: "100%" }}>
-      <Accordion
-        disableGutters={true}
-        defaultExpanded
-        sx={{
-          backgroundColor: "transparent",
-          color: "#FFFFFF",
-        }}
-      >
-        <AccordionSummary
-          sx={{ padding: 0 }}
-          expandIcon={<ExpandMoreIcon sx={{ color: "#787878" }} />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Stack direction="row" spacing={1} alignItems="center">
-            <Tooltip title="Delete">
-              <Avatar
-                src={ToolTipImage}
-                sx={{ width: 14, height: 14 }}
-              ></Avatar>
-            </Tooltip>
-            <Typography
-              variant="body2"
-              sx={{ color: "#23E2A0", fontWeight: 500 }}
+      {variant === "full" && (
+        <>
+          {" "}
+          <Accordion
+            disableGutters={true}
+            defaultExpanded
+            sx={{
+              backgroundColor: "transparent",
+              color: "#FFFFFF",
+              paddingY: 1,
+            }}
+          >
+            <AccordionSummary
+              sx={{ padding: 0 }}
+              expandIcon={<ExpandMoreIcon sx={{ color: "#787878" }} />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
             >
-              Contact Address
-            </Typography>
-          </Stack>
-        </AccordionSummary>
-        <AccordionDetails>
-          {coinDetailFirstBlock &&
-            coinDetailFirstBlock[0]?.contract_address?.map(
-              (item: any, index: number) => (
-                <Grid item xs={12} key={index}>
-                  <Stack
-                    direction="row"
-                    sx={{
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                    py={0}
-                  >
-                    <Stack
-                      direction="row"
-                      sx={{ alignItems: "center" }}
-                      spacing={1}
-                    >
-                      <Avatar
-                        alt="Remy Sharp"
-                        src="https://mui.com/static/images/avatar/1.jpg"
-                        sx={{ width: 22, height: 22 }}
-                      />
-                      <Typography
-                        variant="body2"
+              <Stack direction="row" spacing={1} alignItems="center">
+                <Tooltip title="Delete">
+                  <Avatar
+                    src={ToolTipImage}
+                    sx={{ width: 14, height: 14 }}
+                  ></Avatar>
+                </Tooltip>
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#23E2A0", fontWeight: 500 }}
+                >
+                  Contact Address
+                </Typography>
+              </Stack>
+            </AccordionSummary>
+            <AccordionDetails sx={{ padding: 0 }}>
+              {coinDetailFirstBlock &&
+                coinDetailFirstBlock[0]?.contract_address?.map(
+                  (item: any, index: number) => (
+                    <Grid item xs={12} key={index}>
+                      <Stack
+                        direction="row"
                         sx={{
-                          color: "#ffffffa1",
-                          fontSize: "0.67rem",
-                          fontWeight: "500",
+                          alignItems: "center",
+                          justifyContent: "space-between",
                         }}
+                        py={0}
                       >
-                        Binance Smart Chain
-                      </Typography>
-                    </Stack>
-                    <Stack
-                      direction={{ xs: "row", sm: "row", md: "row" }}
-                      sx={{ alignItems: "center" }}
-                      spacing={0}
-                    >
-                      {" "}
-                      <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                        {`${item && item?.address?.substring(0, 14)} 
-                      .........
-                      ${item && item?.address?.slice(-6)}`}
-                      </Typography>
-                      <CopyToClipboard
-                        options={{ message: "" }}
-                        text={copyValue}
-                        onCopy={() => setCopied(true)}
-                      >
-                        <IconButton
-                          sx={{ paddingLeft: 1 }}
-                          onClick={() => {
-                            setCopyValue(item && item?.address);
-                          }}
+                        <Stack
+                          direction="row"
+                          sx={{ alignItems: "center" }}
+                          spacing={1}
                         >
-                          <Tooltip
-                            title={`${copied ? "Copied" : "Copy this Token"}`}
+                          <Avatar
+                            alt="Remy Sharp"
+                            src="https://mui.com/static/images/avatar/1.jpg"
+                            sx={{ width: 22, height: 22 }}
+                          />
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: "#ffffffa1",
+                              fontSize: "0.67rem",
+                              fontWeight: "500",
+                            }}
                           >
-                            <ContentCopyIcon
-                              sx={{
-                                color: `${copied ? "#23D471" : "#23D471"}`,
-                                fontSize: 15,
+                            Binance Smart Chain
+                          </Typography>
+                        </Stack>
+                        <Stack
+                          direction={{ xs: "row", sm: "row", md: "row" }}
+                          sx={{ alignItems: "center" }}
+                          spacing={0}
+                        >
+                          {" "}
+                          <Typography
+                            variant="caption"
+                            sx={{ color: "#FFFFF5" }}
+                          >
+                            {`${item && item?.address?.substring(0, 14)} 
+                          .........
+                          ${item && item?.address?.slice(-6)}`}
+                          </Typography>
+                          <CopyToClipboard
+                            options={{ message: "" }}
+                            text={copyValue}
+                            onCopy={() => setCopied(true)}
+                          >
+                            <IconButton
+                              sx={{ paddingLeft: 1 }}
+                              onClick={() => {
+                                setCopyValue(item && item?.address);
                               }}
-                            />
-                          </Tooltip>
-                        </IconButton>
-                      </CopyToClipboard>
-                    </Stack>
-                  </Stack>
-                </Grid>
-              )
-            )}
-        </AccordionDetails>
-      </Accordion>
-      <Divider
-        variant="fullWidth"
-        flexItem
-        orientation={"horizontal"}
-        sx={{ borderColor: "#342D61", borderBottomWidth: 2 }}
-      />
+                            >
+                              <Tooltip
+                                title={`${
+                                  copied ? "Copied" : "Copy this Token"
+                                }`}
+                              >
+                                <ContentCopyIcon
+                                  sx={{
+                                    color: `${copied ? "#23D471" : "#23D471"}`,
+                                    fontSize: 15,
+                                  }}
+                                />
+                              </Tooltip>
+                            </IconButton>
+                          </CopyToClipboard>
+                        </Stack>
+                      </Stack>
+                    </Grid>
+                  )
+                )}
+            </AccordionDetails>
+          </Accordion>
+          <Divider
+            variant="fullWidth"
+            flexItem
+            orientation={"horizontal"}
+            sx={{ borderColor: "#342D61", borderBottomWidth: 2 }}
+          />
+        </>
+      )}
       <Accordion
         disableGutters={true}
         defaultExpanded
@@ -237,7 +248,7 @@ const MobileSingleCoinPageAccordion = () => {
             {coinDetailFirstBlock && coinDetailFirstBlock[0]?.name} Chart
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails sx={{ padding: 0 }}>
           {coinDetailOverview &&
           parseInt(coinDetailOverview[0]?.show_widget) === 1 ? (
             <Iframe
@@ -293,7 +304,7 @@ const MobileSingleCoinPageAccordion = () => {
             Information
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails sx={{ padding: 0 }}>
           <Stack direction="column" mt={1.2}>
             <Stack
               direction="row"
@@ -1787,7 +1798,7 @@ const MobileSingleCoinPageAccordion = () => {
             Liqudity Pool
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails   sx={{ padding: 0 }}>
           {" "}
           <Grid xs={12} mt={0}>
             <Stack
@@ -2118,7 +2129,7 @@ const MobileSingleCoinPageAccordion = () => {
             Latest News
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails sx={{ padding: 0 }}>
           {latestNews &&
             latestNews?.slice(0, 2).map((item: any, index: number) => (
               <Fragment key={index}>
