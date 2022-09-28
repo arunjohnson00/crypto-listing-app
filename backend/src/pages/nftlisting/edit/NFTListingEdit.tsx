@@ -1212,7 +1212,7 @@ const NFTListingEdit = () => {
                     );
                   })}
 
-                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
+                  {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
                     <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
                       Chat Details
                     </Typography>
@@ -1385,7 +1385,7 @@ const NFTListingEdit = () => {
                         />
                       </div>
                     );
-                  })}
+                  })} */}
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
                     <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
                       Socials

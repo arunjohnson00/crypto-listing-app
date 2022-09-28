@@ -28,6 +28,7 @@ import dateFormat, { masks } from "dateformat";
 
 import { editAirDropsRequest } from "../../../store/action";
 import { updateAirDropsRequest } from "../../../store/action";
+import { Link } from "react-router-dom";
 
 const selectOptions = [
   { title: "Approved", value: 1 },
@@ -173,7 +174,15 @@ const AirDropsEdit = () => {
               sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
               mb={1}
             >
-              Search your coin
+              Search your coin{" "}
+              <span style={{ fontSize: ".85rem" }}>
+                ( This event is base on a coin listed on coinxhigh.com. if coin
+                is not listed{" "}
+                <Link to="/coins/add">
+                  <span>Add Now</span>
+                </Link>
+              </span>{" "}
+              )
             </Typography>
 
             <AutoCompleSelect

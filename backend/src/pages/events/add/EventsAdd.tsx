@@ -8,6 +8,7 @@ import {
   Checkbox,
   Backdrop,
   CircularProgress,
+  FormControlLabel,
 } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import IconUploader from "../../../components/form/input/file/icon/IconUploader";
@@ -31,6 +32,7 @@ import CheckboxWithLabel from "../../../components/form/input/checkboxwithlabel/
 import InputTextArea from "../../../components/form/textarea/InputTextArea";
 import { allEventsCategoryRequest } from "../../../store/action";
 import { allEventsRewardAddressRequest } from "../../../store/action";
+import { Link } from "react-router-dom";
 
 const EventsAdd = () => {
   const selectOptions = [
@@ -206,14 +208,37 @@ const EventsAdd = () => {
                 Select coin
               </Typography>
 
-              <Stack direction="row" spacing={1} alignItems={"center"}>
-                <Checkbox
-                  checked={coinChecked}
-                  onChange={coinCheckboxHandler}
-                  inputProps={{ "aria-label": "controlled" }}
-                  name={"has_coin"}
+              <Stack
+                direction="column"
+                spacing={1}
+                alignItems={"flex-start"}
+                pt={1}
+                pb={2}
+              >
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={coinChecked}
+                      onChange={coinCheckboxHandler}
+                      inputProps={{ "aria-label": "controlled" }}
+                      name={"has_coin"}
+                      sx={{ color: "#181818" }}
+                    />
+                  }
+                  label={
+                    <Typography sx={{ color: "#13C086" }}>
+                      This event is base on a coin listed on coinxhigh.com
+                    </Typography>
+                  }
                 />
-
+                Search your coin{" "}
+                <span style={{ fontSize: ".85rem" }}>
+                  This event is base on a coin listed on coinxhigh.com. if coin
+                  is not listed{" "}
+                  <Link to="/coins/add">
+                    <span>Add Now</span>
+                  </Link>
+                </span>
                 {coinChecked === true && (
                   <AutoCompleSelect
                     inputAutoValue={addEventsData}
@@ -302,7 +327,7 @@ const EventsAdd = () => {
               />
             </Grid>
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+            {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography
                 variant="subtitle1"
                 sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
@@ -333,7 +358,7 @@ const EventsAdd = () => {
                 placeholder="  Address"
                 inputTextHandler={(e: any) => eventsAddressHandler(e)}
               />
-            </Grid>
+            </Grid> */}
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography
