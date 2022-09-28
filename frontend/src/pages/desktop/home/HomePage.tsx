@@ -548,7 +548,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
                   sx={{
                     alignItems: "flex-start",
                     flexWrap: "wrap",
-                    justifyContent: "space-between",
+                    justifyContent: "flex-start",
                   }}
                 >
                   {featuredCoinList &&

@@ -46,163 +46,173 @@ const LoginHeaderBtn = ({ title, handler, icon }: any) => {
           sx={{
             position: "absolute",
             minWidth: 280,
-            right: 80,
+
             zIndex: 99,
           }}
         >
           <Box
             sx={{
               position: "relative",
-              left: 210,
-              maxWidth: 50,
-            }}
-            px={3}
-          >
-            <BsFillCaretUpFill
-              fontSize={20}
-              style={{ padding: 0, margin: -9, color: "#000000" }}
-            />
-          </Box>
-          <Stack
-            direction="column"
-            spacing={2}
-            px={2}
-            pt={3}
-            sx={{
-              backgroundColor: "#000000",
-              borderRadius: 4,
-              color: "#FFFFFF",
-              boxShadow: "0px 18px 20px #00000033",
-              border: "2px solid #080C28",
+              minWidth: 280,
+              top: -5,
+              right: 165,
+              zIndex: 99,
             }}
           >
-            <Stack direction="row" spacing={2.5} alignItems="center">
-              <Avatar alt="Profile" src={""} sx={{ width: 45, height: 45 }} />
-              <Stack direction="column" spacing={0.5} alignItems="flex-start">
-                <Typography
-                  sx={{
-                    fontSize: "1rem",
-                    color: "#FFFFFF",
-                    fontWeight: 600,
-                  }}
-                >
-                  Hi,{" "}
-                  {userData && userData !== undefined
-                    ? userData?.user?.name
-                    : authUser && authUser?.name}
-                </Typography>
-                <Link to="/user-dashboard" style={{ textDecoration: "none" }}>
+            <Box
+              sx={{
+                position: "relative",
+                left: 210,
+                maxWidth: 50,
+              }}
+              px={3}
+            >
+              <BsFillCaretUpFill
+                fontSize={20}
+                style={{ padding: 0, margin: -9, color: "#000000" }}
+              />
+            </Box>
+            <Stack
+              direction="column"
+              spacing={2}
+              px={2}
+              pt={3}
+              sx={{
+                backgroundColor: "#000000",
+                borderRadius: 4,
+                color: "#FFFFFF",
+                boxShadow: "0px 18px 20px #00000033",
+                border: "2px solid #080C28",
+              }}
+            >
+              <Stack direction="row" spacing={2.5} alignItems="center">
+                <Avatar alt="Profile" src={""} sx={{ width: 45, height: 45 }} />
+                <Stack direction="column" spacing={0.5} alignItems="flex-start">
                   <Typography
                     sx={{
-                      fontSize: ".8rem",
-                      color: "#23B184",
+                      fontSize: "1rem",
+                      color: "#FFFFFF",
+                      fontWeight: 600,
                     }}
                   >
-                    View Dashboard
+                    Hi,{" "}
+                    {userData && userData !== undefined
+                      ? userData?.user?.name
+                      : authUser && authUser?.name}
                   </Typography>
-                </Link>
-              </Stack>
-            </Stack>
-            <Divider
-              variant="middle"
-              flexItem
-              orientation={"horizontal"}
-              sx={{ borderColor: "#342D61", borderBottomWidth: 1 }}
-            />
-            <Stack direction="column" spacing={0} pb={1}>
-              {menu?.map((item: any, index: number) => (
-                <Fragment>
-                  {item?.title === "Logout" ? (
-                    <Stack
-                      direction="row"
-                      spacing={0.2}
-                      alignItems="center"
-                      px={2}
-                      py={0}
+                  <Link to="/user-dashboard" style={{ textDecoration: "none" }}>
+                    <Typography
                       sx={{
-                        "&:hover": {
-                          backgroundColor: "#111138",
-                        },
+                        fontSize: ".8rem",
+                        color: "#23B184",
                       }}
-                      onClick={loginControll}
                     >
-                      {/* <Avatar
+                      View Dashboard
+                    </Typography>
+                  </Link>
+                </Stack>
+              </Stack>
+              <Divider
+                variant="middle"
+                flexItem
+                orientation={"horizontal"}
+                sx={{ borderColor: "#342D61", borderBottomWidth: 1 }}
+              />
+              <Stack direction="column" spacing={0} pb={1}>
+                {menu?.map((item: any, index: number) => (
+                  <Fragment>
+                    {item?.title === "Logout" ? (
+                      <Stack
+                        direction="row"
+                        spacing={0.2}
+                        alignItems="center"
+                        px={2}
+                        py={0}
+                        sx={{
+                          "&:hover": {
+                            backgroundColor: "#111138",
+                          },
+                        }}
+                        onClick={loginControll}
+                      >
+                        {/* <Avatar
               alt={item?.title}
               src={item?.icon}
               sx={{ width: 22, height: 22, borderRadius: 0 }}
             /> */}
-                      <Box
-                        sx={{
-                          width: 12,
-                          height: 12,
-                          backgroundColor: item && item.color,
-                          borderRadius: 10,
-                        }}
-                      ></Box>
-                      <Typography
-                        sx={{
-                          p: 1,
-                          fontSize: ".9rem",
-                          color: "#FFFFFF",
-                        }}
-                      >
-                        {item?.title}
-                      </Typography>
-                    </Stack>
-                  ) : (
-                    item?.title !== "Logout" && (
-                      <Link
-                        to={{
-                          pathname: `${item?.link}`,
-                        }}
-                        state={{
-                          scroll: false,
-                        }}
-                        style={{ textDecoration: "none", color: "#FFFFFF" }}
-                        key={index}
-                      >
-                        <Stack
-                          direction="row"
-                          spacing={0.2}
-                          alignItems="center"
-                          px={2}
-                          py={0}
+                        <Box
                           sx={{
-                            "&:hover": {
-                              backgroundColor: "#111138",
-                            },
+                            width: 12,
+                            height: 12,
+                            backgroundColor: item && item.color,
+                            borderRadius: 10,
+                          }}
+                        ></Box>
+                        <Typography
+                          sx={{
+                            p: 1,
+                            fontSize: ".9rem",
+                            color: "#FFFFFF",
                           }}
                         >
-                          {/* <Avatar
+                          {item?.title}
+                        </Typography>
+                      </Stack>
+                    ) : (
+                      item?.title !== "Logout" && (
+                        <Link
+                          to={{
+                            pathname: `${item?.link}`,
+                          }}
+                          state={{
+                            scroll: false,
+                          }}
+                          style={{ textDecoration: "none", color: "#FFFFFF" }}
+                          key={index}
+                        >
+                          <Stack
+                            direction="row"
+                            spacing={0.2}
+                            alignItems="center"
+                            px={2}
+                            py={0}
+                            sx={{
+                              "&:hover": {
+                                backgroundColor: "#111138",
+                              },
+                            }}
+                          >
+                            {/* <Avatar
                   alt={item?.title}
                   src={item?.icon}
                   sx={{ width: 22, height: 22, borderRadius: 0 }}
                 /> */}
-                          <Box
-                            sx={{
-                              width: 12,
-                              height: 12,
-                              backgroundColor: item && item.color,
-                              borderRadius: 10,
-                            }}
-                          ></Box>
-                          <Typography
-                            sx={{
-                              p: 1,
-                              fontSize: ".9rem",
-                              color: "#FFFFFF",
-                            }}
-                          >
-                            {item?.title}
-                          </Typography>
-                        </Stack>
-                      </Link>
-                    )
-                  )}
-                </Fragment>
-              ))}
+                            <Box
+                              sx={{
+                                width: 12,
+                                height: 12,
+                                backgroundColor: item && item.color,
+                                borderRadius: 10,
+                              }}
+                            ></Box>
+                            <Typography
+                              sx={{
+                                p: 1,
+                                fontSize: ".9rem",
+                                color: "#FFFFFF",
+                              }}
+                            >
+                              {item?.title}
+                            </Typography>
+                          </Stack>
+                        </Link>
+                      )
+                    )}
+                  </Fragment>
+                ))}
+              </Stack>
             </Stack>
-          </Stack>
+          </Box>
         </Box>
       )}
     </div>

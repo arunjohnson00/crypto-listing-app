@@ -8,7 +8,10 @@ import "react-multi-carousel/lib/styles.css";
 import en from "javascript-time-ago/locale/en.json";
 import "./style.css";
 
-import { latestNewsRequest } from "../../../store/action";
+import {
+  latestNewsRequest,
+  latestNewsScollRequest,
+} from "../../../store/action";
 import MobileNewsCardTop from "../cards/topnewscard/MobileNewsCardTop";
 
 const responsiveNewsSlider = {
@@ -37,7 +40,7 @@ const responsiveNewsSlider = {
 const MobileLatestNewsCardScrollTop = ({ live }: any) => {
   const dispatch: any = useDispatch();
   const latestNews = useSelector((data: any) => {
-    return data?.commonReducer?.latest_news_feed?.data;
+    return data?.commonReducer?.latest_news_scroll?.data;
   });
 
   // TimeAgo.addDefaultLocale(en);
@@ -46,7 +49,9 @@ const MobileLatestNewsCardScrollTop = ({ live }: any) => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
 
-    dispatch(latestNewsRequest({ count: 50 }, successHandler, errorHandler));
+    dispatch(
+      latestNewsScollRequest({ count: 10 }, successHandler, errorHandler)
+    );
   }, [dispatch]);
 
   return (

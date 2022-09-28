@@ -603,7 +603,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                     {coinData &&
                     coinData?.vote !== null &&
                     vote?.completed === true
-                      ? (parseInt(coinData?.vote) + 1).toLocaleString()
+                      ? parseInt(coinData?.vote).toLocaleString()
                       : coinData?.vote?.toLocaleString()}
                   </span>{" "}
                   Votes

@@ -9,7 +9,10 @@ import en from "javascript-time-ago/locale/en.json";
 import LatestNewsHeading from "../Typography/headings/latestnews/LatestNewsHeading";
 import NewsCardTop from "../cards/topnewscard/NewsCardTop";
 
-import { latestNewsRequest } from "../../../store/action";
+import {
+  latestNewsRequest,
+  latestNewsScollRequest,
+} from "../../../store/action";
 import "./style.css";
 const responsiveNewsSlider = {
   superLargeDesktop: {
@@ -37,7 +40,7 @@ const responsiveNewsSlider = {
 const LatestNewsScroll = ({ live }: any) => {
   const dispatch: any = useDispatch();
   const latestNews = useSelector((data: any) => {
-    return data?.commonReducer?.latest_news_feed?.data;
+    return data?.commonReducer?.latest_news_scroll?.data;
   });
 
   // TimeAgo.addDefaultLocale(en);
@@ -46,7 +49,9 @@ const LatestNewsScroll = ({ live }: any) => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
 
-    dispatch(latestNewsRequest({ count: 9 }, successHandler, errorHandler));
+    dispatch(
+      latestNewsScollRequest({ count: 9 }, successHandler, errorHandler)
+    );
   }, [dispatch]);
 
   return (

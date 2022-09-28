@@ -6,6 +6,7 @@ const initialState = {
   coin_vote: "",
   recent_search: "",
   latest_news_feed: "",
+  latest_news_scroll: "",
   fear_greed_index: "",
   add_watch_list: "",
   remove_watch_list: "",
@@ -44,6 +45,12 @@ const commonReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         latest_news_feed: action?.payload?.data,
+      };
+    case COMMON.LATEST_NEWS_SCROLL:
+      //console.log(action);
+      return {
+        ...state,
+        latest_news_scroll: action?.payload?.data,
       };
     case COMMON.FEAR_GREED_INDEX:
       //console.log(action);

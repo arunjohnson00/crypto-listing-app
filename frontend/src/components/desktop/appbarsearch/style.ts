@@ -27,7 +27,7 @@ export const StyledInputRoot = styled("div")(
     font-family: IBM Plex Sans, sans-serif;
     display: flex;
     font-weight: 500;
-    border: 1px solid #6252E8;
+    border: 1px solid #1b2756;
     border-radius: 8px;
     background: #01061A;
     align-items: center;
@@ -37,7 +37,7 @@ export const StyledInputRoot = styled("div")(
 
   
     &.${inputUnstyledClasses.focused} {
-      outline: 1px solid #6252E8;
+      outline: 1px solid #1b2756;
       cursor:text;
     }
   

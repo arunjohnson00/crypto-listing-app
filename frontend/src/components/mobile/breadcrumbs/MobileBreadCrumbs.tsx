@@ -15,7 +15,7 @@ const MobileBreadCrumbs = ({ home, path, data }: any) => {
       <Breadcrumbs
         maxItems={3}
         aria-label="breadcrumb"
-        sx={{ color: "#FFFFF5", fontSize: ".75rem" }}
+        sx={{ color: "#2f2f2f", fontSize: ".75rem" }}
       >
         <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           {home && home}
@@ -30,7 +30,7 @@ const MobileBreadCrumbs = ({ home, path, data }: any) => {
               .toLowerCase()}`,
           }}
           state={{ coin_id: data?.id }}
-          style={{ textDecoration: "none", color: "#9c9c9c" }}
+          style={{ textDecoration: "none", color: "#19ffb0" }}
         >
           {data && data?.name}
         </Link>

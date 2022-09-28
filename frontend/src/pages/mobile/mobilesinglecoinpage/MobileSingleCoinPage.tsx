@@ -153,7 +153,19 @@ const MobileSingleCoinPage = () => {
     // dispatch(videoListRequest("noData", successHandler, errorHandler));
     // dispatch(trendingCoinListRequest("noData", successHandler, errorHandler));
   }, [dispatch]);
-
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    setInterval(() => {
+      dispatch(
+        coinDetailFirstBlockRequest(
+          location?.pathname?.split("/").pop(),
+          successHandler,
+          errorHandler
+        )
+      );
+    }, 5000);
+  }, []);
   return (
     <Fragment>
       <Grid container rowSpacing={1}>

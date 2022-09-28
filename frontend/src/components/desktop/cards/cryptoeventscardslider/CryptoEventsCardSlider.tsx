@@ -60,6 +60,17 @@ const CryptoEventsCardSlider = ({ data, variant }: any) => {
                 </Typography>
                 <Typography
                   sx={{
+                    color: "#FFFFFF",
+                    fontSize: ".75rem",
+                    fontWeight: 400,
+                  }}
+                >
+                  {data && data?.description?.length >= 20
+                    ? data && data?.description.slice(0, 20) + "..."
+                    : data && data?.description}
+                </Typography>
+                <Typography
+                  sx={{
                     color: "#A8CDE9",
                     fontSize: ".9rem",
                     fontWeight: 500,

@@ -120,9 +120,23 @@ const SingleCoinPage = () => {
     );
   }, [dispatch]);
 
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    setInterval(() => {
+      dispatch(
+        coinDetailFirstBlockRequest(
+          location?.pathname?.split("/").pop(),
+          successHandler,
+          errorHandler
+        )
+      );
+    }, 5000);
+  }, []);
+
   return (
     <Fragment>
-      <Grid container px={0} pt={1}>
+      <Grid container px={0} pt={5}>
         {/* <Grid xs={12}>
           <LatestNewsScroll />
         </Grid> */}
@@ -164,7 +178,7 @@ const SingleCoinPage = () => {
             sx={{
               alignItems: "center",
             }}
-            py={2}
+            pt={2}
           >
             <BreadCrumbs
               data={

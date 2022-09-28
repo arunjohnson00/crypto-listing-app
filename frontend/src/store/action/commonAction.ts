@@ -70,6 +70,25 @@ export const latestNewsRequest = (
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
 
+export const latestNewsScollRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+
+    url:
+      values?.term === "" || values?.term === undefined
+        ? `api/f/v1/news-feed/${values?.count}`
+        : `api/f/v1/news-feed/${values?.count}/${values?.term}`,
+    method: "GET",
+    secure: false,
+    actionType: COMMON.LATEST_NEWS_SCROLL,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
 export const fearGreedIndexRequest = (
   values: any,
   successHandler: any,

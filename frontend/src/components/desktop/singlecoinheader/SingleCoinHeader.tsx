@@ -349,7 +349,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                           ) : (
                             <Typography
                               variant="body2"
-                              sx={{ color: "#6f737f", fontSize: "0.65rem" }}
+                              sx={{ color: "#6f737f", fontSize: "0.75rem" }}
                             >
                               Presale starts in{" "}
                             </Typography>
@@ -678,7 +678,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                         coinData &&
                         coinData?.vote !== null &&
                         vote?.completed === true
-                          ? (parseInt(coinData?.vote) + 1).toLocaleString()
+                          ? parseInt(coinData?.vote).toLocaleString()
                           : coinData?.vote?.toLocaleString()
                       } Votes`}
                       sx={{
@@ -982,20 +982,28 @@ const SingleCoinHeader = ({ coinData }: any) => {
               >
                 {" "}
                 {coinData && coinData?.network?.length > 0 ? (
-                  <a
-                    href={coinData && coinData?.network[0]?.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
-                    {" "}
-                    <Typography
-                      variant="subtitle2"
-                      sx={{ color: "#FFFFF5", fontSize: "0.75rem" }}
+                  <Stack direction="column" spacing={0}>
+                    <a
+                      href={coinData && coinData?.network[0]?.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ textDecoration: "none", color: "inherit" }}
                     >
-                      {coinData && coinData?.network[0]?.name}
+                      {" "}
+                      <Typography
+                        variant="subtitle2"
+                        sx={{ color: "#FFFFF5", fontSize: "0.75rem" }}
+                      >
+                        {coinData && coinData?.network[0]?.name}
+                      </Typography>
+                    </a>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "#696969", fontSize: "0.70rem" }}
+                    >
+                      ( +{coinData?.network?.slice(1).length} Networks )
                     </Typography>
-                  </a>
+                  </Stack>
                 ) : (
                   <Typography
                     variant="subtitle2"
@@ -1070,7 +1078,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     {coinData &&
                     coinData?.todays_vote !== null &&
                     vote?.completed === true
-                      ? parseInt(coinData?.todays_vote) + 1
+                      ? parseInt(coinData?.todays_vote)
                       : coinData?.todays_vote}
                   </Typography>
                 </Stack>

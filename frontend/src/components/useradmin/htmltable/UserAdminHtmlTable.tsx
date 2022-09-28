@@ -782,7 +782,7 @@ const UserAdminHtmlTable = ({
                     <Stack direction="row" spacing={1}>
                       <Link
                         to={{
-                          pathname: `/user-dashboard/nft/edit`,
+                          pathname: `/user-dashboard/events/edit`,
                         }}
                         state={{ id: data && data?.id }}
                         style={{ textDecoration: "none" }}
