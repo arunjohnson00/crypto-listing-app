@@ -55,7 +55,7 @@ const BannerMap = () => {
     radius: 0.35,
     color: "#2D2E35",
     shape: "circle",
-    backgroundColor: "#00030D",
+    backgroundColor: "#010511",
   });
 
   return (
@@ -69,54 +69,58 @@ const BannerMap = () => {
           xl: "row",
         }}
       >
-        <Grid item xs={12} py={3} px={3} sx={{ position: "relative" }}>
-          <div>
-            <span
-              className="ripple"
-              style={{ left: "103px", top: "021px" }}
-            ></span>
+        <Grid item xs={12} py={3} px={3}>
+          <div style={{ position: "absolute" }}>
+            <div style={{ position: "relative", top: 30, left: 40 }}>
+              <div>
+                <span
+                  className="ripple"
+                  style={{ left: "145px", top: "021px" }}
+                ></span>
+              </div>
+              <div>
+                <span
+                  className="ripple1"
+                  style={{ left: "233px", top: "-10px" }}
+                ></span>
+              </div>
+              <div>
+                <span
+                  className="ripple5"
+                  style={{ left: "307px", top: "-57px" }}
+                ></span>
+              </div>
+              <div>
+                <span
+                  className="ripple3"
+                  style={{ left: "448px", top: "-27px" }}
+                ></span>
+              </div>
+              <div>
+                <span
+                  className="ripple4"
+                  style={{ left: "365px", top: "017px" }}
+                ></span>
+              </div>
+              <div>
+                <span
+                  className="ripple"
+                  style={{ left: "116px", top: "35px" }}
+                ></span>
+              </div>
+              <div>
+                <span
+                  className="ripple6"
+                  style={{ left: "455px", top: "44px" }}
+                ></span>
+              </div>
+            </div>
           </div>
           <div>
-            <span
-              className="ripple1"
-              style={{ left: "222px", top: "-30px" }}
-            ></span>
-          </div>
-          <div>
-            <span
-              className="ripple5"
-              style={{ left: "307px", top: "-57px" }}
-            ></span>
-          </div>
-          <div>
-            <span
-              className="ripple3"
-              style={{ left: "293px", top: "-27px" }}
-            ></span>
-          </div>
-          <div>
-            <span
-              className="ripple4"
-              style={{ left: "365px", top: "017px" }}
-            ></span>
-          </div>
-          <div>
-            <span
-              className="ripple"
-              style={{ left: "243px", top: "-19px" }}
-            ></span>
-          </div>
-          <div>
-            <span
-              className="ripple6"
-              style={{ left: "141px", top: "-53px" }}
-            ></span>
-          </div>
-          <div style={{ position: "absolute", top: 0 }}>
             <img
               src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
               width="100%"
-              style={{ minWidth: "430px" }}
+              style={{ minWidth: "100%" }}
               alt=""
             />
           </div>

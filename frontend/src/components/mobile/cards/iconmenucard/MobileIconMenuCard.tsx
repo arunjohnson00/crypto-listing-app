@@ -15,7 +15,7 @@ const MobileIconMenuCard = () => {
   return (
     <Box
       sx={{
-        borderRadius: 8,
+        borderRadius: 4,
         backgroundColor: "#010822",
         border: "1px solid #0a1f49",
       }}

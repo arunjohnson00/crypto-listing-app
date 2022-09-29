@@ -44,7 +44,8 @@ const MobileCoinSlider = () => {
             boxShadow: "8px 1px 9px #00000038",
           }}
           py={2}
-          px={1}
+          pl={1}
+          pr={0.5}
           mt={0}
         >
           <Stack direction={"row"} spacing={0.5} alignItems="center">

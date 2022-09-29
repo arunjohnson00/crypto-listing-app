@@ -262,19 +262,24 @@ const HomePage = ({ windowInnerWidth }: any) => {
   return (
     <Fragment>
       <Grid container rowSpacing={2}>
-        <Backdrop
-          sx={{ color: "#1dffc0", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          open={preLoader}
-        >
-          <CircularProgress color="inherit" />
-          {/* <Preloader
+        {preLoader === true && (
+          <Backdrop
+            sx={{
+              color: "#1dffc0",
+              zIndex: (theme) => theme.zIndex.drawer + 1,
+            }}
+            open={preLoader}
+          >
+            <CircularProgress color="inherit" />
+            {/* <Preloader
             use={ThreeDots}
             size={32}
             strokeWidth={8}
             strokeColor="#F0AD4E"
             duration={800}
           /> */}
-        </Backdrop>
+          </Backdrop>
+        )}
         <Grid item xs={12}>
           <LatestNewsScroll />
         </Grid>

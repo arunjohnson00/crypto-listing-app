@@ -27,6 +27,8 @@ const TableListPagination = ({
           color: "#fff",
         },
       }}
+      backIconButtonProps={{ disabled: true, style: { display: "none" } }}
+      nextIconButtonProps={{ disabled: true, style: { display: "none" } }}
     />
 
     // <Pagination

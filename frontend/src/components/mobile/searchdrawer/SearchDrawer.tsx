@@ -159,7 +159,7 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
         <Stack
           direction="column"
           spacing={2}
-          sx={{ height: 420 }}
+          sx={{ height: "87vh" }}
           justifyContent="space-between"
         >
           {searchResult &&
@@ -172,7 +172,7 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
               pt={0}
               sx={{
                 height: "auto",
-                maxHeight: 350,
+                maxHeight: "79vh",
                 overflowY: "scroll",
                 background: "#000000",
               }}
@@ -386,7 +386,7 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
               spacing={2}
               sx={{
                 height: "auto",
-                maxHeight: 300,
+                maxHeight: "80vh",
                 overflowY: "scroll",
                 pl: 0,
               }}
@@ -497,6 +497,7 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
                     minimumTouchDrag={10}
                     keyBoardControl={true}
                     shouldResetAutoplay={false}
+                    partialVisible={true}
                   >
                     {recentSearchResult &&
                       recentSearchResult

@@ -24,7 +24,7 @@ const MobileTableBtnGroup = () => {
         sx={{
           maxWidth: { xs: 320, sm: 320 },
           bgcolor: "#010E3A",
-          borderRadius: 4,
+          borderRadius: 0,
           overflow: "hidden",
           color: "#FFFFFF",
           borderColor: "#051447",

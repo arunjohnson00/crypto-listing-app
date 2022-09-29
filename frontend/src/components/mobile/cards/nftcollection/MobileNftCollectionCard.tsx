@@ -17,7 +17,7 @@ const MobileNftCollectionCard = ({ data, index }: any) => {
     },
   });
   return (
-    <Grid item xs={12} mx={1}>
+    <Box>
       <Stack direction="column">
         <Box sx={{ flexGrow: 1, background: "#0B1643" }} px={2} py={2}>
           <CardMedia
@@ -88,7 +88,7 @@ const MobileNftCollectionCard = ({ data, index }: any) => {
           </Stack>
         </Box>
       </Stack>
-    </Grid>
+    </Box>
   );
 };
 

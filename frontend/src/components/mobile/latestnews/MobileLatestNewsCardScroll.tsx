@@ -54,8 +54,6 @@ const MobileLatestNewsCardScroll = () => {
       sx={{
         borderTop: "none",
         borderBottom: "none",
-        paddingTop: "23px",
-        paddingBottom: "23px",
         backgroundColor: "transparent",
         alignItems: "center",
       }}

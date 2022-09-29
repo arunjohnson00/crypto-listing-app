@@ -109,7 +109,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
     newValue: string
   ) => {
     setTableTabValue(newValue);
-    setTableData("");
+    setTableData([]);
     setPage({ ...page, pagination: 1 });
   };
 
@@ -194,7 +194,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
     location?.pathname === "/coins/presales" &&
       dispatch(
         coinsCryptoCurrenciesPresaleRequest(
-          "noData",
+          page.pagination,
           successHandler,
           errorHandler
         )
@@ -267,101 +267,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
                 paddingBottom: "23px",
               }}
             >
-              {preLoader?.featured_coin_list === true ? (
-                <Carousel
-                  // centerMode={true}
-                  responsive={responsiveFeatured}
-                  infinite={true}
-                  removeArrowOnDeviceType={["tablet", "mobile"]}
-                  arrows={true}
-                  partialVisible={true}
-                  autoPlay={false}
-                  draggable={true}
-                  swipeable={true}
-                  minimumTouchDrag={10}
-                  keyBoardControl={true}
-                  shouldResetAutoplay={false}
-                >
-                  <Box>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        backgroundColor: "#010822",
-                        color: "#3D484F",
-                      }}
-                      m={1}
-                    >
-                      <Skeleton
-                        animation="wave"
-                        variant="rectangular"
-                        width={"100%"}
-                        height={280}
-                        sx={{
-                          px: 2,
-                          pb: 2,
-                          pt: 2,
-                          bgcolor: "rgb(245 245 245 / 11%)",
-                          borderRadius: "6px",
-                        }}
-                      />
-                    </Box>
-                  </Box>
-                  <Box>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        backgroundColor: "#010822",
-                        color: "#3D484F",
-                      }}
-                      m={1}
-                    >
-                      <Skeleton
-                        animation="wave"
-                        variant="rectangular"
-                        width={"100%"}
-                        height={280}
-                        sx={{
-                          px: 2,
-                          pb: 2,
-                          pt: 2,
-                          bgcolor: "rgb(245 245 245 / 11%)",
-                          borderRadius: "6px",
-                        }}
-                      />
-                    </Box>
-                  </Box>
-                  <Box>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        backgroundColor: "#010822",
-                        color: "#3D484F",
-                      }}
-                      m={1}
-                    >
-                      <Skeleton
-                        animation="wave"
-                        variant="rectangular"
-                        width={"100%"}
-                        height={280}
-                        sx={{
-                          px: 2,
-                          pb: 2,
-                          pt: 2,
-                          bgcolor: "rgb(245 245 245 / 11%)",
-                          borderRadius: "6px",
-                        }}
-                      />
-                    </Box>
-                  </Box>
-                </Carousel>
-              ) : (
+              {featuredCoinList && (
                 <Carousel
                   // centerMode={true}
                   responsive={responsiveFeatured}
@@ -498,7 +404,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
                 </Stack>
               </Grid>
               <Grid xs={12} sm={12} md={12} lg={11.6} xl={11.6}>
-                {preLoader?.featured_coin_list === true ? (
+                {
                   <Stack
                     direction={{
                       xs: "column",
@@ -510,56 +416,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
                     sx={{
                       alignItems: "flex-start",
                       flexWrap: "wrap",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    {featuredCoinSkelton &&
-                      featuredCoinSkelton.map((data: any, index: number) => (
-                        <Grid xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
-                          <Box
-                            sx={{
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                              backgroundColor: "#010822",
-                              color: "#3D484F",
-                            }}
-                            m={1}
-                          >
-                            <Skeleton
-                              animation="wave"
-                              variant="rectangular"
-                              width={"100%"}
-                              height={280}
-                              sx={{
-                                px: 2,
-                                pb: 2,
-                                pt: 2,
-                                bgcolor: "rgb(245 245 245 / 11%)",
-                                borderRadius: "6px",
-                                "::after": {
-                                  background:
-                                    "linear-gradient(90deg, transparent, #6252e84f 56%, transparent)",
-                                },
-                              }}
-                            />
-                          </Box>
-                        </Grid>
-                      ))}
-                  </Stack>
-                ) : (
-                  <Stack
-                    direction={{
-                      xs: "column",
-                      sm: "column",
-                      md: "row",
-                      lg: "row",
-                    }}
-                    spacing={0}
-                    sx={{
-                      alignItems: "flex-start",
-                      flexWrap: "wrap",
-                      justifyContent: "space-between",
+                      justifyContent: "flex-start",
                     }}
                   >
                     {featuredCoinList &&
@@ -569,7 +426,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
                         </Grid>
                       ))}
                   </Stack>
-                )}
+                }
               </Grid>
             </Stack>
           </Grid>

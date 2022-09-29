@@ -48,17 +48,23 @@ const ListingTable = ({
   const scrollHandler = () => {
     // page?.pagination !== 0 &&
 
-    page?.pagination % 5 === 0
-      ? setPage({
-          ...page,
+    // page?.pagination % 5 === 0
+    //   ? setPage({
+    //       ...page,
 
-          scroll: false,
-        })
-      : setPage({
-          ...page,
-          pagination: page.pagination + 1,
-          scroll: true,
-        });
+    //       scroll: false,
+    //     })
+    //   : setPage({
+    //       ...page,
+    //       pagination: page.pagination + 1,
+    //       scroll: true,
+    //     });
+
+    setPage({
+      ...page,
+      pagination: page.pagination + 1,
+      scroll: true,
+    });
   };
 
   const [vote, setVote] = useState<any>({

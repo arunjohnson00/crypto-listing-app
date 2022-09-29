@@ -34,7 +34,7 @@ const CryptoEventsCardSlider = ({ data, variant }: any) => {
             height: "auto",
             backgroundColor: variant === "ads" ? "#021250" : "#01061A",
             border: "1px solid #020C37",
-            borderRadius: 9,
+            borderRadius: 4,
           }}
           px={2}
           py={1.5}

@@ -15,7 +15,7 @@ import en from "javascript-time-ago/locale/en.json";
 import { useDispatch, useSelector } from "react-redux";
 
 import FullWidthSlider from "../../../components/mobile/slider/fullwidthslider/FullWidthSlider";
-import UpcomingAmaCard from "../../../components/mobile/cards/upcomingamacard/UpcomingAmaCard";
+import UpcomingAmaCard from "../../../components/mobile/cards/upcomingcard/UpcomingCard";
 import MobileIconMenuCard from "../../../components/mobile/cards/iconmenucard/MobileIconMenuCard";
 
 import Carousel from "react-multi-carousel";
@@ -52,6 +52,7 @@ import MobileCryptoEventsCardSlider from "../../../components/mobile/cards/crypt
 import MobileCoinSlider from "../../../components/mobile/coinslider/MobileCoinSlider";
 import MobileLatestNewsCardScrollTop from "../../../components/mobile/latestnews/MobileLatestNewsCardScrollTop";
 import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/MobileLatestNewsCardScroll";
+import UpcomingCard from "../../../components/mobile/cards/upcomingcard/UpcomingCard";
 
 const { parse } = require("rss-to-json");
 
@@ -111,7 +112,7 @@ const responsiveMenuCard: any = {
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1.5,
+    items: 1,
   },
 };
 const responsiveTrending: any = {
@@ -272,23 +273,17 @@ const MobileHomePage = () => {
   }, [dispatch, setPreLoader]);
 
   return (
-    <Grid
-      container
-      spacing={0}
-      sx={{
-        dispaly: "flex",
-      }}
-    >
-      <Grid xs={12} sx={{ paddingTop: 3 }}>
+    <Grid container rowSpacing={2}>
+      <Grid item xs={12}>
         <MobileLatestNewsCardScrollTop />
       </Grid>
 
-      <Grid xs={12} sx={{ paddingTop: 0 }}>
+      <Grid item xs={12}>
         <MobileCoinSlider />
       </Grid>
 
-      <Grid
-        xs={12}
+      {/* <Grid
+        item xs={12}
         sx={{
           alignItems: "center",
           paddingTop: "23px",
@@ -296,38 +291,17 @@ const MobileHomePage = () => {
         }}
       >
         <FullWidthSlider />
+      </Grid> */}
+
+      <Grid item xs={12}>
+        <UpcomingCard />
       </Grid>
 
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-          paddingTop: "0px",
-          paddingBottom: "23px",
-        }}
-      >
-        <UpcomingAmaCard />
-      </Grid>
-
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-          paddingTop: "0px",
-          paddingBottom: "23px",
-        }}
-      >
+      <Grid item xs={12}>
         <MobileIconMenuCard />
       </Grid>
 
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-          paddingTop: "23px",
-          paddingBottom: "23px",
-        }}
-      >
+      <Grid item xs={12} mt={1.5} mb={1.5}>
         <Stack
           direction="row"
           sx={{ justifyContent: "space-between", alignItems: "center" }}
@@ -344,109 +318,8 @@ const MobileHomePage = () => {
         </Stack>
       </Grid>
 
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-          paddingTop: "0px",
-          paddingBottom: "23px",
-        }}
-      >
-        {preLoader?.featured_coin_list === true ? (
-          <Carousel
-            // centerMode={true}
-            responsive={responsiveFeatured}
-            infinite={true}
-            removeArrowOnDeviceType={["tablet", "mobile"]}
-            arrows={true}
-            partialVisible={true}
-            autoPlay={false}
-            draggable={true}
-            swipeable={true}
-            minimumTouchDrag={10}
-            keyBoardControl={true}
-            shouldResetAutoplay={false}
-          >
-            <Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: "#010822",
-                  color: "#3D484F",
-                }}
-                m={1}
-              >
-                <Skeleton
-                  animation="wave"
-                  variant="rectangular"
-                  width={"100%"}
-                  height={280}
-                  sx={{
-                    px: 2,
-                    pb: 2,
-                    pt: 2,
-                    bgcolor: "rgb(245 245 245 / 11%)",
-                    borderRadius: "6px",
-                  }}
-                />
-              </Box>
-            </Box>
-            <Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: "#010822",
-                  color: "#3D484F",
-                }}
-                m={1}
-              >
-                <Skeleton
-                  animation="wave"
-                  variant="rectangular"
-                  width={"100%"}
-                  height={280}
-                  sx={{
-                    px: 2,
-                    pb: 2,
-                    pt: 2,
-                    bgcolor: "rgb(245 245 245 / 11%)",
-                    borderRadius: "6px",
-                  }}
-                />
-              </Box>
-            </Box>
-            <Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: "#010822",
-                  color: "#3D484F",
-                }}
-                m={1}
-              >
-                <Skeleton
-                  animation="wave"
-                  variant="rectangular"
-                  width={"100%"}
-                  height={280}
-                  sx={{
-                    px: 2,
-                    pb: 2,
-                    pt: 2,
-                    bgcolor: "rgb(245 245 245 / 11%)",
-                    borderRadius: "6px",
-                  }}
-                />
-              </Box>
-            </Box>
-          </Carousel>
-        ) : (
+      <Grid item xs={12}>
+        {featuredCoinList && (
           <Carousel
             // centerMode={true}
             responsive={responsiveFeatured}
@@ -471,14 +344,7 @@ const MobileHomePage = () => {
         )}
       </Grid>
 
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-          paddingTop: "23px",
-          paddingBottom: "23px",
-        }}
-      >
+      <Grid item xs={12} mt={1.5} mb={1.5}>
         <Stack
           direction="row"
           sx={{ justifyContent: "space-between", alignItems: "center" }}
@@ -495,16 +361,9 @@ const MobileHomePage = () => {
         </Stack>
       </Grid>
 
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-          paddingTop: "0px",
-          paddingBottom: "23px",
-        }}
-      >
+      <Grid item xs={12}>
         {/* <Grid
-          xs={12}
+          item xs={12}
           sx={{
             alignItems: "center",
             paddingTop: "0px",
@@ -539,7 +398,7 @@ const MobileHomePage = () => {
       </Grid>
 
       {/* <Grid
-        xs={12}
+        item xs={12}
         sx={{
           alignItems: "center",
           paddingTop: "23px",
@@ -563,7 +422,7 @@ const MobileHomePage = () => {
       </Grid>
 
       <Grid
-        xs={12}
+        item xs={12}
         sx={{
           alignItems: "center",
           paddingTop: "0px",
@@ -593,14 +452,7 @@ const MobileHomePage = () => {
         )}
       </Grid> */}
 
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-          paddingTop: "23px",
-          paddingBottom: "23px",
-        }}
-      >
+      <Grid item xs={12} mt={1.5} mb={1.5}>
         <Stack
           direction="row"
           sx={{ justifyContent: "space-between", alignItems: "center" }}
@@ -617,14 +469,7 @@ const MobileHomePage = () => {
         </Stack>
       </Grid>
 
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-          paddingTop: "0px",
-          paddingBottom: "23px",
-        }}
-      >
+      <Grid item xs={12}>
         {videoList && (
           <Carousel
             // centerMode={true}
@@ -654,18 +499,10 @@ const MobileHomePage = () => {
         )}
       </Grid>
 
-      <Grid
-        container
-        xs={12}
-        sx={{
-          alignItems: "center",
-          marginTop: "30px",
-          paddingBottom: "23px",
-        }}
-      >
+      <Grid container item xs={12} mt={1.5} mb={0}>
         <Stack
           direction={{ xs: "column", sm: "column", md: "row" }}
-          spacing={3}
+          spacing={2}
           sx={{
             flexGrow: 1,
             alignItems: "center",
@@ -677,21 +514,11 @@ const MobileHomePage = () => {
         </Stack>
       </Grid>
 
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-        }}
-      >
+      <Grid item xs={12}>
         <Stack
           direction="row"
           spacing={3}
           sx={{
-            //borderTop: "1px solid #1a1545",
-            // borderBottom: "1px solid #1a1545",
-            paddingTop: "23px",
-            paddingBottom: "23px",
-
             alignItems: "center",
           }}
         >
@@ -731,21 +558,11 @@ const MobileHomePage = () => {
         </Stack>
       </Grid>
 
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-        }}
-      >
+      <Grid item xs={12} mt={1.5} mb={0}>
         <Stack
           direction="row"
           spacing={3}
           sx={{
-            //borderTop: "1px solid #1a1545",
-            // borderBottom: "1px solid #1a1545",
-            marginTop: "0px",
-            paddingBottom: "23px",
-
             alignItems: "center",
             justifyContent: " flex-end",
           }}
@@ -759,14 +576,7 @@ const MobileHomePage = () => {
           </Link>
         </Stack>
       </Grid>
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-          paddingTop: "0px",
-          paddingBottom: "23px",
-        }}
-      >
+      <Grid item xs={12} mt={1.5} mb={1.5}>
         <Stack
           direction="row"
           sx={{ justifyContent: "flex-start", alignItems: "center" }}
@@ -777,14 +587,7 @@ const MobileHomePage = () => {
         </Stack>
       </Grid>
 
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-          paddingTop: "0px",
-          paddingBottom: "23px",
-        }}
-      >
+      <Grid item xs={12}>
         {NFTList && NFTList?.data && (
           <Carousel
             responsive={responsiveNFT}
@@ -808,21 +611,11 @@ const MobileHomePage = () => {
         )}
       </Grid>
 
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-        }}
-      >
+      <Grid item xs={12} mt={1.5} mb={0}>
         <Stack
           direction="row"
           spacing={3}
           sx={{
-            //borderTop: "1px solid #1a1545",
-            // borderBottom: "1px solid #1a1545",
-            marginTop: "0px",
-            paddingBottom: "23px",
-
             alignItems: "center",
             justifyContent: " flex-end",
           }}
@@ -831,14 +624,7 @@ const MobileHomePage = () => {
         </Stack>
       </Grid>
 
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-          paddingTop: "0px",
-          paddingBottom: "23px",
-        }}
-      >
+      <Grid item xs={12} mt={1.5} mb={1.5}>
         <Stack
           direction="row"
           sx={{ justifyContent: "flex-start", alignItems: "center" }}
@@ -849,29 +635,14 @@ const MobileHomePage = () => {
         </Stack>
       </Grid>
 
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-        }}
-      >
+      <Grid item xs={12} mb={0}>
         <MobileLatestNewsCardScroll />
       </Grid>
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-        }}
-      >
+      <Grid item xs={12} mb={0}>
         <Stack
           direction="row"
           spacing={3}
           sx={{
-            //borderTop: "1px solid #1a1545",
-            // borderBottom: "1px solid #1a1545",
-            marginTop: "23px",
-            paddingBottom: "23px",
-
             alignItems: "center",
             justifyContent: " flex-end",
           }}
@@ -884,7 +655,7 @@ const MobileHomePage = () => {
       </Grid>
 
       {/* <Grid
-        xs={12}
+        item xs={12}
         sx={{
           alignItems: "center",
           paddingTop: "10px",
@@ -894,23 +665,15 @@ const MobileHomePage = () => {
         <MobileAdsCardHome />
       </Grid> */}
 
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-          paddingTop: "0px",
-          paddingBottom: "23px",
-        }}
-      >
+      <Grid item xs={12} mt={1.5} mb={1.5}>
         <Stack
           direction="column"
-          spacing={3}
+          spacing={2}
           px={0}
-          py={3}
           sx={{ alignItems: "center" }}
         >
           <Typography
-            variant="h3"
+            variant="h5"
             sx={{ fontWeight: "600", color: "#FFFFF5", textAlign: "center" }}
           >
             Find a better Card deal in few easy steps
@@ -923,20 +686,16 @@ const MobileHomePage = () => {
             Dollar. BTC is struggling and remains at a risk of more losses below
             $30,000.
           </Typography>
-          <Typography variant="h5" sx={{ fontWeight: "500", color: "#20b8ea" }}>
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: "500", color: "#20b8ea", textAlign: "center" }}
+          >
             We understand what you needs
           </Typography>
         </Stack>
       </Grid>
 
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-          paddingTop: "0px",
-          paddingBottom: "23px",
-        }}
-      >
+      <Grid item xs={12} mt={0.5} mb={1.5}>
         {menuCards && (
           <Carousel
             // centerMode={true}
@@ -965,14 +724,7 @@ const MobileHomePage = () => {
         )}
       </Grid>
 
-      <Grid
-        xs={12}
-        sx={{
-          alignItems: "center",
-          paddingTop: "0px",
-          paddingBottom: "23px",
-        }}
-      >
+      <Grid item xs={12} mt={0.5} mb={1.5}>
         <Stack
           direction="column"
           spacing={3}
@@ -982,8 +734,8 @@ const MobileHomePage = () => {
         >
           {" "}
           <Typography
-            variant="h4"
-            sx={{ fontWeight: "300", color: "#FFFFF5", textAlign: "center" }}
+            variant="h5"
+            sx={{ fontWeight: "400", color: "#FFFFF5", textAlign: "center" }}
           >
             <span style={{ color: "#09e2b1" }}> Our best users are</span> all
             over the world{" "}

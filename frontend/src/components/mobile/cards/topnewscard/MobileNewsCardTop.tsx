@@ -5,7 +5,7 @@ import moment from "moment";
 const MobileNewsCardTop = ({ rssFeed, index }: any) => {
   return (
     <Fragment>
-      <Box mb={0.5}>
+      <Box>
         <Stack
           direction="column"
           sx={{
@@ -23,7 +23,6 @@ const MobileNewsCardTop = ({ rssFeed, index }: any) => {
             },
           }}
           p={1.2}
-          mr={1}
         >
           <Typography
             variant="subtitle2"
@@ -40,8 +39,8 @@ const MobileNewsCardTop = ({ rssFeed, index }: any) => {
               }}
             >
               {" "}
-              {rssFeed && rssFeed?.title?.length >= 120
-                ? Parser(rssFeed?.title.substring(0, 120)) + "..."
+              {rssFeed && rssFeed?.title?.length >= 80
+                ? Parser(rssFeed?.title.substring(0, 80)) + "..."
                 : Parser(rssFeed?.title)}
               .
             </a>

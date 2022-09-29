@@ -3,13 +3,13 @@ import { Box, Stack, Typography } from "@mui/material";
 import CountDown from "count-time-down";
 import Participate from "../../button/participate/Participate";
 import EventAvailableOutlinedIcon from "@mui/icons-material/EventAvailableOutlined";
-
-const UpcomingAmaCard = () => {
+import { CountDownTimer } from "./countdown/CountDownTimer";
+const UpcomingCard = () => {
   //console.log(timer);
   return (
     <Box
       sx={{
-        borderRadius: 8,
+        borderRadius: 4,
         backgroundColor: "#010822",
         border: "1px solid #0a1f49",
       }}
@@ -27,13 +27,16 @@ const UpcomingAmaCard = () => {
             variant="subtitle2"
             sx={{ color: "#00B156", fontWeight: "bold" }}
           >
-            Upcoming AMA
+            Upcoming Event
           </Typography>
           <Typography variant="h6" sx={{ color: "#FFFFF5", fontWeight: 1000 }}>
             Shark Shake
           </Typography>
-          <Typography variant="h6" sx={{ color: "#6a9ed4", fontWeight: 500 }}>
-            {`12h : 31m : 22s`}
+          <Typography
+            variant="h6"
+            sx={{ color: "#6a9ed4", fontWeight: 500, fontSize: ".9rem" }}
+          >
+            {CountDownTimer(new Date("12/12/2022"))}
           </Typography>
         </Stack>
         <Participate />
@@ -42,4 +45,4 @@ const UpcomingAmaCard = () => {
   );
 };
 
-export default UpcomingAmaCard;
+export default UpcomingCard;

@@ -2,7 +2,10 @@ import { Grid, Stack, Typography } from "@mui/material";
 import DottedMap from "dotted-map";
 import "./style.css";
 const MobileBannerMaps = () => {
-  const map = new DottedMap({ height: 60, grid: "vertical" });
+  const map = new DottedMap({
+    height: 60,
+    grid: "vertical",
+  });
 
   // map.addPin({
   //   lat: 40.73061,
@@ -55,52 +58,56 @@ const MobileBannerMaps = () => {
     radius: 0.35,
     color: "#2D2E35",
     shape: "circle",
-    backgroundColor: "#00030A",
+    backgroundColor: "#01061A",
   });
 
   return (
     <div style={{ width: "100%" }}>
-      <div>
-        <span
-          className="ripplemobile"
-          style={{ left: "83px", top: "221px" }}
-        ></span>
-      </div>
-      <div>
-        <span
-          className="ripplemobile1"
-          style={{ left: "202px", top: "160px" }}
-        ></span>
-      </div>
-      <div>
-        <span
-          className="ripplemobile3"
-          style={{ left: "187px", top: "200px" }}
-        ></span>
-      </div>
-      <div>
-        <span
-          className="ripplemobile2"
-          style={{ left: "233px", top: "120px" }}
-        ></span>
-      </div>
-      <div>
-        <span
-          className="ripplemobile5"
-          style={{ left: "100px", top: "177px" }}
-        ></span>
-      </div>
-      <div>
-        <span
-          className="ripplemobile6"
-          style={{ left: "223px", top: "122px" }}
-        ></span>
-      </div>
-      <div>
-        <span
-          className="ripplemobile4"
-          style={{ left: "261px", top: "133px" }}
-        ></span>
+      <div style={{ position: "absolute" }}>
+        <div style={{ position: "relative", top: -180 }}>
+          <div>
+            <span
+              className="ripplemobile"
+              style={{ left: "83px", top: "221px" }}
+            ></span>
+          </div>
+          <div>
+            <span
+              className="ripplemobile1"
+              style={{ left: "202px", top: "160px" }}
+            ></span>
+          </div>
+          <div>
+            <span
+              className="ripplemobile3"
+              style={{ left: "187px", top: "200px" }}
+            ></span>
+          </div>
+          <div>
+            <span
+              className="ripplemobile2"
+              style={{ left: "233px", top: "120px" }}
+            ></span>
+          </div>
+          <div>
+            <span
+              className="ripplemobile5"
+              style={{ left: "100px", top: "177px" }}
+            ></span>
+          </div>
+          <div>
+            <span
+              className="ripplemobile6"
+              style={{ left: "223px", top: "122px" }}
+            ></span>
+          </div>
+          <div>
+            <span
+              className="ripplemobile4"
+              style={{ left: "261px", top: "133px" }}
+            ></span>
+          </div>
+        </div>
       </div>
       <img
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}

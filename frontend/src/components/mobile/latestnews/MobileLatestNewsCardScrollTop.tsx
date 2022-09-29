@@ -65,13 +65,15 @@ const MobileLatestNewsCardScrollTop = ({ live }: any) => {
             sx={{
               color: "#FFFFFF",
               textTransform: "uppercase",
-              fontSize: ".85rem",
+              fontSize: ".75rem",
             }}
             pl={0}
           >
             Live News{" "}
           </Typography>
-          <div>
+          <div
+            style={{ display: "flex", alignItems: "center", marginTop: "2px" }}
+          >
             <span className="ripplelatestnews"></span>
           </div>
         </Stack>

@@ -11,11 +11,12 @@ const MobileRecentSearchCard = ({ item, index, saveSearchHandler }: any) => {
         backgroundColor: "#151720",
         padding: 1.5,
         borderRadius: 3,
-        maxWidth: 70,
+        maxWidth: "auto",
         minWidth: 70,
       }}
       key={index}
       my={1}
+      mr={1.5}
     >
       <Stack
         direction="column"
