@@ -23,6 +23,7 @@ const MobileRecentSearchCard = ({ item, index, saveSearchHandler }: any) => {
         spacing={1}
         alignItems="center"
         justifyContent="center"
+        sx={{ minHeight: 80 }}
       >
         <Avatar
           alt="Trending"
