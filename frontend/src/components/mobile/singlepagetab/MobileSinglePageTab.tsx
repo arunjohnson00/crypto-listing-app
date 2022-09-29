@@ -47,7 +47,8 @@ const MobileSinglePageTab = () => {
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <TabList
             variant="scrollable"
-            //scrollButtons={true}
+            scrollButtons={true}
+            allowScrollButtonsMobile
             onChange={handleChange}
             aria-label="lab API tabs example"
             textColor="inherit"

@@ -15,6 +15,7 @@ import {
   Link,
   Backdrop,
   CircularProgress,
+  Button,
 } from "@mui/material";
 import moment from "moment";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -23,6 +24,7 @@ import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import ThumbUpAltRoundedIcon from "@mui/icons-material/ThumbUpAltRounded";
 import WiriteReview from "../writereview/WiriteReview";
 import { coinRatingBlockRequest } from "../../../store/action";
+import AnimatedRating from "../animatedrating/AnimatedRating";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const CoinpageRatings = () => {
@@ -147,7 +149,16 @@ const CoinpageRatings = () => {
                         navigate("/login", { state: location?.pathname })
                       }
                     >
-                      login to write a review
+                      <Button
+                        variant="contained"
+                        //size="small"
+                        sx={{
+                          textTransform: "capitalize",
+                          backgrounColor: "#6252e7",
+                        }}
+                      >
+                        login to write a review
+                      </Button>
                     </Link>
                   ) : (
                     <Link
@@ -162,7 +173,16 @@ const CoinpageRatings = () => {
                       //underline="none"
                       onClick={handleWriteReviewClickOpen}
                     >
-                      Write a review
+                      <Button
+                        variant="contained"
+                        // size="small"
+                        sx={{
+                          textTransform: "capitalize",
+                          backgrounColor: "#6252e7",
+                        }}
+                      >
+                        Write a review
+                      </Button>
                     </Link>
                   )}
 
@@ -179,6 +199,12 @@ const CoinpageRatings = () => {
                   size="large"
                   sx={{ fontSize: "1.5rem" }}
                 />
+
+                {/* <AnimatedRating
+                  size="large"
+                  animated={true}
+                  // rating={5}
+                /> */}
               </Stack>
             </Box>
           </Stack>
@@ -567,7 +593,7 @@ const CoinpageRatings = () => {
                         }}
                         my={2}
                       >
-                        <Rating
+                        {/* <Rating
                           name="large"
                           defaultValue={0}
                           value={
@@ -578,6 +604,19 @@ const CoinpageRatings = () => {
                           size="large"
                           readOnly
                           sx={{ fontSize: "1.5rem" }}
+                        /> */}
+
+                        <AnimatedRating
+                          name="large"
+                          defaultValue={0}
+                          value={
+                            coinRatingBlock &&
+                            parseFloat(item?.rating).toFixed(1)
+                          }
+                          precision={0.1}
+                          size="large"
+                          readOnly={true}
+                          fontSize="1.5rem"
                         />
                         <Typography
                           variant="caption"
@@ -740,7 +779,7 @@ const CoinpageRatings = () => {
                     {coinRatingBlock &&
                       parseFloat(coinRatingBlock[0]?.trust_score).toFixed(1)}
                   </Typography>
-                  <Rating
+                  {/* <Rating
                     name="large"
                     defaultValue={0}
                     size="large"
@@ -751,7 +790,26 @@ const CoinpageRatings = () => {
                     readOnly
                     precision={0.1}
                     sx={{ fontSize: "1.5rem" }}
-                  />
+                  /> */}
+
+                  {coinRatingBlock &&
+                    coinRatingBlock[0]?.trust_score !== null && (
+                      <AnimatedRating
+                        name="large"
+                        defaultValue={
+                          coinRatingBlock &&
+                          parseFloat(coinRatingBlock[0]?.trust_score).toFixed(1)
+                        }
+                        size="large"
+                        value={
+                          coinRatingBlock &&
+                          parseFloat(coinRatingBlock[0]?.trust_score).toFixed(1)
+                        }
+                        readOnly
+                        precision={0.1}
+                        fontSize="1.5rem"
+                      />
+                    )}
                   <Typography
                     variant="h6"
                     sx={{ color: "#9C9C9B", fontWeight: "400" }}

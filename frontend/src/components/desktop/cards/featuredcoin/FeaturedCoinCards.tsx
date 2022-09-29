@@ -24,6 +24,7 @@ import { CountDownTimer } from "./countdown/CountDownTimer";
 import { defaultColor } from "../../../../common/common";
 import "./style.css";
 import { Fragment } from "react";
+import AnimatedRating from "../../animatedrating/AnimatedRating";
 const FeaturedCoinCards = ({ cardData, index }: any) => {
   // const getDifferenceInDays = (date1: any, date2: any) => {
   //   const diffInMs = Math.abs(date2 - date1);
@@ -173,13 +174,22 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
               </Typography>
             )}
             {cardData?.rating !== null && (
-              <Rating
+              // <Rating
+              //   name="size-small"
+              //   defaultValue={0}
+              //   value={cardData && parseInt(cardData?.rating).toFixed(0)}
+              //   size="small"
+              //   readOnly
+              //   sx={{ fontSize: "0.6rem" }}
+              // />
+
+              <AnimatedRating
                 name="size-small"
                 defaultValue={0}
                 value={cardData && parseInt(cardData?.rating).toFixed(0)}
                 size="small"
-                readOnly
-                sx={{ fontSize: "0.6rem" }}
+                readOnly={true}
+                fontSize="0.6rem"
               />
             )}
           </Stack>

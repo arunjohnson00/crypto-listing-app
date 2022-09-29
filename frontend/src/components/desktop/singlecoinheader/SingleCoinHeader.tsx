@@ -73,6 +73,7 @@ import DropDownAds from "../dropdownads/DropDownAds";
 import { defaultColor } from "../../../common/common";
 import { Link } from "react-router-dom";
 import { coinMarketListRequest } from "../../../store/action/coinAction ";
+import AnimatedRating from "../animatedrating/AnimatedRating";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -1898,13 +1899,22 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 </Typography>
 
                 {coinData && coinData?.trust_score[0]?.rating !== null && (
-                  <Rating
+                  // <Rating
+                  //   name="size-small"
+                  //   precision={0.1}
+                  //   defaultValue={coinData?.trust_score[0]?.rating}
+                  //   value={coinData?.trust_score[0]?.rating}
+                  //   size="small"
+                  //   readOnly
+                  //   sx={{ fontSize: ".9rem" }}
+                  // />
+                  <AnimatedRating
                     name="size-small"
                     precision={0.1}
                     defaultValue={coinData?.trust_score[0]?.rating}
                     value={coinData?.trust_score[0]?.rating}
                     size="small"
-                    readOnly
+                    readOnly={true}
                     sx={{ fontSize: ".9rem" }}
                   />
                 )}

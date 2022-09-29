@@ -117,6 +117,13 @@ const MobileCoinPageNews = () => {
                         >
                           {Parser(item?.excerpt)}
                         </Typography>
+                      </Stack>
+
+                      <Stack
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="space-between"
+                      >
                         <Typography
                           variant="body2"
                           sx={{
@@ -142,20 +149,20 @@ const MobileCoinPageNews = () => {
                             </a>
                           </span>
                         </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#FDA400",
+                            fontWeight: 400,
+                            fontSize: ".85rem",
+                          }}
+                        >
+                          {item &&
+                            moment(
+                              new Date(item?.date ? item?.date : null)
+                            ).fromNow()}
+                        </Typography>
                       </Stack>
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "#FDA400",
-                          fontWeight: 400,
-                          fontSize: ".85rem",
-                        }}
-                      >
-                        {item &&
-                          moment(
-                            new Date(item?.date ? item?.date : null)
-                          ).fromNow()}
-                      </Typography>
                     </Stack>
 
                     <Divider

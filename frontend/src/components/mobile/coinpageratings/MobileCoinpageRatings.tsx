@@ -12,6 +12,7 @@ import {
   LinearProgress,
   Link,
   Tooltip,
+  Button,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
@@ -23,6 +24,7 @@ import ThumbUpAltRoundedIcon from "@mui/icons-material/ThumbUpAltRounded";
 import { useLocation, useNavigate } from "react-router-dom";
 import { coinRatingBlockRequest } from "../../../store/action";
 import InfiniteScroll from "react-infinite-scroll-component";
+import MobileAnimatedRating from "../animatedrating/MobileAnimatedRating";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileCoinpageRatings = () => {
@@ -116,7 +118,7 @@ const MobileCoinpageRatings = () => {
                       parseFloat(coinRatingBlock[0]?.trust_score).toFixed(1)}
                   </Typography>
                 </Stack>
-                <Rating
+                {/* <Rating
                   name="size-small"
                   defaultValue={0}
                   value={
@@ -127,6 +129,22 @@ const MobileCoinpageRatings = () => {
                   precision={0.1}
                   readOnly
                   sx={{ fontSize: ".9rem" }}
+                /> */}
+
+                <MobileAnimatedRating
+                  name="size-small"
+                  defaultValue={
+                    coinRatingBlock &&
+                    parseFloat(coinRatingBlock[0]?.trust_score).toFixed(1)
+                  }
+                  value={
+                    coinRatingBlock &&
+                    parseFloat(coinRatingBlock[0]?.trust_score).toFixed(1)
+                  }
+                  size="small"
+                  precision={0.1}
+                  readOnly
+                  fontSize=".9rem"
                 />
                 <Typography
                   variant="caption"
@@ -141,10 +159,10 @@ const MobileCoinpageRatings = () => {
               <Stack
                 direction="column"
                 spacing={1.4}
-                sx={{ alignItems: "center" }}
-                width="100%"
+                sx={{ alignItems: "flex-start" }}
+                width="70%"
               >
-                <Box sx={{ flexGrow: 1, color: "#00B67A" }} width="100%">
+                <Box sx={{ flexGrow: 1, color: "#00B67A" }} width="80%">
                   <LinearProgress
                     value={
                       coinRatingBlock &&
@@ -160,7 +178,7 @@ const MobileCoinpageRatings = () => {
                     sx={{ borderRadius: 10, height: 6 }}
                   />
                 </Box>
-                <Box sx={{ flexGrow: 1, color: "#73CF11" }} width="100%">
+                <Box sx={{ flexGrow: 1, color: "#73CF11" }} width="80%">
                   <LinearProgress
                     value={
                       coinRatingBlock &&
@@ -176,7 +194,7 @@ const MobileCoinpageRatings = () => {
                     sx={{ borderRadius: 10, height: 6 }}
                   />
                 </Box>
-                <Box sx={{ flexGrow: 1, color: "#FFCE00" }} width="100%">
+                <Box sx={{ flexGrow: 1, color: "#FFCE00" }} width="80%">
                   <LinearProgress
                     value={
                       coinRatingBlock &&
@@ -192,7 +210,7 @@ const MobileCoinpageRatings = () => {
                     sx={{ borderRadius: 10, height: 6 }}
                   />
                 </Box>
-                <Box sx={{ flexGrow: 1, color: "#FF8622" }} width="100%">
+                <Box sx={{ flexGrow: 1, color: "#FF8622" }} width="80%">
                   <LinearProgress
                     value={
                       coinRatingBlock &&
@@ -208,7 +226,7 @@ const MobileCoinpageRatings = () => {
                     sx={{ borderRadius: 10, height: 6 }}
                   />
                 </Box>
-                <Box sx={{ flexGrow: 1, color: "#FF3722" }} width="100%">
+                <Box sx={{ flexGrow: 1, color: "#FF3722" }} width="80%">
                   <LinearProgress
                     value={
                       coinRatingBlock &&
@@ -306,7 +324,16 @@ const MobileCoinpageRatings = () => {
                           navigate("/login", { state: location?.pathname })
                         }
                       >
-                        login to write a review
+                        <Button
+                          variant="contained"
+                          size="small"
+                          sx={{
+                            textTransform: "capitalize",
+                            backgrounColor: "#6252e7",
+                          }}
+                        >
+                          login to write a review
+                        </Button>
                       </Link>
                     ) : (
                       <Link
@@ -321,7 +348,16 @@ const MobileCoinpageRatings = () => {
                         //underline="none"
                         onClick={handleWriteReviewClickOpen}
                       >
-                        Rate and review
+                        <Button
+                          variant="contained"
+                          size="small"
+                          sx={{
+                            textTransform: "capitalize",
+                            backgrounColor: "#6252e7",
+                          }}
+                        >
+                          Rate & Review
+                        </Button>
                       </Link>
                     )}
 
@@ -350,7 +386,7 @@ const MobileCoinpageRatings = () => {
               next={fetchMoreData}
               hasMore={hasMore}
               loader={<h4 style={{ color: "#FFFFFF" }}>Loading...</h4>}
-              height={700}
+              height={350}
               endMessage={
                 <p style={{ textAlign: "center", color: "#FFFFFF" }}>
                   <b>Yay! You have seen it all</b>
@@ -420,7 +456,7 @@ const MobileCoinpageRatings = () => {
                           }}
                           my={2}
                         >
-                          <Rating
+                          {/* <Rating
                             name="large"
                             defaultValue={0}
                             value={
@@ -431,6 +467,21 @@ const MobileCoinpageRatings = () => {
                             size="large"
                             readOnly
                             sx={{ fontSize: "1.5rem" }}
+                          /> */}
+                          <MobileAnimatedRating
+                            name="large"
+                            defaultValue={
+                              coinRatingBlock &&
+                              parseFloat(item?.rating).toFixed(1)
+                            }
+                            value={
+                              coinRatingBlock &&
+                              parseFloat(item?.rating).toFixed(1)
+                            }
+                            precision={0.1}
+                            size="small"
+                            readOnly={true}
+                            fontSize="1rem"
                           />
                           <Typography
                             variant="caption"

@@ -23,6 +23,7 @@ import TwitterImage from "../../../../assets/featuredcard/twitter.png";
 import { CountDownTimer } from "./countdown/CountDownTimer";
 import { defaultColor } from "../../../../common/common";
 import { Fragment } from "react";
+import MobileAnimatedRating from "../../animatedrating/MobileAnimatedRating";
 
 const MobileFeaturedCoinCards = ({ cardData, index }: any) => {
   // const getDifferenceInDays = (date1: any, date2: any) => {
@@ -184,13 +185,24 @@ const MobileFeaturedCoinCards = ({ cardData, index }: any) => {
                 </Typography>
               )}
               {cardData?.rating !== null && (
-                <Rating
+                // <Rating
+                //   name="size-small"
+                //   defaultValue={0}
+                //   value={cardData && parseInt(cardData?.rating).toFixed(0)}
+                //   size="small"
+                //   readOnly
+                //   sx={{ fontSize: "0.6rem" }}
+                // />
+
+                <MobileAnimatedRating
                   name="size-small"
-                  defaultValue={0}
-                  value={cardData && parseInt(cardData?.rating).toFixed(0)}
+                  defaultValue={
+                    cardData && parseInt(cardData?.rating).toFixed(1)
+                  }
+                  value={cardData && parseInt(cardData?.rating).toFixed(1)}
                   size="small"
-                  readOnly
-                  sx={{ fontSize: "0.6rem" }}
+                  readOnly={true}
+                  fontSize=".6rem"
                 />
               )}
             </Stack>

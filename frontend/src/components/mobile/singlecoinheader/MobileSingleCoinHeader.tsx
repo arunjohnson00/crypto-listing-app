@@ -74,6 +74,7 @@ import {
   coinSocialGraphRequest,
 } from "../../../store/action/coinAction ";
 import MobileSocialCounterWithGraphCard from "../cards/socialcounterwithgraphcard/MobileSocialCounterWithGraphCard";
+import MobileAnimatedRating from "../animatedrating/MobileAnimatedRating";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileSingleCoinHeader = ({ coinData }: any) => {
@@ -203,35 +204,46 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
             width="100%"
           >
             <Stack
-              direction={{ xs: "row", sm: "row", md: "row" }}
-              justifyContent="space-between"
-              alignItems="center"
+              direction={{ xs: "column", sm: "column", md: "row" }}
+              spacing={0}
+              sx={{ alignItems: "flex-start" }}
+              pt={1}
               width="100%"
             >
-              <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-                {coinData && coinData?.logo === null ? (
-                  <Avatar
-                    sx={{
-                      bgcolor: defaultColor[coinData?.name?.length],
-                      borderRadius: 0,
-                      width: 25,
-                      height: 25,
-                    }}
-                  >
-                    <Typography sx={{ fontSize: ".7rem" }}>
-                      {coinData && coinData?.name[0]}
-                    </Typography>
-                  </Avatar>
-                ) : (
-                  <Avatar
-                    alt={coinData && coinData?.name}
-                    src={`${serverAPIUrl}public/uploads/coin_logo/${coinData?.logo}`}
-                    //src="https://mui.com/static/images/avatar/1.jpg"
-                    sx={{ borderRadius: 0, width: 30, height: 30 }}
-                  />
-                )}
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                justifyContent="space-between"
+                alignItems="center"
+                width="100%"
+              >
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ alignItems: "center" }}
+                >
+                  {coinData && coinData?.logo === null ? (
+                    <Avatar
+                      sx={{
+                        bgcolor: defaultColor[coinData?.name?.length],
+                        borderRadius: 0,
+                        width: 25,
+                        height: 25,
+                      }}
+                    >
+                      <Typography sx={{ fontSize: ".7rem" }}>
+                        {coinData && coinData?.name[0]}
+                      </Typography>
+                    </Avatar>
+                  ) : (
+                    <Avatar
+                      alt={coinData && coinData?.name}
+                      src={`${serverAPIUrl}public/uploads/coin_logo/${coinData?.logo}`}
+                      //src="https://mui.com/static/images/avatar/1.jpg"
+                      sx={{ borderRadius: 0, width: 40, height: 40 }}
+                    />
+                  )}
 
-                {/* {coinData &&
+                  {/* {coinData &&
                   coinData?.presale_start_date !== null &&
                   coinData?.presale_start_date !== "" && (
                     <Stack
@@ -258,288 +270,315 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                     </Stack>
                   )} */}
 
-                {coinData &&
-                  coinData?.presale_start_date !== null &&
-                  coinData?.presale_end_date !== null && (
-                    <Stack
-                      direction="row"
-                      spacing={1}
-                      sx={{
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      {coinData && parseInt(coinData?.is_presale) === 1 ? (
-                        <span>
-                          {Math.sign(
-                            moment(new Date(coinData?.presale_start_date)).diff(
-                              new Date()
-                            )
-                          ) === -1 &&
-                          Math.sign(
-                            moment(new Date(coinData?.presale_end_date)).diff(
-                              new Date()
-                            )
-                          ) === 1 ? (
-                            <span>
-                              {
-                                //  <BounceLoader size={12} color="#00FF00" />
-                                <Stack
-                                  direction="row"
-                                  spacing={0.5}
-                                  alignItems="center"
-                                >
-                                  <span className="ripplefeaturedcoin"></span>
-                                  <Typography
-                                    variant="body2"
-                                    sx={{
-                                      color: "#6f737f",
-                                      fontSize: "0.65rem",
-                                    }}
+                  {coinData &&
+                    coinData?.presale_start_date !== null &&
+                    coinData?.presale_end_date !== null && (
+                      <Stack
+                        direction="row"
+                        spacing={1}
+                        sx={{
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        {coinData && parseInt(coinData?.is_presale) === 1 ? (
+                          <span>
+                            {Math.sign(
+                              moment(
+                                new Date(coinData?.presale_start_date)
+                              ).diff(new Date())
+                            ) === -1 &&
+                            Math.sign(
+                              moment(new Date(coinData?.presale_end_date)).diff(
+                                new Date()
+                              )
+                            ) === 1 ? (
+                              <span>
+                                {
+                                  //  <BounceLoader size={12} color="#00FF00" />
+                                  <Stack
+                                    direction="row"
+                                    spacing={0.5}
+                                    alignItems="center"
                                   >
-                                    Presale ends in{" "}
-                                  </Typography>
-                                </Stack>
-                              }
-                            </span>
-                          ) : (
-                            <Typography
-                              variant="body2"
-                              sx={{ color: "#6f737f", fontSize: "0.65rem" }}
-                            >
-                              Presale starts in{" "}
-                            </Typography>
-                          )}
-                        </span>
-                      ) : (
-                        coinData && (
-                          <Link
-                            to={{
-                              pathname: `/coin/${coinData?.slug}`,
-                            }}
-                            state={{ coin_id: coinData?.id }}
-                            style={{ textDecoration: "none", color: "inherit" }}
-                          >
-                            {" "}
-                            <Typography
-                              variant="body2"
-                              sx={{ color: "#dadada", fontSize: "0.7rem" }}
-                            >
-                              Presale Ended{" "}
-                              <span
-                                style={{
-                                  color: "rgb(35 177 132)",
-                                  fontWeight: 600,
-                                  fontSize: "0.75rem",
-                                  textTransform: "capitalize",
-                                }}
-                              >
-                                {" "}
-                                {/* {coinData && coinData?.name} */}
-                                {moment(
-                                  new Date(coinData?.presale_end_date),
-                                  "YYYYMMDD"
-                                ).fromNow()}
+                                    <span className="ripplefeaturedcoin"></span>
+                                    <Typography
+                                      variant="body2"
+                                      sx={{
+                                        color: "#6f737f",
+                                        fontSize: "0.65rem",
+                                      }}
+                                    >
+                                      Presale ends in{" "}
+                                    </Typography>
+                                  </Stack>
+                                }
                               </span>
-                            </Typography>
-                          </Link>
-                        )
-                      )}
+                            ) : (
+                              <Typography
+                                variant="body2"
+                                sx={{ color: "#6f737f", fontSize: "0.65rem" }}
+                              >
+                                Presale starts in{" "}
+                              </Typography>
+                            )}
+                          </span>
+                        ) : (
+                          coinData && (
+                            <Link
+                              to={{
+                                pathname: `/coin/${coinData?.slug}`,
+                              }}
+                              state={{ coin_id: coinData?.id }}
+                              style={{
+                                textDecoration: "none",
+                                color: "inherit",
+                              }}
+                            >
+                              {" "}
+                              <Typography
+                                variant="body2"
+                                sx={{ color: "#dadada", fontSize: "0.7rem" }}
+                              >
+                                Presale Ended{" "}
+                                <span
+                                  style={{
+                                    color: "rgb(35 177 132)",
+                                    fontWeight: 600,
+                                    fontSize: "0.75rem",
+                                    textTransform: "capitalize",
+                                  }}
+                                >
+                                  {" "}
+                                  {/* {coinData && coinData?.name} */}
+                                  {moment(
+                                    new Date(coinData?.presale_end_date),
+                                    "YYYYMMDD"
+                                  ).fromNow()}
+                                </span>
+                              </Typography>
+                            </Link>
+                          )
+                        )}
 
-                      {coinData &&
-                      parseInt(coinData?.is_presale) === 1 &&
-                      Math.sign(
-                        moment(new Date(coinData?.presale_start_date)).diff(
-                          new Date()
-                        )
-                      ) === -1 &&
-                      Math.sign(
-                        moment(new Date(coinData?.presale_end_date)).diff(
-                          new Date()
-                        )
-                      ) === 1 ? (
-                        <Typography
-                          variant="subtitle1"
-                          sx={{
-                            color: "#FFFFFF",
+                        {coinData &&
+                        parseInt(coinData?.is_presale) === 1 &&
+                        Math.sign(
+                          moment(new Date(coinData?.presale_start_date)).diff(
+                            new Date()
+                          )
+                        ) === -1 &&
+                        Math.sign(
+                          moment(new Date(coinData?.presale_end_date)).diff(
+                            new Date()
+                          )
+                        ) === 1 ? (
+                          <Typography
+                            variant="subtitle1"
+                            sx={{
+                              color: "#FFFFFF",
 
-                            fontSize: ".7rem",
-                          }}
-                        >
-                          {CountDownTimer(coinData?.presale_end_date)}
-                        </Typography>
-                      ) : (
-                        ""
-                      )}
-                    </Stack>
-                  )}
-              </Stack>
-              <Stack
-                direction="column"
-                spacing={0}
-                sx={{ alignItems: "flex-end" }}
-              >
+                              fontSize: ".7rem",
+                            }}
+                          >
+                            {CountDownTimer(coinData?.presale_end_date)}
+                          </Typography>
+                        ) : (
+                          ""
+                        )}
+                      </Stack>
+                    )}
+                </Stack>
                 <Stack
-                  direction="row"
-                  spacing={1}
-                  sx={{ alignItems: "center" }}
+                  direction="column"
+                  spacing={0}
+                  sx={{ alignItems: "flex-end" }}
                 >
-                  <Typography
-                    variant="h5"
-                    sx={{ color: "#FFFFF5", fontWeight: "400" }}
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    sx={{ alignItems: "center" }}
                   >
-                    {coinData && coinData?.trust_score[0]?.rating !== null
-                      ? parseFloat(coinData?.trust_score[0]?.rating).toFixed(1)
-                      : "--"}
-                  </Typography>
-                  {/* <Tooltip title="Delete">
+                    <Typography
+                      variant="h5"
+                      sx={{ color: "#FFFFF5", fontWeight: "400" }}
+                    >
+                      {coinData && coinData?.trust_score[0]?.rating !== null
+                        ? parseFloat(coinData?.trust_score[0]?.rating).toFixed(
+                            1
+                          )
+                        : "--"}
+                    </Typography>
+                    {/* <Tooltip title="Delete">
                     <Avatar
                       src={ToolTipImage}
                       sx={{ width: 14, height: 14 }}
                     ></Avatar>
                   </Tooltip> */}
+                  </Stack>
+                  {coinData && coinData?.trust_score[0]?.rating !== null && (
+                    // <Rating
+                    //   name="size-small"
+                    //   precision={0.1}
+                    //   defaultValue={coinData?.trust_score[0]?.rating}
+                    //   value={coinData?.trust_score[0]?.rating}
+                    //   size="small"
+                    //   readOnly
+                    //   sx={{ fontSize: ".9rem" }}
+                    // />
+
+                    <MobileAnimatedRating
+                      name="size-small"
+                      precision={0.1}
+                      defaultValue={coinData?.trust_score[0]?.rating}
+                      value={coinData?.trust_score[0]?.rating}
+                      size="small"
+                      readOnly={true}
+                      fontSize=".9rem"
+                    />
+                  )}
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: "#959595",
+                      fontWeight: 400,
+                      fontSize: ".65rem",
+                    }}
+                  >
+                    {coinData && coinData?.trust_score[0]?.review_count !== null
+                      ? coinData &&
+                        coinData?.trust_score[0]?.review_count + " Reviews"
+                      : "--"}
+                  </Typography>
                 </Stack>
-                {coinData && coinData?.trust_score[0]?.rating !== null && (
-                  <Rating
-                    name="size-small"
-                    precision={0.1}
-                    defaultValue={coinData?.trust_score[0]?.rating}
-                    value={coinData?.trust_score[0]?.rating}
-                    size="small"
-                    readOnly
-                    sx={{ fontSize: ".9rem" }}
-                  />
-                )}
-                <Typography
-                  variant="caption"
-                  sx={{ color: "#959595", fontWeight: 400, fontSize: ".65rem" }}
-                >
-                  {coinData && coinData?.trust_score[0]?.review_count !== null
-                    ? coinData &&
-                      coinData?.trust_score[0]?.review_count + " Reviews"
-                    : "--"}
-                </Typography>
               </Stack>
-            </Stack>
-            <Stack
-              direction={{ xs: "column", sm: "column", md: "column" }}
-              width="100%"
-            >
               <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                spacing={1}
-                sx={{ alignItems: "baseline" }}
+                direction={{ xs: "column", sm: "column", md: "column" }}
                 width="100%"
               >
-                <Typography
-                  sx={{ color: "#FFFFF5", fontWeight: 800, fontSize: "1.8rem" }}
-                  textAlign={{ xs: "center", sm: "center", md: "left" }}
-                >
-                  {coinData && coinData?.name.length > 18
-                    ? coinData?.name.slice(0, 18) + "..."
-                    : coinData?.name}
-                </Typography>
-
                 <Stack
                   direction={{ xs: "row", sm: "row", md: "row" }}
-                  spacing={0.5}
-                  sx={{ alignItems: "flex-end" }}
+                  spacing={1}
+                  sx={{ alignItems: "baseline" }}
+                  width="100%"
                 >
                   <Typography
-                    variant="body2"
                     sx={{
-                      color: "#19ffb0",
-                      fontWeight: 400,
-                      textTransform: "uppercase",
+                      color: "#FFFFF5",
+                      fontWeight: 800,
+                      fontSize: "1.8rem",
                     }}
                     textAlign={{ xs: "center", sm: "center", md: "left" }}
                   >
-                    {coinData && coinData?.symbol !== null
-                      ? coinData?.symbol
-                      : "--"}
+                    {coinData && coinData?.name.length > 18
+                      ? coinData?.name.slice(0, 18) + "..."
+                      : coinData?.name}
                   </Typography>
-                  <Rating
-                    name="size-large"
-                    defaultValue={1}
-                    size="large"
-                    max={1}
-                    icon={<StarOutlineOutlinedIcon sx={{ color: "#FFFFF5" }} />}
-                  />
+
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    spacing={0.5}
+                    sx={{ alignItems: "flex-end" }}
+                  >
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#19ffb0",
+                        fontWeight: 400,
+                        textTransform: "uppercase",
+                      }}
+                      textAlign={{ xs: "center", sm: "center", md: "left" }}
+                    >
+                      {coinData && coinData?.symbol !== null
+                        ? coinData?.symbol
+                        : "--"}
+                    </Typography>
+                    <Rating
+                      name="size-large"
+                      defaultValue={1}
+                      size="large"
+                      max={1}
+                      icon={
+                        <StarOutlineOutlinedIcon sx={{ color: "#FFFFF5" }} />
+                      }
+                    />
+                  </Stack>
+                </Stack>
+                <Stack
+                  direction={{ xs: "row", sm: "row", md: "row" }}
+                  spacing={1}
+                  sx={{ alignItems: "center" }}
+                  pt={0.5}
+                >
+                  <Typography
+                    variant="h5"
+                    sx={{ color: "#FFFFF5", fontWeight: "bold" }}
+                  >
+                    {coinData && coinData?.current_price !== null ? (
+                      String(Math.trunc(parseFloat(coinData?.current_price)))
+                        .length > 2 ? (
+                        "$" +
+                        Number(
+                          parseFloat(coinData?.current_price).toFixed(2)
+                        ).toLocaleString()
+                      ) : coinData && Math.abs(coinData?.current_price) > 1 ? (
+                        "$" +
+                        parseFloat(coinData?.current_price)
+                          .toFixed(4)
+                          .toLocaleString()
+                      ) : (
+                        "$" +
+                        parseFloat(coinData?.current_price)
+                          .toFixed(15)
+                          .toLocaleString()
+                      )
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
+                  </Typography>
+                  {Math.sign(parseFloat(coinData?.percent_change_1h)) === -1 ? (
+                    <Chip
+                      icon={<ArrowDropDownIcon />}
+                      label={`${parseFloat(
+                        coinData && coinData?.percent_change_1h
+                      )
+                        .toFixed(2)
+                        .replace("-", "")}%`}
+                      color="error"
+                      sx={{
+                        height: "24px",
+                        borderRadius: "4px",
+                        backgroundColor: "#ff3708",
+                        paddingX: 0,
+                        "& .MuiChip-label": {
+                          padding: 0.4,
+                        },
+                      }}
+                    />
+                  ) : (
+                    <Chip
+                      icon={<ArrowDropUpIcon />}
+                      label={`${parseFloat(
+                        coinData && coinData?.percent_change_1h
+                      )
+                        .toFixed(2)
+                        .replace("-", "")}%`}
+                      color="success"
+                      sx={{
+                        height: "24px",
+                        borderRadius: "4px",
+                        backgroundColor: "#05BC34",
+                        paddingX: 0,
+                        "& .MuiChip-label": {
+                          padding: 0.4,
+                        },
+                      }}
+                    />
+                  )}
                 </Stack>
               </Stack>
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                spacing={1}
-                sx={{ alignItems: "center" }}
-                pt={0.5}
-              >
-                <Typography
-                  variant="h5"
-                  sx={{ color: "#FFFFF5", fontWeight: "bold" }}
-                >
-                  {coinData && coinData?.current_price !== null ? (
-                    String(Math.trunc(parseFloat(coinData?.current_price)))
-                      .length > 2 ? (
-                      "$" +
-                      Number(
-                        parseFloat(coinData?.current_price).toFixed(2)
-                      ).toLocaleString()
-                    ) : coinData && Math.abs(coinData?.current_price) > 1 ? (
-                      "$" +
-                      parseFloat(coinData?.current_price)
-                        .toFixed(4)
-                        .toLocaleString()
-                    ) : (
-                      "$" +
-                      parseFloat(coinData?.current_price)
-                        .toFixed(9)
-                        .toLocaleString()
-                    )
-                  ) : (
-                    <span style={{ color: "#7a7a7a" }}>--</span>
-                  )}
-                </Typography>
-                {Math.sign(parseFloat(coinData?.percent_change_1h)) === -1 ? (
-                  <Chip
-                    icon={<ArrowDropDownIcon />}
-                    label={`${parseFloat(
-                      coinData && coinData?.percent_change_1h
-                    )
-                      .toFixed(2)
-                      .replace("-", "")}%`}
-                    color="error"
-                    sx={{
-                      height: "24px",
-                      borderRadius: "4px",
-                      backgroundColor: "#ff3708",
-                      paddingX: 0,
-                      "& .MuiChip-label": {
-                        padding: 0.4,
-                      },
-                    }}
-                  />
-                ) : (
-                  <Chip
-                    icon={<ArrowDropUpIcon />}
-                    label={`${parseFloat(
-                      coinData && coinData?.percent_change_1h
-                    )
-                      .toFixed(2)
-                      .replace("-", "")}%`}
-                    color="success"
-                    sx={{
-                      height: "24px",
-                      borderRadius: "4px",
-                      backgroundColor: "#05BC34",
-                      paddingX: 0,
-                      "& .MuiChip-label": {
-                        padding: 0.4,
-                      },
-                    }}
-                  />
-                )}
-              </Stack>
             </Stack>
+
             <Stack
               direction={{ xs: "column", sm: "column", md: "column" }}
               spacing={0.7}
@@ -946,20 +985,36 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
 
                 <Stack direction="row" spacing={0.8}>
                   {coinMarketLists &&
-                    coinMarketLists?.map((item: any, index: number) => (
-                      <a
-                        href={item?.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        key={index}
-                      >
-                        <Avatar
-                          alt={item?.market}
-                          src={`${serverAPIUrl}public/uploads/exchange_icons/${item?.thumb_icon}`}
-                          sx={{ width: 22, height: 22 }}
-                        />
-                      </a>
-                    ))}
+                    coinMarketLists
+                      ?.slice(0, 7)
+                      .map((item: any, index: number) => (
+                        <a
+                          href={item?.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          key={index}
+                        >
+                          <Avatar
+                            alt={item?.market}
+                            src={`${serverAPIUrl}public/uploads/exchange_icons/${item?.thumb_icon}`}
+                            sx={{ width: 22, height: 22 }}
+                          />
+                        </a>
+                      ))}
+
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "#696969", fontSize: "0.70rem" }}
+                  >
+                    {coinMarketLists && coinMarketLists?.slice(7).length > 0 && (
+                      <span style={{ color: "#00b8ff", fontWeight: 500 }}>
+                        +{coinMarketLists && coinMarketLists.slice(7).length}{" "}
+                        <span style={{ color: "#00b8ff", fontWeight: 400 }}>
+                          {" "}
+                        </span>{" "}
+                      </span>
+                    )}
+                  </Typography>
                 </Stack>
               </Stack>
             </Stack>

@@ -100,6 +100,7 @@ const MobileCoinPageChart = ({ data }: any) => {
       ],
       dataLabels: {
         enabled: false,
+        style: { color: "#000000" },
       },
       markers: {
         size: 0,

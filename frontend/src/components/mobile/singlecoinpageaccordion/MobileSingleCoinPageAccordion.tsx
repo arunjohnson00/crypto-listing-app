@@ -2165,7 +2165,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
                       {item &&
                         moment(new Date(item?.date)).format("DD MMM YYYY")}{" "}
                       -{" "}
-                      <span style={{ color: "#e6fe0d" }}>
+                      <span style={{ color: "#FDA400" }}>
                         {item && moment(new Date(item?.date)).fromNow()}
                       </span>
                     </Typography>
@@ -2243,7 +2243,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
                               "DD MMM YYYY"
                             )}{" "}
                           -{" "}
-                          <span style={{ color: "#e6fe0d" }}>
+                          <span style={{ color: "#FDA400" }}>
                             {item && moment(new Date(item?.date)).fromNow()}
                           </span>
                         </Typography>
@@ -2263,12 +2263,6 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
                           sx={{ color: "#5FD6E9", fontWeight: 500 }}
                         >
                           {item && item?.author}
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          sx={{ color: "#494A4A", fontWeight: 500 }}
-                        >
-                          {item && moment(new Date(item?.date)).fromNow()}
                         </Typography>
                       </Stack>
                     </Stack>
