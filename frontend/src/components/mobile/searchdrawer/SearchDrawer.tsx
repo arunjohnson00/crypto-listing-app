@@ -159,8 +159,9 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
         <Stack
           direction="column"
           spacing={2}
-          sx={{ height: "87vh" }}
+          sx={{ height: "77vh" }}
           justifyContent="space-between"
+          pb={2}
         >
           {searchResult &&
           (searchResult?.COINS?.length !== 0 ||
@@ -172,7 +173,7 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
               pt={0}
               sx={{
                 height: "auto",
-                maxHeight: "79vh",
+                maxHeight: "68vh",
                 overflowY: "scroll",
                 background: "#000000",
               }}
@@ -386,7 +387,7 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
               spacing={2}
               sx={{
                 height: "auto",
-                maxHeight: "80vh",
+                maxHeight: "68vh",
                 overflowY: "scroll",
                 pl: 0,
               }}

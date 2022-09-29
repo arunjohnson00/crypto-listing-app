@@ -464,6 +464,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
                   rowsPerPage={rowsPerPage}
                   handleChangeRowsPerPage={handleChangeRowsPerPage}
                   setPage={setPage}
+                  windowInnerWidth={windowInnerWidth}
                 />
               )}
             </Grid>

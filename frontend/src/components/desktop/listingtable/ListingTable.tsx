@@ -42,6 +42,7 @@ const ListingTable = ({
   rowsPerPage,
   handleChangeRowsPerPage,
   setPage,
+  windowInnerWidth,
 }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
   const dispatch: any = useDispatch();
@@ -566,13 +567,17 @@ const ListingTable = ({
                                 sx={{
                                   "&.MuiDialogContent-root": {
                                     padding: 0,
+                                    width:
+                                      windowInnerWidth && windowInnerWidth > 900
+                                        ? 500
+                                        : "100%",
                                   },
                                 }}
                               >
                                 <Box
                                   p={4}
                                   sx={{
-                                    width: 500,
+                                    width: "auto",
                                     height: "auto",
                                     backgroundColor: "#000000",
                                     border: "2px solid #121528",

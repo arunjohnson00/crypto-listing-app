@@ -517,13 +517,14 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                                   padding: 0,
                                   backgroundColor: "none",
                                   borderRadius: 3,
+                                  width: "100%",
                                 },
                               }}
                             >
                               <Box
                                 p={4}
                                 sx={{
-                                  width: 500,
+                                  width: "auto",
                                   height: "auto",
                                   backgroundColor: "#000000",
                                   border: "2px solid #121528",
