@@ -6,13 +6,14 @@ const MobileViewMoreBtn = ({ title }: any) => {
       variant="contained"
       size="small"
       sx={{
-        borderRadius: 30,
+        borderRadius: "15px",
         textTransform: "capitalize",
-        fontSize: "0.65rem",
+        fontSize: "0.675rem",
         height: "30px",
         paddingLeft: 1.5,
         paddingRight: 1.5,
-        fontWeight: 400,
+        background: "#030b2e",
+        "&:hover": { background: "#14136e" },
       }}
       style={{
         background: "linear-gradient(to right, #5652DD 0%, #104EAB 100%)",

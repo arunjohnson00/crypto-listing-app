@@ -26,7 +26,7 @@ const CryptoEventsCardSlider = ({ data, variant }: any) => {
 
   return (
     <Grid item xs={12}>
-      <Stack direction="column">
+      <Stack direction="column" my={0.5}>
         <Box
           sx={{
             flexGrow: 1,
@@ -40,9 +40,9 @@ const CryptoEventsCardSlider = ({ data, variant }: any) => {
           py={1.5}
           mx={1}
         >
-          <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+          <Stack direction="row" spacing={2} sx={{ alignItems: "flex-start" }}>
             <Avatar
-              sx={{ width: 50, height: 50 }}
+              sx={{ width: 50, height: 50, mt: 1 }}
               variant="square"
               src={`${serverAPIUrl}public/uploads/coin_logo/${data?.coin_logo}`}
               alt={data && data?.title}

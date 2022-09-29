@@ -210,7 +210,7 @@ const AppBarSearch = () => {
               width: 380,
               backgroundColor: "#000000",
               color: "#9b9b9b",
-              border: "1px solid #6252E8",
+              border: "1px solid #1b2756",
               borderRadius: 10,
               padding: 20,
             },

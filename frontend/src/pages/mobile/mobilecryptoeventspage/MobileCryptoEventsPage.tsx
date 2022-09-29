@@ -29,26 +29,15 @@ const MobileCryptoEventsPage = () => {
 
   return (
     <Fragment>
-      <Grid
-        container
-        spacing={5}
-        sx={{
-          dispaly: "flex",
-        }}
-      >
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+      <Grid container rowSpacing={3}>
+        <Grid item xs={12}>
           <MobileLatestNewsCardScrollTop />
         </Grid>
 
-        <Grid xs={12} sx={{ paddingTop: 0 }}>
+        <Grid item xs={12} sx={{ paddingTop: 0 }}>
           <MobileCoinSlider />
         </Grid>
-        <Grid
-          xs={12}
-          sx={{
-            alignItems: "center",
-          }}
-        >
+        {/* <Grid item xs={12}>
           <Stack
             direction="row"
             spacing={1}
@@ -59,16 +48,11 @@ const MobileCryptoEventsPage = () => {
           >
             <MobileTopAlertBox />
           </Stack>
-        </Grid>
+        </Grid> */}
 
-        <Grid
-          container
-          xs={12}
-          sx={{
-            alignItems: "center",
-          }}
-        >
+        <Grid container rowSpacing={3} mt={2}>
           <Grid
+            item
             xs={12}
             sm={12}
             md={6}
@@ -81,7 +65,8 @@ const MobileCryptoEventsPage = () => {
           >
             <MobileBreadCrumbs home="Home" path="Crypto Events" />
           </Grid>
-          <Grid
+          {/* <Grid
+            item
             xs={12}
             sm={12}
             md={6}
@@ -98,11 +83,12 @@ const MobileCryptoEventsPage = () => {
               image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
               alt="green iguana"
             />
-          </Grid>
+          </Grid> */}
         </Grid>
 
         <Grid
           container
+          item
           xs={12}
           sx={{
             alignItems: "center",
@@ -116,6 +102,7 @@ const MobileCryptoEventsPage = () => {
 
         <Grid
           container
+          item
           xs={12}
           sx={{
             alignItems: "center",
@@ -127,6 +114,7 @@ const MobileCryptoEventsPage = () => {
 
         <Grid
           container
+          item
           xs={12}
           sx={{
             alignItems: "center",
