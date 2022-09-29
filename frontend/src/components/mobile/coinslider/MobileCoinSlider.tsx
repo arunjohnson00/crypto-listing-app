@@ -36,7 +36,7 @@ const MobileCoinSlider = () => {
       }}
       my={0}
     >
-      <Grid item xs={2.6} sm={2.3} md={2} lg={2} xl={2} mt={0}>
+      <Grid item xs={3.5} sm={3.5} md={3.5} lg={2} xl={2} mt={0}>
         <Box
           sx={{
             background: "linear-gradient(to left, #0a0538 0%, #040920 100%)",
@@ -69,7 +69,7 @@ const MobileCoinSlider = () => {
           </Stack>
         </Box>
       </Grid>
-      <Grid item xs={9.4} sm={9.7} md={10} lg={10} xl={10} py={1}>
+      <Grid item xs={8.5} sm={8.5} md={8.5} lg={10} xl={10} py={1}>
         <Box>
           <Marquee
             style={{ background: "none" }}

@@ -58,7 +58,15 @@ const MobileAppHeader = () => {
   return (
     <AppBar
       position="sticky"
-      sx={{ backgroundColor: "#01061A", paddingY: 0.5, top: 0 }}
+      sx={{
+        backgroundColor: "#01061A",
+        position: "sticky",
+        paddingY: 0,
+        top: 0,
+        widt: "100%",
+        boxShadow: "none",
+        my: 1,
+      }}
     >
       <Grid item xs={12}>
         <Stack direction="row" alignItems="center" justifyContent="center">

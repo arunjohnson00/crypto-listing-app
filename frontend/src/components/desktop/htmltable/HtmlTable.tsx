@@ -101,7 +101,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
   };
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className="tableFixHead">
       <Table
         sx={{
           minWidth: 650,

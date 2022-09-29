@@ -34,6 +34,8 @@ import moment from "moment";
 import { coinVoteRequest } from "../../../store/action";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { defaultColor } from "../../../common/common";
+import "./style.css";
+
 const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -101,7 +103,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
   };
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className="tableFixHead">
       <Table
         sx={{
           minWidth: 650,
