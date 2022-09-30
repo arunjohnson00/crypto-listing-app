@@ -328,11 +328,11 @@ const MobileCoinpageRatings = () => {
                           variant="contained"
                           size="small"
                           sx={{
-                            textTransform: "capitalize",
+                            textTransform: "none",
                             backgrounColor: "#6252e7",
                           }}
                         >
-                          login to write a review
+                          Login
                         </Button>
                       </Link>
                     ) : (
@@ -368,11 +368,17 @@ const MobileCoinpageRatings = () => {
                       setLoading={setLoading}
                     />
                   </Stack>
-                  <Rating
+                  {/* <Rating
                     name="large"
                     defaultValue={5}
                     size="large"
                     sx={{ fontSize: "1.5rem" }}
+                  /> */}
+                  <MobileAnimatedRating
+                    size="large"
+                    animated={true}
+                    readOnly={true}
+                    fontSize="1.5rem"
                   />
                 </Stack>
               </Box>

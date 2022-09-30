@@ -163,7 +163,7 @@ const CoinPageOverview = () => {
                   ) : (
                     "$ " +
                     parseFloat(coinDetailOverview[0]?.price)
-                      .toFixed(9)
+                      .toFixed(15)
                       .toLocaleString()
                   )
                 ) : (
@@ -1411,7 +1411,8 @@ const CoinPageOverview = () => {
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.volume_24h !== null &&
                   coinDetailOverview[0]?.volume_24h !== ""
-                    ? Math.floor(
+                    ? "$ " +
+                      Math.floor(
                         Math.abs(coinDetailOverview[0]?.volume_24h)
                       ).toLocaleString()
                     : "NA"}
@@ -1455,7 +1456,8 @@ const CoinPageOverview = () => {
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.market_cap !== null &&
                   coinDetailOverview[0]?.market_cap !== ""
-                    ? Math.floor(
+                    ? "$ " +
+                      Math.floor(
                         Math.abs(coinDetailOverview[0]?.market_cap)
                       ).toLocaleString()
                     : "NA"}
@@ -1499,7 +1501,8 @@ const CoinPageOverview = () => {
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.fully_diluted_market_cap !== null &&
                   coinDetailOverview[0]?.fully_diluted_market_cap !== ""
-                    ? Math.floor(
+                    ? "$ " +
+                      Math.floor(
                         Math.abs(
                           coinDetailOverview[0]?.fully_diluted_market_cap
                         )

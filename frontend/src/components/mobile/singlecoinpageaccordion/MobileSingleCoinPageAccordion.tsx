@@ -1585,7 +1585,8 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.volume_24h !== null &&
                   coinDetailOverview[0]?.volume_24h !== ""
-                    ? Math.floor(
+                    ? "$ " +
+                      Math.floor(
                         Math.abs(coinDetailOverview[0]?.volume_24h)
                       ).toLocaleString()
                     : "NA"}
@@ -1629,7 +1630,8 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.market_cap !== null &&
                   coinDetailOverview[0]?.market_cap !== ""
-                    ? Math.floor(
+                    ? "$ " +
+                      Math.floor(
                         Math.abs(coinDetailOverview[0]?.market_cap)
                       ).toLocaleString()
                     : "NA"}
@@ -1673,7 +1675,8 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
                   {coinDetailOverview &&
                   coinDetailOverview[0]?.fully_diluted_market_cap !== null &&
                   coinDetailOverview[0]?.fully_diluted_market_cap !== ""
-                    ? Math.floor(
+                    ? "$ " +
+                      Math.floor(
                         Math.abs(
                           coinDetailOverview[0]?.fully_diluted_market_cap
                         )

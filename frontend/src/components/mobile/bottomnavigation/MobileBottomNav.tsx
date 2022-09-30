@@ -26,6 +26,9 @@ const MobileBottomNav = () => {
     padding-left:0;padding-right:0;
     
   },
+  &&.MuiBottomNavigationAction-root .MuiBottomNavigationAction-label{
+    margin-top:5px
+  }
  
 `);
   const [value, setValue] = useState<any>();
@@ -120,6 +123,24 @@ const MobileBottomNav = () => {
               />
             }
           />
+
+          <BottomNavigationAction
+            label="News"
+            value="news"
+            icon={
+              <Avatar
+                variant="square"
+                src={newsImage}
+                sx={{
+                  width: 24,
+                  height: 24,
+                  filter:
+                    value === "news" ? "grayscale(0%)" : "grayscale(100%)",
+                  opacity: value === "news" ? 1 : 0.5,
+                }}
+              />
+            }
+          />
           <BottomNavigationAction
             label="Events"
             value="events"
@@ -133,24 +154,6 @@ const MobileBottomNav = () => {
                   filter:
                     value === "events" ? "grayscale(0%)" : "grayscale(100%)",
                   opacity: value === "events" ? 1 : 0.5,
-                }}
-              />
-            }
-          />
-
-          <BottomNavigationAction
-            label="news"
-            value="news"
-            icon={
-              <Avatar
-                variant="square"
-                src={newsImage}
-                sx={{
-                  width: 24,
-                  height: 24,
-                  filter:
-                    value === "news" ? "grayscale(0%)" : "grayscale(100%)",
-                  opacity: value === "news" ? 1 : 0.5,
                 }}
               />
             }

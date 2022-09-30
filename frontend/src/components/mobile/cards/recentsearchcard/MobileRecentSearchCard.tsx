@@ -53,7 +53,7 @@ const MobileRecentSearchCard = ({ item, index, saveSearchHandler }: any) => {
                 textAlign: "center",
               }}
             >
-              {item?.coin_name.length > 10
+              {item?.coin_name.length > 7
                 ? item?.coin_name.slice(0, 7) + "..."
                 : item?.coin_name}
             </Typography>

@@ -476,7 +476,23 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 >
                   <Typography variant="h4" sx={{ color: "#FFFFF5" }}>
                     {coinData && coinData?.current_price !== null ? (
-                      coinData?.current_price
+                      String(Math.trunc(parseFloat(coinData?.current_price)))
+                        .length > 2 ? (
+                        "$" +
+                        Number(
+                          parseFloat(coinData?.current_price).toFixed(2)
+                        ).toLocaleString()
+                      ) : coinData && Math.abs(coinData?.current_price) > 1 ? (
+                        "$" +
+                        parseFloat(coinData?.current_price)
+                          .toFixed(4)
+                          .toLocaleString()
+                      ) : (
+                        "$" +
+                        parseFloat(coinData?.current_price)
+                          .toFixed(20)
+                          .toLocaleString()
+                      )
                     ) : (
                       <span style={{ color: "#7a7a7a" }}>--</span>
                     )}

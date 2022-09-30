@@ -13,72 +13,65 @@ const MobileAnimatedRating = ({
   readOnly,
   name,
 }: any) => {
-  const [animatedValue, setAnimatedValue] = useState<any>(0);
+  const colors = [
+    "#FF3722",
+    "#FF3722",
+    "#FF8622",
+    "#FFCE00",
+    "#73CF11",
+    "#00B67A",
+  ];
+  const [animatedValue, setAnimatedValue] = useState(0);
 
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     setAnimatedValue(animatedValue + 1);
-  //   }, 5000);
-  // }, [animatedValue, setAnimatedValue]);
-  // console.log(animatedValue);
+  useEffect(() => {
+    const timer = () => {
+      setAnimatedValue(animatedValue + 1);
+    };
+
+    // if you want it to finish at some point
+    if (animatedValue >= 6) {
+      return setAnimatedValue(0);
+    }
+    const id = setInterval(timer, 500);
+    return () => clearInterval(id);
+  }, [animatedValue]);
 
   return (
     <Fragment>
       {animated === true && animatedValue ? (
-        <Rating
-          name={name && name}
-          defaultValue={defaultValue && defaultValue}
-          disabled
-          value={animatedValue}
-          readOnly={readOnly && readOnly}
-          sx={{ fontSize: fontSize && fontSize }}
-          //   onChange={(event, newValue) => {
-          //     setRating(newValue);
-          //   }}
-          //   onChangeActive={(event, newHover) => {
-          //     setHover(newHover);
-          //   }}
-          precision={precision && precision}
-          size={size && size}
-          icon={
-            <StarRoundedIcon
-              fontSize="inherit"
-              sx={{
-                color:
-                  animatedValue <= 1
-                    ? "#FF3722"
-                    : animatedValue <= 2
-                    ? "#FF8622"
-                    : animatedValue <= 3
-                    ? "#FFCE00"
-                    : animatedValue <= 4
-                    ? "#73CF11"
-                    : animatedValue <= 5
-                    ? "#00B67A"
-                    : "#00B67A",
-              }}
-            />
-          }
-          emptyIcon={
-            <StarBorderRoundedIcon
-              fontSize="inherit"
-              sx={{
-                color:
-                  animatedValue <= 1
-                    ? "#FF3722"
-                    : animatedValue <= 2
-                    ? "#FF8622"
-                    : animatedValue <= 3
-                    ? "#FFCE00"
-                    : animatedValue <= 4
-                    ? "#73CF11"
-                    : animatedValue <= 5
-                    ? "#00B67A"
-                    : "#00B67A",
-              }}
-            />
-          }
-        />
+        <div>
+          <Rating
+            name={name && name}
+            defaultValue={defaultValue && defaultValue}
+            value={animatedValue}
+            readOnly={readOnly && readOnly}
+            sx={{ fontSize: fontSize && fontSize }}
+            //   onChange={(event, newValue) => {
+            //     setRating(newValue);
+            //   }}
+            //   onChangeActive={(event, newHover) => {
+            //     setHover(newHover);
+            //   }}
+            precision={precision && precision}
+            size={size && size}
+            icon={
+              <StarRoundedIcon
+                fontSize="inherit"
+                sx={{
+                  color: colors[animatedValue],
+                }}
+              />
+            }
+            emptyIcon={
+              <StarBorderRoundedIcon
+                fontSize="inherit"
+                sx={{
+                  color: colors[animatedValue],
+                }}
+              />
+            }
+          />
+        </div>
       ) : (
         <Rating
           name={name && name}

@@ -155,22 +155,19 @@ const MobileCoinPageFAQ = () => {
                     String(Math.trunc(parseFloat(coinFAQ[0]?.total_supply)))
                       .length > 2 ? (
                       coinFAQ &&
-                      "$" +
-                        Number(
-                          parseFloat(coinFAQ[0]?.total_supply).toFixed(2)
-                        ).toLocaleString()
+                      Number(
+                        parseFloat(coinFAQ[0]?.total_supply).toFixed(2)
+                      ).toLocaleString()
                     ) : coinFAQ && Math.abs(coinFAQ[0]?.total_supply) > 1 ? (
                       coinFAQ &&
-                      "$" +
-                        parseFloat(coinFAQ[0]?.total_supply)
-                          .toFixed(4)
-                          .toLocaleString()
+                      parseFloat(coinFAQ[0]?.total_supply)
+                        .toFixed(4)
+                        .toLocaleString()
                     ) : (
                       coinFAQ &&
-                      "$" +
-                        parseFloat(coinFAQ[0]?.total_supply)
-                          .toFixed(13)
-                          .toLocaleString()
+                      parseFloat(coinFAQ[0]?.total_supply)
+                        .toFixed(13)
+                        .toLocaleString()
                     )
                   ) : (
                     <span style={{ color: "#C51F15", fontWeight: 400 }}>

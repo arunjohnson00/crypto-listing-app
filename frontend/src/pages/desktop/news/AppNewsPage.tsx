@@ -134,53 +134,55 @@ const AppNewsPage = () => {
               </Typography> */}
             </Stack>
           </Grid>
-          <Grid container pt={8}>
-            <Grid
-              item
-              xs={12}
-              sm={12}
-              md={5}
-              lg={5}
-              xl={5}
-              px={{ xs: 0, sm: 0, md: 2 }}
-            >
-              <CardNewsPage
-                rssFeed={latestNews && latestNews[0]}
-                height={xsBreakPoint ? "auto" : 363}
-                spacing={1}
-                paddingY={7}
-                descriptionLength={500}
-                index={1}
-              />
-            </Grid>
-            <Grid
-              xs={12}
-              sm={12}
-              md={7}
-              lg={7}
-              xl={7}
-              px={{ xs: 0, sm: 0, md: 2 }}
-            >
-              <Stack direction="column" spacing={3}>
+          {latestNews && (
+            <Grid container pt={8}>
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={5}
+                lg={5}
+                xl={5}
+                px={{ xs: 0, sm: 0, md: 2 }}
+              >
                 <CardNewsPage
-                  rssFeed={latestNews && latestNews[1]}
-                  height={xsBreakPoint ? "auto" : 181}
-                  spacing={0.5}
-                  paddingY={2}
-                  descriptionLength={200}
-                  index={2}
+                  rssFeed={latestNews && latestNews[0]}
+                  height={xsBreakPoint ? "auto" : 363}
+                  spacing={1}
+                  paddingY={7}
+                  descriptionLength={500}
+                  index={1}
                 />
-                <CardNewsPage
-                  rssFeed={latestNews && latestNews[2]}
-                  height={xsBreakPoint ? "auto" : 181}
-                  spacing={0.5}
-                  paddingY={2}
-                  descriptionLength={200}
-                  index={3}
-                />
-              </Stack>
+              </Grid>
+              <Grid
+                xs={12}
+                sm={12}
+                md={7}
+                lg={7}
+                xl={7}
+                px={{ xs: 0, sm: 0, md: 2 }}
+              >
+                <Stack direction="column" spacing={3}>
+                  <CardNewsPage
+                    rssFeed={latestNews && latestNews[1]}
+                    height={xsBreakPoint ? "auto" : 181}
+                    spacing={0.5}
+                    paddingY={2}
+                    descriptionLength={200}
+                    index={2}
+                  />
+                  <CardNewsPage
+                    rssFeed={latestNews && latestNews[2]}
+                    height={xsBreakPoint ? "auto" : 181}
+                    spacing={0.5}
+                    paddingY={2}
+                    descriptionLength={200}
+                    index={3}
+                  />
+                </Stack>
+              </Grid>
             </Grid>
-          </Grid>
+          )}
           <Box
             sx={{ display: "flex", flexWrap: "wrap", flexDirection: "row" }}
             my={8}

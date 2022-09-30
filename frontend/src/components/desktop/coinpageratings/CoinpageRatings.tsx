@@ -126,7 +126,7 @@ const CoinpageRatings = () => {
               >
                 <Stack
                   direction="row"
-                  spacing={1}
+                  spacing={2}
                   sx={{ alignItems: "center" }}
                 >
                   <Avatar
@@ -153,11 +153,11 @@ const CoinpageRatings = () => {
                         variant="contained"
                         //size="small"
                         sx={{
-                          textTransform: "capitalize",
+                          textTransform: "none",
                           backgrounColor: "#6252e7",
                         }}
                       >
-                        login to write a review
+                        Login to write a review
                       </Button>
                     </Link>
                   ) : (
@@ -193,18 +193,19 @@ const CoinpageRatings = () => {
                     setLoading={setLoading}
                   />
                 </Stack>
-                <Rating
+                {/* <Rating
                   name="large"
                   defaultValue={5}
                   size="large"
                   sx={{ fontSize: "1.5rem" }}
-                />
+                /> */}
 
-                {/* <AnimatedRating
+                <AnimatedRating
                   size="large"
                   animated={true}
+                  readOnly={true}
                   // rating={5}
-                /> */}
+                />
               </Stack>
             </Box>
           </Stack>
