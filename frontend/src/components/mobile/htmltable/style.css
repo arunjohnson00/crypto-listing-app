@@ -45,6 +45,8 @@ td:nth-child(3) {
   left: 60px;
   z-index: 1;
   background-color: #010822;
+  box-shadow: inset -4px 0 4px -2px #081444;
+  -webkit-box-shadow: inset -4px 0 4px -2px #081444;
 }
 th:nth-child(3) {
   position: sticky;

@@ -38,7 +38,7 @@ const TableMultiSelectFilterMenu = ({
   selectedBtn,
   setSelectedBtn,
   index,
-  varient,
+  variant,
 }: any) => {
   const [personName, setPersonName] = useState<any>([]);
 
@@ -52,14 +52,14 @@ const TableMultiSelectFilterMenu = ({
     );
   };
   useEffect(() => {
-    varient === "badges"
+    variant === "badges"
       ? setPersonName(["Badges"])
-      : varient === "platform" && setPersonName(["Platform"]);
+      : variant === "platform" && setPersonName([]);
   }, [setPersonName]);
 
   return (
     <div>
-      <FormControl sx={{ m: 0, width: 100 }}>
+      <FormControl sx={{ m: 0, maxWidth: 110 }}>
         <Select
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
@@ -67,45 +67,72 @@ const TableMultiSelectFilterMenu = ({
           value={personName}
           onChange={handleChange}
           input={<OutlinedInput label="Tag" />}
-          renderValue={(selected) => selected.join(", ")}
+          displayEmpty
+          renderValue={
+            personName.length !== 0
+              ? (selected) => selected.join(", ")
+              : () =>
+                  variant === "badges"
+                    ? "Badges"
+                    : variant === "platform" && "Platform"
+          }
+          // renderValue={(selected) => selected.join(", ")}
           MenuProps={MenuProps}
           onClick={() => setSelectedBtn(2)}
           IconComponent={() => (
             <KeyboardArrowDownSharpIcon sx={{ color: "#1976d2" }} />
           )}
           sx={{
+            paddingRight: 0,
             backgroundColor:
-              parseInt(selectedBtn) === parseInt(index) ? "#065dce" : "#010E3A",
+              parseInt(selectedBtn) === parseInt(index)
+                ? "transparent"
+                : "transparent",
             borderRadius: 0,
             color: "#FFFFFF",
-            fontSize: ".85rem",
+            fontSize: ".75rem",
             height: 39,
+            border: 0,
+            outline: 0,
 
             "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
               border: 0,
               outline: 0,
             },
-            "&MuiInputBase-input": { paddingRight: 0 },
-            "&:hover": {
-              backgroundColor: "#0a194c",
+            "&.MuiSelect-select.MuiSelect-select": {
+              paddingRight: 0,
+              border: 0,
+              outline: 0,
             },
-
+            "&.MuiInputBase-input": { paddingRight: 0, border: 0, outline: 0 },
+            "&:hover": {
+              // backgroundColor: "#0a194c",
+              border: 0,
+              outline: 0,
+            },
+            ".MuiOutlinedInput-notchedOutline": { border: 0, outline: 0 },
+            ".MuiOutlinedInput-root": {
+              background: "transparent",
+            },
             "& .MuiInputBase-input ": {
               padding: 1,
               borderRadius: 0,
+              border: 0,
+              outline: 0,
+              background: "transparent",
             },
           }}
         >
-          <MenuItem
+          {/* <MenuItem
             disabled
             value="selected"
-            selected
+            // selected
             sx={{ fontSize: ".85rem" }}
           >
-            {varient === "badges"
-              ? "Badges"
-              : varient === "platform" && "Platform"}
-          </MenuItem>
+            {variant === "badges"
+              ? "By Badges"
+              : variant === "platform" && "By Platform"}
+          </MenuItem> */}
           {names.map((name) => (
             <MenuItem key={name} value={name}>
               <Checkbox size="small" checked={personName.indexOf(name) > -1} />
@@ -117,7 +144,7 @@ const TableMultiSelectFilterMenu = ({
                   src="https://mui.com/static/images/avatar/1.jpg"
                   sx={{ width: 16, height: 16 }}
                 />
-                <Typography sx={{ fontSize: ".85rem" }}>{name}</Typography>
+                <Typography sx={{ fontSize: ".75rem" }}>{name}</Typography>
               </Stack>
             </MenuItem>
           ))}

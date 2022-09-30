@@ -14,69 +14,73 @@ const MobileTableFilterBtn = () => {
     <Stack
       sx={{
         borderRadius: 4,
-        height: 38,
-        backgroundColor: "#010E3A",
-        width: 320,
+        height: "auto",
+        backgroundColor: "transparent",
+        width: 303,
 
         overflow: "hidden",
         alignItems: "center",
-        maxWidth: 320,
+        maxWidth: 303,
       }}
-      direction="row"
+      direction="column"
       spacing={0.4}
       px={1}
     >
       <Button
         sx={{
-          backgroundColor: "#010E3A",
+          //backgroundColor: "#010E3A",
           textTransform: "capitalize",
           fontSize: "0.795rem",
-          borderColor: "#051447",
+          // borderColor: "#051447",
           color: "#03E2B1",
+          "&:hover": { background: "none" },
         }}
         endIcon={<TuneSharpIcon />}
       >
         Filter
       </Button>
-      <Divider
-        flexItem
-        orientation="vertical"
-        variant="middle"
-        sx={{ height: 25, alignSelf: "center", borderColor: "#1565C0" }}
-      />
 
-      <TableFilterMenu
-        data=""
-        selectedBtn={selectedBtn}
-        setSelectedBtn={setSelectedBtn}
-        index={1}
-      />
-      <Divider
-        flexItem
-        orientation="vertical"
-        variant="middle"
-        sx={{ height: 25, alignSelf: "center", borderColor: "#1565C0" }}
-      />
-      <TableMultiSelectFilterMenu
-        data=""
-        selectedBtn={selectedBtn}
-        setSelectedBtn={setSelectedBtn}
-        index={2}
-        varient="badges"
-      />
-      <Divider
-        flexItem
-        orientation="vertical"
-        variant="middle"
-        sx={{ height: 25, alignSelf: "center", borderColor: "#1565C0" }}
-      />
-      <TableMultiSelectFilterMenu
-        data=""
-        selectedBtn={selectedBtn}
-        setSelectedBtn={setSelectedBtn}
-        index={3}
-        varient="platform"
-      />
+      <Stack direction="row" spacing={0.4} px={1}>
+        {/* <Divider
+          flexItem
+          orientation="vertical"
+          variant="middle"
+          sx={{ height: 25, alignSelf: "center", borderColor: "#060e31" }}
+        /> */}
+
+        <TableFilterMenu
+          data=""
+          selectedBtn={selectedBtn}
+          setSelectedBtn={setSelectedBtn}
+          index={1}
+        />
+        <Divider
+          flexItem
+          orientation="vertical"
+          variant="middle"
+          sx={{ height: 25, alignSelf: "center", borderColor: "#060e31" }}
+        />
+        <TableMultiSelectFilterMenu
+          data=""
+          selectedBtn={selectedBtn}
+          setSelectedBtn={setSelectedBtn}
+          index={2}
+          variant="badges"
+        />
+        <Divider
+          flexItem
+          orientation="vertical"
+          variant="middle"
+          sx={{ height: 25, alignSelf: "center", borderColor: "#060e31" }}
+        />
+        <TableMultiSelectFilterMenu
+          data=""
+          selectedBtn={selectedBtn}
+          setSelectedBtn={setSelectedBtn}
+          index={3}
+          variant="platform"
+        />
+      </Stack>
     </Stack>
   );
 };

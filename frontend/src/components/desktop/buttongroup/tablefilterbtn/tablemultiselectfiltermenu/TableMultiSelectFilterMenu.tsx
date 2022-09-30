@@ -38,7 +38,7 @@ const TableMultiSelectFilterMenu = ({
   selectedBtn,
   setSelectedBtn,
   index,
-  varient,
+  variant,
 }: any) => {
   const [personName, setPersonName] = useState<any>([]);
 
@@ -52,9 +52,9 @@ const TableMultiSelectFilterMenu = ({
     );
   };
   useEffect(() => {
-    varient === "badges"
+    variant === "badges"
       ? setPersonName(["Badges"])
-      : varient === "platform" && setPersonName(["Platform"]);
+      : variant === "platform" && setPersonName(["Platform"]);
   }, [setPersonName]);
 
   return (
@@ -67,7 +67,15 @@ const TableMultiSelectFilterMenu = ({
           value={personName}
           onChange={handleChange}
           input={<OutlinedInput label="Tag" />}
-          renderValue={(selected) => selected.join(", ")}
+          displayEmpty
+          renderValue={
+            personName.length !== 0
+              ? (selected) => selected.join(", ")
+              : () =>
+                  variant === "badges"
+                    ? "Badges"
+                    : variant === "platform" && "Platform"
+          }
           MenuProps={MenuProps}
           onClick={() => setSelectedBtn(2)}
           IconComponent={() => (
@@ -75,7 +83,9 @@ const TableMultiSelectFilterMenu = ({
           )}
           sx={{
             backgroundColor:
-              parseInt(selectedBtn) === parseInt(index) ? "#065dce" : "#010E3A",
+              parseInt(selectedBtn) === parseInt(index)
+                ? "transparent"
+                : "#010E3A",
             borderRadius: 0,
             color: "#FFFFFF",
             fontSize: ".85rem",
@@ -85,6 +95,7 @@ const TableMultiSelectFilterMenu = ({
               border: 0,
               outline: 0,
             },
+            ".MuiOutlinedInput-notchedOutline": { border: 0, outline: 0 },
             "&MuiInputBase-input": { paddingRight: 0 },
             "&:hover": {
               backgroundColor: "#0a194c",
@@ -96,16 +107,6 @@ const TableMultiSelectFilterMenu = ({
             },
           }}
         >
-          <MenuItem
-            disabled
-            value="selected"
-            selected
-            sx={{ fontSize: ".85rem" }}
-          >
-            {varient === "badges"
-              ? "Badges"
-              : varient === "platform" && "Platform"}
-          </MenuItem>
           {names.map((name) => (
             <MenuItem key={name} value={name}>
               <Checkbox size="small" checked={personName.indexOf(name) > -1} />

@@ -62,7 +62,7 @@ const TableFilterBtn = () => {
         selectedBtn={selectedBtn}
         setSelectedBtn={setSelectedBtn}
         index={2}
-        varient="badges"
+        variant="badges"
       />
       <Divider
         flexItem
@@ -75,7 +75,7 @@ const TableFilterBtn = () => {
         selectedBtn={selectedBtn}
         setSelectedBtn={setSelectedBtn}
         index={3}
-        varient="platform"
+        variant="platform"
       />
     </Stack>
   );

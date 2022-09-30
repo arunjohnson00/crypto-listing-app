@@ -59,28 +59,28 @@ const TableBtnGroup = () => {
             },
           }}
         >
-          <Tab label="All Coins" />
+          <Tab label="All Time" />
           <Divider
             flexItem
             orientation="vertical"
             variant="middle"
             sx={{ height: 25, alignSelf: "center", borderColor: "#1565C0" }}
           />
-          <Tab label="Today's Best" />
+          <Tab label="Today's" />
           <Divider
             flexItem
             orientation="vertical"
             variant="middle"
             sx={{ height: 25, alignSelf: "center", borderColor: "#1565C0" }}
           />
-          <Tab label="Recently Added" />
+          <Tab label="New" />
           <Divider
             flexItem
             orientation="vertical"
             variant="middle"
             sx={{ height: 25, alignSelf: "center", borderColor: "#1565C0" }}
           />
-          <Tab label="Presales" />
+          <Tab label="Presale" />
         </Tabs>
       </Box>
       {/* <ButtonGroup
