@@ -445,7 +445,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     <Typography
                       variant="h6"
                       sx={{
-                        color: "#FFFFF5",
+                        color: "#19ffb0",
                         fontWeight: 400,
                         textTransform: "uppercase",
                       }}
@@ -476,7 +476,12 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 >
                   <Typography variant="h4" sx={{ color: "#FFFFF5" }}>
                     {coinData && coinData?.current_price !== null ? (
-                      String(Math.trunc(parseFloat(coinData?.current_price)))
+                      coinData?.current_price
+                    ) : (
+                      <span style={{ color: "#7a7a7a" }}>--</span>
+                    )}
+
+                    {/* {  String(Math.trunc(parseFloat(coinData?.current_price)))
                         .length > 2 ? (
                         "$" +
                         Number(
@@ -492,10 +497,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                         parseFloat(coinData?.current_price)
                           .toFixed(9)
                           .toLocaleString()
-                      )
-                    ) : (
-                      <span style={{ color: "#7a7a7a" }}>--</span>
-                    )}
+                      )} */}
                   </Typography>
 
                   {Math.sign(parseFloat(coinData?.percent_change_1h)) === -1 ? (

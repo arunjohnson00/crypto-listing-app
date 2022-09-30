@@ -29,7 +29,7 @@ const BreadCrumbs = ({ home, path, data }: any) => {
           }}
           target="_blank"
           state={{ coin_id: data?.id }}
-          style={{ textDecoration: "none", color: "#19ffb0" }}
+          style={{ textDecoration: "none", color: "#898989" }}
         >
           {data && data?.name}
         </Link>

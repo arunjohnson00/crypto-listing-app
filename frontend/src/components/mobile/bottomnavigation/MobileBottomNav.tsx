@@ -28,7 +28,7 @@ const MobileBottomNav = () => {
   },
  
 `);
-  const [value, setValue] = useState("coins");
+  const [value, setValue] = useState<any>();
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
