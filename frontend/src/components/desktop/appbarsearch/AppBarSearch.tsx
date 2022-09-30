@@ -223,7 +223,7 @@ const AppBarSearch = () => {
             value={values}
             autoFocus={true}
             ref={selectInputRef}
-            placeholder="Search coin, pair, contract address or exchange"
+            placeholder="Search Coins, NFT, Airdrops or Events"
             onChange={(e: any) => handleChange(e)}
             style={{
               height: 34,
@@ -375,8 +375,12 @@ const AppBarSearch = () => {
                     sx={{ fontSize: ".7rem" }}
                     onClick={coinExpandHandler}
                   >
-                    {expand?.coin === false ? "See all result" : "Hide result"}
-                    {`(${searchResult?.COINS?.length})`}
+                    {expand?.coin === false
+                      ? "See all result "
+                      : "Hide result "}
+                    <span
+                      style={{ color: "#19ffb0", marginLeft: 4.5 }}
+                    >{` (${searchResult?.COINS?.length})`}</span>
                   </Button>
                 </Stack>
                 {searchResult?.NFT?.length !== 0 && (
@@ -476,8 +480,13 @@ const AppBarSearch = () => {
                       sx={{ fontSize: ".7rem" }}
                       onClick={nftExpandHandler}
                     >
-                      {expand?.nft === false ? "See all result" : "Hide result"}{" "}
-                      {`(${searchResult?.NFT?.length})`}
+                      {expand?.nft === false
+                        ? "See all result "
+                        : "Hide result "}{" "}
+                      <span style={{ color: "#19ffb0", marginLeft: 4.5 }}>
+                        {" "}
+                        {` (${searchResult?.NFT?.length})`}
+                      </span>
                     </Button>
                   </Stack>
                 )}

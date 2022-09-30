@@ -24,7 +24,7 @@ const MobileTableBtnGroup = () => {
         sx={{
           maxWidth: { xs: 320, sm: 320 },
           bgcolor: "#010E3A",
-          borderRadius: 0,
+          borderRadius: 7,
           overflow: "hidden",
           color: "#FFFFFF",
           borderColor: "#051447",
@@ -35,16 +35,18 @@ const MobileTableBtnGroup = () => {
           value={tabIndex}
           onChange={handleChange}
           disableRipple
-          TabIndicatorProps={{
-            style: {
-              backgroundColor: "transparent",
-              color: "red",
-            },
-          }}
-          variant="scrollable"
-          scrollButtons
-          allowScrollButtonsMobile
-          aria-label="scrollable auto tabs example"
+          // TabIndicatorProps={{
+          //   style: {
+          //     backgroundColor: "transparent",
+          //     color: "red",
+          //   },
+          // }}
+          variant="standard"
+          // variant="scrollable"
+          //scrollButtons
+          //allowScrollButtonsMobile
+          scrollButtons={false}
+          // aria-label="scrollable auto tabs example"
           sx={{
             ".MuiTab-root": {
               color: "#FFFFFF",
@@ -53,6 +55,7 @@ const MobileTableBtnGroup = () => {
               padding: 0,
               minHeight: 38,
               paddingX: 1,
+              minWidth: 80,
             },
             ".MuiTabs-scrollButtons": { padding: 0 },
             ".MuiTabs-scrollButtons.Mui-disabled": {
@@ -62,30 +65,34 @@ const MobileTableBtnGroup = () => {
               padding: 0,
               maxHeight: 42,
             },
+            "& .MuiTab-root.Mui-selected": {
+              color: "#FFFFFF",
+              backgroundColor: "#040b29",
+            },
           }}
         >
-          <Tab label="All Coins" />
+          <Tab label="All Time" />
           <Divider
             flexItem
             orientation="vertical"
             variant="middle"
             sx={{ height: 25, alignSelf: "center", borderColor: "#1565C0" }}
           />
-          <Tab label=" Today's Best" />
+          <Tab label=" Today's" />
           <Divider
             flexItem
             orientation="vertical"
             variant="middle"
             sx={{ height: 25, alignSelf: "center", borderColor: "#1565C0" }}
           />
-          <Tab label="Recently Added" />
+          <Tab label="New" />
           <Divider
             flexItem
             orientation="vertical"
             variant="middle"
             sx={{ height: 25, alignSelf: "center", borderColor: "#1565C0" }}
           />
-          <Tab label="Presales" />
+          <Tab label="Presale" />
         </Tabs>
       </Box>
       {/* <ButtonGroup

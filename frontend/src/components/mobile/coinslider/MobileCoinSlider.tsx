@@ -122,9 +122,12 @@ const MobileCoinSlider = () => {
                         fontSize: ".8rem",
                         color: "#FFFFFF",
                         fontWeight: 500,
+                        textTransform: "capitalize",
                       }}
                     >
-                      {item?.name}
+                      {item?.name.length >= 14
+                        ? item?.name.slice(0, 11) + "..."
+                        : item?.name}
                     </Typography>
                   </Link>
                   <Stack

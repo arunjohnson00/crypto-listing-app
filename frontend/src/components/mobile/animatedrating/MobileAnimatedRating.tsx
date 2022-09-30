@@ -15,12 +15,12 @@ const MobileAnimatedRating = ({
 }: any) => {
   const [animatedValue, setAnimatedValue] = useState<any>(0);
 
-  useEffect(() => {
-    setInterval(() => {
-      setAnimatedValue(animatedValue + 1);
-    }, 5000);
-  }, [animatedValue, setAnimatedValue]);
-  console.log(animatedValue);
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     setAnimatedValue(animatedValue + 1);
+  //   }, 5000);
+  // }, [animatedValue, setAnimatedValue]);
+  // console.log(animatedValue);
 
   return (
     <Fragment>

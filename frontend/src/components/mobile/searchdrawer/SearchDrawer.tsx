@@ -130,7 +130,7 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
           value={values}
           autoFocus={true}
           // ref={selectInputRef}
-          placeholder="Search coin, pair, contract address or exchange"
+          placeholder="Search Coins, NFT, Airdrops or Events"
           onChange={(e: any) => handleChange(e)}
           style={{
             height: 34,
@@ -277,7 +277,11 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
                   onClick={coinExpandHandler}
                 >
                   {expand?.coin === false ? "See all result" : "Hide result"}
-                  {`(${searchResult?.COINS?.length})`}
+
+                  <span style={{ color: "#19ffb0", marginLeft: 4.5 }}>
+                    {" "}
+                    {` (${searchResult?.COINS?.length})`}
+                  </span>
                 </Button>
               </Stack>
               {searchResult?.NFT?.length !== 0 && (
@@ -376,7 +380,10 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
                     onClick={nftExpandHandler}
                   >
                     {expand?.nft === false ? "See all result" : "Hide result"}{" "}
-                    {`(${searchResult?.NFT?.length})`}
+                    <span style={{ color: "#19ffb0", marginLeft: 4.5 }}>
+                      {" "}
+                      {` (${searchResult?.NFT?.length})`}
+                    </span>
                   </Button>
                 </Stack>
               )}

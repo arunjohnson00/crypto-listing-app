@@ -48,6 +48,16 @@ const MobileCoinPageChart = ({ data }: any) => {
         zoom: {
           autoScaleYaxis: false,
         },
+        theme: {
+          mode: "dark",
+          palette: "palette1",
+          // monochrome: {
+          //     enabled: false,
+          //     color: '#255aee',
+          //     shadeTo: 'light',
+          //     shadeIntensity: 0.65
+          // },
+        },
       },
       grid: {
         show: true,
@@ -87,7 +97,13 @@ const MobileCoinPageChart = ({ data }: any) => {
               colors: "#ababad",
             },
             formatter: function (value: any) {
-              return value;
+              return value && value !== null
+                ? String(Math.trunc(parseFloat(value))).length > 2
+                  ? Number(parseFloat(value).toFixed(2)).toLocaleString()
+                  : value && Math.abs(value) > 1
+                  ? parseFloat(value).toFixed(4).toLocaleString()
+                  : parseFloat(value).toFixed(6).toLocaleString()
+                : value;
             },
           },
           // title: {
@@ -130,6 +146,10 @@ const MobileCoinPageChart = ({ data }: any) => {
         },
       },
       tooltip: {
+        theme: "dark",
+        style: {
+          opacity: 1,
+        },
         enabled: true,
         x: {
           //format: "dd/MM/yy HH:mm",

@@ -115,7 +115,11 @@ const MobileFeaturedCoinCards = ({ cardData, index }: any) => {
               <Stack direction="column" spacing={0}>
                 <Typography
                   variant="caption"
-                  sx={{ color: "#FFFFFF", fontWeight: 600 }}
+                  sx={{
+                    color: "#FFFFFF",
+                    fontWeight: 600,
+                    textTransform: "capitalize",
+                  }}
                 >
                   <Link
                     to={{
@@ -139,6 +143,7 @@ const MobileFeaturedCoinCards = ({ cardData, index }: any) => {
                     color: "#545454",
                     fontWeight: 500,
                     fontSize: "0.7rem",
+                    textTransform: "uppercase",
                   }}
                 >
                   {cardData &&

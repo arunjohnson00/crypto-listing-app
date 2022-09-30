@@ -467,6 +467,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                       color: "#FFFFF5",
                       fontWeight: 800,
                       fontSize: "1.8rem",
+                      textTransform: "capitalize",
                     }}
                     textAlign={{ xs: "center", sm: "center", md: "left" }}
                   >

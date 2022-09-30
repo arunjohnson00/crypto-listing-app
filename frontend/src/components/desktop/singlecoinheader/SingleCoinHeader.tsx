@@ -426,7 +426,11 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 >
                   <Typography
                     variant="h4"
-                    sx={{ color: "#FFFFF5", fontWeight: 800 }}
+                    sx={{
+                      color: "#FFFFF5",
+                      fontWeight: 800,
+                      textTransform: "capitalize",
+                    }}
                     textAlign={{ xs: "center", sm: "center", md: "left" }}
                   >
                     {coinData && coinData?.name}

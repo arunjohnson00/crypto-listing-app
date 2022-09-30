@@ -35,12 +35,12 @@ const TableBtnGroup = () => {
           value={tabIndex}
           onChange={handleChange}
           disableRipple
-          TabIndicatorProps={{
-            style: {
-              backgroundColor: "transparent",
-              color: "red",
-            },
-          }}
+          // TabIndicatorProps={{
+          //   style: {
+          //     backgroundColor: "transparent",
+          //     color: "red",
+          //   },
+          // }}
           variant="standard"
           scrollButtons={false}
           aria-label="scrollable auto tabs example"
@@ -52,6 +52,10 @@ const TableBtnGroup = () => {
               padding: 0,
               minHeight: 38,
               paddingX: 1,
+            },
+            "& .MuiTab-root.Mui-selected": {
+              color: "#FFFFFF",
+              backgroundColor: "#040b29",
             },
           }}
         >

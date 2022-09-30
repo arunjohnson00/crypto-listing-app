@@ -28,7 +28,7 @@ const MobileRecentSearchCard = ({ item, index, saveSearchHandler }: any) => {
         <Avatar
           alt="Trending"
           src={`${serverAPIUrl}public/uploads/coin_logo/${item?.coin_logo}`}
-          sx={{ width: 23, height: 23 }}
+          sx={{ width: 33, height: 33 }}
         />
         <Stack
           direction="column"

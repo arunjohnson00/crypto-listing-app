@@ -116,6 +116,7 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
                     textDecoration: "none",
                     color: "#FFFFFF",
                     fontSize: ".8rem",
+                    textTransform: "capitalize",
                   }}
                 >
                   {cardData && cardData?.name?.slice(0, 12)}
@@ -128,6 +129,7 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
                   color: "#545454",
                   fontWeight: 500,
                   fontSize: "0.7rem",
+                  textTransform: "uppercase",
                 }}
               >
                 {cardData &&
