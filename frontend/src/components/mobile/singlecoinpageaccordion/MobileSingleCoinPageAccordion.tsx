@@ -141,7 +141,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
               </Stack>
             </AccordionSummary>
             <AccordionDetails sx={{ padding: 0, paddingBottom: 1 }}>
-              {coinDetailFirstBlock &&
+              {/* {coinDetailFirstBlock &&
                 coinDetailFirstBlock[0]?.contract_address?.map(
                   (item: any, index: number) => (
                     <Grid item xs={12} key={index}>
@@ -216,6 +216,111 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
                         </Stack>
                       </Stack>
                     </Grid>
+                  )
+                )} */}
+
+              {coinDetailOverview &&
+                coinDetailOverview[0]?.address?.map(
+                  (item: any, index: number) => (
+                    <Box key={index}>
+                      {item && item?.name !== null && (
+                        <Stack
+                          direction="row"
+                          sx={{ justifyContent: "space-between" }}
+                          mt={0}
+                          alignItems="center"
+                        >
+                          <Stack
+                            direction={{ xs: "row", sm: "row", md: "row" }}
+                            sx={{ alignItems: "center" }}
+                            justifyContent={{
+                              xs: "center",
+                              sm: "center",
+                              md: "center",
+                              lg: "flex-start",
+                            }}
+                            spacing={1}
+                          >
+                            <Typography
+                              variant="caption"
+                              sx={{ color: "#B6B6B9" }}
+                            >
+                              {item && item?.name?.length >= 25
+                                ? item?.name?.slice(0, 25) + "..."
+                                : item?.name}
+                            </Typography>
+                            <Tooltip title="Delete">
+                              <Avatar
+                                src={ToolTipImage}
+                                sx={{ width: 9, height: 9 }}
+                              ></Avatar>
+                            </Tooltip>
+                          </Stack>
+
+                          <Stack
+                            direction={{ xs: "row", sm: "row", md: "row" }}
+                            sx={{ alignItems: "center" }}
+                            spacing={0.8}
+                          >
+                            <a
+                              href={item?.url}
+                              style={{
+                                color: "#8A93C9",
+                                //textDecoration: "none"
+                              }}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Typography
+                                variant="caption"
+                                sx={
+                                  {
+                                    //color: "#FFFFF5",fontSize:"0.85rem",fontWeight:500,,
+                                    //fontSize: "0.65rem",
+                                  }
+                                }
+                              >
+                                {item?.address !== ""
+                                  ? item &&
+                                    item?.address?.substring(0, 5) +
+                                      "..." +
+                                      item?.address?.slice(-6)
+                                  : "NA"}
+                              </Typography>
+                            </a>
+                            {item?.address !== "" && (
+                              <CopyToClipboard
+                                options={{ message: "Copy" }}
+                                text={item?.address}
+                                onCopy={(e: any) => copyHandler(e)}
+                              >
+                                <IconButton
+                                  sx={{ padding: 0 }}
+                                  onClick={() => {
+                                    setCopyValue(item?.address);
+                                  }}
+                                >
+                                  <Tooltip
+                                    title={`${
+                                      copied ? "Copied" : "Copy this Token"
+                                    }`}
+                                  >
+                                    <ContentCopyIcon
+                                      sx={{
+                                        color: `${
+                                          copied ? "#19ffb0" : "#19ffb0"
+                                        }`,
+                                        fontSize: ".9rem",
+                                      }}
+                                    />
+                                  </Tooltip>
+                                </IconButton>
+                              </CopyToClipboard>
+                            )}
+                          </Stack>
+                        </Stack>
+                      )}
+                    </Box>
                   )
                 )}
             </AccordionDetails>
@@ -809,7 +914,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
                 </Typography>
               </Stack>
 
-              {coinDetailOverview &&
+              {/* {coinDetailOverview &&
                 coinDetailOverview[0]?.address?.map(
                   (item: any, index: number) => (
                     <Box key={index}>
@@ -912,7 +1017,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
                       )}
                     </Box>
                   )
-                )}
+                )} */}
               <Stack
                 direction="row"
                 sx={{ alignItems: "center", justifyContent: "space-between" }}
