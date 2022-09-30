@@ -27,7 +27,7 @@ const TableFilterMenu = ({ data, selectedBtn, setSelectedBtn, index }: any) => {
       onClose={menuHandleClose}
       onOpen={menuHandleOpen}
       displayEmpty
-      renderValue={() => menu !== undefined && "Network"}
+      renderValue={() => menu !== undefined && "By Network"}
       value={menu}
       autoWidth
       onChange={handleChange}
@@ -48,6 +48,7 @@ const TableFilterMenu = ({ data, selectedBtn, setSelectedBtn, index }: any) => {
         fontSize: ".75rem",
         height: 39,
         maxWidth: 105,
+        cursor: "pointer",
         "&.MuiInputBase-root .MuiOutlinedInput-root .MuiSelect-root": {
           border: 0,
           outline: 0,

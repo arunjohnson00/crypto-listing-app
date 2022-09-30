@@ -51,15 +51,15 @@ const TableMultiSelectFilterMenu = ({
       typeof value === "string" ? value.split(",") : value
     );
   };
-  useEffect(() => {
-    variant === "badges"
-      ? setPersonName(["Badges"])
-      : variant === "platform" && setPersonName(["Platform"]);
-  }, [setPersonName]);
+  // useEffect(() => {
+  //   variant === "badges"
+  //     ? setPersonName(["By Badges"])
+  //     : variant === "platform" && setPersonName(["By Platform"]);
+  // }, [setPersonName]);
 
   return (
     <div>
-      <FormControl sx={{ m: 0, width: 100 }}>
+      <FormControl sx={{ m: 0, width: 140 }}>
         <Select
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
@@ -73,8 +73,8 @@ const TableMultiSelectFilterMenu = ({
               ? (selected) => selected.join(", ")
               : () =>
                   variant === "badges"
-                    ? "Badges"
-                    : variant === "platform" && "Platform"
+                    ? "By Badges"
+                    : variant === "platform" && "By Platform"
           }
           MenuProps={MenuProps}
           onClick={() => setSelectedBtn(2)}

@@ -5,6 +5,7 @@ import { Stack, Grid, Typography, Box } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import { textTransform } from "text-transform";
 import trendingCoinIcon from "../../../assets/common/trending_icon.png";
 import { biggestGainersRequest } from "../../../store/action";
 import { Link } from "react-router-dom";
@@ -121,6 +122,7 @@ const CoinSlider = () => {
                         fontSize: ".8rem",
                         color: "#FFFFFF",
                         fontWeight: 500,
+                        textTransform: "capitalize",
                       }}
                     >
                       {item?.name}

@@ -174,11 +174,15 @@ const AppBarSearch = () => {
         type="text"
         value={values}
         autoFocus={false}
-        placeholder="Search"
+        placeholder="Search Coins, NFT, Airdrops or Events"
         onClick={handleClick}
         disabled={open}
         readOnly
-        style={{ height: 34, color: "#FFFFFF", cursor: "text" }}
+        style={{
+          height: 34,
+          color: "#FFFFFF",
+          cursor: "text",
+        }}
         startAdornment={
           <InputAdornment>
             <IconButton edge="end">

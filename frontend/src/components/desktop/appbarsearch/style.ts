@@ -33,7 +33,8 @@ export const StyledInputRoot = styled("div")(
     align-items: center;
     justify-content: center;
     cursor:text;
-    width:309px;
+    width:320px;
+    
 
   
     &.${inputUnstyledClasses.focused} {

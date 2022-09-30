@@ -51,30 +51,41 @@ const TableMultiSelectFilterMenu = ({
       typeof value === "string" ? value.split(",") : value
     );
   };
-  useEffect(() => {
-    variant === "badges"
-      ? setPersonName(["Badges"])
-      : variant === "platform" && setPersonName([]);
-  }, [setPersonName]);
+  // useEffect(() => {
+  //   variant === "badges"
+  //     ? setPersonName(["Badges"])
+  //     : variant === "platform" && setPersonName([]);
+  // }, [setPersonName]);
 
   return (
     <div>
-      <FormControl sx={{ m: 0, maxWidth: 110 }}>
+      <FormControl sx={{ m: 0, maxWidth: 110 }} variant="filled">
         <Select
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
           multiple
           value={personName}
+          // autoWidth={true}
           onChange={handleChange}
-          input={<OutlinedInput label="Tag" />}
+          input={
+            <OutlinedInput
+              label="Tag"
+              sx={{
+                padding: 0,
+                ".MuiSelect-select": {
+                  padding: 0,
+                },
+              }}
+            />
+          }
           displayEmpty
           renderValue={
             personName.length !== 0
               ? (selected) => selected.join(", ")
               : () =>
                   variant === "badges"
-                    ? "Badges"
-                    : variant === "platform" && "Platform"
+                    ? "By Badges"
+                    : variant === "platform" && "By Platform"
           }
           // renderValue={(selected) => selected.join(", ")}
           MenuProps={MenuProps}
@@ -94,12 +105,13 @@ const TableMultiSelectFilterMenu = ({
             height: 39,
             border: 0,
             outline: 0,
-
+            cursor: "pointer",
+            ".MuiOutlinedInput-input": { paddingRight: 0 },
             "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
               border: 0,
               outline: 0,
             },
-            "&.MuiSelect-select.MuiSelect-select": {
+            "&.MuiSelect-select": {
               paddingRight: 0,
               border: 0,
               outline: 0,

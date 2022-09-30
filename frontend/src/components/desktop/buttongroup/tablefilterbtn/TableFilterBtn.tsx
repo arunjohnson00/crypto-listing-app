@@ -14,13 +14,13 @@ const TableFilterBtn = () => {
     <Stack
       sx={{
         borderRadius: 4,
-        height: 38,
+        minHeight: 38,
         backgroundColor: "#010E3A",
         width: "auto",
         display: "flex",
         overflow: "hidden",
         alignItems: "center",
-        maxWidth: 400,
+        maxWidth: 500,
       }}
       direction="row"
       spacing={0.4}

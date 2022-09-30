@@ -8,6 +8,7 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import trendingCoinIcon from "../../../assets/common/trending_icon.png";
 import { biggestGainersRequest } from "../../../store/action";
 import { Link } from "react-router-dom";
+import { textTransform } from "text-transform";
 import { BounceLoader } from "react-spinners";
 import { defaultColor } from "../../../common/common";
 import "./style.css";

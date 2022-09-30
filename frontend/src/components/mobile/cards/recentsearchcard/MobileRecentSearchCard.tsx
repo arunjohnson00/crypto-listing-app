@@ -11,8 +11,8 @@ const MobileRecentSearchCard = ({ item, index, saveSearchHandler }: any) => {
         backgroundColor: "#151720",
         padding: 1.5,
         borderRadius: 3,
-        maxWidth: "auto",
-        minWidth: 70,
+        maxWidth: 62,
+        minWidth: 62,
       }}
       key={index}
       my={1}

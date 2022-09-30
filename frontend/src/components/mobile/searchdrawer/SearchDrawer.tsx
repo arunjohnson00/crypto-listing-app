@@ -55,7 +55,7 @@ const responsiveRecentSearch = {
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 2.5,
+    items: 3.5,
   },
 };
 const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {

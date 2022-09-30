@@ -101,7 +101,10 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
   };
 
   return (
-    <TableContainer component={Paper} className="tableFixHead">
+    <TableContainer
+      component={Paper}
+      className={variant === "crypto_currencies" ? "tableFixHead" : ""}
+    >
       <Table
         sx={{
           minWidth: 650,

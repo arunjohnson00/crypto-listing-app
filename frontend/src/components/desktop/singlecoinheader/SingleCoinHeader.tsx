@@ -15,6 +15,7 @@ import {
   DialogContent,
   CardMedia,
 } from "@mui/material";
+import { upperCaseFirst } from "upper-case-first";
 import { ToastContainer, toast } from "react-toastify";
 import ReCAPTCHA from "react-google-recaptcha";
 import "react-toastify/dist/ReactToastify.css";
@@ -222,7 +223,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
       )
     );
   }, [dispatch]);
-
+  console.log(upperCaseFirst("test india"));
   return (
     <Fragment>
       <Grid xs={12}>
@@ -942,8 +943,8 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 variant="subtitle2"
                 sx={{ color: "#FFFFF5", fontSize: "0.75rem" }}
               >
-                {coinData && coinData?.approved_at !== null
-                  ? moment(new Date(coinData?.approved_at)).fromNow()
+                {coinData && coinData?.created_at !== null
+                  ? moment(new Date(coinData?.created_at)).fromNow()
                   : "NA"}
               </Typography>
             </Stack>
