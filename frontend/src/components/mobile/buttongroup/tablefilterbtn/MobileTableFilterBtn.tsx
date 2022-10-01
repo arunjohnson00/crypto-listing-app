@@ -16,17 +16,17 @@ const MobileTableFilterBtn = () => {
         borderRadius: 4,
         height: "auto",
         backgroundColor: "transparent",
-        width: 303,
+        width: "auto",
 
         overflow: "hidden",
         alignItems: "center",
-        maxWidth: 303,
+        maxWidth: 334,
       }}
       direction="column"
       spacing={0.4}
       px={1}
     >
-      <Button
+      {/* <Button
         sx={{
           //backgroundColor: "#010E3A",
           textTransform: "capitalize",
@@ -38,9 +38,16 @@ const MobileTableFilterBtn = () => {
         endIcon={<TuneSharpIcon />}
       >
         Filter
-      </Button>
+      </Button> */}
 
-      <Stack direction="row" spacing={0.4} px={1}>
+      <Stack
+        direction="row"
+        spacing={0}
+        px={1}
+        flexWrap="wrap"
+        alignItems="center"
+        justifyContent="space-between"
+      >
         {/* <Divider
           flexItem
           orientation="vertical"
@@ -54,12 +61,12 @@ const MobileTableFilterBtn = () => {
           setSelectedBtn={setSelectedBtn}
           index={1}
         />
-        <Divider
+        {/* <Divider
           flexItem
           orientation="vertical"
           variant="middle"
           sx={{ height: 25, alignSelf: "center", borderColor: "#060e31" }}
-        />
+        /> */}
         <TableMultiSelectFilterMenu
           data=""
           selectedBtn={selectedBtn}
@@ -67,12 +74,12 @@ const MobileTableFilterBtn = () => {
           index={2}
           variant="badges"
         />
-        <Divider
+        {/* <Divider
           flexItem
           orientation="vertical"
           variant="middle"
           sx={{ height: 25, alignSelf: "center", borderColor: "#060e31" }}
-        />
+        /> */}
         <TableMultiSelectFilterMenu
           data=""
           selectedBtn={selectedBtn}

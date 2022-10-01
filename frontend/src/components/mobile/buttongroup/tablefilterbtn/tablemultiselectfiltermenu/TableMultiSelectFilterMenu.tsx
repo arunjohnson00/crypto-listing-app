@@ -16,6 +16,8 @@ const MenuProps = {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
       width: 250,
+      backgroundColor: "#020b33",
+      color: "#FFFFFF",
     },
   },
 };
@@ -59,7 +61,17 @@ const TableMultiSelectFilterMenu = ({
 
   return (
     <div>
-      <FormControl sx={{ m: 0, maxWidth: 110 }} variant="filled">
+      <FormControl
+        sx={{
+          mr: 1,
+          my: 1,
+          maxWidth: 137,
+          minWidth: 137,
+          border: "1px solid #010e3a",
+          borderRadius: 2,
+        }}
+        variant="filled"
+      >
         <Select
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
@@ -94,7 +106,7 @@ const TableMultiSelectFilterMenu = ({
             <KeyboardArrowDownSharpIcon sx={{ color: "#1976d2" }} />
           )}
           sx={{
-            paddingRight: 0,
+            paddingX: 1,
             backgroundColor:
               parseInt(selectedBtn) === parseInt(index)
                 ? "transparent"
@@ -147,7 +159,11 @@ const TableMultiSelectFilterMenu = ({
           </MenuItem> */}
           {names.map((name) => (
             <MenuItem key={name} value={name}>
-              <Checkbox size="small" checked={personName.indexOf(name) > -1} />
+              <Checkbox
+                size="small"
+                checked={personName.indexOf(name) > -1}
+                sx={{ color: "#FFFFFF" }}
+              />
               {/* <ListItemText primary={name} /> */}
 
               <Stack direction="row" spacing={1} alignItems="center">

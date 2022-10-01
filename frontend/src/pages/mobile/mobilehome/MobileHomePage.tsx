@@ -8,6 +8,7 @@ import {
   Divider,
   Avatar,
   Skeleton,
+  IconButton,
 } from "@mui/material";
 import Marquee from "react-fast-marquee";
 import TimeAgo from "javascript-time-ago";
@@ -28,7 +29,7 @@ import MobileTableFilterBtn from "../../../components/mobile/buttongroup/tablefi
 import MobileHtmlTable from "../../../components/mobile/htmltable/MobileHtmlTable";
 import MobileViewMoreBtn from "../../../components/mobile/button/viewmorebtn/MobileViewMoreBtn";
 import MobileNftCollectionCard from "../../../components/mobile/cards/nftcollection/MobileNftCollectionCard";
-
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import MobileMenuCards from "../../../components/mobile/cards/menucards/MobileMenuCards";
 import MobileBannerMaps from "../../../components/mobile/banner/bannermap/MobileBannerMap";
 
@@ -178,14 +179,14 @@ const responsiveNFT: any = {
 };
 
 const MobileHomePage = () => {
-  TimeAgo.addDefaultLocale(en);
-  const timeAgo = new TimeAgo("en");
   const [tableData, setTableData] = useState<any>();
   const [preLoader, setPreLoader] = useState<any>({
     featured_coin_list: true,
     menu_card: true,
     video_list: true,
   });
+
+  const [tableFilter, setTableFilter] = useState(false);
   const [htmlTablePreLoader, setHTMLTablePreLoader] = useState<any>({
     html_table: true,
   });
@@ -271,6 +272,10 @@ const MobileHomePage = () => {
     dispatch(nftListingRequest("noData", successHandler, errorHandler));
     dispatch(eventListRequest("noData", successHandler, errorHandler));
   }, [dispatch, setPreLoader]);
+
+  const filterBtnHandler = () => {
+    setTableFilter(!tableFilter);
+  };
 
   return (
     <Grid container rowSpacing={2}>
@@ -499,7 +504,7 @@ const MobileHomePage = () => {
         )}
       </Grid>
 
-      <Grid container item xs={12} mt={1.5} mb={0}>
+      <Grid container item xs={12} mt={2.5} mb={0}>
         <Stack
           direction={{ xs: "column", sm: "column", md: "row" }}
           spacing={2}
@@ -509,8 +514,21 @@ const MobileHomePage = () => {
             justifyContent: " space-between",
           }}
         >
-          <MobileTableBtnGroup />
-          <MobileTableFilterBtn />
+          <Stack
+            direction={{ xs: "row", sm: "row", md: "row" }}
+            spacing={1}
+            sx={{
+              flexGrow: 1,
+              alignItems: "center",
+              justifyContent: " space-between",
+            }}
+          >
+            <MobileTableBtnGroup />
+            <IconButton aria-label="filter" onClick={filterBtnHandler}>
+              <FilterAltOutlinedIcon sx={{ color: "#03E2B1" }} />
+            </IconButton>
+          </Stack>
+          {tableFilter === true && <MobileTableFilterBtn />}
         </Stack>
       </Grid>
 

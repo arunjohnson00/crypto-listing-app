@@ -5,6 +5,19 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
 import { Avatar, FormControl, Stack, Typography } from "@mui/material";
 
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 200,
+      backgroundColor: "#020b33",
+      color: "#FFFFFF",
+    },
+  },
+};
+
 const TableFilterMenu = ({ data, selectedBtn, setSelectedBtn, index }: any) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menu, setMenu] = useState<any>("");
@@ -18,7 +31,7 @@ const TableFilterMenu = ({ data, selectedBtn, setSelectedBtn, index }: any) => {
   const menuHandleClose = () => {
     setMenuOpen(false);
   };
-  console.log(menu);
+
   return (
     <Select
       labelId="demo-controlled-open-select-label"
@@ -27,6 +40,7 @@ const TableFilterMenu = ({ data, selectedBtn, setSelectedBtn, index }: any) => {
       onClose={menuHandleClose}
       onOpen={menuHandleOpen}
       displayEmpty
+      MenuProps={MenuProps}
       renderValue={() => menu !== undefined && "By Network"}
       value={menu}
       autoWidth

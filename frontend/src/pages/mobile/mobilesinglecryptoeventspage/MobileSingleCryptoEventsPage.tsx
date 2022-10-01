@@ -25,13 +25,7 @@ const MobileSingleCryptoEventsPage = () => {
 
   return (
     <Fragment>
-      <Grid
-        container
-        spacing={5}
-        sx={{
-          dispaly: "flex",
-        }}
-      >
+      <Grid container rowSpacing={3}>
         <Grid xs={12} sx={{ paddingTop: 3 }}>
           <MobileLatestNewsCardScrollTop />
         </Grid>

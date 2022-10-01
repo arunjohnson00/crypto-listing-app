@@ -6,7 +6,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 import { MobileDatePicker } from "@mui/x-date-pickers";
 
-const CryptoEventsSearchCard = () => {
+const MobileCryptoEventsSearchCard = () => {
   const [search, setSearch] = useState<any>("");
   const [date, setDate] = useState<any>({
     from: new Date(),
@@ -18,10 +18,10 @@ const CryptoEventsSearchCard = () => {
       sx={{ backgroundColor: "#071241", borderRadius: 5 }}
       py={2}
       px={4}
-      width="100%"
+      width="auto"
     >
       <Stack direction="column" spacing={2} justifyContent="center">
-        <Stack direction="row" spacing={2} justifyContent="space-between">
+        <Stack direction="column" spacing={2} justifyContent="space-between">
           <Stack direction="row" spacing={2} alignItems="center">
             <Typography
               sx={{ fontSize: "1rem", color: "#4F5368", fontWeight: 500 }}
@@ -38,13 +38,14 @@ const CryptoEventsSearchCard = () => {
                   <TextField
                     {...params}
                     sx={{
+                      flexGrow: 1,
                       "& .MuiOutlinedInput-root": {
                         backgroundColor: "#01061A",
-                        borderRadius: 8,
+                        borderRadius: 3,
                         color: "#FFFFFF",
-                        height: 40,
+                        height: 47,
                         fontSize: ".8rem",
-                        maxWidth: 140,
+                        width: "auto",
 
                         "& fieldset": {
                           borderColor: "none",
@@ -81,13 +82,14 @@ const CryptoEventsSearchCard = () => {
                   <TextField
                     {...params}
                     sx={{
+                      flexGrow: 1,
                       "& .MuiOutlinedInput-root": {
                         backgroundColor: "#01061A",
-                        borderRadius: 8,
+                        borderRadius: 3,
                         color: "#FFFFFF",
-                        height: 40,
+                        height: 47,
                         fontSize: ".8rem",
-                        maxWidth: 140,
+                        width: "auto",
 
                         "& fieldset": {
                           borderColor: "none",
@@ -155,4 +157,4 @@ const CryptoEventsSearchCard = () => {
   );
 };
 
-export default CryptoEventsSearchCard;
+export default MobileCryptoEventsSearchCard;

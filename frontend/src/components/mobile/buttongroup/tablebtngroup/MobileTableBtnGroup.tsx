@@ -22,7 +22,7 @@ const MobileTableBtnGroup = () => {
     <Fragment>
       <Box
         sx={{
-          maxWidth: { xs: 320, sm: 320 },
+          maxWidth: { xs: 265, sm: 265 },
           bgcolor: "#010E3A",
           borderRadius: 7,
           overflow: "hidden",
@@ -30,6 +30,7 @@ const MobileTableBtnGroup = () => {
           borderColor: "#051447",
           height: 40,
         }}
+        px={1}
       >
         <Tabs
           value={tabIndex}
@@ -55,7 +56,7 @@ const MobileTableBtnGroup = () => {
               padding: 0,
               minHeight: 38,
               paddingX: 1,
-              minWidth: 80,
+              minWidth: 66,
             },
             ".MuiTabs-scrollButtons": { padding: 0 },
             ".MuiTabs-scrollButtons.Mui-disabled": {

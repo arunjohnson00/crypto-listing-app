@@ -8,7 +8,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import { Divider, Stack } from "@mui/material";
 import MobileCryptoEventCard from "../cards/cryptoeventcard/MobileCryptoEventCard";
 
-const CryptoEventsTab = () => {
+const MobileCryptoEventsTab = () => {
   const [value, setValue] = useState("1");
   const [tabValue, setTabValue] = useState("1");
 
@@ -69,7 +69,7 @@ const CryptoEventsTab = () => {
               },
             }}
           >
-            <Tab label="Recently Added" value="1" />
+            <Tab label="New" value="1" />
             <Divider
               sx={{ borderColor: "#2D2858", borderBottomWidth: "1px" }}
               orientation="vertical"
@@ -105,4 +105,4 @@ const CryptoEventsTab = () => {
   );
 };
 
-export default CryptoEventsTab;
+export default MobileCryptoEventsTab;

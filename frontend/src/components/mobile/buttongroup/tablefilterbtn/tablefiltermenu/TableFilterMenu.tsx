@@ -5,6 +5,19 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
 import { Avatar, FormControl, Stack, Typography } from "@mui/material";
 
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 200,
+      backgroundColor: "#020b33",
+      color: "#FFFFFF",
+    },
+  },
+};
+
 const TableFilterMenu = ({ data, selectedBtn, setSelectedBtn, index }: any) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menu, setMenu] = useState<any>("");
@@ -27,6 +40,7 @@ const TableFilterMenu = ({ data, selectedBtn, setSelectedBtn, index }: any) => {
       onClose={menuHandleClose}
       onOpen={menuHandleOpen}
       displayEmpty
+      MenuProps={MenuProps}
       renderValue={() => menu !== undefined && "By Network"}
       value={menu}
       autoWidth
@@ -36,18 +50,20 @@ const TableFilterMenu = ({ data, selectedBtn, setSelectedBtn, index }: any) => {
         <KeyboardArrowDownSharpIcon sx={{ color: "#1976d2" }} />
       )}
       sx={{
-        border: 0,
+        border: "1px solid #010e3a",
+        borderRadius: 2,
         outline: 0,
         paddingRight: 0,
         backgroundColor:
           parseInt(selectedBtn) === parseInt(index)
             ? "transparent"
             : "transparent",
-        borderRadius: 0,
+
         color: "#FFFFFF",
         fontSize: ".75rem",
         height: 39,
-        maxWidth: 105,
+        maxWidth: 137,
+        minWidth: 137,
         cursor: "pointer",
         "&.MuiInputBase-root .MuiOutlinedInput-root .MuiSelect-root": {
           border: 0,

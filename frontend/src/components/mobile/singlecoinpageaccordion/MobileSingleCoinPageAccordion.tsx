@@ -282,7 +282,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
                               >
                                 {item?.address !== ""
                                   ? item &&
-                                    item?.address?.substring(0, 5) +
+                                    item?.address?.substring(0, 15) +
                                       "..." +
                                       item?.address?.slice(-6)
                                   : "NA"}
@@ -409,7 +409,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
             Information
           </Typography>
         </AccordionSummary>
-        <AccordionDetails sx={{ padding: 0, paddingBottom: 3 }}>
+        <AccordionDetails sx={{ padding: 0, paddingBottom: 7 }}>
           <Stack direction="column" mt={1.2}>
             <Stack
               direction="row"

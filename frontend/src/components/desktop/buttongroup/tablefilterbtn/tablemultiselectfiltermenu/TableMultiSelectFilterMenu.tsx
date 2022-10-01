@@ -16,6 +16,8 @@ const MenuProps = {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
       width: 250,
+      backgroundColor: "#020b33",
+      color: "#FFFFFF",
     },
   },
 };
@@ -109,7 +111,11 @@ const TableMultiSelectFilterMenu = ({
         >
           {names.map((name) => (
             <MenuItem key={name} value={name}>
-              <Checkbox size="small" checked={personName.indexOf(name) > -1} />
+              <Checkbox
+                size="small"
+                checked={personName.indexOf(name) > -1}
+                sx={{ color: "#FFFFFF" }}
+              />
               {/* <ListItemText primary={name} /> */}
 
               <Stack direction="row" spacing={1} alignItems="center">
