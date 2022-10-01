@@ -1880,12 +1880,12 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
           </Stack>
         </AccordionDetails>
       </Accordion>
-      <Divider
+      {/* <Divider
         variant="fullWidth"
         flexItem
         orientation={"horizontal"}
         sx={{ borderColor: "#0b1640", borderBottomWidth: 1 }}
-      />
+      /> */}
       {/* <Accordion
         disableGutters={true}
         defaultExpanded

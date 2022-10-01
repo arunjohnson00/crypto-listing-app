@@ -104,7 +104,10 @@ const AppLoginPage = () => {
         }
       );
 
-      navigate("/user-dashboard");
+      // navigate("/user-dashboard");
+      location?.state?.redirection && location?.state?.redirection === true
+        ? navigate(location?.state?.pageURL)
+        : navigate("/user-dashboard");
     };
     const errorHandler = (err: any) => {
       toast.success(
@@ -138,6 +141,8 @@ const AppLoginPage = () => {
   useEffect(() => {
     auth && navigate("/user-dashboard");
   }, []);
+
+  console.log(location?.state?.redirection);
 
   return (
     <Fragment>

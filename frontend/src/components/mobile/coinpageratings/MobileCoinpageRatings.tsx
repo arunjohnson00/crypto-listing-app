@@ -321,7 +321,12 @@ const MobileCoinpageRatings = () => {
                         }}
                         //underline="none"
                         onClick={() =>
-                          navigate("/login", { state: location?.pathname })
+                          navigate("/login", {
+                            state: {
+                              pageURL: location?.pathname,
+                              redirection: true,
+                            },
+                          })
                         }
                       >
                         <Button
