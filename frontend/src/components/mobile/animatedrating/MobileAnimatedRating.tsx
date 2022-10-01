@@ -21,7 +21,7 @@ const MobileAnimatedRating = ({
     "#73CF11",
     "#00B67A",
   ];
-  const [animatedValue, setAnimatedValue] = useState(0);
+  const [animatedValue, setAnimatedValue] = useState(1);
 
   useEffect(() => {
     const timer = () => {
@@ -30,7 +30,7 @@ const MobileAnimatedRating = ({
 
     // if you want it to finish at some point
     if (animatedValue >= 6) {
-      return setAnimatedValue(0);
+      return setAnimatedValue(1);
     }
     const id = setInterval(timer, 500);
     return () => clearInterval(id);
