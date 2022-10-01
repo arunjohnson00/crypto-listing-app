@@ -24,15 +24,15 @@ const AddAssetCard = ({ icon, title, link, state }: any) => {
             cursor: "ponter",
           },
         }}
-        m={1}
+        m={1.1}
       >
         <Stack
           direction="column"
           spacing={2}
           alignItems="center"
           justifyContent="center"
-          minWidth={{ xs: 200, sm: 200, md: 90 }}
-          minHeight={{ xs: 200, sm: 200, md: 90 }}
+          minWidth={{ xs: 90, sm: 90, md: 90 }}
+          minHeight={{ xs: 90, sm: 90, md: 90 }}
         >
           <Avatar
             alt={title && title}

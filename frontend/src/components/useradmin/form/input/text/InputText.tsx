@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider, useMediaQuery } from "@mui/material";
 import { theme } from "./style";
 
 const InputText = ({
@@ -13,6 +13,7 @@ const InputText = ({
   width,
   InputProps,
 }: any) => {
+  const matches = useMediaQuery("(min-width:900px)");
   const [inputValue, setinputValue] = useState();
   useEffect(() => {
     setinputValue(value);
@@ -34,8 +35,9 @@ const InputText = ({
         }}
         sx={{
           fontSize: ".85rem",
+          width: `${width ? width : matches === true ? "312px" : "100%"}`,
           "& .MuiOutlinedInput-root": {
-            width: `${width ? width : "312px"}`,
+            width: `${width ? width : matches === true ? "312px" : "100%"}`,
             paddingRight: `${InputProps && 0}`,
             fontSize: ".85rem",
           },

@@ -2,6 +2,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { toast } from "material-react-toastify";
+import { useMediaQuery } from "@mui/material";
 
 const InputSelect = ({
   selectOptions,
@@ -10,6 +11,7 @@ const InputSelect = ({
   getInputSelectvalue,
   serverStatus,
 }: any) => {
+  const matches = useMediaQuery("(min-width:900px)");
   // let optionSelected = selectOptions.filter(
   //   (optionData: any) => optionData.value === currentStatus
   // );
@@ -37,7 +39,13 @@ const InputSelect = ({
   };
   //  console.log(optionSelected[0].value);
   return (
-    <FormControl sx={{ m: 1, width: 300, mt: 0 }}>
+    <FormControl
+      sx={{
+        m: 1,
+        width: matches === true ? "300px" : "100%",
+        mt: 0,
+      }}
+    >
       <Select
         displayEmpty
         value={getInputSelectvalue?.status}

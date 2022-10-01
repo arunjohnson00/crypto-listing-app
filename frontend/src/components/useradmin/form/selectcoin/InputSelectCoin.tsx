@@ -3,7 +3,7 @@ import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
 import { toast } from "material-react-toastify";
 import { Fragment } from "react";
-import { Avatar, Box } from "@mui/material";
+import { Avatar, Box, useMediaQuery } from "@mui/material";
 import "./style.css";
 
 const InputSelectCoin = ({
@@ -16,6 +16,7 @@ const InputSelectCoin = ({
   width,
   type,
 }: any) => {
+  const matches = useMediaQuery("(min-width:900px)");
   return (
     <FormControl fullWidth>
       <NativeSelect
@@ -30,8 +31,8 @@ const InputSelectCoin = ({
           color: "#525562",
           border: "1px solid #090F2C",
           height: height && height,
-          minWidth: width && width,
-          width: width,
+          minWidth: matches === true ? width : "auto",
+          width: matches === true ? width : "auto",
           fontSize: ".85rem",
           "&::before": {
             border: "none",

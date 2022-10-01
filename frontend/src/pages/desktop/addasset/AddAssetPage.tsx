@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, useMediaQuery } from "@mui/material";
 import AddAssetCard from "../../../components/desktop/cards/addassetcard/AddAssetCard";
 import "./style.css";
 
@@ -9,10 +9,11 @@ import nftIcon from "../../../assets/addasset/add-nft-icon.png";
 import presaleIcon from "../../../assets/addasset/add-coin-icon.png";
 
 const AddAssetPage = ({ windowInnerWidth }: any) => {
+  const matches = useMediaQuery("(min-width:900px)");
   return (
     <Box
       sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-      pt={7}
+      pt={matches === true ? 7 : 2}
       width="100%"
     >
       <Box width={{ xs: "100%", sm: "100%", md: "60%" }}>
@@ -24,23 +25,25 @@ const AddAssetPage = ({ windowInnerWidth }: any) => {
               borderRadius: 4,
               // paddingX: 6,
               paddingY: 4,
-              height: 400,
+              height: matches === true ? 400 : "auto",
               display: "flex",
-              alignItems: "center",
+
               justifyContent: "center",
             }}
-            width={{ xs: "100%", sm: "100%", md: "auto" }}
+            width={{ xs: "99.2%", sm: "99.2%", md: "auto" }}
           >
             <Stack
               direction="column"
               alignItems="center"
-              spacing={0}
+              justifyContent="center"
               width="100%"
             >
               <Stack
-                direction={{ xs: "column", sm: "column", md: "row" }}
+                direction={{ xs: "row", sm: "row", md: "row" }}
                 alignItems="center"
+                justifyContent={matches === true ? "center" : "space-between"}
                 sx={{ flexWrap: "wrap" }}
+                width="100%"
               >
                 <AddAssetCard
                   icon={coinIcon}
@@ -56,8 +59,10 @@ const AddAssetPage = ({ windowInnerWidth }: any) => {
                 />
               </Stack>
               <Stack
-                direction={{ xs: "column", sm: "column", md: "row" }}
+                direction={{ xs: "row", sm: "row", md: "row" }}
                 alignItems="center"
+                justifyContent={matches === true ? "center" : "space-between"}
+                width="100%"
                 sx={{ flexWrap: "wrap" }}
               >
                 <AddAssetCard

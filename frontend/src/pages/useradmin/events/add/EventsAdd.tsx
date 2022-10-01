@@ -356,6 +356,27 @@ const EventsAdd = () => {
             </Grid>
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#13C086",
+                }}
+                mb={1}
+              >
+                Date
+              </Typography>
+
+              <InputDate
+                eventDate={true}
+                date={addEventsData}
+                setDate={setAddEvents}
+              />
+            </Grid>
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <CheckboxWithLabel
                 label={
                   <Typography

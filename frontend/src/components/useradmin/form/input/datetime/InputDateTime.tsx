@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import { useMediaQuery } from "@mui/material";
 
 const InputDateTime = ({
   dateTime,
@@ -12,6 +13,7 @@ const InputDateTime = ({
   ServerValue,
 }: any) => {
   const [timeUpdate, setTimeUpdate] = useState<any>(ServerValue);
+  const matches = useMediaQuery("(min-width:900px)");
   useEffect(() => {
     setTimeUpdate(ServerValue);
   }, [ServerValue]);
@@ -32,7 +34,7 @@ const InputDateTime = ({
                 borderRadius: "7px",
                 height: "43px",
                 fontSize: ".85rem",
-                minWidth: 311,
+                minWidth: matches === true ? 311 : "auto",
                 background: "#010619",
                 color: "#878787e8",
                 border: "1px solid #090F2C",

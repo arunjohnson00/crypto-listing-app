@@ -7,7 +7,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
-import { Checkbox } from "@mui/material";
+import { Checkbox, useMediaQuery } from "@mui/material";
 import { ListItemText } from "@mui/material";
 import { toast } from "material-react-toastify";
 import { isArray } from "lodash";
@@ -34,14 +34,14 @@ const InputSelectMultiple = ({
   serverMultiRef,
 }: any) => {
   const [serverValue, setServerValue] = useState<any>({});
-
+  const matches = useMediaQuery("(min-width:900px)");
   //console.log(pluck(serverMultiRef, "category_id")); // even shorter);
 
   const pluck = (array: any, key: any) => array?.map((a: any) => a[key]);
 
-  console.log(isArray(pluck(serverMultiRef && serverMultiRef, "category_id")));
+  // console.log(isArray(pluck(serverMultiRef && serverMultiRef, "category_id")));
 
-  console.log(getInputSelectMultiplevalue);
+  // console.log(getInputSelectMultiplevalue);
 
   useEffect(() => {
     getInputSelectMultiplevalue !== undefined &&
@@ -80,6 +80,11 @@ const InputSelectMultiple = ({
     const {
       target: { value },
     } = event;
+    console.log(
+      selectOptions
+        .filter((x: any) => parseInt(x.id) === parseInt(value))
+        .map((x: any) => x.name)
+    );
 
     setInputSelectMultipleValue(
       // On autofill we get a stringified value.
@@ -97,10 +102,11 @@ const InputSelectMultiple = ({
     //   draggable: true,
     // });
   };
-
-  //console.log(optionSelected[0].value);
+  console.log(selectOptions);
   return (
-    <FormControl sx={{ m: 1, width: 300, mt: 0 }}>
+    <FormControl
+      sx={{ m: 1, minWidth: matches === true ? 300 : "100%", mt: 0 }}
+    >
       <Select
         multiple
         displayEmpty
@@ -119,7 +125,7 @@ const InputSelectMultiple = ({
           fontStyle: "normal",
           background: "#010619",
           borderRadius: "7px",
-          color: "#525562",
+          color: "#FFFFFF",
           border: "1px solid #090F2C",
           ".MuiSelect-icon": {
             color: "#FFFFFF",
@@ -128,20 +134,24 @@ const InputSelectMultiple = ({
         renderValue={(selected) => (
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
             {console.log(selected)}
-            {selected.map((value: any) => (
-              <Chip key={value} label={value} />
-            ))}
+            {selectOptions &&
+              selectOptions
+                .filter(
+                  (x: any, i: any, a: number) =>
+                    parseInt(x.id) ===
+                    selected[selected.findIndex((item: any) => item === x.id)]
+                )
+                .map((value: any) => (
+                  <Chip
+                    key={value.id}
+                    label={value.name}
+                    sx={{ color: "#FFFFFF", backgroundColor: "red" }}
+                  />
+                ))}
           </Box>
         )}
         MenuProps={MenuProps}
       >
-        <MenuItem disabled value="">
-          <span>
-            {
-              //  optionSelected[0].title
-            }
-          </span>
-        </MenuItem>
         {selectOptions?.map((option: any, index: number) => {
           return (
             <MenuItem
