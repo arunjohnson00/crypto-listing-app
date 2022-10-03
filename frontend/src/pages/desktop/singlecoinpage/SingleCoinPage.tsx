@@ -162,35 +162,18 @@ const SingleCoinPage = () => {
           </Stack>
         </Grid> */}
 
-        <Grid
-          container
-          xs={12}
-          sx={{
-            alignItems: "flex-start",
-          }}
-        >
-          <Grid
-            xs={12}
-            sm={12}
-            md={12}
-            lg={12}
-            xl={12}
-            sx={{
-              alignItems: "center",
-            }}
-            pt={2}
-          >
-            <BreadCrumbs
-              data={
-                coinDetailFirstBlock &&
-                coinDetailFirstBlock !== undefined &&
-                coinDetailFirstBlock[0]
-              }
-              home="Home"
-              path="Coin"
-            />
-          </Grid>
-          {/* <Grid
+        <Grid item xs={12} pt={2}>
+          <BreadCrumbs
+            data={
+              coinDetailFirstBlock &&
+              coinDetailFirstBlock !== undefined &&
+              coinDetailFirstBlock[0]
+            }
+            home="Home"
+            path="Coin"
+          />
+        </Grid>
+        {/* <Grid
             xs={12}
             sm={12}
             md={6}
@@ -209,10 +192,9 @@ const SingleCoinPage = () => {
               sx={{ objectFit: "unset" }}
             />
           </Grid> */}
-        </Grid>
 
         <Grid
-          container
+          item
           xs={12}
           sx={{
             alignItems: "center",
@@ -225,7 +207,7 @@ const SingleCoinPage = () => {
         </Grid>
 
         <Grid
-          container
+          item
           xs={12}
           sx={{
             alignItems: "center",
@@ -236,13 +218,13 @@ const SingleCoinPage = () => {
             data={coinDetailFirstBlock && coinDetailFirstBlock[0]}
           />
         </Grid>
-        <Grid xs={12} pt={5}>
+        <Grid item xs={12} pt={5}>
           {" "}
           <Typography variant="h6" sx={{ color: "#FFFFF5" }} mb={1}>
             Recently Added
           </Typography>
         </Grid>
-        <Grid xs={12} pt={2}>
+        <Grid item xs={12} pt={2}>
           <div
             style={{
               paddingTop: "3px",
@@ -277,13 +259,13 @@ const SingleCoinPage = () => {
             )}
           </div>
         </Grid>
-        <Grid xs={12} pt={5}>
+        <Grid item xs={12} pt={5}>
           {" "}
           <Typography variant="h6" sx={{ color: "#FFFFF5" }} mb={1}>
             Latest Crypto News
           </Typography>
         </Grid>
-        <Grid xs={12} pt={0}>
+        <Grid item xs={12} pt={0}>
           <LatestNewsScroll live={false} />
         </Grid>
       </Grid>

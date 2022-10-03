@@ -23,6 +23,7 @@ import NewsCardNewsPage from "../../../components/desktop/cards/newscardnewspage
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 import { latestNewsRequest } from "../../../store/action";
 import { wrap } from "module";
+import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
 
 const AppNewsPage = () => {
   const theme = useTheme();
@@ -47,8 +48,10 @@ const AppNewsPage = () => {
 
   return (
     <Fragment>
-      <Grid container>
-        {" "}
+      <Grid container rowSpacing={4}>
+        <Grid item xs={12} mt={5}>
+          <BreadCrumbs home="Home" path="News" />
+        </Grid>
         {/* <Grid xs={12} sx={{ paddingTop: 3 }}>
           <LatestNewsScroll />
         </Grid> */}
@@ -73,35 +76,25 @@ const AppNewsPage = () => {
             <CoinSlider />
           </Stack>
         </Grid> */}
-        <Grid container>
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            md={12}
-            lg={12}
-            xl={12}
-            pt={6}
-            px={{ xs: 0, sm: 0, md: 23 }}
-          >
-            <Stack direction="column" spacing={1} sx={{ alignItems: "center" }}>
-              <Typography
-                variant="h3"
-                sx={{ color: "#FFFFF5", fontWeight: 900, textAlign: "center" }}
-              >
-                LATEST NEWS
-              </Typography>
-              <Typography
-                variant="h6"
-                sx={{
-                  color: "#FFFFF5",
-                  fontWeight: 500,
-                  textTransform: "capitalize",
-                }}
-              >
-                {date.format(now, "DD MMM YYYY - dddd hh:mm A")}
-              </Typography>
-              {/* <Typography
+        <Grid item xs={12}>
+          <Stack direction="column" spacing={0} sx={{ alignItems: "left" }}>
+            <Typography
+              variant="h6"
+              sx={{ color: "#FFFFF5", fontWeight: 900, textAlign: "left" }}
+            >
+              LATEST NEWS
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#c5c51c",
+                fontWeight: 400,
+                textTransform: "capitalize",
+              }}
+            >
+              {date.format(now, "DD MMM YYYY - dddd hh:mm A")}
+            </Typography>
+            {/* <Typography
                 variant="subtitle1"
                 sx={{
                   color: "#00FF88",
@@ -132,73 +125,72 @@ const AppNewsPage = () => {
                 Telegram channel for 24/7 access to latest information on crypto
                 and blockchain
               </Typography> */}
-            </Stack>
-          </Grid>
-          {latestNews && (
-            <Grid container pt={8}>
-              <Grid
-                item
-                xs={12}
-                sm={12}
-                md={5}
-                lg={5}
-                xl={5}
-                px={{ xs: 0, sm: 0, md: 2 }}
-              >
-                <CardNewsPage
-                  rssFeed={latestNews && latestNews[0]}
-                  height={xsBreakPoint ? "auto" : 363}
-                  spacing={1}
-                  paddingY={7}
-                  descriptionLength={500}
-                  index={1}
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                sm={12}
-                md={7}
-                lg={7}
-                xl={7}
-                px={{ xs: 0, sm: 0, md: 2 }}
-              >
-                <Stack direction="column" spacing={3}>
-                  <CardNewsPage
-                    rssFeed={latestNews && latestNews[1]}
-                    height={xsBreakPoint ? "auto" : 181}
-                    spacing={0.5}
-                    paddingY={2}
-                    descriptionLength={200}
-                    index={2}
-                  />
-                  <CardNewsPage
-                    rssFeed={latestNews && latestNews[2]}
-                    height={xsBreakPoint ? "auto" : 181}
-                    spacing={0.5}
-                    paddingY={2}
-                    descriptionLength={200}
-                    index={3}
-                  />
-                </Stack>
-              </Grid>
-            </Grid>
-          )}
-          <Box
-            sx={{ display: "flex", flexWrap: "wrap", flexDirection: "row" }}
-            my={8}
-          >
-            {latestNews &&
-              latestNews?.slice(3).map((rssFeed: any, index: number) => {
-                return (
-                  <NewsCardNewsPage
-                    rssFeed={rssFeed}
-                    index={index + 4}
-                    key={index}
-                  />
-                );
-              })}
-          </Box>
+          </Stack>
         </Grid>
+        {latestNews && (
+          <Grid container pt={7}>
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={5}
+              lg={5}
+              xl={5}
+              px={{ xs: 0, sm: 0, md: 2 }}
+            >
+              <CardNewsPage
+                rssFeed={latestNews && latestNews[0]}
+                height={xsBreakPoint ? "auto" : 363}
+                spacing={1}
+                paddingY={7}
+                descriptionLength={500}
+                index={1}
+              />
+            </Grid>
+            <Grid
+              xs={12}
+              sm={12}
+              md={7}
+              lg={7}
+              xl={7}
+              px={{ xs: 0, sm: 0, md: 2 }}
+            >
+              <Stack direction="column" spacing={3}>
+                <CardNewsPage
+                  rssFeed={latestNews && latestNews[1]}
+                  height={xsBreakPoint ? "auto" : 181}
+                  spacing={0.5}
+                  paddingY={2}
+                  descriptionLength={200}
+                  index={2}
+                />
+                <CardNewsPage
+                  rssFeed={latestNews && latestNews[2]}
+                  height={xsBreakPoint ? "auto" : 181}
+                  spacing={0.5}
+                  paddingY={2}
+                  descriptionLength={200}
+                  index={3}
+                />
+              </Stack>
+            </Grid>
+          </Grid>
+        )}
+        <Box
+          sx={{ display: "flex", flexWrap: "wrap", flexDirection: "row" }}
+          my={8}
+        >
+          {latestNews &&
+            latestNews?.slice(3).map((rssFeed: any, index: number) => {
+              return (
+                <NewsCardNewsPage
+                  rssFeed={rssFeed}
+                  index={index + 4}
+                  key={index}
+                />
+              );
+            })}
+        </Box>
       </Grid>
     </Fragment>
   );
