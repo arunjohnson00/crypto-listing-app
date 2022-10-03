@@ -1183,13 +1183,13 @@ const NFTListingAdd = () => {
                       getInputSelectvalue={coinPublishStatus}
                     />
 
-                    {coinPublishStatus.status === 2 && (
+                    {/* {coinPublishStatus.status === 2 && (
                       <InputDateTime
                         dateTime={coinPublishStatus}
                         setDateTime={setPublishCoinStatus}
                         statusTime={true}
                       />
-                    )}
+                    )} */}
                   </Stack>
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={4} pt={3}>

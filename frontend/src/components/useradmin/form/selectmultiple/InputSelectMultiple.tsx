@@ -133,8 +133,8 @@ const InputSelectMultiple = ({
         }}
         renderValue={(selected) => (
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-            {console.log(selected)}
-            {selectOptions &&
+            {selected && selected.length !== 0 ? (
+              selectOptions &&
               selectOptions
                 .filter(
                   (x: any, i: any, a: number) =>
@@ -145,9 +145,14 @@ const InputSelectMultiple = ({
                   <Chip
                     key={value.id}
                     label={value.name}
-                    sx={{ color: "#FFFFFF", backgroundColor: "red" }}
+                    sx={{ color: "#ffffffb5", backgroundColor: "#08123b" }}
                   />
-                ))}
+                ))
+            ) : (
+              <span style={{ color: "#525562", fontWeight: 400 }}>
+                Choose a category
+              </span>
+            )}
           </Box>
         )}
         MenuProps={MenuProps}

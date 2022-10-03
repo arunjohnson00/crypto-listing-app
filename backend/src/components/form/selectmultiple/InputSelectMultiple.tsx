@@ -122,10 +122,26 @@ const InputSelectMultiple = ({
         }}
         renderValue={(selected) => (
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-            {console.log(selected)}
-            {selected.map((value: any) => (
-              <Chip key={value} label={value} />
-            ))}
+            {selected && selected.length !== 0 ? (
+              selectOptions &&
+              selectOptions
+                .filter(
+                  (x: any, i: any, a: number) =>
+                    parseInt(x.id) ===
+                    selected[selected.findIndex((item: any) => item === x.id)]
+                )
+                .map((value: any) => (
+                  <Chip
+                    key={value.id}
+                    label={value.name}
+                    sx={{ color: "#ffffff", backgroundColor: "#505050" }}
+                  />
+                ))
+            ) : (
+              <span style={{ color: "#525562", fontWeight: 400 }}>
+                Choose a category
+              </span>
+            )}
           </Box>
         )}
         MenuProps={MenuProps}
