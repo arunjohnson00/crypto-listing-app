@@ -102,7 +102,7 @@ const InputSelectMultiple = ({
     //   draggable: true,
     // });
   };
-  console.log(selectOptions);
+
   return (
     <FormControl
       sx={{ m: 1, minWidth: matches === true ? 300 : "100%", mt: 0 }}

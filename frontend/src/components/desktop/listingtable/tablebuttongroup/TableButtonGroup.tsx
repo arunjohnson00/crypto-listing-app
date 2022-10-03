@@ -38,7 +38,10 @@ const TableButtonGroup = ({
   }, [tableTabvalue]);
 
   return (
-    <Box sx={{ width: "100%" }} pt={1}>
+    <Box
+      sx={{ width: "87%", display: "flex", alignItems: "center", height: 40 }}
+      pt={0}
+    >
       <Tabs
         value={tableTabvalue}
         onChange={tableTabHandleChange}
@@ -74,8 +77,13 @@ const TableButtonGroup = ({
             borderRadius: 4,
           },
           "& .MuiButtonBase-root.MuiTab-root>.MuiTab-iconWrapper": {
-            marginBottom: "2px",
+            // marginBottom: "2px",
             marginRight: "4px",
+            alignSelf: "center",
+          },
+          "&.MuiTabs-scroller": {
+            display: "felx",
+            alignItems: "center",
           },
         }}
       >

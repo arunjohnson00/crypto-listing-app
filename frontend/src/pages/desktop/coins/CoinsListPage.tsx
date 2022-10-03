@@ -1,7 +1,17 @@
 import { Fragment, useState, useEffect } from "react";
-import { Grid, Stack, Typography, Box, Avatar, Skeleton } from "@mui/material";
+import {
+  Grid,
+  Stack,
+  Typography,
+  Box,
+  Avatar,
+  Skeleton,
+  IconButton,
+  Divider,
+} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 
 import FeaturedCoinCards from "../../../components/desktop/cards/featuredcoin/FeaturedCoinCards";
 import { useTheme } from "@mui/material/styles";
@@ -35,6 +45,9 @@ import Carousel from "react-multi-carousel";
 import MobileFeaturedCoinCards from "../../../components/mobile/cards/featuredcoin/MobileFeaturedCoinCards";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 import MobileLatestNewsCardScrollTop from "../../../components/mobile/latestnews/MobileLatestNewsCardScrollTop";
+import MobileTableFilterBtn from "../../../components/mobile/buttongroup/tablefilterbtn/MobileTableFilterBtn";
+import ListingTableFilterMenu from "../../../components/desktop/listingtable/tablefilterbtn/tablefiltermenu/ListingTableFilterMenu";
+import MobileListingTableFilterBtn from "../../../components/desktop/listingtable/tablefilterbtn/MobileListingTableFilterBtn";
 
 const responsiveFeatured: any = {
   superLargeDesktop: {
@@ -70,6 +83,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
   const [tableData, setTableData] = useState<any>([]);
   const [page, setPage] = useState({ pagination: 1, scroll: true });
   const [rowsPerPage, setRowsPerPage] = useState(20);
+  const [tableFilter, setTableFilter] = useState(false);
   const [preLoader, setPreLoader] = useState<any>({
     recently_added: true,
     biggest_gainers: true,
@@ -111,6 +125,10 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
     setTableTabValue(newValue);
     setTableData([]);
     setPage({ ...page, pagination: 1 });
+  };
+
+  const filterBtnHandler = () => {
+    setTableFilter(!tableFilter);
   };
 
   useEffect(() => {
@@ -443,11 +461,32 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
             padding={1.5}
           >
             <Grid xs={12} pt={2}>
-              <TableButtonGroup
-                tableTabvalue={tableTabvalue}
-                setTableTabValue={setTableTabValue}
-                tableTabHandleChange={tableTabHandleChange}
-              />
+              <Stack
+                direction={{ xs: "row", sm: "row", md: "row" }}
+                spacing={0}
+                sx={{
+                  flexGrow: 1,
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+                pb={1}
+              >
+                <TableButtonGroup
+                  tableTabvalue={tableTabvalue}
+                  setTableTabValue={setTableTabValue}
+                  tableTabHandleChange={tableTabHandleChange}
+                />
+                <Divider
+                  variant="middle"
+                  flexItem
+                  orientation={"vertical"}
+                  sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
+                />
+                <IconButton aria-label="filter" onClick={filterBtnHandler}>
+                  <FilterAltOutlinedIcon sx={{ color: "#03E2B1" }} />
+                </IconButton>
+              </Stack>
+              {tableFilter === true && <MobileListingTableFilterBtn />}
             </Grid>
             <Grid xs={12}>
               {location?.pathname === "/coins/watch-list" ? (
