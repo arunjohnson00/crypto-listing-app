@@ -25,18 +25,12 @@ const MobileSingleNftPage = () => {
 
   return (
     <Fragment>
-      <Grid
-        container
-        spacing={5}
-        sx={{
-          dispaly: "flex",
-        }}
-      >
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+      <Grid container>
+        <Grid item xs={12} sx={{}}>
           <MobileLatestNewsCardScrollTop />
         </Grid>
 
-        <Grid xs={12} sx={{ paddingTop: 0 }}>
+        <Grid item xs={12} sx={{ paddingTop: 0 }}>
           <MobileCoinSlider />
         </Grid>
 
@@ -61,7 +55,7 @@ const MobileSingleNftPage = () => {
             <CoinSlider />
           </Stack>
         </Grid> */}
-        <Grid
+        {/* <Grid
           xs={12}
           sx={{
             alignItems: "center",
@@ -77,29 +71,14 @@ const MobileSingleNftPage = () => {
           >
             <MobileTopAlertBox />
           </Stack>
-        </Grid>
+        </Grid> */}
 
-        <Grid
-          container
-          xs={12}
-          sx={{
-            alignItems: "center",
-          }}
-        >
-          <Grid
-            xs={12}
-            sm={12}
-            md={6}
-            lg={6}
-            xl={6}
-            sx={{
-              alignItems: "center",
-            }}
-            py={1}
-          >
+        <Grid container>
+          <Grid item xs={12} sm={12} md={6} lg={6} xl={6} mt={2}>
             <MobileBreadCrumbs home="Home" path="NFT" />
           </Grid>
           <Grid
+            item
             xs={12}
             sm={12}
             md={6}
@@ -119,25 +98,11 @@ const MobileSingleNftPage = () => {
           </Grid>
         </Grid>
 
-        <Grid
-          container
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: 2,
-          }}
-        >
+        <Grid item xs={12}>
           <SingleNFTHeader />
         </Grid>
 
-        <Grid
-          container
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: 2,
-          }}
-        >
+        <Grid item xs={12}>
           <Stack direction="column" spacing={2} px={1.5}>
             <Typography
               sx={{ color: "#00FFE0", fontSize: "1.4rem", fontWeight: 600 }}

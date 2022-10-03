@@ -467,13 +467,13 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                     sx={{
                       color: "#FFFFF5",
                       fontWeight: 800,
-                      fontSize: "1.8rem",
+                      fontSize: "1.4rem",
                       textTransform: "capitalize",
                     }}
                     textAlign={{ xs: "center", sm: "center", md: "left" }}
                   >
-                    {coinData && coinData?.name.length > 18
-                      ? coinData?.name.slice(0, 18) + "..."
+                    {coinData && coinData?.name.length > 14
+                      ? coinData?.name.slice(0, 13) + "..."
                       : coinData?.name}
                   </Typography>
 

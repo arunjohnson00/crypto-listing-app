@@ -42,7 +42,7 @@ const SingleNftPage = () => {
 
   return (
     <Fragment>
-      <Grid container>
+      <Grid container rowSpacing={5}>
         <Grid item xs={12}>
           <LatestNewsScroll />
         </Grid>
