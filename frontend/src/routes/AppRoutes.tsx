@@ -43,6 +43,8 @@ import AirDropsEdit from "../pages/useradmin/airdrops/edit/AirDropsEdit";
 import SupportPage from "../pages/desktop/supportpage/SupportPage";
 import FearGreedIndexPage from "../pages/desktop/feargreedindexpage/FearGreedIndexPage";
 import ReviewEdit from "../pages/useradmin/review/edit/ReviewEdit";
+import MobileAddAssetPage from "../pages/mobile/mobileaddasset/MobileAddAssetPage";
+import MobileDiscoverPage from "../pages/mobile/mobilediscover/MobileDiscoverPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -139,14 +141,25 @@ const AppRoutes = () => {
           }
         />
 
-        <Route
-          path="/add-asset"
-          element={
-            <PublicRoutes>
-              <AddAssetPage windowInnerWidth={windowInnerWidth} />
-            </PublicRoutes>
-          }
-        />
+        {windowInnerWidth >= 900 ? (
+          <Route
+            path="/add-asset"
+            element={
+              <PublicRoutes>
+                <AddAssetPage windowInnerWidth={windowInnerWidth} />
+              </PublicRoutes>
+            }
+          />
+        ) : (
+          <Route
+            path="/add-asset"
+            element={
+              <PublicRoutes>
+                <MobileAddAssetPage windowInnerWidth={windowInnerWidth} />
+              </PublicRoutes>
+            }
+          />
+        )}
 
         <Route
           path="/chart"
@@ -235,15 +248,25 @@ const AppRoutes = () => {
             }
           />
         )}
-
-        <Route
-          path="/discover"
-          element={
-            <PublicRoutes>
-              <DiscoverPage />
-            </PublicRoutes>
-          }
-        />
+        {windowInnerWidth >= 900 ? (
+          <Route
+            path="/discover"
+            element={
+              <PublicRoutes>
+                <DiscoverPage />
+              </PublicRoutes>
+            }
+          />
+        ) : (
+          <Route
+            path="/discover"
+            element={
+              <PublicRoutes>
+                <MobileDiscoverPage />
+              </PublicRoutes>
+            }
+          />
+        )}
         <Route
           path="/login"
           element={

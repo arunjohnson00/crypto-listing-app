@@ -51,7 +51,7 @@ const MobileSingleCoinChip = ({ src, title, link, variant, shape }: any) => {
                 sx={{ borderRadius: 0 }}
               />
             ) : variant === "website" ? (
-              <Avatar alt={title && title} src={src} sx={{ borderRadius: 0 }} />
+              <Avatar alt={title && title} src={src} />
             ) : (
               <Avatar alt={title && title} src={src} sx={{ borderRadius: 0 }} />
             )

@@ -102,10 +102,10 @@ const MobileSingleNftPage = () => {
           <SingleNFTHeader />
         </Grid>
 
-        <Grid item xs={12}>
-          <Stack direction="column" spacing={2} px={1.5}>
+        <Grid item xs={12} mb={7} pt={2}>
+          <Stack direction="column" spacing={0.4}>
             <Typography
-              sx={{ color: "#00FFE0", fontSize: "1.4rem", fontWeight: 600 }}
+              sx={{ color: "#00FFE0", fontSize: "1.2rem", fontWeight: 600 }}
             >
               About Bored Ape
             </Typography>

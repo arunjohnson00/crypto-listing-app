@@ -4,16 +4,26 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { relative } from "node:path/win32";
-import DiscoverLatest from "../discoverlatest/DiscoverLatest";
-import DiscoverNews from "../discovernews/DiscoverNews";
-import DiscoverVideo from "../discovervideo/DiscoverVideo";
-import DiscoverRecentlyAdded from "../discoverrecentlyadded/DiscoverRecentlyAdded";
+import DiscoverLatest from "../../desktop/discoverlatest/DiscoverLatest";
+import DiscoverNews from "../../desktop/discovernews/DiscoverNews";
+import DiscoverVideo from "../../desktop/discovervideo/DiscoverVideo";
+import DiscoverRecentlyAdded from "../../desktop/discoverrecentlyadded/DiscoverRecentlyAdded";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import DiscoverTrending from "../discovertrending/DiscoverTrending";
-import DiscoverNFTs from "../discovernft/DiscoverNFTs";
-import DiscoverNftMarketPlaces from "../discovernftmarketplaces/DiscoverNftMarketPlaces";
-import DiscoverAirdrops from "../discoverairdrops/DiscoverAirdrops";
-import DiscoverEvents from "../discoverevents/DiscoverEvents";
+import DiscoverTrending from "../../desktop/discovertrending/DiscoverTrending";
+import DiscoverNFTs from "../../desktop/discovernft/DiscoverNFTs";
+import DiscoverNftMarketPlaces from "../../desktop/discovernftmarketplaces/DiscoverNftMarketPlaces";
+import DiscoverAirdrops from "../../desktop/discoverairdrops/DiscoverAirdrops";
+import DiscoverEvents from "../../desktop/discoverevents/DiscoverEvents";
+import { makeStyles } from "@mui/styles";
+import MobileDiscoverLatest from "../discoverlatest/MobileDiscoverLatest";
+import MobileDiscoverNews from "../discovernews/MobileDiscoverNews";
+import MobileDiscoverEvents from "../discoverevents/MobileDiscoverEvents";
+import MobileDiscoverAirdrops from "../discoverairdrops/MobileDiscoverAirdrops";
+import MobileDiscoverNFTs from "../discovernft/MobileDiscoverNFTs";
+import MobileDiscoverTrending from "../discovertrending/MobileDiscoverTrending";
+import MobileDiscoverVideo from "../discovervideo/MobileDiscoverVideo";
+import MobileDiscoverRecentlyAdded from "../discoverrecentlyadded/MobileDiscoverRecentlyAdded";
+import MobileDiscoverNftMarketPlaces from "../discovernftmarketplaces/MobileDiscoverNftMarketPlaces";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -44,12 +54,14 @@ function a11yProps(index: number) {
   };
 }
 
-const DiscoverVerticalTab = () => {
+const MobileDiscoverHorizontalTab = () => {
   const [value, setValue] = React.useState(0);
+  const [scrollBtn, setScrollBtn] = React.useState(false);
   const matches = useMediaQuery("(min-width:900px)");
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    // newValue > 2 ? setScrollBtn(true) : setScrollBtn(false);
   };
   return (
     <Box
@@ -63,17 +75,16 @@ const DiscoverVerticalTab = () => {
       flexDirection={{ xs: "column", sm: "column", md: "row", lg: "row" }}
     >
       <Tabs
-        orientation={`${matches ? "vertical" : "horizontal"}`}
-        variant={`${matches ? "fullWidth" : "scrollable"}`}
-        //variant="scrollable"
+        orientation={"horizontal"}
+        // variant={"fullWidth"}
+        variant="scrollable"
         //orientation="vertical"
-        scrollButtons
-        allowScrollButtonsMobile
+        scrollButtons={true}
+        allowScrollButtonsMobile={false}
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
         sx={{
-          width: `${matches ? "18%" : "100%"}`,
           backgroundColor: "#020419",
           "& .MuiTabs-indicator": {
             //display: "none",
@@ -87,15 +98,28 @@ const DiscoverVerticalTab = () => {
             color: "#F8F7FA",
             textTransform: "capitalize",
             minHeight: 57,
+            minWidth: 120,
+            paddingX: 0,
+            marginX: 0,
+            backgroundColor: "#050829",
           },
           "& .MuiButtonBase-root.MuiTab-root": {
             color: "#F8F7FA",
             textTransform: "capitalize",
             minHeight: 57,
+            minWidth: 120,
             fontSize: 12,
-            backgroundColor: "#020419",
-            boxShadow: "5px 0px 0px #0D1B55 inset",
-            marginLeft: 0.5,
+            backgroundColor: "#020521",
+            paddingX: 0,
+            marginX: 0,
+
+            //boxShadow: "5px 0px 0px #0D1B55 inset",
+            // marginLeft: 0.5,
+          },
+
+          "&.Mui-disabled": {
+            width: 0,
+            display: "none",
           },
         }}
       >
@@ -103,7 +127,7 @@ const DiscoverVerticalTab = () => {
           label="Latest"
           {...a11yProps(0)}
           sx={{
-            paddingLeft: 4,
+            paddingX: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
               alignItems: `${matches ? "flex-start" : "center"}`,
             },
@@ -113,7 +137,7 @@ const DiscoverVerticalTab = () => {
           label="News"
           {...a11yProps(1)}
           sx={{
-            paddingLeft: 4,
+            paddingX: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
               alignItems: `${matches ? "flex-start" : "center"}`,
             },
@@ -123,7 +147,7 @@ const DiscoverVerticalTab = () => {
           label="Watch Videos"
           {...a11yProps(2)}
           sx={{
-            paddingLeft: 4,
+            paddingX: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
               alignItems: `${matches ? "flex-start" : "center"}`,
             },
@@ -133,7 +157,7 @@ const DiscoverVerticalTab = () => {
           label="Recently Added"
           {...a11yProps(3)}
           sx={{
-            paddingLeft: 4,
+            paddingX: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
               alignItems: `${matches ? "flex-start" : "center"}`,
             },
@@ -153,7 +177,7 @@ const DiscoverVerticalTab = () => {
           label="NFT's"
           {...a11yProps(4)}
           sx={{
-            paddingLeft: 4,
+            paddingX: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
               alignItems: `${matches ? "flex-start" : "center"}`,
             },
@@ -163,7 +187,7 @@ const DiscoverVerticalTab = () => {
           label="NFT Marketplaces"
           {...a11yProps(5)}
           sx={{
-            paddingLeft: 4,
+            paddingX: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
               alignItems: `${matches ? "flex-start" : "center"}`,
             },
@@ -174,7 +198,7 @@ const DiscoverVerticalTab = () => {
           label="Airdrops"
           {...a11yProps(6)}
           sx={{
-            paddingLeft: 4,
+            paddingX: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
               alignItems: `${matches ? "flex-start" : "center"}`,
             },
@@ -182,46 +206,46 @@ const DiscoverVerticalTab = () => {
         />
         <Tab
           label="Events"
-          {...a11yProps(7)}
+          {...a11yProps(6)}
           sx={{
-            paddingLeft: 4,
+            paddingX: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
               alignItems: `${matches ? "flex-start" : "center"}`,
             },
           }}
         />
       </Tabs>
-      <Box sx={{ width: "82%" }} p={0}>
+      <Box p={0}>
         <TabPanel value={value} index={0}>
-          <DiscoverLatest />
+          <MobileDiscoverLatest />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <DiscoverNews />
+          <MobileDiscoverNews />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <DiscoverVideo />
+          <MobileDiscoverVideo />
         </TabPanel>
         <TabPanel value={value} index={3}>
-          <DiscoverRecentlyAdded />
+          <MobileDiscoverRecentlyAdded />
         </TabPanel>
         {/* <TabPanel value={value} index={4}>
-          <DiscoverTrending />
+          <MobileDiscoverTrending />
         </TabPanel> */}
         <TabPanel value={value} index={4}>
-          <DiscoverNFTs />
+          <MobileDiscoverNFTs />
         </TabPanel>
         <TabPanel value={value} index={5}>
-          <DiscoverNftMarketPlaces />
+          <MobileDiscoverNftMarketPlaces />
         </TabPanel>
         <TabPanel value={value} index={6}>
-          <DiscoverAirdrops />
+          <MobileDiscoverAirdrops />
         </TabPanel>
         <TabPanel value={value} index={7}>
-          <DiscoverEvents />
+          <MobileDiscoverEvents />
         </TabPanel>
       </Box>
     </Box>
   );
 };
 
-export default DiscoverVerticalTab;
+export default MobileDiscoverHorizontalTab;

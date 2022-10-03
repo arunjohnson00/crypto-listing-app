@@ -74,7 +74,7 @@ const MobileCoinPageOverview = () => {
                   src={LinkImage}
                   title={item?.url}
                   link={item?.url}
-                  varient="website"
+                  variant="website"
                 />
               )
             )}

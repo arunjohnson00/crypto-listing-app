@@ -28,19 +28,19 @@ import OpenLinkImage from "../../../assets/singlepagenft/link_icon.png";
 import NFTImage from "../../../assets/singlepagenft/nft_icon.png";
 import VoteImage from "../../../assets/singlepagenft/vote_icon.png";
 
-import LinkImage from "../../../assets/singlepagenft/link.png";
+import LinkImage from "../../../assets/singlepagenft/globe.gif";
 
 import MobileSingleCoinChip from "../coinpagechip/MobileSingleCoinChip";
 
 const SingleNFTHeader = () => {
   return (
     <Box sx={{ width: "100%" }}>
-      <Stack direction="column" spacing={4}>
+      <Stack direction="column" spacing={2.5}>
         <Box
           sx={{
             backgroundColor: "#000000",
             borderRadius: 6,
-            border: "1.5px solid #120C76",
+            border: "1px solid #0b1640",
           }}
           p={3}
         >
@@ -52,32 +52,32 @@ const SingleNFTHeader = () => {
           />
         </Box>
 
-        <Stack direction="column" spacing={1} px={1.5}>
+        <Stack direction="column" spacing={1}>
           <Typography
-            sx={{ color: "#FFFFFF", fontSize: "1.7rem", fontWeight: 500 }}
+            sx={{ color: "#FFFFFF", fontSize: "1.4rem", fontWeight: 500 }}
           >
             Bored Ape
           </Typography>
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography
-              sx={{ color: "#3C4C88", fontSize: "1.05rem", fontWeight: 500 }}
+              sx={{ color: "#3C4C88", fontSize: ".85rem", fontWeight: 500 }}
             >
               Listed :
             </Typography>
             <Typography
-              sx={{ color: "#00F6AE", fontSize: "1.05rem", fontWeight: 500 }}
+              sx={{ color: "#00F6AE", fontSize: ".85rem", fontWeight: 500 }}
             >
               36 Minutes ago
             </Typography>
           </Stack>
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography
-              sx={{ color: "#3C4C88", fontSize: "1.05rem", fontWeight: 500 }}
+              sx={{ color: "#3C4C88", fontSize: ".85rem", fontWeight: 500 }}
             >
               Network :
             </Typography>
             <Typography
-              sx={{ color: "#FFFFFF", fontSize: "1.05rem", fontWeight: 500 }}
+              sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 500 }}
             >
               Binance SmartChain
             </Typography>
@@ -92,28 +92,23 @@ const SingleNFTHeader = () => {
           variant="fullWidth"
           flexItem
           orientation={"horizontal"}
-          sx={{ borderColor: "#02133C", borderBottomWidth: 2 }}
+          sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
         />
-        <Stack
-          direction="row"
-          spacing={1}
-          px={1.5}
-          justifyContent="space-between"
-        >
+        <Stack direction="row" spacing={1} justifyContent="space-between">
           <Stack direction="column" spacing={0}>
             <Typography
-              sx={{ color: "#00F6AE", fontSize: "1.3rem", fontWeight: 500 }}
+              sx={{ color: "#00F6AE", fontSize: ".85rem", fontWeight: 500 }}
             >
               Pre-Sale Mint Price
             </Typography>
             <Stack direction="row" spacing={1}>
               <Typography
-                sx={{ color: "#FFFFFF", fontSize: "1.5rem", fontWeight: 500 }}
+                sx={{ color: "#FFFFFF", fontSize: "1.1rem", fontWeight: 500 }}
               >
                 $1245.15
               </Typography>
               <Typography
-                sx={{ color: "#437DFF", fontSize: "1.5rem", fontWeight: 500 }}
+                sx={{ color: "#437DFF", fontSize: "1.1rem", fontWeight: 500 }}
               >
                 ETH
               </Typography>
@@ -123,22 +118,22 @@ const SingleNFTHeader = () => {
             variant="middle"
             flexItem
             orientation={"vertical"}
-            sx={{ borderColor: "#02133C", borderRightWidth: 2 }}
+            sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
           />
           <Stack direction="column" spacing={0}>
             <Typography
-              sx={{ color: "#00F6AE", fontSize: "1.3rem", fontWeight: 500 }}
+              sx={{ color: "#00F6AE", fontSize: ".85rem", fontWeight: 500 }}
             >
               Public Mint Price
             </Typography>
             <Stack direction="row" spacing={1}>
               <Typography
-                sx={{ color: "#FFFFFF", fontSize: "1.5rem", fontWeight: 500 }}
+                sx={{ color: "#FFFFFF", fontSize: "1.1rem", fontWeight: 500 }}
               >
                 $1245.15
               </Typography>
               <Typography
-                sx={{ color: "#437DFF", fontSize: "1.5rem", fontWeight: 500 }}
+                sx={{ color: "#437DFF", fontSize: "1.1rem", fontWeight: 500 }}
               >
                 ETH
               </Typography>
@@ -150,99 +145,123 @@ const SingleNFTHeader = () => {
           variant="fullWidth"
           flexItem
           orientation={"horizontal"}
-          sx={{ borderColor: "#02133C", borderBottomWidth: 2 }}
+          sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
         />
-        <Stack direction="column" spacing={0} px={1.5}>
+        <Stack direction="column" spacing={0}>
           <Typography
-            sx={{ color: "#435394", fontSize: "1.1rem", fontWeight: 500 }}
+            sx={{ color: "#435394", fontSize: ".85rem", fontWeight: 500 }}
           >
             Presale starts in
           </Typography>
           <Typography
-            sx={{ color: "#CEE478", fontSize: "1.2rem", fontWeight: 500 }}
+            sx={{ color: "#CEE478", fontSize: "1rem", fontWeight: 500 }}
           >
-            23Day 15Hour 23Minutes 23Seconds
+            23 Day 15 Hour 23 Minutes 23 Seconds
           </Typography>
         </Stack>
-        <Stack direction="column" spacing={0} px={1.5}>
-          <Stack direction="row" spacing={0} justifyContent="space-between">
-            <Stack direction="row" spacing={1.2} alignItems="center" pt={2}>
+        <Stack direction="column" spacing={2}>
+          <Stack direction="row" spacing={2}>
+            <Stack
+              direction="row"
+              spacing={1.2}
+              alignItems="flex-start"
+              pt={0}
+              flexGrow={1}
+            >
               {" "}
               <Avatar
                 alt="Remy Sharp"
                 src={ClockImage}
-                sx={{ width: 40, height: 40, borderRadius: 0 }}
+                sx={{ width: 25, height: 25, borderRadius: 0 }}
               />
               <Stack direction="column" spacing={0}>
                 <Typography
-                  sx={{ color: "#00C7AF", fontSize: ".9rem", fontWeight: 500 }}
+                  sx={{ color: "#00C7AF", fontSize: ".75rem", fontWeight: 500 }}
                 >
                   Presale Start Date
                 </Typography>
                 <Typography
-                  sx={{ color: "#FFFFFF", fontSize: "1.5rem", fontWeight: 500 }}
+                  sx={{ color: "#FFFFFF", fontSize: ".9rem", fontWeight: 500 }}
                 >
                   21 Sep 2022
                 </Typography>
               </Stack>
             </Stack>
-            <Stack direction="row" spacing={1.2} alignItems="center" pt={2}>
+            <Stack
+              direction="row"
+              spacing={1.2}
+              alignItems="flex-start"
+              pt={0}
+              flexGrow={1}
+            >
               {" "}
               <Avatar
                 alt="Remy Sharp"
                 src={ClockImage}
-                sx={{ width: 40, height: 40, borderRadius: 0 }}
+                sx={{ width: 25, height: 25, borderRadius: 0 }}
               />
               <Stack direction="column" spacing={0}>
                 <Typography
-                  sx={{ color: "#00C7AF", fontSize: ".9rem", fontWeight: 500 }}
+                  sx={{ color: "#00C7AF", fontSize: ".75rem", fontWeight: 500 }}
                 >
                   Presale End Date
                 </Typography>
                 <Typography
-                  sx={{ color: "#FFFFFF", fontSize: "1.5rem", fontWeight: 500 }}
+                  sx={{ color: "#FFFFFF", fontSize: ".9rem", fontWeight: 500 }}
                 >
                   21 Sep 2022
                 </Typography>
               </Stack>
             </Stack>
           </Stack>
-          <Stack direction="row" spacing={0} justifyContent="space-between">
-            <Stack direction="row" spacing={1.2} alignItems="center" pt={2}>
+          <Stack direction="row" spacing={2}>
+            <Stack
+              direction="row"
+              spacing={1.2}
+              alignItems="flex-start"
+              pt={0}
+              flexGrow={1}
+            >
               {" "}
               <Avatar
                 alt="Remy Sharp"
                 src={ClockImage}
-                sx={{ width: 40, height: 40, borderRadius: 0 }}
+                sx={{ width: 25, height: 25, borderRadius: 0 }}
               />
               <Stack direction="column" spacing={0}>
                 <Typography
-                  sx={{ color: "#00D2FF", fontSize: ".9rem", fontWeight: 500 }}
+                  sx={{ color: "#00D2FF", fontSize: ".75rem", fontWeight: 500 }}
                 >
                   Public Mint Start Date
                 </Typography>
                 <Typography
-                  sx={{ color: "#FFFFFF", fontSize: "1.5rem", fontWeight: 500 }}
+                  sx={{ color: "#FFFFFF", fontSize: ".9rem", fontWeight: 500 }}
                 >
                   21 Sep 2022
                 </Typography>
               </Stack>
             </Stack>
-            <Stack direction="row" spacing={1.2} alignItems="center" pt={2}>
+            <Stack
+              direction="row"
+              spacing={1.2}
+              alignItems="flex-start"
+              pt={0}
+              flexGrow={1}
+            >
               {" "}
               <Avatar
                 alt="Remy Sharp"
                 src={ClockImage}
-                sx={{ width: 40, height: 40, borderRadius: 0 }}
+                sx={{ width: 25, height: 25, borderRadius: 0 }}
               />
               <Stack direction="column" spacing={0}>
                 <Typography
-                  sx={{ color: "#00D2FF", fontSize: ".9rem", fontWeight: 500 }}
+                  sx={{ color: "#00D2FF", fontSize: ".75rem", fontWeight: 500 }}
                 >
                   Public Mint End Date
                 </Typography>
                 <Typography
-                  sx={{ color: "#FFFFFF", fontSize: "1.5rem", fontWeight: 500 }}
+                  sx={{ color: "#FFFFFF", fontSize: ".9rem", fontWeight: 500 }}
                 >
                   21 Sep 2022
                 </Typography>
@@ -254,28 +273,23 @@ const SingleNFTHeader = () => {
           variant="fullWidth"
           flexItem
           orientation={"horizontal"}
-          sx={{ borderColor: "#02133C", borderBottomWidth: 2 }}
+          sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
         />
-        <Stack
-          direction="row"
-          spacing={1}
-          px={1.5}
-          justifyContent="space-between"
-        >
+        <Stack direction="row" spacing={1} justifyContent="space-between">
           <Stack direction="row" spacing={1.2} alignItems="center">
             <Avatar
               alt="Remy Sharp"
               src={NFTImage}
-              sx={{ width: 40, height: 40, borderRadius: 0 }}
+              sx={{ width: 25, height: 25, borderRadius: 0 }}
             />
             <Stack direction="column" spacing={0.2}>
               <Typography
-                sx={{ color: "#00F6AE", fontSize: ".78rem", fontWeight: 500 }}
+                sx={{ color: "#00F6AE", fontSize: ".75rem", fontWeight: 500 }}
               >
                 Total Supply
               </Typography>
               <Typography
-                sx={{ color: "#FFFFFF", fontSize: "1.5rem", fontWeight: 500 }}
+                sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 500 }}
               >
                 100,00000
               </Typography>
@@ -285,22 +299,22 @@ const SingleNFTHeader = () => {
             variant="middle"
             flexItem
             orientation={"vertical"}
-            sx={{ borderColor: "#02133C", borderRightWidth: 2 }}
+            sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
           />
           <Stack direction="row" spacing={1.2} alignItems="center">
             <Avatar
               alt="Remy Sharp"
               src={VoteImage}
-              sx={{ width: 40, height: 40, borderRadius: 0 }}
+              sx={{ width: 25, height: 25, borderRadius: 0 }}
             />
             <Stack direction="column" spacing={0.2}>
               <Typography
-                sx={{ color: "#00F6AE", fontSize: ".78rem", fontWeight: 500 }}
+                sx={{ color: "#00F6AE", fontSize: ".75rem", fontWeight: 500 }}
               >
                 Total Votes
               </Typography>
               <Typography
-                sx={{ color: "#FFFFFF", fontSize: "1.5rem", fontWeight: 500 }}
+                sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 500 }}
               >
                 8756
               </Typography>
@@ -312,12 +326,12 @@ const SingleNFTHeader = () => {
           variant="fullWidth"
           flexItem
           orientation={"horizontal"}
-          sx={{ borderColor: "#02133C", borderBottomWidth: 2 }}
+          sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
         />
 
-        <Stack direction="column" spacing={1} px={1.5}>
+        <Stack direction="column" spacing={1.2} px={1.5}>
           <Typography
-            sx={{ color: "#435495", fontSize: "1.1rem", fontWeight: 500 }}
+            sx={{ color: "#435495", fontSize: "1rem", fontWeight: 500 }}
           >
             Available on
           </Typography>
@@ -331,10 +345,10 @@ const SingleNFTHeader = () => {
               <Avatar
                 alt="Remy Sharp"
                 src="https://mui.com/static/images/avatar/1.jpg"
-                sx={{ width: 40, height: 40, borderRadius: 0 }}
+                sx={{ width: 20, height: 20, borderRadius: 0 }}
               />
               <Typography
-                sx={{ color: "#FFFFFF", fontSize: "1.5rem", fontWeight: 500 }}
+                sx={{ color: "#FFFFFF", fontSize: "1rem", fontWeight: 500 }}
               >
                 Rarible
               </Typography>
@@ -342,7 +356,7 @@ const SingleNFTHeader = () => {
               <Avatar
                 alt="Remy Sharp"
                 src={OpenLinkImage}
-                sx={{ width: 23, height: 23, borderRadius: 0 }}
+                sx={{ width: 15, height: 15, borderRadius: 0 }}
               />
             </Stack>
             <Stack
@@ -354,10 +368,10 @@ const SingleNFTHeader = () => {
               <Avatar
                 alt="Remy Sharp"
                 src="https://mui.com/static/images/avatar/1.jpg"
-                sx={{ width: 40, height: 40, borderRadius: 0 }}
+                sx={{ width: 20, height: 20, borderRadius: 0 }}
               />
               <Typography
-                sx={{ color: "#FFFFFF", fontSize: "1.5rem", fontWeight: 500 }}
+                sx={{ color: "#FFFFFF", fontSize: "1rem", fontWeight: 500 }}
               >
                 Rarible
               </Typography>
@@ -365,7 +379,7 @@ const SingleNFTHeader = () => {
               <Avatar
                 alt="Remy Sharp"
                 src={OpenLinkImage}
-                sx={{ width: 23, height: 23, borderRadius: 0 }}
+                sx={{ width: 15, height: 15, borderRadius: 0 }}
               />
             </Stack>
           </Stack>
@@ -374,7 +388,7 @@ const SingleNFTHeader = () => {
           variant="fullWidth"
           flexItem
           orientation={"horizontal"}
-          sx={{ borderColor: "#02133C", borderBottomWidth: 2 }}
+          sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
         />
 
         <Stack direction="column" spacing={3} px={1.5}>
@@ -385,28 +399,33 @@ const SingleNFTHeader = () => {
               alignItems="center"
               sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
             >
-              <Tooltip title="Delete">
-                <Avatar
-                  src={ToolTipImage}
-                  sx={{ width: 14, height: 14 }}
-                ></Avatar>
-              </Tooltip>
               <Typography
                 variant="body2"
-                sx={{ color: "#23E2A0", fontWeight: 500 }}
+                sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
               >
                 Website
               </Typography>
+              <Tooltip title="Delete">
+                <Avatar
+                  src={ToolTipImage}
+                  sx={{ width: 9, height: 9 }}
+                ></Avatar>
+              </Tooltip>
             </Stack>
             <Stack
               direction="row"
               alignItems="center"
               sx={{ flexWrap: "wrap" }}
             >
-              <MobileSingleCoinChip src={LinkImage} title="safemoon.com" />
+              <MobileSingleCoinChip
+                src={LinkImage}
+                title="safemoon.com"
+                variant="website"
+              />
               <MobileSingleCoinChip
                 src={LinkImage}
                 title="safemooncommunityindia.com"
+                variant="website"
               />
             </Stack>
           </Stack>
@@ -417,27 +436,39 @@ const SingleNFTHeader = () => {
               alignItems="center"
               sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
             >
-              <Tooltip title="Delete">
-                <Avatar
-                  src={ToolTipImage}
-                  sx={{ width: 14, height: 14 }}
-                ></Avatar>
-              </Tooltip>
               <Typography
                 variant="body2"
-                sx={{ color: "#23E2A0", fontWeight: 500 }}
+                sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
               >
                 Community
               </Typography>
+              <Tooltip title="Delete">
+                <Avatar
+                  src={ToolTipImage}
+                  sx={{ width: 9, height: 9 }}
+                ></Avatar>
+              </Tooltip>
             </Stack>
             <Stack
               direction="row"
               alignItems="center"
               sx={{ flexWrap: "wrap" }}
             >
-              <MobileSingleCoinChip src={FacebookImage} title="Facebook" />
-              <MobileSingleCoinChip src={TwitterImage} title="Twitter" />
-              <MobileSingleCoinChip src={InstagramImage} title="Instagram" />
+              <MobileSingleCoinChip
+                src={FacebookImage}
+                title="Facebook"
+                variant="communities"
+              />
+              <MobileSingleCoinChip
+                src={TwitterImage}
+                title="Twitter"
+                variant="communities"
+              />
+              <MobileSingleCoinChip
+                src={InstagramImage}
+                title="Instagram"
+                variant="communities"
+              />
             </Stack>
           </Stack>
         </Stack>
@@ -445,7 +476,7 @@ const SingleNFTHeader = () => {
           variant="fullWidth"
           flexItem
           orientation={"horizontal"}
-          sx={{ borderColor: "#02133C", borderBottomWidth: 2 }}
+          sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
         />
       </Stack>
     </Box>
