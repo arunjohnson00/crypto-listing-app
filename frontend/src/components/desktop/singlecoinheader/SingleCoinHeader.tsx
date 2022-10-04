@@ -169,7 +169,6 @@ const SingleCoinHeader = ({ coinData }: any) => {
     const formData = new FormData();
     formData.append("slug", location?.pathname?.split("/").pop());
     const successHandler = (res: any) => {
-      console.log(res);
       setOpenCaptcha(false);
       setVote({ ...vote, initial: true, completed: false, captcha: false });
 
@@ -200,9 +199,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
         setVote({ ...vote, initial: false, completed: true, captcha: false });
       }, 2000);
     };
-    const errorHandler = (err: any) => {
-      console.log(err);
-    };
+    const errorHandler = (err: any) => {};
 
     dispatch(addWatchListRequest(formData, successHandler, errorHandler));
   };
@@ -223,7 +220,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
       )
     );
   }, [dispatch]);
-  console.log(upperCaseFirst("test india"));
+
   return (
     <Fragment>
       <Grid xs={12}>
@@ -289,22 +286,6 @@ const SingleCoinHeader = ({ coinData }: any) => {
               <Stack direction={{ xs: "column", sm: "column", md: "column" }}>
                 {/* {coinData &&
                   coinData?.presale_start_date !== null &&
-                  coinData?.presale_start_date !== "" && (
-                    <Typography
-                      variant="caption"
-                      sx={{ color: "#FFFFF5" }}
-                      textAlign={{ xs: "center", sm: "center", md: "left" }}
-                    >
-                      Presale starts in:
-                      <span style={{ color: "#BDD645" }}>
-                        {" "}
-                        00days 08 Hours 24
-                      </span>
-                    </Typography>
-                  )} */}
-
-                {coinData &&
-                  coinData?.presale_start_date !== null &&
                   coinData?.presale_end_date !== null && (
                     <Stack
                       direction="row"
@@ -317,11 +298,13 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     >
                       {coinData && parseInt(coinData?.is_presale) === 1 ? (
                         <span>
-                          {Math.sign(
+                          {coinData &&
+                          Math.sign(
                             moment(new Date(coinData?.presale_start_date)).diff(
                               new Date()
                             )
                           ) === -1 &&
+                          coinData &&
                           Math.sign(
                             moment(new Date(coinData?.presale_end_date)).diff(
                               new Date()
@@ -329,7 +312,6 @@ const SingleCoinHeader = ({ coinData }: any) => {
                           ) === 1 ? (
                             <span>
                               {
-                                //  <BounceLoader size={12} color="#00FF00" />
                                 <Stack
                                   direction="row"
                                   spacing={0.5}
@@ -380,12 +362,11 @@ const SingleCoinHeader = ({ coinData }: any) => {
                                   textTransform: "capitalize",
                                 }}
                               >
-                                {" "}
-                                {/* {coinData && coinData?.name} */}
-                                {moment(
-                                  new Date(coinData?.presale_end_date),
-                                  "YYYYMMDD"
-                                ).fromNow()}
+                                {coinData &&
+                                  moment(
+                                    new Date(coinData?.presale_end_date),
+                                    "YYYYMMDD"
+                                  ).fromNow()}
                               </span>
                             </Typography>
                           </Link>
@@ -412,13 +393,14 @@ const SingleCoinHeader = ({ coinData }: any) => {
                             fontSize: ".7rem",
                           }}
                         >
-                          {CountDownTimer(coinData?.presale_end_date)}
+                          {coinData &&
+                            CountDownTimer(coinData?.presale_end_date)}
                         </Typography>
                       ) : (
                         ""
                       )}
                     </Stack>
-                  )}
+                  )} */}
 
                 <Stack
                   direction={{ xs: "row", sm: "row", md: "row" }}
@@ -496,24 +478,6 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     ) : (
                       <span style={{ color: "#7a7a7a" }}>--</span>
                     )}
-
-                    {/* {  String(Math.trunc(parseFloat(coinData?.current_price)))
-                        .length > 2 ? (
-                        "$" +
-                        Number(
-                          parseFloat(coinData?.current_price).toFixed(2)
-                        ).toLocaleString()
-                      ) : coinData && Math.abs(coinData?.current_price) > 1 ? (
-                        "$" +
-                        parseFloat(coinData?.current_price)
-                          .toFixed(4)
-                          .toLocaleString()
-                      ) : (
-                        "$" +
-                        parseFloat(coinData?.current_price)
-                          .toFixed(9)
-                          .toLocaleString()
-                      )} */}
                   </Typography>
 
                   {Math.sign(parseFloat(coinData?.percent_change_1h)) === -1 ? (
@@ -1218,7 +1182,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               </Typography>
             </Stack> */}
 
-            {coinSocialGraph &&
+            {/* {coinSocialGraph &&
               coinSocialGraph?.response === true &&
               coinSocialGraph?.data[0]?.twitter !== undefined &&
               coinSocialGraph?.data[0]?.twitter.length > 0 && (
@@ -1390,7 +1354,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   endColor="#2415a2"
                   startColor="#404EED"
                 />
-              )}
+              )} */}
 
             {/* <Divider
               variant="middle"

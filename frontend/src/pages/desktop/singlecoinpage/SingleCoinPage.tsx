@@ -77,7 +77,7 @@ const SingleCoinPage = () => {
       navigate("/");
     const successHandler = (res: any) => {
       //setRequestStatus(res?.data?.status);
-      console.log(res?.data?.status, "hi");
+
       if (res?.data?.status === true) {
         dispatch(
           coinDetailFirstBlockRequest(
@@ -131,7 +131,7 @@ const SingleCoinPage = () => {
           errorHandler
         )
       );
-    }, 5000);
+    }, 10000);
   }, []);
 
   return (
