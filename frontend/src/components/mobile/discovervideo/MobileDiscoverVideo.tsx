@@ -41,7 +41,7 @@ const MobileDiscoverVideo = () => {
               key={index}
               sx={{
                 flexGrow: 1,
-                padding: 2,
+                padding: 0,
                 borderRadius: 0,
                 backgroundColor: "#020419",
               }}

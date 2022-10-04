@@ -35,23 +35,30 @@ import MobileSingleCoinChip from "../coinpagechip/MobileSingleCoinChip";
 const SingleNFTHeader = () => {
   return (
     <Box sx={{ width: "100%" }}>
-      <Stack direction="column" spacing={2.5}>
-        <Box
-          sx={{
-            backgroundColor: "#000000",
-            borderRadius: 6,
-            border: "1px solid #0b1640",
-          }}
-          p={3}
+      <Stack direction="column" spacing={2.5} alignItems="flex-start">
+        <Stack
+          direction="column"
+          spacing={2.5}
+          alignItems="center"
+          width={"100%"}
         >
-          <CardMedia
-            component="img"
-            height="350"
-            image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-            alt="green iguana"
-          />
-        </Box>
-
+          <Box
+            sx={{
+              backgroundColor: "#000000",
+              borderRadius: 6,
+              border: "1px solid #0b1640",
+              width: "max-content",
+            }}
+            p={3}
+          >
+            <Avatar
+              variant="square"
+              src="https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg?w=2000"
+              alt="green iguana"
+              sx={{ width: 200, height: 200 }}
+            />
+          </Box>
+        </Stack>
         <Stack direction="column" spacing={1}>
           <Typography
             sx={{ color: "#FFFFFF", fontSize: "1.4rem", fontWeight: 500 }}
@@ -94,7 +101,7 @@ const SingleNFTHeader = () => {
           orientation={"horizontal"}
           sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
         />
-        <Stack direction="row" spacing={1} justifyContent="space-between">
+        <Stack direction="row" spacing={3} justifyContent="space-between">
           <Stack direction="column" spacing={0}>
             <Typography
               sx={{ color: "#00F6AE", fontSize: ".85rem", fontWeight: 500 }}
@@ -275,7 +282,7 @@ const SingleNFTHeader = () => {
           orientation={"horizontal"}
           sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
         />
-        <Stack direction="row" spacing={1} justifyContent="space-between">
+        <Stack direction="row" spacing={3} justifyContent="space-between">
           <Stack direction="row" spacing={1.2} alignItems="center">
             <Avatar
               alt="Remy Sharp"
@@ -335,7 +342,7 @@ const SingleNFTHeader = () => {
           >
             Available on
           </Typography>
-          <Stack direction="row" spacing={1} justifyContent="space-between">
+          <Stack direction="row" spacing={3} justifyContent="space-between">
             <Stack
               direction="row"
               spacing={1}

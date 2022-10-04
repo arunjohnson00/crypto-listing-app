@@ -6,7 +6,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
-import { Divider, Stack } from "@mui/material";
+import { Divider, Stack, useMediaQuery } from "@mui/material";
 import StarOutlineRoundedIcon from "@mui/icons-material/StarOutlineRounded";
 
 const TableButtonGroup = ({
@@ -16,7 +16,7 @@ const TableButtonGroup = ({
 }: any) => {
   const location = useLocation();
   const navigate = useNavigate();
-
+  const matches = useMediaQuery("(min-width:600px)");
   useEffect(() => {
     location?.pathname === "/coins/watch-list" && setTableTabValue("1");
     location?.pathname === "/coins" && setTableTabValue("2");
@@ -39,7 +39,12 @@ const TableButtonGroup = ({
 
   return (
     <Box
-      sx={{ width: "87%", display: "flex", alignItems: "center", height: 40 }}
+      sx={{
+        width: matches ? "auto" : "87%",
+        display: "flex",
+        alignItems: "center",
+        height: 40,
+      }}
       pt={0}
     >
       <Tabs
@@ -49,6 +54,7 @@ const TableButtonGroup = ({
         scrollButtons
         aria-label="secondary tabs example"
         sx={{
+          alignItems: "center",
           "& .MuiTabs-indicator": {
             display: "none",
             backgroundColor: "#040A22",
@@ -82,7 +88,7 @@ const TableButtonGroup = ({
             alignSelf: "center",
           },
           "&.MuiTabs-scroller": {
-            display: "felx",
+            display: "flex",
             alignItems: "center",
           },
         }}

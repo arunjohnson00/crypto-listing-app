@@ -460,16 +460,16 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
             }}
             padding={1.5}
           >
-            <Grid xs={12} pt={2}>
+            <Grid xs={12} pt={0}>
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
                 spacing={0}
                 sx={{
                   flexGrow: 1,
                   alignItems: "center",
-                  justifyContent: "space-between",
+                  // justifyContent: "space-between",
                 }}
-                pb={1}
+                pb={1.3}
               >
                 <TableButtonGroup
                   tableTabvalue={tableTabvalue}

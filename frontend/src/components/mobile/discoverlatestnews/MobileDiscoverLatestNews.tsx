@@ -72,7 +72,7 @@ const MobileDiscoverLatestNews = () => {
 
           <Stack
             direction={{ xs: "column", sm: "column", md: "column" }}
-            spacing={0.5}
+            spacing={2}
           >
             {latestNews &&
               latestNews?.map((item: any, index: number) => (

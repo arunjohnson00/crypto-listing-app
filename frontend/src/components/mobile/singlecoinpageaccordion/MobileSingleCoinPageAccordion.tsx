@@ -130,7 +130,7 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
                   variant="body2"
                   sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
                 >
-                  Contact Address
+                  Contract Address
                 </Typography>
                 <Tooltip title="Delete">
                   <Avatar
@@ -232,11 +232,11 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
                         >
                           <Stack
                             direction={{ xs: "row", sm: "row", md: "row" }}
-                            sx={{ alignItems: "center" }}
+                            sx={{ alignItems: "center", flexGrow: 1 }}
                             justifyContent={{
-                              xs: "center",
-                              sm: "center",
-                              md: "center",
+                              xs: "flex-start",
+                              sm: "flex-start",
+                              md: "flex-start",
                               lg: "flex-start",
                             }}
                             spacing={1}
@@ -259,13 +259,18 @@ const MobileSingleCoinPageAccordion = ({ variant }: any) => {
 
                           <Stack
                             direction={{ xs: "row", sm: "row", md: "row" }}
-                            sx={{ alignItems: "center" }}
+                            sx={{
+                              alignItems: "center",
+                            }}
+                            justifyContent="space-between"
                             spacing={0.8}
+                            minWidth={175}
                           >
                             <a
                               href={item?.url}
                               style={{
                                 color: "#8A93C9",
+                                maxWidth: 155,
                                 //textDecoration: "none"
                               }}
                               target="_blank"

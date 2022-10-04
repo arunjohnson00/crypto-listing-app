@@ -25,14 +25,14 @@ const MobileSingleNftPage = () => {
 
   return (
     <Fragment>
-      <Grid container>
-        <Grid item xs={12} sx={{}}>
+      <Grid container rowSpacing={3}>
+        {/* <Grid item xs={12} sx={{}}>
           <MobileLatestNewsCardScrollTop />
         </Grid>
 
         <Grid item xs={12} sx={{ paddingTop: 0 }}>
           <MobileCoinSlider />
-        </Grid>
+        </Grid> */}
 
         {/* <Grid
           xs={12}
@@ -73,11 +73,10 @@ const MobileSingleNftPage = () => {
           </Stack>
         </Grid> */}
 
-        <Grid container>
-          <Grid item xs={12} sm={12} md={6} lg={6} xl={6} mt={2}>
-            <MobileBreadCrumbs home="Home" path="NFT" />
-          </Grid>
-          <Grid
+        <Grid item xs={12} sm={12} md={6} lg={6} xl={6} mt={2}>
+          <MobileBreadCrumbs home="Home" path="NFT" />
+        </Grid>
+        {/* <Grid
             item
             xs={12}
             sm={12}
@@ -96,7 +95,7 @@ const MobileSingleNftPage = () => {
               alt="green iguana"
             />
           </Grid>
-        </Grid>
+       */}
 
         <Grid item xs={12}>
           <SingleNFTHeader />
