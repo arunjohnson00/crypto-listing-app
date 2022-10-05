@@ -4,6 +4,8 @@ import { Grid, Box, Stack, useMediaQuery } from "@mui/material";
 import NotificationBar from "../../components/useradmin/notificationbar/NotificationBar";
 import UserAdminSideBar from "../../components/useradmin/useradminsidebar/UserAdminSideBar";
 import UserAdminMobileBottomNav from "../../components/useradmin/bottomnavigation/UserAdminMobileBottomNav";
+import MobileBottomNav from "../../components/mobile/bottomnavigation/MobileBottomNav";
+import MobileAppbarTop from "../../components/useradmin/appbartop/MobileAppbarTop";
 
 const UserAdminView = ({ children }: any) => {
   const location: any = useLocation();
@@ -15,12 +17,14 @@ const UserAdminView = ({ children }: any) => {
   return (
     <Box
       sx={{
-        backgroundColor: "#161234",
+        backgroundColor: matches === true ? "#161234" : "#01061A",
         height: "-webkit-fill-available",
         width: "100%",
       }}
+      pb={10}
     >
-      <NotificationBar />
+      {matches === true ? <NotificationBar /> : <MobileAppbarTop />}
+
       <Stack direction="row">
         {matches === true && (
           <Box
@@ -35,12 +39,13 @@ const UserAdminView = ({ children }: any) => {
           width={matches === true ? "80%" : "100%"}
           sx={{ transition: "all .5s" }}
         >
-          <Box pl={3} pr={2}>
-            {children}
-          </Box>
+          <Box px={matches === true ? 4 : 1.5}>{children}</Box>
         </Box>
 
-        {matches === false && <UserAdminMobileBottomNav />}
+        {matches === false && (
+          // <UserAdminMobileBottomNav />
+          <MobileBottomNav />
+        )}
       </Stack>
     </Box>
   );

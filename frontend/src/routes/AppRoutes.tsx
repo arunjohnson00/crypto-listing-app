@@ -10,7 +10,7 @@ import SingleNftPage from "../pages/desktop/singlenftpage/SingleNftPage";
 import AppLoginPage from "../pages/desktop/login/AppLoginPage";
 import AppNewsPage from "../pages/desktop/news/AppNewsPage";
 import AppRegisterPage from "../pages/desktop/register/AppRegisterPage";
-import UserDashboard from "../pages/useradmin/dashboard/UserDashboard";
+import UserDashboard from "../pages/useradmin/desktop/dashboard/UserDashboard";
 import NftListingsPage from "../pages/desktop/nftlisting/NftListingsPage";
 import CoinsListPage from "../pages/desktop/coins/CoinsListPage";
 import ComparisonPage from "../pages/desktop/comparisonpage/ComparisonPage";
@@ -28,23 +28,24 @@ import MobileCryptoEventsPage from "../pages/mobile/mobilecryptoeventspage/Mobil
 import MobileSingleCryptoEventsPage from "../pages/mobile/mobilesinglecryptoeventspage/MobileSingleCryptoEventsPage";
 import SingleNftMarketPlacesPage from "../pages/desktop/singlenftmarketplaces/SingleNftMarketPlacesPage";
 import BoostPublishPage from "../pages/desktop/boostpublish/BoostPublishPage";
-import UserSettings from "../pages/useradmin/usersettings/UserSettings";
+import UserSettings from "../pages/useradmin/desktop/usersettings/UserSettings";
 import SelectPlanPage from "../pages/desktop/selectplanpage/SelectPlanPage";
 import SelectPlanMailPage from "../pages/desktop/selectplanmailpage/SelectPlanMailPage";
 import AddAssetPage from "../pages/desktop/addasset/AddAssetPage";
-import CoinListingAdd from "../pages/useradmin/coin/add/CoinListingAdd";
-import CoinListingEdit from "../pages/useradmin/coin/edit/CoinListingEdit";
-import NFTListingAdd from "../pages/useradmin/nftlisting/add/NFTListingAdd";
-import NFTListingEdit from "../pages/useradmin/nftlisting/edit/NFTListingEdit";
-import EventsAdd from "../pages/useradmin/events/add/EventsAdd";
-import EventsEdit from "../pages/useradmin/events/edit/EventsEdit";
-import AirDropsAdd from "../pages/useradmin/airdrops/add/AirDropsAdd";
-import AirDropsEdit from "../pages/useradmin/airdrops/edit/AirDropsEdit";
+import CoinListingAdd from "../pages/useradmin/desktop/coin/add/CoinListingAdd";
+import CoinListingEdit from "../pages/useradmin/desktop/coin/edit/CoinListingEdit";
+import NFTListingAdd from "../pages/useradmin/desktop/nftlisting/add/NFTListingAdd";
+import NFTListingEdit from "../pages/useradmin/desktop/nftlisting/edit/NFTListingEdit";
+import EventsAdd from "../pages/useradmin/desktop/events/add/EventsAdd";
+import EventsEdit from "../pages/useradmin/desktop/events/edit/EventsEdit";
+import AirDropsAdd from "../pages/useradmin/desktop/airdrops/add/AirDropsAdd";
+import AirDropsEdit from "../pages/useradmin/desktop/airdrops/edit/AirDropsEdit";
 import SupportPage from "../pages/desktop/supportpage/SupportPage";
 import FearGreedIndexPage from "../pages/desktop/feargreedindexpage/FearGreedIndexPage";
-import ReviewEdit from "../pages/useradmin/review/edit/ReviewEdit";
+import ReviewEdit from "../pages/useradmin/desktop/review/edit/ReviewEdit";
 import MobileAddAssetPage from "../pages/mobile/mobileaddasset/MobileAddAssetPage";
 import MobileDiscoverPage from "../pages/mobile/mobilediscover/MobileDiscoverPage";
+import MobileUserDashboard from "../pages/useradmin/mobile/dashboard/MobileUserDashboard";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -334,14 +335,26 @@ const AppRoutes = () => {
             </PublicRoutes>
           }
         />
-        <Route
-          path="/user-dashboard"
-          element={
-            <PrivateRoute>
-              <UserDashboard />
-            </PrivateRoute>
-          }
-        />
+
+        {windowInnerWidth >= 900 ? (
+          <Route
+            path="/user-dashboard"
+            element={
+              <PrivateRoute>
+                <UserDashboard />
+              </PrivateRoute>
+            }
+          />
+        ) : (
+          <Route
+            path="/user-dashboard"
+            element={
+              <PrivateRoute>
+                <MobileUserDashboard />
+              </PrivateRoute>
+            }
+          />
+        )}
 
         <Route
           path="/user-dashboard/settings"

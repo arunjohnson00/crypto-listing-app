@@ -32,7 +32,7 @@ root.render(
     />
     <ScrollToTop
       smooth
-      style={{ bottom: 70, right: 15, background: "#23B184" }}
+      style={{ bottom: 75, right: 15, background: "#23B184" }}
       color="#23B184"
       width="20"
       height="20"
