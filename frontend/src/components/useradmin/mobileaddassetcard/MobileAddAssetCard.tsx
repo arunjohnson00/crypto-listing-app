@@ -48,7 +48,7 @@ const MobileAddAssetCard = ({
         <Typography
           sx={{
             color: color && color,
-            fontSize: ".8rem",
+            fontSize: ".65rem",
             textAlign: "center",
             lineHeight: ".95rem",
           }}

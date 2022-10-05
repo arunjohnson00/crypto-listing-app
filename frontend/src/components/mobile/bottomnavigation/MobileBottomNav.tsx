@@ -44,8 +44,8 @@ const MobileBottomNav = () => {
       ? navigate("/discover")
       : value === "events"
       ? navigate("/crypto-events")
-      : value === "news"
-      ? navigate("/news")
+      : value === "user-dashboard"
+      ? navigate("/user-dashboard")
       : value === "home" && navigate("/");
   }, [value]);
 
@@ -125,23 +125,6 @@ const MobileBottomNav = () => {
           />
 
           <BottomNavigationAction
-            label="News"
-            value="news"
-            icon={
-              <Avatar
-                variant="square"
-                src={newsImage}
-                sx={{
-                  width: 24,
-                  height: 24,
-                  filter:
-                    value === "news" ? "grayscale(0%)" : "grayscale(100%)",
-                  opacity: value === "news" ? 1 : 0.5,
-                }}
-              />
-            }
-          />
-          <BottomNavigationAction
             label="Events"
             value="events"
             icon={
@@ -154,6 +137,25 @@ const MobileBottomNav = () => {
                   filter:
                     value === "events" ? "grayscale(0%)" : "grayscale(100%)",
                   opacity: value === "events" ? 1 : 0.5,
+                }}
+              />
+            }
+          />
+          <BottomNavigationAction
+            label="My account"
+            value="user-dashboard"
+            icon={
+              <Avatar
+                variant="square"
+                src={newsImage}
+                sx={{
+                  width: 24,
+                  height: 24,
+                  filter:
+                    value === "user-dashboard"
+                      ? "grayscale(0%)"
+                      : "grayscale(100%)",
+                  opacity: value === "user-dashboard" ? 1 : 0.5,
                 }}
               />
             }

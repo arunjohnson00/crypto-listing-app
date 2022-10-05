@@ -44,7 +44,11 @@ const MobileOverViewCard = ({
           />
         </Box>
         <Typography
-          sx={{ color: color && color, fontSize: ".8rem", textAlign: "center" }}
+          sx={{
+            color: color && color,
+            fontSize: ".65rem",
+            textAlign: "center",
+          }}
         >
           {title && title}
         </Typography>

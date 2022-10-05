@@ -1,5 +1,5 @@
 import { Box, CardMedia, Grid, Stack, Typography } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import MobileMultiSlider from "../../../../components/useradmin/mobilemultislider/MobileMultiSlider";
 import MobileOverViewCard from "../../../../components/useradmin/mobileoverviewcard/MobileOverViewCard";
@@ -22,14 +22,16 @@ import settingsIcon from "../../../../assets/userdashboard/mobile/settings.png";
 import adsIcon from "../../../../assets/userdashboard/mobile/ads.png";
 import logoutIcon from "../../../../assets/userdashboard/mobile/logout.png";
 import menuIcon from "../../../../assets/userdashboard/mobile/menu.png";
+import { useNavigate } from "react-router-dom";
 
 const MobileUserDashboard = () => {
   const userData = useSelector((data: any) => {
     return data?.userReducer?.user_login;
   });
   const authUser = JSON.parse(localStorage.getItem("authUser") as any);
+
   return (
-    <Grid container rowSpacing={1} my={5}>
+    <Grid container rowSpacing={1} mb={5}>
       <Grid item xs={12}>
         <Box width="100%" sx={{ backgroundColor: "#01061A" }}>
           <MobileMultiSlider />
@@ -224,7 +226,7 @@ const MobileUserDashboard = () => {
             <MobileBottomMenuCard
               icon={settingsIcon}
               title="Settings"
-              link="/user-dashboard/coin/add"
+              link="/user-dashboard/settings"
               color="#FFFFFF"
               background="#000000"
               border="transparent"
@@ -233,7 +235,7 @@ const MobileUserDashboard = () => {
             <MobileBottomMenuCard
               icon={adsIcon}
               title="My Ads"
-              link="/user-dashboard/coin/add"
+              link="/user-dashboard/ads"
               color="#FFFFFF"
               background="#000000"
               border="transparent"
@@ -243,7 +245,7 @@ const MobileUserDashboard = () => {
             <MobileBottomMenuCard
               icon={logoutIcon}
               title="Logout"
-              link="/user-dashboard/nft/add"
+              variant="logout"
               color="#FFFFFF"
               background="#000000"
               border="transparent"
@@ -252,7 +254,7 @@ const MobileUserDashboard = () => {
             <MobileBottomMenuCard
               icon={menuIcon}
               title="Menu"
-              link="/user-dashboard/events/add"
+              link="#"
               color="#FFFFFF"
               background="#000000"
               border="transparent"
