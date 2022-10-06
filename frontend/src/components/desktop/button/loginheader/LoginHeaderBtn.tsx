@@ -122,42 +122,44 @@ const LoginHeaderBtn = ({ title, handler, icon }: any) => {
                 {menu?.map((item: any, index: number) => (
                   <Fragment>
                     {item?.title === "Logout" ? (
-                      <Stack
-                        direction="row"
-                        spacing={0.2}
-                        alignItems="center"
-                        px={2}
-                        py={0}
-                        sx={{
-                          "&:hover": {
-                            backgroundColor: "#111138",
-                          },
-                        }}
-                        onClick={loginControll}
-                      >
-                        {/* <Avatar
+                      <Box sx={{ cursor: "pointer" }}>
+                        <Stack
+                          direction="row"
+                          spacing={0.2}
+                          alignItems="center"
+                          px={2}
+                          py={0}
+                          sx={{
+                            "&:hover": {
+                              backgroundColor: "#111138",
+                            },
+                          }}
+                          onClick={loginControll}
+                        >
+                          {/* <Avatar
               alt={item?.title}
               src={item?.icon}
               sx={{ width: 22, height: 22, borderRadius: 0 }}
             /> */}
-                        <Box
-                          sx={{
-                            width: 12,
-                            height: 12,
-                            backgroundColor: item && item.color,
-                            borderRadius: 10,
-                          }}
-                        ></Box>
-                        <Typography
-                          sx={{
-                            p: 1,
-                            fontSize: ".9rem",
-                            color: "#FFFFFF",
-                          }}
-                        >
-                          {item?.title}
-                        </Typography>
-                      </Stack>
+                          <Box
+                            sx={{
+                              width: 12,
+                              height: 12,
+                              backgroundColor: item && item.color,
+                              borderRadius: 10,
+                            }}
+                          ></Box>
+                          <Typography
+                            sx={{
+                              p: 1,
+                              fontSize: ".9rem",
+                              color: "#FFFFFF",
+                            }}
+                          >
+                            {item?.title}
+                          </Typography>
+                        </Stack>
+                      </Box>
                     ) : (
                       item?.title !== "Logout" && (
                         <Link

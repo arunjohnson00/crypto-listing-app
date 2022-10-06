@@ -1,13 +1,57 @@
-import * as React from "react";
+import { forwardRef, Fragment, useCallback, useState } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import { Avatar, IconButton, Stack, Typography } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Divider,
+  IconButton,
+  Slide,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import userIcon from "../../../assets/userdashboard/user.png";
+import { TransitionProps } from "@mui/material/transitions";
+import { useDropzone } from "react-dropzone";
+import Cropper from "react-easy-crop";
+import getCroppedImg from "./cropImage";
+
+const Transition = forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement<any, any>;
+  },
+  ref: React.Ref<unknown>
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+const dogImg =
+  "https://img.huffingtonpost.com/asset/5ab4d4ac2000007d06eb2c56.jpeg?cache=sih0jwle4e&ops=1910_1000";
 
 const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
+  const [open, setOpen] = useState(false);
+  const [profileImage, setProfileImage] = useState<any>(null);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState<any>(null);
+  const [croppedImage, setCroppedImage] = useState<any>(null);
+  const [cropWindow, setCropWindow] = useState<any>(false);
+  const [rotation, setRotation] = useState(0);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setProfileImage(null);
+  };
   const userData = useSelector((data: any) => {
     return data?.userReducer?.user_login;
   });
@@ -15,9 +59,43 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
   const authUser = JSON.parse(localStorage.getItem("authUser") as any);
   const auth =
     sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
+
+  const onDrop = useCallback((acceptedFiles: any) => {
+    setProfileImage(acceptedFiles[0]);
+    setCropWindow(true);
+  }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+  const onCropComplete = useCallback(
+    (croppedArea: any, croppedAreaPixels: any) => {
+      setCroppedAreaPixels(croppedAreaPixels);
+    },
+    []
+  );
+
+  const showCroppedImage = useCallback(async () => {
+    try {
+      const croppedImage = await getCroppedImg(
+        URL.createObjectURL(profileImage),
+        croppedAreaPixels,
+        rotation
+      );
+      console.log("donee", { croppedImage });
+      console.log("crop", croppedImage, profileImage);
+      setCropWindow(false);
+      setCroppedImage(croppedImage);
+    } catch (e: any) {
+      console.error(e);
+    }
+  }, [croppedAreaPixels, profileImage]);
+
+  const onClose = useCallback(() => {
+    setCroppedImage(null);
+  }, []);
+
   return (
     <div>
-      <React.Fragment>
+      <Fragment>
         <Drawer
           anchor={"left"}
           open={state?.left}
@@ -46,6 +124,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                 height: "auto",
                 width: "100%",
               }}
+              onClick={handleClickOpen}
             >
               <Stack
                 direction="row"
@@ -561,7 +640,116 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
             </Box>
           </Stack>
         </Drawer>
-      </React.Fragment>
+
+        <Dialog
+          open={open}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={handleClose}
+          aria-describedby="alert-dialog-slide-description"
+          PaperProps={{
+            style: {
+              backgroundColor: "#00081f",
+              color: "#FFFFFF",
+              borderRadius: 16,
+              height: "auto",
+              alignItems: "center",
+              width: "90%",
+            },
+          }}
+          sx={{ borderRadius: 19 }}
+        >
+          <DialogTitle sx={{ fontSize: "1rem" }}>
+            Change Profile Picture
+          </DialogTitle>
+          <Divider
+            light
+            flexItem
+            variant="middle"
+            orientation="horizontal"
+            sx={{ borderColor: "#1F556D" }}
+          />
+          <DialogContent>
+            <Stack direction="column" spacing={2} alignItems="center">
+              <Typography variant="body2" sx={{ color: "#FFFFFF" }}>
+                Update profile picture
+              </Typography>
+              <Avatar
+                alt="Change Image"
+                src={
+                  profileImage && croppedImage !== null
+                    ? croppedImage && croppedImage
+                    : userIcon
+                }
+                sx={{ width: 56, height: 56 }}
+              />
+
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                {isDragActive ? (
+                  <Button
+                    variant="contained"
+                    sx={{
+                      textTransform: "capitalize",
+                      backgroundColor: "#030881",
+                      borderRadius: 10,
+                    }}
+                  >
+                    Edit Profile Picture
+                  </Button>
+                ) : (
+                  <Button
+                    variant="contained"
+                    sx={{
+                      textTransform: "capitalize",
+                      backgroundColor: "#030881",
+                      borderRadius: 10,
+                    }}
+                  >
+                    Edit Profile Picture
+                  </Button>
+                )}
+              </div>
+
+              {cropWindow === true && (
+                <Stack direction="column" spacing={2} alignItems="center">
+                  <Cropper
+                    image={profileImage && URL.createObjectURL(profileImage)}
+                    crop={crop}
+                    zoom={zoom}
+                    aspect={1 / 1}
+                    onCropChange={setCrop}
+                    onCropComplete={onCropComplete}
+                    onZoomChange={setZoom}
+                  />
+                  <Button
+                    variant="contained"
+                    sx={{
+                      textTransform: "capitalize",
+                      backgroundColor: "#030881",
+                      borderRadius: 10,
+                    }}
+                    onClick={showCroppedImage}
+                  >
+                    Crop
+                  </Button>
+                </Stack>
+              )}
+              <Button
+                variant="text"
+                sx={{ textTransform: "capitalize", color: "#50535C" }}
+                onClick={onClose}
+              >
+                Remove
+              </Button>
+            </Stack>
+          </DialogContent>
+          {/* <DialogActions>
+            <Button onClick={handleClose}>Disagree</Button>
+            <Button onClick={handleClose}>Agree</Button>
+          </DialogActions> */}
+        </Dialog>
+      </Fragment>
     </div>
   );
 };
