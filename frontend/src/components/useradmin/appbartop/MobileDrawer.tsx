@@ -13,6 +13,7 @@ import {
   IconButton,
   Slide,
   Stack,
+  TextField,
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -23,6 +24,7 @@ import { TransitionProps } from "@mui/material/transitions";
 import { useDropzone } from "react-dropzone";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "./cropImage";
+import InputTextDrawer from "./text/InputTextDrawer";
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
@@ -42,10 +44,12 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
   const [croppedImage, setCroppedImage] = useState<any>(null);
   const [cropWindow, setCropWindow] = useState<any>(false);
   const [rotation, setRotation] = useState(0);
+  const [menuVariant, setMenuVariant] = useState("");
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
-  const handleClickOpen = () => {
+  const handleClickOpen = (variant: any) => {
     setOpen(true);
+    setMenuVariant(variant);
   };
 
   const handleClose = () => {
@@ -92,7 +96,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
   const onClose = useCallback(() => {
     setCroppedImage(null);
   }, []);
-
+  console.log(userData?.user);
   return (
     <div>
       <Fragment>
@@ -124,7 +128,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                 height: "auto",
                 width: "100%",
               }}
-              onClick={handleClickOpen}
+              onClick={() => handleClickOpen("profile-pic")}
             >
               <Stack
                 direction="row"
@@ -213,6 +217,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                   alignItems="center"
                   justifyContent="space-between"
                   width="100%"
+                  onClick={() => handleClickOpen("profile-name")}
                 >
                   <Stack direction="row" spacing={2} alignItems="baseline">
                     <Box
@@ -265,6 +270,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                   alignItems="center"
                   justifyContent="space-between"
                   width="100%"
+                  onClick={() => handleClickOpen("profile-email")}
                 >
                   <Stack direction="row" spacing={2} alignItems="baseline">
                     <Box
@@ -317,6 +323,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                   alignItems="center"
                   justifyContent="space-between"
                   width="100%"
+                  onClick={() => handleClickOpen("profile-password")}
                 >
                   <Stack direction="row" spacing={2} alignItems="baseline">
                     <Box
@@ -659,9 +666,20 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
           }}
           sx={{ borderRadius: 19 }}
         >
-          <DialogTitle sx={{ fontSize: "1rem" }}>
-            Change Profile Picture
-          </DialogTitle>
+          {menuVariant === "profile-pic" && (
+            <DialogTitle sx={{ fontSize: "1rem" }}>
+              Change Profile Picture
+            </DialogTitle>
+          )}
+          {menuVariant === "profile-name" && (
+            <DialogTitle sx={{ fontSize: "1rem" }}>Change Name</DialogTitle>
+          )}
+          {menuVariant === "profile-email" && (
+            <DialogTitle sx={{ fontSize: "1rem" }}>Change E-mail</DialogTitle>
+          )}
+          {menuVariant === "profile-password" && (
+            <DialogTitle sx={{ fontSize: "1rem" }}>Change Password</DialogTitle>
+          )}
           <Divider
             light
             flexItem
@@ -669,59 +687,128 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
             orientation="horizontal"
             sx={{ borderColor: "#1F556D" }}
           />
-          <DialogContent>
-            <Stack direction="column" spacing={2} alignItems="center">
-              <Typography variant="body2" sx={{ color: "#FFFFFF" }}>
-                Update profile picture
-              </Typography>
-              <Avatar
-                alt="Change Image"
-                src={
-                  profileImage && croppedImage !== null
-                    ? croppedImage && croppedImage
-                    : userIcon
-                }
-                sx={{ width: 56, height: 56 }}
-              />
+          <DialogContent sx={{ width: "-webkit-fill-available" }}>
+            {menuVariant === "profile-pic" && (
+              <Stack
+                direction="column"
+                spacing={2}
+                alignItems="center"
+                width="100%"
+              >
+                <Typography variant="body2" sx={{ color: "#FFFFFF" }}>
+                  Update profile picture
+                </Typography>
+                <Avatar
+                  alt="Change Image"
+                  src={
+                    profileImage && croppedImage !== null
+                      ? croppedImage && croppedImage
+                      : userIcon
+                  }
+                  sx={{ width: 56, height: 56 }}
+                />
 
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                {isDragActive ? (
-                  <Button
-                    variant="contained"
-                    sx={{
-                      textTransform: "capitalize",
-                      backgroundColor: "#030881",
-                      borderRadius: 10,
-                    }}
-                  >
-                    Edit Profile Picture
-                  </Button>
-                ) : (
-                  <Button
-                    variant="contained"
-                    sx={{
-                      textTransform: "capitalize",
-                      backgroundColor: "#030881",
-                      borderRadius: 10,
-                    }}
-                  >
-                    Edit Profile Picture
-                  </Button>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  {isDragActive ? (
+                    <Button
+                      variant="contained"
+                      sx={{
+                        textTransform: "capitalize",
+                        backgroundColor: "#030881",
+                        borderRadius: 10,
+                      }}
+                    >
+                      Edit Profile Picture
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="contained"
+                      sx={{
+                        textTransform: "capitalize",
+                        backgroundColor: "#030881",
+                        borderRadius: 10,
+                      }}
+                    >
+                      Edit Profile Picture
+                    </Button>
+                  )}
+                </div>
+
+                {cropWindow === true && (
+                  <Stack direction="column" spacing={2} alignItems="center">
+                    <Cropper
+                      image={profileImage && URL.createObjectURL(profileImage)}
+                      crop={crop}
+                      zoom={zoom}
+                      aspect={1 / 1}
+                      onCropChange={setCrop}
+                      onCropComplete={onCropComplete}
+                      onZoomChange={setZoom}
+                    />
+                    <Button
+                      variant="contained"
+                      sx={{
+                        textTransform: "capitalize",
+                        backgroundColor: "#030881",
+                        borderRadius: 10,
+                      }}
+                      onClick={showCroppedImage}
+                    >
+                      Crop
+                    </Button>
+                  </Stack>
                 )}
-              </div>
+                <Button
+                  variant="text"
+                  sx={{ textTransform: "capitalize", color: "#50535C" }}
+                  onClick={onClose}
+                >
+                  Remove
+                </Button>
+              </Stack>
+            )}
 
-              {cropWindow === true && (
-                <Stack direction="column" spacing={2} alignItems="center">
-                  <Cropper
-                    image={profileImage && URL.createObjectURL(profileImage)}
-                    crop={crop}
-                    zoom={zoom}
-                    aspect={1 / 1}
-                    onCropChange={setCrop}
-                    onCropComplete={onCropComplete}
-                    onZoomChange={setZoom}
-                  />
+            {menuVariant === "profile-name" && (
+              <Stack
+                direction="column"
+                spacing={4}
+                alignItems="center"
+                width="100%"
+              >
+                <Stack
+                  direction="column"
+                  spacing={0.5}
+                  alignItems="center"
+                  width="100%"
+                >
+                  <Typography variant="body2" sx={{ color: "#FFFFFF" }}>
+                    Current Name
+                  </Typography>
+                  <Typography sx={{ color: "#16D59B", fontSize: "1rem" }}>
+                    {userData && userData !== undefined
+                      ? userData?.user?.name
+                      : authUser && authUser?.name}
+                  </Typography>
+                </Stack>
+
+                <Stack
+                  direction="column"
+                  spacing={2}
+                  alignItems="center"
+                  width="100%"
+                >
+                  <Stack
+                    direction="column"
+                    spacing={1}
+                    alignItems="center"
+                    width="100%"
+                  >
+                    <Typography variant="body2" sx={{ color: "#FFFFFF" }}>
+                      Enter New Name
+                    </Typography>
+                    <InputTextDrawer placeholder="Type your name" />
+                  </Stack>
                   <Button
                     variant="contained"
                     sx={{
@@ -729,20 +816,173 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                       backgroundColor: "#030881",
                       borderRadius: 10,
                     }}
-                    onClick={showCroppedImage}
                   >
-                    Crop
+                    Update Name
                   </Button>
                 </Stack>
-              )}
-              <Button
-                variant="text"
-                sx={{ textTransform: "capitalize", color: "#50535C" }}
-                onClick={onClose}
+              </Stack>
+            )}
+
+            {menuVariant === "profile-email" && (
+              <Stack
+                direction="column"
+                spacing={4}
+                alignItems="center"
+                width="100%"
               >
-                Remove
-              </Button>
-            </Stack>
+                <Stack
+                  direction="column"
+                  spacing={0.5}
+                  alignItems="center"
+                  width="100%"
+                >
+                  <Typography variant="body2" sx={{ color: "#FFFFFF" }}>
+                    Current E-mail
+                  </Typography>
+                  <Typography sx={{ color: "#16D59B", fontSize: "1rem" }}>
+                    {userData && userData !== undefined
+                      ? userData?.user?.email
+                      : authUser && authUser?.email}
+                  </Typography>
+
+                  {((userData &&
+                    userData !== undefined &&
+                    userData?.user?.email !== undefined) ||
+                    authUser?.email !== undefined) && (
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      alignItems="center"
+                      justifyContent="center"
+                      width="100%"
+                      pt={1}
+                    >
+                      <Typography variant="body2" sx={{ color: "#FFFFFF" }}>
+                        Not Verified.
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "#C7C867", textDecoration: "underline" }}
+                      >
+                        Verify Now
+                      </Typography>
+                    </Stack>
+                  )}
+                </Stack>
+
+                <Stack
+                  direction="column"
+                  spacing={2}
+                  alignItems="center"
+                  width="100%"
+                >
+                  <Stack
+                    direction="column"
+                    spacing={1}
+                    alignItems="center"
+                    width="100%"
+                  >
+                    <Typography variant="body2" sx={{ color: "#FFFFFF" }}>
+                      Enter New E-mail
+                    </Typography>
+                    <InputTextDrawer placeholder="Type your email" />
+                  </Stack>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      textTransform: "capitalize",
+                      backgroundColor: "#030881",
+                      borderRadius: 10,
+                    }}
+                  >
+                    Update E-mail
+                  </Button>
+                </Stack>
+              </Stack>
+            )}
+            {menuVariant === "profile-password" && (
+              <Stack
+                direction="column"
+                spacing={4}
+                alignItems="center"
+                width="100%"
+              >
+                {
+                  <Stack
+                    direction="column"
+                    spacing={1}
+                    alignItems="center"
+                    justifyContent="center"
+                    width="100%"
+                    pt={1}
+                  >
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "#464849", fontWeight: 500 }}
+                    >
+                      Password Strength
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "#D3B138", fontWeight: 500 }}
+                    >
+                      Medium
+                    </Typography>
+                  </Stack>
+                }
+
+                <Stack
+                  direction="column"
+                  spacing={2}
+                  alignItems="center"
+                  width="100%"
+                >
+                  <Stack
+                    direction="column"
+                    spacing={1}
+                    alignItems="center"
+                    width="100%"
+                  >
+                    <Typography variant="body2" sx={{ color: "#FFFFFF" }}>
+                      Enter Current Password
+                    </Typography>
+                    <InputTextDrawer placeholder="Enter Current Password" />
+                  </Stack>
+                  <Stack
+                    direction="column"
+                    spacing={1}
+                    alignItems="center"
+                    width="100%"
+                  >
+                    <Typography variant="body2" sx={{ color: "#FFFFFF" }}>
+                      Enter New Password
+                    </Typography>
+                    <InputTextDrawer placeholder="Enter New Password" />
+                  </Stack>
+                  <Stack
+                    direction="column"
+                    spacing={1}
+                    alignItems="center"
+                    width="100%"
+                  >
+                    <Typography variant="body2" sx={{ color: "#FFFFFF" }}>
+                      Confirm New Password
+                    </Typography>
+                    <InputTextDrawer placeholder="Confirm New Password" />
+                  </Stack>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      textTransform: "capitalize",
+                      backgroundColor: "#030881",
+                      borderRadius: 10,
+                    }}
+                  >
+                    Update Password
+                  </Button>
+                </Stack>
+              </Stack>
+            )}
           </DialogContent>
           {/* <DialogActions>
             <Button onClick={handleClose}>Disagree</Button>
