@@ -397,6 +397,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                 height: "auto",
                 width: "100%",
               }}
+              onClick={() => handleClickOpen("announcement")}
             >
               <Stack
                 direction="column"
@@ -457,6 +458,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                 height: "auto",
                 width: "100%",
               }}
+              onClick={() => handleClickOpen("offer-zone")}
             >
               <Stack
                 direction="column"
@@ -680,6 +682,14 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
           {menuVariant === "profile-password" && (
             <DialogTitle sx={{ fontSize: "1rem" }}>Change Password</DialogTitle>
           )}
+          {menuVariant === "announcement" && (
+            <DialogTitle sx={{ fontSize: "1rem" }}>Announcement</DialogTitle>
+          )}
+
+          {menuVariant === "offer-zone" && (
+            <DialogTitle sx={{ fontSize: "1rem" }}>Offer Zone</DialogTitle>
+          )}
+
           <Divider
             light
             flexItem
@@ -981,6 +991,544 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                     Update Password
                   </Button>
                 </Stack>
+              </Stack>
+            )}
+
+            {menuVariant === "announcement" && (
+              <Stack direction="column" spacing={2} alignItems="center">
+                <Box
+                  sx={{
+                    // border: "1px solid #151717",
+                    backgroundColor: "#00020B",
+
+                    borderRadius: 4,
+                    height: "auto",
+                    width: "100%",
+                  }}
+                >
+                  <Stack
+                    direction="column"
+                    spacing={4}
+                    alignItems="center"
+                    p={3}
+                  >
+                    <Stack
+                      direction="column"
+                      spacing={1}
+                      alignItems="center"
+                      justifyContent="center"
+                      width="100%"
+                      pt={1}
+                    >
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#20DDCF",
+                          fontWeight: 500,
+                          fontSize: ".9rem",
+                        }}
+                      >
+                        Limited Period Deal
+                      </Typography>
+                      <Divider
+                        light
+                        flexItem
+                        variant="middle"
+                        orientation="horizontal"
+                        sx={{ borderColor: "#1F556D" }}
+                      />
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#FFFFFF",
+                          fontWeight: 400,
+                          textAlign: "center",
+                        }}
+                      >
+                        We have some new offer for newly added coin.
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#2092C5",
+                          fontWeight: 500,
+                          textAlign: "center",
+                        }}
+                      >
+                        Contact admin for more details
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#4D4E53",
+                          fontWeight: 500,
+                          textAlign: "center",
+                        }}
+                      >
+                        32 min ago
+                      </Typography>
+                    </Stack>
+                  </Stack>
+                </Box>
+                <Box
+                  sx={{
+                    // border: "1px solid #151717",
+                    backgroundColor: "#00020B",
+
+                    borderRadius: 4,
+                    height: "auto",
+                    width: "100%",
+                  }}
+                >
+                  <Stack
+                    direction="column"
+                    spacing={4}
+                    alignItems="center"
+                    p={3}
+                  >
+                    <Stack
+                      direction="column"
+                      spacing={1}
+                      alignItems="center"
+                      justifyContent="center"
+                      width="100%"
+                      pt={1}
+                    >
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#20DDCF",
+                          fontWeight: 500,
+                          fontSize: ".9rem",
+                        }}
+                      >
+                        Limited Period Deal
+                      </Typography>
+                      <Divider
+                        light
+                        flexItem
+                        variant="middle"
+                        orientation="horizontal"
+                        sx={{ borderColor: "#1F556D" }}
+                      />
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#FFFFFF",
+                          fontWeight: 400,
+                          textAlign: "center",
+                        }}
+                      >
+                        We have some new offer for newly added coin.
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#2092C5",
+                          fontWeight: 500,
+                          textAlign: "center",
+                        }}
+                      >
+                        Contact admin for more details
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#4D4E53",
+                          fontWeight: 500,
+                          textAlign: "center",
+                        }}
+                      >
+                        32 min ago
+                      </Typography>
+                    </Stack>
+                  </Stack>
+                </Box>
+                <Box
+                  sx={{
+                    // border: "1px solid #151717",
+                    backgroundColor: "#00020B",
+
+                    borderRadius: 4,
+                    height: "auto",
+                    width: "100%",
+                  }}
+                >
+                  <Stack
+                    direction="column"
+                    spacing={4}
+                    alignItems="center"
+                    p={3}
+                  >
+                    <Stack
+                      direction="column"
+                      spacing={1}
+                      alignItems="center"
+                      justifyContent="center"
+                      width="100%"
+                      pt={1}
+                    >
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#20DDCF",
+                          fontWeight: 500,
+                          fontSize: ".9rem",
+                        }}
+                      >
+                        Limited Period Deal
+                      </Typography>
+                      <Divider
+                        light
+                        flexItem
+                        variant="middle"
+                        orientation="horizontal"
+                        sx={{ borderColor: "#1F556D" }}
+                      />
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#FFFFFF",
+                          fontWeight: 400,
+                          textAlign: "center",
+                        }}
+                      >
+                        We have some new offer for newly added coin.
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#2092C5",
+                          fontWeight: 500,
+                          textAlign: "center",
+                        }}
+                      >
+                        Contact admin for more details
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#4D4E53",
+                          fontWeight: 500,
+                          textAlign: "center",
+                        }}
+                      >
+                        32 min ago
+                      </Typography>
+                    </Stack>
+                  </Stack>
+                </Box>
+
+                <Box
+                  sx={{
+                    // border: "1px solid #151717",
+                    backgroundColor: "#00020B",
+
+                    borderRadius: 4,
+                    height: "auto",
+                    width: "100%",
+                  }}
+                >
+                  <Stack
+                    direction="column"
+                    spacing={4}
+                    alignItems="center"
+                    p={3}
+                  >
+                    <Stack
+                      direction="column"
+                      spacing={1}
+                      alignItems="center"
+                      justifyContent="center"
+                      width="100%"
+                      pt={1}
+                    >
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#20DDCF",
+                          fontWeight: 500,
+                          fontSize: ".9rem",
+                        }}
+                      >
+                        Limited Period Deal
+                      </Typography>
+                      <Divider
+                        light
+                        flexItem
+                        variant="middle"
+                        orientation="horizontal"
+                        sx={{ borderColor: "#1F556D" }}
+                      />
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#FFFFFF",
+                          fontWeight: 400,
+                          textAlign: "center",
+                        }}
+                      >
+                        We have some new offer for newly added coin.
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#2092C5",
+                          fontWeight: 500,
+                          textAlign: "center",
+                        }}
+                      >
+                        Contact admin for more details
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#4D4E53",
+                          fontWeight: 500,
+                          textAlign: "center",
+                        }}
+                      >
+                        32 min ago
+                      </Typography>
+                    </Stack>
+                  </Stack>
+                </Box>
+
+                <Box
+                  sx={{
+                    // border: "1px solid #151717",
+                    backgroundColor: "#00020B",
+
+                    borderRadius: 4,
+                    height: "auto",
+                    width: "100%",
+                  }}
+                >
+                  <Stack
+                    direction="column"
+                    spacing={4}
+                    alignItems="center"
+                    p={3}
+                  >
+                    <Stack
+                      direction="column"
+                      spacing={1}
+                      alignItems="center"
+                      justifyContent="center"
+                      width="100%"
+                      pt={1}
+                    >
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#20DDCF",
+                          fontWeight: 500,
+                          fontSize: ".9rem",
+                        }}
+                      >
+                        Limited Period Deal
+                      </Typography>
+                      <Divider
+                        light
+                        flexItem
+                        variant="middle"
+                        orientation="horizontal"
+                        sx={{ borderColor: "#1F556D" }}
+                      />
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#FFFFFF",
+                          fontWeight: 400,
+                          textAlign: "center",
+                        }}
+                      >
+                        We have some new offer for newly added coin.
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#2092C5",
+                          fontWeight: 500,
+                          textAlign: "center",
+                        }}
+                      >
+                        Contact admin for more details
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#4D4E53",
+                          fontWeight: 500,
+                          textAlign: "center",
+                        }}
+                      >
+                        32 min ago
+                      </Typography>
+                    </Stack>
+                  </Stack>
+                </Box>
+              </Stack>
+            )}
+
+            {menuVariant === "offer-zone" && (
+              <Stack
+                direction="row"
+                alignItems="center"
+                flexWrap="wrap"
+                width="100%"
+              >
+                <Box
+                  sx={{
+                    // border: "1px solid #151717",
+                    backgroundColor: "#00020B",
+
+                    borderRadius: 4,
+                    height: "auto",
+                    flexGrow: 1,
+                  }}
+                  m={1}
+                >
+                  <Stack
+                    direction="column"
+                    spacing={4}
+                    alignItems="center"
+                    justifyContent="center"
+                    p={3}
+                  >
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#20DDCF",
+                        fontWeight: 500,
+                        fontSize: "2rem",
+                      }}
+                    >
+                      Ads
+                    </Typography>
+                  </Stack>
+                </Box>
+
+                <Box
+                  sx={{
+                    // border: "1px solid #151717",
+                    backgroundColor: "#00020B",
+
+                    borderRadius: 4,
+                    height: "auto",
+                    flexGrow: 1,
+                  }}
+                  m={1}
+                >
+                  <Stack
+                    direction="column"
+                    spacing={4}
+                    alignItems="center"
+                    justifyContent="center"
+                    p={3}
+                  >
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#20DDCF",
+                        fontWeight: 500,
+                        fontSize: "2rem",
+                      }}
+                    >
+                      Ads
+                    </Typography>
+                  </Stack>
+                </Box>
+                <Box
+                  sx={{
+                    // border: "1px solid #151717",
+                    backgroundColor: "#00020B",
+
+                    borderRadius: 4,
+                    height: "auto",
+                    flexGrow: 2,
+                  }}
+                  m={1}
+                >
+                  <Stack
+                    direction="column"
+                    spacing={4}
+                    alignItems="center"
+                    justifyContent="center"
+                    p={3}
+                  >
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#20DDCF",
+                        fontWeight: 500,
+                        fontSize: "2rem",
+                      }}
+                    >
+                      Ads
+                    </Typography>
+                  </Stack>
+                </Box>
+                <Box
+                  sx={{
+                    // border: "1px solid #151717",
+                    backgroundColor: "#00020B",
+
+                    borderRadius: 4,
+                    height: "auto",
+                    flexGrow: 1,
+                  }}
+                  m={1}
+                >
+                  <Stack
+                    direction="column"
+                    spacing={4}
+                    alignItems="center"
+                    justifyContent="center"
+                    p={3}
+                  >
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#20DDCF",
+                        fontWeight: 500,
+                        fontSize: "2rem",
+                      }}
+                    >
+                      Ads
+                    </Typography>
+                  </Stack>
+                </Box>
+                <Box
+                  sx={{
+                    // border: "1px solid #151717",
+                    backgroundColor: "#00020B",
+
+                    borderRadius: 4,
+                    height: "auto",
+                    flexGrow: 1,
+                  }}
+                  m={1}
+                >
+                  <Stack
+                    direction="column"
+                    spacing={4}
+                    alignItems="center"
+                    justifyContent="center"
+                    p={3}
+                  >
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#20DDCF",
+                        fontWeight: 500,
+                        fontSize: "2rem",
+                      }}
+                    >
+                      Ads
+                    </Typography>
+                  </Stack>
+                </Box>
               </Stack>
             )}
           </DialogContent>
