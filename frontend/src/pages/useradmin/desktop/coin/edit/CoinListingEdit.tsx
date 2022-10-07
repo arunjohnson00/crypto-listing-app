@@ -676,7 +676,7 @@ const CoinListingEdit = () => {
                   <InputTextArea
                     name="description"
                     id="description"
-                    placeholder="Detailed project description"
+                    placeholder="Enter description"
                     value={editCoin?.description}
                   />
                 </Grid>

@@ -520,7 +520,7 @@ const CoinListingAdd = () => {
                   <InputTextArea
                     name="description"
                     id="description"
-                    placeholder="Detailed project description"
+                    placeholder="Enter description"
                   />
                 </Grid>
               </Grid>

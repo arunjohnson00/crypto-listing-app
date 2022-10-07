@@ -417,10 +417,21 @@ const CoinListingAdd = () => {
               </Grid>
               <Grid item xl={7} lg={7} md={7} sm={7} xs={12}>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                    }}
+                    mb={1}
+                  >
+                    Project Description
+                  </Typography>
                   <InputTextArea
                     name="description"
                     id="description"
-                    placeholder="Detailed project description"
+                    placeholder="Enter description"
                   />
                 </Grid>
               </Grid>

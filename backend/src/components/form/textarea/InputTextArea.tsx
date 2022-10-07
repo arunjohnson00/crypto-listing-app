@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { textareaStyle, rowCount } from "./style";
-
+import "./style.css";
 const InputTextArea = ({ name, id, placeholder, value }: any) => {
   const [textAreaValue, setTextAreaValue] = useState(value);
 
