@@ -19,6 +19,7 @@ import {
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
+import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
 import userIcon from "../../../assets/userdashboard/user.png";
 import { TransitionProps } from "@mui/material/transitions";
 import { useDropzone } from "react-dropzone";
@@ -119,6 +120,11 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
             my={2}
             px={1}
           >
+            <IconButton aria-label="delete" onClick={toggleDrawer(false)}>
+              <ArrowBackIosRoundedIcon
+                sx={{ color: "#b4bdf6", fontSize: "1.2rem" }}
+              />
+            </IconButton>
             <Box
               sx={{
                 // border: "1px solid #151717",
