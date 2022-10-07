@@ -7,6 +7,7 @@ import InputUnstyled, { InputUnstyledProps } from "@mui/base/InputUnstyled";
 import { Link, useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import CancelIcon from "@mui/icons-material/Cancel";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { StyledInputRoot, StyledInputPopUpRoot } from "./style";
 import { StyledInputElement } from "./style";
 import { InputAdornment } from "./style";
@@ -21,6 +22,7 @@ import ConnectWalletBtn from "../button/connectwalletbtn/ConnectWalletBtn";
 import AddAsset from "../button/addasset/AddAsset";
 import LoginHeaderBtn from "../button/loginheader/LoginHeaderBtn";
 import { logoutHandler } from "../../../utils/logoutHandler";
+import MyAccountHeaderBtn from "../button/myaccountheader/MyAccountHeaderBtn";
 
 const CustomInputPopup = forwardRef(function CustomInput(
   props: InputUnstyledProps,
@@ -313,7 +315,22 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
                     <LoginHeaderBtn title="Login" />
                   </Link>
                 ) : (
-                  <LoginHeaderBtn title="Logout" handler={logoutRequest} />
+                  <Stack
+                    direction={{ xs: "row", sm: "row", md: "row" }}
+                    spacing={3}
+                  >
+                    {" "}
+                    <Link
+                      to="/user-dashboard"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      <MyAccountHeaderBtn
+                        title="My Account"
+                        handler={logoutRequest}
+                      />
+                    </Link>
+                    <LoginHeaderBtn title="Logout" handler={logoutRequest} />
+                  </Stack>
                 )}
               </Stack>
             </Stack>

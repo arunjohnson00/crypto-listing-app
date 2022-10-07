@@ -224,6 +224,11 @@ const AppLoginPage = () => {
                             name="email"
                             fullWidth
                             sx={{
+                              input: {
+                                "&::placeholder": {
+                                  color: "#2C3344",
+                                },
+                              },
                               backgroundColor: "#020822",
                               height: 42,
                               borderRadius: 4,
@@ -263,7 +268,7 @@ const AppLoginPage = () => {
                                 </InputAdornment>
                               ),
                               style: {
-                                color: "#2C3344",
+                                color: "#FFFFFF",
                                 paddingTop: 0,
                                 marginTop: 0,
                               },
@@ -292,6 +297,11 @@ const AppLoginPage = () => {
                               showPassword.showPassword ? "text" : "password"
                             }
                             sx={{
+                              input: {
+                                "&::placeholder": {
+                                  color: "#2C3344",
+                                },
+                              },
                               backgroundColor: "#020822",
                               height: 42,
                               borderRadius: 4,
@@ -348,7 +358,7 @@ const AppLoginPage = () => {
                                 </InputAdornment>
                               ),
                               style: {
-                                color: "#2C3344",
+                                color: "#FFFFFF",
                                 paddingTop: 0,
                                 marginTop: 0,
                               },

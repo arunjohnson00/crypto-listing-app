@@ -1,0 +1,5 @@
+textarea {
+  resize: none;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "segoe ui", Roboto,
+    Helvetica, Arial, sans-serif;
+}

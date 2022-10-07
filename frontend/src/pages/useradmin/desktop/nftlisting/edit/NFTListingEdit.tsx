@@ -464,7 +464,11 @@ const NFTListingEdit = () => {
         </Grid>
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12} spacing={0}>
           <Box
-            sx={{ width: "auto", background: "#030921", borderRadius: "7px" }}
+            sx={{
+              width: "auto",
+              background: "linear-gradient(to bottom,#040B27 30%, #01061A 80%)",
+              borderRadius: "7px",
+            }}
             px={{ xs: 3, sm: 3, md: 5 }}
             py={5}
             mb={5}

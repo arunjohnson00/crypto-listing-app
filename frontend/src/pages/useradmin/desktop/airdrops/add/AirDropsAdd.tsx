@@ -185,7 +185,11 @@ const AirDropsAdd = () => {
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Box
-          sx={{ maxWidth: "758px", background: "#030921", borderRadius: "5px" }}
+          sx={{
+            maxWidth: "758px",
+            background: "linear-gradient(to bottom,#040B27 30%, #01061A 80%)",
+            borderRadius: "5px",
+          }}
           pt={3}
           pl={4}
         >

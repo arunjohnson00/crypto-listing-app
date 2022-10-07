@@ -168,6 +168,11 @@ const AppRegisterPage = () => {
                             fullWidth
                             name="name"
                             sx={{
+                              input: {
+                                "&::placeholder": {
+                                  color: "#2C3344",
+                                },
+                              },
                               backgroundColor: "#020822",
                               height: 42,
                               borderRadius: 4,
@@ -203,7 +208,7 @@ const AppRegisterPage = () => {
                                 </InputAdornment>
                               ),
                               style: {
-                                color: "#2C3344",
+                                color: "#FFFFFF",
                                 paddingTop: 0,
                                 marginTop: 0,
                               },
@@ -228,6 +233,11 @@ const AppRegisterPage = () => {
                             fullWidth
                             name="email"
                             sx={{
+                              input: {
+                                "&::placeholder": {
+                                  color: "#2C3344",
+                                },
+                              },
                               backgroundColor: "#020822",
                               height: 42,
                               borderRadius: 4,
@@ -263,7 +273,7 @@ const AppRegisterPage = () => {
                                 </InputAdornment>
                               ),
                               style: {
-                                color: "#2C3344",
+                                color: "#FFFFFF",
                                 paddingTop: 0,
                                 marginTop: 0,
                               },
@@ -292,6 +302,11 @@ const AppRegisterPage = () => {
                               showPassword.showPassword ? "text" : "password"
                             }
                             sx={{
+                              input: {
+                                "&::placeholder": {
+                                  color: "#2C3344",
+                                },
+                              },
                               backgroundColor: "#020822",
                               height: 42,
                               borderRadius: 4,
@@ -348,7 +363,7 @@ const AppRegisterPage = () => {
                                 </InputAdornment>
                               ),
                               style: {
-                                color: "#2C3344",
+                                color: "#FFFFFF",
                                 paddingTop: 0,
                                 marginTop: 0,
                               },
@@ -377,6 +392,11 @@ const AppRegisterPage = () => {
                               showPassword.showPassword ? "text" : "password"
                             }
                             sx={{
+                              input: {
+                                "&::placeholder": {
+                                  color: "#2C3344",
+                                },
+                              },
                               backgroundColor: "#020822",
                               height: 42,
                               borderRadius: 4,
@@ -433,7 +453,7 @@ const AppRegisterPage = () => {
                                 </InputAdornment>
                               ),
                               style: {
-                                color: "#2C3344",
+                                color: "#FFFFFF",
                                 paddingTop: 0,
                                 marginTop: 0,
                               },

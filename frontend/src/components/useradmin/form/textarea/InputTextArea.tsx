@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { textareaStyle, rowCount } from "./style";
 import { useMediaQuery } from "@mui/material";
-
+import "./styel.css";
 const InputTextArea = ({ name, id, placeholder, value }: any) => {
   const [textAreaValue, setTextAreaValue] = useState(value);
   const matches = useMediaQuery("(min-width:900px)");

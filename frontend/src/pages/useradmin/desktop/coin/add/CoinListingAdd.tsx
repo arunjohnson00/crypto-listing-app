@@ -371,7 +371,11 @@ const CoinListingAdd = () => {
 
         <Grid xl={12} lg={12} md={12} sm={12} xs={12}>
           <Box
-            sx={{ width: "auto", background: "#030921", borderRadius: "7px" }}
+            sx={{
+              width: "auto",
+              background: "linear-gradient(to bottom,#040B27 30%, #01061A 80%)",
+              borderRadius: "7px",
+            }}
             px={{ xs: 3, sm: 3, md: 5 }}
             py={5}
             mb={5}
@@ -501,6 +505,18 @@ const CoinListingAdd = () => {
               </Grid>
               <Grid item xl={7} lg={7} md={7} sm={7} xs={12}>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                      color: "#13C086",
+                    }}
+                    mb={1}
+                  >
+                    Project Description
+                  </Typography>
                   <InputTextArea
                     name="description"
                     id="description"
@@ -701,7 +717,11 @@ const CoinListingAdd = () => {
 
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
           <Box
-            sx={{ width: "auto", background: "#030921", borderRadius: "7px" }}
+            sx={{
+              width: "auto",
+              background: "linear-gradient(to bottom,#040B27 30%, #01061A 80%)",
+              borderRadius: "7px",
+            }}
             px={{ xs: 3, sm: 3, md: 5 }}
             py={5}
             mb={5}
@@ -938,13 +958,17 @@ const CoinListingAdd = () => {
         </Grid>
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
           <Box
-            sx={{ width: "auto", background: "#030921", borderRadius: "7px" }}
+            sx={{
+              width: "auto",
+              background: "linear-gradient(to bottom,#040B27 30%, #01061A 80%)",
+              borderRadius: "7px",
+            }}
             px={{ xs: 3, sm: 3, md: 5 }}
             py={5}
             mb={5}
           >
             {coinStatus === "Presale" ? (
-              <Grid container mb={5} mt={1}>
+              <Grid item xs={12} mb={5} mt={1}>
                 <Stack
                   direction={{ xs: "column", sm: "column", md: "row" }}
                   spacing={3}
@@ -1139,7 +1163,7 @@ const CoinListingAdd = () => {
                 </Grid>
               </Grid>
             ) : (
-              <Grid container mb={5} mt={1}>
+              <Grid item xs={12} mb={5} mt={1}>
                 <Stack
                   direction={{ xs: "column", sm: "column", md: "row" }}
                   spacing={3}
@@ -1261,7 +1285,11 @@ const CoinListingAdd = () => {
         </Grid>
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
           <Box
-            sx={{ width: "auto", background: "#030921", borderRadius: "7px" }}
+            sx={{
+              width: "auto",
+              background: "linear-gradient(to bottom,#040B27 30%, #01061A 80%)",
+              borderRadius: "7px",
+            }}
             px={{ xs: 3, sm: 3, md: 5 }}
             py={5}
             mb={5}
