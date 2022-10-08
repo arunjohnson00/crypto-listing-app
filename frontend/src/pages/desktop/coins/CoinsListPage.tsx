@@ -463,7 +463,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
             <Grid xs={12} pt={0}>
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
-                spacing={0}
+                spacing={0.5}
                 sx={{
                   flexGrow: 1,
                   alignItems: "center",

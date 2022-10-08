@@ -79,17 +79,7 @@ const ListingTableMultiSelectFilterMenu = ({
           value={personName}
           // autoWidth={true}
           onChange={handleChange}
-          input={
-            <OutlinedInput
-              label="Tag"
-              sx={{
-                padding: 0,
-                ".MuiSelect-select": {
-                  padding: 0,
-                },
-              }}
-            />
-          }
+          input={<OutlinedInput label="Tag" />}
           displayEmpty
           renderValue={
             personName.length !== 0
@@ -106,7 +96,7 @@ const ListingTableMultiSelectFilterMenu = ({
             <KeyboardArrowDownSharpIcon sx={{ color: "#1976d2" }} />
           )}
           sx={{
-            paddingX: 1,
+            paddingX: 0,
             backgroundColor:
               parseInt(selectedBtn) === parseInt(index)
                 ? "transparent"
