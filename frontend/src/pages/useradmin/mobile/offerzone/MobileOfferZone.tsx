@@ -16,7 +16,7 @@ const MobileOfferZone = () => {
           width: "100%",
         }}
       >
-        <Stack direction="row" alignItems="center" width="100%" p={2}>
+        <Stack direction="row" alignItems="center" width="100%" px={2} py={1}>
           <Stack direction="row" alignItems="flex-start" sx={{ flexGrow: 0 }}>
             <IconButton aria-label="delete" onClick={() => navigate(-1)}>
               <ArrowBackIosRoundedIcon
