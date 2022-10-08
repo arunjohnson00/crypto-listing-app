@@ -190,7 +190,7 @@ const FearAndGreedIndexPieChart = ({ data, filterValue }: any) => {
         </Button>
       </Stack> */}
       <Stack
-        direction="row"
+        direction={{ xs: "column", sm: "column", md: "row" }}
         alignItems="center"
         spacing={1}
         justifyContent="space-around"
@@ -205,7 +205,7 @@ const FearAndGreedIndexPieChart = ({ data, filterValue }: any) => {
         </Box>
         <Stack
           direction="column"
-          alignItems="flex-start"
+          alignItems={{ xs: "center", sm: "center", md: "flex-start" }}
           spacing={3}
           sx={{ flexGrow: 0 }}
         >

@@ -45,7 +45,7 @@ const FearGreedIndexPage = () => {
           <LatestNewsScroll />
         </Grid>
         <Grid item xs={12}>
-          <Grid container columnSpacing={2}>
+          <Grid container columnSpacing={2} rowSpacing={3}>
             <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
               <Typography variant="h5" color="#FFFFFF">
                 Crypto Fear and Greed Index
@@ -60,7 +60,7 @@ const FearGreedIndexPage = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <Grid container columnSpacing={2} pt={3}>
+          <Grid container columnSpacing={2} pt={3} rowSpacing={3}>
             <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
               <Stack direction="row" spacing={2}>
                 <Typography variant="h5" color="#FFFFFF">
