@@ -46,6 +46,8 @@ import ReviewEdit from "../pages/useradmin/desktop/review/edit/ReviewEdit";
 import MobileAddAssetPage from "../pages/mobile/mobileaddasset/MobileAddAssetPage";
 import MobileDiscoverPage from "../pages/mobile/mobilediscover/MobileDiscoverPage";
 import MobileUserDashboard from "../pages/useradmin/mobile/dashboard/MobileUserDashboard";
+import MobileAnnouncement from "../pages/useradmin/mobile/announcement/MobileAnnouncement";
+import MobileOfferZone from "../pages/useradmin/mobile/offerzone/MobileOfferZone";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -364,7 +366,23 @@ const AppRoutes = () => {
             </PrivateRoute>
           }
         />
+        <Route
+          path="/user-dashboard/announcement"
+          element={
+            <PrivateRoute>
+              <MobileAnnouncement />
+            </PrivateRoute>
+          }
+        />
 
+        <Route
+          path="/user-dashboard/offer-zone"
+          element={
+            <PrivateRoute>
+              <MobileOfferZone />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/user-dashboard/coin/add"
           element={

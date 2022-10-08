@@ -97,7 +97,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
   const onClose = useCallback(() => {
     setCroppedImage(null);
   }, []);
-  console.log(userData?.user);
+
   return (
     <div>
       <Fragment>
@@ -394,6 +394,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                 For you
               </Typography>
             </Stack>
+
             <Box
               sx={{
                 // border: "1px solid #151717",
@@ -403,39 +404,40 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                 height: "auto",
                 width: "100%",
               }}
-              onClick={() => handleClickOpen("announcement")}
+              // onClick={() => handleClickOpen("announcement")}
+              onClick={toggleDrawer(false)}
             >
-              <Stack
-                direction="column"
-                spacing={2.5}
-                alignItems="flex-start"
-                px={4}
-                py={3}
+              <Link
+                to="/user-dashboard/announcement"
+                style={{ textDecoration: "none" }}
               >
                 <Stack
-                  direction="row"
+                  direction="column"
                   spacing={2.5}
-                  alignItems="center"
-                  justifyContent="space-between"
-                  width="100%"
+                  alignItems="flex-start"
+                  px={4}
+                  py={3}
                 >
-                  <Stack direction="row" spacing={2} alignItems="baseline">
-                    <Box
-                      sx={{
-                        width: 10,
-                        height: 10,
-                        backgroundColor: "#FD004E",
-                        borderRadius: 10,
-                      }}
-                    ></Box>
-                    <Stack
-                      direction="column"
-                      spacing={0.5}
-                      alignItems="flex-start"
-                    >
-                      <Link
-                        to="/user-dashboard"
-                        style={{ textDecoration: "none" }}
+                  <Stack
+                    direction="row"
+                    spacing={2.5}
+                    alignItems="center"
+                    justifyContent="space-between"
+                    width="100%"
+                  >
+                    <Stack direction="row" spacing={2} alignItems="baseline">
+                      <Box
+                        sx={{
+                          width: 10,
+                          height: 10,
+                          backgroundColor: "#FD004E",
+                          borderRadius: 10,
+                        }}
+                      ></Box>
+                      <Stack
+                        direction="column"
+                        spacing={0.5}
+                        alignItems="flex-start"
                       >
                         <Typography
                           sx={{
@@ -446,15 +448,16 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                         >
                           Announcement
                         </Typography>
-                      </Link>
+                      </Stack>
                     </Stack>
+                    <IconButton aria-label="delete">
+                      <ChevronRightRoundedIcon sx={{ color: "#FFFFFF" }} />
+                    </IconButton>
                   </Stack>
-                  <IconButton aria-label="delete">
-                    <ChevronRightRoundedIcon sx={{ color: "#FFFFFF" }} />
-                  </IconButton>
                 </Stack>
-              </Stack>
+              </Link>
             </Box>
+
             <Box
               sx={{
                 // border: "1px solid #151717",
@@ -464,39 +467,40 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                 height: "auto",
                 width: "100%",
               }}
-              onClick={() => handleClickOpen("offer-zone")}
+              // onClick={() => handleClickOpen("offer-zone")}
+              onClick={toggleDrawer(false)}
             >
-              <Stack
-                direction="column"
-                spacing={2.5}
-                alignItems="flex-start"
-                px={4}
-                py={3}
+              <Link
+                to="/user-dashboard/offer-zone"
+                style={{ textDecoration: "none" }}
               >
                 <Stack
-                  direction="row"
+                  direction="column"
                   spacing={2.5}
-                  alignItems="center"
-                  justifyContent="space-between"
-                  width="100%"
+                  alignItems="flex-start"
+                  px={4}
+                  py={3}
                 >
-                  <Stack direction="row" spacing={2} alignItems="baseline">
-                    <Box
-                      sx={{
-                        width: 10,
-                        height: 10,
-                        backgroundColor: "#F903D5",
-                        borderRadius: 10,
-                      }}
-                    ></Box>
-                    <Stack
-                      direction="column"
-                      spacing={0.5}
-                      alignItems="flex-start"
-                    >
-                      <Link
-                        to="/user-dashboard"
-                        style={{ textDecoration: "none" }}
+                  <Stack
+                    direction="row"
+                    spacing={2.5}
+                    alignItems="center"
+                    justifyContent="space-between"
+                    width="100%"
+                  >
+                    <Stack direction="row" spacing={2} alignItems="baseline">
+                      <Box
+                        sx={{
+                          width: 10,
+                          height: 10,
+                          backgroundColor: "#F903D5",
+                          borderRadius: 10,
+                        }}
+                      ></Box>
+                      <Stack
+                        direction="column"
+                        spacing={0.5}
+                        alignItems="flex-start"
                       >
                         <Typography
                           sx={{
@@ -507,15 +511,16 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                         >
                           Offer Zone
                         </Typography>
-                      </Link>
+                      </Stack>
                     </Stack>
+                    <IconButton aria-label="delete">
+                      <ChevronRightRoundedIcon sx={{ color: "#FFFFFF" }} />
+                    </IconButton>
                   </Stack>
-                  <IconButton aria-label="delete">
-                    <ChevronRightRoundedIcon sx={{ color: "#FFFFFF" }} />
-                  </IconButton>
                 </Stack>
-              </Stack>
+              </Link>
             </Box>
+
             <Box
               sx={{
                 // border: "1px solid #151717",
@@ -688,13 +693,13 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
           {menuVariant === "profile-password" && (
             <DialogTitle sx={{ fontSize: "1rem" }}>Change Password</DialogTitle>
           )}
-          {menuVariant === "announcement" && (
+          {/* {menuVariant === "announcement" && (
             <DialogTitle sx={{ fontSize: "1rem" }}>Announcement</DialogTitle>
           )}
 
           {menuVariant === "offer-zone" && (
             <DialogTitle sx={{ fontSize: "1rem" }}>Offer Zone</DialogTitle>
-          )}
+          )} */}
 
           <Divider
             light
@@ -1000,7 +1005,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
               </Stack>
             )}
 
-            {menuVariant === "announcement" && (
+            {/* {menuVariant === "announcement" && (
               <Stack direction="column" spacing={2} alignItems="center">
                 <Box
                   sx={{
@@ -1536,7 +1541,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                   </Stack>
                 </Box>
               </Stack>
-            )}
+            )} */}
           </DialogContent>
           {/* <DialogActions>
             <Button onClick={handleClose}>Disagree</Button>

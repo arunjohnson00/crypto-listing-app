@@ -6,7 +6,7 @@ import biggestLosersIcon from "../../../../assets/home/biggest_losers_icon.png";
 import biggestGainersIcon from "../../../../assets/home/biggest_gainers_icon.png";
 
 import promoteIcon from "../../../../assets/home/promote_icon.png";
-import ledgerBoardIcon from "../../../../assets/home/leaderboard_icon.png";
+import newsIcon from "../../../../assets/home/news.png";
 import chartIcon from "../../../../assets/home/chart_icon.png";
 import addAssetIcon from "../../../../assets/home/add_asset_icon.png";
 import { Link } from "react-router-dom";
@@ -31,238 +31,270 @@ const MobileIconMenuCard = () => {
         }}
       >
         <Grid item xs={3}>
-          <Stack
-            direction={{ xs: "column" }}
-            sx={{ alignItems: "center" }}
-            spacing={1}
-            pt={4}
+          <Link
+            to="/coins/recently-added"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
           >
-            <Avatar
-              alt=" Recently added"
-              src={recentlyAddedIcon}
-              sx={{ width: 35, height: 35, borderRadius: 0 }}
-            />
-            <Typography
-              sx={{
-                color: "#FFFFF5",
-                fontWeight: 400,
-                fontSize: ".8rem",
-                textAlign: "center",
-              }}
-              variant="subtitle2"
+            <Stack
+              direction={{ xs: "column" }}
+              sx={{ alignItems: "center" }}
+              spacing={1}
+              pt={4}
             >
-              <Link
-                to="/coins/recently-added"
-                style={{
-                  textDecoration: "none",
-                  color: "inherit",
+              <Avatar
+                alt=" Recently added"
+                src={recentlyAddedIcon}
+                sx={{ width: 35, height: 35, borderRadius: 0 }}
+              />
+              <Typography
+                sx={{
+                  color: "#FFFFF5",
+                  fontWeight: 400,
+                  fontSize: ".8rem",
+                  textAlign: "center",
                 }}
+                variant="subtitle2"
               >
                 {" "}
                 Recently added
-              </Link>
-            </Typography>
-          </Stack>
+              </Typography>
+            </Stack>
+          </Link>
         </Grid>
         <Grid item xs={3}>
-          <Stack
-            direction={{ xs: "column" }}
-            sx={{ alignItems: "center" }}
-            spacing={1}
-            pt={4}
+          <Link
+            to="/coins/todays-performer"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
           >
-            <Avatar
-              alt="Today's Performer"
-              src={todaysPerformerIcon}
-              sx={{ width: 35, height: 35, borderRadius: 0 }}
-            />
-            <Typography
-              sx={{
-                color: "#FFFFF5",
-                fontWeight: 400,
-                fontSize: ".8rem",
-                textAlign: "center",
-              }}
-              variant="subtitle2"
+            <Stack
+              direction={{ xs: "column" }}
+              sx={{ alignItems: "center" }}
+              spacing={1}
+              pt={4}
             >
-              <Link
-                to="/coins/todays-performer"
-                style={{
-                  textDecoration: "none",
-                  color: "inherit",
+              <Avatar
+                alt="Today's Performer"
+                src={todaysPerformerIcon}
+                sx={{ width: 35, height: 35, borderRadius: 0 }}
+              />
+              <Typography
+                sx={{
+                  color: "#FFFFF5",
+                  fontWeight: 400,
+                  fontSize: ".8rem",
+                  textAlign: "center",
                 }}
+                variant="subtitle2"
               >
                 Today's Performer
-              </Link>
-            </Typography>
-          </Stack>
+              </Typography>
+            </Stack>
+          </Link>
         </Grid>
         <Grid item xs={3}>
-          <Stack
-            direction={{ xs: "column" }}
-            sx={{ alignItems: "center" }}
-            spacing={1}
-            pt={4}
+          <Link
+            to="/coins/biggest-gainers"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
           >
-            <Avatar
-              alt="Biggest Gainers"
-              src={biggestGainersIcon}
-              sx={{ width: 35, height: 35, borderRadius: 0 }}
-            />
-            <Typography
-              sx={{
-                color: "#FFFFF5",
-                fontWeight: 400,
-                fontSize: ".8rem",
-                textAlign: "center",
-              }}
-              variant="subtitle2"
+            <Stack
+              direction={{ xs: "column" }}
+              sx={{ alignItems: "center" }}
+              spacing={1}
+              pt={4}
             >
-              <Link
-                to="/coins/biggest-gainers"
-                style={{
-                  textDecoration: "none",
-                  color: "inherit",
+              <Avatar
+                alt="Biggest Gainers"
+                src={biggestGainersIcon}
+                sx={{ width: 35, height: 35, borderRadius: 0 }}
+              />
+              <Typography
+                sx={{
+                  color: "#FFFFF5",
+                  fontWeight: 400,
+                  fontSize: ".8rem",
+                  textAlign: "center",
                 }}
+                variant="subtitle2"
               >
                 {" "}
                 Biggest Gainers
-              </Link>
-            </Typography>
-          </Stack>
+              </Typography>
+            </Stack>
+          </Link>
         </Grid>
         <Grid item xs={3}>
-          <Stack
-            direction={{ xs: "column" }}
-            sx={{ alignItems: "center" }}
-            spacing={1}
-            pt={4}
+          <Link
+            to="/coins/biggest-losers"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
           >
-            <Avatar
-              alt="Biggest Losers"
-              src={biggestLosersIcon}
-              sx={{ width: 35, height: 35, borderRadius: 0 }}
-            />
-            <Typography
-              sx={{
-                color: "#FFFFF5",
-                fontWeight: 400,
-                fontSize: ".8rem",
-                textAlign: "center",
-              }}
-              variant="subtitle2"
+            <Stack
+              direction={{ xs: "column" }}
+              sx={{ alignItems: "center" }}
+              spacing={1}
+              pt={4}
             >
-              <Link
-                to="/coins/biggest-losers"
-                style={{
-                  textDecoration: "none",
-                  color: "inherit",
+              <Avatar
+                alt="Biggest Losers"
+                src={biggestLosersIcon}
+                sx={{ width: 35, height: 35, borderRadius: 0 }}
+              />
+              <Typography
+                sx={{
+                  color: "#FFFFF5",
+                  fontWeight: 400,
+                  fontSize: ".8rem",
+                  textAlign: "center",
                 }}
+                variant="subtitle2"
               >
                 Biggest Losers
-              </Link>
-            </Typography>
-          </Stack>
+              </Typography>
+            </Stack>
+          </Link>
         </Grid>
         <Grid item xs={3}>
-          <Stack
-            direction={{ xs: "column" }}
-            sx={{ alignItems: "center" }}
-            spacing={1}
-            pt={4}
+          <Link
+            to="/promote"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
           >
-            <Avatar
-              alt="Promote"
-              src={promoteIcon}
-              sx={{ width: 35, height: 35, borderRadius: 0 }}
-            />
-            <Typography
-              sx={{
-                color: "#FFFFF5",
-                fontWeight: 400,
-                fontSize: ".8rem",
-                textAlign: "center",
-              }}
-              variant="subtitle2"
+            <Stack
+              direction={{ xs: "column" }}
+              sx={{ alignItems: "center" }}
+              spacing={1}
+              pt={4}
             >
-              Promote
-            </Typography>
-          </Stack>
+              <Avatar
+                alt="Promote"
+                src={promoteIcon}
+                sx={{ width: 35, height: 35, borderRadius: 0 }}
+              />
+              <Typography
+                sx={{
+                  color: "#FFFFF5",
+                  fontWeight: 400,
+                  fontSize: ".8rem",
+                  textAlign: "center",
+                }}
+                variant="subtitle2"
+              >
+                Promote
+              </Typography>
+            </Stack>
+          </Link>
         </Grid>
         <Grid item xs={3}>
-          <Stack
-            direction={{ xs: "column" }}
-            sx={{ alignItems: "center" }}
-            spacing={1}
-            pt={4}
+          <Link
+            to="/news"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
           >
-            <Avatar
-              alt=" Ledger Board"
-              src={ledgerBoardIcon}
-              sx={{ width: 35, height: 35, borderRadius: 0 }}
-            />
-            <Typography
-              sx={{
-                color: "#FFFFF5",
-                fontWeight: 400,
-                fontSize: ".8rem",
-                textAlign: "center",
-              }}
-              variant="subtitle2"
+            <Stack
+              direction={{ xs: "column" }}
+              sx={{ alignItems: "center" }}
+              spacing={1}
+              pt={4}
             >
-              Ledger Board
-            </Typography>
-          </Stack>
+              <Avatar
+                alt="News"
+                src={newsIcon}
+                sx={{ width: 30, height: 30, borderRadius: 0 }}
+              />
+              <Typography
+                sx={{
+                  color: "#FFFFF5",
+                  fontWeight: 400,
+                  fontSize: ".8rem",
+                  textAlign: "center",
+                }}
+                variant="subtitle2"
+              >
+                News
+              </Typography>
+            </Stack>
+          </Link>
         </Grid>
         <Grid item xs={3}>
-          <Stack
-            direction={{ xs: "column" }}
-            sx={{ alignItems: "center" }}
-            spacing={1}
-            pt={4}
+          <Link
+            to="/chart"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
           >
-            <Avatar
-              alt="Chart"
-              src={chartIcon}
-              sx={{ width: 35, height: 35, borderRadius: 0 }}
-            />
-            <Typography
-              sx={{
-                color: "#FFFFF5",
-                fontWeight: 400,
-                fontSize: ".8rem",
-                textAlign: "center",
-              }}
-              variant="subtitle2"
+            <Stack
+              direction={{ xs: "column" }}
+              sx={{ alignItems: "center" }}
+              spacing={1}
+              pt={4}
             >
-              Chart
-            </Typography>
-          </Stack>
+              <Avatar
+                alt="Chart"
+                src={chartIcon}
+                sx={{ width: 35, height: 35, borderRadius: 0 }}
+              />
+              <Typography
+                sx={{
+                  color: "#FFFFF5",
+                  fontWeight: 400,
+                  fontSize: ".8rem",
+                  textAlign: "center",
+                }}
+                variant="subtitle2"
+              >
+                Chart
+              </Typography>
+            </Stack>
+          </Link>
         </Grid>
         <Grid item xs={3}>
-          <Stack
-            direction={{ xs: "column" }}
-            sx={{ alignItems: "center" }}
-            spacing={1}
-            pt={4}
+          <Link
+            to="/add-asset"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
           >
-            <Avatar
-              alt="Add Asset"
-              src={addAssetIcon}
-              sx={{ width: 35, height: 35, borderRadius: 0 }}
-            />
-            <Typography
-              sx={{
-                color: "#FFFFF5",
-                fontWeight: 400,
-                fontSize: ".8rem",
-                textAlign: "center",
-              }}
-              variant="subtitle2"
+            <Stack
+              direction={{ xs: "column" }}
+              sx={{ alignItems: "center" }}
+              spacing={1}
+              pt={4}
             >
-              Add Asset
-            </Typography>
-          </Stack>
+              <Avatar
+                alt="Add Asset"
+                src={addAssetIcon}
+                sx={{ width: 35, height: 35, borderRadius: 0 }}
+              />
+              <Typography
+                sx={{
+                  color: "#FFFFF5",
+                  fontWeight: 400,
+                  fontSize: ".8rem",
+                  textAlign: "center",
+                }}
+                variant="subtitle2"
+              >
+                Add Asset
+              </Typography>
+            </Stack>
+          </Link>
         </Grid>
       </Stack>
     </Box>

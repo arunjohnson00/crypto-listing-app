@@ -49,7 +49,7 @@ const AppNewsPage = () => {
   return (
     <Fragment>
       <Grid container rowSpacing={4}>
-        <Grid item xs={12} mt={5}>
+        <Grid item xs={12} mt={{ xs: 0.5, sm: 0.5, md: 5 }}>
           <BreadCrumbs home="Home" path="News" />
         </Grid>
         {/* <Grid xs={12} sx={{ paddingTop: 3 }}>

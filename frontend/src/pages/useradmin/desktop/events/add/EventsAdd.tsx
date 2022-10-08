@@ -349,7 +349,7 @@ const EventsAdd = () => {
                 }}
                 mb={1}
               >
-                Date
+                Event Start Date
               </Typography>
 
               <InputDate
@@ -370,7 +370,7 @@ const EventsAdd = () => {
                 }}
                 mb={1}
               >
-                Date
+                Event End Date
               </Typography>
 
               <InputDate

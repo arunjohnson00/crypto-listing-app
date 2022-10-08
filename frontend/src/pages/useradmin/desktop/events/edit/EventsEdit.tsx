@@ -378,7 +378,27 @@ const EventsEdit = () => {
                 }}
                 mb={1}
               >
-                Date
+                Event Start Date
+              </Typography>
+
+              <InputDate
+                eventDate={true}
+                date={editEventsData}
+                setDate={setEditEvents}
+              />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#13C086",
+                }}
+                mb={1}
+              >
+                Event End Date
               </Typography>
 
               <InputDate

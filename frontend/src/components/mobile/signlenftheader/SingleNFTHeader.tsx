@@ -399,7 +399,7 @@ const SingleNFTHeader = () => {
         />
 
         <Stack direction="column" spacing={3} px={1.5}>
-          <Stack direction="row" spacing={1.5} alignItems="flex-start">
+          <Stack direction="row" spacing={1} alignItems="flex-start">
             <Stack
               direction="row"
               spacing={1.5}
@@ -436,7 +436,7 @@ const SingleNFTHeader = () => {
               />
             </Stack>
           </Stack>
-          <Stack direction="row" spacing={1.5} alignItems="flex-start">
+          <Stack direction="row" spacing={1} alignItems="flex-start">
             <Stack
               direction="row"
               spacing={1.5}

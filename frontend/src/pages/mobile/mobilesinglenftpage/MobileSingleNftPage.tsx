@@ -73,7 +73,7 @@ const MobileSingleNftPage = () => {
           </Stack>
         </Grid> */}
 
-        <Grid item xs={12} sm={12} md={6} lg={6} xl={6} mt={2}>
+        <Grid item xs={12} mt={{ xs: 0.5, sm: 0.5, md: 5 }}>
           <MobileBreadCrumbs home="Home" path="NFT" />
         </Grid>
         {/* <Grid

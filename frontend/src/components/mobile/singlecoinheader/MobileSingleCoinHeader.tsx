@@ -244,33 +244,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                     />
                   )}
 
-                  {/* {coinData &&
-                  coinData?.presale_start_date !== null &&
-                  coinData?.presale_start_date !== "" && (
-                    <Stack
-                      direction="row"
-                      spacing={0}
-                      sx={{ alignItems: "center", flexWrap: "wrap" }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{ color: "#FFFFF5ae", fontWeight: 600 }}
-                        textAlign={{ xs: "center", sm: "center", md: "left" }}
-                        mr={1}
-                      >
-                        Presale starts in :
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        sx={{ color: "#BDD645", fontWeight: 600 }}
-                        textAlign={{ xs: "center", sm: "center", md: "left" }}
-                      >
-                        {" "}
-                        00days 08 Hours 24
-                      </Typography>
-                    </Stack>
-                  )} */}
-
+                  {/* 
                   {coinData &&
                     coinData?.presale_start_date !== null &&
                     coinData?.presale_end_date !== null && (
@@ -350,8 +324,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                                     textTransform: "capitalize",
                                   }}
                                 >
-                                  {" "}
-                                  {/* {coinData && coinData?.name} */}
+                                  
                                   {moment(
                                     new Date(coinData?.presale_end_date),
                                     "YYYYMMDD"
@@ -388,7 +361,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                           ""
                         )}
                       </Stack>
-                    )}
+                    )} */}
                 </Stack>
                 <Stack
                   direction="column"
@@ -531,7 +504,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                       ) : (
                         "$" +
                         parseFloat(coinData?.current_price)
-                          .toFixed(15)
+                          .toFixed(13)
                           .toLocaleString()
                       )
                     ) : (

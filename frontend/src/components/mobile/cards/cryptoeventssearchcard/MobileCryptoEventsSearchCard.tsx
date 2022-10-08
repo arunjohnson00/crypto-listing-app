@@ -24,7 +24,12 @@ const MobileCryptoEventsSearchCard = () => {
         <Stack direction="column" spacing={2} justifyContent="space-between">
           <Stack direction="row" spacing={2} alignItems="center">
             <Typography
-              sx={{ fontSize: "1rem", color: "#4F5368", fontWeight: 500 }}
+              sx={{
+                fontSize: "1rem",
+                color: "#4F5368",
+                fontWeight: 500,
+                minWidth: 35,
+              }}
             >
               From
             </Typography>
@@ -68,7 +73,12 @@ const MobileCryptoEventsSearchCard = () => {
           </Stack>
           <Stack direction="row" spacing={2} alignItems="center">
             <Typography
-              sx={{ fontSize: "1rem", color: "#4F5368", fontWeight: 500 }}
+              sx={{
+                fontSize: "1rem",
+                color: "#4F5368",
+                fontWeight: 500,
+                minWidth: 35,
+              }}
             >
               To
             </Typography>
