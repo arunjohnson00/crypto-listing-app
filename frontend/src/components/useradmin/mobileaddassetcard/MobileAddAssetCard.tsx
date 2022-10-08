@@ -30,7 +30,7 @@ const MobileAddAssetCard = ({
             border: `3px solid ${border && border}`,
             backgroundColor: background && background,
             padding: 0.5,
-            borderRadius: 4,
+            borderRadius: 3,
             height: 40,
             width: 40,
             display: "flex",

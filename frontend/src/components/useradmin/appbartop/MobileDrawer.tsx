@@ -35,8 +35,6 @@ const Transition = forwardRef(function Transition(
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const dogImg =
-  "https://img.huffingtonpost.com/asset/5ab4d4ac2000007d06eb2c56.jpeg?cache=sih0jwle4e&ops=1910_1000";
 
 const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
   const [open, setOpen] = useState(false);
@@ -85,8 +83,8 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
         croppedAreaPixels,
         rotation
       );
-      console.log("donee", { croppedImage });
-      console.log("crop", croppedImage, profileImage);
+      // console.log("donee", { croppedImage });
+      // console.log("crop", croppedImage, profileImage);
       setCropWindow(false);
       setCroppedImage(croppedImage);
     } catch (e: any) {
@@ -155,7 +153,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                       sx={{
                         fontSize: ".8rem",
                         color: "#26BD96",
-                        fontWeight: 600,
+                        fontWeight: 400,
                       }}
                     >
                       Good Afternoon
@@ -168,7 +166,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                         sx={{
                           fontSize: "1.1rem",
                           color: "#FFFFFF",
-                          fontWeight: 600,
+                          fontWeight: 400,
                         }}
                       >
                         {userData && userData !== undefined
@@ -194,7 +192,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                 sx={{
                   fontSize: "1rem",
                   color: "#B0D1E8",
-                  fontWeight: 600,
+                  fontWeight: 400,
                 }}
               >
                 Personal Details
@@ -243,7 +241,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                         sx={{
                           fontSize: ".85rem",
                           color: "#313335",
-                          fontWeight: 600,
+                          fontWeight: 400,
                         }}
                       >
                         Name
@@ -256,7 +254,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                           sx={{
                             fontSize: "1rem",
                             color: "#FFFFFF",
-                            fontWeight: 600,
+                            fontWeight: 400,
                           }}
                         >
                           {userData && userData !== undefined
@@ -296,7 +294,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                         sx={{
                           fontSize: ".85rem",
                           color: "#313335",
-                          fontWeight: 600,
+                          fontWeight: 400,
                         }}
                       >
                         Email
@@ -309,7 +307,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                           sx={{
                             fontSize: "1rem",
                             color: "#FFFFFF",
-                            fontWeight: 600,
+                            fontWeight: 400,
                           }}
                         >
                           {userData && userData !== undefined
@@ -349,7 +347,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                         sx={{
                           fontSize: ".85rem",
                           color: "#313335",
-                          fontWeight: 600,
+                          fontWeight: 400,
                         }}
                       >
                         Change Password
@@ -362,7 +360,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                           sx={{
                             fontSize: "1rem",
                             color: "#FFFFFF",
-                            fontWeight: 600,
+                            fontWeight: 400,
                           }}
                         >
                           *********
@@ -388,7 +386,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                 sx={{
                   fontSize: "1rem",
                   color: "#B0D1E8",
-                  fontWeight: 600,
+                  fontWeight: 400,
                 }}
               >
                 For you
@@ -443,7 +441,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                           sx={{
                             fontSize: "1rem",
                             color: "#FFFFFF",
-                            fontWeight: 600,
+                            fontWeight: 400,
                           }}
                         >
                           Announcement
@@ -506,7 +504,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                           sx={{
                             fontSize: "1rem",
                             color: "#FFFFFF",
-                            fontWeight: 600,
+                            fontWeight: 400,
                           }}
                         >
                           Offer Zone
@@ -567,7 +565,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                           sx={{
                             fontSize: "1rem",
                             color: "#FFFFFF",
-                            fontWeight: 600,
+                            fontWeight: 400,
                           }}
                         >
                           Rewards
@@ -592,7 +590,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                 sx={{
                   fontSize: "1rem",
                   color: "#B0D1E8",
-                  fontWeight: 600,
+                  fontWeight: 400,
                 }}
               >
                 Help & Support
@@ -644,7 +642,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                           sx={{
                             fontSize: "1rem",
                             color: "#FFFFFF",
-                            fontWeight: 600,
+                            fontWeight: 400,
                           }}
                         >
                           Check FAQ's or Connect Admin
@@ -939,13 +937,13 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                   >
                     <Typography
                       variant="body2"
-                      sx={{ color: "#464849", fontWeight: 500 }}
+                      sx={{ color: "#464849", fontWeight: 400 }}
                     >
                       Password Strength
                     </Typography>
                     <Typography
                       variant="body2"
-                      sx={{ color: "#D3B138", fontWeight: 500 }}
+                      sx={{ color: "#D3B138", fontWeight: 400 }}
                     >
                       Medium
                     </Typography>
@@ -1035,7 +1033,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                         variant="body2"
                         sx={{
                           color: "#20DDCF",
-                          fontWeight: 500,
+                          fontWeight: 400,
                           fontSize: ".9rem",
                         }}
                       >
@@ -1062,7 +1060,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                         variant="body2"
                         sx={{
                           color: "#2092C5",
-                          fontWeight: 500,
+                          fontWeight: 400,
                           textAlign: "center",
                         }}
                       >
@@ -1072,7 +1070,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                         variant="body2"
                         sx={{
                           color: "#4D4E53",
-                          fontWeight: 500,
+                          fontWeight: 400,
                           textAlign: "center",
                         }}
                       >
@@ -1109,7 +1107,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                         variant="body2"
                         sx={{
                           color: "#20DDCF",
-                          fontWeight: 500,
+                          fontWeight: 400,
                           fontSize: ".9rem",
                         }}
                       >
@@ -1136,7 +1134,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                         variant="body2"
                         sx={{
                           color: "#2092C5",
-                          fontWeight: 500,
+                          fontWeight: 400,
                           textAlign: "center",
                         }}
                       >
@@ -1146,7 +1144,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                         variant="body2"
                         sx={{
                           color: "#4D4E53",
-                          fontWeight: 500,
+                          fontWeight: 400,
                           textAlign: "center",
                         }}
                       >
@@ -1183,7 +1181,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                         variant="body2"
                         sx={{
                           color: "#20DDCF",
-                          fontWeight: 500,
+                          fontWeight: 400,
                           fontSize: ".9rem",
                         }}
                       >
@@ -1210,92 +1208,17 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                         variant="body2"
                         sx={{
                           color: "#2092C5",
-                          fontWeight: 500,
-                          textAlign: "center",
-                        }}
-                      >
-                        Contact admin for more details
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "#4D4E53",
-                          fontWeight: 500,
-                          textAlign: "center",
-                        }}
-                      >
-                        32 min ago
-                      </Typography>
-                    </Stack>
-                  </Stack>
-                </Box>
-
-                <Box
-                  sx={{
-                    // border: "1px solid #151717",
-                    backgroundColor: "#00020B",
-
-                    borderRadius: 4,
-                    height: "auto",
-                    width: "100%",
-                  }}
-                >
-                  <Stack
-                    direction="column"
-                    spacing={4}
-                    alignItems="center"
-                    p={3}
-                  >
-                    <Stack
-                      direction="column"
-                      spacing={1}
-                      alignItems="center"
-                      justifyContent="center"
-                      width="100%"
-                      pt={1}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "#20DDCF",
-                          fontWeight: 500,
-                          fontSize: ".9rem",
-                        }}
-                      >
-                        Limited Period Deal
-                      </Typography>
-                      <Divider
-                        light
-                        flexItem
-                        variant="middle"
-                        orientation="horizontal"
-                        sx={{ borderColor: "#1F556D" }}
-                      />
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "#FFFFFF",
                           fontWeight: 400,
                           textAlign: "center",
                         }}
                       >
-                        We have some new offer for newly added coin.
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "#2092C5",
-                          fontWeight: 500,
-                          textAlign: "center",
-                        }}
-                      >
                         Contact admin for more details
                       </Typography>
                       <Typography
                         variant="body2"
                         sx={{
                           color: "#4D4E53",
-                          fontWeight: 500,
+                          fontWeight: 400,
                           textAlign: "center",
                         }}
                       >
@@ -1333,7 +1256,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                         variant="body2"
                         sx={{
                           color: "#20DDCF",
-                          fontWeight: 500,
+                          fontWeight: 400,
                           fontSize: ".9rem",
                         }}
                       >
@@ -1360,7 +1283,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                         variant="body2"
                         sx={{
                           color: "#2092C5",
-                          fontWeight: 500,
+                          fontWeight: 400,
                           textAlign: "center",
                         }}
                       >
@@ -1370,7 +1293,82 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                         variant="body2"
                         sx={{
                           color: "#4D4E53",
-                          fontWeight: 500,
+                          fontWeight: 400,
+                          textAlign: "center",
+                        }}
+                      >
+                        32 min ago
+                      </Typography>
+                    </Stack>
+                  </Stack>
+                </Box>
+
+                <Box
+                  sx={{
+                    // border: "1px solid #151717",
+                    backgroundColor: "#00020B",
+
+                    borderRadius: 4,
+                    height: "auto",
+                    width: "100%",
+                  }}
+                >
+                  <Stack
+                    direction="column"
+                    spacing={4}
+                    alignItems="center"
+                    p={3}
+                  >
+                    <Stack
+                      direction="column"
+                      spacing={1}
+                      alignItems="center"
+                      justifyContent="center"
+                      width="100%"
+                      pt={1}
+                    >
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#20DDCF",
+                          fontWeight: 400,
+                          fontSize: ".9rem",
+                        }}
+                      >
+                        Limited Period Deal
+                      </Typography>
+                      <Divider
+                        light
+                        flexItem
+                        variant="middle"
+                        orientation="horizontal"
+                        sx={{ borderColor: "#1F556D" }}
+                      />
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#FFFFFF",
+                          fontWeight: 400,
+                          textAlign: "center",
+                        }}
+                      >
+                        We have some new offer for newly added coin.
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#2092C5",
+                          fontWeight: 400,
+                          textAlign: "center",
+                        }}
+                      >
+                        Contact admin for more details
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#4D4E53",
+                          fontWeight: 400,
                           textAlign: "center",
                         }}
                       >
@@ -1411,7 +1409,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                       variant="body2"
                       sx={{
                         color: "#20DDCF",
-                        fontWeight: 500,
+                        fontWeight: 400,
                         fontSize: "2rem",
                       }}
                     >
@@ -1442,7 +1440,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                       variant="body2"
                       sx={{
                         color: "#20DDCF",
-                        fontWeight: 500,
+                        fontWeight: 400,
                         fontSize: "2rem",
                       }}
                     >
@@ -1472,7 +1470,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                       variant="body2"
                       sx={{
                         color: "#20DDCF",
-                        fontWeight: 500,
+                        fontWeight: 400,
                         fontSize: "2rem",
                       }}
                     >
@@ -1502,7 +1500,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                       variant="body2"
                       sx={{
                         color: "#20DDCF",
-                        fontWeight: 500,
+                        fontWeight: 400,
                         fontSize: "2rem",
                       }}
                     >
@@ -1532,7 +1530,7 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                       variant="body2"
                       sx={{
                         color: "#20DDCF",
-                        fontWeight: 500,
+                        fontWeight: 400,
                         fontSize: "2rem",
                       }}
                     >

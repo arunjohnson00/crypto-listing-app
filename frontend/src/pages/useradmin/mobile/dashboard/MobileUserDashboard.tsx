@@ -225,8 +225,8 @@ const MobileUserDashboard = () => {
           >
             <MobileBottomMenuCard
               icon={settingsIcon}
-              title="Settings"
-              link="/user-dashboard/settings"
+              title="Offer Zone"
+              link="/user-dashboard/offer-zone"
               color="#FFFFFF"
               background="#000000"
               border="transparent"
@@ -243,18 +243,17 @@ const MobileUserDashboard = () => {
             />
 
             <MobileBottomMenuCard
-              icon={logoutIcon}
-              title="Logout"
-              variant="logout"
+              icon={menuIcon}
+              title="Menu"
+              link="#"
               color="#FFFFFF"
               background="#000000"
               border="transparent"
             />
-
             <MobileBottomMenuCard
-              icon={menuIcon}
-              title="Menu"
-              link="#"
+              icon={logoutIcon}
+              title="Logout"
+              variant="logout"
               color="#FFFFFF"
               background="#000000"
               border="transparent"

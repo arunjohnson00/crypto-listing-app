@@ -8,6 +8,7 @@ const UserAdminTextInput = ({ placeholder, inputHandler }: any) => {
       variant="filled"
       placeholder={placeholder}
       fullWidth
+      InputProps={{ disableUnderline: true }}
       sx={{
         backgroundColor: "#07012F",
         height: 42,

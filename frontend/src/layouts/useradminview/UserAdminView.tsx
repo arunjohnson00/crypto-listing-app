@@ -18,7 +18,7 @@ const UserAdminView = ({ children }: any) => {
     <Box
       sx={{
         backgroundColor: matches === true ? "#161234" : "#01061A",
-        height: "-webkit-fill-available",
+        height: "auto",
         width: "100%",
       }}
       pb={10}

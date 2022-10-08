@@ -201,6 +201,288 @@ const MobileOfferZone = () => {
             </Stack>
           </Box>
         </Stack>
+        <Stack direction="row" alignItems="center" width="100%">
+          <Box
+            sx={{
+              // border: "1px solid #151717",
+              backgroundColor: "#00020B",
+
+              borderRadius: 4,
+              height: "auto",
+              flexGrow: 2,
+            }}
+            m={1}
+          >
+            <Stack
+              direction="column"
+              spacing={4}
+              alignItems="center"
+              justifyContent="center"
+              p={3}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#20DDCF",
+                  fontWeight: 500,
+                  fontSize: "2rem",
+                }}
+              >
+                Ads
+              </Typography>
+            </Stack>
+          </Box>
+        </Stack>
+        <Stack direction="row" alignItems="center" width="100%">
+          <Box
+            sx={{
+              // border: "1px solid #151717",
+              backgroundColor: "#00020B",
+
+              borderRadius: 4,
+              height: "auto",
+              flexGrow: 1,
+            }}
+            m={1}
+          >
+            <Stack
+              direction="column"
+              spacing={4}
+              alignItems="center"
+              justifyContent="center"
+              p={3}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#20DDCF",
+                  fontWeight: 500,
+                  fontSize: "2rem",
+                }}
+              >
+                Ads
+              </Typography>
+            </Stack>
+          </Box>
+          <Box
+            sx={{
+              // border: "1px solid #151717",
+              backgroundColor: "#00020B",
+
+              borderRadius: 4,
+              height: "auto",
+              flexGrow: 1,
+            }}
+            m={1}
+          >
+            <Stack
+              direction="column"
+              spacing={4}
+              alignItems="center"
+              justifyContent="center"
+              p={3}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#20DDCF",
+                  fontWeight: 500,
+                  fontSize: "2rem",
+                }}
+              >
+                Ads
+              </Typography>
+            </Stack>
+          </Box>
+        </Stack>
+        <Stack direction="row" alignItems="center" width="100%">
+          <Box
+            sx={{
+              // border: "1px solid #151717",
+              backgroundColor: "#00020B",
+
+              borderRadius: 4,
+              height: "auto",
+              flexGrow: 2,
+            }}
+            m={1}
+          >
+            <Stack
+              direction="column"
+              spacing={4}
+              alignItems="center"
+              justifyContent="center"
+              p={3}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#20DDCF",
+                  fontWeight: 500,
+                  fontSize: "2rem",
+                }}
+              >
+                Ads
+              </Typography>
+            </Stack>
+          </Box>
+        </Stack>
+        <Stack direction="row" alignItems="center" width="100%">
+          <Box
+            sx={{
+              // border: "1px solid #151717",
+              backgroundColor: "#00020B",
+
+              borderRadius: 4,
+              height: "auto",
+              flexGrow: 1,
+            }}
+            m={1}
+          >
+            <Stack
+              direction="column"
+              spacing={4}
+              alignItems="center"
+              justifyContent="center"
+              p={3}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#20DDCF",
+                  fontWeight: 500,
+                  fontSize: "2rem",
+                }}
+              >
+                Ads
+              </Typography>
+            </Stack>
+          </Box>
+          <Box
+            sx={{
+              // border: "1px solid #151717",
+              backgroundColor: "#00020B",
+
+              borderRadius: 4,
+              height: "auto",
+              flexGrow: 1,
+            }}
+            m={1}
+          >
+            <Stack
+              direction="column"
+              spacing={4}
+              alignItems="center"
+              justifyContent="center"
+              p={3}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#20DDCF",
+                  fontWeight: 500,
+                  fontSize: "2rem",
+                }}
+              >
+                Ads
+              </Typography>
+            </Stack>
+          </Box>
+        </Stack>
+        <Stack direction="row" alignItems="center" width="100%">
+          <Box
+            sx={{
+              // border: "1px solid #151717",
+              backgroundColor: "#00020B",
+
+              borderRadius: 4,
+              height: "auto",
+              flexGrow: 2,
+            }}
+            m={1}
+          >
+            <Stack
+              direction="column"
+              spacing={4}
+              alignItems="center"
+              justifyContent="center"
+              p={3}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#20DDCF",
+                  fontWeight: 500,
+                  fontSize: "2rem",
+                }}
+              >
+                Ads
+              </Typography>
+            </Stack>
+          </Box>
+        </Stack>
+        <Stack direction="row" alignItems="center" width="100%">
+          <Box
+            sx={{
+              // border: "1px solid #151717",
+              backgroundColor: "#00020B",
+
+              borderRadius: 4,
+              height: "auto",
+              flexGrow: 1,
+            }}
+            m={1}
+          >
+            <Stack
+              direction="column"
+              spacing={4}
+              alignItems="center"
+              justifyContent="center"
+              p={3}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#20DDCF",
+                  fontWeight: 500,
+                  fontSize: "2rem",
+                }}
+              >
+                Ads
+              </Typography>
+            </Stack>
+          </Box>
+          <Box
+            sx={{
+              // border: "1px solid #151717",
+              backgroundColor: "#00020B",
+
+              borderRadius: 4,
+              height: "auto",
+              flexGrow: 1,
+            }}
+            m={1}
+          >
+            <Stack
+              direction="column"
+              spacing={4}
+              alignItems="center"
+              justifyContent="center"
+              p={3}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#20DDCF",
+                  fontWeight: 500,
+                  fontSize: "2rem",
+                }}
+              >
+                Ads
+              </Typography>
+            </Stack>
+          </Box>
+        </Stack>
       </Stack>
     </Stack>
   );
