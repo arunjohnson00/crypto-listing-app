@@ -1,4 +1,11 @@
-import { Box, CardMedia, Grid, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  CardMedia,
+  Divider,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 
 import MobileMultiSlider from "../../../../components/useradmin/mobilemultislider/MobileMultiSlider";
@@ -6,19 +13,22 @@ import MobileOverViewCard from "../../../../components/useradmin/mobileoverviewc
 import MobileAddAssetCard from "../../../../components/useradmin/mobileaddassetcard/MobileAddAssetCard";
 import MobileBottomMenuCard from "../../../../components/useradmin/mobilebottommenucard/MobileBottomMenuCard";
 
-import coinIcon from "../../../../assets/userdashboard/mobile/coin.png";
-import nftIcon from "../../../../assets/userdashboard/mobile/nft.png";
-import airdropsIcon from "../../../../assets/userdashboard/mobile/airdrops.png";
-import eventIcon from "../../../../assets/userdashboard/mobile/events.png";
+import coinIcon from "../../../../assets/userdashboard/mobile/coin.svg";
+import nftIcon from "../../../../assets/userdashboard/mobile/nft.svg";
+import airdropsIcon from "../../../../assets/userdashboard/mobile/airdrops.svg";
+import eventIcon from "../../../../assets/userdashboard/mobile/events.svg";
 
-import mycoinIcon from "../../../../assets/userdashboard/mobile/my-coins.png";
-import mynftIcon from "../../../../assets/userdashboard/mobile/my-nfts.png";
-import myairdropsIcon from "../../../../assets/userdashboard/mobile/my-airdrops.png";
-import myeventIcon from "../../../../assets/userdashboard/mobile/my-events.png";
-import myratingsIcon from "../../../../assets/userdashboard/mobile/my-ratings.png";
-import mywatchlistsIcon from "../../../../assets/userdashboard/mobile/my-watchlists.png";
+import mycoinIcon from "../../../../assets/userdashboard/mobile/my-coins.svg";
+import mynftIcon from "../../../../assets/userdashboard/mobile/my-nfts.svg";
+import myairdropsIcon from "../../../../assets/userdashboard/mobile/my-airdrops.svg";
+import myeventIcon from "../../../../assets/userdashboard/mobile/my-events.svg";
+import myratingsIcon from "../../../../assets/userdashboard/mobile/my-ratings.svg";
+import mywatchlistsIcon from "../../../../assets/userdashboard/mobile/my-watchlists.svg";
 
 import settingsIcon from "../../../../assets/userdashboard/mobile/settings.png";
+import myoffersIcon from "../../../../assets/userdashboard/mobile/my-offers.svg";
+
+import fgIndexIcon from "../../../../assets/userdashboard/mobile/fg-index.svg";
 import adsIcon from "../../../../assets/userdashboard/mobile/ads.png";
 import logoutIcon from "../../../../assets/userdashboard/mobile/logout.png";
 import menuIcon from "../../../../assets/userdashboard/mobile/menu.png";
@@ -72,7 +82,7 @@ const MobileUserDashboard = () => {
                 link="/user-dashboard/coin/add"
                 color="#FFFFFF"
                 background="#000000"
-                border="#1A76BF"
+                border="#0090ff"
                 state="Launched"
               />
               <MobileAddAssetCard
@@ -81,7 +91,7 @@ const MobileUserDashboard = () => {
                 link="/user-dashboard/coin/add"
                 color="#FFFFFF"
                 background="#000000"
-                border="#21B6D2"
+                border="#00d8ff"
                 state="Presale"
               />
 
@@ -91,7 +101,7 @@ const MobileUserDashboard = () => {
                 link="/user-dashboard/nft/add"
                 color="#FFFFFF"
                 background="#000000"
-                border="#07726C"
+                border="#00ffde"
               />
 
               <MobileAddAssetCard
@@ -100,7 +110,7 @@ const MobileUserDashboard = () => {
                 link="/user-dashboard/events/add"
                 color="#FFFFFF"
                 background="#000000"
-                border="#23EC9F"
+                border="#00ff9c"
               />
               <MobileAddAssetCard
                 icon={airdropsIcon}
@@ -108,7 +118,7 @@ const MobileUserDashboard = () => {
                 link="/user-dashboard/airdrops/add"
                 color="#FFFFFF"
                 background="#000000"
-                border="#10C24B"
+                border="#00ff4e"
               />
             </Stack>
           </Stack>
@@ -130,76 +140,152 @@ const MobileUserDashboard = () => {
             justifyContent="center"
             px={2}
             py={2}
-            spacing={2}
+            spacing={1}
           >
-            <Typography sx={{ color: "#FFFFFF", fontSize: ".9rem" }}>
-              Overview
-            </Typography>
             <Stack
               direction="row"
-              alignItems="flex-start"
-              justifyContent="space-between"
+              alignItems="center"
+              justifyContent="flex-start"
               width="100%"
+              pb={1}
             >
-              <MobileOverViewCard
-                icon={mycoinIcon}
-                title="My Coin"
-                link="/user-dashboard/coin/add"
-                color="#FFFFFF"
-                background="#000000"
-                border="transparent"
-                state="Launched"
-              />
-              <MobileOverViewCard
-                icon={mynftIcon}
-                title="My NFT"
-                link="/user-dashboard/coin/add"
-                color="#FFFFFF"
-                background="#000000"
-                border="transparent"
-                state="Presale"
-              />
-
-              <MobileOverViewCard
-                icon={myeventIcon}
-                title="My Events"
-                link="/user-dashboard/nft/add"
-                color="#FFFFFF"
-                background="#000000"
-                border="transparent"
-              />
+              <Typography sx={{ color: "#FFFFFF", fontSize: ".9rem" }}>
+                Overview
+              </Typography>
             </Stack>
-
             <Stack
               direction="row"
-              alignItems="flex-start"
+              alignItems="center"
               justifyContent="space-between"
               width="100%"
             >
-              <MobileOverViewCard
-                icon={myairdropsIcon}
-                title="My Airdrops"
-                link="/user-dashboard/events/add"
-                color="#FFFFFF"
-                background="#000000"
-                border="transparent"
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="center"
+                sx={{ flexGrow: 1 }}
+              >
+                <MobileOverViewCard
+                  icon={mycoinIcon}
+                  title="My Coin"
+                  link="/user-dashboard/coin/add"
+                  color="#FFFFFF"
+                  background="#000000"
+                  border="transparent"
+                  state="Launched"
+                />
+              </Stack>
+              <Divider
+                flexItem
+                sx={{
+                  borderRightColor: "#464A51",
+                  position: "relative",
+                  top: 58,
+                  height: 100,
+                }}
+                orientation="vertical"
+                variant="fullWidth"
               />
-              <MobileOverViewCard
-                icon={myratingsIcon}
-                title="My Ratings"
-                link="/user-dashboard/airdrops/add"
-                color="#FFFFFF"
-                background="#000000"
-                border="transparent"
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="center"
+                sx={{ flexGrow: 1 }}
+              >
+                <MobileOverViewCard
+                  icon={mynftIcon}
+                  title="My NFT"
+                  link="/user-dashboard/coin/add"
+                  color="#FFFFFF"
+                  background="#000000"
+                  border="transparent"
+                  state="Presale"
+                />
+              </Stack>
+              <Divider
+                flexItem
+                sx={{
+                  borderRightColor: "#464A51",
+                  position: "relative",
+                  top: 58,
+                  height: 100,
+                }}
+                orientation="vertical"
+                variant="fullWidth"
               />
-              <MobileOverViewCard
-                icon={mywatchlistsIcon}
-                title="My Watchlists"
-                link="/user-dashboard/airdrops/add"
-                color="#FFFFFF"
-                background="#000000"
-                border="transparent"
-              />
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="center"
+                sx={{ flexGrow: 1 }}
+              >
+                <MobileOverViewCard
+                  icon={myeventIcon}
+                  title="My Events"
+                  link="/user-dashboard/nft/add"
+                  color="#FFFFFF"
+                  background="#000000"
+                  border="transparent"
+                />
+              </Stack>
+            </Stack>
+            <Divider
+              flexItem
+              sx={{ borderBottomColor: "#464A51" }}
+              orientation="horizontal"
+              variant="middle"
+            />
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="space-between"
+              width="100%"
+            >
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="center"
+                sx={{ flexGrow: 1 }}
+              >
+                <MobileOverViewCard
+                  icon={myairdropsIcon}
+                  title="My Airdrops"
+                  link="/user-dashboard/events/add"
+                  color="#FFFFFF"
+                  background="#000000"
+                  border="transparent"
+                />
+              </Stack>
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="center"
+                sx={{ flexGrow: 1 }}
+              >
+                <MobileOverViewCard
+                  icon={myratingsIcon}
+                  title="My Ratings"
+                  link="/user-dashboard/airdrops/add"
+                  color="#FFFFFF"
+                  background="#000000"
+                  border="transparent"
+                />
+              </Stack>
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="center"
+                sx={{ flexGrow: 1 }}
+              >
+                <MobileOverViewCard
+                  icon={mywatchlistsIcon}
+                  title="My Watchlists"
+                  link="/user-dashboard/airdrops/add"
+                  color="#FFFFFF"
+                  background="#000000"
+                  border="transparent"
+                />
+              </Stack>
             </Stack>
           </Stack>
         </Box>
@@ -224,7 +310,7 @@ const MobileUserDashboard = () => {
             }}
           >
             <MobileBottomMenuCard
-              icon={settingsIcon}
+              icon={myoffersIcon}
               title="Offer Zone"
               link="/user-dashboard/offer-zone"
               color="#FFFFFF"
@@ -243,9 +329,9 @@ const MobileUserDashboard = () => {
             />
 
             <MobileBottomMenuCard
-              icon={menuIcon}
-              title="Menu"
-              link="#"
+              icon={fgIndexIcon}
+              title="F&G Index"
+              link="/fear-greed-index"
               color="#FFFFFF"
               background="#000000"
               border="transparent"

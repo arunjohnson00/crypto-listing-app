@@ -1,0 +1,12 @@
+.box::before,
+.box::after {
+  content: "";
+  background-color: red;
+  top: 40px;
+
+  left: -50px;
+  position: absolute;
+  width: 1px;
+  height: 50%;
+  margin: auto;
+}
