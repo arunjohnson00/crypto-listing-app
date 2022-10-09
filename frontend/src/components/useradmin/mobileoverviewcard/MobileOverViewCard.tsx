@@ -25,14 +25,15 @@ const MobileOverViewCard = ({
           direction="column"
           alignItems="center"
           justifyContent="center"
-          spacing={1}
+          spacing={0.7}
         >
           {" "}
           <Box
             sx={{
               border: `3px solid ${border && border}`,
               backgroundColor: background && background,
-              padding: 0.5,
+              paddingX: 0.5,
+              paddingTop: 0.5,
               borderRadius: 4,
 
               display: "flex",

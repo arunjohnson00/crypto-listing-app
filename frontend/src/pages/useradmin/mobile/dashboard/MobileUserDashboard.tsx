@@ -65,7 +65,7 @@ const MobileUserDashboard = () => {
             py={2}
             spacing={2}
           >
-            <Typography sx={{ color: "#FFFFFF", fontSize: ".9rem" }}>
+            <Typography sx={{ color: "#FFFFFF", fontSize: ".75rem" }}>
               Add assets
             </Typography>
             <Stack
@@ -149,7 +149,7 @@ const MobileUserDashboard = () => {
               width="100%"
               pb={1}
             >
-              <Typography sx={{ color: "#FFFFFF", fontSize: ".9rem" }}>
+              <Typography sx={{ color: "#FFFFFF", fontSize: ".75rem" }}>
                 Overview
               </Typography>
             </Stack>

@@ -27,7 +27,7 @@ const MobileAddAssetCard = ({
         {" "}
         <Box
           sx={{
-            border: `3px solid ${border && border}`,
+            border: `2px solid ${border && border}`,
             backgroundColor: background && background,
             padding: 0.5,
             borderRadius: 3,

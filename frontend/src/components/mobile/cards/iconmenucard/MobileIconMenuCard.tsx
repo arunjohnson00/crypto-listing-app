@@ -6,9 +6,9 @@ import biggestLosersIcon from "../../../../assets/home/biggest_losers_icon.png";
 import biggestGainersIcon from "../../../../assets/home/biggest_gainers_icon.png";
 
 import promoteIcon from "../../../../assets/home/promote_icon.png";
-import newsIcon from "../../../../assets/home/news.png";
+import newsIcon from "../../../../assets/home/news.svg";
 import chartIcon from "../../../../assets/home/chart_icon.png";
-import addAssetIcon from "../../../../assets/home/add_asset_icon.png";
+import addAssetIcon from "../../../../assets/home/add_asset_icon.svg";
 import { Link } from "react-router-dom";
 
 const MobileIconMenuCard = () => {

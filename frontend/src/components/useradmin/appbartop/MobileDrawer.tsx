@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
-import userIcon from "../../../assets/userdashboard/user.png";
+import userIcon from "../../../assets/userdashboard/user.svg";
 import { TransitionProps } from "@mui/material/transitions";
 import { useDropzone } from "react-dropzone";
 import Cropper from "react-easy-crop";

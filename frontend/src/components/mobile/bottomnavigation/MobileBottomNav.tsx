@@ -10,6 +10,7 @@ import discoverImage from "../../../assets/responsive/discover.png";
 import eventsImage from "../../../assets/responsive/events.png";
 import homeImage from "../../../assets/responsive/home.png";
 import newsImage from "../../../assets/responsive/news.png";
+import accountImage from "../../../assets/responsive/my-account.svg";
 import { Avatar, Box } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -147,7 +148,7 @@ const MobileBottomNav = () => {
             icon={
               <Avatar
                 variant="square"
-                src={newsImage}
+                src={accountImage}
                 sx={{
                   width: 24,
                   height: 24,
