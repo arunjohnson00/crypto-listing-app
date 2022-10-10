@@ -1182,7 +1182,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               </Typography>
             </Stack> */}
 
-            {/* {coinSocialGraph &&
+            {coinSocialGraph &&
               coinSocialGraph?.response === true &&
               coinSocialGraph?.data[0]?.twitter !== undefined &&
               coinSocialGraph?.data[0]?.twitter.length > 0 && (
@@ -1354,7 +1354,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   endColor="#2415a2"
                   startColor="#404EED"
                 />
-              )} */}
+              )}
 
             {/* <Divider
               variant="middle"

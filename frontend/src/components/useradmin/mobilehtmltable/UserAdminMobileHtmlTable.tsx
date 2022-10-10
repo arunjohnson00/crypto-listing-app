@@ -19,13 +19,17 @@ import {
   ButtonGroup,
   Button,
   Divider,
+  IconButton,
+  Chip,
 } from "@mui/material";
 
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import moment from "moment";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
+import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
+import EditIcon from "@mui/icons-material/Edit";
+import moment from "moment";
 import { useDispatch } from "react-redux";
 import {
   dashboardDeleteAirdropsRequest,
@@ -34,7 +38,8 @@ import {
   dashboardDeleteNFTListingRequest,
   dashboardDeleteReviewRequest,
 } from "../../../store/action";
-const UserAdminHtmlTable = ({
+
+const UserAdminMobileHtmlTable = ({
   tableData,
   variant,
   tableHeader,
@@ -138,25 +143,34 @@ const UserAdminHtmlTable = ({
   };
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer
+      component={Paper}
+      sx={{
+        "&.MuiPaper-root": { backgroundColor: "#000000" },
+        "&.MuiTableContainer-root": {
+          backgroundColor: "#000000",
+          borderRadius: 4,
+        },
+      }}
+    >
       <Table
         sx={{
-          minWidth: 650,
-          backgroundColor: "#010822",
-          "&.MuiTableContainer-root": { backgroundColor: "transparent" },
-          "&.MuiPaper-root": { backgroundColor: "transparent" },
+          width: "auto",
+          backgroundColor: "#000000",
+          "&.MuiTableContainer-root": { backgroundColor: "#000000" },
+          "&.MuiPaper-root": { backgroundColor: "#000000" },
         }}
         aria-label="simple table"
         size="small"
       >
         <TableHead
-          sx={{ backgroundColor: "#000000", color: "#FFFFF5", height: 50 }}
+          sx={{ backgroundColor: "#000000", color: "#0DB1AB", height: 50 }}
         >
           <TableRow sx={{ borderBottom: "2px solid black" }}>
             {tableHeader &&
               tableHeader.map((item: any, index: number) => (
                 <TableCell
-                  sx={{ color: "#FFFFF5", fontWeight: "bold" }}
+                  sx={{ color: "#0DB1AB", fontWeight: "bold" }}
                   key={index}
                 >
                   {item}
@@ -165,7 +179,7 @@ const UserAdminHtmlTable = ({
           </TableRow>
         </TableHead>
         {variant === "coin" && (
-          <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
+          <TableBody sx={{ backgroundColor: "#000000", color: "#FFFFFF" }}>
             {tableData &&
               tableData?.map((data: any, index: number) => (
                 <TableRow
@@ -182,20 +196,20 @@ const UserAdminHtmlTable = ({
                       color: "#FFFFFF",
                       border: 0,
 
-                      maxWidth: 1,
+                      flexGrow: 1,
                     }}
                   >
                     {index + 1}
                   </TableCell>
-                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                  {/* <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     {" "}
                     <Avatar
                       alt={data?.name}
                       src={`${serverAPIUrl}public/uploads/coin_logo/${data?.logo}`}
                       sx={{ width: 34, height: 34 }}
                     />
-                  </TableCell>
-                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                  </TableCell> */}
+                  <TableCell sx={{ color: "#FFFFFF", border: 0, flexGrow: 1 }}>
                     <Stack direction="column">
                       <Typography variant="caption">
                         {" "}
@@ -223,13 +237,13 @@ const UserAdminHtmlTable = ({
                         }}
                       >
                         {"$"}
-                        {data && data?.symbol?.length > 13
-                          ? data?.symbol?.slice(0, 13) + "..."
+                        {data && data?.symbol?.length > 6
+                          ? data?.symbol?.slice(0, 6) + "..."
                           : data && data?.symbol}
                       </Typography>
                     </Stack>
                   </TableCell>
-                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                  {/* <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     <Stack direction="column" spacing={0.2}>
                       {data && data?.network_icon?.length !== 0 ? (
                         data &&
@@ -237,7 +251,7 @@ const UserAdminHtmlTable = ({
                           <Avatar
                             alt={data?.name}
                             src={`${serverAPIUrl}public/uploads/network_icons/${item}`}
-                            sx={{ width: 25, height: 25, borderRadius: 0 }}
+                            sx={{ width: 41, height: 11, borderRadius: 0 }}
                           />
                         ))
                       ) : (
@@ -476,47 +490,50 @@ const UserAdminHtmlTable = ({
                         />
                       )}
                     </Stack>
-                  </TableCell>
-                  <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
+                  </TableCell> */}
+                  <TableCell sx={{ color: "#E0B62A", border: 0, maxWidth: 90 }}>
                     {parseInt(data?.status) === 1 ? (
-                      <Typography
-                        variant="caption"
+                      <Chip
+                        label="Approved"
+                        color="primary"
                         sx={{
-                          color: "#17AC27",
-
+                          height: 22,
+                          background: "#17AC27",
+                          color: "#FFFFFF",
                           fontWeight: 600,
+                          fontSize: ".6rem",
                         }}
-                      >
-                        Approved
-                      </Typography>
+                      />
                     ) : parseInt(data?.status) === 2 ? (
-                      <Typography
-                        variant="caption"
+                      <Chip
+                        label="Suspended"
+                        color="primary"
                         sx={{
-                          color: "#FC0503",
-
+                          height: 22,
+                          background: "#FC0503",
+                          color: "#FFFFFF",
                           fontWeight: 600,
+                          fontSize: ".6rem",
                         }}
-                      >
-                        Suspended
-                      </Typography>
+                      />
                     ) : (
                       parseInt(data?.status) === 3 && (
-                        <Typography
-                          variant="caption"
+                        <Chip
+                          label="Processing"
+                          color="primary"
                           sx={{
-                            color: "#FBFE07",
-
+                            height: 22,
+                            background: "#FBFE07",
+                            color: "#000000",
                             fontWeight: 600,
+                            fontSize: ".6rem",
                           }}
-                        >
-                          Processing
-                        </Typography>
+                        />
                       )
                     )}
                   </TableCell>
-                  <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
-                    <Stack direction="row" spacing={1}>
+                  <TableCell sx={{ color: "#E0B62A", border: 0, maxWidth: 90 }}>
+                    <Stack direction="row" spacing={0.5}>
                       <Link
                         to={{
                           pathname: `/user-dashboard/coin/edit`,
@@ -524,34 +541,25 @@ const UserAdminHtmlTable = ({
                         state={{ id: data && data?.id }}
                         style={{ textDecoration: "none" }}
                       >
-                        <Typography
-                          sx={{
-                            color: "#FFFFFF",
-                            fontSize: ".85rem",
-                            textTransform: "capitalize",
-                          }}
-                        >
-                          Edit
-                        </Typography>{" "}
+                        <IconButton>
+                          {" "}
+                          <EditIcon sx={{ color: "#FFFFFF" }} />
+                        </IconButton>
                       </Link>
 
-                      <Divider
+                      {/* <Divider
                         flexItem
                         variant="middle"
                         orientation="vertical"
                         sx={{ borderRightColor: "#FFFFFF", height: 20 }}
-                      />
-                      <Typography
-                        sx={{
-                          color: "#CE0519",
-                          fontSize: ".85rem",
-                          textTransform: "capitalize",
-                          cursor: "pointer",
-                        }}
+                      /> */}
+
+                      <IconButton
                         onClick={() => handleDeleteClick(data && data?.id)}
                       >
-                        Delete
-                      </Typography>
+                        {" "}
+                        <DeleteForeverRoundedIcon sx={{ color: "#FFFFFF" }} />
+                      </IconButton>
                     </Stack>
                   </TableCell>
                 </TableRow>
@@ -583,7 +591,7 @@ const UserAdminHtmlTable = ({
         )}
 
         {variant === "nft" && (
-          <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
+          <TableBody sx={{ backgroundColor: "#000000", color: "#FFFFFF" }}>
             {tableData &&
               tableData?.map((data: any, index: number) => (
                 <TableRow
@@ -605,14 +613,14 @@ const UserAdminHtmlTable = ({
                   >
                     {index + 1}
                   </TableCell>
-                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                  {/* <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     {" "}
                     <Avatar
                       alt={data?.title}
                       src={`${serverAPIUrl}public/uploads/nft_listing_image/${data?.image}`}
                       sx={{ width: 34, height: 34 }}
                     />
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     <Stack direction="column">
                       <Typography variant="caption">
@@ -645,7 +653,7 @@ const UserAdminHtmlTable = ({
                       </Typography> */}
                     </Stack>
                   </TableCell>
-                  <TableCell
+                  {/* <TableCell
                     sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
                   >
                     <Typography variant="caption">{data?.currency}</Typography>
@@ -697,48 +705,51 @@ const UserAdminHtmlTable = ({
                       {" "}
                       {moment(data?.created_at, "YYYYMMDD").fromNow()}
                     </Typography>
-                  </TableCell>
+                  </TableCell> */}
 
-                  <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
+                  <TableCell sx={{ color: "#E0B62A", border: 0, maxWidth: 90 }}>
                     {parseInt(data?.status) === 1 ? (
-                      <Typography
-                        variant="caption"
+                      <Chip
+                        label="Approved"
+                        color="primary"
                         sx={{
-                          color: "#17AC27",
-
+                          height: 22,
+                          background: "#17AC27",
+                          color: "#FFFFFF",
                           fontWeight: 600,
+                          fontSize: ".6rem",
                         }}
-                      >
-                        Approved
-                      </Typography>
+                      />
                     ) : parseInt(data?.status) === 2 ? (
-                      <Typography
-                        variant="caption"
+                      <Chip
+                        label="Suspended"
+                        color="primary"
                         sx={{
-                          color: "#FC0503",
-
+                          height: 22,
+                          background: "#FC0503",
+                          color: "#FFFFFF",
                           fontWeight: 600,
+                          fontSize: ".6rem",
                         }}
-                      >
-                        Suspended
-                      </Typography>
+                      />
                     ) : (
                       parseInt(data?.status) === 3 && (
-                        <Typography
-                          variant="caption"
+                        <Chip
+                          label="Processing"
+                          color="primary"
                           sx={{
-                            color: "#FBFE07",
-
+                            height: 22,
+                            background: "#FBFE07",
+                            color: "#000000",
                             fontWeight: 600,
+                            fontSize: ".6rem",
                           }}
-                        >
-                          Processing
-                        </Typography>
+                        />
                       )
                     )}
                   </TableCell>
                   <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
-                    <Stack direction="row" spacing={1}>
+                    <Stack direction="row" spacing={0.5}>
                       <Link
                         to={{
                           pathname: `/user-dashboard/nft/edit`,
@@ -746,34 +757,25 @@ const UserAdminHtmlTable = ({
                         state={{ id: data && data?.id }}
                         style={{ textDecoration: "none" }}
                       >
-                        <Typography
-                          sx={{
-                            color: "#FFFFFF",
-                            fontSize: ".85rem",
-                            textTransform: "capitalize",
-                          }}
-                        >
-                          Edit
-                        </Typography>{" "}
+                        <IconButton>
+                          {" "}
+                          <EditIcon sx={{ color: "#FFFFFF" }} />
+                        </IconButton>
                       </Link>
 
-                      <Divider
+                      {/* <Divider
                         flexItem
                         variant="middle"
                         orientation="vertical"
                         sx={{ borderRightColor: "#FFFFFF", height: 20 }}
-                      />
-                      <Typography
-                        sx={{
-                          color: "#CE0519",
-                          fontSize: ".85rem",
-                          textTransform: "capitalize",
-                          cursor: "pointer",
-                        }}
+                      /> */}
+
+                      <IconButton
                         onClick={() => handleDeleteClick(data && data?.id)}
                       >
-                        Delete
-                      </Typography>
+                        {" "}
+                        <DeleteForeverRoundedIcon sx={{ color: "#FFFFFF" }} />
+                      </IconButton>
                     </Stack>
                   </TableCell>
                 </TableRow>
@@ -805,7 +807,7 @@ const UserAdminHtmlTable = ({
         )}
 
         {variant === "events" && (
-          <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
+          <TableBody sx={{ backgroundColor: "#000000", color: "#FFFFFF" }}>
             {tableData &&
               tableData?.map((data: any, index: number) => (
                 <TableRow
@@ -831,7 +833,7 @@ const UserAdminHtmlTable = ({
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     {data && data?.title}
                   </TableCell>
-                  <TableCell
+                  {/* <TableCell
                     sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
                   >
                     <Typography variant="caption">
@@ -855,48 +857,51 @@ const UserAdminHtmlTable = ({
                     <Typography variant="caption">
                       {data && data?.address}
                     </Typography>
-                  </TableCell>
+                  </TableCell> */}
 
-                  <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
+                  <TableCell sx={{ color: "#E0B62A", border: 0, maxWidth: 90 }}>
                     {parseInt(data?.status) === 1 ? (
-                      <Typography
-                        variant="caption"
+                      <Chip
+                        label="Approved"
+                        color="primary"
                         sx={{
-                          color: "#17AC27",
-
+                          height: 22,
+                          background: "#17AC27",
+                          color: "#FFFFFF",
                           fontWeight: 600,
+                          fontSize: ".6rem",
                         }}
-                      >
-                        Approved
-                      </Typography>
+                      />
                     ) : parseInt(data?.status) === 2 ? (
-                      <Typography
-                        variant="caption"
+                      <Chip
+                        label="Suspended"
+                        color="primary"
                         sx={{
-                          color: "#FC0503",
-
+                          height: 22,
+                          background: "#FC0503",
+                          color: "#FFFFFF",
                           fontWeight: 600,
+                          fontSize: ".6rem",
                         }}
-                      >
-                        Suspended
-                      </Typography>
+                      />
                     ) : (
                       parseInt(data?.status) === 3 && (
-                        <Typography
-                          variant="caption"
+                        <Chip
+                          label="Processing"
+                          color="primary"
                           sx={{
-                            color: "#FBFE07",
-
+                            height: 22,
+                            background: "#FBFE07",
+                            color: "#000000",
                             fontWeight: 600,
+                            fontSize: ".6rem",
                           }}
-                        >
-                          Processing
-                        </Typography>
+                        />
                       )
                     )}
                   </TableCell>
                   <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
-                    <Stack direction="row" spacing={1}>
+                    <Stack direction="row" spacing={0.5}>
                       <Link
                         to={{
                           pathname: `/user-dashboard/events/edit`,
@@ -904,34 +909,25 @@ const UserAdminHtmlTable = ({
                         state={{ id: data && data?.id }}
                         style={{ textDecoration: "none" }}
                       >
-                        <Typography
-                          sx={{
-                            color: "#FFFFFF",
-                            fontSize: ".85rem",
-                            textTransform: "capitalize",
-                          }}
-                        >
-                          Edit
-                        </Typography>{" "}
+                        <IconButton>
+                          {" "}
+                          <EditIcon sx={{ color: "#FFFFFF" }} />
+                        </IconButton>
                       </Link>
 
-                      <Divider
+                      {/* <Divider
                         flexItem
                         variant="middle"
                         orientation="vertical"
                         sx={{ borderRightColor: "#FFFFFF", height: 20 }}
-                      />
-                      <Typography
-                        sx={{
-                          color: "#CE0519",
-                          fontSize: ".85rem",
-                          textTransform: "capitalize",
-                          cursor: "pointer",
-                        }}
+                      /> */}
+
+                      <IconButton
                         onClick={() => handleDeleteClick(data && data?.id)}
                       >
-                        Delete
-                      </Typography>
+                        {" "}
+                        <DeleteForeverRoundedIcon sx={{ color: "#FFFFFF" }} />
+                      </IconButton>
                     </Stack>
                   </TableCell>
                 </TableRow>
@@ -963,7 +959,7 @@ const UserAdminHtmlTable = ({
         )}
 
         {variant === "airdrops" && (
-          <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
+          <TableBody sx={{ backgroundColor: "#000000", color: "#FFFFFF" }}>
             {tableData &&
               tableData?.map((data: any, index: number) => (
                 <TableRow
@@ -985,7 +981,7 @@ const UserAdminHtmlTable = ({
                   >
                     {index + 1}
                   </TableCell>
-                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                  {/* <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     {" "}
                     <Avatar
                       alt={data && data?.title}
@@ -994,7 +990,7 @@ const UserAdminHtmlTable = ({
                       }`}
                       sx={{ width: 34, height: 34 }}
                     />
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     <Stack direction="column">
                       <Typography variant="caption">
@@ -1013,7 +1009,7 @@ const UserAdminHtmlTable = ({
                       </Typography> */}
                     </Stack>
                   </TableCell>
-                  <TableCell
+                  {/* <TableCell
                     sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
                   >
                     <Typography variant="caption">
@@ -1052,48 +1048,51 @@ const UserAdminHtmlTable = ({
                     <Typography variant="caption">
                       {data && data?.join_telegram}
                     </Typography>
-                  </TableCell>
+                  </TableCell> */}
 
-                  <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
+                  <TableCell sx={{ color: "#E0B62A", border: 0, maxWidth: 90 }}>
                     {parseInt(data?.status) === 1 ? (
-                      <Typography
-                        variant="caption"
+                      <Chip
+                        label="Approved"
+                        color="primary"
                         sx={{
-                          color: "#17AC27",
-
+                          height: 22,
+                          background: "#17AC27",
+                          color: "#FFFFFF",
                           fontWeight: 600,
+                          fontSize: ".6rem",
                         }}
-                      >
-                        Approved
-                      </Typography>
+                      />
                     ) : parseInt(data?.status) === 2 ? (
-                      <Typography
-                        variant="caption"
+                      <Chip
+                        label="Suspended"
+                        color="primary"
                         sx={{
-                          color: "#FC0503",
-
+                          height: 22,
+                          background: "#FC0503",
+                          color: "#FFFFFF",
                           fontWeight: 600,
+                          fontSize: ".6rem",
                         }}
-                      >
-                        Suspended
-                      </Typography>
+                      />
                     ) : (
                       parseInt(data?.status) === 3 && (
-                        <Typography
-                          variant="caption"
+                        <Chip
+                          label="Processing"
+                          color="primary"
                           sx={{
-                            color: "#FBFE07",
-
+                            height: 22,
+                            background: "#FBFE07",
+                            color: "#000000",
                             fontWeight: 600,
+                            fontSize: ".6rem",
                           }}
-                        >
-                          Processing
-                        </Typography>
+                        />
                       )
                     )}
                   </TableCell>
                   <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
-                    <Stack direction="row" spacing={1}>
+                    <Stack direction="row" spacing={0.5}>
                       <Link
                         to={{
                           pathname: `/user-dashboard/airdrops/edit`,
@@ -1101,34 +1100,25 @@ const UserAdminHtmlTable = ({
                         state={{ id: data && data?.id }}
                         style={{ textDecoration: "none" }}
                       >
-                        <Typography
-                          sx={{
-                            color: "#FFFFFF",
-                            fontSize: ".85rem",
-                            textTransform: "capitalize",
-                          }}
-                        >
-                          Edit
-                        </Typography>{" "}
+                        <IconButton>
+                          {" "}
+                          <EditIcon sx={{ color: "#FFFFFF" }} />
+                        </IconButton>
                       </Link>
 
-                      <Divider
+                      {/* <Divider
                         flexItem
                         variant="middle"
                         orientation="vertical"
                         sx={{ borderRightColor: "#FFFFFF", height: 20 }}
-                      />
-                      <Typography
-                        sx={{
-                          color: "#CE0519",
-                          fontSize: ".85rem",
-                          textTransform: "capitalize",
-                          cursor: "pointer",
-                        }}
+                      /> */}
+
+                      <IconButton
                         onClick={() => handleDeleteClick(data && data?.id)}
                       >
-                        Delete
-                      </Typography>
+                        {" "}
+                        <DeleteForeverRoundedIcon sx={{ color: "#FFFFFF" }} />
+                      </IconButton>
                     </Stack>
                   </TableCell>
                 </TableRow>
@@ -1160,7 +1150,7 @@ const UserAdminHtmlTable = ({
         )}
 
         {variant === "review" && (
-          <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
+          <TableBody sx={{ backgroundColor: "#000000", color: "#FFFFFF" }}>
             {tableData &&
               tableData?.map((data: any, index: number) => (
                 <TableRow
@@ -1182,14 +1172,14 @@ const UserAdminHtmlTable = ({
                   >
                     {index + 1}
                   </TableCell>
-                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                  {/* <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     {" "}
                     <Avatar
                       alt={data?.name}
                       src={`${serverAPIUrl}public/uploads/coin_logo/${data?.logo}`}
                       sx={{ width: 34, height: 34 }}
                     />
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     <Typography variant="caption">
                       {" "}
@@ -1198,65 +1188,71 @@ const UserAdminHtmlTable = ({
                         : data && data?.name}
                     </Typography>
                   </TableCell>
-                  <TableCell
+                  {/* <TableCell
                     sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
                   >
                     <Typography variant="caption">{data?.rating}</Typography>
+                  </TableCell> */}
+
+                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                    <Typography variant="caption">
+                      {" "}
+                      {data && data?.review?.length > 13
+                        ? data?.review?.slice(0, 13) + "..."
+                        : data && data?.review}
+                    </Typography>
                   </TableCell>
 
-                  <TableCell
-                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
-                  >
-                    <Typography variant="caption">{data?.review}</Typography>
-                  </TableCell>
-
-                  <TableCell sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}>
+                  {/* <TableCell sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}>
                     <Typography variant="caption">
                       {" "}
                       {moment(data?.created_at, "YYYYMMDD").fromNow()}
                     </Typography>
-                  </TableCell>
+                  </TableCell> */}
 
-                  <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
+                  <TableCell sx={{ color: "#E0B62A", border: 0, maxWidth: 90 }}>
                     {parseInt(data?.status) === 1 ? (
-                      <Typography
-                        variant="caption"
+                      <Chip
+                        label="Approved"
+                        color="primary"
                         sx={{
-                          color: "#17AC27",
-
+                          height: 22,
+                          background: "#17AC27",
+                          color: "#FFFFFF",
                           fontWeight: 600,
+                          fontSize: ".6rem",
                         }}
-                      >
-                        Approved
-                      </Typography>
+                      />
                     ) : parseInt(data?.status) === 2 ? (
-                      <Typography
-                        variant="caption"
+                      <Chip
+                        label="Suspended"
+                        color="primary"
                         sx={{
-                          color: "#FC0503",
-
+                          height: 22,
+                          background: "#FC0503",
+                          color: "#FFFFFF",
                           fontWeight: 600,
+                          fontSize: ".6rem",
                         }}
-                      >
-                        Suspended
-                      </Typography>
+                      />
                     ) : (
                       parseInt(data?.status) === 3 && (
-                        <Typography
-                          variant="caption"
+                        <Chip
+                          label="Processing"
+                          color="primary"
                           sx={{
-                            color: "#FBFE07",
-
+                            height: 22,
+                            background: "#FBFE07",
+                            color: "#000000",
                             fontWeight: 600,
+                            fontSize: ".6rem",
                           }}
-                        >
-                          Processing
-                        </Typography>
+                        />
                       )
                     )}
                   </TableCell>
                   <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
-                    <Stack direction="row" spacing={1}>
+                    <Stack direction="row" spacing={0.5}>
                       <Link
                         to={{
                           pathname: `/user-dashboard/review/edit`,
@@ -1264,34 +1260,25 @@ const UserAdminHtmlTable = ({
                         state={{ id: data && data?.id }}
                         style={{ textDecoration: "none" }}
                       >
-                        <Typography
-                          sx={{
-                            color: "#FFFFFF",
-                            fontSize: ".85rem",
-                            textTransform: "capitalize",
-                          }}
-                        >
-                          Edit
-                        </Typography>{" "}
+                        <IconButton>
+                          {" "}
+                          <EditIcon sx={{ color: "#FFFFFF" }} />
+                        </IconButton>
                       </Link>
 
-                      <Divider
+                      {/* <Divider
                         flexItem
                         variant="middle"
                         orientation="vertical"
                         sx={{ borderRightColor: "#FFFFFF", height: 20 }}
-                      />
-                      <Typography
-                        sx={{
-                          color: "#CE0519",
-                          fontSize: ".85rem",
-                          textTransform: "capitalize",
-                          cursor: "pointer",
-                        }}
+                      /> */}
+
+                      <IconButton
                         onClick={() => handleDeleteClick(data && data?.id)}
                       >
-                        Delete
-                      </Typography>
+                        {" "}
+                        <DeleteForeverRoundedIcon sx={{ color: "#FFFFFF" }} />
+                      </IconButton>
                     </Stack>
                   </TableCell>
                 </TableRow>
@@ -1326,4 +1313,4 @@ const UserAdminHtmlTable = ({
   );
 };
 
-export default UserAdminHtmlTable;
+export default UserAdminMobileHtmlTable;

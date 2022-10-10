@@ -48,6 +48,11 @@ import MobileDiscoverPage from "../pages/mobile/mobilediscover/MobileDiscoverPag
 import MobileUserDashboard from "../pages/useradmin/mobile/dashboard/MobileUserDashboard";
 import MobileAnnouncement from "../pages/useradmin/mobile/announcement/MobileAnnouncement";
 import MobileOfferZone from "../pages/useradmin/mobile/offerzone/MobileOfferZone";
+import UserAdminCoinListingMobilePage from "../pages/useradmin/mobile/useradmincoinlistingmobilepage/UserAdminCoinListingMobilePage";
+import UserAdminNftListingMobilePage from "../pages/useradmin/mobile/useradminnftlistingmobilepage/UserAdminNftListingMobilePage";
+import UserAdminEventsListingMobilePage from "../pages/useradmin/mobile/useradmineventslistingmobilepage/UserAdminEventsListingMobilePage";
+import UserAdminAirdropsListingMobilePage from "../pages/useradmin/mobile/useradminairdropslistingmobilepage/UserAdminAirdropsListingMobilePage";
+import UserAdminReviewListingMobilePage from "../pages/useradmin/mobile/useradminreviewlistingmobilepage/UserAdminReviewListingMobilePage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -353,6 +358,106 @@ const AppRoutes = () => {
             element={
               <PrivateRoute>
                 <MobileUserDashboard />
+              </PrivateRoute>
+            }
+          />
+        )}
+
+        {windowInnerWidth >= 900 ? (
+          <Route
+            path="/user-dashboard/coin"
+            element={
+              <PrivateRoute>
+                <UserDashboard />
+              </PrivateRoute>
+            }
+          />
+        ) : (
+          <Route
+            path="/user-dashboard/coin"
+            element={
+              <PrivateRoute>
+                <UserAdminCoinListingMobilePage />
+              </PrivateRoute>
+            }
+          />
+        )}
+
+        {windowInnerWidth >= 900 ? (
+          <Route
+            path="/user-dashboard/nft"
+            element={
+              <PrivateRoute>
+                <UserDashboard />
+              </PrivateRoute>
+            }
+          />
+        ) : (
+          <Route
+            path="/user-dashboard/nft"
+            element={
+              <PrivateRoute>
+                <UserAdminNftListingMobilePage />
+              </PrivateRoute>
+            }
+          />
+        )}
+
+        {windowInnerWidth >= 900 ? (
+          <Route
+            path="/user-dashboard/events"
+            element={
+              <PrivateRoute>
+                <UserDashboard />
+              </PrivateRoute>
+            }
+          />
+        ) : (
+          <Route
+            path="/user-dashboard/events"
+            element={
+              <PrivateRoute>
+                <UserAdminEventsListingMobilePage />
+              </PrivateRoute>
+            }
+          />
+        )}
+
+        {windowInnerWidth >= 900 ? (
+          <Route
+            path="/user-dashboard/airdrops"
+            element={
+              <PrivateRoute>
+                <UserDashboard />
+              </PrivateRoute>
+            }
+          />
+        ) : (
+          <Route
+            path="/user-dashboard/airdrops"
+            element={
+              <PrivateRoute>
+                <UserAdminAirdropsListingMobilePage />
+              </PrivateRoute>
+            }
+          />
+        )}
+
+        {windowInnerWidth >= 900 ? (
+          <Route
+            path="/user-dashboard/review"
+            element={
+              <PrivateRoute>
+                <UserDashboard />
+              </PrivateRoute>
+            }
+          />
+        ) : (
+          <Route
+            path="/user-dashboard/review"
+            element={
+              <PrivateRoute>
+                <UserAdminReviewListingMobilePage />
               </PrivateRoute>
             }
           />

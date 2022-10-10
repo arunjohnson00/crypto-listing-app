@@ -56,13 +56,14 @@ const AirDropsAdd = () => {
 
   const airdropsAddHandler = () => {
     const successHandler = (res: any) => {
+      console.log(res);
       setLoading(true);
       toast.success(
         <Box>
           <Stack direction="row" spacing={2} alignItems="center">
             <CheckCircleRoundedIcon sx={{ color: "#5CE32D", fontSize: 50 }} />
             <Typography sx={{ fontSize: ".85rem" }}>
-              {res.data.data.original.message}
+              {res?.data?.data?.original?.message}
             </Typography>
           </Stack>
         </Box>,
@@ -85,12 +86,14 @@ const AirDropsAdd = () => {
     };
 
     const errorHandler = (err: any) => {
+      console.log(err);
+
       toast.error(
         <Box>
           <Stack direction="row" spacing={2} alignItems="center">
             <CancelRoundedIcon sx={{ color: "#ff3722", fontSize: 50 }} />
             <Typography sx={{ fontSize: ".85rem" }}>
-              {err.error.message.response.request.responseText}
+              {err && err?.error?.message?.response?.request?.responseText}
             </Typography>
           </Stack>
         </Box>,
@@ -155,7 +158,7 @@ const AirDropsAdd = () => {
   //     dispatch(listCoinRequest("emptyData", successHandler, errorHandler));
   //   }, [dispatch]);
   return (
-    <Grid container spacing={2} pb={10}>
+    <Grid container rowSpacing={2} pb={10}>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={loading}
@@ -276,6 +279,7 @@ const AirDropsAdd = () => {
             </Typography>
 
             <InputText
+              width="100%"
               placeholder="  Total Airdrop Amount"
               inputTextHandler={(e: any) => airdropsTotalAmountHandler(e)}
             />

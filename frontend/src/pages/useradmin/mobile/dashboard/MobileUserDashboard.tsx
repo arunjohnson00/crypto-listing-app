@@ -168,7 +168,7 @@ const MobileUserDashboard = () => {
                 <MobileOverViewCard
                   icon={mycoinIcon}
                   title="My Coin"
-                  link="/user-dashboard/coin/add"
+                  link="/user-dashboard/coin"
                   color="#FFFFFF"
                   background="#000000"
                   border="transparent"
@@ -195,7 +195,7 @@ const MobileUserDashboard = () => {
                 <MobileOverViewCard
                   icon={mynftIcon}
                   title="My NFT"
-                  link="/user-dashboard/coin/add"
+                  link="/user-dashboard/nft"
                   color="#FFFFFF"
                   background="#000000"
                   border="transparent"
@@ -222,7 +222,7 @@ const MobileUserDashboard = () => {
                 <MobileOverViewCard
                   icon={myeventIcon}
                   title="My Events"
-                  link="/user-dashboard/nft/add"
+                  link="/user-dashboard/events"
                   color="#FFFFFF"
                   background="#000000"
                   border="transparent"
@@ -250,7 +250,7 @@ const MobileUserDashboard = () => {
                 <MobileOverViewCard
                   icon={myairdropsIcon}
                   title="My Airdrops"
-                  link="/user-dashboard/events/add"
+                  link="/user-dashboard/airdrops"
                   color="#FFFFFF"
                   background="#000000"
                   border="transparent"
@@ -265,7 +265,7 @@ const MobileUserDashboard = () => {
                 <MobileOverViewCard
                   icon={myratingsIcon}
                   title="My Ratings"
-                  link="/user-dashboard/airdrops/add"
+                  link="/user-dashboard/review"
                   color="#FFFFFF"
                   background="#000000"
                   border="transparent"
@@ -280,7 +280,7 @@ const MobileUserDashboard = () => {
                 <MobileOverViewCard
                   icon={mywatchlistsIcon}
                   title="My Watchlists"
-                  link="/user-dashboard/airdrops/add"
+                  link="/user-dashboard/watchlist"
                   color="#FFFFFF"
                   background="#000000"
                   border="transparent"

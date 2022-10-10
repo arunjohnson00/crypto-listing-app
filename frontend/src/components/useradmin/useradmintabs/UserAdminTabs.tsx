@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Avatar,
   Box,
@@ -20,13 +20,33 @@ import UserAdminEventsListing from "../useradmineventslisting/UserAdminEventsLis
 import UserAdminAirdropsListing from "../useradminairdropslisting/UserAdminAirdropsListing";
 import UserAdminReviewListing from "../useradminreviewlisting/UserAdminReviewListing";
 import UserAdminWatchListListing from "../useradminwatchlistlisting/UserAdminWatchListListing";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const UserAdminTabs = () => {
   const [value, setValue] = useState("1");
+
+  const location = useLocation();
+  const navigate = useNavigate();
   const matches = useMediaQuery("(max-width:900px)");
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
+    newValue === "2" && navigate("/user-dashboard/coin");
+    newValue === "3" && navigate("/user-dashboard/nft");
+    newValue === "4" && navigate("/user-dashboard/events");
+    newValue === "5" && navigate("/user-dashboard/airdrops");
+    newValue === "6" && navigate("/user-dashboard/review");
+    newValue === "7" && navigate("/user-dashboard/watchlist");
   };
+
+  useEffect(() => {
+    location?.pathname === "/user-dashboard/coin" && setValue("2");
+    location?.pathname === "/user-dashboard/nft" && setValue("3");
+    location?.pathname === "/user-dashboard/events" && setValue("4");
+    location?.pathname === "/user-dashboard/airdrops" && setValue("5");
+    location?.pathname === "/user-dashboard/review" && setValue("6");
+    location?.pathname === "/user-dashboard/watchlist" && setValue("7");
+  }, [location, setValue]);
+
   return (
     <Box sx={{ width: "100%", typography: "body1" }}>
       <TabContext value={value}>
