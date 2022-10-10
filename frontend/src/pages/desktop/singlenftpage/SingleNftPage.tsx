@@ -23,7 +23,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { styled } from "@mui/material/styles";
 import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
-
+import { defaultColor } from "../../../common/common";
 const SingleNftPage = () => {
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
@@ -42,261 +42,372 @@ const SingleNftPage = () => {
 
   return (
     <Fragment>
-      <Grid container rowSpacing={5}>
+      <Grid container rowSpacing={5} columnSpacing={3}>
         <Grid item xs={12}>
           <LatestNewsScroll />
         </Grid>
         <Grid item xs={12}>
-          <Grid container>
-            <Grid
-              item
-              xs={12}
-              sm={12}
-              md={6}
-              lg={6}
-              xl={6}
-              sx={{
-                alignItems: "center",
-              }}
-              py={1}
-            >
-              <BreadCrumbs data="" home="Home" path="NFT" />
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              sm={12}
-              md={6}
-              lg={6}
-              xl={6}
-              sx={{
-                alignItems: "center",
-              }}
-              py={1}
-            >
-              <CardMedia
-                component="img"
-                height="80"
-                image="https://iili.io/UtY5Kv.jpg"
-                alt="green iguana"
-                sx={{ objectFit: "unset" }}
-              />
-            </Grid>
-          </Grid>
+          <BreadCrumbs data="" home="Home" path="NFT" />
         </Grid>
-        <Grid item xs={12}>
-          <Grid container pt={3}>
-            <Grid xs={12} sm={12} md={5} lg={5} xl={5} pt={3}>
-              <Stack
-                direction="column"
-                spacing={3}
-                sx={{ alignItems: "center" }}
-              >
-                <Grid xs={12} sm={12} md={8} lg={8} xl={8}>
-                  <CardMedia
-                    component="img"
-                    height="320"
-                    image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                    alt="green iguana"
-                  />
-                </Grid>
-                <Grid xs={12} sm={12} md={8} lg={8} xl={8}>
-                  <Button
-                    variant="outlined"
-                    sx={{
-                      borderColor: "#6252E7",
-                      borderRadius: 3,
-                      height: 42,
-                      color: "#FFFFF5",
-                      paddingX: 4,
-                      textTransform: "capitalize",
-                    }}
-                  >
-                    2365 Votes
-                  </Button>
-                </Grid>
-                <Grid xs={12} sm={12} md={8} lg={8} xl={8}>
-                  <Button
-                    variant="contained"
-                    sx={{
-                      backgroundColor: "#6252E7",
-                      borderRadius: 3,
-                      height: 42,
-                      textTransform: "capitalize",
-                    }}
-                  >
-                    Buy Bored Ape Yatch Club
-                  </Button>
-                </Grid>
-              </Stack>
-            </Grid>
-            <Divider
-              variant="middle"
-              flexItem
-              orientation={xsBreakPoint ? "horizontal" : "vertical"}
-              sx={{ borderColor: "#342D61", borderRightWidth: 2 }}
-            />
-            <Grid
-              xs={12}
-              sm={12}
-              md={6}
-              lg={6}
-              xl={6}
-              pl={{ sx: 0, sm: 0, md: 4 }}
-              mt={{ xs: 7, sm: 7, md: 3 }}
+        <Grid container mt={3}>
+          <Grid item xs={3}>
+            <Box
+              mr={2}
+              sx={{
+                backgroundColor: "#01061A",
+                border: "2px solid #090F2F",
+                borderTopLeftRadius: 52,
+                borderTopRightRadius: 52,
+                borderBottomLeftRadius: 52,
+                borderBottomRightRadius: 52,
+              }}
             >
-              <Stack
-                direction="column"
-                spacing={3}
-                sx={{ alignItems: "flex-start" }}
-              >
-                <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
-                  2365 Votes
-                </Typography>
+              <Stack direction="column" alignItems="center" spacing={1.5}>
+                <Avatar
+                  // src={`${serverAPIUrl}public/uploads/nft_listing_image/${data?.image}`}
+                  src=""
+                  // alt={data && data?.title}
+                  alt=""
+                  variant="square"
+                  sx={{
+                    borderTopLeftRadius: 52,
+                    borderTopRightRadius: 52,
+                    width: "100%",
+                    height: "250px",
+                  }}
+                />
 
-                <Box sx={{ flexGrow: 1, width: "100%" }}>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#FFFFFF",
+                    fontSize: "0.9rem",
+                    fontWeight: 600,
+                  }}
+                >
+                  Johny #037
+                </Typography>
+                <Stack
+                  direction="column"
+                  alignItems="center"
+                  width="100%"
+                  spacing={1}
+                  pb={2}
+                >
                   <Stack
-                    direction="row"
-                    spacing={3}
-                    sx={{
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
+                    direction="column"
+                    alignItems="center"
+                    spacing={0}
+                    width="-webkit-fill-available"
+                    px={3}
                   >
-                    <Stack
-                      direction="column"
-                      spacing={1}
-                      sx={
-                        {
-                          //alignItems: "center",
-                          // justifyContent: "space-between",
-                        }
-                      }
+                    <Divider
+                      variant="middle"
+                      flexItem
+                      orientation="horizontal"
+                      sx={{
+                        borderColor: "#0b1640",
+                        borderBottomWidth: 1,
+                        mb: 1,
+                      }}
+                    />
+                    <Typography variant="caption" sx={{ color: "#FFFFFF" }}>
+                      Price
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#FFFFFF",
+                        fontSize: "0.9rem",
+                        fontWeight: "bolder",
+                        backgroundImage:
+                          "linear-gradient(to right, #A828B9, #AF0A47)",
+                        filter: "drop-shadow(0 20px 30px #28d8ff33)",
+
+                        WebkitTextFillColor: "transparent",
+                        WebkitBackgroundClip: "text",
+                        WebkitBoxDecorationBreak: "clone",
+                      }}
                     >
-                      <Divider
-                        variant="fullWidth"
-                        flexItem
-                        orientation="horizontal"
-                        sx={{
-                          borderColor: "#6252E7",
-                          borderBottomWidth: 2,
-                        }}
-                      />
-                      <Typography
-                        variant="h4"
-                        sx={{ color: "#FFFFF5", paddingTop: 1 }}
-                      >
-                        Bored Ape Yacht Club
-                      </Typography>
-                      <Typography
-                        variant="subtitle1"
-                        sx={{
-                          color: "#FFFFF5",
-                          fontSize: "1.2rem",
-                          paddingBottom: 2,
-                        }}
-                      >
-                        Price: 0.2365 ETH
-                      </Typography>
-                      <Divider
-                        variant="fullWidth"
-                        flexItem
-                        orientation="horizontal"
-                        sx={{
-                          borderColor: "#6252E7",
-                          borderBottomWidth: 2,
-                        }}
-                      />
-                    </Stack>
-                    <StyledRating
-                      name="like"
-                      defaultValue={1}
-                      // getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
-                      precision={1}
-                      icon={<FavoriteIcon fontSize="inherit" />}
-                      emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
-                      max={1}
+                      {/* {data && data?.public_mint_price} {data && data?.symbol} */}
+                      104 USD
+                    </Typography>
+                    <Divider
+                      variant="middle"
+                      flexItem
+                      orientation="horizontal"
+                      sx={{
+                        borderColor: "#0b1640",
+                        borderBottomWidth: 1,
+                        mt: 1,
+                      }}
                     />
                   </Stack>
-                </Box>
-                <Stack direction="row" spacing={1.3}>
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="https://mui.com/static/images/avatar/1.jpg"
-                    sx={{ width: 26, height: 26 }}
-                  />
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="https://mui.com/static/images/avatar/1.jpg"
-                    sx={{ width: 26, height: 26 }}
-                  />
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="https://mui.com/static/images/avatar/1.jpg"
-                    sx={{ width: 26, height: 26 }}
-                  />
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="https://mui.com/static/images/avatar/1.jpg"
-                    sx={{ width: 26, height: 26 }}
-                  />
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="https://mui.com/static/images/avatar/1.jpg"
-                    sx={{ width: 26, height: 26 }}
-                  />
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="https://mui.com/static/images/avatar/1.jpg"
-                    sx={{ width: 26, height: 26 }}
-                  />
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="https://mui.com/static/images/avatar/1.jpg"
-                    sx={{ width: 26, height: 26 }}
-                  />
-                </Stack>
-                <Stack direction="column" spacing={1.3}>
-                  <Typography
-                    variant="h5"
-                    sx={{
-                      color: "#B5B5B6",
-                      fontWeight: 400,
-                    }}
-                  >
-                    About Bored Ape
+
+                  <Typography variant="caption" sx={{ color: "#FFFFFF" }}>
+                    Binance Smart Chain
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: "#FFFFF5",
-                      fontWeight: 400,
-                    }}
-                  >
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting,
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: "#FFFFF5",
-                      fontWeight: 400,
-                    }}
-                  >
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting,
-                  </Typography>
+                  {/* {data && data?.currency_icon === null ? (
+                    <Avatar
+                      variant="square"
+                      sx={{
+                        bgcolor: defaultColor[index],
+                        width: 22,
+                        height: 22,
+                      }}
+                    >
+                      <Typography sx={{ fontSize: ".6rem" }}>
+                        Binance Samrt Chain
+                      </Typography>
+                    </Avatar>
+                  ) : (
+                    <Avatar
+                      variant="square"
+                      // alt={data && data?.name}
+                      // src={`${serverAPIUrl}public/uploads/nft_currency_icons/${data?.currency_icon}`}
+                      src=""
+                      //src="https://mui.com/static/images/avatar/1.jpg"
+                      sx={{ width: 22, height: 22 }}
+                    />
+                  )} */}
+                  <Avatar
+                    variant="square"
+                    // alt={data && data?.name}
+                    // src={`${serverAPIUrl}public/uploads/nft_currency_icons/${data?.currency_icon}`}
+                    src=""
+                    //src="https://mui.com/static/images/avatar/1.jpg"
+                    sx={{ width: 22, height: 22 }}
+                  />
                 </Stack>
               </Stack>
-            </Grid>
+
+              <Stack
+                direction="column"
+                alignItems="center"
+                spacing={1.5}
+                pb={2}
+              >
+                <Box
+                  sx={{ border: "1px solid #0A0F2E", borderRadius: 4 }}
+                  px={2}
+                  py={1.5}
+                >
+                  <Stack direction="column" alignItems="center">
+                    <Stack direction="row" alignItems="center" spacing={2}>
+                      <Stack direction="column" alignItems="flex-start">
+                        {" "}
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#059E91",
+                            fontSize: "0.65rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          Presale Mint Price
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#FFFFFF",
+                            fontSize: "0.85rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          0.9 BNB
+                        </Typography>
+                      </Stack>
+
+                      <Divider
+                        variant="middle"
+                        flexItem
+                        orientation="vertical"
+                        sx={{
+                          borderColor: "#0b1640",
+                          borderRightWidth: 1,
+                          mb: 1,
+                        }}
+                      />
+
+                      <Stack direction="column" alignItems="flex-start">
+                        {" "}
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#059E91",
+                            fontSize: "0.65rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          Presale Mint Start Date
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#FFFFFF",
+                            fontSize: "0.85rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          0.9 BNB
+                        </Typography>
+                      </Stack>
+                    </Stack>
+                  </Stack>
+                </Box>
+                <Box
+                  sx={{ border: "1px solid #0A0F2E", borderRadius: 4 }}
+                  px={2}
+                  py={1.5}
+                >
+                  <Stack direction="column" alignItems="center">
+                    <Stack direction="row" alignItems="center" spacing={2}>
+                      <Stack direction="column" alignItems="flex-start">
+                        {" "}
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#059E91",
+                            fontSize: "0.65rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          Presale Mint Price
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#FFFFFF",
+                            fontSize: "0.85rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          0.9 BNB
+                        </Typography>
+                      </Stack>
+
+                      <Divider
+                        variant="middle"
+                        flexItem
+                        orientation="vertical"
+                        sx={{
+                          borderColor: "#0b1640",
+                          borderRightWidth: 1,
+                          mb: 1,
+                        }}
+                      />
+
+                      <Stack direction="column" alignItems="flex-start">
+                        {" "}
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#059E91",
+                            fontSize: "0.65rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          Presale Mint Start Date
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#FFFFFF",
+                            fontSize: "0.85rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          0.9 BNB
+                        </Typography>
+                      </Stack>
+                    </Stack>
+                  </Stack>
+                </Box>
+
+                <Box
+                  sx={{ border: "1px solid #0A0F2E", borderRadius: 4 }}
+                  px={2}
+                  py={1.5}
+                >
+                  <Stack direction="column" alignItems="center">
+                    <Stack direction="row" alignItems="center" spacing={2}>
+                      <Stack direction="column" alignItems="flex-start">
+                        {" "}
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#059E91",
+                            fontSize: "0.65rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          Presale Mint Price
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#FFFFFF",
+                            fontSize: "0.85rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          0.9 BNB
+                        </Typography>
+                      </Stack>
+
+                      <Divider
+                        variant="middle"
+                        flexItem
+                        orientation="vertical"
+                        sx={{
+                          borderColor: "#0b1640",
+                          borderRightWidth: 1,
+                          mb: 1,
+                        }}
+                      />
+
+                      <Stack direction="column" alignItems="flex-start">
+                        {" "}
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#059E91",
+                            fontSize: "0.65rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          Presale Mint Start Date
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#FFFFFF",
+                            fontSize: "0.85rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          0.9 BNB
+                        </Typography>
+                      </Stack>
+                    </Stack>
+                  </Stack>
+                </Box>
+              </Stack>
+            </Box>
+          </Grid>
+          <Grid item xs={9}>
+            <Stack direction="column" spacing={2} pl={5}>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#FFFFFF",
+                  fontSize: "1.5rem",
+                  fontWeight: 600,
+                }}
+              >
+                Johny #037
+              </Typography>
+            </Stack>
           </Grid>
         </Grid>
       </Grid>

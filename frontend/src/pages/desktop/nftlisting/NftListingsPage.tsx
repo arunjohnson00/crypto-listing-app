@@ -44,11 +44,11 @@ const NftListingsPage = () => {
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2.5,
+      items: 1,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 2.5,
+      items: 1,
     },
   };
 
@@ -99,7 +99,7 @@ const NftListingsPage = () => {
                 infinite={true}
                 removeArrowOnDeviceType={["tablet", "mobile"]}
                 arrows={true}
-                autoPlay={false}
+                autoPlay={true}
                 draggable={true}
                 swipeable={true}
                 minimumTouchDrag={10}

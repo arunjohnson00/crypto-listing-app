@@ -25,7 +25,7 @@ const MobileSingleNftPage = () => {
 
   return (
     <Fragment>
-      <Grid container rowSpacing={3}>
+      <Grid container rowSpacing={3} columnSpacing={3}>
         {/* <Grid item xs={12} sx={{}}>
           <MobileLatestNewsCardScrollTop />
         </Grid>

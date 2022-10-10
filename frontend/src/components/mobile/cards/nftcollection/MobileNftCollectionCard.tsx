@@ -1,4 +1,12 @@
-import { Grid, Stack, Box, CardMedia, Typography, Avatar } from "@mui/material";
+import {
+  Grid,
+  Stack,
+  Box,
+  CardMedia,
+  Typography,
+  Avatar,
+  Divider,
+} from "@mui/material";
 import Rating from "@mui/material/Rating";
 import { styled } from "@mui/material/styles";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -17,76 +25,113 @@ const MobileNftCollectionCard = ({ data, index }: any) => {
     },
   });
   return (
-    <Box>
-      <Stack direction="column">
-        <Box sx={{ flexGrow: 1, background: "#0B1643" }} px={2} py={2}>
-          <CardMedia
-            component="img"
-            height="143"
-            src={`${serverAPIUrl}public/uploads/nft_listing_image/${data?.image}`}
-            alt="green iguana"
-          />
-        </Box>
-        <Box
-          sx={{ flexGrow: 1, background: "#282760", height: "73px" }}
-          px={2}
-          py={2}
+    <Box
+      mr={0}
+      sx={{
+        backgroundColor: "#01061A",
+        border: "2px solid #090F2F",
+        borderTopLeftRadius: 52,
+        borderTopRightRadius: 52,
+        borderBottomLeftRadius: 52,
+        borderBottomRightRadius: 52,
+      }}
+    >
+      <Stack direction="column" alignItems="center" spacing={1.5}>
+        <Avatar
+          src={`${serverAPIUrl}public/uploads/nft_listing_image/${data?.image}`}
+          alt={data && data?.title}
+          variant="square"
+          sx={{
+            borderTopLeftRadius: 52,
+            borderTopRightRadius: 52,
+            width: "100%",
+            height: "250px",
+          }}
+        />
+
+        <Typography
+          variant="body2"
+          sx={{
+            color: "#FFFFFF",
+            fontSize: "0.9rem",
+            fontWeight: 600,
+          }}
         >
-          <Typography
-            variant="body2"
-            sx={{ color: "white", fontSize: "0.778rem" }}
-          >
-            {data && data?.title}
-          </Typography>
+          {data && data?.title}
+        </Typography>
+        <Stack
+          direction="column"
+          alignItems="center"
+          width="100%"
+          spacing={1}
+          pb={2}
+        >
           <Stack
-            direction="row"
-            sx={{ justifyContent: "space-between", alignItems: "center" }}
-            pt={2}
+            direction="column"
+            alignItems="center"
+            spacing={0}
+            width="-webkit-fill-available"
+            px={3}
           >
-            <Stack direction="row" spacing={0.8} sx={{ alignItems: "center" }}>
-              {data && data?.currency_icon === null ? (
-                <Avatar
-                  variant="square"
-                  sx={{
-                    bgcolor: defaultColor[index],
-                    width: 24,
-                    height: 24,
-                  }}
-                >
-                  <Typography sx={{ fontSize: ".6rem" }}>
-                    {data && data?.title[0]}
-                  </Typography>
-                </Avatar>
-              ) : (
-                <Avatar
-                  variant="square"
-                  alt={data && data?.name}
-                  src={`${serverAPIUrl}public/uploads/nft_currency_icons/${data?.currency_icon}`}
-                  //src="https://mui.com/static/images/avatar/1.jpg"
-                  sx={{ width: 24, height: 24 }}
-                />
-              )}
+            <Divider
+              variant="middle"
+              flexItem
+              orientation="horizontal"
+              sx={{ borderColor: "#0b1640", borderBottomWidth: 1, mb: 1 }}
+            />
+            <Typography variant="caption" sx={{ color: "#FFFFFF" }}>
+              Price
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#FFFFFF",
+                fontSize: "0.9rem",
+                fontWeight: "bolder",
+                backgroundImage: "linear-gradient(to right, #A828B9, #AF0A47)",
+                filter: "drop-shadow(0 20px 30px #28d8ff33)",
 
-              <Typography
-                variant="caption"
-                sx={{ color: "white", fontSize: "0.698rem" }}
-              >
-                {data && data?.public_mint_price} {data && data?.symbol}
-              </Typography>
-            </Stack>
-
-            <StyledRating
-              name="customized-color"
-              defaultValue={2}
-              // getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
-              precision={1}
-              icon={<FavoriteIcon fontSize="inherit" />}
-              emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
-              max={1}
-              size="small"
+                WebkitTextFillColor: "transparent",
+                WebkitBackgroundClip: "text",
+                WebkitBoxDecorationBreak: "clone",
+              }}
+            >
+              {data && data?.public_mint_price} {data && data?.symbol}
+            </Typography>
+            <Divider
+              variant="middle"
+              flexItem
+              orientation="horizontal"
+              sx={{ borderColor: "#0b1640", borderBottomWidth: 1, mt: 1 }}
             />
           </Stack>
-        </Box>
+
+          <Typography variant="caption" sx={{ color: "#FFFFFF" }}>
+            {data && data?.currency_name}
+          </Typography>
+          {data && data?.currency_icon === null ? (
+            <Avatar
+              variant="square"
+              sx={{
+                bgcolor: defaultColor[index],
+                width: 22,
+                height: 22,
+              }}
+            >
+              <Typography sx={{ fontSize: ".6rem" }}>
+                {data && data?.title[0]}
+              </Typography>
+            </Avatar>
+          ) : (
+            <Avatar
+              variant="square"
+              alt={data && data?.name}
+              src={`${serverAPIUrl}public/uploads/nft_currency_icons/${data?.currency_icon}`}
+              //src="https://mui.com/static/images/avatar/1.jpg"
+              sx={{ width: 22, height: 22 }}
+            />
+          )}
+        </Stack>
       </Stack>
     </Box>
   );
