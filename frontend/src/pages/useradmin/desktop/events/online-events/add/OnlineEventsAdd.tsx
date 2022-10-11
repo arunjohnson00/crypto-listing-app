@@ -10,38 +10,36 @@ import {
   CircularProgress,
   FormControlLabel,
 } from "@mui/material";
-import LargeBtn from "../../../../../components/useradmin/form/button/large/LargeBtn";
-import IconUploader from "../../../../../components/useradmin/form/input/file/icon/IconUploader";
-import InputText from "../../../../../components/useradmin/form/input/text/InputText";
+
 import { useDispatch } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 // import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
 // import "material-react-toastify/dist/ReactToastify.css";
+import dateFormat, { masks } from "dateformat";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import InputSelect from "../../../../../components/useradmin/form/select/InputSelect";
-
-import AutoCompleSelect from "../../../../../components/useradmin/form/autocomplete/AutoCompleSelect";
-import InputDate from "../../../../../components/useradmin/form/input/date/InputDate";
-
-import dateFormat, { masks } from "dateformat";
-import InputSelectCoin from "../../../../../components/useradmin/form/selectcoin/InputSelectCoin";
-import CheckboxWithLabel from "../../../../../components/useradmin/form/input/checkboxwithlabel/CheckboxWithLabel";
-import InputTextArea from "../../../../../components/useradmin/form/textarea/InputTextArea";
+import InputSelect from "../../../../../../components/useradmin/form/select/InputSelect";
+import AutoCompleSelect from "../../../../../../components/useradmin/form/autocomplete/AutoCompleSelect";
+import InputDate from "../../../../../../components/useradmin/form/input/date/InputDate";
+import LargeBtn from "../../../../../../components/useradmin/form/button/large/LargeBtn";
+import IconUploader from "../../../../../../components/useradmin/form/input/file/icon/IconUploader";
+import InputText from "../../../../../../components/useradmin/form/input/text/InputText";
+import InputSelectCoin from "../../../../../../components/useradmin/form/selectcoin/InputSelectCoin";
+import CheckboxWithLabel from "../../../../../../components/useradmin/form/input/checkboxwithlabel/CheckboxWithLabel";
+import InputTextArea from "../../../../../../components/useradmin/form/textarea/InputTextArea";
 import {
-  dashboardEditEventsRequest,
+  dashboardAddEventsRequest,
   dashboardEventsCategoryListRequest,
   dashboardEventsRewardAddressListRequest,
-  dashboardUpdateEventsRequest,
-} from "../../../../../store/action";
+} from "../../../../../../store/action";
 
-const EventsEdit = () => {
+const OnlineEventsAdd = () => {
   const selectOptions = [
     { title: "Approved", value: 1 },
     { title: "Processing", value: 2 },
@@ -55,16 +53,14 @@ const EventsEdit = () => {
   };
 
   const dispatch: any = useDispatch();
-  const navigate: any = useNavigate();
-  const location: any = useLocation();
+  const navigate = useNavigate();
 
-  const [editEventsData, setEditEvents] = useState<any>({
-    id: "",
-    coin_id: "",
+  const [addEventsData, setAddEvents] = useState<any>({
     item_id: "",
+    coin_id: "",
     title: "",
     category_id: "",
-    event_date: new Date(),
+    start_date: new Date(),
     or_earlier: "",
     description: "",
     source_link: "",
@@ -78,10 +74,10 @@ const EventsEdit = () => {
   const [loading, setLoading] = useState(false);
   const [eventsCategory, setEventsCategory] = useState();
   const [eventsRewardAddress, setEventsRewardAddress] = useState();
-
+  console.log(eventsCategory);
   // Display the key/value pairs
 
-  const eventsUpdateHandler = () => {
+  const eventsAddHandler = () => {
     const successHandler = (res: any) => {
       console.log(res);
 
@@ -139,53 +135,46 @@ const EventsEdit = () => {
     };
 
     var formData = new FormData(document.querySelector("#eventForm") as any);
-
-    formData.append("id", editEventsData?.id);
-
-    formData.append("coin_id", editEventsData?.item_id);
+    formData.append("coin_id", addEventsData?.item_id);
     formData.append(
       "event_date",
-      dateFormat(new Date(editEventsData.event_date), "yyyy-mm-dd")
+      dateFormat(new Date(addEventsData.start_date), "yyyy-mm-dd")
     );
-    // formData.append("category_id", editEventsData?.category_id);
-    formData.append("title", editEventsData?.title);
+    // formData.append("category_id", addEventsData?.category_id);
+    formData.append("title", addEventsData?.title);
 
-    formData.append("source_link", editEventsData?.source_link);
-    //formData.append("reward_address_id", editEventsData?.reward_address_id);
-    formData.append("address", editEventsData?.address);
-    formData.append("twitter_account", editEventsData?.twitter_account);
-    editEventsData?.proof !== "" &&
-      typeof editEventsData?.proof !== "string" &&
-      formData.append("proof", editEventsData?.proof);
-    formData.append("status", editEventsData?.status);
-    formData.append("event_id", location?.state?.id);
-    dispatch(
-      dashboardUpdateEventsRequest(formData, successHandler, errorHandler)
-    );
+    formData.append("source_link", addEventsData?.source_link);
+    //formData.append("reward_address_id", addEventsData?.reward_address_id);
+    formData.append("address", addEventsData?.address);
+    formData.append("twitter_account", addEventsData?.twitter_account);
+    formData.append("proof", addEventsData?.proof);
+    formData.append("status", addEventsData?.status);
+
+    dispatch(dashboardAddEventsRequest(formData, successHandler, errorHandler));
   };
 
   const eventsSourceLinkHandler = (e: any) => {
     //console.log(e);
 
-    setEditEvents({ ...editEventsData, source_link: e });
+    setAddEvents({ ...addEventsData, source_link: e });
   };
 
-  const eventsUpdateressHandler = (e: any) => {
+  const eventsAddressHandler = (e: any) => {
     //console.log(e);
 
-    setEditEvents({ ...editEventsData, address: e });
+    setAddEvents({ ...addEventsData, address: e });
   };
 
   const eventsTwitterAcHandler = (e: any) => {
     //console.log(e);
 
-    setEditEvents({ ...editEventsData, twitter_account: e });
+    setAddEvents({ ...addEventsData, twitter_account: e });
   };
 
   const eventsTitleHandler = (e: any) => {
     //console.log(e);
 
-    setEditEvents({ ...editEventsData, title: e });
+    setAddEvents({ ...addEventsData, title: e });
   };
 
   useEffect(() => {
@@ -219,20 +208,6 @@ const EventsEdit = () => {
       )
     );
   }, [dispatch]);
-
-  useEffect(() => {
-    const successHandler = (res: any) => {
-      setEditEvents(res.data.data);
-    };
-    const errorHandler = (err: any) => {
-      //console.log(err);
-    };
-    const formData = new FormData();
-    formData.append("event_id", location?.state?.id);
-    dispatch(
-      dashboardEditEventsRequest(formData, successHandler, errorHandler)
-    );
-  }, [dispatch]);
   return (
     <Grid container spacing={2} pb={10}>
       <Backdrop
@@ -258,7 +233,7 @@ const EventsEdit = () => {
           </IconButton> */}
 
           <Typography variant="h5" sx={{ textAlign: "left", color: "#FFFFFF" }}>
-            Edit Events
+            Add Online Events
           </Typography>
         </Stack>
       </Grid>
@@ -287,7 +262,6 @@ const EventsEdit = () => {
               >
                 Select coin
               </Typography>
-
               <Stack
                 direction="column"
                 spacing={1}
@@ -314,10 +288,9 @@ const EventsEdit = () => {
 
                 {coinChecked === true && (
                   <AutoCompleSelect
-                    inputAutoValue={editEventsData}
-                    setInputAutoValue={setEditEvents}
+                    inputAutoValue={addEventsData}
+                    setInputAutoValue={setAddEvents}
                     variant="coin"
-                    serverRef={editEventsData && editEventsData?.coin_id}
                   />
                 )}
               </Stack>
@@ -339,7 +312,6 @@ const EventsEdit = () => {
               <InputText
                 placeholder="Title"
                 inputTextHandler={(e: any) => eventsTitleHandler(e)}
-                value={editEventsData?.title}
               />
             </Grid>
 
@@ -362,7 +334,6 @@ const EventsEdit = () => {
                   name="category_id"
                   id="category_id"
                   data={eventsCategory}
-                  selectedValue={editEventsData?.category_id}
                   height={40}
                 />
               </Grid>
@@ -383,10 +354,11 @@ const EventsEdit = () => {
 
               <InputDate
                 eventDate={true}
-                date={editEventsData}
-                setDate={setEditEvents}
+                date={addEventsData}
+                setDate={setAddEvents}
               />
             </Grid>
+
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography
                 variant="subtitle1"
@@ -403,8 +375,8 @@ const EventsEdit = () => {
 
               <InputDate
                 eventDate={true}
-                date={editEventsData}
-                setDate={setEditEvents}
+                date={addEventsData}
+                setDate={setAddEvents}
               />
             </Grid>
 
@@ -434,7 +406,6 @@ const EventsEdit = () => {
                   </Typography>
                 }
                 name="or_earlier"
-                value={parseInt(editEventsData?.or_earlier)}
               />
             </Grid>
 
@@ -443,11 +414,10 @@ const EventsEdit = () => {
                 name="description"
                 id="description"
                 placeholder=" description"
-                value={editEventsData?.description}
               />
             </Grid>
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography
                 variant="subtitle1"
                 sx={{
@@ -464,7 +434,6 @@ const EventsEdit = () => {
               <InputText
                 placeholder=" Source Link"
                 inputTextHandler={(e: any) => eventsSourceLinkHandler(e)}
-                value={editEventsData?.source_link}
               />
             </Grid>
 
@@ -486,7 +455,6 @@ const EventsEdit = () => {
                   name="reward_address_id"
                   id="reward_address_id"
                   data={eventsRewardAddress}
-                  selectedValue={editEventsData?.reward_address_id}
                   height={40}
                 />
               </Grid>
@@ -508,8 +476,7 @@ const EventsEdit = () => {
 
               <InputText
                 placeholder="  Address"
-                inputTextHandler={(e: any) => eventsUpdateressHandler(e)}
-                value={editEventsData?.address}
+                inputTextHandler={(e: any) => eventsAddressHandler(e)}
               />
             </Grid> */}
 
@@ -530,7 +497,6 @@ const EventsEdit = () => {
               <InputText
                 placeholder="Enter Twitter account"
                 inputTextHandler={(e: any) => eventsTwitterAcHandler(e)}
-                value={editEventsData?.twitter_account}
               />
             </Grid>
 
@@ -549,16 +515,15 @@ const EventsEdit = () => {
               </Typography>
 
               <IconUploader
-                setAddIcon={setEditEvents}
-                addIconData={editEventsData}
-                slug="event_proof"
+                setAddIcon={setAddEvents}
+                addIconData={addEventsData}
               />
             </Grid>
 
-            {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+            {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography
                 variant="subtitle1"
-                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 ,  color: "#13C086",}}
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600,  color: "#13C086", }}
                 mb={1}
               >
                 Status
@@ -567,8 +532,8 @@ const EventsEdit = () => {
               <InputSelect
                 selectOptions={selectOptions}
                 // currentStatus={newArrList[0].status}
-                setInputSelectValue={setEditEvents}
-                getInputSelectvalue={editEventsData}
+                setInputSelectValue={setAddEvents}
+                getInputSelectvalue={addEventsData}
                 // serverStatus={newArrList[0].status}
               />
             </Grid> */}
@@ -597,7 +562,7 @@ const EventsEdit = () => {
                 ) : (
                   <LargeBtn
                     Title="Add Events"
-                    lgBtnHandler={eventsUpdateHandler}
+                    lgBtnHandler={eventsAddHandler}
                   />
                 )}
               </Stack>
@@ -609,4 +574,4 @@ const EventsEdit = () => {
   );
 };
 
-export default EventsEdit;
+export default OnlineEventsAdd;

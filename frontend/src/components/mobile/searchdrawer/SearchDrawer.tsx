@@ -12,7 +12,7 @@ import { StyledInputRoot, StyledInputPopUpRoot } from "./style";
 import { StyledInputElement } from "./style";
 import { InputAdornment } from "./style";
 import { IconButton } from "./style";
-
+import { defaultColor } from "../../../common/common";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import TrendingIcon from "../../../assets/search/trending_icon.svg";
 import { topbarSearchRequest } from "../../../store/action";
@@ -236,11 +236,33 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
                       spacing={1}
                       alignItems="center"
                     >
-                      <Avatar
+                      {/* <Avatar
                         alt="Trending"
                         src={`${serverAPIUrl}public/uploads/coin_logo/${item?.coin_logo}`}
                         sx={{ width: 25, height: 25 }}
-                      />
+                      /> */}
+
+                      {item && item?.coin_logo === null ? (
+                        <Avatar
+                          sx={{
+                            bgcolor: defaultColor[index + 1],
+                            width: 25,
+                            height: 25,
+                          }}
+                        >
+                          <Typography sx={{ fontSize: ".6rem" }}>
+                            {item && item?.coin_name[0]}
+                          </Typography>
+                        </Avatar>
+                      ) : (
+                        <Avatar
+                          alt={item && item?.coin_name}
+                          src={`${serverAPIUrl}public/uploads/coin_logo/${item?.coin_logo}`}
+                          //src="https://mui.com/static/images/avatar/1.jpg"
+                          sx={{ width: 25, height: 25 }}
+                        />
+                      )}
+
                       <Link
                         to={{
                           pathname: `/coin/${item?.coin_slug}`,
@@ -337,11 +359,33 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
                         spacing={1}
                         alignItems="center"
                       >
-                        <Avatar
+                        {/* <Avatar
                           alt="Trending"
                           src={`${serverAPIUrl}public/uploads/nft_listing_image/${item?.nft_logo}`}
                           sx={{ width: 25, height: 25 }}
-                        />
+                        /> */}
+
+                        {item && item?.nft_logo === null ? (
+                          <Avatar
+                            sx={{
+                              bgcolor: defaultColor[index + 1],
+                              width: 25,
+                              height: 25,
+                            }}
+                          >
+                            <Typography sx={{ fontSize: ".6rem" }}>
+                              {item && item?.nft_name[0]}
+                            </Typography>
+                          </Avatar>
+                        ) : (
+                          <Avatar
+                            alt={item && item?.nft_name}
+                            src={`${serverAPIUrl}public/uploads/nft_listing_image/${item?.nft_logo}`}
+                            //src="https://mui.com/static/images/avatar/1.jpg"
+                            sx={{ width: 25, height: 25 }}
+                          />
+                        )}
+
                         <Link
                           to={{
                             pathname: `/coin/${item?.nft_name

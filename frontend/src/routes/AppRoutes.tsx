@@ -36,8 +36,6 @@ import CoinListingAdd from "../pages/useradmin/desktop/coin/add/CoinListingAdd";
 import CoinListingEdit from "../pages/useradmin/desktop/coin/edit/CoinListingEdit";
 import NFTListingAdd from "../pages/useradmin/desktop/nftlisting/add/NFTListingAdd";
 import NFTListingEdit from "../pages/useradmin/desktop/nftlisting/edit/NFTListingEdit";
-import EventsAdd from "../pages/useradmin/desktop/events/add/EventsAdd";
-import EventsEdit from "../pages/useradmin/desktop/events/edit/EventsEdit";
 import AirDropsAdd from "../pages/useradmin/desktop/airdrops/add/AirDropsAdd";
 import AirDropsEdit from "../pages/useradmin/desktop/airdrops/edit/AirDropsEdit";
 import SupportPage from "../pages/desktop/supportpage/SupportPage";
@@ -53,6 +51,12 @@ import UserAdminNftListingMobilePage from "../pages/useradmin/mobile/useradminnf
 import UserAdminEventsListingMobilePage from "../pages/useradmin/mobile/useradmineventslistingmobilepage/UserAdminEventsListingMobilePage";
 import UserAdminAirdropsListingMobilePage from "../pages/useradmin/mobile/useradminairdropslistingmobilepage/UserAdminAirdropsListingMobilePage";
 import UserAdminReviewListingMobilePage from "../pages/useradmin/mobile/useradminreviewlistingmobilepage/UserAdminReviewListingMobilePage";
+import AddEventsPage from "../pages/desktop/addevents/AddEventsPage";
+import OnlineEventsAdd from "../pages/useradmin/desktop/events/online-events/add/OnlineEventsAdd";
+import OnlineEventsEdit from "../pages/useradmin/desktop/events/online-events/edit/OnlineEventsEdit";
+import OfflineEventsAdd from "../pages/useradmin/desktop/events/offline-events/add/OfflineEventsAdd";
+import OfflineEventsEdit from "../pages/useradmin/desktop/events/offline-events/edit/OfflineEventsEdit";
+import UserAdminAddEventsPage from "../pages/useradmin/desktop/addevents/UserAdminAddEventsPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -164,6 +168,26 @@ const AppRoutes = () => {
             element={
               <PublicRoutes>
                 <MobileAddAssetPage windowInnerWidth={windowInnerWidth} />
+              </PublicRoutes>
+            }
+          />
+        )}
+
+        {windowInnerWidth >= 900 ? (
+          <Route
+            path="/add-events"
+            element={
+              <PublicRoutes>
+                <AddEventsPage windowInnerWidth={windowInnerWidth} />
+              </PublicRoutes>
+            }
+          />
+        ) : (
+          <Route
+            path="/add-events"
+            element={
+              <PublicRoutes>
+                <AddEventsPage windowInnerWidth={windowInnerWidth} />
               </PublicRoutes>
             }
           />
@@ -523,21 +547,46 @@ const AppRoutes = () => {
             </PrivateRoute>
           }
         />
-
         <Route
-          path="/user-dashboard/events/add"
+          path="/user-dashboard/add-events"
           element={
             <PrivateRoute>
-              <EventsAdd />
+              <UserAdminAddEventsPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/user-dashboard/events/online-events/add"
+          element={
+            <PrivateRoute>
+              <OnlineEventsAdd />
             </PrivateRoute>
           }
         />
 
         <Route
-          path="/user-dashboard/events/edit"
+          path="/user-dashboard/events/online-events/edit"
           element={
             <PrivateRoute>
-              <EventsEdit />
+              <OnlineEventsEdit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/user-dashboard/events/offline-events/add"
+          element={
+            <PrivateRoute>
+              <OfflineEventsAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/user-dashboard/events/offline-events/edit"
+          element={
+            <PrivateRoute>
+              <OfflineEventsEdit />
             </PrivateRoute>
           }
         />

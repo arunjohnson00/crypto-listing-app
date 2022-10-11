@@ -179,7 +179,7 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
             }
           >
             <Link
-              to="/user-dashboard/events/add"
+              to="/user-dashboard/add-events"
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <Typography variant="body2" ml={2}>

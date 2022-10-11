@@ -27,7 +27,7 @@ import {
   trendingCoinListRequest,
 } from "../../../store/action";
 import RecentSearchCard from "../cards/recentsearchcard/RecentSearchCard";
-
+import { defaultColor } from "../../../common/common";
 const CustomInput = forwardRef(function CustomInput(
   props: InputUnstyledProps,
   ref: React.ForwardedRef<HTMLDivElement>
@@ -99,7 +99,6 @@ const AppBarSearch = () => {
     coin: false,
     nft: false,
     events: false,
-    airdrops: false,
   });
 
   const recentSearchResult = useSelector((data: any) => {
@@ -145,9 +144,6 @@ const AppBarSearch = () => {
     setExpand({ ...expand, events: !expand?.events });
   };
 
-  const airdropsExpandHandler = () => {
-    setExpand({ ...expand, airdrops: !expand?.airdrops });
-  };
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
@@ -277,8 +273,7 @@ const AppBarSearch = () => {
             {searchResult &&
             (searchResult?.COINS?.length !== 0 ||
               searchResult?.NFT?.length !== 0 ||
-              searchResult?.EVENTS?.length !== 0 ||
-              searchResult?.AIRDROPS?.length !== 0) &&
+              searchResult?.EVENTS?.length !== 0) &&
             values?.length !== 0 ? (
               <Stack
                 direction="column"
@@ -349,11 +344,32 @@ const AppBarSearch = () => {
                         spacing={1}
                         alignItems="center"
                       >
-                        <Avatar
+                        {/* <Avatar
                           alt="Trending"
                           src={`${serverAPIUrl}public/uploads/coin_logo/${item?.coin_logo}`}
                           sx={{ width: 25, height: 25 }}
-                        />
+                        /> */}
+                        {item && item?.coin_logo === null ? (
+                          <Avatar
+                            sx={{
+                              bgcolor: defaultColor[index + 1],
+                              width: 25,
+                              height: 25,
+                            }}
+                          >
+                            <Typography sx={{ fontSize: ".6rem" }}>
+                              {item && item?.coin_name[0]}
+                            </Typography>
+                          </Avatar>
+                        ) : (
+                          <Avatar
+                            alt={item && item?.coin_name}
+                            src={`${serverAPIUrl}public/uploads/coin_logo/${item?.coin_logo}`}
+                            //src="https://mui.com/static/images/avatar/1.jpg"
+                            sx={{ width: 25, height: 25 }}
+                          />
+                        )}
+
                         <Link
                           to={{
                             pathname: `/coin/${item?.coin_slug}`,
@@ -455,11 +471,33 @@ const AppBarSearch = () => {
                           spacing={1}
                           alignItems="center"
                         >
-                          <Avatar
+                          {/* <Avatar
                             alt="Trending"
                             src={`${serverAPIUrl}public/uploads/nft_listing_image/${item?.nft_logo}`}
                             sx={{ width: 25, height: 25 }}
-                          />
+                          /> */}
+
+                          {item && item?.nft_logo === null ? (
+                            <Avatar
+                              sx={{
+                                bgcolor: defaultColor[index + 1],
+                                width: 25,
+                                height: 25,
+                              }}
+                            >
+                              <Typography sx={{ fontSize: ".6rem" }}>
+                                {item && item?.nft_name[0]}
+                              </Typography>
+                            </Avatar>
+                          ) : (
+                            <Avatar
+                              alt={item && item?.nft_name}
+                              src={`${serverAPIUrl}public/uploads/nft_listing_image/${item?.nft_logo}`}
+                              //src="https://mui.com/static/images/avatar/1.jpg"
+                              sx={{ width: 25, height: 25 }}
+                            />
+                          )}
+
                           <Link
                             to={{
                               pathname: `/coin/${item?.nft_name
@@ -508,7 +546,7 @@ const AppBarSearch = () => {
                   </Stack>
                 )}
 
-                {searchResult?.EVENTS?.length !== 0 && (
+                {/* {searchResult?.EVENTS?.length !== 0 && (
                   <Stack direction="column" spacing={2} pt={0}>
                     <Stack
                       direction="row"
@@ -594,11 +632,11 @@ const AppBarSearch = () => {
                               fontWeight: 500,
                             }}
                           >
-                            {/* {item?.coin_symbol} */}
+                          
                           </Typography>
                         </Stack>
                         <Typography sx={{ fontSize: ".7rem" }}>
-                          {/* {item?.ranking} */}
+                      
                         </Typography>
                       </Stack>
                     ))}
@@ -616,117 +654,7 @@ const AppBarSearch = () => {
                       </span>
                     </Button>
                   </Stack>
-                )}
-
-                {searchResult?.AIRDROPS?.length !== 0 && (
-                  <Stack direction="column" spacing={2} pt={0}>
-                    <Stack
-                      direction="row"
-                      spacing={0.5}
-                      alignItems="flex-start"
-                      sx={{
-                        position: "sticky",
-                        top: 0,
-                        background: "#000000",
-                        zIndex: 99,
-                        py: 1.5,
-                      }}
-                    >
-                      {expand?.airdrops === false ? (
-                        <Typography
-                          sx={{ fontSize: ".78rem", fontWeight: 600 }}
-                        >
-                          AIRDROPS
-                        </Typography>
-                      ) : (
-                        <Button
-                          startIcon={
-                            <ArrowBackIosIcon sx={{ width: 14, height: 14 }} />
-                          }
-                          variant="text"
-                          sx={{
-                            fontSize: ".7rem",
-                            padding: 0,
-                            minWidth: 0,
-                            cursor: "pointer",
-                          }}
-                          onClick={airdropsExpandHandler}
-                        >
-                          Back
-                        </Button>
-                      )}
-                    </Stack>
-                    {searchResult?.AIRDROPS?.slice(
-                      0,
-                      expand?.airdrops === false
-                        ? 4
-                        : searchResult?.AIRDROPS?.length
-                    ).map((item: any, index: number) => (
-                      <Stack
-                        key={index}
-                        direction="row"
-                        spacing={0.5}
-                        alignItems="center"
-                        justifyContent="space-between"
-                      >
-                        <Stack
-                          key={index}
-                          direction="row"
-                          spacing={1}
-                          alignItems="center"
-                        >
-                          <Avatar
-                            alt="Trending"
-                            src={`${serverAPIUrl}public/uploads/nft_listing_image/${item?.logo}`}
-                            sx={{ width: 25, height: 25 }}
-                          />
-                          <Link
-                            to={{
-                              pathname: `/coin/${item?.name
-                                ?.replace(/ /g, "")
-                                .toLowerCase()}/${item?.id}`,
-                            }}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            state={{ coin_id: item?.id }}
-                            style={{ textDecoration: "none", color: "#FFFFFF" }}
-                          >
-                            <Typography
-                              sx={{ fontSize: ".8rem", fontWeight: 600 }}
-                            >
-                              {item?.id}
-                            </Typography>
-                          </Link>
-                          <Typography
-                            sx={{
-                              fontSize: ".7rem",
-                              color: "#767676",
-                              fontWeight: 500,
-                            }}
-                          >
-                            {/* {item?.coin_symbol} */}
-                          </Typography>
-                        </Stack>
-                        <Typography sx={{ fontSize: ".7rem" }}>
-                          {/* {item?.ranking} */}
-                        </Typography>
-                      </Stack>
-                    ))}
-                    <Button
-                      variant="text"
-                      sx={{ fontSize: ".7rem" }}
-                      onClick={airdropsExpandHandler}
-                    >
-                      {expand?.airdrops === false
-                        ? "See all result "
-                        : "Hide result "}{" "}
-                      <span style={{ color: "#19ffb0", marginLeft: 4.5 }}>
-                        {" "}
-                        {` (${searchResult?.AIRDROPS?.length})`}
-                      </span>
-                    </Button>
-                  </Stack>
-                )}
+                )} */}
               </Stack>
             ) : (
               <Stack
