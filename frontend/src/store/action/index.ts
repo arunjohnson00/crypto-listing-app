@@ -58,8 +58,15 @@ export { coinsCryptoCurrenciesTabRequest } from "./coinsAction";
 
 //NFT
 
-export { nftPageListingRequest } from "./nftAction";
+export {
+  nftPageListingRequest,
+  nftPageRecentlyAddedRequest,
+  nftPageMostPopularRequest,
+} from "./nftAction";
 
+//AIRDROP
+
+export { airdropPageListingRequest } from "./airdropAction";
 //user
 
 export { userRegisterRequest } from "./userAction";

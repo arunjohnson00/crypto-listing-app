@@ -382,15 +382,15 @@ const NFTListingAdd = () => {
             }}
             px={{ xs: 3, sm: 3, md: 5 }}
             py={5}
-            mb={5}
+            mb={3}
           >
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Stack
                 direction={{ xs: "column", sm: "column", md: "row" }}
                 spacing={2}
               >
-                <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
-                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={5}>
+                <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={3}>
                     <Typography
                       variant="h6"
                       sx={{ textAlign: "left", color: "#D7DADB" }}
@@ -409,7 +409,7 @@ const NFTListingAdd = () => {
                     </Grid>
                   </Grid>
 
-                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={5}>
+                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={3}>
                     <Typography
                       variant="h6"
                       sx={{ textAlign: "left", color: "#D7DADB" }}
@@ -426,7 +426,115 @@ const NFTListingAdd = () => {
                     </Grid>
                   </Grid>
 
-                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={5}>
+                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={3}>
+                      <Typography
+                        variant="h6"
+                        sx={{ textAlign: "left", color: "#D7DADB" }}
+                        mb={2}
+                      >
+                        Event Image
+                      </Typography>
+
+                      <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
+                        <CoinUploader
+                          name="image"
+                          id="image"
+                          setAddIcon={setCoinLogo}
+                          addIconData={addCoinLogo}
+                        />
+                      </Grid>
+                    </Grid>
+
+                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={3}>
+                      <Typography
+                        variant="subtitle1"
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                          color: "#13C086",
+                        }}
+                        mb={2}
+                      >
+                        Event Token Currency
+                      </Typography>
+
+                      <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
+                        <InputSelectCoin
+                          name="currancy_id"
+                          data={nftListingCurrencyList}
+                          height={40}
+                          width={{ xs: "auto", sm: "auto", md: 300 }}
+                        />
+                      </Grid>
+                    </Grid>
+
+                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={3}>
+                      <Typography
+                        variant="subtitle1"
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                          color: "#13C086",
+                        }}
+                        mb={2}
+                      >
+                        What is the maximum number of items in your collection?*
+                      </Typography>
+
+                      <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
+                        <InputText
+                          placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                          name="max_num_items"
+                          id="max_num_items"
+                          // width="auto"
+                        />
+                      </Grid>
+                    </Grid>
+
+                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={3}>
+                      <Stack
+                        direction={{ xs: "column", sm: "column", md: "row" }}
+                        spacing={3}
+                        mb={2}
+                      >
+                        <Typography
+                          variant="subtitle1"
+                          sx={{
+                            textAlign: "left",
+                            fontSize: ".9rem",
+                            fontWeight: 600,
+                            color: "#13C086",
+                          }}
+                        >
+                          Event Category*
+                        </Typography>
+
+                        <Typography
+                          variant="caption"
+                          sx={{ textAlign: "left" }}
+                          mb={1}
+                        >
+                          <span style={{ color: "#234A84", fontWeight: 600 }}>
+                            {" "}
+                            (Multiple selection allowed)
+                          </span>
+                        </Typography>
+                      </Stack>
+
+                      <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
+                        <InputSelectMultiple
+                          setInputSelectMultipleValue={setEventCategoryMultiple}
+                          getInputSelectMultiplevalue={eventCategoryMultiple}
+                          selectOptions={nftListingCategoryList}
+                          // name="category_id "
+                        />
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={3}>
                     <Typography
                       variant="h6"
                       sx={{ textAlign: "left", color: "#D7DADB" }}
@@ -514,114 +622,6 @@ const NFTListingAdd = () => {
                         </div>
                       );
                     })}
-                  </Grid>
-                </Grid>
-                <Divider orientation="vertical" flexItem />
-                <Grid item xl={4} lg={4} md={4} sm={4} xs={12} pl={2} pt={5}>
-                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={5}>
-                    <Typography
-                      variant="h6"
-                      sx={{ textAlign: "left", color: "#D7DADB" }}
-                      mb={2}
-                    >
-                      Event Image
-                    </Typography>
-
-                    <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
-                      <CoinUploader
-                        name="image"
-                        id="image"
-                        setAddIcon={setCoinLogo}
-                        addIconData={addCoinLogo}
-                      />
-                    </Grid>
-                  </Grid>
-
-                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={5}>
-                    <Typography
-                      variant="subtitle1"
-                      sx={{
-                        textAlign: "left",
-                        fontSize: ".9rem",
-                        fontWeight: 600,
-                        color: "#13C086",
-                      }}
-                      mb={2}
-                    >
-                      Event Token Currency
-                    </Typography>
-
-                    <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
-                      <InputSelectCoin
-                        name="currancy_id"
-                        data={nftListingCurrencyList}
-                        height={40}
-                      />
-                    </Grid>
-                  </Grid>
-
-                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={5}>
-                    <Typography
-                      variant="subtitle1"
-                      sx={{
-                        textAlign: "left",
-                        fontSize: ".9rem",
-                        fontWeight: 600,
-                        color: "#13C086",
-                      }}
-                      mb={2}
-                    >
-                      What is the maximum number of items in your collection?*
-                    </Typography>
-
-                    <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
-                      <InputText
-                        placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
-                        name="max_num_items"
-                        id="max_num_items"
-                        // width="auto"
-                      />
-                    </Grid>
-                  </Grid>
-
-                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={5}>
-                    <Stack
-                      direction={{ xs: "column", sm: "column", md: "row" }}
-                      spacing={3}
-                      mb={2}
-                    >
-                      <Typography
-                        variant="subtitle1"
-                        sx={{
-                          textAlign: "left",
-                          fontSize: ".9rem",
-                          fontWeight: 600,
-                          color: "#13C086",
-                        }}
-                      >
-                        Event Category*
-                      </Typography>
-
-                      <Typography
-                        variant="caption"
-                        sx={{ textAlign: "left" }}
-                        mb={1}
-                      >
-                        <span style={{ color: "#234A84", fontWeight: 600 }}>
-                          {" "}
-                          (Multiple selection allowed)
-                        </span>
-                      </Typography>
-                    </Stack>
-
-                    <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
-                      <InputSelectMultiple
-                        setInputSelectMultipleValue={setEventCategoryMultiple}
-                        getInputSelectMultiplevalue={eventCategoryMultiple}
-                        selectOptions={nftListingCategoryList}
-                        // name="category_id "
-                      />
-                    </Grid>
                   </Grid>
                 </Grid>
               </Stack>

@@ -5,7 +5,11 @@ import { useNavigate } from "react-router-dom";
 const UserAdminAddEventCard = ({ title, link, image }: any) => {
   const navigate = useNavigate();
   return (
-    <Box sx={{ backgroundColor: "#030B2F", borderRadius: 1 }} px={12} py={10}>
+    <Box
+      sx={{ backgroundColor: "#030B2F", borderRadius: 1 }}
+      px={{ xs: 4, sm: 4, md: 12 }}
+      py={{ xs: 4, sm: 4, md: 10 }}
+    >
       <Stack direction="column" spacing={2.5} alignItems="center">
         <Avatar
           variant="square"

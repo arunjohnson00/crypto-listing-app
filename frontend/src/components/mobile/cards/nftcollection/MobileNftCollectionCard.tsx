@@ -26,7 +26,7 @@ const MobileNftCollectionCard = ({ data, index }: any) => {
   });
   return (
     <Box
-      mr={0}
+      mr={1.5}
       sx={{
         backgroundColor: "#01061A",
         border: "2px solid #090F2F",
@@ -45,7 +45,7 @@ const MobileNftCollectionCard = ({ data, index }: any) => {
             borderTopLeftRadius: 52,
             borderTopRightRadius: 52,
             width: "100%",
-            height: "250px",
+            height: "150px",
           }}
         />
 

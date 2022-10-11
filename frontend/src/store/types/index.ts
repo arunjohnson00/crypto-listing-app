@@ -67,6 +67,12 @@ export const COINS = {
 
 export const NFT = {
   NFT_LISTINGS: "NFT_LISTINGS",
+  NFT_MOST_POPULAR: "NFT_MOST_POPULAR",
+  NFT_RECENTLTY_ADDED: "NFT_RECENTLTY_ADDED",
+};
+
+export const AIRDROP = {
+  AIRDROP_LISTINGS: "AIRDROP_LISTINGS",
 };
 
 export const USER = {

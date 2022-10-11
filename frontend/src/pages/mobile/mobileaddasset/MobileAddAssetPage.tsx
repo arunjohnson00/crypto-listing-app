@@ -54,7 +54,7 @@ const MobileAddAssetPage = ({ windowInnerWidth }: any) => {
         <MobileAddAssetCard
           icon={eventIcon}
           title="Add Event"
-          link="/user-dashboard/events/add"
+          link="/add-events"
         />
       </Stack>
     </Box>

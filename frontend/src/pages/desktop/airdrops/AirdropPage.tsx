@@ -5,15 +5,26 @@ import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardT
 import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
 import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
 import Marquee from "react-fast-marquee";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en.json";
 
 import AirdropCard from "../../../components/desktop/cards/airdropcard/AirdropCard";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
+import { useDispatch, useSelector } from "react-redux";
+import { airdropPageListingRequest } from "../../../store/action";
 
 const AirdropPage = () => {
-  TimeAgo.addLocale(en);
-  const timeAgo = new TimeAgo("en");
+  const dispatch: any = useDispatch();
+  const airdropList = useSelector((data: any) => {
+    return data?.airdropReducer?.airdrop_listings?.data;
+  });
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(airdropPageListingRequest("noData", successHandler, errorHandler));
+  }, [dispatch]);
+
+  console.log(airdropList);
 
   return (
     <Fragment>
@@ -55,27 +66,13 @@ const AirdropPage = () => {
         </Grid>
         <Grid item xs={12}>
           <Grid container pt={6} spacing={3}>
-            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-              <AirdropCard />
-            </Grid>
-            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-              <AirdropCard />
-            </Grid>
-            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-              <AirdropCard />
-            </Grid>
-            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-              <AirdropCard />
-            </Grid>
-            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-              <AirdropCard />
-            </Grid>
-            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-              <AirdropCard />
-            </Grid>
-            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-              <AirdropCard />
-            </Grid>
+            {airdropList &&
+              airdropList?.response === true &&
+              airdropList?.data?.data?.map((item: any, index: number) => (
+                <Grid item xs={12} sm={12} md={12} lg={4} xl={4} key={index}>
+                  <AirdropCard data={item && item} index={index} />
+                </Grid>
+              ))}
           </Grid>
         </Grid>
       </Grid>

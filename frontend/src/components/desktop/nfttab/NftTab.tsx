@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
@@ -6,13 +6,45 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { Grid, Stack } from "@mui/material";
 import NFTListingPill from "../nftlistingpill/NFTListingPill";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  nftPageMostPopularRequest,
+  nftPageRecentlyAddedRequest,
+} from "../../../store/action";
+import NftCollectionCard from "../cards/nftcollection/NftCollectionCard";
 
 const NftTab = () => {
   const [value, setValue] = useState("1");
+  const dispatch: any = useDispatch();
+  const NftMostPopularList = useSelector((data: any) => {
+    return data?.nftReducer?.nft_most_popular?.data;
+  });
+  const NftRecentlyAddedList = useSelector((data: any) => {
+    return data?.nftReducer?.nft_recently_added?.data;
+  });
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
+
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    newValue === "1" &&
+      dispatch(
+        nftPageMostPopularRequest("noData", successHandler, errorHandler)
+      );
+    newValue === "2" &&
+      dispatch(
+        nftPageRecentlyAddedRequest("noData", successHandler, errorHandler)
+      );
   };
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(nftPageMostPopularRequest("noData", successHandler, errorHandler));
+  }, [dispatch]);
+
   return (
     <Box sx={{ width: "100%", typography: "body1" }}>
       <TabContext value={value}>
@@ -42,26 +74,46 @@ const NftTab = () => {
           >
             <Tab label="Most Popular" value="1" />
             <Tab label="Recently Added" value="2" />
-            <Tab label="Upcoming Events" value="3" />
+            {/* <Tab label="Upcoming Events" value="3" /> */}
           </TabList>
         </Box>
         <TabPanel value="1" sx={{ padding: 0, paddingY: 4 }}>
           <Grid xs={12}>
-            <Stack direction="row" spacing={0} sx={{ flexWrap: "wrap" }}>
-              <NFTListingPill />
-              <NFTListingPill />
-              <NFTListingPill />
-              <NFTListingPill />
-              <NFTListingPill />
-              <NFTListingPill />
-              <NFTListingPill />
-              <NFTListingPill />
-              <NFTListingPill />
+            <Stack
+              direction="row"
+              rowGap={2}
+              columnGap={0.5}
+              sx={{ flexWrap: "wrap" }}
+            >
+              {NftMostPopularList &&
+                NftMostPopularList?.response === true &&
+                NftMostPopularList?.data?.data?.map(
+                  (item: any, index: number) => (
+                    <NftCollectionCard data={item && item} index={index} />
+                  )
+                )}
             </Stack>
           </Grid>
         </TabPanel>
-        <TabPanel value="2">Item Two</TabPanel>
-        <TabPanel value="3">Item Three</TabPanel>
+        <TabPanel value="2" sx={{ padding: 0, paddingY: 4 }}>
+          <Grid xs={12}>
+            <Stack
+              direction="row"
+              rowGap={2}
+              columnGap={0.5}
+              sx={{ flexWrap: "wrap" }}
+            >
+              {NftRecentlyAddedList &&
+                NftRecentlyAddedList?.response === true &&
+                NftRecentlyAddedList?.data?.data?.map(
+                  (item: any, index: number) => (
+                    <NftCollectionCard data={item && item} index={index} />
+                  )
+                )}
+            </Stack>
+          </Grid>
+        </TabPanel>
+        {/* <TabPanel value="3">Item Three</TabPanel> */}
       </TabContext>
     </Box>
   );

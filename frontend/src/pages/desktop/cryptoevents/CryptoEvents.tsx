@@ -10,7 +10,7 @@ import en from "javascript-time-ago/locale/en.json";
 //import useMediaQuery from "@mui/material/useMediaQuery";
 import Chip from "@mui/material/Chip";
 import dateFormat, { masks } from "dateformat";
-
+import Switch from "@mui/material/Switch";
 import CryptoEventsCard from "../../../components/desktop/cards/cryptoeventscard/CryptoEventsCard";
 import UpcomingEventCalender from "../../../components/desktop/calender/eventcalender/UpcomingEventCalender";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
@@ -23,11 +23,11 @@ const CryptoEvents = () => {
 
   return (
     <Fragment>
-      <Grid container>
+      <Grid container rowSpacing={3}>
         <Grid item xs={12}>
           <LatestNewsScroll />
         </Grid>
-        <Grid item xs={12} pt={3}>
+        <Grid item xs={12}>
           <Stack direction="column" spacing={0.5}>
             <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
               Upcoming Events
@@ -39,7 +39,7 @@ const CryptoEvents = () => {
             </Typography>
           </Stack>
         </Grid>
-        <Grid item xs={12} pt={2}>
+        <Grid item xs={12}>
           <Stack
             direction="row"
             //  direction={{ xs: "column", sm: "column", md: "row" }}
@@ -120,9 +120,16 @@ const CryptoEvents = () => {
             />
           </Stack>
         </Grid>
+
         <Grid item xs={12}>
-          <Grid container pt={6} spacing={3}>
+          <Grid container spacing={3}>
             <Grid item xs={12} sm={12} md={12} lg={8} xl={8}>
+              <Grid item xs={12}>
+                <Stack direction="row" justifyContent="flex-end">
+                  {" "}
+                  <Switch defaultChecked />
+                </Stack>
+              </Grid>
               <Grid item xs={12} pb={3}>
                 <Grid item xs={12}>
                   <Typography variant="h6" sx={{ color: "#FFFFF5" }}>

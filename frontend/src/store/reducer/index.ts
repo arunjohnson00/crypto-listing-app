@@ -18,6 +18,7 @@ import dashboardAirdropsReducer from "./dashboardAirdropsReducer";
 import discoverReducer from "./discoverReducer";
 import feargreedReducer from "./feargreedReducer";
 import dashboardReviewReducer from "./dashboardReviewReducer";
+import airdropReducer from "./airdropReducer";
 const allReducers = combineReducers({
   commonReducer,
   homeReducer,
@@ -32,6 +33,7 @@ const allReducers = combineReducers({
   discoverReducer,
   feargreedReducer,
   dashboardReviewReducer,
+  airdropReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

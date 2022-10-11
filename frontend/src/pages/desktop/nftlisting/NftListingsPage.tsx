@@ -55,8 +55,6 @@ const NftListingsPage = () => {
   const theme = useTheme();
   const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
 
-  TimeAgo.addDefaultLocale(en);
-  const timeAgo = new TimeAgo("en");
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
@@ -80,7 +78,7 @@ const NftListingsPage = () => {
             </Typography>
           </Stack>
         </Grid>
-        <Grid item xs={12} pt={3}>
+        {/* <Grid item xs={12} pt={3}>
           <Stack direction="column" spacing={0.1}>
             <SponsoredBtn title="Sponsored NFT's" width={240} />
           </Stack>
@@ -124,7 +122,7 @@ const NftListingsPage = () => {
             image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
             alt="green iguana"
           />
-        </Grid>
+        </Grid> */}
         <Grid item xs={12} pt={3}>
           <NftTab />
         </Grid>

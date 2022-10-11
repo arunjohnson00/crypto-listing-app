@@ -78,7 +78,7 @@ const AddAssetPage = ({ windowInnerWidth }: any) => {
                 <AddAssetCard
                   icon={eventIcon}
                   title="Add Event"
-                  link="/user-dashboard/events/add"
+                  link="/add-events"
                 />
               </Stack>
             </Stack>

@@ -119,9 +119,9 @@ const AppHeader = ({ windowInnerWidth }: any) => {
               />
               <AppBarNavBtn
                 title="Airdrops"
-                iconStatus={true}
+                iconStatus={false}
                 path="/airdrops"
-                menu={airdropsMenu}
+                // menu={airdropsMenu}
               />
               <AppBarNavBtn
                 title="Events"

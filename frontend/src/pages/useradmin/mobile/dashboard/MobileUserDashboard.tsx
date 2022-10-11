@@ -107,7 +107,7 @@ const MobileUserDashboard = () => {
               <MobileAddAssetCard
                 icon={eventIcon}
                 title="Events"
-                link="/user-dashboard/events/add"
+                link="/user-dashboard/add-events"
                 color="#FFFFFF"
                 background="#000000"
                 border="#00ff9c"
