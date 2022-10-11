@@ -98,6 +98,8 @@ const AppBarSearch = () => {
   const [expand, setExpand] = useState<any>({
     coin: false,
     nft: false,
+    events: false,
+    airdrops: false,
   });
 
   const recentSearchResult = useSelector((data: any) => {
@@ -137,6 +139,14 @@ const AppBarSearch = () => {
 
   const nftExpandHandler = () => {
     setExpand({ ...expand, nft: !expand?.nft });
+  };
+
+  const eventsExpandHandler = () => {
+    setExpand({ ...expand, events: !expand?.events });
+  };
+
+  const airdropsExpandHandler = () => {
+    setExpand({ ...expand, airdrops: !expand?.airdrops });
   };
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
@@ -207,7 +217,7 @@ const AppBarSearch = () => {
           onClose={handleClose}
           anchorOrigin={{
             vertical: 0,
-            horizontal: -110,
+            horizontal: -100,
           }}
           PaperProps={{
             style: {
@@ -266,7 +276,9 @@ const AppBarSearch = () => {
           >
             {searchResult &&
             (searchResult?.COINS?.length !== 0 ||
-              searchResult?.NFT?.length !== 0) &&
+              searchResult?.NFT?.length !== 0 ||
+              searchResult?.EVENTS?.length !== 0 ||
+              searchResult?.AIRDROPS?.length !== 0) &&
             values?.length !== 0 ? (
               <Stack
                 direction="column"
@@ -387,6 +399,7 @@ const AppBarSearch = () => {
                     >{` (${searchResult?.COINS?.length})`}</span>
                   </Button>
                 </Stack>
+
                 {searchResult?.NFT?.length !== 0 && (
                   <Stack direction="column" spacing={2} pt={0}>
                     <Stack
@@ -490,6 +503,226 @@ const AppBarSearch = () => {
                       <span style={{ color: "#19ffb0", marginLeft: 4.5 }}>
                         {" "}
                         {` (${searchResult?.NFT?.length})`}
+                      </span>
+                    </Button>
+                  </Stack>
+                )}
+
+                {searchResult?.EVENTS?.length !== 0 && (
+                  <Stack direction="column" spacing={2} pt={0}>
+                    <Stack
+                      direction="row"
+                      spacing={0.5}
+                      alignItems="flex-start"
+                      sx={{
+                        position: "sticky",
+                        top: 0,
+                        background: "#000000",
+                        zIndex: 99,
+                        py: 1.5,
+                      }}
+                    >
+                      {expand?.events === false ? (
+                        <Typography
+                          sx={{ fontSize: ".78rem", fontWeight: 600 }}
+                        >
+                          EVENTS
+                        </Typography>
+                      ) : (
+                        <Button
+                          startIcon={
+                            <ArrowBackIosIcon sx={{ width: 14, height: 14 }} />
+                          }
+                          variant="text"
+                          sx={{
+                            fontSize: ".7rem",
+                            padding: 0,
+                            minWidth: 0,
+                            cursor: "pointer",
+                          }}
+                          onClick={eventsExpandHandler}
+                        >
+                          Back
+                        </Button>
+                      )}
+                    </Stack>
+                    {searchResult?.EVENTS?.slice(
+                      0,
+                      expand?.events === false
+                        ? 4
+                        : searchResult?.events?.length
+                    ).map((item: any, index: number) => (
+                      <Stack
+                        key={index}
+                        direction="row"
+                        spacing={0.5}
+                        alignItems="center"
+                        justifyContent="space-between"
+                      >
+                        <Stack
+                          key={index}
+                          direction="row"
+                          spacing={1}
+                          alignItems="center"
+                        >
+                          <Avatar
+                            alt="Trending"
+                            src={`${serverAPIUrl}public/uploads/nft_listing_image/${item?.logo}`}
+                            sx={{ width: 25, height: 25 }}
+                          />
+                          <Link
+                            to={{
+                              pathname: `/coin/${item?.event_name
+                                ?.replace(/ /g, "")
+                                .toLowerCase()}/${item?.event_id}`,
+                            }}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            state={{ coin_id: item?.event_id }}
+                            style={{ textDecoration: "none", color: "#FFFFFF" }}
+                          >
+                            <Typography
+                              sx={{ fontSize: ".8rem", fontWeight: 600 }}
+                            >
+                              {item?.event_name}
+                            </Typography>
+                          </Link>
+                          <Typography
+                            sx={{
+                              fontSize: ".7rem",
+                              color: "#767676",
+                              fontWeight: 500,
+                            }}
+                          >
+                            {/* {item?.coin_symbol} */}
+                          </Typography>
+                        </Stack>
+                        <Typography sx={{ fontSize: ".7rem" }}>
+                          {/* {item?.ranking} */}
+                        </Typography>
+                      </Stack>
+                    ))}
+                    <Button
+                      variant="text"
+                      sx={{ fontSize: ".7rem" }}
+                      onClick={eventsExpandHandler}
+                    >
+                      {expand?.events === false
+                        ? "See all result "
+                        : "Hide result "}{" "}
+                      <span style={{ color: "#19ffb0", marginLeft: 4.5 }}>
+                        {" "}
+                        {` (${searchResult?.EVENTS?.length})`}
+                      </span>
+                    </Button>
+                  </Stack>
+                )}
+
+                {searchResult?.AIRDROPS?.length !== 0 && (
+                  <Stack direction="column" spacing={2} pt={0}>
+                    <Stack
+                      direction="row"
+                      spacing={0.5}
+                      alignItems="flex-start"
+                      sx={{
+                        position: "sticky",
+                        top: 0,
+                        background: "#000000",
+                        zIndex: 99,
+                        py: 1.5,
+                      }}
+                    >
+                      {expand?.airdrops === false ? (
+                        <Typography
+                          sx={{ fontSize: ".78rem", fontWeight: 600 }}
+                        >
+                          AIRDROPS
+                        </Typography>
+                      ) : (
+                        <Button
+                          startIcon={
+                            <ArrowBackIosIcon sx={{ width: 14, height: 14 }} />
+                          }
+                          variant="text"
+                          sx={{
+                            fontSize: ".7rem",
+                            padding: 0,
+                            minWidth: 0,
+                            cursor: "pointer",
+                          }}
+                          onClick={airdropsExpandHandler}
+                        >
+                          Back
+                        </Button>
+                      )}
+                    </Stack>
+                    {searchResult?.AIRDROPS?.slice(
+                      0,
+                      expand?.airdrops === false
+                        ? 4
+                        : searchResult?.AIRDROPS?.length
+                    ).map((item: any, index: number) => (
+                      <Stack
+                        key={index}
+                        direction="row"
+                        spacing={0.5}
+                        alignItems="center"
+                        justifyContent="space-between"
+                      >
+                        <Stack
+                          key={index}
+                          direction="row"
+                          spacing={1}
+                          alignItems="center"
+                        >
+                          <Avatar
+                            alt="Trending"
+                            src={`${serverAPIUrl}public/uploads/nft_listing_image/${item?.logo}`}
+                            sx={{ width: 25, height: 25 }}
+                          />
+                          <Link
+                            to={{
+                              pathname: `/coin/${item?.name
+                                ?.replace(/ /g, "")
+                                .toLowerCase()}/${item?.id}`,
+                            }}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            state={{ coin_id: item?.id }}
+                            style={{ textDecoration: "none", color: "#FFFFFF" }}
+                          >
+                            <Typography
+                              sx={{ fontSize: ".8rem", fontWeight: 600 }}
+                            >
+                              {item?.id}
+                            </Typography>
+                          </Link>
+                          <Typography
+                            sx={{
+                              fontSize: ".7rem",
+                              color: "#767676",
+                              fontWeight: 500,
+                            }}
+                          >
+                            {/* {item?.coin_symbol} */}
+                          </Typography>
+                        </Stack>
+                        <Typography sx={{ fontSize: ".7rem" }}>
+                          {/* {item?.ranking} */}
+                        </Typography>
+                      </Stack>
+                    ))}
+                    <Button
+                      variant="text"
+                      sx={{ fontSize: ".7rem" }}
+                      onClick={airdropsExpandHandler}
+                    >
+                      {expand?.airdrops === false
+                        ? "See all result "
+                        : "Hide result "}{" "}
+                      <span style={{ color: "#19ffb0", marginLeft: 4.5 }}>
+                        {" "}
+                        {` (${searchResult?.AIRDROPS?.length})`}
                       </span>
                     </Button>
                   </Stack>
