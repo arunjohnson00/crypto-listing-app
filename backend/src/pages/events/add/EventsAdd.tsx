@@ -7,8 +7,13 @@ import {
   IconButton,
   Checkbox,
   Backdrop,
+  Link as EventLink,
   CircularProgress,
   FormControlLabel,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  Radio,
 } from "@mui/material";
 import LargeBtn from "../../../components/form/button/large/LargeBtn";
 import IconUploader from "../../../components/form/input/file/icon/IconUploader";
@@ -33,6 +38,7 @@ import InputTextArea from "../../../components/form/textarea/InputTextArea";
 import { allEventsCategoryRequest } from "../../../store/action";
 import { allEventsRewardAddressRequest } from "../../../store/action";
 import { Link } from "react-router-dom";
+import YoutubeDetails from "./YoutubeDetails";
 
 const EventsAdd = () => {
   const selectOptions = [
@@ -45,19 +51,30 @@ const EventsAdd = () => {
   const navigate = useNavigate();
 
   const [addEventsData, setAddEvents] = useState<any>({
+    id: "",
     item_id: "",
     coin_id: "",
     title: "",
     category_id: "",
     start_date: new Date(),
+    end_date: new Date(),
     or_earlier: "",
     description: "",
     source_link: "",
+    website_url: "",
     reward_address_id: "",
     address: "",
     twitter_account: "",
+    facebook_url: "",
+    linkedin_url: "",
+    is_online: 1,
     status: 1,
     proof: "",
+    logo: "",
+    has_many_videos: "",
+    event_date: new Date(),
+    venue: "",
+    booking_url: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -69,7 +86,17 @@ const EventsAdd = () => {
     setcoinChecked(event.target.checked);
   };
 
-  // Display the key/value pairs
+  const [youtubeCount, setyoutubeCount] = useState<any[]>([]);
+
+  const youtubeaddHandle = () => {
+    setyoutubeCount([...youtubeCount, { youtube: "" }]);
+  };
+
+  const youtuberemoveHandle = (index: any) => {
+    let youtubeList = [...youtubeCount];
+    youtubeList.splice(index, 1);
+    setyoutubeCount(youtubeList);
+  };
 
   const eventsAddHandler = () => {
     const successHandler = (res: any) => {
@@ -109,6 +136,11 @@ const EventsAdd = () => {
       "event_date",
       dateFormat(new Date(addEventsData.start_date), "yyyy-mm-dd")
     );
+
+    formData.append(
+      "end_date",
+      dateFormat(new Date(addEventsData.end_date), "yyyy-mm-dd")
+    );
     // formData.append("category_id", addEventsData?.category_id);
     formData.append("title", addEventsData?.title);
 
@@ -116,7 +148,17 @@ const EventsAdd = () => {
     //formData.append("reward_address_id", addEventsData?.reward_address_id);
     formData.append("address", addEventsData?.address);
     formData.append("twitter_account", addEventsData?.twitter_account);
+    formData.append("facebook_url", addEventsData?.facebook_url);
+    formData.append("linkedin_url", addEventsData?.linkedin_url);
+    formData.append("booking_url", addEventsData?.booking_url);
+    formData.append("venue", addEventsData?.venue);
+    formData.append("website_url", addEventsData?.website_url);
     formData.append("proof", addEventsData?.proof);
+    formData.append("logo", addEventsData?.icon);
+    formData.append(
+      "is_online",
+      addEventsData && parseInt(addEventsData?.is_online)
+    );
     formData.append("status", addEventsData?.status);
 
     dispatch(addEventsRequest(formData, successHandler, errorHandler));
@@ -144,6 +186,45 @@ const EventsAdd = () => {
     //console.log(e);
 
     setAddEvents({ ...addEventsData, title: e });
+  };
+
+  const eventsFacebookURLHandler = (e: any) => {
+    //console.log(e);
+
+    setAddEvents({ ...addEventsData, facebook_url: e });
+  };
+
+  const eventsLinkedinURLHandler = (e: any) => {
+    //console.log(e);
+
+    setAddEvents({ ...addEventsData, linkedin_url: e });
+  };
+
+  const eventsWebisteURLHandler = (e: any) => {
+    //console.log(e);
+
+    setAddEvents({ ...addEventsData, website_url: e });
+  };
+
+  const eventsBookingURLHandler = (e: any) => {
+    //console.log(e);
+
+    setAddEvents({ ...addEventsData, booking_url: e });
+  };
+  const eventsVenueURLHandler = (e: any) => {
+    //console.log(e);
+
+    setAddEvents({ ...addEventsData, venue: e });
+  };
+
+  const eventTypeHandleChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    console.log(addEventsData);
+    setAddEvents({
+      ...addEventsData,
+      is_online: (event.target as HTMLInputElement).value,
+    });
   };
 
   useEffect(() => {
@@ -195,6 +276,7 @@ const EventsAdd = () => {
           </Typography>
         </Stack>
       </Grid>
+
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Box
           sx={{ maxWidth: "758px", background: "white", borderRadius: "5px" }}
@@ -203,51 +285,88 @@ const EventsAdd = () => {
           pr={4}
         >
           <form id="eventForm">
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-              <Typography variant="subtitle1" sx={{ textAlign: "left" }} mb={1}>
-                Select coin
-              </Typography>
-
-              <Stack
-                direction="column"
-                spacing={1}
-                alignItems={"flex-start"}
-                pt={1}
-                pb={2}
-              >
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={coinChecked}
-                      onChange={coinCheckboxHandler}
-                      inputProps={{ "aria-label": "controlled" }}
-                      name={"has_coin"}
-                      sx={{ color: "#181818" }}
-                    />
-                  }
-                  label={
-                    <Typography sx={{ color: "#13C086" }}>
-                      This event is base on a coin listed on coinxhigh.com
-                    </Typography>
-                  }
-                />
-                Search your coin{" "}
-                <span style={{ fontSize: ".85rem" }}>
-                  This event is base on a coin listed on coinxhigh.com. if coin
-                  is not listed{" "}
-                  <Link to="/coins/add">
-                    <span>Add Now</span>
-                  </Link>
-                </span>
-                {coinChecked === true && (
-                  <AutoCompleSelect
-                    inputAutoValue={addEventsData}
-                    setInputAutoValue={setAddEvents}
-                    variant="coin"
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} my={2}>
+              <FormControl>
+                <FormLabel id="demo-controlled-radio-buttons-group">
+                  <Typography
+                    variant="subtitle1"
+                    sx={{ textAlign: "left", color: "#000000" }}
+                    mb={1}
+                  >
+                    Event Type
+                  </Typography>
+                </FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-controlled-radio-buttons-group"
+                  name="controlled-radio-buttons-group"
+                  value={addEventsData && parseInt(addEventsData?.is_online)}
+                  onChange={eventTypeHandleChange}
+                >
+                  <FormControlLabel
+                    value={1}
+                    control={<Radio />}
+                    label="Online"
                   />
-                )}
-              </Stack>
+                  <FormControlLabel
+                    value={2}
+                    control={<Radio />}
+                    label="Offline"
+                  />
+                </RadioGroup>
+              </FormControl>
             </Grid>
+            {addEventsData && parseInt(addEventsData?.is_online) === 1 && (
+              <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{ textAlign: "left" }}
+                  mb={1}
+                >
+                  Select coin
+                </Typography>
+
+                <Stack
+                  direction="column"
+                  spacing={1}
+                  alignItems={"flex-start"}
+                  pt={1}
+                  pb={2}
+                >
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={coinChecked}
+                        onChange={coinCheckboxHandler}
+                        inputProps={{ "aria-label": "controlled" }}
+                        name={"has_coin"}
+                        sx={{ color: "#181818" }}
+                      />
+                    }
+                    label={
+                      <Typography sx={{ color: "#000000" }}>
+                        This event is base on a coin listed on coinxhigh.com
+                      </Typography>
+                    }
+                  />
+                  Search your coin{" "}
+                  <span style={{ fontSize: ".85rem" }}>
+                    This event is base on a coin listed on coinxhigh.com. if
+                    coin is not listed{" "}
+                    <Link to="/coins/add">
+                      <span>Add Now</span>
+                    </Link>
+                  </span>
+                  {coinChecked === true && (
+                    <AutoCompleSelect
+                      inputAutoValue={addEventsData}
+                      setInputAutoValue={setAddEvents}
+                      variant="coin"
+                    />
+                  )}
+                </Stack>
+              </Grid>
+            )}
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography
                 variant="subtitle1"
@@ -281,7 +400,7 @@ const EventsAdd = () => {
                 />
               </Grid>
             </Grid>
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+            {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography
                 variant="subtitle1"
                 sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
@@ -295,14 +414,56 @@ const EventsAdd = () => {
                 date={addEventsData}
                 setDate={setAddEvents}
               />
+            </Grid> */}
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#000000",
+                }}
+                mb={1}
+              >
+                Event Start Date
+              </Typography>
+
+              <InputDate
+                event_start_date={true}
+                date={addEventsData}
+                setDate={setAddEvents}
+              />
             </Grid>
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#000000",
+                }}
+                mb={1}
+              >
+                Event End Date
+              </Typography>
+
+              <InputDate
+                event_end_date={true}
+                date={addEventsData}
+                setDate={setAddEvents}
+              />
+            </Grid>
+
+            {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <CheckboxWithLabel
                 label=" Or earlier (if it can occur before the date stated)"
                 name="or_earlier"
               />
-            </Grid>
+            </Grid> */}
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <InputTextArea
@@ -311,6 +472,48 @@ const EventsAdd = () => {
                 placeholder=" description"
               />
             </Grid>
+            {addEventsData && parseInt(addEventsData?.is_online) === 2 && (
+              <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    textAlign: "left",
+                    fontSize: ".9rem",
+                    fontWeight: 600,
+                    color: "#000000",
+                  }}
+                  mb={1}
+                >
+                  Venue
+                </Typography>
+
+                <InputText
+                  placeholder="Enter venue"
+                  inputTextHandler={(e: any) => eventsVenueURLHandler(e)}
+                />
+              </Grid>
+            )}
+            {addEventsData && parseInt(addEventsData?.is_online) === 2 && (
+              <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    textAlign: "left",
+                    fontSize: ".9rem",
+                    fontWeight: 600,
+                    color: "#000000",
+                  }}
+                  mb={1}
+                >
+                  Booking URL
+                </Typography>
+
+                <InputText
+                  placeholder="Enter booking url"
+                  inputTextHandler={(e: any) => eventsBookingURLHandler(e)}
+                />
+              </Grid>
+            )}
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography
@@ -363,7 +566,31 @@ const EventsAdd = () => {
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography
                 variant="subtitle1"
-                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#000000",
+                }}
+                mb={1}
+              >
+                Website URL
+              </Typography>
+
+              <InputText
+                placeholder="Enter Website url"
+                inputTextHandler={(e: any) => eventsWebisteURLHandler(e)}
+              />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#000000",
+                }}
                 mb={1}
               >
                 Twitter Account
@@ -378,10 +605,125 @@ const EventsAdd = () => {
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography
                 variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#000000",
+                }}
+                mb={1}
+              >
+                Facebook URL
+              </Typography>
+
+              <InputText
+                placeholder="Enter Facebook url"
+                inputTextHandler={(e: any) => eventsFacebookURLHandler(e)}
+              />
+            </Grid>
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#000000",
+                }}
+                mb={1}
+              >
+                Linkedin URL
+              </Typography>
+
+              <InputText
+                placeholder="Enter Linkedin url"
+                inputTextHandler={(e: any) => eventsLinkedinURLHandler(e)}
+              />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "row" }}
+                spacing={3}
+              >
+                <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                      color: "#000000",
+                    }}
+                    mb={1}
+                  >
+                    Youtube URL
+                  </Typography>
+                  <InputText
+                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    name="youtube_link[1]"
+                    id="youtube_link_1"
+                  />
+                </Grid>
+                <Grid
+                  item
+                  xl={4}
+                  lg={4}
+                  md={4}
+                  sm={4}
+                  xs={12}
+                  pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
+                >
+                  <EventLink
+                    onClick={youtubeaddHandle}
+                    underline="none"
+                    sx={{ color: "#1976d2", fontSize: ".9rem" }}
+                  >
+                    Add more +
+                  </EventLink>
+                </Grid>
+              </Stack>
+            </Grid>
+            {youtubeCount.map((youtube, index) => {
+              return (
+                <div>
+                  <YoutubeDetails
+                    youtubeCount={youtubeCount}
+                    index={index}
+                    key={index}
+                    youtuberemoveHandle={youtuberemoveHandle}
+                  />
+                </div>
+              );
+            })}
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
                 sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
                 mb={1}
               >
                 Proof (max 2MB)
+              </Typography>
+
+              <IconUploader
+                proof={true}
+                setAddIcon={setAddEvents}
+                addIconData={addEventsData}
+              />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#000000",
+                }}
+                mb={1}
+              >
+                Logo (max 2MB)
               </Typography>
 
               <IconUploader

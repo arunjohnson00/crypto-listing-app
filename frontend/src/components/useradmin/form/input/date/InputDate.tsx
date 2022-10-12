@@ -77,10 +77,9 @@ const InputDate = ({
             setDate({ ...date, start_date: newValue });
           publicMintEnd === true && setDate({ ...date, end_date: newValue });
           airdropStart === true && setDate({ ...date, start_date: newValue });
-          (event_start_date === true) === true &&
+          event_start_date === true &&
             setDate({ ...date, start_date: newValue });
-          (event_end_date === true) === true &&
-            setDate({ ...date, end_date: newValue });
+          event_end_date === true && setDate({ ...date, end_date: newValue });
           adWizard === true && setDate({ ...date, start_date: newValue });
         }}
         disabled={disabled}

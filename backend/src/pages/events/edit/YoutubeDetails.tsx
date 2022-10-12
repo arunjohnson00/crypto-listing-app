@@ -1,0 +1,58 @@
+import { Grid, Typography, Stack } from "@mui/material";
+
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import InputText from "../../../components/form/input/text/InputText";
+
+const YoutubeDetails = ({ youtubeCount, youtuberemoveHandle, index }: any) => {
+  return (
+    <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+      <Stack
+        direction={{ xs: "column", sm: "column", md: "row" }}
+        spacing={3}
+        pt={3}
+      >
+        <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
+          <Typography
+            variant="subtitle1"
+            sx={{
+              textAlign: "left",
+              fontSize: ".9rem",
+              fontWeight: 600,
+              color: "#000000",
+            }}
+            mb={1}
+          >
+            Youtube URL {index + 2}
+          </Typography>
+          <InputText
+            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            name={`youtube_link[${index + 2}]`}
+            id={`youtube_link_${index + 2}`}
+          />
+        </Grid>
+        {youtubeCount.length && (
+          <Grid
+            item
+            xl={4}
+            lg={4}
+            md={4}
+            sm={4}
+            xs={12}
+            pt={{ xs: 0, sm: 0, md: 3, lg: 3, xl: 3 }}
+          >
+            <IconButton
+              aria-label="delete"
+              size="large"
+              onClick={() => youtuberemoveHandle(index)}
+            >
+              <DeleteIcon fontSize="inherit" sx={{ color: "#0000008a" }} />
+            </IconButton>
+          </Grid>
+        )}
+      </Stack>
+    </Grid>
+  );
+};
+
+export default YoutubeDetails;

@@ -8,7 +8,13 @@ import Avatar from "@mui/material/Avatar";
 import ImageIcon from "@mui/icons-material/Image";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
-const IconUploader = ({ addIconData, setAddIcon, slug, inActive }: any) => {
+const IconUploader = ({
+  addIconData,
+  setAddIcon,
+  slug,
+  inActive,
+  proof,
+}: any) => {
   const classes = useStyles();
 
   const onDrop = useCallback(
@@ -19,11 +25,17 @@ const IconUploader = ({ addIconData, setAddIcon, slug, inActive }: any) => {
 
             inactive_icon: inActive === true ? acceptedFiles[0] : "",
           })
+        : proof === true
+        ? setAddIcon({
+            ...addIconData,
+
+            proof: acceptedFiles[0],
+          })
         : setAddIcon({
             ...addIconData,
             thumb_icon: acceptedFiles[0],
             icon: acceptedFiles[0],
-            proof: acceptedFiles[0],
+            logo: acceptedFiles[0],
           });
     },
     [addIconData, setAddIcon, inActive]
@@ -101,14 +113,23 @@ const IconUploader = ({ addIconData, setAddIcon, slug, inActive }: any) => {
                   : `${serverAPIUrl}public/uploads/${slug}/${
                       inActive === true
                         ? addIconData.inactive_icon
+                        : proof === true
+                        ? addIconData.proof !== "" &&
+                          addIconData.proof !== undefined &&
+                          addIconData.proof !== null &&
+                          addIconData.proof
                         : addIconData.thumb_icon !== "" &&
                           addIconData.thumb_icon !== undefined &&
                           addIconData.thumb_icon !== null
                         ? addIconData.thumb_icon
                         : addIconData.icon !== "" &&
                           addIconData.icon !== undefined &&
-                          addIconData.icon !== null &&
-                          addIconData.icon
+                          addIconData.icon !== null
+                        ? addIconData.icon
+                        : addIconData.logo !== "" &&
+                          addIconData.logo !== undefined &&
+                          addIconData.logo !== null &&
+                          addIconData.logo
                     }`
               }`}
               alt="icon"

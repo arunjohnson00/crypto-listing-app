@@ -442,7 +442,7 @@ const OfflineEventsAdd = () => {
               />
             </Grid>
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+            {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <CheckboxWithLabel
                 label={
                   <Typography
@@ -469,7 +469,7 @@ const OfflineEventsAdd = () => {
                 }
                 name="or_earlier"
               />
-            </Grid>
+            </Grid> */}
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <InputTextArea
