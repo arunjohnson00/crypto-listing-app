@@ -904,7 +904,10 @@ const UserAdminMobileHtmlTable = ({
                     <Stack direction="row" spacing={0.5}>
                       <Link
                         to={{
-                          pathname: `/user-dashboard/events/edit`,
+                          pathname:
+                            data?.is_online === 1
+                              ? `/user-dashboard/events/online-events/edit`
+                              : `/user-dashboard/events/offline-events/edit`,
                         }}
                         state={{ id: data && data?.id }}
                         style={{ textDecoration: "none" }}

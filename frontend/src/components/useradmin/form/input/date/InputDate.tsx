@@ -16,7 +16,8 @@ const InputDate = ({
   serverRef,
 
   airdropStart,
-  eventDate,
+  event_start_date,
+  event_end_date,
   adWizard,
   height,
 }: any) => {
@@ -60,8 +61,12 @@ const InputDate = ({
             ? date.end_date
             : airdropStart === true
             ? date.start_date
-            : eventDate === true
-            ? date.event_date
+            : event_start_date === true
+            ? date.start_date !== undefined
+              ? date.start_date
+              : date.event_date
+            : event_end_date === true
+            ? date.end_date
             : adWizard === true && date.start_date
         }
         //publicMintStart===true&&date.start_date
@@ -72,7 +77,10 @@ const InputDate = ({
             setDate({ ...date, start_date: newValue });
           publicMintEnd === true && setDate({ ...date, end_date: newValue });
           airdropStart === true && setDate({ ...date, start_date: newValue });
-          eventDate === true && setDate({ ...date, event_date: newValue });
+          (event_start_date === true) === true &&
+            setDate({ ...date, start_date: newValue });
+          (event_end_date === true) === true &&
+            setDate({ ...date, end_date: newValue });
           adWizard === true && setDate({ ...date, start_date: newValue });
         }}
         disabled={disabled}

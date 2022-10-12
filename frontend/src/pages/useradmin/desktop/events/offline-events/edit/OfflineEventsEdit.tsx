@@ -9,7 +9,9 @@ import {
   Backdrop,
   CircularProgress,
   FormControlLabel,
+  Link,
 } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import LargeBtn from "../../../../../../components/useradmin/form/button/large/LargeBtn";
 import IconUploader from "../../../../../../components/useradmin/form/input/file/icon/IconUploader";
 import InputText from "../../../../../../components/useradmin/form/input/text/InputText";
@@ -40,6 +42,7 @@ import {
   dashboardEventsRewardAddressListRequest,
   dashboardUpdateEventsRequest,
 } from "../../../../../../store/action";
+import YoutubeDetails from "./YoutubeDetails";
 
 const OfflineEventsEdit = () => {
   const selectOptions = [
@@ -60,19 +63,29 @@ const OfflineEventsEdit = () => {
 
   const [editEventsData, setEditEvents] = useState<any>({
     id: "",
-    coin_id: "",
     item_id: "",
+    coin_id: "",
     title: "",
     category_id: "",
-    event_date: new Date(),
+    start_date: new Date(),
+    end_date: new Date(),
     or_earlier: "",
     description: "",
     source_link: "",
+    website_url: "",
     reward_address_id: "",
     address: "",
     twitter_account: "",
+    facebook_url: "",
+    linkedin_url: "",
+    is_online: 2,
     status: "",
     proof: "",
+    logo: "",
+    has_many_videos: "",
+    event_date: new Date(),
+    venue: "",
+    booking_url: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -80,7 +93,24 @@ const OfflineEventsEdit = () => {
   const [eventsRewardAddress, setEventsRewardAddress] = useState();
 
   // Display the key/value pairs
+  const [youtubeCount, setyoutubeCount] = useState<any[]>([]);
 
+  const youtubeaddHandle = () => {
+    setyoutubeCount([...youtubeCount, { youtube_link: "" }]);
+  };
+
+  const youtuberemoveHandle = (index: any) => {
+    let youtubeList = [...youtubeCount];
+    youtubeList.splice(-1, 1);
+    setyoutubeCount(youtubeList);
+
+    const youtubelist = editEventsData?.has_many_videos?.filter((item: any) => {
+      return item?.id !== index;
+    });
+
+    //console.log(sociallist, index);
+    setEditEvents({ ...editEventsData, has_many_videos: youtubelist });
+  };
   const eventsUpdateHandler = () => {
     const successHandler = (res: any) => {
       console.log(res);
@@ -142,10 +172,25 @@ const OfflineEventsEdit = () => {
 
     formData.append("id", editEventsData?.id);
 
-    formData.append("coin_id", editEventsData?.item_id);
+    // formData.append(
+    //   "coin_id",
+    //   editEventsData?.item_id !== undefined
+    //     ? editEventsData?.item_id
+    //     : editEventsData?.coin_id
+    // );
     formData.append(
       "event_date",
-      dateFormat(new Date(editEventsData.event_date), "yyyy-mm-dd")
+      dateFormat(
+        editEventsData?.start_date !== undefined
+          ? new Date(editEventsData?.start_date)
+          : new Date(editEventsData?.event_date),
+        "yyyy-mm-dd"
+      )
+    );
+
+    formData.append(
+      "end_date",
+      dateFormat(new Date(editEventsData?.end_date), "yyyy-mm-dd")
     );
     // formData.append("category_id", editEventsData?.category_id);
     formData.append("title", editEventsData?.title);
@@ -157,7 +202,17 @@ const OfflineEventsEdit = () => {
     editEventsData?.proof !== "" &&
       typeof editEventsData?.proof !== "string" &&
       formData.append("proof", editEventsData?.proof);
-    formData.append("status", editEventsData?.status);
+
+    formData.append("facebook_url", editEventsData?.facebook_url);
+    formData.append("linkedin_url", editEventsData?.linkedin_url);
+    formData.append("website_url", editEventsData?.website_url);
+    formData.append("booking_url", editEventsData?.booking_url);
+    formData.append("venue", editEventsData?.venue);
+    editEventsData?.logo !== "" &&
+      typeof editEventsData?.logo !== "string" &&
+      formData.append("logo", editEventsData?.icon);
+    formData.append("is_online", editEventsData?.is_online);
+    // formData.append("status", editEventsData?.status);
     formData.append("event_id", location?.state?.id);
     dispatch(
       dashboardUpdateEventsRequest(formData, successHandler, errorHandler)
@@ -186,6 +241,34 @@ const OfflineEventsEdit = () => {
     //console.log(e);
 
     setEditEvents({ ...editEventsData, title: e });
+  };
+
+  const eventsFacebookURLHandler = (e: any) => {
+    //console.log(e);
+
+    setEditEvents({ ...editEventsData, facebook_url: e });
+  };
+
+  const eventsLinkedinURLHandler = (e: any) => {
+    //console.log(e);
+
+    setEditEvents({ ...editEventsData, linkedin_url: e });
+  };
+
+  const eventsWebisteURLHandler = (e: any) => {
+    //console.log(e);
+
+    setEditEvents({ ...editEventsData, website_url: e });
+  };
+  const eventsBookingURLHandler = (e: any) => {
+    //console.log(e);
+
+    setEditEvents({ ...editEventsData, booking_url: e });
+  };
+  const eventsVenueURLHandler = (e: any) => {
+    //console.log(e);
+
+    setEditEvents({ ...editEventsData, venue: e });
   };
 
   useEffect(() => {
@@ -274,7 +357,7 @@ const OfflineEventsEdit = () => {
           pr={4}
         >
           <form id="eventForm">
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+            {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography
                 variant="subtitle1"
                 sx={{
@@ -321,7 +404,7 @@ const OfflineEventsEdit = () => {
                   />
                 )}
               </Stack>
-            </Grid>
+            </Grid> */}
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography
                 variant="subtitle1"
@@ -382,7 +465,7 @@ const OfflineEventsEdit = () => {
               </Typography>
 
               <InputDate
-                eventDate={true}
+                event_start_date={true}
                 date={editEventsData}
                 setDate={setEditEvents}
               />
@@ -402,7 +485,7 @@ const OfflineEventsEdit = () => {
               </Typography>
 
               <InputDate
-                eventDate={true}
+                event_end_date={true}
                 date={editEventsData}
                 setDate={setEditEvents}
               />
@@ -446,7 +529,46 @@ const OfflineEventsEdit = () => {
                 value={editEventsData?.description}
               />
             </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#13C086",
+                }}
+                mb={1}
+              >
+                Venue
+              </Typography>
 
+              <InputText
+                placeholder="Enter venue"
+                inputTextHandler={(e: any) => eventsVenueURLHandler(e)}
+                value={editEventsData?.venue}
+              />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#13C086",
+                }}
+                mb={1}
+              >
+                Booking URL
+              </Typography>
+
+              <InputText
+                placeholder="Enter booking url"
+                inputTextHandler={(e: any) => eventsBookingURLHandler(e)}
+                value={editEventsData?.booking_url}
+              />
+            </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography
                 variant="subtitle1"
@@ -524,6 +646,27 @@ const OfflineEventsEdit = () => {
                 }}
                 mb={1}
               >
+                Website URL
+              </Typography>
+
+              <InputText
+                placeholder="Enter Website url"
+                inputTextHandler={(e: any) => eventsWebisteURLHandler(e)}
+                value={editEventsData?.website_url}
+              />
+            </Grid>
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#13C086",
+                }}
+                mb={1}
+              >
                 Twitter Account
               </Typography>
 
@@ -545,7 +688,211 @@ const OfflineEventsEdit = () => {
                 }}
                 mb={1}
               >
+                Facebook URL
+              </Typography>
+
+              <InputText
+                placeholder="Enter Facebook url"
+                inputTextHandler={(e: any) => eventsFacebookURLHandler(e)}
+                value={editEventsData?.facebook_url}
+              />
+            </Grid>
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#13C086",
+                }}
+                mb={1}
+              >
+                Linkedin URL
+              </Typography>
+
+              <InputText
+                placeholder="Enter Linkedin url"
+                inputTextHandler={(e: any) => eventsLinkedinURLHandler(e)}
+                value={editEventsData?.linkedin_url}
+              />
+            </Grid>
+            {editEventsData?.has_many_videos?.length !== 0 &&
+            editEventsData?.has_many_videos !== undefined ? (
+              editEventsData?.has_many_videos?.map(
+                (youtubes: any, index: number) => {
+                  return (
+                    <Grid
+                      item
+                      xl={12}
+                      lg={12}
+                      md={12}
+                      sm={12}
+                      xs={12}
+                      key={index}
+                    >
+                      <Stack
+                        direction={{
+                          xs: "column",
+                          sm: "column",
+                          md: "row",
+                        }}
+                        spacing={3}
+                      >
+                        <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
+                          <Typography
+                            variant="subtitle1"
+                            sx={{
+                              textAlign: "left",
+                              fontSize: ".9rem",
+                              fontWeight: 600,
+                              color: "#13C086",
+                            }}
+                            mb={1}
+                          >
+                            Website URL {index + 1}
+                          </Typography>
+                          <InputText
+                            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                            name={`youtube_link[${index + 1}]`}
+                            id={`youtube_link_${index + 1}`}
+                            value={youtubes.youtube_link}
+                          />
+                        </Grid>
+                        <Grid
+                          item
+                          xl={4}
+                          lg={4}
+                          md={4}
+                          sm={4}
+                          xs={12}
+                          pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
+                        >
+                          {editEventsData?.has_many_videos.length - 1 ===
+                          index ? (
+                            <Link
+                              onClick={youtubeaddHandle}
+                              underline="none"
+                              sx={{ color: "#75ABCF", fontSize: ".8rem" }}
+                            >
+                              Add more +
+                            </Link>
+                          ) : (
+                            <IconButton
+                              aria-label="delete"
+                              size="large"
+                              onClick={() => youtuberemoveHandle(youtubes?.id)}
+                            >
+                              <DeleteIcon
+                                fontSize="inherit"
+                                sx={{ color: "#fff9" }}
+                              />
+                            </IconButton>
+                          )}
+                        </Grid>
+                      </Stack>
+                    </Grid>
+                  );
+                }
+              )
+            ) : (
+              <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                <Stack
+                  direction={{ xs: "column", sm: "column", md: "row" }}
+                  spacing={3}
+                >
+                  <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        textAlign: "left",
+                        fontSize: ".9rem",
+                        fontWeight: 600,
+                        color: "#13C086",
+                      }}
+                      mb={1}
+                    >
+                      Website URL
+                    </Typography>
+                    <InputText
+                      placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                      name="youtube_link[1]"
+                      id="youtube_link_1"
+                    />
+                  </Grid>
+                  <Grid
+                    item
+                    xl={4}
+                    lg={4}
+                    md={4}
+                    sm={4}
+                    xs={12}
+                    pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
+                  >
+                    <Link
+                      onClick={youtubeaddHandle}
+                      underline="none"
+                      sx={{ color: "#75ABCF", fontSize: ".8rem" }}
+                    >
+                      Add more +
+                    </Link>
+                  </Grid>
+                </Stack>
+              </Grid>
+            )}
+
+            {youtubeCount.map((youtube, index) => {
+              return (
+                <div>
+                  <YoutubeDetails
+                    youtubeCount={youtubeCount}
+                    index={
+                      editEventsData?.has_many_videos &&
+                      editEventsData?.has_many_videos !== undefined
+                        ? editEventsData?.has_many_videos.length - 1 + index
+                        : index
+                    }
+                    key={index}
+                    youtuberemoveHandle={youtuberemoveHandle}
+                  />
+                </div>
+              );
+            })}
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#13C086",
+                }}
+                mb={1}
+              >
                 Proof (max 2MB)
+              </Typography>
+
+              <IconUploader
+                proof={true}
+                setAddIcon={setEditEvents}
+                addIconData={editEventsData}
+                slug="event_proof"
+              />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#13C086",
+                }}
+                mb={1}
+              >
+                Logo (max 2MB)
               </Typography>
 
               <IconUploader
@@ -554,7 +901,6 @@ const OfflineEventsEdit = () => {
                 slug="event_proof"
               />
             </Grid>
-
             {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
               <Typography
                 variant="subtitle1"
@@ -596,7 +942,7 @@ const OfflineEventsEdit = () => {
                   </LoadingButton>
                 ) : (
                   <LargeBtn
-                    Title="Add Events"
+                    Title="Update Events"
                     lgBtnHandler={eventsUpdateHandler}
                   />
                 )}
