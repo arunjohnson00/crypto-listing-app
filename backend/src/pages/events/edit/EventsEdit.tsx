@@ -723,7 +723,7 @@ const EventsEdit = () => {
                             }}
                             mb={1}
                           >
-                            Website URL {index + 1}
+                            Youtube URL {index + 1}
                           </Typography>
                           <InputText
                             placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
@@ -758,7 +758,7 @@ const EventsEdit = () => {
                             >
                               <DeleteIcon
                                 fontSize="inherit"
-                                sx={{ color: "#fff9" }}
+                                sx={{ color: "#0000008a" }}
                               />
                             </IconButton>
                           )}
@@ -785,7 +785,7 @@ const EventsEdit = () => {
                       }}
                       mb={1}
                     >
-                      Website URL
+                      Youtube URL
                     </Typography>
                     <InputText
                       placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
