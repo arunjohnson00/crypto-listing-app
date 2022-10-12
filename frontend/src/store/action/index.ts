@@ -62,6 +62,7 @@ export {
   nftPageListingRequest,
   nftPageRecentlyAddedRequest,
   nftPageMostPopularRequest,
+  nftSinglePageDetailsRequest,
 } from "./nftAction";
 
 //AIRDROP

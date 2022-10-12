@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import moment from "moment";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Table from "@mui/material/Table";
@@ -23,7 +24,6 @@ import {
 
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import moment from "moment";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import { useDispatch } from "react-redux";
@@ -667,7 +667,7 @@ const UserAdminHtmlTable = ({
                       <Avatar
                         alt={data?.title}
                         src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
-                        sx={{ width: 41, height: 11, borderRadius: 0 }}
+                        sx={{ width: 30, height: 30, borderRadius: 0 }}
                       />
                     </Stack>
                   </TableCell>
@@ -827,7 +827,13 @@ const UserAdminHtmlTable = ({
                   >
                     {index + 1}
                   </TableCell>
-
+                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                    <Avatar
+                      alt={data?.title}
+                      src={`${serverAPIUrl}public/uploads/event_proof/${data?.logo}`}
+                      sx={{ width: 30, height: 30, borderRadius: 0 }}
+                    />
+                  </TableCell>
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     {data && data?.title}
                   </TableCell>
@@ -847,14 +853,25 @@ const UserAdminHtmlTable = ({
                   </TableCell>
 
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
-                    {data && data?.source_link}
+                    {moment(new Date(data?.end_date)).diff(
+                      moment(new Date(data?.event_date)),
+                      "days"
+                    )}
                   </TableCell>
                   <TableCell
                     sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
                   >
-                    <Typography variant="caption">
-                      {data && data?.address}
-                    </Typography>
+                    {data && data?.is_online === 1 ? (
+                      <Typography variant="caption" sx={{ color: "#00ff90" }}>
+                        Online Event
+                      </Typography>
+                    ) : (
+                      data?.is_online === 2 && (
+                        <Typography variant="caption" sx={{ color: "#00d7ff" }}>
+                          Offline Event
+                        </Typography>
+                      )
+                    )}
                   </TableCell>
 
                   <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>

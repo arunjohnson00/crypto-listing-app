@@ -69,14 +69,14 @@ const Events = () => {
       flex: 1,
     },
     {
-      field: "thumb_icon",
+      field: "logo",
       headerName: "Icon",
       flex: 1,
       sortable: false,
       disableClickEventBubbling: true,
       renderCell: (params: any) => (
         <Avatar
-          src={`${serverAPIUrl}public/uploads/event_proof/${params.row.proof}`}
+          src={`${serverAPIUrl}public/uploads/event_proof/${params.row.logo}`}
           alt={params.thumb_icon}
         />
       ),

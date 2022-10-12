@@ -133,7 +133,7 @@ const BannerMap = () => {
               variant="h4"
               sx={{ fontWeight: "300", color: "#FFFFF5" }}
             >
-              Our best users are all over the world with wide coverage
+              Worlds fast emerging Crypto Listing & News Platform.
             </Typography>
             <Typography
               variant="body2"
@@ -151,13 +151,13 @@ const BannerMap = () => {
                   variant="h4"
                   sx={{ fontWeight: "400", color: "#FFFFF5" }}
                 >
-                  20M+
+                  208.1 M+
                 </Typography>
                 <Typography
                   variant="body2"
                   sx={{ fontWeight: "500", color: "#93949C" }}
                 >
-                  People who have joined crybse
+                  Avg. Monthly Pageviews
                 </Typography>
               </Grid>
               <Grid item xs={4}>
@@ -166,13 +166,13 @@ const BannerMap = () => {
                   variant="h4"
                   sx={{ fontWeight: "400", color: "#FFFFF5" }}
                 >
-                  100+
+                  1.9 M+
                 </Typography>
                 <Typography
                   variant="body2"
                   sx={{ fontWeight: "500", color: "#93949C" }}
                 >
-                  Famous people playing crybse
+                  Registered users
                 </Typography>
               </Grid>
               <Grid item xs={4}>
@@ -181,13 +181,13 @@ const BannerMap = () => {
                   variant="h4"
                   sx={{ fontWeight: "400", color: "#FFFFF5" }}
                 >
-                  50
+                  20k+
                 </Typography>
                 <Typography
                   variant="body2"
                   sx={{ fontWeight: "500", color: "#93949C" }}
                 >
-                  Coorporation with bigger companies
+                  Assets listed
                 </Typography>
               </Grid>
             </Stack>

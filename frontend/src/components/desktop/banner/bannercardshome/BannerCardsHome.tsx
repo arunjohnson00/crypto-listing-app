@@ -92,15 +92,16 @@ const BannerCardsHome = () => {
                 variant="h3"
                 sx={{ fontWeight: "600", color: "#FFFFF5" }}
               >
-                We understand what you needs
+                Explore the crypto world.
               </Typography>
               <Typography
                 variant="body2"
                 sx={{ fontWeight: "500", color: "#93949C" }}
               >
-                Bitcoin attempted a recovery wave above $32,000 against the US
-                Dollar. BTC is struggling and remains at a risk of more losses
-                below $30,000.
+                Discover Latest Crypto Events, NFT's, Airdrops etc.
+                <br />
+                Connect your brand and grow your audience with our community of
+                crypto and blockchain enthusiasts around the world.
               </Typography>
             </Stack>
           </Grid>

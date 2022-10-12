@@ -1,12 +1,11 @@
 export const tableHeader = [
-  "#",
-
-  "Title",
-  "Category Id",
-  "Event Date",
-  "Source Link",
-  "Address",
-
+  "Sl.No",
+  "Event Logo",
+  "Event Title",
+  "Category",
+  "Start Date",
+  "No of Days",
+  "Event Type",
   "Status",
   "Action",
 ];

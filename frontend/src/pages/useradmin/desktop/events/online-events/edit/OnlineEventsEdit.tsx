@@ -76,8 +76,8 @@ const OnlineEventsEdit = () => {
     reward_address_id: "",
     address: "",
     twitter_account: "",
-    facebook_url: "",
-    linkedin_url: "",
+    telegram_url: "",
+    reddit_url: "",
     is_online: 1,
     status: "",
     proof: "",
@@ -201,8 +201,8 @@ const OnlineEventsEdit = () => {
       typeof editEventsData?.proof !== "string" &&
       formData.append("proof", editEventsData?.proof);
 
-    formData.append("facebook_url", editEventsData?.facebook_url);
-    formData.append("linkedin_url", editEventsData?.linkedin_url);
+    formData.append("telegram_url", editEventsData?.telegram_url);
+    formData.append("reddit_url", editEventsData?.reddit_url);
     formData.append("website_url", editEventsData?.website_url);
 
     editEventsData?.logo !== "" &&
@@ -240,16 +240,16 @@ const OnlineEventsEdit = () => {
     setEditEvents({ ...editEventsData, title: e });
   };
 
-  const eventsFacebookURLHandler = (e: any) => {
+  const eventsTelegramURLHandler = (e: any) => {
     //console.log(e);
 
-    setEditEvents({ ...editEventsData, facebook_url: e });
+    setEditEvents({ ...editEventsData, telegram_url: e });
   };
 
-  const eventsLinkedinURLHandler = (e: any) => {
+  const eventsRedditURLHandler = (e: any) => {
     //console.log(e);
 
-    setEditEvents({ ...editEventsData, linkedin_url: e });
+    setEditEvents({ ...editEventsData, reddit_url: e });
   };
 
   const eventsWebisteURLHandler = (e: any) => {
@@ -478,7 +478,7 @@ const OnlineEventsEdit = () => {
               />
             </Grid>
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+            {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <CheckboxWithLabel
                 label={
                   <Typography
@@ -506,9 +506,21 @@ const OnlineEventsEdit = () => {
                 name="or_earlier"
                 value={parseInt(editEventsData?.or_earlier)}
               />
-            </Grid>
+            </Grid> */}
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#13C086",
+                }}
+                mb={1}
+              >
+                Event Description
+              </Typography>
               <InputTextArea
                 name="description"
                 id="description"
@@ -636,17 +648,17 @@ const OnlineEventsEdit = () => {
                 }}
                 mb={1}
               >
-                Facebook URL
+                Telegram URL
               </Typography>
 
               <InputText
-                placeholder="Enter Facebook url"
-                inputTextHandler={(e: any) => eventsFacebookURLHandler(e)}
-                value={editEventsData?.facebook_url}
+                placeholder="Enter Telegram url"
+                inputTextHandler={(e: any) => eventsTelegramURLHandler(e)}
+                value={editEventsData?.telegram_url}
               />
             </Grid>
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1} pb={1}>
               <Typography
                 variant="subtitle1"
                 sx={{
@@ -657,13 +669,13 @@ const OnlineEventsEdit = () => {
                 }}
                 mb={1}
               >
-                Linkedin URL
+                Reddit URL
               </Typography>
 
               <InputText
-                placeholder="Enter Linkedin url"
-                inputTextHandler={(e: any) => eventsLinkedinURLHandler(e)}
-                value={editEventsData?.linkedin_url}
+                placeholder="Enter Reddit url"
+                inputTextHandler={(e: any) => eventsRedditURLHandler(e)}
+                value={editEventsData?.reddit_url}
               />
             </Grid>
             {editEventsData?.has_many_videos?.length !== 0 &&
@@ -819,7 +831,7 @@ const OnlineEventsEdit = () => {
                 }}
                 mb={1}
               >
-                Proof (max 2MB)
+                Screenproof of event (max 3MB)
               </Typography>
 
               <IconUploader

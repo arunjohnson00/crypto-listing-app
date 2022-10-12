@@ -113,9 +113,9 @@ const AppHeader = ({ windowInnerWidth }: any) => {
               />
               <AppBarNavBtn
                 title="NFT"
-                iconStatus={true}
+                // iconStatus={true}
                 path="/nft"
-                menu={nftMenu}
+                // menu={nftMenu}
               />
               <AppBarNavBtn
                 title="Airdrops"
@@ -123,25 +123,25 @@ const AppHeader = ({ windowInnerWidth }: any) => {
                 path="/airdrops"
                 // menu={airdropsMenu}
               />
-              <AppBarNavBtn
+              {/* <AppBarNavBtn
                 title="Events"
                 path="/crypto-events"
                 iconStatus={true}
                 menu={eventsMenu}
-              />
+              /> */}
               {/* <AppBarNavBtn title="Exchanges" iconStatus={true} /> */}
-              <AppBarNavBtn title="Promote" iconStatus={true} />
-              <AppBarNavBtn
+              {/* <AppBarNavBtn title="Promote" iconStatus={true} /> */}
+              {/* <AppBarNavBtn
                 title="Discover"
                 iconStatus={true}
                 path="/discover"
-              />
-              <AppBarNavBtn title="Chart" iconStatus={true} path="/chart" />
-              <AppBarNavBtn
+              /> */}
+              {/* <AppBarNavBtn title="Chart" iconStatus={true} path="/chart" /> */}
+              {/* <AppBarNavBtn
                 title="Leader Board"
                 iconStatus={true}
                 path="/leader-board"
-              />
+              /> */}
               <AppBarNavBtn title="News" iconStatus={true} path="/news" />
               <AppBarNavBtn
                 title="F&G Index"

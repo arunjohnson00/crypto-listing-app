@@ -71,8 +71,8 @@ const OfflineEventsAdd = () => {
     reward_address_id: "",
     address: "",
     twitter_account: "",
-    facebook_url: "",
-    linkedin_url: "",
+    telegram_url: "",
+    reddit_url: "",
     is_online: 2,
     status: "",
     proof: "",
@@ -172,8 +172,8 @@ const OfflineEventsAdd = () => {
     //formData.append("reward_address_id", addEventsData?.reward_address_id);
     formData.append("address", addEventsData?.address);
     formData.append("twitter_account", addEventsData?.twitter_account);
-    formData.append("facebook_url", addEventsData?.facebook_url);
-    formData.append("linkedin_url", addEventsData?.linkedin_url);
+    formData.append("telegram_url", addEventsData?.telegram_url);
+    formData.append("reddit_url", addEventsData?.reddit_url);
     formData.append("booking_url", addEventsData?.booking_url);
     formData.append("venue", addEventsData?.venue);
     formData.append("website_url", addEventsData?.website_url);
@@ -209,16 +209,16 @@ const OfflineEventsAdd = () => {
     setAddEvents({ ...addEventsData, title: e });
   };
 
-  const eventsFacebookURLHandler = (e: any) => {
+  const eventsTelegramURLHandler = (e: any) => {
     //console.log(e);
 
-    setAddEvents({ ...addEventsData, facebook_url: e });
+    setAddEvents({ ...addEventsData, telegram_url: e });
   };
 
-  const eventsLinkedinURLHandler = (e: any) => {
+  const eventsRedditURLHandler = (e: any) => {
     //console.log(e);
 
-    setAddEvents({ ...addEventsData, linkedin_url: e });
+    setAddEvents({ ...addEventsData, reddit_url: e });
   };
 
   const eventsWebisteURLHandler = (e: any) => {
@@ -311,7 +311,7 @@ const OfflineEventsAdd = () => {
           pr={4}
         >
           <form id="eventForm">
-            {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography
                 variant="subtitle1"
                 sx={{
@@ -356,7 +356,7 @@ const OfflineEventsAdd = () => {
                   />
                 )}
               </Stack>
-            </Grid> */}
+            </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography
                 variant="subtitle1"
@@ -472,6 +472,18 @@ const OfflineEventsAdd = () => {
             </Grid> */}
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#13C086",
+                }}
+                mb={1}
+              >
+                Event Description
+              </Typography>
               <InputTextArea
                 name="description"
                 id="description"
@@ -629,12 +641,12 @@ const OfflineEventsAdd = () => {
                 }}
                 mb={1}
               >
-                Facebook URL
+                Telegram URL
               </Typography>
 
               <InputText
-                placeholder="Enter Facebook url"
-                inputTextHandler={(e: any) => eventsFacebookURLHandler(e)}
+                placeholder="Enter Telegram url"
+                inputTextHandler={(e: any) => eventsTelegramURLHandler(e)}
               />
             </Grid>
 
@@ -649,15 +661,15 @@ const OfflineEventsAdd = () => {
                 }}
                 mb={1}
               >
-                Linkedin URL
+                Reddit URL
               </Typography>
 
               <InputText
-                placeholder="Enter Linkedin url"
-                inputTextHandler={(e: any) => eventsLinkedinURLHandler(e)}
+                placeholder="Enter Reddit url"
+                inputTextHandler={(e: any) => eventsRedditURLHandler(e)}
               />
             </Grid>
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Stack
                 direction={{ xs: "column", sm: "column", md: "row" }}
                 spacing={3}
@@ -713,7 +725,7 @@ const OfflineEventsAdd = () => {
               );
             })}
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
               <Typography
                 variant="subtitle1"
                 sx={{
@@ -724,7 +736,7 @@ const OfflineEventsAdd = () => {
                 }}
                 mb={1}
               >
-                Proof (max 2MB)
+                Screenproof of event (max 3MB)
               </Typography>
 
               <IconUploader

@@ -12,7 +12,7 @@ const AirdropPage = () => {
   const airdropList = useSelector((data: any) => {
     return data?.airdropReducer?.airdrop_listings?.data;
   });
-  const [value, setValue] = useState<any>();
+  const [value, setValue] = useState<any>(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
     console.log(newValue);
@@ -21,10 +21,10 @@ const AirdropPage = () => {
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
-    setValue(1);
+
     dispatch(airdropPageListingRequest("noData", successHandler, errorHandler));
   }, [dispatch]);
-
+  console.log(value);
   return (
     <Fragment>
       <Grid container>
@@ -95,7 +95,7 @@ const AirdropPage = () => {
                 },
               }}
             >
-              <Tab label="Live" />
+              <Tab label="All" />
               <Tab label="Live" />
               <Tab label="Upcoming" />
               <Tab label="Expired" />
@@ -103,7 +103,19 @@ const AirdropPage = () => {
           </Stack>
         </Grid>
         <Grid item xs={12}>
-          {value && value === 0 && (
+          {value === 0 && (
+            <Grid container pt={6} spacing={3}>
+              {airdropList &&
+                airdropList?.response === true &&
+                airdropList?.data?.data?.map((item: any, index: number) => (
+                  <Grid item xs={12} sm={12} md={12} lg={4} xl={4} key={index}>
+                    <AirdropCard data={item && item} index={index} />
+                  </Grid>
+                ))}
+            </Grid>
+          )}
+
+          {value === 1 && (
             <Grid container pt={6} spacing={3}>
               {airdropList &&
                 airdropList?.response === true &&
@@ -135,39 +147,7 @@ const AirdropPage = () => {
             </Grid>
           )}
 
-          {value && value === 1 && (
-            <Grid container pt={6} spacing={3}>
-              {airdropList &&
-                airdropList?.response === true &&
-                airdropList?.data?.data
-                  ?.filter(
-                    (val: any) =>
-                      moment(new Date()).isBetween(
-                        new Date(val?.start_date),
-                        new Date(
-                          moment(new Date(val?.start_date))
-                            .add(val?.no_of_days, "days")
-                            .format("DD MMM YYYY")
-                        )
-                      ) === true
-                  )
-                  .map((item: any, index: number) => (
-                    <Grid
-                      item
-                      xs={12}
-                      sm={12}
-                      md={12}
-                      lg={4}
-                      xl={4}
-                      key={index}
-                    >
-                      <AirdropCard data={item && item} index={index} />
-                    </Grid>
-                  ))}
-            </Grid>
-          )}
-
-          {value && value === 2 && (
+          {value === 2 && (
             <Grid container pt={6} spacing={3}>
               {airdropList &&
                 airdropList?.response === true &&
@@ -193,7 +173,7 @@ const AirdropPage = () => {
             </Grid>
           )}
 
-          {value && value === 3 && (
+          {value === 3 && (
             <Grid container pt={6} spacing={3}>
               {airdropList &&
                 airdropList?.response === true &&
