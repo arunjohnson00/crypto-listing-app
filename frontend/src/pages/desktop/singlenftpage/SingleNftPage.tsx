@@ -751,7 +751,10 @@ const SingleNftPage = () => {
                           fontWeight: 600,
                         }}
                       >
-                        13,256
+                        {nftSinglePageDetails &&
+                          (nftSinglePageDetails?.data?.votes !== "" ||
+                            nftSinglePageDetails?.data?.votes !== null) &&
+                          nftSinglePageDetails?.data?.votes}
                       </Typography>
                     </Stack>
 

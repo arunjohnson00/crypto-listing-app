@@ -57,6 +57,7 @@ import OnlineEventsEdit from "../pages/useradmin/desktop/events/online-events/ed
 import OfflineEventsAdd from "../pages/useradmin/desktop/events/offline-events/add/OfflineEventsAdd";
 import OfflineEventsEdit from "../pages/useradmin/desktop/events/offline-events/edit/OfflineEventsEdit";
 import UserAdminAddEventsPage from "../pages/useradmin/desktop/addevents/UserAdminAddEventsPage";
+import SingleAirdropPage from "../pages/desktop/singleairdroppage/SingleAirdropPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -261,6 +262,14 @@ const AppRoutes = () => {
           }
         />
 
+        <Route
+          path="/airdrops/*"
+          element={
+            <PublicRoutes>
+              <SingleAirdropPage />
+            </PublicRoutes>
+          }
+        />
         {windowInnerWidth >= 900 ? (
           <Route
             path="/crypto-events/*"

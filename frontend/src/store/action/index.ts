@@ -67,7 +67,10 @@ export {
 
 //AIRDROP
 
-export { airdropPageListingRequest } from "./airdropAction";
+export {
+  airdropPageListingRequest,
+  airdropSinglePageDetailsRequest,
+} from "./airdropAction";
 
 //EVENTS
 
@@ -76,6 +79,7 @@ export {
   eventsUpcomingRequest,
   eventsRecentlyAddedRequest,
   eventsCategoriesRequest,
+  eventsSinglePageRequest,
 } from "./eventsAction";
 //user
 

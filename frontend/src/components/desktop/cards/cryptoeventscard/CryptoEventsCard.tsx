@@ -39,12 +39,20 @@ const CryptoEventsCard = ({ data }: any) => {
             src={`${serverAPIUrl}public/uploads/event_proof/${data?.logo}`}
             sx={{ width: 24, height: 24 }}
           />
-          <Typography
-            variant="body2"
-            sx={{ color: "#FFFFF5", fontWeight: "bold" }}
+          <Link
+            to={{
+              pathname: `/crypto-events/${data?.slug}`,
+            }}
+            state={{ coin_id: data?.id }}
+            style={{ textDecoration: "none", color: "#FFFFFF" }}
           >
-            {data && data?.title}
-          </Typography>
+            <Typography
+              variant="body2"
+              sx={{ color: "#FFFFF5", fontWeight: "bold" }}
+            >
+              {data && data?.title}
+            </Typography>
+          </Link>
         </Stack>
 
         {data && data?.is_online === 1 ? (

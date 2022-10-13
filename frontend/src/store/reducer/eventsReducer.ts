@@ -5,6 +5,7 @@ const initialState = {
   events_recently_added: "",
   events_upcoming: "",
   events_past: "",
+  events_single_page: "",
 };
 const eventsReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -32,6 +33,13 @@ const eventsReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         events_past: action?.payload,
+      };
+
+    case EVENTS.EVENTS_SINGLE_PAGE:
+      //console.log(action);
+      return {
+        ...state,
+        events_single_page: action?.payload,
       };
     default:
       return state;
