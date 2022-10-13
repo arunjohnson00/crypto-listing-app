@@ -110,7 +110,7 @@ const AppLoginPage = () => {
         : navigate("/user-dashboard");
     };
     const errorHandler = (err: any) => {
-      toast.success(
+      toast.warn(
         <Box>
           <Stack direction="row" spacing={2} alignItems="center">
             <CancelRoundedIcon sx={{ color: "#ff3722", fontSize: 50 }} />

@@ -174,9 +174,9 @@ const CryptoEvents = () => {
               Crypto Events
             </Typography>
             <Typography variant="body2" sx={{ color: "#CDCED1" }}>
-              Stay up-to-date with coinmarketcap crypto calender. We list all
-              the major events in the crypto and blockchain ecosystems so that
-              you can stay informed.
+              Stay up to date with our crypto calendar. We list all the major
+              events in the crypto and blockchain ecosystems to keep you in the
+              loop.
             </Typography>
           </Stack>
         </Grid>

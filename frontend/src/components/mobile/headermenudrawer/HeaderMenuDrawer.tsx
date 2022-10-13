@@ -166,7 +166,7 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
                 Exchange
               </Typography>
             </Link> */}
-            <Link
+            {/* <Link
               to={{
                 pathname: `#`,
               }}
@@ -249,7 +249,7 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
               >
                 Leader Board
               </Typography>
-            </Link>
+            </Link> */}
             <Link
               to={{
                 pathname: `/news`,

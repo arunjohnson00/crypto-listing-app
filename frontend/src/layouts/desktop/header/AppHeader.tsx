@@ -122,7 +122,8 @@ const AppHeader = ({ windowInnerWidth }: any) => {
           {windowInnerWidth >= 900 && (
             <Stack
               direction="row"
-              sx={{ alignItems: "center", justifyContent: "space-between" }}
+              spacing={7}
+              sx={{ alignItems: "center", justifyContent: "flex-start" }}
             >
               <AppBarNavBtn
                 title="Coins"

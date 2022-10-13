@@ -110,7 +110,7 @@ const UserAdminOverview = () => {
                 </Button>
               </Link>
               <Link
-                to="/user-dashboard/events/add"
+                to="/user-dashboard/add-events"
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 <Button
@@ -212,7 +212,17 @@ const UserAdminOverview = () => {
               </Button>
             </Stack>
             <Stack direction="column" spacing={4}>
-              <Stack direction="row" spacing={0.5}>
+              <Typography
+                sx={{
+                  fontSize: ".85rem",
+                  fontWeight: 500,
+                  color: "#FFFFFF",
+                  lineHeight: 1,
+                }}
+              >
+                Currently no data available
+              </Typography>
+              {/* <Stack direction="row" spacing={0.5}>
                 <CheckCircleOutlineIcon
                   sx={{ color: "#04B34A", fontSize: ".9rem" }}
                 />
@@ -396,7 +406,7 @@ const UserAdminOverview = () => {
                     </Typography>
                   </Stack>
                 </Stack>
-              </Stack>
+              </Stack> */}
             </Stack>
           </Stack>
         </Stack>

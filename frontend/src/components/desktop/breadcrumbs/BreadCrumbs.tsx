@@ -39,7 +39,7 @@ const BreadCrumbs = ({ home, path, data }: any) => {
             ? data?.name
             : data?.title !== undefined
             ? data?.title
-            : data?.coin_name + " Airdrop"}
+            : data?.coin_name && data?.coin_name + " Airdrop"}
         </Link>
       </Breadcrumbs>
     </div>

@@ -733,7 +733,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           </Stack>
         </Grid>
 
-        <Grid container spacing={2}>
+        {/* <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={5} lg={5} xl={5} pb={2}>
             <Typography sx={{ color: "#FFFFFF", fontSize: "0.875rem" }}>
               Subscribe to our newsletters and get business news delivered
@@ -751,7 +751,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               sx={{ objectFit: "unset" }}
             />
           </Grid>
-        </Grid>
+        </Grid> */}
 
         <Grid item xs={12}>
           <Stack
@@ -847,7 +847,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
           </Stack>
         </Grid>
 
-        <Grid container spacing={2}>
+        {/* <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={5} lg={5} xl={5} pb={2}>
             <Typography sx={{ color: "#FFFFFF", fontSize: "0.875rem" }}>
               Subscribe to our newsletters and get business news delivered
@@ -865,7 +865,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               sx={{ objectFit: "unset" }}
             />
           </Grid>
-        </Grid>
+        </Grid> */}
 
         <Grid item xs={12}>
           {NFTList && NFTList?.data && (
@@ -883,7 +883,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
             >
               {NFTList &&
                 NFTList?.data?.map((item: any, index: number) => (
-                  <Box key={index} mr={1}>
+                  <Box key={index} mr={2}>
                     <NftCollectionCard data={item && item} index={index} />
                   </Box>
                 ))}
@@ -930,7 +930,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
             </Grid>
           </Stack>
         </Grid>
-        <Grid container spacing={2}>
+        {/* <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={5} lg={5} xl={5} pb={2}>
             <Typography sx={{ color: "#FFFFFF", fontSize: "0.875rem" }}>
               Subscribe to our newsletters and get business news delivered
@@ -948,7 +948,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               sx={{ objectFit: "unset" }}
             />
           </Grid>
-        </Grid>
+        </Grid> */}
 
         <Grid
           item

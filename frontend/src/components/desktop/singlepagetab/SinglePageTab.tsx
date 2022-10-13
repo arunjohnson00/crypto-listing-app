@@ -89,7 +89,7 @@ const SinglePageTab = ({ data }: any) => {
               <Tab label="Presale" value="10" />
             )}
             {/* <Tab label="KYC Details" value="11" /> */}
-            <Tab label="Widget" value="12" />
+            {/* <Tab label="Widget" value="12" /> */}
             {/* <Tab label="Audit Details" value="13" /> */}
             <Tab label="News" value="14" />
           </TabList>

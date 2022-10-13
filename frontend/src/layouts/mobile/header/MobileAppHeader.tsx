@@ -92,11 +92,12 @@ const MobileAppHeader = () => {
                   background: "#FFFFFF",
                   color: "#000000",
 
-                  height: 15,
-                  fontSize: ".60rem",
+                  height: 12,
+
+                  fontSize: ".5rem",
                   position: "relative",
-                  top: -20,
-                  right: 10,
+                  top: -15,
+                  right: 2,
                   fontWeight: 600,
                 }}
                 size="small"

@@ -96,7 +96,7 @@ const MobileSinglePageTab = () => {
               coinDetailFirstBlock[0]?.is_presale === 1 && (
                 <Tab label="Presale" value="9" />
               )}
-            <Tab label="Widget" value="10" />
+            {/* <Tab label="Widget" value="10" /> */}
             <Tab label="News" value="11" />
           </TabList>
         </Box>

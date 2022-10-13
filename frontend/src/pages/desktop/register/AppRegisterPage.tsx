@@ -25,7 +25,8 @@ import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -63,29 +64,54 @@ const AppRegisterPage = () => {
   const registerHandler = () => {
     const formData = new FormData(document.querySelector("#register") as any);
     const successHandler = (res: any) => {
-      toast.success(`${res?.data?.message}`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.success(
+        <Box>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <CheckCircleRoundedIcon sx={{ color: "#5CE32D", fontSize: 50 }} />
+            <Typography sx={{ fontSize: ".85rem" }}>
+              {res?.data?.message}
+            </Typography>
+          </Stack>
+        </Box>,
+        {
+          position: "top-right",
+          icon: false,
+          //theme: "colored",
+          className: "toast-success-container toast-success-container-after",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
       setTimeout(function () {
         navigate("/login");
       }, 2000);
     };
     const errorHandler = (err: any) => {
-      toast.success(`${JSON.stringify(err?.error?.message?.response?.data)}`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.warn(
+        <Box>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <CancelRoundedIcon sx={{ color: "#ff3722", fontSize: 50 }} />
+            <Typography sx={{ fontSize: ".85rem" }}>
+              {JSON.stringify(err?.error?.message?.response?.data)}
+            </Typography>
+          </Stack>
+        </Box>,
+        {
+          icon: false,
+          className: "toast-error-container toast-error-container-after",
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
     };
 
     dispatch(userRegisterRequest(formData, successHandler, errorHandler));

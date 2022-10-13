@@ -36,20 +36,24 @@ export const coinMenu = [
 ];
 
 export const nftMenu = [
-  { icon: recentlyAddedNFTIcon, title: "Recently added", link: "#" },
+  { icon: recentlyAddedNFTIcon, title: "Recently added", link: "/nft" },
   {
     icon: nftCollectionIcon,
     title: "NFT Collections",
-    link: "#",
+    link: "/nft",
   },
 ];
 
 export const airdropsMenu = [
-  { icon: recentlyAddedAirDropIcon, title: "Recently added", link: "#" },
+  {
+    icon: recentlyAddedAirDropIcon,
+    title: "Recently added",
+    link: "/airdrops",
+  },
   {
     icon: airdropCalenderIcon,
     title: "Airdrops Calender",
-    link: "#",
+    link: "/airdrops",
   },
 ];
 
@@ -58,12 +62,12 @@ export const eventsMenu = [
   {
     icon: upcomingEventIcon,
     title: "Upcoming Events",
-    link: "#",
+    link: "/crypto-events",
   },
 
   {
     icon: pastEventIcon,
     title: "Past Events",
-    link: "#",
+    link: "/crypto-events",
   },
 ];

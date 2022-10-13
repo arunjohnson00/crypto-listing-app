@@ -54,7 +54,11 @@ const AirdropPage = () => {
           </Stack> */}
         </Grid>
         <Grid item xs={12} pt={3}>
-          <Stack direction="row" spacing={1} justifyContent="space-between">
+          <Stack
+            direction={{ xs: "column", sm: "column", md: "row" }}
+            spacing={1}
+            justifyContent="space-between"
+          >
             <Stack direction="column" spacing={0.5}>
               <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
                 Crypto Airdrops
