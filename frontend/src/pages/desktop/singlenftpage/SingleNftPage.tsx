@@ -9,9 +9,15 @@ import {
   Box,
   Avatar,
   Chip,
+  Dialog,
+  DialogContent,
 } from "@mui/material";
 import moment from "moment";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import { useTheme } from "@mui/material/styles";
+import { ToastContainer, toast } from "react-toastify";
+import ReCAPTCHA from "react-google-recaptcha";
+import "react-toastify/dist/ReactToastify.css";
 import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
 import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
 import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
@@ -37,6 +43,8 @@ import TwitterGraphImage from "../../../assets/singlepagecoin/graph/twitter.png"
 import GithubGraphImage from "../../../assets/singlepagecoin/graph/github.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { nftSinglePageDetailsRequest } from "../../../store/action";
+import { nftVoteRequest } from "../../../store/action/nftAction";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -52,6 +60,12 @@ const SingleNftPage = () => {
   const nftSinglePageDetails = useSelector((data: any) => {
     return data?.nftReducer?.nft_single_page_details?.data;
   });
+  const [vote, setVote] = useState<any>({
+    initial: false,
+    completed: false,
+    captcha: false,
+  });
+  const [openCaptcha, setOpenCaptcha] = useState<any>(false);
   const location: any = useLocation();
   const dispatch: any = useDispatch();
   const navigate: any = useNavigate();
@@ -77,7 +91,62 @@ const SingleNftPage = () => {
         errorHandler
       )
     );
-  }, [dispatch]);
+  }, [dispatch, vote]);
+
+  const captchaHandler = () => {
+    setVote({ ...vote, initial: false, completed: false, captcha: true });
+    setOpenCaptcha(true);
+  };
+
+  const captchaOnClose = () => {
+    setOpenCaptcha(false);
+    setVote({ ...vote, initial: false, completed: false, captcha: false });
+  };
+
+  const coinVoteHandler = () => {
+    const successHandler = (res: any) => {
+      setOpenCaptcha(false);
+      setVote({ ...vote, initial: true, completed: false, captcha: false });
+
+      setTimeout(function () {
+        toast.success(
+          <Box>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <CheckCircleRoundedIcon sx={{ color: "#5CE32D", fontSize: 50 }} />
+              <Typography sx={{ fontSize: ".85rem" }}>
+                {res?.data?.data}
+              </Typography>
+            </Stack>
+          </Box>,
+          {
+            position: "top-right",
+            icon: false,
+            //theme: "colored",
+            className: "toast-success-container toast-success-container-after",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
+
+        setVote({ ...vote, initial: false, completed: true, captcha: false });
+      }, 2000);
+    };
+    const errorHandler = (err: any) => {
+      console.log(err);
+    };
+
+    dispatch(
+      nftVoteRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  };
 
   return (
     <Fragment>
@@ -770,17 +839,136 @@ const SingleNftPage = () => {
                   /> */}
 
                     <Stack direction="column" alignItems="flex-start">
-                      <Button
-                        variant="contained"
-                        sx={{
-                          textTransform: "capitalize",
-                          fontSize: ".8rem",
-                          borderRadius: 1,
-                          backgroundColor: "#061242",
-                        }}
-                      >
-                        Vote Now
-                      </Button>
+                      {vote &&
+                      vote.initial === false &&
+                      vote.completed === false &&
+                      vote.captcha === false ? (
+                        <Button
+                          variant="contained"
+                          sx={{
+                            textTransform: "capitalize",
+                            fontSize: ".8rem",
+                            borderRadius: 1,
+                            backgroundColor: "#061242",
+                          }}
+                          onClick={captchaHandler}
+                        >
+                          Vote Now
+                        </Button>
+                      ) : vote.captcha === true ? (
+                        <Dialog
+                          open={openCaptcha}
+                          // TransitionComponent={Transition}
+                          keepMounted
+                          onClose={captchaOnClose}
+                          aria-describedby="alert-dialog-slide-description"
+                          PaperProps={{
+                            style: {
+                              backgroundColor: "transparent",
+                              boxShadow: "none",
+                            },
+                          }}
+                        >
+                          <DialogContent
+                            sx={{
+                              "&.MuiDialogContent-root": {
+                                padding: 0,
+                                borderRadius: 3,
+                                background: "none",
+                              },
+                            }}
+                          >
+                            <Box
+                              p={4}
+                              sx={{
+                                width: 500,
+                                height: "auto",
+                                backgroundColor: "#000000",
+                                border: "2px solid #121528",
+                                borderRadius: 3,
+                              }}
+                            >
+                              <Stack
+                                direction="column"
+                                spacing={3}
+                                alignItems="center"
+                                justifyContent="center"
+                              >
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    color: "#FFFFFF",
+                                    fontWeight: 400,
+                                    fontSize: "1rem",
+                                  }}
+                                >
+                                  Vote for{" "}
+                                  <span
+                                    style={{
+                                      color: "#1FD47E",
+                                      fontWeight: 500,
+                                    }}
+                                  >
+                                    {nftSinglePageDetails &&
+                                      nftSinglePageDetails?.data?.title}
+                                  </span>{" "}
+                                  & prove that you are not a robot
+                                </Typography>
+                                <ReCAPTCHA
+                                  sitekey="6LeV-IQhAAAAAMwIIrqVh_eqFPl-8IFn1QQWWrEU"
+                                  onChange={coinVoteHandler}
+                                  theme="dark"
+                                />
+
+                                <CardMedia
+                                  component="img"
+                                  height="auto"
+                                  image="https://coindcx.com/blog/wp-content/uploads/2022/02/image-3-1000x600.png"
+                                  alt="green iguana"
+                                  sx={{ objectFit: "unset", borderRadius: 0 }}
+                                />
+
+                                <Button
+                                  variant="contained"
+                                  sx={{
+                                    borderRadius: 10,
+                                    backgroundColor: "#00B6FC",
+                                    textTransform: "none",
+                                  }}
+                                  onClick={captchaOnClose}
+                                >
+                                  Close this window
+                                </Button>
+                              </Stack>
+                            </Box>
+                          </DialogContent>
+                        </Dialog>
+                      ) : vote.initial === true ? (
+                        <LoadingButton
+                          loading
+                          variant="outlined"
+                          sx={{
+                            color: "#FFFFFF",
+                            backgroundColor: "#FFFFFF",
+                          }}
+                        >
+                          Submit
+                        </LoadingButton>
+                      ) : (
+                        vote.completed === true && (
+                          <Button
+                            variant="contained"
+                            sx={{
+                              textTransform: "capitalize",
+                              fontSize: ".8rem",
+                              borderRadius: 1,
+                              backgroundColor: "#061242",
+                            }}
+                          >
+                            Voted
+                          </Button>
+                        )
+                      )}
                     </Stack>
                   </Stack>
 

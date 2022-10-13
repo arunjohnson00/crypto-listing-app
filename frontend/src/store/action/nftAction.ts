@@ -77,3 +77,18 @@ export const nftSinglePageDetailsRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const nftVoteRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/nft-vote/${values}`,
+    method: "GET",
+    secure: false,
+    actionType: NFT.NFT_VOTE,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

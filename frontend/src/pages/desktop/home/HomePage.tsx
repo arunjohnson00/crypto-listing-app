@@ -764,7 +764,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
             }}
           >
             <TableBtnGroup />
-            <TableFilterBtn />
+            {/* <TableFilterBtn /> */}
           </Stack>
         </Grid>
 
@@ -883,7 +883,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
             >
               {NFTList &&
                 NFTList?.data?.map((item: any, index: number) => (
-                  <Box key={index}>
+                  <Box key={index} mr={1}>
                     <NftCollectionCard data={item && item} index={index} />
                   </Box>
                 ))}

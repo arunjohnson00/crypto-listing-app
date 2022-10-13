@@ -9,7 +9,7 @@ import ScanCreditCard from "../../cards/scancreditcard/ScanCreditCard ";
 const BannerPespectiveWidget = () => {
   return (
     <Grid item xs={12}>
-      <Tilt>
+      {/* <Tilt>
         <Box
           sx={{
             position: "absolute",
@@ -20,7 +20,7 @@ const BannerPespectiveWidget = () => {
         >
           <ScanCreditCard />
         </Box>
-      </Tilt>
+      </Tilt> */}
 
       <Tilt>
         <Box

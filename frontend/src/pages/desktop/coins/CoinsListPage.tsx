@@ -476,7 +476,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
                   setTableTabValue={setTableTabValue}
                   tableTabHandleChange={tableTabHandleChange}
                 />
-                <Divider
+                {/* <Divider
                   variant="middle"
                   flexItem
                   orientation={"vertical"}
@@ -484,9 +484,9 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
                 />
                 <IconButton aria-label="filter" onClick={filterBtnHandler}>
                   <FilterAltOutlinedIcon sx={{ color: "#03E2B1" }} />
-                </IconButton>
+                </IconButton> */}
               </Stack>
-              {tableFilter === true && <MobileListingTableFilterBtn />}
+              {/* {tableFilter === true && <MobileListingTableFilterBtn />} */}
             </Grid>
             <Grid xs={12}>
               {location?.pathname === "/coins/watch-list" ? (

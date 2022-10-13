@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import { CardMedia, Grid, Stack } from "@mui/material";
+import { CardMedia, Chip, Grid, Stack } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
@@ -17,6 +17,7 @@ import SearchDrawer from "../../../components/mobile/searchdrawer/SearchDrawer";
 import { Link } from "react-router-dom";
 import HeaderMenuDrawer from "../../../components/mobile/headermenudrawer/HeaderMenuDrawer";
 import logoWhite from "../../../assets/logo/logo.png";
+import headerAds from "../../../assets/ads/topads.gif";
 import {
   recentSearchRequest,
   trendingCoinListRequest,
@@ -71,13 +72,36 @@ const MobileAppHeader = () => {
       <Grid item xs={12}>
         <Stack direction="row" alignItems="center" justifyContent="center">
           <Box py={0.4} width="100%">
-            <CardMedia
-              component="img"
-              height="auto"
-              image="https://iili.io/UtY5Kv.jpg"
-              alt="green iguana"
-              sx={{ objectFit: "unset" }}
-            />
+            <a href="https://t.me/shopayment" target="_blank" rel="noreferrer">
+              <CardMedia
+                component="img"
+                height="auto"
+                image={headerAds}
+                alt="Ads"
+                sx={{ objectFit: "unset" }}
+              />
+            </a>
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="flex-end"
+            >
+              <Chip
+                label="Ad"
+                sx={{
+                  background: "#FFFFFF",
+                  color: "#000000",
+
+                  height: 15,
+                  fontSize: ".60rem",
+                  position: "relative",
+                  top: -20,
+                  right: 10,
+                  fontWeight: 600,
+                }}
+                size="small"
+              />
+            </Stack>
           </Box>
         </Stack>
         <Toolbar disableGutters>

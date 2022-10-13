@@ -298,9 +298,9 @@ const MobileHomePage = () => {
         <FullWidthSlider />
       </Grid> */}
 
-      <Grid item xs={12}>
+      {/* <Grid item xs={12}>
         <UpcomingCard />
-      </Grid>
+      </Grid> */}
 
       <Grid item xs={12}>
         <MobileIconMenuCard />
@@ -524,11 +524,11 @@ const MobileHomePage = () => {
             }}
           >
             <MobileTableBtnGroup />
-            <IconButton aria-label="filter" onClick={filterBtnHandler}>
+            {/* <IconButton aria-label="filter" onClick={filterBtnHandler}>
               <FilterAltOutlinedIcon sx={{ color: "#03E2B1" }} />
-            </IconButton>
+            </IconButton> */}
           </Stack>
-          {tableFilter === true && <MobileTableFilterBtn />}
+          {/* {tableFilter === true && <MobileTableFilterBtn />} */}
         </Stack>
       </Grid>
 

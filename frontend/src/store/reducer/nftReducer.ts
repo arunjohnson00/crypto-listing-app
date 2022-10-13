@@ -5,6 +5,7 @@ const initialState = {
   nft_most_popular: "",
   nft_recently_added: "",
   nft_single_page_details: "",
+  nft_vote: "",
 };
 const nftReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -32,6 +33,13 @@ const nftReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         nft_single_page_details: action?.payload,
+      };
+
+    case NFT.NFT_VOTE:
+      //console.log(action);
+      return {
+        ...state,
+        nft_vote: action?.payload,
       };
     default:
       return state;

@@ -25,14 +25,21 @@ const MobileBreadCrumbs = ({ home, path, data }: any) => {
         </Link>
         <Link
           to={{
-            pathname: `/${path && path?.toLowerCase()}/${data?.name
-              ?.replace(/ /g, "")
-              .toLowerCase()}`,
+            pathname: `/${path && path?.toLowerCase()}/${
+              data?.slug !== undefined
+                ? data?.slug
+                : data?.coin_slug !== undefined && data?.coin_slug
+            }`,
           }}
+          target="_blank"
           state={{ coin_id: data?.id }}
           style={{ textDecoration: "none", color: "#898989" }}
         >
-          {data && data?.name !== undefined ? data?.name : data?.title}
+          {data && data?.name !== undefined
+            ? data?.name
+            : data?.title !== undefined
+            ? data?.title
+            : data?.coin_name + " Airdrop"}
         </Link>
       </Breadcrumbs>
     </div>

@@ -56,9 +56,6 @@ const SingleAirdropPage = () => {
   const [copyValue, setCopyValue] = useState("");
   const [copied, setCopied] = useState(false);
 
-  // useEffect(() => {
-  //   data && setCopyValue(data?.contract_address);
-  // }, [data]);
   const airdropSinglePageDetails = useSelector((data: any) => {
     return data?.airdropReducer?.airdrop_single_page_details?.data;
   });
@@ -88,6 +85,10 @@ const SingleAirdropPage = () => {
       )
     );
   }, [dispatch]);
+  useEffect(() => {
+    airdropSinglePageDetails &&
+      setCopyValue(airdropSinglePageDetails?.data?.contract_address);
+  }, [airdropSinglePageDetails]);
 
   return (
     <Fragment>
@@ -110,7 +111,7 @@ const SingleAirdropPage = () => {
                 <Stack
                   direction="column"
                   alignItems="flex-start"
-                  spacing={4}
+                  spacing={2}
                   width="100%"
                 >
                   <Box
@@ -128,9 +129,9 @@ const SingleAirdropPage = () => {
                         spacing={1.5}
                       >
                         <Avatar
-                          src={`${serverAPIUrl}public/uploads/nft_listing_image/${
+                          src={`${serverAPIUrl}public/uploads/coin_logo/${
                             airdropSinglePageDetails &&
-                            airdropSinglePageDetails?.data?.image
+                            airdropSinglePageDetails?.data?.coin_logo
                           }`}
                           alt={
                             airdropSinglePageDetails &&
@@ -202,7 +203,11 @@ const SingleAirdropPage = () => {
                         pb={2}
                       >
                         <Box
-                          sx={{ backgroundColor: " #00071A", borderRadius: 4 }}
+                          sx={{
+                            backgroundColor: " #00071A",
+                            borderRadius: 6,
+                            minWidth: 150,
+                          }}
                           px={2}
                           py={1.5}
                         >
@@ -210,7 +215,7 @@ const SingleAirdropPage = () => {
                             <Stack
                               direction="row"
                               alignItems="center"
-                              spacing={2}
+                              spacing={3}
                             >
                               <Stack direction="column" alignItems="center">
                                 {" "}
@@ -394,7 +399,8 @@ const SingleAirdropPage = () => {
                               fontWeight: 700,
                             }}
                           >
-                            1000000
+                            {airdropSinglePageDetails &&
+                              airdropSinglePageDetails?.data?.total_amount}
                           </Typography>
                         </Stack>
                       </Stack>
@@ -438,7 +444,8 @@ const SingleAirdropPage = () => {
                               fontWeight: 700,
                             }}
                           >
-                            1000000
+                            {airdropSinglePageDetails &&
+                              airdropSinglePageDetails?.data?.no_of_winners}
                           </Typography>
                         </Stack>
                       </Stack>
@@ -482,7 +489,12 @@ const SingleAirdropPage = () => {
                               fontWeight: 700,
                             }}
                           >
-                            12 May 2022
+                            {airdropSinglePageDetails &&
+                              moment(
+                                new Date(
+                                  airdropSinglePageDetails?.data?.start_date
+                                )
+                              ).format("DD MMM YYYY")}
                           </Typography>
                         </Stack>
                       </Stack>
@@ -526,7 +538,17 @@ const SingleAirdropPage = () => {
                               fontWeight: 700,
                             }}
                           >
-                            12 May 2022
+                            {airdropSinglePageDetails &&
+                              moment(
+                                new Date(
+                                  airdropSinglePageDetails?.data?.start_date
+                                )
+                              )
+                                .add(
+                                  airdropSinglePageDetails?.data?.no_of_days,
+                                  "days"
+                                )
+                                .format("DD MMM YYYY")}
                           </Typography>
                         </Stack>
                       </Stack>
@@ -538,126 +560,194 @@ const SingleAirdropPage = () => {
                 <Stack
                   direction="column"
                   alignItems="flex-start"
-                  spacing={2}
+                  spacing={3.5}
                   pl={{ xs: 0, sm: 0, md: 5 }}
                 >
-                  <Stack direction="row" spacing={2} alignItems="center">
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: "#FFFFFF",
-                        fontSize: "1.7rem",
-                        fontWeight: 600,
-                      }}
-                    >
-                      Blue Art Token Airdrop
-                    </Typography>
-                    <Chip
-                      label="Live"
-                      color="success"
-                      variant="filled"
-                      sx={{
-                        color: "#FFFFFF",
-                        minWidth: 80,
-                        backgroundColor: "#02BF38",
-                      }}
-                    />
-                  </Stack>
-                  <Stack
-                    direction="row"
-                    sx={{ justifyContent: "flex-start" }}
-                    spacing={1}
-                  >
-                    <Stack
-                      direction="row"
-                      sx={{ alignItems: "center" }}
-                      spacing={2}
-                    >
+                  <Stack direction="column" alignItems="flex-start" spacing={1}>
+                    <Stack direction="row" spacing={2} alignItems="center">
                       <Typography
-                        variant="caption"
+                        variant="body2"
                         sx={{
-                          color: "#FB8F01",
-                          fontWeight: 500,
-                          fontSize: "1rem",
+                          color: "#FFFFFF",
+                          fontSize: "1.7rem",
+                          fontWeight: 600,
                         }}
                       >
-                        Contract Address:
+                        {airdropSinglePageDetails &&
+                          airdropSinglePageDetails?.data?.coin_name}{" "}
+                        Airdrop
                       </Typography>
+                      <Stack
+                        direction="column"
+                        sx={{ alignItems: "flex-end" }}
+                        spacing={0.7}
+                      >
+                        {airdropSinglePageDetails &&
+                          moment(
+                            new Date(airdropSinglePageDetails?.data?.start_date)
+                          ).isAfter(new Date()) === true && (
+                            <Chip
+                              label="Upcoming"
+                              color="primary"
+                              sx={{
+                                backgroundColor: "#1d91b6",
+                                fontSize: "0.75rem",
+                                minWidth: 90,
+                              }}
+                              size="medium"
+                            />
+                          )}
+                        {airdropSinglePageDetails &&
+                          moment(new Date()).isBetween(
+                            new Date(
+                              airdropSinglePageDetails?.data?.start_date
+                            ),
+                            new Date(
+                              moment(
+                                new Date(
+                                  airdropSinglePageDetails?.data?.start_date
+                                )
+                              )
+                                .add(
+                                  airdropSinglePageDetails?.data?.no_of_days,
+                                  "days"
+                                )
+                                .format("DD MMM YYYY")
+                            )
+                          ) === true && (
+                            <Chip
+                              label="Live"
+                              color="primary"
+                              sx={{
+                                backgroundColor: "#299a07",
+                                fontSize: "0.75rem",
+                                minWidth: 90,
+                              }}
+                              size="medium"
+                            />
+                          )}
+
+                        {airdropSinglePageDetails &&
+                          moment(new Date()).isAfter(
+                            new Date(
+                              moment(
+                                new Date(
+                                  airdropSinglePageDetails?.data?.start_date
+                                )
+                              )
+                                .add(
+                                  airdropSinglePageDetails?.data?.no_of_days,
+                                  "days"
+                                )
+                                .format("DD MMM YYYY")
+                            )
+                          ) === true && (
+                            <Chip
+                              label="Expired"
+                              color="primary"
+                              sx={{
+                                backgroundColor: "#c70a0a",
+                                fontSize: "0.75rem",
+                                minWidth: 90,
+                              }}
+                              size="medium"
+                            />
+                          )}
+                      </Stack>
                     </Stack>
-
                     <Stack
-                      direction={{ xs: "row", sm: "row", md: "row" }}
-                      sx={{ alignItems: "center" }}
-                      spacing={0}
+                      direction="row"
+                      sx={{ justifyContent: "flex-start" }}
+                      spacing={1}
                     >
-                      {" "}
-                      <Typography
-                        variant="subtitle2"
-                        sx={{ color: "#FFFFFF", fontSize: "1rem" }}
+                      <Stack
+                        direction="row"
+                        sx={{ alignItems: "center" }}
+                        spacing={2}
                       >
-                        {/* {data &&
-                            data?.contract_address !== null &&
-                            data?.contract_address.slice(0, 12) + "........."}
-
-                          {data &&
-                            data?.contract_address !== null &&
-                            data?.contract_address.slice(-6)} */}
-                        ..............................
-                      </Typography>
-                      <CopyToClipboard
-                        options={{ message: "" }}
-                        text={copyValue}
-                        onCopy={() => setCopied(true)}
-                      >
-                        <IconButton
-                          sx={{ paddingLeft: 1 }}
-                          onClick={() => {
-                            setCopyValue(
-                              "0xED3F52c46280ad96485323Fb6a51242cb4CA45F5"
-                            );
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            color: "#FB8F01",
+                            fontWeight: 500,
+                            fontSize: "1rem",
                           }}
                         >
-                          <Tooltip
-                            title={`${copied ? "Copied" : "Copy this Token"}`}
+                          Contract Address:
+                        </Typography>
+                      </Stack>
+
+                      <Stack
+                        direction={{ xs: "row", sm: "row", md: "row" }}
+                        sx={{ alignItems: "center" }}
+                        spacing={0}
+                      >
+                        {" "}
+                        <Typography
+                          variant="subtitle2"
+                          sx={{ color: "#FFFFFF", fontSize: "1rem" }}
+                        >
+                          {airdropSinglePageDetails &&
+                            airdropSinglePageDetails?.data?.contract_address}
+                        </Typography>
+                        <CopyToClipboard
+                          options={{ message: "" }}
+                          text={copyValue}
+                          onCopy={() => setCopied(true)}
+                        >
+                          <IconButton
+                            sx={{ paddingLeft: 1 }}
+                            onClick={() => {
+                              setCopyValue(
+                                airdropSinglePageDetails &&
+                                  airdropSinglePageDetails?.data
+                                    ?.contract_address
+                              );
+                            }}
                           >
-                            <ContentCopyIcon
-                              sx={{
-                                color: `${copied ? "#23D471" : "#75787c"}`,
-                                fontSize: "1rem",
-                              }}
-                            />
-                          </Tooltip>
-                        </IconButton>
-                      </CopyToClipboard>
+                            <Tooltip
+                              title={`${copied ? "Copied" : "Copy this Token"}`}
+                            >
+                              <ContentCopyIcon
+                                sx={{
+                                  color: `${copied ? "#23D471" : "#75787c"}`,
+                                  fontSize: "1rem",
+                                }}
+                              />
+                            </Tooltip>
+                          </IconButton>
+                        </CopyToClipboard>
+                      </Stack>
+                    </Stack>
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                      <Avatar
+                        alt="Remy Sharp"
+                        src="/static/images/avatar/1.jpg"
+                        sx={{ width: 25, height: 25 }}
+                      />{" "}
+                      <Avatar
+                        alt="Remy Sharp"
+                        src="/static/images/avatar/1.jpg"
+                        sx={{ width: 25, height: 25 }}
+                      />
+                      <Avatar
+                        alt="Remy Sharp"
+                        src="/static/images/avatar/1.jpg"
+                        sx={{ width: 25, height: 25 }}
+                      />
+                      <Avatar
+                        alt="Remy Sharp"
+                        src="/static/images/avatar/1.jpg"
+                        sx={{ width: 25, height: 25 }}
+                      />
+                      <Avatar
+                        alt="Remy Sharp"
+                        src="/static/images/avatar/1.jpg"
+                        sx={{ width: 25, height: 25 }}
+                      />
                     </Stack>
                   </Stack>
-                  <Stack direction="row" alignItems="center" spacing={1}>
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/1.jpg"
-                      sx={{ width: 25, height: 25 }}
-                    />{" "}
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/1.jpg"
-                      sx={{ width: 25, height: 25 }}
-                    />
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/1.jpg"
-                      sx={{ width: 25, height: 25 }}
-                    />
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/1.jpg"
-                      sx={{ width: 25, height: 25 }}
-                    />
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/1.jpg"
-                      sx={{ width: 25, height: 25 }}
-                    />
-                  </Stack>
+
                   <Stack direction="column" alignItems="flex-start" spacing={3}>
                     <Stack direction="column" spacing={1.5}>
                       <Typography
