@@ -10,7 +10,7 @@ const darkTheme = createTheme({
     mode: "dark",
   },
 });
-const UpcomingEventCalender = ({ date, setDate }: any) => {
+const UpcomingEventCalender = ({ date, setDate, dateHandler }: any) => {
   return (
     <Box
       sx={{ backgroundColor: "#030C37", borderRadius: 5, color: "#FFFFF5" }}
@@ -20,7 +20,7 @@ const UpcomingEventCalender = ({ date, setDate }: any) => {
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <CalendarPicker
             date={date}
-            onChange={(newDate) => setDate(newDate)}
+            onChange={(newDate) => dateHandler(newDate)}
           />
         </LocalizationProvider>
       </ThemeProvider>

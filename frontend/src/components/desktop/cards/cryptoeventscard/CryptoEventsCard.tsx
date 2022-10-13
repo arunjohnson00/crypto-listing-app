@@ -1,7 +1,16 @@
-import { Box, Stack, Typography, Chip, Avatar, Link } from "@mui/material";
-import React from "react";
+import {
+  Box,
+  Stack,
+  Typography,
+  Chip,
+  Avatar,
+  Link as EventsLink,
+} from "@mui/material";
+import moment from "moment";
+import { Link } from "react-router-dom";
 
-const CryptoEventsCard = () => {
+const CryptoEventsCard = ({ data }: any) => {
+  const serverAPIUrl = process.env.REACT_APP_API_URL;
   return (
     <Box
       sx={{
@@ -13,10 +22,10 @@ const CryptoEventsCard = () => {
     >
       <Stack direction="row" sx={{ justifyContent: "space-between" }}>
         <Typography variant="body2" sx={{ color: "#0DC2B5" }}>
-          28 May 2022
+          {data && moment(new Date(data?.event_date)).format("DD MMM YYYY")}
         </Typography>
         <Chip
-          label="Release"
+          label={data && data?.category_name}
           color="primary"
           sx={{ backgroundColor: "#43C211", fontSize: "0.6125rem" }}
           size="small"
@@ -25,32 +34,44 @@ const CryptoEventsCard = () => {
       <Stack direction="row" sx={{ justifyContent: "space-between" }} pt={2}>
         <Stack direction="row" sx={{ alignItems: "center" }} spacing={2}>
           <Avatar
-            alt="Remy Sharp"
-            src="https://mui.com/static/images/avatar/1.jpg"
+            variant="square"
+            alt={data && data?.title}
+            src={`${serverAPIUrl}public/uploads/event_proof/${data?.logo}`}
             sx={{ width: 24, height: 24 }}
           />
           <Typography
             variant="body2"
             sx={{ color: "#FFFFF5", fontWeight: "bold" }}
           >
-            SafeMoon
+            {data && data?.title}
           </Typography>
         </Stack>
 
-        <Typography
-          variant="caption"
-          sx={{ color: "#10E496", fontWeight: 500 }}
-        >
-          Mainnet Release
-        </Typography>
+        {data && data?.is_online === 1 ? (
+          <Typography
+            variant="caption"
+            sx={{ color: "#09ae95", fontWeight: 500 }}
+          >
+            Online Event
+          </Typography>
+        ) : (
+          data &&
+          data?.is_online === 2 && (
+            <Typography
+              variant="caption"
+              sx={{ color: "#a28b18", fontWeight: 500 }}
+            >
+              Offline Event
+            </Typography>
+          )
+        )}
       </Stack>
       <Stack direction="row" sx={{ justifyContent: "space-between" }} pt={2}>
         <Typography
           variant="caption"
           sx={{ color: "#9595B6", fontSize: "0.65rem" }}
         >
-          Gradients are CSS elements of the image data type that show a
-          transition between two or more colors.
+          {data && data?.description}
         </Typography>
       </Stack>
 
@@ -63,18 +84,41 @@ const CryptoEventsCard = () => {
         }}
         pt={2}
       >
-        <Link href="#" underline="none" sx={{ color: "#454182" }}>
+        <EventsLink
+          href={data && data?.source_link}
+          underline="none"
+          target="_blank"
+          sx={{ color: "#454182" }}
+        >
           View Source
-        </Link>
-        <Link href="#" underline="none" sx={{ color: "#454182" }}>
+        </EventsLink>
+        <EventsLink
+          href={
+            data && `${serverAPIUrl}public/uploads/event_proof/${data?.proof}`
+          }
+          underline="none"
+          target="_blank"
+          sx={{ color: "#454182" }}
+        >
           View Proof
-        </Link>
-        <Link href="#" underline="none" sx={{ color: "#454182" }}>
+        </EventsLink>
+        <Link
+          to={{
+            pathname: `/crypto-events/${data?.slug}`,
+          }}
+          state={{ coin_id: data?.id }}
+          style={{ textDecoration: "none", color: "#454182" }}
+        >
           View Event
         </Link>
-        <Link href="#" underline="none" sx={{ color: "#454182" }}>
+        <EventsLink
+          href={data && data?.twitter_account}
+          underline="none"
+          target="_blank"
+          sx={{ color: "#454182" }}
+        >
           Twitter
-        </Link>
+        </EventsLink>
       </Stack>
     </Box>
   );

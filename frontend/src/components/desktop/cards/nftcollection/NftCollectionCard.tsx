@@ -27,22 +27,26 @@ const NftCollectionCard = ({ data, index }: any) => {
   });
 
   return (
-    <Link
-      to={{
-        pathname: `/nft/${data?.slug}`,
+    <Box
+      sx={{
+        backgroundColor: "#01061A",
+        border: "2px solid #090F2F",
+        borderTopLeftRadius: 52,
+        borderTopRightRadius: 52,
+        borderBottomLeftRadius: 52,
+        borderBottomRightRadius: 52,
+        width: { xs: "100%", sm: "100%", md: "auto" },
       }}
-      state={{ coin_id: data?.id }}
-      style={{ textDecoration: "none", color: "#FFFFFF" }}
     >
-      <Box
-        mr={2}
-        sx={{
-          backgroundColor: "#01061A",
-          border: "2px solid #090F2F",
-          borderTopLeftRadius: 52,
-          borderTopRightRadius: 52,
-          borderBottomLeftRadius: 52,
-          borderBottomRightRadius: 52,
+      {" "}
+      <Link
+        to={{
+          pathname: `/nft/${data?.slug}`,
+        }}
+        state={{ coin_id: data?.id }}
+        style={{
+          textDecoration: "none",
+          color: "#FFFFFF",
         }}
       >
         <Stack direction="column" alignItems="center" spacing={1.5}>
@@ -117,9 +121,9 @@ const NftCollectionCard = ({ data, index }: any) => {
             </Stack>
 
             <Typography variant="caption" sx={{ color: "#FFFFFF" }}>
-              {data && data?.currency_name}
+              {data && data?.network_name}
             </Typography>
-            {data && data?.currency_icon === null ? (
+            {data && data?.network_icon === null ? (
               <Avatar
                 variant="square"
                 sx={{
@@ -136,15 +140,15 @@ const NftCollectionCard = ({ data, index }: any) => {
               <Avatar
                 variant="square"
                 alt={data && data?.name}
-                src={`${serverAPIUrl}public/uploads/nft_currency_icons/${data?.currency_icon}`}
+                src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
                 //src="https://mui.com/static/images/avatar/1.jpg"
                 sx={{ width: 22, height: 22 }}
               />
             )}
           </Stack>
         </Stack>
-      </Box>
-    </Link>
+      </Link>
+    </Box>
   );
 };
 

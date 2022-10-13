@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "homepage": "https://frontend.coinxhigh.com",
+  "homepage": "https://coinxhigh.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

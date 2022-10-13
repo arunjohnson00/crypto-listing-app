@@ -8,6 +8,7 @@ import {
   Divider,
   Box,
   Avatar,
+  Chip,
 } from "@mui/material";
 import moment from "moment";
 import { useTheme } from "@mui/material/styles";
@@ -36,7 +37,9 @@ import TwitterGraphImage from "../../../assets/singlepagecoin/graph/twitter.png"
 import GithubGraphImage from "../../../assets/singlepagecoin/graph/github.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { nftSinglePageDetailsRequest } from "../../../store/action";
+
 const serverAPIUrl = process.env.REACT_APP_API_URL;
+
 const SingleNftPage = () => {
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
@@ -61,13 +64,10 @@ const SingleNftPage = () => {
   const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
 
   useEffect(() => {
-    const successHandler = (res: any) => {
-      //setRequestStatus(res?.data?.status);
-    };
+    const successHandler = (res: any) => {};
 
     const errorHandler = (err: any) => {
-      err?.error?.message?.response?.data?.status === false &&
-        window.location.replace("/");
+      err?.error?.message?.response?.status === 500 && navigate("/nft");
     };
 
     dispatch(
@@ -79,7 +79,6 @@ const SingleNftPage = () => {
     );
   }, [dispatch]);
 
-  console.log(nftSinglePageDetails);
   return (
     <Fragment>
       <Grid container rowSpacing={5} columnSpacing={0}>
@@ -87,7 +86,11 @@ const SingleNftPage = () => {
           <LatestNewsScroll />
         </Grid>
         <Grid item xs={12}>
-          <BreadCrumbs data="" home="Home" path="NFT" />
+          <BreadCrumbs
+            data={nftSinglePageDetails && nftSinglePageDetails?.data}
+            home="Home"
+            path="NFT"
+          />
         </Grid>
 
         {nftSinglePageDetails && nftSinglePageDetails?.response === true && (
@@ -106,10 +109,12 @@ const SingleNftPage = () => {
               >
                 <Stack direction="column" alignItems="center" spacing={1.5}>
                   <Avatar
-                    // src={`${serverAPIUrl}public/uploads/nft_listing_image/${data?.image}`}
-                    src="https://public.nftstatic.com/static/nft/zipped/3935959bce40460fb02c26239ec6dcd8_zipped.png"
-                    // alt={data && data?.title}
-                    alt=""
+                    src={`${serverAPIUrl}public/uploads/nft_listing_image/${
+                      nftSinglePageDetails && nftSinglePageDetails?.data?.image
+                    }`}
+                    alt={
+                      nftSinglePageDetails && nftSinglePageDetails?.data?.title
+                    }
                     variant="square"
                     sx={{
                       borderTopLeftRadius: 52,
@@ -177,7 +182,13 @@ const SingleNftPage = () => {
                             "" ||
                             nftSinglePageDetails?.data?.public_mint_price !==
                               null) &&
-                          nftSinglePageDetails?.data?.public_mint_price}
+                          nftSinglePageDetails?.data?.public_mint_price}{" "}
+                        {nftSinglePageDetails &&
+                          nftSinglePageDetails?.data?.nft_currency?.map(
+                            (item: any, index: number) => (
+                              <span>{item?.currency_symbol}</span>
+                            )
+                          )}
                       </Typography>
                       <Divider
                         variant="middle"
@@ -190,41 +201,66 @@ const SingleNftPage = () => {
                         }}
                       />
                     </Stack>
+                    {nftSinglePageDetails &&
+                      nftSinglePageDetails?.data?.nft_networks?.map(
+                        (item: any, index: number) => (
+                          <a
+                            href={item?.network_explorer_url}
+                            target="_blank"
+                            rel="noreferrer"
+                            style={{ textDecoration: "none" }}
+                          >
+                            <Stack
+                              direction="column"
+                              alignItems="center"
+                              spacing={1}
+                            >
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  color: "#FFFFFF",
+                                  fontSize: "0.9rem",
+                                  fontWeight: 600,
+                                }}
+                              >
+                                {item?.network_name}
+                              </Typography>
+                              {/* <Avatar
+                                src={`${serverAPIUrl}public/uploads/network_icons/${item?.network_icon}`}
+                                alt={item?.nft_marketplace_name}
+                                variant="square"
+                                sx={{
+                                  width: 20,
+                                  height: 20,
+                                }}
+                              /> */}
 
-                    <Typography variant="caption" sx={{ color: "#FFFFFF" }}>
-                      Binance Smart Chain
-                    </Typography>
-                    {/* {data && data?.currency_icon === null ? (
-                    <Avatar
-                      variant="square"
-                      sx={{
-                        bgcolor: defaultColor[index],
-                        width: 22,
-                        height: 22,
-                      }}
-                    >
-                      <Typography sx={{ fontSize: ".6rem" }}>
-                        Binance Samrt Chain
-                      </Typography>
-                    </Avatar>
-                  ) : (
-                    <Avatar
-                      variant="square"
-                      // alt={data && data?.name}
-                      // src={`${serverAPIUrl}public/uploads/nft_currency_icons/${data?.currency_icon}`}
-                      src=""
-                      //src="https://mui.com/static/images/avatar/1.jpg"
-                      sx={{ width: 22, height: 22 }}
-                    />
-                  )} */}
-                    <Avatar
-                      variant="square"
-                      // alt={data && data?.name}
-                      // src={`${serverAPIUrl}public/uploads/nft_currency_icons/${data?.currency_icon}`}
-                      src=""
-                      //src="https://mui.com/static/images/avatar/1.jpg"
-                      sx={{ width: 22, height: 22 }}
-                    />
+                              {item && item?.network_icon === null ? (
+                                <Avatar
+                                  variant="square"
+                                  sx={{
+                                    bgcolor: defaultColor[index],
+                                    width: 22,
+                                    height: 22,
+                                  }}
+                                >
+                                  <Typography sx={{ fontSize: ".6rem" }}>
+                                    {item && item?.network_name[0]}
+                                  </Typography>
+                                </Avatar>
+                              ) : (
+                                <Avatar
+                                  variant="square"
+                                  alt={item && item?.network_name}
+                                  src={`${serverAPIUrl}public/uploads/network_icons/${item?.network_icon}`}
+                                  //src="https://mui.com/static/images/avatar/1.jpg"
+                                  sx={{ width: 22, height: 22 }}
+                                />
+                              )}
+                            </Stack>
+                          </a>
+                        )
+                      )}
                   </Stack>
                 </Stack>
 
@@ -267,7 +303,14 @@ const SingleNftPage = () => {
                                 ?.pre_sale_mint_price !== "" ||
                                 nftSinglePageDetails?.data
                                   ?.pre_sale_mint_price !== null) &&
-                              nftSinglePageDetails?.data?.pre_sale_mint_price}
+                              nftSinglePageDetails?.data
+                                ?.pre_sale_mint_price}{" "}
+                            {nftSinglePageDetails &&
+                              nftSinglePageDetails?.data?.nft_currency?.map(
+                                (item: any, index: number) => (
+                                  <span>{item?.currency_symbol}</span>
+                                )
+                              )}
                           </Typography>
                         </Stack>
 
@@ -349,7 +392,14 @@ const SingleNftPage = () => {
                                 "" ||
                                 nftSinglePageDetails?.data
                                   ?.public_mint_price !== null) &&
-                              nftSinglePageDetails?.data?.public_mint_price}
+                              nftSinglePageDetails?.data
+                                ?.public_mint_price}{" "}
+                            {nftSinglePageDetails &&
+                              nftSinglePageDetails?.data?.nft_currency?.map(
+                                (item: any, index: number) => (
+                                  <span>{item?.currency_symbol}</span>
+                                )
+                              )}
                           </Typography>
                         </Stack>
 
@@ -517,7 +567,13 @@ const SingleNftPage = () => {
                             "" ||
                             nftSinglePageDetails?.data?.public_mint_price !==
                               null) &&
-                          nftSinglePageDetails?.data?.public_mint_price}
+                          nftSinglePageDetails?.data?.public_mint_price}{" "}
+                        {nftSinglePageDetails &&
+                          nftSinglePageDetails?.data?.nft_currency?.map(
+                            (item: any, index: number) => (
+                              <span>{item?.currency_symbol}</span>
+                            )
+                          )}
                       </Typography>
                     </Stack>
 
@@ -544,20 +600,45 @@ const SingleNftPage = () => {
                       >
                         Network
                       </Typography>
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "#FFFFFF",
-                          fontSize: "0.85rem",
-                          fontWeight: 600,
-                        }}
-                      >
-                        {/* {nftSinglePageDetails &&
-                          (nftSinglePageDetails?.data?.nft_networks !== "" ||
-                            nftSinglePageDetails?.data?.nft_networks !==
-                              null) &&
-                          nftSinglePageDetails?.data?.nft_networks} */}
-                      </Typography>
+                      <Stack direction="row" alignItems="center" spacing={3.5}>
+                        {nftSinglePageDetails &&
+                          nftSinglePageDetails?.data?.nft_networks?.map(
+                            (item: any, index: number) => (
+                              <a
+                                href={item?.network_explorer_url}
+                                target="_blank"
+                                rel="noreferrer"
+                                style={{ textDecoration: "none" }}
+                              >
+                                <Stack
+                                  direction="row"
+                                  alignItems="center"
+                                  spacing={1}
+                                >
+                                  <Avatar
+                                    src={`${serverAPIUrl}public/uploads/network_icons/${item?.network_icon}`}
+                                    alt={item?.nft_marketplace_name}
+                                    variant="square"
+                                    sx={{
+                                      width: 16,
+                                      height: 16,
+                                    }}
+                                  />
+                                  <Typography
+                                    variant="body2"
+                                    sx={{
+                                      color: "#FFFFFF",
+                                      fontSize: "0.9rem",
+                                      fontWeight: 600,
+                                    }}
+                                  >
+                                    {item?.network_name}
+                                  </Typography>
+                                </Stack>
+                              </a>
+                            )
+                          )}
+                      </Stack>
                     </Stack>
 
                     <Divider
@@ -748,8 +829,7 @@ const SingleNftPage = () => {
                                 </Typography>
                                 <Avatar
                                   src={`${serverAPIUrl}public/uploads/nft_marketplace_icons/${item?.thumb_icon}`}
-                                  // alt={data && data?.title}
-                                  alt=""
+                                  alt={item?.nft_marketplace_name}
                                   variant="square"
                                   sx={{
                                     width: 20,
@@ -758,6 +838,42 @@ const SingleNftPage = () => {
                                 />
                               </Stack>
                             </a>
+                          )
+                        )}
+                    </Stack>
+                  </Stack>
+                  <Divider
+                    variant="middle"
+                    flexItem
+                    orientation="horizontal"
+                    sx={{
+                      borderColor: "#0b1640",
+                      borderBottomWidth: 1,
+                      mb: 1,
+                    }}
+                  />
+
+                  <Stack direction="column" spacing={1.5}>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: "#03FEB5",
+                        // fontSize: "0.9rem",
+                        // fontWeight: 600,
+                      }}
+                    >
+                      NFT Category
+                    </Typography>
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                      {nftSinglePageDetails &&
+                        nftSinglePageDetails?.data?.nft_category?.map(
+                          (item: any, index: number) => (
+                            <Chip
+                              label={item}
+                              size="medium"
+                              color="primary"
+                              sx={{ backgroundColor: defaultColor[index] }}
+                            />
                           )
                         )}
                     </Stack>

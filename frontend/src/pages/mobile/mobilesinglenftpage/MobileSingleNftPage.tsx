@@ -7,10 +7,9 @@ import {
   Typography,
   Divider,
   Avatar,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
-
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en.json";
 
 import MobileTopAlertBox from "../../../components/mobile/alert/topalertbox/MobileTopAlertBox";
 
@@ -18,10 +17,42 @@ import MobileBreadCrumbs from "../../../components/mobile/breadcrumbs/MobileBrea
 import SingleNFTHeader from "../../../components/mobile/signlenftheader/SingleNFTHeader";
 import MobileCoinSlider from "../../../components/mobile/coinslider/MobileCoinSlider";
 import MobileLatestNewsCardScrollTop from "../../../components/mobile/latestnews/MobileLatestNewsCardScrollTop";
+import { nftSinglePageDetailsRequest } from "../../../store/action";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const MobileSingleNftPage = () => {
-  TimeAgo.addDefaultLocale(en);
-  const timeAgo = new TimeAgo("en");
+  const nftSinglePageDetails = useSelector((data: any) => {
+    return data?.nftReducer?.nft_single_page_details?.data;
+  });
+  const location: any = useLocation();
+  const dispatch: any = useDispatch();
+  const navigate: any = useNavigate();
+  // const coinSocialGraph = useSelector((data: any) => {
+  //   return data?.coinReducer?.coin_social_graph;
+  // });
+  const coinSocialGraph = [1, 44, 7, 3, 22, 100, 10];
+
+  const theme = useTheme();
+  const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      //setRequestStatus(res?.data?.status);
+    };
+
+    const errorHandler = (err: any) => {
+      err?.error?.message?.response?.status === 500 && navigate("/nft");
+    };
+
+    dispatch(
+      nftSinglePageDetailsRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  }, [dispatch]);
 
   return (
     <Fragment>
@@ -74,7 +105,11 @@ const MobileSingleNftPage = () => {
         </Grid> */}
 
         <Grid item xs={12} mt={{ xs: 0.5, sm: 0.5, md: 5 }}>
-          <MobileBreadCrumbs home="Home" path="NFT" />
+          <MobileBreadCrumbs
+            home="Home"
+            path="NFT"
+            data={nftSinglePageDetails && nftSinglePageDetails?.data}
+          />
         </Grid>
         {/* <Grid
             item
@@ -98,32 +133,27 @@ const MobileSingleNftPage = () => {
        */}
 
         <Grid item xs={12}>
-          <SingleNFTHeader />
+          {nftSinglePageDetails && nftSinglePageDetails?.response === true && (
+            <SingleNFTHeader />
+          )}
         </Grid>
-
         <Grid item xs={12} mb={7} pt={2}>
-          <Stack direction="column" spacing={0.4}>
-            <Typography
-              sx={{ color: "#00FFE0", fontSize: "1.2rem", fontWeight: 600 }}
-            >
-              About Bored Ape
-            </Typography>
-            <Typography
-              sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 400 }}
-            >
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, Lorem Ipsum is simply dummy text of the
-              printing and typesetting industry. Lorem Ipsum has been the
-              industry's standard dummy text ever since the 1500s, when an
-              unknown printer took a galley of type and scrambled it to make a
-              type specimen book. It has survived not only five centuries, but
-              also the leap into electronic typesetting,
-            </Typography>
-          </Stack>
+          {nftSinglePageDetails && nftSinglePageDetails?.response === true && (
+            <Stack direction="column" spacing={0.4}>
+              <Typography
+                sx={{ color: "#00FFE0", fontSize: "1.1rem", fontWeight: 600 }}
+              >
+                About{" "}
+                {nftSinglePageDetails && nftSinglePageDetails?.data?.title}
+              </Typography>
+              <Typography
+                sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 400 }}
+              >
+                {nftSinglePageDetails &&
+                  nftSinglePageDetails?.data?.description}
+              </Typography>
+            </Stack>
+          )}
         </Grid>
       </Grid>
     </Fragment>

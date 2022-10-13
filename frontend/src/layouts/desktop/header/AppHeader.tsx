@@ -123,12 +123,12 @@ const AppHeader = ({ windowInnerWidth }: any) => {
                 path="/airdrops"
                 // menu={airdropsMenu}
               />
-              {/* <AppBarNavBtn
+              <AppBarNavBtn
                 title="Events"
                 path="/crypto-events"
                 iconStatus={true}
                 menu={eventsMenu}
-              /> */}
+              />
               {/* <AppBarNavBtn title="Exchanges" iconStatus={true} /> */}
               {/* <AppBarNavBtn title="Promote" iconStatus={true} /> */}
               {/* <AppBarNavBtn

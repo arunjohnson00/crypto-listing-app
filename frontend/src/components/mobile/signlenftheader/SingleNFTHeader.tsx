@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-
+import moment from "moment";
 import ToolTipImage from "../../../assets/singlepagenft/tool-tip.png";
 import CoinGeckoImage from "../../../assets/singlepagenft/coingecko.png";
 import CoinMarketcapImage from "../../../assets/singlepagenft/coinmarketcap.png";
@@ -31,8 +31,14 @@ import VoteImage from "../../../assets/singlepagenft/vote_icon.png";
 import LinkImage from "../../../assets/singlepagenft/globe.gif";
 
 import MobileSingleCoinChip from "../coinpagechip/MobileSingleCoinChip";
+import { CountDownTimer } from "./countdown/CountDownTimer";
+import { useSelector } from "react-redux";
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const SingleNFTHeader = () => {
+  const nftSinglePageDetails = useSelector((data: any) => {
+    return data?.nftReducer?.nft_single_page_details?.data;
+  });
   return (
     <Box sx={{ width: "100%" }}>
       <Stack direction="column" spacing={2.5} alignItems="flex-start">
@@ -53,17 +59,19 @@ const SingleNFTHeader = () => {
           >
             <Avatar
               variant="square"
-              src="https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg?w=2000"
-              alt="green iguana"
+              src={`${serverAPIUrl}public/uploads/nft_listing_image/${
+                nftSinglePageDetails && nftSinglePageDetails?.data?.image
+              }`}
+              alt={nftSinglePageDetails && nftSinglePageDetails?.data?.title}
               sx={{ width: 200, height: 200 }}
             />
           </Box>
         </Stack>
         <Stack direction="column" spacing={1}>
           <Typography
-            sx={{ color: "#FFFFFF", fontSize: "1.4rem", fontWeight: 500 }}
+            sx={{ color: "#FFFFFF", fontSize: "1.3rem", fontWeight: 500 }}
           >
-            Bored Ape
+            {nftSinglePageDetails && nftSinglePageDetails?.data?.title}
           </Typography>
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography
@@ -74,7 +82,12 @@ const SingleNFTHeader = () => {
             <Typography
               sx={{ color: "#00F6AE", fontSize: ".85rem", fontWeight: 500 }}
             >
-              36 Minutes ago
+              {nftSinglePageDetails &&
+                (nftSinglePageDetails?.data?.created_at !== "" ||
+                  nftSinglePageDetails?.data?.created_at !== null) &&
+                moment(
+                  new Date(nftSinglePageDetails?.data?.created_at)
+                ).fromNow()}
             </Typography>
           </Stack>
           <Stack direction="row" spacing={1} alignItems="center">
@@ -83,16 +96,41 @@ const SingleNFTHeader = () => {
             >
               Network :
             </Typography>
-            <Typography
-              sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 500 }}
-            >
-              Binance SmartChain
-            </Typography>
-            <Avatar
-              alt="Remy Sharp"
-              src="https://mui.com/static/images/avatar/1.jpg"
-              sx={{ width: 30, height: 18, borderRadius: 0 }}
-            />
+            <Stack direction="row" alignItems="center" spacing={3.5}>
+              {nftSinglePageDetails &&
+                nftSinglePageDetails?.data?.nft_networks?.map(
+                  (item: any, index: number) => (
+                    <a
+                      href={item?.network_explorer_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <Stack direction="row" alignItems="center" spacing={1}>
+                        <Avatar
+                          src={`${serverAPIUrl}public/uploads/network_icons/${item?.network_icon}`}
+                          alt={item?.nft_marketplace_name}
+                          variant="square"
+                          sx={{
+                            width: 16,
+                            height: 16,
+                          }}
+                        />
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#FFFFFF",
+                            fontSize: "0.9rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          {item?.network_name}
+                        </Typography>
+                      </Stack>
+                    </a>
+                  )
+                )}
+            </Stack>
           </Stack>
         </Stack>
         <Divider
@@ -112,12 +150,20 @@ const SingleNFTHeader = () => {
               <Typography
                 sx={{ color: "#FFFFFF", fontSize: "1.1rem", fontWeight: 500 }}
               >
-                $1245.15
+                {nftSinglePageDetails &&
+                  (nftSinglePageDetails?.data?.pre_sale_mint_price !== "" ||
+                    nftSinglePageDetails?.data?.pre_sale_mint_price !== null) &&
+                  nftSinglePageDetails?.data?.pre_sale_mint_price}
               </Typography>
               <Typography
                 sx={{ color: "#437DFF", fontSize: "1.1rem", fontWeight: 500 }}
               >
-                ETH
+                {nftSinglePageDetails &&
+                  nftSinglePageDetails?.data?.nft_currency?.map(
+                    (item: any, index: number) => (
+                      <span>{item?.currency_symbol}</span>
+                    )
+                  )}
               </Typography>
             </Stack>
           </Stack>
@@ -137,12 +183,20 @@ const SingleNFTHeader = () => {
               <Typography
                 sx={{ color: "#FFFFFF", fontSize: "1.1rem", fontWeight: 500 }}
               >
-                $1245.15
+                {nftSinglePageDetails &&
+                  (nftSinglePageDetails?.data?.public_mint_price !== "" ||
+                    nftSinglePageDetails?.data?.public_mint_price !== null) &&
+                  nftSinglePageDetails?.data?.public_mint_price}
               </Typography>
               <Typography
                 sx={{ color: "#437DFF", fontSize: "1.1rem", fontWeight: 500 }}
               >
-                ETH
+                {nftSinglePageDetails &&
+                  nftSinglePageDetails?.data?.nft_currency?.map(
+                    (item: any, index: number) => (
+                      <span>{item?.currency_symbol}</span>
+                    )
+                  )}
               </Typography>
             </Stack>
           </Stack>
@@ -155,7 +209,7 @@ const SingleNFTHeader = () => {
           sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
         />
         <Stack direction="column" spacing={0}>
-          <Typography
+          {/* <Typography
             sx={{ color: "#435394", fontSize: ".85rem", fontWeight: 500 }}
           >
             Presale starts in
@@ -164,7 +218,88 @@ const SingleNFTHeader = () => {
             sx={{ color: "#CEE478", fontSize: "1rem", fontWeight: 500 }}
           >
             23 Day 15 Hour 23 Minutes 23 Seconds
-          </Typography>
+          </Typography> */}
+
+          {nftSinglePageDetails &&
+            (nftSinglePageDetails?.data?.pre_sale_start_date !== "" ||
+              nftSinglePageDetails?.data?.pre_sale_start_date !== null) &&
+            moment(
+              new Date(nftSinglePageDetails?.data?.pre_sale_start_date)
+            ).isAfter(new Date()) === true && (
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center" }}
+                spacing={0.5}
+              >
+                <Typography
+                  variant="caption"
+                  sx={{ color: "#435394", fontSize: ".85rem", fontWeight: 500 }}
+                >
+                  Starts in
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#CEE478", fontSize: "1rem", fontWeight: 500 }}
+                >
+                  {CountDownTimer(
+                    moment(
+                      new Date(nftSinglePageDetails?.data?.pre_sale_start_date)
+                    )
+                  )}
+                </Typography>
+              </Stack>
+            )}
+
+          {nftSinglePageDetails &&
+            (nftSinglePageDetails?.data?.pre_sale_start_date !== "" ||
+              nftSinglePageDetails?.data?.pre_sale_start_date !== null) &&
+            moment(new Date()).isBetween(
+              new Date(nftSinglePageDetails?.data?.pre_sale_start_date),
+              new Date(nftSinglePageDetails?.data?.pre_sale_end_date)
+            ) === true && (
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center" }}
+                spacing={0.5}
+              >
+                <Typography
+                  variant="caption"
+                  sx={{ color: "#435394", fontSize: ".85rem", fontWeight: 500 }}
+                >
+                  Ends in
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#CEE478", fontSize: "1rem", fontWeight: 500 }}
+                >
+                  {CountDownTimer(
+                    moment(
+                      new Date(nftSinglePageDetails?.data?.pre_sale_end_date)
+                    )
+                  )}
+                </Typography>
+              </Stack>
+            )}
+
+          {nftSinglePageDetails &&
+            (nftSinglePageDetails?.data?.pre_sale_end_date !== "" ||
+              nftSinglePageDetails?.data?.pre_sale_end_date !== null) &&
+            moment(new Date()).isAfter(
+              new Date(nftSinglePageDetails?.data?.pre_sale_end_date)
+            ) === true && (
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center" }}
+                spacing={0.5}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#CEE478", fontSize: "1rem", fontWeight: 500 }}
+                >
+                  Presale is expired
+                </Typography>
+              </Stack>
+            )}
         </Stack>
         <Stack direction="column" spacing={2}>
           <Stack direction="row" spacing={2}>
@@ -190,7 +325,13 @@ const SingleNFTHeader = () => {
                 <Typography
                   sx={{ color: "#FFFFFF", fontSize: ".9rem", fontWeight: 500 }}
                 >
-                  21 Sep 2022
+                  {nftSinglePageDetails &&
+                    (nftSinglePageDetails?.data?.pre_sale_start_date !== "" ||
+                      nftSinglePageDetails?.data?.pre_sale_start_date !==
+                        null) &&
+                    moment(
+                      new Date(nftSinglePageDetails?.data?.pre_sale_start_date)
+                    ).format("DD MMM YYYY")}
                 </Typography>
               </Stack>
             </Stack>
@@ -216,7 +357,12 @@ const SingleNFTHeader = () => {
                 <Typography
                   sx={{ color: "#FFFFFF", fontSize: ".9rem", fontWeight: 500 }}
                 >
-                  21 Sep 2022
+                  {nftSinglePageDetails &&
+                    (nftSinglePageDetails?.data?.pre_sale_end_date !== "" ||
+                      nftSinglePageDetails?.data?.pre_sale_end_date !== null) &&
+                    moment(
+                      new Date(nftSinglePageDetails?.data?.pre_sale_end_date)
+                    ).format("DD MMM YYYY")}
                 </Typography>
               </Stack>
             </Stack>
@@ -244,7 +390,16 @@ const SingleNFTHeader = () => {
                 <Typography
                   sx={{ color: "#FFFFFF", fontSize: ".9rem", fontWeight: 500 }}
                 >
-                  21 Sep 2022
+                  {nftSinglePageDetails &&
+                    (nftSinglePageDetails?.data?.public_mint_start_date !==
+                      "" ||
+                      nftSinglePageDetails?.data?.public_mint_start_date !==
+                        null) &&
+                    moment(
+                      new Date(
+                        nftSinglePageDetails?.data?.public_mint_start_date
+                      )
+                    ).format("DD MMM YYYY")}
                 </Typography>
               </Stack>
             </Stack>
@@ -270,7 +425,13 @@ const SingleNFTHeader = () => {
                 <Typography
                   sx={{ color: "#FFFFFF", fontSize: ".9rem", fontWeight: 500 }}
                 >
-                  21 Sep 2022
+                  {nftSinglePageDetails &&
+                    (nftSinglePageDetails?.data?.public_mint_end_date !== "" ||
+                      nftSinglePageDetails?.data?.public_mint_end_date !==
+                        null) &&
+                    moment(
+                      new Date(nftSinglePageDetails?.data?.public_mint_end_date)
+                    ).format("DD MMM YYYY")}
                 </Typography>
               </Stack>
             </Stack>
@@ -298,7 +459,10 @@ const SingleNFTHeader = () => {
               <Typography
                 sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 500 }}
               >
-                100,00000
+                {nftSinglePageDetails &&
+                  (nftSinglePageDetails?.data?.max_num_items !== "" ||
+                    nftSinglePageDetails?.data?.max_num_items !== null) &&
+                  nftSinglePageDetails?.data?.max_num_items}
               </Typography>
             </Stack>
           </Stack>
@@ -343,52 +507,49 @@ const SingleNFTHeader = () => {
             Available on
           </Typography>
           <Stack direction="row" spacing={3} justifyContent="space-between">
-            <Stack
-              direction="row"
-              spacing={1}
-              justifyContent="space-between"
-              alignItems="center"
-            >
-              <Avatar
-                alt="Remy Sharp"
-                src="https://mui.com/static/images/avatar/1.jpg"
-                sx={{ width: 20, height: 20, borderRadius: 0 }}
-              />
-              <Typography
-                sx={{ color: "#FFFFFF", fontSize: "1rem", fontWeight: 500 }}
-              >
-                Rarible
-              </Typography>
+            {nftSinglePageDetails &&
+              nftSinglePageDetails?.data?.nft_marketplace?.map(
+                (item: any, index: number) => (
+                  <a
+                    href={item?.marketplace_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
+                      <Avatar
+                        src={`${serverAPIUrl}public/uploads/nft_marketplace_icons/${item?.thumb_icon}`}
+                        alt={item?.nft_marketplace_name}
+                        variant="square"
+                        sx={{
+                          width: 20,
+                          height: 20,
+                        }}
+                      />
+                      <Typography
+                        sx={{
+                          color: "#FFFFFF",
+                          fontSize: "1rem",
+                          fontWeight: 500,
+                        }}
+                      >
+                        {item?.nft_marketplace_name}
+                      </Typography>
 
-              <Avatar
-                alt="Remy Sharp"
-                src={OpenLinkImage}
-                sx={{ width: 15, height: 15, borderRadius: 0 }}
-              />
-            </Stack>
-            <Stack
-              direction="row"
-              spacing={1}
-              justifyContent="space-between"
-              alignItems="center"
-            >
-              <Avatar
-                alt="Remy Sharp"
-                src="https://mui.com/static/images/avatar/1.jpg"
-                sx={{ width: 20, height: 20, borderRadius: 0 }}
-              />
-              <Typography
-                sx={{ color: "#FFFFFF", fontSize: "1rem", fontWeight: 500 }}
-              >
-                Rarible
-              </Typography>
-
-              <Avatar
-                alt="Remy Sharp"
-                src={OpenLinkImage}
-                sx={{ width: 15, height: 15, borderRadius: 0 }}
-              />
-            </Stack>
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={OpenLinkImage}
+                        sx={{ width: 15, height: 15, borderRadius: 0 }}
+                      />
+                    </Stack>
+                  </a>
+                )
+              )}
           </Stack>
         </Stack>
         <Divider
@@ -424,19 +585,26 @@ const SingleNFTHeader = () => {
               alignItems="center"
               sx={{ flexWrap: "wrap" }}
             >
-              <MobileSingleCoinChip
-                src={LinkImage}
-                title="safemoon.com"
-                variant="website"
-              />
-              <MobileSingleCoinChip
-                src={LinkImage}
-                title="safemooncommunityindia.com"
-                variant="website"
-              />
+              {nftSinglePageDetails &&
+                nftSinglePageDetails?.data?.nft_community?.map(
+                  (item: any, index: number) => (
+                    <a
+                      href={item?.nft_community_website_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <MobileSingleCoinChip
+                        src={LinkImage}
+                        title={item?.nft_community_website_url}
+                        variant="website"
+                      />
+                    </a>
+                  )
+                )}
             </Stack>
           </Stack>
-          <Stack direction="row" spacing={1} alignItems="flex-start">
+          {/* <Stack direction="row" spacing={1} alignItems="flex-start">
             <Stack
               direction="row"
               spacing={1.5}
@@ -477,7 +645,7 @@ const SingleNFTHeader = () => {
                 variant="communities"
               />
             </Stack>
-          </Stack>
+          </Stack> */}
         </Stack>
         <Divider
           variant="fullWidth"

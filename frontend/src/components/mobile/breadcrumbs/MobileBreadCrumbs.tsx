@@ -32,7 +32,7 @@ const MobileBreadCrumbs = ({ home, path, data }: any) => {
           state={{ coin_id: data?.id }}
           style={{ textDecoration: "none", color: "#898989" }}
         >
-          {data && data?.name}
+          {data && data?.name !== undefined ? data?.name : data?.title}
         </Link>
       </Breadcrumbs>
     </div>

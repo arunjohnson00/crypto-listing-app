@@ -82,7 +82,7 @@ const NftTab = () => {
             <Stack
               direction="row"
               rowGap={2}
-              columnGap={0.5}
+              columnGap={1}
               sx={{ flexWrap: "wrap" }}
             >
               {NftMostPopularList &&

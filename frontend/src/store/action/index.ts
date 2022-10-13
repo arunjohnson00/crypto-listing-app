@@ -68,6 +68,15 @@ export {
 //AIRDROP
 
 export { airdropPageListingRequest } from "./airdropAction";
+
+//EVENTS
+
+export {
+  eventsPastRequest,
+  eventsUpcomingRequest,
+  eventsRecentlyAddedRequest,
+  eventsCategoriesRequest,
+} from "./eventsAction";
 //user
 
 export { userRegisterRequest } from "./userAction";
