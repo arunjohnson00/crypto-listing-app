@@ -58,7 +58,11 @@ export const airdropsMenu = [
 ];
 
 export const eventsMenu = [
-  { icon: recentlyAddedEventIcon, title: "Recently added", link: "#" },
+  {
+    icon: recentlyAddedEventIcon,
+    title: "Recently added",
+    link: "/crypto-events",
+  },
   {
     icon: upcomingEventIcon,
     title: "Upcoming Events",

@@ -227,7 +227,7 @@ const FearAndGreedIndexPieChart = ({ data, filterValue }: any) => {
                   alignItems: "center",
                   justifyContent: "center",
                   height: 15,
-                  width: 40,
+                  width: 50,
                 }}
                 p={0.5}
               >
@@ -256,7 +256,7 @@ const FearAndGreedIndexPieChart = ({ data, filterValue }: any) => {
                   alignItems: "center",
                   justifyContent: "center",
                   height: 15,
-                  width: 40,
+                  width: 50,
                 }}
                 p={0.5}
               >
@@ -285,7 +285,7 @@ const FearAndGreedIndexPieChart = ({ data, filterValue }: any) => {
                   alignItems: "center",
                   justifyContent: "center",
                   height: 15,
-                  width: 40,
+                  width: 50,
                 }}
                 p={0.5}
               >
@@ -314,7 +314,7 @@ const FearAndGreedIndexPieChart = ({ data, filterValue }: any) => {
                   alignItems: "center",
                   justifyContent: "center",
                   height: 15,
-                  width: 40,
+                  width: 50,
                 }}
                 p={0.5}
               >
@@ -342,7 +342,7 @@ const FearAndGreedIndexPieChart = ({ data, filterValue }: any) => {
                   alignItems: "center",
                   justifyContent: "center",
                   height: 15,
-                  width: 40,
+                  width: 50,
                 }}
                 p={0.5}
               >

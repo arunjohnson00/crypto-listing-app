@@ -30,8 +30,8 @@ const SingleCryptoEventsPage = () => {
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {
-      // err?.error?.message?.response?.data?.response === false &&
-      //   navigate("/crypto-events");
+      err?.error?.message?.response?.data?.response === false &&
+        navigate("/crypto-events");
     };
 
     dispatch(
@@ -368,12 +368,12 @@ const SingleCryptoEventsPage = () => {
                                 fontWeight: 600,
                               }}
                             >
-                              {singlePageData &&
+                              {/* {singlePageData &&
                                 CountDownTimer(
                                   moment(
                                     new Date(singlePageData?.data?.end_date)
                                   )
-                                )}
+                                )} */}
                             </Typography>
                           </Stack>
                         </Stack>

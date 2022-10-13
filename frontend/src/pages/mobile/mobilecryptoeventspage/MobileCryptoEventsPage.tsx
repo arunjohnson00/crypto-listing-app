@@ -9,6 +9,7 @@ import {
   Avatar,
   IconButton,
 } from "@mui/material";
+import moment from "moment";
 import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
 import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
 import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
@@ -23,9 +24,25 @@ import MobileCoinSlider from "../../../components/mobile/coinslider/MobileCoinSl
 import MobileLatestNewsCardScrollTop from "../../../components/mobile/latestnews/MobileLatestNewsCardScrollTop";
 import MobileCryptoEventsSearchCard from "../../../components/mobile/cards/cryptoeventssearchcard/MobileCryptoEventsSearchCard";
 import MobileCryptoEventsTab from "../../../components/mobile/cryptoeventstab/MobileCryptoEventsTab";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  eventsCategoriesRequest,
+  eventsPastRequest,
+  eventsRecentlyAddedRequest,
+  eventsUpcomingRequest,
+} from "../../../store/action";
 
 const MobileCryptoEventsPage = () => {
   const [cryptoFilter, setCryptoFilter] = useState(false);
+  const dispatch: any = useDispatch();
+
+  const [value, setValue] = useState<any>("0");
+  const [eventData, setEventData] = useState<any>();
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
   const filterBtnHandler = () => {
     setCryptoFilter(!cryptoFilter);
   };
@@ -105,7 +122,12 @@ const MobileCryptoEventsPage = () => {
         )}
 
         <Grid item xs={12}>
-          <MobileCryptoEventsTab />
+          <MobileCryptoEventsTab
+            value={value}
+            handleChange={handleChange}
+            eventData={eventData}
+            setEventData={setEventData}
+          />
         </Grid>
       </Grid>
     </Fragment>

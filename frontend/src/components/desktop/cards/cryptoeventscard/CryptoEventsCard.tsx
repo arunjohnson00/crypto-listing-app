@@ -5,12 +5,26 @@ import {
   Chip,
   Avatar,
   Link as EventsLink,
+  DialogContent,
+  Dialog,
+  IconButton,
 } from "@mui/material";
+import HighlightOffSharpIcon from "@mui/icons-material/HighlightOffSharp";
 import moment from "moment";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const CryptoEventsCard = ({ data }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Box
       sx={{
@@ -98,18 +112,24 @@ const CryptoEventsCard = ({ data }: any) => {
           target="_blank"
           sx={{ color: "#454182" }}
         >
-          View Source
+          <Typography
+            sx={{ color: "#454182", fontSize: ".65rem", fontWeight: 500 }}
+          >
+            {" "}
+            View Source
+          </Typography>
         </EventsLink>
-        <EventsLink
-          href={
-            data && `${serverAPIUrl}public/uploads/event_proof/${data?.proof}`
-          }
-          underline="none"
-          target="_blank"
-          sx={{ color: "#454182" }}
+        <Typography
+          onClick={handleClickOpen}
+          sx={{
+            color: "#454182",
+            fontSize: ".65rem",
+            fontWeight: 500,
+            cursor: "pointer",
+          }}
         >
           View Proof
-        </EventsLink>
+        </Typography>
         <Link
           to={{
             pathname: `/crypto-events/${data?.slug}`,
@@ -117,7 +137,12 @@ const CryptoEventsCard = ({ data }: any) => {
           state={{ coin_id: data?.id }}
           style={{ textDecoration: "none", color: "#454182" }}
         >
-          View Event
+          <Typography
+            sx={{ color: "#454182", fontSize: ".65rem", fontWeight: 500 }}
+          >
+            {" "}
+            View Event
+          </Typography>
         </Link>
         <EventsLink
           href={data && data?.twitter_account}
@@ -125,9 +150,48 @@ const CryptoEventsCard = ({ data }: any) => {
           target="_blank"
           sx={{ color: "#454182" }}
         >
-          Twitter
+          <Typography
+            sx={{ color: "#454182", fontSize: ".65rem", fontWeight: 500 }}
+          >
+            {" "}
+            Twitter
+          </Typography>
         </EventsLink>
       </Stack>
+
+      <div>
+        <Dialog
+          open={open}
+          // TransitionComponent={Transition}
+          keepMounted
+          onClose={handleClose}
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogContent sx={{ background: "#000011", padding: 0 }}>
+            <Box sx={{ position: "absolute", width: "100%" }}>
+              <Box sx={{ position: "relative", top: 3, right: 3 }}>
+                <Stack direction="row" justifyContent="flex-end" pb={1}>
+                  <IconButton
+                    onClick={handleClose}
+                    aria-label="delete"
+                    sx={{ backgroundColor: "#FFFFFF" }}
+                  >
+                    <HighlightOffSharpIcon sx={{ color: "#000011" }} />
+                  </IconButton>
+                </Stack>
+              </Box>
+            </Box>
+            <img
+              src={
+                data &&
+                `${serverAPIUrl}public/uploads/event_proof/${data?.proof}`
+              }
+              alt={data && data?.title}
+              style={{ width: "100%" }}
+            />
+          </DialogContent>
+        </Dialog>
+      </div>
     </Box>
   );
 };

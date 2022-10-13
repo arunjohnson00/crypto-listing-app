@@ -62,7 +62,11 @@ const FearGreedIndexPage = () => {
         <Grid item xs={12}>
           <Grid container columnSpacing={2} pt={3} rowSpacing={3}>
             <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
-              <Stack direction="row" spacing={2}>
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "row" }}
+                spacing={2}
+                alignItems="center"
+              >
                 <Typography variant="h5" color="#FFFFFF">
                   Historical Data
                 </Typography>
@@ -123,7 +127,11 @@ const FearGreedIndexPage = () => {
               </Box>
             </Grid>
             <Grid item xs={12} sm={12} md={7} lg={7} xl={7}>
-              <Stack direction="row" spacing={2}>
+              <Stack
+                direction={{ xs: "column", sm: "column", md: "row" }}
+                spacing={2}
+                alignItems="center"
+              >
                 <Typography variant="h5" color="#FFFFFF">
                   Last {pieChartDataFilter && pieChartDataFilter} Days Overview
                 </Typography>

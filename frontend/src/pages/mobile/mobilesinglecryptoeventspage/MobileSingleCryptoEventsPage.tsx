@@ -18,11 +18,44 @@ import MobileSingleCryptoEventHeader from "../../../components/mobile/singlecryp
 import CryptoEventsSinglePageCard from "../../../components/mobile/cards/cryptoeventssinglepagecard/CryptoEventsSinglePageCard";
 import MobileCoinSlider from "../../../components/mobile/coinslider/MobileCoinSlider";
 import MobileLatestNewsCardScrollTop from "../../../components/mobile/latestnews/MobileLatestNewsCardScrollTop";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  eventsRecentlyAddedRequest,
+  eventsSinglePageRequest,
+} from "../../../store/action";
 
 const MobileSingleCryptoEventsPage = () => {
-  TimeAgo.addDefaultLocale(en);
-  const timeAgo = new TimeAgo("en");
+  const dispatch: any = useDispatch();
+  const location: any = useLocation();
+  const navigate: any = useNavigate();
+  const singlePageData = useSelector((data: any) => {
+    return data?.eventsReducer?.events_single_page?.data;
+  });
 
+  const eventsRecentlyAdded = useSelector((data: any) => {
+    return data?.eventsReducer?.events_recently_added?.data;
+  });
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {
+      err?.error?.message?.response?.data?.response === false &&
+        navigate("/crypto-events");
+    };
+
+    dispatch(
+      eventsSinglePageRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+
+    dispatch(
+      eventsRecentlyAddedRequest("noData", successHandler, errorHandler)
+    );
+  }, [dispatch]);
+  console.log(eventsRecentlyAdded);
   return (
     <Fragment>
       <Grid container rowSpacing={3}>
@@ -33,7 +66,7 @@ const MobileSingleCryptoEventsPage = () => {
         <Grid xs={12} sx={{ paddingTop: 0 }}>
           <MobileCoinSlider />
         </Grid>
-        <Grid
+        {/* <Grid
           xs={12}
           sx={{
             alignItems: "center",
@@ -49,7 +82,7 @@ const MobileSingleCryptoEventsPage = () => {
           >
             <MobileTopAlertBox />
           </Stack>
-        </Grid>
+        </Grid> */}
 
         <Grid
           container
@@ -58,56 +91,22 @@ const MobileSingleCryptoEventsPage = () => {
             alignItems: "center",
           }}
         >
-          <Grid
-            xs={12}
-            sm={12}
-            md={6}
-            lg={6}
-            xl={6}
-            sx={{
-              alignItems: "center",
-            }}
-            py={1}
-          >
-            <MobileBreadCrumbs home="Home" path="Events" />
-          </Grid>
-          <Grid
-            xs={12}
-            sm={12}
-            md={6}
-            lg={6}
-            xl={6}
-            sx={{
-              alignItems: "center",
-            }}
-            py={1}
-          >
-            <CardMedia
-              component="img"
-              height="80"
-              image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-              alt="green iguana"
+          <Grid xs={12} mt={2}>
+            <MobileBreadCrumbs
+              data={singlePageData && singlePageData?.data}
+              home="Home"
+              path="Crypto Events"
             />
           </Grid>
         </Grid>
 
-        <Grid
-          container
-          sx={{
-            alignItems: "center",
-            marginTop: 4,
-          }}
-        >
-          <MobileSingleCryptoEventHeader />
+        <Grid xs={12}>
+          <MobileSingleCryptoEventHeader
+            data={singlePageData && singlePageData?.data}
+          />
         </Grid>
 
-        <Grid
-          container
-          sx={{
-            alignItems: "center",
-            marginTop: 4,
-          }}
-        >
+        <Grid xs={12} my={2}>
           {" "}
           <Divider
             variant="fullWidth"
@@ -120,22 +119,20 @@ const MobileSingleCryptoEventsPage = () => {
           />
         </Grid>
 
-        <Grid
-          container
-          sx={{
-            alignItems: "center",
-            marginTop: 4,
-          }}
-        >
+        <Grid xs={12}>
           <Stack
             direction="column"
             spacing={2}
             justifyContent="center"
             width="100%"
           >
-            <CryptoEventsSinglePageCard />
-            <CryptoEventsSinglePageCard />
-            <CryptoEventsSinglePageCard />
+            {eventsRecentlyAdded &&
+              eventsRecentlyAdded?.response === true &&
+              eventsRecentlyAdded?.data?.data?.map(
+                (item: any, index: number) => (
+                  <CryptoEventsSinglePageCard data={item} />
+                )
+              )}
           </Stack>
         </Grid>
       </Grid>

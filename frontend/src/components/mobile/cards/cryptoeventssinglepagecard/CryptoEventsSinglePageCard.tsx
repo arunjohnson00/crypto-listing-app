@@ -1,7 +1,9 @@
 import { Box, Stack, Typography } from "@mui/material";
+import moment from "moment";
 import React from "react";
+import { Link } from "react-router-dom";
 
-const CryptoEventsSinglePageCard = () => {
+const CryptoEventsSinglePageCard = ({ data }: any) => {
   return (
     <Box
       sx={{
@@ -13,15 +15,24 @@ const CryptoEventsSinglePageCard = () => {
     >
       <Stack direction="column" spacing={0.5} p={2}>
         <Stack direction="column" spacing={0} alignItems="flex-start">
-          <Typography
-            sx={{ fontSize: "1.7rem", color: "#FFFFFF", fontWeight: 600 }}
+          <Link
+            to={{
+              pathname: `/crypto-events/${data?.slug}`,
+            }}
+            state={{ coin_id: data?.id }}
+            style={{ textDecoration: "none", color: "#454182" }}
           >
-            Etherium Mainet Merge
-          </Typography>
+            <Typography
+              sx={{ fontSize: "1.2rem", color: "#FFFFFF", fontWeight: 600 }}
+            >
+              {data && data?.title}
+            </Typography>
+          </Link>
           <Typography
-            sx={{ fontSize: "1.9rem", color: "#01d39a", fontWeight: 500 }}
+            sx={{ fontSize: "1.1rem", color: "#01d39a", fontWeight: 500 }}
           >
-            19 Sept 2022
+            {data &&
+              moment(new Date(data && data?.event_date)).format("DD MMM YYYY")}
           </Typography>
         </Stack>
         <Typography
@@ -32,7 +43,9 @@ const CryptoEventsSinglePageCard = () => {
             textAlign: "left",
           }}
         >
-          Added: 15 January 2022
+          Added:{" "}
+          {data &&
+            moment(new Date(data && data?.created_at)).format("DD MMM YYYY")}
         </Typography>
       </Stack>
     </Box>
