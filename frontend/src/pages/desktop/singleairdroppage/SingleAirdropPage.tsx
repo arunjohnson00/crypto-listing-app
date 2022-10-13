@@ -92,10 +92,11 @@ const SingleAirdropPage = () => {
 
   return (
     <Fragment>
-      <Grid container rowSpacing={5} columnSpacing={0}>
+      <Grid container rowSpacing={2} columnSpacing={0}>
         <Grid item xs={12}>
           <LatestNewsScroll />
         </Grid>
+
         <Grid item xs={12}>
           <BreadCrumbs
             data={airdropSinglePageDetails && airdropSinglePageDetails?.data}
@@ -104,10 +105,10 @@ const SingleAirdropPage = () => {
           />
         </Grid>
 
-        {airdropSinglePageDetails &&
-          airdropSinglePageDetails?.response === true && (
-            <Grid container my={5}>
-              <Grid item xs={3}>
+        {
+          <Grid item xs={12}>
+            <Grid container mb={5}>
+              <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
                 <Stack
                   direction="column"
                   alignItems="flex-start"
@@ -556,7 +557,7 @@ const SingleAirdropPage = () => {
                   </Box>
                 </Stack>
               </Grid>
-              <Grid item xs={9}>
+              <Grid item xs={12} sm={12} md={9} lg={9} xl={9} mt={3}>
                 <Stack
                   direction="column"
                   alignItems="flex-start"
@@ -775,7 +776,8 @@ const SingleAirdropPage = () => {
                 </Stack>
               </Grid>
             </Grid>
-          )}
+          </Grid>
+        }
       </Grid>
     </Fragment>
   );
