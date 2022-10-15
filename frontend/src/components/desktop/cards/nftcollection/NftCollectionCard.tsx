@@ -16,7 +16,7 @@ import { defaultColor } from "../../../../common/common";
 import { Link } from "react-router-dom";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
-const NftCollectionCard = ({ data, index }: any) => {
+const NftCollectionCard = ({ data, index, height }: any) => {
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
       color: "#ff6d75",
@@ -49,7 +49,11 @@ const NftCollectionCard = ({ data, index }: any) => {
           color: "#FFFFFF",
         }}
       >
-        <Stack direction="column" alignItems="center" spacing={1.5}>
+        <Stack
+          direction="column"
+          alignItems="center"
+          spacing={height ? 1 : 1.5}
+        >
           <Avatar
             src={`${serverAPIUrl}public/uploads/nft_listing_image/${data?.image}`}
             alt={data && data?.title}
@@ -58,7 +62,7 @@ const NftCollectionCard = ({ data, index }: any) => {
               borderTopLeftRadius: 52,
               borderTopRightRadius: 52,
               width: "100%",
-              height: "250px",
+              height: height ? height : "250px",
             }}
           />
 
@@ -90,7 +94,11 @@ const NftCollectionCard = ({ data, index }: any) => {
                 variant="middle"
                 flexItem
                 orientation="horizontal"
-                sx={{ borderColor: "#0b1640", borderBottomWidth: 1, mb: 1 }}
+                sx={{
+                  borderColor: "#0b1640",
+                  borderBottomWidth: 1,
+                  mb: height ? 0.5 : 1,
+                }}
               />
               <Typography variant="caption" sx={{ color: "#FFFFFF" }}>
                 Price
@@ -116,11 +124,18 @@ const NftCollectionCard = ({ data, index }: any) => {
                 variant="middle"
                 flexItem
                 orientation="horizontal"
-                sx={{ borderColor: "#0b1640", borderBottomWidth: 1, mt: 1 }}
+                sx={{
+                  borderColor: "#0b1640",
+                  borderBottomWidth: 1,
+                  mt: height ? 0.5 : 1,
+                }}
               />
             </Stack>
 
-            <Typography variant="caption" sx={{ color: "#FFFFFF" }}>
+            <Typography
+              variant="caption"
+              sx={{ color: "#FFFFFF", textAlign: "center" }}
+            >
               {data && data?.network_name}
             </Typography>
             {data && data?.network_icon === null ? (

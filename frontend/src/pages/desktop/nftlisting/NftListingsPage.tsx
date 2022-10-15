@@ -25,6 +25,7 @@ import NftCollectionCard from "../../../components/desktop/cards/nftcollection/N
 import NftTab from "../../../components/desktop/nfttab/NftTab";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 import { nftPageListingRequest } from "../../../store/action";
+import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
 
 const NftListingsPage = () => {
   const dispatch: any = useDispatch();
@@ -65,8 +66,15 @@ const NftListingsPage = () => {
   return (
     <Fragment>
       <Grid container spacing={0}>
-        <Grid item xs={12} sx={{ paddingTop: 3 }}>
+        {/* <Grid item xs={12} sx={{ paddingTop: 3 }}>
           <LatestNewsScroll />
+        </Grid> */}
+        <Grid item xs={12} mt={3}>
+          <BreadCrumbs
+            // data={airdropSinglePageDetails && airdropSinglePageDetails?.data}
+            home="Home"
+            path="Nft"
+          />
         </Grid>
         <Grid item xs={12} pt={6}>
           <Stack direction="column" spacing={0.1}>

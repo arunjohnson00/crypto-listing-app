@@ -23,7 +23,7 @@ const CommunityDetails = ({
             sx={{
               textAlign: "left",
               fontSize: ".9rem",
-              fontWeight: 600,
+              fontWeight: 400,
               color: "#13C086",
             }}
             mb={1}

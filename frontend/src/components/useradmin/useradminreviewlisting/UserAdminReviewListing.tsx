@@ -19,7 +19,9 @@ const UserAdminReviewListing = () => {
 
   return (
     <Fragment>
-      {tableData?.data?.length !== 0 ? (
+      {tableData &&
+      tableData?.response === true &&
+      tableData?.data?.length !== 0 ? (
         <UserAdminHtmlTable
           tableData={tableData && tableData?.data}
           tableHeader={tableHeader}

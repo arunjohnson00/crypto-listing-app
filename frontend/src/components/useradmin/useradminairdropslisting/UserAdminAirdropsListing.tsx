@@ -1,6 +1,7 @@
-import { Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   userAirdropsListRequest,
   userCoinListRequest,
@@ -23,7 +24,9 @@ const UserAdminAirdropsListing = () => {
 
   return (
     <Fragment>
-      {tableData?.data?.length !== 0 ? (
+      {tableData &&
+      tableData?.response === true &&
+      tableData?.data?.length !== 0 ? (
         <UserAdminHtmlTable
           tableData={tableData && tableData?.data}
           tableHeader={tableHeader}
@@ -31,9 +34,31 @@ const UserAdminAirdropsListing = () => {
           section="airdrops"
         />
       ) : (
-        <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
-          No data available !
-        </Typography>
+        <Stack
+          direction="column"
+          spacing={2}
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
+            Airdrop list is empty
+          </Typography>
+          <Link
+            to="/user-dashboard/airdrops/add"
+            style={{ textDecoration: "none" }}
+          >
+            <Button
+              variant="contained"
+              sx={{
+                textTransform: "capitalize",
+                fontSize: ".85rem",
+                borderRadius: 5,
+              }}
+            >
+              Add Airdrop
+            </Button>
+          </Link>
+        </Stack>
       )}
     </Fragment>
   );

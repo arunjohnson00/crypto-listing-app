@@ -18,13 +18,15 @@ import "react-pro-sidebar/dist/css/styles.css";
 import CoinXHighLogo from "../../../assets/logo/logo.png";
 import { Avatar, IconButton, Typography } from "@mui/material";
 import { logoutHandler } from "../../../utils/logoutHandler";
-import UserDashBoardIcon from "../../../assets/userdashboard/dashboard_menu.png";
+import UserDashBoardIcon from "../../../assets/userdashboard/dashboard.png";
 import MyListingIcon from "../../../assets/userdashboard/mylistings_menu.png";
-import AddCoinIcon from "../../../assets/userdashboard/coin_menu.png";
-import AddNFTIcon from "../../../assets/userdashboard/nft_menu.png";
-import AddAirdropIcon from "../../../assets/userdashboard/airdrop_menu.png";
-import SettingsIcon from "../../../assets/userdashboard/settings_menu.png";
-import AdsIcon from "../../../assets/userdashboard/ads_menu.png";
+import AddCoinIcon from "../../../assets/userdashboard/add-coin.png";
+import AddNFTIcon from "../../../assets/userdashboard/add-nft.png";
+import AddEventIcon from "../../../assets/userdashboard/add-event.png";
+import AddAirdropIcon from "../../../assets/userdashboard/add-airdrop.png";
+import SettingsIcon from "../../../assets/userdashboard/settings.png";
+import AdsIcon from "../../../assets/userdashboard/my-ads.png";
+import LogoutIcon from "../../../assets/userdashboard/logout.png";
 import { Link } from "react-router-dom";
 const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
   const [activeMenu, setActiveMenu] = useState<any>();
@@ -172,7 +174,7 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
             icon={
               <Avatar
                 alt="User Dashboard"
-                src={AddAirdropIcon}
+                src={AddEventIcon}
                 sx={{
                   width: 25,
                   height: 25,
@@ -220,7 +222,7 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
             </Link>
           </MenuItem>
 
-          <MenuItem
+          {/* <MenuItem
             style={{
               paddingTop: 10,
               paddingBottom: 10,
@@ -241,7 +243,7 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
               {" "}
               My Listings
             </Typography>
-          </MenuItem>
+          </MenuItem> */}
 
           <MenuItem
             style={{
@@ -304,7 +306,7 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
             icon={
               <Avatar
                 alt="User Dashboard"
-                src={SettingsIcon}
+                src={LogoutIcon}
                 sx={{
                   width: 25,
                   height: 25,

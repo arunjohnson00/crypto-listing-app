@@ -17,7 +17,7 @@ const UserAdminView = ({ children }: any) => {
   return (
     <Box
       sx={{
-        backgroundColor: matches === true ? "#161234" : "#01061A",
+        backgroundColor: matches === true ? "#01061A" : "#01061A",
         height: "auto",
         width: "100%",
       }}

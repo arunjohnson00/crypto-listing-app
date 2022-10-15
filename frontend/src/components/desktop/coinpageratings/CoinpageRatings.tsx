@@ -130,8 +130,8 @@ const CoinpageRatings = () => {
                   sx={{ alignItems: "center" }}
                 >
                   <Avatar
-                    alt="Remy Sharp"
-                    src="https://mui.com/static/images/avatar/1.jpg"
+                    alt="User"
+                    src={`${serverAPIUrl}public/uploads/users/cxh_avatar.svg`}
                   />
 
                   {!auth ? (

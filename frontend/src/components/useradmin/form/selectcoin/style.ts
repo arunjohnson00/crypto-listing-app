@@ -11,7 +11,7 @@ export const MenuProps = {
       width: "auto",
       backgroundColor: "#010619",
       borderRadius: 10,
-      border: "1px solid #100d29",
+      border: "1.5px solid #05114c",
 
       sx: {
         "&& .Mui-selected": {

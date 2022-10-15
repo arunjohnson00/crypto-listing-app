@@ -299,8 +299,8 @@ const OfflineEventsAdd = () => {
             sx={{ alignItems: "flex-start", justifyContent: "flex-start" }}
           >
             <Typography
-              variant="h6"
-              sx={{ textAlign: "left", color: "#FFFFFF" }}
+              variant="h5"
+              sx={{ textAlign: "left", color: "#FFFFFF", fontWeight: 600 }}
             >
               Add Offline Crypto Events
             </Typography>
@@ -334,8 +334,8 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: "1.1rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -359,7 +359,7 @@ const OfflineEventsAdd = () => {
                     />
                   }
                   label={
-                    <Typography sx={{ color: "#13C086" }}>
+                    <Typography sx={{ color: "#00ff95" }}>
                       This event is base on a coin listed on coinxhigh.com
                     </Typography>
                   }
@@ -381,8 +381,8 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -401,8 +401,8 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -425,8 +425,8 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -446,8 +446,8 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -466,8 +466,8 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -485,8 +485,8 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -507,15 +507,15 @@ const OfflineEventsAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                   >
                     Or earlier
                     <span
                       style={{
                         color: "#234A84",
-                        fontWeight: 600,
+                        fontWeight: 400,
                         fontSize: ".75rem",
                       }}
                     >
@@ -534,8 +534,8 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -553,8 +553,8 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -573,8 +573,8 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -596,8 +596,8 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -616,8 +616,8 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -635,8 +635,8 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -655,8 +655,8 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -675,8 +675,8 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -694,7 +694,7 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: "1rem",
-                  fontWeight: 600,
+                  fontWeight: 400,
                   color: "#FFFFFF",
                 }}
                 mb={1}
@@ -722,8 +722,8 @@ const OfflineEventsAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -773,8 +773,8 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -803,8 +803,8 @@ const OfflineEventsAdd = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -830,7 +830,7 @@ const OfflineEventsAdd = () => {
             {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography
                 variant="subtitle1"
-                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600,  color: "#13C086", }}
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 400,  color: "#00ff95", }}
                 mb={1}
               >
                 Status

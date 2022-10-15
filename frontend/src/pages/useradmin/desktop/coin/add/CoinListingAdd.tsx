@@ -362,12 +362,12 @@ const CoinListingAdd = () => {
             >
               <Typography
                 variant="h5"
-                sx={{ textAlign: "left", color: "#FFFFFF" }}
+                sx={{ textAlign: "left", color: "#FFFFFF", fontWeight: 600 }}
               >
-                Add new coin
+                Add New Coin
                 {/* <Typography variant="caption"> ({coinStatus})</Typography> */}
               </Typography>
-              <Typography variant="caption" sx={{ color: "#FFFFFF" }}>
+              <Typography variant="body2" sx={{ color: "#FFFFFF" }}>
                 {" "}
                 After submission, our expert team verifies the coin details and
                 your coin will be visible on the New Listing page.{" "}
@@ -414,7 +414,7 @@ const CoinListingAdd = () => {
               </Typography>
               {/* <Typography
                 variant="subtitle1"
-                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 400 }}
                 mb={1}
               >
                 Enter contract address
@@ -446,8 +446,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -463,8 +463,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -474,7 +474,7 @@ const CoinListingAdd = () => {
                       sx={{ textAlign: "left" }}
                       mb={1}
                     >
-                      <span style={{ color: "#234A84", fontWeight: 600 }}>
+                      <span style={{ color: "#b4b4b4", fontWeight: 400 }}>
                         {" "}
                         (Don't put a $ sign if there is none in the ticker)
                       </span>
@@ -490,8 +490,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -514,8 +514,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -551,7 +551,7 @@ const CoinListingAdd = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
+                          fontWeight: 400,
                         }}
                         mb={1}
                       >
@@ -571,7 +571,7 @@ const CoinListingAdd = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
+                          fontWeight: 400,
                         }}
                         mb={1}
                       >
@@ -593,7 +593,7 @@ const CoinListingAdd = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
+                          fontWeight: 400,
                         }}
                         mb={1}
                       >
@@ -613,7 +613,7 @@ const CoinListingAdd = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
+                          fontWeight: 400,
                         }}
                         mb={1}
                       >
@@ -637,7 +637,7 @@ const CoinListingAdd = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
+                          fontWeight: 400,
                         }}
                         mb={1}
                       >
@@ -657,7 +657,7 @@ const CoinListingAdd = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
+                          fontWeight: 400,
                         }}
                         mb={1}
                       >
@@ -679,7 +679,7 @@ const CoinListingAdd = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
+                          fontWeight: 400,
                         }}
                         mb={1}
                       >
@@ -699,7 +699,7 @@ const CoinListingAdd = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
+                          fontWeight: 400,
                         }}
                         mb={1}
                       >
@@ -758,8 +758,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -780,8 +780,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -799,8 +799,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -875,8 +875,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -897,8 +897,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -913,7 +913,7 @@ const CoinListingAdd = () => {
                 {/* <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                   <Typography
                     variant="subtitle1"
-                    sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                    sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 400 }}
                     mb={1}
                   >
                     Block explorer URL 1
@@ -983,8 +983,8 @@ const CoinListingAdd = () => {
                       sx={{
                         textAlign: "left",
                         fontSize: ".9rem",
-                        fontWeight: 600,
-                        color: "#13C086",
+                        fontWeight: 400,
+                        color: "#00ff95",
                       }}
                       mb={1}
                     >
@@ -1004,8 +1004,8 @@ const CoinListingAdd = () => {
                       sx={{
                         textAlign: "left",
                         fontSize: ".9rem",
-                        fontWeight: 600,
-                        color: "#13C086",
+                        fontWeight: 400,
+                        color: "#00ff95",
                       }}
                       mb={1}
                     >
@@ -1030,8 +1030,8 @@ const CoinListingAdd = () => {
                       sx={{
                         textAlign: "left",
                         fontSize: ".9rem",
-                        fontWeight: 600,
-                        color: "#13C086",
+                        fontWeight: 400,
+                        color: "#00ff95",
                       }}
                       mb={1}
                     >
@@ -1039,7 +1039,7 @@ const CoinListingAdd = () => {
                       <span
                         style={{
                           color: "#234A84",
-                          fontWeight: 600,
+                          fontWeight: 400,
                           fontSize: ".7rem",
                         }}
                       >
@@ -1061,8 +1061,8 @@ const CoinListingAdd = () => {
                       sx={{
                         textAlign: "left",
                         fontSize: ".9rem",
-                        fontWeight: 600,
-                        color: "#13C086",
+                        fontWeight: 400,
+                        color: "#00ff95",
                       }}
                       mb={1}
                     >
@@ -1089,8 +1089,8 @@ const CoinListingAdd = () => {
                       sx={{
                         textAlign: "left",
                         fontSize: ".9rem",
-                        fontWeight: 600,
-                        color: "#13C086",
+                        fontWeight: 400,
+                        color: "#00ff95",
                       }}
                       mb={1}
                     >
@@ -1098,7 +1098,7 @@ const CoinListingAdd = () => {
                       <span
                         style={{
                           color: "#234A84",
-                          fontWeight: 600,
+                          fontWeight: 400,
                           fontSize: ".7rem",
                         }}
                       >
@@ -1119,8 +1119,8 @@ const CoinListingAdd = () => {
                       sx={{
                         textAlign: "left",
                         fontSize: ".9rem",
-                        fontWeight: 600,
-                        color: "#13C086",
+                        fontWeight: 400,
+                        color: "#00ff95",
                       }}
                       mb={1}
                     >
@@ -1140,8 +1140,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -1149,7 +1149,7 @@ const CoinListingAdd = () => {
                     <span
                       style={{
                         color: "#234A84",
-                        fontWeight: 600,
+                        fontWeight: 400,
                         fontSize: ".7rem",
                       }}
                     >
@@ -1178,8 +1178,8 @@ const CoinListingAdd = () => {
                       sx={{
                         textAlign: "left",
                         fontSize: ".9rem",
-                        fontWeight: 600,
-                        color: "#13C086",
+                        fontWeight: 400,
+                        color: "#00ff95",
                       }}
                       mb={1}
                     >
@@ -1204,8 +1204,8 @@ const CoinListingAdd = () => {
                       sx={{
                         textAlign: "left",
                         fontSize: ".9rem",
-                        fontWeight: 600,
-                        color: "#13C086",
+                        fontWeight: 400,
+                        color: "#00ff95",
                       }}
                       mb={1}
                     >
@@ -1213,7 +1213,7 @@ const CoinListingAdd = () => {
                       <span
                         style={{
                           color: "#234A84",
-                          fontWeight: 600,
+                          fontWeight: 400,
                           fontSize: ".7rem",
                         }}
                       >
@@ -1241,8 +1241,8 @@ const CoinListingAdd = () => {
                       sx={{
                         textAlign: "left",
                         fontSize: ".9rem",
-                        fontWeight: 600,
-                        color: "#13C086",
+                        fontWeight: 400,
+                        color: "#00ff95",
                       }}
                       mb={1}
                     >
@@ -1262,8 +1262,8 @@ const CoinListingAdd = () => {
                       sx={{
                         textAlign: "left",
                         fontSize: ".9rem",
-                        fontWeight: 600,
-                        color: "#13C086",
+                        fontWeight: 400,
+                        color: "#00ff95",
                       }}
                       mb={1}
                     >
@@ -1271,7 +1271,7 @@ const CoinListingAdd = () => {
                       <span
                         style={{
                           color: "#234A84",
-                          fontWeight: 600,
+                          fontWeight: 400,
                           fontSize: ".7rem",
                         }}
                       >
@@ -1308,7 +1308,7 @@ const CoinListingAdd = () => {
                 sx={{ textAlign: "left", color: "#D7DADB" }}
                 mb={0}
               >
-                Source Code ,Docs & Whitepaper Details
+                Source Code, Docs & Whitepaper Details
               </Typography>
               <Typography
                 variant="caption"
@@ -1330,15 +1330,15 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
-                    SourceCode URL
+                    Source Code URL
                   </Typography>
                   <InputText
-                    placeholder="Enter sourcecode url"
+                    placeholder="Enter source code url"
                     id="source_code_url"
                     name="source_code_url"
                   />
@@ -1349,8 +1349,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -1375,8 +1375,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -1394,8 +1394,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -1436,8 +1436,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -1458,8 +1458,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -1531,8 +1531,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -1553,8 +1553,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -1640,8 +1640,8 @@ const CoinListingAdd = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
-                          color: "#13C086",
+                          fontWeight: 400,
+                          color: "#00ff95",
                         }}
                         mb={1}
                       >
@@ -1709,8 +1709,8 @@ const CoinListingAdd = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
-                          color: "#13C086",
+                          fontWeight: 400,
+                          color: "#00ff95",
                         }}
                         mb={1}
                       >
@@ -1751,7 +1751,7 @@ const CoinListingAdd = () => {
                     </Typography>
                     <Typography
                       variant="caption"
-                      sx={{ textAlign: "left", color: "#D7DADB" }}
+                      sx={{ textAlign: "left", color: "#b4b4b4" }}
                       mb={0}
                     >
                       (Please check your coin is listed in the following
@@ -1779,7 +1779,7 @@ const CoinListingAdd = () => {
                           }
                           label={
                             <Typography
-                              sx={{ fontSize: ".85rem", color: "#13C086" }}
+                              sx={{ fontSize: ".85rem", color: "#00ff95" }}
                             >
                               Coin Marketcap
                             </Typography>
@@ -1814,7 +1814,7 @@ const CoinListingAdd = () => {
                           }
                           label={
                             <Typography
-                              sx={{ fontSize: ".9rem", color: "#13C086" }}
+                              sx={{ fontSize: ".9rem", color: "#00ff95" }}
                             >
                               Coingecko
                             </Typography>
@@ -1877,8 +1877,8 @@ const CoinListingAdd = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
-                          color: "#13C086",
+                          fontWeight: 400,
+                          color: "#00ff95",
                         }}
                         mb={1}
                       >
@@ -1898,8 +1898,8 @@ const CoinListingAdd = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
-                          color: "#13C086",
+                          fontWeight: 400,
+                          color: "#00ff95",
                         }}
                         mb={1}
                       >
@@ -1981,8 +1981,8 @@ const CoinListingAdd = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
-                          color: "#13C086",
+                          fontWeight: 400,
+                          color: "#00ff95",
                         }}
                         mb={1}
                       >
@@ -2003,8 +2003,8 @@ const CoinListingAdd = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
-                          color: "#13C086",
+                          fontWeight: 400,
+                          color: "#00ff95",
                         }}
                         mb={1}
                       >
@@ -2058,8 +2058,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -2078,8 +2078,8 @@ const CoinListingAdd = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >
@@ -2125,7 +2125,7 @@ const CoinListingAdd = () => {
                       }
                       label={
                         <Typography
-                          sx={{ fontSize: ".8rem", color: "#FFFFFF" }}
+                          sx={{ fontSize: ".8rem", color: "#b4b4b4" }}
                         >
                           I agree terms and conditions
                         </Typography>
@@ -2147,7 +2147,7 @@ const CoinListingAdd = () => {
                       }
                       label={
                         <Typography
-                          sx={{ fontSize: ".8rem", color: "#FFFFFF" }}
+                          sx={{ fontSize: ".8rem", color: "#b4b4b4" }}
                         >
                           I declare the information provided on this form is
                           accurate and complete to the best of my knowledge and

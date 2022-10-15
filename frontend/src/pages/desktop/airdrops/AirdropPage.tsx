@@ -6,6 +6,7 @@ import AirdropCard from "../../../components/desktop/cards/airdropcard/AirdropCa
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 import { useDispatch, useSelector } from "react-redux";
 import { airdropPageListingRequest } from "../../../store/action";
+import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
 
 const AirdropPage = () => {
   const dispatch: any = useDispatch();
@@ -24,12 +25,15 @@ const AirdropPage = () => {
 
     dispatch(airdropPageListingRequest("noData", successHandler, errorHandler));
   }, [dispatch]);
-  console.log(value);
+
   return (
     <Fragment>
       <Grid container>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <LatestNewsScroll />
+        </Grid> */}
+        <Grid item xs={12} mt={3}>
+          <BreadCrumbs data={""} home="Home" path="Airdrops" />
         </Grid>
         <Grid
           item

@@ -7,6 +7,8 @@ export const textareaStyle = {
   fontSize: "14px",
   borderColor: "#090F2C",
   padding: "10px 20px 10px 20px",
+  fontFamily:
+    "Inter,-apple-system,BlinkMacSystemFont,segoe ui,Roboto,Helvetica,Arial,sans-serif",
   fontWeight: 400,
 };
 export const rowCount = 11;

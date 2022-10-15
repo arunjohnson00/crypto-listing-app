@@ -1,6 +1,7 @@
-import { Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { userNFTListRequest } from "../../../store/action";
 import UserAdminHtmlTable from "../htmltable/UserAdminHtmlTable";
 import { tableHeader } from "./helper";
@@ -19,7 +20,9 @@ const UserAdminNFTListing = () => {
 
   return (
     <Fragment>
-      {tableData?.data?.length !== 0 ? (
+      {tableData &&
+      tableData?.response === true &&
+      tableData?.data?.length !== 0 ? (
         <UserAdminHtmlTable
           tableData={tableData && tableData?.data}
           tableHeader={tableHeader}
@@ -27,9 +30,28 @@ const UserAdminNFTListing = () => {
           section="nft"
         />
       ) : (
-        <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
-          No data available !
-        </Typography>
+        <Stack
+          direction="column"
+          spacing={2}
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
+            Nft list is empty
+          </Typography>
+          <Link to="/user-dashboard/nft/add" style={{ textDecoration: "none" }}>
+            <Button
+              variant="contained"
+              sx={{
+                textTransform: "capitalize",
+                fontSize: ".85rem",
+                borderRadius: 5,
+              }}
+            >
+              Add NFT
+            </Button>
+          </Link>
+        </Stack>
       )}
     </Fragment>
   );

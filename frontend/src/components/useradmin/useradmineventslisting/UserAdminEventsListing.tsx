@@ -1,6 +1,7 @@
-import { Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   userCoinListRequest,
   userEventsListRequest,
@@ -22,7 +23,9 @@ const UserAdminEventsListing = () => {
 
   return (
     <Fragment>
-      {tableData?.data?.length !== 0 ? (
+      {tableData &&
+      tableData?.response === true &&
+      tableData?.data?.length !== 0 ? (
         <UserAdminHtmlTable
           tableData={tableData && tableData?.data}
           tableHeader={tableHeader}
@@ -30,9 +33,31 @@ const UserAdminEventsListing = () => {
           section="events"
         />
       ) : (
-        <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
-          No data available !
-        </Typography>
+        <Stack
+          direction="column"
+          spacing={2}
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
+            Event list is empty
+          </Typography>
+          <Link
+            to="/user-dashboard/add-events"
+            style={{ textDecoration: "none" }}
+          >
+            <Button
+              variant="contained"
+              sx={{
+                textTransform: "capitalize",
+                fontSize: ".85rem",
+                borderRadius: 5,
+              }}
+            >
+              Add Event
+            </Button>
+          </Link>
+        </Stack>
       )}
     </Fragment>
   );

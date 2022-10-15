@@ -18,8 +18,8 @@ const YoutubeDetails = ({ youtubeCount, youtuberemoveHandle, index }: any) => {
             sx={{
               textAlign: "left",
               fontSize: ".9rem",
-              fontWeight: 600,
-              color: "#13C086",
+              fontWeight: 400,
+              color: "#00ff95",
             }}
             mb={1}
           >

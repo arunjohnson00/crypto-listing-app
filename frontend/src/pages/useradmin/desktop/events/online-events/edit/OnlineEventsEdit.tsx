@@ -332,8 +332,8 @@ const OnlineEventsEdit = () => {
             sx={{ alignItems: "flex-start", justifyContent: "flex-start" }}
           >
             <Typography
-              variant="h6"
-              sx={{ textAlign: "left", color: "#FFFFFF" }}
+              variant="h5"
+              sx={{ textAlign: "left", color: "#FFFFFF", fontWeight: 600 }}
             >
               Add Online Crypto Events
             </Typography>
@@ -367,8 +367,8 @@ const OnlineEventsEdit = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: "1.1rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -393,7 +393,7 @@ const OnlineEventsEdit = () => {
                     />
                   }
                   label={
-                    <Typography sx={{ color: "#13C086" }}>
+                    <Typography sx={{ color: "#00ff95" }}>
                       This event is base on a coin listed on coinxhigh.com
                     </Typography>
                   }
@@ -416,8 +416,8 @@ const OnlineEventsEdit = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -437,8 +437,8 @@ const OnlineEventsEdit = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -462,8 +462,8 @@ const OnlineEventsEdit = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -482,8 +482,8 @@ const OnlineEventsEdit = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -502,8 +502,8 @@ const OnlineEventsEdit = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -522,8 +522,8 @@ const OnlineEventsEdit = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -545,15 +545,15 @@ const OnlineEventsEdit = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                   >
                     Or earlier
                     <span
                       style={{
                         color: "#234A84",
-                        fontWeight: 600,
+                        fontWeight: 400,
                         fontSize: ".75rem",
                       }}
                     >
@@ -573,8 +573,8 @@ const OnlineEventsEdit = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -597,8 +597,8 @@ const OnlineEventsEdit = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -618,8 +618,8 @@ const OnlineEventsEdit = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -639,8 +639,8 @@ const OnlineEventsEdit = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -660,8 +660,8 @@ const OnlineEventsEdit = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -681,8 +681,8 @@ const OnlineEventsEdit = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -702,7 +702,7 @@ const OnlineEventsEdit = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: "1rem",
-                  fontWeight: 600,
+                  fontWeight: 400,
                   color: "#FFFFFF",
                 }}
                 mb={1}
@@ -747,8 +747,8 @@ const OnlineEventsEdit = () => {
                             sx={{
                               textAlign: "left",
                               fontSize: ".9rem",
-                              fontWeight: 600,
-                              color: "#13C086",
+                              fontWeight: 400,
+                              color: "#00ff95",
                             }}
                             mb={1}
                           >
@@ -809,8 +809,8 @@ const OnlineEventsEdit = () => {
                       sx={{
                         textAlign: "left",
                         fontSize: ".9rem",
-                        fontWeight: 600,
-                        color: "#13C086",
+                        fontWeight: 400,
+                        color: "#00ff95",
                       }}
                       mb={1}
                     >
@@ -867,8 +867,8 @@ const OnlineEventsEdit = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -898,8 +898,8 @@ const OnlineEventsEdit = () => {
                 sx={{
                   textAlign: "left",
                   fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
+                  fontWeight: 400,
+                  color: "#00ff95",
                 }}
                 mb={1}
               >
@@ -925,7 +925,7 @@ const OnlineEventsEdit = () => {
             {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
               <Typography
                 variant="subtitle1"
-                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 ,  color: "#13C086",}}
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 400 ,  color: "#00ff95",}}
                 mb={1}
               >
                 Status

@@ -39,7 +39,7 @@ const AddAssetCard = ({ icon, title, link, state }: any) => {
             src={icon && icon}
             sx={{ width: 30, height: 30, borderRadius: 0 }}
           />{" "}
-          <Typography sx={{ color: "#FFFFFF", fontSize: ".65rem" }}>
+          <Typography sx={{ color: "#FFFFFF", fontSize: ".9rem" }}>
             {title && title}
           </Typography>
         </Stack>

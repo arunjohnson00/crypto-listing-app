@@ -1,3 +1,11 @@
-.pro-sidebar > .pro-sidebar-inner {
-  background: "#08022f";
+.pro-sidebar .pro-sidebar-inner {
+  background: #08022f !important;
+}
+
+.pro-sidebar
+  .pro-menu.shaped
+  .pro-menu-item
+  > .pro-inner-item
+  > .pro-icon-wrapper {
+  background: #08022f !important;
 }

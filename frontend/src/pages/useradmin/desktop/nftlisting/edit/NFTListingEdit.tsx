@@ -459,10 +459,10 @@ const NFTListingEdit = () => {
               sx={{ alignItems: "flex-start", justifyContent: "flex-start" }}
             >
               <Typography
-                variant="h6"
-                sx={{ textAlign: "left", color: "#FFFFFF" }}
+                variant="h5"
+                sx={{ textAlign: "left", color: "#FFFFFF", fontWeight: 600 }}
               >
-                UPDATE YOUR NFT PROJECT
+                Update Your NFT Project
               </Typography>
               <Typography
                 variant="caption"
@@ -497,8 +497,8 @@ const NFTListingEdit = () => {
                       sx={{
                         textAlign: "left",
                         fontSize: ".9rem",
-                        fontWeight: 600,
-                        color: "#13C086",
+                        fontWeight: 400,
+                        color: "#00ff95",
                       }}
                       mb={2}
                     >
@@ -522,8 +522,8 @@ const NFTListingEdit = () => {
                       sx={{
                         textAlign: "left",
                         fontSize: ".9rem",
-                        fontWeight: 600,
-                        color: "#13C086",
+                        fontWeight: 400,
+                        color: "#00ff95",
                       }}
                       mb={2}
                     >
@@ -545,8 +545,8 @@ const NFTListingEdit = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
-                          color: "#13C086",
+                          fontWeight: 400,
+                          color: "#00ff95",
                         }}
                         mb={2}
                       >
@@ -571,8 +571,8 @@ const NFTListingEdit = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
-                          color: "#13C086",
+                          fontWeight: 400,
+                          color: "#00ff95",
                         }}
                         mb={2}
                       >
@@ -597,8 +597,8 @@ const NFTListingEdit = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
-                          color: "#13C086",
+                          fontWeight: 400,
+                          color: "#00ff95",
                         }}
                         mb={2}
                       >
@@ -627,8 +627,8 @@ const NFTListingEdit = () => {
                           sx={{
                             textAlign: "left",
                             fontSize: ".9rem",
-                            fontWeight: 600,
-                            color: "#13C086",
+                            fontWeight: 400,
+                            color: "#00ff95",
                           }}
                         >
                           Event Category*
@@ -638,7 +638,7 @@ const NFTListingEdit = () => {
                           sx={{ textAlign: "left" }}
                           mb={1}
                         >
-                          <span style={{ color: "#234A84", fontWeight: 600 }}>
+                          <span style={{ color: "#234A84", fontWeight: 400 }}>
                             {" "}
                             (Multiple selection allowed)
                           </span>
@@ -690,8 +690,8 @@ const NFTListingEdit = () => {
                                     sx={{
                                       textAlign: "left",
                                       fontSize: ".9rem",
-                                      fontWeight: 600,
-                                      color: "#13C086",
+                                      fontWeight: 400,
+                                      color: "#00ff95",
                                     }}
                                     mb={1}
                                   >
@@ -712,8 +712,8 @@ const NFTListingEdit = () => {
                                     sx={{
                                       textAlign: "left",
                                       fontSize: ".9rem",
-                                      fontWeight: 600,
-                                      color: "#13C086",
+                                      fontWeight: 400,
+                                      color: "#00ff95",
                                     }}
                                     mb={1}
                                   >
@@ -791,8 +791,8 @@ const NFTListingEdit = () => {
                               sx={{
                                 textAlign: "left",
                                 fontSize: ".9rem",
-                                fontWeight: 600,
-                                color: "#13C086",
+                                fontWeight: 400,
+                                color: "#00ff95",
                               }}
                               mb={1}
                             >
@@ -812,8 +812,8 @@ const NFTListingEdit = () => {
                               sx={{
                                 textAlign: "left",
                                 fontSize: ".9rem",
-                                fontWeight: 600,
-                                color: "#13C086",
+                                fontWeight: 400,
+                                color: "#00ff95",
                               }}
                               mb={1}
                             >
@@ -884,8 +884,8 @@ const NFTListingEdit = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mt={5}
                   >
@@ -942,8 +942,8 @@ const NFTListingEdit = () => {
                       sx={{
                         textAlign: "left",
                         fontSize: ".9rem",
-                        fontWeight: 600,
-                        color: "#13C086",
+                        fontWeight: 400,
+                        color: "#00ff95",
                       }}
                       mt={2}
                     >
@@ -999,8 +999,8 @@ const NFTListingEdit = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mt={5}
                   >
@@ -1057,8 +1057,8 @@ const NFTListingEdit = () => {
                       sx={{
                         textAlign: "left",
                         fontSize: ".9rem",
-                        fontWeight: 600,
-                        color: "#13C086",
+                        fontWeight: 400,
+                        color: "#00ff95",
                       }}
                       mt={2}
                     >
@@ -1134,7 +1134,7 @@ const NFTListingEdit = () => {
                         textAlign: "left",
                         fontSize: ".9rem",
                         marginleft: 0,
-                        color: "#13C086",
+                        color: "#00ff95",
                       }}
                       mt={5}
                     >
@@ -1150,9 +1150,9 @@ const NFTListingEdit = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
+                      fontWeight: 400,
                       marginleft: 0,
-                      color: "#13C086",
+                      color: "#00ff95",
                     }}
                   >
                     What is your collection's blockchain?
@@ -1201,9 +1201,9 @@ const NFTListingEdit = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
+                          fontWeight: 400,
                           marginleft: 0,
-                          color: "#13C086",
+                          color: "#00ff95",
                         }}
                         mt={{ xs: 3, sm: 3, md: 5 }}
                         mb={1}
@@ -1215,26 +1215,27 @@ const NFTListingEdit = () => {
                         name="pre_sale_mint_price"
                         id="pre_sale_mint_price"
                         // width="auto"
+                        width={100}
                         value={nftListingData?.pre_sale_mint_price}
-                        InputProps={{
-                          endAdornment: (
-                            <Button
-                              variant="contained"
-                              sx={{
-                                background: "#0e155a",
-                                color: "#FFFFFF",
-                                boxShadow: "none",
-                                "&:hover": {
-                                  backgroundColor: "#0e155a",
-                                  color: "#FFFFFF",
-                                  boxShadow: "none",
-                                },
-                              }}
-                            >
-                              ETH
-                            </Button>
-                          ),
-                        }}
+                        // InputProps={{
+                        //   endAdornment: (
+                        //     <Button
+                        //       variant="contained"
+                        //       sx={{
+                        //         background: "#0e155a",
+                        //         color: "#FFFFFF",
+                        //         boxShadow: "none",
+                        //         "&:hover": {
+                        //           backgroundColor: "#0e155a",
+                        //           color: "#FFFFFF",
+                        //           boxShadow: "none",
+                        //         },
+                        //       }}
+                        //     >
+                        //       ETH
+                        //     </Button>
+                        //   ),
+                        // }}
                       />
                     </Grid>
 
@@ -1244,9 +1245,9 @@ const NFTListingEdit = () => {
                         sx={{
                           textAlign: "left",
                           fontSize: ".9rem",
-                          fontWeight: 600,
+                          fontWeight: 400,
                           marginleft: 0,
-                          color: "#13C086",
+                          color: "#00ff95",
                         }}
                         mt={{ xs: 3, sm: 3, md: 5 }}
                         mb={1}
@@ -1258,26 +1259,27 @@ const NFTListingEdit = () => {
                         name="public_mint_price"
                         id="public_mint_price"
                         // width="auto"
+                        width={100}
                         value={nftListingData?.public_mint_price}
-                        InputProps={{
-                          endAdornment: (
-                            <Button
-                              variant="contained"
-                              sx={{
-                                background: "#0e155a",
-                                color: "#FFFFFF",
-                                boxShadow: "none",
-                                "&:hover": {
-                                  backgroundColor: "#0e155a",
-                                  color: "#FFFFFF",
-                                  boxShadow: "none",
-                                },
-                              }}
-                            >
-                              ETH
-                            </Button>
-                          ),
-                        }}
+                        // InputProps={{
+                        //   endAdornment: (
+                        //     <Button
+                        //       variant="contained"
+                        //       sx={{
+                        //         background: "#0e155a",
+                        //         color: "#FFFFFF",
+                        //         boxShadow: "none",
+                        //         "&:hover": {
+                        //           backgroundColor: "#0e155a",
+                        //           color: "#FFFFFF",
+                        //           boxShadow: "none",
+                        //         },
+                        //       }}
+                        //     >
+                        //       ETH
+                        //     </Button>
+                        //   ),
+                        // }}
                       />
                     </Grid>
                   </Stack>
@@ -1329,8 +1331,8 @@ const NFTListingEdit = () => {
                                   sx={{
                                     textAlign: "left",
                                     fontSize: ".9rem",
-                                    fontWeight: 600,
-                                    color: "#13C086",
+                                    fontWeight: 400,
+                                    color: "#00ff95",
                                   }}
                                   mb={1}
                                 >
@@ -1394,8 +1396,8 @@ const NFTListingEdit = () => {
                             sx={{
                               textAlign: "left",
                               fontSize: ".9rem",
-                              fontWeight: 600,
-                              color: "#13C086",
+                              fontWeight: 400,
+                              color: "#00ff95",
                             }}
                             mb={1}
                           >
@@ -1494,8 +1496,8 @@ const NFTListingEdit = () => {
                                   sx={{
                                     textAlign: "left",
                                     fontSize: ".9rem",
-                                    fontWeight: 600,
-                                    color: "#13C086",
+                                    fontWeight: 400,
+                                    color: "#00ff95",
                                   }}
                                   mb={1}
                                 >
@@ -1519,8 +1521,8 @@ const NFTListingEdit = () => {
                                   sx={{
                                     textAlign: "left",
                                     fontSize: ".9rem",
-                                    fontWeight: 600,
-                                    color: "#13C086",
+                                    fontWeight: 400,
+                                    color: "#00ff95",
                                   }}
                                   mb={1}
                                 >
@@ -1582,8 +1584,8 @@ const NFTListingEdit = () => {
                             sx={{
                               textAlign: "left",
                               fontSize: ".9rem",
-                              fontWeight: 600,
-                              color: "#13C086",
+                              fontWeight: 400,
+                              color: "#00ff95",
                             }}
                             mb={1}
                           >
@@ -1602,8 +1604,8 @@ const NFTListingEdit = () => {
                             sx={{
                               textAlign: "left",
                               fontSize: ".9rem",
-                              fontWeight: 600,
-                              color: "#13C086",
+                              fontWeight: 400,
+                              color: "#00ff95",
                             }}
                             mb={1}
                           >
@@ -1703,8 +1705,8 @@ const NFTListingEdit = () => {
                                   sx={{
                                     textAlign: "left",
                                     fontSize: ".9rem",
-                                    fontWeight: 600,
-                                    color: "#13C086",
+                                    fontWeight: 400,
+                                    color: "#00ff95",
                                   }}
                                   mb={1}
                                 >
@@ -1727,8 +1729,8 @@ const NFTListingEdit = () => {
                                   sx={{
                                     textAlign: "left",
                                     fontSize: ".9rem",
-                                    fontWeight: 600,
-                                    color: "#13C086",
+                                    fontWeight: 400,
+                                    color: "#00ff95",
                                   }}
                                   mb={1}
                                 >
@@ -1792,8 +1794,8 @@ const NFTListingEdit = () => {
                             sx={{
                               textAlign: "left",
                               fontSize: ".9rem",
-                              fontWeight: 600,
-                              color: "#13C086",
+                              fontWeight: 400,
+                              color: "#00ff95",
                             }}
                             mb={1}
                           >
@@ -1813,8 +1815,8 @@ const NFTListingEdit = () => {
                             sx={{
                               textAlign: "left",
                               fontSize: ".9rem",
-                              fontWeight: 600,
-                              color: "#13C086",
+                              fontWeight: 400,
+                              color: "#00ff95",
                             }}
                             mb={1}
                           >
@@ -1884,7 +1886,7 @@ const NFTListingEdit = () => {
                       }
                       label={
                         <Typography
-                          sx={{ fontSize: ".8rem", color: "#FFFFFF" }}
+                          sx={{ fontSize: ".8rem", color: "#b4b4b4" }}
                         >
                           I agree terms and conditions
                         </Typography>
@@ -1907,7 +1909,7 @@ const NFTListingEdit = () => {
                       }
                       label={
                         <Typography
-                          sx={{ fontSize: ".8rem", color: "#FFFFFF" }}
+                          sx={{ fontSize: ".8rem", color: "#b4b4b4" }}
                         >
                           I declare the information provided on this form is
                           accurate and complete to the best of my knowledge and
@@ -1936,8 +1938,8 @@ const NFTListingEdit = () => {
                     sx={{
                       textAlign: "left",
                       fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#13C086",
+                      fontWeight: 400,
+                      color: "#00ff95",
                     }}
                     mb={1}
                   >

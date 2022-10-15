@@ -127,7 +127,7 @@ const InputSelectMultiple = ({
           background: "#010619",
           borderRadius: "7px",
           color: "#FFFFFF",
-          border: "1px solid #090F2C",
+          border: "1.5px solid #05114c",
           ".MuiSelect-icon": {
             color: "#FFFFFF",
           },

@@ -2,8 +2,23 @@ import { Grid, Box, Stack, Divider, Typography } from "@mui/material";
 import CampaignIcon from "@mui/icons-material/Campaign";
 
 import MobileDiscoverLatestCommonCard from "../cards/dicoverlatestcommoncard/MobileDiscoverLatestCommonCard";
+import { useDispatch, useSelector } from "react-redux";
+import { airdropPageListingRequest } from "../../../store/action";
+import { useEffect } from "react";
+import moment from "moment";
 
 const MobileDiscoverLatestAirDrops = () => {
+  const dispatch: any = useDispatch();
+  const airdropList = useSelector((data: any) => {
+    return data?.airdropReducer?.airdrop_listings?.data;
+  });
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(airdropPageListingRequest("noData", successHandler, errorHandler));
+  }, [dispatch]);
   return (
     <Grid xs={12}>
       <Box
@@ -45,11 +60,28 @@ const MobileDiscoverLatestAirDrops = () => {
                 pt={0}
                 flexWrap={{ xs: "wrap", sm: "wrap", md: "nowrap" }}
               >
-                <MobileDiscoverLatestCommonCard />
-                <MobileDiscoverLatestCommonCard />
-                <MobileDiscoverLatestCommonCard />
-                <MobileDiscoverLatestCommonCard />
-                <MobileDiscoverLatestCommonCard />
+                {airdropList &&
+                  airdropList?.response === true &&
+                  airdropList?.data?.data?.map((item: any, index: number) => (
+                    <MobileDiscoverLatestCommonCard
+                      data={item}
+                      key={index}
+                      item={item}
+                      path="coin_logo"
+                      variant="airdrop"
+                      image={item && item?.coin_logo}
+                      title={item && item?.coin_name}
+                      subtitle={`${item && item?.coin_symbol}`}
+                      link={`/airdrops/${item && item?.slug}`}
+                      date={moment(new Date(item && item?.start_date)).format(
+                        "DD"
+                      )}
+                      month={moment(new Date(item && item?.start_date)).format(
+                        "MMM"
+                      )}
+                      index={index}
+                    />
+                  ))}
               </Stack>
             </Stack>
           </Stack>

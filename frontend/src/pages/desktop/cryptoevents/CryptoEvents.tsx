@@ -23,6 +23,7 @@ import {
   eventsRecentlyAddedRequest,
   eventsUpcomingRequest,
 } from "../../../store/action";
+import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
 
 const CryptoEvents = () => {
   const dispatch: any = useDispatch();
@@ -165,8 +166,11 @@ const CryptoEvents = () => {
   return (
     <Fragment>
       <Grid container rowSpacing={3}>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <LatestNewsScroll />
+        </Grid> */}
+        <Grid item xs={12} mt={3}>
+          <BreadCrumbs data={""} home="Home" path="Crypto Events" />
         </Grid>
         <Grid item xs={12}>
           <Stack direction="column" spacing={0.5}>
@@ -183,12 +187,14 @@ const CryptoEvents = () => {
         <Grid item xs={12}>
           <Stack
             direction="row"
-            alignItems={"center"}
+            alignItems={"flex-start"}
             justifyContent="flex-start"
           >
             <Stack
               direction="row"
               //  direction={{ xs: "column", sm: "column", md: "row" }}
+              flexWrap="wrap"
+              sx={{ flexGrow: 0 }}
             >
               {" "}
               <Chip
@@ -223,7 +229,14 @@ const CryptoEvents = () => {
                   />
                 ))}
             </Stack>
-            <Stack direction="row" spacing={0} alignItems="center" px={2}>
+            <Stack
+              direction="row"
+              spacing={0}
+              alignItems="center"
+              justifyContent="flex-end"
+              px={2}
+              sx={{ flexGrow: 1, minWidth: 300 }}
+            >
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
                 Online Event
               </Typography>

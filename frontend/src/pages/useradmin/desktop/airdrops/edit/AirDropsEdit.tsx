@@ -184,7 +184,10 @@ const AirDropsEdit = () => {
             <ArrowBackIosTwoToneIcon sx={{ color: "#FFFFFF" }} />
           </IconButton>
 
-          <Typography variant="h6" sx={{ textAlign: "left", color: "#FFFFFF" }}>
+          <Typography
+            variant="h5"
+            sx={{ textAlign: "left", color: "#FFFFFF", fontWeight: 600 }}
+          >
             Edit Airdrops
           </Typography>
         </Stack>
@@ -205,8 +208,8 @@ const AirDropsEdit = () => {
               sx={{
                 textAlign: "left",
                 fontSize: ".9rem",
-                fontWeight: 600,
-                color: "#13C086",
+                fontWeight: 400,
+                color: "#00ff95",
               }}
               mb={1}
             >
@@ -236,8 +239,8 @@ const AirDropsEdit = () => {
               sx={{
                 textAlign: "left",
                 fontSize: ".9rem",
-                fontWeight: 600,
-                color: "#13C086",
+                fontWeight: 400,
+                color: "#00ff95",
               }}
               mb={1}
             >
@@ -257,8 +260,8 @@ const AirDropsEdit = () => {
               sx={{
                 textAlign: "left",
                 fontSize: ".9rem",
-                fontWeight: 600,
-                color: "#13C086",
+                fontWeight: 400,
+                color: "#00ff95",
               }}
               mb={1}
             >
@@ -278,8 +281,8 @@ const AirDropsEdit = () => {
               sx={{
                 textAlign: "left",
                 fontSize: ".9rem",
-                fontWeight: 600,
-                color: "#13C086",
+                fontWeight: 400,
+                color: "#00ff95",
               }}
               mb={1}
             >
@@ -299,8 +302,8 @@ const AirDropsEdit = () => {
               sx={{
                 textAlign: "left",
                 fontSize: ".9rem",
-                fontWeight: 600,
-                color: "#13C086",
+                fontWeight: 400,
+                color: "#00ff95",
               }}
               mb={1}
             >
@@ -320,8 +323,8 @@ const AirDropsEdit = () => {
               sx={{
                 textAlign: "left",
                 fontSize: ".9rem",
-                fontWeight: 600,
-                color: "#13C086",
+                fontWeight: 400,
+                color: "#00ff95",
               }}
               mb={1}
             >
@@ -341,8 +344,8 @@ const AirDropsEdit = () => {
               sx={{
                 textAlign: "left",
                 fontSize: ".9rem",
-                fontWeight: 600,
-                color: "#13C086",
+                fontWeight: 400,
+                color: "#00ff95",
               }}
               mb={1}
             >
@@ -357,8 +360,8 @@ const AirDropsEdit = () => {
           </Grid> */}
 
           {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-        <Typography variant="subtitle1" sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600,
-                  color: "#13C086", }} mb={1}>
+        <Typography variant="subtitle1" sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 400,
+                  color: "#00ff95", }} mb={1}>
           Airdrops Icon
         </Typography>
 
@@ -371,8 +374,8 @@ const AirDropsEdit = () => {
           {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography
               variant="subtitle1"
-              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 ,
-              color: "#13C086",}}
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 400 ,
+              color: "#00ff95",}}
               mb={1}
             >
               Status
@@ -392,8 +395,8 @@ const AirDropsEdit = () => {
               sx={{
                 textAlign: "left",
                 fontSize: ".9rem",
-                fontWeight: 600,
-                color: "#13C086",
+                fontWeight: 400,
+                color: "#00ff95",
               }}
               mb={1}
             >

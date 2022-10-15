@@ -7,7 +7,7 @@ const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileDiscoverLatestCommonCard = ({
   item,
   path,
-  varient,
+  variant,
   image,
   title,
   subtitle,

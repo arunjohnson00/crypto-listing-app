@@ -24,8 +24,8 @@ const ExchangeDetails = ({
             sx={{
               textAlign: "left",
               fontSize: ".9rem",
-              fontWeight: 600,
-              color: "#13C086",
+              fontWeight: 400,
+              color: "#00ff95",
             }}
             mb={1}
           >
@@ -45,8 +45,8 @@ const ExchangeDetails = ({
             sx={{
               textAlign: "left",
               fontSize: ".9rem",
-              fontWeight: 600,
-              color: "#13C086",
+              fontWeight: 400,
+              color: "#00ff95",
             }}
             mb={1}
           >
@@ -59,7 +59,7 @@ const ExchangeDetails = ({
           />
         </Grid>
         {/* <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
-          <Typography variant="subtitle1" sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }} mb={1}>
+          <Typography variant="subtitle1" sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 400 }} mb={1}>
             Block explorer URL {index + 2}
           </Typography>
           <InputText

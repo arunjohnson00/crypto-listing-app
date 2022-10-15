@@ -66,7 +66,7 @@ const InputRadio = ({
                 textAlign: "left",
                 fontSize: ".9rem",
                 fontWeight: 600,
-                color: "#13C086",
+                color: "#00ff95",
               }}
             >
               Presale
@@ -82,7 +82,7 @@ const InputRadio = ({
                 textAlign: "left",
                 fontSize: ".9rem",
                 fontWeight: 600,
-                color: "#13C086",
+                color: "#00ff95",
               }}
             >
               Launched

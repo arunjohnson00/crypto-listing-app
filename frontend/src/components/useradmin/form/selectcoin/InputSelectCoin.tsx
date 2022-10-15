@@ -140,7 +140,7 @@ const InputSelectCoin = ({
             background: "#010619",
             borderRadius: "7px",
             color: "#525562",
-            border: "1px solid #090F2C",
+            border: "1.5px solid #05114c",
             height: height && height,
             minWidth: matches === true ? width : "auto",
             width: matches === true ? width : "auto",

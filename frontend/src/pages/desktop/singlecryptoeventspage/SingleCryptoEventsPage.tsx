@@ -20,6 +20,8 @@ import ReactPlayer from "react-player";
 import { useDispatch, useSelector } from "react-redux";
 import { eventsSinglePageRequest } from "../../../store/action";
 import { useLocation, useNavigate } from "react-router-dom";
+
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 const SingleCryptoEventsPage = () => {
   const dispatch: any = useDispatch();
   const location: any = useLocation();
@@ -59,7 +61,11 @@ const SingleCryptoEventsPage = () => {
         {singlePageData && singlePageData?.response === true && (
           <Grid item xs={12}>
             <Stack direction="column" alignItems="flex-start" spacing={4}>
-              <Stack direction="column" spacing={2}>
+              <Stack direction="row" spacing={2} alignItems="center">
+                <Avatar
+                  alt="Remy Sharp"
+                  src={`${serverAPIUrl}public/uploads/event_proof/${singlePageData?.data?.logo}`}
+                />
                 <Typography
                   variant="body2"
                   sx={{
