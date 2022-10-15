@@ -16,6 +16,7 @@ const AutoCompleSelect = ({
   serverRef,
   variant,
   filterType,
+  title,
 }: any) => {
   const dispatch: any = useDispatch();
 
@@ -109,9 +110,12 @@ const AutoCompleSelect = ({
           : inputAutoValue?.item_name
           ? inputAutoValue?.item_name
           : variant === "nft"
-          ? "Please Choose a NFT"
-          : (variant === "coin" || variant === "airdrop") &&
-            "Please Choose a Coin"
+          ? title
+            ? title
+            : "Please Choose"
+          : (variant === "coin" || variant === "airdrop") && title
+          ? title
+          : "Please Choose"
       }`}
       id="combo-box-demo"
       size="small"

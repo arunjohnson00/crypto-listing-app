@@ -31,6 +31,7 @@ const AuditDetails = ({ auditCount, index, auditremoveHandle, data }: any) => {
             data={data}
             height={40}
             width={300}
+            title="Select Audit Provider"
           />
         </Grid>
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -47,7 +48,7 @@ const AuditDetails = ({ auditCount, index, auditremoveHandle, data }: any) => {
             Audit URL {index + 2}
           </Typography>
           <InputText
-            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            placeholder="Enter Audit URL"
             name={`audit_link[${index + 2}]`}
             id={`audit_link_${index + 2}`}
           />

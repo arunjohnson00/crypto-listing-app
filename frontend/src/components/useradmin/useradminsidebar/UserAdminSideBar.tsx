@@ -58,7 +58,10 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
         }}
       >
         {collapse === false ? (
-          <img src={CoinXHighLogo} alt="CoinXHigh" width={150} />
+          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+            {" "}
+            <img src={CoinXHighLogo} alt="CoinXHigh" width={150} />
+          </Link>
         ) : null}
         <IconButton
           sx={{ color: "#25E594", fontSize: "1.5rem" }}

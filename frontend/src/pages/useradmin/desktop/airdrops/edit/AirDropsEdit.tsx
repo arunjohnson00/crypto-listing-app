@@ -31,6 +31,7 @@ import {
   dashboardEditAirdropsRequest,
   dashboardUpdateAirdropsRequest,
 } from "../../../../../store/action";
+import InputTextArea from "../../../../../components/useradmin/form/textarea/InputTextArea";
 
 const selectOptions = [
   { title: "Approved", value: 1 },
@@ -174,22 +175,16 @@ const AirDropsEdit = () => {
         <CircularProgress color="inherit" />
       </Backdrop>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-        <Stack
-          direction="row"
-          spacing={1}
-          sx={{ alignItems: "center" }}
-          px={2}
-          pt={3}
-        >
-          {/* <IconButton>
-            <ArrowBackIosTwoToneIcon
-              onClick={() => {
-                navigate("/airdrops");
-              }}
-            />
-          </IconButton> */}
+        <Stack direction="row" spacing={1} sx={{ alignItems: "center" }} pt={3}>
+          <IconButton
+            onClick={() => {
+              navigate("/user-dashboard");
+            }}
+          >
+            <ArrowBackIosTwoToneIcon sx={{ color: "#FFFFFF" }} />
+          </IconButton>
 
-          <Typography variant="h5" sx={{ textAlign: "left", color: "#FFFFFF" }}>
+          <Typography variant="h6" sx={{ textAlign: "left", color: "#FFFFFF" }}>
             Edit Airdrops
           </Typography>
         </Stack>
@@ -202,7 +197,7 @@ const AirDropsEdit = () => {
             borderRadius: "5px",
           }}
           pt={3}
-          pl={4}
+          px={{ xs: 3, sm: 3, md: 5 }}
         >
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
             <Typography
@@ -215,11 +210,12 @@ const AirDropsEdit = () => {
               }}
               mb={1}
             >
-              Search your coin{" "}
+              Search your coin
               <span style={{ color: "#FFFFFF" }}>
-                ( This event is base on a coin listed on coinxhigh.com. if coin
-                is not listed{" "}
+                {" "}
+                ( if coin is not listed Add Now
                 <Link to="/user-dashboard/coin/add">
+                  {" "}
                   <span>Add Now</span>
                 </Link>
               </span>{" "}
@@ -231,6 +227,7 @@ const AirDropsEdit = () => {
               setInputAutoValue={setEditAirdrops}
               serverRef={editAirdropsData?.item_id}
               variant="airdrop"
+              title="Search coin"
             />
           </Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
@@ -244,7 +241,7 @@ const AirDropsEdit = () => {
               }}
               mb={1}
             >
-              Start of the Airdrop
+              Airdrop start date
             </Typography>
 
             <InputDate
@@ -265,11 +262,11 @@ const AirDropsEdit = () => {
               }}
               mb={1}
             >
-              Number of Days (min:5, max:20)
+              Number of Days
             </Typography>
 
             <InputText
-              placeholder=" Number of Days"
+              placeholder="Eg: 5"
               inputTextHandler={(e: any) => airdropsNumDaysHandler(e)}
               value={editAirdropsData.no_of_days}
             />
@@ -290,7 +287,7 @@ const AirDropsEdit = () => {
             </Typography>
 
             <InputText
-              placeholder="  Total Airdrop Amount"
+              placeholder="Eg: 10000000"
               inputTextHandler={(e: any) => airdropsTotalAmountHandler(e)}
               value={editAirdropsData.total_amount}
             />
@@ -311,13 +308,13 @@ const AirDropsEdit = () => {
             </Typography>
 
             <InputText
-              placeholder="Enter Number of Winners"
+              placeholder="Eg: 1000"
               inputTextHandler={(e: any) => airdropsNumbWinnersHandler(e)}
-              value={editAirdropsData.no_of_winners}
+              value={editAirdropsData?.no_of_winners}
             />
           </Grid>
 
-          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+          {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography
               variant="subtitle1"
               sx={{
@@ -357,7 +354,7 @@ const AirDropsEdit = () => {
               setRadioValue={setEditAirdrops}
               name="join_telegram"
             />
-          </Grid>
+          </Grid> */}
 
           {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
         <Typography variant="subtitle1" sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600,
@@ -389,9 +386,37 @@ const AirDropsEdit = () => {
               // serverStatus={newArrList[0].status}
             />
           </Grid> */}
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                textAlign: "left",
+                fontSize: ".9rem",
+                fontWeight: 600,
+                color: "#13C086",
+              }}
+              mb={1}
+            >
+              Airdrop Details
+            </Typography>
+            <InputTextArea
+              // variant="richtext"
+              name="airdrop_details"
+              id="airdrop_details"
+              placeholder="Enter airdrop details. "
+              value={editAirdropsData?.airdrop_details}
+            />
+          </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Stack spacing={2} sx={{ alignItems: "flex-end" }} pb={5} mr={5}>
+            <Stack
+              spacing={2}
+              sx={{
+                alignItems: { xs: "center", sm: "center", md: "flex-end" },
+              }}
+              pb={5}
+              mr={{ xs: 0, sm: 0, md: 5 }}
+            >
               {loading ? (
                 <LoadingButton
                   color="secondary"

@@ -27,7 +27,7 @@ const YoutubeDetails = ({ youtubeCount, youtuberemoveHandle, index }: any) => {
             Youtube URL {index + 2}
           </Typography>
           <InputText
-            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            placeholder="Enter official youtube url "
             name={`youtube_link[${index + 2}]`}
             id={`youtube_link_${index + 2}`}
           />

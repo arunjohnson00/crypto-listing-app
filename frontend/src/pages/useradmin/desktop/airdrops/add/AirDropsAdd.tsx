@@ -27,6 +27,7 @@ import InputDate from "../../../../../components/useradmin/form/input/date/Input
 import InputText from "../../../../../components/useradmin/form/input/text/InputText";
 import RadioBtnGroup from "../../../../../components/useradmin/form/input/radiobtngroup/RadioBtnGroup";
 import LargeBtn from "../../../../../components/useradmin/form/button/large/LargeBtn";
+import InputTextArea from "../../../../../components/useradmin/form/textarea/InputTextArea";
 
 const AirDropsAdd = () => {
   const selectOptions = [
@@ -173,13 +174,13 @@ const AirDropsAdd = () => {
           px={2}
           pt={3}
         >
-          {/* <IconButton>
-            <ArrowBackIosTwoToneIcon
-              onClick={() => {
-                navigate("/airdrops");
-              }}
-            />
-          </IconButton> */}
+          <IconButton
+            onClick={() => {
+              navigate("/user-dashboard");
+            }}
+          >
+            <ArrowBackIosTwoToneIcon sx={{ color: "#FFFFFF" }} />
+          </IconButton>
 
           <Typography variant="h5" sx={{ textAlign: "left", color: "#FFFFFF" }}>
             Add Airdrops
@@ -194,7 +195,7 @@ const AirDropsAdd = () => {
             borderRadius: "5px",
           }}
           pt={3}
-          pl={4}
+          px={{ xs: 3, sm: 3, md: 5 }}
         >
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
             <Typography
@@ -207,11 +208,12 @@ const AirDropsAdd = () => {
               }}
               mb={1}
             >
-              Search your coin{" "}
+              Search your coin
               <span style={{ color: "#FFFFFF" }}>
-                ( This event is base on a coin listed on coinxhigh.com. if coin
-                is not listed{" "}
+                {" "}
+                ( if coin is not listed Add Now
                 <Link to="/user-dashboard/coin/add">
+                  {" "}
                   <span>Add Now</span>
                 </Link>
               </span>{" "}
@@ -222,6 +224,7 @@ const AirDropsAdd = () => {
               inputAutoValue={addAirdropsData}
               setInputAutoValue={setAddAirdrops}
               variant="airdrop"
+              title="Search coin"
             />
           </Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
@@ -235,7 +238,7 @@ const AirDropsAdd = () => {
               }}
               mb={1}
             >
-              Start of the Airdrop
+              Airdrop start date
             </Typography>
 
             <InputDate
@@ -255,11 +258,11 @@ const AirDropsAdd = () => {
               }}
               mb={1}
             >
-              Number of Days (min:5, max:20)
+              Number of Days
             </Typography>
 
             <InputText
-              placeholder=" Number of Days"
+              placeholder="Eg: 5"
               inputTextHandler={(e: any) => airdropsNumDaysHandler(e)}
             />
           </Grid>
@@ -280,7 +283,7 @@ const AirDropsAdd = () => {
 
             <InputText
               width="100%"
-              placeholder="  Total Airdrop Amount"
+              placeholder="Eg: 10000000"
               inputTextHandler={(e: any) => airdropsTotalAmountHandler(e)}
             />
           </Grid>
@@ -300,12 +303,12 @@ const AirDropsAdd = () => {
             </Typography>
 
             <InputText
-              placeholder="Enter Airdrops url"
+              placeholder="Eg: 1000"
               inputTextHandler={(e: any) => airdropsNumbWinnersHandler(e)}
             />
           </Grid>
 
-          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+          {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography
               variant="subtitle1"
               sx={{
@@ -345,6 +348,27 @@ const AirDropsAdd = () => {
               setRadioValue={setAddAirdrops}
               name="join_telegram"
             />
+          </Grid> */}
+
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                textAlign: "left",
+                fontSize: ".9rem",
+                fontWeight: 600,
+                color: "#13C086",
+              }}
+              mb={1}
+            >
+              Airdrop Details
+            </Typography>
+            <InputTextArea
+              // variant="richtext"
+              name="airdrop_details"
+              id="airdrop_details"
+              placeholder="Enter airdrop details. "
+            />
           </Grid>
 
           {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
@@ -382,7 +406,14 @@ const AirDropsAdd = () => {
           </Grid> */}
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Stack spacing={2} sx={{ alignItems: "flex-end" }} pb={5} mr={5}>
+            <Stack
+              spacing={2}
+              sx={{
+                alignItems: { xs: "center", sm: "center", md: "flex-end" },
+              }}
+              pb={5}
+              mr={{ xs: 0, sm: 0, md: 5 }}
+            >
               {loading ? (
                 <LoadingButton
                   color="secondary"

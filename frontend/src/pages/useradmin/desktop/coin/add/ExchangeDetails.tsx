@@ -37,6 +37,7 @@ const ExchangeDetails = ({
             data={data}
             height={40}
             width={300}
+            title="Select Exchange"
           />
         </Grid>
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -53,7 +54,7 @@ const ExchangeDetails = ({
             Exchange URL {index + 2}
           </Typography>
           <InputText
-            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            placeholder="Eg: https://www.binance.com/en/trade/BTC_USDT"
             name={`url[${index + 2}]`}
             id={`url_${index + 2}`}
           />

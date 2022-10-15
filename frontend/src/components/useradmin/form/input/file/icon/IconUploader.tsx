@@ -14,6 +14,7 @@ const IconUploader = ({
   slug,
   inActive,
   proof,
+  width,
 }: any) => {
   const classes = useStyles();
 
@@ -64,10 +65,10 @@ const IconUploader = ({
     </Typography>
   ));
   return (
-    <Box className={classes.mainWrapper}>
+    <Box className={classes.mainWrapper} width={width && width}>
       <div
         {...getRootProps({ className: "dropzone" })}
-        style={{ background: "white" }}
+        style={{ background: "#FFFFFF" }}
       >
         <input {...getInputProps()} />
 

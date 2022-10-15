@@ -357,13 +357,12 @@ const NFTListingAdd = () => {
             px={0}
             pt={3}
           >
-            <IconButton>
-              <ArrowBackIosTwoToneIcon
-                onClick={() => {
-                  navigate("/user-dashboard");
-                }}
-                sx={{ color: "#FFFFFF" }}
-              />
+            <IconButton
+              onClick={() => {
+                navigate("/user-dashboard");
+              }}
+            >
+              <ArrowBackIosTwoToneIcon sx={{ color: "#FFFFFF" }} />
             </IconButton>
             <Stack
               direction={{ xs: "column" }}
@@ -1394,13 +1393,12 @@ const NFTListingAdd = () => {
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3} mt={5}>
               <Stack
-                direction={{ xs: "column", sm: "column", md: "row" }}
                 spacing={2}
                 sx={{
-                  alignItems: "center",
+                  alignItems: { xs: "center", sm: "center", md: "flex-end" },
                 }}
                 pb={5}
-                mr={5}
+                mr={{ xs: 0, sm: 0, md: 5 }}
               >
                 {/* <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
                   <Typography

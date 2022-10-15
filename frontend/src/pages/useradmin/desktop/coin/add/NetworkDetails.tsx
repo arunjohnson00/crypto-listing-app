@@ -37,6 +37,7 @@ const NetworkDetails = ({
             data={data}
             height={40}
             width={300}
+            title="Select Network"
           />
         </Grid>
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -53,7 +54,7 @@ const NetworkDetails = ({
             Contract address {index + 2}
           </Typography>
           <InputText
-            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            placeholder="Eg: 0x2170ed0880ac9a755fd29b2688956bd959f933f8"
             name={`network_address[${index + 2}]`}
             id={`network_address_${index + 2}`}
           />
@@ -72,7 +73,7 @@ const NetworkDetails = ({
             Block explorer URL {index + 2}
           </Typography>
           <InputText
-            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            placeholder="Eg: https://bscscan.com/token/0x2170ed0880ac9a755fd29b2688956bd959f933f8 "
             name={`network_explorer_link[${index + 2}]`}
             id={`network_explorer_link_${index + 2}`}
           />

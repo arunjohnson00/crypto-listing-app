@@ -31,7 +31,7 @@ const CommunityDetails = ({
             Website URL {index + 2}
           </Typography>
           <InputText
-            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            placeholder="Enter official website url"
             name={`community_website_url[${index + 2}]`}
             id={`community_website_url_${index + 2}`}
           />

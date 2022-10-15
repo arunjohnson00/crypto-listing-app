@@ -265,23 +265,40 @@ const OnlineEventsAdd = () => {
       </Backdrop>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Stack
-          direction="row"
+          direction={{ xs: "row", sm: "row", md: "row" }}
           spacing={1}
-          sx={{ alignItems: "center" }}
-          px={2}
+          sx={{ alignItems: "center", justifyContent: "flex-start" }}
+          px={0}
           pt={3}
         >
-          {/* <IconButton>
-            <ArrowBackIosTwoToneIcon
-              onClick={() => {
-                navigate("/events");
-              }}
-            />
-          </IconButton> */}
-
-          <Typography variant="h5" sx={{ textAlign: "left", color: "#FFFFFF" }}>
-            Add Online Events
-          </Typography>
+          <IconButton
+            onClick={() => {
+              navigate("/user-dashboard");
+            }}
+          >
+            <ArrowBackIosTwoToneIcon sx={{ color: "#FFFFFF" }} />
+          </IconButton>
+          <Stack
+            direction={{ xs: "column" }}
+            spacing={0}
+            sx={{ alignItems: "flex-start", justifyContent: "flex-start" }}
+          >
+            <Typography
+              variant="h6"
+              sx={{ textAlign: "left", color: "#FFFFFF" }}
+            >
+              Add Online Crypto Events
+            </Typography>
+            <Typography
+              variant="caption"
+              sx={{ textAlign: "left", color: "#FFFFFF" }}
+            >
+              We dont accept the following scenarios: Past event | No date in
+              the proof/source | Duplicate Event | ICO/IEO | Marketing
+              (Contest/Giveaway/Trading Competition...) | Overly recurrent
+              event.
+            </Typography>
+          </Stack>
         </Stack>
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -292,7 +309,7 @@ const OnlineEventsAdd = () => {
             borderRadius: "5px",
           }}
           pt={3}
-          pl={4}
+          px={{ xs: 3, sm: 3, md: 5 }}
           pr={4}
         >
           <form id="eventForm">
@@ -301,13 +318,13 @@ const OnlineEventsAdd = () => {
                 variant="subtitle1"
                 sx={{
                   textAlign: "left",
-                  fontSize: "1.2rem",
+                  fontSize: "1.1rem",
                   fontWeight: 600,
                   color: "#13C086",
                 }}
                 mb={1}
               >
-                Select coin
+                My coin is listed on coinxhigh.com
               </Typography>
               <Stack
                 direction="column"
@@ -338,6 +355,7 @@ const OnlineEventsAdd = () => {
                     inputAutoValue={addEventsData}
                     setInputAutoValue={setAddEvents}
                     variant="coin"
+                    title="Select your coin"
                   />
                 )}
               </Stack>
@@ -353,11 +371,11 @@ const OnlineEventsAdd = () => {
                 }}
                 mb={1}
               >
-                Title
+                Event Title
               </Typography>
 
               <InputText
-                placeholder="Title"
+                placeholder="Eg: Ethereum Merge"
                 inputTextHandler={(e: any) => eventsTitleHandler(e)}
               />
             </Grid>
@@ -373,7 +391,7 @@ const OnlineEventsAdd = () => {
                 }}
                 mb={1}
               >
-                Select category
+                Event category
               </Typography>
 
               <Grid item xl={5} lg={5} md={5} sm={12} xs={12}>
@@ -382,6 +400,7 @@ const OnlineEventsAdd = () => {
                   id="category_id"
                   data={eventsCategory}
                   height={40}
+                  title="Select category"
                 />
               </Grid>
             </Grid>
@@ -426,6 +445,45 @@ const OnlineEventsAdd = () => {
                 setDate={setAddEvents}
               />
             </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#13C086",
+                }}
+                mb={1}
+              >
+                Event Description
+              </Typography>
+              <InputTextArea
+                name="description"
+                id="description"
+                placeholder=" Detiled event description. (e.g. exact time, location, more info…)"
+              />
+            </Grid>
+
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  color: "#13C086",
+                }}
+                mb={1}
+              >
+                Source Link
+              </Typography>
+
+              <InputText
+                placeholder="Eg: https://twitter.com/EthCC/status/1567538153921155074"
+                inputTextHandler={(e: any) => eventsSourceLinkHandler(e)}
+              />
+            </Grid>
 
             {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <CheckboxWithLabel
@@ -455,46 +513,6 @@ const OnlineEventsAdd = () => {
                 name="or_earlier"
               />
             </Grid> */}
-
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  textAlign: "left",
-                  fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
-                }}
-                mb={1}
-              >
-                Event Description
-              </Typography>
-              <InputTextArea
-                name="description"
-                id="description"
-                placeholder=" description"
-              />
-            </Grid>
-
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  textAlign: "left",
-                  fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#13C086",
-                }}
-                mb={1}
-              >
-                Source Link
-              </Typography>
-
-              <InputText
-                placeholder=" Source Link"
-                inputTextHandler={(e: any) => eventsSourceLinkHandler(e)}
-              />
-            </Grid>
 
             {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography
@@ -553,7 +571,7 @@ const OnlineEventsAdd = () => {
               </Typography>
 
               <InputText
-                placeholder="Enter Website url"
+                placeholder="Enter official Website url"
                 inputTextHandler={(e: any) => eventsWebisteURLHandler(e)}
               />
             </Grid>
@@ -572,7 +590,7 @@ const OnlineEventsAdd = () => {
               </Typography>
 
               <InputText
-                placeholder="Enter Twitter account"
+                placeholder="Enter official Twitter url"
                 inputTextHandler={(e: any) => eventsTwitterAcHandler(e)}
               />
             </Grid>
@@ -592,7 +610,7 @@ const OnlineEventsAdd = () => {
               </Typography>
 
               <InputText
-                placeholder="Enter Telegram url"
+                placeholder="Enter official Telegram url"
                 inputTextHandler={(e: any) => eventsTelegramURLHandler(e)}
               />
             </Grid>
@@ -612,9 +630,32 @@ const OnlineEventsAdd = () => {
               </Typography>
 
               <InputText
-                placeholder="Enter Reddit url"
+                placeholder="Enter official Reddit url"
                 inputTextHandler={(e: any) => eventsRedditURLHandler(e)}
               />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  textAlign: "left",
+                  fontSize: "1rem",
+                  fontWeight: 600,
+                  color: "#FFFFFF",
+                }}
+                mb={1}
+              >
+                Event Videos{" "}
+                <span
+                  style={{
+                    color: "#138bc0",
+                    fontSize: ".85rem",
+                    fontWeight: 400,
+                  }}
+                >
+                  ( Multiple event videos allowed )
+                </span>
+              </Typography>
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Stack
@@ -635,7 +676,7 @@ const OnlineEventsAdd = () => {
                     Youtube URL
                   </Typography>
                   <InputText
-                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    placeholder="Enter official youtube url "
                     name="youtube_link[1]"
                     id="youtube_link_1"
                   />
@@ -683,13 +724,23 @@ const OnlineEventsAdd = () => {
                 }}
                 mb={1}
               >
-                Screenproof of event (max 3MB)
+                Proof{" "}
+                <span
+                  style={{
+                    color: "#138bc0",
+                    fontSize: ".85rem",
+                    fontWeight: 400,
+                  }}
+                >
+                  ( Screenshot - max 3 MB )
+                </span>
               </Typography>
 
               <IconUploader
                 proof={true}
                 setAddIcon={setAddEvents}
                 addIconData={addEventsData}
+                width={{ xs: "100%", sm: "100%", md: 300 }}
               />
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
@@ -703,12 +754,22 @@ const OnlineEventsAdd = () => {
                 }}
                 mb={1}
               >
-                Logo (max 2MB)
+                Event Logo{" "}
+                <span
+                  style={{
+                    color: "#138bc0",
+                    fontSize: ".85rem",
+                    fontWeight: 400,
+                  }}
+                >
+                  ( max 2MB )
+                </span>
               </Typography>
 
               <IconUploader
                 setAddIcon={setAddEvents}
                 addIconData={addEventsData}
+                width={{ xs: "100%", sm: "100%", md: 300 }}
               />
             </Grid>
 
@@ -731,7 +792,14 @@ const OnlineEventsAdd = () => {
             </Grid> */}
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-              <Stack spacing={2} sx={{ alignItems: "flex-end" }} pb={5} mr={5}>
+              <Stack
+                spacing={2}
+                sx={{
+                  alignItems: { xs: "center", sm: "center", md: "flex-end" },
+                }}
+                pb={5}
+                mr={{ xs: 0, sm: 0, md: 5 }}
+              >
                 {loading ? (
                   <LoadingButton
                     color="secondary"

@@ -340,32 +340,39 @@ const CoinListingAdd = () => {
       <form id="coinForm">
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={2} mb={2}>
           <Stack
-            direction="column"
-            spacing={0.5}
-            sx={{ alignItems: "flex-start" }}
-            px={2}
+            direction={{ xs: "row", sm: "row", md: "row" }}
+            spacing={1}
+            sx={{ alignItems: "center", justifyContent: "flex-start" }}
+            px={0}
             pt={3}
           >
-            {/* <IconButton
+            <IconButton
               onClick={() => {
-                navigate("/coins");
+                navigate("/user-dashboard");
               }}
             >
-              <ArrowBackIosTwoToneIcon />
-            </IconButton> */}
-
-            <Typography
-              variant="h5"
-              sx={{ textAlign: "left", color: "#FFFFFF" }}
+              <ArrowBackIosTwoToneIcon sx={{ color: "#FFFFFF" }} />
+            </IconButton>
+            <Stack
+              direction="column"
+              spacing={0.5}
+              sx={{ alignItems: "flex-start", justifyContent: "center" }}
+              px={2}
+              pt={3}
             >
-              Add new coin
-              {/* <Typography variant="caption"> ({coinStatus})</Typography> */}
-            </Typography>
-            <Typography variant="caption" sx={{ color: "#FFFFFF" }}>
-              {" "}
-              After submission, our expert team verifies the coin details and
-              your coin will be visible on the New Listing page.{" "}
-            </Typography>
+              <Typography
+                variant="h5"
+                sx={{ textAlign: "left", color: "#FFFFFF" }}
+              >
+                Add new coin
+                {/* <Typography variant="caption"> ({coinStatus})</Typography> */}
+              </Typography>
+              <Typography variant="caption" sx={{ color: "#FFFFFF" }}>
+                {" "}
+                After submission, our expert team verifies the coin details and
+                your coin will be visible on the New Listing page.{" "}
+              </Typography>
+            </Stack>
           </Stack>
         </Grid>
 
@@ -474,11 +481,7 @@ const CoinListingAdd = () => {
                     </Typography>
                   </Typography>
 
-                  <InputText
-                    placeholder="Enter Exchange url"
-                    name="symbol"
-                    id="symbol"
-                  />
+                  <InputText placeholder="Eg: BTC" name="symbol" id="symbol" />
                 </Grid>
 
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
@@ -500,6 +503,7 @@ const CoinListingAdd = () => {
                     id="logo"
                     setAddIcon={setCoinLogo}
                     addIconData={addCoinLogo}
+                    title="Coin Logo"
                   />
                 </Grid>
               </Grid>
@@ -520,7 +524,7 @@ const CoinListingAdd = () => {
                   <InputTextArea
                     name="description"
                     id="description"
-                    placeholder="Enter description"
+                    placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."
                   />
                 </Grid>
               </Grid>
@@ -739,11 +743,8 @@ const CoinListingAdd = () => {
                 sx={{ textAlign: "left", color: "#b4b4b4" }}
                 mb={2}
               >
-                Please specify the chain that you are on
-                <span style={{ color: "#234A84", fontWeight: 600 }}>
-                  {" "}
-                  (Eg:Binance Smart Chain, Etherieum, Heco)
-                </span>
+                Please specify the chain that you are on (Eg: Binance Smart
+                Chain, Ethereum, Heco)
               </Typography>
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -770,6 +771,7 @@ const CoinListingAdd = () => {
                     data={networkList}
                     height={40}
                     width={250}
+                    title="Select Network"
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -786,7 +788,7 @@ const CoinListingAdd = () => {
                     Contract address 1
                   </Typography>
                   <InputText
-                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    placeholder="Eg: 0x2170ed0880ac9a755fd29b2688956bd959f933f8"
                     name={`network_address[1]`}
                     id={`network_address_1`}
                   />
@@ -805,7 +807,7 @@ const CoinListingAdd = () => {
                     Block explorer URL 1
                   </Typography>
                   <InputText
-                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    placeholder="Eg: https://bscscan.com/token/0x2170ed0880ac9a755fd29b2688956bd959f933f8 "
                     name={`network_explorer_link[1]`}
                     id={`network_explorer_link_1`}
                   />
@@ -859,7 +861,7 @@ const CoinListingAdd = () => {
                 sx={{ textAlign: "left", color: "#b4b4b4" }}
                 mb={2}
               >
-                Provide exchange details where token is listed.
+                Provide exchange details where token is listed
               </Typography>
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -886,6 +888,7 @@ const CoinListingAdd = () => {
                     data={exchangeList}
                     height={40}
                     width={300}
+                    title="Select Exchange"
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -902,7 +905,7 @@ const CoinListingAdd = () => {
                     Exchange URL
                   </Typography>
                   <InputText
-                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    placeholder="Eg: https://www.binance.com/en/trade/BTC_USDT"
                     name={`url[1]`}
                     id={`url_1`}
                   />
@@ -1046,7 +1049,7 @@ const CoinListingAdd = () => {
                     </Typography>
 
                     <InputText
-                      placeholder="Eg: faffhaafasgdasdsafdywdtdw"
+                      placeholder="Eg: 0x2170ed0880ac9a755fd29b2688956bd959f933f8"
                       id="presale_address"
                       name="presale_address"
                     />
@@ -1063,11 +1066,11 @@ const CoinListingAdd = () => {
                       }}
                       mb={1}
                     >
-                      Presale Link
+                      Presale URL
                     </Typography>
 
                     <InputText
-                      placeholder="Enter presale address"
+                      placeholder="Enter presale url"
                       name="presale_link"
                       id="presale_link"
                     />
@@ -1105,7 +1108,7 @@ const CoinListingAdd = () => {
                     </Typography>
 
                     <InputText
-                      placeholder="Enter ircularity Supply(Eg: 100,0000)"
+                      placeholder="Eg: 100000000000"
                       id="circulating_supply"
                       name="circulating_supply"
                     />
@@ -1125,7 +1128,7 @@ const CoinListingAdd = () => {
                     </Typography>
 
                     <InputText
-                      placeholder="Enter Max/Total Supply(Eg: 100,000000)"
+                      placeholder="Eg: 100000000000"
                       id="max_supply"
                       name="max_supply"
                     />
@@ -1156,7 +1159,7 @@ const CoinListingAdd = () => {
                   </Typography>
 
                   <InputText
-                    placeholder="Enter marketcap(Eg: $100,0000)"
+                    placeholder="Eg: 100000000000"
                     id="market_cap"
                     name="market_cap"
                   />
@@ -1180,14 +1183,19 @@ const CoinListingAdd = () => {
                       }}
                       mb={1}
                     >
-                      Price
+                      Price{" "}
+                      <span
+                        style={{
+                          fontSize: ".8rem",
+                          color: "#FFFFFF",
+                          fontWeight: 400,
+                        }}
+                      >
+                        (Don't put any currency symbol in price)
+                      </span>
                     </Typography>
 
-                    <InputText
-                      placeholder="Enter Price(Eg: $5.89)"
-                      id="price"
-                      name="price"
-                    />
+                    <InputText placeholder="Eg: 5.89" id="price" name="price" />
                   </Grid>
 
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -1215,7 +1223,7 @@ const CoinListingAdd = () => {
                     </Typography>
 
                     <InputText
-                      placeholder="Enter ircularity Supply(Eg: 100,0000)"
+                      placeholder="Eg: 100000000000"
                       id="circulating_supply"
                       name="circulating_supply"
                     />
@@ -1242,7 +1250,7 @@ const CoinListingAdd = () => {
                     </Typography>
 
                     <InputText
-                      placeholder="Enter Max/Total Supply(Eg: 100,000000)"
+                      placeholder="Eg: 100000000000"
                       id="max_supply"
                       name="max_supply"
                     />
@@ -1273,7 +1281,7 @@ const CoinListingAdd = () => {
                     </Typography>
 
                     <InputText
-                      placeholder="Enter marketcap(Eg: $100,0000)"
+                      placeholder="Eg: 100000000000"
                       id="market_cap"
                       name="market_cap"
                     />
@@ -1330,7 +1338,7 @@ const CoinListingAdd = () => {
                     SourceCode URL
                   </Typography>
                   <InputText
-                    placeholder="Enter github url"
+                    placeholder="Enter sourcecode url"
                     id="source_code_url"
                     name="source_code_url"
                   />
@@ -1349,7 +1357,7 @@ const CoinListingAdd = () => {
                     Medium URL
                   </Typography>
                   <InputText
-                    placeholder="Enter Medium URL"
+                    placeholder="Enter Medium url"
                     id="medium_link"
                     name="medium_link"
                   />
@@ -1375,7 +1383,7 @@ const CoinListingAdd = () => {
                     Whitepaper URL
                   </Typography>
                   <InputText
-                    placeholder="Enter whitepaper URL"
+                    placeholder="Enter Whitepaper url"
                     id="whitepaper_link"
                     name="whitepaper_link"
                   />
@@ -1391,10 +1399,10 @@ const CoinListingAdd = () => {
                     }}
                     mb={1}
                   >
-                    Docs URL 1
+                    Docs URL
                   </Typography>
                   <InputText
-                    placeholder="Enter docs URL"
+                    placeholder="Enter Docs url"
                     id="docs_link"
                     name="docs_link"
                   />
@@ -1414,7 +1422,7 @@ const CoinListingAdd = () => {
                 sx={{ textAlign: "left", color: "#b4b4b4" }}
                 mb={2}
               >
-                Please Provide the information about coin
+                Please Provide the audit details
               </Typography>
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -1441,6 +1449,7 @@ const CoinListingAdd = () => {
                     data={coinAuditList}
                     height={40}
                     width={300}
+                    title="Select Audit Provider"
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1457,7 +1466,7 @@ const CoinListingAdd = () => {
                     Audit URL
                   </Typography>
                   <InputText
-                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    placeholder="Enter Audit URL"
                     name="audit_link[1]"
                     id="audit_link_1"
                   />
@@ -1508,7 +1517,7 @@ const CoinListingAdd = () => {
                 sx={{ textAlign: "left", color: "#b4b4b4" }}
                 mb={2}
               >
-                Please Provide the information about coin
+                Please Provide the Chart information
               </Typography>
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -1535,6 +1544,7 @@ const CoinListingAdd = () => {
                     data={coinChartProviderList}
                     height={40}
                     width={300}
+                    title="Please select"
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1551,7 +1561,7 @@ const CoinListingAdd = () => {
                     Chart URL
                   </Typography>
                   <InputText
-                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    placeholder="Eg: https://in.tradingview.com/chart/?symbol=BTC"
                     name="chart_link[1]"
                     id="chart_link_1"
                   />
@@ -1616,7 +1626,7 @@ const CoinListingAdd = () => {
                     sx={{ textAlign: "left", color: "#b4b4b4" }}
                     mb={2}
                   >
-                    Please Provide the information about coin
+                    Please Provide the Social details
                   </Typography>
                 </Grid>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -1638,7 +1648,7 @@ const CoinListingAdd = () => {
                         Website URL
                       </Typography>
                       <InputText
-                        placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                        placeholder="Enter official website url"
                         name="community_website_url[1]"
                         id="community_website_url_1"
                       />
@@ -1707,7 +1717,7 @@ const CoinListingAdd = () => {
                         Coin Video URL
                       </Typography>
                       <InputText
-                        placeholder="Eg:https://www.youtube.com/watch?v=4ZSUxzeWLlc"
+                        placeholder="Eg: https://www.youtube.com/watch?v=kt8rThtkf"
                         name="video_url"
                         id="video_url"
                       />
@@ -1731,13 +1741,23 @@ const CoinListingAdd = () => {
               <Divider orientation="vertical" flexItem />
               <Grid item xl={6} lg={6} md={6} sm={6} xs={12}>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={2}>
-                  <Typography
-                    variant="h6"
-                    sx={{ textAlign: "left", color: "#D7DADB" }}
-                    mb={0}
-                  >
-                    Listed on
-                  </Typography>
+                  <Stack direction="column" spacing={0}>
+                    <Typography
+                      variant="h6"
+                      sx={{ textAlign: "left", color: "#D7DADB" }}
+                      mb={0}
+                    >
+                      Listed on
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{ textAlign: "left", color: "#D7DADB" }}
+                      mb={0}
+                    >
+                      (Please check your coin is listed in the following
+                      website)
+                    </Typography>
+                  </Stack>
                 </Grid>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                   <Stack direction="column" spacing={3} pt={3}>
@@ -1768,7 +1788,7 @@ const CoinListingAdd = () => {
                         />
 
                         <InputText
-                          placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                          placeholder="Enter coinmarketcap url"
                           checkboxStatus={!checked.is_listed_market_cap}
                           id="coin_market_cap_url"
                           name="coin_market_cap_url"
@@ -1803,7 +1823,7 @@ const CoinListingAdd = () => {
                         />
 
                         <InputText
-                          placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                          placeholder="Enter coingecko url"
                           checkboxStatus={!checked.is_listed_coingecko}
                           name="coingecko_url"
                           id="coingecko_url"
@@ -1940,14 +1960,14 @@ const CoinListingAdd = () => {
                     sx={{ textAlign: "left", color: "#D7DADB" }}
                     mb={0}
                   >
-                    Socials
+                    Socials Details
                   </Typography>
                   <Typography
                     variant="caption"
                     sx={{ textAlign: "left", color: "#b4b4b4" }}
                     mb={2}
                   >
-                    Please Provide the information about coin
+                    Enter social details
                   </Typography>
                 </Grid>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -1974,6 +1994,7 @@ const CoinListingAdd = () => {
                         data={coinSocialList}
                         height={40}
                         width={300}
+                        title="Select website"
                       />
                     </Grid>
                     <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -1990,7 +2011,7 @@ const CoinListingAdd = () => {
                         Social URL
                       </Typography>
                       <InputText
-                        placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                        placeholder="Enter social url"
                         name="social_url[1]"
                         id="social_url_1"
                       />
@@ -2138,29 +2159,45 @@ const CoinListingAdd = () => {
                     />
                   </Grid>
                 </Grid>
-                <Grid item xl={5} lg={5} md={5} sm={5} xs={12} pt={5}>
-                  {loading ? (
-                    <LoadingButton
-                      color="secondary"
-                      loading={loading}
-                      loadingPosition="center"
-                      // startIcon={<SaveIcon />}
-                      variant="contained"
-                      sx={{
-                        width: "173px",
-                        height: "41px",
-                        backgroundColor: "rgb(61, 56, 122)",
-                        borderRadius: "8px",
-                        fontSize: "14px",
-                        textTransform: "capitalize",
-                        fontWeight: "300",
-                      }}
-                    >
-                      Saving...Wait
-                    </LoadingButton>
-                  ) : (
-                    <LargeBtn Title="Add Coin" lgBtnHandler={coinAddHandler} />
-                  )}
+                <Grid item xl={5} lg={5} md={5} sm={12} xs={12} pt={5}>
+                  <Stack
+                    spacing={2}
+                    sx={{
+                      alignItems: {
+                        xs: "center",
+                        sm: "center",
+                        md: "flex-end",
+                      },
+                    }}
+                    pb={5}
+                    mr={{ xs: 0, sm: 0, md: 5 }}
+                  >
+                    {loading ? (
+                      <LoadingButton
+                        color="secondary"
+                        loading={loading}
+                        loadingPosition="center"
+                        // startIcon={<SaveIcon />}
+                        variant="contained"
+                        sx={{
+                          width: "173px",
+                          height: "41px",
+                          backgroundColor: "rgb(61, 56, 122)",
+                          borderRadius: "8px",
+                          fontSize: "14px",
+                          textTransform: "capitalize",
+                          fontWeight: "300",
+                        }}
+                      >
+                        Saving...Wait
+                      </LoadingButton>
+                    ) : (
+                      <LargeBtn
+                        Title="Add Coin"
+                        lgBtnHandler={coinAddHandler}
+                      />
+                    )}
+                  </Stack>
                 </Grid>
               </Stack>
             </Grid>
