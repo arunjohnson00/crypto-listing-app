@@ -105,193 +105,194 @@ const SingleAirdropPage = () => {
           />
         </Grid>
 
-        {
-          <Grid item xs={12}>
-            <Grid container mb={5}>
-              <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
-                <Stack
-                  direction="column"
-                  alignItems="flex-start"
-                  spacing={2}
-                  width="100%"
-                >
-                  <Box
-                    mr={2}
+        {airdropSinglePageDetails &&
+          airdropSinglePageDetails?.response === true && (
+            <Grid item xs={12}>
+              <Grid container mb={5}>
+                <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
+                  <Stack
+                    direction="column"
+                    alignItems="flex-start"
+                    spacing={2}
                     width="100%"
-                    sx={{
-                      backgroundColor: "#030B2F",
-                      borderRadius: 6,
-                    }}
                   >
-                    <Box py={4}>
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        spacing={1.5}
-                      >
-                        <Avatar
-                          src={`${serverAPIUrl}public/uploads/coin_logo/${
-                            airdropSinglePageDetails &&
-                            airdropSinglePageDetails?.data?.coin_logo
-                          }`}
-                          alt={
-                            airdropSinglePageDetails &&
-                            airdropSinglePageDetails?.data?.title
-                          }
-                          variant="square"
-                          sx={{
-                            width: 60,
-                            height: 60,
-                          }}
-                        />
+                    <Box
+                      mr={2}
+                      width="100%"
+                      sx={{
+                        backgroundColor: "#030B2F",
+                        borderRadius: 6,
+                      }}
+                    >
+                      <Box py={4}>
                         <Stack
                           direction="column"
                           alignItems="center"
-                          spacing={0}
+                          spacing={1.5}
                         >
-                          <Typography
-                            variant="body2"
+                          <Avatar
+                            src={`${serverAPIUrl}public/uploads/coin_logo/${
+                              airdropSinglePageDetails &&
+                              airdropSinglePageDetails?.data?.coin_logo
+                            }`}
+                            alt={
+                              airdropSinglePageDetails &&
+                              airdropSinglePageDetails?.data?.title
+                            }
+                            variant="square"
                             sx={{
-                              color: "#FFFFFF",
-                              fontSize: "1.1rem",
-                              fontWeight: 600,
+                              width: 60,
+                              height: 60,
                             }}
-                          >
-                            {airdropSinglePageDetails &&
-                              airdropSinglePageDetails?.data?.coin_name}
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#FFFFFF",
-                              fontSize: "0.85rem",
-                              fontWeight: 400,
-                            }}
-                          >
-                            $
-                            {airdropSinglePageDetails &&
-                              airdropSinglePageDetails?.data?.coin_symbol}
-                          </Typography>
-                        </Stack>
-                        <Stack
-                          direction="column"
-                          alignItems="center"
-                          width="100%"
-                          spacing={1}
-                          pb={2}
-                        >
+                          />
                           <Stack
                             direction="column"
                             alignItems="center"
                             spacing={0}
-                            width="-webkit-fill-available"
-                            px={3}
                           >
                             <Typography
-                              variant="caption"
-                              sx={{ color: "#FFFFFF", fontSize: ".85rem" }}
+                              variant="body2"
+                              sx={{
+                                color: "#FFFFFF",
+                                fontSize: "1.1rem",
+                                fontWeight: 600,
+                              }}
                             >
-                              Starts in
+                              {airdropSinglePageDetails &&
+                                airdropSinglePageDetails?.data?.coin_name}
+                            </Typography>
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: "#FFFFFF",
+                                fontSize: "0.85rem",
+                                fontWeight: 400,
+                              }}
+                            >
+                              $
+                              {airdropSinglePageDetails &&
+                                airdropSinglePageDetails?.data?.coin_symbol}
                             </Typography>
                           </Stack>
-                        </Stack>
-                      </Stack>
-
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        spacing={1.5}
-                        pb={2}
-                      >
-                        <Box
-                          sx={{
-                            backgroundColor: " #00071A",
-                            borderRadius: 6,
-                            minWidth: 150,
-                          }}
-                          px={2}
-                          py={1.5}
-                        >
-                          <Stack direction="column" alignItems="center">
+                          <Stack
+                            direction="column"
+                            alignItems="center"
+                            width="100%"
+                            spacing={1}
+                            pb={2}
+                          >
                             <Stack
-                              direction="row"
+                              direction="column"
                               alignItems="center"
-                              spacing={3}
+                              spacing={0}
+                              width="-webkit-fill-available"
+                              px={3}
                             >
-                              <Stack direction="column" alignItems="center">
-                                {" "}
-                                <Typography
-                                  variant="body2"
-                                  sx={{
-                                    color: "#FFFFFF",
-                                    fontSize: "1.7rem",
-                                    fontWeight: 600,
-                                  }}
-                                >
-                                  1
-                                </Typography>
-                                <Typography
-                                  variant="body2"
-                                  sx={{
-                                    color: "#FFFFFF",
-                                    fontSize: "0.85rem",
-                                    fontWeight: 600,
-                                  }}
-                                >
-                                  Day
-                                </Typography>
-                              </Stack>
-                              <Stack direction="column" alignItems="center">
-                                {" "}
-                                <Typography
-                                  variant="body2"
-                                  sx={{
-                                    color: "#FFFFFF",
-                                    fontSize: "1.7rem",
-                                    fontWeight: 600,
-                                  }}
-                                >
-                                  12
-                                </Typography>
-                                <Typography
-                                  variant="body2"
-                                  sx={{
-                                    color: "#FFFFFF",
-                                    fontSize: "0.85rem",
-                                    fontWeight: 600,
-                                  }}
-                                >
-                                  Hour
-                                </Typography>
-                              </Stack>
-                              <Stack direction="column" alignItems="center">
-                                {" "}
-                                <Typography
-                                  variant="body2"
-                                  sx={{
-                                    color: "#FFFFFF",
-                                    fontSize: "1.7rem",
-                                    fontWeight: 600,
-                                  }}
-                                >
-                                  12
-                                </Typography>
-                                <Typography
-                                  variant="body2"
-                                  sx={{
-                                    color: "#FFFFFF",
-                                    fontSize: "0.85rem",
-                                    fontWeight: 600,
-                                  }}
-                                >
-                                  Min
-                                </Typography>
-                              </Stack>
+                              <Typography
+                                variant="caption"
+                                sx={{ color: "#FFFFFF", fontSize: ".85rem" }}
+                              >
+                                Starts in
+                              </Typography>
                             </Stack>
                           </Stack>
-                        </Box>
+                        </Stack>
 
-                        {/* <Box
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          spacing={1.5}
+                          pb={2}
+                        >
+                          <Box
+                            sx={{
+                              backgroundColor: " #00071A",
+                              borderRadius: 6,
+                              minWidth: 150,
+                            }}
+                            px={2}
+                            py={1.5}
+                          >
+                            <Stack direction="column" alignItems="center">
+                              <Stack
+                                direction="row"
+                                alignItems="center"
+                                spacing={3}
+                              >
+                                <Stack direction="column" alignItems="center">
+                                  {" "}
+                                  <Typography
+                                    variant="body2"
+                                    sx={{
+                                      color: "#FFFFFF",
+                                      fontSize: "1.7rem",
+                                      fontWeight: 600,
+                                    }}
+                                  >
+                                    1
+                                  </Typography>
+                                  <Typography
+                                    variant="body2"
+                                    sx={{
+                                      color: "#FFFFFF",
+                                      fontSize: "0.85rem",
+                                      fontWeight: 600,
+                                    }}
+                                  >
+                                    Day
+                                  </Typography>
+                                </Stack>
+                                <Stack direction="column" alignItems="center">
+                                  {" "}
+                                  <Typography
+                                    variant="body2"
+                                    sx={{
+                                      color: "#FFFFFF",
+                                      fontSize: "1.7rem",
+                                      fontWeight: 600,
+                                    }}
+                                  >
+                                    12
+                                  </Typography>
+                                  <Typography
+                                    variant="body2"
+                                    sx={{
+                                      color: "#FFFFFF",
+                                      fontSize: "0.85rem",
+                                      fontWeight: 600,
+                                    }}
+                                  >
+                                    Hour
+                                  </Typography>
+                                </Stack>
+                                <Stack direction="column" alignItems="center">
+                                  {" "}
+                                  <Typography
+                                    variant="body2"
+                                    sx={{
+                                      color: "#FFFFFF",
+                                      fontSize: "1.7rem",
+                                      fontWeight: 600,
+                                    }}
+                                  >
+                                    12
+                                  </Typography>
+                                  <Typography
+                                    variant="body2"
+                                    sx={{
+                                      color: "#FFFFFF",
+                                      fontSize: "0.85rem",
+                                      fontWeight: 600,
+                                    }}
+                                  >
+                                    Min
+                                  </Typography>
+                                </Stack>
+                              </Stack>
+                            </Stack>
+                          </Box>
+
+                          {/* <Box
                     sx={{ border: "1px solid #0A0F2E", borderRadius: 4 }}
                     px={2}
                     py={1.5}
@@ -359,425 +360,437 @@ const SingleAirdropPage = () => {
                       </Stack>
                     </Stack>
                   </Box> */}
-                      </Stack>
+                        </Stack>
+                      </Box>
                     </Box>
-                  </Box>
 
-                  <Box
-                    mr={2}
-                    width="100%"
-                    sx={{
-                      backgroundColor: "#030B2F",
-                      borderRadius: 6,
-                    }}
-                  >
-                    <Box py={4}>
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        spacing={1.5}
-                      >
+                    <Box
+                      mr={2}
+                      width="100%"
+                      sx={{
+                        backgroundColor: "#030B2F",
+                        borderRadius: 6,
+                      }}
+                    >
+                      <Box py={4}>
                         <Stack
                           direction="column"
                           alignItems="center"
-                          spacing={0}
+                          spacing={1.5}
                         >
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#4E62A2",
-                              fontSize: ".85rem",
-                              fontWeight: 500,
-                            }}
+                          <Stack
+                            direction="column"
+                            alignItems="center"
+                            spacing={0}
                           >
-                            Airdrop Amount
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#FFFFFF",
-                              fontSize: "1.45rem",
-                              fontWeight: 700,
-                            }}
-                          >
-                            {airdropSinglePageDetails &&
-                              airdropSinglePageDetails?.data?.total_amount}
-                          </Typography>
-                        </Stack>
-                      </Stack>
-                    </Box>
-                  </Box>
-
-                  <Box
-                    mr={2}
-                    width="100%"
-                    sx={{
-                      backgroundColor: "#030B2F",
-                      borderRadius: 6,
-                    }}
-                  >
-                    <Box py={4}>
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        spacing={1.5}
-                      >
-                        <Stack
-                          direction="column"
-                          alignItems="center"
-                          spacing={0}
-                        >
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#4E62A2",
-                              fontSize: ".85rem",
-                              fontWeight: 500,
-                            }}
-                          >
-                            Winners
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#FFFFFF",
-                              fontSize: "1.45rem",
-                              fontWeight: 700,
-                            }}
-                          >
-                            {airdropSinglePageDetails &&
-                              airdropSinglePageDetails?.data?.no_of_winners}
-                          </Typography>
-                        </Stack>
-                      </Stack>
-                    </Box>
-                  </Box>
-
-                  <Box
-                    mr={2}
-                    width="100%"
-                    sx={{
-                      backgroundColor: "#030B2F",
-                      borderRadius: 6,
-                    }}
-                  >
-                    <Box py={4}>
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        spacing={1.5}
-                      >
-                        <Stack
-                          direction="column"
-                          alignItems="center"
-                          spacing={0}
-                        >
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#4E62A2",
-                              fontSize: ".85rem",
-                              fontWeight: 500,
-                            }}
-                          >
-                            Start Date
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#FFFFFF",
-                              fontSize: "1.45rem",
-                              fontWeight: 700,
-                            }}
-                          >
-                            {airdropSinglePageDetails &&
-                              moment(
-                                new Date(
-                                  airdropSinglePageDetails?.data?.start_date
-                                )
-                              ).format("DD MMM YYYY")}
-                          </Typography>
-                        </Stack>
-                      </Stack>
-                    </Box>
-                  </Box>
-
-                  <Box
-                    mr={2}
-                    width="100%"
-                    sx={{
-                      backgroundColor: "#030B2F",
-                      borderRadius: 6,
-                    }}
-                  >
-                    <Box py={4}>
-                      <Stack
-                        direction="column"
-                        alignItems="center"
-                        spacing={1.5}
-                      >
-                        <Stack
-                          direction="column"
-                          alignItems="center"
-                          spacing={0}
-                        >
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#4E62A2",
-                              fontSize: ".85rem",
-                              fontWeight: 500,
-                            }}
-                          >
-                            End Date
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#FFFFFF",
-                              fontSize: "1.45rem",
-                              fontWeight: 700,
-                            }}
-                          >
-                            {airdropSinglePageDetails &&
-                              moment(
-                                new Date(
-                                  airdropSinglePageDetails?.data?.start_date
-                                )
-                              )
-                                .add(
-                                  airdropSinglePageDetails?.data?.no_of_days,
-                                  "days"
-                                )
-                                .format("DD MMM YYYY")}
-                          </Typography>
-                        </Stack>
-                      </Stack>
-                    </Box>
-                  </Box>
-                </Stack>
-              </Grid>
-              <Grid item xs={12} sm={12} md={9} lg={9} xl={9} mt={3}>
-                <Stack
-                  direction="column"
-                  alignItems="flex-start"
-                  spacing={3.5}
-                  pl={{ xs: 0, sm: 0, md: 5 }}
-                >
-                  <Stack direction="column" alignItems="flex-start" spacing={1}>
-                    <Stack direction="row" spacing={2} alignItems="center">
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "#FFFFFF",
-                          fontSize: "1.7rem",
-                          fontWeight: 600,
-                        }}
-                      >
-                        {airdropSinglePageDetails &&
-                          airdropSinglePageDetails?.data?.coin_name}{" "}
-                        Airdrop
-                      </Typography>
-                      <Stack
-                        direction="column"
-                        sx={{ alignItems: "flex-end" }}
-                        spacing={0.7}
-                      >
-                        {airdropSinglePageDetails &&
-                          moment(
-                            new Date(airdropSinglePageDetails?.data?.start_date)
-                          ).isAfter(new Date()) === true && (
-                            <Chip
-                              label="Upcoming"
-                              color="primary"
+                            <Typography
+                              variant="body2"
                               sx={{
-                                backgroundColor: "#1d91b6",
-                                fontSize: "0.75rem",
-                                minWidth: 90,
+                                color: "#4E62A2",
+                                fontSize: ".85rem",
+                                fontWeight: 500,
                               }}
-                              size="medium"
-                            />
-                          )}
-                        {airdropSinglePageDetails &&
-                          moment(new Date()).isBetween(
-                            new Date(
-                              airdropSinglePageDetails?.data?.start_date
-                            ),
-                            new Date(
-                              moment(
-                                new Date(
-                                  airdropSinglePageDetails?.data?.start_date
-                                )
-                              )
-                                .add(
-                                  airdropSinglePageDetails?.data?.no_of_days,
-                                  "days"
-                                )
-                                .format("DD MMM YYYY")
-                            )
-                          ) === true && (
-                            <Chip
-                              label="Live"
-                              color="primary"
+                            >
+                              Airdrop Amount
+                            </Typography>
+                            <Typography
+                              variant="body2"
                               sx={{
-                                backgroundColor: "#299a07",
-                                fontSize: "0.75rem",
-                                minWidth: 90,
+                                color: "#FFFFFF",
+                                fontSize: "1.45rem",
+                                fontWeight: 700,
                               }}
-                              size="medium"
-                            />
-                          )}
+                            >
+                              {airdropSinglePageDetails &&
+                                airdropSinglePageDetails?.data?.total_amount}
+                            </Typography>
+                          </Stack>
+                        </Stack>
+                      </Box>
+                    </Box>
 
-                        {airdropSinglePageDetails &&
-                          moment(new Date()).isAfter(
-                            new Date(
-                              moment(
-                                new Date(
-                                  airdropSinglePageDetails?.data?.start_date
-                                )
-                              )
-                                .add(
-                                  airdropSinglePageDetails?.data?.no_of_days,
-                                  "days"
-                                )
-                                .format("DD MMM YYYY")
-                            )
-                          ) === true && (
-                            <Chip
-                              label="Expired"
-                              color="primary"
+                    <Box
+                      mr={2}
+                      width="100%"
+                      sx={{
+                        backgroundColor: "#030B2F",
+                        borderRadius: 6,
+                      }}
+                    >
+                      <Box py={4}>
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          spacing={1.5}
+                        >
+                          <Stack
+                            direction="column"
+                            alignItems="center"
+                            spacing={0}
+                          >
+                            <Typography
+                              variant="body2"
                               sx={{
-                                backgroundColor: "#c70a0a",
-                                fontSize: "0.75rem",
-                                minWidth: 90,
+                                color: "#4E62A2",
+                                fontSize: ".85rem",
+                                fontWeight: 500,
                               }}
-                              size="medium"
-                            />
-                          )}
-                      </Stack>
-                    </Stack>
+                            >
+                              Winners
+                            </Typography>
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: "#FFFFFF",
+                                fontSize: "1.45rem",
+                                fontWeight: 700,
+                              }}
+                            >
+                              {airdropSinglePageDetails &&
+                                airdropSinglePageDetails?.data?.no_of_winners}
+                            </Typography>
+                          </Stack>
+                        </Stack>
+                      </Box>
+                    </Box>
+
+                    <Box
+                      mr={2}
+                      width="100%"
+                      sx={{
+                        backgroundColor: "#030B2F",
+                        borderRadius: 6,
+                      }}
+                    >
+                      <Box py={4}>
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          spacing={1.5}
+                        >
+                          <Stack
+                            direction="column"
+                            alignItems="center"
+                            spacing={0}
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: "#4E62A2",
+                                fontSize: ".85rem",
+                                fontWeight: 500,
+                              }}
+                            >
+                              Start Date
+                            </Typography>
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: "#FFFFFF",
+                                fontSize: "1.45rem",
+                                fontWeight: 700,
+                              }}
+                            >
+                              {airdropSinglePageDetails &&
+                                moment(
+                                  new Date(
+                                    airdropSinglePageDetails?.data?.start_date
+                                  )
+                                ).format("DD MMM YYYY")}
+                            </Typography>
+                          </Stack>
+                        </Stack>
+                      </Box>
+                    </Box>
+
+                    <Box
+                      mr={2}
+                      width="100%"
+                      sx={{
+                        backgroundColor: "#030B2F",
+                        borderRadius: 6,
+                      }}
+                    >
+                      <Box py={4}>
+                        <Stack
+                          direction="column"
+                          alignItems="center"
+                          spacing={1.5}
+                        >
+                          <Stack
+                            direction="column"
+                            alignItems="center"
+                            spacing={0}
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: "#4E62A2",
+                                fontSize: ".85rem",
+                                fontWeight: 500,
+                              }}
+                            >
+                              End Date
+                            </Typography>
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: "#FFFFFF",
+                                fontSize: "1.45rem",
+                                fontWeight: 700,
+                              }}
+                            >
+                              {airdropSinglePageDetails &&
+                                moment(
+                                  new Date(
+                                    airdropSinglePageDetails?.data?.start_date
+                                  )
+                                )
+                                  .add(
+                                    airdropSinglePageDetails?.data?.no_of_days,
+                                    "days"
+                                  )
+                                  .format("DD MMM YYYY")}
+                            </Typography>
+                          </Stack>
+                        </Stack>
+                      </Box>
+                    </Box>
+                  </Stack>
+                </Grid>
+                <Grid item xs={12} sm={12} md={9} lg={9} xl={9} mt={3}>
+                  <Stack
+                    direction="column"
+                    alignItems="flex-start"
+                    spacing={3.5}
+                    pl={{ xs: 0, sm: 0, md: 5 }}
+                  >
                     <Stack
-                      direction="row"
-                      sx={{ justifyContent: "flex-start" }}
+                      direction="column"
+                      alignItems="flex-start"
                       spacing={1}
                     >
-                      <Stack
-                        direction="row"
-                        sx={{ alignItems: "center" }}
-                        spacing={2}
-                      >
+                      <Stack direction="row" spacing={2} alignItems="center">
                         <Typography
-                          variant="caption"
+                          variant="body2"
                           sx={{
-                            color: "#FB8F01",
-                            fontWeight: 500,
-                            fontSize: "1rem",
+                            color: "#FFFFFF",
+                            fontSize: "1.7rem",
+                            fontWeight: 600,
                           }}
                         >
-                          Contract Address:
+                          {airdropSinglePageDetails &&
+                            airdropSinglePageDetails?.data?.coin_name}{" "}
+                          Airdrop
                         </Typography>
-                      </Stack>
-
-                      <Stack
-                        direction={{ xs: "row", sm: "row", md: "row" }}
-                        sx={{ alignItems: "center" }}
-                        spacing={0}
-                      >
-                        {" "}
-                        <Typography
-                          variant="subtitle2"
-                          sx={{ color: "#FFFFFF", fontSize: "1rem" }}
+                        <Stack
+                          direction="column"
+                          sx={{ alignItems: "flex-end" }}
+                          spacing={0.7}
                         >
                           {airdropSinglePageDetails &&
-                            airdropSinglePageDetails?.data?.contract_address}
-                        </Typography>
-                        <CopyToClipboard
-                          options={{ message: "" }}
-                          text={copyValue}
-                          onCopy={() => setCopied(true)}
+                            moment(
+                              new Date(
+                                airdropSinglePageDetails?.data?.start_date
+                              )
+                            ).isAfter(new Date()) === true && (
+                              <Chip
+                                label="Upcoming"
+                                color="primary"
+                                sx={{
+                                  backgroundColor: "#1d91b6",
+                                  fontSize: "0.75rem",
+                                  minWidth: 90,
+                                }}
+                                size="medium"
+                              />
+                            )}
+                          {airdropSinglePageDetails &&
+                            moment(new Date()).isBetween(
+                              new Date(
+                                airdropSinglePageDetails?.data?.start_date
+                              ),
+                              new Date(
+                                moment(
+                                  new Date(
+                                    airdropSinglePageDetails?.data?.start_date
+                                  )
+                                )
+                                  .add(
+                                    airdropSinglePageDetails?.data?.no_of_days,
+                                    "days"
+                                  )
+                                  .format("DD MMM YYYY")
+                              )
+                            ) === true && (
+                              <Chip
+                                label="Live"
+                                color="primary"
+                                sx={{
+                                  backgroundColor: "#299a07",
+                                  fontSize: "0.75rem",
+                                  minWidth: 90,
+                                }}
+                                size="medium"
+                              />
+                            )}
+
+                          {airdropSinglePageDetails &&
+                            moment(new Date()).isAfter(
+                              new Date(
+                                moment(
+                                  new Date(
+                                    airdropSinglePageDetails?.data?.start_date
+                                  )
+                                )
+                                  .add(
+                                    airdropSinglePageDetails?.data?.no_of_days,
+                                    "days"
+                                  )
+                                  .format("DD MMM YYYY")
+                              )
+                            ) === true && (
+                              <Chip
+                                label="Expired"
+                                color="primary"
+                                sx={{
+                                  backgroundColor: "#c70a0a",
+                                  fontSize: "0.75rem",
+                                  minWidth: 90,
+                                }}
+                                size="medium"
+                              />
+                            )}
+                        </Stack>
+                      </Stack>
+                      <Stack
+                        direction="row"
+                        sx={{ justifyContent: "flex-start" }}
+                        spacing={1}
+                      >
+                        <Stack
+                          direction="row"
+                          sx={{ alignItems: "center" }}
+                          spacing={2}
                         >
-                          <IconButton
-                            sx={{ paddingLeft: 1 }}
-                            onClick={() => {
-                              setCopyValue(
-                                airdropSinglePageDetails &&
-                                  airdropSinglePageDetails?.data
-                                    ?.contract_address
-                              );
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: "#FB8F01",
+                              fontWeight: 500,
+                              fontSize: "1rem",
                             }}
                           >
-                            <Tooltip
-                              title={`${copied ? "Copied" : "Copy this Token"}`}
+                            Contract Address:
+                          </Typography>
+                        </Stack>
+
+                        <Stack
+                          direction={{ xs: "row", sm: "row", md: "row" }}
+                          sx={{ alignItems: "center" }}
+                          spacing={0}
+                        >
+                          {" "}
+                          <Typography
+                            variant="subtitle2"
+                            sx={{ color: "#FFFFFF", fontSize: "1rem" }}
+                          >
+                            {airdropSinglePageDetails &&
+                              airdropSinglePageDetails?.data?.contract_address}
+                          </Typography>
+                          <CopyToClipboard
+                            options={{ message: "" }}
+                            text={copyValue}
+                            onCopy={() => setCopied(true)}
+                          >
+                            <IconButton
+                              sx={{ paddingLeft: 1 }}
+                              onClick={() => {
+                                setCopyValue(
+                                  airdropSinglePageDetails &&
+                                    airdropSinglePageDetails?.data
+                                      ?.contract_address
+                                );
+                              }}
                             >
-                              <ContentCopyIcon
-                                sx={{
-                                  color: `${copied ? "#23D471" : "#75787c"}`,
-                                  fontSize: "1rem",
-                                }}
-                              />
-                            </Tooltip>
-                          </IconButton>
-                        </CopyToClipboard>
+                              <Tooltip
+                                title={`${
+                                  copied ? "Copied" : "Copy this Token"
+                                }`}
+                              >
+                                <ContentCopyIcon
+                                  sx={{
+                                    color: `${copied ? "#23D471" : "#75787c"}`,
+                                    fontSize: "1rem",
+                                  }}
+                                />
+                              </Tooltip>
+                            </IconButton>
+                          </CopyToClipboard>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" alignItems="center" spacing={1}>
+                        <Avatar
+                          alt="Remy Sharp"
+                          src="/static/images/avatar/1.jpg"
+                          sx={{ width: 25, height: 25 }}
+                        />{" "}
+                        <Avatar
+                          alt="Remy Sharp"
+                          src="/static/images/avatar/1.jpg"
+                          sx={{ width: 25, height: 25 }}
+                        />
+                        <Avatar
+                          alt="Remy Sharp"
+                          src="/static/images/avatar/1.jpg"
+                          sx={{ width: 25, height: 25 }}
+                        />
+                        <Avatar
+                          alt="Remy Sharp"
+                          src="/static/images/avatar/1.jpg"
+                          sx={{ width: 25, height: 25 }}
+                        />
+                        <Avatar
+                          alt="Remy Sharp"
+                          src="/static/images/avatar/1.jpg"
+                          sx={{ width: 25, height: 25 }}
+                        />
                       </Stack>
                     </Stack>
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                      <Avatar
-                        alt="Remy Sharp"
-                        src="/static/images/avatar/1.jpg"
-                        sx={{ width: 25, height: 25 }}
-                      />{" "}
-                      <Avatar
-                        alt="Remy Sharp"
-                        src="/static/images/avatar/1.jpg"
-                        sx={{ width: 25, height: 25 }}
-                      />
-                      <Avatar
-                        alt="Remy Sharp"
-                        src="/static/images/avatar/1.jpg"
-                        sx={{ width: 25, height: 25 }}
-                      />
-                      <Avatar
-                        alt="Remy Sharp"
-                        src="/static/images/avatar/1.jpg"
-                        sx={{ width: 25, height: 25 }}
-                      />
-                      <Avatar
-                        alt="Remy Sharp"
-                        src="/static/images/avatar/1.jpg"
-                        sx={{ width: 25, height: 25 }}
-                      />
-                    </Stack>
-                  </Stack>
 
-                  <Stack direction="column" alignItems="flex-start" spacing={3}>
-                    <Stack direction="column" spacing={1.5}>
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "#cfcfcf",
-                          fontSize: "0.9rem",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Airdrop Details
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "#cfcfcf",
-                          fontSize: "0.85rem",
-                          fontWeight: 400,
-                        }}
-                      >
-                        text
-                      </Typography>
+                    <Stack
+                      direction="column"
+                      alignItems="flex-start"
+                      spacing={3}
+                    >
+                      <Stack direction="column" spacing={1.5}>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#cfcfcf",
+                            fontSize: "0.9rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          Airdrop Details
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#cfcfcf",
+                            fontSize: "0.85rem",
+                            fontWeight: 400,
+                          }}
+                        >
+                          text
+                        </Typography>
+                      </Stack>
                     </Stack>
                   </Stack>
-                </Stack>
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
-        }
+          )}
       </Grid>
     </Fragment>
   );

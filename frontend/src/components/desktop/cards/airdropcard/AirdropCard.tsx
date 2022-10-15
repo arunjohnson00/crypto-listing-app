@@ -35,7 +35,7 @@ const AirdropCard = ({ data, index }: any) => {
   return (
     <Link
       to={{
-        pathname: `/airdrops/${data?.id}`,
+        pathname: `/airdrops/${data?.slug}`,
       }}
       target="_blank"
       state={{ coin_id: data?.coin_id }}

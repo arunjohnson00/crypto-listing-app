@@ -14,7 +14,7 @@ import Marquee from "react-fast-marquee";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import { useDispatch, useSelector } from "react-redux";
-
+import { Helmet } from "react-helmet";
 import FullWidthSlider from "../../../components/mobile/slider/fullwidthslider/FullWidthSlider";
 import UpcomingAmaCard from "../../../components/mobile/cards/upcomingcard/UpcomingCard";
 import MobileIconMenuCard from "../../../components/mobile/cards/iconmenucard/MobileIconMenuCard";
@@ -279,6 +279,17 @@ const MobileHomePage = () => {
 
   return (
     <Grid container rowSpacing={2}>
+      <Helmet>
+        <title>
+          {" "}
+          Coin Vote, Crypto Events, NFT & Airdrop listing Platform for your
+          favourite Crypto projects.
+        </title>
+        <meta
+          name="description"
+          content="CoinxHigh is the world's most prominent community-based platform for Crypto listing, Crypto events listing, NFT Listing, Crypto airdrop listing and more."
+        />
+      </Helmet>
       <Grid item xs={12}>
         <MobileLatestNewsCardScrollTop />
       </Grid>
@@ -694,15 +705,15 @@ const MobileHomePage = () => {
             variant="h5"
             sx={{ fontWeight: "600", color: "#FFFFF5", textAlign: "center" }}
           >
-            Find a better Card deal in few easy steps
+            Explore the crypto world.
           </Typography>
           <Typography
             variant="body2"
             sx={{ fontWeight: "500", color: "#93949C", textAlign: "center" }}
           >
-            Bitcoin attempted a recovery wave above $32,000 against the US
-            Dollar. BTC is struggling and remains at a risk of more losses below
-            $30,000.
+            Discover Latest Crypto Events, NFT's, Airdrops etc. Connect your
+            brand and grow your audience with our community of crypto and
+            blockchain enthusiasts around the world.
           </Typography>
           <Typography
             variant="h6"

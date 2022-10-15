@@ -8,6 +8,7 @@ import {
   Divider,
   Avatar,
 } from "@mui/material";
+import { Helmet } from "react-helmet";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Carousel from "react-multi-carousel";
@@ -63,7 +64,9 @@ const SingleCoinPage = () => {
   const latestCoin = useSelector((data: any) => {
     return data?.coinReducer?.recently_added?.data;
   });
-
+  const coinDetailOverview = useSelector((data: any) => {
+    return data?.coinReducer?.coin_overview_block?.data;
+  });
   const location: any = useLocation();
   const dispatch: any = useDispatch();
   const navigate: any = useNavigate();
@@ -136,6 +139,54 @@ const SingleCoinPage = () => {
 
   return (
     <Fragment>
+      <Helmet>
+        <title>
+          {`${
+            coinDetailFirstBlock &&
+            coinDetailFirstBlock !== undefined &&
+            coinDetailFirstBlock[0]?.name
+          }
+          (
+          $${
+            coinDetailFirstBlock &&
+            coinDetailFirstBlock !== undefined &&
+            coinDetailFirstBlock[0]?.symbol
+          }
+          ) Today's Price, Votes, Overview, Ratings, Historical Data, Faq,
+          Socials, News & More.`}
+        </title>
+        <meta
+          name="description"
+          content={`The live $${
+            coinDetailFirstBlock &&
+            coinDetailFirstBlock !== undefined &&
+            coinDetailFirstBlock[0]?.symbol
+          } price today is ${
+            coinDetailFirstBlock &&
+            coinDetailFirstBlock !== undefined &&
+            coinDetailFirstBlock[0]?.current_price
+          } USD with a 24-hour trading volume of $${
+            coinDetailOverview && coinDetailOverview[0]?.volume_24h
+          } USD. We update our BNB to USD price in real-time. BNB is ${
+            coinDetailOverview &&
+            coinDetailOverview[0]?.percent_change_24h !== null &&
+            Math.sign(parseFloat(coinDetailOverview[0]?.percent_change_24h)) ===
+              -1
+              ? "Down "
+              : coinDetailOverview &&
+                coinDetailOverview[0]?.percent_change_24h !== null &&
+                "Up "
+          } ${
+            coinDetailOverview &&
+            coinDetailOverview[0]?.percent_change_24h !== null &&
+            coinDetailOverview[0]?.percent_change_24h !== ""
+              ? parseFloat(coinDetailOverview[0]?.percent_change_24h)
+                  .toFixed(2)
+                  .replace("-", "") + "%"
+              : "--"
+          } ...`}
+        />
+      </Helmet>
       <Grid container px={0} pt={5}>
         {/* <Grid xs={12}>
           <LatestNewsScroll />

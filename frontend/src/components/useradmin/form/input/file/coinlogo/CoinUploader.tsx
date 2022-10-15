@@ -5,7 +5,7 @@ import Link from "@mui/material/Link";
 import { useDropzone } from "react-dropzone";
 import { useStyles } from "./style";
 import ImageIcon from "@mui/icons-material/Image";
-const CoinUploader = ({ addIconData, setAddIcon, image }: any) => {
+const CoinUploader = ({ addIconData, setAddIcon, image, title }: any) => {
   const classes = useStyles();
 
   const onDrop: any = useCallback(
@@ -54,11 +54,11 @@ const CoinUploader = ({ addIconData, setAddIcon, image }: any) => {
             fileRejectionItems.length === 0 ? (
               <>
                 <Typography variant="subtitle2" sx={{ color: "#818181e8" }}>
-                  Drop your logo here, or
+                  Drop your {title && title} here, or
                   <Link underline="none">{" Browse"}</Link>
                 </Typography>
                 <Typography variant="caption" sx={{ color: "#818181e8" }}>
-                  (Supports JPEG, PNG, GIF - 200w x 200h)
+                  (Supports JPEG, PNG, GIF )
                 </Typography>
               </>
             ) : (
@@ -76,11 +76,11 @@ const CoinUploader = ({ addIconData, setAddIcon, image }: any) => {
             ) : (
               <>
                 <Typography variant="subtitle2">
-                  Drop your logo here, or
+                  Drop your {title && title} here, or
                   <Link underline="none">{" Browse"}</Link>
                 </Typography>
                 <Typography variant="caption">
-                  (Supports JPEG, PNG, GIF - 200w x 200h)
+                  (Supports JPEG, PNG, GIF )
                 </Typography>
               </>
             )}

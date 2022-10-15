@@ -44,7 +44,7 @@ const CryptoEventsCardSlider = ({ data, variant }: any) => {
             <Avatar
               sx={{ width: 50, height: 50, mt: 1 }}
               variant="square"
-              src={`${serverAPIUrl}public/uploads/coin_logo/${data?.coin_logo}`}
+              src={`${serverAPIUrl}public/uploads/event_proof/${data?.coin_logo}`}
               alt={data && data?.title}
             />
             <Stack direction="column" spacing={0.8} width="100%">

@@ -32,6 +32,7 @@ const InputSelectMultiple = ({
   getInputSelectMultiplevalue,
   name,
   serverMultiRef,
+  title,
 }: any) => {
   const [serverValue, setServerValue] = useState<any>({});
   const matches = useMediaQuery("(min-width:900px)");
@@ -150,7 +151,7 @@ const InputSelectMultiple = ({
                 ))
             ) : (
               <span style={{ color: "#525562", fontWeight: 400 }}>
-                Choose a category
+                {title ? title : "Choose a category"}
               </span>
             )}
           </Box>

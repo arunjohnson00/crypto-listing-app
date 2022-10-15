@@ -36,6 +36,7 @@ const SocialNFTDetails = ({
             data={data}
             height={40}
             width={300}
+            title="Select website"
           />
         </Grid>
         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -52,7 +53,7 @@ const SocialNFTDetails = ({
             Social URL {index + 2}
           </Typography>
           <InputText
-            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            placeholder="Enter social url"
             name={`social_url[${index + 2}]`}
             id={`social_url_${index + 2}`}
           />

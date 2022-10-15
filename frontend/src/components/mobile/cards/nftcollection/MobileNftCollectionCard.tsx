@@ -135,7 +135,11 @@ const MobileNftCollectionCard = ({ data, index }: any) => {
               <Avatar
                 variant="square"
                 alt={data && data?.name}
-                src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
+                src={`${serverAPIUrl}public/uploads/network_icons/${
+                  data?.network_icon !== undefined
+                    ? data?.network_icon
+                    : data?.network_logo !== undefined && data?.network_logo
+                }`}
                 //src="https://mui.com/static/images/avatar/1.jpg"
                 sx={{ width: 22, height: 22 }}
               />

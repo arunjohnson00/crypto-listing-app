@@ -353,24 +353,37 @@ const NFTListingAdd = () => {
           <Stack
             direction={{ xs: "row", sm: "row", md: "row" }}
             spacing={1}
-            sx={{ alignItems: "flex-start", justifyContent: "flex-start" }}
-            px={2}
+            sx={{ alignItems: "center", justifyContent: "flex-start" }}
+            px={0}
             pt={3}
           >
-            {/* <IconButton>
+            <IconButton>
               <ArrowBackIosTwoToneIcon
                 onClick={() => {
-                  navigate("/nft-listing");
+                  navigate("/user-dashboard");
                 }}
+                sx={{ color: "#FFFFFF" }}
               />
-            </IconButton> */}
-
-            <Typography
-              variant="h5"
-              sx={{ textAlign: "left", color: "#FFFFFF" }}
+            </IconButton>
+            <Stack
+              direction={{ xs: "column" }}
+              spacing={0}
+              sx={{ alignItems: "flex-start", justifyContent: "flex-start" }}
             >
-              Add Nft
-            </Typography>
+              <Typography
+                variant="h6"
+                sx={{ textAlign: "left", color: "#FFFFFF" }}
+              >
+                SUBMIT YOUR NFT PROJECT
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{ textAlign: "left", color: "#FFFFFF" }}
+              >
+                In this page you can submit your NFT project, please make sure
+                to upload all info as showing below.
+              </Typography>
+            </Stack>
           </Stack>
         </Grid>
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12} spacing={0}>
@@ -393,15 +406,20 @@ const NFTListingAdd = () => {
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={3}>
                     <Typography
                       variant="h6"
-                      sx={{ textAlign: "left", color: "#D7DADB" }}
+                      sx={{
+                        textAlign: "left",
+                        fontSize: ".9rem",
+                        fontWeight: 600,
+                        color: "#13C086",
+                      }}
                       mb={2}
                     >
-                      Event Title
+                      NFT Title
                     </Typography>
 
                     <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
                       <InputText
-                        placeholder="Eg: 09s8jgggffffay63733773"
+                        placeholder="Eg: Bored Ape"
                         id="title"
                         name="title"
                         width="auto"
@@ -412,15 +430,20 @@ const NFTListingAdd = () => {
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={3}>
                     <Typography
                       variant="h6"
-                      sx={{ textAlign: "left", color: "#D7DADB" }}
+                      sx={{
+                        textAlign: "left",
+                        fontSize: ".9rem",
+                        fontWeight: 600,
+                        color: "#13C086",
+                      }}
                       mb={2}
                     >
-                      Event Description
+                      NFT Description
                     </Typography>
 
                     <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
                       <InputTextArea
-                        placeholder="Eg: 09s8jgggffffay63733773"
+                        placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."
                         name="description"
                       />
                     </Grid>
@@ -430,16 +453,22 @@ const NFTListingAdd = () => {
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={3}>
                       <Typography
                         variant="h6"
-                        sx={{ textAlign: "left", color: "#D7DADB" }}
+                        sx={{
+                          textAlign: "left",
+                          fontSize: ".9rem",
+                          fontWeight: 600,
+                          color: "#13C086",
+                        }}
                         mb={2}
                       >
-                        Event Image
+                        NFT Image
                       </Typography>
 
                       <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
                         <CoinUploader
                           name="image"
                           id="image"
+                          title="NFT Image"
                           setAddIcon={setCoinLogo}
                           addIconData={addCoinLogo}
                         />
@@ -462,6 +491,7 @@ const NFTListingAdd = () => {
 
                       <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
                         <InputSelectCoin
+                          title="Select currency"
                           name="currancy_id"
                           data={nftListingCurrencyList}
                           height={40}
@@ -486,7 +516,7 @@ const NFTListingAdd = () => {
 
                       <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
                         <InputText
-                          placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                          placeholder="Eg: 1000000"
                           name="max_num_items"
                           id="max_num_items"
                           // width="auto"
@@ -526,6 +556,7 @@ const NFTListingAdd = () => {
 
                       <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
                         <InputSelectMultiple
+                          title="Select categories"
                           setInputSelectMultipleValue={setEventCategoryMultiple}
                           getInputSelectMultiplevalue={eventCategoryMultiple}
                           selectOptions={nftListingCategoryList}
@@ -540,7 +571,7 @@ const NFTListingAdd = () => {
                       sx={{ textAlign: "left", color: "#D7DADB" }}
                       mb={2}
                     >
-                      Select Event MarketPlace
+                      Select NFT MarketPlace
                     </Typography>
 
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -567,6 +598,7 @@ const NFTListingAdd = () => {
                             id="marketplace_id_1"
                             data={nftMarketPlaceList}
                             height={40}
+                            title="Select MarketPlace"
                           />
                         </Grid>
                         <Grid item xl={5} lg={5} md={5} sm={5} xs={12}>
@@ -583,7 +615,7 @@ const NFTListingAdd = () => {
                             Marketplace URL
                           </Typography>
                           <InputText
-                            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                            placeholder="Enter NFT Marketplace url"
                             name="marketplace_url[1]"
                             id="marketplace_url_1"
                             // width="auto"
@@ -643,7 +675,7 @@ const NFTListingAdd = () => {
                       fontWeight: 600,
                       color: "#13C086",
                     }}
-                    mt={5}
+                    mt={2}
                   >
                     Presale start date time
                   </Typography>
@@ -804,7 +836,7 @@ const NFTListingAdd = () => {
                       }}
                       mt={2}
                     >
-                      Presale end date time
+                      Public mint end date time
                     </Typography>
                     <Stack
                       direction={{ xs: "column", sm: "column", md: "row" }}
@@ -882,21 +914,33 @@ const NFTListingAdd = () => {
                   </Stack>
                 </Grid>{" "}
               </Grid>
-              <Grid item xl={3} lg={3} md={3} sm={12} xs={12}>
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    textAlign: "left",
-                    fontSize: ".9rem",
-                    fontWeight: 600,
-                    marginleft: 0,
-                    color: "#13C086",
-                  }}
-                  mt={5}
-                  mb={1}
-                >
-                  NFT Network
-                </Typography>
+              <Grid item xl={3} lg={3} md={3} sm={12} xs={12} mt={5}>
+                <Stack direction="column" spacing={0} mb={2}>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                      marginleft: 0,
+                      color: "#13C086",
+                    }}
+                  >
+                    What is your collection's blockchain?
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      textAlign: "left",
+                      // fontSize: ".6rem",
+                      fontWeight: 400,
+                      marginleft: 0,
+                      color: "#FFFFFF",
+                    }}
+                  >
+                    ( If you don't know, it's likely Ethereum )
+                  </Typography>
+                </Stack>
                 <Box maxWidth="300px">
                   <InputSelectCoin
                     name="nft_network_id"
@@ -904,6 +948,7 @@ const NFTListingAdd = () => {
                     data={allNFTNetwork}
                     height={40}
                     varient="nft_network"
+                    title="Select a coin"
                   />
                 </Box>
               </Grid>
@@ -936,7 +981,7 @@ const NFTListingAdd = () => {
                         Pre-Sale Mint Price
                       </Typography>
                       <InputText
-                        placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                        placeholder="Eg: 7"
                         name="pre_sale_mint_price"
                         id="pre_sale_mint_price"
                         // width="auto"
@@ -978,7 +1023,7 @@ const NFTListingAdd = () => {
                         Public Mint Price
                       </Typography>
                       <InputText
-                        placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                        placeholder="Eg: 7"
                         name="public_mint_price"
                         id="public_mint_price"
                         // width="auto"
@@ -1030,7 +1075,7 @@ const NFTListingAdd = () => {
                       sx={{ textAlign: "left", color: "#b4b4b4" }}
                       mb={2}
                     >
-                      Please provide information about NFT.
+                      Please provide NFT community details
                     </Typography>
                   </Grid>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -1052,7 +1097,7 @@ const NFTListingAdd = () => {
                           Website URL
                         </Typography>
                         <InputText
-                          placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                          placeholder="Enter official website url"
                           name="community_website_url[1]"
                           id="community_website_url_1"
                         />
@@ -1207,14 +1252,14 @@ const NFTListingAdd = () => {
                       sx={{ textAlign: "left", color: "#D7DADB" }}
                       mb={0}
                     >
-                      Socials
+                      Social Details
                     </Typography>
                     <Typography
                       variant="caption"
                       sx={{ textAlign: "left", color: "#b4b4b4" }}
                       mb={2}
                     >
-                      Please provide information about NFT.
+                      Enter official website url
                     </Typography>
                   </Grid>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -1240,6 +1285,7 @@ const NFTListingAdd = () => {
                           id="social_platform_id_1"
                           data={nftSocialList}
                           height={40}
+                          title="Select website"
                         />
                       </Grid>
                       <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -1256,7 +1302,7 @@ const NFTListingAdd = () => {
                           Social URL
                         </Typography>
                         <InputText
-                          placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                          placeholder="Enter social url"
                           name="social_url[1]"
                           id="social_url_1"
                         />
@@ -1409,7 +1455,7 @@ const NFTListingAdd = () => {
                     </LoadingButton>
                   ) : (
                     <LargeBtn
-                      Title="Add new NFT"
+                      Title="Submit your NFT"
                       lgBtnHandler={nftListingAddHandler}
                     />
                   )}

@@ -18,7 +18,7 @@ import Marquee from "react-fast-marquee";
 import { Preloader, Oval, ThreeDots } from "react-preloader-icon";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
+import { Helmet } from "react-helmet";
 import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
 import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
 import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
@@ -261,6 +261,17 @@ const HomePage = ({ windowInnerWidth }: any) => {
 
   return (
     <Fragment>
+      <Helmet>
+        <title>
+          {" "}
+          Coin Vote, Crypto Events, NFT & Airdrop listing Platform for your
+          favourite Crypto projects.
+        </title>
+        <meta
+          name="description"
+          content="CoinxHigh is the world's most prominent community-based platform for Crypto listing, Crypto events listing, NFT Listing, Crypto airdrop listing and more."
+        />
+      </Helmet>
       <Grid container rowSpacing={2}>
         {preLoader === true && (
           <Backdrop
