@@ -19,7 +19,7 @@ const FearAndGreedcard = ({ width, size, height }: any) => {
   }, [dispatch]);
   console.log(fearGreedIndex);
   return (
-    <Link to="/fear-greed-index">
+    <Link to="/fear-greed-index" style={{ textDecoration: "none" }}>
       <Fragment>
         {fearGreedIndex && fearGreedIndex?.data[0] && (
           <Box
