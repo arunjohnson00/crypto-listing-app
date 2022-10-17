@@ -41,7 +41,7 @@ const MobileMenuCards = ({
                 {" "}
                 <Typography
                   variant="h6"
-                  sx={{ color: "#BDBAC5", fontWeight: "", textAlign: "center" }}
+                  sx={{ color: "#BDBAC5", fontWeight: "", textAlign: "left" }}
                 >
                   {title && title?.length >= 21
                     ? title && title?.slice(0, 19) + "..."
@@ -50,7 +50,7 @@ const MobileMenuCards = ({
               </a>
               <Typography
                 variant="caption"
-                sx={{ color: "#787786", fontWeight: "", textAlign: "center" }}
+                sx={{ color: "#787786", fontWeight: "", textAlign: "left" }}
               >
                 {sub_title && sub_title}
               </Typography>

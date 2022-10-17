@@ -90,7 +90,11 @@ const IconUploader = ({
             ) : (
               acceptedFileItems.length > 0 && (
                 <span className={classes.fileAccepted}>
-                  {acceptedFileItems}
+                  {acceptedFileItems && acceptedFileItems.length > 0
+                    ? URL.createObjectURL(acceptedFiles[0]).slice(0, 10) +
+                      "..." +
+                      URL.createObjectURL(acceptedFiles[0]).slice(-10)
+                    : acceptedFileItems}
                 </span>
               )
             )}

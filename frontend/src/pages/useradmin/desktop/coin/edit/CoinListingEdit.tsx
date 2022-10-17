@@ -676,7 +676,15 @@ const CoinListingEdit = () => {
                 </Grid>
               </Grid>
               <Grid item xl={7} lg={7} md={7} sm={7} xs={12}>
-                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+                <Grid
+                  item
+                  xl={12}
+                  lg={12}
+                  md={12}
+                  sm={12}
+                  xs={12}
+                  pt={{ xs: 3, sm: 3, md: 0 }}
+                >
                   <Typography
                     variant="subtitle1"
                     sx={{
@@ -880,7 +888,7 @@ const CoinListingEdit = () => {
                         }}
                         mb={1}
                       >
-                        Marketap (Optional)
+                        Marketcap (Optional)
                       </Typography>
 
                       <InputText

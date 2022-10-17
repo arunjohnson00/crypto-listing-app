@@ -41,14 +41,14 @@ const MenuCards = ({
               {" "}
               <Typography
                 variant="h6"
-                sx={{ color: "#BDBAC5", fontWeight: "", textAlign: "center" }}
+                sx={{ color: "#BDBAC5", fontWeight: "", textAlign: "left" }}
               >
                 {title && title}
               </Typography>
             </a>
             <Typography
               variant="caption"
-              sx={{ color: "#787786", fontWeight: "", textAlign: "center" }}
+              sx={{ color: "#787786", fontWeight: "", textAlign: "left" }}
             >
               {sub_title && sub_title}
             </Typography>

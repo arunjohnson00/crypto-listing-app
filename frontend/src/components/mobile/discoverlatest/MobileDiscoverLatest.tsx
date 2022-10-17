@@ -26,7 +26,7 @@ const MobileDiscoverLatest = () => {
           <MobileDiscoverLatestGaindLosers />
           <MobileDiscoverLatestAirDrops />
           <MobileDiscoverLatestEvents />
-          <MobileDiscoverLatestAma />
+          {/* <MobileDiscoverLatestAma /> */}
           {/* <DiscoverLatestNft /> */}
         </Stack>
       </Grid>

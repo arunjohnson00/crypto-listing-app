@@ -179,6 +179,7 @@ const responsiveNFT: any = {
 };
 
 const MobileHomePage = () => {
+  const dispatch: any = useDispatch();
   const [tableData, setTableData] = useState<any>();
   const [preLoader, setPreLoader] = useState<any>({
     featured_coin_list: true,
@@ -197,7 +198,7 @@ const MobileHomePage = () => {
   const videoList = useSelector((data: any) => {
     return data?.homeReducer?.video_list?.data?.data;
   });
-  const dispatch: any = useDispatch();
+
   const featuredCoinList = useSelector((data: any) => {
     return data?.homeReducer?.featured_coin_list?.data;
   });
@@ -325,12 +326,17 @@ const MobileHomePage = () => {
           <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
             Featured Coin
           </Typography>
-          <Typography
-            variant="body2"
-            sx={{ color: "#424798", fontWeight: "bold" }}
+          <Link
+            to="/featured-coin"
+            style={{ textDecoration: "none", color: "inherit" }}
           >
-            View
-          </Typography>
+            <Typography
+              variant="body2"
+              sx={{ color: "#424798", fontWeight: "bold" }}
+            >
+              View
+            </Typography>
+          </Link>
         </Stack>
       </Grid>
 
@@ -368,12 +374,17 @@ const MobileHomePage = () => {
           <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
             Upcoming Events
           </Typography>
-          <Typography
-            variant="body2"
-            sx={{ color: "#424798", fontWeight: "bold" }}
+          <Link
+            to="/crypto-events"
+            style={{ textDecoration: "none", color: "inherit" }}
           >
-            View
-          </Typography>
+            <Typography
+              variant="body2"
+              sx={{ color: "#424798", fontWeight: "bold" }}
+            >
+              View
+            </Typography>
+          </Link>
         </Stack>
       </Grid>
 
@@ -476,12 +487,17 @@ const MobileHomePage = () => {
           <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
             Videos
           </Typography>
-          <Typography
-            variant="body2"
-            sx={{ color: "#424798", fontWeight: "bold" }}
+          <Link
+            to="/videos"
+            style={{ textDecoration: "none", color: "inherit" }}
           >
-            View
-          </Typography>
+            <Typography
+              variant="body2"
+              sx={{ color: "#424798", fontWeight: "bold" }}
+            >
+              View
+            </Typography>
+          </Link>
         </Stack>
       </Grid>
 
@@ -649,7 +665,9 @@ const MobileHomePage = () => {
             justifyContent: " flex-end",
           }}
         >
-          <MobileViewMoreBtn title="View more" />
+          <Link to="/nft" style={{ textDecoration: "none" }}>
+            <MobileViewMoreBtn title="View more" />
+          </Link>
         </Stack>
       </Grid>
 
@@ -734,8 +752,9 @@ const MobileHomePage = () => {
             arrows={false}
             swipeable={true}
             partialVisible={true}
-            autoPlay={false}
+            autoPlay={true}
             draggable={true}
+            autoPlaySpeed={4000}
           >
             {menuCards &&
               menuCards?.map((item: any, index: any) => (

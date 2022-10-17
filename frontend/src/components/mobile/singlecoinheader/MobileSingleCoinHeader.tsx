@@ -76,6 +76,7 @@ import {
 } from "../../../store/action/coinAction ";
 import MobileSocialCounterWithGraphCard from "../cards/socialcounterwithgraphcard/MobileSocialCounterWithGraphCard";
 import MobileAnimatedRating from "../animatedrating/MobileAnimatedRating";
+import VotePopupAds from "../../ads/votepopupads/VotePopupAds";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileSingleCoinHeader = ({ coinData }: any) => {
@@ -811,13 +812,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                             theme="dark"
                           />
 
-                          <CardMedia
-                            component="img"
-                            height="auto"
-                            image="https://coindcx.com/blog/wp-content/uploads/2022/02/image-3-1000x600.png"
-                            alt="green iguana"
-                            sx={{ objectFit: "unset", borderRadius: 0 }}
-                          />
+                          <VotePopupAds />
 
                           <Button
                             variant="contained"

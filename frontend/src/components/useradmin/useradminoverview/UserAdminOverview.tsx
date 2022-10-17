@@ -17,6 +17,7 @@ import AddAirdropIcon from "../../../assets/userdashboard/add-airdrop.png";
 import TelegramIcon from "../../../assets/userdashboard/telegram.png";
 import TwitterIcon from "../../../assets/userdashboard/twitter.png";
 import AdsImage from "../../../assets/userdashboard/ads.png";
+import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import { Link } from "react-router-dom";
 
 const UserAdminOverview = () => {
@@ -434,16 +435,22 @@ const UserAdminOverview = () => {
                 src={TelegramIcon}
                 sx={{ width: 16, height: 16 }}
               />
-
-              <Typography
-                sx={{
-                  fontSize: ".75rem",
-                  fontWeight: 500,
-                  color: "#FFFFFF",
-                }}
+              <a
+                href="https://t.me/coinXhigh_admin"
+                target="_blank"
+                rel="noreferrer"
+                style={{ textDecoration: "none" }}
               >
-                Connect With Admin
-              </Typography>
+                <Typography
+                  sx={{
+                    fontSize: ".75rem",
+                    fontWeight: 500,
+                    color: "#FFFFFF",
+                  }}
+                >
+                  Connect With Admin
+                </Typography>
+              </a>
             </Stack>
 
             <Stack direction="row" spacing={1} alignItems="center">
@@ -452,33 +459,46 @@ const UserAdminOverview = () => {
                 src={TelegramIcon}
                 sx={{ width: 16, height: 16 }}
               />
-
-              <Typography
-                sx={{
-                  fontSize: ".75rem",
-                  fontWeight: 500,
-                  color: "#FFFFFF",
-                }}
+              <a
+                href="https://t.me/coinXhigh"
+                target="_blank"
+                rel="noreferrer"
+                style={{ textDecoration: "none" }}
               >
-                Official Telegram
-              </Typography>
+                <Typography
+                  sx={{
+                    fontSize: ".75rem",
+                    fontWeight: 500,
+                    color: "#FFFFFF",
+                  }}
+                >
+                  Official Telegram
+                </Typography>
+              </a>
             </Stack>
             <Stack direction="row" spacing={1} alignItems="center">
-              <Avatar
+              {/* <Avatar
                 alt="Twitter"
                 src={TwitterIcon}
                 sx={{ width: 16, height: 16 }}
-              />
-
-              <Typography
-                sx={{
-                  fontSize: ".75rem",
-                  fontWeight: 500,
-                  color: "#FFFFFF",
-                }}
+              /> */}
+              <EmailRoundedIcon sx={{ color: "#039BE5", fontSize: "1.1rem" }} />
+              <a
+                href="mailto:support@coinxhigh.com"
+                target="_blank"
+                rel="noreferrer"
+                style={{ textDecoration: "none" }}
               >
-                Official Twitter
-              </Typography>
+                <Typography
+                  sx={{
+                    fontSize: ".75rem",
+                    fontWeight: 500,
+                    color: "#FFFFFF",
+                  }}
+                >
+                  Official Email
+                </Typography>
+              </a>
             </Stack>
           </Stack>
         </Stack>

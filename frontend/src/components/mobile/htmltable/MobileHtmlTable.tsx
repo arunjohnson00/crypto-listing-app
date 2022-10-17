@@ -35,6 +35,7 @@ import { coinVoteRequest } from "../../../store/action";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { defaultColor } from "../../../common/common";
 import "./style.css";
+import VotePopupAds from "../../ads/votepopupads/VotePopupAds";
 
 const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
@@ -571,14 +572,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                                     }}
                                   />
 
-                                  <CardMedia
-                                    component="img"
-                                    height="auto"
-                                    image="https://coindcx.com/blog/wp-content/uploads/2022/02/image-3-1000x600.png"
-                                    alt="green iguana"
-                                    sx={{ objectFit: "unset", borderRadius: 0 }}
-                                  />
-
+                                  <VotePopupAds />
                                   <Button
                                     variant="contained"
                                     sx={{

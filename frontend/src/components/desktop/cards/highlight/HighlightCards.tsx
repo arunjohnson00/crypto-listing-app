@@ -8,8 +8,9 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import HorizontalRuleRoundedIcon from "@mui/icons-material/HorizontalRuleRounded";
 import { defaultColor } from "../../../../common/common";
+import moment from "moment";
 
-const HighlightCards = ({ title, cardData, icon }: any) => {
+const HighlightCards = ({ title, cardData, icon, variant }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
   const responsiveHighlights = {
     superLargeDesktop: {
@@ -140,7 +141,7 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                 sx={{ alignItems: "center", justifyContent: "space-between" }}
                 height={33}
               >
-                <Grid item xs={10}>
+                <Grid item xs={9}>
                   <Stack
                     direction="row"
                     sx={{ alignItems: "center" }}
@@ -210,42 +211,63 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                     </Stack>
                   </Stack>
                 </Grid>
-                <Grid item xs={2}>
-                  <Stack
-                    direction="row"
-                    sx={{ alignItems: "center", justifyContent: "flex-end" }}
-                    spacing={0}
-                  >
-                    {data &&
-                    data?.percent_change !== null &&
-                    Math.sign(parseInt(data?.percent_change)) === -1 ? (
-                      <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                    ) : (
-                      data?.percent_change !== null && (
-                        <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                      )
-                    )}
-                    <Typography
-                      variant="caption"
-                      sx={{
-                        color:
-                          Math.sign(parseInt(data?.percent_change)) === -1
-                            ? "#ff0000"
-                            : "#00ff00",
-                        fontWeight: "600",
-                      }}
+                <Grid item xs={3}>
+                  {variant === "recently_added" ? (
+                    <Stack
+                      direction="row"
+                      sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                      spacing={0}
+                    >
+                      {" "}
+                      <Typography
+                        sx={{
+                          color: "#4982e7",
+                          fontWeight: "400",
+                          fontSize: ".75rem",
+                        }}
+                      >
+                        {data &&
+                          moment(new Date(data?.listed)).format("DD-MMM-YYYY")}
+                      </Typography>
+                    </Stack>
+                  ) : (
+                    <Stack
+                      direction="row"
+                      sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                      spacing={0}
                     >
                       {data &&
                       data?.percent_change !== null &&
-                      data?.percent_change !== "" ? (
-                        parseInt(data?.percent_change)
-                          .toFixed(2)
-                          .replace("-", "") + "%"
+                      Math.sign(parseInt(data?.percent_change)) === -1 ? (
+                        <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                       ) : (
-                        <span style={{ color: "#7a7a7a" }}>--</span>
+                        data?.percent_change !== null && (
+                          <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                        )
                       )}
-                    </Typography>
-                  </Stack>
+
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          color:
+                            Math.sign(parseInt(data?.percent_change)) === -1
+                              ? "#ff0000"
+                              : "#00ff00",
+                          fontWeight: "600",
+                        }}
+                      >
+                        {data &&
+                        data?.percent_change !== null &&
+                        data?.percent_change !== "" ? (
+                          parseInt(data?.percent_change)
+                            .toFixed(2)
+                            .replace("-", "") + "%"
+                        ) : (
+                          <span style={{ color: "#7a7a7a" }}>--</span>
+                        )}
+                      </Typography>
+                    </Stack>
+                  )}
                 </Grid>
               </Stack>
             ))}
@@ -260,7 +282,7 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                 sx={{ alignItems: "center", justifyContent: "space-between" }}
                 height={33}
               >
-                <Grid item xs={10}>
+                <Grid item xs={9}>
                   <Stack
                     direction="row"
                     sx={{ alignItems: "center" }}
@@ -330,42 +352,63 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                     </Stack>
                   </Stack>
                 </Grid>
-                <Grid item xs={2}>
-                  <Stack
-                    direction="row"
-                    sx={{ alignItems: "center", justifyContent: "flex-end" }}
-                    spacing={0}
-                  >
-                    {data &&
-                    data?.percent_change !== null &&
-                    Math.sign(parseInt(data?.percent_change)) === -1 ? (
-                      <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                    ) : (
-                      data?.percent_change !== null && (
-                        <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                      )
-                    )}
-                    <Typography
-                      variant="caption"
-                      sx={{
-                        color:
-                          Math.sign(parseInt(data?.percent_change)) === -1
-                            ? "#ff0000"
-                            : "#00ff00",
-                        fontWeight: "600",
-                      }}
+                <Grid item xs={3}>
+                  {variant === "recently_added" ? (
+                    <Stack
+                      direction="row"
+                      sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                      spacing={0}
+                    >
+                      {" "}
+                      <Typography
+                        sx={{
+                          color: "#4982e7",
+                          fontWeight: "400",
+                          fontSize: ".75rem",
+                        }}
+                      >
+                        {data &&
+                          moment(new Date(data?.listed)).format("DD-MMM-YYYY")}
+                      </Typography>
+                    </Stack>
+                  ) : (
+                    <Stack
+                      direction="row"
+                      sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                      spacing={0}
                     >
                       {data &&
                       data?.percent_change !== null &&
-                      data?.percent_change !== "" ? (
-                        parseInt(data?.percent_change)
-                          .toFixed(2)
-                          .replace("-", "") + "%"
+                      Math.sign(parseInt(data?.percent_change)) === -1 ? (
+                        <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                       ) : (
-                        <span style={{ color: "#7a7a7a" }}>--</span>
+                        data?.percent_change !== null && (
+                          <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                        )
                       )}
-                    </Typography>
-                  </Stack>
+
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          color:
+                            Math.sign(parseInt(data?.percent_change)) === -1
+                              ? "#ff0000"
+                              : "#00ff00",
+                          fontWeight: "600",
+                        }}
+                      >
+                        {data &&
+                        data?.percent_change !== null &&
+                        data?.percent_change !== "" ? (
+                          parseInt(data?.percent_change)
+                            .toFixed(2)
+                            .replace("-", "") + "%"
+                        ) : (
+                          <span style={{ color: "#7a7a7a" }}>--</span>
+                        )}
+                      </Typography>
+                    </Stack>
+                  )}
                 </Grid>
               </Stack>
             ))}
@@ -380,7 +423,7 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                 sx={{ alignItems: "center", justifyContent: "space-between" }}
                 height={33}
               >
-                <Grid item xs={10}>
+                <Grid item xs={9}>
                   <Stack
                     direction="row"
                     sx={{ alignItems: "center" }}
@@ -450,42 +493,63 @@ const HighlightCards = ({ title, cardData, icon }: any) => {
                     </Stack>
                   </Stack>
                 </Grid>
-                <Grid item xs={2}>
-                  <Stack
-                    direction="row"
-                    sx={{ alignItems: "center", justifyContent: "flex-end" }}
-                    spacing={0}
-                  >
-                    {data &&
-                    data?.percent_change !== null &&
-                    Math.sign(parseInt(data?.percent_change)) === -1 ? (
-                      <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                    ) : (
-                      data?.percent_change !== null && (
-                        <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                      )
-                    )}
-                    <Typography
-                      variant="caption"
-                      sx={{
-                        color:
-                          Math.sign(parseInt(data?.percent_change)) === -1
-                            ? "#ff0000"
-                            : "#00ff00",
-                        fontWeight: "600",
-                      }}
+                <Grid item xs={3}>
+                  {variant === "recently_added" ? (
+                    <Stack
+                      direction="row"
+                      sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                      spacing={0}
+                    >
+                      {" "}
+                      <Typography
+                        sx={{
+                          color: "#4982e7",
+                          fontWeight: "400",
+                          fontSize: ".75rem",
+                        }}
+                      >
+                        {data &&
+                          moment(new Date(data?.listed)).format("DD-MMM-YYYY")}
+                      </Typography>
+                    </Stack>
+                  ) : (
+                    <Stack
+                      direction="row"
+                      sx={{ alignItems: "center", justifyContent: "flex-end" }}
+                      spacing={0}
                     >
                       {data &&
                       data?.percent_change !== null &&
-                      data?.percent_change !== "" ? (
-                        parseFloat(data?.percent_change)
-                          .toFixed(2)
-                          .replace("-", "") + "%"
+                      Math.sign(parseInt(data?.percent_change)) === -1 ? (
+                        <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                       ) : (
-                        <span style={{ color: "#7a7a7a" }}>--</span>
+                        data?.percent_change !== null && (
+                          <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                        )
                       )}
-                    </Typography>
-                  </Stack>
+
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          color:
+                            Math.sign(parseInt(data?.percent_change)) === -1
+                              ? "#ff0000"
+                              : "#00ff00",
+                          fontWeight: "600",
+                        }}
+                      >
+                        {data &&
+                        data?.percent_change !== null &&
+                        data?.percent_change !== "" ? (
+                          parseInt(data?.percent_change)
+                            .toFixed(2)
+                            .replace("-", "") + "%"
+                        ) : (
+                          <span style={{ color: "#7a7a7a" }}>--</span>
+                        )}
+                      </Typography>
+                    </Stack>
+                  )}
                 </Grid>
               </Stack>
             ))}

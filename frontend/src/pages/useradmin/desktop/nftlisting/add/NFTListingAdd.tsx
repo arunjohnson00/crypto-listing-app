@@ -421,7 +421,7 @@ const NFTListingAdd = () => {
                         placeholder="Eg: Bored Ape"
                         id="title"
                         name="title"
-                        width="auto"
+                        //width="auto"
                       />
                     </Grid>
                   </Grid>
@@ -947,7 +947,7 @@ const NFTListingAdd = () => {
                     data={allNFTNetwork}
                     height={40}
                     varient="nft_network"
-                    title="Select a coin"
+                    title="Select Blockchain"
                   />
                 </Box>
               </Grid>

@@ -17,10 +17,10 @@ const DiscoverPage = () => {
   return (
     <Fragment>
       <Grid container>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <LatestNewsScroll />
-        </Grid>
-        <Grid item xs={12}>
+        </Grid> */}
+        <Grid item xs={12} mt={2}>
           <Grid container pt={1.5} spacing={3}>
             <Grid item xs={12} sm={12} md={12} lg={12} xl={12} px={0.5}>
               <Stack direction="column" spacing={0.5}>

@@ -58,6 +58,8 @@ import OfflineEventsAdd from "../pages/useradmin/desktop/events/offline-events/a
 import OfflineEventsEdit from "../pages/useradmin/desktop/events/offline-events/edit/OfflineEventsEdit";
 import UserAdminAddEventsPage from "../pages/useradmin/desktop/addevents/UserAdminAddEventsPage";
 import SingleAirdropPage from "../pages/desktop/singleairdroppage/SingleAirdropPage";
+import VideosPage from "../pages/desktop/videos/VideosPage";
+import FeaturedCoinPage from "../pages/desktop/featuredcoin/FeaturedCoinPage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -321,6 +323,23 @@ const AppRoutes = () => {
           element={
             <PublicRoutes>
               <AppNewsPage />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path="/videos"
+          element={
+            <PublicRoutes>
+              <VideosPage />
+            </PublicRoutes>
+          }
+        />
+
+        <Route
+          path="/featured-coin"
+          element={
+            <PublicRoutes>
+              <FeaturedCoinPage />
             </PublicRoutes>
           }
         />

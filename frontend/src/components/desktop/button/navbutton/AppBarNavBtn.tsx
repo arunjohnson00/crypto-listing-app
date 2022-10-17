@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Button, Typography, Stack, Avatar, Box } from "@mui/material";
 import { BsFillCaretUpFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import KeyboardArrowDownTwoToneIcon from "@mui/icons-material/KeyboardArrowDownTwoTone";
 
 const AppBarNavBtn = ({ title, iconStatus, path, menu }: any) => {
+  const location = useLocation();
   const [menuHover, setMenuHover] = useState(false);
 
   const handleonMouseEnter = (event: any) => {
@@ -39,7 +40,7 @@ const AppBarNavBtn = ({ title, iconStatus, path, menu }: any) => {
             variant="subtitle2"
             sx={{
               textTransform: "capitalize",
-              color: "#FFFFFF",
+              color: location?.pathname === path ? "#19ffb0" : "#FFFFFF",
               fontWeight: 400,
             }}
           >

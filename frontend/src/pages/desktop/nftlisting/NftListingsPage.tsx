@@ -76,14 +76,14 @@ const NftListingsPage = () => {
             path="Nft"
           />
         </Grid>
-        <Grid item xs={12} pt={6}>
+        <Grid item xs={12} pt={3}>
           <Stack direction="column" spacing={0.1}>
-            <Typography variant="h4" sx={{ color: "#53EAC3" }}>
+            <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
               NFT Listings
             </Typography>
-            <Typography variant="caption" sx={{ color: "#CDCED1" }}>
+            {/* <Typography variant="caption" sx={{ color: "#CDCED1" }}>
               A unique collection of master ....
-            </Typography>
+            </Typography> */}
           </Stack>
         </Grid>
         {/* <Grid item xs={12} pt={3}>

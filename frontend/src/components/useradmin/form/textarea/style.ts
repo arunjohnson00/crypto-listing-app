@@ -1,6 +1,6 @@
 export const textareaStyle = {
-  minWidth: 350,
-  maxWidth: 500,
+  minWidth: "-webkit-fill-available",
+  // maxWidth: 500,
   background: "#010619",
   borderRadius: "8px",
   color: "#ffffffe8",
@@ -11,4 +11,4 @@ export const textareaStyle = {
     "Inter,-apple-system,BlinkMacSystemFont,segoe ui,Roboto,Helvetica,Arial,sans-serif",
   fontWeight: 400,
 };
-export const rowCount = 11;
+export const rowCount = 15;

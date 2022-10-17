@@ -1,4 +1,11 @@
-import { Grid, Box, Stack, Typography, Avatar } from "@mui/material";
+import {
+  Grid,
+  Box,
+  Stack,
+  Typography,
+  Avatar,
+  Link as NavLink,
+} from "@mui/material";
 
 import todaysPerformerIcon from "../../../../assets/home/todays_performer_icon.png";
 import recentlyAddedIcon from "../../../../assets/home/recently_added_icon.png";
@@ -165,8 +172,9 @@ const MobileIconMenuCard = () => {
           </Link>
         </Grid>
         <Grid item xs={3}>
-          <Link
-            to="/promote"
+          <NavLink
+            href="https://t.me/coinXhigh_admin"
+            target="_blank"
             style={{
               textDecoration: "none",
               color: "inherit",
@@ -195,7 +203,7 @@ const MobileIconMenuCard = () => {
                 Promote
               </Typography>
             </Stack>
-          </Link>
+          </NavLink>
         </Grid>
         <Grid item xs={3}>
           <Link

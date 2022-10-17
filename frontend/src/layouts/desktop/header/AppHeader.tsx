@@ -14,7 +14,8 @@ import logoWhite from "../../../assets/logo/logo.png";
 import { trendingCoinListRequest } from "../../../store/action";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import PersonIcon from "@mui/icons-material/Person";
-import headerAds from "../../../assets/ads/topads.gif";
+
+import HeaderAds from "../../../components/ads/headerads/HeaderAds";
 const AppHeader = ({ windowInnerWidth }: any) => {
   const dispatch: any = useDispatch();
   const navigate: any = useNavigate();
@@ -30,34 +31,7 @@ const AppHeader = ({ windowInnerWidth }: any) => {
   return (
     <Grid xs={12}>
       <Stack direction="row" alignItems="center" justifyContent="center">
-        <Box py={2} width="70%">
-          <a href="https://t.me/shopayment" target="_blank" rel="noreferrer">
-            <CardMedia
-              component="img"
-              height="90"
-              image={headerAds}
-              alt="ads"
-              sx={{ objectFit: "unset" }}
-            />
-          </a>
-          <Stack direction="row" alignItems="center" justifyContent="flex-end">
-            <Chip
-              label="Ad"
-              sx={{
-                background: "#FFFFFF",
-                color: "#000000",
-
-                height: 15,
-                fontSize: ".60rem",
-                position: "relative",
-                top: -20,
-                right: 10,
-                fontWeight: 600,
-              }}
-              size="small"
-            />
-          </Stack>
-        </Box>
+        <HeaderAds />
       </Stack>
 
       <Box sx={{ flexGrow: 1, backgroundColor: "transparent" }} mt={0}>

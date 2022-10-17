@@ -418,6 +418,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
                   title="Biggest Gainers"
                   cardData={biggestGainers}
                   icon={biggestGainersIcon}
+                  variant="biggest_gainers"
                 />
               }
             </Box>
@@ -427,6 +428,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
                   title="Top Losers"
                   cardData={biggestloosers}
                   icon={biggestLosersIcon}
+                  variant="top_losers"
                 />
               }
             </Box>
@@ -437,6 +439,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
                   title="Recently Added"
                   cardData={recentlyAdded}
                   icon={recentlyAddedIcon}
+                  variant="recently_added"
                 />
               }
             </Box>
@@ -640,7 +643,10 @@ const HomePage = ({ windowInnerWidth }: any) => {
               justifyContent: " flex-end",
             }}
           >
-            <Link to="#" style={{ textDecoration: "none", color: "inherit" }}>
+            <Link
+              to="/crypto-events"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
               <ViewMoreBtn title="More events" />
             </Link>
           </Stack>

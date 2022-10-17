@@ -4,7 +4,14 @@ import { textareaStyle, rowCount } from "./style";
 import { useMediaQuery } from "@mui/material";
 import RichTextEditor from "react-rte";
 import "./styel.css";
-const InputTextArea = ({ name, id, placeholder, value, variant }: any) => {
+const InputTextArea = ({
+  name,
+  id,
+  placeholder,
+  value,
+  variant,
+  width,
+}: any) => {
   const [textAreaValue, setTextAreaValue] = useState(value);
   const [richEditorValue, setRichEditorValue] = useState<any>(
     RichTextEditor.createValueFromString(
@@ -47,7 +54,7 @@ const InputTextArea = ({ name, id, placeholder, value, variant }: any) => {
               minRows={rowCount}
               placeholder={placeholder}
               style={{
-                minWidth: "84%",
+                minWidth: "-webkit-fill-available",
                 //maxWidth: 500,
                 background: "#010619",
                 borderRadius: "8px",

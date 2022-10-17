@@ -45,6 +45,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { nftSinglePageDetailsRequest } from "../../../store/action";
 import { nftVoteRequest } from "../../../store/action/nftAction";
 import LoadingButton from "@mui/lab/LoadingButton";
+import VotePopupAds from "../../../components/ads/votepopupads/VotePopupAds";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -920,13 +921,7 @@ const SingleNftPage = () => {
                                   theme="dark"
                                 />
 
-                                <CardMedia
-                                  component="img"
-                                  height="auto"
-                                  image="https://coindcx.com/blog/wp-content/uploads/2022/02/image-3-1000x600.png"
-                                  alt="green iguana"
-                                  sx={{ objectFit: "unset", borderRadius: 0 }}
-                                />
+                                <VotePopupAds />
 
                                 <Button
                                   variant="contained"

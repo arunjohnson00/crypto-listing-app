@@ -18,11 +18,11 @@ const MobileDiscoverPage = () => {
   return (
     <Fragment>
       <Grid container rowSpacing={3}>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <LatestNewsScroll />
-        </Grid>
+        </Grid> */}
 
-        <Grid item xs={12} sm={12} md={12} lg={12} xl={12} px={0.5}>
+        <Grid item xs={12} sm={12} md={12} lg={12} xl={12} px={0.5} mt={1}>
           <Stack direction="column" spacing={0.5}>
             <Typography variant="body2" sx={{ color: "#FFFFF5" }}>
               Monitor

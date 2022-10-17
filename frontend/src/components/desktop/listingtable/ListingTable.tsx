@@ -34,6 +34,7 @@ import { coinVoteRequest } from "../../../store/action";
 import { defaultColor } from "../../../common/common";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
+import VotePopupAds from "../../ads/votepopupads/VotePopupAds";
 
 const ListingTable = ({
   tableData,
@@ -621,16 +622,7 @@ const ListingTable = ({
                                       }}
                                     />
 
-                                    <CardMedia
-                                      component="img"
-                                      height="auto"
-                                      image="https://coindcx.com/blog/wp-content/uploads/2022/02/image-3-1000x600.png"
-                                      alt="green iguana"
-                                      sx={{
-                                        objectFit: "unset",
-                                        borderRadius: 0,
-                                      }}
-                                    />
+                                    <VotePopupAds />
 
                                     <Button
                                       variant="contained"

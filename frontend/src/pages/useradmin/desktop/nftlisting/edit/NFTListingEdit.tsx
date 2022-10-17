@@ -510,7 +510,7 @@ const NFTListingEdit = () => {
                         placeholder="Eg: Bored Ape"
                         id="title"
                         name="title"
-                        width="auto"
+                        //width="auto"
                         value={nftListingData?.title}
                       />
                     </Grid>
@@ -535,6 +535,7 @@ const NFTListingEdit = () => {
                         placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."
                         name="description"
                         value={nftListingData?.description}
+                        width={600}
                       />
                     </Grid>
                   </Grid>
@@ -1177,6 +1178,7 @@ const NFTListingEdit = () => {
                     data={allNFTNetwork}
                     height={40}
                     varient="nft_network"
+                    title="Select Blockchain"
                     selectedValue={nftListingData?.nft_network_id}
                   />
                 </Box>

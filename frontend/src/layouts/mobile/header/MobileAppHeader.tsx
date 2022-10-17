@@ -22,6 +22,7 @@ import {
   recentSearchRequest,
   trendingCoinListRequest,
 } from "../../../store/action";
+import HeaderAds from "../../../components/ads/headerads/HeaderAds";
 const MobileAppHeader = () => {
   const dispatch: any = useDispatch();
   const [openDrawer, setOpenDrawer] = useState({
@@ -71,39 +72,7 @@ const MobileAppHeader = () => {
     >
       <Grid item xs={12}>
         <Stack direction="row" alignItems="center" justifyContent="center">
-          <Box py={0.4} width="100%">
-            <a href="https://t.me/shopayment" target="_blank" rel="noreferrer">
-              <CardMedia
-                component="img"
-                height="auto"
-                image={headerAds}
-                alt="Ads"
-                sx={{ objectFit: "unset" }}
-              />
-            </a>
-            <Stack
-              direction="row"
-              alignItems="center"
-              justifyContent="flex-end"
-            >
-              <Chip
-                label="Ad"
-                sx={{
-                  background: "#FFFFFF",
-                  color: "#000000",
-
-                  height: 12,
-
-                  fontSize: ".5rem",
-                  position: "relative",
-                  top: -15,
-                  right: 2,
-                  fontWeight: 600,
-                }}
-                size="small"
-              />
-            </Stack>
-          </Box>
+          <HeaderAds />
         </Stack>
         <Toolbar disableGutters>
           <Stack

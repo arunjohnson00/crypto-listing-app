@@ -40,11 +40,12 @@ const MobileDiscoverVideo = () => {
             <Box
               key={index}
               sx={{
-                flexGrow: 1,
+                // flexGrow: 1,
                 padding: 0,
                 borderRadius: 0,
                 backgroundColor: "#020419",
               }}
+              width="100%"
             >
               <Stack
                 direction={{ xs: "column", sm: "column", md: "row" }}
@@ -54,10 +55,12 @@ const MobileDiscoverVideo = () => {
                   sm: "flex-end",
                   md: "flex-end",
                 }}
+                width="100%"
               >
                 <Stack
                   direction={{ xs: "column", sm: "column", md: "row" }}
                   spacing={2}
+                  width="100%"
                 >
                   <div>
                     <ReactPlayer
