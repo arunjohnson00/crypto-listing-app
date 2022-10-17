@@ -226,8 +226,7 @@ const HighlightCards = ({ title, cardData, icon, variant }: any) => {
                           fontSize: ".75rem",
                         }}
                       >
-                        {data &&
-                          moment(new Date(data?.listed)).format("DD-MMM-YYYY")}
+                        {data && moment(new Date(data?.listed)).fromNow()}
                       </Typography>
                     </Stack>
                   ) : (
@@ -367,8 +366,7 @@ const HighlightCards = ({ title, cardData, icon, variant }: any) => {
                           fontSize: ".75rem",
                         }}
                       >
-                        {data &&
-                          moment(new Date(data?.listed)).format("DD-MMM-YYYY")}
+                        {data && moment(new Date(data?.listed)).fromNow()}
                       </Typography>
                     </Stack>
                   ) : (
@@ -508,8 +506,7 @@ const HighlightCards = ({ title, cardData, icon, variant }: any) => {
                           fontSize: ".75rem",
                         }}
                       >
-                        {data &&
-                          moment(new Date(data?.listed)).format("DD-MMM-YYYY")}
+                        {data && moment(new Date(data?.listed)).fromNow()}
                       </Typography>
                     </Stack>
                   ) : (

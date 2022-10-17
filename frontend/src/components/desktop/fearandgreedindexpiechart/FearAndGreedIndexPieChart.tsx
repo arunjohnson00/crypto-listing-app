@@ -151,6 +151,78 @@ const FearAndGreedIndexPieChart = ({ data, filterValue }: any) => {
       }}
       py={2}
     >
+      <Stack direction="row" spacing={2} alignItems="center" width="100%">
+        <Stack
+          direction="row"
+          spacing={2}
+          alignItems="center"
+          py={3}
+          width="-webkit-fill-available"
+          justifyContent="center"
+        >
+          <Stack direction="column" spacing={-0.5}>
+            <Typography
+              variant="caption"
+              sx={{ color: "#FFFFFF", fontWeight: 600 }}
+            >
+              The market is currently
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                color: extremeFear
+                  ? "#EF2828"
+                  : fear
+                  ? "#EC840E"
+                  : neutral
+                  ? "#A8CE08"
+                  : greed
+                  ? "#1DAF03"
+                  : extremeGreed && "#008E49",
+                fontWeight: 600,
+              }}
+            >
+              {extremeFear
+                ? "Extreme Fear"
+                : fear
+                ? "Fear"
+                : neutral
+                ? "Neutral"
+                : greed
+                ? "Greed"
+                : extremeGreed && "Extreme Greed"}
+            </Typography>
+          </Stack>
+          <Typography
+            variant="h6"
+            sx={{
+              color: extremeFear
+                ? "#EF2828"
+                : fear
+                ? "#EC840E"
+                : neutral
+                ? "#A8CE08"
+                : greed
+                ? "#1DAF03"
+                : extremeGreed && "#008E49",
+              fontWeight: 700,
+              fontSize: "2.6rem",
+            }}
+          >
+            {data && data[0]?.value}
+          </Typography>
+        </Stack>
+      </Stack>
+      <Divider
+        variant="middle"
+        flexItem
+        orientation="horizontal"
+        sx={{
+          borderColor: "#0b1640",
+          borderBottomWidth: 1,
+          mb: 1,
+        }}
+      />
       {/* <Stack direction="row" alignItems="center" spacing={1} px={2}>
         <Button
           variant="contained"

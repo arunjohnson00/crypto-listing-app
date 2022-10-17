@@ -445,7 +445,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                           color: "#FFFFFF",
                         }}
                       >
-                        {moment(data?.listed, "YYYYMMDD").fromNow()}
+                        {moment(new Date(data?.listed)).fromNow()}
                       </Link>
                     </Typography>
                   </TableCell>

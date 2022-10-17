@@ -31,47 +31,92 @@ const MobileCoinPageEvents = () => {
   }, [dispatch]);
 
   return (
-    <Grid item xs={12} pt={2}>
+    <Grid item xs={12} pt={0}>
       {resStatus === true ? (
-        <Stack direction="column" spacing={8}>
-          {" "}
-          <Stack direction="column" spacing={2} alignItems="flex-start">
-            <Typography sx={{ color: "#FFFFFF", fontSize: "1.2rem" }}>
-              Upcoming Events
-            </Typography>
+        <Stack
+          direction="column"
+          spacing={1}
+          alignItems="flex-start"
+          width="100%"
+        >
+          {coinEvents &&
+            coinEvents?.map((item: any, index: number) => (
+              <Stack
+                direction="column"
+                spacing={2}
+                alignItems="flex-start"
+                width="100%"
+              >
+                {moment(new Date()).isBetween(
+                  new Date(item?.start_date),
+                  new Date(item?.end_date)
+                ) === true && (
+                  <Typography sx={{ color: "#FFFFFF", fontSize: "1.2rem" }}>
+                    Current Events
+                  </Typography>
+                )}
+                {moment(new Date()).isBetween(
+                  new Date(item?.start_date),
+                  new Date(item?.end_date)
+                ) === true && (
+                  <MobileEventViewCardCoinPage
+                    viewcoin={false}
+                    key={index}
+                    data={item}
+                  />
+                )}
+              </Stack>
+            ))}
 
-            {coinEvents &&
-              coinEvents?.map((item: any, index: number) => (
-                <Fragment>
-                  {moment(new Date(item?.event_date)).isBefore(new Date()) ===
-                    false && (
-                    <MobileEventViewCardCoinPage
-                      viewcoin={false}
-                      key={index}
-                      data={item}
-                    />
-                  )}
-                </Fragment>
-              ))}
-          </Stack>
-          <Stack direction="column" spacing={2} alignItems="flex-start">
-            <Typography sx={{ color: "#FFFFFF", fontSize: "1.2rem" }}>
-              Past Events
-            </Typography>
-            {coinEvents &&
-              coinEvents?.map((item: any, index: number) => (
-                <Fragment>
-                  {moment(new Date(item?.event_date)).isBefore(new Date()) ===
-                    true && (
-                    <MobileEventViewCardCoinPage
-                      viewcoin={false}
-                      key={index}
-                      data={item}
-                    />
-                  )}
-                </Fragment>
-              ))}
-          </Stack>
+          {coinEvents &&
+            coinEvents?.map((item: any, index: number) => (
+              <Stack
+                direction="column"
+                spacing={2}
+                alignItems="flex-start"
+                width="100%"
+              >
+                {moment(new Date(item?.event_date)).isAfter(new Date()) ===
+                  true && (
+                  <Typography sx={{ color: "#FFFFFF", fontSize: "1.2rem" }}>
+                    Upcoming Events
+                  </Typography>
+                )}
+                {moment(new Date(item?.event_date)).isAfter(new Date()) ===
+                  true && (
+                  <MobileEventViewCardCoinPage
+                    viewcoin={false}
+                    key={index}
+                    data={item}
+                  />
+                )}
+              </Stack>
+            ))}
+
+          {coinEvents &&
+            coinEvents?.map((item: any, index: number) => (
+              <Stack
+                direction="column"
+                spacing={2}
+                alignItems="flex-start"
+                width="100%"
+              >
+                {moment(new Date(item?.event_date)).isBefore(new Date()) ===
+                  true && (
+                  <Typography sx={{ color: "#FFFFFF", fontSize: "1.2rem" }}>
+                    Past Events
+                  </Typography>
+                )}
+                {moment(new Date(item?.event_date)).isBefore(new Date()) ===
+                  true && (
+                  <MobileEventViewCardCoinPage
+                    viewcoin={false}
+                    key={index}
+                    data={item}
+                  />
+                )}
+              </Stack>
+            ))}
         </Stack>
       ) : (
         <Stack

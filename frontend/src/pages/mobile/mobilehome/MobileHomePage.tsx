@@ -14,7 +14,7 @@ import Marquee from "react-fast-marquee";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import { useDispatch, useSelector } from "react-redux";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import FullWidthSlider from "../../../components/mobile/slider/fullwidthslider/FullWidthSlider";
 import UpcomingAmaCard from "../../../components/mobile/cards/upcomingcard/UpcomingCard";
 import MobileIconMenuCard from "../../../components/mobile/cards/iconmenucard/MobileIconMenuCard";
@@ -56,7 +56,7 @@ import MobileLatestNewsCardScroll from "../../../components/mobile/latestnews/Mo
 import UpcomingCard from "../../../components/mobile/cards/upcomingcard/UpcomingCard";
 
 const { parse } = require("rss-to-json");
-
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 const responsiveFeatured: any = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -282,14 +282,34 @@ const MobileHomePage = () => {
     <Grid container rowSpacing={2}>
       <Helmet>
         <title>
-          {" "}
           Coin Vote, Crypto Events, NFT & Airdrop listing Platform for your
-          favourite Crypto projects.
+          favourite Crypto projects. | CoinXhigh.com
         </title>
         <meta
           name="description"
           content="CoinxHigh is the world's most prominent community-based platform for Crypto listing, Crypto events listing, NFT Listing, Crypto airdrop listing and more."
         />
+        <meta name="robots" content="index, follow" />
+        <meta
+          property="og:site_name"
+          content="Coin Vote, Crypto Events, NFT & Airdrop listing Platform for your favourite Crypto projects. | CoinXhigh.com"
+        />
+        <meta
+          property="og:title"
+          content="Coin Vote, Crypto Events, NFT & Airdrop listing Platform for your favourite Crypto projects. | CoinXhigh.com"
+        />
+        <meta property="og:locale" content="en" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:description"
+          content="CoinxHigh is the world's most prominent community-based platform for Crypto listing, Crypto events listing, NFT Listing, Crypto airdrop listing and more."
+        />
+        <meta
+          property="og:image"
+          content={`"${serverAPIUrl}coinxhighlogo.webp"`}
+        />
+        <meta property="og:url" content="https://coinxhigh.com/" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       </Helmet>
       <Grid item xs={12}>
         <MobileLatestNewsCardScrollTop />

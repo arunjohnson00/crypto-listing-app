@@ -8,7 +8,7 @@ import {
   Divider,
   Avatar,
 } from "@mui/material";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Carousel from "react-multi-carousel";
@@ -56,7 +56,7 @@ const responsive = {
     slidesToSlide: 1,
   },
 };
-
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 const SingleCoinPage = () => {
   const coinDetailFirstBlock = useSelector((data: any) => {
     return data?.coinReducer?.coin_detail_first_block?.data;
@@ -139,7 +139,7 @@ const SingleCoinPage = () => {
 
   return (
     <Fragment>
-      <Helmet>
+      <Helmet prioritizeSeoTags>
         <title>
           {`${
             coinDetailFirstBlock &&
@@ -186,6 +186,86 @@ const SingleCoinPage = () => {
               : "--"
           } ...`}
         />
+
+        <meta name="robots" content="index, follow" />
+        <meta
+          property="og:site_name"
+          content={`"${
+            coinDetailFirstBlock &&
+            coinDetailFirstBlock !== undefined &&
+            coinDetailFirstBlock[0]?.name
+          }
+          (
+          $${
+            coinDetailFirstBlock &&
+            coinDetailFirstBlock !== undefined &&
+            coinDetailFirstBlock[0]?.symbol
+          }
+          ) Today's Price, Votes, Overview, Ratings, Historical Data, Faq,
+          Socials, News & More."`}
+        />
+        <meta
+          property="og:title"
+          content={`"${
+            coinDetailFirstBlock &&
+            coinDetailFirstBlock !== undefined &&
+            coinDetailFirstBlock[0]?.name
+          }
+          (
+          $${
+            coinDetailFirstBlock &&
+            coinDetailFirstBlock !== undefined &&
+            coinDetailFirstBlock[0]?.symbol
+          }
+          ) Today's Price, Votes, Overview, Ratings, Historical Data, Faq,
+          Socials, News & More."`}
+        />
+        <meta property="og:locale" content="en" />
+        <meta property="og:type" content="website" />
+
+        <meta
+          property="og:description"
+          content={`"The live $${
+            coinDetailFirstBlock &&
+            coinDetailFirstBlock !== undefined &&
+            coinDetailFirstBlock[0]?.symbol
+          } price today is ${
+            coinDetailFirstBlock &&
+            coinDetailFirstBlock !== undefined &&
+            coinDetailFirstBlock[0]?.current_price
+          } USD with a 24-hour trading volume of $${
+            coinDetailOverview && coinDetailOverview[0]?.volume_24h
+          } USD. We update our BNB to USD price in real-time. BNB is ${
+            coinDetailOverview &&
+            coinDetailOverview[0]?.percent_change_24h !== null &&
+            Math.sign(parseFloat(coinDetailOverview[0]?.percent_change_24h)) ===
+              -1
+              ? "Down "
+              : coinDetailOverview &&
+                coinDetailOverview[0]?.percent_change_24h !== null &&
+                "Up "
+          } ${
+            coinDetailOverview &&
+            coinDetailOverview[0]?.percent_change_24h !== null &&
+            coinDetailOverview[0]?.percent_change_24h !== ""
+              ? parseFloat(coinDetailOverview[0]?.percent_change_24h)
+                  .toFixed(2)
+                  .replace("-", "") + "%"
+              : "--"
+          } ..."`}
+        />
+
+        <meta
+          property="og:image"
+          content={`"${serverAPIUrl}public/uploads/coin_logo/${
+            coinDetailOverview && coinDetailOverview[0]?.logo
+          }"`}
+        />
+        <meta
+          property="og:url"
+          content={`"${location && location.pathname}"`}
+        />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       </Helmet>
       <Grid container px={0} pt={5}>
         {/* <Grid xs={12}>

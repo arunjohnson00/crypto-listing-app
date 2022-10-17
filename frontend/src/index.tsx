@@ -7,9 +7,11 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { ToastContainer, toast } from "react-toastify";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import ScrollToTop from "react-scroll-to-top";
 import "react-toastify/dist/ReactToastify.css";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
@@ -17,7 +19,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
     </Provider>
     <ToastContainer
       position="top-right"
