@@ -510,11 +510,7 @@ const ListingTable = ({
                           <Typography variant="caption">
                             {" "}
                             {data && data?.vote !== null ? (
-                              vote?.completed === true ? (
-                                parseInt(data?.vote) + 1
-                              ) : (
-                                data?.vote
-                              )
+                              data?.vote
                             ) : (
                               <Typography variant="caption">--</Typography>
                             )}

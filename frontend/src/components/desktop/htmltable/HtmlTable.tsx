@@ -455,11 +455,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                         <Typography variant="caption">
                           {" "}
                           {data && data?.vote !== null ? (
-                            vote?.completed === true ? (
-                              parseInt(data?.vote) + 1
-                            ) : (
-                              data?.vote?.toLocaleString()
-                            )
+                            data?.vote?.toLocaleString()
                           ) : (
                             <Typography variant="caption">--</Typography>
                           )}
