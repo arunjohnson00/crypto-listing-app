@@ -18,6 +18,7 @@ import MobileCoinPagePresale from "../coinpagepresale/MobileCoinPagePresale";
 import MobileCoinPageWidget from "../coinpagewidget/MobileCoinPageWidget";
 import MobileCoinPageNews from "../coinpagenews/MobileCoinPageNews";
 import { useSelector } from "react-redux";
+import MobileCoinPageAirdrop from "../coinpageairdrop/MobileCoinPageAirdrop";
 
 const MobileSinglePageTab = () => {
   const [value, setValue] = useState("1");
@@ -97,7 +98,8 @@ const MobileSinglePageTab = () => {
                 <Tab label="Presale" value="9" />
               )}
             {/* <Tab label="Widget" value="10" /> */}
-            <Tab label="News" value="11" />
+            <Tab label="Airdrops" value="11" />
+            <Tab label="News" value="12" />
           </TabList>
         </Box>
         <TabPanel value="1">
@@ -141,6 +143,9 @@ const MobileSinglePageTab = () => {
           <MobileCoinPageWidget />
         </TabPanel>
         <TabPanel value="11">
+          <MobileCoinPageAirdrop />
+        </TabPanel>
+        <TabPanel value="12">
           <MobileCoinPageNews />
         </TabPanel>
       </TabContext>

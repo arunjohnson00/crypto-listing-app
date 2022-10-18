@@ -11,20 +11,20 @@ const UserAdminCoinListing = () => {
   const [tableData, setTableData] = useState<any>();
   useEffect(() => {
     const successHandler = (res: any) => {
-      setTableData(res?.data?.data);
+      setTableData(res?.data);
     };
     const errorHandler = (err: any) => {};
 
     dispatch(userCoinListRequest("noData", successHandler, errorHandler));
   }, [dispatch]);
-
+  console.log(tableData);
   return (
     <Fragment>
       {tableData &&
       tableData?.response === true &&
-      tableData?.data?.length !== 0 ? (
+      tableData?.data?.data?.length !== 0 ? (
         <UserAdminHtmlTable
-          tableData={tableData && tableData?.data}
+          tableData={tableData && tableData?.data?.data}
           tableHeader={tableHeader}
           variant="coin"
           section="coin"

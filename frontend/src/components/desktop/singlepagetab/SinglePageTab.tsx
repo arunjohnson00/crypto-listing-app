@@ -17,6 +17,7 @@ import CoinPageNews from "../coinpagenews/CoinPageNews";
 import CoinPageWidget from "../coinpagewidget/CoinPageWidget";
 import CoinPageEvents from "../coinpageevents/CoinPageEvents";
 import CoinPagePresale from "../coinpagepresale/CoinPagePresale";
+import CoinPageAirdrop from "../coinpageairdrop/CoinPageAirdrop";
 
 const SinglePageTab = ({ data }: any) => {
   const [value, setValue] = useState("1");
@@ -88,7 +89,8 @@ const SinglePageTab = ({ data }: any) => {
             {data && data?.is_presale === 1 && (
               <Tab label="Presale" value="10" />
             )}
-            {/* <Tab label="KYC Details" value="11" /> */}
+            <Tab label="Airdrops" value="11" />
+            {/* <Tab label="KYC Details" value="15" /> */}
             {/* <Tab label="Widget" value="12" /> */}
             {/* <Tab label="Audit Details" value="13" /> */}
             <Tab label="News" value="14" />
@@ -126,7 +128,9 @@ const SinglePageTab = ({ data }: any) => {
         <TabPanel value="10">
           <CoinPagePresale />
         </TabPanel>
-        {/* <TabPanel value="11">Item Two</TabPanel> */}
+        <TabPanel value="11">
+          <CoinPageAirdrop />
+        </TabPanel>
         <TabPanel value="12">
           {" "}
           <CoinPageWidget />

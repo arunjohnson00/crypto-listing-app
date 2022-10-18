@@ -6,9 +6,9 @@ import moment from "moment";
 
 import { coinEventBlockRequest } from "../../../store/action";
 
-import MobileEventViewCardCoinPage from "../cards/eventviewcardcoinpage/MobileEventViewCardCoinPage";
+import MobileAirdropViewCardCoinPage from "../cards/airdropviewcardcoinpage/MobileAirdropViewCardCoinPage";
 
-const MobileCoinPageEvents = () => {
+const MobileCoinPageAirdrop = () => {
   const location: any = useLocation();
   const dispatch: any = useDispatch();
   const [resStatus, setResStatus] = useState<any>();
@@ -51,15 +51,15 @@ const MobileCoinPageEvents = () => {
                   new Date(item?.start_date),
                   new Date(item?.end_date)
                 ) === true && (
-                  <Typography sx={{ color: "#FFFFFF", fontSize: "1.2rem" }}>
-                    Current Events
+                  <Typography sx={{ color: "#FFFFFF", fontSize: ".9rem" }}>
+                    Current Airdrops
                   </Typography>
                 )}
                 {moment(new Date()).isBetween(
                   new Date(item?.start_date),
                   new Date(item?.end_date)
                 ) === true && (
-                  <MobileEventViewCardCoinPage
+                  <MobileAirdropViewCardCoinPage
                     viewcoin={false}
                     key={index}
                     data={item}
@@ -78,13 +78,13 @@ const MobileCoinPageEvents = () => {
               >
                 {moment(new Date(item?.event_date)).isAfter(new Date()) ===
                   true && (
-                  <Typography sx={{ color: "#FFFFFF", fontSize: "1.2rem" }}>
-                    Upcoming Events
+                  <Typography sx={{ color: "#FFFFFF", fontSize: ".9rem" }}>
+                    Upcoming Airdrops
                   </Typography>
                 )}
                 {moment(new Date(item?.event_date)).isAfter(new Date()) ===
                   true && (
-                  <MobileEventViewCardCoinPage
+                  <MobileAirdropViewCardCoinPage
                     viewcoin={false}
                     key={index}
                     data={item}
@@ -103,13 +103,13 @@ const MobileCoinPageEvents = () => {
               >
                 {moment(new Date(item?.event_date)).isBefore(new Date()) ===
                   true && (
-                  <Typography sx={{ color: "#FFFFFF", fontSize: "1.2rem" }}>
-                    Past Events
+                  <Typography sx={{ color: "#FFFFFF", fontSize: ".9rem" }}>
+                    Past Airdrops
                   </Typography>
                 )}
                 {moment(new Date(item?.event_date)).isBefore(new Date()) ===
                   true && (
-                  <MobileEventViewCardCoinPage
+                  <MobileAirdropViewCardCoinPage
                     viewcoin={false}
                     key={index}
                     data={item}
@@ -126,7 +126,7 @@ const MobileCoinPageEvents = () => {
           justifyContent="center"
         >
           <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
-            Currently there is no event for this coin
+            Currently there is no airdrops for this coin
           </Typography>
           <Button
             variant="contained"
@@ -137,7 +137,7 @@ const MobileCoinPageEvents = () => {
               borderRadius: 5,
             }}
           >
-            Add Event
+            Add Airdrop
           </Button>
         </Stack>
       )}
@@ -145,4 +145,4 @@ const MobileCoinPageEvents = () => {
   );
 };
 
-export default MobileCoinPageEvents;
+export default MobileCoinPageAirdrop;
