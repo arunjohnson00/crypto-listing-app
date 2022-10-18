@@ -103,6 +103,8 @@ import NFTNetworkAdd from "../pages/nftnetworks/add/NFTNetworkAdd";
 import NFTNetworkEdit from "../pages/nftnetworks/edit/NFTNetworkEdit";
 import NFTNetworkView from "../pages/nftnetworks/view/NFTNetworkView";
 import CoinListingFee from "../pages/coinlistingfee/CoinListingFee";
+import FeaturedCoinEdit from "../pages/ads/featuredcoins/edit/FeaturedCoinEdit";
+import MainBannerAdd from "../pages/ads/mainbanner/add/MainBannerAdd";
 
 const AppRoutes = () => {
   return (
@@ -599,6 +601,24 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <AdsDashboard />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/featured-coin"
+          element={
+            <PrivateRoute>
+              <FeaturedCoinEdit />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/main-banner"
+          element={
+            <PrivateRoute>
+              <MainBannerAdd />
             </PrivateRoute>
           }
         />
