@@ -21,6 +21,7 @@ const AuditDetails = ({ auditCount, index, auditremoveHandle, data }: any) => {
             id={`audited_by_${index + 2}`}
             data={data}
             height={40}
+            title="Select Audit Provider"
           />
         </Grid>
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>

@@ -27,6 +27,7 @@ const ExchangeDetails = ({
             id={`exchange_id_${index + 2}`}
             data={data}
             height={40}
+            title="Select Exchange"
           />
         </Grid>
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>

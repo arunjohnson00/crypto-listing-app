@@ -661,6 +661,7 @@ const CoinListingAdd = () => {
                     id={`network_1`}
                     data={networkList}
                     height={40}
+                    title="Select Network"
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -758,6 +759,7 @@ const CoinListingAdd = () => {
                     id={`exchange_id_1`}
                     data={exchangeList}
                     height={40}
+                    title="Select Exchange"
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1187,6 +1189,7 @@ const CoinListingAdd = () => {
                     id="audited_by_1"
                     data={coinAuditList}
                     height={40}
+                    title="Select Audit Provider"
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1263,6 +1266,7 @@ const CoinListingAdd = () => {
                     id="chart_provider_1"
                     data={coinChartProviderList}
                     height={40}
+                    title="Please select"
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1609,6 +1613,7 @@ const CoinListingAdd = () => {
                         id="social_platform_1"
                         data={coinSocialList}
                         height={40}
+                        title="Select website"
                       />
                     </Grid>
                     <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>

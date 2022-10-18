@@ -26,6 +26,7 @@ const SocialDetails = ({
             id={`social_platform_${index + 2}`}
             data={data}
             height={40}
+            title="Select website"
           />
         </Grid>
         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>

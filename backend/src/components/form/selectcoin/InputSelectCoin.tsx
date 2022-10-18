@@ -23,6 +23,7 @@ const InputSelectCoin = ({
   height,
   width,
   type,
+  title,
 }: any) => {
   const matches = useMediaQuery("(min-width:900px)");
   const [value, setValue] = useState("");
@@ -98,7 +99,9 @@ const InputSelectCoin = ({
           defaultValue={selectedValue && selectedValue}
           renderValue={(selected: any) =>
             !selected
-              ? "Please Select"
+              ? title
+                ? title
+                : "Please Select"
               : data
                   ?.filter((item: any) => item?.id === selected)
                   .map((x: any) =>

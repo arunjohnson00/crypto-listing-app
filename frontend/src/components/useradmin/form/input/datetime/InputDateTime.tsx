@@ -45,13 +45,13 @@ const InputDateTime = ({
             }}
           />
         )}
-        label={
-          start_date === true
-            ? "Select Start Date"
-            : statusTime === true
-            ? "Status Time"
-            : "Select End Date"
-        }
+        // label={
+        //   start_date === true
+        //     ? "Select Start Date"
+        //     : statusTime === true
+        //     ? "Status Time"
+        //     : "Select End Date"
+        // }
         value={
           timeUpdate
             ? timeUpdate
