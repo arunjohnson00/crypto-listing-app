@@ -120,6 +120,7 @@ const NFTListingEdit = () => {
   // Display the key/value pairs
 
   const nftListingAddHandler = () => {
+    setLoading(true);
     var formData = new FormData(document.querySelector("#coinForm") as any);
 
     for (var i = 0; i < eventCategoryMultiple.length; i++) {
@@ -194,6 +195,7 @@ const NFTListingEdit = () => {
     };
 
     const errorHandler = (err: any) => {
+      setLoading(false);
       toast.error(
         <Box>
           <Stack direction="row" spacing={2} alignItems="center">

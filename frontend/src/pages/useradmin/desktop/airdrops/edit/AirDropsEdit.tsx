@@ -61,6 +61,7 @@ const AirDropsEdit = () => {
   // Display the key/value pairs
 
   const airdropsAddHandler = () => {
+    setLoading(true);
     const successHandler = (res: any) => {
       console.log(res);
 
@@ -92,6 +93,7 @@ const AirDropsEdit = () => {
     };
 
     const errorHandler = (err: any) => {
+      setLoading(false);
       toast.error(
         <Box>
           <Stack direction="row" spacing={2} alignItems="center">

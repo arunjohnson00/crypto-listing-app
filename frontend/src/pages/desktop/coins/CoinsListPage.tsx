@@ -475,6 +475,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
                   tableTabvalue={tableTabvalue}
                   setTableTabValue={setTableTabValue}
                   tableTabHandleChange={tableTabHandleChange}
+                  setTableData={setTableData}
                 />
                 {/* <Divider
                   variant="middle"

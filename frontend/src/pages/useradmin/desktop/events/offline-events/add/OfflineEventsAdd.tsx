@@ -98,6 +98,7 @@ const OfflineEventsAdd = () => {
   };
 
   const eventsAddHandler = () => {
+    setLoading(true);
     const successHandler = (res: any) => {
       console.log(res);
 
@@ -131,7 +132,7 @@ const OfflineEventsAdd = () => {
 
     const errorHandler = (err: any) => {
       console.log(err);
-
+      setLoading(false);
       toast.error(
         <Box>
           <Stack direction="row" spacing={2} alignItems="center">

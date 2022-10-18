@@ -112,6 +112,7 @@ const OfflineEventsEdit = () => {
     setEditEvents({ ...editEventsData, has_many_videos: youtubelist });
   };
   const eventsUpdateHandler = () => {
+    setLoading(true);
     const successHandler = (res: any) => {
       console.log(res);
 
@@ -145,7 +146,7 @@ const OfflineEventsEdit = () => {
 
     const errorHandler = (err: any) => {
       console.log(err);
-
+      setLoading(false);
       toast.error(
         <Box>
           <Stack direction="row" spacing={2} alignItems="center">

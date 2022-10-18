@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import HighlightOffSharpIcon from "@mui/icons-material/HighlightOffSharp";
 import moment from "moment";
-import { CountDownTimer } from "./countdown/CountDownTimer";
+import CountDownTimer from "./countdown/CountDownTimer";
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileSingleCryptoEventHeader = ({ data }: any) => {
   const [open, setOpen] = useState(false);
@@ -175,7 +175,7 @@ const MobileSingleCryptoEventHeader = ({ data }: any) => {
                             fontSize: ".9rem",
                           }}
                         >
-                          {/* {CountDownTimer(moment(new Date(data?.event_date)))} */}
+                          {data && <CountDownTimer data={data?.event_date} />}
                         </Typography>
                       </Stack>
                     )}
@@ -208,7 +208,7 @@ const MobileSingleCryptoEventHeader = ({ data }: any) => {
                             fontSize: ".9rem",
                           }}
                         >
-                          {/* {CountDownTimer(moment(new Date(data?.end_date)))} */}
+                          {data && <CountDownTimer data={data?.end_date} />}
                         </Typography>
                       </Stack>
                     )}

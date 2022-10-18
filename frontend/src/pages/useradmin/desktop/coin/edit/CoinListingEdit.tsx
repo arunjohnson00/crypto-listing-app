@@ -316,6 +316,7 @@ const CoinListingEdit = () => {
   const [loading, setLoading] = useState(false);
 
   const coinEditHandler = (e: any) => {
+    setLoading(true);
     var formData = new FormData(document.querySelector("#coinForm") as any);
 
     formData.append("id", location.state.id);
@@ -374,6 +375,7 @@ const CoinListingEdit = () => {
     };
 
     const errorHandler = (err: any) => {
+      setLoading(false);
       toast.error(
         <Box>
           <Stack direction="row" spacing={2} alignItems="center">

@@ -20,7 +20,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { defaultColor } from "../../../../common/common";
-import { CountDownTimer } from "./countdown/CountDownTimer";
+import CountDownTimer from "./countdown/CountDownTimer";
 import { Link } from "react-router-dom";
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -168,7 +168,7 @@ const AirdropCard = ({ data, index }: any) => {
                     variant="body2"
                     sx={{ color: "#D1D10E", fontWeight: "500", fontSize: 13 }}
                   >
-                    {CountDownTimer(moment(new Date(data?.start_date)))}
+                    {data && <CountDownTimer data={data?.start_date} />}
                   </Typography>
                 </Stack>
               )}
@@ -197,11 +197,13 @@ const AirdropCard = ({ data, index }: any) => {
                     variant="body2"
                     sx={{ color: "#D1D10E", fontWeight: "500", fontSize: 13 }}
                   >
-                    {CountDownTimer(
-                      moment(new Date(data?.start_date)).add(
-                        data?.no_of_days,
-                        "days"
-                      )
+                    {data && (
+                      <CountDownTimer
+                        data={moment(new Date(data?.start_date)).add(
+                          data?.no_of_days,
+                          "days"
+                        )}
+                      />
                     )}
                   </Typography>
                 </Stack>

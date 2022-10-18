@@ -190,6 +190,7 @@ const CoinListingAdd = () => {
   const [loading, setLoading] = useState(false);
 
   const coinAddHandler = (e: any) => {
+    setLoading(true);
     var formData = new FormData(document.querySelector("#coinForm") as any);
     //var formData = new FormData();
     formData.append("logo", addCoinLogo.coinLogo);
@@ -245,6 +246,7 @@ const CoinListingAdd = () => {
     };
 
     const errorHandler = (err: any) => {
+      setLoading(false);
       toast.error(
         <Box>
           <Stack direction="row" spacing={2} alignItems="center">

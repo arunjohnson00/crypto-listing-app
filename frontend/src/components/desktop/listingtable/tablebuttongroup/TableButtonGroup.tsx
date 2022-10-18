@@ -13,11 +13,13 @@ const TableButtonGroup = ({
   tableTabvalue,
   setTableTabValue,
   tableTabHandleChange,
+  setTableData,
 }: any) => {
   const location = useLocation();
   const navigate = useNavigate();
   const matches = useMediaQuery("(min-width:600px)");
   useEffect(() => {
+    setTableData([]);
     location?.pathname === "/coins/watch-list" && setTableTabValue("1");
     location?.pathname === "/coins" && setTableTabValue("2");
     location?.pathname === "/coins/biggest-gainers" && setTableTabValue("3");
@@ -28,6 +30,7 @@ const TableButtonGroup = ({
   }, [location]);
 
   useEffect(() => {
+    setTableData([]);
     tableTabvalue === "1" && navigate("/coins/watch-list");
     tableTabvalue === "2" && navigate("/coins");
     tableTabvalue === "3" && navigate("/coins/biggest-gainers");

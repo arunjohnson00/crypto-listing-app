@@ -1,42 +1,62 @@
 import { useEffect, useState } from "react";
 
-const CountDownTimer = (targetDate: any) => {
-  const countDownDate = new Date(targetDate).getTime();
+import moment from "moment";
 
-  const [countDown, setCountDown] = useState(
-    countDownDate - new Date().getTime()
-  );
+export default function CountDownTimer({ data }: any) {
+  const [duration, setDuration] = useState<any>("");
+  const [now, setNow] = useState<any>("");
+  const [days, setDays] = useState<any>("");
+  const [hours, setHours] = useState<any>("");
+  const [minutes, setMinutes] = useState<any>("");
+  const [seconds, setSeconds] = useState<any>("");
+  const [load, setLoad] = useState<any>(true);
+  useEffect(() => {
+    const now = setInterval(() => {
+      setNow(new Date().toLocaleString());
+    }, 1000);
+    console.log(new Date());
+    console.log(moment(new Date()).unix());
+    console.log(moment(new Date()).add(240, "day"));
+    return () => clearInterval(now);
+  }, []);
+
+  const countdownTime = (diff: any) => {
+    const d: any = Math.floor(diff / (3600 * 24));
+    const h: any = Math.floor((diff % (3600 * 24)) / 3600);
+    const m: any = Math.floor((diff % 3600) / 60);
+    const s: any = Math.floor(diff % 60);
+    setDays(d);
+    setHours(h);
+    setMinutes(m);
+    setSeconds(s);
+    setLoad(false);
+    //console.log(d, h, m, s);
+  };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCountDown(countDownDate - new Date().getTime());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [countDownDate]);
-
-  return getReturnValues(countDown);
-};
-
-const getReturnValues = (countDown: any) => {
-  // calculate time left
-  const days = Math.floor(countDown / (1000 * 60 * 60 * 24));
-  const daysFormatted = days ? `${days} Days ` : "0 Days ";
-  const hours = Math.floor(
-    (countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    const start = moment(now);
+    const end = moment(new Date(data).toLocaleString());
+    const diff = end.diff(start, "seconds");
+    setDuration(diff);
+    duration > 0 && countdownTime(duration);
+  }, [now]);
+  //console.log(duration);
+  return (
+    <div>
+      {load ? (
+        <p>Loading...</p>
+      ) : (
+        <p
+          style={{
+            color: "inherit",
+            fontSize: "inherit",
+            fontWeight: "inherit",
+          }}
+        >
+          {days} Days {hours} Hours {minutes} Minutes {seconds}
+          Seconds
+        </p>
+      )}
+    </div>
   );
-  const hoursFormatted = hours ? `${hours} Hours ` : "0 Hours ";
-  const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60));
-  const minutesFormatted = minutes ? `${minutes} Minutes ` : "0 Minutes ";
-  const seconds = Math.floor((countDown % (1000 * 60)) / 1000);
-  const secondsFormatted = seconds ? `${seconds}  Seconds` : "0 Seconds";
-
-  return [
-    daysFormatted,
-    hoursFormatted,
-    minutesFormatted,
-    secondsFormatted,
-  ].join(" ");
-};
-
-export { CountDownTimer };
+}

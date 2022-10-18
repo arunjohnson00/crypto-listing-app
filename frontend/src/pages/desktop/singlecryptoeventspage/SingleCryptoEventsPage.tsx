@@ -14,15 +14,16 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import WidgetsRoundedIcon from "@mui/icons-material/WidgetsRounded";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
-import { CountDownTimer } from "./countdown/CountDownTimer";
+
 import VideoCard from "../../../components/desktop/cards/videocard/VideoCard";
 import ReactPlayer from "react-player";
 import { useDispatch, useSelector } from "react-redux";
 import { eventsSinglePageRequest } from "../../../store/action";
 import { useLocation, useNavigate } from "react-router-dom";
+import CountDownTimer from "./countdown/CountDownTimer";
 
-const serverAPIUrl = process.env.REACT_APP_API_URL;
 const SingleCryptoEventsPage = () => {
+  const serverAPIUrl = process.env.REACT_APP_API_URL;
   const dispatch: any = useDispatch();
   const location: any = useLocation();
   const navigate: any = useNavigate();
@@ -328,11 +329,11 @@ const SingleCryptoEventsPage = () => {
                                   fontWeight: 600,
                                 }}
                               >
-                                {/* {CountDownTimer(
-                                  moment(
-                                    new Date(singlePageData?.data?.event_date)
-                                  )
-                                )} */}
+                                {singlePageData && (
+                                  <CountDownTimer
+                                    data={singlePageData?.data?.event_date}
+                                  />
+                                )}
                               </Typography>
                             }
                           </Stack>
@@ -374,12 +375,11 @@ const SingleCryptoEventsPage = () => {
                                 fontWeight: 600,
                               }}
                             >
-                              {/* {singlePageData &&
-                                CountDownTimer(
-                                  moment(
-                                    new Date(singlePageData?.data?.end_date)
-                                  )
-                                )} */}
+                              {singlePageData && (
+                                <CountDownTimer
+                                  data={singlePageData?.data?.end_date}
+                                />
+                              )}
                             </Typography>
                           </Stack>
                         </Stack>
