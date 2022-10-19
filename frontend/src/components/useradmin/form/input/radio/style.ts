@@ -2,8 +2,8 @@ import { styled } from "@mui/material/styles";
 
 export const BpIcon = styled("span")(({ theme }) => ({
   borderRadius: "50%",
-  width: 16,
-  height: 16,
+  width: 22,
+  height: 22,
   boxShadow:
     theme.palette.mode === "dark"
       ? "0 0 0 1px rgb(16 22 26 / 40%)"
@@ -30,17 +30,17 @@ export const BpIcon = styled("span")(({ theme }) => ({
 }));
 
 export const BpCheckedIcon = styled(BpIcon)({
-  backgroundColor: "rgb(54, 48, 98)",
+  backgroundColor: "#37a580",
   backgroundImage:
     "linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))",
   "&:before": {
     display: "block",
-    width: 16,
-    height: 16,
+    width: 22,
+    height: 22,
     backgroundImage: "radial-gradient(#fff,#fff 28%,transparent 32%)",
     content: '""',
   },
   "input:hover ~ &": {
-    backgroundColor: "rgb(54, 48, 98)",
+    backgroundColor: "#a1b0ab",
   },
 });

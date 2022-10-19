@@ -1566,7 +1566,7 @@ const CoinListingEdit = () => {
                     placeholder="Enter docs URL"
                     id="docs_link"
                     name="docs_link"
-                    value={editCoin?.docs_url}
+                    value={editCoin?.docs_link}
                   />
                 </Grid>
               </Stack>

@@ -88,11 +88,11 @@ const UserAdminTabs = () => {
             }}
           >
             <Tab label="Overview" value="1" />
-            <Tab label="Coins" value="2" />
-            <Tab label="NFT's" value="3" />
-            <Tab label="Events" value="4" />
-            <Tab label="AirDrops" value="5" />
-            <Tab label="Ratings" value="6" />
+            <Tab label="My Coins" value="2" />
+            <Tab label="My NFT's" value="3" />
+            <Tab label="My Events" value="4" />
+            <Tab label="My AirDrops" value="5" />
+            <Tab label="My Ratings" value="6" />
             {/* <Tab label="Watchlist" value="7" />
             <Tab label="Promotion" value="8" /> */}
           </TabList>
