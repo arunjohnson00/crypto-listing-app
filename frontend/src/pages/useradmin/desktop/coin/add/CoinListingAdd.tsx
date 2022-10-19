@@ -1208,7 +1208,12 @@ const CoinListingAdd = () => {
                       </span>
                     </Typography>
 
-                    <InputText placeholder="Eg: 5.89" id="price" name="price" />
+                    <InputText
+                      placeholder="Eg: 5.89"
+                      id="price"
+                      name="price"
+                      type="number"
+                    />
                   </Grid>
 
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

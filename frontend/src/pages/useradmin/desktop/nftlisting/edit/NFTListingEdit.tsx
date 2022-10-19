@@ -613,6 +613,7 @@ const NFTListingEdit = () => {
                           placeholder="Eg: 1000000"
                           name="max_num_items"
                           id="max_num_items"
+                          type="number"
                           // width="auto"
                           value={nftListingData?.max_num_items}
                         />
@@ -1223,6 +1224,7 @@ const NFTListingEdit = () => {
                         id="pre_sale_mint_price"
                         // width="auto"
                         width={100}
+                        type="number"
                         value={nftListingData?.pre_sale_mint_price}
                         // InputProps={{
                         //   endAdornment: (
@@ -1266,6 +1268,7 @@ const NFTListingEdit = () => {
                         name="public_mint_price"
                         id="public_mint_price"
                         // width="auto"
+                        type="number"
                         width={100}
                         value={nftListingData?.public_mint_price}
                         // InputProps={{

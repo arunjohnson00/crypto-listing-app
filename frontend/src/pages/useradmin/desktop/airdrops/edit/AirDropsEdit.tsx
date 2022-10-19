@@ -274,6 +274,7 @@ const AirDropsEdit = () => {
               placeholder="Eg: 5"
               inputTextHandler={(e: any) => airdropsNumDaysHandler(e)}
               value={editAirdropsData.no_of_days}
+              type="number"
             />
           </Grid>
 
@@ -295,6 +296,7 @@ const AirDropsEdit = () => {
               placeholder="Eg: 10000000"
               inputTextHandler={(e: any) => airdropsTotalAmountHandler(e)}
               value={editAirdropsData.total_amount}
+              type="number"
             />
           </Grid>
 
@@ -316,6 +318,7 @@ const AirDropsEdit = () => {
               placeholder="Eg: 1000"
               inputTextHandler={(e: any) => airdropsNumbWinnersHandler(e)}
               value={editAirdropsData?.no_of_winners}
+              type="number"
             />
           </Grid>
 

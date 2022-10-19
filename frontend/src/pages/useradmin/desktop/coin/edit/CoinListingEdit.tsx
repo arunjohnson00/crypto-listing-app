@@ -1639,6 +1639,7 @@ const CoinListingEdit = () => {
                       id="price"
                       name="price"
                       value={editCoin?.price}
+                      type="number"
                     />
                   </Grid>
 

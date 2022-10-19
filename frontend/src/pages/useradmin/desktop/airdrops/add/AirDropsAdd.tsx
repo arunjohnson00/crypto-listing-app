@@ -262,6 +262,7 @@ const AirDropsAdd = () => {
             <InputText
               placeholder="Eg: 5"
               inputTextHandler={(e: any) => airdropsNumDaysHandler(e)}
+              type="number"
             />
           </Grid>
 
@@ -283,6 +284,7 @@ const AirDropsAdd = () => {
               //width="100%"
               placeholder="Eg: 10000000"
               inputTextHandler={(e: any) => airdropsTotalAmountHandler(e)}
+              type="number"
             />
           </Grid>
 
@@ -303,6 +305,7 @@ const AirDropsAdd = () => {
             <InputText
               placeholder="Eg: 1000"
               inputTextHandler={(e: any) => airdropsNumbWinnersHandler(e)}
+              type="number"
             />
           </Grid>
 

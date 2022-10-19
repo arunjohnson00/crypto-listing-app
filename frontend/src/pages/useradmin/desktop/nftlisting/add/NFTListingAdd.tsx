@@ -520,6 +520,7 @@ const NFTListingAdd = () => {
                           placeholder="Eg: 1000000"
                           name="max_num_items"
                           id="max_num_items"
+                          type="number"
                           // width="auto"
                         />
                       </Grid>
@@ -986,6 +987,7 @@ const NFTListingAdd = () => {
                         name="pre_sale_mint_price"
                         id="pre_sale_mint_price"
                         width={100}
+                        type="number"
                         // InputProps={{
                         //   endAdornment: (
                         //     <Button
@@ -1029,6 +1031,7 @@ const NFTListingAdd = () => {
                         id="public_mint_price"
                         // width="auto"
                         width={100}
+                        type="number"
                         // InputProps={{
                         //   endAdornment: (
                         //     <Button
