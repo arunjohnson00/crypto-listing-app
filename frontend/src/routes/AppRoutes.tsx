@@ -60,6 +60,7 @@ import UserAdminAddEventsPage from "../pages/useradmin/desktop/addevents/UserAdm
 import SingleAirdropPage from "../pages/desktop/singleairdroppage/SingleAirdropPage";
 import VideosPage from "../pages/desktop/videos/VideosPage";
 import FeaturedCoinPage from "../pages/desktop/featuredcoin/FeaturedCoinPage";
+import Error404 from "../pages/error404/Error404";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -70,6 +71,14 @@ const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route
+          path="/*"
+          element={
+            <PublicRoutes>
+              <Error404 />
+            </PublicRoutes>
+          }
+        />
         {windowInnerWidth >= 900 ? (
           <Route
             path="/"
