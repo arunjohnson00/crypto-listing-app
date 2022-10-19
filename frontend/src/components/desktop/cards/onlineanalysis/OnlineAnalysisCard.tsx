@@ -4,6 +4,7 @@ import { Grid, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Chart from "react-apexcharts";
 import { coinPriceGraphBlockRequest } from "../../../../store/action";
+import { useLocation } from "react-router-dom";
 
 const OnlineAnalysisCard = () => {
   // const [data, updateData] = useState([1, 2, 3, 4, 5, 6]);
@@ -21,6 +22,8 @@ const OnlineAnalysisCard = () => {
   // }, [data]);
 
   const dispatch: any = useDispatch();
+
+  const location: any = useLocation();
   const graphData = useSelector((data: any) => {
     return data?.coinReducer?.coin_price_graph_block?.data;
   });
@@ -30,7 +33,7 @@ const OnlineAnalysisCard = () => {
     dispatch(
       coinPriceGraphBlockRequest("bitcoin-btc", successHandler, errorHandler)
     );
-  }, [dispatch]);
+  }, [dispatch, location]);
 
   const chartData: any = {
     series: [
@@ -126,9 +129,9 @@ const OnlineAnalysisCard = () => {
           show: false,
         },
 
-        min:
-          graphData &&
-          new Date(graphData?.price[graphData?.price?.length - 1][0]).getTime(),
+        // min:
+        //   graphData &&
+        //   new Date(graphData?.price[graphData?.price?.length - 1][0]).getTime(),
         //max: data && new Date(data?.price[0][0]).getTime(),
         tickAmount: 6,
       },

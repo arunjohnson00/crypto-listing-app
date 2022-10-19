@@ -287,7 +287,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
         />
         <meta
           property="og:image"
-          content={`"${serverAPIUrl}coinxhighlogo.webp"`}
+          content="https://coinxhigh.com/coinxhighlogo.webp"
         />
         <meta property="og:url" content="https://coinxhigh.com/" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
