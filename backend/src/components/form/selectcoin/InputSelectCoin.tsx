@@ -32,6 +32,7 @@ const InputSelectCoin = ({
     setValue(event.target.value as string);
   };
 
+  console.log(selectedValue, "test");
   return (
     <>
       {/* <FormControl fullWidth>

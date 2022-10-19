@@ -587,7 +587,7 @@ const NFTListingEdit = () => {
                           title="Select currency"
                           name="currancy_id"
                           data={nftListingCurrencyList}
-                          selectedValue={nftListingData?.currency_id}
+                          selectedValue={nftListingData?.currancy_id}
                           height={40}
                           width={{ xs: "auto", sm: "auto", md: 310 }}
                         />
@@ -705,6 +705,7 @@ const NFTListingEdit = () => {
                                     name={`marketplace_id[${index + 1}]`}
                                     id={`marketplace_id_${index + 1}`}
                                     value={marketplaces.marketplace_id}
+                                    selectedValue={marketplaces.marketplace_id}
                                     height={40}
                                     title="Select MarketPlace"
                                   />
@@ -855,9 +856,11 @@ const NFTListingEdit = () => {
                           <EventMarketPlace
                             eventMarketCount={eventMarketCount}
                             index={
-                              nftListingData?.has_many_communitys &&
-                              nftListingData?.has_many_communitys !== undefined
-                                ? nftListingData?.has_many_communitys?.length -
+                              nftListingData?.has_many_marketplaces &&
+                              nftListingData?.has_many_marketplaces !==
+                                undefined
+                                ? nftListingData?.has_many_marketplaces
+                                    ?.length -
                                   1 +
                                   index
                                 : index
@@ -1720,9 +1723,7 @@ const NFTListingEdit = () => {
                                   data={nftSocialList}
                                   name={`social_platform_id[${index + 1}]`}
                                   id={`social_platform_id_${index + 1}`}
-                                  selectedValue={parseInt(
-                                    socials.social_platform
-                                  )}
+                                  selectedValue={socials.social_platform_id}
                                   height={40}
                                   title="Select website"
                                 />

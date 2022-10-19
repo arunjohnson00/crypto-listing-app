@@ -1476,7 +1476,8 @@ const CoinListingEdit = () => {
                       }}
                       mb={1}
                     >
-                      Presale address (Optional)
+                      Presale address
+                      {/* (Optional) */}
                     </Typography>
 
                     <InputText
@@ -1526,7 +1527,17 @@ const CoinListingEdit = () => {
                       }}
                       mb={1}
                     >
-                      Circulating Supply (Optional)
+                      Circulating Supply{" "}
+                      <span
+                        style={{
+                          color: "#234A84",
+                          fontWeight: 400,
+                          fontSize: ".7rem",
+                        }}
+                      >
+                        {" "}
+                        (Optional)
+                      </span>
                     </Typography>
 
                     <InputText
@@ -1571,7 +1582,17 @@ const CoinListingEdit = () => {
                     }}
                     mb={1}
                   >
-                    Marketcap (Optional)
+                    Marketcap{" "}
+                    <span
+                      style={{
+                        color: "#234A84",
+                        fontWeight: 400,
+                        fontSize: ".7rem",
+                      }}
+                    >
+                      {" "}
+                      (Optional)
+                    </span>
                   </Typography>
 
                   <InputText

@@ -1046,7 +1046,7 @@ const CoinListingAdd = () => {
                       mb={1}
                     >
                       Presale address{" "}
-                      <span
+                      {/* <span
                         style={{
                           color: "#234A84",
                           fontWeight: 400,
@@ -1055,7 +1055,7 @@ const CoinListingAdd = () => {
                       >
                         {" "}
                         (Optional)
-                      </span>
+                      </span> */}
                     </Typography>
 
                     <InputText
