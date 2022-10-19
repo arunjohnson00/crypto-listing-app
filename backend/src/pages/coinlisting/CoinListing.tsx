@@ -122,32 +122,52 @@ const CoinListing = () => {
     },
 
     {
-      field: "network_id",
-      headerName: "Network Id",
-      flex: 1,
+      field: "is_listed_coingecko",
+      headerName: "Listed on Coingecko",
+      flex: 2.5,
       align: "center",
       headerAlign: "center",
+      renderCell: (params: any) =>
+        parseInt(params.row.is_listed_coingecko) === 1 ? (
+          <span style={{ color: "green" }}>yes</span>
+        ) : (
+          <span style={{ color: "red" }}>No</span>
+        ),
     },
 
     {
-      field: "explorer_link",
-      headerName: "Block explorer url",
+      field: "is_listed_market_cap",
+      headerName: "Listed on Coin Marketcap",
       flex: 2.5,
+      align: "center",
+      headerAlign: "center",
+      renderCell: (params: any) =>
+        parseInt(params.row.is_listed_market_cap) === 1 ? (
+          <span style={{ color: "green" }}>yes</span>
+        ) : (
+          <span style={{ color: "red" }}>No</span>
+        ),
+    },
+
+    {
+      field: "max_supply",
+      headerName: "Max Supply",
+      flex: 1,
       headerAlign: "left",
       align: "left",
-      renderCell: (params: any) => (
-        <span style={{ color: "blue", fontSize: ".7rem" }}>
-          <a
-            href={params.row.explorer_link}
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: "blue", textDecoration: "none" }}
-          >
-            {" "}
-            {params.row.explorer_link}
-          </a>
-        </span>
-      ),
+      // renderCell: (params: any) => (
+      //   <span style={{ color: "blue", fontSize: ".7rem" }}>
+      //     <a
+      //       href={params.row.explorer_link}
+      //       target="_blank"
+      //       rel="noreferrer"
+      //       style={{ color: "blue", textDecoration: "none" }}
+      //     >
+      //       {" "}
+      //       {params.row.explorer_link}
+      //     </a>
+      //   </span>
+      // ),
     },
 
     {

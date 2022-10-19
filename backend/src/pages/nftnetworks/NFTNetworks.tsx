@@ -135,13 +135,13 @@ const NFTNetworks = () => {
       renderCell: (params: any) => (
         <span style={{ color: "blue", fontSize: ".7rem" }}>
           <a
-            href={params.row.url}
+            href={params.row.network_url}
             target="_blank"
             rel="noreferrer"
             style={{ color: "blue", textDecoration: "none" }}
           >
             {" "}
-            {params.row.url}
+            {params.row.network_url}
           </a>
         </span>
       ),

@@ -17,6 +17,8 @@ import {
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 // import "./style.css";
 import { MenuProps } from "./style";
+
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 const InputSelectCoin = ({
   name,
   id,
@@ -117,25 +119,59 @@ const InputSelectCoin = ({
           name={name}
           defaultValue={selectedValue && selectedValue}
           renderValue={(selected) =>
-            !selected ? (
-              title ? (
-                title
-              ) : (
-                "Please Select"
-              )
-            ) : (
-              <span style={{ color: "#FFFFFF" }}>
-                {data
+            !selected
+              ? title
+                ? title
+                : "Please Select"
+              : data
                   ?.filter((item: any) => item?.id === selected)
-                  .map((x: any) =>
-                    type === "events"
-                      ? x.title
-                      : type === "airdrop"
-                      ? x.name
-                      : x.name
-                  )}
-              </span>
-            )
+                  .map((x: any) => (
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      alignItems="center"
+                      px={0}
+                      py={0}
+                    >
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={`${serverAPIUrl}public/uploads/${
+                          variant === "network"
+                            ? "network_icons"
+                            : variant === "exchange"
+                            ? "exchange_icons"
+                            : variant === "audit"
+                            ? "coins_audit"
+                            : variant === "chart"
+                            ? "coins_chart_provider"
+                            : variant === "social_platform"
+                            ? "coins_social"
+                            : variant === "nft_network"
+                            ? "nft_networks"
+                            : variant === "nft_social_platform"
+                            ? "coins_social"
+                            : variant === "nft_marketplace"
+                            ? "nft_marketplace_icons"
+                            : variant === "nft_listing_currency" &&
+                              "nft_currency_icons"
+                        }/${
+                          x.thumb_icon !== undefined
+                            ? x.thumb_icon
+                            : x.icon !== undefined
+                            ? x.icon
+                            : x.network_icon !== undefined && x.network_icon
+                        }`}
+                        sx={{ width: 20, height: 20 }}
+                      />
+                      <span style={{ color: "#FFFFFF" }}>
+                        {type === "events"
+                          ? x.title
+                          : type === "airdrop"
+                          ? x.name
+                          : x.name}
+                      </span>
+                    </Stack>
+                  ))
           }
           displayEmpty={true}
           inputProps={{
@@ -192,10 +228,10 @@ const InputSelectCoin = ({
               py={0.5}
             >
               {/* <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/1.jpg"
-                      sx={{ width: 20, height: 20 }}
-                    /> */}
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+                sx={{ width: 20, height: 20 }}
+              /> */}
               <Typography sx={{ fontSize: ".9rem" }}>None</Typography>
             </Stack>
           </MenuItem>
@@ -226,11 +262,36 @@ const InputSelectCoin = ({
                     px={1}
                     py={0.5}
                   >
-                    {/* <Avatar
+                    <Avatar
                       alt="Remy Sharp"
-                      src="/static/images/avatar/1.jpg"
+                      src={`${serverAPIUrl}public/uploads/${
+                        variant === "network"
+                          ? "network_icons"
+                          : variant === "exchange"
+                          ? "exchange_icons"
+                          : variant === "audit"
+                          ? "coins_audit"
+                          : variant === "chart"
+                          ? "coins_chart_provider"
+                          : variant === "social_platform"
+                          ? "coins_social"
+                          : variant === "nft_network"
+                          ? "nft_networks"
+                          : variant === "nft_social_platform"
+                          ? "coins_social"
+                          : variant === "nft_marketplace"
+                          ? "nft_marketplace_icons"
+                          : variant === "nft_listing_currency" &&
+                            "nft_currency_icons"
+                      }/${
+                        list.thumb_icon !== undefined
+                          ? list.thumb_icon
+                          : list.icon !== undefined
+                          ? list.icon
+                          : list.network_icon !== undefined && list.network_icon
+                      }`}
                       sx={{ width: 20, height: 20 }}
-                    /> */}
+                    />
                     <Typography sx={{ fontSize: ".9rem" }}>
                       {type === "events"
                         ? list.title

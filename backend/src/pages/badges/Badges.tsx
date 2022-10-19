@@ -10,6 +10,7 @@ import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 
 import InputSearch from "../../components/form/input/search/InputSearch";
+import moment from "moment";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -65,14 +66,27 @@ const Badges = () => {
     },
     {
       field: "thumb_icon",
-      headerName: "Icon",
+      headerName: "Active Icon",
       flex: 1,
       sortable: false,
       disableClickEventBubbling: true,
       renderCell: (params: any) => (
         <Avatar
           src={`${serverAPIUrl}public/uploads/badge_icons/${params.row.icon}`}
-          alt={params.thumb_icon}
+          alt={params.icon}
+        />
+      ),
+    },
+    {
+      field: "inactive_icon",
+      headerName: "Inactive Icon",
+      flex: 1,
+      sortable: false,
+      disableClickEventBubbling: true,
+      renderCell: (params: any) => (
+        <Avatar
+          src={`${serverAPIUrl}public/uploads/badge_icons/${params.row.inactive_icon}`}
+          alt={params.icon}
         />
       ),
     },
@@ -86,12 +100,31 @@ const Badges = () => {
       field: "url",
       headerName: "Url",
       flex: 1,
+      renderCell: (params: any) => (
+        <span style={{ color: "blue", fontSize: ".7rem" }}>
+          <a
+            href={params.row.url}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "blue", textDecoration: "none" }}
+          >
+            {" "}
+            {params.row.url}
+          </a>
+        </span>
+      ),
     },
 
     {
-      field: "slug",
-      headerName: "Slug",
+      field: "created_at",
+      headerName: "Created at",
+      align: "center",
+      headerAlign: "center",
       flex: 1,
+      renderCell: (params: any) => (
+        <span>{moment(params.row.created_at).fromNow()}</span>
+        //<span>{moment("2022-04-25T09:51:52.000000Z").fromNow()}</span>
+      ),
     },
     {
       field: "status",

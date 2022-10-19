@@ -79,7 +79,7 @@ const NftTokenCurrencyAdd = () => {
 
     formData.append("name", addNFTListingCurrencyData.name);
     formData.append("symbol", addNFTListingCurrencyData.symbol);
-
+    formData.append("icon", addNFTListingCurrencyData.thumb_icon);
     formData.append("status", addNFTListingCurrencyData.status);
 
     dispatch(

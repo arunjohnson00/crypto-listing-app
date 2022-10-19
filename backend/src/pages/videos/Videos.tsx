@@ -128,6 +128,19 @@ const Videos = () => {
       field: "v_url",
       headerName: "Video URL",
       flex: 1,
+      renderCell: (params: any) => (
+        <span style={{ color: "blue", fontSize: ".7rem" }}>
+          <a
+            href={params.row.v_url}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "blue", textDecoration: "none" }}
+          >
+            {" "}
+            {params.row.v_url}
+          </a>
+        </span>
+      ),
     },
     {
       field: "status",

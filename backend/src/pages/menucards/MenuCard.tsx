@@ -105,6 +105,19 @@ const MenuCard = () => {
       field: "url",
       headerName: "Redirection URL",
       flex: 1,
+      renderCell: (params: any) => (
+        <span style={{ color: "blue", fontSize: ".7rem" }}>
+          <a
+            href={params.row.url}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "blue", textDecoration: "none" }}
+          >
+            {" "}
+            {params.row.url}
+          </a>
+        </span>
+      ),
     },
     {
       field: "status",

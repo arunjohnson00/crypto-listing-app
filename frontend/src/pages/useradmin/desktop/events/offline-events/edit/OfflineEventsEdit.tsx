@@ -467,6 +467,7 @@ const OfflineEventsEdit = () => {
                   selectedValue={editEventsData?.category_id}
                   height={40}
                   title="Select category"
+                  variant="event_category"
                 />
               </Grid>
             </Grid>
@@ -643,6 +644,7 @@ const OfflineEventsEdit = () => {
                   data={eventsRewardAddress}
                   selectedValue={editEventsData?.reward_address_id}
                   height={40}
+                   variant="reward_address"
                 />
               </Grid>
             </Grid>

@@ -37,6 +37,7 @@ const SocialNFTDetails = ({
             height={40}
             width={300}
             title="Select website"
+            variant="nft_social_platform"
           />
         </Grid>
         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>

@@ -83,7 +83,9 @@ const CoinsChartProviderEdit = () => {
 
     formData.append("name", updateCoinChartProviderData?.name);
     formData.append("url", updateCoinChartProviderData?.url);
-    formData.append("thumb_icon", updateCoinChartProviderData?.thumb_icon);
+    updateCoinChartProviderData.thumb_icon !== "" &&
+      typeof updateCoinChartProviderData.thumb_icon !== "string" &&
+      formData.append("thumb_icon", updateCoinChartProviderData?.thumb_icon);
     formData.append("status", updateCoinChartProviderData?.status);
 
     dispatch(

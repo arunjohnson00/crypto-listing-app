@@ -65,7 +65,7 @@ const Users = () => {
     },
     {
       field: "name",
-      headerName: "User Name",
+      headerName: "Name",
       flex: 2,
       align: "left",
       headerAlign: "left",
@@ -88,7 +88,7 @@ const Users = () => {
 
     {
       field: "email",
-      headerName: "Email Id",
+      headerName: "Email",
       flex: 2,
       align: "left",
       headerAlign: "left",
@@ -107,16 +107,22 @@ const Users = () => {
       ),
     },
     {
-      field: "dname",
-      headerName: "Display Name",
+      field: "email_verified",
+      headerName: "Is Email Verified",
       flex: 1,
       align: "center",
       headerAlign: "center",
+      renderCell: (params: any) =>
+        parseInt(params.row.email_verified) === 1 ? (
+          <span style={{ color: "green" }}>yes</span>
+        ) : (
+          <span style={{ color: "red" }}>No</span>
+        ),
     },
 
     {
       field: "created_at",
-      headerName: "Careated at",
+      headerName: "Created at",
       align: "center",
       headerAlign: "center",
       flex: 1,
@@ -127,11 +133,15 @@ const Users = () => {
     },
 
     {
-      field: "rating",
-      headerName: "Rating",
-      flex: 1,
+      field: "updated_at",
+      headerName: "Last Update",
       align: "center",
       headerAlign: "center",
+      flex: 1,
+      renderCell: (params: any) => (
+        <span>{moment(params.row.updated_at).fromNow()}</span>
+        //<span>{moment("2022-04-25T09:51:52.000000Z").fromNow()}</span>
+      ),
     },
 
     {

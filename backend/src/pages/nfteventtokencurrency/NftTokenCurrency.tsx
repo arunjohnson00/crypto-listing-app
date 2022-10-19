@@ -73,19 +73,19 @@ const NftTokenCurrency = () => {
         <span style={{ color: "#bebebe", fontWeight: 600 }}>{params?.id}</span>
       ),
     },
-    // {
-    //   field: "thumb_icon",
-    //   headerName: "Icon",
-    //   flex: 1,
-    //   sortable: false,
-    //   disableClickEventBubbling: true,
-    //   renderCell: (params: any) => (
-    //     <Avatar
-    //       src={`${serverAPIUrl}public/uploads/nft_currency_icons/${params.row.thumb_icon}`}
-    //       alt={params.thumb_icon}
-    //     />
-    //   ),
-    // },
+    {
+      field: "icon",
+      headerName: "Icon",
+      flex: 1,
+      sortable: false,
+      disableClickEventBubbling: true,
+      renderCell: (params: any) => (
+        <Avatar
+          src={`${serverAPIUrl}public/uploads/nft_currency_icons/${params.row.icon}`}
+          alt={params.icon}
+        />
+      ),
+    },
     {
       field: "name",
       headerName: "Name",

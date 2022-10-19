@@ -31,6 +31,7 @@ const ChatNFTDetails = ({ chatCount, index, chatremoveHandle, data }: any) => {
             data={data}
             height={40}
             width={300}
+            variant="nft_network"
           />
         </Grid>
         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>

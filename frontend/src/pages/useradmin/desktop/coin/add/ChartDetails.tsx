@@ -32,6 +32,7 @@ const ChartDetails = ({ chartCount, chartremoveHandle, index, data }: any) => {
             height={40}
             width={300}
             title="Please select"
+            variant="chart"
           />
         </Grid>
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>

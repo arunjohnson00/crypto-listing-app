@@ -81,7 +81,9 @@ const CoinsAuditEdit = () => {
 
     const formData = new FormData();
     formData.append("id", updateCoinAuditData.id);
-    formData.append("thumb_icon", updateCoinAuditData.thumb_icon);
+    updateCoinAuditData.thumb_icon !== "" &&
+      typeof updateCoinAuditData.thumb_icon !== "string" &&
+      formData.append("thumb_icon", updateCoinAuditData.thumb_icon);
     formData.append("url", updateCoinAuditData.url);
     formData.append("name", updateCoinAuditData.name);
     formData.append("status", updateCoinAuditData.status);

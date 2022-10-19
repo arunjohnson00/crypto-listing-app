@@ -88,7 +88,7 @@ const NftTokenCurrencyEdit = () => {
 
     const formData = new FormData();
     formData.append("id", updateNFTCurrencyData?.id);
-    formData.append("thumb_icon", updateNFTCurrencyData.thumb_icon);
+    formData.append("icon", updateNFTCurrencyData.thumb_icon);
     formData.append("name", updateNFTCurrencyData?.name);
 
     formData.append("status", updateNFTCurrencyData?.status);

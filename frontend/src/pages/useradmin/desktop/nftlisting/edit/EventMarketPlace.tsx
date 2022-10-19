@@ -37,6 +37,7 @@ const EventMarketPlace = ({
             height={40}
             width={300}
             title="Select Marketplace"
+            variant="nft_marketplace"
           />
         </Grid>
         <Grid item xl={5} lg={5} md={5} sm={5} xs={12}>

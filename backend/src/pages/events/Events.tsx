@@ -114,6 +114,19 @@ const Events = () => {
       field: "source_link",
       headerName: "Source Link",
       flex: 1,
+      renderCell: (params: any) => (
+        <span style={{ color: "blue", fontSize: ".7rem" }}>
+          <a
+            href={params.row.source_link}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "blue", textDecoration: "none" }}
+          >
+            {" "}
+            {params.row.source_link}
+          </a>
+        </span>
+      ),
     },
     {
       field: "address",

@@ -75,7 +75,7 @@ const NFTListing = () => {
     },
     {
       field: "title",
-      headerName: "NFT Name",
+      headerName: "NFT Title",
       flex: 1,
     },
     {
@@ -101,18 +101,23 @@ const NFTListing = () => {
     },
 
     {
-      field: "network",
-      headerName: "Network",
+      field: "public_mint_price",
+      headerName: "Public Mint Price",
       flex: 1,
     },
     {
       field: "public_mint_start_date",
-      headerName: "Mint date",
+      headerName: "Public Mint Start Date",
       flex: 1,
     },
     {
       field: "public_mint_start_time",
-      headerName: "Mint Time",
+      headerName: "Public Mint Start Time",
+      flex: 1,
+    },
+    {
+      field: "max_num_items",
+      headerName: "Max Items",
       flex: 1,
     },
     {

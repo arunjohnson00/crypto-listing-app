@@ -417,6 +417,7 @@ const OfflineEventsAdd = () => {
                   data={eventsCategory}
                   height={40}
                   title="Select category"
+                  variant="event_category"
                 />
               </Grid>
             </Grid>
@@ -587,6 +588,7 @@ const OfflineEventsAdd = () => {
                   id="reward_address_id"
                   data={eventsRewardAddress}
                   height={40}
+                     variant="reward_address"
                 />
               </Grid>
             </Grid>
