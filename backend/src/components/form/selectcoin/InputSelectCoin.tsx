@@ -109,6 +109,8 @@ const InputSelectCoin = ({
                       ? x.title
                       : type === "airdrop"
                       ? x.name
+                      : type === "currency"
+                      ? x.name
                       : x.name
                   )
           }

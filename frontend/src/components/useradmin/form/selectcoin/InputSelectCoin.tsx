@@ -117,11 +117,15 @@ const InputSelectCoin = ({
           name={name}
           defaultValue={selectedValue && selectedValue}
           renderValue={(selected) =>
-            !selected
-              ? title
-                ? title
-                : "Please Select"
-              : data
+            !selected ? (
+              title ? (
+                title
+              ) : (
+                "Please Select"
+              )
+            ) : (
+              <span style={{ color: "#FFFFFF" }}>
+                {data
                   ?.filter((item: any) => item?.id === selected)
                   .map((x: any) =>
                     type === "events"
@@ -129,7 +133,9 @@ const InputSelectCoin = ({
                       : type === "airdrop"
                       ? x.name
                       : x.name
-                  )
+                  )}
+              </span>
+            )
           }
           displayEmpty={true}
           inputProps={{
@@ -165,6 +171,34 @@ const InputSelectCoin = ({
           MenuProps={MenuProps}
           IconComponent={() => <ArrowDropDownIcon sx={{ color: "#FFFFFF" }} />}
         >
+          <MenuItem
+            value={""}
+            sx={{
+              background: "#00182f",
+              color: "#FFFFFF",
+              borderBottom: "1px solid #030b2a",
+              textIndent: 5,
+              "&:hover": {
+                backgroundColor: "#00004c",
+                color: "#FFFFFF",
+              },
+            }}
+          >
+            <Stack
+              direction="row"
+              spacing={1}
+              alignItems="center"
+              px={1}
+              py={0.5}
+            >
+              {/* <Avatar
+                      alt="Remy Sharp"
+                      src="/static/images/avatar/1.jpg"
+                      sx={{ width: 20, height: 20 }}
+                    /> */}
+              <Typography sx={{ fontSize: ".9rem" }}>None</Typography>
+            </Stack>
+          </MenuItem>
           {data &&
             data.map((list: any, index: number) => {
               return (
@@ -192,11 +226,11 @@ const InputSelectCoin = ({
                     px={1}
                     py={0.5}
                   >
-                    <Avatar
+                    {/* <Avatar
                       alt="Remy Sharp"
                       src="/static/images/avatar/1.jpg"
                       sx={{ width: 20, height: 20 }}
-                    />
+                    /> */}
                     <Typography sx={{ fontSize: ".9rem" }}>
                       {type === "events"
                         ? list.title

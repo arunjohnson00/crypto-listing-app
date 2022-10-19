@@ -43,11 +43,11 @@ const MobileUserDashboard = () => {
   return (
     <Grid container rowSpacing={1} mb={5}>
       <Grid item xs={12}>
-        <Box width="100%" sx={{ backgroundColor: "#01061A" }}>
+        {/* <Box width="100%" sx={{ backgroundColor: "#01061A" }}>
           <MobileMultiSlider />
-        </Box>
+        </Box> */}
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} mt={1}>
         <Box
           sx={{
             border: "1px solid #151717",

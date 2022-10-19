@@ -23,7 +23,12 @@ const UserAdminView = ({ children }: any) => {
       }}
       pb={10}
     >
-      {matches === true ? <NotificationBar /> : <MobileAppbarTop />}
+      {matches === true ? (
+        //  <NotificationBar />
+        <div></div>
+      ) : (
+        <MobileAppbarTop />
+      )}
 
       <Stack direction="row">
         {matches === true && (

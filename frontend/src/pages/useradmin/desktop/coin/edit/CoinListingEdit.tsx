@@ -1150,6 +1150,7 @@ const CoinListingEdit = () => {
                     networkCount={networkCount}
                     index={
                       editCoin?.has_many_networks &&
+                      editCoin?.has_many_networks?.length !== 0 &&
                       editCoin?.has_many_networks !== undefined
                         ? editCoin?.has_many_networks.length - 1 + index
                         : index
@@ -1383,6 +1384,7 @@ const CoinListingEdit = () => {
                     exchangeCount={exchangeCount}
                     index={
                       editCoin?.has_many_exchanges &&
+                      editCoin?.has_many_exchanges?.length !== 0 &&
                       editCoin?.has_many_exchanges !== undefined
                         ? editCoin?.has_many_exchanges.length - 1 + index
                         : index
@@ -1532,6 +1534,7 @@ const CoinListingEdit = () => {
                       id="circulating_supply"
                       name="circulating_supply"
                       value={editCoin?.circulating_supply}
+                      type="number"
                     />
                   </Grid>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -1553,6 +1556,7 @@ const CoinListingEdit = () => {
                       id="max_supply"
                       name="max_supply"
                       value={editCoin?.max_supply}
+                      type="number"
                     />
                   </Grid>
                 </Stack>
@@ -1575,6 +1579,7 @@ const CoinListingEdit = () => {
                     id="market_cap"
                     name="market_cap"
                     value={editCoin?.market_cap}
+                    type="number"
                   />
                 </Grid>
               </Grid>
@@ -1635,6 +1640,7 @@ const CoinListingEdit = () => {
                       id="circulating_supply"
                       name="circulating_supply"
                       value={editCoin?.circulating_supply}
+                      type="number"
                     />
                   </Grid>
                 </Stack>
@@ -1663,6 +1669,7 @@ const CoinListingEdit = () => {
                       id="max_supply"
                       name="max_supply"
                       value={editCoin?.max_supply}
+                      type="number"
                     />
                   </Grid>
 
@@ -1685,6 +1692,7 @@ const CoinListingEdit = () => {
                       id="market_cap"
                       name="market_cap"
                       value={editCoin?.market_cap}
+                      type="number"
                     />
                   </Grid>
                 </Stack>
@@ -2000,6 +2008,7 @@ const CoinListingEdit = () => {
                     auditCount={auditCount}
                     index={
                       editCoin?.has_many_audits &&
+                      editCoin?.has_many_audits?.length !== 0 &&
                       editCoin?.has_many_audits !== undefined
                         ? editCoin?.has_many_audits.length - 1 + index
                         : index
@@ -2197,6 +2206,7 @@ const CoinListingEdit = () => {
                     chartCount={chartCount}
                     index={
                       editCoin?.has_many_charts &&
+                      editCoin?.has_many_charts?.length !== 0 &&
                       editCoin?.has_many_charts !== undefined
                         ? editCoin?.has_many_charts.length - 1 + index
                         : index
@@ -2364,6 +2374,7 @@ const CoinListingEdit = () => {
                         communityCount={communityCount}
                         index={
                           editCoin?.has_many_communitys &&
+                          editCoin?.has_many_communitys?.length !== 0 &&
                           editCoin?.has_many_communitys !== undefined
                             ? editCoin?.has_many_communitys.length - 1 + index
                             : index
@@ -2916,6 +2927,7 @@ const CoinListingEdit = () => {
                         socialCount={socialCount}
                         index={
                           editCoin?.has_many_socials &&
+                          editCoin?.has_many_socials?.length !== 0 &&
                           editCoin?.has_many_socials !== undefined
                             ? editCoin?.has_many_socials.length - 1 + index
                             : index

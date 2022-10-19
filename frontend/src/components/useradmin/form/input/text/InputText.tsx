@@ -12,9 +12,10 @@ const InputText = ({
   checkboxStatus,
   width,
   InputProps,
+  type,
 }: any) => {
   const matches = useMediaQuery("(min-width:900px)");
-  const [inputValue, setinputValue] = useState();
+  const [inputValue, setinputValue] = useState<any>();
   useEffect(() => {
     setinputValue(value);
   }, [value]);
@@ -31,7 +32,11 @@ const InputText = ({
         value={inputValue}
         onChange={(e: any) => {
           inputTextHandler && inputTextHandler(e.target.value);
-          setinputValue(e.target.value);
+          setinputValue(
+            type === "number"
+              ? e.target.value.replace(/[^0-9\.]/g, "")
+              : e.target.value
+          );
         }}
         sx={{
           fontSize: ".85rem",

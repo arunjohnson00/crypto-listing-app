@@ -1121,6 +1121,7 @@ const CoinListingAdd = () => {
                       placeholder="Eg: 100000000000"
                       id="circulating_supply"
                       name="circulating_supply"
+                      type="number"
                     />
                   </Grid>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -1141,6 +1142,7 @@ const CoinListingAdd = () => {
                       placeholder="Eg: 100000000000"
                       id="max_supply"
                       name="max_supply"
+                      type="number"
                     />
                   </Grid>
                 </Stack>
@@ -1172,6 +1174,7 @@ const CoinListingAdd = () => {
                     placeholder="Eg: 100000000000"
                     id="market_cap"
                     name="market_cap"
+                    type="number"
                   />
                 </Grid>
               </Grid>
@@ -1236,6 +1239,7 @@ const CoinListingAdd = () => {
                       placeholder="Eg: 100000000000"
                       id="circulating_supply"
                       name="circulating_supply"
+                      type="number"
                     />
                   </Grid>
                 </Stack>
@@ -1263,6 +1267,7 @@ const CoinListingAdd = () => {
                       placeholder="Eg: 100000000000"
                       id="max_supply"
                       name="max_supply"
+                      type="number"
                     />
                   </Grid>
 
@@ -1294,6 +1299,7 @@ const CoinListingAdd = () => {
                       placeholder="Eg: 100000000000"
                       id="market_cap"
                       name="market_cap"
+                      type="number"
                     />
                   </Grid>
                 </Stack>

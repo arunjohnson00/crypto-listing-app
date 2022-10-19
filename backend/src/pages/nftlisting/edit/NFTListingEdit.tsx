@@ -651,9 +651,12 @@ const NFTListingEdit = () => {
 
                     <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
                       <InputSelectCoin
+                        type="currency"
                         name="currancy_id"
                         data={nftListingCurrencyList}
-                        selectedValue={nftListingData?.currency_id}
+                        selectedValue={
+                          nftListingData && nftListingData?.currency_id
+                        }
                         height={40}
                       />
                     </Grid>

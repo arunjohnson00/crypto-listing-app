@@ -9,12 +9,12 @@ const UserDashboard = () => {
   });
   const authUser = JSON.parse(localStorage.getItem("authUser") as any);
   return (
-    <Grid container spacing={1}>
-      <Box width="100%" my={6}>
+    <Grid container rowSpacing={2}>
+      {/* <Box width="100%" my={6}>
         <MultiSlider />
-      </Box>
+      </Box> */}
 
-      <Grid item xs={12}>
+      <Grid item xs={12} mt={8}>
         <Stack direction="row" alignItems="center" spacing={1}>
           <Typography
             variant="subtitle2"
@@ -39,7 +39,7 @@ const UserDashboard = () => {
           </Typography>
         </Stack>
       </Grid>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} mt={0}>
         <Grid item xs={12} py={3}>
           <UserAdminTabs />
         </Grid>
