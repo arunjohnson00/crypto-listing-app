@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const CountDownTimer = (targetDate: any) => {
+  const location = useLocation();
   const countDownDate = new Date(targetDate).getTime();
 
   const [countDown, setCountDown] = useState(
@@ -13,7 +15,7 @@ const CountDownTimer = (targetDate: any) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [countDownDate]);
+  }, [countDownDate, location]);
 
   return getReturnValues(countDown);
 };

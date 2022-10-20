@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 
 import moment from "moment";
+import { useLocation } from "react-router-dom";
 
 export default function CountDownTimer({ data }: any) {
+  const location = useLocation();
   const [duration, setDuration] = useState<any>("");
   const [now, setNow] = useState<any>("");
   const [days, setDays] = useState<any>("");
@@ -10,13 +12,11 @@ export default function CountDownTimer({ data }: any) {
   const [minutes, setMinutes] = useState<any>("");
   const [seconds, setSeconds] = useState<any>("");
   const [load, setLoad] = useState<any>(true);
-  useEffect(() => {
+  useLayoutEffect(() => {
     const now = setInterval(() => {
       setNow(new Date().toLocaleString());
     }, 1000);
-    console.log(new Date());
-    console.log(moment(new Date()).unix());
-    console.log(moment(new Date()).add(240, "day"));
+
     return () => clearInterval(now);
   }, []);
 
@@ -33,7 +33,7 @@ export default function CountDownTimer({ data }: any) {
     //console.log(d, h, m, s);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const start = moment(now);
     const end = moment(new Date(data).toLocaleString());
     const diff = end.diff(start, "seconds");

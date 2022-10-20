@@ -155,11 +155,12 @@ const AutoCompleSelect = ({
             color: "#FFFFFF",
             height: 40,
           }}
+          px={2}
           alignItems="center"
         >
           {/* <Avatar
-            alt="Travis Howard"
-            src="https://mui.com/static/images/avatar/2.jpg"
+            alt={option}
+            src={`${serverAPIUrl}public/uploads/coin_logo/${option}`}
             sx={{ width: 20, height: 20 }}
           /> */}
 
@@ -175,7 +176,7 @@ const AutoCompleSelect = ({
         width: "auto",
         marginBottom: 1,
         fontSize: ".8rem",
-        backgroundColor: "#010619",
+        // backgroundColor: "#010619",
 
         "&$focus": {
           border: "1px solid rgb(200, 200, 200)",
