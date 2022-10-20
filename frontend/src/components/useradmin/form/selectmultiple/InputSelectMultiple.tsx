@@ -66,6 +66,16 @@ const InputSelectMultiple = ({
       style: {
         maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
         width: 250,
+        backgroundColor: "#010619",
+        borderRadius: 10,
+        border: "1.5px solid #05114c",
+        color: "#FFFFFF",
+
+        sx: {
+          "&& .Mui-selected": {
+            backgroundColor: "pink",
+          },
+        },
       },
     },
   };
@@ -167,6 +177,7 @@ const InputSelectMultiple = ({
             >
               <Checkbox
                 checked={getInputSelectMultiplevalue.indexOf(option.id) > -1}
+                sx={{ color: "#FFFFFF" }}
               />
 
               <ListItemText primary={option.name} />

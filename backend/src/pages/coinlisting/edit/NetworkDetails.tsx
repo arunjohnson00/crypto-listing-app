@@ -28,6 +28,7 @@ const NetworkDetails = ({
             data={data}
             height={40}
             title="Select Network"
+            variant="network"
           />
         </Grid>
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>

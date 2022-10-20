@@ -21,6 +21,7 @@ const ChatDetails = ({ chatCount, index, chatremoveHandle, data }: any) => {
             id={`chat_platform_${index + 2}`}
             data={data}
             height={40}
+            variant="chat"
           />
         </Grid>
         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>

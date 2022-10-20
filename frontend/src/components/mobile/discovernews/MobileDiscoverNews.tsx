@@ -93,8 +93,8 @@ const MobileDiscoverNews = () => {
                                 {/* {item && item?.title?.length >= 55
                                 ? Parser(item?.title.slice(0, 55)) + "..."
                                 : Parser(item?.title)}. */}
-                                {item?.title?.length > 50
-                                  ? Parser(item?.title?.slice(0, 50)) + "..."
+                                {item?.title?.length > 150
+                                  ? Parser(item?.title?.slice(0, 150)) + "..."
                                   : Parser(item?.title)}
                                 .{" "}
                                 <OpenInNewIcon

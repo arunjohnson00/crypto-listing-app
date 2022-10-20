@@ -26,6 +26,7 @@ const EventMarketPlace = ({
             id={`marketplace_id_${index + 2}`}
             data={data}
             height={40}
+            variant="nft_marketplace"
           />
         </Grid>
         <Grid item xl={5} lg={5} md={5} sm={5} xs={12}>

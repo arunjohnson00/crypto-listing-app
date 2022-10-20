@@ -38,7 +38,13 @@ import CommunityDetails from "./CommunityDetails";
 import ChatDetails from "./ChatDetails";
 import SocialDetails from "./SocialDetails";
 
-import { addCoinRequest } from "../../../store/action";
+import {
+  addCoinRequest,
+  allChartProviderRequest,
+  allCoinAuditRequest,
+  allCoinChatRequest,
+  allCoinSocialRequest,
+} from "../../../store/action";
 import { listExchangeRequest } from "../../../store/action";
 import { allNetworkRequest } from "../../../store/action";
 import { listCoinAuditRequest } from "../../../store/action";
@@ -62,18 +68,18 @@ const CoinListingAdd = () => {
     return ntList.networksReducer.allNetworks.data;
   });
   const coinAuditList = useSelector((auditList: any) => {
-    return auditList.auditReducer.listAudit.data;
+    return auditList.auditReducer.allAudit.data;
   });
   const coinChartProviderList = useSelector((chartProviderList: any) => {
-    return chartProviderList.chartProviderReducer.listChartProvider.data;
+    return chartProviderList.chartProviderReducer.allChartProvider.data;
   });
 
   const coinChatList = useSelector((chatList: any) => {
-    return chatList.chatReducer.listChat.data;
+    return chatList.chatReducer.allChat.data;
   });
 
   const coinSocialList = useSelector((socialList: any) => {
-    return socialList.socialsReducer.listSocials.data;
+    return socialList.socialsReducer.allSocials.data;
   });
 
   const [coinStatus, setCoinStatus] = useState("Presale");
@@ -257,16 +263,14 @@ const CoinListingAdd = () => {
     dispatch(allNetworkRequest("emptyformData", successHandler, errorHandler));
 
     dispatch(
-      listCoinAuditRequest("emptyformData", successHandler, errorHandler)
+      allCoinAuditRequest("emptyformData", successHandler, errorHandler)
     );
     dispatch(
-      listChartProviderRequest("emptyformData", successHandler, errorHandler)
+      allChartProviderRequest("emptyformData", successHandler, errorHandler)
     );
+    dispatch(allCoinChatRequest("emptyformData", successHandler, errorHandler));
     dispatch(
-      listCoinChatRequest("emptyformData", successHandler, errorHandler)
-    );
-    dispatch(
-      listCoinSocialRequest("emptyformData", successHandler, errorHandler)
+      allCoinSocialRequest("emptyformData", successHandler, errorHandler)
     );
   }, [dispatch]);
   return (
@@ -344,6 +348,7 @@ const CoinListingAdd = () => {
                     id="network_id"
                     data={networkList}
                     height={40}
+                    variant="network"
                   />
                 </Grid>
               </Stack> */}
@@ -662,6 +667,7 @@ const CoinListingAdd = () => {
                     data={networkList}
                     height={40}
                     title="Select Network"
+                    variant="network"
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -760,6 +766,7 @@ const CoinListingAdd = () => {
                     data={exchangeList}
                     height={40}
                     title="Select Exchange"
+                    variant="exchange"
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1190,6 +1197,7 @@ const CoinListingAdd = () => {
                     data={coinAuditList}
                     height={40}
                     title="Select Audit Provider"
+                    variant="audit"
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1267,6 +1275,7 @@ const CoinListingAdd = () => {
                     data={coinChartProviderList}
                     height={40}
                     title="Please select"
+                    variant="chart"
                   />
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1532,6 +1541,7 @@ const CoinListingAdd = () => {
                         id="chat_platform_1"
                         data={coinChatList}
                         height={40}
+                          variant="chat"
                       />
                     </Grid>
                     <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -1614,6 +1624,7 @@ const CoinListingAdd = () => {
                         data={coinSocialList}
                         height={40}
                         title="Select website"
+                        variant="social_platform"
                       />
                     </Grid>
                     <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>

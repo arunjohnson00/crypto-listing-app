@@ -86,8 +86,10 @@ const UserAdminMobileHtmlTable = ({
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#0222a5",
       cancelButtonColor: "#d33",
+      background: "#000825",
+      color: "#FFFFFF",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {

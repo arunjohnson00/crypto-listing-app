@@ -385,6 +385,7 @@ const NFTListingAdd = () => {
                             id="marketplace_id_1"
                             data={nftMarketPlaceList}
                             height={40}
+                            variant="nft_marketplace"
                           />
                         </Grid>
                         <Grid item xl={5} lg={5} md={5} sm={5} xs={12}>
@@ -478,6 +479,7 @@ const NFTListingAdd = () => {
                         name="currancy_id"
                         data={nftListingCurrencyList}
                         height={40}
+                        variant="nft_listing_currency"
                       />
                     </Grid>
                   </Grid>
@@ -776,7 +778,7 @@ const NFTListingAdd = () => {
                   id="nft_network_id"
                   data={allNFTNetwork}
                   height={40}
-                  varient="nft_network"
+                  variant="nft_network"
                 />
               </Grid>
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
@@ -974,6 +976,7 @@ const NFTListingAdd = () => {
                           id="chat_platform_id_1"
                           data={nftChatList}
                           height={40}
+                                      variant="chat"
                         />
                       </Grid>
                       <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -1055,6 +1058,7 @@ const NFTListingAdd = () => {
                           id="social_platform_id_1"
                           data={nftSocialList}
                           height={40}
+                          variant="social_platform"
                         />
                       </Grid>
                       <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>

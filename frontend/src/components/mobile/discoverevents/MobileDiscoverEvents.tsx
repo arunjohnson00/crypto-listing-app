@@ -33,7 +33,12 @@ const MobileDiscoverEvents = () => {
           02 June 2022
         </Typography>
 
-        <Stack direction="column" spacing={2} mt={1}>
+        <Stack
+          direction="column"
+          spacing={2}
+          mt={1}
+          justifyContent=" space-between"
+        >
           {latestEvents &&
             latestEvents?.map((item: any, index: number) => (
               <MobileDiscoverListEventsCard item={item} key={index} />

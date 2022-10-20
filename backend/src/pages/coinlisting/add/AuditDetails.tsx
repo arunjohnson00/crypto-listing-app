@@ -22,6 +22,7 @@ const AuditDetails = ({ auditCount, index, auditremoveHandle, data }: any) => {
             data={data}
             height={40}
             title="Select Audit Provider"
+            variant="audit"
           />
         </Grid>
         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>

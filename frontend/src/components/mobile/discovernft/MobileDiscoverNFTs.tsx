@@ -1,4 +1,4 @@
-import { Grid, Stack, Typography } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import moment from "moment";
@@ -27,14 +27,12 @@ const MobileDiscoverNFTs = () => {
       </Grid> */}
 
       <Stack direction="row" flexWrap="wrap">
-        <ImageList sx={{ height: "auto" }} cols={4}>
-          {latestNft &&
-            latestNft?.map((item: any, index: number) => (
-              <ImageListItem key={index}>
-                <MobileDiscoverNFTCard item={item} />
-              </ImageListItem>
-            ))}
-        </ImageList>
+        {latestNft &&
+          latestNft?.map((item: any, index: number) => (
+            <Box key={index} sx={{ width: "50%" }}>
+              <MobileDiscoverNFTCard item={item} />
+            </Box>
+          ))}
       </Stack>
     </Grid>
   );

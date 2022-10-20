@@ -10,7 +10,7 @@ const UserAdminAddEventsPage = ({ windowInnerWidth }: any) => {
     <Box
       sx={{
         display: "flex",
-        justifyContent: { xs: "flex-start", sm: "flex-start", md: "center" },
+        justifyContent: { xs: "center", sm: "center", md: "center" },
         alignItems: { xs: "flex-start", sm: "flex-start", md: "center" },
       }}
       pt={matches === true ? 7 : 2}
@@ -20,7 +20,7 @@ const UserAdminAddEventsPage = ({ windowInnerWidth }: any) => {
       <Stack
         direction={{ xs: "row", sm: "row", md: "row" }}
         spacing={{ xs: 1, sm: 1, md: 3 }}
-        justifyContent={{ xs: "flex-start", sm: "flex-start", md: "center" }}
+        justifyContent={{ xs: "center", sm: "center", md: "center" }}
         alignItems={{ xs: "flex-start", sm: "flex-start", md: "center" }}
         pt={{ xs: 2, sm: 2, md: 15 }}
         pb={15}

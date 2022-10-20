@@ -398,6 +398,7 @@ const EventsAdd = () => {
                   id="category_id"
                   data={eventsCategory}
                   height={40}
+                  variant="event_category"
                 />
               </Grid>
             </Grid>
@@ -557,6 +558,7 @@ const EventsAdd = () => {
                   id="reward_address_id"
                   data={eventsRewardAddress}
                   height={40}
+                     variant="reward_address"
                 />
               </Grid>
             </Grid>

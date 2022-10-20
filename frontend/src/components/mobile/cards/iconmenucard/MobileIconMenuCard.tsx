@@ -240,7 +240,8 @@ const MobileIconMenuCard = () => {
         </Grid>
         <Grid item xs={3}>
           <Link
-            to="/chart"
+            // to="/chart"
+            to="#"
             style={{
               textDecoration: "none",
               color: "inherit",

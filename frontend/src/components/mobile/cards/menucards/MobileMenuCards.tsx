@@ -40,8 +40,12 @@ const MobileMenuCards = ({
               >
                 {" "}
                 <Typography
-                  variant="h6"
-                  sx={{ color: "#BDBAC5", fontWeight: "", textAlign: "left" }}
+                  sx={{
+                    color: "#BDBAC5",
+                    fontWeight: 500,
+                    fontSize: ".9rem",
+                    textAlign: "left",
+                  }}
                 >
                   {title && title?.length >= 21
                     ? title && title?.slice(0, 19) + "..."

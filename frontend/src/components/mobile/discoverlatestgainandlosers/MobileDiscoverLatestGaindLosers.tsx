@@ -111,7 +111,8 @@ const MobileDiscoverLatestGaindLosers = () => {
                       arrows={true}
                       draggable={true}
                       swipeable={true}
-                      autoPlay={false}
+                      autoPlay={true}
+                      autoPlaySpeed={2300}
                       minimumTouchDrag={10}
                       keyBoardControl={true}
                       shouldResetAutoplay={false}
@@ -153,15 +154,19 @@ const MobileDiscoverLatestGaindLosers = () => {
                       arrows={true}
                       draggable={true}
                       swipeable={true}
-                      autoPlay={false}
+                      autoPlay={true}
                       minimumTouchDrag={10}
+                      autoPlaySpeed={3000}
                       keyBoardControl={true}
                       shouldResetAutoplay={false}
                     >
                       {biggestLosers &&
                         biggestLosers?.map((item: any, index: number) => (
                           <Box key={index}>
-                            <MobileGainersLosersCard item={item} />
+                            <MobileGainersLosersCard
+                              item={item}
+                              losers={true}
+                            />
                           </Box>
                         ))}
                     </Carousel>

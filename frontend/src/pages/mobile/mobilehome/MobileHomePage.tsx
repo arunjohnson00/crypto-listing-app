@@ -805,9 +805,8 @@ const MobileHomePage = () => {
             variant="h5"
             sx={{ fontWeight: "400", color: "#FFFFF5", textAlign: "center" }}
           >
-            <span style={{ color: "#09e2b1" }}> Our best users are</span> all
-            over the world{" "}
-            <span style={{ color: "#09e2b1" }}> with wide coverage</span>
+            <span style={{ color: "#09e2b1" }}> 2 Million </span> registered
+            users <span style={{ color: "#09e2b1" }}> and counting</span>
           </Typography>
           <MobileBannerMaps />
         </Stack>

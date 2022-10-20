@@ -146,8 +146,15 @@ const AutoCompleSelect = ({
       renderOption={(props, option) => (
         <Stack
           direction="row"
-          spacing={-1}
-          sx={{ paddingY: 0.2 }}
+          spacing={0}
+          sx={{
+            paddingY: 0,
+            backgroundColor: "#010619",
+            borderRadius: 0,
+            border: "1.5px solid #05114c",
+            color: "#FFFFFF",
+            height: 40,
+          }}
           alignItems="center"
         >
           {/* <Avatar
@@ -156,7 +163,7 @@ const AutoCompleSelect = ({
             sx={{ width: 20, height: 20 }}
           /> */}
 
-          <Typography {...props} sx={{ fontSize: ".8rem" }}>
+          <Typography {...props} sx={{ fontSize: ".8rem", flexGrow: 1 }}>
             {option}
           </Typography>
         </Stack>
@@ -168,6 +175,7 @@ const AutoCompleSelect = ({
         width: "auto",
         marginBottom: 1,
         fontSize: ".8rem",
+        backgroundColor: "#010619",
 
         "&$focus": {
           border: "1px solid rgb(200, 200, 200)",

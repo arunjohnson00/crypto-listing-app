@@ -183,7 +183,7 @@ const MobileDiscoverHorizontalTab = () => {
             },
           }}
         />
-        <Tab
+        {/* <Tab
           label="NFT Marketplaces"
           {...a11yProps(5)}
           sx={{
@@ -192,11 +192,11 @@ const MobileDiscoverHorizontalTab = () => {
               alignItems: `${matches ? "flex-start" : "center"}`,
             },
           }}
-        />
+        /> */}
 
         <Tab
           label="Airdrops"
-          {...a11yProps(6)}
+          {...a11yProps(5)}
           sx={{
             paddingX: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
@@ -234,13 +234,13 @@ const MobileDiscoverHorizontalTab = () => {
         <TabPanel value={value} index={4}>
           <MobileDiscoverNFTs />
         </TabPanel>
-        <TabPanel value={value} index={5}>
+        {/* <TabPanel value={value} index={5}>
           <MobileDiscoverNftMarketPlaces />
-        </TabPanel>
-        <TabPanel value={value} index={6}>
+        </TabPanel> */}
+        <TabPanel value={value} index={5}>
           <MobileDiscoverAirdrops />
         </TabPanel>
-        <TabPanel value={value} index={7}>
+        <TabPanel value={value} index={6}>
           <MobileDiscoverEvents />
         </TabPanel>
       </Box>

@@ -17,7 +17,7 @@ import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import { toast } from "material-react-toastify";
 import LoadingButton from "@mui/lab/LoadingButton";
 import "material-react-toastify/dist/ReactToastify.css";
-
+import RichTextEditor from "react-rte";
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import InputSelect from "../../../components/form/select/InputSelect";
 import AutoCompleSelect from "../../../components/form/autocomplete/AutoCompleSelect";
@@ -29,6 +29,7 @@ import dateFormat, { masks } from "dateformat";
 import { editAirDropsRequest } from "../../../store/action";
 import { updateAirDropsRequest } from "../../../store/action";
 import { Link } from "react-router-dom";
+import InputTextArea from "../../../components/form/textarea/InputTextArea";
 
 const selectOptions = [
   { title: "Approved", value: 1 },
@@ -51,6 +52,7 @@ const AirDropsEdit = () => {
     is_follow_twitter: "",
     join_telegram: "",
     status: "",
+    airdrop_details: "",
     logo: "",
   });
   console.log(editAirdropsData);
@@ -100,8 +102,12 @@ const AirDropsEdit = () => {
     formData.append("no_of_days", editAirdropsData?.no_of_days);
     formData.append("total_amount", editAirdropsData?.total_amount);
     formData.append("no_of_winners", editAirdropsData?.no_of_winners);
-    formData.append("is_follow_twitter", editAirdropsData?.is_follow_twitter);
-    formData.append("join_telegram", editAirdropsData?.join_telegram);
+    // formData.append("is_follow_twitter", editAirdropsData?.is_follow_twitter);
+    // formData.append("join_telegram", editAirdropsData?.join_telegram);
+    formData.append(
+      "airdrop_details",
+      editAirdropsData?.airdrop_details?.toString("html")
+    );
     formData.append("status", editAirdropsData?.status);
 
     dispatch(updateAirDropsRequest(formData, successHandler, errorHandler));
@@ -256,7 +262,7 @@ const AirDropsEdit = () => {
             />
           </Grid>
 
-          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+          {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography
               variant="subtitle1"
               sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
@@ -285,6 +291,25 @@ const AirDropsEdit = () => {
               radioValue={editAirdropsData}
               setRadioValue={setEditAirdrops}
               name="join_telegram"
+            />
+          </Grid> */}
+
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
+              Airdrop Details
+            </Typography>
+            <InputTextArea
+              variant="richtext-airdrop"
+              name="airdrop_details"
+              id="airdrop_details"
+              placeholder="Enter airdrop details. "
+              value={editAirdropsData?.airdrop_details}
+              data={editAirdropsData}
+              setData={setEditAirdrops}
             />
           </Grid>
 

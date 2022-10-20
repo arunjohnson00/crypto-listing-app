@@ -54,7 +54,7 @@ const MobileSingleCryptoEventsPage = () => {
     dispatch(
       eventsRecentlyAddedRequest("noData", successHandler, errorHandler)
     );
-  }, [dispatch]);
+  }, [dispatch, location]);
   console.log(eventsRecentlyAdded);
   return (
     <Fragment>

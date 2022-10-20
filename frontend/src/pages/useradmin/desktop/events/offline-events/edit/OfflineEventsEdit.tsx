@@ -376,7 +376,7 @@ const OfflineEventsEdit = () => {
         >
           <form id="eventForm">
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-              <Typography
+              {/* <Typography
                 variant="subtitle1"
                 sx={{
                   textAlign: "left",
@@ -387,7 +387,7 @@ const OfflineEventsEdit = () => {
                 mb={1}
               >
                 My coin is listed on coinxhigh.com
-              </Typography>
+              </Typography> */}
 
               <Stack
                 direction="column"

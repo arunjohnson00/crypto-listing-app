@@ -5,7 +5,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUp from "@mui/icons-material/ArrowDropUp";
-const MobileGainersLosersCard = ({ item }: any) => {
+const MobileGainersLosersCard = ({ item, losers }: any) => {
   // const [data, updateData] = useState([1, 2, 3, 4, 5, 6]);
 
   // useEffect(() => {

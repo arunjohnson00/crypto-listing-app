@@ -31,10 +31,10 @@ const NftCollectionCard = ({ data, index, height }: any) => {
       sx={{
         backgroundColor: "#01061A",
         border: "2px solid #090F2F",
-        borderTopLeftRadius: 52,
-        borderTopRightRadius: 52,
-        borderBottomLeftRadius: 52,
-        borderBottomRightRadius: 52,
+        borderTopLeftRadius: { xs: 20, sm: 20, md: 52 },
+        borderTopRightRadius: { xs: 20, sm: 20, md: 52 },
+        borderBottomLeftRadius: { xs: 20, sm: 20, md: 52 },
+        borderBottomRightRadius: { xs: 20, sm: 20, md: 52 },
         width: { xs: "100%", sm: "100%", md: "auto" },
       }}
     >
@@ -59,8 +59,8 @@ const NftCollectionCard = ({ data, index, height }: any) => {
             alt={data && data?.title}
             variant="square"
             sx={{
-              borderTopLeftRadius: 52,
-              borderTopRightRadius: 52,
+              borderTopLeftRadius: { xs: 20, sm: 20, md: 52 },
+              borderTopRightRadius: { xs: 20, sm: 20, md: 52 },
               width: "100%",
               height: height ? height : "250px",
             }}
@@ -136,7 +136,9 @@ const NftCollectionCard = ({ data, index, height }: any) => {
               variant="caption"
               sx={{ color: "#FFFFFF", textAlign: "center" }}
             >
-              {data && data?.network_name}
+              {data && data?.network_name?.length >= 16
+                ? data?.network_name?.slice(0, 14) + "..."
+                : data?.network_name}
             </Typography>
             {data && data?.network_icon === null ? (
               <Avatar

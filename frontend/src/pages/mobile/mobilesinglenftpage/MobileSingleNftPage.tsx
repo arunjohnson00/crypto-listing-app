@@ -10,6 +10,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 
 import MobileTopAlertBox from "../../../components/mobile/alert/topalertbox/MobileTopAlertBox";
 
@@ -20,11 +21,13 @@ import MobileLatestNewsCardScrollTop from "../../../components/mobile/latestnews
 import { nftSinglePageDetailsRequest } from "../../../store/action";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { nftVoteRequest } from "../../../store/action/nftAction";
 
 const MobileSingleNftPage = () => {
   const nftSinglePageDetails = useSelector((data: any) => {
     return data?.nftReducer?.nft_single_page_details?.data;
   });
+
   const location: any = useLocation();
   const dispatch: any = useDispatch();
   const navigate: any = useNavigate();

@@ -106,7 +106,7 @@ const CoinListingEdit = () => {
     is_token_or_coin: "",
     logo: "",
     market_cap: "",
-    market_cap_url: "C",
+    market_cap_url: "",
     max_supply: "",
     medium_link: "",
     name: "",
@@ -919,7 +919,7 @@ const CoinListingEdit = () => {
             py={5}
             mb={5}
           >
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={2}>
               <Typography
                 variant="h6"
                 sx={{ textAlign: "left", color: "#D7DADB" }}
@@ -954,10 +954,8 @@ const CoinListingEdit = () => {
                       <Stack
                         direction={{ xs: "column", sm: "column", md: "row" }}
                         spacing={3}
-                        sx={{ alignItems: "center" }}
-                        id={`network${index}`}
                       >
-                        <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
+                        <Grid item xl={2} lg={2} md={2} sm={12} xs={12}>
                           <Typography
                             variant="subtitle1"
                             sx={{
@@ -981,7 +979,7 @@ const CoinListingEdit = () => {
                             variant="network"
                           />
                         </Grid>
-                        <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
+                        <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
                           <Typography
                             variant="subtitle1"
                             sx={{

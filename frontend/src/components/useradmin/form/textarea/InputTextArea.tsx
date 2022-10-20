@@ -11,6 +11,8 @@ const InputTextArea = ({
   value,
   variant,
   width,
+  data,
+  setData,
 }: any) => {
   const [textAreaValue, setTextAreaValue] = useState(value);
   const [richEditorValue, setRichEditorValue] = useState<any>(
@@ -24,6 +26,7 @@ const InputTextArea = ({
   const richEditorHandler = (value: any) => {
     console.log(value.toString("html"));
     setRichEditorValue(value);
+    setData({ ...data, details: value });
   };
   useEffect(() => {
     setTextAreaValue(value);
@@ -32,7 +35,7 @@ const InputTextArea = ({
   return (
     <Fragment>
       {variant === "richtext" ? (
-        <RichTextEditor value={richEditorValue} onChange={richEditorHandler} />
+        <RichTextEditor value={data?.details} onChange={richEditorHandler} />
       ) : (
         <>
           {matches === true ? (

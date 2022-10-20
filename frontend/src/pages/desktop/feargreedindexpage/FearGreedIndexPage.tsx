@@ -41,10 +41,10 @@ const FearGreedIndexPage = () => {
   return (
     <Fragment>
       <Grid container rowSpacing={3}>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <LatestNewsScroll />
-        </Grid>
-        <Grid item xs={12}>
+        </Grid> */}
+        <Grid item xs={12} mt={{ xs: 3, sm: 3, md: 6 }}>
           <Grid container columnSpacing={2} rowSpacing={3}>
             <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
               <Typography variant="h5" color="#FFFFFF">

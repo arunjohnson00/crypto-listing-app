@@ -46,6 +46,7 @@ const MobileDiscoverVideo = () => {
                 backgroundColor: "#020419",
               }}
               width="100%"
+              mb={3}
             >
               <Stack
                 direction={{ xs: "column", sm: "column", md: "row" }}
@@ -66,7 +67,7 @@ const MobileDiscoverVideo = () => {
                     <ReactPlayer
                       url={item && item?.v_url}
                       width={"auto"}
-                      height={"auto"}
+                      height={250}
                     />
                   </div>
                   <Stack

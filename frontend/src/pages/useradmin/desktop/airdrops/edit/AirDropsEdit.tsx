@@ -16,7 +16,7 @@ import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
-
+import RichTextEditor from "react-rte";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -52,6 +52,10 @@ const AirDropsEdit = () => {
     no_of_winners: "",
     is_follow_twitter: "",
     join_telegram: "",
+    details: RichTextEditor.createValueFromString(
+      "Enter Airdrop details.",
+      "html"
+    ),
     status: "",
     logo: "",
   });
@@ -126,8 +130,13 @@ const AirDropsEdit = () => {
     formData.append("no_of_days", editAirdropsData?.no_of_days);
     formData.append("total_amount", editAirdropsData?.total_amount);
     formData.append("no_of_winners", editAirdropsData?.no_of_winners);
-    formData.append("is_follow_twitter", editAirdropsData?.is_follow_twitter);
-    formData.append("join_telegram", editAirdropsData?.join_telegram);
+    // formData.append("is_follow_twitter", editAirdropsData?.is_follow_twitter);
+    // formData.append("join_telegram", editAirdropsData?.join_telegram);
+    formData.append(
+      "airdrop_details",
+      editAirdropsData?.details?.toString("html")
+    );
+
     formData.append("status", editAirdropsData?.status);
     formData.append("airdrop_id", location?.state?.id);
     dispatch(
@@ -216,6 +225,7 @@ const AirDropsEdit = () => {
               mb={1}
             >
               Search your coin
+              <br />
               <span style={{ color: "#FFFFFF" }}>
                 {" "}
                 ( if coin is not listed Add Now
@@ -408,11 +418,13 @@ const AirDropsEdit = () => {
               Airdrop Details
             </Typography>
             <InputTextArea
-              // variant="richtext"
+              variant="richtext"
               name="airdrop_details"
               id="airdrop_details"
               placeholder="Enter airdrop details. "
-              value={editAirdropsData?.airdrop_details}
+              value={editAirdropsData?.details}
+              data={editAirdropsData}
+              setData={setEditAirdrops}
             />
           </Grid>
 

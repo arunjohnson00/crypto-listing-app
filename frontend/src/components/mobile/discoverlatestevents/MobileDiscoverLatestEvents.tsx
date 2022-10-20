@@ -117,9 +117,10 @@ const MobileDiscoverLatestEvents = () => {
                         <Box key={index}>
                           <MobileDiscoverLatestCommonCard
                             item={item}
-                            path="coin_logo"
+                            path="event_proof"
                             varient="events"
                             image={item?.coin_logo}
+                            link={item?.slug}
                             date={
                               item &&
                               moment(new Date(item?.event_date)).format("DD")

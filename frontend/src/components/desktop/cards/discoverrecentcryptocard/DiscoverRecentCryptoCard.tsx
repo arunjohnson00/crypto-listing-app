@@ -150,118 +150,123 @@ const DiscoverRecentCryptoCard = ({ item }: any) => {
   // };
 
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-
-        backgroundColor: "#050A28",
-        color: "#FFFFF5",
-
-        borderRadius: 2,
-      }}
-      // px={2}
-      mr={1}
+    <Link
+      to={`/coin/${item && item?.slug}`}
+      target="_blank"
+      style={{ textDecoration: "none" }}
     >
       <Box
-        mr={2}
-        // my={4}
-      >
-        <Stack
-          direction={{ xs: "column" }}
-          spacing={0.7}
-          sx={{ alignItems: "center" }}
-          pt={2}
-        >
-          <Avatar
-            alt={item && item?.name}
-            src={`${serverAPIUrl}public/uploads/coin_logo/${item?.logo}`}
-            sx={{ width: 45, height: 45 }}
-          />
+        sx={{
+          flexGrow: 1,
 
+          backgroundColor: "#050A28",
+          color: "#FFFFF5",
+
+          borderRadius: 2,
+        }}
+        // px={2}
+        mr={1}
+      >
+        <Box
+          mr={2}
+          // my={4}
+        >
           <Stack
             direction={{ xs: "column" }}
-            spacing={0.0}
+            spacing={0.7}
             sx={{ alignItems: "center" }}
+            pt={2}
           >
-            <Typography
-              variant="caption"
-              sx={{
-                color: "#FFFFF5",
-                fontWeight: "600",
-                fontSize: "0.65rem",
-              }}
+            <Avatar
+              alt={item && item?.name}
+              src={`${serverAPIUrl}public/uploads/coin_logo/${item?.logo}`}
+              sx={{ width: 45, height: 45 }}
+            />
+
+            <Stack
+              direction={{ xs: "column" }}
+              spacing={0.0}
+              sx={{ alignItems: "center" }}
             >
-              {item && item?.current_price !== null ? (
-                String(Math.trunc(parseFloat(item?.current_price))).length >
-                2 ? (
-                  "$" +
-                  Number(
-                    parseFloat(item?.current_price).toFixed(2)
-                  ).toLocaleString()
-                ) : item && Math.abs(item?.current_price) > 1 ? (
-                  "$" +
-                  parseFloat(item?.current_price).toFixed(4).toLocaleString()
-                ) : (
-                  "$" +
-                  parseFloat(item?.current_price).toFixed(9).toLocaleString()
-                )
-              ) : (
-                <span style={{ color: "#7a7a7a" }}>--</span>
-              )}
-            </Typography>
-            <Chip
-              icon={
-                Math.sign(parseFloat(item?.pc_24h)) !== -1 ? (
-                  <ArrowDropUp
-                    sx={{ color: "#FFFFF5", padding: 0, margin: 0 }}
-                  />
-                ) : (
-                  <ArrowDropDown
-                    sx={{ color: "#FFFFF5", padding: 0, margin: 0 }}
-                  />
-                )
-              }
-              label={
-                item && item?.pc_24h !== null ? (
-                  parseFloat(item?.pc_24h).toFixed(2).replace("-", "") + "%"
+              <Typography
+                variant="caption"
+                sx={{
+                  color: "#FFFFF5",
+                  fontWeight: "600",
+                  fontSize: "0.65rem",
+                }}
+              >
+                {item && item?.current_price !== null ? (
+                  String(Math.trunc(parseFloat(item?.current_price))).length >
+                  2 ? (
+                    "$" +
+                    Number(
+                      parseFloat(item?.current_price).toFixed(2)
+                    ).toLocaleString()
+                  ) : item && Math.abs(item?.current_price) > 1 ? (
+                    "$" +
+                    parseFloat(item?.current_price).toFixed(4).toLocaleString()
+                  ) : (
+                    "$" +
+                    parseFloat(item?.current_price).toFixed(9).toLocaleString()
+                  )
                 ) : (
                   <span style={{ color: "#7a7a7a" }}>--</span>
-                )
-              }
-              size="medium"
-              color="primary"
-              sx={{
-                color: "#FFFFF5",
-                backgroundColor: `${
-                  Math.sign(parseFloat(item?.pc_24h)) !== -1
-                    ? "#18F76E"
-                    : "#DF1532"
-                }`,
-                fontSize: 9,
-                fontWeight: 500,
-                padding: 0,
-                height: 20,
-                marginTop: 0.3,
-                "& .MuiChip-icon": {
-                  marginRight: -0.3,
+                )}
+              </Typography>
+              <Chip
+                icon={
+                  Math.sign(parseFloat(item?.pc_24h)) !== -1 ? (
+                    <ArrowDropUp
+                      sx={{ color: "#FFFFF5", padding: 0, margin: 0 }}
+                    />
+                  ) : (
+                    <ArrowDropDown
+                      sx={{ color: "#FFFFF5", padding: 0, margin: 0 }}
+                    />
+                  )
+                }
+                label={
+                  item && item?.pc_24h !== null ? (
+                    parseFloat(item?.pc_24h).toFixed(2).replace("-", "") + "%"
+                  ) : (
+                    <span style={{ color: "#7a7a7a" }}>--</span>
+                  )
+                }
+                size="medium"
+                color="primary"
+                sx={{
+                  color: "#FFFFF5",
+                  backgroundColor: `${
+                    Math.sign(parseFloat(item?.pc_24h)) !== -1
+                      ? "#18F76E"
+                      : "#DF1532"
+                  }`,
+                  fontSize: 9,
+                  fontWeight: 500,
                   padding: 0,
-                },
-                "& .MuiChip-label": {
-                  padding: 0,
-                  paddingRight: 0.8,
-                },
-              }}
-            />
+                  height: 20,
+                  marginTop: 0.3,
+                  "& .MuiChip-icon": {
+                    marginRight: -0.3,
+                    padding: 0,
+                  },
+                  "& .MuiChip-label": {
+                    padding: 0,
+                    paddingRight: 0.8,
+                  },
+                }}
+              />
+            </Stack>
           </Stack>
-        </Stack>
-        <Stack py={0}>
-          {/* <Chart
+          <Stack py={0}>
+            {/* <Chart
           options={chartData.options}
           series={chartData.series}
           type="line"
           height="90px"
         /> */}
-          {/* <Typography
+            {/* <Typography
           variant="body2"
           sx={{
             color: "#FFFFF5",
@@ -285,18 +290,13 @@ const DiscoverRecentCryptoCard = ({ item }: any) => {
             <span style={{ color: "#7a7a7a" }}>--</span>
           )}
         </Typography> */}
-        </Stack>
+          </Stack>
 
-        <Stack
-          direction={{ xs: "column" }}
-          spacing={0.0}
-          alignItems="center"
-          mt={2}
-        >
-          <Link
-            to={`/coin/${item && item?.slug}`}
-            target="_blank"
-            style={{ textDecoration: "none" }}
+          <Stack
+            direction={{ xs: "column" }}
+            spacing={0.0}
+            alignItems="center"
+            mt={2}
           >
             <Typography
               variant="subtitle1"
@@ -311,14 +311,14 @@ const DiscoverRecentCryptoCard = ({ item }: any) => {
                 ? item && item?.name?.slice(0, 20) + "..."
                 : item && item?.name}
             </Typography>
-          </Link>
-          <Typography
-            variant="caption"
-            sx={{ color: "#C6C9D2", fontWeight: "400", fontSize: 10 }}
-          >
-            {item && item?.symbol}
-          </Typography>
-          {/* <Stack direction="column" spacing={0} sx={{ alignItems: "center" }}>
+
+            <Typography
+              variant="caption"
+              sx={{ color: "#C6C9D2", fontWeight: "400", fontSize: 10 }}
+            >
+              {item && item?.symbol}
+            </Typography>
+            {/* <Stack direction="column" spacing={0} sx={{ alignItems: "center" }}>
             <Typography
               variant="h5"
               sx={{ color: "#FFFFF5", fontWeight: "400" }}
@@ -333,20 +333,21 @@ const DiscoverRecentCryptoCard = ({ item }: any) => {
               sx={{ fontSize: ".9rem" }}
             />
           </Stack> */}
-        </Stack>
-        <Stack direction="row" justifyContent="center" pt={2} pb={2}>
-          <IconButton aria-label="delete">
-            <LanguageIcon sx={{ color: "#FFFFF5", fontSize: 19 }} />
-          </IconButton>
-          <IconButton aria-label="delete">
-            <Telegram sx={{ color: "#FFFFF5", fontSize: 19 }} />
-          </IconButton>
-          <IconButton aria-label="delete">
-            <Twitter sx={{ color: "#FFFFF5", fontSize: 19 }} />
-          </IconButton>
-        </Stack>
+          </Stack>
+          <Stack direction="row" justifyContent="center" pt={2} pb={2}>
+            <IconButton aria-label="delete">
+              <LanguageIcon sx={{ color: "#FFFFF5", fontSize: 19 }} />
+            </IconButton>
+            <IconButton aria-label="delete">
+              <Telegram sx={{ color: "#FFFFF5", fontSize: 19 }} />
+            </IconButton>
+            <IconButton aria-label="delete">
+              <Twitter sx={{ color: "#FFFFF5", fontSize: 19 }} />
+            </IconButton>
+          </Stack>
+        </Box>
       </Box>
-    </Box>
+    </Link>
   );
 };
 

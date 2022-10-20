@@ -312,7 +312,9 @@ const MobileUserDashboard = () => {
             <MobileBottomMenuCard
               icon={myoffersIcon}
               title="Offer Zone"
-              link="/user-dashboard/offer-zone"
+              //link="/user-dashboard/offer-zone"
+
+              link="#"
               color="#FFFFFF"
               background="#000000"
               border="transparent"

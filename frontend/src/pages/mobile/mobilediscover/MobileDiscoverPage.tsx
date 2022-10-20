@@ -24,15 +24,15 @@ const MobileDiscoverPage = () => {
 
         <Grid item xs={12} sm={12} md={12} lg={12} xl={12} px={0.5} mt={1}>
           <Stack direction="column" spacing={0.5}>
-            <Typography variant="body2" sx={{ color: "#FFFFF5" }}>
+            {/* <Typography variant="body2" sx={{ color: "#FFFFF5" }}>
               Monitor
-            </Typography>
+            </Typography> */}
             <Stack
               direction={{ xs: "column", sm: "column", md: "row" }}
               spacing={2}
               justifyContent="space-between"
             >
-              <Box height={{ xs: "auto", sm: "auto", md: 50 }}>
+              {/* <Box height={{ xs: "auto", sm: "auto", md: 50 }}>
                 <Stack
                   direction={{ xs: "row", sm: "row", md: "row" }}
                   spacing={2}
@@ -88,7 +88,7 @@ const MobileDiscoverPage = () => {
                     }}
                   />
                 </Stack>
-              </Box>
+              </Box> */}
               <Stack
                 direction="column"
                 spacing={0}
@@ -96,14 +96,6 @@ const MobileDiscoverPage = () => {
                   md: "flex-start",
                 }}
               >
-                {/* <Typography
-                    variant="h6"
-                    sx={{ color: "#FFFFF5", fontWeight: 500 }}
-                  >
-                    <span style={{ color: "#FF2B31" }}>42</span>/100
-                  </Typography> */}
-                {/* 
-                  <FearAndGreedcard width={250} size="small" /> */}
                 <Stack
                   direction="column"
                   spacing={0.5}

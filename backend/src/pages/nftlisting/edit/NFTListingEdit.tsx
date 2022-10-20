@@ -477,6 +477,7 @@ const NFTListingEdit = () => {
                                     value={marketplaces.marketplace_id}
                                     selectedValue={marketplaces.marketplace_id}
                                     height={40}
+                                    variant="nft_marketplace"
                                   />
                                 </Grid>
                                 <Grid item xl={5} lg={5} md={5} sm={5} xs={12}>
@@ -661,6 +662,7 @@ const NFTListingEdit = () => {
                           nftListingData && nftListingData?.currancy_id
                         }
                         height={40}
+                        variant="nft_listing_currency"
                       />
                     </Grid>
                   </Grid>
@@ -977,7 +979,7 @@ const NFTListingEdit = () => {
                   id="nft_network_id"
                   data={allNFTNetwork}
                   height={40}
-                  varient="nft_network"
+                  variant="nft_network"
                   selectedValue={nftListingData?.nft_network_id}
                 />
               </Grid>
@@ -1260,6 +1262,7 @@ const NFTListingEdit = () => {
                                     chats.chat_platform_id
                                   )}
                                   height={40}
+                                  variant="chat"
                                 />
                               </Grid>
                               <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -1334,6 +1337,7 @@ const NFTListingEdit = () => {
                             id="chat_platform_id_1"
                             data={nftChatList}
                             height={40}
+                                variant="chat"
                           />
                         </Grid>
                         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -1430,6 +1434,7 @@ const NFTListingEdit = () => {
                                   id={`social_platform_id_${index + 1}`}
                                   selectedValue={socials.social_platform_id}
                                   height={40}
+                                  variant="social_platform"
                                 />
                               </Grid>
                               <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -1506,6 +1511,7 @@ const NFTListingEdit = () => {
                             id="social_platform_id_1"
                             data={nftSocialList}
                             height={40}
+                            variant="social_platform"
                           />
                         </Grid>
                         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>

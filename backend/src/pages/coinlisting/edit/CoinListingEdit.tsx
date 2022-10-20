@@ -493,6 +493,7 @@ const CoinListingEdit = () => {
                     data={networkList}
                     selectedValue={editCoin?.network_id}
                     height={40}
+                      variant="network"
                   />
                 </Grid>
               </Stack> */}
@@ -852,6 +853,7 @@ const CoinListingEdit = () => {
                             selectedValue={networks.network_id}
                             height={40}
                             title="Select Network"
+                            variant="network"
                           />
                         </Grid>
                         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -942,6 +944,7 @@ const CoinListingEdit = () => {
                       data={networkList}
                       height={40}
                       title="Select Network"
+                      variant="network"
                     />
                   </Grid>
                   <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1062,6 +1065,7 @@ const CoinListingEdit = () => {
                             selectedValue={exchanges.exchange_id}
                             height={40}
                             title="Select Exchange"
+                            variant="exchange"
                           />
                         </Grid>
                         <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1149,6 +1153,7 @@ const CoinListingEdit = () => {
                       data={exchangeList}
                       height={40}
                       title="Select Exchange"
+                      variant="exchange"
                     />
                   </Grid>
                   <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1613,6 +1618,7 @@ const CoinListingEdit = () => {
                           selectedValue={parseInt(audits.audited_by)}
                           height={40}
                           title="Select Audit Provider"
+                          variant="audit"
                         />
                       </Grid>
                       <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1682,6 +1688,7 @@ const CoinListingEdit = () => {
                       data={coinAuditList}
                       height={40}
                       title="Select Audit Provider"
+                      variant="audit"
                     />
                   </Grid>
                   <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1780,6 +1787,7 @@ const CoinListingEdit = () => {
                           selectedValue={parseInt(charts.chart_provider)}
                           height={40}
                           title="Please select"
+                          variant="chart"
                         />
                       </Grid>
                       <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -1849,6 +1857,7 @@ const CoinListingEdit = () => {
                       data={coinChartProviderList}
                       height={40}
                       title="Please select"
+                      variant="chart"
                     />
                   </Grid>
                   <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
@@ -2202,6 +2211,7 @@ const CoinListingEdit = () => {
                               data={coinChatList}
                               selectedValue={parseInt(chats.chat_platform)}
                               height={40}
+                                variant="chat"
                             />
                           </Grid>
                           <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -2272,6 +2282,7 @@ const CoinListingEdit = () => {
                           id="chat_platform_1"
                           data={coinChatList}
                           height={40}
+                            variant="chat"
                         />
                       </Grid>
                       <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -2377,6 +2388,7 @@ const CoinListingEdit = () => {
                                 )}
                                 height={40}
                                 title="Select website"
+                                variant="social_platform"
                               />
                             </Grid>
                             <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -2453,6 +2465,7 @@ const CoinListingEdit = () => {
                           data={coinSocialList}
                           height={40}
                           title="Select website"
+                          variant="social_platform"
                         />
                       </Grid>
                       <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
