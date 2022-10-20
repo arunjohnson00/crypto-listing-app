@@ -122,32 +122,40 @@ const CoinListing = () => {
     },
 
     {
-      field: "is_listed_coingecko",
-      headerName: "Listed on Coingecko",
-      flex: 2.5,
+      field: "user_id",
+      headerName: "User ID",
+      flex: 1,
       align: "center",
       headerAlign: "center",
-      renderCell: (params: any) =>
-        parseInt(params.row.is_listed_coingecko) === 1 ? (
-          <span style={{ color: "green" }}>yes</span>
-        ) : (
-          <span style={{ color: "red" }}>No</span>
-        ),
     },
 
-    {
-      field: "is_listed_market_cap",
-      headerName: "Listed on Coin Marketcap",
-      flex: 2.5,
-      align: "center",
-      headerAlign: "center",
-      renderCell: (params: any) =>
-        parseInt(params.row.is_listed_market_cap) === 1 ? (
-          <span style={{ color: "green" }}>yes</span>
-        ) : (
-          <span style={{ color: "red" }}>No</span>
-        ),
-    },
+    // {
+    //   field: "is_listed_coingecko",
+    //   headerName: "Listed on Coingecko",
+    //   flex: 2.5,
+    //   align: "center",
+    //   headerAlign: "center",
+    //   renderCell: (params: any) =>
+    //     parseInt(params.row.is_listed_coingecko) === 1 ? (
+    //       <span style={{ color: "green" }}>yes</span>
+    //     ) : (
+    //       <span style={{ color: "red" }}>No</span>
+    //     ),
+    // },
+
+    // {
+    //   field: "is_listed_market_cap",
+    //   headerName: "Listed on Coin Marketcap",
+    //   flex: 2.5,
+    //   align: "center",
+    //   headerAlign: "center",
+    //   renderCell: (params: any) =>
+    //     parseInt(params.row.is_listed_market_cap) === 1 ? (
+    //       <span style={{ color: "green" }}>yes</span>
+    //     ) : (
+    //       <span style={{ color: "red" }}>No</span>
+    //     ),
+    // },
 
     {
       field: "max_supply",
