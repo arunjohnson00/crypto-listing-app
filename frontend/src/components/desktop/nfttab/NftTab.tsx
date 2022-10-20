@@ -79,7 +79,7 @@ const NftTab = () => {
         </Box>
         <TabPanel value="1" sx={{ padding: 0, paddingY: 4 }}>
           <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
-            <Grid container rowGap={2} columnGap={1.5}>
+            <Grid container rowGap={2} columnGap={1}>
               {NftMostPopularList &&
                 NftMostPopularList?.response === true &&
                 NftMostPopularList?.data?.data?.map(
@@ -105,7 +105,7 @@ const NftTab = () => {
         </TabPanel>
         <TabPanel value="2" sx={{ padding: 0, paddingY: 4 }}>
           <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
-            <Grid container rowGap={2} columnGap={1.5}>
+            <Grid container rowGap={2} columnGap={1}>
               {NftRecentlyAddedList &&
                 NftRecentlyAddedList?.response === true &&
                 NftRecentlyAddedList?.data?.data?.map(
