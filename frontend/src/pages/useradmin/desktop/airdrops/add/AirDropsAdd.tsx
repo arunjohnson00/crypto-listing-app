@@ -28,6 +28,7 @@ import InputText from "../../../../../components/useradmin/form/input/text/Input
 import RadioBtnGroup from "../../../../../components/useradmin/form/input/radiobtngroup/RadioBtnGroup";
 import LargeBtn from "../../../../../components/useradmin/form/button/large/LargeBtn";
 import InputTextArea from "../../../../../components/useradmin/form/textarea/InputTextArea";
+import { Helmet } from "react-helmet-async";
 
 const AirDropsAdd = () => {
   const selectOptions = [
@@ -166,6 +167,31 @@ const AirDropsAdd = () => {
   //   }, [dispatch]);
   return (
     <Grid container rowSpacing={2} pb={10}>
+      <Helmet>
+        <title>Add Airdrop | CoinXhigh.com</title>
+        <meta
+          name="description"
+          content="CoinxHigh is the world's most prominent community-based platform for Crypto listing, Crypto events listing, NFT Listing, Crypto airdrop listing and more."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta
+          property="og:site_name"
+          content="Coin Vote, Crypto Events, NFT & Airdrop listing Platform for your favourite Crypto projects. | CoinXhigh.com"
+        />
+        <meta property="og:title" content="Add Airdrop | CoinXhigh.com" />
+        <meta property="og:locale" content="en" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:description"
+          content="CoinxHigh is the world's most prominent community-based platform for Crypto listing, Crypto events listing, NFT Listing, Crypto airdrop listing and more."
+        />
+        <meta
+          property="og:image"
+          content="https://coinxhigh.com/coinxhighlogo.webp"
+        />
+        <meta property="og:url" content="https://coinxhigh.com/" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      </Helmet>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={loading}

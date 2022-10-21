@@ -43,6 +43,7 @@ import {
   dashboardUpdateEventsRequest,
 } from "../../../../../../store/action";
 import YoutubeDetails from "./YoutubeDetails";
+import { Helmet } from "react-helmet-async";
 
 const OfflineEventsEdit = () => {
   const selectOptions = [
@@ -319,6 +320,34 @@ const OfflineEventsEdit = () => {
   }, [dispatch]);
   return (
     <Grid container spacing={2} pb={10}>
+      <Helmet>
+        <title>Edit Offline Event | CoinXhigh.com</title>
+        <meta
+          name="description"
+          content="CoinxHigh is the world's most prominent community-based platform for Crypto listing, Crypto events listing, NFT Listing, Crypto airdrop listing and more."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta
+          property="og:site_name"
+          content="Coin Vote, Crypto Events, NFT & Airdrop listing Platform for your favourite Crypto projects. | CoinXhigh.com"
+        />
+        <meta
+          property="og:title"
+          content="Edit Offline Event | CoinXhigh.com"
+        />
+        <meta property="og:locale" content="en" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:description"
+          content="CoinxHigh is the world's most prominent community-based platform for Crypto listing, Crypto events listing, NFT Listing, Crypto airdrop listing and more."
+        />
+        <meta
+          property="og:image"
+          content="https://coinxhigh.com/coinxhighlogo.webp"
+        />
+        <meta property="og:url" content="https://coinxhigh.com/" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      </Helmet>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={loading}
