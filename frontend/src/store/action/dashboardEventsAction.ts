@@ -58,7 +58,7 @@ export const dashboardAddEventsRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/event/create`,
+    url: `api/f/v1/user-event/create`,
     method: "POST",
     secure: true,
     body: values,
@@ -75,7 +75,7 @@ export const dashboardEditEventsRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/event/edit`,
+    url: `api/f/v1/user-event/edit`,
     method: "POST",
     secure: true,
     body: values,
@@ -91,7 +91,7 @@ export const dashboardUpdateEventsRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/event/update`,
+    url: `api/f/v1/user-event/update`,
     method: "POST",
     secure: true,
     //body: JSON.stringify(Object.fromEntries(values)),
@@ -108,7 +108,7 @@ export const dashboardDeleteEventsRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/event/delete`,
+    url: `api/f/v1/user-event/delete`,
     method: "POST",
     secure: true,
     //body: JSON.stringify(Object.fromEntries(values)),

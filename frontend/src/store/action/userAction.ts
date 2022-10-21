@@ -87,7 +87,7 @@ export const userEventsListRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/event/list-new?page=${values}`,
+    url: `api/f/v1/user-event/list?page=${values}`,
     method: "GET",
     secure: true,
     body: values,
@@ -103,7 +103,7 @@ export const userAirdropsListRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/airdrop/list?page=${values}`,
+    url: `api/f/v1/user-airdrop/list?page=${values}`,
     method: "GET",
     secure: true,
     body: values,

@@ -104,10 +104,7 @@ const AirDropsEdit = () => {
     formData.append("no_of_winners", editAirdropsData?.no_of_winners);
     // formData.append("is_follow_twitter", editAirdropsData?.is_follow_twitter);
     // formData.append("join_telegram", editAirdropsData?.join_telegram);
-    formData.append(
-      "airdrop_details",
-      editAirdropsData?.details?.toString("html")
-    );
+    formData.append("details", editAirdropsData?.details?.toString("html"));
     formData.append("status", editAirdropsData?.status);
 
     dispatch(updateAirDropsRequest(formData, successHandler, errorHandler));
@@ -305,8 +302,8 @@ const AirDropsEdit = () => {
             <Box pr={4}>
               <InputTextArea
                 variant="richtext"
-                name="airdrop_details"
-                id="airdrop_details"
+                name="details"
+                id="details"
                 placeholder="Enter airdrop details. "
                 value={editAirdropsData?.details}
                 data={editAirdropsData}

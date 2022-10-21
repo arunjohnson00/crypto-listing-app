@@ -99,10 +99,7 @@ const AirDropsAdd = () => {
     formData.append("no_of_winners", addAirdropsData?.no_of_winners);
     // formData.append("is_follow_twitter", addAirdropsData?.is_follow_twitter);
     // formData.append("join_telegram", addAirdropsData?.join_telegram);
-    formData.append(
-      "airdrop_details",
-      addAirdropsData?.details?.toString("html")
-    );
+    formData.append("details", addAirdropsData?.details?.toString("html"));
     formData.append("status", addAirdropsData?.status);
 
     dispatch(addAirDropsRequest(formData, successHandler, errorHandler));
@@ -295,8 +292,8 @@ const AirDropsAdd = () => {
             <Box pr={4}>
               <InputTextArea
                 variant="richtext"
-                name="airdrop_details"
-                id="airdrop_details"
+                name="details"
+                id="details"
                 placeholder="Enter airdrop details. "
                 data={addAirdropsData}
                 setData={setAddAirdrops}

@@ -24,7 +24,7 @@ export const dashboardAddAirdropsRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/airdrop/create-new`,
+    url: `api/f/v1/user-airdrop/create`,
     method: "POST",
     secure: true,
     body: values,
@@ -41,7 +41,7 @@ export const dashboardEditAirdropsRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/airdrop/edit`,
+    url: `api/f/v1/user-airdrop/edit`,
     method: "POST",
     secure: true,
     body: values,
@@ -57,7 +57,7 @@ export const dashboardUpdateAirdropsRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/airdrop/update`,
+    url: `api/f/v1/user-airdrop/update`,
     method: "POST",
     secure: true,
     //body: JSON.stringify(Object.fromEntries(values)),
@@ -74,7 +74,7 @@ export const dashboardDeleteAirdropsRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/airdrop/delete`,
+    url: `api/f/v1/user-airdrop/delete`,
     method: "POST",
     secure: true,
     //body: JSON.stringify(Object.fromEntries(values)),

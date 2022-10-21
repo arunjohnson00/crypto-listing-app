@@ -862,8 +862,8 @@ const UserAdminHtmlTable = ({
                   </TableCell>
 
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
-                    {moment(new Date(data?.end_date)).diff(
-                      moment(new Date(data?.event_date)),
+                    {moment(new Date(data?.event_date)).diff(
+                      moment(new Date(data?.end_date)),
                       "days"
                     )}
                   </TableCell>

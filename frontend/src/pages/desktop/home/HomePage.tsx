@@ -220,7 +220,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
       setPreLoader(false);
     };
     const errorHandler = (err: any) => {};
-    setPreLoader(true);
+    //setPreLoader(true);
     dispatch(recentlyAddedRequest("noData", successHandler, errorHandler));
     dispatch(biggestGainersRequest("noData", successHandler, errorHandler));
     dispatch(biggestLosersRequest("noData", successHandler, errorHandler));
@@ -238,7 +238,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
       setPreLoader(false);
     };
     const errorHandler = (err: any) => {};
-    setPreLoader(true);
+    // setPreLoader(true);
     tabIndex === 0 &&
       dispatch(
         cryptoCurrenciesListRequest("noData", successHandler, errorHandler)
