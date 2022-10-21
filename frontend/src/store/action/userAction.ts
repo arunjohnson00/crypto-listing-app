@@ -87,7 +87,7 @@ export const userEventsListRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/event/list`,
+    url: `api/f/v1/event/list-new`,
     method: "GET",
     secure: true,
     body: values,

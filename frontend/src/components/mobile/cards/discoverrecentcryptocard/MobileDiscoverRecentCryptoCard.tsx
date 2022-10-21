@@ -163,6 +163,8 @@ const MobileDiscoverRecentCryptoCard = ({ item }: any) => {
           color: "#FFFFF5",
 
           borderRadius: 2,
+          minHeight: 230,
+          maxHeight: 230,
         }}
         // px={2}
         mr={1}

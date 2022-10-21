@@ -29,10 +29,6 @@ const MobileDiscoverEvents = () => {
         </Typography>
       </Grid> */}
       <Grid item xs={12}>
-        <Typography variant="h6" sx={{ fontWeight: 500, color: "#ABAEAF" }}>
-          02 June 2022
-        </Typography>
-
         <Stack
           direction="column"
           spacing={2}

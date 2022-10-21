@@ -133,6 +133,8 @@ const MobileGainersLosersCard = ({ item, losers }: any) => {
         backgroundColor: "#01061C",
         border: "1px solid #0A1028",
         borderRadius: 5,
+        minHeight: 130,
+        maxHeight: 130,
       }}
       px={2}
       py={5}

@@ -55,7 +55,7 @@ const MobileSingleCryptoEventsPage = () => {
       eventsRecentlyAddedRequest("noData", successHandler, errorHandler)
     );
   }, [dispatch, location]);
-  console.log(eventsRecentlyAdded);
+
   return (
     <Fragment>
       <Grid container rowSpacing={3}>

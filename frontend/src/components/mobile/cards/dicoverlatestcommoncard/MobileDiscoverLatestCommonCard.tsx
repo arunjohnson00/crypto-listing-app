@@ -24,6 +24,8 @@ const MobileDiscoverLatestCommonCard = ({
         borderRadius: 5,
         padding: 3,
         margin: 1,
+        minHeight: 180,
+        maxHeight: 180,
       }}
     >
       <Stack

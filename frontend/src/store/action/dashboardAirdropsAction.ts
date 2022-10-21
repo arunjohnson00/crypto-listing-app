@@ -24,7 +24,7 @@ export const dashboardAddAirdropsRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/airdrop/create`,
+    url: `api/f/v1/airdrop/create-new`,
     method: "POST",
     secure: true,
     body: values,

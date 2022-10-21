@@ -71,6 +71,7 @@ import { defaultColor } from "../../../common/common";
 import { Link } from "react-router-dom";
 import MobileSinglePageTab from "../singlepagetab/MobileSinglePageTab";
 import {
+  coinDetailFirstBlockRequest,
   coinMarketListRequest,
   coinSocialGraphRequest,
 } from "../../../store/action/coinAction ";
@@ -188,7 +189,17 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
     );
   }, [dispatch]);
 
-  console.log(coinSocialGraph);
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(
+      coinDetailFirstBlockRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  }, [vote]);
   return (
     <Fragment>
       <Grid container>

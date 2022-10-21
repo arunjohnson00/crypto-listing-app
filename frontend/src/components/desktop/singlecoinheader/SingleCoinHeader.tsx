@@ -73,7 +73,10 @@ import HeartAnimatedImage from "../../../assets/singlepagecoin/vote-animated.gif
 import DropDownAds from "../dropdownads/DropDownAds";
 import { defaultColor } from "../../../common/common";
 import { Link } from "react-router-dom";
-import { coinMarketListRequest } from "../../../store/action/coinAction ";
+import {
+  coinDetailFirstBlockRequest,
+  coinMarketListRequest,
+} from "../../../store/action/coinAction ";
 import AnimatedRating from "../animatedrating/AnimatedRating";
 import VotePopupAds from "../../ads/votepopupads/VotePopupAds";
 
@@ -221,6 +224,18 @@ const SingleCoinHeader = ({ coinData }: any) => {
       )
     );
   }, [dispatch]);
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(
+      coinDetailFirstBlockRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  }, [vote]);
 
   return (
     <Fragment>

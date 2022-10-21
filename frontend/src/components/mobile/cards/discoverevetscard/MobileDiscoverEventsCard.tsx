@@ -18,6 +18,8 @@ const MobileDiscoverEventsCard = ({ item }: any) => {
           color: "#FFFFF5",
           margin: 1,
           borderRadius: 2,
+          minHeight: 250,
+          maxHeight: 250,
         }}
       >
         <Stack

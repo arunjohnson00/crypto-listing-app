@@ -85,7 +85,63 @@ const MobileSingleCoinPage = () => {
     (location?.pathname === "/coin" || location?.pathname === "/coin/") &&
       navigate("/");
     const successHandler = (res: any) => {
-      setRequestStatus(res?.data?.status);
+      if (res?.data?.status === true) {
+        res && setRequestStatus(res?.data?.status);
+        dispatch(
+          coinDetailFirstBlockRequest(
+            location?.pathname?.split("/").pop(),
+            successHandler,
+            errorHandler
+          )
+        );
+        dispatch(
+          coinOverviewBlockRequest(
+            location?.pathname?.split("/").pop(),
+            successHandler,
+            errorHandler
+          )
+        );
+        dispatch(
+          coinAboutBlockRequest(
+            location?.pathname?.split("/").pop(),
+            successHandler,
+            errorHandler
+          )
+        );
+
+        dispatch(
+          coinRatingBlockRequest(
+            location?.pathname?.split("/").pop(),
+            successHandler,
+            errorHandler
+          )
+        );
+
+        dispatch(
+          coinSocialGraphRequest(
+            location?.pathname?.split("/").pop(),
+            successHandler,
+            errorHandler
+          )
+        );
+        dispatch(
+          coinVisitedCounterRequest(
+            location?.pathname?.split("/").pop(),
+            successHandler,
+            errorHandler
+          )
+        );
+
+        // setInterval(() => {
+        //   dispatch(
+        //     coinDetailFirstBlockRequest(
+        //       location?.pathname?.split("/").pop(),
+        //       successHandler,
+        //       errorHandler
+        //     )
+        //   );
+        // }, 20000);
+      }
     };
     const errorHandler = (err: any) => {};
 
@@ -97,88 +153,31 @@ const MobileSingleCoinPage = () => {
       )
     );
     dispatch(coinRecentlyAddedRequest("noData", successHandler, errorHandler));
-  }, [dispatch]);
+  }, [dispatch, location]);
 
-  useEffect(() => {
-    const successHandler = (res: any) => {};
-    const errorHandler = (err: any) => {};
-    dispatch(
-      coinDetailFirstBlockRequest(
-        location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
-    dispatch(
-      coinOverviewBlockRequest(
-        location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
-    dispatch(
-      coinAboutBlockRequest(
-        location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
-
-    dispatch(
-      coinRatingBlockRequest(
-        location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
-
-    dispatch(
-      coinSocialGraphRequest(
-        location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
-    dispatch(
-      coinVisitedCounterRequest(
-        location?.pathname?.split("/").pop(),
-        successHandler,
-        errorHandler
-      )
-    );
-  }, [requestStatus]);
+  // useEffect(() => {
+  //   const successHandler = (res: any) => {};
+  //   const errorHandler = (err: any) => {};
+  // }, [requestStatus]);
 
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
 
     dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
-    // dispatch(menuCardRequest("noData", successHandler, errorHandler));
-    // dispatch(videoListRequest("noData", successHandler, errorHandler));
-    // dispatch(trendingCoinListRequest("noData", successHandler, errorHandler));
   }, [dispatch]);
-  useEffect(() => {
-    const successHandler = (res: any) => {};
-    const errorHandler = (err: any) => {};
-    setInterval(() => {
-      dispatch(
-        coinDetailFirstBlockRequest(
-          location?.pathname?.split("/").pop(),
-          successHandler,
-          errorHandler
-        )
-      );
-    }, 5000);
-  }, []);
+
   return (
     <Fragment>
-      <Helmet>
-        <title>
-          {`${
-            coinDetailFirstBlock &&
-            coinDetailFirstBlock !== undefined &&
-            coinDetailFirstBlock[0]?.name
-          }
+      {requestStatus === true && (
+        <>
+          <Helmet>
+            <title>
+              {`${
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock !== undefined &&
+                coinDetailFirstBlock[0]?.name
+              }
           (
           $${
             coinDetailFirstBlock &&
@@ -187,47 +186,48 @@ const MobileSingleCoinPage = () => {
           }
           ) Today's Price, Votes, Overview, Ratings, Historical Data, Faq,
           Socials, News & More.`}
-        </title>
-        <meta
-          name="description"
-          content={`The live $${
-            coinDetailFirstBlock &&
-            coinDetailFirstBlock !== undefined &&
-            coinDetailFirstBlock[0]?.symbol
-          } price today is ${
-            coinDetailFirstBlock &&
-            coinDetailFirstBlock !== undefined &&
-            coinDetailFirstBlock[0]?.current_price
-          } USD with a 24-hour trading volume of $${
-            coinDetailOverview && coinDetailOverview[0]?.volume_24h
-          } USD. We update our BNB to USD price in real-time. BNB is ${
-            coinDetailOverview &&
-            coinDetailOverview[0]?.percent_change_24h !== null &&
-            Math.sign(parseFloat(coinDetailOverview[0]?.percent_change_24h)) ===
-              -1
-              ? "Down "
-              : coinDetailOverview &&
+            </title>
+            <meta
+              name="description"
+              content={`The live $${
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock !== undefined &&
+                coinDetailFirstBlock[0]?.symbol
+              } price today is ${
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock !== undefined &&
+                coinDetailFirstBlock[0]?.current_price
+              } USD with a 24-hour trading volume of $${
+                coinDetailOverview && coinDetailOverview[0]?.volume_24h
+              } USD. We update our BNB to USD price in real-time. BNB is ${
+                coinDetailOverview &&
                 coinDetailOverview[0]?.percent_change_24h !== null &&
-                "Up "
-          } ${
-            coinDetailOverview &&
-            coinDetailOverview[0]?.percent_change_24h !== null &&
-            coinDetailOverview[0]?.percent_change_24h !== ""
-              ? parseFloat(coinDetailOverview[0]?.percent_change_24h)
-                  .toFixed(2)
-                  .replace("-", "") + "%"
-              : "--"
-          } ...`}
-        />
+                Math.sign(
+                  parseFloat(coinDetailOverview[0]?.percent_change_24h)
+                ) === -1
+                  ? "Down "
+                  : coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_24h !== null &&
+                    "Up "
+              } ${
+                coinDetailOverview &&
+                coinDetailOverview[0]?.percent_change_24h !== null &&
+                coinDetailOverview[0]?.percent_change_24h !== ""
+                  ? parseFloat(coinDetailOverview[0]?.percent_change_24h)
+                      .toFixed(2)
+                      .replace("-", "") + "%"
+                  : "--"
+              } ...`}
+            />
 
-        <meta name="robots" content="index, follow" />
-        <meta
-          property="og:site_name"
-          content={`"${
-            coinDetailFirstBlock &&
-            coinDetailFirstBlock !== undefined &&
-            coinDetailFirstBlock[0]?.name
-          }
+            <meta name="robots" content="index, follow" />
+            <meta
+              property="og:site_name"
+              content={`"${
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock !== undefined &&
+                coinDetailFirstBlock[0]?.name
+              }
           (
           $${
             coinDetailFirstBlock &&
@@ -236,14 +236,14 @@ const MobileSingleCoinPage = () => {
           }
           ) Today's Price, Votes, Overview, Ratings, Historical Data, Faq,
           Socials, News & More."`}
-        />
-        <meta
-          property="og:title"
-          content={`"${
-            coinDetailFirstBlock &&
-            coinDetailFirstBlock !== undefined &&
-            coinDetailFirstBlock[0]?.name
-          }
+            />
+            <meta
+              property="og:title"
+              content={`"${
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock !== undefined &&
+                coinDetailFirstBlock[0]?.name
+              }
           (
           $${
             coinDetailFirstBlock &&
@@ -252,64 +252,68 @@ const MobileSingleCoinPage = () => {
           }
           ) Today's Price, Votes, Overview, Ratings, Historical Data, Faq,
           Socials, News & More."`}
-        />
-        <meta property="og:locale" content="en" />
-        <meta property="og:type" content="website" />
+            />
+            <meta property="og:locale" content="en" />
+            <meta property="og:type" content="website" />
 
-        <meta
-          property="og:description"
-          content={`"The live $${
-            coinDetailFirstBlock &&
-            coinDetailFirstBlock !== undefined &&
-            coinDetailFirstBlock[0]?.symbol
-          } price today is ${
-            coinDetailFirstBlock &&
-            coinDetailFirstBlock !== undefined &&
-            coinDetailFirstBlock[0]?.current_price
-          } USD with a 24-hour trading volume of $${
-            coinDetailOverview && coinDetailOverview[0]?.volume_24h
-          } USD. We update our BNB to USD price in real-time. BNB is ${
-            coinDetailOverview &&
-            coinDetailOverview[0]?.percent_change_24h !== null &&
-            Math.sign(parseFloat(coinDetailOverview[0]?.percent_change_24h)) ===
-              -1
-              ? "Down "
-              : coinDetailOverview &&
+            <meta
+              property="og:description"
+              content={`"The live $${
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock !== undefined &&
+                coinDetailFirstBlock[0]?.symbol
+              } price today is ${
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock !== undefined &&
+                coinDetailFirstBlock[0]?.current_price
+              } USD with a 24-hour trading volume of $${
+                coinDetailOverview && coinDetailOverview[0]?.volume_24h
+              } USD. We update our BNB to USD price in real-time. BNB is ${
+                coinDetailOverview &&
                 coinDetailOverview[0]?.percent_change_24h !== null &&
-                "Up "
-          } ${
-            coinDetailOverview &&
-            coinDetailOverview[0]?.percent_change_24h !== null &&
-            coinDetailOverview[0]?.percent_change_24h !== ""
-              ? parseFloat(coinDetailOverview[0]?.percent_change_24h)
-                  .toFixed(2)
-                  .replace("-", "") + "%"
-              : "--"
-          } ..."`}
-        />
+                Math.sign(
+                  parseFloat(coinDetailOverview[0]?.percent_change_24h)
+                ) === -1
+                  ? "Down "
+                  : coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_24h !== null &&
+                    "Up "
+              } ${
+                coinDetailOverview &&
+                coinDetailOverview[0]?.percent_change_24h !== null &&
+                coinDetailOverview[0]?.percent_change_24h !== ""
+                  ? parseFloat(coinDetailOverview[0]?.percent_change_24h)
+                      .toFixed(2)
+                      .replace("-", "") + "%"
+                  : "--"
+              } ..."`}
+            />
 
-        <meta
-          property="og:image"
-          content={`"${serverAPIUrl}public/uploads/coin_logo/${
-            coinDetailOverview && coinDetailOverview[0]?.logo
-          }"`}
-        />
-        <meta
-          property="og:url"
-          content={`"${location && location.pathname}"`}
-        />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      </Helmet>
-      <Grid container rowSpacing={1}>
-        {/* {<Grid item xs={12} sx={{ marginTop: 1.5 }}>
+            <meta
+              property="og:image"
+              content={`"${serverAPIUrl}public/uploads/coin_logo/${
+                coinDetailOverview && coinDetailOverview[0]?.logo
+              }"`}
+            />
+            <meta
+              property="og:url"
+              content={`"${location && location.pathname}"`}
+            />
+            <meta
+              http-equiv="Content-Type"
+              content="text/html; charset=utf-8"
+            />
+          </Helmet>
+          <Grid container rowSpacing={1}>
+            {/* {<Grid item xs={12} sx={{ marginTop: 1.5 }}>
             <MobileLatestNewsCardScrollTop />
           </Grid>} */}
 
-        <Grid item xs={12} sx={{ paddingTop: 0 }}>
-          <MobileCoinSlider />
-        </Grid>
+            <Grid item xs={12} sx={{ paddingTop: 0 }}>
+              <MobileCoinSlider />
+            </Grid>
 
-        {/* <Grid
+            {/* <Grid
           item
           xs={12}
           sx={{
@@ -328,29 +332,29 @@ const MobileSingleCoinPage = () => {
           </Stack>
         </Grid> */}
 
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={6}
-          lg={6}
-          xl={6}
-          sx={{
-            alignItems: "center",
-          }}
-          mt={2}
-        >
-          <MobileBreadCrumbs
-            home="Home"
-            path="Coin"
-            data={
-              coinDetailFirstBlock &&
-              coinDetailFirstBlock !== undefined &&
-              coinDetailFirstBlock[0]
-            }
-          />
-        </Grid>
-        {/* <Grid
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={6}
+              lg={6}
+              xl={6}
+              sx={{
+                alignItems: "center",
+              }}
+              mt={2}
+            >
+              <MobileBreadCrumbs
+                home="Home"
+                path="Coin"
+                data={
+                  coinDetailFirstBlock &&
+                  coinDetailFirstBlock !== undefined &&
+                  coinDetailFirstBlock[0]
+                }
+              />
+            </Grid>
+            {/* <Grid
             item
             xs={12}
             sm={12}
@@ -370,20 +374,20 @@ const MobileSingleCoinPage = () => {
             />
           </Grid> */}
 
-        <Grid
-          item
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: 2,
-          }}
-        >
-          <MobileSingleCoinHeader
-            coinData={coinDetailFirstBlock && coinDetailFirstBlock[0]}
-          />
-        </Grid>
+            <Grid
+              item
+              xs={12}
+              sx={{
+                alignItems: "center",
+                paddingTop: 2,
+              }}
+            >
+              <MobileSingleCoinHeader
+                coinData={coinDetailFirstBlock && coinDetailFirstBlock[0]}
+              />
+            </Grid>
 
-        {/* <Grid
+            {/* <Grid
           item
           xs={12}
           sx={{
@@ -393,47 +397,49 @@ const MobileSingleCoinPage = () => {
         >
           <MobileSingleCoinPageAccordion />
         </Grid> */}
-      </Grid>
-      <Grid xs={12} pt={0}>
-        {" "}
-        <Typography variant="h6" sx={{ color: "#FFFFF5" }} mb={1}>
-          Recently Added
-        </Typography>
-      </Grid>
-      <Grid xs={12} pt={2} pb={5}>
-        <div
-          style={{
-            width: "100%",
-            boxSizing: "border-box",
-            margin: "0 auto",
-          }}
-        >
-          {latestCoin && (
-            <Carousel
-              focusOnSelect={true}
-              responsive={responsive}
-              infinite={true}
-              autoPlay={true}
-              showDots={false}
-              arrows={false}
-              removeArrowOnDeviceType={[
-                "tablet",
-                "mobile",
-                // "desktop",
-                // "superLargeDesktop",
-              ]}
-              //customLeftArrow={<CustomLeftArrow />}
+          </Grid>
+          <Grid xs={12} pt={0}>
+            {" "}
+            <Typography variant="h6" sx={{ color: "#FFFFF5" }} mb={1}>
+              Recently Added
+            </Typography>
+          </Grid>
+          <Grid xs={12} pt={2} pb={5}>
+            <div
+              style={{
+                width: "100%",
+                boxSizing: "border-box",
+                margin: "0 auto",
+              }}
             >
-              {latestCoin &&
-                latestCoin?.map((item: any, index: number) => (
-                  <div key={index}>
-                    <DiscoverRecentCryptoCard item={item} />
-                  </div>
-                ))}
-            </Carousel>
-          )}
-        </div>
-      </Grid>
+              {latestCoin && (
+                <Carousel
+                  focusOnSelect={true}
+                  responsive={responsive}
+                  infinite={true}
+                  autoPlay={true}
+                  showDots={false}
+                  arrows={false}
+                  removeArrowOnDeviceType={[
+                    "tablet",
+                    "mobile",
+                    // "desktop",
+                    // "superLargeDesktop",
+                  ]}
+                  //customLeftArrow={<CustomLeftArrow />}
+                >
+                  {latestCoin &&
+                    latestCoin?.map((item: any, index: number) => (
+                      <div key={index}>
+                        <DiscoverRecentCryptoCard item={item} />
+                      </div>
+                    ))}
+                </Carousel>
+              )}
+            </div>
+          </Grid>
+        </>
+      )}
     </Fragment>
   );
 };

@@ -17,6 +17,8 @@ const MobileDiscoverNFTCard = ({ item }: any) => {
           margin: 1,
           border: "2px solid #0B1139",
           borderRadius: 2,
+          minHeight: 270,
+          maxHeight: 270,
         }}
       >
         <Stack

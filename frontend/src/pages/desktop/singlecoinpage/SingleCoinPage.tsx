@@ -79,9 +79,8 @@ const SingleCoinPage = () => {
     (location?.pathname === "/coin" || location?.pathname === "/coin/") &&
       navigate("/");
     const successHandler = (res: any) => {
-      //setRequestStatus(res?.data?.status);
-
       if (res?.data?.status === true) {
+        res && setRequestStatus(res?.data?.status);
         dispatch(
           coinDetailFirstBlockRequest(
             location?.pathname?.split("/").pop(),
@@ -106,6 +105,16 @@ const SingleCoinPage = () => {
         dispatch(
           coinRecentlyAddedRequest("noData", successHandler, errorHandler)
         );
+
+        // setInterval(() => {
+        //   dispatch(
+        //     coinDetailFirstBlockRequest(
+        //       location?.pathname?.split("/").pop(),
+        //       successHandler,
+        //       errorHandler
+        //     )
+        //   );
+        // }, 20000);
       }
     };
 
@@ -121,31 +130,19 @@ const SingleCoinPage = () => {
         errorHandler
       )
     );
-  }, [dispatch]);
-
-  useEffect(() => {
-    const successHandler = (res: any) => {};
-    const errorHandler = (err: any) => {};
-    setInterval(() => {
-      dispatch(
-        coinDetailFirstBlockRequest(
-          location?.pathname?.split("/").pop(),
-          successHandler,
-          errorHandler
-        )
-      );
-    }, 10000);
-  }, []);
+  }, [dispatch, location]);
 
   return (
     <Fragment>
-      <Helmet prioritizeSeoTags>
-        <title>
-          {`${
-            coinDetailFirstBlock &&
-            coinDetailFirstBlock !== undefined &&
-            coinDetailFirstBlock[0]?.name
-          }
+      {requestStatus === true && (
+        <>
+          <Helmet prioritizeSeoTags>
+            <title>
+              {`${
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock !== undefined &&
+                coinDetailFirstBlock[0]?.name
+              }
           (
           $${
             coinDetailFirstBlock &&
@@ -154,47 +151,48 @@ const SingleCoinPage = () => {
           }
           ) Today's Price, Votes, Overview, Ratings, Historical Data, Faq,
           Socials, News & More.`}
-        </title>
-        <meta
-          name="description"
-          content={`The live $${
-            coinDetailFirstBlock &&
-            coinDetailFirstBlock !== undefined &&
-            coinDetailFirstBlock[0]?.symbol
-          } price today is ${
-            coinDetailFirstBlock &&
-            coinDetailFirstBlock !== undefined &&
-            coinDetailFirstBlock[0]?.current_price
-          } USD with a 24-hour trading volume of $${
-            coinDetailOverview && coinDetailOverview[0]?.volume_24h
-          } USD. We update our BNB to USD price in real-time. BNB is ${
-            coinDetailOverview &&
-            coinDetailOverview[0]?.percent_change_24h !== null &&
-            Math.sign(parseFloat(coinDetailOverview[0]?.percent_change_24h)) ===
-              -1
-              ? "Down "
-              : coinDetailOverview &&
+            </title>
+            <meta
+              name="description"
+              content={`The live $${
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock !== undefined &&
+                coinDetailFirstBlock[0]?.symbol
+              } price today is ${
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock !== undefined &&
+                coinDetailFirstBlock[0]?.current_price
+              } USD with a 24-hour trading volume of $${
+                coinDetailOverview && coinDetailOverview[0]?.volume_24h
+              } USD. We update our BNB to USD price in real-time. BNB is ${
+                coinDetailOverview &&
                 coinDetailOverview[0]?.percent_change_24h !== null &&
-                "Up "
-          } ${
-            coinDetailOverview &&
-            coinDetailOverview[0]?.percent_change_24h !== null &&
-            coinDetailOverview[0]?.percent_change_24h !== ""
-              ? parseFloat(coinDetailOverview[0]?.percent_change_24h)
-                  .toFixed(2)
-                  .replace("-", "") + "%"
-              : "--"
-          } ...`}
-        />
+                Math.sign(
+                  parseFloat(coinDetailOverview[0]?.percent_change_24h)
+                ) === -1
+                  ? "Down "
+                  : coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_24h !== null &&
+                    "Up "
+              } ${
+                coinDetailOverview &&
+                coinDetailOverview[0]?.percent_change_24h !== null &&
+                coinDetailOverview[0]?.percent_change_24h !== ""
+                  ? parseFloat(coinDetailOverview[0]?.percent_change_24h)
+                      .toFixed(2)
+                      .replace("-", "") + "%"
+                  : "--"
+              } ...`}
+            />
 
-        <meta name="robots" content="index, follow" />
-        <meta
-          property="og:site_name"
-          content={`"${
-            coinDetailFirstBlock &&
-            coinDetailFirstBlock !== undefined &&
-            coinDetailFirstBlock[0]?.name
-          }
+            <meta name="robots" content="index, follow" />
+            <meta
+              property="og:site_name"
+              content={`"${
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock !== undefined &&
+                coinDetailFirstBlock[0]?.name
+              }
           (
           $${
             coinDetailFirstBlock &&
@@ -203,14 +201,14 @@ const SingleCoinPage = () => {
           }
           ) Today's Price, Votes, Overview, Ratings, Historical Data, Faq,
           Socials, News & More."`}
-        />
-        <meta
-          property="og:title"
-          content={`"${
-            coinDetailFirstBlock &&
-            coinDetailFirstBlock !== undefined &&
-            coinDetailFirstBlock[0]?.name
-          }
+            />
+            <meta
+              property="og:title"
+              content={`"${
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock !== undefined &&
+                coinDetailFirstBlock[0]?.name
+              }
           (
           $${
             coinDetailFirstBlock &&
@@ -219,59 +217,63 @@ const SingleCoinPage = () => {
           }
           ) Today's Price, Votes, Overview, Ratings, Historical Data, Faq,
           Socials, News & More."`}
-        />
-        <meta property="og:locale" content="en" />
-        <meta property="og:type" content="website" />
+            />
+            <meta property="og:locale" content="en" />
+            <meta property="og:type" content="website" />
 
-        <meta
-          property="og:description"
-          content={`"The live $${
-            coinDetailFirstBlock &&
-            coinDetailFirstBlock !== undefined &&
-            coinDetailFirstBlock[0]?.symbol
-          } price today is ${
-            coinDetailFirstBlock &&
-            coinDetailFirstBlock !== undefined &&
-            coinDetailFirstBlock[0]?.current_price
-          } USD with a 24-hour trading volume of $${
-            coinDetailOverview && coinDetailOverview[0]?.volume_24h
-          } USD. We update our BNB to USD price in real-time. BNB is ${
-            coinDetailOverview &&
-            coinDetailOverview[0]?.percent_change_24h !== null &&
-            Math.sign(parseFloat(coinDetailOverview[0]?.percent_change_24h)) ===
-              -1
-              ? "Down "
-              : coinDetailOverview &&
+            <meta
+              property="og:description"
+              content={`"The live $${
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock !== undefined &&
+                coinDetailFirstBlock[0]?.symbol
+              } price today is ${
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock !== undefined &&
+                coinDetailFirstBlock[0]?.current_price
+              } USD with a 24-hour trading volume of $${
+                coinDetailOverview && coinDetailOverview[0]?.volume_24h
+              } USD. We update our BNB to USD price in real-time. BNB is ${
+                coinDetailOverview &&
                 coinDetailOverview[0]?.percent_change_24h !== null &&
-                "Up "
-          } ${
-            coinDetailOverview &&
-            coinDetailOverview[0]?.percent_change_24h !== null &&
-            coinDetailOverview[0]?.percent_change_24h !== ""
-              ? parseFloat(coinDetailOverview[0]?.percent_change_24h)
-                  .toFixed(2)
-                  .replace("-", "") + "%"
-              : "--"
-          } ..."`}
-        />
+                Math.sign(
+                  parseFloat(coinDetailOverview[0]?.percent_change_24h)
+                ) === -1
+                  ? "Down "
+                  : coinDetailOverview &&
+                    coinDetailOverview[0]?.percent_change_24h !== null &&
+                    "Up "
+              } ${
+                coinDetailOverview &&
+                coinDetailOverview[0]?.percent_change_24h !== null &&
+                coinDetailOverview[0]?.percent_change_24h !== ""
+                  ? parseFloat(coinDetailOverview[0]?.percent_change_24h)
+                      .toFixed(2)
+                      .replace("-", "") + "%"
+                  : "--"
+              } ..."`}
+            />
 
-        <meta
-          property="og:image"
-          content={`"${serverAPIUrl}public/uploads/coin_logo/${
-            coinDetailOverview && coinDetailOverview[0]?.logo
-          }"`}
-        />
-        <meta
-          property="og:url"
-          content={`"${location && location.pathname}"`}
-        />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      </Helmet>
-      <Grid container px={0} pt={5}>
-        {/* <Grid xs={12}>
+            <meta
+              property="og:image"
+              content={`"${serverAPIUrl}public/uploads/coin_logo/${
+                coinDetailOverview && coinDetailOverview[0]?.logo
+              }"`}
+            />
+            <meta
+              property="og:url"
+              content={`"${location && location.pathname}"`}
+            />
+            <meta
+              http-equiv="Content-Type"
+              content="text/html; charset=utf-8"
+            />
+          </Helmet>
+          <Grid container px={0} pt={5}>
+            {/* <Grid xs={12}>
           <LatestNewsScroll />
         </Grid> */}
-        {/* <Grid
+            {/* <Grid
           xs={12}
           sx={{
             alignItems: "center",
@@ -293,18 +295,18 @@ const SingleCoinPage = () => {
           </Stack>
         </Grid> */}
 
-        <Grid item xs={12} pt={2}>
-          <BreadCrumbs
-            data={
-              coinDetailFirstBlock &&
-              coinDetailFirstBlock !== undefined &&
-              coinDetailFirstBlock[0]
-            }
-            home="Home"
-            path="Coin"
-          />
-        </Grid>
-        {/* <Grid
+            <Grid item xs={12} pt={2}>
+              <BreadCrumbs
+                data={
+                  coinDetailFirstBlock &&
+                  coinDetailFirstBlock !== undefined &&
+                  coinDetailFirstBlock[0]
+                }
+                home="Home"
+                path="Coin"
+              />
+            </Grid>
+            {/* <Grid
             xs={12}
             sm={12}
             md={6}
@@ -324,82 +326,84 @@ const SingleCoinPage = () => {
             />
           </Grid> */}
 
-        <Grid
-          item
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: 0,
-          }}
-        >
-          <SingleCoinHeader
-            coinData={coinDetailFirstBlock && coinDetailFirstBlock[0]}
-          />
-        </Grid>
+            <Grid
+              item
+              xs={12}
+              sx={{
+                alignItems: "center",
+                paddingTop: 0,
+              }}
+            >
+              <SingleCoinHeader
+                coinData={coinDetailFirstBlock && coinDetailFirstBlock[0]}
+              />
+            </Grid>
 
-        <Grid
-          item
-          xs={12}
-          sx={{
-            alignItems: "center",
-            paddingTop: 0,
-          }}
-        >
-          <SinglePageTab
-            data={coinDetailFirstBlock && coinDetailFirstBlock[0]}
-          />
-        </Grid>
-        <Grid item xs={12} pt={5}>
-          {" "}
-          <Typography variant="h6" sx={{ color: "#FFFFF5" }} mb={1}>
-            Recently Added
-          </Typography>
-        </Grid>
-        <Grid item xs={12} pt={2}>
-          <div
-            style={{
-              paddingTop: "3px",
-              width: "100%",
-              boxSizing: "border-box",
-              margin: "0 auto",
-            }}
-          >
-            {latestCoin && (
-              <Carousel
-                focusOnSelect={true}
-                responsive={responsive}
-                infinite={true}
-                autoPlay={true}
-                showDots={false}
-                arrows={false}
-                removeArrowOnDeviceType={[
-                  "tablet",
-                  "mobile",
-                  // "desktop",
-                  // "superLargeDesktop",
-                ]}
-                //customLeftArrow={<CustomLeftArrow />}
+            <Grid
+              item
+              xs={12}
+              sx={{
+                alignItems: "center",
+                paddingTop: 0,
+              }}
+            >
+              <SinglePageTab
+                data={coinDetailFirstBlock && coinDetailFirstBlock[0]}
+              />
+            </Grid>
+            <Grid item xs={12} pt={5}>
+              {" "}
+              <Typography variant="h6" sx={{ color: "#FFFFF5" }} mb={1}>
+                Recently Added
+              </Typography>
+            </Grid>
+            <Grid item xs={12} pt={2}>
+              <div
+                style={{
+                  paddingTop: "3px",
+                  width: "100%",
+                  boxSizing: "border-box",
+                  margin: "0 auto",
+                }}
               >
-                {latestCoin &&
-                  latestCoin?.map((item: any, index: number) => (
-                    <div key={index}>
-                      <DiscoverRecentCryptoCard item={item} />
-                    </div>
-                  ))}
-              </Carousel>
-            )}
-          </div>
-        </Grid>
-        <Grid item xs={12} pt={5}>
-          {" "}
-          <Typography variant="h6" sx={{ color: "#FFFFF5" }} mb={1}>
-            Latest Crypto News
-          </Typography>
-        </Grid>
-        <Grid item xs={12} pt={0}>
-          <LatestNewsScroll live={false} />
-        </Grid>
-      </Grid>
+                {latestCoin && (
+                  <Carousel
+                    focusOnSelect={true}
+                    responsive={responsive}
+                    infinite={true}
+                    autoPlay={true}
+                    showDots={false}
+                    arrows={false}
+                    removeArrowOnDeviceType={[
+                      "tablet",
+                      "mobile",
+                      // "desktop",
+                      // "superLargeDesktop",
+                    ]}
+                    //customLeftArrow={<CustomLeftArrow />}
+                  >
+                    {latestCoin &&
+                      latestCoin?.map((item: any, index: number) => (
+                        <div key={index}>
+                          <DiscoverRecentCryptoCard item={item} />
+                        </div>
+                      ))}
+                  </Carousel>
+                )}
+              </div>
+            </Grid>
+            <Grid item xs={12} pt={5}>
+              {" "}
+              <Typography variant="h6" sx={{ color: "#FFFFF5" }} mb={1}>
+                Latest Crypto News
+              </Typography>
+            </Grid>
+            <Grid item xs={12} pt={0}>
+              <LatestNewsScroll live={false} />
+            </Grid>
+          </Grid>
+        </>
+      )}
     </Fragment>
   );
 };

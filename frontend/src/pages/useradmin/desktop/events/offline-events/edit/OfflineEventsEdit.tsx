@@ -527,7 +527,7 @@ const OfflineEventsEdit = () => {
               <InputTextArea
                 name="description"
                 id="description"
-                placeholder=" Detiled event description. (e.g. exact time, location, more info…)"
+                placeholder=" Detailed event description. (e.g. exact time, location, more info…)"
                 value={editEventsData?.description}
               />
             </Grid>
