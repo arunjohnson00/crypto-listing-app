@@ -55,7 +55,7 @@ export const userCoinListRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/coin/list`,
+    url: `api/f/v1/coin/list?page=${values}`,
     method: "GET",
     secure: true,
     body: values,
@@ -71,7 +71,7 @@ export const userNFTListRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/nft/list`,
+    url: `api/f/v1/nft/list?page=${values}`,
     method: "GET",
     secure: true,
     body: values,
@@ -87,7 +87,7 @@ export const userEventsListRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/event/list-new`,
+    url: `api/f/v1/event/list-new?page=${values}`,
     method: "GET",
     secure: true,
     body: values,
@@ -103,7 +103,7 @@ export const userAirdropsListRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/airdrop/list`,
+    url: `api/f/v1/airdrop/list?page=${values}`,
     method: "GET",
     secure: true,
     body: values,
@@ -119,7 +119,7 @@ export const userReviewListRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/review/list`,
+    url: `api/f/v1/review/list?page=${values}`,
     method: "GET",
     secure: true,
     body: values,
@@ -135,7 +135,7 @@ export const userWatchListRequest = (
   errorHandler: any
 ) => {
   const fetchOptions = {
-    url: `api/f/v1/watchlist/list`,
+    url: `api/f/v1/watchlist/list?page=${values}`,
     method: "GET",
     secure: true,
     body: values,

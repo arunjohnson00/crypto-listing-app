@@ -12,14 +12,16 @@ const UserAdminAirdropsListingMobilePage = () => {
   const dispatch: any = useDispatch();
   const navigate = useNavigate();
   const [tableData, setTableData] = useState<any>();
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(20);
   useEffect(() => {
     const successHandler = (res: any) => {
-      setTableData(res?.data?.data);
+      setTableData(res?.data);
     };
     const errorHandler = (err: any) => {};
 
-    dispatch(userAirdropsListRequest("noData", successHandler, errorHandler));
-  }, [dispatch]);
+    dispatch(userAirdropsListRequest(page + 1, successHandler, errorHandler));
+  }, [dispatch, page]);
   return (
     <Stack
       direction="column"
@@ -63,10 +65,14 @@ const UserAdminAirdropsListingMobilePage = () => {
       <Fragment>
         {tableData?.data?.length !== 0 ? (
           <UserAdminMobileHtmlTable
-            tableData={tableData && tableData?.data}
+            tableData={tableData && tableData}
             tableHeader={tableHeader}
             variant="airdrops"
             section="airdrops"
+            page={page}
+            setPage={setPage}
+            rowsPerPage={rowsPerPage}
+            setRowsPerPage={setRowsPerPage}
           />
         ) : (
           <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>

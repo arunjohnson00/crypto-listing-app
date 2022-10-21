@@ -34,11 +34,17 @@ import {
   dashboardDeleteNFTListingRequest,
   dashboardDeleteReviewRequest,
 } from "../../../store/action";
+
+import UserDashboardTablePagination from "./tablepagination/UserDashboardTablePagination";
 const UserAdminHtmlTable = ({
   tableData,
   variant,
   tableHeader,
   section,
+  page,
+  setPage,
+  rowsPerPage,
+  setRowsPerPage,
 }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
   const navigate: any = useNavigate();
@@ -140,10 +146,11 @@ const UserAdminHtmlTable = ({
   };
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer sx={{ background: "#000000" }}>
       <Table
         sx={{
           minWidth: 650,
+
           backgroundColor: "#010822",
           "&.MuiTableContainer-root": { backgroundColor: "transparent" },
           "&.MuiPaper-root": { backgroundColor: "transparent" },
@@ -169,7 +176,7 @@ const UserAdminHtmlTable = ({
         {variant === "coin" && (
           <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
             {tableData &&
-              tableData?.map((data: any, index: number) => (
+              tableData?.data?.data.map((data: any, index: number) => (
                 <TableRow
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
@@ -587,7 +594,7 @@ const UserAdminHtmlTable = ({
         {variant === "nft" && (
           <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
             {tableData &&
-              tableData?.map((data: any, index: number) => (
+              tableData?.data?.data.map((data: any, index: number) => (
                 <TableRow
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
@@ -809,7 +816,7 @@ const UserAdminHtmlTable = ({
         {variant === "events" && (
           <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
             {tableData &&
-              tableData?.map((data: any, index: number) => (
+              tableData?.data?.data.map((data: any, index: number) => (
                 <TableRow
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
@@ -987,7 +994,7 @@ const UserAdminHtmlTable = ({
         {variant === "airdrops" && (
           <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
             {tableData &&
-              tableData?.map((data: any, index: number) => (
+              tableData?.data?.data.map((data: any, index: number) => (
                 <TableRow
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
@@ -1184,7 +1191,7 @@ const UserAdminHtmlTable = ({
         {variant === "review" && (
           <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
             {tableData &&
-              tableData?.map((data: any, index: number) => (
+              tableData?.data?.data.map((data: any, index: number) => (
                 <TableRow
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
@@ -1344,6 +1351,14 @@ const UserAdminHtmlTable = ({
           </TableBody>
         )}
       </Table>
+
+      <UserDashboardTablePagination
+        page={page}
+        setPage={setPage}
+        rowsPerPage={rowsPerPage}
+        setRowsPerPage={setRowsPerPage}
+        tableData={tableData}
+      />
     </TableContainer>
   );
 };

@@ -38,12 +38,17 @@ import {
   dashboardDeleteNFTListingRequest,
   dashboardDeleteReviewRequest,
 } from "../../../store/action";
+import MobileUserDashboardTablePagination from "./tablepagination/MobileUserDashboardTablePagination";
 
 const UserAdminMobileHtmlTable = ({
   tableData,
   variant,
   tableHeader,
   section,
+  page,
+  setPage,
+  rowsPerPage,
+  setRowsPerPage,
 }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
   const navigate: any = useNavigate();
@@ -183,7 +188,7 @@ const UserAdminMobileHtmlTable = ({
         {variant === "coin" && (
           <TableBody sx={{ backgroundColor: "#000000", color: "#FFFFFF" }}>
             {tableData &&
-              tableData?.map((data: any, index: number) => (
+              tableData?.data?.data.map((data: any, index: number) => (
                 <TableRow
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
@@ -595,7 +600,7 @@ const UserAdminMobileHtmlTable = ({
         {variant === "nft" && (
           <TableBody sx={{ backgroundColor: "#000000", color: "#FFFFFF" }}>
             {tableData &&
-              tableData?.map((data: any, index: number) => (
+              tableData?.data?.data.map((data: any, index: number) => (
                 <TableRow
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
@@ -811,7 +816,7 @@ const UserAdminMobileHtmlTable = ({
         {variant === "events" && (
           <TableBody sx={{ backgroundColor: "#000000", color: "#FFFFFF" }}>
             {tableData &&
-              tableData?.map((data: any, index: number) => (
+              tableData?.data?.data.map((data: any, index: number) => (
                 <TableRow
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
@@ -966,7 +971,7 @@ const UserAdminMobileHtmlTable = ({
         {variant === "airdrops" && (
           <TableBody sx={{ backgroundColor: "#000000", color: "#FFFFFF" }}>
             {tableData &&
-              tableData?.map((data: any, index: number) => (
+              tableData?.data?.data.map((data: any, index: number) => (
                 <TableRow
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
@@ -1157,7 +1162,7 @@ const UserAdminMobileHtmlTable = ({
         {variant === "review" && (
           <TableBody sx={{ backgroundColor: "#000000", color: "#FFFFFF" }}>
             {tableData &&
-              tableData?.map((data: any, index: number) => (
+              tableData?.data?.data.map((data: any, index: number) => (
                 <TableRow
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
@@ -1314,6 +1319,13 @@ const UserAdminMobileHtmlTable = ({
           </TableBody>
         )}
       </Table>
+      <MobileUserDashboardTablePagination
+        page={page}
+        setPage={setPage}
+        rowsPerPage={rowsPerPage}
+        setRowsPerPage={setRowsPerPage}
+        tableData={tableData}
+      />
     </TableContainer>
   );
 };

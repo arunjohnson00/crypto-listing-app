@@ -12,14 +12,16 @@ const UserAdminEventsListing = () => {
   const dispatch: any = useDispatch();
 
   const [tableData, setTableData] = useState<any>();
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(20);
   useEffect(() => {
     const successHandler = (res: any) => {
       setTableData(res?.data);
     };
     const errorHandler = (err: any) => {};
 
-    dispatch(userEventsListRequest("noData", successHandler, errorHandler));
-  }, [dispatch]);
+    dispatch(userEventsListRequest(page + 1, successHandler, errorHandler));
+  }, [dispatch, page]);
 
   return (
     <Fragment>
@@ -27,10 +29,14 @@ const UserAdminEventsListing = () => {
       tableData?.response === true &&
       tableData?.data?.data?.length !== 0 ? (
         <UserAdminHtmlTable
-          tableData={tableData && tableData?.data?.data}
+          tableData={tableData && tableData}
           tableHeader={tableHeader}
           variant="events"
           section="events"
+          page={page}
+          setPage={setPage}
+          rowsPerPage={rowsPerPage}
+          setRowsPerPage={setRowsPerPage}
         />
       ) : (
         <Stack
