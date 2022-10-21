@@ -302,15 +302,17 @@ const AirDropsEdit = () => {
             >
               Airdrop Details
             </Typography>
-            <InputTextArea
-              variant="richtext-airdrop"
-              name="airdrop_details"
-              id="airdrop_details"
-              placeholder="Enter airdrop details. "
-              value={editAirdropsData?.airdrop_details}
-              data={editAirdropsData}
-              setData={setEditAirdrops}
-            />
+            <Box pr={4}>
+              <InputTextArea
+                variant="richtext"
+                name="airdrop_details"
+                id="airdrop_details"
+                placeholder="Enter airdrop details. "
+                value={editAirdropsData?.airdrop_details}
+                data={editAirdropsData}
+                setData={setEditAirdrops}
+              />
+            </Box>
           </Grid>
 
           {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>

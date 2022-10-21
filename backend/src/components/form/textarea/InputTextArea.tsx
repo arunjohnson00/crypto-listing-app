@@ -3,7 +3,9 @@ import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { textareaStyle, rowCount } from "./style";
 import "./style.css";
 import { useMediaQuery } from "@mui/material";
-import RichTextEditor from "react-rte";
+// import RichTextEditor from "react-rte";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 const InputTextArea = ({
   name,
   id,
@@ -15,31 +17,32 @@ const InputTextArea = ({
   setData,
 }: any) => {
   const [textAreaValue, setTextAreaValue] = useState(value);
-  const [richEditorValue, setRichEditorValue] = useState<any>(
-    RichTextEditor.createValueFromString(
-      placeholder ? placeholder : "Enter  details.",
-      "html"
-    )
-  );
+  // const [richEditorValue, setRichEditorValue] = useState<any>(
+  //   RichTextEditor.createValueFromString(
+  //     placeholder ? placeholder : "Enter  details.",
+  //     "html"
+  //   )
+  // );
+
   const matches = useMediaQuery("(min-width:900px)");
 
   const richEditorHandler = (value: any) => {
-    console.log(value.toString("html"));
-    setRichEditorValue(value);
     setData({
       ...data,
       airdrop_details: value,
     });
   };
-  console.log(data);
+
   return (
     <Fragment>
-      {variant === "richtext-airdrop" ? (
-        <RichTextEditor
+      {variant === "richtext" ? (
+        <ReactQuill
+          theme="snow"
           value={data?.airdrop_details}
           onChange={richEditorHandler}
         />
       ) : (
+        // <RichTextEditor value={richEditorValue} onChange={richEditorHandler} />
         <>
           {matches === true ? (
             <TextareaAutosize

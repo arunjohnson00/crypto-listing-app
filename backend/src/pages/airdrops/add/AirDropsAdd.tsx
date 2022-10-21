@@ -47,10 +47,7 @@ const AirDropsAdd = () => {
     no_of_winners: "",
     // is_follow_twitter: 1,
     // join_telegram: 1,
-    airdrop_details: RichTextEditor.createValueFromString(
-      "Enter Airdrop details.",
-      "html"
-    ),
+    airdrop_details: "Please Enter Airdrop Details",
     logo: "",
     status: 1,
   });
@@ -295,14 +292,16 @@ const AirDropsAdd = () => {
             >
               Airdrop Details
             </Typography>
-            <InputTextArea
-              variant="richtext-airdrop"
-              name="airdrop_details"
-              id="airdrop_details"
-              placeholder="Enter airdrop details. "
-              data={addAirdropsData}
-              setData={setAddAirdrops}
-            />
+            <Box pr={4}>
+              <InputTextArea
+                variant="richtext"
+                name="airdrop_details"
+                id="airdrop_details"
+                placeholder="Enter airdrop details. "
+                data={addAirdropsData}
+                setData={setAddAirdrops}
+              />
+            </Box>
           </Grid>
 
           {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
