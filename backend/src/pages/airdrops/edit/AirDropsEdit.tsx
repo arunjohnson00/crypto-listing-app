@@ -52,7 +52,7 @@ const AirDropsEdit = () => {
     is_follow_twitter: "",
     join_telegram: "",
     status: "",
-    airdrop_details: "",
+    details: "",
     logo: "",
   });
   console.log(editAirdropsData);
@@ -106,7 +106,7 @@ const AirDropsEdit = () => {
     // formData.append("join_telegram", editAirdropsData?.join_telegram);
     formData.append(
       "airdrop_details",
-      editAirdropsData?.airdrop_details?.toString("html")
+      editAirdropsData?.details?.toString("html")
     );
     formData.append("status", editAirdropsData?.status);
 
@@ -134,7 +134,7 @@ const AirDropsEdit = () => {
   useEffect(() => {
     const successHandler = (res: any) => {
       console.log(res);
-      setEditAirdrops(res?.data?.data);
+      setEditAirdrops({ ...res?.data?.data });
     };
 
     const errorHandler = (err: any) => {
@@ -308,7 +308,7 @@ const AirDropsEdit = () => {
                 name="airdrop_details"
                 id="airdrop_details"
                 placeholder="Enter airdrop details. "
-                value={editAirdropsData?.airdrop_details}
+                value={editAirdropsData?.details}
                 data={editAirdropsData}
                 setData={setEditAirdrops}
               />

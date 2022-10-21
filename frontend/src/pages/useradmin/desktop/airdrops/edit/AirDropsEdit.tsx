@@ -52,10 +52,7 @@ const AirDropsEdit = () => {
     no_of_winners: "",
     is_follow_twitter: "",
     join_telegram: "",
-    details: RichTextEditor.createValueFromString(
-      "Enter Airdrop details.",
-      "html"
-    ),
+    details: "",
     status: "",
     logo: "",
   });

@@ -2,7 +2,8 @@ import { Fragment, useEffect, useState } from "react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { textareaStyle, rowCount } from "./style";
 import { useMediaQuery } from "@mui/material";
-import RichTextEditor from "react-rte";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import "./styel.css";
 const InputTextArea = ({
   name,
@@ -15,17 +16,10 @@ const InputTextArea = ({
   setData,
 }: any) => {
   const [textAreaValue, setTextAreaValue] = useState(value);
-  const [richEditorValue, setRichEditorValue] = useState<any>(
-    RichTextEditor.createValueFromString(
-      placeholder ? placeholder : "Enter  details.",
-      "html"
-    )
-  );
+
   const matches = useMediaQuery("(min-width:900px)");
 
   const richEditorHandler = (value: any) => {
-    console.log(value.toString("html"));
-    setRichEditorValue(value);
     setData({ ...data, details: value });
   };
   useEffect(() => {
@@ -35,7 +29,11 @@ const InputTextArea = ({
   return (
     <Fragment>
       {variant === "richtext" ? (
-        <RichTextEditor value={data?.details} onChange={richEditorHandler} />
+        <ReactQuill
+          theme="snow"
+          value={data?.details}
+          onChange={richEditorHandler}
+        />
       ) : (
         <>
           {matches === true ? (

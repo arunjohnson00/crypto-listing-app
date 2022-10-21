@@ -47,7 +47,7 @@ const AirDropsAdd = () => {
     no_of_winners: "",
     // is_follow_twitter: 1,
     // join_telegram: 1,
-    airdrop_details: "Please Enter Airdrop Details",
+    details: "Please Enter Airdrop Details",
     logo: "",
     status: 1,
   });
@@ -101,7 +101,7 @@ const AirDropsAdd = () => {
     // formData.append("join_telegram", addAirdropsData?.join_telegram);
     formData.append(
       "airdrop_details",
-      addAirdropsData?.airdrop_details?.toString("html")
+      addAirdropsData?.details?.toString("html")
     );
     formData.append("status", addAirdropsData?.status);
 

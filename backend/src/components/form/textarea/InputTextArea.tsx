@@ -29,7 +29,7 @@ const InputTextArea = ({
   const richEditorHandler = (value: any) => {
     setData({
       ...data,
-      airdrop_details: value,
+      details: value,
     });
   };
 
@@ -38,7 +38,7 @@ const InputTextArea = ({
       {variant === "richtext" ? (
         <ReactQuill
           theme="snow"
-          value={data?.airdrop_details}
+          value={data?.details}
           onChange={richEditorHandler}
         />
       ) : (

@@ -3,3 +3,16 @@ textarea {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "segoe ui", Roboto,
     Helvetica, Arial, sans-serif;
 }
+
+.ql-toolbar.ql-snow {
+  background: #00030c;
+  border: 1.5px solid #05114c;
+  border-radius: 8px 8px 0px 0px;
+}
+
+.ql-container.ql-snow {
+  color: #ffffff;
+  border: 1.5px solid #05114c;
+  height: 250px;
+  border-radius: 0px 0px 8px 8px;
+}

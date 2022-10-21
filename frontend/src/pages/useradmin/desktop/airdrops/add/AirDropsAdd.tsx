@@ -48,10 +48,7 @@ const AirDropsAdd = () => {
     is_follow_twitter: "",
     join_telegram: "",
     logo: "",
-    details: RichTextEditor.createValueFromString(
-      "Enter Airdrop details.",
-      "html"
-    ),
+    details: "Enter Airdrop details.",
     status: 1,
   });
 
