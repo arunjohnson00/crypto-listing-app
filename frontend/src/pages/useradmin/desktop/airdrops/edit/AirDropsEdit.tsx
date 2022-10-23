@@ -47,6 +47,7 @@ const AirDropsEdit = () => {
   const [editAirdropsData, setEditAirdrops] = useState<any>({
     id: location?.state?.id,
     coin_id: "",
+    item_id: "",
     start_date: "",
     no_of_days: "",
     total_amount: "",
@@ -57,7 +58,7 @@ const AirDropsEdit = () => {
     status: "",
     logo: "",
   });
-
+  console.log(editAirdropsData, "hi");
   const [loading, setLoading] = useState(false);
 
   // Display the key/value pairs
@@ -120,7 +121,7 @@ const AirDropsEdit = () => {
 
     const formData = new FormData();
     formData.append("id", editAirdropsData?.id);
-    formData.append("coin_id", editAirdropsData?.item_id);
+    formData.append("coin_id", editAirdropsData?.coin_id);
     formData.append(
       "start_date",
       dateFormat(new Date(editAirdropsData.start_date), "yyyy-mm-dd")
@@ -160,7 +161,7 @@ const AirDropsEdit = () => {
   useEffect(() => {
     const successHandler = (res: any) => {
       console.log(res);
-      setEditAirdrops(res?.data?.data);
+      setEditAirdrops({ ...editAirdropsData, ...res?.data?.data });
     };
 
     const errorHandler = (err: any) => {
@@ -260,7 +261,7 @@ const AirDropsEdit = () => {
             <AutoCompleSelect
               inputAutoValue={editAirdropsData}
               setInputAutoValue={setEditAirdrops}
-              serverRef={editAirdropsData?.item_id}
+              serverRef={editAirdropsData && editAirdropsData?.coin_id}
               variant="airdrop"
               title="Search coin"
             />

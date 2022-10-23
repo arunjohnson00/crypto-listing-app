@@ -350,12 +350,7 @@ const MobileHomePage = () => {
             to="/featured-coin"
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <Typography
-              variant="body2"
-              sx={{ color: "#424798", fontWeight: "bold" }}
-            >
-              View
-            </Typography>
+            <MobileViewMoreBtn title="View more" />
           </Link>
         </Stack>
       </Grid>
@@ -398,12 +393,7 @@ const MobileHomePage = () => {
             to="/crypto-events"
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <Typography
-              variant="body2"
-              sx={{ color: "#424798", fontWeight: "bold" }}
-            >
-              View
-            </Typography>
+            <MobileViewMoreBtn title="View more" />
           </Link>
         </Stack>
       </Grid>
@@ -511,12 +501,7 @@ const MobileHomePage = () => {
             to="/videos"
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <Typography
-              variant="body2"
-              sx={{ color: "#424798", fontWeight: "bold" }}
-            >
-              View
-            </Typography>
+            <MobileViewMoreBtn title="View more" />
           </Link>
         </Stack>
       </Grid>
@@ -550,8 +535,24 @@ const MobileHomePage = () => {
           </Carousel>
         )}
       </Grid>
+      <Grid item xs={12} mt={1.5} mb={0}>
+        <Stack
+          direction="row"
+          sx={{ justifyContent: "space-between", alignItems: "center" }}
+        >
+          <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+            CryptoCurrencies
+          </Typography>
+          <Link
+            to="/coins"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <MobileViewMoreBtn title="View more" />
+          </Link>
+        </Stack>
+      </Grid>
 
-      <Grid container item xs={12} mt={2.5} mb={0}>
+      <Grid container item xs={12} mt={1.5} mb={0}>
         <Stack
           direction={{ xs: "column", sm: "column", md: "row" }}
           spacing={2}
@@ -623,7 +624,7 @@ const MobileHomePage = () => {
         </Stack>
       </Grid>
 
-      <Grid item xs={12} mt={1.5} mb={0}>
+      {/* <Grid item xs={12} mt={1.5} mb={0}>
         <Stack
           direction="row"
           spacing={3}
@@ -640,15 +641,18 @@ const MobileHomePage = () => {
             <MobileViewMoreBtn title="View more" />
           </Link>
         </Stack>
-      </Grid>
+      </Grid> */}
       <Grid item xs={12} mt={1.5} mb={1.5}>
         <Stack
           direction="row"
-          sx={{ justifyContent: "flex-start", alignItems: "center" }}
+          sx={{ justifyContent: "space-between", alignItems: "center" }}
         >
           <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
             NFT Collections
           </Typography>
+          <Link to="/nft" style={{ textDecoration: "none" }}>
+            <MobileViewMoreBtn title="View more" />
+          </Link>
         </Stack>
       </Grid>
 
@@ -676,7 +680,7 @@ const MobileHomePage = () => {
         )}
       </Grid>
 
-      <Grid item xs={12} mt={1.5} mb={0}>
+      {/* <Grid item xs={12} mt={1.5} mb={0}>
         <Stack
           direction="row"
           spacing={3}
@@ -689,23 +693,27 @@ const MobileHomePage = () => {
             <MobileViewMoreBtn title="View more" />
           </Link>
         </Stack>
-      </Grid>
+      </Grid> */}
 
       <Grid item xs={12} mt={1.5} mb={1.5}>
         <Stack
           direction="row"
-          sx={{ justifyContent: "flex-start", alignItems: "center" }}
+          sx={{ justifyContent: "space-between", alignItems: "center" }}
         >
           <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
             Happening Now
           </Typography>
+          <Link to="/news" style={{ textDecoration: "none" }}>
+            {" "}
+            <MobileViewMoreBtn title="View more" />
+          </Link>
         </Stack>
       </Grid>
 
       <Grid item xs={12} mb={0}>
         <MobileLatestNewsCardScroll />
       </Grid>
-      <Grid item xs={12} mb={0}>
+      {/* <Grid item xs={12} mb={0}>
         <Stack
           direction="row"
           spacing={3}
@@ -719,7 +727,7 @@ const MobileHomePage = () => {
             <MobileViewMoreBtn title="View more" />
           </Link>
         </Stack>
-      </Grid>
+      </Grid> */}
 
       {/* <Grid
         item xs={12}

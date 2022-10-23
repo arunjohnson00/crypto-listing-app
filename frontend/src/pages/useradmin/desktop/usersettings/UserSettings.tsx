@@ -145,11 +145,11 @@ const UserSettings = () => {
         <meta property="og:url" content="https://coinxhigh.com/" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       </Helmet>
-      <Box width="100%" my={6}>
+      {/* <Box width="100%" my={6}>
         <MultiSlider />
-      </Box>
+      </Box> */}
 
-      <Grid item xs={12}>
+      <Grid item xs={12} mt={8}>
         <Stack direction="row" alignItems="center" spacing={1}>
           <Typography
             variant="subtitle2"

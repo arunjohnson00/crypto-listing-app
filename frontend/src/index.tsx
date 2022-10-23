@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
+  <div>
     <Provider store={store}>
       <HelmetProvider>
         <App />
@@ -42,7 +42,7 @@ root.render(
       height="20"
       component={<KeyboardDoubleArrowUpIcon sx={{ color: "#FFFFFF" }} />}
     />
-  </React.StrictMode>
+  </div>
 );
 
 // If you want your app to work offline and load faster, you can change

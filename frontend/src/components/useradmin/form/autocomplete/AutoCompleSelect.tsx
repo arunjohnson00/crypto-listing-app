@@ -131,6 +131,7 @@ const AutoCompleSelect = ({
         setInputAutoValue({
           ...inputAutoValue,
           item_id: filter[0]?.id,
+          coin_id: filter[0]?.id,
           item_name: variant === "nft" ? filter[0]?.title : filter[0]?.name,
           logo: filter[0]?.logo,
         });

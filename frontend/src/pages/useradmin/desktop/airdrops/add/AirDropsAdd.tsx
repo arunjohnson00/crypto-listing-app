@@ -49,7 +49,7 @@ const AirDropsAdd = () => {
     is_follow_twitter: "",
     join_telegram: "",
     logo: "",
-    details: "Enter Airdrop details.",
+    details: "",
     status: 1,
   });
 
@@ -67,7 +67,7 @@ const AirDropsAdd = () => {
           <Stack direction="row" spacing={2} alignItems="center">
             <CheckCircleRoundedIcon sx={{ color: "#5CE32D", fontSize: 50 }} />
             <Typography sx={{ fontSize: ".85rem" }}>
-              {res?.data?.data?.original?.message}
+              {res?.data?.data?.message}
             </Typography>
           </Stack>
         </Box>,
@@ -120,9 +120,18 @@ const AirDropsAdd = () => {
       "start_date",
       dateFormat(new Date(addAirdropsData.start_date), "yyyy-mm-dd")
     );
-    formData.append("no_of_days", addAirdropsData?.no_of_days);
-    formData.append("total_amount", addAirdropsData?.total_amount);
-    formData.append("no_of_winners", addAirdropsData?.no_of_winners);
+    formData.append(
+      "no_of_days",
+      addAirdropsData?.no_of_days?.replace(/[^0-9\.]/g, "")
+    );
+    formData.append(
+      "total_amount",
+      addAirdropsData?.total_amount?.replace(/[^0-9\.]/g, "")
+    );
+    formData.append(
+      "no_of_winners",
+      addAirdropsData?.no_of_winners?.replace(/[^0-9\.]/g, "")
+    );
     // formData.append("is_follow_twitter", addAirdropsData?.is_follow_twitter);
     // formData.append("join_telegram", addAirdropsData?.join_telegram);
     formData.append("details", addAirdropsData?.details?.toString("html"));

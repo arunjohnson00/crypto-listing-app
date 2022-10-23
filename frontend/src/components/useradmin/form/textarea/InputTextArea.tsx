@@ -33,6 +33,7 @@ const InputTextArea = ({
           theme="snow"
           value={data?.details}
           onChange={richEditorHandler}
+          placeholder={placeholder && placeholder}
         />
       ) : (
         <>
