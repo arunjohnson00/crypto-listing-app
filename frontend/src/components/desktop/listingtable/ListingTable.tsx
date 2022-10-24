@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -44,9 +44,13 @@ const ListingTable = ({
   handleChangeRowsPerPage,
   setPage,
   windowInnerWidth,
+  total,
 }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
   const dispatch: any = useDispatch();
+  const location: any = useLocation();
+
+  console.log(location?.pathname);
   const scrollHandler = () => {
     // page?.pagination !== 0 &&
 
@@ -173,18 +177,35 @@ const ListingTable = ({
                 <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
                   Chain
                 </TableCell>
-                <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
-                  Market Cap
-                </TableCell>
+                {location && location?.pathname === "/coins/presales" && (
+                  <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
+                    Presale Start Date
+                  </TableCell>
+                )}
+                {location && location?.pathname === "/coins/presales" && (
+                  <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
+                    Presale End Date
+                  </TableCell>
+                )}
+
+                {location && location?.pathname !== "/coins/presales" && (
+                  <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
+                    Market Cap
+                  </TableCell>
+                )}
                 <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
                   Price
                 </TableCell>
-                <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
-                  24h
-                </TableCell>
-                <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
-                  7d
-                </TableCell>
+                {location && location?.pathname !== "/coins/presales" && (
+                  <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
+                    24h
+                  </TableCell>
+                )}
+                {location && location?.pathname !== "/coins/presales" && (
+                  <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
+                    7d
+                  </TableCell>
+                )}
                 <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
                   Listed
                 </TableCell>
@@ -322,32 +343,89 @@ const ListingTable = ({
                       )}
                     </Stack> */}
                     </TableCell>
-                    <TableCell
-                      sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
-                    >
-                      <Typography variant="caption">
-                        <Link
-                          to={{
-                            pathname: `/coin/${data?.slug}`,
-                          }}
-                          state={{ coin_id: data?.id }}
-                          style={{
-                            textDecoration: "none",
-                            color: "#FFFFFF",
-                          }}
-                        >
-                          {data && data?.market_cap !== null ? (
-                            data &&
-                            "$" +
-                              Math.floor(
-                                Math.abs(data?.market_cap)
-                              ).toLocaleString()
-                          ) : (
-                            <span style={{ color: "#7a7a7a" }}>--</span>
-                          )}
-                        </Link>
-                      </Typography>
-                    </TableCell>
+
+                    {location && location?.pathname === "/coins/presales" && (
+                      <TableCell
+                        sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                      >
+                        <Typography variant="caption">
+                          <Link
+                            to={{
+                              pathname: `/coin/${data?.slug}`,
+                            }}
+                            state={{ coin_id: data?.id }}
+                            style={{
+                              textDecoration: "none",
+                              color: "#FFFFFF",
+                            }}
+                          >
+                            {data && data?.presale_start_date !== null ? (
+                              moment(new Date(data?.presale_start_date)).format(
+                                "DD MMM YYYY"
+                              )
+                            ) : (
+                              <span style={{ color: "#7a7a7a" }}>--</span>
+                            )}
+                          </Link>
+                        </Typography>
+                      </TableCell>
+                    )}
+
+                    {location && location?.pathname === "/coins/presales" && (
+                      <TableCell
+                        sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                      >
+                        <Typography variant="caption">
+                          <Link
+                            to={{
+                              pathname: `/coin/${data?.slug}`,
+                            }}
+                            state={{ coin_id: data?.id }}
+                            style={{
+                              textDecoration: "none",
+                              color: "#FFFFFF",
+                            }}
+                          >
+                            {data && data?.presale_end_date !== null ? (
+                              moment(new Date(data?.presale_end_date)).format(
+                                "DD MMM YYYY"
+                              )
+                            ) : (
+                              <span style={{ color: "#7a7a7a" }}>--</span>
+                            )}
+                          </Link>
+                        </Typography>
+                      </TableCell>
+                    )}
+
+                    {location && location?.pathname !== "/coins/presales" && (
+                      <TableCell
+                        sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                      >
+                        <Typography variant="caption">
+                          <Link
+                            to={{
+                              pathname: `/coin/${data?.slug}`,
+                            }}
+                            state={{ coin_id: data?.id }}
+                            style={{
+                              textDecoration: "none",
+                              color: "#FFFFFF",
+                            }}
+                          >
+                            {data && data?.market_cap !== null ? (
+                              data &&
+                              "$" +
+                                Math.floor(
+                                  Math.abs(data?.market_cap)
+                                ).toLocaleString()
+                            ) : (
+                              <span style={{ color: "#7a7a7a" }}>--</span>
+                            )}
+                          </Link>
+                        </Typography>
+                      </TableCell>
+                    )}
                     <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                       <Typography variant="caption">
                         <Link
@@ -384,108 +462,112 @@ const ListingTable = ({
                         </Link>
                       </Typography>
                     </TableCell>
-                    <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
-                      <Link
-                        to={{
-                          pathname: `/coin/${data?.slug}`,
-                        }}
-                        state={{ coin_id: data?.id }}
-                        style={{
-                          textDecoration: "none",
-                          color: "#FFFFFF",
-                        }}
-                      >
-                        <Stack
-                          direction="row"
-                          sx={{
-                            alignItems: "center",
-                            justifyContent: "center",
+                    {location && location?.pathname !== "/coins/presales" && (
+                      <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                        <Link
+                          to={{
+                            pathname: `/coin/${data?.slug}`,
                           }}
-                          spacing={0}
-                        >
-                          {data &&
-                          data?.pc_24h !== null &&
-                          Math.sign(parseFloat(data?.pc_24h)) === -1 ? (
-                            <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                          ) : (
-                            data?.pc_24h !== null && (
-                              <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                            )
-                          )}
-
-                          <Typography
-                            variant="caption"
-                            sx={{
-                              color:
-                                Math.sign(parseFloat(data?.pc_24h)) === -1
-                                  ? "#ff0000"
-                                  : "#00ff00",
-                              fontWeight: 600,
-                              fontSize: ".7rem",
-                            }}
-                          >
-                            {data && data?.pc_24h !== null ? (
-                              parseFloat(data?.pc_24h)
-                                .toFixed(2)
-                                .replace("-", "") + "%"
-                            ) : (
-                              <span style={{ color: "#7a7a7a" }}>--</span>
-                            )}
-                          </Typography>
-                        </Stack>
-                      </Link>
-                    </TableCell>
-                    <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
-                      <Link
-                        to={{
-                          pathname: `/coin/${data?.slug}`,
-                        }}
-                        state={{ coin_id: data?.id }}
-                        style={{
-                          textDecoration: "none",
-                          color: "#FFFFFF",
-                        }}
-                      >
-                        <Stack
-                          direction="row"
-                          sx={{
-                            alignItems: "center",
-                            justifyContent: "center",
+                          state={{ coin_id: data?.id }}
+                          style={{
+                            textDecoration: "none",
+                            color: "#FFFFFF",
                           }}
-                          spacing={0}
                         >
-                          {data &&
-                          data?.pc_7d !== null &&
-                          Math.sign(parseFloat(data?.pc_7d)) === -1 ? (
-                            <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
-                          ) : (
-                            data?.pc_7d !== null && (
-                              <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
-                            )
-                          )}
-
-                          <Typography
-                            variant="caption"
+                          <Stack
+                            direction="row"
                             sx={{
-                              color:
-                                Math.sign(parseFloat(data?.pc_7d)) === -1
-                                  ? "#ff0000"
-                                  : "#00ff00",
-                              fontWeight: 600,
-                              fontSize: ".7rem",
+                              alignItems: "center",
+                              justifyContent: "center",
                             }}
+                            spacing={0}
                           >
-                            {data && data?.pc_7d !== null ? (
-                              parseFloat(data?.pc_7d)
-                                .toFixed(2)
-                                .replace("-", "") + "%"
+                            {data &&
+                            data?.pc_24h !== null &&
+                            Math.sign(parseFloat(data?.pc_24h)) === -1 ? (
+                              <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
                             ) : (
-                              <span style={{ color: "#7a7a7a" }}>--</span>
+                              data?.pc_24h !== null && (
+                                <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                              )
                             )}
-                          </Typography>
-                        </Stack>
-                      </Link>
-                    </TableCell>
+
+                            <Typography
+                              variant="caption"
+                              sx={{
+                                color:
+                                  Math.sign(parseFloat(data?.pc_24h)) === -1
+                                    ? "#ff0000"
+                                    : "#00ff00",
+                                fontWeight: 600,
+                                fontSize: ".7rem",
+                              }}
+                            >
+                              {data && data?.pc_24h !== null ? (
+                                parseFloat(data?.pc_24h)
+                                  .toFixed(2)
+                                  .replace("-", "") + "%"
+                              ) : (
+                                <span style={{ color: "#7a7a7a" }}>--</span>
+                              )}
+                            </Typography>
+                          </Stack>
+                        </Link>
+                      </TableCell>
+                    )}
+                    {location && location?.pathname !== "/coins/presales" && (
+                      <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                        <Link
+                          to={{
+                            pathname: `/coin/${data?.slug}`,
+                          }}
+                          state={{ coin_id: data?.id }}
+                          style={{
+                            textDecoration: "none",
+                            color: "#FFFFFF",
+                          }}
+                        >
+                          <Stack
+                            direction="row"
+                            sx={{
+                              alignItems: "center",
+                              justifyContent: "center",
+                            }}
+                            spacing={0}
+                          >
+                            {data &&
+                            data?.pc_7d !== null &&
+                            Math.sign(parseFloat(data?.pc_7d)) === -1 ? (
+                              <ArrowDropDownIcon sx={{ color: "#ff0000" }} />
+                            ) : (
+                              data?.pc_7d !== null && (
+                                <ArrowDropUpIcon sx={{ color: "#00ff00" }} />
+                              )
+                            )}
+
+                            <Typography
+                              variant="caption"
+                              sx={{
+                                color:
+                                  Math.sign(parseFloat(data?.pc_7d)) === -1
+                                    ? "#ff0000"
+                                    : "#00ff00",
+                                fontWeight: 600,
+                                fontSize: ".7rem",
+                              }}
+                            >
+                              {data && data?.pc_7d !== null ? (
+                                parseFloat(data?.pc_7d)
+                                  .toFixed(2)
+                                  .replace("-", "") + "%"
+                              ) : (
+                                <span style={{ color: "#7a7a7a" }}>--</span>
+                              )}
+                            </Typography>
+                          </Stack>
+                        </Link>
+                      </TableCell>
+                    )}
                     <TableCell
                       sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}
                     >
@@ -741,6 +823,7 @@ const ListingTable = ({
           handleChangePage={handleChangePage}
           rowsPerPage={rowsPerPage}
           handleChangeRowsPerPage={handleChangeRowsPerPage}
+          total={total}
         />
       </Stack>
     </Stack>

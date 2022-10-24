@@ -82,6 +82,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
   const timeAgo = new TimeAgo("en");
   const [tableTabvalue, setTableTabValue] = useState<any>("");
   const [tableData, setTableData] = useState<any>([]);
+  const [total, setTotal] = useState<any>([]);
   const [page, setPage] = useState({ pagination: 1, scroll: true });
   const [rowsPerPage, setRowsPerPage] = useState(20);
   const [tableFilter, setTableFilter] = useState(false);
@@ -160,7 +161,9 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
     const successHandler = (res: any) => {
       page?.scroll === true
         ? setTableData([...tableData, ...res?.data?.data])
-        : setTableData([...res?.data?.data]);
+        : setTableData(res?.data?.data);
+
+      res && setTotal(res?.data?.total);
       // tableTabvalue
       // ? setTableData(res?.data?.data)
       res?.data?.data !== undefined &&
@@ -531,6 +534,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
                   handleChangeRowsPerPage={handleChangeRowsPerPage}
                   setPage={setPage}
                   windowInnerWidth={windowInnerWidth}
+                  total={total && total}
                 />
               )}
             </Grid>

@@ -513,7 +513,7 @@ const UserAdminMobileHtmlTable = ({
                       />
                     ) : parseInt(data?.status) === 2 ? (
                       <Chip
-                        label="Suspended"
+                        label="Processing"
                         color="primary"
                         sx={{
                           height: 22,
@@ -729,7 +729,7 @@ const UserAdminMobileHtmlTable = ({
                       />
                     ) : parseInt(data?.status) === 2 ? (
                       <Chip
-                        label="Suspended"
+                        label="Processing"
                         color="primary"
                         sx={{
                           height: 22,
@@ -881,7 +881,7 @@ const UserAdminMobileHtmlTable = ({
                       />
                     ) : parseInt(data?.status) === 2 ? (
                       <Chip
-                        label="Suspended"
+                        label="Processing"
                         color="primary"
                         sx={{
                           height: 22,
@@ -1075,7 +1075,7 @@ const UserAdminMobileHtmlTable = ({
                       />
                     ) : parseInt(data?.status) === 2 ? (
                       <Chip
-                        label="Suspended"
+                        label="Processing"
                         color="primary"
                         sx={{
                           height: 22,
@@ -1235,7 +1235,7 @@ const UserAdminMobileHtmlTable = ({
                       />
                     ) : parseInt(data?.status) === 2 ? (
                       <Chip
-                        label="Suspended"
+                        label="Processing"
                         color="primary"
                         sx={{
                           height: 22,

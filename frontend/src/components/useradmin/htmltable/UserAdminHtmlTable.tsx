@@ -507,7 +507,7 @@ const UserAdminHtmlTable = ({
                           fontWeight: 600,
                         }}
                       >
-                        Suspended
+                        Processing
                       </Typography>
                     ) : (
                       parseInt(data?.status) === 3 && (
@@ -729,7 +729,7 @@ const UserAdminHtmlTable = ({
                           fontWeight: 600,
                         }}
                       >
-                        Suspended
+                        Processing
                       </Typography>
                     ) : (
                       parseInt(data?.status) === 3 && (
@@ -904,7 +904,7 @@ const UserAdminHtmlTable = ({
                           fontWeight: 600,
                         }}
                       >
-                        Suspended
+                        Processing
                       </Typography>
                     ) : (
                       parseInt(data?.status) === 3 && (
@@ -1104,7 +1104,7 @@ const UserAdminHtmlTable = ({
                           fontWeight: 600,
                         }}
                       >
-                        Suspended
+                        Processing
                       </Typography>
                     ) : (
                       parseInt(data?.status) === 3 && (
@@ -1267,7 +1267,7 @@ const UserAdminHtmlTable = ({
                           fontWeight: 600,
                         }}
                       >
-                        Suspended
+                        Processing
                       </Typography>
                     ) : (
                       parseInt(data?.status) === 3 && (

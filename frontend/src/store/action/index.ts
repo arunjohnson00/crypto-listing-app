@@ -23,7 +23,7 @@ export { menuCardRequest } from "./homeAction";
 export { videoListRequest } from "./homeAction";
 export { trendingCoinListRequest } from "./homeAction";
 export { eventListRequest } from "./homeAction";
-
+export { cryptoCurrenciesRecentlyAddedRequest } from "./homeAction";
 //Coin Page
 
 export { coinAboutBlockRequest } from "./coinAction ";

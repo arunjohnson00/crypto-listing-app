@@ -59,6 +59,7 @@ import {
   videoListRequest,
   trendingCoinListRequest,
   eventListRequest,
+  cryptoCurrenciesRecentlyAddedRequest,
 } from "../../../store/action";
 import { tableHeader } from "./helper";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
@@ -252,13 +253,19 @@ const HomePage = ({ windowInnerWidth }: any) => {
         )
       );
     tabIndex === 4 &&
-      dispatch(recentlyAddedRequest("noData", successHandler, errorHandler));
+      dispatch(
+        cryptoCurrenciesRecentlyAddedRequest(
+          "noData",
+          successHandler,
+          errorHandler
+        )
+      );
     tabIndex === 6 &&
       dispatch(
         cryptoCurrenciesPresaleRequest("noData", successHandler, errorHandler)
       );
   }, [dispatch, tabIndex, setHTMLTablePreLoader]);
-
+  console.log(tabIndex);
   return (
     <Fragment>
       <Helmet>

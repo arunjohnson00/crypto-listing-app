@@ -6,6 +6,7 @@ const TableListPagination = ({
   handleChangePage,
   rowsPerPage,
   handleChangeRowsPerPage,
+  total,
 }: any) => {
   const cryptoCurrenciesList = useSelector((data: any) => {
     return data?.homeReducer?.crypto_currencies_list;
@@ -14,7 +15,7 @@ const TableListPagination = ({
   return (
     <TablePagination
       component="div"
-      count={cryptoCurrenciesList && cryptoCurrenciesList?.total}
+      count={total && total}
       page={page?.pagination}
       onPageChange={handleChangePage}
       rowsPerPage={rowsPerPage}

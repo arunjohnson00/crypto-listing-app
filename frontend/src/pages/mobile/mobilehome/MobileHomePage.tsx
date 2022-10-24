@@ -46,6 +46,7 @@ import {
   eventListRequest,
   nftListingRequest,
   recentlyAddedRequest,
+  cryptoCurrenciesRecentlyAddedRequest,
 } from "../../../store/action";
 import { tableHeader } from "./helper";
 import { Link } from "react-router-dom";
@@ -247,7 +248,13 @@ const MobileHomePage = () => {
         )
       );
     tabIndex === 4 &&
-      dispatch(recentlyAddedRequest("noData", successHandler, errorHandler));
+      dispatch(
+        cryptoCurrenciesRecentlyAddedRequest(
+          "noData",
+          successHandler,
+          errorHandler
+        )
+      );
     tabIndex === 6 &&
       dispatch(
         cryptoCurrenciesPresaleRequest("noData", successHandler, errorHandler)

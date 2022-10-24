@@ -25,7 +25,7 @@ export const coinsRecentlyAddedRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/recently-added?page=${values}`,
+    url: `api/f/v1/crypto-currencies-recently-added?page=${values}`,
     method: "GET",
     secure: false,
     actionType: COINS.RECENTLY_ADDED,
@@ -40,7 +40,7 @@ export const coinsBiggestGainersRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/biggest-gainers?page=${values}`,
+    url: `api/f/v1/crypto-currencies-biggest-gainers?page=${values}`,
     method: "GET",
     secure: false,
     actionType: COINS.BIGGEST_GAINERS,
@@ -55,7 +55,7 @@ export const coinsBiggestLosersRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/biggest-loosers?page=${values}`,
+    url: `api/f/v1/crypto-currencies-biggest-loosers?page=${values}`,
     method: "GET",
     secure: false,
     actionType: COINS.BIGGEST_LOOSERS,
@@ -145,7 +145,7 @@ export const coinsCryptoCurrenciesMostVotedRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/most-voted?page=${values}`,
+    url: `api/f/v1/crypto-currencies-most-voted?page=${values}`,
     method: "GET",
     secure: false,
     actionType: COINS.MOST_VISITED,

@@ -8,6 +8,7 @@ const initialState = {
   trending_coin_list: "",
   crypto_currencies_list: "",
   crypto_currencies_new: "",
+  crypto_currencies_recently_added: "",
   crypto_currencies_presale: "",
   crypto_currencies_todays_best: "",
   crypto_currencies_tab: 4,
@@ -64,6 +65,13 @@ const homeReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         crypto_currencies_new: action?.payload?.data,
+      };
+
+    case HOME.CRYPTO_RECENTLY_ADDED:
+      //console.log(action);
+      return {
+        ...state,
+        crypto_currencies_recently_added: action?.payload?.data,
       };
 
     case HOME.CRYPTO_CURRENCIES_PRESALE:
