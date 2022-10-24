@@ -1,9 +1,23 @@
-import { Grid, Stack, Typography } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { airdropPageListingRequest } from "../../../store/action";
 import DiscoverListAirdropCard from "../cards/discoverlistairdropcard/DiscoverListAirdropCard";
 
 const DiscoverAirdrops = () => {
+  const dispatch: any = useDispatch();
+  const airdropList = useSelector((data: any) => {
+    return data?.airdropReducer?.airdrop_listings?.data;
+  });
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(airdropPageListingRequest("noData", successHandler, errorHandler));
+  }, [dispatch]);
   return (
     <Grid container spacing={0}>
       <Grid item xs={12}>
@@ -12,50 +26,14 @@ const DiscoverAirdrops = () => {
         </Typography>
       </Grid>
       <Grid item xs={12} mt={4}>
-        <Typography variant="h5" sx={{ fontWeight: 500, color: "#ABAEAF" }}>
-          02 June 2022
-        </Typography>
-
-        <Stack direction="row" flexWrap="wrap">
-          <ImageList sx={{ height: "auto" }} cols={2}>
-            <ImageListItem>
-              <DiscoverListAirdropCard />
-            </ImageListItem>
-            <ImageListItem>
-              <DiscoverListAirdropCard />
-            </ImageListItem>
-            <ImageListItem>
-              <DiscoverListAirdropCard />
-            </ImageListItem>
-            <ImageListItem>
-              <DiscoverListAirdropCard />
-            </ImageListItem>
-          </ImageList>
-        </Stack>
-
-        <Typography
-          variant="h5"
-          sx={{ fontWeight: 500, color: "#ABAEAF" }}
-          mt={4}
-        >
-          02 June 2022
-        </Typography>
-
-        <Stack direction="row" flexWrap="wrap">
-          <ImageList sx={{ height: "auto" }} cols={2}>
-            <ImageListItem>
-              <DiscoverListAirdropCard />
-            </ImageListItem>
-            <ImageListItem>
-              <DiscoverListAirdropCard />
-            </ImageListItem>
-            <ImageListItem>
-              <DiscoverListAirdropCard />
-            </ImageListItem>
-            <ImageListItem>
-              <DiscoverListAirdropCard />
-            </ImageListItem>
-          </ImageList>
+        <Stack direction="row" flexWrap="wrap" rowGap={2} columnGap={2} mt={1}>
+          {airdropList &&
+            airdropList?.response === true &&
+            airdropList?.data?.data?.map((item: any, index: number) => (
+              <Box sx={{ width: "32%" }} key={index}>
+                <DiscoverListAirdropCard data={item} />
+              </Box>
+            ))}
         </Stack>
       </Grid>
     </Grid>

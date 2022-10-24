@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileDiscoverNFTCard = ({ item }: any) => {
   return (
-    <Link to={`/nft/${item?.nft_slug}`} style={{ textDecoration: "none" }}>
+    <Link to={`/nft/${item?.slug}`} style={{ textDecoration: "none" }}>
       <Box
         sx={{
           flexGrow: 1,

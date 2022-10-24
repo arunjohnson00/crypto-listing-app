@@ -13,10 +13,13 @@ textarea {
 .ql-container.ql-snow {
   color: #ffffff;
   border: 1.5px solid #05114c;
-  height: 250px;
+
   border-radius: 0px 0px 8px 8px;
 }
-
+.quill > .ql-container > .ql-editor {
+  min-height: 250px;
+  resize: vertical;
+}
 .quill > .ql-container > .ql-editor.ql-blank::before {
   font-size: 0.8rem;
   color: #252833;

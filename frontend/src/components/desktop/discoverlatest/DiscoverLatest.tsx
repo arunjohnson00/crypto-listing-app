@@ -23,7 +23,7 @@ const DiscoverLatest = () => {
         <DiscoverLatestGaindLosers />
         <DiscoverLatestAirDrops />
         <DiscoverLatestEvents />
-        <DiscoverLatestAma />
+        {/* <DiscoverLatestAma /> */}
         {/* <DiscoverLatestNft /> */}
       </Grid>
     </Grid>

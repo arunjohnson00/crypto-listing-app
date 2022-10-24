@@ -126,9 +126,18 @@ const AirDropsEdit = () => {
       "start_date",
       dateFormat(new Date(editAirdropsData.start_date), "yyyy-mm-dd")
     );
-    formData.append("no_of_days", editAirdropsData?.no_of_days);
-    formData.append("total_amount", editAirdropsData?.total_amount);
-    formData.append("no_of_winners", editAirdropsData?.no_of_winners);
+    formData.append(
+      "no_of_days",
+      editAirdropsData?.no_of_days?.replace(/[^0-9\.]/g, "")
+    );
+    formData.append(
+      "total_amount",
+      editAirdropsData?.total_amount?.replace(/[^0-9\.]/g, "")
+    );
+    formData.append(
+      "no_of_winners",
+      editAirdropsData?.no_of_winners?.replace(/[^0-9\.]/g, "")
+    );
     // formData.append("is_follow_twitter", editAirdropsData?.is_follow_twitter);
     // formData.append("join_telegram", editAirdropsData?.join_telegram);
     formData.append("details", editAirdropsData?.details?.toString("html"));
@@ -304,7 +313,7 @@ const AirDropsEdit = () => {
             <InputText
               placeholder="Eg: 5"
               inputTextHandler={(e: any) => airdropsNumDaysHandler(e)}
-              value={editAirdropsData.no_of_days}
+              value={editAirdropsData?.no_of_days}
               type="number"
             />
           </Grid>

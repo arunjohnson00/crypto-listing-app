@@ -17,7 +17,9 @@ const InputText = ({
   const matches = useMediaQuery("(min-width:900px)");
   const [inputValue, setinputValue] = useState<any>();
   useEffect(() => {
-    setinputValue(value);
+    setinputValue(
+      type === "number" ? value?.toString()?.replace(/[^0-9\.]/g, "") : value
+    );
   }, [value]);
 
   return (

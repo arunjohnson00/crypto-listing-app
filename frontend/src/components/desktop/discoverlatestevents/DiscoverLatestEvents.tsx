@@ -120,9 +120,10 @@ const DiscoverLatestEvents = () => {
                         <Box key={index}>
                           <DiscoverLatestCommonCard
                             item={item}
-                            path="coin_logo"
-                            varient="events"
+                            path="event_proof"
+                            variant="events"
                             image={item?.coin_logo}
+                            link={`/crypto-events/${item && item?.slug}`}
                             date={
                               item &&
                               moment(new Date(item?.event_date)).format("DD")

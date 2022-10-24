@@ -60,14 +60,13 @@ const AirDropsAdd = () => {
   const airdropsAddHandler = () => {
     setLoading(true);
     const successHandler = (res: any) => {
-      console.log(res);
       setLoading(true);
       toast.success(
         <Box>
           <Stack direction="row" spacing={2} alignItems="center">
             <CheckCircleRoundedIcon sx={{ color: "#5CE32D", fontSize: 50 }} />
             <Typography sx={{ fontSize: ".85rem" }}>
-              {res?.data?.data?.message}
+              {res?.data?.message}
             </Typography>
           </Stack>
         </Box>,

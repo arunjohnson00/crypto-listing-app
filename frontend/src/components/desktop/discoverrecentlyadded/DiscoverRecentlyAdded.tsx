@@ -12,6 +12,7 @@ import {
   discoverLatestAirdropRequest,
   discoverLatestCoinRequest,
   discoverLatestEventsRequest,
+  airdropPageListingRequest,
 } from "../../../store/action";
 
 const DiscoverRecentlyAdded = () => {
@@ -31,14 +32,21 @@ const DiscoverRecentlyAdded = () => {
   const latestNFT = useSelector((data: any) => {
     return data?.discoverReducer?.latest_nft?.data;
   });
+
+  const airdropList = useSelector((data: any) => {
+    return data?.airdropReducer?.airdrop_listings?.data?.data?.data;
+  });
+
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
 
     dispatch(discoverLatestCoinRequest("noData", successHandler, errorHandler));
-    dispatch(
-      discoverLatestAirdropRequest("noData", successHandler, errorHandler)
-    );
+    // dispatch(
+    //   discoverLatestAirdropRequest("noData", successHandler, errorHandler)
+    // );
+
+    dispatch(airdropPageListingRequest("noData", successHandler, errorHandler));
     dispatch(
       discoverLatestEventsRequest("noData", successHandler, errorHandler)
     );
@@ -67,7 +75,7 @@ const DiscoverRecentlyAdded = () => {
           </Typography>
         </Grid>
 
-        <DiscoverAirDropMultiSlider data={latestAirdrop} />
+        <DiscoverAirDropMultiSlider data={airdropList} />
 
         <Grid item xs={12} sx={{ marginTop: 2.5 }}>
           <Typography variant="h6" sx={{ fontWeight: 400, color: "#29D392" }}>

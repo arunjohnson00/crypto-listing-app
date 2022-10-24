@@ -159,7 +159,7 @@ const DiscoverVerticalTab = () => {
             },
           }}
         />
-        <Tab
+        {/* <Tab
           label="NFT Marketplaces"
           {...a11yProps(5)}
           sx={{
@@ -168,11 +168,11 @@ const DiscoverVerticalTab = () => {
               alignItems: `${matches ? "flex-start" : "center"}`,
             },
           }}
-        />
+        /> */}
 
         <Tab
           label="Airdrops"
-          {...a11yProps(6)}
+          {...a11yProps(5)}
           sx={{
             paddingLeft: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
@@ -182,7 +182,7 @@ const DiscoverVerticalTab = () => {
         />
         <Tab
           label="Events"
-          {...a11yProps(7)}
+          {...a11yProps(6)}
           sx={{
             paddingLeft: 4,
             "&.MuiButtonBase-root.MuiTab-root": {
@@ -210,13 +210,13 @@ const DiscoverVerticalTab = () => {
         <TabPanel value={value} index={4}>
           <DiscoverNFTs />
         </TabPanel>
-        <TabPanel value={value} index={5}>
+        {/* <TabPanel value={value} index={5}>
           <DiscoverNftMarketPlaces />
-        </TabPanel>
-        <TabPanel value={value} index={6}>
+        </TabPanel> */}
+        <TabPanel value={value} index={5}>
           <DiscoverAirdrops />
         </TabPanel>
-        <TabPanel value={value} index={7}>
+        <TabPanel value={value} index={6}>
           <DiscoverEvents />
         </TabPanel>
       </Box>

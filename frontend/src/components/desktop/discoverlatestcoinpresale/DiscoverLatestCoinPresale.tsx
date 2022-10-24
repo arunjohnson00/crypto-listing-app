@@ -74,12 +74,12 @@ const DiscoverLatestCoinPresale = () => {
                     variant="h6"
                     sx={{ color: "#2DCEAF", fontWeight: 500 }}
                   >
-                    Coins
+                    Recently Added Coins
                   </Typography>
                 </Stack>
                 <Stack
                   direction={{ xs: "column", sm: "column", md: "column" }}
-                  spacing={0.5}
+                  spacing={1}
                 >
                   {latestCoin &&
                     latestCoin.slice(0, 10).map((item: any, index: number) => (

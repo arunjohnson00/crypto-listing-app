@@ -165,7 +165,7 @@ const DiscoverRecentCryptoCard = ({ item }: any) => {
           borderRadius: 2,
         }}
         // px={2}
-        mr={1}
+        mr={2}
       >
         <Box
           mr={2}

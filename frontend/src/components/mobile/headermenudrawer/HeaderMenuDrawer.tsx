@@ -186,7 +186,7 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
               >
                 Promote
               </Typography>
-            </Link>
+              </Link>*/}
             <Link
               to={{
                 pathname: `/discover`,
@@ -208,7 +208,7 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
                 Discover
               </Typography>
             </Link>
-            <Link
+            {/*<Link
               to={{
                 pathname: `/chart`,
               }}

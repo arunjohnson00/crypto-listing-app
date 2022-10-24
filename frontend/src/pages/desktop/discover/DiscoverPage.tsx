@@ -50,15 +50,15 @@ const DiscoverPage = () => {
           <Grid container pt={1.5} spacing={3}>
             <Grid item xs={12} sm={12} md={12} lg={12} xl={12} px={0.5}>
               <Stack direction="column" spacing={0.5}>
-                <Typography variant="body2" sx={{ color: "#FFFFF5" }}>
+                {/* <Typography variant="body2" sx={{ color: "#FFFFF5" }}>
                   Monitor
-                </Typography>
+                </Typography> */}
                 <Stack
                   direction={{ xs: "column", sm: "column", md: "row" }}
                   spacing={2}
-                  justifyContent="space-between"
+                  justifyContent="flex-end"
                 >
-                  <Box height={{ xs: "auto", sm: "auto", md: 50 }}>
+                  {/* <Box height={{ xs: "auto", sm: "auto", md: 50 }}>
                     <Stack
                       direction={{ xs: "column", sm: "column", md: "row" }}
                       spacing={2}
@@ -179,7 +179,7 @@ const DiscoverPage = () => {
                         </Typography>
                       </Stack>
                     </Stack>
-                  </Box>
+                  </Box> */}
                   <Stack
                     direction="column"
                     spacing={0}

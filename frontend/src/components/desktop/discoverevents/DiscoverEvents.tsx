@@ -1,4 +1,4 @@
-import { Grid, Stack, Typography } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,19 +29,17 @@ const DiscoverEvents = () => {
         </Typography>
       </Grid>
       <Grid item xs={12} mt={4}>
-        <Typography variant="h5" sx={{ fontWeight: 500, color: "#ABAEAF" }}>
+        {/* <Typography variant="h5" sx={{ fontWeight: 500, color: "#ABAEAF" }}>
           02 June 2022
-        </Typography>
+        </Typography> */}
 
-        <Stack direction="row" flexWrap="wrap">
-          <ImageList sx={{ height: "auto" }} cols={2}>
-            {latestEvents &&
-              latestEvents?.map((item: any, index: number) => (
-                <ImageListItem key={index}>
-                  <DiscoverListEventsCard item={item} />
-                </ImageListItem>
-              ))}
-          </ImageList>
+        <Stack direction="row" flexWrap="wrap" rowGap={2} columnGap={2}>
+          {latestEvents &&
+            latestEvents?.map((item: any, index: number) => (
+              <Box sx={{ width: "32%" }} key={index}>
+                <DiscoverListEventsCard item={item} />
+              </Box>
+            ))}
         </Stack>
 
         {/* <Typography

@@ -9,6 +9,7 @@ import {
   discoverLatestAirdropRequest,
   discoverLatestCoinRequest,
   discoverLatestEventsRequest,
+  airdropPageListingRequest,
 } from "../../../store/action";
 import MobileDiscoverCryptoCardMultiSlider from "../discovermultislider/MobileDiscoverCryptoCardMultiSlider";
 import MobileDiscoverAirDropMultiSlider from "../discovermultislider/MobileDiscoverAirDropMultiSlider";
@@ -32,14 +33,21 @@ const MobileDiscoverRecentlyAdded = () => {
   const latestNFT = useSelector((data: any) => {
     return data?.discoverReducer?.latest_nft?.data;
   });
+
+  const airdropList = useSelector((data: any) => {
+    return data?.airdropReducer?.airdrop_listings?.data?.data?.data;
+  });
+
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
 
     dispatch(discoverLatestCoinRequest("noData", successHandler, errorHandler));
-    dispatch(
-      discoverLatestAirdropRequest("noData", successHandler, errorHandler)
-    );
+    // dispatch(
+    //   discoverLatestAirdropRequest("noData", successHandler, errorHandler)
+    // );
+
+    dispatch(airdropPageListingRequest("noData", successHandler, errorHandler));
     dispatch(
       discoverLatestEventsRequest("noData", successHandler, errorHandler)
     );
@@ -71,7 +79,7 @@ const MobileDiscoverRecentlyAdded = () => {
         >
           AirDrops
         </Typography>
-        <MobileDiscoverAirDropMultiSlider data={latestAirdrop} />
+        <MobileDiscoverAirDropMultiSlider data={airdropList} />
       </Grid>
 
       <Grid item xs={12}>
