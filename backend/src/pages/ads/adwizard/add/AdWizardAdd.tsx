@@ -114,8 +114,10 @@ const AdWizardAdd = () => {
     // formData.append("description", createAdsData?.description);
     // formData.append("ads_type", createAdsData?.ads_type);
     formData.append("coin_id", createAdsData?.coin_id);
-    formData.append("banner_image", createAdsData?.banner_image);
-    formData.append("banner_target_link", createAdsData?.banner_target_link);
+    createAdsData?.banner_ad_type !== 4 &&
+      formData.append("banner_image", createAdsData?.banner_image);
+    createAdsData?.banner_ad_type !== 4 &&
+      formData.append("banner_target_link", createAdsData?.banner_target_link);
     formData.append("banner_ad_type", createAdsData?.banner_ad_type);
 
     formData.append(
@@ -354,20 +356,22 @@ const AdWizardAdd = () => {
                 inputTextHandler={(e: any) => createAdsDescriptionHandler(e)}
               />
             </Grid> */}
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-              <Typography
-                variant="subtitle1"
-                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
-                mb={1}
-              >
-                Upload image
-              </Typography>
+            {createAdsData?.banner_ad_type !== 4 && (
+              <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                  mb={1}
+                >
+                  Upload image
+                </Typography>
 
-              <IconUploader
-                setAddIcon={setCreateAds}
-                addIconData={createAdsData}
-              />
-            </Grid>
+                <IconUploader
+                  setAddIcon={setCreateAds}
+                  addIconData={createAdsData}
+                />
+              </Grid>
+            )}
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography
                 variant="subtitle1"

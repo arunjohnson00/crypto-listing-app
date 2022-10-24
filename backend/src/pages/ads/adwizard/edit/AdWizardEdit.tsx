@@ -119,10 +119,12 @@ const AdWizardEdit = () => {
     // formData.append("description", editAdsData?.description);
     formData.append("ads_type", editAdsData?.ads_type);
     formData.append("coin_id", editAdsData?.coin_id);
-    editAdsData.banner_image !== "" &&
+    editAdsData?.banner_ad_type !== 4 &&
+      editAdsData.banner_image !== "" &&
       typeof editAdsData.banner_image !== "string" &&
       formData.append("banner_image", editAdsData?.banner_image);
-    formData.append("banner_target_link", editAdsData?.banner_target_link);
+    editAdsData?.banner_ad_type !== 4 &&
+      formData.append("banner_target_link", editAdsData?.banner_target_link);
     formData.append("banner_ad_type", editAdsData?.banner_ad_type);
 
     formData.append(
@@ -381,21 +383,23 @@ const AdWizardEdit = () => {
                 inputTextHandler={(e: any) => editAdsDescriptionHandler(e)}
               />
             </Grid> */}
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-              <Typography
-                variant="subtitle1"
-                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
-                mb={1}
-              >
-                Upload image
-              </Typography>
+            {editAdsData?.banner_ad_type !== 4 && (
+              <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                  mb={1}
+                >
+                  Upload image
+                </Typography>
 
-              <IconUploader
-                setAddIcon={setEditAds}
-                addIconData={editAdsData}
-                slug="banner_images"
-              />
-            </Grid>
+                <IconUploader
+                  setAddIcon={setEditAds}
+                  addIconData={editAdsData}
+                  slug="banner_images"
+                />
+              </Grid>
+            )}
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography
                 variant="subtitle1"
