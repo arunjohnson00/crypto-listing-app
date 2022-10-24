@@ -312,7 +312,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                           }}
                         >
                           {data && data?.presale_start_date !== null ? (
-                            moment(new Date(data?.presale_start_date)).format(
+                            moment(data?.presale_start_date).format(
                               "DD MMM YYYY"
                             )
                           ) : (
@@ -339,9 +339,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                           }}
                         >
                           {data && data?.presale_end_date !== null ? (
-                            moment(new Date(data?.presale_end_date)).format(
-                              "DD MMM YYYY"
-                            )
+                            moment(data?.presale_end_date).format("DD MMM YYYY")
                           ) : (
                             <span style={{ color: "#7a7a7a" }}>--</span>
                           )}

@@ -360,7 +360,7 @@ const ListingTable = ({
                             }}
                           >
                             {data && data?.presale_start_date !== null ? (
-                              moment(new Date(data?.presale_start_date)).format(
+                              moment(data?.presale_start_date).format(
                                 "DD MMM YYYY"
                               )
                             ) : (
@@ -387,7 +387,7 @@ const ListingTable = ({
                             }}
                           >
                             {data && data?.presale_end_date !== null ? (
-                              moment(new Date(data?.presale_end_date)).format(
+                              moment(data?.presale_end_date).format(
                                 "DD MMM YYYY"
                               )
                             ) : (
