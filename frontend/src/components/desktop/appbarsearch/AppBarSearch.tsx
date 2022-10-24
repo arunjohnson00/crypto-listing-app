@@ -99,6 +99,7 @@ const AppBarSearch = () => {
     coin: false,
     nft: false,
     events: false,
+    airdrops: false,
   });
 
   const recentSearchResult = useSelector((data: any) => {
@@ -142,6 +143,10 @@ const AppBarSearch = () => {
 
   const eventsExpandHandler = () => {
     setExpand({ ...expand, events: !expand?.events });
+  };
+
+  const airdropsExpandHandler = () => {
+    setExpand({ ...expand, airdrops: !expand?.airdrops });
   };
 
   const open = Boolean(anchorEl);
@@ -273,7 +278,8 @@ const AppBarSearch = () => {
             {searchResult &&
             (searchResult?.COINS?.length !== 0 ||
               searchResult?.NFT?.length !== 0 ||
-              searchResult?.EVENTS?.length !== 0) &&
+              searchResult?.EVENTS?.length !== 0 ||
+              searchResult?.AIRDROPS?.length !== 0) &&
             values?.length !== 0 ? (
               <Stack
                 direction="column"
@@ -500,9 +506,7 @@ const AppBarSearch = () => {
 
                           <Link
                             to={{
-                              pathname: `/coin/${item?.nft_name
-                                ?.replace(/ /g, "")
-                                .toLowerCase()}/${item?.nft_id}`,
+                              pathname: `/nft/${item?.nft_slug}`,
                             }}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -546,7 +550,7 @@ const AppBarSearch = () => {
                   </Stack>
                 )}
 
-                {/* {searchResult?.EVENTS?.length !== 0 && (
+                {searchResult?.EVENTS?.length !== 0 && (
                   <Stack direction="column" spacing={2} pt={0}>
                     <Stack
                       direction="row"
@@ -605,14 +609,12 @@ const AppBarSearch = () => {
                         >
                           <Avatar
                             alt="Trending"
-                            src={`${serverAPIUrl}public/uploads/nft_listing_image/${item?.logo}`}
+                            src={`${serverAPIUrl}public/uploads/event_proof/${item?.event_logo}`}
                             sx={{ width: 25, height: 25 }}
                           />
                           <Link
                             to={{
-                              pathname: `/coin/${item?.event_name
-                                ?.replace(/ /g, "")
-                                .toLowerCase()}/${item?.event_id}`,
+                              pathname: `/crypto-events/${item?.event_slug}`,
                             }}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -631,13 +633,9 @@ const AppBarSearch = () => {
                               color: "#767676",
                               fontWeight: 500,
                             }}
-                          >
-                          
-                          </Typography>
+                          ></Typography>
                         </Stack>
-                        <Typography sx={{ fontSize: ".7rem" }}>
-                      
-                        </Typography>
+                        <Typography sx={{ fontSize: ".7rem" }}></Typography>
                       </Stack>
                     ))}
                     <Button
@@ -654,7 +652,111 @@ const AppBarSearch = () => {
                       </span>
                     </Button>
                   </Stack>
-                )} */}
+                )}
+
+                {searchResult?.AIRDROPS?.length !== 0 && (
+                  <Stack direction="column" spacing={2} pt={0}>
+                    <Stack
+                      direction="row"
+                      spacing={0.5}
+                      alignItems="flex-start"
+                      sx={{
+                        position: "sticky",
+                        top: 0,
+                        background: "#000000",
+                        zIndex: 99,
+                        py: 1.5,
+                      }}
+                    >
+                      {expand?.airdrops === false ? (
+                        <Typography
+                          sx={{ fontSize: ".78rem", fontWeight: 600 }}
+                        >
+                          AIRDROPS
+                        </Typography>
+                      ) : (
+                        <Button
+                          startIcon={
+                            <ArrowBackIosIcon sx={{ width: 14, height: 14 }} />
+                          }
+                          variant="text"
+                          sx={{
+                            fontSize: ".7rem",
+                            padding: 0,
+                            minWidth: 0,
+                            cursor: "pointer",
+                          }}
+                          onClick={airdropsExpandHandler}
+                        >
+                          Back
+                        </Button>
+                      )}
+                    </Stack>
+                    {searchResult?.AIRDROPS?.slice(
+                      0,
+                      expand?.airdrops === false
+                        ? 4
+                        : searchResult?.airdrops?.length
+                    ).map((item: any, index: number) => (
+                      <Stack
+                        key={index}
+                        direction="row"
+                        spacing={0.5}
+                        alignItems="center"
+                        justifyContent="space-between"
+                      >
+                        <Stack
+                          key={index}
+                          direction="row"
+                          spacing={1}
+                          alignItems="center"
+                        >
+                          <Avatar
+                            alt="Trending"
+                            src={`${serverAPIUrl}public/uploads/coin_logo/${item?.airdrops_logo}`}
+                            sx={{ width: 25, height: 25 }}
+                          />
+                          <Link
+                            to={{
+                              pathname: `/airdrops/${item?.airdrops_slug}`,
+                            }}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            state={{ coin_id: item?.airdrops_id }}
+                            style={{ textDecoration: "none", color: "#FFFFFF" }}
+                          >
+                            <Typography
+                              sx={{ fontSize: ".8rem", fontWeight: 600 }}
+                            >
+                              {item?.airdrops_name}
+                            </Typography>
+                          </Link>
+                          <Typography
+                            sx={{
+                              fontSize: ".7rem",
+                              color: "#767676",
+                              fontWeight: 500,
+                            }}
+                          ></Typography>
+                        </Stack>
+                        <Typography sx={{ fontSize: ".7rem" }}></Typography>
+                      </Stack>
+                    ))}
+                    <Button
+                      variant="text"
+                      sx={{ fontSize: ".7rem" }}
+                      onClick={airdropsExpandHandler}
+                    >
+                      {expand?.airdrops === false
+                        ? "See all result "
+                        : "Hide result "}{" "}
+                      <span style={{ color: "#19ffb0", marginLeft: 4.5 }}>
+                        {" "}
+                        {` (${searchResult?.AIRDROPS?.length})`}
+                      </span>
+                    </Button>
+                  </Stack>
+                )}
               </Stack>
             ) : (
               <Stack
