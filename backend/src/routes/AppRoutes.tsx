@@ -106,6 +106,10 @@ import CoinListingFee from "../pages/coinlistingfee/CoinListingFee";
 import FeaturedCoinEdit from "../pages/ads/featuredcoins/edit/FeaturedCoinEdit";
 import MainBannerAdd from "../pages/ads/mainbanner/add/MainBannerAdd";
 
+import AdWizardAdd from "../pages/ads/adwizard/add/AdWizardAdd";
+import AdWizardEdit from "../pages/ads/adwizard/edit/AdWizardEdit";
+import AdWizard from "../pages/ads/adwizard/AdWizard";
+
 const AppRoutes = () => {
   return (
     <BrowserRouter>
@@ -622,6 +626,34 @@ const AppRoutes = () => {
             </PrivateRoute>
           }
         />
+
+        <Route
+          path="/adslist"
+          element={
+            <PrivateRoute>
+              <AdWizard />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/adslist/add"
+          element={
+            <PrivateRoute>
+              <AdWizardAdd />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/adslist/edit/:id"
+          element={
+            <PrivateRoute>
+              <AdWizardEdit />
+            </PrivateRoute>
+          }
+        />
+
         <Route
           path="/videos"
           element={

@@ -68,9 +68,9 @@ export const sideBarMenu = [
     title: "Ads ",
     icon: adsIcon,
     subMenu: [
-      { id: "91", title: "featured-coin", icon: "store" },
-      { id: "92", title: "main-banner", icon: "store" },
-      { id: "93", title: "a", icon: "store" },
+      { id: "90", title: "Adslist", icon: "store" },
+      // { id: "91", title: "featured-coin", icon: "store" },
+      // { id: "92", title: "main-banner", icon: "store" },
     ],
   },
   {

@@ -36,6 +36,7 @@ const IconUploader = ({
             thumb_icon: acceptedFiles[0],
             icon: acceptedFiles[0],
             logo: acceptedFiles[0],
+            banner_image: acceptedFiles[0],
           });
     },
     [addIconData, setAddIcon, inActive]

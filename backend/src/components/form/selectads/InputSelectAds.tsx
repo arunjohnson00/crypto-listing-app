@@ -9,6 +9,7 @@ const InputSelectAds = ({
   setInputSelectValue,
   getInputSelectvalue,
   serverStatus,
+  variant,
 }: any) => {
   // let optionSelected = selectOptions.filter(
   //   (optionData: any) => optionData.value === currentStatus
@@ -18,6 +19,7 @@ const InputSelectAds = ({
     setInputSelectValue({
       ...getInputSelectvalue,
       ads_type: event.target.value,
+      banner_ad_type: event.target.value,
     });
     toast.success(`Status changed to ${event.target.value}`, {
       position: "top-right",
@@ -33,7 +35,11 @@ const InputSelectAds = ({
     <FormControl sx={{ m: 1, width: 300, mt: 0 }}>
       <Select
         displayEmpty
-        value={getInputSelectvalue?.ads_type}
+        value={
+          variant === "adslist"
+            ? getInputSelectvalue?.banner_ad_type
+            : getInputSelectvalue?.ads_type
+        }
         onChange={handleChange}
         inputProps={{ "aria-label": "Without label" }}
         sx={{

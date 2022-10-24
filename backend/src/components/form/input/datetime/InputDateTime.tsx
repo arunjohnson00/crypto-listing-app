@@ -10,6 +10,7 @@ const InputDateTime = ({
   start_date,
   statusTime,
   ServerValue,
+  ads_start_date,
 }: any) => {
   const [timeUpdate, setTimeUpdate] = useState<any>(ServerValue);
   useEffect(() => {
@@ -51,13 +52,17 @@ const InputDateTime = ({
             ? dateTime.statusDateTime
             : start_date === true
             ? dateTime.start_date
+            : ads_start_date === true
+            ? dateTime?.banner_start_date
             : dateTime.end_date
         }
         onChange={(newValue: any) => {
           statusTime === true || ServerValue
             ? setDateTime({ ...dateTime, statusDateTime: newValue })
-            : start_date === true &&
-              setDateTime({ ...dateTime, start_date: newValue });
+            : start_date === true
+            ? setDateTime({ ...dateTime, start_date: newValue })
+            : ads_start_date === true &&
+              setDateTime({ ...dateTime, banner_start_date: newValue });
           start_date === false &&
             setDateTime({ ...dateTime, end_date: newValue });
           timeUpdate && setTimeUpdate(newValue);

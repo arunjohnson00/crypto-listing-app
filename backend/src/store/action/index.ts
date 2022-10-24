@@ -237,3 +237,14 @@ export { adsSummaryRequest } from "./adsAction";
 export { removeFromAdsSummaryRequest } from "./adsAction";
 export { airDropListSearchWithCoinSearchRequest } from "./adsAction";
 export { eventsListSearchWithCoinSearchRequest } from "./adsAction";
+
+//ads Wizard
+
+export {
+  listAdsListRequest,
+  viewAdsListRequest,
+  updateAdsListRequest,
+  editAdsListRequest,
+  addAdsListRequest,
+  searchAdsListRequest,
+} from "./adsListAction";
