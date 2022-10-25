@@ -16,7 +16,7 @@ const InputTextArea = ({
   data,
   setData,
 }: any) => {
-  const [textAreaValue, setTextAreaValue] = useState(value);
+  const [textAreaValue, setTextAreaValue] = useState("");
   // const [richEditorValue, setRichEditorValue] = useState<any>(
   //   RichTextEditor.createValueFromString(
   //     placeholder ? placeholder : "Enter  details.",
@@ -32,6 +32,10 @@ const InputTextArea = ({
       details: value,
     });
   };
+
+  useEffect(() => {
+    setTextAreaValue(value);
+  }, [value]);
 
   return (
     <Fragment>
