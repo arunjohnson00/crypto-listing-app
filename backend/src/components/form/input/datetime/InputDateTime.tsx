@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const InputDateTime = ({
   dateTime,
@@ -19,7 +20,7 @@ const InputDateTime = ({
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DateTimePicker
+      <DatePicker
         minDate={
           new Date(
             new Date(new Date()).setDate(new Date(new Date()).getDate() - 30)
@@ -57,7 +58,7 @@ const InputDateTime = ({
             : dateTime.end_date
         }
         onChange={(newValue: any) => {
-          statusTime === true || ServerValue
+          statusTime === true
             ? setDateTime({ ...dateTime, statusDateTime: newValue })
             : start_date === true
             ? setDateTime({ ...dateTime, start_date: newValue })

@@ -408,7 +408,7 @@ const CoinListingEdit = () => {
     const errorHandler = (err: any) => {};
     dispatch(editCoinRequest({ id: id }, successHandler, errorHandler));
   }, [dispatch, id]);
-
+  console.log(dateTime);
   return (
     <Grid container spacing={0}>
       <Backdrop
@@ -1252,7 +1252,7 @@ const CoinListingEdit = () => {
                       dateTime={dateTime}
                       setDateTime={setDateTime}
                       start_date={true}
-                      ServerValue={editCoin?.presale_start_date}
+                      ServerValue={editCoin && editCoin?.presale_start_date}
                     />
                   </Grid>
 
@@ -1273,7 +1273,7 @@ const CoinListingEdit = () => {
                       dateTime={dateTime}
                       setDateTime={setDateTime}
                       start_date={false}
-                      ServerValue={editCoin?.presale_end_date}
+                      ServerValue={editCoin && editCoin?.presale_end_date}
                     />
                   </Grid>
                 </Stack>
