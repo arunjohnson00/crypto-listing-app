@@ -287,7 +287,7 @@ const CryptoEvents = () => {
                 inputProps={{ "aria-label": "controlled" }}
               />
               <Typography variant="caption" sx={{ color: "#FFFFF5" }}>
-                Offline Event
+                Onsite Event
               </Typography>
             </Stack>
           </Stack>

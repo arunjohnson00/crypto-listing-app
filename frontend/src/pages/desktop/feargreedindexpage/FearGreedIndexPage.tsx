@@ -209,7 +209,7 @@ const FearGreedIndexPage = () => {
                   </Button>
                 </Stack>
               </Stack>
-              <Box pt={3}>
+              <Box pt={3} height="87%">
                 <FearAndGreedIndexPieChart
                   data={
                     fearGreedHistoricalData &&

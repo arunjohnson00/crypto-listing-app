@@ -54,7 +54,7 @@ const FearAndGreedIndexPieChart = ({ data, filterValue }: any) => {
           breakpoint: 480,
           options: {
             chart: {
-              width: 200,
+              width: 300,
             },
             legend: {
               position: "bottom",
@@ -148,25 +148,53 @@ const FearAndGreedIndexPieChart = ({ data, filterValue }: any) => {
         backgroundColor: "#00030C",
         borderRadius: 4,
         border: "1px solid #202131",
+        height: "100%",
       }}
       py={2}
     >
-      <Stack direction="row" spacing={2} alignItems="center" width="100%">
-        <Stack
-          direction="row"
-          spacing={2}
-          alignItems="center"
-          py={3}
-          width="-webkit-fill-available"
-          justifyContent="center"
-        >
-          <Stack direction="column" spacing={-0.5}>
-            <Typography
-              variant="caption"
-              sx={{ color: "#FFFFFF", fontWeight: 600 }}
-            >
-              The market is currently
-            </Typography>
+      <Stack direction="column" justifyContent={"space-between"} height="100%">
+        <Stack direction="row" spacing={2} alignItems="center" width="100%">
+          <Stack
+            direction="row"
+            spacing={2}
+            alignItems="center"
+            py={3}
+            width="-webkit-fill-available"
+            justifyContent="center"
+          >
+            <Stack direction="column" spacing={-0.5}>
+              <Typography
+                variant="caption"
+                sx={{ color: "#FFFFFF", fontWeight: 600 }}
+              >
+                The market is currently
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: extremeFear
+                    ? "#EF2828"
+                    : fear
+                    ? "#EC840E"
+                    : neutral
+                    ? "#A8CE08"
+                    : greed
+                    ? "#1DAF03"
+                    : extremeGreed && "#008E49",
+                  fontWeight: 600,
+                }}
+              >
+                {extremeFear
+                  ? "Extreme Fear"
+                  : fear
+                  ? "Fear"
+                  : neutral
+                  ? "Neutral"
+                  : greed
+                  ? "Greed"
+                  : extremeGreed && "Extreme Greed"}
+              </Typography>
+            </Stack>
             <Typography
               variant="h6"
               sx={{
@@ -179,51 +207,25 @@ const FearAndGreedIndexPieChart = ({ data, filterValue }: any) => {
                   : greed
                   ? "#1DAF03"
                   : extremeGreed && "#008E49",
-                fontWeight: 600,
+                fontWeight: 700,
+                fontSize: "2.6rem",
               }}
             >
-              {extremeFear
-                ? "Extreme Fear"
-                : fear
-                ? "Fear"
-                : neutral
-                ? "Neutral"
-                : greed
-                ? "Greed"
-                : extremeGreed && "Extreme Greed"}
+              {data && data[0]?.value}
             </Typography>
           </Stack>
-          <Typography
-            variant="h6"
-            sx={{
-              color: extremeFear
-                ? "#EF2828"
-                : fear
-                ? "#EC840E"
-                : neutral
-                ? "#A8CE08"
-                : greed
-                ? "#1DAF03"
-                : extremeGreed && "#008E49",
-              fontWeight: 700,
-              fontSize: "2.6rem",
-            }}
-          >
-            {data && data[0]?.value}
-          </Typography>
         </Stack>
-      </Stack>
-      <Divider
-        variant="middle"
-        flexItem
-        orientation="horizontal"
-        sx={{
-          borderColor: "#0b1640",
-          borderBottomWidth: 1,
-          mb: 1,
-        }}
-      />
-      {/* <Stack direction="row" alignItems="center" spacing={1} px={2}>
+        <Divider
+          variant="middle"
+          flexItem
+          orientation="horizontal"
+          sx={{
+            borderColor: "#0b1640",
+            borderBottomWidth: 1,
+            mb: 1,
+          }}
+        />
+        {/* <Stack direction="row" alignItems="center" spacing={1} px={2}>
         <Button
           variant="contained"
           sx={{
@@ -261,178 +263,182 @@ const FearAndGreedIndexPieChart = ({ data, filterValue }: any) => {
           30d
         </Button>
       </Stack> */}
-      <Stack
-        direction={{ xs: "column", sm: "column", md: "row" }}
-        alignItems="center"
-        spacing={1}
-        justifyContent="space-around"
-      >
-        <Box sx={{ flexGrow: 0 }}>
-          <Chart
-            options={chartData.options}
-            series={chartData.series}
-            type="pie"
-            width={450}
-          />
-        </Box>
         <Stack
-          direction="column"
-          alignItems={{ xs: "center", sm: "center", md: "flex-start" }}
-          spacing={3}
-          sx={{ flexGrow: 0 }}
+          direction={{ xs: "column", sm: "column", md: "row" }}
+          alignItems="center"
+          spacing={1}
+          justifyContent="space-around"
         >
+          <Box sx={{ flexGrow: 0 }}>
+            <Chart
+              options={chartData.options}
+              series={chartData.series}
+              type="pie"
+              width={450}
+            />
+          </Box>
           <Stack
             direction="column"
-            alignItems="flex-start"
-            justifyContent="space-between"
-            spacing={2}
+            alignItems={{ xs: "center", sm: "center", md: "flex-start" }}
+            spacing={3}
+            sx={{ flexGrow: 0 }}
           >
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <Box
-                sx={{
-                  color: "#FFFFFF",
-                  fontSize: ".8rem",
-                  fontWeight: 600,
-                  backgroundColor: "#008E49",
-                  borderRadius: 8,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: 15,
-                  width: 50,
-                }}
-                p={0.5}
-              >
-                {data &&
-                  extremeGreed &&
-                  ((extremeGreed?.length / data?.length) * 100).toFixed(1)}{" "}
-                %
-              </Box>
+            <Stack
+              direction="column"
+              alignItems="flex-start"
+              justifyContent="space-between"
+              spacing={2}
+            >
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <Box
+                  sx={{
+                    color: "#FFFFFF",
+                    fontSize: ".8rem",
+                    fontWeight: 600,
+                    backgroundColor: "#008E49",
+                    borderRadius: 8,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: 15,
+                    width: 50,
+                  }}
+                  p={0.5}
+                >
+                  {data &&
+                    extremeGreed &&
+                    ((extremeGreed?.length / data?.length) * 100).toFixed(
+                      1
+                    )}{" "}
+                  %
+                </Box>
 
-              <Typography
-                sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
-              >
-                Extreme Greed
-              </Typography>
+                <Typography
+                  sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
+                >
+                  Extreme Greed
+                </Typography>
+              </Stack>
+
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <Box
+                  sx={{
+                    color: "#FFFFFF",
+                    fontSize: ".8rem",
+                    fontWeight: 600,
+                    backgroundColor: "#1DAF03",
+                    borderRadius: 8,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: 15,
+                    width: 50,
+                  }}
+                  p={0.5}
+                >
+                  {data &&
+                    greed &&
+                    ((greed?.length / data?.length) * 100).toFixed(1)}{" "}
+                  %
+                </Box>
+
+                <Typography
+                  sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
+                >
+                  Greed
+                </Typography>
+              </Stack>
+
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <Box
+                  sx={{
+                    color: "#FFFFFF",
+                    fontSize: ".8rem",
+                    fontWeight: 600,
+                    backgroundColor: "#A8CE08",
+                    borderRadius: 8,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: 15,
+                    width: 50,
+                  }}
+                  p={0.5}
+                >
+                  {data &&
+                    neutral &&
+                    ((neutral?.length / data?.length) * 100).toFixed(1)}{" "}
+                  %
+                </Box>
+
+                <Typography
+                  sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
+                >
+                  Neutral
+                </Typography>
+              </Stack>
+
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <Box
+                  sx={{
+                    color: "#FFFFFF",
+                    fontSize: ".8rem",
+                    fontWeight: 600,
+                    backgroundColor: "#EC840E",
+                    borderRadius: 8,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: 15,
+                    width: 50,
+                  }}
+                  p={0.5}
+                >
+                  {data &&
+                    fear &&
+                    ((fear?.length / data?.length) * 100).toFixed(1)}{" "}
+                  %
+                </Box>
+
+                <Typography
+                  sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
+                >
+                  Fear
+                </Typography>
+              </Stack>
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <Box
+                  sx={{
+                    color: "#FFFFFF",
+                    fontSize: ".8rem",
+                    fontWeight: 600,
+                    backgroundColor: "#F12828",
+                    borderRadius: 8,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: 15,
+                    width: 50,
+                  }}
+                  p={0.5}
+                >
+                  {data &&
+                    extremeFear &&
+                    ((extremeFear?.length / data?.length) * 100).toFixed(
+                      1
+                    )}{" "}
+                  %
+                </Box>
+
+                <Typography
+                  sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
+                >
+                  Extreme Fear
+                </Typography>
+              </Stack>
             </Stack>
-
             <Stack direction="row" alignItems="center" spacing={1}>
-              <Box
-                sx={{
-                  color: "#FFFFFF",
-                  fontSize: ".8rem",
-                  fontWeight: 600,
-                  backgroundColor: "#1DAF03",
-                  borderRadius: 8,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: 15,
-                  width: 50,
-                }}
-                p={0.5}
-              >
-                {data &&
-                  greed &&
-                  ((greed?.length / data?.length) * 100).toFixed(1)}{" "}
-                %
-              </Box>
-
-              <Typography
-                sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
-              >
-                Greed
-              </Typography>
-            </Stack>
-
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <Box
-                sx={{
-                  color: "#FFFFFF",
-                  fontSize: ".8rem",
-                  fontWeight: 600,
-                  backgroundColor: "#A8CE08",
-                  borderRadius: 8,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: 15,
-                  width: 50,
-                }}
-                p={0.5}
-              >
-                {data &&
-                  neutral &&
-                  ((neutral?.length / data?.length) * 100).toFixed(1)}{" "}
-                %
-              </Box>
-
-              <Typography
-                sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
-              >
-                Neutral
-              </Typography>
-            </Stack>
-
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <Box
-                sx={{
-                  color: "#FFFFFF",
-                  fontSize: ".8rem",
-                  fontWeight: 600,
-                  backgroundColor: "#EC840E",
-                  borderRadius: 8,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: 15,
-                  width: 50,
-                }}
-                p={0.5}
-              >
-                {data &&
-                  fear &&
-                  ((fear?.length / data?.length) * 100).toFixed(1)}{" "}
-                %
-              </Box>
-
-              <Typography
-                sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
-              >
-                Fear
-              </Typography>
-            </Stack>
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <Box
-                sx={{
-                  color: "#FFFFFF",
-                  fontSize: ".8rem",
-                  fontWeight: 600,
-                  backgroundColor: "#F12828",
-                  borderRadius: 8,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: 15,
-                  width: 50,
-                }}
-                p={0.5}
-              >
-                {data &&
-                  extremeFear &&
-                  ((extremeFear?.length / data?.length) * 100).toFixed(1)}{" "}
-                %
-              </Box>
-
-              <Typography
-                sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
-              >
-                Extreme Fear
-              </Typography>
-            </Stack>
-          </Stack>
-          <Stack direction="row" alignItems="center" spacing={1}>
-            {/* <Box
+              {/* <Box
               sx={{
                 color: "#FFFFFF",
                 fontSize: "1.3rem",
@@ -450,143 +456,166 @@ const FearAndGreedIndexPieChart = ({ data, filterValue }: any) => {
               23
             </Box> */}
 
-            <Stack direction="column" alignItems="center" spacing={1.5}>
-              <Typography
-                sx={{ color: "#FFFFFF", fontSize: ".9rem", fontWeight: 600 }}
-              >
-                In the last{" "}
-                <span style={{ color: "#E3F195" }}>
-                  {filterValue && filterValue}
-                </span>{" "}
-                Days, Market is
-              </Typography>
+              <Stack direction="column" alignItems="center" spacing={1.5}>
+                <Typography
+                  sx={{ color: "#FFFFFF", fontSize: ".9rem", fontWeight: 600 }}
+                >
+                  In the last{" "}
+                  <span style={{ color: "#E3F195" }}>
+                    {filterValue && filterValue}
+                  </span>{" "}
+                  Days, Market is
+                </Typography>
 
-              {extremeFear?.length > fear?.length &&
-                extremeFear?.length > neutral?.length &&
-                extremeFear?.length > greed?.length &&
-                extremeFear?.length > extremeGreed?.length && (
-                  <span
-                    style={{
-                      backgroundColor: "#EF2828",
-                      borderRadius: 50,
-                      height: 43,
-                      minWidth: 140,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "1.2rem",
-                      fontWeight: 600,
-                      color: "#FFFFFF",
-                      padding: 2,
-                      paddingLeft: 25,
-                      paddingRight: 25,
-                    }}
-                  >
-                    Extreme Fear
-                  </span>
-                )}
+                {extremeFear?.length > fear?.length &&
+                  extremeFear?.length > neutral?.length &&
+                  extremeFear?.length > greed?.length &&
+                  extremeFear?.length > extremeGreed?.length && (
+                    <span
+                      style={{
+                        backgroundColor: "#EF2828",
+                        borderRadius: 50,
+                        height: 43,
+                        minWidth: 140,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: "1.2rem",
+                        fontWeight: 600,
+                        color: "#FFFFFF",
+                        padding: 2,
+                        paddingLeft: 25,
+                        paddingRight: 25,
+                      }}
+                    >
+                      Extreme Fear
+                    </span>
+                  )}
 
-              {fear?.length > extremeFear?.length &&
-                fear?.length > neutral?.length &&
-                fear?.length > greed?.length &&
-                fear?.length > extremeGreed?.length && (
-                  <span
-                    style={{
-                      backgroundColor: "#EC840E",
-                      borderRadius: 50,
-                      height: 43,
-                      minWidth: 140,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "1.2rem",
-                      fontWeight: 600,
-                      color: "#FFFFFF",
-                      padding: 2,
-                      paddingLeft: 25,
-                      paddingRight: 25,
-                    }}
-                  >
-                    Fear
-                  </span>
-                )}
+                {fear?.length > extremeFear?.length &&
+                  fear?.length > neutral?.length &&
+                  fear?.length > greed?.length &&
+                  fear?.length > extremeGreed?.length && (
+                    <span
+                      style={{
+                        backgroundColor: "#EC840E",
+                        borderRadius: 50,
+                        height: 43,
+                        minWidth: 140,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: "1.2rem",
+                        fontWeight: 600,
+                        color: "#FFFFFF",
+                        padding: 2,
+                        paddingLeft: 25,
+                        paddingRight: 25,
+                      }}
+                    >
+                      Fear
+                    </span>
+                  )}
 
-              {neutral?.length > extremeFear?.length &&
-                neutral?.length > fear?.length &&
-                neutral?.length > greed?.length &&
-                neutral?.length > extremeGreed?.length && (
-                  <span
-                    style={{
-                      backgroundColor: "#A8CE08",
-                      borderRadius: 50,
-                      height: 43,
-                      minWidth: 140,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "1.2rem",
-                      fontWeight: 600,
-                      color: "#000000",
-                      padding: 2,
-                      paddingLeft: 25,
-                      paddingRight: 25,
-                    }}
-                  >
-                    Neutral
-                  </span>
-                )}
+                {neutral?.length > extremeFear?.length &&
+                  neutral?.length > fear?.length &&
+                  neutral?.length > greed?.length &&
+                  neutral?.length > extremeGreed?.length && (
+                    <span
+                      style={{
+                        backgroundColor: "#A8CE08",
+                        borderRadius: 50,
+                        height: 43,
+                        minWidth: 140,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: "1.2rem",
+                        fontWeight: 600,
+                        color: "#000000",
+                        padding: 2,
+                        paddingLeft: 25,
+                        paddingRight: 25,
+                      }}
+                    >
+                      Neutral
+                    </span>
+                  )}
 
-              {greed?.length > extremeFear?.length &&
-                greed?.length > fear?.length &&
-                greed?.length > neutral?.length &&
-                greed?.length > extremeGreed?.length && (
-                  <span
-                    style={{
-                      backgroundColor: "#1DAF03",
-                      borderRadius: 50,
-                      height: 43,
-                      minWidth: 140,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "1.2rem",
-                      fontWeight: 600,
-                      color: "#FFFFFF",
-                      padding: 2,
-                      paddingLeft: 25,
-                      paddingRight: 25,
-                    }}
-                  >
-                    Greed
-                  </span>
-                )}
+                {greed?.length > extremeFear?.length &&
+                  greed?.length > fear?.length &&
+                  greed?.length > neutral?.length &&
+                  greed?.length > extremeGreed?.length && (
+                    <span
+                      style={{
+                        backgroundColor: "#1DAF03",
+                        borderRadius: 50,
+                        height: 43,
+                        minWidth: 140,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: "1.2rem",
+                        fontWeight: 600,
+                        color: "#FFFFFF",
+                        padding: 2,
+                        paddingLeft: 25,
+                        paddingRight: 25,
+                      }}
+                    >
+                      Greed
+                    </span>
+                  )}
 
-              {extremeGreed?.length > extremeFear?.length &&
-                extremeGreed?.length > fear?.length &&
-                extremeGreed?.length > greed?.length &&
-                extremeGreed?.length > neutral?.length && (
-                  <span
-                    style={{
-                      backgroundColor: "#008E49",
-                      borderRadius: 50,
-                      height: 43,
-                      minWidth: 140,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "1.2rem",
-                      fontWeight: 600,
-                      color: "#FFFFFF",
-                      padding: 2,
-                      paddingLeft: 25,
-                      paddingRight: 25,
-                    }}
-                  >
-                    Extreme Greed
-                  </span>
-                )}
+                {extremeGreed?.length > extremeFear?.length &&
+                  extremeGreed?.length > fear?.length &&
+                  extremeGreed?.length > greed?.length &&
+                  extremeGreed?.length > neutral?.length && (
+                    <span
+                      style={{
+                        backgroundColor: "#008E49",
+                        borderRadius: 50,
+                        height: 43,
+                        minWidth: 140,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: "1.2rem",
+                        fontWeight: 600,
+                        color: "#FFFFFF",
+                        padding: 2,
+                        paddingLeft: 25,
+                        paddingRight: 25,
+                      }}
+                    >
+                      Extreme Greed
+                    </span>
+                  )}
+              </Stack>
             </Stack>
           </Stack>
+        </Stack>
+
+        <Stack
+          direction="column"
+          alignItems={{ xs: "center", sm: "center", md: "flex-end" }}
+          spacing={1.5}
+          px={3}
+          py={2}
+        >
+          <Typography
+            sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 600 }}
+          >
+            Source :{" "}
+            <a
+              href="https://alternative.me/crypto/fear-and-greed-index/"
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: "#334eb4" }}
+            >
+              Alternative.me
+            </a>
+          </Typography>
         </Stack>
       </Stack>
     </Box>

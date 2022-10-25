@@ -72,7 +72,7 @@ const MobileCryptoEventCard = ({ data }: any) => {
                   variant="caption"
                   sx={{ color: "#a28b18", fontWeight: 500 }}
                 >
-                  Offline Event
+                  Onsite Event
                 </Typography>
               )
             )}

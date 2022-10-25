@@ -1,16 +1,106 @@
-import * as React from "react";
+import { useEffect, useState, useRef } from "react";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import dayjs, { Dayjs } from "dayjs";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { CalendarPickerSkeleton } from "@mui/x-date-pickers/CalendarPickerSkeleton";
+import { PickersDay } from "@mui/x-date-pickers/PickersDay";
 import { CalendarPicker } from "@mui/x-date-pickers/CalendarPicker";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { Box } from "@mui/material";
+import { Badge, Box } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { eventsUpcomingRequest } from "../../../../store/action";
+import moment from "moment";
 
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
   },
 });
+
+function getRandomNumber(min: number, max: number) {
+  return Math.round(Math.random() * (max - min) + min);
+}
+
+/**
+ * Mimic fetch with abort controller https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort
+ * ⚠️ No IE11 support
+ */
+function fakeFetch(date: Dayjs, { signal }: { signal: AbortSignal }) {
+  return new Promise<{ daysToHighlight: number[] }>((resolve, reject) => {
+    const timeout = setTimeout(() => {
+      const daysInMonth = date.daysInMonth();
+      const daysToHighlight = [1, 2, 3].map(() =>
+        getRandomNumber(1, daysInMonth)
+      );
+
+      resolve({ daysToHighlight });
+    }, 500);
+
+    signal.onabort = () => {
+      clearTimeout(timeout);
+      reject(new DOMException("aborted", "AbortError"));
+    };
+  });
+}
+
+const initialValue = dayjs("2022-04-07");
+
 const UpcomingEventCalender = ({ date, setDate, dateHandler }: any) => {
+  const dispatch: any = useDispatch();
+  const eventsUpcoming = useSelector((data: any) => {
+    return data?.eventsReducer?.events_upcoming?.data;
+  });
+  const requestAbortController = useRef<AbortController | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [highlightedDays, setHighlightedDays] = useState([1, 2, 15]);
+  const [value, setValue] = useState<Dayjs | null>(initialValue);
+
+  const fetchHighlightedDays = (date: Dayjs) => {
+    const controller = new AbortController();
+    fakeFetch(date, {
+      signal: controller.signal,
+    })
+      .then(({ daysToHighlight }) => {
+        setHighlightedDays(daysToHighlight);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        // ignore the error if it's caused by `controller.abort`
+        if (error.name !== "AbortError") {
+          throw error;
+        }
+      });
+
+    requestAbortController.current = controller;
+  };
+
+  useEffect(() => {
+    fetchHighlightedDays(initialValue);
+    // abort request on unmount
+    return () => requestAbortController.current?.abort();
+  }, []);
+
+  const handleMonthChange = (date: Dayjs) => {
+    if (requestAbortController.current) {
+      // make sure that you are aborting useless requests
+      // because it is possible to switch between months pretty quickly
+      requestAbortController.current.abort();
+    }
+
+    setIsLoading(true);
+    setHighlightedDays([]);
+    fetchHighlightedDays(date);
+  };
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(eventsUpcomingRequest("noData", successHandler, errorHandler));
+  }, [dispatch, setValue, value]);
+
+  console.log(eventsUpcoming?.data?.data);
   return (
     <Box
       sx={{ backgroundColor: "#030C37", borderRadius: 5, color: "#FFFFF5" }}
@@ -21,6 +111,22 @@ const UpcomingEventCalender = ({ date, setDate, dateHandler }: any) => {
           <CalendarPicker
             date={date}
             onChange={(newDate) => dateHandler(newDate)}
+            loading={isLoading}
+            // renderDay={(day: any, _value, DayComponentProps) => {
+
+            //   const isSelected = new Date();
+            //   return (
+            //     <>
+            //       <Badge
+            //         key={day.toString()}
+            //         overlap="circular"
+            //         badgeContent={isSelected ? "🌚" : undefined}
+            //       >
+            //         <PickersDay {...DayComponentProps} />
+            //       </Badge>
+            //     </>
+            //   );
+            // }}
           />
         </LocalizationProvider>
       </ThemeProvider>

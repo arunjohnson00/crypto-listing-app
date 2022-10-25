@@ -43,6 +43,7 @@
     "date-and-time": "^2.3.1",
     "date-fns": "^2.28.0",
     "dateformat": "^5.0.3",
+    "dayjs": "^1.11.6",
     "demos-react-captcha": "^1.0.11",
     "dotted-map": "^2.2.3",
     "duck-timer": "^1.0.3",
