@@ -27,8 +27,12 @@ import SourcecodeImage from "../../../../assets/singlepagecoin/sourcecode.png";
 import WhitepaperImage from "../../../../assets/singlepagecoin/Whitepaper.png";
 import DocsImage from "../../../../assets/singlepagecoin/doc.png";
 import LinkImage from "../../../../assets/singlepagecoin/link.png";
+import moment from "moment";
+import CountDownTimer from "./countdown/CountDownTimer";
+import { Link } from "react-router-dom";
 
-const PresaleCards = () => {
+const serverAPIUrl = process.env.REACT_APP_API_URL;
+const PresaleCards = ({ data }: any) => {
   const [copyValue, setCopyValue] = useState(
     "0xED3F52c46280ad96485323Fb6a51242cb4CA45F5"
   );
@@ -50,17 +54,22 @@ const PresaleCards = () => {
         >
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
             <Avatar
-              alt="Remy Sharp"
-              src="https://mui.com/static/images/avatar/1.jpg"
+              alt={data && data?.name}
+              src={`${serverAPIUrl}public/uploads/coin_logo/${data?.logo}`}
               sx={{ width: 40, height: 40 }}
             />
-            <Stack direction="column" spacing={-0.7}>
-              <Typography
-                variant="body1"
-                sx={{ color: "white", fontWeight: "800" }}
+            <Stack direction="column" spacing={-0.3}>
+              <Link
+                to={`/coin/${data && data?.slug}`}
+                style={{ textDecoration: "none" }}
               >
-                Safemoon
-              </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{ color: "white", fontWeight: "800" }}
+                >
+                  {data && data?.name}
+                </Typography>
+              </Link>
               <Typography
                 variant="caption"
                 sx={{
@@ -70,7 +79,7 @@ const PresaleCards = () => {
                   fontSize: "0.62rem",
                 }}
               >
-                Safemoon
+                {data && data?.symbol}
               </Typography>
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
@@ -101,17 +110,51 @@ const PresaleCards = () => {
             </Stack>
           </Stack>
           <Stack direction="column" spacing={0} sx={{ alignItems: "center" }}>
-            <Chip
-              label="Upcoming"
-              sx={{
-                backgroundColor: "#C35C00",
-                color: "white",
-                height: "20px",
-                fontSize: "0.585rem",
-                marginBottom: "7px",
-                marginRight: "4px",
-              }}
-            />
+            {data &&
+              moment(new Date(data?.presale_start_date)).isAfter(new Date()) ===
+                true && (
+                <Chip
+                  label="Upcoming"
+                  color="primary"
+                  sx={{
+                    backgroundColor: "#1d91b6",
+                    fontSize: "0.6125rem",
+                    minWidth: 70,
+                  }}
+                  size="small"
+                />
+              )}
+            {data &&
+              moment(new Date()).isBetween(
+                new Date(data?.presale_start_date),
+                new Date(data?.presale_end_date)
+              ) === true && (
+                <Chip
+                  label="Live"
+                  color="primary"
+                  sx={{
+                    backgroundColor: "#299a07",
+                    fontSize: "0.6125rem",
+                    minWidth: 70,
+                  }}
+                  size="small"
+                />
+              )}
+
+            {data &&
+              moment(new Date()).isAfter(new Date(data?.presale_end_date)) ===
+                true && (
+                <Chip
+                  label="Expired"
+                  color="primary"
+                  sx={{
+                    backgroundColor: "#c70a0a",
+                    fontSize: "0.6125rem",
+                    minWidth: 70,
+                  }}
+                  size="small"
+                />
+              )}
           </Stack>
         </Stack>
       </Grid>
@@ -124,35 +167,102 @@ const PresaleCards = () => {
           py={1}
         >
           <Stack direction="column" spacing={0}>
-            <Typography
-              variant="body2"
+            {data &&
+              moment(new Date(data?.presale_start_date)).isAfter(new Date()) ===
+                true && (
+                <Stack direction="column" spacing={0}>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "#FFFFFF",
+                      fontSize: "0.775rem",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Presale starts in
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      color: "#32B3BE",
+                      fontSize: ".7rem",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {data && <CountDownTimer data={data?.presale_start_date} />}
+                  </Typography>
+                </Stack>
+              )}
+
+            {data &&
+              moment(new Date()).isBetween(
+                new Date(data?.presale_start_date),
+                new Date(data?.presale_end_date)
+              ) === true && (
+                <Stack direction="column" spacing={0}>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "#FFFFFF",
+                      fontSize: "0.775rem",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Presale ends in
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      color: "#32B3BE",
+                      fontSize: ".7rem",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {data && (
+                      <CountDownTimer
+                        data={moment(new Date(data?.presale_end_date))}
+                      />
+                    )}
+                  </Typography>
+                </Stack>
+              )}
+
+            {data &&
+              moment(new Date()).isAfter(new Date(data?.presale_end_date)) ===
+                true && (
+                <Stack direction="column" spacing={0}>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "#FFFFFF",
+                      fontSize: "0.775rem",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Presale expired
+                  </Typography>
+                </Stack>
+              )}
+          </Stack>
+          <a
+            href={data?.presale_link}
+            rel="noreferrer"
+            target="_blank"
+            style={{ textDecoration: "none" }}
+          >
+            <Button
+              variant="contained"
               sx={{
-                color: "#FFFFFF",
-                fontSize: "0.775rem",
-                fontWeight: "500",
+                backgroundColor: "#5744F2",
+                borderRadius: 10,
+                height: 25,
+                fontSize: ".6rem",
+                textTransform: "capitalize",
               }}
             >
-              Presale Starts in :
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              sx={{ color: "#32B3BE", fontSize: ".7rem", fontWeight: "600" }}
-            >
-              07 Hours 19 Minutes 56 Seconds
-            </Typography>
-          </Stack>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#5744F2",
-              borderRadius: 10,
-              height: 25,
-              fontSize: ".6rem",
-              textTransform: "capitalize",
-            }}
-          >
-            View Pool
-          </Button>
+              View Page
+            </Button>
+          </a>
         </Stack>
 
         <Divider sx={{ borderColor: "#184b7d" }} />
@@ -258,7 +368,11 @@ const PresaleCards = () => {
                   variant="caption"
                   sx={{ color: "#3FE483", fontWeight: "Bold" }}
                 >
-                  11 July 2022
+                  {data && data?.presale_start_date !== null
+                    ? moment(new Date(data?.presale_start_date)).format(
+                        "DD MMM YYYY"
+                      )
+                    : "NA"}
                 </Typography>
               </Stack>
               <Stack
@@ -279,7 +393,11 @@ const PresaleCards = () => {
                   variant="caption"
                   sx={{ color: "#3FE483", fontWeight: "Bold" }}
                 >
-                  11 July 2022
+                  {data && data?.presale_end_date !== null
+                    ? moment(new Date(data?.presale_end_date)).format(
+                        "DD MMM YYYY"
+                      )
+                    : "NA"}
                 </Typography>
               </Stack>
             </Stack>

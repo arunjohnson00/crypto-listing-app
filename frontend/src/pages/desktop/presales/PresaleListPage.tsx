@@ -15,46 +15,65 @@ import TableButtonGroup from "../../../components/desktop/listingtable/tablebutt
 import PresaleFilterButtonGroup from "../../../components/desktop/buttongroup/presalefilterbuttongroup/PresaleFilterButtonGroup";
 import PresaleCards from "../../../components/desktop/cards/presalecard/PresaleCards";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
+import { Helmet } from "react-helmet-async";
+import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
+import { useDispatch, useSelector } from "react-redux";
+import { presalePageListingRequest } from "../../../store/action";
+import moment from "moment";
 
 const PresaleListPage = ({ windowInnerWidth }: any) => {
-  const responsiveNFT: any = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 5,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2.5,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 2.5,
-    },
-  };
+  const dispatch: any = useDispatch();
+  const PresaleList = useSelector((data: any) => {
+    return data?.presaleReducer?.presale_listings?.data;
+  });
+  const [value, setValue] = useState<any>(0);
 
-  const theme = useTheme();
-  const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
 
-  TimeAgo.addDefaultLocale(en);
-  const timeAgo = new TimeAgo("en");
+    dispatch(presalePageListingRequest("noData", successHandler, errorHandler));
+  }, [dispatch]);
+
+  console.log(PresaleList);
 
   return (
     <Fragment>
+      <Helmet>
+        <title>Presale | CoinXhigh.com</title>
+        <meta
+          name="description"
+          content="CoinxHigh is the world's most prominent community-based platform for Crypto listing, Crypto events listing, NFT Listing, Crypto airdrop listing and more."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta
+          property="og:site_name"
+          content="Coin Vote, Crypto Events, NFT & Airdrop listing Platform for your favourite Crypto projects. | CoinXhigh.com"
+        />
+        <meta property="og:title" content="Presale  | CoinXhigh.com" />
+        <meta property="og:locale" content="en" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:description"
+          content="CoinxHigh is the world's most prominent community-based platform for Crypto listing, Crypto events listing, NFT Listing, Crypto airdrop listing and more."
+        />
+        <meta
+          property="og:image"
+          content="https://coinxhigh.com/coinxhighlogo.webp"
+        />
+        <meta property="og:url" content="https://coinxhigh.com/" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      </Helmet>
       <Grid
         container
-        spacing={5}
+        spacing={0}
         sx={{
           dispaly: "flex",
         }}
       >
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+        {/* <Grid xs={12} sx={{ paddingTop: 3 }}>
           <LatestNewsScroll />
-        </Grid>
+        </Grid> */}
         {/* <Grid
           xs={12}
           sx={{
@@ -136,7 +155,7 @@ const PresaleListPage = ({ windowInnerWidth }: any) => {
             </Grid>
           </Stack>
         </Grid> */}
-        <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
+        {/* <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
           <Grid
             container
             spacing={2}
@@ -163,38 +182,101 @@ const PresaleListPage = ({ windowInnerWidth }: any) => {
               />
             </Grid>
           </Grid>
-        </Grid>
+        </Grid> */}
         <Grid container>
-          <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-            <Typography variant="h5" color="#FFFFFF">
-              Current Presales
-            </Typography>
+          <Grid item xs={12} mt={3}>
+            <BreadCrumbs
+              // data={airdropSinglePageDetails && airdropSinglePageDetails?.data}
+              home="Home"
+              path="Presale"
+            />
           </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-            <PresaleFilterButtonGroup />
+          <Grid item xs={12} pt={3}>
+            <Stack direction="column" spacing={0.1}>
+              <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+                Presales
+              </Typography>
+              {/* <Typography variant="caption" sx={{ color: "#CDCED1" }}>
+              A unique collection of master ....
+            </Typography> */}
+            </Stack>
+          </Grid>
+          <Grid item xs={12} sm={12} md={12} lg={12} xl={12} mt={2}>
+            <Stack
+              direction="row"
+              spacing={0.1}
+              justifyContent={{ xs: "center", sm: "center", md: "flex-end" }}
+            >
+              <PresaleFilterButtonGroup value={value} setValue={setValue} />
+            </Stack>
           </Grid>
         </Grid>
 
-        <Grid container spacing={2} py={3}>
-          <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-            <PresaleCards />
+        {value === 0 && (
+          <Grid container spacing={2} py={3}>
+            {PresaleList &&
+              PresaleList?.data?.map((item: any, index: number) => (
+                <Grid item xs={12} sm={12} md={4} lg={4} xl={4} key={index}>
+                  <PresaleCards data={item} />
+                </Grid>
+              ))}
           </Grid>
-          <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-            <PresaleCards />
+        )}
+
+        {value === 1 && (
+          <Grid container spacing={2} py={3}>
+            {PresaleList &&
+              PresaleList?.data
+                ?.filter(
+                  (val: any) =>
+                    moment(new Date()).isBetween(
+                      new Date(val?.presale_start_date),
+                      new Date(val?.presale_end_date)
+                    ) === true
+                )
+                .map((item: any, index: number) => (
+                  <Grid item xs={12} sm={12} md={4} lg={4} xl={4} key={index}>
+                    <PresaleCards data={item} />
+                  </Grid>
+                ))}
           </Grid>
-          <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-            <PresaleCards />
+        )}
+
+        {value === 2 && (
+          <Grid container spacing={2} py={3}>
+            {PresaleList &&
+              PresaleList?.data
+                ?.filter(
+                  (val: any) =>
+                    moment(new Date(val?.presale_start_date)).isAfter(
+                      new Date()
+                    ) === true
+                )
+                .map((item: any, index: number) => (
+                  <Grid item xs={12} sm={12} md={4} lg={4} xl={4} key={index}>
+                    <PresaleCards data={item} />
+                  </Grid>
+                ))}
           </Grid>
-          <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-            <PresaleCards />
+        )}
+
+        {value === 3 && (
+          <Grid container spacing={2} py={3}>
+            {PresaleList &&
+              PresaleList?.data
+                ?.filter(
+                  (val: any) =>
+                    moment(new Date()).isAfter(
+                      new Date(val?.presale_end_date)
+                    ) === true
+                )
+                .map((item: any, index: number) => (
+                  <Grid item xs={12} sm={12} md={4} lg={4} xl={4} key={index}>
+                    <PresaleCards data={item} />
+                  </Grid>
+                ))}
           </Grid>
-          <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-            <PresaleCards />
-          </Grid>
-          <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-            <PresaleCards />
-          </Grid>
-        </Grid>
+        )}
       </Grid>
       {/* <Grid xs={12} mt={7}>
         <Grid container spacing={5}>

@@ -148,7 +148,7 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/presale-list"
+          path="/presales"
           element={
             <PublicRoutes>
               <PresaleListPage windowInnerWidth={windowInnerWidth} />

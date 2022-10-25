@@ -252,6 +252,27 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
             </Link> */}
             <Link
               to={{
+                pathname: `/presales`,
+              }}
+              state={{
+                scroll: false,
+              }}
+              style={{ textDecoration: "none", color: "#FFFFFF" }}
+              onClick={toggleDrawer}
+            >
+              {" "}
+              <Typography
+                sx={{
+                  p: 1,
+                  fontSize: ".8rem",
+                  color: "#FFFFFF",
+                }}
+              >
+                Presales
+              </Typography>
+            </Link>
+            <Link
+              to={{
                 pathname: `/news`,
               }}
               state={{

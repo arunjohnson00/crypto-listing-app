@@ -130,6 +130,11 @@ const AppHeader = ({ windowInnerWidth }: any) => {
                 iconStatus={true}
                 path="/discover"
               />
+              <AppBarNavBtn
+                title="Presales"
+                iconStatus={true}
+                path="/presales"
+              />
               {/* <AppBarNavBtn title="Chart" iconStatus={true} path="/chart" /> */}
               {/* <AppBarNavBtn
                 title="Leader Board"

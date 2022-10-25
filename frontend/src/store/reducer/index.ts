@@ -20,6 +20,7 @@ import feargreedReducer from "./feargreedReducer";
 import dashboardReviewReducer from "./dashboardReviewReducer";
 import airdropReducer from "./airdropReducer";
 import eventsReducer from "./eventsReducer";
+import presaleReducer from "./presaleReducer";
 const allReducers = combineReducers({
   commonReducer,
   homeReducer,
@@ -36,6 +37,7 @@ const allReducers = combineReducers({
   dashboardReviewReducer,
   airdropReducer,
   eventsReducer,
+  presaleReducer,
 });
 
 const rootReducer = (state: any, action: any) => {
