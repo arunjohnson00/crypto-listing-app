@@ -764,14 +764,15 @@ const ListingTable = ({
                         sx={{ flexWrap: "wrap" }}
                       >
                         {data &&
+                          data?.badges?.length > 0 &&
                           data?.badges?.map((item: any, index: number) => (
                             <Avatar
                               key={index}
                               alt={item?.name}
                               src={`${serverAPIUrl}public/uploads/badge_icons/${
                                 parseInt(item?.status) === 1
-                                  ? item?.active_icon
-                                  : item?.inactive_icon
+                                  ? item && item?.active_icon
+                                  : item && item?.inactive_icon
                               }`}
                               sx={{
                                 width: 25,

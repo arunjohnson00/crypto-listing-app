@@ -175,7 +175,8 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
     };
     const errorHandler = (err: any) => {};
 
-    location?.pathname === "/coins" &&
+    tableTabvalue === "2" &&
+      location?.pathname === "/coins" &&
       dispatch(
         coinsCryptoCurrenciesListRequest(
           page.pagination,
@@ -183,11 +184,9 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
           errorHandler
         )
       );
-    location?.pathname === "/coins/recently-added" &&
-      dispatch(
-        coinsRecentlyAddedRequest(page.pagination, successHandler, errorHandler)
-      );
-    location?.pathname === "/coins/biggest-gainers" &&
+
+    tableTabvalue === "3" &&
+      location?.pathname === "/coins/biggest-gainers" &&
       dispatch(
         coinsBiggestGainersRequest(
           page.pagination,
@@ -195,11 +194,13 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
           errorHandler
         )
       );
-    location?.pathname === "/coins/top-losers" &&
+    tableTabvalue === "4" &&
+      location?.pathname === "/coins/top-losers" &&
       dispatch(
         coinsBiggestLosersRequest(page.pagination, successHandler, errorHandler)
       );
-    location?.pathname === "/coins/most-voted" &&
+    tableTabvalue === "7" &&
+      location?.pathname === "/coins/most-voted" &&
       dispatch(
         coinsCryptoCurrenciesMostVotedRequest(
           page.pagination,
@@ -208,12 +209,14 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
         )
       );
 
-    location?.pathname === "/coins/watch-list" &&
+    tableTabvalue === "1" &&
+      location?.pathname === "/coins/watch-list" &&
       dispatch(
         coinsBiggestLosersRequest(page.pagination, successHandler, errorHandler)
       );
 
-    location?.pathname === "/coins/presales" &&
+    tableTabvalue === "8" &&
+      location?.pathname === "/coins/presales" &&
       dispatch(
         coinsCryptoCurrenciesPresaleRequest(
           page.pagination,
@@ -221,7 +224,13 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
           errorHandler
         )
       );
-  }, [location, page]);
+
+    tableTabvalue === "5" &&
+      location?.pathname === "/coins/recently-added" &&
+      dispatch(
+        coinsRecentlyAddedRequest(page.pagination, successHandler, errorHandler)
+      );
+  }, [location, tableTabvalue, page]);
 
   return (
     <Fragment>

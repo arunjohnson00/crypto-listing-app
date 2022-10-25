@@ -28,7 +28,7 @@ export const coinsRecentlyAddedRequest = (
     url: `api/f/v1/crypto-currencies-recently-added?page=${values}`,
     method: "GET",
     secure: false,
-    actionType: COINS.RECENTLY_ADDED,
+    actionType: COINS.CRYPTO_CURRENCIES_RECENTLY_ADDED,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
@@ -43,7 +43,7 @@ export const coinsBiggestGainersRequest = (
     url: `api/f/v1/crypto-currencies-biggest-gainers?page=${values}`,
     method: "GET",
     secure: false,
-    actionType: COINS.BIGGEST_GAINERS,
+    actionType: COINS.CRYPTO_CURRENCIES_BIGGEST_GAINERS,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
@@ -58,7 +58,7 @@ export const coinsBiggestLosersRequest = (
     url: `api/f/v1/crypto-currencies-biggest-loosers?page=${values}`,
     method: "GET",
     secure: false,
-    actionType: COINS.BIGGEST_LOOSERS,
+    actionType: COINS.CRYPTO_CURRENCIES_BIGGEST_LOOSERS,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
@@ -148,7 +148,7 @@ export const coinsCryptoCurrenciesMostVotedRequest = (
     url: `api/f/v1/crypto-currencies-most-voted?page=${values}`,
     method: "GET",
     secure: false,
-    actionType: COINS.MOST_VISITED,
+    actionType: COINS.CRYPTO_CURRENCIES_MOST_VISITED,
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };

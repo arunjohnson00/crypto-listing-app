@@ -14,20 +14,20 @@ const initialState = {
 };
 const coinsReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
-    case COINS.RECENTLY_ADDED:
+    case COINS.CRYPTO_CURRENCIES_RECENTLY_ADDED:
       //console.log(action);
       return {
         ...state,
         recently_added: action?.payload?.data,
       };
 
-    case COINS.BIGGEST_GAINERS:
+    case COINS.CRYPTO_CURRENCIES_BIGGEST_GAINERS:
       //console.log(action);
       return {
         ...state,
         biggest_gainers: action?.payload?.data,
       };
-    case COINS.BIGGEST_LOOSERS:
+    case COINS.CRYPTO_CURRENCIES_BIGGEST_LOOSERS:
       //console.log(action);
       return {
         ...state,
@@ -74,7 +74,7 @@ const coinsReducer = (state: any = initialState, action: any) => {
         ...state,
         crypto_currencies_tab: action?.payload,
       };
-    case COINS.MOST_VISITED:
+    case COINS.CRYPTO_CURRENCIES_MOST_VISITED:
       //console.log(action);
       return {
         ...state,

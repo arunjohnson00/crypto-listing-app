@@ -51,7 +51,7 @@ export default function CountDownTimer({ data }: any) {
             fontWeight: "inherit",
           }}
         >
-          {days} D {hours} H {minutes} M {seconds}S
+          {days} Day {hours} Hr {minutes} Min {seconds} Sec
         </p>
       )}
     </div>

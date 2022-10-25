@@ -393,7 +393,7 @@ const UserSettings = () => {
                       fontSize: ".9rem",
                     }}
                   >
-                    Coinfirm new password
+                    Confirm new password
                   </Typography>
 
                   <UserAdminTextInput
