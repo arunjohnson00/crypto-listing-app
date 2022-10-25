@@ -530,6 +530,7 @@ const CoinpageRatings = () => {
             hasMore={hasMore}
             loader={<h4 style={{ color: "#FFFFFF" }}>Loading...</h4>}
             height={700}
+            style={{ paddingRight: 10 }}
             endMessage={
               <p style={{ textAlign: "center", color: "#FFFFFF" }}>
                 <b>Yay! You have seen it all</b>

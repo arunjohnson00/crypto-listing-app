@@ -20,7 +20,7 @@ const InputTextArea = ({
   const matches = useMediaQuery("(min-width:900px)");
 
   const richEditorHandler = (value: any) => {
-    setData({ ...data, details: value });
+    setData({ ...data, details: value, description: value });
   };
   useEffect(() => {
     setTextAreaValue(value);
@@ -32,6 +32,13 @@ const InputTextArea = ({
         <ReactQuill
           theme="snow"
           value={data?.details}
+          onChange={richEditorHandler}
+          placeholder={placeholder && placeholder}
+        />
+      ) : variant === "richtextdescription" ? (
+        <ReactQuill
+          theme="snow"
+          value={data?.description}
           onChange={richEditorHandler}
           placeholder={placeholder && placeholder}
         />

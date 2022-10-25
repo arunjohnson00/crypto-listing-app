@@ -80,7 +80,7 @@ export const StyledInputElement = styled("input")(
     border-radius: inherit;
     padding: 8px 8px 8px 0px;
     outline: 0;
-    height:0px
+    height: 20px;
   `
 );
 

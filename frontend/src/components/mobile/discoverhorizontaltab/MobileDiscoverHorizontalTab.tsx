@@ -101,7 +101,7 @@ const MobileDiscoverHorizontalTab = () => {
             minWidth: 120,
             paddingX: 0,
             marginX: 0,
-            backgroundColor: "#050829",
+            backgroundColor: "#000431",
           },
           "& .MuiButtonBase-root.MuiTab-root": {
             color: "#F8F7FA",

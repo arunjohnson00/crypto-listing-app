@@ -58,7 +58,9 @@ const NFTListingAdd = () => {
     { title: "Scheduled", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
-
+  const [nftListingData, setNftListingData] = useState<any>({
+    description: "",
+  });
   const nftListingCurrencyList = useSelector((nftCurrencyList: any) => {
     return nftCurrencyList.dashboardNFTListingReducer.nft_currency_list.data;
   });
@@ -161,7 +163,7 @@ const NFTListingAdd = () => {
     );
     formData.append("image", addCoinLogo.coinLogo);
     formData.append("status", coinPublishStatus.status);
-
+    formData.append("description", nftListingData.description);
     const successHandler = (res: any) => {
       setLoading(true);
       toast.success(
@@ -470,8 +472,11 @@ const NFTListingAdd = () => {
 
                     <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
                       <InputTextArea
+                        variant="richtextdescription"
                         placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."
                         name="description"
+                        data={nftListingData}
+                        setData={setNftListingData}
                       />
                     </Grid>
                   </Grid>

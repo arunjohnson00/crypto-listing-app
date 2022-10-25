@@ -59,9 +59,9 @@ const AddEventsPage = ({ windowInnerWidth }: any) => {
             link="/user-dashboard/events/online-events/add"
           />
           <AddEventCard
-            title="Offline Event"
+            title="Onsite Event"
             image={offlineEventImage}
-            link="/user-dashboard/events/offline-events/add"
+            link="/user-dashboard/events/onsite-events/add"
           />
         </Stack>
       </Box>

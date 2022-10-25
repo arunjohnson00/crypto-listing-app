@@ -172,6 +172,7 @@ const OnlineEventsAdd = () => {
     //formData.append("reward_address_id", addEventsData?.reward_address_id);
     formData.append("address", addEventsData?.address);
     formData.append("twitter_account", addEventsData?.twitter_account);
+    formData.append("description", addEventsData?.description);
     formData.append("telegram_url", addEventsData?.telegram_url);
     formData.append("reddit_url", addEventsData?.reddit_url);
     formData.append("website_url", addEventsData?.website_url);
@@ -487,9 +488,12 @@ const OnlineEventsAdd = () => {
                 Event Description
               </Typography>
               <InputTextArea
+                variant="richtextdescription"
                 name="description"
                 id="description"
                 placeholder=" Detailed event description. (e.g. exact time, location, more info…)"
+                data={addEventsData}
+                setData={setAddEvents}
               />
             </Grid>
 

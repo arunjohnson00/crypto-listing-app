@@ -162,6 +162,7 @@ const NFTListingEdit = () => {
       "public_mint_end_time",
       dateFormat(new Date(publicMintDate.end_time), " hh:MM tt")
     );
+    formData.append("description", nftListingData.description);
     addCoinLogo.coinLogo !== "" &&
       formData.append("image", addCoinLogo.coinLogo);
     formData.append("status", coinPublishStatus.status);
@@ -560,10 +561,13 @@ const NFTListingEdit = () => {
 
                     <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
                       <InputTextArea
+                        variant="richtextdescription"
                         placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."
                         name="description"
                         value={nftListingData?.description}
                         width={600}
+                        data={nftListingData}
+                        setData={setNftListingData}
                       />
                     </Grid>
                   </Grid>

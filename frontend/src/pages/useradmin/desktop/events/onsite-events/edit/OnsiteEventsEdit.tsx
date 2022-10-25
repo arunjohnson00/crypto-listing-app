@@ -45,7 +45,7 @@ import {
 import YoutubeDetails from "./YoutubeDetails";
 import { Helmet } from "react-helmet-async";
 
-const OfflineEventsEdit = () => {
+const OnsiteEventsEdit = () => {
   const selectOptions = [
     { title: "Approved", value: 1 },
     { title: "Processing", value: 2 },
@@ -61,7 +61,7 @@ const OfflineEventsEdit = () => {
   const dispatch: any = useDispatch();
   const navigate: any = useNavigate();
   const location: any = useLocation();
-
+  console.log(location?.state?.id);
   const [editEventsData, setEditEvents] = useState<any>({
     id: "",
     item_id: "",
@@ -88,7 +88,7 @@ const OfflineEventsEdit = () => {
     venue: "",
     booking_url: "",
   });
-
+  console.log(editEventsData);
   const [loading, setLoading] = useState(false);
   const [eventsCategory, setEventsCategory] = useState();
   const [eventsRewardAddress, setEventsRewardAddress] = useState();
@@ -198,13 +198,14 @@ const OfflineEventsEdit = () => {
     formData.append("title", editEventsData?.title);
 
     formData.append("source_link", editEventsData?.source_link);
+    formData.append("coin_id", editEventsData?.coin_id);
     //formData.append("reward_address_id", editEventsData?.reward_address_id);
     formData.append("address", editEventsData?.address);
     formData.append("twitter_account", editEventsData?.twitter_account);
     editEventsData?.proof !== "" &&
       typeof editEventsData?.proof !== "string" &&
       formData.append("proof", editEventsData?.proof);
-
+    formData.append("description", editEventsData?.description);
     formData.append("telegram_url", editEventsData?.telegram_url);
     formData.append("reddit_url", editEventsData?.reddit_url);
     formData.append("website_url", editEventsData?.website_url);
@@ -307,7 +308,7 @@ const OfflineEventsEdit = () => {
 
   useEffect(() => {
     const successHandler = (res: any) => {
-      setEditEvents(res.data.data);
+      res && setEditEvents(res.data.data);
     };
     const errorHandler = (err: any) => {
       //console.log(err);
@@ -317,11 +318,11 @@ const OfflineEventsEdit = () => {
     dispatch(
       dashboardEditEventsRequest(formData, successHandler, errorHandler)
     );
-  }, [dispatch]);
+  }, [dispatch, setEditEvents]);
   return (
     <Grid container spacing={2} pb={10}>
       <Helmet>
-        <title>Edit Offline Event | CoinXhigh.com</title>
+        <title>Edit Onsite Event | CoinXhigh.com</title>
         <meta
           name="description"
           content="CoinxHigh is the world's most prominent community-based platform for Crypto listing, Crypto events listing, NFT Listing, Crypto airdrop listing and more."
@@ -331,10 +332,7 @@ const OfflineEventsEdit = () => {
           property="og:site_name"
           content="Coin Vote, Crypto Events, NFT & Airdrop listing Platform for your favourite Crypto projects. | CoinXhigh.com"
         />
-        <meta
-          property="og:title"
-          content="Edit Offline Event | CoinXhigh.com"
-        />
+        <meta property="og:title" content="Edit Onsite Event | CoinXhigh.com" />
         <meta property="og:locale" content="en" />
         <meta property="og:type" content="website" />
         <meta
@@ -378,7 +376,7 @@ const OfflineEventsEdit = () => {
               variant="h5"
               sx={{ textAlign: "left", color: "#FFFFFF", fontWeight: 600 }}
             >
-              Edit Offline Crypto Events
+              Edit Onsite Crypto Events
             </Typography>
             <Typography
               variant="caption"
@@ -554,10 +552,13 @@ const OfflineEventsEdit = () => {
                 Event Description
               </Typography>
               <InputTextArea
+                variant="richtextdescription"
                 name="description"
                 id="description"
                 placeholder=" Detailed event description. (e.g. exact time, location, more info…)"
                 value={editEventsData?.description}
+                data={editEventsData}
+                setData={setEditEvents}
               />
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
@@ -1069,4 +1070,4 @@ const OfflineEventsEdit = () => {
   );
 };
 
-export default OfflineEventsEdit;
+export default OnsiteEventsEdit;

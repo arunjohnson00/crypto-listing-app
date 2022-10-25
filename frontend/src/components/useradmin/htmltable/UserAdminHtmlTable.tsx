@@ -10,6 +10,8 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
+import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
 import {
@@ -20,6 +22,7 @@ import {
   ButtonGroup,
   Button,
   Divider,
+  Rating,
 } from "@mui/material";
 
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -877,7 +880,7 @@ const UserAdminHtmlTable = ({
                     ) : (
                       data?.is_online === 2 && (
                         <Typography variant="caption" sx={{ color: "#00d7ff" }}>
-                          Offline Event
+                          Onsite Event
                         </Typography>
                       )
                     )}
@@ -928,7 +931,7 @@ const UserAdminHtmlTable = ({
                           pathname:
                             data?.is_online === 1
                               ? `/user-dashboard/events/online-events/edit`
-                              : `/user-dashboard/events/offline-events/edit`,
+                              : `/user-dashboard/events/onsite-events/edit`,
                         }}
                         state={{ id: data && data?.id }}
                         style={{ textDecoration: "none" }}
@@ -1230,7 +1233,53 @@ const UserAdminHtmlTable = ({
                   <TableCell
                     sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
                   >
-                    <Typography variant="caption">{data?.rating}</Typography>
+                    {/* <Typography variant="caption">{data?.rating}</Typography> */}
+
+                    <Rating
+                      name="half-rating"
+                      value={data && parseFloat(data?.rating).toFixed(0)}
+                      precision={1}
+                      readOnly
+                      size="small"
+                      icon={
+                        <StarRoundedIcon
+                          fontSize="inherit"
+                          sx={{
+                            color:
+                              data?.rating <= 1
+                                ? "#FF3722"
+                                : data?.rating <= 2
+                                ? "#FF8622"
+                                : data?.rating <= 3
+                                ? "#FFCE00"
+                                : data?.rating <= 4
+                                ? "#73CF11"
+                                : data?.rating <= 5
+                                ? "#00B67A"
+                                : "#00B67A",
+                          }}
+                        />
+                      }
+                      emptyIcon={
+                        <StarBorderRoundedIcon
+                          fontSize="inherit"
+                          sx={{
+                            color:
+                              data?.rating <= 1
+                                ? "#FF3722"
+                                : data?.rating <= 2
+                                ? "#FF8622"
+                                : data?.rating <= 3
+                                ? "#FFCE00"
+                                : data?.rating <= 4
+                                ? "#73CF11"
+                                : data?.rating <= 5
+                                ? "#00B67A"
+                                : "#00B67A",
+                          }}
+                        />
+                      }
+                    />
                   </TableCell>
 
                   <TableCell

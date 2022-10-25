@@ -42,7 +42,7 @@ import {
 import YoutubeDetails from "./YoutubeDetails";
 import { Helmet } from "react-helmet-async";
 
-const OfflineEventsAdd = () => {
+const OnsiteEventsAdd = () => {
   const selectOptions = [
     { title: "Approved", value: 1 },
     { title: "Processing", value: 2 },
@@ -175,6 +175,7 @@ const OfflineEventsAdd = () => {
     formData.append("address", addEventsData?.address);
     formData.append("twitter_account", addEventsData?.twitter_account);
     formData.append("telegram_url", addEventsData?.telegram_url);
+    formData.append("description", addEventsData?.description);
     formData.append("reddit_url", addEventsData?.reddit_url);
     formData.append("booking_url", addEventsData?.booking_url);
     formData.append("venue", addEventsData?.venue);
@@ -275,7 +276,7 @@ const OfflineEventsAdd = () => {
   return (
     <Grid container spacing={2} pb={10}>
       <Helmet>
-        <title>Add Offline Event | CoinXhigh.com</title>
+        <title>Add Onsite Event | CoinXhigh.com</title>
         <meta
           name="description"
           content="CoinxHigh is the world's most prominent community-based platform for Crypto listing, Crypto events listing, NFT Listing, Crypto airdrop listing and more."
@@ -285,7 +286,7 @@ const OfflineEventsAdd = () => {
           property="og:site_name"
           content="Coin Vote, Crypto Events, NFT & Airdrop listing Platform for your favourite Crypto projects. | CoinXhigh.com"
         />
-        <meta property="og:title" content="Add Offline Event | CoinXhigh.com" />
+        <meta property="og:title" content="Add Onsite Event | CoinXhigh.com" />
         <meta property="og:locale" content="en" />
         <meta property="og:type" content="website" />
         <meta
@@ -329,7 +330,7 @@ const OfflineEventsAdd = () => {
               variant="h5"
               sx={{ textAlign: "left", color: "#FFFFFF", fontWeight: 600 }}
             >
-              Add Offline Crypto Events
+              Add Onsite Crypto Events
             </Typography>
             <Typography
               variant="caption"
@@ -502,9 +503,12 @@ const OfflineEventsAdd = () => {
                 Event Description
               </Typography>
               <InputTextArea
+                variant="richtextdescription"
                 name="description"
                 id="description"
                 placeholder=" Detailed event description. (e.g. exact time, location, more info…)"
+                data={addEventsData}
+                setData={setAddEvents}
               />
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -917,4 +921,4 @@ const OfflineEventsAdd = () => {
   );
 };
 
-export default OfflineEventsAdd;
+export default OnsiteEventsAdd;

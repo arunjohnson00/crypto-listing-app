@@ -181,14 +181,15 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
             <Stack
               direction="column"
               spacing={2}
-              pt={0}
+              mt={1}
               sx={{
                 height: "auto",
                 maxHeight: "68vh",
                 overflowY: "scroll",
                 background: "#000000",
+                pl: 0,
+                pr: 2,
               }}
-              px={1}
             >
               <Stack
                 direction="column"
@@ -647,11 +648,13 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
             <Stack
               direction="column"
               spacing={2}
+              mt={1}
               sx={{
                 height: "auto",
                 maxHeight: "68vh",
                 overflowY: "scroll",
                 pl: 0,
+                pr: 2,
               }}
             >
               <Stack

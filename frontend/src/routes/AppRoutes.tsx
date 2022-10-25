@@ -54,8 +54,8 @@ import UserAdminReviewListingMobilePage from "../pages/useradmin/mobile/useradmi
 import AddEventsPage from "../pages/desktop/addevents/AddEventsPage";
 import OnlineEventsAdd from "../pages/useradmin/desktop/events/online-events/add/OnlineEventsAdd";
 import OnlineEventsEdit from "../pages/useradmin/desktop/events/online-events/edit/OnlineEventsEdit";
-import OfflineEventsAdd from "../pages/useradmin/desktop/events/offline-events/add/OfflineEventsAdd";
-import OfflineEventsEdit from "../pages/useradmin/desktop/events/offline-events/edit/OfflineEventsEdit";
+import OnsiteEventsAdd from "../pages/useradmin/desktop/events/onsite-events/add/OnsiteEventsAdd";
+import OnsiteEventsEdit from "../pages/useradmin/desktop/events/onsite-events/edit/OnsiteEventsEdit";
 import UserAdminAddEventsPage from "../pages/useradmin/desktop/addevents/UserAdminAddEventsPage";
 import SingleAirdropPage from "../pages/desktop/singleairdroppage/SingleAirdropPage";
 import VideosPage from "../pages/desktop/videos/VideosPage";
@@ -611,19 +611,19 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/user-dashboard/events/offline-events/add"
+          path="/user-dashboard/events/onsite-events/add"
           element={
             <PrivateRoute>
-              <OfflineEventsAdd />
+              <OnsiteEventsAdd />
             </PrivateRoute>
           }
         />
 
         <Route
-          path="/user-dashboard/events/offline-events/edit"
+          path="/user-dashboard/events/onsite-events/edit"
           element={
             <PrivateRoute>
-              <OfflineEventsEdit />
+              <OnsiteEventsEdit />
             </PrivateRoute>
           }
         />

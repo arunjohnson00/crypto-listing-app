@@ -398,6 +398,7 @@ const MobileCoinpageRatings = () => {
               hasMore={hasMore}
               loader={<h4 style={{ color: "#FFFFFF" }}>Loading...</h4>}
               height={350}
+              style={{ paddingRight: 5 }}
               endMessage={
                 <p style={{ textAlign: "center", color: "#FFFFFF" }}>
                   <b>Yay! You have seen it all</b>

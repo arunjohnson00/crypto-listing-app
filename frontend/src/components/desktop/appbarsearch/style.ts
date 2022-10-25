@@ -86,6 +86,7 @@ export const StyledInputElement = styled("input")(
     outline: 0;
     height:0px;
     cursor:text;
+    height: 20px;
 
   
   `

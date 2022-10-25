@@ -914,7 +914,7 @@ const UserAdminMobileHtmlTable = ({
                           pathname:
                             data?.is_online === 1
                               ? `/user-dashboard/events/online-events/edit`
-                              : `/user-dashboard/events/offline-events/edit`,
+                              : `/user-dashboard/events/onsite-events/edit`,
                         }}
                         state={{ id: data && data?.id }}
                         style={{ textDecoration: "none" }}

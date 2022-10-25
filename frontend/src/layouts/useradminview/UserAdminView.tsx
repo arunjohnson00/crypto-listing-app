@@ -9,7 +9,7 @@ import MobileAppbarTop from "../../components/useradmin/appbartop/MobileAppbarTo
 
 const UserAdminView = ({ children }: any) => {
   const location: any = useLocation();
-  const [collapse, setCollapse] = useState(false);
+  const [collapse, setCollapse] = useState(true);
   const matches = useMediaQuery("(min-width:900px)");
   useEffect(() => {
     window.scrollTo(0, 0);

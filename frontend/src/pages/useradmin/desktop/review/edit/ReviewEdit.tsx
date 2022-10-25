@@ -21,6 +21,7 @@ import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
+import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import {
   dashboardEditReviewRequest,
   dashboardUpdateReviewRequest,
@@ -31,7 +32,7 @@ const ReviewEdit = () => {
   const dispatch: any = useDispatch();
   const navigate: any = useNavigate();
   const location: any = useLocation();
-  // const [rating, setRating] = useState<any>(0);
+  const [rating, setRating] = useState<any>();
   const [hover, setHover] = useState<any>();
   const [reviewCount, setReviewCount] = useState<any>();
   // const [reviewText, setReviewText] = useState<any>();
@@ -69,7 +70,7 @@ const ReviewEdit = () => {
         }
       );
       setTimeout(() => {
-        navigate("/user-dashboard");
+        navigate("/user-dashboard/review");
       }, 3000);
     };
     const errorHandler = (err: any) => {
@@ -113,6 +114,10 @@ const ReviewEdit = () => {
     );
   }, [dispatch]);
 
+  useEffect(() => {
+    setRating(parseInt(editReviewData?.rating));
+  }, [location]);
+  console.log(rating, hover);
   return (
     <Grid container spacing={2} pb={10}>
       <Helmet>
@@ -154,13 +159,14 @@ const ReviewEdit = () => {
           px={2}
           pt={3}
         >
-          {/* <IconButton>
+          <IconButton>
             <ArrowBackIosTwoToneIcon
               onClick={() => {
-                navigate("/review");
+                navigate("/user-dashboard/review");
               }}
+              sx={{ color: "#FFFFFF" }}
             />
-          </IconButton> */}
+          </IconButton>
 
           <Typography variant="h5" sx={{ textAlign: "left", color: "#FFFFFF" }}>
             Edit Review
@@ -214,6 +220,7 @@ const ReviewEdit = () => {
                     }
                     onChange={(event, newValue) => {
                       setEditReview({ ...editReviewData, rating: newValue });
+                      setRating(newValue);
                     }}
                     onChangeActive={(event, newHover) => {
                       setHover(newHover);
@@ -235,25 +242,15 @@ const ReviewEdit = () => {
                           fontSize="inherit"
                           sx={{
                             color:
-                              hover <= 1 &&
-                              editReviewData &&
-                              editReviewData?.rating <= 1
+                              hover <= 1 && rating <= 1
                                 ? "#FF3722"
-                                : hover <= 2 &&
-                                  editReviewData &&
-                                  editReviewData?.rating <= 2
+                                : hover <= 2 && rating <= 2
                                 ? "#FF8622"
-                                : hover <= 3 &&
-                                  editReviewData &&
-                                  editReviewData?.rating <= 3
+                                : hover <= 3 && rating <= 3
                                 ? "#FFCE00"
-                                : hover <= 4 &&
-                                  editReviewData &&
-                                  editReviewData?.rating <= 4
+                                : hover <= 4 && rating <= 4
                                 ? "#73CF11"
-                                : hover <= 5 &&
-                                  editReviewData &&
-                                  editReviewData?.rating <= 5
+                                : hover <= 5 && rating <= 5
                                 ? "#00B67A"
                                 : "#00B67A",
                           }}
@@ -276,25 +273,15 @@ const ReviewEdit = () => {
                           fontSize="inherit"
                           sx={{
                             color:
-                              hover <= 1 &&
-                              editReviewData &&
-                              editReviewData?.rating <= 1
+                              hover <= 1 && rating <= 1
                                 ? "#FF3722"
-                                : hover <= 2 &&
-                                  editReviewData &&
-                                  editReviewData?.rating <= 2
+                                : hover <= 2 && rating <= 2
                                 ? "#FF8622"
-                                : hover <= 3 &&
-                                  editReviewData &&
-                                  editReviewData?.rating <= 3
+                                : hover <= 3 && rating <= 3
                                 ? "#FFCE00"
-                                : hover <= 4 &&
-                                  editReviewData &&
-                                  editReviewData?.rating <= 4
+                                : hover <= 4 && rating <= 4
                                 ? "#73CF11"
-                                : hover <= 5 &&
-                                  editReviewData &&
-                                  editReviewData?.rating <= 5
+                                : hover <= 5 && rating <= 5
                                 ? "#00B67A"
                                 : "#00B67A",
                           }}

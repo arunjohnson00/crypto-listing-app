@@ -14,22 +14,25 @@ code {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 0;
+  width: 3px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #101010;
+  background: #01061a;
+  border-radius: 30px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #363a45;
+  background: #020c36;
+  height: 50px;
+  border-radius: 30px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #363a45;
+  background: #020c36;
 }
 
 .mat-dialog-container {

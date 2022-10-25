@@ -87,6 +87,9 @@ const DiscoverVerticalTab = () => {
             color: "#F8F7FA",
             textTransform: "capitalize",
             minHeight: 57,
+            backgroundColor: "#051121",
+            minWidth: 200,
+            maxWidth: 200,
           },
           "& .MuiButtonBase-root.MuiTab-root": {
             color: "#F8F7FA",
@@ -96,6 +99,8 @@ const DiscoverVerticalTab = () => {
             backgroundColor: "#020419",
             boxShadow: "5px 0px 0px #0D1B55 inset",
             marginLeft: 0.5,
+            minWidth: 200,
+            maxWidth: 200,
           },
         }}
       >
@@ -191,7 +196,7 @@ const DiscoverVerticalTab = () => {
           }}
         />
       </Tabs>
-      <Box sx={{ width: "82%" }} p={0}>
+      <Box sx={{ width: "82%", paddingX: 4 }} p={0}>
         <TabPanel value={value} index={0}>
           <DiscoverLatest />
         </TabPanel>
