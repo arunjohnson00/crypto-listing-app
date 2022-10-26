@@ -51,7 +51,10 @@ export default function CountDownTimer({ data }: any) {
             fontWeight: "inherit",
           }}
         >
-          {days} Day {hours} Hr {minutes} Min {seconds} Sec
+          {parseInt(days) !== 0 && <span>{days} Day</span>}{" "}
+          {parseInt(hours) !== 0 && <span>{hours} Hr</span>}{" "}
+          {parseInt(minutes) !== 0 && <span>{minutes} Min</span>}{" "}
+          {parseInt(seconds) !== 0 && <span>{seconds} Sec</span>}{" "}
         </p>
       )}
     </div>

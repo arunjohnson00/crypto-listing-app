@@ -13,6 +13,7 @@ import { styled } from "@mui/material/styles";
 import moment from "moment";
 import parse from "html-react-parser";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
@@ -71,7 +72,7 @@ const MobileCryptoEventsCardSlider = ({ data, variant }: any) => {
                   width="100%"
                   height="100%"
                 >
-                  <Stack direction="column" spacing={0} width="100%">
+                  <Stack direction="column" spacing={0.3} width="100%">
                     <Typography
                       sx={{
                         color: "#FFFFFF",
@@ -81,6 +82,36 @@ const MobileCryptoEventsCardSlider = ({ data, variant }: any) => {
                     >
                       {data && data?.title}.
                     </Typography>
+                    {data && data?.is_online === 2 && (
+                      <Stack direction="row" alignItems="center" spacing={0.3}>
+                        <LocationOnIcon
+                          sx={{ color: "#FBFE00", fontSize: ".9rem" }}
+                        />
+                        <Stack direction="column" alignItems="flex-start">
+                          {" "}
+                          {/* <Typography
+                    variant="body2"
+                    sx={{
+                      color: "#535662",
+                      fontSize: "0.65rem",
+                      fontWeight: 600,
+                    }}
+                  >
+                    Venue
+                  </Typography> */}
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: "#FFFFFF",
+                              fontSize: "0.65rem",
+                              fontWeight: 500,
+                            }}
+                          >
+                            {data && data?.venue !== null ? data?.venue : "NA"}
+                          </Typography>
+                        </Stack>
+                      </Stack>
+                    )}
                     <Typography
                       sx={{
                         color: "#FFFFFF",

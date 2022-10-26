@@ -302,7 +302,7 @@ const PresaleCards = ({ data }: any) => {
                         fontWeight: "500",
                       }}
                     >
-                      Presale status
+                      Presale ends in
                     </Typography>
 
                     <Typography

@@ -61,6 +61,7 @@ import SingleAirdropPage from "../pages/desktop/singleairdroppage/SingleAirdropP
 import VideosPage from "../pages/desktop/videos/VideosPage";
 import FeaturedCoinPage from "../pages/desktop/featuredcoin/FeaturedCoinPage";
 import Error404 from "../pages/error404/Error404";
+import PromotePage from "../pages/desktop/promote/PromotePage";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -218,6 +219,14 @@ const AppRoutes = () => {
           element={
             <PublicRoutes>
               <FreeCoinPage windowInnerWidth={windowInnerWidth} />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path="/promote"
+          element={
+            <PublicRoutes>
+              <PromotePage windowInnerWidth={windowInnerWidth} />
             </PublicRoutes>
           }
         />
