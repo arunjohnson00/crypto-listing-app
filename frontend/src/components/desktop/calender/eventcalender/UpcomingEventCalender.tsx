@@ -53,7 +53,7 @@ const UpcomingEventCalender = ({ date, setDate, dateHandler }: any) => {
   });
   const requestAbortController = useRef<AbortController | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [highlightedDays, setHighlightedDays] = useState([1, 2, 15]);
+  const [highlightedDays, setHighlightedDays] = useState<any>([]);
   const [value, setValue] = useState<Dayjs | null>(initialValue);
 
   const fetchHighlightedDays = (date: Dayjs) => {
@@ -62,7 +62,7 @@ const UpcomingEventCalender = ({ date, setDate, dateHandler }: any) => {
       signal: controller.signal,
     })
       .then(({ daysToHighlight }) => {
-        setHighlightedDays(daysToHighlight);
+        // setHighlightedDays(daysToHighlight);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -77,19 +77,38 @@ const UpcomingEventCalender = ({ date, setDate, dateHandler }: any) => {
 
   useEffect(() => {
     fetchHighlightedDays(initialValue);
-    // abort request on unmount
+
     return () => requestAbortController.current?.abort();
   }, []);
 
-  const handleMonthChange = (date: Dayjs) => {
+  useEffect(() => {
+    const initialflDays: any = eventsUpcoming?.data?.data
+      ?.filter(
+        (val: any) =>
+          moment(val.event_date).isSame(moment(new Date()), "month") === true
+      )
+      .map((item: any) => moment(item.event_date).format("DD"))
+      .map((i: any) => Number(i));
+    console.log(initialflDays);
+    setHighlightedDays(initialflDays);
+  }, [eventsUpcoming]);
+
+  const handleMonthChange = (date: any) => {
     if (requestAbortController.current) {
-      // make sure that you are aborting useless requests
-      // because it is possible to switch between months pretty quickly
+      //   // make sure that you are aborting useless requests
+      //   // because it is possible to switch between months pretty quickly
       requestAbortController.current.abort();
     }
 
-    setIsLoading(true);
-    setHighlightedDays([]);
+    const flDays = eventsUpcoming?.data?.data
+      ?.filter(
+        (val: any) => moment(val.event_date).isSame(date, "month") === true
+      )
+      .map((item: any) => moment(item.event_date).format("DD"))
+      .map((i: any) => Number(i));
+
+    // setIsLoading(true);
+    setHighlightedDays(flDays);
     fetchHighlightedDays(date);
   };
 
@@ -112,21 +131,24 @@ const UpcomingEventCalender = ({ date, setDate, dateHandler }: any) => {
             date={date}
             onChange={(newDate) => dateHandler(newDate)}
             loading={isLoading}
-            // renderDay={(day: any, _value, DayComponentProps) => {
-
-            //   const isSelected = new Date();
-            //   return (
-            //     <>
-            //       <Badge
-            //         key={day.toString()}
-            //         overlap="circular"
-            //         badgeContent={isSelected ? "🌚" : undefined}
-            //       >
-            //         <PickersDay {...DayComponentProps} />
-            //       </Badge>
-            //     </>
-            //   );
-            // }}
+            onMonthChange={handleMonthChange}
+            renderDay={(day: any, _value, DayComponentProps) => {
+              const isSelected =
+                !DayComponentProps.outsideCurrentMonth &&
+                highlightedDays?.length > 0 &&
+                highlightedDays.indexOf(day.getDate()) >= 0;
+              return (
+                <>
+                  <Badge
+                    key={day.toString()}
+                    overlap="circular"
+                    badgeContent={isSelected ? "🟢" : undefined}
+                  >
+                    <PickersDay {...DayComponentProps} />
+                  </Badge>
+                </>
+              );
+            }}
           />
         </LocalizationProvider>
       </ThemeProvider>

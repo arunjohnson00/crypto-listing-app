@@ -95,7 +95,7 @@ const NftTab = () => {
                       <NftCollectionCard
                         data={item && item}
                         index={index}
-                        height={{ xs: 100, sm: 100, md: "" }}
+                        height={{ xs: 100, sm: 100, md: 250 }}
                       />
                     </Grid>
                   )
@@ -121,7 +121,7 @@ const NftTab = () => {
                       <NftCollectionCard
                         data={item && item}
                         index={index}
-                        height={{ xs: 100, sm: 100, md: "" }}
+                        height={{ xs: 100, sm: 100, md: 250 }}
                       />
                     </Grid>
                   )

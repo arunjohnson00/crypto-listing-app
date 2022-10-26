@@ -91,9 +91,9 @@ const CryptoEvents = () => {
         ? setEventData(
             res?.data?.data?.data?.filter(
               (item: any) =>
-                moment(new Date(newValue)).isBetween(
-                  moment(new Date(item?.event_date)).subtract(0, "days"),
-                  moment(new Date(item?.end_date)).add(1, "days")
+                moment(new Date(newValue)).isSame(
+                  moment(new Date(item?.event_date)),
+                  "day"
                 ) === true
             )
           )
