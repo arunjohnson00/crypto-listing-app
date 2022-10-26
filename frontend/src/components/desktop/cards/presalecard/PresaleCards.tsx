@@ -272,7 +272,7 @@ const PresaleCards = ({ data }: any) => {
                 )}
             </Stack>
 
-            <Stack direction="column" spacing={0}>
+            <Stack direction="column" spacing={0} alignItems="center">
               <Typography
                 variant="body2"
                 sx={{

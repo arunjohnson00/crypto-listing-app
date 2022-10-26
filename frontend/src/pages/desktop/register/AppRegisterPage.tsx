@@ -156,7 +156,7 @@ const AppRegisterPage = () => {
         {/* <Grid item xs={12}>
           <LatestNewsScroll />
         </Grid> */}
-        <Grid item xs={12} mt={3}>
+        <Grid item xs={12} mt={3} mb={15}>
           <Stack
             direction="column"
             spacing={3}

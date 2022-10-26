@@ -415,7 +415,20 @@ const AppLoginPage = () => {
                                   },
                                 }}
                               />
-
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  color: "#e21f00",
+                                  fontWeight: 400,
+                                  fontSize: ".85rem",
+                                }}
+                              >
+                                {validation &&
+                                  validation !== "" &&
+                                  validation !== undefined &&
+                                  validation !== null &&
+                                  checkIfKeyExist(validation, "password")}
+                              </Typography>
                               <FormGroup>
                                 <FormControlLabel
                                   sx={{ color: "#20B5CC" }}
@@ -436,20 +449,6 @@ const AppLoginPage = () => {
                                   label="Remember me"
                                 />
                               </FormGroup>
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  color: "#e21f00",
-                                  fontWeight: 400,
-                                  fontSize: ".85rem",
-                                }}
-                              >
-                                {validation &&
-                                  validation !== "" &&
-                                  validation !== undefined &&
-                                  validation !== null &&
-                                  checkIfKeyExist(validation, "password")}
-                              </Typography>
                             </Stack>
 
                             <Button
