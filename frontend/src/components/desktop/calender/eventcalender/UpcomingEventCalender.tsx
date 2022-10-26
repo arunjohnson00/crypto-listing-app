@@ -146,7 +146,7 @@ const UpcomingEventCalender = ({ date, setDate, dateHandler }: any) => {
                     badgeContent={
                       isSelected ? (
                         <CircleRoundedIcon
-                          sx={{ color: "#00ff80", fontSize: "1rem" }}
+                          sx={{ color: "#00ff80", fontSize: ".6rem" }}
                         />
                       ) : undefined
                     }
