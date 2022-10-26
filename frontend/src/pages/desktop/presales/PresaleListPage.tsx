@@ -232,7 +232,13 @@ const PresaleListPage = ({ windowInnerWidth }: any) => {
                     moment(new Date()).isBetween(
                       new Date(val?.presale_start_date),
                       new Date(val?.presale_end_date)
-                    ) === true
+                    ) === true ||
+                    (moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                      moment(val?.presale_start_date).format("YYYY-MM-DD")
+                    ) === true &&
+                      moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                        moment(val?.presale_end_date).format("YYYY-MM-DD")
+                      ) === true)
                 )
                 .map((item: any, index: number) => (
                   <Grid item xs={12} sm={12} md={4} lg={4} xl={4} key={index}>
@@ -266,8 +272,8 @@ const PresaleListPage = ({ windowInnerWidth }: any) => {
               PresaleList?.data
                 ?.filter(
                   (val: any) =>
-                    moment(new Date()).isAfter(
-                      new Date(val?.presale_end_date)
+                    moment(moment(new Date()).format("YYYY-MM-DD")).isAfter(
+                      moment(val?.presale_end_date).format("YYYY-MM-DD")
                     ) === true
                 )
                 .map((item: any, index: number) => (

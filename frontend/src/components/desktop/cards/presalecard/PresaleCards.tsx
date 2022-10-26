@@ -37,6 +37,11 @@ const PresaleCards = ({ data }: any) => {
     "0xED3F52c46280ad96485323Fb6a51242cb4CA45F5"
   );
   const [copied, setCopied] = useState(false);
+  console.log(
+    moment(moment(new Date()).format("YYYY-MM-DD")).isAfter(
+      moment(data?.presale_end_date).format("YYYY-MM-DD")
+    )
+  );
   return (
     <Box
       sx={{
@@ -127,10 +132,16 @@ const PresaleCards = ({ data }: any) => {
                 />
               )}
             {data &&
-              moment(new Date()).isBetween(
+              (moment(new Date()).isBetween(
                 new Date(data?.presale_start_date),
                 new Date(data?.presale_end_date)
-              ) === true && (
+              ) === true ||
+                (moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                  moment(data?.presale_start_date).format("YYYY-MM-DD")
+                ) === true &&
+                  moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                    moment(data?.presale_end_date).format("YYYY-MM-DD")
+                  ) === true)) && (
                 <Chip
                   label="Live"
                   color="primary"
@@ -144,8 +155,9 @@ const PresaleCards = ({ data }: any) => {
               )}
 
             {data &&
-              moment(new Date()).isAfter(new Date(data?.presale_end_date)) ===
-                true && (
+              moment(moment(new Date()).format("YYYY-MM-DD")).isAfter(
+                moment(data?.presale_end_date).format("YYYY-MM-DD")
+              ) === true && (
                 <Chip
                   label="Expired"
                   color="primary"
@@ -177,8 +189,8 @@ const PresaleCards = ({ data }: any) => {
           <Stack direction="column" spacing={0} alignItems="center">
             <Stack direction="column" spacing={0} alignItems="center">
               {data &&
-                moment(new Date(data?.presale_start_date)).isAfter(
-                  new Date()
+                moment(moment(new Date()).format("YYYY-MM-DD")).isBefore(
+                  moment(data?.presale_start_date).format("YYYY-MM-DD")
                 ) === true && (
                   <Stack direction="column" spacing={-1.5} alignItems="center">
                     <Typography
@@ -200,7 +212,9 @@ const PresaleCards = ({ data }: any) => {
                       }}
                     >
                       {data && (
-                        <CountDownTimer data={data?.presale_start_date} />
+                        <CountDownTimer
+                          data={moment(data?.presale_start_date)}
+                        />
                       )}
                     </Typography>
                   </Stack>
@@ -240,8 +254,9 @@ const PresaleCards = ({ data }: any) => {
                 )}
 
               {data &&
-                moment(new Date()).isAfter(new Date(data?.presale_end_date)) ===
-                  true && (
+                moment(moment(new Date()).format("YYYY-MM-DD")).isAfter(
+                  moment(data?.presale_end_date).format("YYYY-MM-DD")
+                ) === true && (
                   <Stack
                     direction="column"
                     spacing={0}
@@ -267,6 +282,38 @@ const PresaleCards = ({ data }: any) => {
                       }}
                     >
                       Expired
+                    </Typography>
+                  </Stack>
+                )}
+
+              {data &&
+                moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                  moment(data?.presale_start_date).format("YYYY-MM-DD")
+                ) === true &&
+                moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                  moment(data?.presale_end_date).format("YYYY-MM-DD")
+                ) === true && (
+                  <Stack direction="column" spacing={-1.5} alignItems="center">
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#FFFFFF",
+                        fontSize: "0.85rem",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Presale status
+                    </Typography>
+
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        color: "#03DDCE",
+                        fontSize: ".8rem",
+                        fontWeight: "600",
+                      }}
+                    >
+                      {data && <CountDownTimer data={moment().endOf("day")} />}
                     </Typography>
                   </Stack>
                 )}
