@@ -104,8 +104,13 @@ const PromotePage = ({ windowInnerWidth }: any) => {
                 py={2}
                 height="100%"
                 justifyContent="center"
+                alignItems={{ xs: "center", sm: "center", md: "flex-start" }}
               >
-                <Stack direction="column" spacing={-0.5}>
+                <Stack
+                  direction="column"
+                  spacing={-0.5}
+                  alignItems={{ xs: "center", sm: "center", md: "flex-start" }}
+                >
                   <Typography
                     variant="h6"
                     sx={{
@@ -133,6 +138,7 @@ const PromotePage = ({ windowInnerWidth }: any) => {
                     color: "#FFFFFF",
                     fontSize: "0.85rem",
                     fontWeight: 400,
+                    textAlign: { xs: "center", sm: "center", md: "left" },
                   }}
                 >
                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -145,7 +151,11 @@ const PromotePage = ({ windowInnerWidth }: any) => {
                   mollit anim id est laborum."
                 </Typography>
 
-                <Stack direction="row" spacing={2} justifyContent="flex-start">
+                <Stack
+                  direction={{ xs: "column", sm: "column", md: "row" }}
+                  spacing={2}
+                  justifyContent="flex-start"
+                >
                   <Button
                     variant="contained"
                     sx={{
@@ -228,7 +238,7 @@ const PromotePage = ({ windowInnerWidth }: any) => {
                         color: "#FFFFFF",
 
                         fontWeight: 600,
-                        textAlign: "right",
+                        textAlign: { xs: "center", sm: "center", md: "right" },
                       }}
                     >
                       Why CoinXhigh ?
@@ -240,7 +250,7 @@ const PromotePage = ({ windowInnerWidth }: any) => {
                       color: "#FFFFFF",
                       fontSize: "0.85rem",
                       fontWeight: 400,
-                      textAlign: "right",
+                      textAlign: { xs: "center", sm: "center", md: "right" },
                     }}
                   >
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -275,10 +285,10 @@ const PromotePage = ({ windowInnerWidth }: any) => {
                   justifyContent="center"
                 >
                   <Stack
-                    direction="row"
+                    direction={{ xs: "column", sm: "column", md: "row" }}
                     spacing={2}
                     alignItems="center"
-                    width="50%"
+                    width={{ xs: "100%", sm: "100%", md: "50%" }}
                   >
                     <Divider
                       sx={{
@@ -312,7 +322,7 @@ const PromotePage = ({ windowInnerWidth }: any) => {
                   </Stack>
                 </Stack>
                 <Stack
-                  direction="row"
+                  direction={{ xs: "column", sm: "column", md: "row" }}
                   spacing={2}
                   alignItems="center"
                   justifyContent="center"
@@ -357,10 +367,10 @@ const PromotePage = ({ windowInnerWidth }: any) => {
                   justifyContent="center"
                 >
                   <Stack
-                    direction="row"
+                    direction={{ xs: "column", sm: "column", md: "row" }}
                     spacing={2}
                     alignItems="center"
-                    width="50%"
+                    width={{ xs: "100%", sm: "100%", md: "50%" }}
                   >
                     <Divider
                       sx={{
@@ -399,6 +409,7 @@ const PromotePage = ({ windowInnerWidth }: any) => {
                   alignItems="center"
                   justifyContent="center"
                   mt={4}
+                  mx={2}
                 >
                   <PromoteQuestionCard
                     question="Question 1"

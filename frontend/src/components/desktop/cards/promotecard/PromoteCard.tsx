@@ -9,28 +9,29 @@ const PromoteCard = ({ icon, link, title, path }: any) => {
         borderRadius: 6,
         border: "1px solid #070E28",
       }}
-      py={4}
-      px={4}
+      width={{ xs: "90%", sm: "90%", md: "auto" }}
     >
-      <Stack
-        direction="column"
-        spacing={2}
-        alignItems="center"
-        justifyContent="center"
-      >
-        {icon}
-        <Typography
-          variant="body2"
-          sx={{
-            color: "#FFFFFF",
-            fontSize: "0.85rem",
-            fontWeight: 400,
-            textAlign: "right",
-          }}
+      <Box py={4} px={4}>
+        <Stack
+          direction="column"
+          spacing={2}
+          alignItems="center"
+          justifyContent="center"
         >
-          {title && title}
-        </Typography>
-      </Stack>
+          {icon}
+          <Typography
+            variant="body2"
+            sx={{
+              color: "#FFFFFF",
+              fontSize: "0.85rem",
+              fontWeight: 400,
+              textAlign: "right",
+            }}
+          >
+            {title && title}
+          </Typography>
+        </Stack>
+      </Box>
     </Box>
   );
 };
