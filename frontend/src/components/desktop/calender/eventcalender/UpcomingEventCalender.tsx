@@ -10,6 +10,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Badge, Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { eventsUpcomingRequest } from "../../../../store/action";
+import CircleRoundedIcon from "@mui/icons-material/CircleRounded";
 import moment from "moment";
 
 const darkTheme = createTheme({
@@ -142,9 +143,27 @@ const UpcomingEventCalender = ({ date, setDate, dateHandler }: any) => {
                   <Badge
                     key={day.toString()}
                     overlap="circular"
-                    badgeContent={isSelected ? "🟢" : undefined}
+                    badgeContent={
+                      isSelected ? (
+                        <CircleRoundedIcon
+                          sx={{ color: "#00ff80", fontSize: "1rem" }}
+                        />
+                      ) : undefined
+                    }
                   >
-                    <PickersDay {...DayComponentProps} />
+                    <PickersDay
+                      {...DayComponentProps}
+                      sx={{
+                        "&.MuiPickersDay-root": {
+                          background: "#000723",
+                          color: "#FFFFFF",
+                        },
+                        "&.Mui-selected": {
+                          background: "#000723",
+                          color: "#FFFFFF",
+                        },
+                      }}
+                    />
                   </Badge>
                 </>
               );
