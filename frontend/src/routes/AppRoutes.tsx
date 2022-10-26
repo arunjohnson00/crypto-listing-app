@@ -226,7 +226,7 @@ const AppRoutes = () => {
           path="/promote"
           element={
             <PublicRoutes>
-              <PromotePage windowInnerWidth={windowInnerWidth} />
+              <SupportPage />
             </PublicRoutes>
           }
         />

@@ -33,7 +33,7 @@ import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsS
 import { defaultColor } from "../../../common/common";
 import SocialCounterWithGraphCard from "../../../components/desktop/cards/socialcounterwithgraphcard/SocialCounterWithGraphCard";
 import { useDispatch, useSelector } from "react-redux";
-
+import CountDownTimer from "./countdown/CountDownTimer";
 import FacebookGraphImage from "../../../assets/singlepagecoin/graph/facebook.png";
 import DiscordGraphImage from "../../../assets/singlepagecoin/graph/discord.png";
 import RedditGraphImage from "../../../assets/singlepagecoin/graph/reddit.png";
@@ -108,7 +108,7 @@ const SingleAirdropPage = () => {
 
         {airdropSinglePageDetails &&
           airdropSinglePageDetails?.response === true && (
-            <Grid item xs={12}>
+            <Grid item xs={12} mt={5}>
               <Grid container mb={5}>
                 <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
                   <Stack
@@ -182,7 +182,7 @@ const SingleAirdropPage = () => {
                             spacing={1}
                             pb={2}
                           >
-                            <Stack
+                            {/* <Stack
                               direction="column"
                               alignItems="center"
                               spacing={0}
@@ -195,11 +195,142 @@ const SingleAirdropPage = () => {
                               >
                                 Starts in
                               </Typography>
-                            </Stack>
+                            </Stack> */}
+
+                            {airdropSinglePageDetails &&
+                              moment(
+                                new Date(
+                                  airdropSinglePageDetails?.data?.start_date
+                                )
+                              ).isAfter(new Date()) === true && (
+                                <Stack
+                                  direction="column"
+                                  sx={{ alignItems: "center" }}
+                                  spacing={1}
+                                >
+                                  <Typography
+                                    variant="caption"
+                                    sx={{
+                                      color: "#FFFFFF",
+                                      fontSize: ".85rem",
+                                    }}
+                                  >
+                                    Starts in
+                                  </Typography>
+                                  <Typography
+                                    variant="body2"
+                                    sx={{
+                                      color: "#D1D10E",
+                                      fontWeight: "500",
+                                      fontSize: 13,
+                                    }}
+                                  >
+                                    {airdropSinglePageDetails && (
+                                      <CountDownTimer
+                                        data={
+                                          airdropSinglePageDetails?.data
+                                            ?.start_date
+                                        }
+                                      />
+                                    )}
+                                  </Typography>
+                                </Stack>
+                              )}
+
+                            {airdropSinglePageDetails &&
+                              moment(new Date()).isBetween(
+                                new Date(
+                                  airdropSinglePageDetails?.data?.start_date
+                                ),
+                                new Date(
+                                  moment(
+                                    new Date(
+                                      airdropSinglePageDetails?.data?.start_date
+                                    )
+                                  )
+                                    .add(
+                                      airdropSinglePageDetails?.data
+                                        ?.no_of_days,
+                                      "days"
+                                    )
+                                    .format("DD MMM YYYY")
+                                )
+                              ) === true && (
+                                <Stack
+                                  direction="column"
+                                  sx={{ alignItems: "center" }}
+                                  spacing={1}
+                                >
+                                  <Typography
+                                    variant="caption"
+                                    sx={{
+                                      color: "#FFFFFF",
+                                      fontSize: ".85rem",
+                                    }}
+                                  >
+                                    Ends in
+                                  </Typography>
+                                  <Typography
+                                    variant="body2"
+                                    sx={{
+                                      color: "#D1D10E",
+                                      fontWeight: "500",
+                                      fontSize: 13,
+                                    }}
+                                  >
+                                    {airdropSinglePageDetails && (
+                                      <CountDownTimer
+                                        data={moment(
+                                          new Date(
+                                            airdropSinglePageDetails?.data?.start_date
+                                          )
+                                        ).add(
+                                          airdropSinglePageDetails?.data
+                                            ?.no_of_days,
+                                          "days"
+                                        )}
+                                      />
+                                    )}
+                                  </Typography>
+                                </Stack>
+                              )}
+
+                            {airdropSinglePageDetails &&
+                              moment(new Date()).isAfter(
+                                new Date(
+                                  moment(
+                                    new Date(
+                                      airdropSinglePageDetails?.data?.start_date
+                                    )
+                                  )
+                                    .add(
+                                      airdropSinglePageDetails?.data
+                                        ?.no_of_days,
+                                      "days"
+                                    )
+                                    .format("DD MMM YYYY")
+                                )
+                              ) === true && (
+                                <Stack
+                                  direction="column"
+                                  sx={{ alignItems: "center" }}
+                                  spacing={1}
+                                >
+                                  <Typography
+                                    variant="caption"
+                                    sx={{
+                                      color: "#FFFFFF",
+                                      fontSize: ".85rem",
+                                    }}
+                                  >
+                                    Airdrop is expired
+                                  </Typography>
+                                </Stack>
+                              )}
                           </Stack>
                         </Stack>
 
-                        <Stack
+                        {/* <Stack
                           direction="column"
                           alignItems="center"
                           spacing={1.5}
@@ -293,75 +424,8 @@ const SingleAirdropPage = () => {
                             </Stack>
                           </Box>
 
-                          {/* <Box
-                    sx={{ border: "1px solid #0A0F2E", borderRadius: 4 }}
-                    px={2}
-                    py={1.5}
-                  >
-                    <Stack direction="column" alignItems="center">
-                      <Stack direction="row" alignItems="center" spacing={2}>
-                        <Stack direction="column" alignItems="flex-start">
-                          {" "}
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#03FEB5",
-                              fontSize: "0.65rem",
-                              fontWeight: 400,
-                            }}
-                          >
-                            Presale Mint Price
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#FFFFFF",
-                              fontSize: "0.85rem",
-                              fontWeight: 600,
-                            }}
-                          >
-                            0.9 BNB
-                          </Typography>
-                        </Stack>
-
-                        <Divider
-                          variant="middle"
-                          flexItem
-                          orientation="vertical"
-                          sx={{
-                            borderColor: "#0b1640",
-                            borderRightWidth: 1,
-                            mb: 1,
-                          }}
-                        />
-
-                        <Stack direction="column" alignItems="flex-start">
-                          {" "}
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#03FEB5",
-                              fontSize: "0.65rem",
-                              fontWeight: 400,
-                            }}
-                          >
-                            Presale Mint Start Date
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#FFFFFF",
-                              fontSize: "0.85rem",
-                              fontWeight: 600,
-                            }}
-                          >
-                            0.9 BNB
-                          </Typography>
-                        </Stack>
-                      </Stack>
-                    </Stack>
-                  </Box> */}
-                        </Stack>
+                        
+                        </Stack> */}
                       </Box>
                     </Box>
 
@@ -398,7 +462,7 @@ const SingleAirdropPage = () => {
                               variant="body2"
                               sx={{
                                 color: "#FFFFFF",
-                                fontSize: "1.45rem",
+                                fontSize: "1.2rem",
                                 fontWeight: 700,
                               }}
                             >
@@ -443,7 +507,7 @@ const SingleAirdropPage = () => {
                               variant="body2"
                               sx={{
                                 color: "#FFFFFF",
-                                fontSize: "1.45rem",
+                                fontSize: "1.2rem",
                                 fontWeight: 700,
                               }}
                             >
@@ -488,7 +552,7 @@ const SingleAirdropPage = () => {
                               variant="body2"
                               sx={{
                                 color: "#FFFFFF",
-                                fontSize: "1.45rem",
+                                fontSize: "1.2rem",
                                 fontWeight: 700,
                               }}
                             >
@@ -537,7 +601,7 @@ const SingleAirdropPage = () => {
                               variant="body2"
                               sx={{
                                 color: "#FFFFFF",
-                                fontSize: "1.45rem",
+                                fontSize: "1.2rem",
                                 fontWeight: 700,
                               }}
                             >
@@ -784,6 +848,7 @@ const SingleAirdropPage = () => {
                           }}
                         >
                           {airdropSinglePageDetails &&
+                            airdropSinglePageDetails?.data?.details !== null &&
                             parse(airdropSinglePageDetails?.data?.details)}
                         </Typography>
                       </Stack>

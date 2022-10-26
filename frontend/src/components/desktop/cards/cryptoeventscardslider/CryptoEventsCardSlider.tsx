@@ -83,36 +83,7 @@ const CryptoEventsCardSlider = ({ data, variant }: any) => {
                     >
                       {data && data?.title}.
                     </Typography>
-                    {data && data?.is_online === 2 && (
-                      <Stack direction="row" alignItems="center" spacing={0.3}>
-                        <LocationOnIcon
-                          sx={{ color: "#FBFE00", fontSize: ".9rem" }}
-                        />
-                        <Stack direction="column" alignItems="flex-start">
-                          {" "}
-                          {/* <Typography
-                    variant="body2"
-                    sx={{
-                      color: "#535662",
-                      fontSize: "0.65rem",
-                      fontWeight: 600,
-                    }}
-                  >
-                    Venue
-                  </Typography> */}
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#FFFFFF",
-                              fontSize: "0.65rem",
-                              fontWeight: 500,
-                            }}
-                          >
-                            {data && data?.venue !== null ? data?.venue : "NA"}
-                          </Typography>
-                        </Stack>
-                      </Stack>
-                    )}
+
                     <Typography
                       sx={{
                         color: "#FFFFFF",
@@ -147,11 +118,50 @@ const CryptoEventsCardSlider = ({ data, variant }: any) => {
                 spacing={0.8}
                 width="100%"
                 sx={{
-                  alignItems: "flex-end",
+                  alignItems: "center",
                   justifyContent:
-                    variant === "ads" ? "space-between" : "flex-end",
+                    variant === "ads"
+                      ? "space-between"
+                      : data?.is_online === 2
+                      ? "space-between"
+                      : "flex-end",
                 }}
               >
+                {data && data?.is_online === 2 && (
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    spacing={0.3}
+                    ml={8}
+                  >
+                    <LocationOnIcon
+                      sx={{ color: "#FBFE00", fontSize: ".9rem" }}
+                    />
+                    <Stack direction="column" alignItems="flex-start">
+                      {" "}
+                      {/* <Typography
+                    variant="body2"
+                    sx={{
+                      color: "#535662",
+                      fontSize: "0.65rem",
+                      fontWeight: 600,
+                    }}
+                  >
+                    Venue
+                  </Typography> */}
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#FFFFFF",
+                          fontSize: "0.65rem",
+                          fontWeight: 500,
+                        }}
+                      >
+                        {data && data?.venue !== null ? data?.venue : "NA"}
+                      </Typography>
+                    </Stack>
+                  </Stack>
+                )}
                 {/* {variant === "ads" && (
                   <Button
                     variant="contained"
