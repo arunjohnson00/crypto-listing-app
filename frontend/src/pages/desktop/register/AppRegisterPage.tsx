@@ -10,6 +10,7 @@ import {
   Avatar,
 } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
+import validator from "validator";
 import "react-toastify/dist/ReactToastify.css";
 import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +44,11 @@ const AppRegisterPage = () => {
   const [showPassword, setShowPassword] = useState<any>({
     showPassword: false,
   });
-
+  const [validation, setValidation] = useState<any>({});
+  const checkIfKeyExist = (objectName: any, keyName: any) => {
+    let keyExist = objectName[keyName]?.toString();
+    return keyExist;
+  };
   const handleClickShowPassword = () => {
     setShowPassword({
       ...showPassword,
@@ -92,32 +97,33 @@ const AppRegisterPage = () => {
       }, 2000);
     };
     const errorHandler = (err: any) => {
-      toast.warn(
-        <Box>
-          <Stack direction="row" spacing={2} alignItems="center">
-            <CancelRoundedIcon sx={{ color: "#ff3722", fontSize: 50 }} />
-            <Typography sx={{ fontSize: ".85rem" }}>
-              {JSON.stringify(err?.error?.message?.response?.data)}
-            </Typography>
-          </Stack>
-        </Box>,
-        {
-          icon: false,
-          className: "toast-error-container toast-error-container-after",
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        }
-      );
+      setValidation(err?.error?.message?.response?.data);
+      // toast.warn(
+      //   <Box>
+      //     <Stack direction="row" spacing={2} alignItems="center">
+      //       <CancelRoundedIcon sx={{ color: "#ff3722", fontSize: 50 }} />
+      //       <Typography sx={{ fontSize: ".85rem" }}>
+      //         {JSON.stringify(err?.error?.message?.response?.data)}
+      //       </Typography>
+      //     </Stack>
+      //   </Box>,
+      //   {
+      //     icon: false,
+      //     className: "toast-error-container toast-error-container-after",
+      //     position: "top-right",
+      //     autoClose: 5000,
+      //     hideProgressBar: true,
+      //     closeOnClick: true,
+      //     pauseOnHover: true,
+      //     draggable: true,
+      //     progress: undefined,
+      //   }
+      // );
     };
 
     dispatch(userRegisterRequest(formData, successHandler, errorHandler));
   };
-
+  console.log(validation);
   return (
     <Fragment>
       <Helmet>
@@ -147,10 +153,10 @@ const AppRegisterPage = () => {
       </Helmet>
       <Grid container>
         {" "}
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <LatestNewsScroll />
-        </Grid>
-        <Grid item xs={12}>
+        </Grid> */}
+        <Grid item xs={12} mt={3}>
           <Stack
             direction="column"
             spacing={3}
@@ -168,8 +174,16 @@ const AppRegisterPage = () => {
                   pt={3}
                   mb={18}
                 >
-                  <Grid container spacing={3} sx={{ alignItems: "center" }}>
-                    <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                  <Grid container spacing={0} sx={{ alignItems: "center" }}>
+                    <Grid
+                      item
+                      xs={12}
+                      sm={12}
+                      md={12}
+                      lg={12}
+                      xl={12}
+                      px={{ xs: 0, sm: 0, md: 4 }}
+                    >
                       <Stack
                         direction="column"
                         sx={{ alignItems: "center" }}
@@ -199,7 +213,7 @@ const AppRegisterPage = () => {
                       xl={12}
                       sx={{ width: "100%" }}
                       px={{ xs: 0, sm: 0, md: 8 }}
-                      py={{ xs: 0, sm: 0, md: 1 }}
+                      py={{ xs: 2, sm: 2, md: 3 }}
                     >
                       <form id="register">
                         <Box
@@ -282,6 +296,20 @@ const AppRegisterPage = () => {
                                   },
                                 }}
                               />
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  color: "#e21f00",
+                                  fontWeight: 400,
+                                  fontSize: ".85rem",
+                                }}
+                              >
+                                {validation &&
+                                  validation !== "" &&
+                                  validation !== undefined &&
+                                  validation !== null &&
+                                  checkIfKeyExist(validation, "name")}
+                              </Typography>
                             </Stack>
                             <Stack
                               direction="column"
@@ -347,6 +375,20 @@ const AppRegisterPage = () => {
                                   },
                                 }}
                               />
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  color: "#e21f00",
+                                  fontWeight: 400,
+                                  fontSize: ".85rem",
+                                }}
+                              >
+                                {validation &&
+                                  validation !== "" &&
+                                  validation !== undefined &&
+                                  validation !== null &&
+                                  checkIfKeyExist(validation, "email")}
+                              </Typography>
                             </Stack>
                             <Stack
                               direction="column"
@@ -441,6 +483,20 @@ const AppRegisterPage = () => {
                                   },
                                 }}
                               />
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  color: "#e21f00",
+                                  fontWeight: 400,
+                                  fontSize: ".85rem",
+                                }}
+                              >
+                                {validation &&
+                                  validation !== "" &&
+                                  validation !== undefined &&
+                                  validation !== null &&
+                                  checkIfKeyExist(validation, "password")}
+                              </Typography>
                             </Stack>
                             <Stack
                               direction="column"
@@ -535,7 +591,20 @@ const AppRegisterPage = () => {
                                   },
                                 }}
                               />
-
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  color: "#e21f00",
+                                  fontWeight: 400,
+                                  fontSize: ".85rem",
+                                }}
+                              >
+                                {validation &&
+                                  validation !== "" &&
+                                  validation !== undefined &&
+                                  validation !== null &&
+                                  checkIfKeyExist(validation, "password")}
+                              </Typography>
                               <FormGroup>
                                 <FormControlLabel
                                   sx={{

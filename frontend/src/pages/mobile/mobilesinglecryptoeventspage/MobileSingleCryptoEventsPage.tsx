@@ -59,13 +59,13 @@ const MobileSingleCryptoEventsPage = () => {
   return (
     <Fragment>
       <Grid container rowSpacing={3}>
-        <Grid xs={12} sx={{ paddingTop: 3 }}>
+        {/* <Grid xs={12} sx={{ paddingTop: 3 }}>
           <MobileLatestNewsCardScrollTop />
-        </Grid>
+        </Grid> */}
 
-        <Grid xs={12} sx={{ paddingTop: 0 }}>
+        {/* <Grid xs={12} sx={{ paddingTop: 0 }} mt={3}>
           <MobileCoinSlider />
-        </Grid>
+        </Grid> */}
         {/* <Grid
           xs={12}
           sx={{
@@ -91,7 +91,7 @@ const MobileSingleCryptoEventsPage = () => {
             alignItems: "center",
           }}
         >
-          <Grid xs={12} mt={2}>
+          <Grid xs={12} mt={3}>
             <MobileBreadCrumbs
               data={singlePageData && singlePageData?.data}
               home="Home"

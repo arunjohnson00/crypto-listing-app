@@ -80,7 +80,7 @@ const OnlineEventsEdit = () => {
     telegram_url: "",
     reddit_url: "",
     is_online: 1,
-    status: "",
+
     proof: "",
     logo: "",
     has_many_videos: "",

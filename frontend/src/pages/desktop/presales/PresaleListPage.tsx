@@ -188,7 +188,7 @@ const PresaleListPage = ({ windowInnerWidth }: any) => {
             <BreadCrumbs
               // data={airdropSinglePageDetails && airdropSinglePageDetails?.data}
               home="Home"
-              path="Presale"
+              path="Presales"
             />
           </Grid>
           <Grid item xs={12} pt={3}>

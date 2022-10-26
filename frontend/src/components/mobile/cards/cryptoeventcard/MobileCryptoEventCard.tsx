@@ -9,6 +9,7 @@ import {
   Dialog,
 } from "@mui/material";
 import moment from "moment";
+import parse from "html-react-parser";
 import React, { Fragment, useState } from "react";
 import HighlightOffSharpIcon from "@mui/icons-material/HighlightOffSharp";
 import { Link } from "react-router-dom";
@@ -121,7 +122,7 @@ const MobileCryptoEventCard = ({ data }: any) => {
               textAlign: "center",
             }}
           >
-            {data && data?.description}
+            {data && parse(data?.description)}
           </Typography>
         </Stack>
 

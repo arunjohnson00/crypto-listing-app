@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import moment from "moment";
+import parse from "html-react-parser";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -21,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { eventsSinglePageRequest } from "../../../store/action";
 import { useLocation, useNavigate } from "react-router-dom";
 import CountDownTimer from "./countdown/CountDownTimer";
+import { Link } from "react-router-dom";
 
 const SingleCryptoEventsPage = () => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
@@ -49,10 +51,10 @@ const SingleCryptoEventsPage = () => {
   return (
     <Fragment>
       <Grid container rowSpacing={3}>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <LatestNewsScroll />
-        </Grid>
-        <Grid item xs={12}>
+        </Grid> */}
+        <Grid item xs={12} mt={3}>
           <BreadCrumbs
             data={singlePageData && singlePageData?.data}
             home="Home"
@@ -76,10 +78,40 @@ const SingleCryptoEventsPage = () => {
                     textTransform: "capitalize",
                   }}
                 >
+                  {singlePageData && singlePageData?.data?.coin_name} -{" "}
                   {singlePageData && singlePageData?.data?.title}
                 </Typography>
+                <Link
+                  to={`/coin/${
+                    singlePageData && singlePageData?.data?.coin_slug
+                  }`}
+                  target="_blank"
+                  style={{ textDecoration: "none" }}
+                >
+                  <Button
+                    variant="contained"
+                    sx={{
+                      backgroundColor: "#0E0A2E",
+                      borderRadius: 10,
+                      px: 3,
+                      height: 35,
+                      fontSize: ".8rem",
+                      textTransform: "capitalize",
+                      "&:hover": {
+                        backgroundColor: "#18133f",
+                      },
+                    }}
+                  >
+                    View Coin
+                  </Button>
+                </Link>
               </Stack>
-              <Stack direction="column" alignItems="flex-start" spacing={3}>
+              <Stack
+                direction="column"
+                alignItems="flex-start"
+                spacing={3}
+                width="100%"
+              >
                 <Stack direction="row" alignItems="center" spacing={3.5}>
                   <Stack direction="row" alignItems="center" spacing={1.5}>
                     <CalendarMonthIcon
@@ -240,16 +272,18 @@ const SingleCryptoEventsPage = () => {
                       </Stack>
                     </Stack>
                   )}
-                  <Divider
-                    variant="middle"
-                    flexItem
-                    orientation="vertical"
-                    sx={{
-                      borderColor: "#0b1640",
-                      borderRightWidth: 1,
-                      mb: 1,
-                    }}
-                  />
+                  {singlePageData && singlePageData?.data?.is_online === 2 && (
+                    <Divider
+                      variant="middle"
+                      flexItem
+                      orientation="vertical"
+                      sx={{
+                        borderColor: "#0b1640",
+                        borderRightWidth: 1,
+                        mb: 1,
+                      }}
+                    />
+                  )}
 
                   <Stack direction="row" alignItems="center" spacing={1.5}>
                     <WidgetsRoundedIcon
@@ -282,6 +316,48 @@ const SingleCryptoEventsPage = () => {
                       </Typography>
                     </Stack>
                   </Stack>
+                  <Divider
+                    variant="middle"
+                    flexItem
+                    orientation="vertical"
+                    sx={{
+                      borderColor: "#0b1640",
+                      borderRightWidth: 1,
+                      mb: 1,
+                    }}
+                  />
+
+                  <Stack direction="row" alignItems="center" spacing={1.5}>
+                    {/* <WidgetsRoundedIcon
+                      sx={{ color: "#FBFE00", fontSize: "1.9rem" }}
+                    /> */}
+                    <Stack direction="column" alignItems="flex-start">
+                      {" "}
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#535662",
+                          fontSize: "0.65rem",
+                          fontWeight: 600,
+                        }}
+                      >
+                        Price
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#FFFFFF",
+                          fontSize: "0.85rem",
+                          fontWeight: 600,
+                        }}
+                      >
+                        {singlePageData &&
+                        singlePageData?.data?.coin_price !== null
+                          ? singlePageData?.data?.coin_price?.toLocaleString()
+                          : "NA"}
+                      </Typography>
+                    </Stack>
+                  </Stack>
                 </Stack>
 
                 <Divider
@@ -295,32 +371,84 @@ const SingleCryptoEventsPage = () => {
                   }}
                 />
                 <Stack direction="row" alignItems="center" spacing={3.5}>
-                  {singlePageData &&
-                    moment(new Date(singlePageData?.data?.event_date)).isAfter(
-                      new Date()
-                    ) === true && (
-                      <Stack direction="column" spacing={1.5}>
-                        <Typography
-                          variant="caption"
-                          sx={{
-                            color: "#535662",
-                            fontSize: "0.65rem",
-                            fontWeight: 600,
-                          }}
-                        >
-                          Starts in
-                        </Typography>
-                        <Stack
-                          direction="row"
-                          alignItems="center"
-                          spacing={3.5}
-                        >
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    spacing={3.5}
+                    minWidth={280}
+                  >
+                    {singlePageData &&
+                      moment(
+                        new Date(singlePageData?.data?.event_date)
+                      ).isAfter(new Date()) === true && (
+                        <Stack direction="column" spacing={1.5}>
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: "#535662",
+                              fontSize: "0.65rem",
+                              fontWeight: 600,
+                            }}
+                          >
+                            Starts in
+                          </Typography>
                           <Stack
                             direction="row"
                             alignItems="center"
-                            spacing={1.5}
+                            spacing={3.5}
                           >
-                            {
+                            <Stack
+                              direction="row"
+                              alignItems="center"
+                              spacing={1.5}
+                            >
+                              {
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    color: "#FFFFFF",
+                                    fontSize: "0.9rem",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  {singlePageData && (
+                                    <CountDownTimer
+                                      data={singlePageData?.data?.event_date}
+                                    />
+                                  )}
+                                </Typography>
+                              }
+                            </Stack>
+                          </Stack>
+                        </Stack>
+                      )}
+
+                    {singlePageData &&
+                      moment(new Date()).isBetween(
+                        new Date(singlePageData?.data?.event_date),
+                        new Date(singlePageData?.data?.end_date)
+                      ) === true && (
+                        <Stack direction="column" spacing={1.5}>
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: "#535662",
+                              fontSize: "0.65rem",
+                              fontWeight: 600,
+                            }}
+                          >
+                            Ends in
+                          </Typography>
+                          <Stack
+                            direction="row"
+                            alignItems="center"
+                            spacing={3.5}
+                          >
+                            <Stack
+                              direction="row"
+                              alignItems="center"
+                              spacing={1.5}
+                            >
                               <Typography
                                 variant="body2"
                                 sx={{
@@ -331,101 +459,55 @@ const SingleCryptoEventsPage = () => {
                               >
                                 {singlePageData && (
                                   <CountDownTimer
-                                    data={singlePageData?.data?.event_date}
+                                    data={singlePageData?.data?.end_date}
                                   />
                                 )}
                               </Typography>
-                            }
+                            </Stack>
                           </Stack>
                         </Stack>
-                      </Stack>
-                    )}
+                      )}
 
-                  {singlePageData &&
-                    moment(new Date()).isBetween(
-                      new Date(singlePageData?.data?.event_date),
-                      new Date(singlePageData?.data?.end_date)
-                    ) === true && (
-                      <Stack direction="column" spacing={1.5}>
-                        <Typography
-                          variant="caption"
-                          sx={{
-                            color: "#535662",
-                            fontSize: "0.65rem",
-                            fontWeight: 600,
-                          }}
-                        >
-                          Ends in
-                        </Typography>
-                        <Stack
-                          direction="row"
-                          alignItems="center"
-                          spacing={3.5}
-                        >
+                    {singlePageData &&
+                      moment(new Date()).isAfter(
+                        new Date(singlePageData?.data?.end_date)
+                      ) === true && (
+                        <Stack direction="column" spacing={1.5}>
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: "#535662",
+                              fontSize: "0.65rem",
+                              fontWeight: 600,
+                            }}
+                          >
+                            Status
+                          </Typography>
                           <Stack
                             direction="row"
                             alignItems="center"
-                            spacing={1.5}
+                            spacing={3.5}
                           >
-                            <Typography
-                              variant="body2"
-                              sx={{
-                                color: "#FFFFFF",
-                                fontSize: "0.9rem",
-                                fontWeight: 600,
-                              }}
+                            <Stack
+                              direction="row"
+                              alignItems="center"
+                              spacing={1.5}
                             >
-                              {singlePageData && (
-                                <CountDownTimer
-                                  data={singlePageData?.data?.end_date}
-                                />
-                              )}
-                            </Typography>
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  color: "#FFFFFF",
+                                  fontSize: "0.9rem",
+                                  fontWeight: 600,
+                                }}
+                              >
+                                Event Expired
+                              </Typography>
+                            </Stack>
                           </Stack>
                         </Stack>
-                      </Stack>
-                    )}
-
-                  {singlePageData &&
-                    moment(new Date()).isAfter(
-                      new Date(singlePageData?.data?.end_date)
-                    ) === true && (
-                      <Stack direction="column" spacing={1.5}>
-                        <Typography
-                          variant="caption"
-                          sx={{
-                            color: "#535662",
-                            fontSize: "0.65rem",
-                            fontWeight: 600,
-                          }}
-                        >
-                          Status
-                        </Typography>
-                        <Stack
-                          direction="row"
-                          alignItems="center"
-                          spacing={3.5}
-                        >
-                          <Stack
-                            direction="row"
-                            alignItems="center"
-                            spacing={1.5}
-                          >
-                            <Typography
-                              variant="body2"
-                              sx={{
-                                color: "#FFFFFF",
-                                fontSize: "0.9rem",
-                                fontWeight: 600,
-                              }}
-                            >
-                              Event Expired
-                            </Typography>
-                          </Stack>
-                        </Stack>
-                      </Stack>
-                    )}
-
+                      )}
+                  </Stack>
                   <Divider
                     variant="middle"
                     flexItem
@@ -566,11 +648,16 @@ const SingleCryptoEventsPage = () => {
                     mb: 1,
                   }}
                 />
-                <Stack direction="row" spacing={3}>
+                <Stack direction="row" spacing={3} width="100%">
                   <Stack
                     direction="column"
                     spacing={1.5}
-                    maxWidth="50%"
+                    maxWidth={
+                      singlePageData &&
+                      singlePageData?.data?.has_many_videos?.length > 0
+                        ? "50%"
+                        : "100%"
+                    }
                     minWidth="50%"
                     flexGrow={1}
                   >
@@ -592,51 +679,58 @@ const SingleCryptoEventsPage = () => {
                         fontWeight: 400,
                       }}
                     >
-                      {singlePageData && singlePageData?.data?.description}
+                      {singlePageData &&
+                        parse(singlePageData?.data?.description)}
                     </Typography>
                   </Stack>
-                  <Divider
-                    variant="middle"
-                    flexItem
-                    orientation="vertical"
-                    sx={{
-                      borderColor: "#0b1640",
-                      borderRightWidth: 1,
-                    }}
-                  />
-                  <Stack direction="column" spacing={1.5}>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: "#7F8287",
-                        fontSize: "0.9rem",
-                        fontWeight: 600,
-                      }}
-                    >
-                      Videos
-                    </Typography>
+                  {singlePageData &&
+                    singlePageData?.data?.has_many_videos?.length > 0 && (
+                      <Divider
+                        variant="middle"
+                        flexItem
+                        orientation="vertical"
+                        sx={{
+                          borderColor: "#0b1640",
+                          borderRightWidth: 1,
+                        }}
+                      />
+                    )}
+                  {singlePageData &&
+                    singlePageData?.data?.has_many_videos?.length > 0 && (
+                      <Stack direction="column" spacing={1.5}>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#7F8287",
+                            fontSize: "0.9rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          Videos
+                        </Typography>
 
-                    <Stack direction="column" spacing={1.5}>
-                      <Stack
-                        direction="row"
-                        rowGap={2}
-                        columnGap={2}
-                        flexWrap="wrap"
-                      >
-                        {singlePageData &&
-                          singlePageData?.data?.has_many_videos?.map(
-                            (item: any, index: number) => (
-                              <ReactPlayer
-                                key={index}
-                                url={item?.youtube_link}
-                                width="auto"
-                                height={150}
-                              />
-                            )
-                          )}
+                        <Stack direction="column" spacing={1.5}>
+                          <Stack
+                            direction="row"
+                            rowGap={2}
+                            columnGap={2}
+                            flexWrap="wrap"
+                          >
+                            {singlePageData &&
+                              singlePageData?.data?.has_many_videos?.map(
+                                (item: any, index: number) => (
+                                  <ReactPlayer
+                                    key={index}
+                                    url={item?.youtube_link}
+                                    width="auto"
+                                    height={150}
+                                  />
+                                )
+                              )}
+                          </Stack>
+                        </Stack>
                       </Stack>
-                    </Stack>
-                  </Stack>
+                    )}
                 </Stack>
               </Stack>
             </Stack>

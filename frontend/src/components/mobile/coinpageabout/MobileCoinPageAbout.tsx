@@ -10,6 +10,7 @@ import {
   Divider,
   CardMedia,
 } from "@mui/material";
+import parse from "html-react-parser";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Iframe from "react-iframe";
@@ -333,7 +334,7 @@ const MobileCoinPageAbout = () => {
             </Typography>
 
             <Typography sx={{ color: "#FFFFF5", fontSize: ".85rem" }}>
-              {coinAboutBlock && coinAboutBlock[0]?.second_pragraph}
+              {coinAboutBlock && parse(coinAboutBlock[0]?.second_pragraph)}
             </Typography>
           </Stack>
         </Grid>

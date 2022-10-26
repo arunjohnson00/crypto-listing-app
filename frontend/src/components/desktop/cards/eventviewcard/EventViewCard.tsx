@@ -9,6 +9,7 @@ import {
   IconButton,
   Button,
 } from "@mui/material";
+import parse from "html-react-parser";
 import Checkbox from "@mui/material/Checkbox";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
@@ -396,7 +397,7 @@ const EventViewCard = ({ viewcoin, data }: any) => {
                     fontWeight: 400,
                   }}
                 >
-                  {data && data?.description}
+                  {data && parse(data?.description)}
                 </Typography>
               </Stack>
             </Stack>

@@ -11,6 +11,7 @@ import {
 import Rating from "@mui/material/Rating";
 import { styled } from "@mui/material/styles";
 import moment from "moment";
+import parse from "html-react-parser";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
@@ -87,9 +88,12 @@ const MobileCryptoEventsCardSlider = ({ data, variant }: any) => {
                         fontWeight: 400,
                       }}
                     >
-                      {data && data?.description?.length >= 70
-                        ? data && data?.description.slice(0, 70) + "..."
-                        : data && data?.description}
+                      {data &&
+                      parse(data?.description)?.toString()?.length >= 70
+                        ? parse(data && data?.description)
+                            .toString()
+                            .slice(0, 70) + "..."
+                        : parse(data && data?.description)}
                     </Typography>
                     <Typography
                       sx={{

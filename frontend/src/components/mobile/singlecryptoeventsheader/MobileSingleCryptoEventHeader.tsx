@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import HighlightOffSharpIcon from "@mui/icons-material/HighlightOffSharp";
 import moment from "moment";
+import parse from "html-react-parser";
 import CountDownTimer from "./countdown/CountDownTimer";
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileSingleCryptoEventHeader = ({ data }: any) => {
@@ -244,7 +245,7 @@ const MobileSingleCryptoEventHeader = ({ data }: any) => {
                 textAlign: "left",
               }}
             >
-              {data && data?.description}
+              {data && parse(data?.description)}
             </Typography>
           </Stack>
         </Stack>

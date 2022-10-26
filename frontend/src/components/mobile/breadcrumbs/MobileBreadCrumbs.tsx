@@ -20,7 +20,10 @@ const MobileBreadCrumbs = ({ home, path, data }: any) => {
         <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           {home && home}
         </Link>
-        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+        <Link
+          to={`/${path && path?.toLowerCase()?.replace(/ /g, "-")}`}
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
           {path && path}
         </Link>
         <Link

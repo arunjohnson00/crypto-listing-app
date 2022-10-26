@@ -9,6 +9,7 @@ import {
   Box,
   Avatar,
 } from "@mui/material";
+import validator from "validator";
 import { useTheme } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
@@ -40,7 +41,7 @@ const AppLoginPage = () => {
   const [showPassword, setShowPassword] = useState<any>({
     showPassword: false,
   });
-
+  const [validation, setValidation] = useState<any>({});
   const [remember, setRemember] = useState<any>(true);
 
   const handleClickShowPassword = () => {
@@ -61,7 +62,10 @@ const AppLoginPage = () => {
   const rememberMeHandler = () => {
     setRemember(!remember);
   };
-
+  const checkIfKeyExist = (objectName: any, keyName: any) => {
+    let keyExist = objectName[keyName]?.toString();
+    return keyExist;
+  };
   const loginHandler = () => {
     const formData = new FormData(document.querySelector("#login") as any);
     const successHandler = (res: any) => {
@@ -111,27 +115,28 @@ const AppLoginPage = () => {
         : navigate("/user-dashboard");
     };
     const errorHandler = (err: any) => {
-      toast.warn(
-        <Box>
-          <Stack direction="row" spacing={2} alignItems="center">
-            <CancelRoundedIcon sx={{ color: "#ff3722", fontSize: 50 }} />
-            <Typography sx={{ fontSize: ".85rem" }}>
-              {JSON.stringify(err?.error?.message?.response?.data)}
-            </Typography>
-          </Stack>
-        </Box>,
-        {
-          icon: false,
-          className: "toast-error-container toast-error-container-after",
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        }
-      );
+      setValidation(err?.error?.message?.response?.data);
+      // toast.warn(
+      //   <Box>
+      //     <Stack direction="row" spacing={2} alignItems="center">
+      //       <CancelRoundedIcon sx={{ color: "#ff3722", fontSize: 50 }} />
+      //       <Typography sx={{ fontSize: ".85rem" }}>
+      //         {JSON.stringify(err?.error?.message?.response?.data)}
+      //       </Typography>
+      //     </Stack>
+      //   </Box>,
+      //   {
+      //     icon: false,
+      //     className: "toast-error-container toast-error-container-after",
+      //     position: "top-right",
+      //     autoClose: 5000,
+      //     hideProgressBar: true,
+      //     closeOnClick: true,
+      //     pauseOnHover: true,
+      //     draggable: true,
+      //     progress: undefined,
+      //   }
+      // );
     };
 
     dispatch(userLoginRequest(formData, successHandler, errorHandler));
@@ -142,9 +147,7 @@ const AppLoginPage = () => {
   useEffect(() => {
     auth && navigate("/user-dashboard");
   }, []);
-
-  console.log(location?.state?.redirection);
-
+  console.log(checkIfKeyExist(validation, "password"));
   return (
     <Fragment>
       <Helmet>
@@ -174,10 +177,10 @@ const AppLoginPage = () => {
       </Helmet>
       <Grid container>
         {" "}
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <LatestNewsScroll />
-        </Grid>
-        <Grid item xs={12}>
+        </Grid> */}
+        <Grid item xs={12} mt={3}>
           <Grid container pt={0}>
             <Grid xs={12} sm={12} md={2} lg={12} xl={12} pt={3}>
               <Stack
@@ -209,6 +212,7 @@ const AppLoginPage = () => {
                     </Grid>
 
                     <Grid
+                      item
                       xs={12}
                       sm={12}
                       md={12}
@@ -303,6 +307,20 @@ const AppLoginPage = () => {
                                   },
                                 }}
                               />
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  color: "#e21f00",
+                                  fontWeight: 400,
+                                  fontSize: ".85rem",
+                                }}
+                              >
+                                {validation &&
+                                  validation !== "" &&
+                                  validation !== undefined &&
+                                  validation !== null &&
+                                  checkIfKeyExist(validation, "email")}
+                              </Typography>
                             </Stack>
                             <Stack
                               direction="column"
@@ -418,6 +436,20 @@ const AppLoginPage = () => {
                                   label="Remember me"
                                 />
                               </FormGroup>
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  color: "#e21f00",
+                                  fontWeight: 400,
+                                  fontSize: ".85rem",
+                                }}
+                              >
+                                {validation &&
+                                  validation !== "" &&
+                                  validation !== undefined &&
+                                  validation !== null &&
+                                  checkIfKeyExist(validation, "password")}
+                              </Typography>
                             </Stack>
 
                             <Button

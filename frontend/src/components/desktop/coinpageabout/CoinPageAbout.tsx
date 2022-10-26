@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Iframe from "react-iframe";
 import moment from "moment";
+import parse from "html-react-parser";
 import {
   coinAboutBlockRequest,
   coinPriceGraphBlockRequest,
@@ -331,8 +332,8 @@ const CoinPageAbout = () => {
               </a>{" "}
             </Typography>
 
-            <Typography sx={{ color: "#FFFFF5", fontSize: ".85rem" }}>
-              {coinAboutBlock && coinAboutBlock[0]?.second_pragraph}
+            <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
+              {coinAboutBlock && parse(coinAboutBlock[0]?.second_pragraph)}
             </Typography>
           </Stack>
         </Grid>

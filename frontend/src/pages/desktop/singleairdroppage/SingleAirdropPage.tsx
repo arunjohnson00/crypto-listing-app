@@ -12,6 +12,7 @@ import {
   Tooltip,
   IconButton,
 } from "@mui/material";
+import parse from "html-react-parser";
 import moment from "moment";
 import { useTheme } from "@mui/material/styles";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -93,15 +94,15 @@ const SingleAirdropPage = () => {
   return (
     <Fragment>
       <Grid container rowSpacing={2} columnSpacing={0}>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <LatestNewsScroll />
-        </Grid>
+        </Grid> */}
 
-        <Grid item xs={12}>
+        <Grid item xs={12} mt={3}>
           <BreadCrumbs
             data={airdropSinglePageDetails && airdropSinglePageDetails?.data}
             home="Home"
-            path="Airdrop"
+            path="Airdrops"
           />
         </Grid>
 
@@ -782,7 +783,8 @@ const SingleAirdropPage = () => {
                             fontWeight: 400,
                           }}
                         >
-                          text
+                          {airdropSinglePageDetails &&
+                            parse(airdropSinglePageDetails?.data?.details)}
                         </Typography>
                       </Stack>
                     </Stack>

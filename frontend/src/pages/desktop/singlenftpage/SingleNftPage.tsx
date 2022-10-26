@@ -15,6 +15,7 @@ import {
 import moment from "moment";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import { useTheme } from "@mui/material/styles";
+import parse from "html-react-parser";
 import { ToastContainer, toast } from "react-toastify";
 import ReCAPTCHA from "react-google-recaptcha";
 import "react-toastify/dist/ReactToastify.css";
@@ -152,10 +153,10 @@ const SingleNftPage = () => {
   return (
     <Fragment>
       <Grid container rowSpacing={5} columnSpacing={0}>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <LatestNewsScroll />
-        </Grid>
-        <Grid item xs={12}>
+        </Grid> */}
+        <Grid item xs={12} mt={3}>
           <BreadCrumbs
             data={nftSinglePageDetails && nftSinglePageDetails?.data}
             home="Home"
@@ -1344,7 +1345,7 @@ const SingleNftPage = () => {
                       }}
                     >
                       {nftSinglePageDetails &&
-                        nftSinglePageDetails?.data?.description}
+                        parse(nftSinglePageDetails?.data?.description)}
                     </Typography>
                   </Stack>
                 </Stack>

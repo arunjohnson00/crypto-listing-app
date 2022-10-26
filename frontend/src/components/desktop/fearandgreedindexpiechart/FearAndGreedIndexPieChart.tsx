@@ -23,6 +23,7 @@ const FearAndGreedIndexPieChart = ({ data, filterValue }: any) => {
     data.filter((item: any) => item?.value_classification === "Extreme Fear");
   const fear =
     data && data.filter((item: any) => item?.value_classification === "Fear");
+
   const neutral =
     data &&
     data.filter((item: any) => item?.value_classification === "Neutral");
@@ -172,41 +173,49 @@ const FearAndGreedIndexPieChart = ({ data, filterValue }: any) => {
               <Typography
                 variant="h6"
                 sx={{
-                  color: extremeFear
-                    ? "#EF2828"
-                    : fear
-                    ? "#EC840E"
-                    : neutral
-                    ? "#A8CE08"
-                    : greed
-                    ? "#1DAF03"
-                    : extremeGreed && "#008E49",
+                  color:
+                    data && data[0]?.value_classification === "Extreme Fear"
+                      ? "#EF2828"
+                      : data && data[0]?.value_classification === "Fear"
+                      ? "#EC840E"
+                      : data && data[0]?.value_classification === "Neutral"
+                      ? "#A8CE08"
+                      : data && data[0]?.value_classification === "Greed"
+                      ? "#1DAF03"
+                      : data &&
+                        data[0]?.value_classification === "Extreme Greed" &&
+                        "#008E49",
                   fontWeight: 600,
                 }}
               >
-                {extremeFear
+                {data && data[0]?.value_classification === "Extreme Fear"
                   ? "Extreme Fear"
-                  : fear
+                  : data && data[0]?.value_classification === "Fear"
                   ? "Fear"
-                  : neutral
+                  : data && data[0]?.value_classification === "Neutral"
                   ? "Neutral"
-                  : greed
+                  : data && data[0]?.value_classification === "Greed"
                   ? "Greed"
-                  : extremeGreed && "Extreme Greed"}
+                  : data &&
+                    data[0]?.value_classification === "Extreme Greed" &&
+                    "Extreme Greed"}
               </Typography>
             </Stack>
             <Typography
               variant="h6"
               sx={{
-                color: extremeFear
-                  ? "#EF2828"
-                  : fear
-                  ? "#EC840E"
-                  : neutral
-                  ? "#A8CE08"
-                  : greed
-                  ? "#1DAF03"
-                  : extremeGreed && "#008E49",
+                color:
+                  data && data[0]?.value_classification === "Extreme Fear"
+                    ? "#EF2828"
+                    : data && data[0]?.value_classification === "Fear"
+                    ? "#EC840E"
+                    : data && data[0]?.value_classification === "Neutral"
+                    ? "#A8CE08"
+                    : data && data[0]?.value_classification === "Greed"
+                    ? "#1DAF03"
+                    : data &&
+                      data[0]?.value_classification === "Extreme Greed" &&
+                      "#008E49",
                 fontWeight: 700,
                 fontSize: "2.6rem",
               }}
@@ -467,130 +476,48 @@ const FearAndGreedIndexPieChart = ({ data, filterValue }: any) => {
                   Days, Market is
                 </Typography>
 
-                {extremeFear?.length > fear?.length &&
-                  extremeFear?.length > neutral?.length &&
-                  extremeFear?.length > greed?.length &&
-                  extremeFear?.length > extremeGreed?.length && (
-                    <span
-                      style={{
-                        backgroundColor: "#EF2828",
-                        borderRadius: 50,
-                        height: 43,
-                        minWidth: 140,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: "1.2rem",
-                        fontWeight: 600,
-                        color: "#FFFFFF",
-                        padding: 2,
-                        paddingLeft: 25,
-                        paddingRight: 25,
-                      }}
-                    >
-                      Extreme Fear
-                    </span>
-                  )}
-
-                {fear?.length > extremeFear?.length &&
-                  fear?.length > neutral?.length &&
-                  fear?.length > greed?.length &&
-                  fear?.length > extremeGreed?.length && (
-                    <span
-                      style={{
-                        backgroundColor: "#EC840E",
-                        borderRadius: 50,
-                        height: 43,
-                        minWidth: 140,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: "1.2rem",
-                        fontWeight: 600,
-                        color: "#FFFFFF",
-                        padding: 2,
-                        paddingLeft: 25,
-                        paddingRight: 25,
-                      }}
-                    >
-                      Fear
-                    </span>
-                  )}
-
-                {neutral?.length > extremeFear?.length &&
-                  neutral?.length > fear?.length &&
-                  neutral?.length > greed?.length &&
-                  neutral?.length > extremeGreed?.length && (
-                    <span
-                      style={{
-                        backgroundColor: "#A8CE08",
-                        borderRadius: 50,
-                        height: 43,
-                        minWidth: 140,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: "1.2rem",
-                        fontWeight: 600,
-                        color: "#000000",
-                        padding: 2,
-                        paddingLeft: 25,
-                        paddingRight: 25,
-                      }}
-                    >
-                      Neutral
-                    </span>
-                  )}
-
-                {greed?.length > extremeFear?.length &&
-                  greed?.length > fear?.length &&
-                  greed?.length > neutral?.length &&
-                  greed?.length > extremeGreed?.length && (
-                    <span
-                      style={{
-                        backgroundColor: "#1DAF03",
-                        borderRadius: 50,
-                        height: 43,
-                        minWidth: 140,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: "1.2rem",
-                        fontWeight: 600,
-                        color: "#FFFFFF",
-                        padding: 2,
-                        paddingLeft: 25,
-                        paddingRight: 25,
-                      }}
-                    >
-                      Greed
-                    </span>
-                  )}
-
-                {extremeGreed?.length > extremeFear?.length &&
-                  extremeGreed?.length > fear?.length &&
-                  extremeGreed?.length > greed?.length &&
-                  extremeGreed?.length > neutral?.length && (
-                    <span
-                      style={{
-                        backgroundColor: "#008E49",
-                        borderRadius: 50,
-                        height: 43,
-                        minWidth: 140,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: "1.2rem",
-                        fontWeight: 600,
-                        color: "#FFFFFF",
-                        padding: 2,
-                        paddingLeft: 25,
-                        paddingRight: 25,
-                      }}
-                    >
-                      Extreme Greed
-                    </span>
-                  )}
+                {
+                  <span
+                    style={{
+                      backgroundColor:
+                        data && data[0]?.value_classification === "Extreme Fear"
+                          ? "#EF2828"
+                          : data && data[0]?.value_classification === "Fear"
+                          ? "#EC840E"
+                          : data && data[0]?.value_classification === "Neutral"
+                          ? "#A8CE08"
+                          : data && data[0]?.value_classification === "Greed"
+                          ? "#1DAF03"
+                          : data &&
+                            data[0]?.value_classification === "Extreme Greed" &&
+                            "#008E49",
+                      borderRadius: 50,
+                      height: 43,
+                      minWidth: 140,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "1.2rem",
+                      fontWeight: 600,
+                      color: "#FFFFFF",
+                      padding: 2,
+                      paddingLeft: 25,
+                      paddingRight: 25,
+                    }}
+                  >
+                    {data && data[0]?.value_classification === "Extreme Fear"
+                      ? "Extreme Fear"
+                      : data && data[0]?.value_classification === "Fear"
+                      ? "Fear"
+                      : data && data[0]?.value_classification === "Neutral"
+                      ? "Neutral"
+                      : data && data[0]?.value_classification === "Greed"
+                      ? "Greed"
+                      : data &&
+                        data[0]?.value_classification === "Extreme Greed" &&
+                        "Extreme Greed"}
+                  </span>
+                }
               </Stack>
             </Stack>
           </Stack>

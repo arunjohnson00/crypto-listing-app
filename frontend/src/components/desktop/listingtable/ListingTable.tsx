@@ -52,20 +52,6 @@ const ListingTable = ({
 
   console.log(location?.pathname);
   const scrollHandler = () => {
-    // page?.pagination !== 0 &&
-
-    // page?.pagination % 5 === 0
-    //   ? setPage({
-    //       ...page,
-
-    //       scroll: false,
-    //     })
-    //   : setPage({
-    //       ...page,
-    //       pagination: page.pagination + 1,
-    //       scroll: true,
-    //     });
-
     setPage({
       ...page,
       pagination: page.pagination + 1,

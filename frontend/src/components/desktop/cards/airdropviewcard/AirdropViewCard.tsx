@@ -24,6 +24,7 @@ import DiamondRoundedIcon from "@mui/icons-material/DiamondRounded";
 import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
 import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
 import moment from "moment";
+import parse from "html-react-parser";
 import { CountDownTimer } from "./countdown/CountDownTimer";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -485,7 +486,7 @@ const AirdropViewCard = ({ viewcoin, data }: any) => {
                     fontWeight: 400,
                   }}
                 >
-                  {data && data?.description}
+                  {data && parse(data?.description)}
                 </Typography>
               </Stack>
             </Stack>

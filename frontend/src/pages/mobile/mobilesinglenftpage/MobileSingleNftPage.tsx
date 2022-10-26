@@ -10,6 +10,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import parse from "html-react-parser";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 
 import MobileTopAlertBox from "../../../components/mobile/alert/topalertbox/MobileTopAlertBox";
@@ -107,7 +108,7 @@ const MobileSingleNftPage = () => {
           </Stack>
         </Grid> */}
 
-        <Grid item xs={12} mt={{ xs: 0.5, sm: 0.5, md: 5 }}>
+        <Grid item xs={12} mt={{ xs: 0.5, sm: 0.5, md: 3 }}>
           <MobileBreadCrumbs
             home="Home"
             path="NFT"
@@ -153,7 +154,7 @@ const MobileSingleNftPage = () => {
                 sx={{ color: "#FFFFFF", fontSize: ".85rem", fontWeight: 400 }}
               >
                 {nftSinglePageDetails &&
-                  nftSinglePageDetails?.data?.description}
+                  parse(nftSinglePageDetails?.data?.description)}
               </Typography>
             </Stack>
           )}

@@ -1,19 +1,25 @@
 #notfound {
-  position: relative;
   height: 100vh;
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
 }
 
 #notfound .notfound {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  /* -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 }
 
 .notfound {
-  max-width: 520px;
+  /* max-width: 520px; */
   width: 100%;
   line-height: 1.4;
   text-align: center;
@@ -29,10 +35,10 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+  /* -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%); */
   transform: translate(-50%, -50%);
-  font-size: 252px;
+  font-size: 200px;
   font-weight: 900;
   margin: 0px;
   color: #fbfbfb;
@@ -48,7 +54,7 @@
 .notfound .notfound-404 h3 {
   font-family: "Cabin", sans-serif;
   position: relative;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   color: #efefef;
@@ -59,7 +65,7 @@
 
 .notfound h2 {
   font-family: "Cabin", sans-serif;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 400;
   text-transform: uppercase;
   color: rgb(255, 255, 255);
@@ -72,13 +78,13 @@
     height: 200px;
   }
   .notfound .notfound-404 h1 {
-    font-size: 200px;
+    font-size: 180px;
   }
 }
 
 @media only screen and (max-width: 480px) {
   .notfound .notfound-404 {
-    height: 162px;
+    height: 200px;
   }
   .notfound .notfound-404 h1 {
     font-size: 162px;
@@ -86,6 +92,6 @@
     line-height: 162px;
   }
   .notfound h2 {
-    font-size: 16px;
+    font-size: 9px;
   }
 }

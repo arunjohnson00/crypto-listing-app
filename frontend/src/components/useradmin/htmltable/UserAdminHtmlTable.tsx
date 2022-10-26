@@ -512,8 +512,19 @@ const UserAdminHtmlTable = ({
                       >
                         Processing
                       </Typography>
+                    ) : parseInt(data?.status) === 3 ? (
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          color: "#FBFE07",
+
+                          fontWeight: 600,
+                        }}
+                      >
+                        Processing
+                      </Typography>
                     ) : (
-                      parseInt(data?.status) === 3 && (
+                      parseInt(data?.status) === 4 && (
                         <Typography
                           variant="caption"
                           sx={{

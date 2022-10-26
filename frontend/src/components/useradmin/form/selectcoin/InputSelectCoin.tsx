@@ -133,36 +133,38 @@ const InputSelectCoin = ({
                       px={0}
                       py={0}
                     >
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={`${serverAPIUrl}public/uploads/${
-                          variant === "network"
-                            ? "network_icons"
-                            : variant === "exchange"
-                            ? "exchange_icons"
-                            : variant === "audit"
-                            ? "coins_audit"
-                            : variant === "chart"
-                            ? "coins_chart_provider"
-                            : variant === "social_platform"
-                            ? "coins_social"
-                            : variant === "nft_network"
-                            ? "nft_networks"
-                            : variant === "nft_social_platform"
-                            ? "coins_social"
-                            : variant === "nft_marketplace"
-                            ? "nft_marketplace_icons"
-                            : variant === "nft_listing_currency" &&
-                              "nft_currency_icons"
-                        }/${
-                          x.thumb_icon !== undefined
-                            ? x.thumb_icon
-                            : x.icon !== undefined
-                            ? x.icon
-                            : x.network_icon !== undefined && x.network_icon
-                        }`}
-                        sx={{ width: 20, height: 20 }}
-                      />
+                      {variant !== "event_category" && (
+                        <Avatar
+                          alt="Remy Sharp"
+                          src={`${serverAPIUrl}public/uploads/${
+                            variant === "network"
+                              ? "network_icons"
+                              : variant === "exchange"
+                              ? "exchange_icons"
+                              : variant === "audit"
+                              ? "coins_audit"
+                              : variant === "chart"
+                              ? "coins_chart_provider"
+                              : variant === "social_platform"
+                              ? "coins_social"
+                              : variant === "nft_network"
+                              ? "nft_networks"
+                              : variant === "nft_social_platform"
+                              ? "coins_social"
+                              : variant === "nft_marketplace"
+                              ? "nft_marketplace_icons"
+                              : variant === "nft_listing_currency" &&
+                                "nft_currency_icons"
+                          }/${
+                            x.thumb_icon !== undefined
+                              ? x.thumb_icon
+                              : x.icon !== undefined
+                              ? x.icon
+                              : x.network_icon !== undefined && x.network_icon
+                          }`}
+                          sx={{ width: 20, height: 20 }}
+                        />
+                      )}
                       <span style={{ color: "#FFFFFF" }}>
                         {type === "events"
                           ? x.title
@@ -262,36 +264,39 @@ const InputSelectCoin = ({
                     px={1}
                     py={0.5}
                   >
-                    <Avatar
-                      alt="Remy Sharp"
-                      src={`${serverAPIUrl}public/uploads/${
-                        variant === "network"
-                          ? "network_icons"
-                          : variant === "exchange"
-                          ? "exchange_icons"
-                          : variant === "audit"
-                          ? "coins_audit"
-                          : variant === "chart"
-                          ? "coins_chart_provider"
-                          : variant === "social_platform"
-                          ? "coins_social"
-                          : variant === "nft_network"
-                          ? "nft_networks"
-                          : variant === "nft_social_platform"
-                          ? "coins_social"
-                          : variant === "nft_marketplace"
-                          ? "nft_marketplace_icons"
-                          : variant === "nft_listing_currency" &&
-                            "nft_currency_icons"
-                      }/${
-                        list.thumb_icon !== undefined
-                          ? list.thumb_icon
-                          : list.icon !== undefined
-                          ? list.icon
-                          : list.network_icon !== undefined && list.network_icon
-                      }`}
-                      sx={{ width: 20, height: 20 }}
-                    />
+                    {variant !== "event_category" && (
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={`${serverAPIUrl}public/uploads/${
+                          variant === "network"
+                            ? "network_icons"
+                            : variant === "exchange"
+                            ? "exchange_icons"
+                            : variant === "audit"
+                            ? "coins_audit"
+                            : variant === "chart"
+                            ? "coins_chart_provider"
+                            : variant === "social_platform"
+                            ? "coins_social"
+                            : variant === "nft_network"
+                            ? "nft_networks"
+                            : variant === "nft_social_platform"
+                            ? "coins_social"
+                            : variant === "nft_marketplace"
+                            ? "nft_marketplace_icons"
+                            : variant === "nft_listing_currency" &&
+                              "nft_currency_icons"
+                        }/${
+                          list.thumb_icon !== undefined
+                            ? list.thumb_icon
+                            : list.icon !== undefined
+                            ? list.icon
+                            : list.network_icon !== undefined &&
+                              list.network_icon
+                        }`}
+                        sx={{ width: 20, height: 20 }}
+                      />
+                    )}
                     <Typography sx={{ fontSize: ".9rem" }}>
                       {type === "events"
                         ? list.title
