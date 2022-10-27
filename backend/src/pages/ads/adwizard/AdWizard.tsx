@@ -108,6 +108,18 @@ const AdWizard = () => {
           {parseInt(params.row.banner_ad_type) === 4 && (
             <span> Featured Coin</span>
           )}
+
+          {parseInt(params.row.banner_ad_type) === 5 && <span>Video Ads</span>}
+          {parseInt(params.row.banner_ad_type) === 6 && (
+            <span>Vote Click Popup</span>
+          )}
+          {parseInt(params.row.banner_ad_type) === 7 && (
+            <span>Search Bar Ad</span>
+          )}
+
+          {parseInt(params.row.banner_ad_type) === 8 && (
+            <span>Welcome Banner Popup</span>
+          )}
         </span>
       ),
     },

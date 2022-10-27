@@ -14,6 +14,7 @@ const IconUploader = ({
   slug,
   inActive,
   proof,
+  variant,
 }: any) => {
   const classes = useStyles();
 
@@ -127,6 +128,10 @@ const IconUploader = ({
                           addIconData.icon !== undefined &&
                           addIconData.icon !== null
                         ? addIconData.icon
+                        : addIconData.banner_image !== "" &&
+                          addIconData.banner_image !== undefined &&
+                          addIconData.banner_image !== null
+                        ? addIconData.banner_image
                         : addIconData.logo !== "" &&
                           addIconData.logo !== undefined &&
                           addIconData.logo !== null &&

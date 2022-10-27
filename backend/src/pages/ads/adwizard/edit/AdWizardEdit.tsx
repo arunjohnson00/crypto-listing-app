@@ -40,6 +40,7 @@ import {
   editAdsListRequest,
 } from "../../../../store/action";
 import moment from "moment";
+import InputTextArea from "../../../../components/form/textarea/InputTextArea";
 
 const AdWizardEdit = () => {
   let { id } = useParams();
@@ -74,6 +75,8 @@ const AdWizardEdit = () => {
     banner_image: "",
     banner_ad_type: "",
     banner_target_link: "",
+    search_ad_description: "",
+    button_name: "",
     icon: "",
     image: "",
     thumb_icon: "",
@@ -125,6 +128,13 @@ const AdWizardEdit = () => {
     formData.append("banner_ad_type", editAdsData?.banner_ad_type);
     editAdsData?.banner_ad_type === 4 &&
       formData.append("coin_id", editAdsData?.coin_id);
+    // editAdsData?.banner_ad_type === 7 &&
+    //   formData.append(
+    //     "search_ad_description",
+    //     editAdsData?.search_ad_description
+    //   );
+    editAdsData?.banner_ad_type === 7 &&
+      formData.append("button_name", editAdsData?.button_name);
     editAdsData?.banner_ad_type !== 4 &&
       editAdsData.banner_image !== "" &&
       typeof editAdsData.banner_image !== "string" &&
@@ -154,6 +164,12 @@ const AdWizardEdit = () => {
     //console.log(e);
 
     setEditAds({ ...editAdsData, banner_name: e });
+  };
+
+  const editAdsButtonNameHandler = (e: any) => {
+    //console.log(e);
+
+    setEditAds({ ...editAdsData, button_name: e });
   };
 
   // const editAdsSubTitleHandler = (e: any) => {
@@ -309,6 +325,53 @@ const AdWizardEdit = () => {
                 />
               </Grid>
             )}
+            {editAdsData?.banner_ad_type === 7 && (
+              <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    textAlign: "left",
+                    fontSize: ".9rem",
+                    fontWeight: 600,
+                    color: "#000000",
+                  }}
+                  mb={1}
+                >
+                  Button Name
+                </Typography>
+
+                <InputText
+                  placeholder="Eg:Register Now"
+                  inputTextHandler={(e: any) => editAdsButtonNameHandler(e)}
+                  value={editAdsData && editAdsData?.button_name}
+                />
+              </Grid>
+            )}
+
+            {editAdsData?.banner_ad_type === 7 && (
+              <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={3} mt={3}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    textAlign: "left",
+                    fontSize: ".9rem",
+                    fontWeight: 600,
+                    color: "#000000",
+                  }}
+                  mb={1}
+                >
+                  Ad Description
+                </Typography>
+
+                <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
+                  <InputTextArea
+                    placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."
+                    name="search_ad_description"
+                    value={editAdsData?.search_ad_description}
+                  />
+                </Grid>
+              </Grid>
+            )}
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography
@@ -406,7 +469,8 @@ const AdWizardEdit = () => {
                 <IconUploader
                   setAddIcon={setEditAds}
                   addIconData={editAdsData}
-                  slug="banner_images"
+                  slug="banner_ads"
+                  variant="ads"
                 />
               </Grid>
             )}

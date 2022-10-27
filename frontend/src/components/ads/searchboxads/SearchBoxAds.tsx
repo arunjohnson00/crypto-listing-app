@@ -30,7 +30,7 @@ const SearchBoxAds = () => {
                   <Avatar
                     alt={item?.banner_name}
                     src={`${serverAPIUrl}public/uploads/banner_ads/${item?.banner_image}`}
-                    sx={{ width: 70, height: 70, borderRadius: 0 }}
+                    sx={{ width: 70, height: 70, borderRadius: 0, mt: 1 }}
                   />
                   <Stack direction="column" spacing={1} alignItems="flex-start">
                     <Stack
@@ -74,7 +74,7 @@ const SearchBoxAds = () => {
                             color: "#7F85B4",
                           }}
                         >
-                          Register Now
+                          {item?.button_name}
                         </Typography>
                       </a>
                       <a

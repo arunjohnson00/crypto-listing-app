@@ -36,6 +36,7 @@ import InputDateTime from "../../../../components/form/input/datetime/InputDateT
 import { Link } from "react-router-dom";
 import AutoCompleSelect from "../../../../components/form/autocomplete/AutoCompleSelect";
 import { addAdsListRequest } from "../../../../store/action";
+import InputTextArea from "../../../../components/form/textarea/InputTextArea";
 
 const AdWizardAdd = () => {
   const selectOptions = [
@@ -69,6 +70,8 @@ const AdWizardAdd = () => {
     banner_image: "",
     banner_ad_type: 1,
     banner_target_link: "",
+    search_ad_description: "",
+    button_name: "",
     icon: "",
     image: "",
     thumb_icon: "",
@@ -120,6 +123,13 @@ const AdWizardAdd = () => {
     // formData.append("ads_type", createAdsData?.ads_type);
     createAdsData?.banner_ad_type === 4 &&
       formData.append("coin_id", createAdsData?.coin_id);
+    // createAdsData?.banner_ad_type === 7 &&
+    //   formData.append(
+    //     "search_ad_description",
+    //     createAdsData?.search_ad_description
+    //   );
+    createAdsData?.banner_ad_type === 7 &&
+      formData.append("button_name", createAdsData?.button_name);
     createAdsData?.banner_ad_type !== 4 &&
       formData.append("banner_image", createAdsData?.banner_image);
     createAdsData?.banner_ad_type !== 4 &&
@@ -147,6 +157,12 @@ const AdWizardAdd = () => {
     //console.log(e);
 
     setCreateAds({ ...createAdsData, banner_name: e });
+  };
+
+  const createAdsButtonNameHandler = (e: any) => {
+    //console.log(e);
+
+    setCreateAds({ ...createAdsData, button_name: e });
   };
 
   // const createAdsSubTitleHandler = (e: any) => {
@@ -287,6 +303,52 @@ const AdWizardAdd = () => {
               </Grid>
             )}
 
+            {createAdsData?.banner_ad_type === 7 && (
+              <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    textAlign: "left",
+                    fontSize: ".9rem",
+                    fontWeight: 600,
+                    color: "#000000",
+                  }}
+                  mb={1}
+                >
+                  Button Name
+                </Typography>
+
+                <InputText
+                  placeholder="Eg:Register Now"
+                  inputTextHandler={(e: any) => createAdsButtonNameHandler(e)}
+                />
+              </Grid>
+            )}
+
+            {createAdsData?.banner_ad_type === 7 && (
+              <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={3} mt={3}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    textAlign: "left",
+                    fontSize: ".9rem",
+                    fontWeight: 600,
+                    color: "#000000",
+                  }}
+                  mb={1}
+                >
+                  Ad Description
+                </Typography>
+
+                <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
+                  <InputTextArea
+                    placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."
+                    name="search_ad_description"
+                  />
+                </Grid>
+              </Grid>
+            )}
+
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography
                 variant="subtitle1"
@@ -379,6 +441,7 @@ const AdWizardAdd = () => {
                 <IconUploader
                   setAddIcon={setCreateAds}
                   addIconData={createAdsData}
+                  variant="ads"
                 />
               </Grid>
             )}
