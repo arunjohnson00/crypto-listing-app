@@ -122,7 +122,8 @@ const AdWizardEdit = () => {
     // formData.append("subtitle", editAdsData?.subtitle);
     // formData.append("description", editAdsData?.description);
     formData.append("ads_type", editAdsData?.ads_type);
-    formData.append("coin_id", editAdsData?.coin_id);
+    editAdsData?.banner_ad_type === 4 &&
+      formData.append("coin_id", editAdsData?.coin_id);
     editAdsData?.banner_ad_type !== 4 &&
       editAdsData.banner_image !== "" &&
       typeof editAdsData.banner_image !== "string" &&
@@ -235,30 +236,32 @@ const AdWizardEdit = () => {
                 serverStatus={editAdsData && editAdsData?.banner_ad_type}
               />
             </Grid>
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-              <Typography
-                variant="subtitle1"
-                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
-                mb={1}
-              >
-                Search your coin{" "}
-                <span style={{ fontSize: ".85rem" }}>
-                  ( This Ad is base on a coin listed on coinxhigh.com. if coin
-                  is not listed{" "}
-                  <Link to="/coins/add">
-                    <span>Add Now</span>
-                  </Link>
-                </span>{" "}
-                )
-              </Typography>
+            {editAdsData?.banner_ad_type === 4 && (
+              <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                  mb={1}
+                >
+                  Search your coin{" "}
+                  <span style={{ fontSize: ".85rem" }}>
+                    ( This Ad is base on a coin listed on coinxhigh.com. if coin
+                    is not listed{" "}
+                    <Link to="/coins/add">
+                      <span>Add Now</span>
+                    </Link>
+                  </span>{" "}
+                  )
+                </Typography>
 
-              <AutoCompleSelect
-                inputAutoValue={editAdsData}
-                setInputAutoValue={setEditAds}
-                variant="coin"
-                serverRef={editAdsData && editAdsData?.coin_id}
-              />
-            </Grid>
+                <AutoCompleSelect
+                  inputAutoValue={editAdsData}
+                  setInputAutoValue={setEditAds}
+                  variant="coin"
+                  serverRef={editAdsData && editAdsData?.coin_id}
+                />
+              </Grid>
+            )}
 
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Typography
