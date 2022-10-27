@@ -82,6 +82,7 @@ const EventsAdd = () => {
   const [eventsRewardAddress, setEventsRewardAddress] = useState();
   const [coinChecked, setcoinChecked] = useState(true);
 
+  console.log(coinChecked);
   const coinCheckboxHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setcoinChecked(event.target.checked);
   };
@@ -143,7 +144,7 @@ const EventsAdd = () => {
     );
     // formData.append("category_id", addEventsData?.category_id);
     formData.append("title", addEventsData?.title);
-
+    formData.append("description", addEventsData?.description);
     formData.append("source_link", addEventsData?.source_link);
     //formData.append("reward_address_id", addEventsData?.reward_address_id);
     formData.append("address", addEventsData?.address);
@@ -272,9 +273,31 @@ const EventsAdd = () => {
             />
           </IconButton>
 
-          <Typography variant="h5" sx={{ textAlign: "left" }}>
-            Add Events
-          </Typography>
+          <Stack
+            direction={{ xs: "column" }}
+            spacing={0}
+            sx={{ alignItems: "flex-start", justifyContent: "flex-start" }}
+          >
+            <Typography
+              variant="h5"
+              sx={{ textAlign: "left", color: "#000000", fontWeight: 600 }}
+            >
+              Add{" "}
+              {parseInt(addEventsData?.is_online) === 1
+                ? "Online"
+                : parseInt(addEventsData?.is_online) === 2 && "Offline"}{" "}
+              Crypto Events
+            </Typography>
+            <Typography
+              variant="caption"
+              sx={{ textAlign: "left", color: "#000000" }}
+            >
+              We dont accept the following scenarios: Past event | No date in
+              the proof/source | Duplicate Event | ICO/IEO | Marketing
+              (Contest/Giveaway/Trading Competition...) | Overly recurrent
+              event.
+            </Typography>
+          </Stack>
         </Stack>
       </Grid>
 
@@ -374,11 +397,11 @@ const EventsAdd = () => {
                 sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
                 mb={1}
               >
-                Title
+                Event Title
               </Typography>
 
               <InputText
-                placeholder="Title"
+                placeholder="Eg: Ethereum Merge"
                 inputTextHandler={(e: any) => eventsTitleHandler(e)}
               />
             </Grid>
@@ -389,7 +412,7 @@ const EventsAdd = () => {
                 sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
                 mb={1}
               >
-                Select category
+                Event category
               </Typography>
 
               <Grid item xl={5} lg={5} md={5} sm={12} xs={12}>
@@ -399,6 +422,7 @@ const EventsAdd = () => {
                   data={eventsCategory}
                   height={40}
                   variant="event_category"
+                  title="Select category"
                 />
               </Grid>
             </Grid>
@@ -481,9 +505,12 @@ const EventsAdd = () => {
                 Event Description
               </Typography>
               <InputTextArea
+                variant="richtextdescription"
                 name="description"
                 id="description"
-                placeholder=" description"
+                placeholder=" Detailed event description. (e.g. exact time, location, more info…)"
+                data={addEventsData}
+                setData={setAddEvents}
               />
             </Grid>
             {addEventsData && parseInt(addEventsData?.is_online) === 2 && (
@@ -539,7 +566,7 @@ const EventsAdd = () => {
               </Typography>
 
               <InputText
-                placeholder=" Source Link"
+                placeholder="Eg: https://twitter.com/EthCC/status/1567538153921155074"
                 inputTextHandler={(e: any) => eventsSourceLinkHandler(e)}
               />
             </Grid>
@@ -593,7 +620,7 @@ const EventsAdd = () => {
               </Typography>
 
               <InputText
-                placeholder="Enter Website url"
+                placeholder="Enter official website url"
                 inputTextHandler={(e: any) => eventsWebisteURLHandler(e)}
               />
             </Grid>
@@ -612,7 +639,7 @@ const EventsAdd = () => {
               </Typography>
 
               <InputText
-                placeholder="Enter Twitter account"
+                placeholder="Enter official twitter url"
                 inputTextHandler={(e: any) => eventsTwitterAcHandler(e)}
               />
             </Grid>
@@ -632,7 +659,7 @@ const EventsAdd = () => {
               </Typography>
 
               <InputText
-                placeholder="Enter Telegram url"
+                placeholder="Enter official telegram url"
                 inputTextHandler={(e: any) => eventsTelegramURLHandler(e)}
               />
             </Grid>
@@ -652,9 +679,32 @@ const EventsAdd = () => {
               </Typography>
 
               <InputText
-                placeholder="Enter Reddit url"
+                placeholder="Enter official reddit url"
                 inputTextHandler={(e: any) => eventsRedditURLHandler(e)}
               />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={4}>
+              <Typography
+                variant="h6"
+                sx={{
+                  textAlign: "left",
+                  fontSize: "1rem",
+                  fontWeight: 500,
+                  color: "#000000",
+                }}
+                mb={1}
+              >
+                Event Videos{" "}
+                <span
+                  style={{
+                    color: "#000000",
+                    fontSize: ".85rem",
+                    fontWeight: 400,
+                  }}
+                >
+                  ( Multiple event videos allowed )
+                </span>
+              </Typography>
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
               <Stack
@@ -675,7 +725,7 @@ const EventsAdd = () => {
                     Youtube URL
                   </Typography>
                   <InputText
-                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    placeholder="Enter official youtube url "
                     name="youtube_link[1]"
                     id="youtube_link_1"
                   />

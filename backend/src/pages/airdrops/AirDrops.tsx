@@ -10,6 +10,7 @@ import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 
 import InputSearch from "../../components/form/input/search/InputSearch";
+import moment from "moment";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -110,38 +111,47 @@ const AirDrops = () => {
       headerName: "No.of Winners",
       flex: 1,
     },
-    {
-      field: "is_follow_twitter",
-      headerName: "Is follow Twitter?",
-      flex: 1,
-      renderCell: (params: any) => (
-        <span>
-          {parseInt(params.row.is_follow_twitter) === 1 && (
-            <span style={{ color: "#64dd17" }}>Yes</span>
-          )}
 
-          {parseInt(params.row.is_follow_twitter) === 2 && (
-            <span style={{ color: "#d50000" }}>No</span>
-          )}
-        </span>
+    {
+      field: "created_at",
+      headerName: "Created_at",
+      flex: 1.5,
+      renderCell: (params: any) => (
+        <span>{moment(new Date(params?.row?.created_at)).fromNow()}</span>
       ),
     },
-    {
-      field: "join_telegram",
-      headerName: "Joined Telegram?",
-      flex: 1,
-      renderCell: (params: any) => (
-        <span>
-          {parseInt(params.row.join_telegram) === 1 && (
-            <span style={{ color: "#64dd17" }}>Yes</span>
-          )}
+    // {
+    //   field: "is_follow_twitter",
+    //   headerName: "Is follow Twitter?",
+    //   flex: 1,
+    //   renderCell: (params: any) => (
+    //     <span>
+    //       {parseInt(params.row.is_follow_twitter) === 1 && (
+    //         <span style={{ color: "#64dd17" }}>Yes</span>
+    //       )}
 
-          {parseInt(params.row.join_telegram) === 2 && (
-            <span style={{ color: "#d50000" }}>No</span>
-          )}
-        </span>
-      ),
-    },
+    //       {parseInt(params.row.is_follow_twitter) === 2 && (
+    //         <span style={{ color: "#d50000" }}>No</span>
+    //       )}
+    //     </span>
+    //   ),
+    // },
+    // {
+    //   field: "join_telegram",
+    //   headerName: "Joined Telegram?",
+    //   flex: 1,
+    //   renderCell: (params: any) => (
+    //     <span>
+    //       {parseInt(params.row.join_telegram) === 1 && (
+    //         <span style={{ color: "#64dd17" }}>Yes</span>
+    //       )}
+
+    //       {parseInt(params.row.join_telegram) === 2 && (
+    //         <span style={{ color: "#d50000" }}>No</span>
+    //       )}
+    //     </span>
+    //   ),
+    // },
     {
       field: "status",
       headerName: "Status",

@@ -180,7 +180,7 @@ const EventsEdit = () => {
       editEventsData?.proof !== "" &&
       typeof editEventsData?.proof !== "string" &&
       formData.append("proof", editEventsData?.proof);
-
+    formData.append("description", editEventsData?.description);
     formData.append("telegram_url", editEventsData?.telegram_url);
     formData.append("reddit_url", editEventsData?.reddit_url);
     formData.append("website_url", editEventsData?.website_url);
@@ -309,9 +309,31 @@ const EventsEdit = () => {
             />
           </IconButton>
 
-          <Typography variant="h5" sx={{ textAlign: "left" }}>
-            Edit Events
-          </Typography>
+          <Stack
+            direction={{ xs: "column" }}
+            spacing={0}
+            sx={{ alignItems: "flex-start", justifyContent: "flex-start" }}
+          >
+            <Typography
+              variant="h5"
+              sx={{ textAlign: "left", color: "#000000", fontWeight: 600 }}
+            >
+              Edit{" "}
+              {parseInt(editEventsData?.is_online) === 1
+                ? "Online"
+                : parseInt(editEventsData?.is_online) === 2 && "Offline"}{" "}
+              Crypto Events
+            </Typography>
+            <Typography
+              variant="caption"
+              sx={{ textAlign: "left", color: "#000000" }}
+            >
+              We dont accept the following scenarios: Past event | No date in
+              the proof/source | Duplicate Event | ICO/IEO | Marketing
+              (Contest/Giveaway/Trading Competition...) | Overly recurrent
+              event.
+            </Typography>
+          </Stack>
         </Stack>
       </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -410,11 +432,11 @@ const EventsEdit = () => {
                 sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
                 mb={1}
               >
-                Title
+                Event Title
               </Typography>
 
               <InputText
-                placeholder="Title"
+                placeholder="Eg: Ethereum Merge"
                 inputTextHandler={(e: any) => eventsTitleHandler(e)}
                 value={editEventsData?.title}
               />
@@ -426,7 +448,7 @@ const EventsEdit = () => {
                 sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
                 mb={1}
               >
-                Select category
+                Event category
               </Typography>
 
               <Grid item xl={5} lg={5} md={5} sm={12} xs={12}>
@@ -437,6 +459,7 @@ const EventsEdit = () => {
                   selectedValue={editEventsData?.category_id}
                   height={40}
                   variant="event_category"
+                  title="Select category"
                 />
               </Grid>
             </Grid>
@@ -518,10 +541,13 @@ const EventsEdit = () => {
                 Event Description
               </Typography>
               <InputTextArea
+                variant="richtextdescription"
                 name="description"
                 id="description"
-                placeholder=" description"
+                placeholder=" Detailed event description. (e.g. exact time, location, more info…)"
                 value={editEventsData?.description}
+                data={editEventsData}
+                setData={setEditEvents}
               />
             </Grid>
 
@@ -580,7 +606,7 @@ const EventsEdit = () => {
               </Typography>
 
               <InputText
-                placeholder=" Source Link"
+                placeholder="Eg: https://twitter.com/EthCC/status/1567538153921155074"
                 inputTextHandler={(e: any) => eventsSourceLinkHandler(e)}
                 value={editEventsData?.source_link}
               />
@@ -637,7 +663,7 @@ const EventsEdit = () => {
               </Typography>
 
               <InputText
-                placeholder="Enter Website url"
+                placeholder="Enter official website url"
                 inputTextHandler={(e: any) => eventsWebisteURLHandler(e)}
                 value={editEventsData?.website_url}
               />
@@ -658,7 +684,7 @@ const EventsEdit = () => {
               </Typography>
 
               <InputText
-                placeholder="Enter Twitter account"
+                placeholder="Enter official twitter url"
                 inputTextHandler={(e: any) => eventsTwitterAcHandler(e)}
                 value={editEventsData?.twitter_account}
               />
@@ -679,7 +705,7 @@ const EventsEdit = () => {
               </Typography>
 
               <InputText
-                placeholder="Enter Telegram url"
+                placeholder="Enter official telegram url"
                 inputTextHandler={(e: any) => eventsTelegramURLHandler(e)}
                 value={editEventsData?.telegram_url}
               />
@@ -700,10 +726,33 @@ const EventsEdit = () => {
               </Typography>
 
               <InputText
-                placeholder="Enter Reddit url"
+                placeholder="Enter official reddit url"
                 inputTextHandler={(e: any) => eventsRedditURLHandler(e)}
                 value={editEventsData?.reddit_url}
               />
+            </Grid>
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={4}>
+              <Typography
+                variant="h6"
+                sx={{
+                  textAlign: "left",
+                  fontSize: "1rem",
+                  fontWeight: 500,
+                  color: "#000000",
+                }}
+                mb={1}
+              >
+                Event Videos{" "}
+                <span
+                  style={{
+                    color: "#000000",
+                    fontSize: ".85rem",
+                    fontWeight: 400,
+                  }}
+                >
+                  ( Multiple event videos allowed )
+                </span>
+              </Typography>
             </Grid>
             {editEventsData?.has_many_videos?.length !== 0 &&
             editEventsData?.has_many_videos !== undefined ? (
@@ -741,7 +790,7 @@ const EventsEdit = () => {
                             Youtube URL {index + 1}
                           </Typography>
                           <InputText
-                            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                            placeholder="Enter official youtube url "
                             name={`youtube_link[${index + 1}]`}
                             id={`youtube_link_${index + 1}`}
                             value={youtubes.youtube_link}
@@ -803,7 +852,7 @@ const EventsEdit = () => {
                       Youtube URL
                     </Typography>
                     <InputText
-                      placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                      placeholder="Enter official youtube url "
                       name="youtube_link[1]"
                       id="youtube_link_1"
                     />
