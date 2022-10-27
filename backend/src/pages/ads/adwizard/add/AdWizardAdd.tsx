@@ -59,13 +59,13 @@ const AdWizardAdd = () => {
   const navigate = useNavigate();
 
   const [createAdsData, setCreateAds] = useState<any>({
-    name: "",
+    banner_name: "",
     subtitle: "",
     coin_id: "",
     banner_start_date: new Date(),
     no_of_days: "",
     description: "",
-    ads_type: "",
+    ads_type: 1,
     banner_image: "",
     banner_ad_type: "",
     banner_target_link: "",
@@ -113,7 +113,8 @@ const AdWizardAdd = () => {
     };
 
     var formData = new FormData(document.querySelector("#eventForm") as any);
-    formData.append("name", createAdsData?.name);
+    createAdsData?.banner_ad_type !== 4 &&
+      formData.append("banner_name", createAdsData?.banner_name);
     // formData.append("subtitle", createAdsData?.subtitle);
     // formData.append("description", createAdsData?.description);
     // formData.append("ads_type", createAdsData?.ads_type);
@@ -145,7 +146,7 @@ const AdWizardAdd = () => {
   const createAdsNameHandler = (e: any) => {
     //console.log(e);
 
-    setCreateAds({ ...createAdsData, name: e });
+    setCreateAds({ ...createAdsData, banner_name: e });
   };
 
   // const createAdsSubTitleHandler = (e: any) => {
@@ -242,25 +243,27 @@ const AdWizardAdd = () => {
               </Grid>
             )}
 
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  textAlign: "left",
-                  fontSize: ".9rem",
-                  fontWeight: 600,
-                  color: "#000000",
-                }}
-                mb={1}
-              >
-                Ads Name
-              </Typography>
+            {createAdsData?.banner_ad_type !== 4 && (
+              <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    textAlign: "left",
+                    fontSize: ".9rem",
+                    fontWeight: 600,
+                    color: "#000000",
+                  }}
+                  mb={1}
+                >
+                  Ads Name
+                </Typography>
 
-              <InputText
-                placeholder="Eg:Main Ads"
-                inputTextHandler={(e: any) => createAdsNameHandler(e)}
-              />
-            </Grid>
+                <InputText
+                  placeholder="Eg:Main Ads"
+                  inputTextHandler={(e: any) => createAdsNameHandler(e)}
+                />
+              </Grid>
+            )}
 
             {createAdsData?.banner_ad_type !== 4 && (
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
