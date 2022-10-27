@@ -12,10 +12,13 @@ const InputText = ({
   checkboxStatus,
   width,
   InputProps,
+  type,
 }: any) => {
   const [inputValue, setinputValue] = useState();
   useEffect(() => {
-    setinputValue(value);
+    setinputValue(
+      type === "number" ? value?.toString()?.replace(/[^0-9\.]/g, "") : value
+    );
   }, [value]);
 
   return (
@@ -31,6 +34,11 @@ const InputText = ({
         onChange={(e: any) => {
           inputTextHandler && inputTextHandler(e.target.value);
           setinputValue(e.target.value);
+          setinputValue(
+            type === "number"
+              ? e.target.value.replace(/[^0-9\.]/g, "")
+              : e.target.value
+          );
         }}
         sx={{
           fontSize: ".85rem",

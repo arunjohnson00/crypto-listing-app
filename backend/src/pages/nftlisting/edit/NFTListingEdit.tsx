@@ -36,7 +36,11 @@ import CommunityNFTDetails from "./CommunityNFTDetails";
 import SocialNFTDetails from "./SocialNFTDetails";
 import ChatNFTDetails from "./ChatNFTDetails";
 
-import { listCoinChatRequest } from "../../../store/action";
+import {
+  allCoinChatRequest,
+  allCoinSocialRequest,
+  listCoinChatRequest,
+} from "../../../store/action";
 import { listCoinSocialRequest } from "../../../store/action";
 import { listNftMarketPlaceRequest } from "../../../store/action";
 import { allNftListingCurrencyRequest } from "../../../store/action";
@@ -57,7 +61,7 @@ const NFTListingEdit = () => {
     { title: "Suspended", value: 2 },
     { title: "Processing", value: 3 },
   ];
-
+  const [nftListingData, setNftListingData] = useState<any>({});
   let { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -75,17 +79,15 @@ const NFTListingEdit = () => {
   });
 
   const nftChatList = useSelector((chatList: any) => {
-    return chatList.chatReducer.listChat.data;
+    return chatList.chatReducer.allChat.data;
   });
   const allNFTNetwork = useSelector((nftNetworkList: any) => {
     return nftNetworkList.nftNetworksReducer.allNFTNetworks.data;
   });
   const nftSocialList = useSelector((socialList: any) => {
-    return socialList.socialsReducer.listSocials.data;
+    return socialList.socialsReducer.allSocials.data;
   });
 
-  const [nftListingData, setNftListingData] = useState<any>({});
-  console.log(nftListingData, "nftListingData");
   const [checked, setChecked] = useState<any>({
     i_agree: false,
     i_declare: false,
@@ -154,6 +156,7 @@ const NFTListingEdit = () => {
       "public_mint_end_time",
       dateFormat(new Date(publicMintDate.end_time), " hh:MM tt")
     );
+    formData.append("description", nftListingData.description);
     addCoinLogo.coinLogo !== "" &&
       formData.append("image", addCoinLogo.coinLogo);
     formData.append("status", coinPublishStatus.status);
@@ -305,11 +308,9 @@ const NFTListingEdit = () => {
       //console.log(err);
     };
 
+    dispatch(allCoinChatRequest("emptyformData", successHandler, errorHandler));
     dispatch(
-      listCoinChatRequest("emptyformData", successHandler, errorHandler)
-    );
-    dispatch(
-      listCoinSocialRequest("emptyformData", successHandler, errorHandler)
+      allCoinSocialRequest("emptyformData", successHandler, errorHandler)
     );
 
     dispatch(
@@ -402,9 +403,25 @@ const NFTListingEdit = () => {
               />
             </IconButton>
 
-            <Typography variant="h5" sx={{ textAlign: "left" }}>
-              Edit Nft
-            </Typography>
+            <Stack
+              direction={{ xs: "column" }}
+              spacing={0}
+              sx={{ alignItems: "flex-start", justifyContent: "flex-start" }}
+            >
+              <Typography
+                variant="h5"
+                sx={{ textAlign: "left", color: "#000000", fontWeight: 600 }}
+              >
+                Edit Your NFT Project
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{ textAlign: "left", color: "#000000" }}
+              >
+                In this page you can submit your NFT project, please make sure
+                to upload all info as showing below.
+              </Typography>
+            </Stack>
           </Stack>
         </Grid>
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12} spacing={0}>
@@ -419,12 +436,12 @@ const NFTListingEdit = () => {
                 <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={5}>
                     <Typography variant="h6" sx={{ textAlign: "left" }} mb={2}>
-                      Event Title
+                      NFT Title
                     </Typography>
 
                     <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
                       <InputText
-                        placeholder="Eg: 09s8jgggffffay63733773"
+                        placeholder="Eg: Bored Ape"
                         id="title"
                         name="title"
                         width="auto"
@@ -435,21 +452,25 @@ const NFTListingEdit = () => {
 
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={5}>
                     <Typography variant="h6" sx={{ textAlign: "left" }} mb={2}>
-                      Event Description
+                      NFT Description
                     </Typography>
 
                     <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
                       <InputTextArea
-                        placeholder="Eg: 09s8jgggffffay63733773"
+                        variant="richtextdescription"
+                        placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."
                         name="description"
                         value={nftListingData?.description}
+                        width={600}
+                        data={nftListingData}
+                        setData={setNftListingData}
                       />
                     </Grid>
                   </Grid>
 
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={5}>
                     <Typography variant="h6" sx={{ textAlign: "left" }} mb={2}>
-                      Select Event MarketPlace
+                      Select NFT MarketPlace
                     </Typography>
                     {nftListingData?.has_many_marketplaces?.length !== 0 &&
                     nftListingData?.has_many_marketplaces !== undefined ? (
@@ -478,6 +499,7 @@ const NFTListingEdit = () => {
                                     selectedValue={marketplaces.marketplace_id}
                                     height={40}
                                     variant="nft_marketplace"
+                                    title="Select Marketplace"
                                   />
                                 </Grid>
                                 <Grid item xl={5} lg={5} md={5} sm={5} xs={12}>
@@ -493,7 +515,7 @@ const NFTListingEdit = () => {
                                     Marketplace URL {index + 1}
                                   </Typography>
                                   <InputText
-                                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                                    placeholder="Enter NFT Marketplace url"
                                     // width="auto"
                                     name={`marketplace_url[${index + 1}]`}
                                     id={`marketplace_url_${index + 1}`}
@@ -558,6 +580,7 @@ const NFTListingEdit = () => {
                               id="marketplace_id_1"
                               data={nftMarketPlaceList}
                               height={40}
+                              title="Select Marketplace"
                             />
                           </Grid>
                           <Grid item xl={5} lg={5} md={5} sm={5} xs={12}>
@@ -573,7 +596,7 @@ const NFTListingEdit = () => {
                               Marketplace URL 1
                             </Typography>
                             <InputText
-                              placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                              placeholder="Enter NFT Marketplace url"
                               name="marketplace_url[1]"
                               id="marketplace_url_1"
                               // width="auto"
@@ -626,7 +649,7 @@ const NFTListingEdit = () => {
                 <Grid item xl={4} lg={4} md={4} sm={4} xs={12} pl={2} pt={5}>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={5}>
                     <Typography variant="h6" sx={{ textAlign: "left" }} mb={2}>
-                      Event Image
+                      NFT Image
                     </Typography>
 
                     <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
@@ -663,6 +686,7 @@ const NFTListingEdit = () => {
                         }
                         height={40}
                         variant="nft_listing_currency"
+                        title="Select currency"
                       />
                     </Grid>
                   </Grid>
@@ -677,16 +701,17 @@ const NFTListingEdit = () => {
                       }}
                       mb={2}
                     >
-                      What is the maximum number of items in your collection?*
+                      What is the maximum number of items in your collection?
                     </Typography>
 
                     <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
                       <InputText
-                        placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                        placeholder="Eg: 1000000"
                         name="max_num_items"
                         id="max_num_items"
                         // width="auto"
                         value={nftListingData?.max_num_items}
+                        type="number"
                       />
                     </Grid>
                   </Grid>
@@ -972,7 +997,14 @@ const NFTListingEdit = () => {
                   mt={5}
                   mb={1}
                 >
-                  NFT Network
+                  What is your collection's blockchain? <br />
+                  <Typography
+                    variant="caption"
+                    sx={{ textAlign: "left" }}
+                    mb={1}
+                  >
+                    ( If you don't know, it's likely Ethereum ){" "}
+                  </Typography>
                 </Typography>
                 <InputSelectCoin
                   name="nft_network_id"
@@ -1008,30 +1040,31 @@ const NFTListingEdit = () => {
                         Pre-Sale Mint Price
                       </Typography>
                       <InputText
-                        placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                        placeholder="Eg: 7"
                         name="pre_sale_mint_price"
                         id="pre_sale_mint_price"
                         // width="auto"
                         value={nftListingData?.pre_sale_mint_price}
-                        InputProps={{
-                          endAdornment: (
-                            <Button
-                              variant="contained"
-                              sx={{
-                                background: "#E9ECEF",
-                                color: "black",
-                                boxShadow: "none",
-                                "&:hover": {
-                                  backgroundColor: "#E9ECEF",
-                                  color: "black",
-                                  boxShadow: "none",
-                                },
-                              }}
-                            >
-                              ETH
-                            </Button>
-                          ),
-                        }}
+                        type="number"
+                        // InputProps={{
+                        //   endAdornment: (
+                        //     <Button
+                        //       variant="contained"
+                        //       sx={{
+                        //         background: "#E9ECEF",
+                        //         color: "black",
+                        //         boxShadow: "none",
+                        //         "&:hover": {
+                        //           backgroundColor: "#E9ECEF",
+                        //           color: "black",
+                        //           boxShadow: "none",
+                        //         },
+                        //       }}
+                        //     >
+                        //       ETH
+                        //     </Button>
+                        //   ),
+                        // }}
                       />
                     </Grid>
 
@@ -1050,30 +1083,31 @@ const NFTListingEdit = () => {
                         Public Mint Price
                       </Typography>
                       <InputText
-                        placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                        placeholder="Eg: 7"
                         name="public_mint_price"
                         id="public_mint_price"
                         // width="auto"
                         value={nftListingData?.public_mint_price}
-                        InputProps={{
-                          endAdornment: (
-                            <Button
-                              variant="contained"
-                              sx={{
-                                background: "#E9ECEF",
-                                color: "black",
-                                boxShadow: "none",
-                                "&:hover": {
-                                  backgroundColor: "#E9ECEF",
-                                  color: "black",
-                                  boxShadow: "none",
-                                },
-                              }}
-                            >
-                              ETH
-                            </Button>
-                          ),
-                        }}
+                        type="number"
+                        // InputProps={{
+                        //   endAdornment: (
+                        //     <Button
+                        //       variant="contained"
+                        //       sx={{
+                        //         background: "#E9ECEF",
+                        //         color: "black",
+                        //         boxShadow: "none",
+                        //         "&:hover": {
+                        //           backgroundColor: "#E9ECEF",
+                        //           color: "black",
+                        //           boxShadow: "none",
+                        //         },
+                        //       }}
+                        //     >
+                        //       ETH
+                        //     </Button>
+                        //   ),
+                        // }}
                       />
                     </Grid>
                   </Stack>
@@ -1098,7 +1132,7 @@ const NFTListingEdit = () => {
                       sx={{ textAlign: "left" }}
                       mb={2}
                     >
-                      Please Provide the information about NFT
+                      Please provide NFT community details
                     </Typography>
                   </Grid>
                   {nftListingData?.has_many_communitys?.length !== 0 &&
@@ -1121,7 +1155,7 @@ const NFTListingEdit = () => {
                                   Website URL {index + 1}
                                 </Typography>
                                 <InputText
-                                  placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                                  placeholder="Enter official website url"
                                   name={`community_website_url[${index + 1}]`}
                                   id={`community_website_url_${index + 1}`}
                                   value={communitys.community_website_url}
@@ -1178,7 +1212,7 @@ const NFTListingEdit = () => {
                             Website URL
                           </Typography>
                           <InputText
-                            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                            placeholder="Enter official website url"
                             name={`community_website_url[1]`}
                             id={`community_website_url_1`}
                           />
@@ -1405,7 +1439,7 @@ const NFTListingEdit = () => {
                       sx={{ textAlign: "left" }}
                       mb={2}
                     >
-                      Please Provide the information about NFT
+                      Enter social details
                     </Typography>
                   </Grid>
 
@@ -1435,6 +1469,7 @@ const NFTListingEdit = () => {
                                   selectedValue={socials.social_platform_id}
                                   height={40}
                                   variant="social_platform"
+                                  title="Select website"
                                 />
                               </Grid>
                               <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -1450,7 +1485,7 @@ const NFTListingEdit = () => {
                                   Social URL {index + 1}
                                 </Typography>
                                 <InputText
-                                  placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                                  placeholder="Enter social url"
                                   name={`social_url[${index + 1}]`}
                                   id={`social_url_${index + 1}`}
                                   value={socials.social_url}
@@ -1512,6 +1547,7 @@ const NFTListingEdit = () => {
                             data={nftSocialList}
                             height={40}
                             variant="social_platform"
+                            title="Select website"
                           />
                         </Grid>
                         <Grid item xl={8} lg={8} md={8} sm={8} xs={12}>
@@ -1527,7 +1563,7 @@ const NFTListingEdit = () => {
                             Social URL
                           </Typography>
                           <InputText
-                            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                            placeholder="Enter social url"
                             name="social_url[1]"
                             id="social_url_1"
                           />

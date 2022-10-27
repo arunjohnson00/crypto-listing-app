@@ -27,6 +27,7 @@ const EventMarketPlace = ({
             data={data}
             height={40}
             variant="nft_marketplace"
+            title="Select Marketplace"
           />
         </Grid>
         <Grid item xl={5} lg={5} md={5} sm={5} xs={12}>
@@ -38,7 +39,7 @@ const EventMarketPlace = ({
             Marketplace URL {index + 2}
           </Typography>
           <InputText
-            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            placeholder="Enter NFT Marketplace url"
             name={`marketplace_url[${index + 2}]`}
             id={`marketplace_url_${index + 2}`}
             // width="auto"

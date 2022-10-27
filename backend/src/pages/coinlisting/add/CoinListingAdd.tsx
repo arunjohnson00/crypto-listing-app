@@ -83,7 +83,7 @@ const CoinListingAdd = () => {
   });
 
   const [coinStatus, setCoinStatus] = useState("Presale");
-
+  const [addCoin, setCoin] = useState({ description: "" });
   const [addCoinLogo, setCoinLogo] = useState({ coinLogo: "" });
 
   const [dateTime, setDateTime] = useState<any>({
@@ -210,7 +210,7 @@ const CoinListingAdd = () => {
       dateFormat(coinPublishStatus.statusDateTime, "dd-mm-yyyy H:MM:ss")
     );
     formData.append("is_scheduled", coinPublishStatus.is_scheduled);
-
+    formData.append("description", addCoin.description);
     const presaleStatus: any = coinStatus === "Presale" ? 1 : 0;
     formData.append("is_presale", presaleStatus);
 
@@ -430,9 +430,12 @@ const CoinListingAdd = () => {
                     Project Description
                   </Typography>
                   <InputTextArea
+                    variant="richtextdescription"
                     name="description"
                     id="description"
                     placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."
+                    data={addCoin}
+                    setData={setCoin}
                   />
                 </Grid>
               </Grid>
@@ -953,6 +956,7 @@ const CoinListingAdd = () => {
                       placeholder="Eg: 100000000000"
                       id="circulating_supply"
                       name="circulating_supply"
+                      type="number"
                     />
                   </Grid>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -972,6 +976,7 @@ const CoinListingAdd = () => {
                       placeholder="Eg: 100000000000"
                       id="max_supply"
                       name="max_supply"
+                      type="number"
                     />
                   </Grid>
                 </Stack>
@@ -999,6 +1004,7 @@ const CoinListingAdd = () => {
                     placeholder="Eg: 100000000000"
                     id="market_cap"
                     name="market_cap"
+                    type="number"
                   />
                 </Grid>
               </Grid>
@@ -1025,7 +1031,12 @@ const CoinListingAdd = () => {
                       </Typography>
                     </Typography>
 
-                    <InputText placeholder="Eg: 5.89" id="price" name="price" />
+                    <InputText
+                      placeholder="Eg: 5.89"
+                      id="price"
+                      name="price"
+                      type="number"
+                    />
                   </Grid>
 
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -1052,6 +1063,7 @@ const CoinListingAdd = () => {
                       placeholder="Eg: 100000000000"
                       id="circulating_supply"
                       name="circulating_supply"
+                      type="number"
                     />
                   </Grid>
                 </Stack>
@@ -1074,6 +1086,7 @@ const CoinListingAdd = () => {
                       placeholder="Eg: 100000000000"
                       id="max_supply"
                       name="max_supply"
+                      type="number"
                     />
                   </Grid>
 
@@ -1101,6 +1114,7 @@ const CoinListingAdd = () => {
                       placeholder="Eg: 100000000000"
                       id="market_cap"
                       name="market_cap"
+                      type="number"
                     />
                   </Grid>
                 </Stack>

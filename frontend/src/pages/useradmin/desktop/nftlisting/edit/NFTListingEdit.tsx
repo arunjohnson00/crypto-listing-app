@@ -92,7 +92,7 @@ const NFTListingEdit = () => {
   });
 
   const [nftListingData, setNftListingData] = useState<any>({});
-  console.log(nftListingData, "nftListingData");
+
   const [checked, setChecked] = useState<any>({
     i_agree: false,
     i_declare: false,

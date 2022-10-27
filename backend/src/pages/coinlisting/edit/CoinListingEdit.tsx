@@ -336,7 +336,7 @@ const CoinListingEdit = () => {
       dateFormat(coinPublishStatus.statusDateTime, "dd-mm-yyyy H:MM:ss")
     );
     formData.append("is_scheduled", coinPublishStatus.is_scheduled);
-
+    formData.append("description", editCoin.description);
     const presaleStatus: any = coinStatus === "Presale" ? 1 : 0;
     formData.append("is_presale", presaleStatus);
 
@@ -535,11 +535,7 @@ const CoinListingEdit = () => {
                     Coin Symbol
                     <Typography
                       variant="caption"
-                      sx={{
-                        textAlign: "left",
-                        fontSize: ".9rem",
-                        fontWeight: 600,
-                      }}
+                      sx={{ textAlign: "left" }}
                       mb={1}
                     >
                       (Don't put a $ sign if there is none in the ticker){" "}
@@ -590,10 +586,13 @@ const CoinListingEdit = () => {
                     Project Description
                   </Typography>
                   <InputTextArea
+                    variant="richtextdescription"
                     name="description"
                     id="description"
                     placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."
                     value={editCoin?.description}
+                    data={editCoin}
+                    setData={setEditCoin}
                   />
                 </Grid>
               </Grid>
@@ -1354,6 +1353,7 @@ const CoinListingEdit = () => {
                       id="circulating_supply"
                       name="circulating_supply"
                       value={editCoin?.circulating_supply}
+                      type="number"
                     />
                   </Grid>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -1374,6 +1374,7 @@ const CoinListingEdit = () => {
                       id="max_supply"
                       name="max_supply"
                       value={editCoin?.max_supply}
+                      type="number"
                     />
                   </Grid>
                 </Stack>
@@ -1402,6 +1403,7 @@ const CoinListingEdit = () => {
                     id="market_cap"
                     name="market_cap"
                     value={editCoin?.market_cap}
+                    type="number"
                   />
                 </Grid>
               </Grid>
@@ -1433,6 +1435,7 @@ const CoinListingEdit = () => {
                       id="price"
                       name="price"
                       value={editCoin?.price}
+                      type="number"
                     />
                   </Grid>
 
@@ -1461,6 +1464,7 @@ const CoinListingEdit = () => {
                       id="circulating_supply"
                       name="circulating_supply"
                       value={editCoin?.circulating_supply}
+                      type="number"
                     />
                   </Grid>
                 </Stack>
@@ -1484,6 +1488,7 @@ const CoinListingEdit = () => {
                       id="max_supply"
                       name="max_supply"
                       value={editCoin?.max_supply}
+                      type="number"
                     />
                   </Grid>
 
@@ -1512,6 +1517,7 @@ const CoinListingEdit = () => {
                       id="market_cap"
                       name="market_cap"
                       value={editCoin?.market_cap}
+                      type="number"
                     />
                   </Grid>
                 </Stack>

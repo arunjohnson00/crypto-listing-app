@@ -16,27 +16,16 @@ const InputTextArea = ({
   data,
   setData,
 }: any) => {
-  const [textAreaValue, setTextAreaValue] = useState("");
-  // const [richEditorValue, setRichEditorValue] = useState<any>(
-  //   RichTextEditor.createValueFromString(
-  //     placeholder ? placeholder : "Enter  details.",
-  //     "html"
-  //   )
-  // );
+  const [textAreaValue, setTextAreaValue] = useState(value);
 
   const matches = useMediaQuery("(min-width:900px)");
 
   const richEditorHandler = (value: any) => {
-    setData({
-      ...data,
-      details: value,
-    });
+    setData({ ...data, details: value, description: value });
   };
-
   useEffect(() => {
     setTextAreaValue(value);
   }, [value]);
-
   return (
     <Fragment>
       {variant === "richtext" ? (
@@ -44,6 +33,14 @@ const InputTextArea = ({
           theme="snow"
           value={data?.details}
           onChange={richEditorHandler}
+          placeholder={placeholder && placeholder}
+        />
+      ) : variant === "richtextdescription" ? (
+        <ReactQuill
+          theme="snow"
+          value={data?.description}
+          onChange={richEditorHandler}
+          placeholder={placeholder && placeholder}
         />
       ) : (
         // <RichTextEditor value={richEditorValue} onChange={richEditorHandler} />
