@@ -160,6 +160,7 @@ export {
   feargreedHistoricalDataRequest,
 } from "./feargreedAction";
 
+//USER REVIEW
 export {
   dashboardAddReviewRequest,
   dashboardEditReviewRequest,
@@ -167,4 +168,18 @@ export {
   dashboardDeleteReviewRequest,
 } from "./dashboardReviewAction";
 
+//PRESALE PAGE
+
 export { presalePageListingRequest } from "./presaleAction";
+
+//ADS
+
+export {
+  mainBannerAdsRequest,
+  squareBannerAdsRequest,
+  squareHalfBannerAdsRequest,
+  voteClickPopupAdsRequest,
+  welcomePopupAdsRequest,
+  searchAdsRequest,
+  videoAdsRequest,
+} from "./adsAction";

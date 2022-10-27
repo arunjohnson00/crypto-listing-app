@@ -17,6 +17,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import TrendingIcon from "../../../assets/search/trending_icon.svg";
 import { topbarSearchRequest } from "../../../store/action";
 import MobileRecentSearchCard from "../cards/recentsearchcard/MobileRecentSearchCard";
+import SearchBoxAds from "../../ads/searchboxads/SearchBoxAds";
 
 const CustomInputPopup = forwardRef(function CustomInput(
   props: InputUnstyledProps,
@@ -783,80 +784,7 @@ const SearchDrawer = ({ openDrawer, toggleDrawer }: any) => {
               {/* </Stack> */}
             </Stack>
           )}
-          <Box pl={2}>
-            <Stack direction="row" spacing={2} alignItems="flex-start">
-              <Avatar
-                alt="Search Ads"
-                //src={`${serverAPIUrl}public/uploads/coin_logo/${item?.coin_logo}`}
-                src="https://www.logo.wine/a/logo/Binance/Binance-Icon-Logo.wine.svg"
-                sx={{ width: 70, height: 70, borderRadius: 0 }}
-              />
-              <Stack direction="column" spacing={1} alignItems="flex-start">
-                <Stack
-                  direction="column"
-                  spacing={0}
-                  alignItems="flex-start"
-                  pr={2}
-                >
-                  <Typography sx={{ fontSize: "1rem", fontWeight: 700 }}>
-                    Trade Now. Earn Cakes
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: ".8rem",
-                      fontWeight: 400,
-                      //wordWrap: "wrap",
-                      wordBreak: "break-word",
-                    }}
-                  >
-                    Binance was launched in June 2017 and within 180 days grew
-                    into the largest cryptocurrency exchange in the world
-                  </Typography>
-                </Stack>
-                <Stack
-                  direction="row"
-                  spacing={2}
-                  alignItems="center"
-                  justifyContent="space-between"
-                  width="100%"
-                >
-                  <Link
-                    to="#"
-                    target="_blank"
-                    style={{ textDecoration: "none" }}
-                  >
-                    {" "}
-                    <Typography
-                      sx={{
-                        fontSize: ".837rem",
-                        fontWeight: 500,
-                        color: "#7F85B4",
-                      }}
-                    >
-                      Register Now
-                    </Typography>
-                  </Link>
-
-                  <Link
-                    to="#"
-                    target="_blank"
-                    style={{ textDecoration: "none" }}
-                  >
-                    {" "}
-                    <Typography
-                      sx={{
-                        fontSize: ".837rem",
-                        fontWeight: 500,
-                        color: "#282828",
-                      }}
-                    >
-                      Sponsored
-                    </Typography>
-                  </Link>
-                </Stack>
-              </Stack>
-            </Stack>
-          </Box>
+          <SearchBoxAds />
         </Stack>
       </Stack>
     </Drawer>

@@ -21,6 +21,8 @@ import dashboardReviewReducer from "./dashboardReviewReducer";
 import airdropReducer from "./airdropReducer";
 import eventsReducer from "./eventsReducer";
 import presaleReducer from "./presaleReducer";
+import adsReducer from "./adsReducer";
+
 const allReducers = combineReducers({
   commonReducer,
   homeReducer,
@@ -38,6 +40,7 @@ const allReducers = combineReducers({
   airdropReducer,
   eventsReducer,
   presaleReducer,
+  adsReducer,
 });
 
 const rootReducer = (state: any, action: any) => {
