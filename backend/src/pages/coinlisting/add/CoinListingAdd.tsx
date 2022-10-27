@@ -392,11 +392,7 @@ const CoinListingAdd = () => {
                     </Typography>
                   </Typography>
 
-                  <InputText
-                    placeholder="Enter Exchange url"
-                    name="symbol"
-                    id="symbol"
-                  />
+                  <InputText placeholder="Eg: BTC" name="symbol" id="symbol" />
                 </Grid>
 
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
@@ -436,7 +432,7 @@ const CoinListingAdd = () => {
                   <InputTextArea
                     name="description"
                     id="description"
-                    placeholder="Enter description"
+                    placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."
                   />
                 </Grid>
               </Grid>
@@ -643,8 +639,8 @@ const CoinListingAdd = () => {
                 Network Details
               </Typography>
               <Typography variant="caption" sx={{ textAlign: "left" }} mb={2}>
-                Please specify the chain that you are on (Eg:Binance Smart
-                Chain, Etherieum, Heco)
+                Please specify the chain that you are on (Eg: Binance Smart
+                Chain, Ethereum, Heco)
               </Typography>
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -683,7 +679,7 @@ const CoinListingAdd = () => {
                     Contract address 1
                   </Typography>
                   <InputText
-                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    placeholder="Eg: 0x2170ed0880ac9a755fd29b2688956bd959f933f8"
                     name={`network_address[1]`}
                     id={`network_address_1`}
                   />
@@ -701,7 +697,7 @@ const CoinListingAdd = () => {
                     Block explorer URL 1
                   </Typography>
                   <InputText
-                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    placeholder="Eg: https://bscscan.com/token/0x2170ed0880ac9a755fd29b2688956bd959f933f8 "
                     name={`network_explorer_link[1]`}
                     id={`network_explorer_link_1`}
                   />
@@ -782,7 +778,7 @@ const CoinListingAdd = () => {
                     Exchange URL
                   </Typography>
                   <InputText
-                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    placeholder="Eg: https://www.binance.com/en/trade/BTC_USDT"
                     name={`url[1]`}
                     id={`url_1`}
                   />
@@ -894,11 +890,18 @@ const CoinListingAdd = () => {
                       }}
                       mb={1}
                     >
-                      Presale address (Optional)
+                      Presale address{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        (Optional)
+                      </Typography>
                     </Typography>
 
                     <InputText
-                      placeholder="Eg: faffhaafasgdasdsafdywdtdw"
+                      placeholder="Eg: 0x2170ed0880ac9a755fd29b2688956bd959f933f8"
                       id="presale_address"
                       name="presale_address"
                     />
@@ -918,7 +921,7 @@ const CoinListingAdd = () => {
                     </Typography>
 
                     <InputText
-                      placeholder="Enter presale address"
+                      placeholder="Enter presale url"
                       name="presale_link"
                       id="presale_link"
                     />
@@ -936,11 +939,18 @@ const CoinListingAdd = () => {
                       }}
                       mb={1}
                     >
-                      Circulating Supply (Optional)
+                      Circulating Supply{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        (Optional)
+                      </Typography>
                     </Typography>
 
                     <InputText
-                      placeholder="Enter ircularity Supply(Eg: 100,0000)"
+                      placeholder="Eg: 100000000000"
                       id="circulating_supply"
                       name="circulating_supply"
                     />
@@ -959,7 +969,7 @@ const CoinListingAdd = () => {
                     </Typography>
 
                     <InputText
-                      placeholder="Enter Max/Total Supply(Eg: 100,000000)"
+                      placeholder="Eg: 100000000000"
                       id="max_supply"
                       name="max_supply"
                     />
@@ -975,11 +985,18 @@ const CoinListingAdd = () => {
                     }}
                     mb={1}
                   >
-                    Marketap (Optional)
+                    Marketap{" "}
+                    <Typography
+                      variant="caption"
+                      sx={{ textAlign: "left" }}
+                      mb={1}
+                    >
+                      (Optional)
+                    </Typography>
                   </Typography>
 
                   <InputText
-                    placeholder="Enter marketcap(Eg: $100,0000)"
+                    placeholder="Eg: 100000000000"
                     id="market_cap"
                     name="market_cap"
                   />
@@ -998,14 +1015,17 @@ const CoinListingAdd = () => {
                       }}
                       mb={1}
                     >
-                      Price
+                      Price{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        (Don't put any currency symbol in price)
+                      </Typography>
                     </Typography>
 
-                    <InputText
-                      placeholder="Enter Price(Eg: $5.89)"
-                      id="price"
-                      name="price"
-                    />
+                    <InputText placeholder="Eg: 5.89" id="price" name="price" />
                   </Grid>
 
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -1018,11 +1038,18 @@ const CoinListingAdd = () => {
                       }}
                       mb={1}
                     >
-                      Circulating Supply (Optional)
+                      Circulating Supply{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        (Optional)
+                      </Typography>
                     </Typography>
 
                     <InputText
-                      placeholder="Enter ircularity Supply(Eg: 100,0000)"
+                      placeholder="Eg: 100000000000"
                       id="circulating_supply"
                       name="circulating_supply"
                     />
@@ -1044,7 +1071,7 @@ const CoinListingAdd = () => {
                     </Typography>
 
                     <InputText
-                      placeholder="Enter Max/Total Supply(Eg: 100,000000)"
+                      placeholder="Eg: 100000000000"
                       id="max_supply"
                       name="max_supply"
                     />
@@ -1060,11 +1087,18 @@ const CoinListingAdd = () => {
                       }}
                       mb={1}
                     >
-                      Marketap (Optional)
+                      Marketap{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        (Optional)
+                      </Typography>
                     </Typography>
 
                     <InputText
-                      placeholder="Enter marketcap(Eg: $100,0000)"
+                      placeholder="Eg: 100000000000"
                       id="market_cap"
                       name="market_cap"
                     />
@@ -1104,7 +1138,7 @@ const CoinListingAdd = () => {
                     SourceCode URL
                   </Typography>
                   <InputText
-                    placeholder="Enter github url"
+                    placeholder="Enter sourcecode url"
                     id="source_code_url"
                     name="source_code_url"
                   />
@@ -1122,7 +1156,7 @@ const CoinListingAdd = () => {
                     Medium URL
                   </Typography>
                   <InputText
-                    placeholder="Enter Medium URL"
+                    placeholder="Enter Medium url"
                     id="medium_link"
                     name="medium_link"
                   />
@@ -1144,7 +1178,7 @@ const CoinListingAdd = () => {
                     Whitepaper URL
                   </Typography>
                   <InputText
-                    placeholder="Enter whitepaper URL"
+                    placeholder="Enter Whitepaper url"
                     id="whitepaper_link"
                     name="whitepaper_link"
                   />
@@ -1162,7 +1196,7 @@ const CoinListingAdd = () => {
                     Docs URL 1
                   </Typography>
                   <InputText
-                    placeholder="Enter docs URL"
+                    placeholder="Enter Docs url"
                     id="docs_link"
                     name="docs_link"
                   />
@@ -1174,7 +1208,7 @@ const CoinListingAdd = () => {
                 Audit Details
               </Typography>
               <Typography variant="caption" sx={{ textAlign: "left" }} mb={2}>
-                Please Provide the information about coin
+                Please Provide the audit details
               </Typography>
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -1213,7 +1247,7 @@ const CoinListingAdd = () => {
                     Audit URL
                   </Typography>
                   <InputText
-                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    placeholder="Enter Audit URL"
                     name="audit_link[1]"
                     id="audit_link_1"
                   />
@@ -1252,7 +1286,7 @@ const CoinListingAdd = () => {
                 Chart Details
               </Typography>
               <Typography variant="caption" sx={{ textAlign: "left" }} mb={2}>
-                Please Provide the information about coin
+                Please Provide the Chart information
               </Typography>
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -1291,7 +1325,7 @@ const CoinListingAdd = () => {
                     Chart URL
                   </Typography>
                   <InputText
-                    placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                    placeholder="Eg: https://in.tradingview.com/chart/?symbol=BTC"
                     name="chart_link[1]"
                     id="chart_link_1"
                   />
@@ -1335,7 +1369,7 @@ const CoinListingAdd = () => {
                     sx={{ textAlign: "left" }}
                     mb={2}
                   >
-                    Please Provide the information about coin
+                    Please Provide the Social details
                   </Typography>
                 </Grid>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -1353,7 +1387,7 @@ const CoinListingAdd = () => {
                         Website URL
                       </Typography>
                       <InputText
-                        placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                        placeholder="Enter official website url"
                         name="community_website_url[1]"
                         id="community_website_url_1"
                       />
@@ -1441,6 +1475,13 @@ const CoinListingAdd = () => {
                   <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
                     Listed on
                   </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{ textAlign: "left" }}
+                    mb={2}
+                  >
+                    (Please check your coin is listed in the following website)
+                  </Typography>
                 </Grid>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                   <Stack direction="column" spacing={3} pt={3}>
@@ -1466,7 +1507,7 @@ const CoinListingAdd = () => {
                         />
 
                         <InputText
-                          placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                          placeholder="Enter coinmarketcap url"
                           checkboxStatus={!checked.is_listed_market_cap}
                           id="coin_market_cap_url"
                           name="coin_market_cap_url"
@@ -1496,7 +1537,7 @@ const CoinListingAdd = () => {
                         />
 
                         <InputText
-                          placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                          placeholder="Enter coingecko url"
                           checkboxStatus={!checked.is_listed_coingecko}
                           name="coingecko_url"
                           id="coingecko_url"
@@ -1601,7 +1642,7 @@ const CoinListingAdd = () => {
                     sx={{ textAlign: "left" }}
                     mb={2}
                   >
-                    Please Provide the information about coin
+                    Enter social details
                   </Typography>
                 </Grid>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -1640,7 +1681,7 @@ const CoinListingAdd = () => {
                         Social URL
                       </Typography>
                       <InputText
-                        placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                        placeholder="Enter social url"
                         name="social_url[1]"
                         id="social_url_1"
                       />

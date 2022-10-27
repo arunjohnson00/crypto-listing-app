@@ -104,7 +104,7 @@ const CoinListingEdit = () => {
     is_token_or_coin: "",
     logo: "",
     market_cap: "",
-    market_cap_url: "C",
+    market_cap_url: "",
     max_supply: "",
     medium_link: "",
     name: "",
@@ -547,7 +547,7 @@ const CoinListingEdit = () => {
                   </Typography>
 
                   <InputText
-                    placeholder="Enter Exchange url"
+                    placeholder="Eg: BTC"
                     name="symbol"
                     id="symbol"
                     value={editCoin?.symbol}
@@ -592,7 +592,7 @@ const CoinListingEdit = () => {
                   <InputTextArea
                     name="description"
                     id="description"
-                    placeholder="Enter description"
+                    placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."
                     value={editCoin?.description}
                   />
                 </Grid>
@@ -809,8 +809,8 @@ const CoinListingEdit = () => {
                 Network Details
               </Typography>
               <Typography variant="caption" sx={{ textAlign: "left" }} mb={2}>
-                Please specify the chain that you are on (Eg:Binance Smart
-                Chain, Etherieum, Heco)
+                Please specify the chain that you are on (Eg: Binance Smart
+                Chain, Ethereum, Heco)
               </Typography>
             </Grid>
 
@@ -869,7 +869,7 @@ const CoinListingEdit = () => {
                             Contract address {index + 1}
                           </Typography>
                           <InputText
-                            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                            placeholder="Eg: 0x2170ed0880ac9a755fd29b2688956bd959f933f8"
                             name={`network_address[${index + 1}]`}
                             id={`network_address_${index + 1}`}
                             value={networks.address}
@@ -888,7 +888,7 @@ const CoinListingEdit = () => {
                             Block explorer URL {index + 1}
                           </Typography>
                           <InputText
-                            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                            placeholder="Eg: https://bscscan.com/token/0x2170ed0880ac9a755fd29b2688956bd959f933f8 "
                             name={`network_explorer_link[${index + 1}]`}
                             id={`network_explorer_link_${index + 1}`}
                             value={networks.explorer_link}
@@ -960,7 +960,7 @@ const CoinListingEdit = () => {
                       Contract address 1
                     </Typography>
                     <InputText
-                      placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                      placeholder="Eg: 0x2170ed0880ac9a755fd29b2688956bd959f933f8"
                       name={`network_address[1]`}
                       id={`network_address_1`}
                     />
@@ -978,7 +978,7 @@ const CoinListingEdit = () => {
                       Block explorer URL 1
                     </Typography>
                     <InputText
-                      placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                      placeholder="Eg: https://bscscan.com/token/0x2170ed0880ac9a755fd29b2688956bd959f933f8 "
                       name={`network_explorer_link[1]`}
                       id={`network_explorer_link_1`}
                     />
@@ -1081,7 +1081,7 @@ const CoinListingEdit = () => {
                             Exchange URL {index + 1}
                           </Typography>
                           <InputText
-                            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                            placeholder="Eg: https://www.binance.com/en/trade/BTC_USDT"
                             name={`url[${index + 1}]`}
                             id={`url_${index + 1}`}
                             value={exchanges.url}
@@ -1169,7 +1169,7 @@ const CoinListingEdit = () => {
                       Exchange URL 1
                     </Typography>
                     <InputText
-                      placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                      placeholder="Eg: https://www.binance.com/en/trade/BTC_USDT"
                       name={`url[1]`}
                       id={`url_1`}
                     />
@@ -1289,11 +1289,18 @@ const CoinListingEdit = () => {
                       }}
                       mb={1}
                     >
-                      Presale address (Optional)
+                      Presale address{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        (Optional)
+                      </Typography>
                     </Typography>
 
                     <InputText
-                      placeholder="Eg: faffhaafasgdasdsafdywdtdw"
+                      placeholder="Eg: 0x2170ed0880ac9a755fd29b2688956bd959f933f8"
                       id="presale_address"
                       name="presale_address"
                       value={editCoin?.presale_address}
@@ -1314,7 +1321,7 @@ const CoinListingEdit = () => {
                     </Typography>
 
                     <InputText
-                      placeholder="Enter presale address"
+                      placeholder="Enter presale url"
                       name="presale_link"
                       id="presale_link"
                       value={editCoin?.presale_link}
@@ -1332,11 +1339,18 @@ const CoinListingEdit = () => {
                       }}
                       mb={1}
                     >
-                      Circulating Supply (Optional)
+                      Circulating Supply{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        (Optional)
+                      </Typography>
                     </Typography>
 
                     <InputText
-                      placeholder="Enter circulating Supply(Eg: 100,0000)"
+                      placeholder="Eg: 100000000000"
                       id="circulating_supply"
                       name="circulating_supply"
                       value={editCoin?.circulating_supply}
@@ -1356,7 +1370,7 @@ const CoinListingEdit = () => {
                     </Typography>
 
                     <InputText
-                      placeholder="Enter Max/Total Supply(Eg: 100,000000)"
+                      placeholder="Eg: 100000000000"
                       id="max_supply"
                       name="max_supply"
                       value={editCoin?.max_supply}
@@ -1373,11 +1387,18 @@ const CoinListingEdit = () => {
                     }}
                     mb={1}
                   >
-                    Marketcap (Optional)
+                    Marketcap{" "}
+                    <Typography
+                      variant="caption"
+                      sx={{ textAlign: "left" }}
+                      mb={1}
+                    >
+                      (Optional)
+                    </Typography>
                   </Typography>
 
                   <InputText
-                    placeholder="Enter marketcap(Eg: $100,0000)"
+                    placeholder="Eg: 100000000000"
                     id="market_cap"
                     name="market_cap"
                     value={editCoin?.market_cap}
@@ -1397,11 +1418,18 @@ const CoinListingEdit = () => {
                       }}
                       mb={1}
                     >
-                      Price
+                      Price{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        (Don't put any currency symbol in price)
+                      </Typography>
                     </Typography>
 
                     <InputText
-                      placeholder="Enter Price(Eg: $5.89)"
+                      placeholder="Eg: 5.89"
                       id="price"
                       name="price"
                       value={editCoin?.price}
@@ -1418,11 +1446,18 @@ const CoinListingEdit = () => {
                       }}
                       mb={1}
                     >
-                      Circulating Supply (Optional)
+                      Circulating Supply{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        (Optional)
+                      </Typography>
                     </Typography>
 
                     <InputText
-                      placeholder="Enter circularity Supply(Eg: 100,0000)"
+                      placeholder="Eg: 100000000000"
                       id="circulating_supply"
                       name="circulating_supply"
                       value={editCoin?.circulating_supply}
@@ -1445,7 +1480,7 @@ const CoinListingEdit = () => {
                     </Typography>
 
                     <InputText
-                      placeholder="Enter Max/Total Supply(Eg: 100,000000)"
+                      placeholder="Eg: 100000000000"
                       id="max_supply"
                       name="max_supply"
                       value={editCoin?.max_supply}
@@ -1462,11 +1497,18 @@ const CoinListingEdit = () => {
                       }}
                       mb={1}
                     >
-                      Marketcap (Optional)
+                      Marketcap{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        (Optional)
+                      </Typography>
                     </Typography>
 
                     <InputText
-                      placeholder="Enter marketcap(Eg: $100,0000)"
+                      placeholder="Eg: 100000000000"
                       id="market_cap"
                       name="market_cap"
                       value={editCoin?.market_cap}
@@ -1507,7 +1549,7 @@ const CoinListingEdit = () => {
                     SourceCode URL
                   </Typography>
                   <InputText
-                    placeholder="Enter github url"
+                    placeholder="Enter sourcecode url"
                     id="source_code_url"
                     name="source_code_url"
                     value={editCoin?.source_code_url}
@@ -1526,7 +1568,7 @@ const CoinListingEdit = () => {
                     Medium URL
                   </Typography>
                   <InputText
-                    placeholder="Enter Medium URL"
+                    placeholder="Enter Medium url"
                     id="medium_link"
                     name="medium_link"
                     value={editCoin?.medium_link}
@@ -1549,7 +1591,7 @@ const CoinListingEdit = () => {
                     Whitepaper URL
                   </Typography>
                   <InputText
-                    placeholder="Enter whitepaper URL"
+                    placeholder="Enter Whitepaper url"
                     id="whitepaper_link"
                     name="whitepaper_link"
                     value={editCoin?.whitepaper_link}
@@ -1568,7 +1610,7 @@ const CoinListingEdit = () => {
                     Docs URL 1
                   </Typography>
                   <InputText
-                    placeholder="Enter docs URL"
+                    placeholder="Enter Docs url"
                     id="docs_link"
                     name="docs_link"
                     value={editCoin?.docs_link}
@@ -1581,7 +1623,7 @@ const CoinListingEdit = () => {
                 Audit Details
               </Typography>
               <Typography variant="caption" sx={{ textAlign: "left" }} mb={2}>
-                Please Provide the information about coin
+                Please Provide the audit details
               </Typography>
             </Grid>
 
@@ -1634,7 +1676,7 @@ const CoinListingEdit = () => {
                           Audit URL {index + 1}
                         </Typography>
                         <InputText
-                          placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                          placeholder="Enter Audit URL"
                           name={`audit_link[${index + 1}]`}
                           id={`audit_link_${index + 1}`}
                           value={audits.audit_link}
@@ -1704,7 +1746,7 @@ const CoinListingEdit = () => {
                       Audit URL
                     </Typography>
                     <InputText
-                      placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                      placeholder="Enter Audit URL"
                       name="audit_link[1]"
                       id="audit_link_1"
                     />
@@ -1750,7 +1792,7 @@ const CoinListingEdit = () => {
                 Chart Details
               </Typography>
               <Typography variant="caption" sx={{ textAlign: "left" }} mb={2}>
-                Please Provide the information about coin
+                Please Provide the Chart information
               </Typography>
             </Grid>
 
@@ -1803,7 +1845,7 @@ const CoinListingEdit = () => {
                           Chart URL {index + 1}
                         </Typography>
                         <InputText
-                          placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                          placeholder="Eg: https://in.tradingview.com/chart/?symbol=BTC"
                           name={`chart_link[${index + 1}]`}
                           id={`chart_link_${index + 1}`}
                           value={charts.chart_link}
@@ -1873,7 +1915,7 @@ const CoinListingEdit = () => {
                       Chart URL
                     </Typography>
                     <InputText
-                      placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                      placeholder="Eg: https://in.tradingview.com/chart/?symbol=BTC"
                       name="chart_link[1]"
                       id="chart_link_1"
                     />
@@ -1923,7 +1965,7 @@ const CoinListingEdit = () => {
                     sx={{ textAlign: "left" }}
                     mb={2}
                   >
-                    Please Provide the information about coin
+                    Please Provide the Social details
                   </Typography>
                 </Grid>
 
@@ -1955,7 +1997,7 @@ const CoinListingEdit = () => {
                                 Website URL {index + 1}
                               </Typography>
                               <InputText
-                                placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                                placeholder="Enter official website url"
                                 name={`community_website_url[${index + 1}]`}
                                 id={`community_website_url_${index + 1}`}
                                 value={communitys.community_website_url}
@@ -2011,7 +2053,7 @@ const CoinListingEdit = () => {
                           Website URL
                         </Typography>
                         <InputText
-                          placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                          placeholder="Enter official website url"
                           name="community_website_url[1]"
                           id="community_website_url_1"
                         />
@@ -2094,6 +2136,13 @@ const CoinListingEdit = () => {
                   <Typography variant="h6" sx={{ textAlign: "left" }} mb={0}>
                     Listed on
                   </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{ textAlign: "left" }}
+                    mb={2}
+                  >
+                    (Please check your coin is listed in the following website)
+                  </Typography>
                 </Grid>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                   <Stack direction="column" spacing={3} pt={3}>
@@ -2120,7 +2169,7 @@ const CoinListingEdit = () => {
                         />
 
                         <InputText
-                          placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                          placeholder="Enter coinmarketcap url"
                           checkboxStatus={checked.is_listed_market_cap}
                           id="coin_market_cap_url"
                           name="coin_market_cap_url"
@@ -2152,7 +2201,7 @@ const CoinListingEdit = () => {
                         />
 
                         <InputText
-                          placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                          placeholder="Enter coingecko url"
                           checkboxStatus={checked.is_listed_coingecko}
                           name="coingecko_url"
                           id="coingecko_url"
@@ -2348,7 +2397,7 @@ const CoinListingEdit = () => {
                     sx={{ textAlign: "left" }}
                     mb={2}
                   >
-                    Please Provide the information about coin
+                    Enter social details
                   </Typography>
                 </Grid>
 
@@ -2404,7 +2453,7 @@ const CoinListingEdit = () => {
                                 Social URL {index + 1}
                               </Typography>
                               <InputText
-                                placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                                placeholder="Enter social url"
                                 name={`social_url[${index + 1}]`}
                                 id={`social_url_${index + 1}`}
                                 value={socials.social_url}
@@ -2481,7 +2530,7 @@ const CoinListingEdit = () => {
                           Social URL
                         </Typography>
                         <InputText
-                          placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+                          placeholder="Enter social url"
                           name="social_url[1]"
                           id="social_url_1"
                         />

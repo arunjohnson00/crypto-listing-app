@@ -34,7 +34,7 @@ const AuditDetails = ({ auditCount, index, auditremoveHandle, data }: any) => {
             Audit URL {index + 2}
           </Typography>
           <InputText
-            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            placeholder="Enter Audit URL"
             name={`audit_link[${index + 2}]`}
             id={`audit_link_${index + 2}`}
           />

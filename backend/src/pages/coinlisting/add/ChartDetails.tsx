@@ -34,7 +34,7 @@ const ChartDetails = ({ chartCount, chartremoveHandle, index, data }: any) => {
             Chart URL {index + 2}
           </Typography>
           <InputText
-            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            placeholder="Eg: https://in.tradingview.com/chart/?symbol=BTC"
             name={`chart_link[${index + 2}]`}
             id={`chart_link_${index + 2}`}
           />

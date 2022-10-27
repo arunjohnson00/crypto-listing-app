@@ -40,7 +40,7 @@ const ExchangeDetails = ({
             Exchange URL {index + 2}
           </Typography>
           <InputText
-            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            placeholder="Eg: https://www.binance.com/en/trade/BTC_USDT"
             name={`url[${index + 2}]`}
             id={`url_${index + 2}`}
           />

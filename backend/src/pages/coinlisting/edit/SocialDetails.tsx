@@ -39,7 +39,7 @@ const SocialDetails = ({
             Social URL {index + 2}
           </Typography>
           <InputText
-            placeholder="Eg:hsofbe7tyeiehdndmdoqcejdhhf"
+            placeholder="Enter social url"
             name={`social_url[${index + 2}]`}
             id={`social_url_${index + 2}`}
           />
