@@ -47,9 +47,7 @@ const MobileMenuCards = ({
                     textAlign: "left",
                   }}
                 >
-                  {title && title?.length >= 21
-                    ? title && title?.slice(0, 19) + "..."
-                    : title && title}
+                  {title && title}
                 </Typography>
               </a>
               <Typography
