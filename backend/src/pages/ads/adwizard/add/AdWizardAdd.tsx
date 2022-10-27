@@ -67,7 +67,7 @@ const AdWizardAdd = () => {
     description: "",
     ads_type: 1,
     banner_image: "",
-    banner_ad_type: "",
+    banner_ad_type: 1,
     banner_target_link: "",
     icon: "",
     image: "",
