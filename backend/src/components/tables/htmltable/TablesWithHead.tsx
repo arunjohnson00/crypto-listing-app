@@ -258,6 +258,9 @@ const TablesWithHead = ({ rows, rowHeader, mailer, variant }: any) => {
                     {parseInt(data?.status) === 3 && (
                       <span style={{ color: "#c105ffd4" }}>Processing</span>
                     )}
+                    {parseInt(data?.status) === 4 && (
+                      <span style={{ color: "#c105ffd4" }}>Processing</span>
+                    )}
                   </span>
                 </TableCell>
 
