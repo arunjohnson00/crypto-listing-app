@@ -114,8 +114,9 @@ const MobileCoinpageRatings = () => {
                     variant="h3"
                     sx={{ color: "#FFFFF5", fontWeight: "400" }}
                   >
-                    {coinRatingBlock &&
-                      parseFloat(coinRatingBlock[0]?.trust_score).toFixed(1)}
+                    {coinRatingBlock && coinRatingBlock[0]?.trust_score !== null
+                      ? parseFloat(coinRatingBlock[0]?.trust_score).toFixed(1)
+                      : 0}
                   </Typography>
                 </Stack>
                 {/* <Rating
@@ -152,7 +153,10 @@ const MobileCoinpageRatings = () => {
                   mt={0.4}
                 >
                   {`(${
-                    coinRatingBlock && coinRatingBlock[0]?.total_review_count
+                    coinRatingBlock &&
+                    coinRatingBlock[0]?.total_review_count !== 0
+                      ? coinRatingBlock[0]?.total_review_count
+                      : "No ratings"
                   })`}
                 </Typography>
               </Stack>

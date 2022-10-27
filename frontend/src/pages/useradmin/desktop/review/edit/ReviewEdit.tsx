@@ -181,7 +181,7 @@ const ReviewEdit = () => {
             borderRadius: "5px",
           }}
           pt={3}
-          pl={4}
+          pl={{ xs: 2, sm: 2, md: 4 }}
         >
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Stack direction="column" spacing={0} pb={2}>
@@ -320,7 +320,7 @@ const ReviewEdit = () => {
                 // fontFamily: "inherit",
                 //lineHeight: "inherit",
                 //maxWidth: 600,
-                minWidth: 400,
+                //minWidth: { xs: "100%", sm: "100%", md: 400 },
                 padding: "1%",
                 width: "93%",
                 borderRadius: 6,
@@ -371,7 +371,14 @@ const ReviewEdit = () => {
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
-            <Stack spacing={2} sx={{ alignItems: "flex-end" }} pb={5} mr={5}>
+            <Stack
+              spacing={2}
+              sx={{
+                alignItems: { xs: "center", sm: "center", md: "flex-end" },
+              }}
+              pb={5}
+              mr={5}
+            >
               {loading ? (
                 <LoadingButton
                   color="secondary"

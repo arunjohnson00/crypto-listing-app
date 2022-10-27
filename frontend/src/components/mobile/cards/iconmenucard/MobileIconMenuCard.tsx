@@ -73,7 +73,7 @@ const MobileIconMenuCard = () => {
         </Grid>
         <Grid item xs={3}>
           <Link
-            to="/coins/todays-performer"
+            to="/coins/most-voted"
             style={{
               textDecoration: "none",
               color: "inherit",

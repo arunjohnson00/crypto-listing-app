@@ -7,6 +7,7 @@ import moment from "moment";
 import { coinEventBlockRequest } from "../../../store/action";
 
 import MobileAirdropViewCardCoinPage from "../cards/airdropviewcardcoinpage/MobileAirdropViewCardCoinPage";
+import { Link } from "react-router-dom";
 
 const MobileCoinPageAirdrop = () => {
   const location: any = useLocation();
@@ -128,17 +129,22 @@ const MobileCoinPageAirdrop = () => {
           <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
             Currently there is no airdrops for this coin
           </Typography>
-          <Button
-            variant="contained"
-            size="small"
-            sx={{
-              textTransform: "capitalize",
-              fontSize: ".65rem",
-              borderRadius: 5,
-            }}
+          <Link
+            to={"/user-dashboard/airdrops/add"}
+            style={{ textDecoration: "none" }}
           >
-            Add Airdrop
-          </Button>
+            <Button
+              variant="contained"
+              size="small"
+              sx={{
+                textTransform: "capitalize",
+                fontSize: ".65rem",
+                borderRadius: 5,
+              }}
+            >
+              Add Airdrop
+            </Button>
+          </Link>
         </Stack>
       )}
     </Grid>

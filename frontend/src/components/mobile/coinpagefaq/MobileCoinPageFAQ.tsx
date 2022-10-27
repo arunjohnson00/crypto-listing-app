@@ -13,6 +13,7 @@ import {
   Button,
 } from "@mui/material";
 import MoodIcon from "@mui/icons-material/Mood";
+import parse from "html-react-parser";
 import { coinFAQBlockRequest } from "../../../store/action";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -87,7 +88,7 @@ const MobileCoinPageFAQ = () => {
                 variant="body2"
                 sx={{ color: "#FFFFFF", fontWeight: 400, fontSize: ".85rem" }}
               >
-                {coinFAQ && coinFAQ[0]?.description}
+                {coinFAQ && parse(coinFAQ[0]?.description)}
               </Typography>
             </Stack>
 

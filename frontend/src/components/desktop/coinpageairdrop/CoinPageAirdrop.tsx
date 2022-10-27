@@ -6,6 +6,7 @@ import moment from "moment";
 import EventViewCard from "../cards/eventviewcard/EventViewCard";
 import { coinEventBlockRequest } from "../../../store/action";
 import AirdropViewCard from "../cards/airdropviewcard/AirdropViewCard";
+import { Link } from "react-router-dom";
 
 const CoinPageAirdrop = () => {
   const location: any = useLocation();
@@ -115,16 +116,21 @@ const CoinPageAirdrop = () => {
           <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
             Currently there is no airdrops for this coin
           </Typography>
-          <Button
-            variant="contained"
-            sx={{
-              textTransform: "capitalize",
-              fontSize: ".85rem",
-              borderRadius: 5,
-            }}
+          <Link
+            to={"/user-dashboard/airdrops/add"}
+            style={{ textDecoration: "none" }}
           >
-            Add Airdrops
-          </Button>
+            <Button
+              variant="contained"
+              sx={{
+                textTransform: "capitalize",
+                fontSize: ".85rem",
+                borderRadius: 5,
+              }}
+            >
+              Add Airdrops
+            </Button>
+          </Link>
         </Stack>
       )}
     </Grid>

@@ -859,28 +859,32 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       lg: "flex-start",
                     }}
                   >
-                    <a
-                      href={coinData && coinData?.coingecko_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <Avatar
-                        src={CoinGeckoImage}
-                        sx={{ width: 35, height: 35 }}
-                      ></Avatar>
-                    </a>
-                    <a
-                      href={coinData && coinData?.market_cap_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <Avatar
-                        src={CoinMarketcapImage}
-                        sx={{ width: 35, height: 35 }}
-                      ></Avatar>
-                    </a>
+                    {coinData && coinData?.coingecko_url !== null && (
+                      <a
+                        href={coinData && coinData?.coingecko_url}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ textDecoration: "none", color: "inherit" }}
+                      >
+                        <Avatar
+                          src={CoinGeckoImage}
+                          sx={{ width: 35, height: 35 }}
+                        ></Avatar>
+                      </a>
+                    )}
+                    {coinData && coinData?.market_cap_url !== null && (
+                      <a
+                        href={coinData && coinData?.market_cap_url}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ textDecoration: "none", color: "inherit" }}
+                      >
+                        <Avatar
+                          src={CoinMarketcapImage}
+                          sx={{ width: 35, height: 35 }}
+                        ></Avatar>
+                      </a>
+                    )}
                   </Stack>
                 </Box>
               </Stack>
