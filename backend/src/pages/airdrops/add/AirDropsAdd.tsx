@@ -94,9 +94,18 @@ const AirDropsAdd = () => {
       "start_date",
       dateFormat(new Date(addAirdropsData.start_date), "yyyy-mm-dd")
     );
-    formData.append("no_of_days", addAirdropsData?.no_of_days);
-    formData.append("total_amount", addAirdropsData?.total_amount);
-    formData.append("no_of_winners", addAirdropsData?.no_of_winners);
+    formData.append(
+      "no_of_days",
+      addAirdropsData?.no_of_days?.replace(/[^0-9\.]/g, "")
+    );
+    formData.append(
+      "total_amount",
+      addAirdropsData?.total_amount?.replace(/[^0-9\.]/g, "")
+    );
+    formData.append(
+      "no_of_winners",
+      addAirdropsData?.no_of_winners?.replace(/[^0-9\.]/g, "")
+    );
     // formData.append("is_follow_twitter", addAirdropsData?.is_follow_twitter);
     // formData.append("join_telegram", addAirdropsData?.join_telegram);
     formData.append("details", addAirdropsData?.details?.toString("html"));
@@ -195,7 +204,7 @@ const AirDropsAdd = () => {
               sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
               mb={1}
             >
-              Start of the Airdrop
+              Airdrop start date
             </Typography>
 
             <InputDate
@@ -210,12 +219,13 @@ const AirDropsAdd = () => {
               sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
               mb={1}
             >
-              Number of Days (min:5, max:20)
+              Number of Days
             </Typography>
 
             <InputText
-              placeholder=" Number of Days"
+              placeholder="Eg: 5"
               inputTextHandler={(e: any) => airdropsNumDaysHandler(e)}
+              type="number"
             />
           </Grid>
 
@@ -229,8 +239,9 @@ const AirDropsAdd = () => {
             </Typography>
 
             <InputText
-              placeholder="  Total Airdrop Amount"
+              placeholder="Eg: 10000000"
               inputTextHandler={(e: any) => airdropsTotalAmountHandler(e)}
+              type="number"
             />
           </Grid>
 
@@ -244,8 +255,9 @@ const AirDropsAdd = () => {
             </Typography>
 
             <InputText
-              placeholder="Enter Airdrops url"
+              placeholder="Eg: 1000"
               inputTextHandler={(e: any) => airdropsNumbWinnersHandler(e)}
+              type="number"
             />
           </Grid>
 

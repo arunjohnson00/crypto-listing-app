@@ -99,9 +99,18 @@ const AirDropsEdit = () => {
       "start_date",
       dateFormat(new Date(editAirdropsData.start_date), "yyyy-mm-dd")
     );
-    formData.append("no_of_days", editAirdropsData?.no_of_days);
-    formData.append("total_amount", editAirdropsData?.total_amount);
-    formData.append("no_of_winners", editAirdropsData?.no_of_winners);
+    formData.append(
+      "no_of_days",
+      editAirdropsData?.no_of_days?.toString().replace(/[^0-9\.]/g, "")
+    );
+    formData.append(
+      "total_amount",
+      editAirdropsData?.total_amount?.toString().replace(/[^0-9\.]/g, "")
+    );
+    formData.append(
+      "no_of_winners",
+      editAirdropsData?.no_of_winners?.toString().replace(/[^0-9\.]/g, "")
+    );
     // formData.append("is_follow_twitter", editAirdropsData?.is_follow_twitter);
     // formData.append("join_telegram", editAirdropsData?.join_telegram);
     formData.append("details", editAirdropsData?.details?.toString("html"));
@@ -201,7 +210,7 @@ const AirDropsEdit = () => {
               sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
               mb={1}
             >
-              Start of the Airdrop
+              Airdrop start date
             </Typography>
 
             <InputDate
@@ -217,13 +226,14 @@ const AirDropsEdit = () => {
               sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
               mb={1}
             >
-              Number of Days (min:5, max:20)
+              Number of Days
             </Typography>
 
             <InputText
-              placeholder=" Number of Days"
+              placeholder="Eg: 5"
               inputTextHandler={(e: any) => airdropsNumDaysHandler(e)}
               value={editAirdropsData.no_of_days}
+              type="number"
             />
           </Grid>
 
@@ -237,9 +247,10 @@ const AirDropsEdit = () => {
             </Typography>
 
             <InputText
-              placeholder="  Total Airdrop Amount"
+              placeholder="Eg: 10000000"
               inputTextHandler={(e: any) => airdropsTotalAmountHandler(e)}
               value={editAirdropsData.total_amount}
+              type="number"
             />
           </Grid>
 
@@ -253,9 +264,10 @@ const AirDropsEdit = () => {
             </Typography>
 
             <InputText
-              placeholder="Enter Number of Winners"
+              placeholder="Eg: 1000"
               inputTextHandler={(e: any) => airdropsNumbWinnersHandler(e)}
               value={editAirdropsData.no_of_winners}
+              type="number"
             />
           </Grid>
 
