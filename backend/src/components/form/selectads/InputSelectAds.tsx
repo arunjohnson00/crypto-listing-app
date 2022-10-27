@@ -21,14 +21,22 @@ const InputSelectAds = ({
       ads_type: event.target.value,
       banner_ad_type: event.target.value,
     });
-    toast.success(`Status changed to ${event.target.value}`, {
-      position: "top-right",
-      autoClose: 7000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    });
+    toast.success(
+      `Status changed to ${
+        selectOptions &&
+        selectOptions
+          ?.filter((item: any) => item?.value === event.target.value)
+          .map((item: any, index: number) => item?.title)
+      }`,
+      {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      }
+    );
   };
   //  console.log(optionSelected[0].value);
   return (

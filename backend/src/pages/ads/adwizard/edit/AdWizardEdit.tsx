@@ -54,6 +54,10 @@ const AdWizardEdit = () => {
     { title: "Side Square Banner", value: 2 },
     { title: "Side Banner Half", value: 3 },
     { title: "Featured Coin", value: 4 },
+    { title: "Video Ads", value: 5 },
+    { title: "Vote Click Popup", value: 6 },
+    { title: "Search Bar Ad", value: 7 },
+    { title: "Welcome Banner Popup", value: 8 },
   ];
 
   const dispatch = useDispatch();
@@ -213,6 +217,24 @@ const AdWizardEdit = () => {
           pr={4}
         >
           <form id="eventForm">
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} py={2}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
+                Ads Type
+              </Typography>
+
+              <InputSelectAds
+                variant="adslist"
+                selectOptions={selectAdsOptions}
+                currentStatus={editAdsData && editAdsData?.banner_ad_type}
+                setInputSelectValue={setEditAds}
+                getInputSelectvalue={editAdsData}
+                serverStatus={editAdsData && editAdsData?.banner_ad_type}
+              />
+            </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography
                 variant="subtitle1"
@@ -256,24 +278,6 @@ const AdWizardEdit = () => {
                 placeholder="Eg:Main Ads"
                 inputTextHandler={(e: any) => editAdsNameHandler(e)}
                 value={editAdsData && editAdsData?.name}
-              />
-            </Grid>
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
-              <Typography
-                variant="subtitle1"
-                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
-                mb={1}
-              >
-                Ads Type
-              </Typography>
-
-              <InputSelectAds
-                variant="adslist"
-                selectOptions={selectAdsOptions}
-                currentStatus={editAdsData && editAdsData?.banner_ad_type}
-                setInputSelectValue={setEditAds}
-                getInputSelectvalue={editAdsData}
-                serverStatus={editAdsData && editAdsData?.banner_ad_type}
               />
             </Grid>
 

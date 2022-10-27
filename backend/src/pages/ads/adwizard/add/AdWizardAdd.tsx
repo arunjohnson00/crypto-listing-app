@@ -49,6 +49,10 @@ const AdWizardAdd = () => {
     { title: "Side Square Banner", value: 2 },
     { title: "Side Banner Half", value: 3 },
     { title: "Featured Coin", value: 4 },
+    { title: "Video Ads", value: 5 },
+    { title: "Vote Click Popup", value: 6 },
+    { title: "Search Bar Ad", value: 7 },
+    { title: "Welcome Banner Popup", value: 8 },
   ];
 
   const dispatch = useDispatch();
@@ -194,6 +198,23 @@ const AdWizardAdd = () => {
           pr={4}
         >
           <form id="eventForm">
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} py={2}>
+              <Typography
+                variant="subtitle1"
+                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+                mb={1}
+              >
+                Ads Type
+              </Typography>
+
+              <InputSelectAds
+                selectOptions={selectAdsOptions}
+                // currentStatus={newArrList[0].status}
+                setInputSelectValue={setCreateAds}
+                getInputSelectvalue={createAdsData}
+                // serverStatus={newArrList[0].status}
+              />
+            </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
               <Typography
                 variant="subtitle1"
@@ -235,23 +256,6 @@ const AdWizardAdd = () => {
               <InputText
                 placeholder="Eg:Main Ads"
                 inputTextHandler={(e: any) => createAdsNameHandler(e)}
-              />
-            </Grid>
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
-              <Typography
-                variant="subtitle1"
-                sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
-                mb={1}
-              >
-                Ads Type
-              </Typography>
-
-              <InputSelectAds
-                selectOptions={selectAdsOptions}
-                // currentStatus={newArrList[0].status}
-                setInputSelectValue={setCreateAds}
-                getInputSelectvalue={createAdsData}
-                // serverStatus={newArrList[0].status}
               />
             </Grid>
 
