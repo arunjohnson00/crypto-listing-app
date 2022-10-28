@@ -40,7 +40,7 @@ const AppHeader = ({ windowInnerWidth }: any) => {
           sx={{
             dispaly: "flex",
             backgroundColor: "transparent",
-            paddingTop: "22px",
+            paddingTop: "0px",
             paddingBottom: "0px",
             boxShadow: 0,
           }}

@@ -27,6 +27,7 @@ const DiscoverLatestAirDrops = () => {
           padding: 4,
           borderRadius: 4,
           backgroundColor: "#020727",
+          width: "-webkit-fill-available",
         }}
         mb={7}
       >

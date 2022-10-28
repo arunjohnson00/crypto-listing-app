@@ -61,6 +61,7 @@ const DiscoverLatestGaindLosers = () => {
           padding: 4,
           borderRadius: 4,
           backgroundColor: "#020727",
+          width: "-webkit-fill-available",
         }}
         mb={7}
       >
@@ -71,11 +72,13 @@ const DiscoverLatestGaindLosers = () => {
           <Stack
             direction={{ xs: "column", sm: "column", md: "column" }}
             spacing={2}
+            width="100%"
           >
             <Stack
               direction={{ xs: "row", sm: "row", md: "row" }}
               alignItems="center"
               spacing={1}
+              width="100%"
             >
               <CampaignIcon sx={{ color: "#2DCEAF", fontSize: 20 }} />
               <Typography
@@ -97,7 +100,7 @@ const DiscoverLatestGaindLosers = () => {
                 Gainers
               </Typography>
 
-              <Box width={"66vw"}>
+              <Box width={"auto"}>
                 <Grid
                   xs={12}
                   sx={{
@@ -134,6 +137,7 @@ const DiscoverLatestGaindLosers = () => {
               direction={{ xs: "column", sm: "column", md: "column" }}
               spacing={2}
               pt={2}
+              width="100%"
             >
               <Typography
                 variant="subtitle2"
@@ -142,7 +146,7 @@ const DiscoverLatestGaindLosers = () => {
                 Losers
               </Typography>
 
-              <Box width={"66vw"}>
+              <Box width={"auto"}>
                 <Grid
                   xs={12}
                   sx={{

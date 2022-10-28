@@ -191,6 +191,8 @@ const CryptoEventsCardSlider = ({ data, variant }: any) => {
                     backgroundColor: "#2415A2",
                   }}
                 >
+                  {moment(new Date(data?.event_date)).isAfter(new Date()) &&
+                    "Starts"}{" "}
                   {data && moment(new Date(data?.event_date)).fromNow()}
                 </Button>
               </Stack>

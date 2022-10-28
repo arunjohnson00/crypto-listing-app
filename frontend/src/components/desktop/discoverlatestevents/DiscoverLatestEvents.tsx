@@ -51,6 +51,7 @@ const DiscoverLatestEvents = () => {
           padding: 4,
           borderRadius: 4,
           backgroundColor: "#020727",
+          width: "-webkit-fill-available",
         }}
         mb={7}
       >
@@ -61,6 +62,7 @@ const DiscoverLatestEvents = () => {
           <Stack
             direction={{ xs: "column", sm: "column", md: "column" }}
             spacing={2}
+            width="100%"
           >
             <Stack
               direction={{ xs: "row", sm: "row", md: "row" }}
@@ -75,25 +77,8 @@ const DiscoverLatestEvents = () => {
                 Events
               </Typography>
             </Stack>
-            {/* <Stack
-              direction={{ xs: "column", sm: "column", md: "column" }}
-              spacing={2}
-            >
-              <Stack
-                direction={{ xs: "row", sm: "row", md: "row" }}
-                alignItems="center"
-                pt={0}
-                flexWrap={{ xs: "wrap", sm: "wrap", md: "nowrap" }}
-              >
-                <DiscoverLatestCommonCard />
-                <DiscoverLatestCommonCard />
-                <DiscoverLatestCommonCard />
-                <DiscoverLatestCommonCard />
-                <DiscoverLatestCommonCard />
-              </Stack>
-            </Stack> */}
 
-            <Box width={"66vw"}>
+            <Box width={"auto"}>
               <Grid
                 xs={12}
                 sx={{

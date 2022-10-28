@@ -122,7 +122,9 @@ const MobileCryptoEventCard = ({ data }: any) => {
               textAlign: "center",
             }}
           >
-            {data && parse(data?.description)}
+            {data && parse(data?.description).toString().length >= 70
+              ? parse(data?.description).toString().slice(0, 70) + "..."
+              : parse(data?.description)}
           </Typography>
         </Stack>
 

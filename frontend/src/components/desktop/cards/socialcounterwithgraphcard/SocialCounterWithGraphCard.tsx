@@ -32,8 +32,8 @@ const SocialCounterWithGraphCard = ({
     series: [
       {
         name: "Coinxhigh",
-        // data: coinData && coinData,
-        data: [2, 10, 22, 55, 2, 6, 8],
+        data: coinData && coinData,
+        //data: [2, 10, 22, 55, 2, 6, 8],
       },
     ],
 

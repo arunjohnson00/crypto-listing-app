@@ -34,8 +34,8 @@ const MobileSocialCounterWithGraphCard = ({
     series: [
       {
         name: "Coinxhigh",
-        // data: coinData && coinData,
-        data: [1, 10, 2, 13, 7, 2, 8, 3],
+        data: coinData && coinData,
+        //data: [1, 10, 2, 13, 7, 2, 8, 3],
       },
     ],
 
@@ -144,7 +144,7 @@ const MobileSocialCounterWithGraphCard = ({
       //   ],
       // },
       tooltip: {
-        enabled: false,
+        enabled: true,
         x: {
           format: "dd/MM/yy HH:mm",
         },

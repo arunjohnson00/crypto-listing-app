@@ -14,6 +14,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import {
@@ -26,6 +27,7 @@ import {
   DialogContent,
   AvatarGroup,
   CardMedia,
+  IconButton,
 } from "@mui/material";
 import VoteBtn from "../button/votebtn/VoteBtn";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -150,6 +152,17 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     {item}
                   </TableCell>
                 ))}
+            <Box sx={{ position: "relative" }}>
+              <IconButton
+                aria-label="delete"
+                size="small"
+                sx={{ position: "relative", right: 20, top: 10 }}
+              >
+                <ArrowForwardIosRoundedIcon
+                  sx={{ color: "#FFFFFF", fontSize: ".9rem" }}
+                />
+              </IconButton>
+            </Box>
           </TableRow>
         </TableHead>
         {variant === "crypto_currencies" && (

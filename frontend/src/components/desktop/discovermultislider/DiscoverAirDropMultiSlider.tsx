@@ -40,7 +40,7 @@ const DiscoverAirDropMultiSlider = ({ data }: any) => {
     <div
       style={{
         paddingTop: "10px",
-        width: "73vw",
+        width: "100%",
         boxSizing: "border-box",
         margin: "0 auto",
       }}

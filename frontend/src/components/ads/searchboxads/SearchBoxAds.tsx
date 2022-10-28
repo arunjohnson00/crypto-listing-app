@@ -2,6 +2,7 @@ import { Avatar, Box, Stack, Typography } from "@mui/material";
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useInterval } from "react-interval-hook";
 import { searchAdsRequest } from "../../../store/action";
 
 const SearchBoxAds = () => {
@@ -11,15 +12,13 @@ const SearchBoxAds = () => {
     return data?.adsReducer?.search_ads?.data;
   });
 
-  useEffect(() => {
-    searchBoxAds?.data?.length > 1 &&
-      setInterval(() => {
-        searchBoxAds?.data && searchBoxAds?.data?.length - 1 === random
-          ? setRandom(0)
-          : setRandom(random + 1);
-      }, 10000);
-  });
-
+  useInterval(() => {
+    searchBoxAds?.data?.length > 1
+      ? searchBoxAds?.data && searchBoxAds?.data?.length - 1 === random
+        ? setRandom(0)
+        : setRandom(random + 1)
+      : setRandom(0);
+  }, 15000);
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};

@@ -2,6 +2,7 @@ import { CardMedia } from "@mui/material";
 import voteAds from "../../../assets/ads/voteads.jpeg";
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useInterval } from "react-interval-hook";
 import { voteClickPopupAdsRequest } from "../../../store/action";
 
 const VotePopupAds = () => {
@@ -11,14 +12,14 @@ const VotePopupAds = () => {
     return data?.adsReducer?.vote_click_popup_ads?.data;
   });
 
-  useEffect(() => {
-    voteClickAds?.data?.length > 1 &&
-      setInterval(() => {
-        voteClickAds?.data && voteClickAds?.data?.length - 1 === random
-          ? setRandom(0)
-          : setRandom(random + 1);
-      }, 10000);
-  });
+  useInterval(() => {
+    voteClickAds?.data?.length > 1
+      ? voteClickAds?.data && voteClickAds?.data?.length - 1 === random
+        ? setRandom(0)
+        : setRandom(random + 1)
+      : setRandom(0);
+  }, 15000);
+
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};

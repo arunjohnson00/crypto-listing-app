@@ -136,7 +136,7 @@ const CryptoEventsCard = ({ data }: any) => {
           >
             <Typography
               variant="caption"
-              sx={{ color: "#9595B6", fontSize: "0.65rem" }}
+              sx={{ color: "#9595B6", fontSize: "0.75rem" }}
             >
               {data && parse(data?.description).toString().length >= 319
                 ? parse(data?.description).toString().slice(0, 316) + "..."
@@ -158,10 +158,10 @@ const CryptoEventsCard = ({ data }: any) => {
               href={data && data?.source_link}
               underline="none"
               target="_blank"
-              sx={{ color: "#454182" }}
+              sx={{ color: "#19ffb0" }}
             >
               <Typography
-                sx={{ color: "#454182", fontSize: ".65rem", fontWeight: 500 }}
+                sx={{ color: "#19ffb0", fontSize: ".65rem", fontWeight: 400 }}
               >
                 {" "}
                 View Source
@@ -170,9 +170,9 @@ const CryptoEventsCard = ({ data }: any) => {
             <Typography
               onClick={handleClickOpen}
               sx={{
-                color: "#454182",
+                color: "#19ffb0",
                 fontSize: ".65rem",
-                fontWeight: 500,
+                fontWeight: 400,
                 cursor: "pointer",
               }}
             >
@@ -183,10 +183,10 @@ const CryptoEventsCard = ({ data }: any) => {
                 pathname: `/crypto-events/${data?.slug}`,
               }}
               state={{ coin_id: data?.id }}
-              style={{ textDecoration: "none", color: "#454182" }}
+              style={{ textDecoration: "none", color: "#19ffb0" }}
             >
               <Typography
-                sx={{ color: "#454182", fontSize: ".65rem", fontWeight: 500 }}
+                sx={{ color: "#19ffb0", fontSize: ".65rem", fontWeight: 400 }}
               >
                 {" "}
                 View Event
@@ -196,10 +196,10 @@ const CryptoEventsCard = ({ data }: any) => {
               href={data && data?.twitter_account}
               underline="none"
               target="_blank"
-              sx={{ color: "#454182" }}
+              sx={{ color: "#19ffb0" }}
             >
               <Typography
-                sx={{ color: "#454182", fontSize: ".65rem", fontWeight: 500 }}
+                sx={{ color: "#19ffb0", fontSize: ".65rem", fontWeight: 400 }}
               >
                 {" "}
                 Twitter
