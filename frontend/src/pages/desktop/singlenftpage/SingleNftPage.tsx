@@ -868,6 +868,7 @@ const SingleNftPage = () => {
                             style: {
                               backgroundColor: "transparent",
                               boxShadow: "none",
+                              overflow: "hidden",
                             },
                           }}
                         >
@@ -877,6 +878,7 @@ const SingleNftPage = () => {
                                 padding: 0,
                                 borderRadius: 3,
                                 background: "none",
+                                overflow: "hidden",
                               },
                             }}
                           >

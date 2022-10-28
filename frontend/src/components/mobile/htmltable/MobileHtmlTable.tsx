@@ -587,11 +587,13 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                               style: {
                                 backgroundColor: "transparent",
                                 boxShadow: "none",
+                                overflow: "hidden",
                               },
                             }}
                             sx={{
                               backgroundColor: "none",
                               borderRadius: 3,
+                              overflow: "hidden",
                             }}
                           >
                             <DialogContent

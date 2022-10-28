@@ -17,6 +17,7 @@ import MobileBottomNav from "../../components/mobile/bottomnavigation/MobileBott
 import Container from "@mui/material/Container";
 import CoinSlider from "../../components/desktop/coinslider/CoinSlider";
 import logoWhite from "../../assets/logo/logo.png";
+import WelcomePopupAds from "../../components/ads/welcomepopupads/WelcomePopupAds";
 const AppView = ({ children }: any) => {
   const location: any = useLocation();
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -162,6 +163,8 @@ const AppView = ({ children }: any) => {
           </Box>
         )}
       </Container>
+
+      <WelcomePopupAds />
     </Fragment>
   );
 };

@@ -625,6 +625,7 @@ const ListingTable = ({
                                 style: {
                                   backgroundColor: "transparent",
                                   boxShadow: "none",
+                                  overflow: "hidden",
                                 },
                               }}
                             >
@@ -632,6 +633,7 @@ const ListingTable = ({
                                 sx={{
                                   "&.MuiDialogContent-root": {
                                     padding: 0,
+                                    overflow: "hidden",
                                     width:
                                       windowInnerWidth && windowInnerWidth > 900
                                         ? 500

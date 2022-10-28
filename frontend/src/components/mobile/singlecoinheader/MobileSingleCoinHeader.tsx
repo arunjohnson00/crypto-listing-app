@@ -770,6 +770,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                       style: {
                         backgroundColor: "transparent",
                         boxShadow: "none",
+                        overflow: "hidden",
                       },
                     }}
                   >
@@ -779,6 +780,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                           padding: 0,
                           borderRadius: 3,
                           background: "none",
+                          overflow: "hidden",
                         },
                       }}
                     >

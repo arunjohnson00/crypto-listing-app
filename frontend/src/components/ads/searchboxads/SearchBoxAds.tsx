@@ -1,13 +1,23 @@
 import { Avatar, Box, Stack, Typography } from "@mui/material";
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { searchAdsRequest } from "../../../store/action";
 
 const SearchBoxAds = () => {
   const dispatch: any = useDispatch();
+  const [random, setRandom] = useState(0);
   const searchBoxAds = useSelector((data: any) => {
     return data?.adsReducer?.search_ads?.data;
+  });
+
+  useEffect(() => {
+    searchBoxAds?.data?.length > 1 &&
+      setInterval(() => {
+        searchBoxAds?.data && searchBoxAds?.data?.length - 1 === random
+          ? setRandom(0)
+          : setRandom(random + 1);
+      }, 10000);
   });
 
   useEffect(() => {
@@ -24,12 +34,12 @@ const SearchBoxAds = () => {
         <Fragment>
           {searchBoxAds &&
             searchBoxAds?.data?.length > 0 &&
-            searchBoxAds?.data?.slice(0, 1).map((item: any, index: number) => (
+            searchBoxAds?.data[random] && (
               <Box pl={2}>
                 <Stack direction="row" spacing={2} alignItems="flex-start">
                   <Avatar
-                    alt={item?.banner_name}
-                    src={`${serverAPIUrl}public/uploads/banner_ads/${item?.banner_image}`}
+                    alt={searchBoxAds?.data[random]?.banner_name}
+                    src={`${serverAPIUrl}public/uploads/banner_ads/${searchBoxAds?.data[random]?.banner_image}`}
                     sx={{ width: 70, height: 70, borderRadius: 0, mt: 1 }}
                   />
                   <Stack direction="column" spacing={1} alignItems="flex-start">
@@ -40,7 +50,7 @@ const SearchBoxAds = () => {
                       pr={2}
                     >
                       <Typography sx={{ fontSize: "1rem", fontWeight: 700 }}>
-                        {item?.banner_name}
+                        {searchBoxAds?.data[random]?.banner_name}
                       </Typography>
                       <Typography
                         sx={{
@@ -50,7 +60,7 @@ const SearchBoxAds = () => {
                           wordBreak: "break-word",
                         }}
                       >
-                        {item?.search_ad_description}
+                        {searchBoxAds?.data[random]?.search_ad_description}
                       </Typography>
                     </Stack>
                     <Stack
@@ -61,7 +71,7 @@ const SearchBoxAds = () => {
                       width="100%"
                     >
                       <a
-                        href={item?.banner_target_link}
+                        href={searchBoxAds?.data[random]?.banner_target_link}
                         target="_blank"
                         rel="noreferrer"
                         style={{ textDecoration: "none", color: "inherit" }}
@@ -74,11 +84,11 @@ const SearchBoxAds = () => {
                             color: "#7F85B4",
                           }}
                         >
-                          {item?.button_name}
+                          {searchBoxAds?.data[random]?.button_name}
                         </Typography>
                       </a>
                       <a
-                        href={item?.banner_target_link}
+                        href={searchBoxAds?.data[random]?.banner_target_link}
                         target="_blank"
                         rel="noreferrer"
                         style={{ textDecoration: "none", color: "inherit" }}
@@ -98,7 +108,7 @@ const SearchBoxAds = () => {
                   </Stack>
                 </Stack>
               </Box>
-            ))}
+            )}
         </Fragment>
       )}
     </>

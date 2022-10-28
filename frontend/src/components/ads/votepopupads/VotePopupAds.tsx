@@ -1,15 +1,24 @@
 import { CardMedia } from "@mui/material";
 import voteAds from "../../../assets/ads/voteads.jpeg";
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { voteClickPopupAdsRequest } from "../../../store/action";
 
 const VotePopupAds = () => {
   const dispatch: any = useDispatch();
+  const [random, setRandom] = useState(0);
   const voteClickAds = useSelector((data: any) => {
     return data?.adsReducer?.vote_click_popup_ads?.data;
   });
 
+  useEffect(() => {
+    voteClickAds?.data?.length > 1 &&
+      setInterval(() => {
+        voteClickAds?.data && voteClickAds?.data?.length - 1 === random
+          ? setRandom(0)
+          : setRandom(random + 1);
+      }, 10000);
+  });
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
@@ -25,9 +34,9 @@ const VotePopupAds = () => {
         <Fragment>
           {voteClickAds &&
             voteClickAds?.data?.length > 0 &&
-            voteClickAds?.data?.slice(0, 1).map((item: any, index: number) => (
+            voteClickAds?.data[random] && (
               <a
-                href={item?.banner_target_link}
+                href={voteClickAds?.data[random]?.banner_target_link}
                 target="_blank"
                 rel="noreferrer"
                 style={{ textDecoration: "none", color: "inherit" }}
@@ -35,12 +44,12 @@ const VotePopupAds = () => {
                 <CardMedia
                   component="img"
                   height="auto"
-                  image={`${serverAPIUrl}public/uploads/banner_ads/${item?.banner_image}`}
+                  image={`${serverAPIUrl}public/uploads/banner_ads/${voteClickAds?.data[random]?.banner_image}`}
                   alt="green iguana"
                   sx={{ objectFit: "unset", borderRadius: 0 }}
                 />
               </a>
-            ))}
+            )}
         </Fragment>
       )}
     </>

@@ -287,6 +287,7 @@ const SingleNFTHeader = () => {
                   style: {
                     backgroundColor: "transparent",
                     boxShadow: "none",
+                    overflow: "hidden",
                   },
                 }}
               >
@@ -296,6 +297,7 @@ const SingleNFTHeader = () => {
                       padding: 0,
                       borderRadius: 3,
                       background: "none",
+                      overflow: "hidden",
                     },
                   }}
                 >
