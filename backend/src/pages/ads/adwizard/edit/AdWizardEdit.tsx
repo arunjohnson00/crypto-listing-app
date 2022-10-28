@@ -59,6 +59,7 @@ const AdWizardEdit = () => {
     { title: "Vote Click Popup", value: 6 },
     { title: "Search Bar Ad", value: 7 },
     { title: "Welcome Banner Popup", value: 8 },
+    { title: "Announcements", value: 9 },
   ];
 
   const dispatch = useDispatch();
@@ -73,6 +74,7 @@ const AdWizardEdit = () => {
     description: "",
     ads_type: "",
     banner_image: "",
+    announcements: "",
     banner_ad_type: "",
     banner_target_link: "",
     search_ad_description: "",
@@ -122,18 +124,21 @@ const AdWizardEdit = () => {
 
     var formData = new FormData(document.querySelector("#eventForm") as any);
     editAdsData?.banner_ad_type !== 4 &&
+      editAdsData?.banner_ad_type !== 9 &&
       formData.append("banner_name", editAdsData?.banner_name);
     // formData.append("subtitle", editAdsData?.subtitle);
     // formData.append("description", editAdsData?.description);
     formData.append("banner_ad_type", editAdsData?.banner_ad_type);
     editAdsData?.banner_ad_type === 4 &&
       formData.append("coin_id", editAdsData?.coin_id);
+    editAdsData?.banner_ad_type === 9 &&
+      formData.append("announcements", editAdsData?.announcements);
     // editAdsData?.banner_ad_type === 7 &&
     //   formData.append(
     //     "search_ad_description",
     //     editAdsData?.search_ad_description
     //   );
-    editAdsData?.banner_ad_type === 7 &&
+    (editAdsData?.banner_ad_type === 7 || editAdsData?.banner_ad_type === 9) &&
       formData.append("button_name", editAdsData?.button_name);
     editAdsData?.banner_ad_type !== 4 &&
       editAdsData.banner_image !== "" &&
@@ -171,7 +176,11 @@ const AdWizardEdit = () => {
 
     setEditAds({ ...editAdsData, button_name: e });
   };
+  const editAdsAnnouncementsNameHandler = (e: any) => {
+    //console.log(e);
 
+    setEditAds({ ...editAdsData, announcements: e });
+  };
   // const editAdsSubTitleHandler = (e: any) => {
   //   //console.log(e);
 
@@ -280,7 +289,30 @@ const AdWizardEdit = () => {
               </Grid>
             )}
 
-            {editAdsData?.banner_ad_type !== 4 && (
+            {editAdsData?.banner_ad_type !== 4 &&
+              editAdsData?.banner_ad_type !== 9 && (
+                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                      color: "#000000",
+                    }}
+                    mb={1}
+                  >
+                    Ads Name
+                  </Typography>
+
+                  <InputText
+                    placeholder="Eg:Main Ads"
+                    inputTextHandler={(e: any) => editAdsNameHandler(e)}
+                    value={editAdsData && editAdsData?.banner_name}
+                  />
+                </Grid>
+              )}
+            {editAdsData?.banner_ad_type === 9 && (
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
                 <Typography
                   variant="subtitle1"
@@ -292,17 +324,18 @@ const AdWizardEdit = () => {
                   }}
                   mb={1}
                 >
-                  Ads Name
+                  Announcements
                 </Typography>
 
                 <InputText
-                  placeholder="Eg:Main Ads"
-                  inputTextHandler={(e: any) => editAdsNameHandler(e)}
-                  value={editAdsData && editAdsData?.banner_name}
+                  placeholder="Eg:Buy, trade, and hold 350+ cryptocurrencies on Binance"
+                  inputTextHandler={(e: any) =>
+                    editAdsAnnouncementsNameHandler(e)
+                  }
+                  value={editAdsData && editAdsData?.announcements}
                 />
               </Grid>
             )}
-
             {editAdsData?.banner_ad_type !== 4 && (
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
                 <Typography
@@ -325,7 +358,8 @@ const AdWizardEdit = () => {
                 />
               </Grid>
             )}
-            {editAdsData?.banner_ad_type === 7 && (
+            {(editAdsData?.banner_ad_type === 7 ||
+              editAdsData?.banner_ad_type === 9) && (
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
                 <Typography
                   variant="subtitle1"

@@ -127,29 +127,30 @@ const WelcomePopupAds = () => {
                   </Stack>
                 </Box>
               </Box>
-              <Stack
-                direction="column"
-                alignItems="center"
-                justifyContent="center"
-                spacing={2}
-                py={2}
+              <a
+                href={welcomePopupAds?.data[random]?.banner_target_link}
+                target="_blank"
+                rel="noreferrer"
+                style={{ textDecoration: "none", color: "inherit" }}
               >
-                {welcomePopupAds &&
-                  welcomePopupAds?.data?.length > 0 &&
-                  welcomePopupAds?.data[random] && (
-                    <img
-                      src={`${serverAPIUrl}public/uploads/banner_ads/${welcomePopupAds?.data[random]?.banner_image}`}
-                      alt={welcomePopupAds?.data[random]?.banner_name}
-                      style={{ width: "70%" }}
-                    />
-                  )}
-                <a
-                  href={welcomePopupAds?.data[random]?.banner_target_link}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{ textDecoration: "none", color: "inherit" }}
+                <Stack
+                  direction="column"
+                  alignItems="center"
+                  justifyContent="center"
+                  spacing={2}
+                  py={2}
                 >
-                  <Button
+                  {welcomePopupAds &&
+                    welcomePopupAds?.data?.length > 0 &&
+                    welcomePopupAds?.data[random] && (
+                      <img
+                        src={`${serverAPIUrl}public/uploads/banner_ads/${welcomePopupAds?.data[random]?.banner_image}`}
+                        alt={welcomePopupAds?.data[random]?.banner_name}
+                        style={{ width: "70%" }}
+                      />
+                    )}
+
+                  {/* <Button
                     variant="contained"
                     sx={{
                       borderRadius: 10,
@@ -159,9 +160,9 @@ const WelcomePopupAds = () => {
                     }}
                   >
                     Learn More
-                  </Button>
-                </a>
-              </Stack>
+                  </Button> */}
+                </Stack>{" "}
+              </a>
             </DialogContent>
           </Dialog>
         )}

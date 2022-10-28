@@ -54,6 +54,7 @@ const AdWizardAdd = () => {
     { title: "Vote Click Popup", value: 6 },
     { title: "Search Bar Ad", value: 7 },
     { title: "Welcome Banner Popup", value: 8 },
+    { title: "Announcements", value: 9 },
   ];
 
   const dispatch = useDispatch();
@@ -65,6 +66,7 @@ const AdWizardAdd = () => {
     coin_id: "",
     banner_start_date: new Date(),
     no_of_days: "",
+    announcements: "",
     description: "",
     ads_type: 1,
     banner_image: "",
@@ -117,18 +119,22 @@ const AdWizardAdd = () => {
 
     var formData = new FormData(document.querySelector("#eventForm") as any);
     createAdsData?.banner_ad_type !== 4 &&
+      createAdsData?.banner_ad_type !== 9 &&
       formData.append("banner_name", createAdsData?.banner_name);
     // formData.append("subtitle", createAdsData?.subtitle);
     // formData.append("description", createAdsData?.description);
     // formData.append("ads_type", createAdsData?.ads_type);
     createAdsData?.banner_ad_type === 4 &&
       formData.append("coin_id", createAdsData?.coin_id);
+    createAdsData?.banner_ad_type === 9 &&
+      formData.append("announcements", createAdsData?.announcements);
     // createAdsData?.banner_ad_type === 7 &&
     //   formData.append(
     //     "search_ad_description",
     //     createAdsData?.search_ad_description
     //   );
-    createAdsData?.banner_ad_type === 7 &&
+    (createAdsData?.banner_ad_type === 7 ||
+      createAdsData?.banner_ad_type === 9) &&
       formData.append("button_name", createAdsData?.button_name);
     createAdsData?.banner_ad_type !== 4 &&
       formData.append("banner_image", createAdsData?.banner_image);
@@ -164,7 +170,11 @@ const AdWizardAdd = () => {
 
     setCreateAds({ ...createAdsData, button_name: e });
   };
+  const createAdsAnnouncementsNameHandler = (e: any) => {
+    //console.log(e);
 
+    setCreateAds({ ...createAdsData, announcements: e });
+  };
   // const createAdsSubTitleHandler = (e: any) => {
   //   //console.log(e);
 
@@ -259,7 +269,30 @@ const AdWizardAdd = () => {
               </Grid>
             )}
 
-            {createAdsData?.banner_ad_type !== 4 && (
+            {createAdsData?.banner_ad_type !== 4 &&
+              createAdsData?.banner_ad_type !== 9 && (
+                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      textAlign: "left",
+                      fontSize: ".9rem",
+                      fontWeight: 600,
+                      color: "#000000",
+                    }}
+                    mb={1}
+                  >
+                    Ads Name
+                  </Typography>
+
+                  <InputText
+                    placeholder="Eg:Main Ads"
+                    inputTextHandler={(e: any) => createAdsNameHandler(e)}
+                  />
+                </Grid>
+              )}
+
+            {createAdsData?.banner_ad_type === 9 && (
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
                 <Typography
                   variant="subtitle1"
@@ -271,12 +304,15 @@ const AdWizardAdd = () => {
                   }}
                   mb={1}
                 >
-                  Ads Name
+                  Announcements
                 </Typography>
 
                 <InputText
-                  placeholder="Eg:Main Ads"
-                  inputTextHandler={(e: any) => createAdsNameHandler(e)}
+                  placeholder="Eg:Buy, trade, and hold 350+ cryptocurrencies on Binance"
+                  inputTextHandler={(e: any) =>
+                    createAdsAnnouncementsNameHandler(e)
+                  }
+                  value={createAdsData && createAdsData?.announcements}
                 />
               </Grid>
             )}
@@ -303,7 +339,8 @@ const AdWizardAdd = () => {
               </Grid>
             )}
 
-            {createAdsData?.banner_ad_type === 7 && (
+            {(createAdsData?.banner_ad_type === 7 ||
+              createAdsData?.banner_ad_type === 9) && (
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
                 <Typography
                   variant="subtitle1"

@@ -19,10 +19,26 @@ import TwitterIcon from "../../../assets/userdashboard/twitter.png";
 import AdsImage from "../../../assets/userdashboard/ads.png";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { userAnnouncementsRequest } from "../../../store/action";
+import moment from "moment";
 
 const UserAdminOverview = () => {
   const matches = useMediaQuery("(max-width:900px)");
+  const dispatch: any = useDispatch();
+  const userAnnouncemnts = useSelector((data: any) => {
+    return data?.userReducer?.user_announcements;
+  });
 
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(userAnnouncementsRequest("noData", successHandler, errorHandler));
+  }, [dispatch]);
+
+  console.log(userAnnouncemnts);
   return (
     <Stack
       direction={{ xs: "column", sm: "column", md: "column", lg: "row" }}
@@ -212,202 +228,84 @@ const UserAdminOverview = () => {
                 View all
               </Button>
             </Stack>
-            <Stack direction="column" spacing={4}>
-              <Typography
-                sx={{
-                  fontSize: ".85rem",
-                  fontWeight: 500,
-                  color: "#FFFFFF",
-                  lineHeight: 1,
-                }}
-              >
-                Currently no data available
-              </Typography>
-              {/* <Stack direction="row" spacing={0.5}>
-                <CheckCircleOutlineIcon
-                  sx={{ color: "#04B34A", fontSize: ".9rem" }}
-                />
-                <Stack direction="column" spacing={0.2}>
-                  <Typography
-                    sx={{
-                      fontSize: ".85rem",
-                      fontWeight: 500,
-                      color: "#FFFFFF",
-                      lineHeight: 1,
-                    }}
-                  >
-                    We have some new offers for newly added coins.
-                  </Typography>
-                  <Stack direction="row" spacing={1}>
-                    <Typography
-                      sx={{
-                        fontSize: ".75rem",
-                        fontWeight: 500,
-                        color: "#11A0CA",
-                      }}
-                    >
-                      Contact admin for more details
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: ".75rem",
-                        fontWeight: 500,
-                        color: "#E1EEB9",
-                      }}
-                    >
-                      18 Apr 2022
-                    </Typography>
-                  </Stack>
+            <Stack direction="column" spacing={0}>
+              {userAnnouncemnts && userAnnouncemnts?.response === true ? (
+                <Stack direction="column" spacing={2}>
+                  {userAnnouncemnts &&
+                    userAnnouncemnts?.data?.map((item: any, index: number) => (
+                      <Stack direction="row" spacing={0.5} key={index}>
+                        <CheckCircleOutlineIcon
+                          sx={{ color: "#04B34A", fontSize: ".9rem" }}
+                        />
+                        <Stack direction="column" spacing={0.4}>
+                          <a
+                            href={item?.banner_target_link}
+                            target="_blank"
+                            rel="noreferrer"
+                            style={{ textDecoration: "none", color: "inherit" }}
+                          >
+                            <Typography
+                              sx={{
+                                fontSize: ".85rem",
+                                fontWeight: 500,
+                                color: "#FFFFFF",
+                                lineHeight: 1,
+                                cursor: "pointer",
+                              }}
+                            >
+                              {item?.announcements}
+                            </Typography>
+                          </a>
+                          <Stack direction="row" spacing={1}>
+                            <a
+                              href={item?.banner_target_link}
+                              target="_blank"
+                              rel="noreferrer"
+                              style={{
+                                textDecoration: "none",
+                                color: "inherit",
+                              }}
+                            >
+                              <Typography
+                                sx={{
+                                  fontSize: ".75rem",
+                                  fontWeight: 500,
+                                  color: "#11A0CA",
+                                  cursor: "pointer",
+                                }}
+                              >
+                                {item?.button_name}
+                              </Typography>
+                            </a>
+                            <Typography
+                              sx={{
+                                fontSize: ".75rem",
+                                fontWeight: 500,
+                                color: "#E1EEB9",
+                              }}
+                            >
+                              {item &&
+                                moment(new Date(item?.created_at)).format(
+                                  "DD MMM YYYY"
+                                )}
+                            </Typography>
+                          </Stack>
+                        </Stack>
+                      </Stack>
+                    ))}
                 </Stack>
-              </Stack>
-              <Stack direction="row" spacing={0.5}>
-                <CheckCircleOutlineIcon
-                  sx={{ color: "#04B34A", fontSize: ".9rem" }}
-                />
-                <Stack direction="column" spacing={0.2}>
-                  <Typography
-                    sx={{
-                      fontSize: ".85rem",
-                      fontWeight: 500,
-                      color: "#FFFFFF",
-                      lineHeight: 1,
-                    }}
-                  >
-                    We have some new offers for newly added coins.
-                  </Typography>
-                  <Stack direction="row" spacing={1}>
-                    <Typography
-                      sx={{
-                        fontSize: ".75rem",
-                        fontWeight: 500,
-                        color: "#11A0CA",
-                      }}
-                    >
-                      Contact admin for more details
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: ".75rem",
-                        fontWeight: 500,
-                        color: "#E1EEB9",
-                      }}
-                    >
-                      18 Apr 2022
-                    </Typography>
-                  </Stack>
-                </Stack>
-              </Stack>
-              <Stack direction="row" spacing={0.5}>
-                <CheckCircleOutlineIcon
-                  sx={{ color: "#04B34A", fontSize: ".9rem" }}
-                />
-                <Stack direction="column" spacing={0.2}>
-                  <Typography
-                    sx={{
-                      fontSize: ".85rem",
-                      fontWeight: 500,
-                      color: "#FFFFFF",
-                      lineHeight: 1,
-                    }}
-                  >
-                    We have some new offers for newly added coins.
-                  </Typography>
-                  <Stack direction="row" spacing={1}>
-                    <Typography
-                      sx={{
-                        fontSize: ".75rem",
-                        fontWeight: 500,
-                        color: "#11A0CA",
-                      }}
-                    >
-                      Contact admin for more details
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: ".75rem",
-                        fontWeight: 500,
-                        color: "#E1EEB9",
-                      }}
-                    >
-                      18 Apr 2022
-                    </Typography>
-                  </Stack>
-                </Stack>
-              </Stack>
-              <Stack direction="row" spacing={0.5}>
-                <CheckCircleOutlineIcon
-                  sx={{ color: "#04B34A", fontSize: ".9rem" }}
-                />
-                <Stack direction="column" spacing={0.2}>
-                  <Typography
-                    sx={{
-                      fontSize: ".85rem",
-                      fontWeight: 500,
-                      color: "#FFFFFF",
-                      lineHeight: 1,
-                    }}
-                  >
-                    We have some new offers for newly added coins.
-                  </Typography>
-                  <Stack direction="row" spacing={1}>
-                    <Typography
-                      sx={{
-                        fontSize: ".75rem",
-                        fontWeight: 500,
-                        color: "#11A0CA",
-                      }}
-                    >
-                      Contact admin for more details
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: ".75rem",
-                        fontWeight: 500,
-                        color: "#E1EEB9",
-                      }}
-                    >
-                      18 Apr 2022
-                    </Typography>
-                  </Stack>
-                </Stack>
-              </Stack>
-              <Stack direction="row" spacing={0.5}>
-                <CheckCircleOutlineIcon
-                  sx={{ color: "#04B34A", fontSize: ".9rem" }}
-                />
-                <Stack direction="column" spacing={0.2}>
-                  <Typography
-                    sx={{
-                      fontSize: ".85rem",
-                      fontWeight: 500,
-                      color: "#FFFFFF",
-                      lineHeight: 1,
-                    }}
-                  >
-                    We have some new offers for newly added coins.
-                  </Typography>
-                  <Stack direction="row" spacing={1}>
-                    <Typography
-                      sx={{
-                        fontSize: ".75rem",
-                        fontWeight: 500,
-                        color: "#11A0CA",
-                      }}
-                    >
-                      Contact admin for more details
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: ".75rem",
-                        fontWeight: 500,
-                        color: "#E1EEB9",
-                      }}
-                    >
-                      18 Apr 2022
-                    </Typography>
-                  </Stack>
-                </Stack>
-              </Stack> */}
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: ".85rem",
+                    fontWeight: 500,
+                    color: "#FFFFFF",
+                    lineHeight: 1,
+                  }}
+                >
+                  Currently no data available
+                </Typography>
+              )}
             </Stack>
           </Stack>
         </Stack>

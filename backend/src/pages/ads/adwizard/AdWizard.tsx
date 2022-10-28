@@ -120,6 +120,10 @@ const AdWizard = () => {
           {parseInt(params.row.banner_ad_type) === 8 && (
             <span>Welcome Banner Popup</span>
           )}
+
+          {parseInt(params.row.banner_ad_type) === 9 && (
+            <span>Announcements</span>
+          )}
         </span>
       ),
     },

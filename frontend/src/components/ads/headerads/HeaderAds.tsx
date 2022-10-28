@@ -91,7 +91,7 @@ const HeaderAds = () => {
                     <Box
                       sx={{
                         backgroundColor:
-                          index === random ? "#192450" : "#5b5b5b4d",
+                          index === random ? "#6252e7" : "#5b5b5b4d",
                         width: 20,
                         height: 5,
                         borderRadius: 50,

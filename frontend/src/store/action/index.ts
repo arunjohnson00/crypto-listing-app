@@ -92,6 +92,8 @@ export { userEventsListRequest } from "./userAction";
 export { userReviewListRequest } from "./userAction";
 export { userAirdropsListRequest } from "./userAction";
 export { userWatchListRequest } from "./userAction";
+export { userAnnouncementsRequest } from "./userAction";
+
 //dashboard coin
 
 export {

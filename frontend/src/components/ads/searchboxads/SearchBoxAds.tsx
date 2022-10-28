@@ -33,12 +33,12 @@ const SearchBoxAds = () => {
         <Fragment>
           {searchBoxAds &&
             searchBoxAds?.data?.length > 0 &&
-            searchBoxAds?.data[random] && (
+            searchBoxAds?.data[0] && (
               <Box pl={2}>
                 <Stack direction="row" spacing={2} alignItems="flex-start">
                   <Avatar
-                    alt={searchBoxAds?.data[random]?.banner_name}
-                    src={`${serverAPIUrl}public/uploads/banner_ads/${searchBoxAds?.data[random]?.banner_image}`}
+                    alt={searchBoxAds?.data[0]?.banner_name}
+                    src={`${serverAPIUrl}public/uploads/banner_ads/${searchBoxAds?.data[0]?.banner_image}`}
                     sx={{ width: 70, height: 70, borderRadius: 0, mt: 1 }}
                   />
                   <Stack direction="column" spacing={1} alignItems="flex-start">
@@ -49,7 +49,7 @@ const SearchBoxAds = () => {
                       pr={2}
                     >
                       <Typography sx={{ fontSize: "1rem", fontWeight: 700 }}>
-                        {searchBoxAds?.data[random]?.banner_name}
+                        {searchBoxAds?.data[0]?.banner_name}
                       </Typography>
                       <Typography
                         sx={{
@@ -59,7 +59,7 @@ const SearchBoxAds = () => {
                           wordBreak: "break-word",
                         }}
                       >
-                        {searchBoxAds?.data[random]?.search_ad_description}
+                        {searchBoxAds?.data[0]?.search_ad_description}
                       </Typography>
                     </Stack>
                     <Stack
@@ -70,7 +70,7 @@ const SearchBoxAds = () => {
                       width="100%"
                     >
                       <a
-                        href={searchBoxAds?.data[random]?.banner_target_link}
+                        href={searchBoxAds?.data[0]?.banner_target_link}
                         target="_blank"
                         rel="noreferrer"
                         style={{ textDecoration: "none", color: "inherit" }}
@@ -83,11 +83,11 @@ const SearchBoxAds = () => {
                             color: "#7F85B4",
                           }}
                         >
-                          {searchBoxAds?.data[random]?.button_name}
+                          {searchBoxAds?.data[0]?.button_name}
                         </Typography>
                       </a>
                       <a
-                        href={searchBoxAds?.data[random]?.banner_target_link}
+                        href={searchBoxAds?.data[0]?.banner_target_link}
                         target="_blank"
                         rel="noreferrer"
                         style={{ textDecoration: "none", color: "inherit" }}

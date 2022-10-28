@@ -11,6 +11,7 @@ const initialState = {
   user_airdrops_list: "",
   user_review_list: "",
   user_watchlist: "",
+  user_announcements: "",
 };
 const userReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -74,6 +75,13 @@ const userReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         user_watchlist: action?.payload?.data,
+      };
+
+    case USER.USER_ANNOUNCEMENTS:
+      //console.log(action);
+      return {
+        ...state,
+        user_announcements: action?.payload?.data,
       };
 
     default:

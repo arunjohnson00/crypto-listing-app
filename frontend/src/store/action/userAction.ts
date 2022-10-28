@@ -144,3 +144,19 @@ export const userWatchListRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const userAnnouncementsRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/f/v1/user-announcements`,
+    method: "GET",
+    secure: true,
+    body: values,
+    fileUpload: true,
+    actionType: USER.USER_ANNOUNCEMENTS,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

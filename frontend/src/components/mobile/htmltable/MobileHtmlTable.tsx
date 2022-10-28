@@ -152,7 +152,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     {item}
                   </TableCell>
                 ))}
-            <Box sx={{ position: "relative" }}>
+            {/* <Box sx={{ position: "relative" }}>
               <IconButton
                 aria-label="delete"
                 size="small"
@@ -162,7 +162,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                   sx={{ color: "#FFFFFF", fontSize: ".9rem" }}
                 />
               </IconButton>
-            </Box>
+            </Box> */}
           </TableRow>
         </TableHead>
         {variant === "crypto_currencies" && (
