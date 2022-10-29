@@ -1082,20 +1082,6 @@ const UserAdminHtmlTable = ({
                       {data && data?.no_of_winners}
                     </Typography>
                   </TableCell>
-                  <TableCell
-                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
-                  >
-                    <Typography variant="caption">
-                      {data && data?.is_follow_twitter}
-                    </Typography>
-                  </TableCell>
-                  <TableCell
-                    sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
-                  >
-                    <Typography variant="caption">
-                      {data && data?.join_telegram}
-                    </Typography>
-                  </TableCell>
 
                   <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>
                     {parseInt(data?.status) === 1 ? (

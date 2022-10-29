@@ -6,8 +6,6 @@ export const tableHeader = [
   "No. of Days",
   "Total Amount",
   "No. of Winners",
-  "Is follow Twitter",
-  "Joined Telegram",
   "Status",
   "Action",
 ];
