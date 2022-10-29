@@ -714,6 +714,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       sx={{ flexWrap: "wrap" }}
                     >
                       {data &&
+                        data?.badges?.length > 0 &&
                         data?.badges?.map((item: any, index: number) => (
                           <Avatar
                             key={index}
