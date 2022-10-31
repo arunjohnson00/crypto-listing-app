@@ -30,11 +30,12 @@ const InputTextArea = ({
   };
   useEffect(() => {
     setTextAreaValue(value);
-    setRichText({
-      ...richText,
-      details: data?.details,
-      description: data?.description,
-    });
+    (variant === "richtext" || variant === "richtextdescription") &&
+      setRichText({
+        ...richText,
+        details: data?.details,
+        description: data?.description,
+      });
   }, [value, data]);
 
   console.log(data?.description);
