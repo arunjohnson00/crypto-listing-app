@@ -187,7 +187,7 @@ const OnlineAnalysisCard = () => {
           spacing={1}
           sx={{ alignItems: "center", justifyContent: "space-between" }}
         >
-          <Typography
+          {/* <Typography
             variant="body2"
             sx={{
               color: "#FFFFF5",
@@ -209,16 +209,39 @@ const OnlineAnalysisCard = () => {
             }}
           >
             1 Month
+          </Typography> */}
+          <Typography
+            variant="body2"
+            sx={{
+              color: "#FFFFF5",
+              fontWeight: "bold",
+              textAlign: "left",
+              fontSize: "1.275rem",
+            }}
+          >
+            2 Million
           </Typography>
         </Stack>
         <Stack direction="column" spacing={1} sx={{ alignItems: "center" }}>
           <Box>
-            <Chart
+            {/* <Chart
               options={chartData.options}
               series={chartData.series}
               type="area"
               height="auto"
-            />
+            /> */}
+
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#FFFFF5",
+                fontWeight: "bold",
+                textAlign: "left",
+                fontSize: "0.875rem",
+              }}
+            >
+              Registered Users and Counting
+            </Typography>
           </Box>
         </Stack>
       </Box>

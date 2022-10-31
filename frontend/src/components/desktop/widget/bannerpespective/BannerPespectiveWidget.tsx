@@ -24,7 +24,12 @@ const BannerPespectiveWidget = () => {
 
       <Tilt>
         <Box
-          sx={{ position: "absolute", zIndex: 999, top: "36px", left: "281px" }}
+          sx={{
+            position: "absolute",
+            zIndex: 999,
+            top: "36px",
+            left: "391px",
+          }}
         >
           <OnlineAnalysisCard />
         </Box>
@@ -35,8 +40,8 @@ const BannerPespectiveWidget = () => {
           sx={{
             position: "absolute",
             zIndex: 999,
-            top: "317px",
-            left: "176px",
+            top: "167px",
+            left: "116px",
           }}
         >
           <MarketStatusCard />
