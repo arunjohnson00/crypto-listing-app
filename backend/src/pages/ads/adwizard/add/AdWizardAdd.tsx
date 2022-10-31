@@ -118,9 +118,8 @@ const AdWizardAdd = () => {
     };
 
     var formData = new FormData(document.querySelector("#eventForm") as any);
-    createAdsData?.banner_ad_type !== 4 &&
-      createAdsData?.banner_ad_type !== 9 &&
-      formData.append("banner_name", createAdsData?.banner_name);
+
+    formData.append("banner_name", createAdsData?.banner_name);
     // formData.append("subtitle", createAdsData?.subtitle);
     // formData.append("description", createAdsData?.description);
     // formData.append("ads_type", createAdsData?.ads_type);
@@ -269,28 +268,27 @@ const AdWizardAdd = () => {
               </Grid>
             )}
 
-            {createAdsData?.banner_ad_type !== 4 &&
-              createAdsData?.banner_ad_type !== 9 && (
-                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
-                  <Typography
-                    variant="subtitle1"
-                    sx={{
-                      textAlign: "left",
-                      fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#000000",
-                    }}
-                    mb={1}
-                  >
-                    Ads Name
-                  </Typography>
+            {
+              <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    textAlign: "left",
+                    fontSize: ".9rem",
+                    fontWeight: 600,
+                    color: "#000000",
+                  }}
+                  mb={1}
+                >
+                  Ads Name
+                </Typography>
 
-                  <InputText
-                    placeholder="Eg:Main Ads"
-                    inputTextHandler={(e: any) => createAdsNameHandler(e)}
-                  />
-                </Grid>
-              )}
+                <InputText
+                  placeholder="Eg:Main Ads"
+                  inputTextHandler={(e: any) => createAdsNameHandler(e)}
+                />
+              </Grid>
+            }
 
             {createAdsData?.banner_ad_type === 9 && (
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>

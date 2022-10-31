@@ -83,7 +83,7 @@ const AdWizard = () => {
       ),
     },
     {
-      field: "name",
+      field: "banner_name",
       headerName: "Ads Name",
       flex: 1,
     },
@@ -128,15 +128,22 @@ const AdWizard = () => {
       ),
     },
     {
-      field: "coin_id",
-      headerName: "Coin ID",
-      flex: 1,
-    },
-
-    {
-      field: "coin_name",
-      headerName: "Coin Name",
-      flex: 1,
+      field: "banner_target_link",
+      headerName: "Target Link",
+      flex: 2,
+      renderCell: (params: any) => (
+        <span style={{ color: "blue", fontSize: ".7rem" }}>
+          <a
+            href={params.row.banner_target_link}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "blue", textDecoration: "none" }}
+          >
+            {" "}
+            {params.row.banner_target_link}
+          </a>
+        </span>
+      ),
     },
 
     {

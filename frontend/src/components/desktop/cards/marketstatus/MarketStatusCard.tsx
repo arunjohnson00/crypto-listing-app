@@ -13,9 +13,9 @@ const MarketStatusCard = () => {
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
-    dispatch(
-      coinOverviewBlockRequest("bitcoin-btc", successHandler, errorHandler)
-    );
+    // dispatch(
+    //   coinOverviewBlockRequest("bitcoin-btc", successHandler, errorHandler)
+    // );
   }, [dispatch]);
 
   console.log(cardData && cardData[0]?.percent_change_24h);

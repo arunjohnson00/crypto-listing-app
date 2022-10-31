@@ -15,6 +15,7 @@ import { useLocation } from "react-router-dom";
 import Iframe from "react-iframe";
 import moment from "moment";
 import parse from "html-react-parser";
+import striptags from "striptags";
 import {
   coinAboutBlockRequest,
   coinPriceGraphBlockRequest,
@@ -333,7 +334,8 @@ const CoinPageAbout = () => {
             </Typography>
 
             <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
-              {coinAboutBlock && parse(coinAboutBlock[0]?.second_pragraph)}
+              {coinAboutBlock &&
+                parse(striptags(coinAboutBlock[0]?.second_pragraph, ["a"]))}
             </Typography>
           </Stack>
         </Grid>

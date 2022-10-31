@@ -30,15 +30,16 @@ const OnlineAnalysisCard = () => {
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
-    dispatch(
-      coinPriceGraphBlockRequest("bitcoin-btc", successHandler, errorHandler)
-    );
+    // dispatch(
+    //   coinPriceGraphBlockRequest("bitcoin-btc", successHandler, errorHandler)
+    // );
   }, [dispatch, location]);
 
   const chartData: any = {
     series: [
       {
-        data: graphData && graphData?.price,
+        // data: graphData && graphData?.price,
+        data: [1, 2, 3, 4, 6],
       },
       // {
       //   data: data?.market_cap,

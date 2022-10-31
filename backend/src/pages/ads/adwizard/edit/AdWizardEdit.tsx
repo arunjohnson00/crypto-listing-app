@@ -123,9 +123,8 @@ const AdWizardEdit = () => {
     };
 
     var formData = new FormData(document.querySelector("#eventForm") as any);
-    editAdsData?.banner_ad_type !== 4 &&
-      editAdsData?.banner_ad_type !== 9 &&
-      formData.append("banner_name", editAdsData?.banner_name);
+
+    formData.append("banner_name", editAdsData?.banner_name);
     // formData.append("subtitle", editAdsData?.subtitle);
     // formData.append("description", editAdsData?.description);
     formData.append("banner_ad_type", editAdsData?.banner_ad_type);
@@ -289,29 +288,28 @@ const AdWizardEdit = () => {
               </Grid>
             )}
 
-            {editAdsData?.banner_ad_type !== 4 &&
-              editAdsData?.banner_ad_type !== 9 && (
-                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
-                  <Typography
-                    variant="subtitle1"
-                    sx={{
-                      textAlign: "left",
-                      fontSize: ".9rem",
-                      fontWeight: 600,
-                      color: "#000000",
-                    }}
-                    mb={1}
-                  >
-                    Ads Name
-                  </Typography>
+            {
+              <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    textAlign: "left",
+                    fontSize: ".9rem",
+                    fontWeight: 600,
+                    color: "#000000",
+                  }}
+                  mb={1}
+                >
+                  Ads Name
+                </Typography>
 
-                  <InputText
-                    placeholder="Eg:Main Ads"
-                    inputTextHandler={(e: any) => editAdsNameHandler(e)}
-                    value={editAdsData && editAdsData?.banner_name}
-                  />
-                </Grid>
-              )}
+                <InputText
+                  placeholder="Eg:Main Ads"
+                  inputTextHandler={(e: any) => editAdsNameHandler(e)}
+                  value={editAdsData && editAdsData?.banner_name}
+                />
+              </Grid>
+            }
             {editAdsData?.banner_ad_type === 9 && (
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
                 <Typography
