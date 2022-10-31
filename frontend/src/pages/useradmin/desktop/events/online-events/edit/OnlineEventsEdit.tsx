@@ -51,7 +51,7 @@ const OnlineEventsEdit = () => {
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
-
+  const [richText, setRichText] = useState({ details: "", description: "" });
   const [coinChecked, setcoinChecked] = useState(true);
 
   const coinCheckboxHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -194,7 +194,7 @@ const OnlineEventsEdit = () => {
     );
     // formData.append("category_id", editEventsData?.category_id);
     formData.append("title", editEventsData?.title);
-    formData.append("description", editEventsData?.description);
+    formData.append("description", richText?.description);
     formData.append("source_link", editEventsData?.source_link);
     formData.append("coin_id", editEventsData?.coin_id);
     //formData.append("reward_address_id", editEventsData?.reward_address_id);
@@ -546,6 +546,8 @@ const OnlineEventsEdit = () => {
                 value={editEventsData?.description}
                 data={editEventsData}
                 setData={setEditEvents}
+                richText={richText}
+                setRichText={setRichText}
               />
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>

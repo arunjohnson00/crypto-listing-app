@@ -48,7 +48,7 @@ const OnlineEventsAdd = () => {
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
-
+  const [richText, setRichText] = useState({ details: "", description: "" });
   const [coinChecked, setcoinChecked] = useState(true);
 
   const coinCheckboxHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -172,7 +172,7 @@ const OnlineEventsAdd = () => {
     //formData.append("reward_address_id", addEventsData?.reward_address_id);
     formData.append("address", addEventsData?.address);
     formData.append("twitter_account", addEventsData?.twitter_account);
-    formData.append("description", addEventsData?.description);
+    formData.append("description", richText?.description);
     formData.append("telegram_url", addEventsData?.telegram_url);
     formData.append("reddit_url", addEventsData?.reddit_url);
     formData.append("website_url", addEventsData?.website_url);
@@ -494,6 +494,8 @@ const OnlineEventsAdd = () => {
                 placeholder=" Detailed event description. (e.g. exact time, location, more info…)"
                 data={addEventsData}
                 setData={setAddEvents}
+                richText={richText}
+                setRichText={setRichText}
               />
             </Grid>
 

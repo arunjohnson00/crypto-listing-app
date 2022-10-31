@@ -31,6 +31,7 @@ import InputTextArea from "../../../../../components/useradmin/form/textarea/Inp
 import { Helmet } from "react-helmet-async";
 
 const AirDropsAdd = () => {
+  const [richText, setRichText] = useState({ details: "", description: "" });
   const selectOptions = [
     { title: "Approved", value: 1 },
     { title: "Processing", value: 2 },
@@ -133,7 +134,7 @@ const AirDropsAdd = () => {
     );
     // formData.append("is_follow_twitter", addAirdropsData?.is_follow_twitter);
     // formData.append("join_telegram", addAirdropsData?.join_telegram);
-    formData.append("details", addAirdropsData?.details?.toString("html"));
+    formData.append("details", richText?.details);
     formData.append("status", addAirdropsData?.status);
 
     dispatch(
@@ -408,6 +409,8 @@ const AirDropsAdd = () => {
               placeholder="Enter airdrop details. "
               data={addAirdropsData}
               setData={setAddAirdrops}
+              richText={richText}
+              setRichText={setRichText}
             />
           </Grid>
 

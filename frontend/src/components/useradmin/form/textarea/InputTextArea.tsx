@@ -15,31 +15,38 @@ const InputTextArea = ({
   width,
   data,
   setData,
+  richText,
+  setRichText,
 }: any) => {
   const [textAreaValue, setTextAreaValue] = useState(value);
 
   const matches = useMediaQuery("(min-width:900px)");
 
   const richEditorHandler = (value: any) => {
-    setData({ ...data, details: value, description: value });
+    setRichText({ ...richText, details: value, description: value });
   };
   useEffect(() => {
-    setTextAreaValue(striptags(value));
-  }, [value]);
+    setTextAreaValue(value);
+    setRichText({
+      ...richText,
+      details: data?.details,
+      description: data?.description,
+    });
+  }, [value, data]);
 
   return (
     <Fragment>
       {variant === "richtext" ? (
         <ReactQuill
           theme="snow"
-          value={data?.details}
+          value={richText?.details}
           onChange={richEditorHandler}
           placeholder={placeholder && placeholder}
         />
       ) : variant === "richtextdescription" ? (
         <ReactQuill
           theme="snow"
-          value={data?.description}
+          value={richText?.description}
           onChange={richEditorHandler}
           placeholder={placeholder && placeholder}
         />
@@ -55,7 +62,7 @@ const InputTextArea = ({
               id={id}
               value={textAreaValue}
               onChange={(e: any) => {
-                setTextAreaValue(striptags(e.target.value).toString());
+                setTextAreaValue(e.target.value);
               }}
             />
           ) : (
@@ -78,7 +85,7 @@ const InputTextArea = ({
               id={id}
               value={textAreaValue}
               onChange={(e: any) => {
-                setTextAreaValue(striptags(e.target.value).toString());
+                setTextAreaValue(e.target.value);
               }}
             />
           )}

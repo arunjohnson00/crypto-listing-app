@@ -41,6 +41,7 @@ const selectOptions = [
 ];
 
 const AirDropsEdit = () => {
+  const [richText, setRichText] = useState({ details: "", description: "" });
   const dispatch: any = useDispatch();
   const navigate: any = useNavigate();
   const location: any = useLocation();
@@ -140,8 +141,8 @@ const AirDropsEdit = () => {
     );
     // formData.append("is_follow_twitter", editAirdropsData?.is_follow_twitter);
     // formData.append("join_telegram", editAirdropsData?.join_telegram);
-    formData.append("details", editAirdropsData?.details?.toString("html"));
 
+    formData.append("details", richText?.details);
     formData.append("status", editAirdropsData?.status);
     formData.append("airdrop_id", location?.state?.id);
     dispatch(
@@ -455,6 +456,8 @@ const AirDropsEdit = () => {
               value={editAirdropsData?.details}
               data={editAirdropsData}
               setData={setEditAirdrops}
+              richText={richText}
+              setRichText={setRichText}
             />
           </Grid>
 

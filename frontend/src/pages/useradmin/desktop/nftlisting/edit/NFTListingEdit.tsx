@@ -92,7 +92,7 @@ const NFTListingEdit = () => {
   });
 
   const [nftListingData, setNftListingData] = useState<any>({});
-
+  const [richText, setRichText] = useState({ details: "", description: "" });
   const [checked, setChecked] = useState<any>({
     i_agree: false,
     i_declare: false,
@@ -162,7 +162,7 @@ const NFTListingEdit = () => {
       "public_mint_end_time",
       dateFormat(new Date(publicMintDate.end_time), " hh:MM tt")
     );
-    formData.append("description", nftListingData.description);
+    formData.append("description", richText?.description);
     addCoinLogo.coinLogo !== "" &&
       formData.append("image", addCoinLogo.coinLogo);
     formData.append("status", coinPublishStatus.status);
@@ -568,6 +568,8 @@ const NFTListingEdit = () => {
                         width={600}
                         data={nftListingData}
                         setData={setNftListingData}
+                        richText={richText}
+                        setRichText={setRichText}
                       />
                     </Grid>
                   </Grid>

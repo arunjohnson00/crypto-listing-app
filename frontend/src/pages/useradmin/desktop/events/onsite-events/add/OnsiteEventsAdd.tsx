@@ -48,7 +48,7 @@ const OnsiteEventsAdd = () => {
     { title: "Processing", value: 2 },
     { title: "Rejected/Blocked", value: 3 },
   ];
-
+  const [richText, setRichText] = useState({ details: "", description: "" });
   const [coinChecked, setcoinChecked] = useState(true);
 
   const coinCheckboxHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -175,7 +175,7 @@ const OnsiteEventsAdd = () => {
     formData.append("address", addEventsData?.address);
     formData.append("twitter_account", addEventsData?.twitter_account);
     formData.append("telegram_url", addEventsData?.telegram_url);
-    formData.append("description", addEventsData?.description);
+    formData.append("description", richText?.description);
     formData.append("reddit_url", addEventsData?.reddit_url);
     formData.append("booking_url", addEventsData?.booking_url);
     formData.append("venue", addEventsData?.venue);
@@ -509,6 +509,8 @@ const OnsiteEventsAdd = () => {
                 placeholder=" Detailed event description. (e.g. exact time, location, more info…)"
                 data={addEventsData}
                 setData={setAddEvents}
+                richText={richText}
+                setRichText={setRichText}
               />
             </Grid>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>

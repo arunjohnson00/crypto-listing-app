@@ -61,6 +61,7 @@ const NFTListingAdd = () => {
   const [nftListingData, setNftListingData] = useState<any>({
     description: "",
   });
+  const [richText, setRichText] = useState({ details: "", description: "" });
   const nftListingCurrencyList = useSelector((nftCurrencyList: any) => {
     return nftCurrencyList.dashboardNFTListingReducer.nft_currency_list.data;
   });
@@ -163,7 +164,7 @@ const NFTListingAdd = () => {
     );
     formData.append("image", addCoinLogo.coinLogo);
     formData.append("status", coinPublishStatus.status);
-    formData.append("description", nftListingData.description);
+    formData.append("description", richText?.description);
     const successHandler = (res: any) => {
       setLoading(true);
       toast.success(
@@ -477,6 +478,8 @@ const NFTListingAdd = () => {
                         name="description"
                         data={nftListingData}
                         setData={setNftListingData}
+                        richText={richText}
+                        setRichText={setRichText}
                       />
                     </Grid>
                   </Grid>
