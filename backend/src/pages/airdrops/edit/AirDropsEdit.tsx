@@ -41,6 +41,7 @@ const AirDropsEdit = () => {
   let { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [richText, setRichText] = useState({ details: "", description: "" });
 
   const [editAirdropsData, setEditAirdrops] = useState<any>({
     id: id,
@@ -113,7 +114,7 @@ const AirDropsEdit = () => {
     );
     // formData.append("is_follow_twitter", editAirdropsData?.is_follow_twitter);
     // formData.append("join_telegram", editAirdropsData?.join_telegram);
-    formData.append("details", editAirdropsData?.details?.toString("html"));
+    formData.append("details", richText?.details);
     formData.append("status", editAirdropsData?.status);
 
     dispatch(updateAirDropsRequest(formData, successHandler, errorHandler));
@@ -320,6 +321,8 @@ const AirDropsEdit = () => {
                 value={editAirdropsData?.details}
                 data={editAirdropsData}
                 setData={setEditAirdrops}
+                richText={richText}
+                setRichText={setRichText}
               />
             </Box>
           </Grid>

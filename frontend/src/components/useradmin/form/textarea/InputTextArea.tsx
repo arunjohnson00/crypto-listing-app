@@ -4,6 +4,7 @@ import { textareaStyle, rowCount } from "./style";
 import { useMediaQuery } from "@mui/material";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import striptags from "striptags";
 import "./styel.css";
 const InputTextArea = ({
   name,
@@ -23,7 +24,7 @@ const InputTextArea = ({
     setData({ ...data, details: value, description: value });
   };
   useEffect(() => {
-    setTextAreaValue(value);
+    setTextAreaValue(striptags(value));
   }, [value]);
 
   return (
@@ -54,7 +55,7 @@ const InputTextArea = ({
               id={id}
               value={textAreaValue}
               onChange={(e: any) => {
-                setTextAreaValue(e.target.value);
+                setTextAreaValue(striptags(e.target.value).toString());
               }}
             />
           ) : (
@@ -77,7 +78,7 @@ const InputTextArea = ({
               id={id}
               value={textAreaValue}
               onChange={(e: any) => {
-                setTextAreaValue(e.target.value);
+                setTextAreaValue(striptags(e.target.value).toString());
               }}
             />
           )}

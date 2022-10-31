@@ -188,7 +188,7 @@ const NFTListingAdd = () => {
         }
       );
       setTimeout(() => {
-        navigate("/user-dashboard");
+        navigate("/user-dashboard/nft");
       }, 3000);
     };
 

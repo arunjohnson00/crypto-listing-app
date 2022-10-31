@@ -56,6 +56,7 @@ import dateFormat, { masks } from "dateformat";
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const NFTListingEdit = () => {
+  const [richText, setRichText] = useState({ details: "", description: "" });
   const selectOptions = [
     { title: "Approved", value: 1 },
     { title: "Suspended", value: 2 },
@@ -156,7 +157,7 @@ const NFTListingEdit = () => {
       "public_mint_end_time",
       dateFormat(new Date(publicMintDate.end_time), " hh:MM tt")
     );
-    formData.append("description", nftListingData.description);
+    formData.append("description", richText?.description);
     addCoinLogo.coinLogo !== "" &&
       formData.append("image", addCoinLogo.coinLogo);
     formData.append("status", coinPublishStatus.status);
@@ -464,6 +465,8 @@ const NFTListingEdit = () => {
                         width={600}
                         data={nftListingData}
                         setData={setNftListingData}
+                        richText={richText}
+                        setRichText={setRichText}
                       />
                     </Grid>
                   </Grid>

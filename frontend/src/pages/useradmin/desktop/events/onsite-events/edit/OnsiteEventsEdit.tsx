@@ -141,7 +141,7 @@ const OnsiteEventsEdit = () => {
       );
 
       setTimeout(() => {
-        navigate("/user-dashboard");
+        navigate("/user-dashboard/events");
       }, 3000);
     };
 

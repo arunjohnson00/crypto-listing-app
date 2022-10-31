@@ -52,6 +52,7 @@ import InputDateTime from "../../../components/form/input/datetime/InputDateTime
 import dateFormat, { masks } from "dateformat";
 
 const NFTListingAdd = () => {
+  const [richText, setRichText] = useState({ details: "", description: "" });
   const selectOptions = [
     { title: "Approved", value: 1 },
     { title: "Suspended", value: 2 },
@@ -160,7 +161,7 @@ const NFTListingAdd = () => {
     );
     formData.append("image", addCoinLogo.coinLogo);
     formData.append("status", coinPublishStatus.status);
-    formData.append("description", nftListingData.description);
+    formData.append("description", richText?.description);
     const successHandler = (res: any) => {
       console.log(res);
       setLoading(true);
@@ -380,6 +381,8 @@ const NFTListingAdd = () => {
                         name="description"
                         data={nftListingData}
                         setData={setNftListingData}
+                        richText={richText}
+                        setRichText={setRichText}
                       />
                     </Grid>
                   </Grid>

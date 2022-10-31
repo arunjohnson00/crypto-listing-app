@@ -64,6 +64,7 @@
     "react-toastify": "^8.2.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1",
+    "striptags": "^3.2.0",
     "styled-components": "^5.3.5",
     "sweetalert2": "^11.4.9",
     "ts-ago": "^1.0.1",

@@ -30,6 +30,7 @@ import { Link } from "react-router-dom";
 import InputTextArea from "../../../components/form/textarea/InputTextArea";
 
 const AirDropsAdd = () => {
+  const [richText, setRichText] = useState({ details: "", description: "" });
   const selectOptions = [
     { title: "Approved", value: 1 },
     { title: "Suspended", value: 2 },
@@ -47,7 +48,7 @@ const AirDropsAdd = () => {
     no_of_winners: "",
     // is_follow_twitter: 1,
     // join_telegram: 1,
-    details: "Please Enter Airdrop Details",
+    details: "",
     logo: "",
     status: 1,
   });
@@ -108,7 +109,8 @@ const AirDropsAdd = () => {
     );
     // formData.append("is_follow_twitter", addAirdropsData?.is_follow_twitter);
     // formData.append("join_telegram", addAirdropsData?.join_telegram);
-    formData.append("details", addAirdropsData?.details?.toString("html"));
+
+    formData.append("details", richText?.details);
     formData.append("status", addAirdropsData?.status);
 
     dispatch(addAirDropsRequest(formData, successHandler, errorHandler));
@@ -309,6 +311,8 @@ const AirDropsAdd = () => {
                 placeholder="Enter airdrop details. "
                 data={addAirdropsData}
                 setData={setAddAirdrops}
+                richText={richText}
+                setRichText={setRichText}
               />
             </Box>
           </Grid>

@@ -81,7 +81,7 @@ const ReviewAdd = () => {
       );
 
       setTimeout(() => {
-        navigate("/user-dashboard");
+        navigate("/user-dashboard/review");
       }, 3000);
     };
 

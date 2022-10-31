@@ -49,7 +49,7 @@ const EventsEdit = () => {
     { title: "Suspended", value: 2 },
     { title: "Processing", value: 3 },
   ];
-
+  const [richText, setRichText] = useState({ details: "", description: "" });
   const [coinChecked, setcoinChecked] = useState(true);
 
   const coinCheckboxHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -180,7 +180,7 @@ const EventsEdit = () => {
       editEventsData?.proof !== "" &&
       typeof editEventsData?.proof !== "string" &&
       formData.append("proof", editEventsData?.proof);
-    formData.append("description", editEventsData?.description);
+    formData.append("description", richText?.description);
     formData.append("telegram_url", editEventsData?.telegram_url);
     formData.append("reddit_url", editEventsData?.reddit_url);
     formData.append("website_url", editEventsData?.website_url);
@@ -548,6 +548,8 @@ const EventsEdit = () => {
                 value={editEventsData?.description}
                 data={editEventsData}
                 setData={setEditEvents}
+                richText={richText}
+                setRichText={setRichText}
               />
             </Grid>
 

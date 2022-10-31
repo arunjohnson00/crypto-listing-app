@@ -81,7 +81,7 @@ const EventsAdd = () => {
   const [eventsCategory, setEventsCategory] = useState();
   const [eventsRewardAddress, setEventsRewardAddress] = useState();
   const [coinChecked, setcoinChecked] = useState(true);
-
+  const [richText, setRichText] = useState({ details: "", description: "" });
   console.log(coinChecked);
   const coinCheckboxHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setcoinChecked(event.target.checked);
@@ -144,7 +144,7 @@ const EventsAdd = () => {
     );
     // formData.append("category_id", addEventsData?.category_id);
     formData.append("title", addEventsData?.title);
-    formData.append("description", addEventsData?.description);
+    formData.append("description", richText?.description);
     formData.append("source_link", addEventsData?.source_link);
     //formData.append("reward_address_id", addEventsData?.reward_address_id);
     formData.append("address", addEventsData?.address);
@@ -511,6 +511,8 @@ const EventsAdd = () => {
                 placeholder=" Detailed event description. (e.g. exact time, location, more info…)"
                 data={addEventsData}
                 setData={setAddEvents}
+                richText={richText}
+                setRichText={setRichText}
               />
             </Grid>
             {addEventsData && parseInt(addEventsData?.is_online) === 2 && (

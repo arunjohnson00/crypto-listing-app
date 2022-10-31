@@ -243,7 +243,7 @@ const CoinListingAdd = () => {
         }
       );
       setTimeout(() => {
-        navigate("/user-dashboard");
+        navigate("/user-dashboard/coin");
       }, 3000);
     };
 
@@ -559,7 +559,7 @@ const CoinListingAdd = () => {
                     Project Description
                   </Typography>
                   <InputTextArea
-                    variant="richtextdescription"
+                    //variant="richtextdescription"
                     name="description"
                     id="description"
                     placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."

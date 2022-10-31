@@ -4,6 +4,8 @@ import { textareaStyle, rowCount } from "./style";
 import "./style.css";
 import { useMediaQuery } from "@mui/material";
 // import RichTextEditor from "react-rte";
+import striptags from "striptags";
+
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
@@ -16,20 +18,23 @@ const InputTextArea = ({
   width,
   data,
   setData,
+  richText,
+  setRichText,
 }: any) => {
   const [textAreaValue, setTextAreaValue] = useState(value);
-  const [richTextAreaDescriptionValue, setRichTextAreaDescriptionValue] =
-    useState<any>();
-  const [richTextAreaValue, setRichTextAreaValue] = useState<any>();
+
   const matches = useMediaQuery("(min-width:900px)");
 
   const richEditorHandler = (value: any) => {
-    setData({ ...data, details: value, description: value });
+    setRichText({ ...richText, details: value, description: value });
   };
   useEffect(() => {
     setTextAreaValue(value);
-    setRichTextAreaValue(data?.details);
-    setRichTextAreaDescriptionValue(data?.description);
+    setRichText({
+      ...richText,
+      details: data?.details,
+      description: data?.description,
+    });
   }, [value, data]);
 
   console.log(data?.description);
@@ -38,14 +43,14 @@ const InputTextArea = ({
       {variant === "richtext" ? (
         <ReactQuill
           theme="snow"
-          value={richTextAreaValue}
+          value={richText?.details}
           onChange={richEditorHandler}
           placeholder={placeholder && placeholder}
         />
       ) : variant === "richtextdescription" ? (
         <ReactQuill
           theme="snow"
-          value={richTextAreaDescriptionValue}
+          value={richText?.description}
           onChange={richEditorHandler}
           placeholder={placeholder && placeholder}
         />

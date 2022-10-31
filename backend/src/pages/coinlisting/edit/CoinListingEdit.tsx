@@ -62,7 +62,7 @@ const CoinListingEdit = () => {
     { title: "Processing", value: 3 },
     { title: "Processing", value: 4 },
   ];
-
+  const [richText, setRichText] = useState({ details: "", description: "" });
   const [editCoin, setEditCoin] = useState<any>({
     address: "",
     admin_id: "",
@@ -136,7 +136,7 @@ const CoinListingEdit = () => {
     youtube_link: "",
     video_url: "",
   });
-  console.log(editCoin?.has_many_socials);
+
   const exchangeList = useSelector((exList: any) => {
     return exList.exchangesReducer.allExchanges.data;
   });
@@ -194,7 +194,6 @@ const CoinListingEdit = () => {
       return item?.id !== index;
     });
 
-    //console.log(sociallist, index);
     setEditCoin({ ...editCoin, has_many_networks: networklist });
   };
 
@@ -331,13 +330,13 @@ const CoinListingEdit = () => {
       "presale_end_date",
       dateFormat(dateTime.end_date, "yyyy-mm-dd")
     );
-    formData.append("status", coinPublishStatus.status);
+    formData.append("status", coinPublishStatus?.status);
     formData.append(
       "schedule_date",
-      dateFormat(coinPublishStatus.statusDateTime, "dd-mm-yyyy H:MM:ss")
+      dateFormat(coinPublishStatus?.statusDateTime, "dd-mm-yyyy H:MM:ss")
     );
-    formData.append("is_scheduled", coinPublishStatus.is_scheduled);
-    formData.append("description", editCoin.description);
+    formData.append("is_scheduled", coinPublishStatus?.is_scheduled);
+    formData.append("description", richText?.description);
     const presaleStatus: any = coinStatus === "Presale" ? 1 : 0;
     formData.append("is_presale", presaleStatus);
 
@@ -395,8 +394,8 @@ const CoinListingEdit = () => {
 
   useEffect(() => {
     const successHandler = (res: any) => {
-      res && setEditCoin(res.data.data);
-
+      res && setEditCoin(res?.data?.data);
+      console.log(res.data.data);
       setCoinStatus(
         parseInt(res?.data?.data?.is_presale) === 1
           ? "Presale"
@@ -595,6 +594,8 @@ const CoinListingEdit = () => {
                     value={editCoin?.description}
                     data={editCoin}
                     setData={setEditCoin}
+                    richText={richText}
+                    setRichText={setRichText}
                   />
                 </Grid>
               </Grid>

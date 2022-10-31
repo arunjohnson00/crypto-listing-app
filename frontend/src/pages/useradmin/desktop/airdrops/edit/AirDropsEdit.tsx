@@ -91,7 +91,7 @@ const AirDropsEdit = () => {
         }
       );
       setTimeout(() => {
-        navigate("/user-dashboard");
+        navigate("/user-dashboard/airdrops");
       }, 3000);
     };
 
