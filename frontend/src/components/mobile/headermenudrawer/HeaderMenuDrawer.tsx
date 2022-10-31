@@ -333,7 +333,7 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
                     to="/login"
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    <LoginHeaderBtn title="Login" />
+                    <LoginHeaderBtn title="Login" handler={toggleDrawer} />
                   </Link>
                 ) : (
                   <Stack
