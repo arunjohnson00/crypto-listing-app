@@ -6,6 +6,7 @@ import { useMediaQuery } from "@mui/material";
 // import RichTextEditor from "react-rte";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+
 const InputTextArea = ({
   name,
   id,
@@ -17,7 +18,9 @@ const InputTextArea = ({
   setData,
 }: any) => {
   const [textAreaValue, setTextAreaValue] = useState(value);
-
+  const [richTextAreaDescriptionValue, setRichTextAreaDescriptionValue] =
+    useState<any>();
+  const [richTextAreaValue, setRichTextAreaValue] = useState<any>();
   const matches = useMediaQuery("(min-width:900px)");
 
   const richEditorHandler = (value: any) => {
@@ -25,20 +28,24 @@ const InputTextArea = ({
   };
   useEffect(() => {
     setTextAreaValue(value);
-  }, [value]);
+    setRichTextAreaValue(data?.details);
+    setRichTextAreaDescriptionValue(data?.description);
+  }, [value, data]);
+
+  console.log(data?.description);
   return (
     <Fragment>
       {variant === "richtext" ? (
         <ReactQuill
           theme="snow"
-          value={data?.details}
+          value={richTextAreaValue}
           onChange={richEditorHandler}
           placeholder={placeholder && placeholder}
         />
       ) : variant === "richtextdescription" ? (
         <ReactQuill
           theme="snow"
-          value={data?.description}
+          value={richTextAreaDescriptionValue}
           onChange={richEditorHandler}
           placeholder={placeholder && placeholder}
         />

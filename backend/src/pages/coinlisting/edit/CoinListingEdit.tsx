@@ -60,6 +60,7 @@ const CoinListingEdit = () => {
     { title: "Approved", value: 1 },
     { title: "Suspended", value: 2 },
     { title: "Processing", value: 3 },
+    { title: "Processing", value: 4 },
   ];
 
   const [editCoin, setEditCoin] = useState<any>({
@@ -394,7 +395,7 @@ const CoinListingEdit = () => {
 
   useEffect(() => {
     const successHandler = (res: any) => {
-      setEditCoin(res.data.data);
+      res && setEditCoin(res.data.data);
 
       setCoinStatus(
         parseInt(res?.data?.data?.is_presale) === 1
@@ -585,6 +586,7 @@ const CoinListingEdit = () => {
                   >
                     Project Description
                   </Typography>
+
                   <InputTextArea
                     variant="richtextdescription"
                     name="description"
@@ -813,7 +815,9 @@ const CoinListingEdit = () => {
               </Typography>
             </Grid>
 
-            {editCoin?.has_many_networks.length !== 0 &&
+            {editCoin &&
+            editCoin?.has_many_networks &&
+            editCoin?.has_many_networks.length !== 0 &&
             editCoin?.has_many_networks !== undefined ? (
               editCoin?.has_many_networks.map(
                 (networks: any, index: number) => {
@@ -1030,7 +1034,8 @@ const CoinListingEdit = () => {
               </Typography>
             </Grid>
 
-            {editCoin?.has_many_exchanges.length !== 0 &&
+            {editCoin &&
+            editCoin?.has_many_exchanges.length !== 0 &&
             editCoin?.has_many_exchanges !== undefined ? (
               editCoin?.has_many_exchanges.map(
                 (exchanges: any, index: number) => {
@@ -1633,7 +1638,8 @@ const CoinListingEdit = () => {
               </Typography>
             </Grid>
 
-            {editCoin?.has_many_audits.length !== 0 &&
+            {editCoin &&
+            editCoin?.has_many_audits.length !== 0 &&
             editCoin?.has_many_audits !== undefined ? (
               editCoin?.has_many_audits.map((audits: any, index: number) => {
                 return (
@@ -1802,7 +1808,8 @@ const CoinListingEdit = () => {
               </Typography>
             </Grid>
 
-            {editCoin?.has_many_charts.length !== 0 &&
+            {editCoin &&
+            editCoin?.has_many_charts.length !== 0 &&
             editCoin?.has_many_charts !== undefined ? (
               editCoin?.has_many_charts.map((charts: any, index: number) => {
                 return (
@@ -1975,7 +1982,8 @@ const CoinListingEdit = () => {
                   </Typography>
                 </Grid>
 
-                {editCoin?.has_many_communitys?.length !== 0 &&
+                {editCoin &&
+                editCoin?.has_many_communitys?.length !== 0 &&
                 editCoin?.has_many_communitys !== undefined ? (
                   editCoin?.has_many_communitys?.map(
                     (communitys: any, index: number) => {
@@ -2407,7 +2415,8 @@ const CoinListingEdit = () => {
                   </Typography>
                 </Grid>
 
-                {editCoin?.has_many_socials.length !== 0 &&
+                {editCoin &&
+                editCoin?.has_many_socials.length !== 0 &&
                 editCoin?.has_many_socials !== undefined ? (
                   editCoin?.has_many_socials.map(
                     (socials: any, index: number) => {
