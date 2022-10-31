@@ -22,6 +22,6 @@ textarea {
 }
 .quill > .ql-container > .ql-editor.ql-blank::before {
   font-size: 0.8rem;
-  color: #252833;
+  color: #aeaeb0;
   font-style: normal;
 }
