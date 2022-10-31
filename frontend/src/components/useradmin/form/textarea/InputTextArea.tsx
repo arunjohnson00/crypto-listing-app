@@ -33,8 +33,8 @@ const InputTextArea = ({
         details: data?.details,
         description: data?.description,
       });
-  }, [value, data]);
-
+  }, [value]);
+  console.log(richText);
   return (
     <Fragment>
       {variant === "richtext" ? (

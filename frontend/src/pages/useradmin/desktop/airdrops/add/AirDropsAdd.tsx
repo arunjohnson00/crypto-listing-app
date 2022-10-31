@@ -122,15 +122,15 @@ const AirDropsAdd = () => {
     );
     formData.append(
       "no_of_days",
-      addAirdropsData?.no_of_days?.replace(/[^0-9\.]/g, "")
+      addAirdropsData?.no_of_days?.toString().replace(/[^0-9\.]/g, "")
     );
     formData.append(
       "total_amount",
-      addAirdropsData?.total_amount?.replace(/[^0-9\.]/g, "")
+      addAirdropsData?.total_amount?.toString().replace(/[^0-9\.]/g, "")
     );
     formData.append(
       "no_of_winners",
-      addAirdropsData?.no_of_winners?.replace(/[^0-9\.]/g, "")
+      addAirdropsData?.no_of_winners?.toString().replace(/[^0-9\.]/g, "")
     );
     // formData.append("is_follow_twitter", addAirdropsData?.is_follow_twitter);
     // formData.append("join_telegram", addAirdropsData?.join_telegram);
