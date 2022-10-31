@@ -6,12 +6,13 @@ import {
   Typography,
   Avatar,
   Divider,
+  Popover,
 } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import { styled } from "@mui/material/styles";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import React from "react";
+import React, { useState } from "react";
 import { defaultColor } from "../../../../common/common";
 import { Link } from "react-router-dom";
 
@@ -25,7 +26,17 @@ const NftCollectionCard = ({ data, index, height }: any) => {
       color: "#ff3d47",
     },
   });
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
+  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
   return (
     <Box
       sx={{
@@ -131,15 +142,48 @@ const NftCollectionCard = ({ data, index, height }: any) => {
                 }}
               />
             </Stack>
-
-            <Typography
-              variant="caption"
-              sx={{ color: "#FFFFFF", textAlign: "center" }}
-            >
-              {data && data?.network_name?.length >= 16
-                ? data?.network_name?.slice(0, 14) + "..."
-                : data?.network_name}
-            </Typography>
+            <div>
+              <Typography
+                variant="caption"
+                sx={{ color: "#FFFFFF", textAlign: "center" }}
+                onMouseEnter={handlePopoverOpen}
+                onMouseLeave={handlePopoverClose}
+              >
+                {data && data?.network_name?.length >= 16
+                  ? data?.network_name?.slice(0, 14) + "..."
+                  : data?.network_name}
+              </Typography>
+              <Popover
+                id="mouse-over-popover"
+                PaperProps={{
+                  style: {
+                    backgroundColor: "#000000",
+                    color: "#FFFFFF",
+                    borderRadius: 7,
+                    border: "1px solid #091851",
+                  },
+                }}
+                sx={{
+                  pointerEvents: "none",
+                }}
+                open={open}
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                onClose={handlePopoverClose}
+                disableRestoreFocus
+              >
+                <Typography sx={{ px: 1.2, py: 0.5, fontSize: ".8rem" }}>
+                  {data?.network_name}
+                </Typography>
+              </Popover>
+            </div>
             {data && data?.network_icon === null ? (
               <Avatar
                 variant="square"
