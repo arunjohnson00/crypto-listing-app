@@ -99,7 +99,11 @@ const CoinUploader = ({
               </>
             )}
           </Box>
-          {variant === "ads" && addIconData?.banner_image !== undefined ? (
+
+          {acceptedFiles &&
+          acceptedFiles[0] === undefined &&
+          variant === "ads" &&
+          addIconData?.banner_image !== undefined ? (
             <Avatar
               src={`${serverAPIUrl}public/uploads/${slug}/${addIconData?.banner_image}`}
               alt="icon"

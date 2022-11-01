@@ -16,6 +16,8 @@ import {
   FormControl,
   Button,
   IconButton,
+  Backdrop,
+  CircularProgress,
 } from "@mui/material";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import LargeBtn from "../../../../components/form/button/large/LargeBtn";
@@ -71,8 +73,9 @@ const AdWizardAdd = () => {
     coinLogo: "",
     status: 1,
   });
-  console.log(createAdsData);
+
   const createAdsAddHandler = () => {
+    setLoading(true);
     const successHandler = (res: any) => {
       console.log(res);
 
@@ -93,7 +96,7 @@ const AdWizardAdd = () => {
 
     const errorHandler = (err: any) => {
       //console.log(err);
-
+      setLoading(false);
       toast.error(`${err.error.message.response.request.responseText}`, {
         position: "top-right",
         autoClose: 7000,
@@ -194,6 +197,12 @@ const AdWizardAdd = () => {
       </Grid>
 
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={loading}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
         <Stack
           direction="row"
           spacing={2}
