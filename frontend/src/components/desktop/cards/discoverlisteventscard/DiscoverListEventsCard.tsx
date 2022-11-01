@@ -99,7 +99,7 @@ const DiscoverListEventsCard = ({ item }: any) => {
                 variant="caption"
                 sx={{ color: "#FFFFF5", fontWeight: "300", fontSize: ".55rem" }}
               >
-                Starts in
+                Starts
               </Typography>
               <Typography
                 variant="body2"

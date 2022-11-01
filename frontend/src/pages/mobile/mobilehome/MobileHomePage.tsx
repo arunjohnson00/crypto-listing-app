@@ -171,11 +171,11 @@ const responsiveNFT: any = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 1.5,
+    items: 2,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1.5,
+    items: 2,
   },
 };
 
@@ -663,14 +663,14 @@ const MobileHomePage = () => {
         </Stack>
       </Grid>
 
-      <Grid item xs={12}>
+      <Grid item xs={12} columnGap={2}>
         {NFTList && NFTList?.data && (
           <Carousel
             responsive={responsiveNFT}
             infinite={true}
             removeArrowOnDeviceType={["tablet", "mobile"]}
             arrows={true}
-            autoPlay={false}
+            autoPlay={true}
             draggable={true}
             swipeable={true}
             minimumTouchDrag={10}
@@ -679,7 +679,7 @@ const MobileHomePage = () => {
           >
             {NFTList &&
               NFTList?.data?.map((item: any, index: number) => (
-                <Box key={index} mr={2}>
+                <Box key={index} p={0.5}>
                   <MobileNftCollectionCard data={item && item} index={index} />
                 </Box>
               ))}

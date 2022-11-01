@@ -38,7 +38,9 @@ const MobileDiscoverNFTCard = ({ item }: any) => {
             sx={{ color: "#FFFFF5", fontWeight: 600 }}
             textAlign="center"
           >
-            {item && item?.title}
+            {item && item?.title?.length >= 13
+              ? item?.title?.slice(0, 11) + "..."
+              : item?.title}
           </Typography>
         </Stack>
 

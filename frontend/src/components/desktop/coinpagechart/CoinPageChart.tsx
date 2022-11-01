@@ -48,6 +48,16 @@ const CoinPageChart = ({ data }: any) => {
         zoom: {
           autoScaleYaxis: false,
         },
+        theme: {
+          mode: "dark",
+          palette: "palette1",
+          // monochrome: {
+          //     enabled: false,
+          //     color: '#255aee',
+          //     shadeTo: 'light',
+          //     shadeIntensity: 0.65
+          // },
+        },
       },
       grid: {
         show: true,
@@ -97,6 +107,7 @@ const CoinPageChart = ({ data }: any) => {
       ],
       dataLabels: {
         enabled: false,
+        style: { color: "#000000" },
       },
       markers: {
         size: 0,
@@ -126,6 +137,10 @@ const CoinPageChart = ({ data }: any) => {
         },
       },
       tooltip: {
+        theme: "dark",
+        style: {
+          opacity: 1,
+        },
         enabled: true,
         x: {
           //format: "dd/MM/yy HH:mm",

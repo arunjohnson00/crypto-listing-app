@@ -360,7 +360,7 @@ const CoinPageAbout = () => {
         /> */}
 
         <Grid xs={12} pt={0}>
-          {coinAboutBlock && parseInt(coinAboutBlock[0]?.address) !== null ? (
+          {coinAboutBlock && coinAboutBlock[0]?.address !== null ? (
             <Grid xs={12} pt={0}>
               <Iframe
                 url={`https://coinbrain.com/embed/bnb-${
