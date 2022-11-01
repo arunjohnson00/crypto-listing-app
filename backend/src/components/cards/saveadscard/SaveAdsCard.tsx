@@ -82,7 +82,7 @@ const SaveAdsCard = () => {
             fontWeight: 500,
           }}
         >
-          {adSummaryDetails && adSummaryDetails?.no_of_days}
+          {adSummaryDetails && adSummaryDetails?.no_of_days_banner}
         </Typography>
       </Stack>
       <Stack direction="row" spacing={4}>

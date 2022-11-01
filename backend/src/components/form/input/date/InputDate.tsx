@@ -58,7 +58,9 @@ const InputDate = ({
               : date.event_date
             : event_end_date === true
             ? date.end_date
-            : adWizard === true && date.start_date
+            : adWizard === true && date.start_date !== undefined
+            ? date.start_date
+            : date.banner_start_date !== undefined && date.banner_start_date
         }
         //publicMintStart===true&&date.start_date
         onChange={(newValue) => {
@@ -71,7 +73,12 @@ const InputDate = ({
           event_start_date === true &&
             setDate({ ...date, start_date: newValue });
           event_end_date === true && setDate({ ...date, end_date: newValue });
-          adWizard === true && setDate({ ...date, start_date: newValue });
+          adWizard === true &&
+            setDate({
+              ...date,
+              start_date: newValue,
+              banner_start_date: newValue,
+            });
         }}
         disabled={disabled}
       />

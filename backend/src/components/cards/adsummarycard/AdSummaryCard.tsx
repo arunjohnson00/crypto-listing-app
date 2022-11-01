@@ -169,7 +169,7 @@ const AdSummaryCard = () => {
                             fontSize: ".76rem",
                           }}
                         >
-                          {data?.no_of_days} Days
+                          {data?.no_of_days_banner} Days
                         </Typography>
                       </Stack>
                       <Stack direction="row" spacing={2}>

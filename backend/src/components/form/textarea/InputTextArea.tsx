@@ -30,6 +30,7 @@ const InputTextArea = ({
   };
   useEffect(() => {
     setTextAreaValue(value);
+    setData({ ...data, search_ad_description: value });
     (variant === "richtext" || variant === "richtextdescription") &&
       setRichText({
         ...richText,
@@ -56,36 +57,52 @@ const InputTextArea = ({
           placeholder={placeholder && placeholder}
         />
       ) : (
-        // <RichTextEditor value={richEditorValue} onChange={richEditorHandler} />
-        <>
-          {matches === true ? (
-            <TextareaAutosize
-              aria-label="minimum height"
-              minRows={rowCount}
-              placeholder={placeholder}
-              style={textareaStyle}
-              name={name}
-              id={id}
-              value={textAreaValue}
-              onChange={(e: any) => {
-                setTextAreaValue(e.target.value);
-              }}
-            />
-          ) : (
-            <TextareaAutosize
-              aria-label="minimum height"
-              minRows={rowCount}
-              placeholder={placeholder}
-              style={textareaStyle}
-              name={name}
-              id={id}
-              value={textAreaValue}
-              onChange={(e: any) => {
-                setTextAreaValue(e.target.value);
-              }}
-            />
-          )}
-        </>
+        (variant = "ad_wizard" ? (
+          <TextareaAutosize
+            aria-label="minimum height"
+            minRows={rowCount}
+            placeholder={placeholder}
+            style={textareaStyle}
+            name={name}
+            id={id}
+            value={data?.search_ad_description}
+            onChange={(e: any) => {
+              setTextAreaValue(e.target.value);
+              setData({ ...data, search_ad_description: e.target.value });
+            }}
+          />
+        ) : (
+          // <RichTextEditor value={richEditorValue} onChange={richEditorHandler} />
+          <>
+            {matches === true ? (
+              <TextareaAutosize
+                aria-label="minimum height"
+                minRows={rowCount}
+                placeholder={placeholder}
+                style={textareaStyle}
+                name={name}
+                id={id}
+                value={textAreaValue}
+                onChange={(e: any) => {
+                  setTextAreaValue(e.target.value);
+                }}
+              />
+            ) : (
+              <TextareaAutosize
+                aria-label="minimum height"
+                minRows={rowCount}
+                placeholder={placeholder}
+                style={textareaStyle}
+                name={name}
+                id={id}
+                value={textAreaValue}
+                onChange={(e: any) => {
+                  setTextAreaValue(e.target.value);
+                }}
+              />
+            )}
+          </>
+        ))
       )}
     </Fragment>
   );

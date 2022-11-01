@@ -5,7 +5,17 @@ import Link from "@mui/material/Link";
 import { useDropzone } from "react-dropzone";
 import { useStyles } from "./style";
 import ImageIcon from "@mui/icons-material/Image";
-const CoinUploader = ({ addIconData, setAddIcon, image }: any) => {
+
+const serverAPIUrl = process.env.REACT_APP_API_URL;
+const CoinUploader = ({
+  addIconData,
+  setAddIcon,
+  image,
+  slug,
+  variant,
+  inActive,
+  proof,
+}: any) => {
   const classes = useStyles();
 
   const onDrop = useCallback(
@@ -13,6 +23,10 @@ const CoinUploader = ({ addIconData, setAddIcon, image }: any) => {
       setAddIcon({
         ...addIconData,
         coinLogo: acceptedFiles[0],
+        thumb_icon: acceptedFiles[0],
+        icon: acceptedFiles[0],
+        logo: acceptedFiles[0],
+        banner_image: acceptedFiles[0],
       });
     },
     [addIconData, setAddIcon]
@@ -85,7 +99,13 @@ const CoinUploader = ({ addIconData, setAddIcon, image }: any) => {
               </>
             )}
           </Box>
-          {
+          {variant === "ads" && addIconData?.banner_image !== undefined ? (
+            <Avatar
+              src={`${serverAPIUrl}public/uploads/${slug}/${addIconData?.banner_image}`}
+              alt="icon"
+              sx={{ marginLeft: 1 }}
+            ></Avatar>
+          ) : (
             <Avatar
               src={`${
                 acceptedFileItems.length > 0
@@ -99,7 +119,7 @@ const CoinUploader = ({ addIconData, setAddIcon, image }: any) => {
             >
               <ImageIcon />
             </Avatar>
-          }
+          )}
         </Box>
       </div>
     </Box>

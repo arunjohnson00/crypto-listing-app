@@ -665,6 +665,7 @@ const CreateNewAdWizard = () => {
                               <AutoCompleSelect
                                 inputAutoValue={createAdsData}
                                 setInputAutoValue={setCreateAdsData}
+                                variant="coin"
                               />
                             </Stack>
                             <Stack direction="column" spacing={1.5}>
