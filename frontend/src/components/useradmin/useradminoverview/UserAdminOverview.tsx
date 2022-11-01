@@ -214,19 +214,24 @@ const UserAdminOverview = () => {
               >
                 Announcement
               </Typography>
-              <Button
-                variant="contained"
-                size="small"
-                sx={{
-                  borderRadius: 6,
-                  background: "#3F00C9",
-                  fontSize: ".7rem",
-                  justifyContent: "flex-start",
-                  textTransform: "capitalize",
-                }}
+              <Link
+                to="/user-dashboard/announcement"
+                style={{ textDecoration: "none", color: "inherit" }}
               >
-                View all
-              </Button>
+                <Button
+                  variant="contained"
+                  size="small"
+                  sx={{
+                    borderRadius: 6,
+                    background: "#3F00C9",
+                    fontSize: ".7rem",
+                    justifyContent: "flex-start",
+                    textTransform: "capitalize",
+                  }}
+                >
+                  View all
+                </Button>
+              </Link>
             </Stack>
             <Stack direction="column" spacing={0}>
               {userAnnouncemnts && userAnnouncemnts?.response === true ? (
