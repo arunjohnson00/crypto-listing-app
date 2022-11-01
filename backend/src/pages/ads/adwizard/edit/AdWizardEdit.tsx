@@ -256,12 +256,12 @@ const AdWizardEdit = () => {
                   spacing={1}
                   sx={{ alignItems: "center" }}
                 >
-                  <IconButton>
-                    <ArrowBackIosTwoToneIcon
-                      onClick={() => {
-                        navigate("/adslist");
-                      }}
-                    />
+                  <IconButton
+                    onClick={() => {
+                      navigate("/adslist");
+                    }}
+                  >
+                    <ArrowBackIosTwoToneIcon />
                   </IconButton>
 
                   <Typography
