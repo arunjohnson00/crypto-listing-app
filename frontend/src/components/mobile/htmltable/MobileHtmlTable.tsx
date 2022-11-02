@@ -136,7 +136,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       <Typography>{item}</Typography>
                       {item === "Name" && (
                         <ArrowForwardIosRoundedIcon
-                          sx={{ color: "#686868", fontSize: ".9rem", pt: 0.5 }}
+                          sx={{ color: "#686868", fontSize: ".9rem" }}
                         />
                       )}
                     </Stack>
@@ -152,7 +152,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       <Typography>{item}</Typography>
                       {item === "Name" && (
                         <ArrowForwardIosRoundedIcon
-                          sx={{ color: "#686868", fontSize: ".9rem", pt: 0.5 }}
+                          sx={{ color: "#686868", fontSize: ".9rem" }}
                         />
                       )}
                     </Stack>
@@ -167,7 +167,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       <Typography>{item}</Typography>
                       {item === "Name" && (
                         <ArrowForwardIosRoundedIcon
-                          sx={{ color: "#686868", fontSize: ".9rem", pt: 0.5 }}
+                          sx={{ color: "#686868", fontSize: ".9rem" }}
                         />
                       )}
                     </Stack>
