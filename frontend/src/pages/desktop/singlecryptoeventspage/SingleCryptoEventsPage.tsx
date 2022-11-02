@@ -541,6 +541,73 @@ const SingleCryptoEventsPage = () => {
                           </Stack>
                         </Stack>
                       )}
+
+                    {singlePageData &&
+                      moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                        moment(singlePageData?.data?.event_date).format(
+                          "YYYY-MM-DD"
+                        )
+                      ) === true &&
+                      moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                        moment(singlePageData?.data?.end_date).format(
+                          "YYYY-MM-DD"
+                        )
+                      ) === true && (
+                        <Stack direction="column" spacing={1.5}>
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: "#535662",
+                              fontSize: "0.65rem",
+                              fontWeight: 600,
+                            }}
+                          >
+                            Ends in
+                          </Typography>
+                          <Stack
+                            direction="row"
+                            alignItems="center"
+                            spacing={3.5}
+                          >
+                            <Stack
+                              direction="row"
+                              alignItems="center"
+                              spacing={1.5}
+                            >
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  color: "#FFFFFF",
+                                  fontSize: "0.9rem",
+                                  fontWeight: 600,
+                                }}
+                              >
+                                {singlePageData && (
+                                  <Countdown
+                                    date={
+                                      new Date(singlePageData?.data?.end_date)
+                                    }
+                                    renderer={({
+                                      days,
+                                      hours,
+                                      minutes,
+                                      seconds,
+                                      completed,
+                                    }) => {
+                                      return (
+                                        <span>
+                                          {days} Days {hours} Hours {minutes}{" "}
+                                          Minutes {seconds} Seconds
+                                        </span>
+                                      );
+                                    }}
+                                  />
+                                )}
+                              </Typography>
+                            </Stack>
+                          </Stack>
+                        </Stack>
+                      )}
                   </Stack>
                   <Divider
                     variant="middle"

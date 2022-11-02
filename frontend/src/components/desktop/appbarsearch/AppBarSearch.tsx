@@ -311,6 +311,7 @@ const AppBarSearch = () => {
                       background: "#000000",
                       zIndex: 99,
                       py: 1.5,
+                      px: 0.5,
                     }}
                   >
                     {expand?.coin === false ? (
@@ -436,6 +437,7 @@ const AppBarSearch = () => {
                         background: "#000000",
                         zIndex: 99,
                         py: 1.5,
+                        px: 0.5,
                       }}
                     >
                       {expand?.nft === false ? (
@@ -564,6 +566,7 @@ const AppBarSearch = () => {
                         background: "#000000",
                         zIndex: 99,
                         py: 1.5,
+                        px: 0.5,
                       }}
                     >
                       {expand?.events === false ? (
@@ -668,6 +671,7 @@ const AppBarSearch = () => {
                         background: "#000000",
                         zIndex: 99,
                         py: 1.5,
+                        px: 0.5,
                       }}
                     >
                       {expand?.airdrops === false ? (

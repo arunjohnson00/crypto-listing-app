@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { textTransform } from "text-transform";
 import ReCAPTCHA from "react-google-recaptcha";
+import Countdown from "react-countdown";
 import "react-toastify/dist/ReactToastify.css";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
@@ -43,7 +44,6 @@ import { RWebShare } from "react-web-share";
 import { useTheme } from "@mui/material/styles";
 
 import { coinVoteRequest } from "../../../store/action";
-import { CountDownTimer } from "./countdown/CountDownTimer";
 import ToolTipImage from "../../../assets/singlepagecoin/tool-tip.png";
 import CoinGeckoImage from "../../../assets/singlepagecoin/coingecko.png";
 import CoinMarketcapImage from "../../../assets/singlepagecoin/coinmarketcap.png";
@@ -256,124 +256,199 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                     />
                   )}
 
-                  {/* 
                   {coinData &&
-                    coinData?.presale_start_date !== null &&
-                    coinData?.presale_end_date !== null && (
+                    parseInt(coinData?.is_presale) === 1 &&
+                    moment(new Date(coinData?.presale_start_date)).isAfter(
+                      new Date()
+                    ) === true && (
                       <Stack
                         direction="row"
-                        spacing={1}
-                        sx={{
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                        }}
+                        sx={{ alignItems: "center" }}
+                        spacing={0.5}
                       >
-                        {coinData && parseInt(coinData?.is_presale) === 1 ? (
-                          <span>
-                            {Math.sign(
-                              moment(
-                                new Date(coinData?.presale_start_date)
-                              ).diff(new Date())
-                            ) === -1 &&
-                            Math.sign(
-                              moment(new Date(coinData?.presale_end_date)).diff(
-                                new Date()
-                              )
-                            ) === 1 ? (
-                              <span>
-                                {
-                                  //  <BounceLoader size={12} color="#00FF00" />
-                                  <Stack
-                                    direction="row"
-                                    spacing={0.5}
-                                    alignItems="center"
-                                  >
-                                    <span className="ripplefeaturedcoin"></span>
-                                    <Typography
-                                      variant="body2"
-                                      sx={{
-                                        color: "#6f737f",
-                                        fontSize: "0.65rem",
-                                      }}
-                                    >
-                                      Presale ends in{" "}
-                                    </Typography>
-                                  </Stack>
-                                }
-                              </span>
-                            ) : (
-                              <Typography
-                                variant="body2"
-                                sx={{ color: "#6f737f", fontSize: "0.65rem" }}
-                              >
-                                Presale starts in{" "}
-                              </Typography>
-                            )}
-                          </span>
-                        ) : (
-                          coinData && (
-                            <Link
-                              to={{
-                                pathname: `/coin/${coinData?.slug}`,
-                              }}
-                              state={{ coin_id: coinData?.id }}
-                              style={{
-                                textDecoration: "none",
-                                color: "inherit",
-                              }}
-                            >
-                              {" "}
-                              <Typography
-                                variant="body2"
-                                sx={{ color: "#dadada", fontSize: "0.7rem" }}
-                              >
-                                Presale Ended{" "}
-                                <span
-                                  style={{
-                                    color: "rgb(35 177 132)",
-                                    fontWeight: 600,
-                                    fontSize: "0.75rem",
-                                    textTransform: "capitalize",
-                                  }}
-                                >
-                                  
-                                  {moment(
-                                    new Date(coinData?.presale_end_date),
-                                    "YYYYMMDD"
-                                  ).fromNow()}
-                                </span>
-                              </Typography>
-                            </Link>
-                          )
-                        )}
-
-                        {coinData &&
-                        parseInt(coinData?.is_presale) === 1 &&
-                        Math.sign(
-                          moment(new Date(coinData?.presale_start_date)).diff(
-                            new Date()
-                          )
-                        ) === -1 &&
-                        Math.sign(
-                          moment(new Date(coinData?.presale_end_date)).diff(
-                            new Date()
-                          )
-                        ) === 1 ? (
+                        <Stack
+                          direction="row"
+                          spacing={0.5}
+                          alignItems="center"
+                        >
+                          <span className="ripplefeaturedcoin"></span>
                           <Typography
-                            variant="subtitle1"
+                            variant="body2"
                             sx={{
-                              color: "#FFFFFF",
-
-                              fontSize: ".7rem",
+                              color: "#6f737f",
+                              fontSize: "0.65rem",
                             }}
                           >
-                            {CountDownTimer(coinData?.presale_end_date)}
+                            Presale Starts in{" "}
                           </Typography>
-                        ) : (
-                          ""
-                        )}
+                        </Stack>
+                        <Typography
+                          variant="subtitle1"
+                          sx={{
+                            color: "#FFFFFF",
+
+                            fontSize: ".7rem",
+                          }}
+                        >
+                          {coinData && (
+                            <Countdown
+                              date={new Date(coinData?.presale_start_date)}
+                              renderer={({
+                                days,
+                                hours,
+                                minutes,
+                                seconds,
+                                completed,
+                              }) => {
+                                return (
+                                  <span>
+                                    {days}D {hours}H {minutes}M {seconds}S
+                                  </span>
+                                );
+                              }}
+                            />
+                          )}
+                        </Typography>
                       </Stack>
-                    )} */}
+                    )}
+
+                  {coinData &&
+                    parseInt(coinData?.is_presale) === 1 &&
+                    moment(new Date()).isBetween(
+                      new Date(coinData?.presale_start_date),
+                      new Date(coinData?.presale_end_date)
+                    ) === true && (
+                      <Stack
+                        direction="row"
+                        sx={{ alignItems: "center" }}
+                        spacing={0.5}
+                      >
+                        <Stack
+                          direction="row"
+                          spacing={0.5}
+                          alignItems="center"
+                        >
+                          <span className="ripplefeaturedcoin"></span>
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: "#6f737f",
+                              fontSize: "0.65rem",
+                            }}
+                          >
+                            Presale ends in{" "}
+                          </Typography>
+                        </Stack>
+                        <Typography
+                          variant="subtitle1"
+                          sx={{
+                            color: "#FFFFFF",
+
+                            fontSize: ".7rem",
+                          }}
+                        >
+                          {coinData && (
+                            <Countdown
+                              date={new Date(coinData?.presale_end_date)}
+                              renderer={({
+                                days,
+                                hours,
+                                minutes,
+                                seconds,
+                                completed,
+                              }) => {
+                                return (
+                                  <span>
+                                    {days}D {hours}H {minutes}M {seconds}S
+                                  </span>
+                                );
+                              }}
+                            />
+                          )}
+                        </Typography>
+                      </Stack>
+                    )}
+
+                  {coinData &&
+                    parseInt(coinData?.is_presale) === 1 &&
+                    moment(new Date()).isAfter(
+                      new Date(coinData?.presale_end_date)
+                    ) === true && (
+                      <Stack
+                        direction="row"
+                        sx={{ alignItems: "center" }}
+                        spacing={0.5}
+                      >
+                        <Typography
+                          variant="subtitle1"
+                          sx={{
+                            color: "#FFFFFF",
+
+                            fontSize: ".7rem",
+                          }}
+                        >
+                          Presale ended
+                        </Typography>
+                      </Stack>
+                    )}
+                  {coinData &&
+                    parseInt(coinData?.is_presale) === 1 &&
+                    moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                      moment(coinData?.presale_start_date).format("YYYY-MM-DD")
+                    ) === true &&
+                    moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                      moment(coinData?.presale_end_date).format("YYYY-MM-DD")
+                    ) === true && (
+                      <Stack
+                        direction="column"
+                        spacing={-1.5}
+                        alignItems="center"
+                      >
+                        <Stack
+                          direction="row"
+                          spacing={0.5}
+                          alignItems="center"
+                        >
+                          <span className="ripplefeaturedcoin"></span>
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: "#6f737f",
+                              fontSize: "0.65rem",
+                            }}
+                          >
+                            Presale ends in{" "}
+                          </Typography>
+                        </Stack>
+                        <Typography
+                          variant="subtitle1"
+                          sx={{
+                            color: "#FFFFFF",
+
+                            fontSize: ".7rem",
+                          }}
+                        >
+                          {coinData && (
+                            <Countdown
+                              date={moment().endOf("day").format("YYYY-MM-DD")}
+                              renderer={({
+                                days,
+                                hours,
+                                minutes,
+                                seconds,
+                                completed,
+                              }) => {
+                                return (
+                                  <span>
+                                    {days}D {hours}H {minutes}M {seconds}S
+                                  </span>
+                                );
+                              }}
+                            />
+                          )}
+                        </Typography>
+                      </Stack>
+                    )}
                 </Stack>
                 <Stack
                   direction="column"
@@ -645,11 +720,11 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                     sx={{ color: "#FFFFFFae", fontWeight: 600 }}
                   >
                     <span style={{ color: "#06E9DC" }}>
-                      {coinData &&
-                      coinData?.vote !== null &&
-                      vote?.completed === true
-                        ? parseInt(coinData?.vote).toLocaleString()
-                        : coinData?.vote?.toLocaleString()}
+                      {coinData && coinData?.vote !== null
+                        ? vote?.completed === true
+                          ? parseInt(coinData?.vote).toLocaleString()
+                          : coinData?.vote?.toLocaleString()
+                        : "0"}
                     </span>{" "}
                     Votes
                   </Typography>
@@ -707,11 +782,11 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                     sx={{ color: "#FFFFFFae", fontWeight: 600 }}
                   >
                     <span style={{ color: "#06E9DC" }}>
-                      {coinData &&
-                      coinData?.todays_vote !== null &&
-                      vote?.completed === true
-                        ? parseInt(coinData?.todays_vote).toLocaleString()
-                        : coinData?.todays_vote?.toLocaleString()}
+                      {coinData && coinData?.todays_vote !== null
+                        ? vote?.completed === true
+                          ? parseInt(coinData?.todays_vote).toLocaleString()
+                          : coinData?.todays_vote?.toLocaleString()
+                        : "0"}
                     </span>{" "}
                     Votes
                   </Typography>

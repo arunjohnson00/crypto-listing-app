@@ -178,6 +178,67 @@ const MobileDiscoverAirDropCard = ({ item }: any) => {
                     </Typography>
                   </Stack>
                 )}
+
+              {item &&
+                moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                  moment(item?.start_date).format("YYYY-MM-DD")
+                ) === true &&
+                moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                  moment(
+                    new Date(
+                      moment(new Date(item?.start_date))
+                        .add(item?.no_of_days, "days")
+                        .format("DD MMM YYYY")
+                    )
+                  ).format("YYYY-MM-DD")
+                ) === true && (
+                  <Stack
+                    direction="row"
+                    sx={{ alignItems: "center" }}
+                    spacing={0.5}
+                  >
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: "#FFFFF5",
+                        fontWeight: "300",
+                        fontSize: ".55rem",
+                      }}
+                    >
+                      Ends in
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#D1D10E",
+                        fontWeight: "500",
+                        fontSize: ".6rem",
+                      }}
+                    >
+                      {item && (
+                        <Countdown
+                          date={moment(new Date(item?.start_date))
+                            .add(item?.no_of_days, "days")
+                            .format("YYYY-MM-DD")}
+                          renderer={({
+                            days,
+                            hours,
+                            minutes,
+                            seconds,
+                            completed,
+                          }) => {
+                            return (
+                              <span>
+                                {days} Day {hours} Hrs {minutes} Min {seconds}{" "}
+                                Sec
+                              </span>
+                            );
+                          }}
+                        />
+                      )}
+                    </Typography>
+                  </Stack>
+                )}
             </Stack>
           </Stack>
           <Avatar

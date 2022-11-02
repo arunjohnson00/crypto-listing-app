@@ -12,6 +12,7 @@ import moment from "moment";
 import Rating from "@mui/material/Rating";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import Countdown from "react-countdown";
 import "./style.css";
 import { BounceLoader } from "react-spinners";
 import FacebookImage from "../../../../assets/featuredcard/facebook.png";
@@ -20,7 +21,6 @@ import RedditImage from "../../../../assets/featuredcard/reddit.png";
 import TelegramImage from "../../../../assets/featuredcard/telegram.png";
 import TwitterImage from "../../../../assets/featuredcard/twitter.png";
 
-import { CountDownTimer } from "./countdown/CountDownTimer";
 import { defaultColor } from "../../../../common/common";
 import { Fragment } from "react";
 import MobileAnimatedRating from "../../animatedrating/MobileAnimatedRating";
@@ -221,109 +221,216 @@ const MobileFeaturedCoinCards = ({ cardData, index }: any) => {
             sx={{ alignItems: "center", justifyContent: "space-between" }}
             py={1}
           >
-            {
+            {cardData &&
+              parseInt(cardData?.is_presale) === 1 &&
+              moment(new Date(cardData?.presale_start_date)).isAfter(
+                new Date()
+              ) === true && (
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center" }}
+                  spacing={0.5}
+                >
+                  <Stack direction="row" spacing={0.5} alignItems="center">
+                    <span className="ripplefeaturedcoin"></span>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#6f737f",
+                        fontSize: "0.65rem",
+                      }}
+                    >
+                      Presale Starts in{" "}
+                    </Typography>
+                  </Stack>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      color: "#FFFFFF",
+
+                      fontSize: ".7rem",
+                    }}
+                  >
+                    {cardData && (
+                      <Countdown
+                        date={new Date(cardData?.presale_start_date)}
+                        renderer={({
+                          days,
+                          hours,
+                          minutes,
+                          seconds,
+                          completed,
+                        }) => {
+                          return (
+                            <span>
+                              {days}D {hours}H {minutes}M {seconds}S
+                            </span>
+                          );
+                        }}
+                      />
+                    )}
+                  </Typography>
+                </Stack>
+              )}
+
+            {cardData &&
+              parseInt(cardData?.is_presale) === 1 &&
+              moment(new Date()).isBetween(
+                new Date(cardData?.presale_start_date),
+                new Date(cardData?.presale_end_date)
+              ) === true && (
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center" }}
+                  spacing={0.5}
+                >
+                  <Stack direction="row" spacing={0.5} alignItems="center">
+                    <span className="ripplefeaturedcoin"></span>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#6f737f",
+                        fontSize: "0.65rem",
+                      }}
+                    >
+                      Presale ends in{" "}
+                    </Typography>
+                  </Stack>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      color: "#FFFFFF",
+
+                      fontSize: ".7rem",
+                    }}
+                  >
+                    {cardData && (
+                      <Countdown
+                        date={new Date(cardData?.presale_end_date)}
+                        renderer={({
+                          days,
+                          hours,
+                          minutes,
+                          seconds,
+                          completed,
+                        }) => {
+                          return (
+                            <span>
+                              {days}D {hours}H {minutes}M {seconds}S
+                            </span>
+                          );
+                        }}
+                      />
+                    )}
+                  </Typography>
+                </Stack>
+              )}
+
+            {cardData &&
+              parseInt(cardData?.is_presale) === 1 &&
+              moment(new Date()).isAfter(
+                new Date(cardData?.presale_end_date)
+              ) === true && (
+                <Stack
+                  direction="row"
+                  sx={{ alignItems: "center" }}
+                  spacing={0.5}
+                >
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      color: "#FFFFFF",
+
+                      fontSize: ".7rem",
+                    }}
+                  >
+                    Presale ended
+                  </Typography>
+                </Stack>
+              )}
+            {cardData &&
+              parseInt(cardData?.is_presale) === 1 &&
+              moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                moment(cardData?.presale_start_date).format("YYYY-MM-DD")
+              ) === true &&
+              moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                moment(cardData?.presale_end_date).format("YYYY-MM-DD")
+              ) === true && (
+                <Stack direction="column" spacing={-1.5} alignItems="center">
+                  <Stack direction="row" spacing={0.5} alignItems="center">
+                    <span className="ripplefeaturedcoin"></span>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#6f737f",
+                        fontSize: "0.65rem",
+                      }}
+                    >
+                      Presale ends in{" "}
+                    </Typography>
+                  </Stack>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      color: "#FFFFFF",
+
+                      fontSize: ".7rem",
+                    }}
+                  >
+                    {cardData && (
+                      <Countdown
+                        date={moment().endOf("day").format("YYYY-MM-DD")}
+                        renderer={({
+                          days,
+                          hours,
+                          minutes,
+                          seconds,
+                          completed,
+                        }) => {
+                          return (
+                            <span>
+                              {days}D {hours}H {minutes}M {seconds}S
+                            </span>
+                          );
+                        }}
+                      />
+                    )}
+                  </Typography>
+                </Stack>
+              )}
+            {cardData && cardData?.is_launched === 1 && (
               <Fragment>
-                {cardData && cardData?.is_presale === 1 ? (
-                  <Fragment>
-                    {cardData &&
-                      moment(new Date(cardData?.presale_date)).isAfter(
-                        new Date()
-                      ) === true && (
-                        <Stack
-                          direction="row"
-                          sx={{ alignItems: "center" }}
-                          spacing={0.5}
-                        >
-                          <Typography
-                            variant="caption"
-                            sx={{ color: "#6f737f", fontSize: "0.65rem" }}
-                          >
-                            Starts in
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#FFFFFF",
+                {cardData &&
+                  moment(new Date()).isAfter(
+                    new Date(cardData?.presale_end_date)
+                  ) === true && (
+                    <Stack
+                      direction="row"
+                      sx={{ alignItems: "center" }}
+                      spacing={0.5}
+                    >
+                      <Typography
+                        variant="caption"
+                        sx={{ color: "#6f737f", fontSize: "0.65rem" }}
+                      >
+                        Listed :
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "#FFFFFF",
 
-                              fontSize: ".7rem",
-                            }}
-                          >
-                            {CountDownTimer(
-                              moment(new Date(cardData?.presale_date))
-                            )}
-                          </Typography>
-                        </Stack>
-                      )}
-
-                    {cardData &&
-                      moment(new Date()).isBetween(
-                        new Date(cardData?.presale_date),
-                        new Date(cardData?.presale_end_date)
-                      ) === true && (
-                        <Stack
-                          direction="row"
-                          sx={{ alignItems: "center" }}
-                          spacing={0.5}
-                        >
-                          <Typography
-                            variant="caption"
-                            sx={{ color: "#6f737f", fontSize: "0.65rem" }}
-                          >
-                            Ends in
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#FFFFFF",
-
-                              fontSize: ".7rem",
-                            }}
-                          >
-                            {CountDownTimer(
-                              moment(new Date(cardData?.presale_end_date))
-                            )}
-                          </Typography>
-                        </Stack>
-                      )}
-                  </Fragment>
-                ) : (
-                  cardData &&
-                  cardData?.is_launched === 1 && (
-                    <Fragment>
-                      {cardData &&
-                        moment(new Date()).isAfter(
-                          new Date(cardData?.presale_end_date)
-                        ) === true && (
-                          <Stack
-                            direction="row"
-                            sx={{ alignItems: "center" }}
-                            spacing={0.5}
-                          >
-                            <Typography
-                              variant="caption"
-                              sx={{ color: "#6f737f", fontSize: "0.65rem" }}
-                            >
-                              Listed :
-                            </Typography>
-                            <Typography
-                              variant="body2"
-                              sx={{
-                                color: "#FFFFFF",
-
-                                fontSize: ".7rem",
-                              }}
-                            >
-                              {moment(new Date(cardData?.created_at)).format(
-                                "DD MMM YYYY"
-                              )}
-                            </Typography>
-                          </Stack>
+                          fontSize: ".7rem",
+                        }}
+                      >
+                        {moment(new Date(cardData?.created_at)).format(
+                          "DD MMM YYYY"
                         )}
-                    </Fragment>
-                  )
-                )}
+                      </Typography>
+                    </Stack>
+                  )}
               </Fragment>
-            }
+            )}
           </Stack>
           <Divider sx={{ borderColor: "#031d36" }} />
         </Grid>

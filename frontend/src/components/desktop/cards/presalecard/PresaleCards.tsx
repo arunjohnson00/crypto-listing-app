@@ -11,6 +11,7 @@ import {
   Tooltip,
   IconButton,
 } from "@mui/material";
+import Countdown from "react-countdown";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import PresaleCardChip from "../../presalecardchip/PresaleCardChip";
@@ -28,7 +29,7 @@ import WhitepaperImage from "../../../../assets/singlepagecoin/Whitepaper.png";
 import DocsImage from "../../../../assets/singlepagecoin/doc.png";
 import LinkImage from "../../../../assets/singlepagecoin/link.png";
 import moment from "moment";
-import CountDownTimer from "./countdown/CountDownTimer";
+
 import { Link } from "react-router-dom";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
@@ -182,17 +183,17 @@ const PresaleCards = ({ data }: any) => {
         <Stack
           direction="row"
           spacing={1}
-          sx={{ alignItems: "center", justifyContent: "space-between" }}
+          sx={{ alignItems: "flex-start", justifyContent: "space-between" }}
           py={3}
           px={2}
         >
-          <Stack direction="column" spacing={0} alignItems="center">
+          <Stack direction="column" spacing={2} alignItems="center">
             <Stack direction="column" spacing={0} alignItems="center">
               {data &&
                 moment(moment(new Date()).format("YYYY-MM-DD")).isBefore(
                   moment(data?.presale_start_date).format("YYYY-MM-DD")
                 ) === true && (
-                  <Stack direction="column" spacing={-1.5} alignItems="center">
+                  <Stack direction="column" spacing={-0.2} alignItems="center">
                     <Typography
                       variant="body2"
                       sx={{
@@ -209,11 +210,25 @@ const PresaleCards = ({ data }: any) => {
                         color: "#03DDCE",
                         fontSize: ".8rem",
                         fontWeight: "600",
+                        textAlign: "center",
                       }}
                     >
                       {data && (
-                        <CountDownTimer
-                          data={moment(data?.presale_start_date)}
+                        <Countdown
+                          date={new Date(data?.presale_start_date)}
+                          renderer={({
+                            days,
+                            hours,
+                            minutes,
+                            seconds,
+                            completed,
+                          }) => {
+                            return (
+                              <span>
+                                {days}D {hours}H {minutes}M {seconds}S
+                              </span>
+                            );
+                          }}
                         />
                       )}
                     </Typography>
@@ -225,7 +240,7 @@ const PresaleCards = ({ data }: any) => {
                   new Date(data?.presale_start_date),
                   new Date(data?.presale_end_date)
                 ) === true && (
-                  <Stack direction="column" spacing={-1.5} alignItems="center">
+                  <Stack direction="column" spacing={-0.2} alignItems="center">
                     <Typography
                       variant="body2"
                       sx={{
@@ -242,11 +257,25 @@ const PresaleCards = ({ data }: any) => {
                         color: "#03DDCE",
                         fontSize: ".8rem",
                         fontWeight: "600",
+                        textAlign: "center",
                       }}
                     >
                       {data && (
-                        <CountDownTimer
-                          data={moment(new Date(data?.presale_end_date))}
+                        <Countdown
+                          date={new Date(data?.presale_end_date)}
+                          renderer={({
+                            days,
+                            hours,
+                            minutes,
+                            seconds,
+                            completed,
+                          }) => {
+                            return (
+                              <span>
+                                {days}D {hours}H {minutes}M {seconds}S
+                              </span>
+                            );
+                          }}
                         />
                       )}
                     </Typography>
@@ -293,7 +322,7 @@ const PresaleCards = ({ data }: any) => {
                 moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
                   moment(data?.presale_end_date).format("YYYY-MM-DD")
                 ) === true && (
-                  <Stack direction="column" spacing={-1.5} alignItems="center">
+                  <Stack direction="column" spacing={-0.2} alignItems="center">
                     <Typography
                       variant="body2"
                       sx={{
@@ -311,9 +340,27 @@ const PresaleCards = ({ data }: any) => {
                         color: "#03DDCE",
                         fontSize: ".8rem",
                         fontWeight: "600",
+                        textAlign: "center",
                       }}
                     >
-                      {data && <CountDownTimer data={moment().endOf("day")} />}
+                      {data && (
+                        <Countdown
+                          date={moment().endOf("day").format("YYYY-MM-DD")}
+                          renderer={({
+                            days,
+                            hours,
+                            minutes,
+                            seconds,
+                            completed,
+                          }) => {
+                            return (
+                              <span>
+                                {days}D {hours}H {minutes}M {seconds}S
+                              </span>
+                            );
+                          }}
+                        />
+                      )}
                     </Typography>
                   </Stack>
                 )}
