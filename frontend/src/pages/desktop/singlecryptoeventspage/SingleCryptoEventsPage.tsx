@@ -21,7 +21,7 @@ import ReactPlayer from "react-player";
 import { useDispatch, useSelector } from "react-redux";
 import { eventsSinglePageRequest } from "../../../store/action";
 import { useLocation, useNavigate } from "react-router-dom";
-import CountDownTimer from "./countdown/CountDownTimer";
+import Countdown from "react-countdown";
 import { Link } from "react-router-dom";
 
 const SingleCryptoEventsPage = () => {
@@ -412,8 +412,26 @@ const SingleCryptoEventsPage = () => {
                                   }}
                                 >
                                   {singlePageData && (
-                                    <CountDownTimer
-                                      data={singlePageData?.data?.event_date}
+                                    <Countdown
+                                      date={
+                                        new Date(
+                                          singlePageData?.data?.event_date
+                                        )
+                                      }
+                                      renderer={({
+                                        days,
+                                        hours,
+                                        minutes,
+                                        seconds,
+                                        completed,
+                                      }) => {
+                                        return (
+                                          <span>
+                                            {days} Days {hours} Hours {minutes}{" "}
+                                            Minutes {seconds} Seconds
+                                          </span>
+                                        );
+                                      }}
                                     />
                                   )}
                                 </Typography>
@@ -458,8 +476,24 @@ const SingleCryptoEventsPage = () => {
                                 }}
                               >
                                 {singlePageData && (
-                                  <CountDownTimer
-                                    data={singlePageData?.data?.end_date}
+                                  <Countdown
+                                    date={
+                                      new Date(singlePageData?.data?.end_date)
+                                    }
+                                    renderer={({
+                                      days,
+                                      hours,
+                                      minutes,
+                                      seconds,
+                                      completed,
+                                    }) => {
+                                      return (
+                                        <span>
+                                          {days} Days {hours} Hours {minutes}{" "}
+                                          Minutes {seconds} Seconds
+                                        </span>
+                                      );
+                                    }}
                                   />
                                 )}
                               </Typography>

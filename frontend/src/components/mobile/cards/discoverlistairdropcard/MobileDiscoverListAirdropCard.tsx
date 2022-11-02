@@ -1,6 +1,7 @@
 import { Box, Stack, Typography, Chip, Avatar, Link } from "@mui/material";
 import moment from "moment";
-import { CountDownTimer } from "./countdown/CountDownTimer";
+import Countdown from "react-countdown";
+
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileDiscoverListAirdropCard = ({ item, data }: any) => {
   return (
@@ -194,7 +195,24 @@ const MobileDiscoverListAirdropCard = ({ item, data }: any) => {
                         fontSize: ".6rem",
                       }}
                     >
-                      {CountDownTimer(moment(new Date(data?.start_date)))}
+                      {data && (
+                        <Countdown
+                          date={new Date(data?.start_date)}
+                          renderer={({
+                            days,
+                            hours,
+                            minutes,
+                            seconds,
+                            completed,
+                          }) => {
+                            return (
+                              <span>
+                                {days}D {hours}H {minutes}M {seconds}S
+                              </span>
+                            );
+                          }}
+                        />
+                      )}
                     </Typography>
                   </Stack>
                 )}
@@ -231,11 +249,25 @@ const MobileDiscoverListAirdropCard = ({ item, data }: any) => {
                         fontSize: ".6rem",
                       }}
                     >
-                      {CountDownTimer(
-                        moment(new Date(data?.start_date)).add(
-                          data?.no_of_days,
-                          "days"
-                        )
+                      {data && (
+                        <Countdown
+                          date={moment(new Date(data?.start_date))
+                            .add(data?.no_of_days, "days")
+                            .format("YYYY-MM-DD")}
+                          renderer={({
+                            days,
+                            hours,
+                            minutes,
+                            seconds,
+                            completed,
+                          }) => {
+                            return (
+                              <span>
+                                {days}D {hours}H {minutes}M {seconds}S
+                              </span>
+                            );
+                          }}
+                        />
                       )}
                     </Typography>
                   </Stack>

@@ -14,7 +14,8 @@ import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import HighlightOffSharpIcon from "@mui/icons-material/HighlightOffSharp";
 import moment from "moment";
 import parse from "html-react-parser";
-import CountDownTimer from "./countdown/CountDownTimer";
+
+import Countdown from "react-countdown";
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileSingleCryptoEventHeader = ({ data }: any) => {
   const [open, setOpen] = useState(false);
@@ -176,7 +177,25 @@ const MobileSingleCryptoEventHeader = ({ data }: any) => {
                             fontSize: ".9rem",
                           }}
                         >
-                          {data && <CountDownTimer data={data?.event_date} />}
+                          {
+                            <Countdown
+                              date={new Date(data?.event_date)}
+                              renderer={({
+                                days,
+                                hours,
+                                minutes,
+                                seconds,
+                                completed,
+                              }) => {
+                                return (
+                                  <span>
+                                    {days} Days {hours} Hours {minutes} Minutes{" "}
+                                    {seconds} Seconds
+                                  </span>
+                                );
+                              }}
+                            />
+                          }
                         </Typography>
                       </Stack>
                     )}
@@ -209,7 +228,25 @@ const MobileSingleCryptoEventHeader = ({ data }: any) => {
                             fontSize: ".9rem",
                           }}
                         >
-                          {data && <CountDownTimer data={data?.end_date} />}
+                          {
+                            <Countdown
+                              date={new Date(data?.end_date)}
+                              renderer={({
+                                days,
+                                hours,
+                                minutes,
+                                seconds,
+                                completed,
+                              }) => {
+                                return (
+                                  <span>
+                                    {days} Days {hours} Hours {minutes} Minutes{" "}
+                                    {seconds} Seconds
+                                  </span>
+                                );
+                              }}
+                            />
+                          }
                         </Typography>
                       </Stack>
                     )}

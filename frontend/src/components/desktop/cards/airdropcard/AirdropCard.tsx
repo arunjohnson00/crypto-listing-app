@@ -10,6 +10,7 @@ import {
   Divider,
 } from "@mui/material";
 import moment from "moment";
+import Countdown from "react-countdown";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
@@ -20,7 +21,6 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { defaultColor } from "../../../../common/common";
-import CountDownTimer from "./countdown/CountDownTimer";
 import { Link } from "react-router-dom";
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
@@ -168,7 +168,24 @@ const AirdropCard = ({ data, index }: any) => {
                     variant="body2"
                     sx={{ color: "#D1D10E", fontWeight: "500", fontSize: 13 }}
                   >
-                    {data && <CountDownTimer data={data?.start_date} />}
+                    {data && (
+                      <Countdown
+                        date={new Date(data?.start_date)}
+                        renderer={({
+                          days,
+                          hours,
+                          minutes,
+                          seconds,
+                          completed,
+                        }) => {
+                          return (
+                            <span>
+                              {days}D {hours}H {minutes}M {seconds}S
+                            </span>
+                          );
+                        }}
+                      />
+                    )}
                   </Typography>
                 </Stack>
               )}
@@ -198,11 +215,23 @@ const AirdropCard = ({ data, index }: any) => {
                     sx={{ color: "#D1D10E", fontWeight: "500", fontSize: 13 }}
                   >
                     {data && (
-                      <CountDownTimer
-                        data={moment(new Date(data?.start_date)).add(
-                          data?.no_of_days,
-                          "days"
-                        )}
+                      <Countdown
+                        date={moment(new Date(data?.start_date))
+                          .add(data?.no_of_days, "days")
+                          .format("YYYY-MM-DD")}
+                        renderer={({
+                          days,
+                          hours,
+                          minutes,
+                          seconds,
+                          completed,
+                        }) => {
+                          return (
+                            <span>
+                              {days}D {hours}H {minutes}M {seconds}S
+                            </span>
+                          );
+                        }}
                       />
                     )}
                   </Typography>

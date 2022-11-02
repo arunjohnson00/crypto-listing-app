@@ -23,7 +23,7 @@ import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import ExpandLessRoundedIcon from "@mui/icons-material/ExpandLessRounded";
 import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
 import moment from "moment";
-import { CountDownTimer } from "./countdown/CountDownTimer";
+import Countdown from "react-countdown";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -116,10 +116,25 @@ const EventViewCard = ({ viewcoin, data }: any) => {
                           fontWeight: 600,
                         }}
                       >
-                        {data &&
-                          moment(new Date(data?.event_date)).format(
-                            "DD MMM YYYY"
-                          )}
+                        {data && (
+                          <Countdown
+                            date={new Date(data?.event_date)}
+                            renderer={({
+                              days,
+                              hours,
+                              minutes,
+                              seconds,
+                              completed,
+                            }) => {
+                              return (
+                                <span>
+                                  {days} Days {hours} Hours {minutes} Minutes{" "}
+                                  {seconds} Seconds
+                                </span>
+                              );
+                            }}
+                          />
+                        )}
                       </Typography>
                     </Stack>
                   </Stack>
@@ -157,10 +172,25 @@ const EventViewCard = ({ viewcoin, data }: any) => {
                           fontWeight: 600,
                         }}
                       >
-                        {data &&
-                          moment(new Date(data?.end_date)).format(
-                            "DD MMM YYYY"
-                          )}
+                        {data && (
+                          <Countdown
+                            date={new Date(data?.end_date)}
+                            renderer={({
+                              days,
+                              hours,
+                              minutes,
+                              seconds,
+                              completed,
+                            }) => {
+                              return (
+                                <span>
+                                  {days} Days {hours} Hours {minutes} Minutes{" "}
+                                  {seconds} Seconds
+                                </span>
+                              );
+                            }}
+                          />
+                        )}
                       </Typography>
                     </Stack>
                   </Stack>

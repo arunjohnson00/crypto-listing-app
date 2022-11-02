@@ -24,7 +24,6 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
-import { CountDownTimer } from "./countdown/CountDownTimer";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 const serverAPIUrl = process.env.REACT_APP_API_URL;

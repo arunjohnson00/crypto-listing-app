@@ -12443,12 +12443,27 @@ react-copy-to-clipboard@^5.1.0:
     copy-to-clipboard "^3.3.1"
     prop-types "^15.8.1"
 
+react-countdown@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/react-countdown/-/react-countdown-2.3.3.tgz#e80ca7a7e3f4dc21b8f754d52c656a45d32550da"
+  integrity sha512-z/AS1ccdb45Fd8/1AGt9m2UIJvPUZHViL+EfWyJsI7H+99aUFnDIhN9NTGtM4n5OhhYH+Ne1UvX/u1Ejw6RGzg==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-crypto-chart@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-crypto-chart/-/react-crypto-chart-0.0.6.tgz#64b350d984f34b19e7acde871756a179d30fe05e"
   integrity sha512-OA0p7vrtDWnn8QeFHyi2Ghn7xHFJW/fz15tO/vc8ogteqrtP2Xl8IJkD1dmLEgfQmeZtRm607sXYeF6tvA/qUA==
   dependencies:
     lightweight-charts "^3.8.0"
+
+react-date-countdown-timer@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-date-countdown-timer/-/react-date-countdown-timer-1.1.0.tgz#cdde8fc8de5430330006949d31a4f7d83b6e66c0"
+  integrity sha512-VoGxLvvR9zdRMiGRnEMTObp2xFzo65+mhOl5Jueio0zZ/7Vc2ntNA5xFsRXy4KMyYR9AGuAWhlEOAfiFmg5sbw==
+  dependencies:
+    prop-types "^15.7.2"
+    react "^16.4.2"
 
 react-dev-utils@^12.0.1:
   version "12.0.1"
@@ -12973,7 +12988,7 @@ react-web-share@^1.1.6:
   resolved "https://registry.yarnpkg.com/react-web-share/-/react-web-share-1.1.6.tgz#ac99ebe2bc5e291bb3af2d5ffcf533fcbede8aba"
   integrity sha512-IttmjG4DlIPEWNnS3RBccaPo6zFs2DNYk+92YjW1iPp0L9h0hXCaellxIQx8xhLepLFoiVjOMM/MNbLSZUzzsw==
 
-react@^16.0.0, react@^16.2.0, react@^16.6.1:
+react@^16.0.0, react@^16.2.0, react@^16.4.2, react@^16.6.1:
   version "16.14.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
   integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==

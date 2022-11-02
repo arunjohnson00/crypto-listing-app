@@ -13,7 +13,7 @@ import parse from "html-react-parser";
 import React, { Fragment, useState } from "react";
 import HighlightOffSharpIcon from "@mui/icons-material/HighlightOffSharp";
 import { Link } from "react-router-dom";
-import { CountDownTimer } from "./countdown/CountDownTimer";
+import Countdown from "react-countdown";
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileCryptoEventCard = ({ data }: any) => {
   const [open, setOpen] = useState(false);
@@ -160,9 +160,28 @@ const MobileCryptoEventCard = ({ data }: any) => {
                         color: "#D1D10E",
                         fontWeight: "500",
                         fontSize: "1.13rem",
+                        textAlign: "center",
                       }}
                     >
-                      {/* {CountDownTimer(moment(new Date(data?.event_date)))} */}
+                      {data && (
+                        <Countdown
+                          date={new Date(data?.event_date)}
+                          renderer={({
+                            days,
+                            hours,
+                            minutes,
+                            seconds,
+                            completed,
+                          }) => {
+                            return (
+                              <span>
+                                {days} Days {hours} Hrs {minutes} Min {seconds}{" "}
+                                Sec
+                              </span>
+                            );
+                          }}
+                        />
+                      )}
                     </Typography>
                   </Stack>
                 )}
@@ -193,9 +212,28 @@ const MobileCryptoEventCard = ({ data }: any) => {
                         color: "#D1D10E",
                         fontWeight: "500",
                         fontSize: "1.13rem",
+                        textAlign: "center",
                       }}
                     >
-                      {/* {CountDownTimer(moment(new Date(data?.end_date)))} */}
+                      {data && (
+                        <Countdown
+                          date={new Date(data?.end_date)}
+                          renderer={({
+                            days,
+                            hours,
+                            minutes,
+                            seconds,
+                            completed,
+                          }) => {
+                            return (
+                              <span>
+                                {days} Days {hours} Hrs {minutes} Min {seconds}{" "}
+                                Sec
+                              </span>
+                            );
+                          }}
+                        />
+                      )}
                     </Typography>
                   </Stack>
                 )}

@@ -33,7 +33,7 @@ import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsS
 import { defaultColor } from "../../../common/common";
 import SocialCounterWithGraphCard from "../../../components/desktop/cards/socialcounterwithgraphcard/SocialCounterWithGraphCard";
 import { useDispatch, useSelector } from "react-redux";
-import CountDownTimer from "./countdown/CountDownTimer";
+import Countdown from "react-countdown";
 import FacebookGraphImage from "../../../assets/singlepagecoin/graph/facebook.png";
 import DiscordGraphImage from "../../../assets/singlepagecoin/graph/discord.png";
 import RedditGraphImage from "../../../assets/singlepagecoin/graph/reddit.png";
@@ -226,11 +226,154 @@ const SingleAirdropPage = () => {
                                     }}
                                   >
                                     {airdropSinglePageDetails && (
-                                      <CountDownTimer
-                                        data={
-                                          airdropSinglePageDetails?.data
-                                            ?.start_date
+                                      <Countdown
+                                        date={
+                                          new Date(
+                                            airdropSinglePageDetails?.data?.start_date
+                                          )
                                         }
+                                        renderer={({
+                                          days,
+                                          hours,
+                                          minutes,
+                                          seconds,
+                                          completed,
+                                        }) => {
+                                          return (
+                                            <Stack
+                                              direction="column"
+                                              alignItems="center"
+                                              spacing={1.5}
+                                              pb={2}
+                                            >
+                                              <Box
+                                                sx={{
+                                                  backgroundColor: " #00071A",
+                                                  borderRadius: 6,
+                                                  minWidth: 150,
+                                                }}
+                                                px={2}
+                                                py={1.5}
+                                              >
+                                                <Stack
+                                                  direction="column"
+                                                  alignItems="center"
+                                                >
+                                                  <Stack
+                                                    direction="row"
+                                                    alignItems="center"
+                                                    spacing={3}
+                                                  >
+                                                    <Stack
+                                                      direction="column"
+                                                      alignItems="center"
+                                                    >
+                                                      {" "}
+                                                      <Typography
+                                                        variant="body2"
+                                                        sx={{
+                                                          color: "#FFFFFF",
+                                                          fontSize: "1.7rem",
+                                                          fontWeight: 600,
+                                                        }}
+                                                      >
+                                                        {days}
+                                                      </Typography>
+                                                      <Typography
+                                                        variant="body2"
+                                                        sx={{
+                                                          color: "#FFFFFF",
+                                                          fontSize: "0.85rem",
+                                                          fontWeight: 600,
+                                                        }}
+                                                      >
+                                                        Day
+                                                      </Typography>
+                                                    </Stack>
+                                                    <Stack
+                                                      direction="column"
+                                                      alignItems="center"
+                                                    >
+                                                      {" "}
+                                                      <Typography
+                                                        variant="body2"
+                                                        sx={{
+                                                          color: "#FFFFFF",
+                                                          fontSize: "1.7rem",
+                                                          fontWeight: 600,
+                                                        }}
+                                                      >
+                                                        {hours}
+                                                      </Typography>
+                                                      <Typography
+                                                        variant="body2"
+                                                        sx={{
+                                                          color: "#FFFFFF",
+                                                          fontSize: "0.85rem",
+                                                          fontWeight: 600,
+                                                        }}
+                                                      >
+                                                        Hour
+                                                      </Typography>
+                                                    </Stack>
+                                                    <Stack
+                                                      direction="column"
+                                                      alignItems="center"
+                                                    >
+                                                      {" "}
+                                                      <Typography
+                                                        variant="body2"
+                                                        sx={{
+                                                          color: "#FFFFFF",
+                                                          fontSize: "1.7rem",
+                                                          fontWeight: 600,
+                                                        }}
+                                                      >
+                                                        {minutes}
+                                                      </Typography>
+                                                      <Typography
+                                                        variant="body2"
+                                                        sx={{
+                                                          color: "#FFFFFF",
+                                                          fontSize: "0.85rem",
+                                                          fontWeight: 600,
+                                                        }}
+                                                      >
+                                                        Min
+                                                      </Typography>
+                                                    </Stack>
+                                                    <Stack
+                                                      direction="column"
+                                                      alignItems="center"
+                                                    >
+                                                      {" "}
+                                                      <Typography
+                                                        variant="body2"
+                                                        sx={{
+                                                          color: "#FFFFFF",
+                                                          fontSize: "1.7rem",
+                                                          fontWeight: 600,
+                                                        }}
+                                                      >
+                                                        {seconds}
+                                                      </Typography>
+                                                      <Typography
+                                                        variant="body2"
+                                                        sx={{
+                                                          color: "#FFFFFF",
+                                                          fontSize: "0.85rem",
+                                                          fontWeight: 600,
+                                                        }}
+                                                      >
+                                                        Sec
+                                                      </Typography>
+                                                    </Stack>
+                                                  </Stack>
+                                                </Stack>
+                                              </Box>
+                                            </Stack>
+                                          );
+                                        }}
                                       />
                                     )}
                                   </Typography>
@@ -279,16 +422,159 @@ const SingleAirdropPage = () => {
                                     }}
                                   >
                                     {airdropSinglePageDetails && (
-                                      <CountDownTimer
-                                        data={moment(
-                                          new Date(
-                                            airdropSinglePageDetails?.data?.start_date
-                                          )
-                                        ).add(
+                                      <Countdown
+                                        date={moment(
                                           airdropSinglePageDetails?.data
-                                            ?.no_of_days,
-                                          "days"
-                                        )}
+                                            ?.start_date
+                                        )
+                                          .add(
+                                            airdropSinglePageDetails?.data
+                                              ?.no_of_days,
+                                            "days"
+                                          )
+                                          .format("YYYY-MM-DD")}
+                                        renderer={({
+                                          days,
+                                          hours,
+                                          minutes,
+                                          seconds,
+                                          completed,
+                                        }) => {
+                                          return (
+                                            <Stack
+                                              direction="column"
+                                              alignItems="center"
+                                              spacing={1.5}
+                                              pb={2}
+                                            >
+                                              <Box
+                                                sx={{
+                                                  backgroundColor: " #00071A",
+                                                  borderRadius: 6,
+                                                  minWidth: 150,
+                                                }}
+                                                px={2}
+                                                py={1.5}
+                                              >
+                                                <Stack
+                                                  direction="column"
+                                                  alignItems="center"
+                                                >
+                                                  <Stack
+                                                    direction="row"
+                                                    alignItems="center"
+                                                    spacing={3}
+                                                  >
+                                                    <Stack
+                                                      direction="column"
+                                                      alignItems="center"
+                                                    >
+                                                      {" "}
+                                                      <Typography
+                                                        variant="body2"
+                                                        sx={{
+                                                          color: "#FFFFFF",
+                                                          fontSize: "1.7rem",
+                                                          fontWeight: 600,
+                                                        }}
+                                                      >
+                                                        {days}
+                                                      </Typography>
+                                                      <Typography
+                                                        variant="body2"
+                                                        sx={{
+                                                          color: "#FFFFFF",
+                                                          fontSize: "0.85rem",
+                                                          fontWeight: 600,
+                                                        }}
+                                                      >
+                                                        Day
+                                                      </Typography>
+                                                    </Stack>
+                                                    <Stack
+                                                      direction="column"
+                                                      alignItems="center"
+                                                    >
+                                                      {" "}
+                                                      <Typography
+                                                        variant="body2"
+                                                        sx={{
+                                                          color: "#FFFFFF",
+                                                          fontSize: "1.7rem",
+                                                          fontWeight: 600,
+                                                        }}
+                                                      >
+                                                        {hours}
+                                                      </Typography>
+                                                      <Typography
+                                                        variant="body2"
+                                                        sx={{
+                                                          color: "#FFFFFF",
+                                                          fontSize: "0.85rem",
+                                                          fontWeight: 600,
+                                                        }}
+                                                      >
+                                                        Hour
+                                                      </Typography>
+                                                    </Stack>
+                                                    <Stack
+                                                      direction="column"
+                                                      alignItems="center"
+                                                    >
+                                                      {" "}
+                                                      <Typography
+                                                        variant="body2"
+                                                        sx={{
+                                                          color: "#FFFFFF",
+                                                          fontSize: "1.7rem",
+                                                          fontWeight: 600,
+                                                        }}
+                                                      >
+                                                        {minutes}
+                                                      </Typography>
+                                                      <Typography
+                                                        variant="body2"
+                                                        sx={{
+                                                          color: "#FFFFFF",
+                                                          fontSize: "0.85rem",
+                                                          fontWeight: 600,
+                                                        }}
+                                                      >
+                                                        Min
+                                                      </Typography>
+                                                    </Stack>
+                                                    <Stack
+                                                      direction="column"
+                                                      alignItems="center"
+                                                    >
+                                                      {" "}
+                                                      <Typography
+                                                        variant="body2"
+                                                        sx={{
+                                                          color: "#FFFFFF",
+                                                          fontSize: "1.7rem",
+                                                          fontWeight: 600,
+                                                        }}
+                                                      >
+                                                        {seconds}
+                                                      </Typography>
+                                                      <Typography
+                                                        variant="body2"
+                                                        sx={{
+                                                          color: "#FFFFFF",
+                                                          fontSize: "0.85rem",
+                                                          fontWeight: 600,
+                                                        }}
+                                                      >
+                                                        Sec
+                                                      </Typography>
+                                                    </Stack>
+                                                  </Stack>
+                                                </Stack>
+                                              </Box>
+                                            </Stack>
+                                          );
+                                        }}
                                       />
                                     )}
                                   </Typography>

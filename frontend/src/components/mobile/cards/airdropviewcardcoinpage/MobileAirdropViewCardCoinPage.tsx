@@ -25,7 +25,7 @@ import DiamondRoundedIcon from "@mui/icons-material/DiamondRounded";
 import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
 import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
 import moment from "moment";
-import { CountDownTimer } from "./countdown/CountDownTimer";
+import Countdown from "react-countdown";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -215,7 +215,25 @@ const MobileAirdropViewCardCoinPage = ({ viewcoin, data }: any) => {
                           fontSize: ".85rem",
                         }}
                       >
-                        {CountDownTimer(moment(new Date(data?.event_date)))}
+                        {data && (
+                          <Countdown
+                            date={new Date(data?.event_date)}
+                            renderer={({
+                              days,
+                              hours,
+                              minutes,
+                              seconds,
+                              completed,
+                            }) => {
+                              return (
+                                <span>
+                                  {days} Days {hours} Hours {minutes} Minutes{" "}
+                                  {seconds} Seconds
+                                </span>
+                              );
+                            }}
+                          />
+                        )}
                       </Typography>
                     </Stack>
                   )}
@@ -252,8 +270,24 @@ const MobileAirdropViewCardCoinPage = ({ viewcoin, data }: any) => {
                           fontSize: ".85rem",
                         }}
                       >
-                        {CountDownTimer(
-                          moment(new Date(data?.event_date)).add(500, "days")
+                        {data && (
+                          <Countdown
+                            date={new Date(data?.event_date)}
+                            renderer={({
+                              days,
+                              hours,
+                              minutes,
+                              seconds,
+                              completed,
+                            }) => {
+                              return (
+                                <span>
+                                  {days} Days {hours} Hours {minutes} Minutes{" "}
+                                  {seconds} Seconds
+                                </span>
+                              );
+                            }}
+                          />
                         )}
                       </Typography>
                     </Stack>
