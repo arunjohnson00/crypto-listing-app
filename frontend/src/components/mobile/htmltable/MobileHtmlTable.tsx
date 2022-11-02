@@ -132,7 +132,14 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     sx={{ color: "#686868", fontWeight: 500 }}
                     key={index}
                   >
-                    {item}
+                    <Stack direction="row" spacing={0.5} alignItems="center">
+                      <Typography>{item}</Typography>
+                      {item === "Name" && (
+                        <ArrowForwardIosRoundedIcon
+                          sx={{ color: "#686868", fontSize: ".9rem", pt: 0.5 }}
+                        />
+                      )}
+                    </Stack>
                   </TableCell>
                 ))
               : location?.pathname !== "/"
@@ -141,7 +148,14 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     sx={{ color: "#686868", fontWeight: 500 }}
                     key={index}
                   >
-                    {item}
+                    <Stack direction="row" spacing={0.5} alignItems="center">
+                      <Typography>{item}</Typography>
+                      {item === "Name" && (
+                        <ArrowForwardIosRoundedIcon
+                          sx={{ color: "#686868", fontSize: ".9rem", pt: 0.5 }}
+                        />
+                      )}
+                    </Stack>
                   </TableCell>
                 ))
               : tableHeader?.cryptoPresale?.map((item: any, index: number) => (
@@ -149,19 +163,18 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     sx={{ color: "#686868", fontWeight: 500 }}
                     key={index}
                   >
-                    {item}
+                    <Stack direction="row" spacing={0.5} alignItems="center">
+                      <Typography>{item}</Typography>
+                      {item === "Name" && (
+                        <ArrowForwardIosRoundedIcon
+                          sx={{ color: "#686868", fontSize: ".9rem", pt: 0.5 }}
+                        />
+                      )}
+                    </Stack>
                   </TableCell>
                 ))}
             {/* <Box sx={{ position: "relative" }}>
-              <IconButton
-                aria-label="delete"
-                size="small"
-                sx={{ position: "relative", right: 20, top: 10 }}
-              >
-                <ArrowForwardIosRoundedIcon
-                  sx={{ color: "#FFFFFF", fontSize: ".9rem" }}
-                />
-              </IconButton>
+             
             </Box> */}
           </TableRow>
         </TableHead>

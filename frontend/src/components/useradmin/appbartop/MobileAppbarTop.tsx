@@ -16,7 +16,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { Avatar } from "@mui/material";
-
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import userIcon from "../../../assets/userdashboard/mobile/user.png";
 import notificationIcon from "../../../assets/userdashboard/mobile/notification.png";
 import faqIcon from "../../../assets/userdashboard/mobile/faq.png";
@@ -70,7 +71,8 @@ const MobileAppbarTop = () => {
             sx={{ mr: 2 }}
             onClick={toggleDrawer(true)}
           >
-            <Avatar alt="User" src={userIcon} sx={{ width: 30, height: 30 }} />
+            {/* <Avatar alt="User" src={userIcon} sx={{ width: 30, height: 30 }} /> */}
+            <AccountCircleIcon sx={{ color: "#FFFFFF", fontSize: "2rem" }} />
           </IconButton>
 
           <Box sx={{ flexGrow: 1 }} />
@@ -105,7 +107,10 @@ const MobileAppbarTop = () => {
               color="inherit"
               onClick={notificationOpenHandler}
             >
-              <Avatar alt="User" src={faqIcon} sx={{ width: 25, height: 25 }} />
+              {/* <Avatar alt="User" src={faqIcon} sx={{ width: 25, height: 25 }} /> */}
+              <HelpOutlineOutlinedIcon
+                sx={{ color: "#FFFFFF", fontSize: "1.8rem" }}
+              />
             </IconButton>
           </Box>
         </Toolbar>
