@@ -18,6 +18,7 @@ const CreateAdWizardCard = ({
   size,
   type,
   variant,
+  icon,
 }: any) => {
   return (
     <div>
@@ -27,7 +28,12 @@ const CreateAdWizardCard = ({
           padding: 0,
           margin: 1.5,
           "& .MuiSvgIcon-root": { fontSize: 18 },
+          "&.MuiRadio-root:hover": {
+            background: "none",
+          },
         }}
+        disableTouchRipple
+        disableRipple
         name={name && name}
         value={value && value}
         icon={
@@ -48,7 +54,8 @@ const CreateAdWizardCard = ({
               >
                 <Avatar
                   alt="Remy Sharp"
-                  src="https://mui.com/static/images/avatar/1.jpg"
+                  src={icon}
+                  variant="square"
                   sx={{ width: 27, height: 27 }}
                 />
 
@@ -108,7 +115,7 @@ const CreateAdWizardCard = ({
           <Box
             sx={{
               borderRadius: 3,
-              border: "1px solid #6D6EB0",
+              border: "2px solid #6D6EB0",
               minWidth: 200,
               minHeight: 170,
             }}
@@ -122,7 +129,8 @@ const CreateAdWizardCard = ({
               >
                 <Avatar
                   alt="Remy Sharp"
-                  src="https://mui.com/static/images/avatar/1.jpg"
+                  variant="square"
+                  src={icon}
                   sx={{ width: 27, height: 27 }}
                 />
 

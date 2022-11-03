@@ -18,6 +18,7 @@ import {
   IconButton,
   Backdrop,
   CircularProgress,
+  Divider,
 } from "@mui/material";
 import ArrowBackIosTwoToneIcon from "@mui/icons-material/ArrowBackIosTwoTone";
 import LargeBtn from "../../../../components/form/button/large/LargeBtn";
@@ -41,6 +42,13 @@ import {
 import InputSelectCoin from "../../../../components/form/selectcoin/InputSelectCoin";
 import InputTextArea from "../../../../components/form/textarea/InputTextArea";
 import InputSelect from "../../../../components/form/select/InputSelect";
+
+import promoSpotAdIcon from "../../../../assets/ads/ad_coins.png";
+import bannerAdIcon from "../../../../assets/ads/ad_banner.png";
+import searchAdIcon from "../../../../assets/ads/ad_search.png";
+import coinAuditAdIcon from "../../../../assets/ads/ad_coin_audit.png";
+import videoAdIcon from "../../../../assets/ads/ad_video.png";
+import announcementAdIcon from "../../../../assets/ads/ad_announcement.png";
 
 //Server URL
 const serverAPIUrl = process.env.REACT_APP_API_URL;
@@ -132,7 +140,7 @@ const AdWizardEdit = () => {
       );
     (editAdsData?.banner_ad_type === 7 || editAdsData?.banner_ad_type === 9) &&
       formData.append("button_name", editAdsData?.button_name);
-    editAdsData?.banner_ad_type !== 4 &&
+    (editAdsData?.banner_ad_type !== 4 || editAdsData?.banner_ad_type !== 9) &&
       editAdsData.banner_image !== "" &&
       typeof editAdsData.banner_image !== "string" &&
       formData.append("banner_image", editAdsData?.banner_image);
@@ -285,7 +293,7 @@ const AdWizardEdit = () => {
         <Grid container spacing={2}>
           {choseAd && (
             <Grid item xl={8} lg={8} md={8} sm={12} xs={12}>
-              <Box p={4}>
+              <Box p={4} sx={{ background: "#FFFFFF", borderRadius: 4, mb: 2 }}>
                 <Stack
                   direction="column"
                   spacing={2}
@@ -317,6 +325,12 @@ const AdWizardEdit = () => {
                       Select and Ad tailor your experience to the goals and
                       settings that will work best for your campaign
                     </Typography>
+                    <Divider
+                      orientation="horizontal"
+                      flexItem
+                      variant="fullWidth"
+                      sx={{ py: 1 }}
+                    />
                   </Stack>
                   <FormControl>
                     <RadioGroup
@@ -339,36 +353,42 @@ const AdWizardEdit = () => {
                           caption="Promoted By coin/Project"
                           value="promoted_spot"
                           name="choose_ads"
+                          icon={promoSpotAdIcon}
                         />
                         <CreateAdWizardCard
                           title="Banner Ads"
                           caption="Promoted By coin/Project"
                           value="banner_ads"
                           name="choose_ads"
+                          icon={bannerAdIcon}
                         />
                         <CreateAdWizardCard
                           title="Search Ad"
                           caption="Promoted By coin/Project"
                           value={7}
                           name="choose_ads"
+                          icon={searchAdIcon}
                         />
                         <CreateAdWizardCard
                           title="Video Ads"
                           caption="Promoted By coin/Project"
                           value={5}
                           name="choose_ads"
+                          icon={videoAdIcon}
                         />
                         <CreateAdWizardCard
                           title="User Announcements"
                           caption="Promoted By coin/Project"
                           value={9}
                           name="choose_ads"
+                          icon={announcementAdIcon}
                         />
                         <CreateAdWizardCard
                           title=" Coin Audit"
                           caption="Promoted By coin/Project"
                           value="coin_audit"
                           name="choose_ads"
+                          icon={coinAuditAdIcon}
                         />
                       </Stack>
                     </RadioGroup>
@@ -378,7 +398,10 @@ const AdWizardEdit = () => {
               {choseAd && choseAd === "promoted_spot" && (
                 <Grid container spacing={2} ref={adtypeRef}>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                    <Box p={4}>
+                    <Box
+                      p={4}
+                      sx={{ background: "#FFFFFF", borderRadius: 4, mb: 2 }}
+                    >
                       <Stack
                         direction="column"
                         spacing={2}
@@ -410,6 +433,12 @@ const AdWizardEdit = () => {
                             Select and Ad tailor your experience to the goals
                             and settings that will work best for your campaign
                           </Typography>
+                          <Divider
+                            orientation="horizontal"
+                            flexItem
+                            variant="fullWidth"
+                            sx={{ py: 1 }}
+                          />
                         </Stack>
                         <FormControl>
                           <RadioGroup
@@ -432,24 +461,28 @@ const AdWizardEdit = () => {
                                 caption="Promoted By coin/Project"
                                 value={4}
                                 name="choose_ad_type"
+                                icon={promoSpotAdIcon}
                               />
                               <CreateAdWizardCard
                                 title=" NFT Promoted Spot"
                                 caption="Promoted By coin/Project"
                                 value="nft_promoted_spot"
                                 name="choose_ad_type"
+                                icon={promoSpotAdIcon}
                               />
                               <CreateAdWizardCard
                                 title=" AirDrop Promotion"
                                 caption="Promoted By coin/Project"
                                 value="airdrop_promotion"
                                 name="choose_ad_type"
+                                icon={promoSpotAdIcon}
                               />
                               <CreateAdWizardCard
                                 title="Event Promotion"
                                 caption="Promoted By coin/Project"
                                 value="event_promotion"
                                 name="choose_ad_type"
+                                icon={promoSpotAdIcon}
                               />
                             </Stack>
                           </RadioGroup>
@@ -462,7 +495,10 @@ const AdWizardEdit = () => {
               {choseAd && choseAd === "banner_ads" && (
                 <Grid container spacing={2} ref={adtypeRef}>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                    <Box p={4}>
+                    <Box
+                      p={4}
+                      sx={{ background: "#FFFFFF", borderRadius: 4, mb: 2 }}
+                    >
                       <Stack
                         direction="column"
                         spacing={2}
@@ -494,6 +530,12 @@ const AdWizardEdit = () => {
                             Select and Ad tailor your experience to the goals
                             and settings that will work best for your campaign
                           </Typography>
+                          <Divider
+                            orientation="horizontal"
+                            flexItem
+                            variant="fullWidth"
+                            sx={{ py: 1 }}
+                          />
                         </Stack>
                         <FormControl>
                           <RadioGroup
@@ -519,6 +561,7 @@ const AdWizardEdit = () => {
                                 size="970x90"
                                 type="GIF,JPEG,JPG,PNG"
                                 variant="banner"
+                                icon={bannerAdIcon}
                               />
                               <CreateAdWizardCard
                                 title=" Square Banner"
@@ -528,6 +571,7 @@ const AdWizardEdit = () => {
                                 size="970x90"
                                 type="GIF,JPEG,JPG,PNG"
                                 variant="banner"
+                                icon={bannerAdIcon}
                               />
                               <CreateAdWizardCard
                                 title=" Square Half"
@@ -537,6 +581,7 @@ const AdWizardEdit = () => {
                                 size="970x90"
                                 type="GIF,JPEG,JPG,PNG"
                                 variant="banner"
+                                icon={bannerAdIcon}
                               />
                               <CreateAdWizardCard
                                 title="Vote Click Popup"
@@ -546,6 +591,7 @@ const AdWizardEdit = () => {
                                 size="970x90"
                                 type="GIF,JPEG,JPG,PNG"
                                 variant="banner"
+                                icon={bannerAdIcon}
                               />
                               <CreateAdWizardCard
                                 title="Welcome Popup"
@@ -555,6 +601,7 @@ const AdWizardEdit = () => {
                                 size="970x90"
                                 type="GIF,JPEG,JPG,PNG"
                                 variant="banner"
+                                icon={bannerAdIcon}
                               />
                               <CreateAdWizardCard
                                 title="Bigger Ad- Full"
@@ -564,6 +611,7 @@ const AdWizardEdit = () => {
                                 size="970x90"
                                 type="GIF,JPEG,JPG,PNG"
                                 variant="banner"
+                                icon={bannerAdIcon}
                               />
                               <CreateAdWizardCard
                                 title="Bigger Ad- Half"
@@ -573,6 +621,7 @@ const AdWizardEdit = () => {
                                 size="970x90"
                                 type="GIF,JPEG,JPG,PNG"
                                 variant="banner"
+                                icon={bannerAdIcon}
                               />
                             </Stack>
                           </RadioGroup>
@@ -593,7 +642,10 @@ const AdWizardEdit = () => {
                 choseAd === "banner_ads" && (
                   <Grid container spacing={2} ref={adtypeRef}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                      <Box p={4}>
+                      <Box
+                        p={4}
+                        sx={{ background: "#FFFFFF", borderRadius: 4, mb: 2 }}
+                      >
                         <Stack
                           direction="column"
                           spacing={2}
@@ -625,6 +677,12 @@ const AdWizardEdit = () => {
                               Select and Ad tailor your experience to the goals
                               and settings that will work best for your campaign
                             </Typography>
+                            <Divider
+                              orientation="horizontal"
+                              flexItem
+                              variant="fullWidth"
+                              sx={{ py: 1 }}
+                            />
                           </Stack>
                           <Stack
                             direction="row"
@@ -636,7 +694,11 @@ const AdWizardEdit = () => {
                             }}
                             pt={3}
                           >
-                            <Stack direction="column" spacing={1.5}>
+                            <Stack
+                              direction="column"
+                              spacing={1.5}
+                              flexGrow={1}
+                            >
                               <Typography
                                 variant="body2"
                                 sx={{
@@ -656,7 +718,12 @@ const AdWizardEdit = () => {
                                 value={editAdsData && editAdsData?.banner_name}
                               />
                             </Stack>
-                            <Stack direction="column" spacing={1.5}>
+
+                            <Stack
+                              direction="column"
+                              spacing={1.5}
+                              flexGrow={1}
+                            >
                               <Typography
                                 variant="body2"
                                 sx={{
@@ -665,55 +732,11 @@ const AdWizardEdit = () => {
                                   fontWeight: 600,
                                 }}
                               >
-                                Start Date
-                              </Typography>
-                              <InputDate
-                                adWizard={true}
-                                date={editAdsData}
-                                setDate={setEditAdsData}
-                                height={40}
-                                serverRef={
-                                  editAdsData &&
-                                  moment(
-                                    new Date(editAdsData.banner_start_date)
-                                  )
-                                }
-                              />
-                            </Stack>
-                            <Stack direction="column" spacing={1.5}>
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  textAlign: "left",
-                                  color: "#000000",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                No.of Days
+                                Redirection URL
                               </Typography>
                               <InputText
                                 width={100}
-                                placeholder=" Number of Days"
-                                inputTextHandler={(e: any) =>
-                                  editAdsNumberOfDaysHandler(e)
-                                }
-                                value={editAdsData && editAdsData?.no_of_days}
-                              />
-                            </Stack>
-                            <Stack direction="column" spacing={1.5}>
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  textAlign: "left",
-                                  color: "#000000",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                Banner Target Link
-                              </Typography>
-                              <InputText
-                                width={100}
-                                placeholder=" Banner Target Link"
+                                placeholder="Redirection URL"
                                 inputTextHandler={(e: any) =>
                                   editAdsLinkHandler(e)
                                 }
@@ -742,6 +765,105 @@ const AdWizardEdit = () => {
                                 variant="ads"
                               />
                             </Stack>
+                          </Stack>
+
+                          <Stack
+                            direction="column"
+                            spacing={0.7}
+                            sx={{ justifyContent: "flex-start", pt: 3 }}
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                textAlign: "left",
+                                color: "#2C399F",
+                                fontWeight: 600,
+                              }}
+                            >
+                              Select Date
+                            </Typography>
+                            <Typography
+                              sx={{
+                                textAlign: "left",
+                                fontSize: ".8rem",
+                                color: "#858585",
+                                fontWeight: 400,
+                              }}
+                            >
+                              Select and Ad tailor your experience to the goals
+                              and settings that will work best for your campaign
+                            </Typography>
+                            <Divider
+                              orientation="horizontal"
+                              flexItem
+                              variant="fullWidth"
+                              sx={{ py: 1 }}
+                            />
+                          </Stack>
+
+                          <Stack
+                            direction="row"
+                            rowGap={2}
+                            columnGap={2}
+                            sx={{
+                              justifyContent: "flex-start",
+                              flexWrap: "wrap",
+                            }}
+                            pt={3}
+                          >
+                            <Stack
+                              direction="column"
+                              spacing={1.5}
+                              flexGrow={1}
+                            >
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  textAlign: "left",
+                                  color: "#000000",
+                                  fontWeight: 600,
+                                }}
+                              >
+                                Start Date
+                              </Typography>
+                              <InputDate
+                                adWizard={true}
+                                date={editAdsData}
+                                setDate={setEditAdsData}
+                                height={40}
+                                serverRef={
+                                  editAdsData &&
+                                  moment(
+                                    new Date(editAdsData.banner_start_date)
+                                  )
+                                }
+                              />
+                            </Stack>
+                            <Stack
+                              direction="column"
+                              spacing={1.5}
+                              flexGrow={1}
+                            >
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  textAlign: "left",
+                                  color: "#000000",
+                                  fontWeight: 600,
+                                }}
+                              >
+                                No.of Days
+                              </Typography>
+                              <InputText
+                                width={100}
+                                placeholder=" Number of Days"
+                                inputTextHandler={(e: any) =>
+                                  editAdsNumberOfDaysHandler(e)
+                                }
+                                value={editAdsData && editAdsData?.no_of_days}
+                              />
+                            </Stack>
+
                             <Grid
                               item
                               xl={12}
@@ -786,7 +908,10 @@ const AdWizardEdit = () => {
                 parseInt(choseAd) === 7 && (
                   <Grid container spacing={2} ref={adtypeRef}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                      <Box p={4}>
+                      <Box
+                        p={4}
+                        sx={{ background: "#FFFFFF", borderRadius: 4, mb: 2 }}
+                      >
                         <Stack
                           direction="column"
                           spacing={2}
@@ -818,6 +943,12 @@ const AdWizardEdit = () => {
                               Select and Ad tailor your experience to the goals
                               and settings that will work best for your campaign
                             </Typography>
+                            <Divider
+                              orientation="horizontal"
+                              flexItem
+                              variant="fullWidth"
+                              sx={{ py: 1 }}
+                            />
                           </Stack>
                           <Stack
                             direction="row"
@@ -829,7 +960,11 @@ const AdWizardEdit = () => {
                             }}
                             pt={3}
                           >
-                            <Stack direction="column" spacing={1.5}>
+                            <Stack
+                              direction="column"
+                              spacing={1.5}
+                              flexGrow={1}
+                            >
                               <Typography
                                 variant="body2"
                                 sx={{
@@ -838,7 +973,16 @@ const AdWizardEdit = () => {
                                   fontWeight: 600,
                                 }}
                               >
-                                Banner Name
+                                Search Title{" "}
+                                <span
+                                  style={{
+                                    color: "#006aee",
+                                    fontWeight: 400,
+                                    fontSize: ".75rem",
+                                  }}
+                                >
+                                  (Max 55 Words)
+                                </span>
                               </Typography>
                               <InputText
                                 width={100}
@@ -849,7 +993,172 @@ const AdWizardEdit = () => {
                                 value={editAdsData && editAdsData?.banner_name}
                               />
                             </Stack>
-                            <Stack direction="column" spacing={1.5}>
+
+                            <Stack
+                              direction="column"
+                              spacing={1.5}
+                              flexGrow={1}
+                            >
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  textAlign: "left",
+                                  color: "#000000",
+                                  fontWeight: 600,
+                                }}
+                              >
+                                Redirection URL
+                              </Typography>
+                              <InputText
+                                width={100}
+                                placeholder="Redirection URL"
+                                inputTextHandler={(e: any) =>
+                                  editAdsLinkHandler(e)
+                                }
+                                value={
+                                  editAdsData && editAdsData?.banner_target_link
+                                }
+                              />
+                            </Stack>
+
+                            <Stack direction="row" spacing={1.5} width="100%">
+                              <Stack
+                                direction="column"
+                                spacing={1.5}
+                                minWidth={350}
+                                flexGrow={1}
+                              >
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    textAlign: "left",
+                                    color: "#000000",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  Description{" "}
+                                  <span
+                                    style={{
+                                      color: "#006aee",
+                                      fontWeight: 400,
+                                      fontSize: ".75rem",
+                                    }}
+                                  >
+                                    (Max 130 Words)
+                                  </span>
+                                </Typography>
+                                <InputTextArea
+                                  variant="ad_wizard"
+                                  placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."
+                                  name="search_ad_description"
+                                  width={300}
+                                  data={editAdsData}
+                                  setData={setEditAdsData}
+                                  value={editAdsData?.search_ad_description}
+                                />
+                              </Stack>
+                              <Stack
+                                direction="column"
+                                spacing={1.5}
+                                flexGrow={1}
+                              >
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    textAlign: "left",
+                                    color: "#000000",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  Button Name
+                                </Typography>
+                                <InputText
+                                  width={100}
+                                  placeholder="Eg: Register Now"
+                                  inputTextHandler={(e: any) =>
+                                    editAdsButtonNameHandler(e)
+                                  }
+                                  value={
+                                    editAdsData && editAdsData?.button_name
+                                  }
+                                />
+                              </Stack>
+                            </Stack>
+                            <Stack
+                              direction="column"
+                              spacing={1.5}
+                              flexGrow={1}
+                            >
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  textAlign: "left",
+                                  color: "#000000",
+                                  fontWeight: 600,
+                                }}
+                              >
+                                Banner Image
+                              </Typography>
+                              <CoinUploader
+                                name="logo"
+                                id="logo"
+                                setAddIcon={setEditAdsData}
+                                addIconData={editAdsData}
+                                slug="banner_ads"
+                                variant="ads"
+                              />
+                            </Stack>
+                          </Stack>
+
+                          <Stack
+                            direction="column"
+                            spacing={0.7}
+                            sx={{ justifyContent: "flex-start", pt: 3 }}
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                textAlign: "left",
+                                color: "#2C399F",
+                                fontWeight: 600,
+                              }}
+                            >
+                              Select Date & Coin
+                            </Typography>
+                            <Typography
+                              sx={{
+                                textAlign: "left",
+                                fontSize: ".8rem",
+                                color: "#858585",
+                                fontWeight: 400,
+                              }}
+                            >
+                              Select and Ad tailor your experience to the goals
+                              and settings that will work best for your campaign
+                            </Typography>
+                            <Divider
+                              orientation="horizontal"
+                              flexItem
+                              variant="fullWidth"
+                              sx={{ py: 1 }}
+                            />
+                          </Stack>
+
+                          <Stack
+                            direction="row"
+                            rowGap={2}
+                            columnGap={2}
+                            sx={{
+                              justifyContent: "flex-start",
+                              flexWrap: "wrap",
+                            }}
+                            pt={3}
+                          >
+                            <Stack
+                              direction="column"
+                              spacing={1.5}
+                              flexGrow={1}
+                            >
                               <Typography
                                 variant="body2"
                                 sx={{
@@ -873,7 +1182,11 @@ const AdWizardEdit = () => {
                                 }
                               />
                             </Stack>
-                            <Stack direction="column" spacing={1.5}>
+                            <Stack
+                              direction="column"
+                              spacing={1.5}
+                              flexGrow={1}
+                            >
                               <Typography
                                 variant="body2"
                                 sx={{
@@ -893,96 +1206,7 @@ const AdWizardEdit = () => {
                                 value={editAdsData && editAdsData?.no_of_days}
                               />
                             </Stack>
-                            <Stack direction="column" spacing={1.5}>
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  textAlign: "left",
-                                  color: "#000000",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                Banner Target Link
-                              </Typography>
-                              <InputText
-                                width={100}
-                                placeholder=" Banner Target Link"
-                                inputTextHandler={(e: any) =>
-                                  editAdsLinkHandler(e)
-                                }
-                                value={
-                                  editAdsData && editAdsData?.banner_target_link
-                                }
-                              />
-                            </Stack>
 
-                            <Stack direction="column" spacing={1.5}>
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  textAlign: "left",
-                                  color: "#000000",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                Button Name
-                              </Typography>
-                              <InputText
-                                width={100}
-                                placeholder="Eg: Register Now"
-                                inputTextHandler={(e: any) =>
-                                  editAdsButtonNameHandler(e)
-                                }
-                                value={editAdsData && editAdsData?.button_name}
-                              />
-                            </Stack>
-                            <Stack direction="row" spacing={1.5} width="100%">
-                              <Stack
-                                direction="column"
-                                spacing={1.5}
-                                minWidth={350}
-                              >
-                                <Typography
-                                  variant="body2"
-                                  sx={{
-                                    textAlign: "left",
-                                    color: "#000000",
-                                    fontWeight: 600,
-                                  }}
-                                >
-                                  Description
-                                </Typography>
-                                <InputTextArea
-                                  variant="ad_wizard"
-                                  placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."
-                                  name="search_ad_description"
-                                  width={300}
-                                  data={editAdsData}
-                                  setData={setEditAdsData}
-                                  value={editAdsData?.search_ad_description}
-                                />
-                              </Stack>
-                              <Stack direction="column" spacing={1.5}>
-                                <Typography
-                                  variant="body2"
-                                  sx={{
-                                    textAlign: "left",
-                                    color: "#000000",
-                                    fontWeight: 600,
-                                  }}
-                                >
-                                  Banner Image
-                                </Typography>
-                                <CoinUploader
-                                  name="logo"
-                                  id="logo"
-                                  setAddIcon={setEditAdsData}
-                                  addIconData={editAdsData}
-                                  slug="banner_ads"
-                                  variant="ads"
-                                />
-                              </Stack>
-                            </Stack>
                             <Grid
                               item
                               xl={12}
@@ -1026,7 +1250,10 @@ const AdWizardEdit = () => {
                 parseInt(choseAd) === 9 && (
                   <Grid container spacing={2} ref={adtypeRef}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                      <Box p={4}>
+                      <Box
+                        p={4}
+                        sx={{ background: "#FFFFFF", borderRadius: 4, mb: 2 }}
+                      >
                         <Stack
                           direction="column"
                           spacing={2}
@@ -1058,6 +1285,12 @@ const AdWizardEdit = () => {
                               Select and Ad tailor your experience to the goals
                               and settings that will work best for your campaign
                             </Typography>
+                            <Divider
+                              orientation="horizontal"
+                              flexItem
+                              variant="fullWidth"
+                              sx={{ py: 1 }}
+                            />
                           </Stack>
                           <Stack
                             direction="row"
@@ -1065,11 +1298,14 @@ const AdWizardEdit = () => {
                             columnGap={2}
                             sx={{
                               justifyContent: "flex-start",
-                              flexWrap: "wrap",
                             }}
                             pt={3}
                           >
-                            <Stack direction="column" spacing={1.5}>
+                            <Stack
+                              direction="column"
+                              spacing={1.5}
+                              flexGrow={1}
+                            >
                               <Typography
                                 variant="body2"
                                 sx={{
@@ -1078,11 +1314,11 @@ const AdWizardEdit = () => {
                                   fontWeight: 600,
                                 }}
                               >
-                                Banner Name
+                                Announcement Title
                               </Typography>
                               <InputText
                                 width={100}
-                                placeholder="Banner Name"
+                                placeholder="Announcement Title"
                                 inputTextHandler={(e: any) =>
                                   editAdsNameHandler(e)
                                 }
@@ -1090,7 +1326,11 @@ const AdWizardEdit = () => {
                               />
                             </Stack>
 
-                            <Stack direction="column" spacing={1.5} width={450}>
+                            <Stack
+                              direction="column"
+                              spacing={1.5}
+                              flexGrow={1}
+                            >
                               <Typography
                                 variant="body2"
                                 sx={{
@@ -1112,7 +1352,21 @@ const AdWizardEdit = () => {
                                 }
                               />
                             </Stack>
-                            <Stack direction="column" spacing={1.5}>
+                          </Stack>
+                          <Stack
+                            direction="row"
+                            rowGap={2}
+                            columnGap={2}
+                            sx={{
+                              justifyContent: "flex-start",
+                            }}
+                            pt={3}
+                          >
+                            <Stack
+                              direction="column"
+                              spacing={1.5}
+                              flexGrow={1}
+                            >
                               <Typography
                                 variant="body2"
                                 sx={{
@@ -1132,7 +1386,12 @@ const AdWizardEdit = () => {
                                 value={editAdsData && editAdsData?.button_name}
                               />
                             </Stack>
-                            <Stack direction="column" spacing={1.5}>
+
+                            <Stack
+                              direction="column"
+                              spacing={1.5}
+                              flexGrow={1}
+                            >
                               <Typography
                                 variant="body2"
                                 sx={{
@@ -1141,55 +1400,11 @@ const AdWizardEdit = () => {
                                   fontWeight: 600,
                                 }}
                               >
-                                Start Date
-                              </Typography>
-                              <InputDate
-                                adWizard={true}
-                                date={editAdsData}
-                                setDate={setEditAdsData}
-                                height={40}
-                                serverRef={
-                                  editAdsData &&
-                                  moment(
-                                    new Date(editAdsData.banner_start_date)
-                                  )
-                                }
-                              />
-                            </Stack>
-                            <Stack direction="column" spacing={1.5}>
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  textAlign: "left",
-                                  color: "#000000",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                No.of Days
+                                Redirection URL
                               </Typography>
                               <InputText
                                 width={100}
-                                placeholder=" Number of Days"
-                                inputTextHandler={(e: any) =>
-                                  editAdsNumberOfDaysHandler(e)
-                                }
-                                value={editAdsData && editAdsData?.no_of_days}
-                              />
-                            </Stack>
-                            <Stack direction="column" spacing={1.5}>
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  textAlign: "left",
-                                  color: "#000000",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                Banner Target Link
-                              </Typography>
-                              <InputText
-                                width={100}
-                                placeholder=" Banner Target Link"
+                                placeholder="Redirection URL"
                                 inputTextHandler={(e: any) =>
                                   editAdsLinkHandler(e)
                                 }
@@ -1198,80 +1413,31 @@ const AdWizardEdit = () => {
                                 }
                               />
                             </Stack>
-                            <Stack direction="column" spacing={1.5}>
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  textAlign: "left",
-                                  color: "#000000",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                Banner Image
-                              </Typography>
-                              <CoinUploader
-                                name="logo"
-                                id="logo"
-                                setAddIcon={setEditAdsData}
-                                addIconData={editAdsData}
-                                slug="banner_ads"
-                                variant="ads"
-                              />
-                            </Stack>
-                            <Grid
-                              item
-                              xl={12}
-                              lg={12}
-                              md={12}
-                              sm={12}
-                              xs={12}
-                              pt={1}
-                            >
-                              <Typography
-                                variant="subtitle1"
-                                sx={{
-                                  textAlign: "left",
-                                  fontSize: ".9rem",
-                                  fontWeight: 600,
-                                }}
-                                mb={1}
-                              >
-                                Status
-                              </Typography>
-
-                              <InputSelect
-                                selectOptions={selectOptions}
-                                // currentStatus={newArrList[0].status}
-                                setInputSelectValue={setEditAdsData}
-                                getInputSelectvalue={editAdsData}
-                                // serverStatus={newArrList[0].status}
-                                serverStatus={
-                                  editAdsData && editAdsData?.status
-                                }
-                              />
-                            </Grid>
                           </Stack>
-                        </Stack>
-                      </Box>
-                    </Grid>
-                  </Grid>
-                )}
-
-              {editAdsData &&
-                parseInt(editAdsData?.banner_ad_type) === 5 &&
-                parseInt(choseAd) === 5 && (
-                  <Grid container spacing={2} ref={adtypeRef}>
-                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                      <Box p={4}>
-                        <Stack
-                          direction="column"
-                          spacing={2}
-                          sx={{ justifyContent: "flex-start" }}
-                        >
+                          {/* <Stack direction="column" spacing={1.5}>
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                textAlign: "left",
+                                color: "#000000",
+                                fontWeight: 600,
+                              }}
+                            >
+                              Banner Image
+                            </Typography>
+                            <CoinUploader
+                              name="logo"
+                              id="logo"
+                              setAddIcon={setEditAdsData}
+                              addIconData={editAdsData}
+                              slug="banner_ads"
+                              variant="ads"
+                            />
+                          </Stack> */}
                           <Stack
                             direction="column"
                             spacing={0.7}
-                            sx={{ justifyContent: "flex-start" }}
+                            sx={{ justifyContent: "flex-start", pt: 3 }}
                           >
                             <Typography
                               variant="body2"
@@ -1281,7 +1447,7 @@ const AdWizardEdit = () => {
                                 fontWeight: 600,
                               }}
                             >
-                              Upload Banner Image
+                              Select Date
                             </Typography>
                             <Typography
                               sx={{
@@ -1294,6 +1460,12 @@ const AdWizardEdit = () => {
                               Select and Ad tailor your experience to the goals
                               and settings that will work best for your campaign
                             </Typography>
+                            <Divider
+                              orientation="horizontal"
+                              flexItem
+                              variant="fullWidth"
+                              sx={{ py: 1 }}
+                            />
                           </Stack>
                           <Stack
                             direction="row"
@@ -1305,28 +1477,11 @@ const AdWizardEdit = () => {
                             }}
                             pt={3}
                           >
-                            <Stack direction="column" spacing={1.5}>
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  textAlign: "left",
-                                  color: "#000000",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                Banner Name
-                              </Typography>
-                              <InputText
-                                width={100}
-                                placeholder="Banner Name"
-                                inputTextHandler={(e: any) =>
-                                  editAdsNameHandler(e)
-                                }
-                                value={editAdsData && editAdsData?.banner_name}
-                              />
-                            </Stack>
-
-                            <Stack direction="column" spacing={1.5}>
+                            <Stack
+                              direction="column"
+                              spacing={1.5}
+                              flexGrow={1}
+                            >
                               <Typography
                                 variant="body2"
                                 sx={{
@@ -1350,7 +1505,11 @@ const AdWizardEdit = () => {
                                 }
                               />
                             </Stack>
-                            <Stack direction="column" spacing={1.5}>
+                            <Stack
+                              direction="column"
+                              spacing={1.5}
+                              flexGrow={1}
+                            >
                               <Typography
                                 variant="body2"
                                 sx={{
@@ -1370,48 +1529,7 @@ const AdWizardEdit = () => {
                                 value={editAdsData && editAdsData?.no_of_days}
                               />
                             </Stack>
-                            <Stack direction="column" spacing={1.5}>
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  textAlign: "left",
-                                  color: "#000000",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                Video Target Link
-                              </Typography>
-                              <InputText
-                                width={100}
-                                placeholder=" Banner Target Link"
-                                inputTextHandler={(e: any) =>
-                                  editAdsLinkHandler(e)
-                                }
-                                value={
-                                  editAdsData && editAdsData?.banner_target_link
-                                }
-                              />
-                            </Stack>
-                            <Stack direction="column" spacing={1.5}>
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  textAlign: "left",
-                                  color: "#000000",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                Video Image
-                              </Typography>
-                              <CoinUploader
-                                name="logo"
-                                id="logo"
-                                setAddIcon={setEditAdsData}
-                                addIconData={editAdsData}
-                                slug="banner_ads"
-                                variant="ads"
-                              />
-                            </Stack>
+
                             <Grid
                               item
                               xl={12}
@@ -1456,7 +1574,10 @@ const AdWizardEdit = () => {
                 choseAd === "promoted_spot" && (
                   <Grid container spacing={2} ref={adtypeRef}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                      <Box p={4}>
+                      <Box
+                        p={4}
+                        sx={{ background: "#FFFFFF", borderRadius: 4, mb: 2 }}
+                      >
                         <Stack
                           direction="column"
                           spacing={2}
@@ -1475,7 +1596,7 @@ const AdWizardEdit = () => {
                                 fontWeight: 600,
                               }}
                             >
-                              Select Date
+                              Ads Details
                             </Typography>
                             <Typography
                               sx={{
@@ -1488,6 +1609,12 @@ const AdWizardEdit = () => {
                               Select and Ad tailor your experience to the goals
                               and settings that will work best for your campaign
                             </Typography>
+                            <Divider
+                              orientation="horizontal"
+                              flexItem
+                              variant="fullWidth"
+                              sx={{ py: 1 }}
+                            />
                           </Stack>
                           <Stack
                             direction="row"
@@ -1499,7 +1626,11 @@ const AdWizardEdit = () => {
                             }}
                             pt={3}
                           >
-                            <Stack direction="column" spacing={1.5}>
+                            <Stack
+                              direction="column"
+                              spacing={1.5}
+                              flexGrow={0.2}
+                            >
                               <Typography
                                 variant="body2"
                                 sx={{
@@ -1508,17 +1639,61 @@ const AdWizardEdit = () => {
                                   fontWeight: 600,
                                 }}
                               >
-                                Banner Name
+                                Ad Title
                               </Typography>
                               <InputText
                                 width={100}
-                                placeholder="Banner Name"
+                                placeholder=" Ad Title"
                                 inputTextHandler={(e: any) =>
                                   editAdsNameHandler(e)
                                 }
                                 value={editAdsData && editAdsData?.banner_name}
                               />
                             </Stack>
+                          </Stack>
+                          <Stack
+                            direction="column"
+                            spacing={0.7}
+                            sx={{ justifyContent: "flex-start", pt: 3 }}
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                textAlign: "left",
+                                color: "#2C399F",
+                                fontWeight: 600,
+                              }}
+                            >
+                              Select Date & Coin
+                            </Typography>
+                            <Typography
+                              sx={{
+                                textAlign: "left",
+                                fontSize: ".8rem",
+                                color: "#858585",
+                                fontWeight: 400,
+                              }}
+                            >
+                              Select and Ad tailor your experience to the goals
+                              and settings that will work best for your campaign
+                            </Typography>
+                            <Divider
+                              orientation="horizontal"
+                              flexItem
+                              variant="fullWidth"
+                              sx={{ py: 1 }}
+                            />
+                          </Stack>
+                          <Stack
+                            direction="row"
+                            rowGap={2}
+                            columnGap={2}
+                            sx={{
+                              justifyContent: "flex-start",
+                              flexWrap: "wrap",
+                            }}
+                            pt={3}
+                          >
                             <Stack direction="column" spacing={1.5}>
                               <Typography
                                 variant="body2"
@@ -1625,7 +1800,7 @@ const AdWizardEdit = () => {
                 choseAd === "promoted_spot" && (
                   <Grid container spacing={2} ref={adtypeRef}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                      <Box p={4}>
+                      <Box p={4} sx={{ background: "#FFFFFF", borderRadius: 4, mb: 2 }}>
                         <Stack
                           direction="column"
                           spacing={2}
@@ -1657,6 +1832,12 @@ const AdWizardEdit = () => {
                               Select and Ad tailor your experience to the goals
                               and settings that will work best for your campaign
                             </Typography>
+                              <Divider
+                      orientation="horizontal"
+                      flexItem
+                      variant="fullWidth"
+                      sx={{ py: 1 }}
+                    />
                           </Stack>
                           <Stack
                             direction="row"
@@ -1735,7 +1916,7 @@ const AdWizardEdit = () => {
                 choseAd === "promoted_spot" && (
                   <Grid container spacing={2} ref={adtypeRef}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                      <Box p={4}>
+                      <Box p={4} sx={{ background: "#FFFFFF", borderRadius: 4, mb: 2 }}>
                         <Stack
                           direction="column"
                           spacing={2}
@@ -1767,6 +1948,12 @@ const AdWizardEdit = () => {
                               Select and Ad tailor your experience to the goals
                               and settings that will work best for your campaign
                             </Typography>
+                              <Divider
+                      orientation="horizontal"
+                      flexItem
+                      variant="fullWidth"
+                      sx={{ py: 1 }}
+                    />
                           </Stack>
                           <Stack direction="column" spacing={2} pt={3}>
                             <Stack
@@ -1891,7 +2078,7 @@ const AdWizardEdit = () => {
                 choseAd === "promoted_spot" && (
                   <Grid container spacing={2} ref={adtypeRef}>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                      <Box p={4}>
+                      <Box p={4} sx={{ background: "#FFFFFF", borderRadius: 4, mb: 2 }}>
                         <Stack
                           direction="column"
                           spacing={2}
@@ -1923,6 +2110,12 @@ const AdWizardEdit = () => {
                               Select and Ad tailor your experience to the goals
                               and settings that will work best for your campaign
                             </Typography>
+                              <Divider
+                      orientation="horizontal"
+                      flexItem
+                      variant="fullWidth"
+                      sx={{ py: 1 }}
+                    />
                           </Stack>
                           <Stack direction="column" spacing={2} pt={3}>
                             <Stack
