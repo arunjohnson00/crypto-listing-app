@@ -38,6 +38,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import { defaultColor } from "../../../common/common";
 import "./style.css";
 import VotePopupAds from "../../ads/votepopupads/VotePopupAds";
+import ArrowIcon from "../../../assets/table/arrow.svg";
 
 const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
@@ -135,8 +136,13 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     <Stack direction="row" spacing={0.5} alignItems="center">
                       <Typography>{item}</Typography>
                       {item === "Name" && (
-                        <ArrowForwardIosRoundedIcon
-                          sx={{ color: "#686868", fontSize: ".9rem" }}
+                        // <ArrowForwardIosRoundedIcon
+                        //   sx={{ color: "#686868", fontSize: ".9rem" }}
+                        // />
+
+                        <Avatar
+                          src={ArrowIcon}
+                          sx={{ width: 30, height: 30 }}
                         />
                       )}
                     </Stack>
@@ -151,8 +157,12 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     <Stack direction="row" spacing={0.5} alignItems="center">
                       <Typography>{item}</Typography>
                       {item === "Name" && (
-                        <ArrowForwardIosRoundedIcon
-                          sx={{ color: "#686868", fontSize: ".9rem" }}
+                        // <ArrowForwardIosRoundedIcon
+                        //   sx={{ color: "#686868", fontSize: ".9rem" }}
+                        // />
+                        <Avatar
+                          src={ArrowIcon}
+                          sx={{ width: 30, height: 30 }}
                         />
                       )}
                     </Stack>
@@ -166,8 +176,12 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     <Stack direction="row" spacing={0.5} alignItems="center">
                       <Typography>{item}</Typography>
                       {item === "Name" && (
-                        <ArrowForwardIosRoundedIcon
-                          sx={{ color: "#686868", fontSize: ".9rem" }}
+                        // <ArrowForwardIosRoundedIcon
+                        //   sx={{ color: "#686868", fontSize: ".9rem" }}
+                        // />
+                        <Avatar
+                          src={ArrowIcon}
+                          sx={{ width: 30, height: 30 }}
                         />
                       )}
                     </Stack>
