@@ -141,6 +141,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                         // />
 
                         <Avatar
+                          className="arrow_blink"
                           src={ArrowIcon}
                           sx={{ width: 30, height: 30 }}
                         />
@@ -161,6 +162,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                         //   sx={{ color: "#686868", fontSize: ".9rem" }}
                         // />
                         <Avatar
+                          className="arrow_blink"
                           src={ArrowIcon}
                           sx={{ width: 30, height: 30 }}
                         />
@@ -180,6 +182,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                         //   sx={{ color: "#686868", fontSize: ".9rem" }}
                         // />
                         <Avatar
+                          className="arrow_blink"
                           src={ArrowIcon}
                           sx={{ width: 30, height: 30 }}
                         />
