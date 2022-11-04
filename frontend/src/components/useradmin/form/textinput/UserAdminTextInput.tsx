@@ -1,13 +1,20 @@
 import { TextField } from "@mui/material";
 import React from "react";
 
-const UserAdminTextInput = ({ placeholder, inputHandler }: any) => {
+const UserAdminTextInput = ({
+  placeholder,
+  inputHandler,
+  value,
+  data,
+  setData,
+}: any) => {
   return (
     <TextField
       id="outlined-basic"
       variant="filled"
       placeholder={placeholder}
       fullWidth
+      value={value && value}
       InputProps={{ disableUnderline: true }}
       sx={{
         backgroundColor: "#07012F",

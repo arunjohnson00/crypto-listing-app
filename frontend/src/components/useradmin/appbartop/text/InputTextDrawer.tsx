@@ -6,18 +6,17 @@ import { theme } from "./style";
 const InputTextDrawer = ({
   placeholder,
   inputTextHandler,
+  inputHandler,
   value,
   name,
   id,
   checkboxStatus,
   width,
   InputProps,
+  data,
+  setData,
 }: any) => {
   const matches = useMediaQuery("(min-width:900px)");
-  const [inputValue, setinputValue] = useState();
-  useEffect(() => {
-    setinputValue(value);
-  }, [value]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -28,10 +27,9 @@ const InputTextDrawer = ({
         name={name}
         size="small"
         placeholder={placeholder}
-        value={inputValue}
+        value={value}
         onChange={(e: any) => {
-          inputTextHandler && inputTextHandler(e.target.value);
-          setinputValue(e.target.value);
+          inputHandler(e.target.value);
         }}
         sx={{
           fontSize: ".85rem",

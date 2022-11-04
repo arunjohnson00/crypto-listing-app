@@ -38,7 +38,6 @@ const UserAdminOverview = () => {
     dispatch(userAnnouncementsRequest("noData", successHandler, errorHandler));
   }, [dispatch]);
 
-  console.log(userAnnouncemnts);
   return (
     <Stack
       direction={{ xs: "column", sm: "column", md: "column", lg: "row" }}

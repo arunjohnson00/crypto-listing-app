@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useState } from "react";
+import { forwardRef, useCallback, useEffect, useState } from "react";
 import {
   Avatar,
   Box,
@@ -24,6 +24,7 @@ import userIcon from "../../../../assets/userdashboard/user.png";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet-async";
 
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 const UserSettings = () => {
   const [open, setOpen] = useState(false);
   const [profileImage, setProfileImage] = useState<any>(null);
@@ -34,6 +35,10 @@ const UserSettings = () => {
   const [menuVariant, setMenuVariant] = useState("");
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
+  const userData = useSelector((data: any) => {
+    return data?.userReducer?.user_login;
+  });
+  const authUser = JSON.parse(localStorage.getItem("authUser") as any);
   const handleClickOpen = (variant: any) => {
     setOpen(true);
     setMenuVariant(variant);
@@ -70,11 +75,6 @@ const UserSettings = () => {
   const confirmNewPasswordHandler = (val: any) => {
     setUserSettings({ ...userSettings, confirm_password: val });
   };
-
-  const userData = useSelector((data: any) => {
-    return data?.userReducer?.user_login;
-  });
-  const authUser = JSON.parse(localStorage.getItem("authUser") as any);
 
   const Transition = forwardRef(function Transition(
     props: TransitionProps & {
@@ -118,8 +118,22 @@ const UserSettings = () => {
     setCroppedImage(null);
   }, []);
 
+  useEffect(() => {
+    setUserSettings({
+      ...userSettings,
+      name:
+        userData && userData !== undefined
+          ? userData?.user?.name
+          : authUser && authUser?.name,
+      email:
+        userData && userData !== undefined
+          ? userData?.user?.email
+          : authUser && authUser?.email,
+    });
+  }, []);
+
   return (
-    <Grid container spacing={1}>
+    <Grid container spacing={1} px={{ xs: 1, sm: 1, md: 0 }} pb={7}>
       <Helmet>
         <title>User Settings | CoinXhigh.com</title>
         <meta
@@ -204,7 +218,12 @@ const UserSettings = () => {
                     maxWidth: 350,
                   }}
                 >
-                  <Stack direction="row" spacing={8} alignItems="center">
+                  <Stack
+                    direction="row"
+                    spacing={0}
+                    alignItems="center"
+                    justifyContent="space-between"
+                  >
                     <Box
                       sx={{
                         borderRadius: 2,
@@ -223,7 +242,11 @@ const UserSettings = () => {
                         src={
                           profileImage && croppedImage !== null
                             ? croppedImage && croppedImage
-                            : userIcon
+                            : `${serverAPIUrl}public/uploads/users/${
+                                userData && userData !== undefined
+                                  ? userData?.user?.avatar
+                                  : authUser && authUser?.avatar
+                              }`
                         }
                         sx={{ width: 56, height: 56 }}
                       />
@@ -293,6 +316,9 @@ const UserSettings = () => {
                       <UserAdminTextInput
                         placeholder="name"
                         inputHandler={userNameHandler}
+                        value={userSettings?.name}
+                        data={userSettings}
+                        setData={setUserSettings}
                       />
                     </Stack>
                     <Stack direction="column" spacing={1}>
@@ -310,6 +336,9 @@ const UserSettings = () => {
                       <UserAdminTextInput
                         placeholder="Email"
                         inputHandler={userEmailHandler}
+                        value={userSettings?.email}
+                        data={userSettings}
+                        setData={setUserSettings}
                       />
                     </Stack>
                     <Button

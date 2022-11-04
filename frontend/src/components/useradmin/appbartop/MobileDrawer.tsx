@@ -1,4 +1,4 @@
-import { forwardRef, Fragment, useCallback, useState } from "react";
+import { forwardRef, Fragment, useCallback, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import {
@@ -35,7 +35,7 @@ const Transition = forwardRef(function Transition(
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
+const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
   const [open, setOpen] = useState(false);
   const [profileImage, setProfileImage] = useState<any>(null);
@@ -46,6 +46,41 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
   const [menuVariant, setMenuVariant] = useState("");
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
+  const userData = useSelector((data: any) => {
+    return data?.userReducer?.user_login;
+  });
+
+  const authUser = JSON.parse(localStorage.getItem("authUser") as any);
+  const auth =
+    sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
+
+  const [userSettings, setUserSettings] = useState({
+    name: "",
+    email: "",
+    current_password: "",
+    new_password: "",
+    confirm_password: "",
+  });
+
+  const userNameHandler = (val: any) => {
+    setUserSettings({ ...userSettings, name: val });
+  };
+
+  const userEmailHandler = (val: any) => {
+    setUserSettings({ ...userSettings, email: val });
+  };
+
+  const currentPasswordHandler = (val: any) => {
+    setUserSettings({ ...userSettings, current_password: val });
+  };
+
+  const newPasswordHandler = (val: any) => {
+    setUserSettings({ ...userSettings, new_password: val });
+  };
+
+  const confirmNewPasswordHandler = (val: any) => {
+    setUserSettings({ ...userSettings, confirm_password: val });
+  };
   const handleClickOpen = (variant: any) => {
     setOpen(true);
     setMenuVariant(variant);
@@ -55,13 +90,6 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
     setOpen(false);
     setProfileImage(null);
   };
-  const userData = useSelector((data: any) => {
-    return data?.userReducer?.user_login;
-  });
-
-  const authUser = JSON.parse(localStorage.getItem("authUser") as any);
-  const auth =
-    sessionStorage.getItem("authToken") || localStorage.getItem("authToken");
 
   const onDrop = useCallback((acceptedFiles: any) => {
     setProfileImage(acceptedFiles[0]);
@@ -94,6 +122,20 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
 
   const onClose = useCallback(() => {
     setCroppedImage(null);
+  }, []);
+
+  useEffect(() => {
+    setUserSettings({
+      ...userSettings,
+      name:
+        userData && userData !== undefined
+          ? userData?.user?.name
+          : authUser && authUser?.name,
+      email:
+        userData && userData !== undefined
+          ? userData?.user?.email
+          : authUser && authUser?.email,
+    });
   }, []);
 
   return (
@@ -145,7 +187,15 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                 <Stack direction="row" spacing={2.5} alignItems="center">
                   <Avatar
                     alt="Profile"
-                    src={userIcon}
+                    src={
+                      profileImage && croppedImage !== null
+                        ? croppedImage && croppedImage
+                        : `${serverAPIUrl}public/uploads/users/${
+                            userData && userData !== undefined
+                              ? userData?.user?.avatar
+                              : authUser && authUser?.avatar
+                          }`
+                    }
                     sx={{ width: 50, height: 50 }}
                   />
                   <Stack direction="column" spacing={0} alignItems="flex-start">
@@ -826,7 +876,13 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                     <Typography variant="body2" sx={{ color: "#FFFFFF" }}>
                       Enter New Name
                     </Typography>
-                    <InputTextDrawer placeholder="Type your name" />
+                    <InputTextDrawer
+                      placeholder="Type your name"
+                      inputHandler={userNameHandler}
+                      value={userSettings?.name}
+                      data={userSettings}
+                      setData={setUserSettings}
+                    />
                   </Stack>
                   <Button
                     variant="contained"
@@ -904,7 +960,13 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                     <Typography variant="body2" sx={{ color: "#FFFFFF" }}>
                       Enter New E-mail
                     </Typography>
-                    <InputTextDrawer placeholder="Type your email" />
+                    <InputTextDrawer
+                      placeholder="Type your email"
+                      value={userSettings?.email}
+                      data={userSettings}
+                      setData={setUserSettings}
+                      inputHandler={userEmailHandler}
+                    />
                   </Stack>
                   <Button
                     variant="contained"
@@ -965,7 +1027,10 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                     <Typography variant="body2" sx={{ color: "#FFFFFF" }}>
                       Enter Current Password
                     </Typography>
-                    <InputTextDrawer placeholder="Enter Current Password" />
+                    <InputTextDrawer
+                      placeholder="Enter Current Password"
+                      inputHandler={currentPasswordHandler}
+                    />
                   </Stack>
                   <Stack
                     direction="column"
@@ -976,7 +1041,10 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                     <Typography variant="body2" sx={{ color: "#FFFFFF" }}>
                       Enter New Password
                     </Typography>
-                    <InputTextDrawer placeholder="Enter New Password" />
+                    <InputTextDrawer
+                      placeholder="Enter New Password"
+                      inputHandler={newPasswordHandler}
+                    />
                   </Stack>
                   <Stack
                     direction="column"
@@ -987,7 +1055,10 @@ const MobileDrawer = ({ state, setState, toggleDrawer }: any) => {
                     <Typography variant="body2" sx={{ color: "#FFFFFF" }}>
                       Confirm New Password
                     </Typography>
-                    <InputTextDrawer placeholder="Confirm New Password" />
+                    <InputTextDrawer
+                      placeholder="Confirm New Password"
+                      inputHandler={confirmNewPasswordHandler}
+                    />
                   </Stack>
                   <Button
                     variant="contained"
