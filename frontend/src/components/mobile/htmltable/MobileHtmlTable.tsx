@@ -42,7 +42,7 @@ import ArrowIcon from "../../../assets/table/arrow.svg";
 
 const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
-
+  const scrollElement = useRef<any>(null);
   const dispatch: any = useDispatch();
   const location: any = useLocation();
   const [vote, setVote] = useState<any>({
@@ -51,8 +51,12 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
     captcha: false,
   });
   const [openCaptcha, setOpenCaptcha] = useState<any>(false);
+  const [scroll, setScroll] = useState<any>(false);
   const [voteid, setVoteId] = useState<any>();
-
+  const scrollLeft: any = () => {
+    setScroll(!scroll);
+    scrollElement.current.scrollLeft = scroll === false ? 60 : 0;
+  };
   const recaptchaRef: any = useRef<ReCAPTCHA>();
   const tabIndex = useSelector((data: any) => {
     return data?.homeReducer?.crypto_currencies_tab;
@@ -112,6 +116,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
     <TableContainer
       component={Paper}
       className={variant === "crypto_currencies" ? "tableFixHead" : ""}
+      ref={scrollElement}
     >
       <Table
         sx={{
@@ -144,6 +149,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                           className="arrow_blink"
                           src={ArrowIcon}
                           sx={{ width: 30, height: 30 }}
+                          onClick={() => scrollLeft()}
                         />
                       )}
                     </Stack>
@@ -165,6 +171,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                           className="arrow_blink"
                           src={ArrowIcon}
                           sx={{ width: 30, height: 30 }}
+                          onClick={() => scrollLeft()}
                         />
                       )}
                     </Stack>
@@ -185,6 +192,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                           className="arrow_blink"
                           src={ArrowIcon}
                           sx={{ width: 30, height: 30 }}
+                          onClick={() => scrollLeft()}
                         />
                       )}
                     </Stack>
