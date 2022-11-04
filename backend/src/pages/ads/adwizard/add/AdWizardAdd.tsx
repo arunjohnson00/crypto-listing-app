@@ -710,26 +710,25 @@ const AdWizardAdd = () => {
                                 }
                               />
                             </Stack>
-                            <Stack direction="column" spacing={1.5}>
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  textAlign: "left",
-                                  color: "#000000",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                Banner Image
-                              </Typography>
-                              <CoinUploader
-                                name="logo"
-                                id="logo"
-                                setAddIcon={setCreateAdsData}
-                                addIconData={createAdsData}
-                              />
-                            </Stack>
                           </Stack>
-
+                          <Stack direction="column" spacing={1.5}>
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                textAlign: "left",
+                                color: "#000000",
+                                fontWeight: 600,
+                              }}
+                            >
+                              Banner Image
+                            </Typography>
+                            <CoinUploader
+                              name="logo"
+                              id="logo"
+                              setAddIcon={setCreateAdsData}
+                              addIconData={createAdsData}
+                            />
+                          </Stack>
                           <Stack
                             direction="column"
                             spacing={0.7}

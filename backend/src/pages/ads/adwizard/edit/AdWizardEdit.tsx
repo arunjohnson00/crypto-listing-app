@@ -745,28 +745,27 @@ const AdWizardEdit = () => {
                                 }
                               />
                             </Stack>
-                            <Stack direction="column" spacing={1.5}>
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  textAlign: "left",
-                                  color: "#000000",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                Banner Image
-                              </Typography>
-                              <CoinUploader
-                                name="logo"
-                                id="logo"
-                                setAddIcon={setEditAdsData}
-                                addIconData={editAdsData}
-                                slug="banner_ads"
-                                variant="ads"
-                              />
-                            </Stack>
                           </Stack>
-
+                          <Stack direction="column" spacing={1.5}>
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                textAlign: "left",
+                                color: "#000000",
+                                fontWeight: 600,
+                              }}
+                            >
+                              Banner Image
+                            </Typography>
+                            <CoinUploader
+                              name="logo"
+                              id="logo"
+                              setAddIcon={setEditAdsData}
+                              addIconData={editAdsData}
+                              slug="banner_ads"
+                              variant="ads"
+                            />
+                          </Stack>
                           <Stack
                             direction="column"
                             spacing={0.7}
