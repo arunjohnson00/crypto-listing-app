@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
-import { textareaStyle, rowCount } from "./style";
+import { textareaStyle, rowCount, adTextareaStyle } from "./style";
 import "./style.css";
 import { useMediaQuery } from "@mui/material";
 // import RichTextEditor from "react-rte";
@@ -39,7 +39,6 @@ const InputTextArea = ({
       });
   }, [value]);
 
-  console.log(data?.description);
   return (
     <Fragment>
       {variant === "richtext" ? (
@@ -62,7 +61,7 @@ const InputTextArea = ({
             aria-label="minimum height"
             minRows={rowCount}
             placeholder={placeholder}
-            style={textareaStyle}
+            style={adTextareaStyle}
             name={name}
             id={id}
             value={data?.search_ad_description}

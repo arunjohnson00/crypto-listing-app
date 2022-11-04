@@ -666,7 +666,7 @@ const AdWizardAdd = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              flexGrow={0.5}
                             >
                               <Typography
                                 variant="body2"
@@ -690,7 +690,7 @@ const AdWizardAdd = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              flexGrow={1.5}
                             >
                               <Typography
                                 variant="body2"
@@ -776,7 +776,8 @@ const AdWizardAdd = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              //flexGrow={1}
+                              width={200}
                             >
                               <Typography
                                 variant="body2"
@@ -798,7 +799,8 @@ const AdWizardAdd = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              //flexGrow={1}
+                              width={200}
                             >
                               <Typography
                                 variant="body2"
@@ -912,69 +914,70 @@ const AdWizardAdd = () => {
                             }}
                             pt={3}
                           >
-                            <Stack
-                              direction="column"
-                              spacing={1.5}
-                              flexGrow={1}
-                            >
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  textAlign: "left",
-                                  color: "#000000",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                Search Title{" "}
-                                <span
-                                  style={{
-                                    color: "#006aee",
-                                    fontWeight: 400,
-                                    fontSize: ".75rem",
-                                  }}
-                                >
-                                  (Max 55 Words)
-                                </span>
-                              </Typography>
-                              <InputText
-                                width={100}
-                                placeholder=" Banner Name"
-                                inputTextHandler={(e: any) =>
-                                  createAdsNameHandler(e)
-                                }
-                              />
-                            </Stack>
-
-                            <Stack
-                              direction="column"
-                              spacing={1.5}
-                              flexGrow={1}
-                            >
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  textAlign: "left",
-                                  color: "#000000",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                Redirection URL
-                              </Typography>
-                              <InputText
-                                width={100}
-                                placeholder="Redirection URL"
-                                inputTextHandler={(e: any) =>
-                                  createAdsLinkHandler(e)
-                                }
-                              />
-                            </Stack>
-
-                            <Stack direction="row" spacing={1.5} width="100%">
+                            <Stack direction="row" spacing={2} width="100%">
                               <Stack
                                 direction="column"
                                 spacing={1.5}
-                                minWidth={350}
                                 flexGrow={1}
+                              >
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    textAlign: "left",
+                                    color: "#000000",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  Search Title{" "}
+                                  <span
+                                    style={{
+                                      color: "#006aee",
+                                      fontWeight: 400,
+                                      fontSize: ".75rem",
+                                    }}
+                                  >
+                                    (Max 55 Words)
+                                  </span>
+                                </Typography>
+                                <InputText
+                                  width={100}
+                                  placeholder=" Banner Name"
+                                  inputTextHandler={(e: any) =>
+                                    createAdsNameHandler(e)
+                                  }
+                                />
+                              </Stack>
+
+                              <Stack
+                                direction="column"
+                                spacing={1.5}
+                                flexGrow={1}
+                              >
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    textAlign: "left",
+                                    color: "#000000",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  Redirection URL
+                                </Typography>
+                                <InputText
+                                  width={100}
+                                  placeholder="Redirection URL"
+                                  inputTextHandler={(e: any) =>
+                                    createAdsLinkHandler(e)
+                                  }
+                                />
+                              </Stack>
+                            </Stack>
+                            <Stack direction="row" spacing={2} width="100%">
+                              <Stack
+                                direction="column"
+                                spacing={1.5}
+                                // minWidth={350}
+                                flexGrow={1.1}
                               >
                                 <Typography
                                   variant="body2"
@@ -999,7 +1002,7 @@ const AdWizardAdd = () => {
                                   variant="ad_wizard"
                                   placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."
                                   name="search_ad_description"
-                                  width={300}
+                                  width={"auto"}
                                   data={createAdsData}
                                   setData={setCreateAdsData}
                                 />
@@ -1065,7 +1068,7 @@ const AdWizardAdd = () => {
                                 fontWeight: 600,
                               }}
                             >
-                              Select Date & Coin
+                              Select Date
                             </Typography>
                             <Typography
                               sx={{
@@ -1098,7 +1101,8 @@ const AdWizardAdd = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              // flexGrow={1}
+                              width={200}
                             >
                               <Typography
                                 variant="body2"
@@ -1120,7 +1124,8 @@ const AdWizardAdd = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              // flexGrow={1}
+                              width={200}
                             >
                               <Typography
                                 variant="body2"
@@ -1235,7 +1240,7 @@ const AdWizardAdd = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              flexGrow={0.1}
                             >
                               <Typography
                                 variant="body2"
@@ -1292,7 +1297,7 @@ const AdWizardAdd = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              flexGrow={0.1}
                             >
                               <Typography
                                 variant="body2"
@@ -1402,7 +1407,8 @@ const AdWizardAdd = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              // flexGrow={1}
+                              width={200}
                             >
                               <Typography
                                 variant="body2"
@@ -1424,7 +1430,8 @@ const AdWizardAdd = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              // flexGrow={1}
+                              width={200}
                             >
                               <Typography
                                 variant="body2"
@@ -1606,7 +1613,8 @@ const AdWizardAdd = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              // flexGrow={1}
+                              width={"auto"}
                             >
                               <Typography
                                 variant="body2"
@@ -1627,7 +1635,8 @@ const AdWizardAdd = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              // flexGrow={1}
+                              width={200}
                             >
                               <Typography
                                 variant="body2"
@@ -1649,7 +1658,8 @@ const AdWizardAdd = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              // flexGrow={1}
+                              width={200}
                             >
                               <Typography
                                 variant="body2"

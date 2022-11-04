@@ -697,7 +697,7 @@ const AdWizardEdit = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              flexGrow={0.5}
                             >
                               <Typography
                                 variant="body2"
@@ -722,7 +722,7 @@ const AdWizardEdit = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              flexGrow={1.5}
                             >
                               <Typography
                                 variant="body2"
@@ -814,7 +814,8 @@ const AdWizardEdit = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              // flexGrow={1}
+                              width={200}
                             >
                               <Typography
                                 variant="body2"
@@ -842,7 +843,8 @@ const AdWizardEdit = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              // flexGrow={1}
+                              width={200}
                             >
                               <Typography
                                 variant="body2"
@@ -960,73 +962,77 @@ const AdWizardEdit = () => {
                             }}
                             pt={3}
                           >
-                            <Stack
-                              direction="column"
-                              spacing={1.5}
-                              flexGrow={1}
-                            >
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  textAlign: "left",
-                                  color: "#000000",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                Search Title{" "}
-                                <span
-                                  style={{
-                                    color: "#006aee",
-                                    fontWeight: 400,
-                                    fontSize: ".75rem",
-                                  }}
-                                >
-                                  (Max 55 Words)
-                                </span>
-                              </Typography>
-                              <InputText
-                                width={100}
-                                placeholder=" Banner Name"
-                                inputTextHandler={(e: any) =>
-                                  editAdsNameHandler(e)
-                                }
-                                value={editAdsData && editAdsData?.banner_name}
-                              />
-                            </Stack>
-
-                            <Stack
-                              direction="column"
-                              spacing={1.5}
-                              flexGrow={1}
-                            >
-                              <Typography
-                                variant="body2"
-                                sx={{
-                                  textAlign: "left",
-                                  color: "#000000",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                Redirection URL
-                              </Typography>
-                              <InputText
-                                width={100}
-                                placeholder="Redirection URL"
-                                inputTextHandler={(e: any) =>
-                                  editAdsLinkHandler(e)
-                                }
-                                value={
-                                  editAdsData && editAdsData?.banner_target_link
-                                }
-                              />
-                            </Stack>
-
-                            <Stack direction="row" spacing={1.5} width="100%">
+                            <Stack direction="row" spacing={2} width="100%">
                               <Stack
                                 direction="column"
                                 spacing={1.5}
-                                minWidth={350}
                                 flexGrow={1}
+                              >
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    textAlign: "left",
+                                    color: "#000000",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  Search Title{" "}
+                                  <span
+                                    style={{
+                                      color: "#006aee",
+                                      fontWeight: 400,
+                                      fontSize: ".75rem",
+                                    }}
+                                  >
+                                    (Max 55 Words)
+                                  </span>
+                                </Typography>
+                                <InputText
+                                  width={100}
+                                  placeholder=" Banner Name"
+                                  inputTextHandler={(e: any) =>
+                                    editAdsNameHandler(e)
+                                  }
+                                  value={
+                                    editAdsData && editAdsData?.banner_name
+                                  }
+                                />
+                              </Stack>
+
+                              <Stack
+                                direction="column"
+                                spacing={1.5}
+                                flexGrow={1}
+                              >
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    textAlign: "left",
+                                    color: "#000000",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  Redirection URL
+                                </Typography>
+                                <InputText
+                                  width={100}
+                                  placeholder="Redirection URL"
+                                  inputTextHandler={(e: any) =>
+                                    editAdsLinkHandler(e)
+                                  }
+                                  value={
+                                    editAdsData &&
+                                    editAdsData?.banner_target_link
+                                  }
+                                />
+                              </Stack>
+                            </Stack>
+                            <Stack direction="row" spacing={2} width="100%">
+                              <Stack
+                                direction="column"
+                                spacing={1.5}
+                                // minWidth={350}
+                                flexGrow={1.1}
                               >
                                 <Typography
                                   variant="body2"
@@ -1123,7 +1129,7 @@ const AdWizardEdit = () => {
                                 fontWeight: 600,
                               }}
                             >
-                              Select Date & Coin
+                              Select Date
                             </Typography>
                             <Typography
                               sx={{
@@ -1157,7 +1163,8 @@ const AdWizardEdit = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              // flexGrow={1}
+                              width={200}
                             >
                               <Typography
                                 variant="body2"
@@ -1185,7 +1192,8 @@ const AdWizardEdit = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              // flexGrow={1}
+                              width={200}
                             >
                               <Typography
                                 variant="body2"
@@ -1304,7 +1312,7 @@ const AdWizardEdit = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              flexGrow={0.1}
                             >
                               <Typography
                                 variant="body2"
@@ -1365,7 +1373,7 @@ const AdWizardEdit = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              flexGrow={0.1}
                             >
                               <Typography
                                 variant="body2"
@@ -1480,7 +1488,8 @@ const AdWizardEdit = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              // flexGrow={1}
+                              width={200}
                             >
                               <Typography
                                 variant="body2"
@@ -1508,7 +1517,8 @@ const AdWizardEdit = () => {
                             <Stack
                               direction="column"
                               spacing={1.5}
-                              flexGrow={1}
+                              // flexGrow={1}
+                              width={200}
                             >
                               <Typography
                                 variant="body2"
@@ -1694,7 +1704,11 @@ const AdWizardEdit = () => {
                             }}
                             pt={3}
                           >
-                            <Stack direction="column" spacing={1.5}>
+                            <Stack
+                              direction="column"
+                              spacing={1.5}
+                              width={"auto"}
+                            >
                               <Typography
                                 variant="body2"
                                 sx={{
@@ -1712,7 +1726,7 @@ const AdWizardEdit = () => {
                                 serverRef={editAdsData && editAdsData?.coin_id}
                               />
                             </Stack>
-                            <Stack direction="column" spacing={1.5}>
+                            <Stack direction="column" spacing={1.5} width={200}>
                               <Typography
                                 variant="body2"
                                 sx={{
@@ -1736,7 +1750,7 @@ const AdWizardEdit = () => {
                                 }
                               />
                             </Stack>
-                            <Stack direction="column" spacing={1.5}>
+                            <Stack direction="column" spacing={1.5} width={200}>
                               <Typography
                                 variant="body2"
                                 sx={{
