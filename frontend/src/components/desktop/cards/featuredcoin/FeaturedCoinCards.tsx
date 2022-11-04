@@ -312,7 +312,7 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
 
           {cardData &&
             parseInt(cardData?.is_presale) === 1 &&
-            moment(new Date()).isAfter(new Date(cardData?.presale_end_date)) ===
+            moment(cardData?.presale_end_date).isBefore(new Date(), "day") ===
               true && (
               <Stack
                 direction="row"

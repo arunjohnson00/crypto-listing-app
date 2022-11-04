@@ -409,8 +409,9 @@ const SingleCoinHeader = ({ coinData }: any) => {
 
                 {coinData &&
                   parseInt(coinData?.is_presale) === 1 &&
-                  moment(new Date()).isAfter(
-                    new Date(coinData?.presale_end_date)
+                  moment(coinData?.presale_end_date).isBefore(
+                    new Date(),
+                    "day"
                   ) === true && (
                     <Stack
                       direction="row"
@@ -437,11 +438,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
                     moment(coinData?.presale_end_date).format("YYYY-MM-DD")
                   ) === true && (
-                    <Stack
-                      direction="column"
-                      spacing={-1.5}
-                      alignItems="center"
-                    >
+                    <Stack direction="row" spacing={1} alignItems="center">
                       <Stack direction="row" spacing={0.5} alignItems="center">
                         <span className="ripplefeaturedcoin"></span>
                         <Typography
