@@ -39,13 +39,13 @@ const UserAdminSideBar = ({ collapse, setCollapse }: any) => {
     <ProSidebar
       collapsed={collapse}
       style={{
-        position: "sticky",
+        position: "fixed",
         height: "100vh",
         background: "#08022f",
         top: 0,
       }}
       //breakPoint="sm"
-      width={"auto"}
+      //width={"auto"}
       collapsedWidth={75}
     >
       <SidebarHeader
