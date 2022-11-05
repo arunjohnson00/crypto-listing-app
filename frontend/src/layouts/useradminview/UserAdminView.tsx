@@ -44,7 +44,9 @@ const UserAdminView = ({ children }: any) => {
           width={matches === true ? "80%" : "100%"}
           sx={{ transition: "all .5s" }}
         >
-          <Box px={matches === true ? 4 : 1.5}>{children}</Box>
+          <Box px={matches === true ? 4 : 1.5} sx={{ height: "100vh" }}>
+            {children}
+          </Box>
         </Box>
 
         {matches === false && (
