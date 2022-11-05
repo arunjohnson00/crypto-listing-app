@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useWindowHeight } from "@react-hook/window-size";
 import { Grid, Box, Stack, useMediaQuery } from "@mui/material";
 import NotificationBar from "../../components/useradmin/notificationbar/NotificationBar";
 import UserAdminSideBar from "../../components/useradmin/useradminsidebar/UserAdminSideBar";
@@ -10,6 +11,8 @@ import MobileAppbarTop from "../../components/useradmin/appbartop/MobileAppbarTo
 const UserAdminView = ({ children }: any) => {
   const location: any = useLocation();
   const [collapse, setCollapse] = useState(true);
+
+  const onlyHeight = useWindowHeight();
   const matches = useMediaQuery("(min-width:900px)");
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -43,8 +46,9 @@ const UserAdminView = ({ children }: any) => {
           py={0}
           width={matches === true ? "80%" : "100%"}
           sx={{ transition: "all .5s" }}
+          height="100%"
         >
-          <Box px={matches === true ? 4 : 1.5} sx={{ height: "100vh" }}>
+          <Box px={matches === true ? 4 : 1.5} height="auto">
             {children}
           </Box>
         </Box>
