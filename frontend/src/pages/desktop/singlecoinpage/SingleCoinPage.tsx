@@ -56,6 +56,7 @@ const responsive = {
     slidesToSlide: 1,
   },
 };
+const baseUrl = process.env.REACT_APP_BASE_URL;
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const SingleCoinPage = () => {
   const coinDetailFirstBlock = useSelector((data: any) => {
@@ -188,7 +189,7 @@ const SingleCoinPage = () => {
             <meta name="robots" content="index, follow" />
             <meta
               property="og:site_name"
-              content={`"${
+              content={`${
                 coinDetailFirstBlock &&
                 coinDetailFirstBlock !== undefined &&
                 coinDetailFirstBlock[0]?.name
@@ -200,11 +201,11 @@ const SingleCoinPage = () => {
             coinDetailFirstBlock[0]?.symbol
           }
           ) Today's Price, Votes, Overview, Ratings, Historical Data, Faq,
-          Socials, News & More."`}
+          Socials, News & More.`}
             />
             <meta
               property="og:title"
-              content={`"${
+              content={`${
                 coinDetailFirstBlock &&
                 coinDetailFirstBlock !== undefined &&
                 coinDetailFirstBlock[0]?.name
@@ -216,14 +217,14 @@ const SingleCoinPage = () => {
             coinDetailFirstBlock[0]?.symbol
           }
           ) Today's Price, Votes, Overview, Ratings, Historical Data, Faq,
-          Socials, News & More."`}
+          Socials, News & More.`}
             />
             <meta property="og:locale" content="en" />
             <meta property="og:type" content="website" />
 
             <meta
               property="og:description"
-              content={`"The live $${
+              content={`The live $${
                 coinDetailFirstBlock &&
                 coinDetailFirstBlock !== undefined &&
                 coinDetailFirstBlock[0]?.symbol
@@ -251,18 +252,18 @@ const SingleCoinPage = () => {
                       .toFixed(2)
                       .replace("-", "") + "%"
                   : "--"
-              } ..."`}
+              } ...`}
             />
 
             <meta
               property="og:image"
-              content={`"${serverAPIUrl}public/uploads/coin_logo/${
+              content={`${serverAPIUrl}public/uploads/coin_logo/${
                 coinDetailOverview && coinDetailOverview[0]?.logo
-              }"`}
+              }`}
             />
             <meta
               property="og:url"
-              content={`"${location && location.pathname}"`}
+              content={`${baseUrl}${location && location.pathname}`}
             />
             <meta
               http-equiv="Content-Type"
