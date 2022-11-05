@@ -228,7 +228,8 @@ const CoinPageChart = ({ data }: any) => {
           "area-datetime",
           "zoomX",
 
-          new Date(data && data?.price[data?.price?.length - 1][0]).getTime()
+          data?.price?.length > 0 &&
+            new Date(data && data?.price[data?.price?.length - 1][0]).getTime()
         );
         break;
 
