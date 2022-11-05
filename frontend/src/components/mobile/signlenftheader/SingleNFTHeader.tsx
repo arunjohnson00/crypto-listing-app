@@ -11,6 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import Countdown from "react-countdown";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -40,7 +41,7 @@ import VoteImage from "../../../assets/singlepagenft/vote_icon.png";
 import LinkImage from "../../../assets/singlepagenft/globe.gif";
 
 import MobileSingleCoinChip from "../coinpagechip/MobileSingleCoinChip";
-import { CountDownTimer } from "./countdown/CountDownTimer";
+
 import {
   nftSinglePageDetailsRequest,
   nftVoteRequest,
@@ -73,12 +74,23 @@ const SingleNFTHeader = () => {
     setOpenCaptcha(false);
     setVote({ ...vote, initial: false, completed: false, captcha: false });
   };
+  var voteLocal = JSON.parse(
+    localStorage.getItem(`vote_${location?.pathname?.split("/").pop()}`) as any
+  );
 
   const coinVoteHandler = () => {
     const successHandler = (res: any) => {
       setOpenCaptcha(false);
       setVote({ ...vote, initial: true, completed: false, captcha: false });
-
+      if (voteLocal === null) {
+        localStorage.setItem(
+          `vote_${location?.pathname?.split("/").pop()}`,
+          JSON.stringify({
+            time: new Date().getTime(),
+            status: true,
+          })
+        );
+      }
       setTimeout(function () {
         toast.success(
           <Box>
@@ -118,6 +130,11 @@ const SingleNFTHeader = () => {
       )
     );
   };
+  useEffect(() => {
+    if (new Date().getTime() - voteLocal?.time > 24 * 60 * 60 * 1000) {
+      localStorage.removeItem(`vote_${location?.pathname?.split("/").pop()}`);
+    }
+  }, [location, voteLocal]);
 
   useEffect(() => {
     const successHandler = (res: any) => {
@@ -259,7 +276,8 @@ const SingleNFTHeader = () => {
           </Stack>
 
           <Stack direction="column" alignItems="flex-start">
-            {vote &&
+            {voteLocal === null &&
+            vote &&
             vote.initial === false &&
             vote.completed === false &&
             vote.captcha === false ? (
@@ -373,7 +391,9 @@ const SingleNFTHeader = () => {
                 Submit
               </LoadingButton>
             ) : (
-              vote.completed === true && (
+              (voteLocal !== null ||
+                voteLocal?.status === true ||
+                vote.completed) === true && (
                 <Button
                   variant="contained"
                   sx={{
@@ -464,99 +484,197 @@ const SingleNFTHeader = () => {
           orientation={"horizontal"}
           sx={{ borderColor: "#0b1640", borderRightWidth: 1 }}
         />
-        <Stack direction="column" spacing={0}>
-          {/* <Typography
-            sx={{ color: "#435394", fontSize: ".85rem", fontWeight: 500 }}
-          >
-            Presale starts in
-          </Typography>
-          <Typography
-            sx={{ color: "#CEE478", fontSize: "1rem", fontWeight: 500 }}
-          >
-            23 Day 15 Hour 23 Minutes 23 Seconds
-          </Typography> */}
+        {/* <Stack direction="column" spacing={0}>
+        
 
           {nftSinglePageDetails &&
-            (nftSinglePageDetails?.data?.pre_sale_start_date !== "" ||
-              nftSinglePageDetails?.data?.pre_sale_start_date !== null) &&
-            moment(
-              new Date(nftSinglePageDetails?.data?.pre_sale_start_date)
-            ).isAfter(new Date()) === true && (
-              <Stack
-                direction="row"
-                sx={{ alignItems: "center" }}
-                spacing={0.5}
-              >
-                <Typography
-                  variant="caption"
-                  sx={{ color: "#435394", fontSize: ".85rem", fontWeight: 500 }}
-                >
-                  Starts in
-                </Typography>
+            moment(moment(new Date()).format("YYYY-MM-DD")).isBefore(
+              moment(nftSinglePageDetails?.data?.presale_start_date).format(
+                "YYYY-MM-DD"
+              )
+            ) === true && (
+              <Stack direction="column" spacing={-0.2} alignItems="center">
                 <Typography
                   variant="body2"
-                  sx={{ color: "#CEE478", fontSize: "1rem", fontWeight: 500 }}
+                  sx={{
+                    color: "#435394",
+                    fontSize: ".85rem",
+                    fontWeight: "500",
+                  }}
                 >
-                  {CountDownTimer(
-                    moment(
-                      new Date(nftSinglePageDetails?.data?.pre_sale_start_date)
-                    )
+                  Presale starts in
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    color: "#CEE478",
+                    fontSize: "1rem",
+                    fontWeight: "600",
+                    textAlign: "center",
+                  }}
+                >
+                  {nftSinglePageDetails && (
+                    <Countdown
+                      date={
+                        new Date(nftSinglePageDetails?.data?.presale_start_date)
+                      }
+                      renderer={({
+                        days,
+                        hours,
+                        minutes,
+                        seconds,
+                        completed,
+                      }) => {
+                        return (
+                          <span>
+                            {days}D {hours}H {minutes}M {seconds}S
+                          </span>
+                        );
+                      }}
+                    />
                   )}
                 </Typography>
               </Stack>
             )}
 
           {nftSinglePageDetails &&
-            (nftSinglePageDetails?.data?.pre_sale_start_date !== "" ||
-              nftSinglePageDetails?.data?.pre_sale_start_date !== null) &&
             moment(new Date()).isBetween(
-              new Date(nftSinglePageDetails?.data?.pre_sale_start_date),
-              new Date(nftSinglePageDetails?.data?.pre_sale_end_date)
+              new Date(nftSinglePageDetails?.data?.presale_start_date),
+              new Date(nftSinglePageDetails?.data?.presale_end_date)
             ) === true && (
-              <Stack
-                direction="row"
-                sx={{ alignItems: "center" }}
-                spacing={0.5}
-              >
-                <Typography
-                  variant="caption"
-                  sx={{ color: "#435394", fontSize: ".85rem", fontWeight: 500 }}
-                >
-                  Ends in
-                </Typography>
+              <Stack direction="column" spacing={-0.2} alignItems="center">
                 <Typography
                   variant="body2"
-                  sx={{ color: "#CEE478", fontSize: "1rem", fontWeight: 500 }}
+                  sx={{
+                    color: "#435394",
+                    fontSize: ".85rem",
+                    fontWeight: "500",
+                  }}
                 >
-                  {CountDownTimer(
-                    moment(
-                      new Date(nftSinglePageDetails?.data?.pre_sale_end_date)
-                    )
+                  Presale ends in
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    color: "#CEE478",
+                    fontSize: "1rem",
+                    fontWeight: "600",
+                    textAlign: "center",
+                  }}
+                >
+                  {nftSinglePageDetails && (
+                    <Countdown
+                      date={
+                        new Date(nftSinglePageDetails?.data?.presale_end_date)
+                      }
+                      renderer={({
+                        days,
+                        hours,
+                        minutes,
+                        seconds,
+                        completed,
+                      }) => {
+                        return (
+                          <span>
+                            {days}D {hours}H {minutes}M {seconds}S
+                          </span>
+                        );
+                      }}
+                    />
                   )}
                 </Typography>
               </Stack>
             )}
 
           {nftSinglePageDetails &&
-            (nftSinglePageDetails?.data?.pre_sale_end_date !== "" ||
-              nftSinglePageDetails?.data?.pre_sale_end_date !== null) &&
-            moment(new Date()).isAfter(
-              new Date(nftSinglePageDetails?.data?.pre_sale_end_date)
+            moment(moment(new Date()).format("YYYY-MM-DD")).isAfter(
+              moment(nftSinglePageDetails?.data?.presale_end_date).format(
+                "YYYY-MM-DD"
+              )
             ) === true && (
               <Stack
-                direction="row"
-                sx={{ alignItems: "center" }}
-                spacing={0.5}
+                direction="column"
+                spacing={0}
+                alignItems="center"
+                pb={1.8}
               >
                 <Typography
                   variant="body2"
-                  sx={{ color: "#CEE478", fontSize: "1rem", fontWeight: 500 }}
+                  sx={{
+                    color: "#435394",
+                    fontSize: ".85rem",
+                    fontWeight: "500",
+                  }}
                 >
-                  Presale is expired
+                  Presale status
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    color: "#CEE478",
+                    fontSize: "1rem",
+                    fontWeight: "600",
+                  }}
+                >
+                  Expired
                 </Typography>
               </Stack>
             )}
-        </Stack>
+
+          {nftSinglePageDetails &&
+            moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+              moment(nftSinglePageDetails?.data?.presale_start_date).format(
+                "YYYY-MM-DD"
+              )
+            ) === true &&
+            moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+              moment(nftSinglePageDetails?.data?.presale_end_date).format(
+                "YYYY-MM-DD"
+              )
+            ) === true && (
+              <Stack direction="column" spacing={-0.2} alignItems="center">
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#435394",
+                    fontSize: ".85rem",
+                    fontWeight: "500",
+                  }}
+                >
+                  Presale ends in
+                </Typography>
+
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    color: "#CEE478",
+                    fontSize: "1rem",
+                    fontWeight: "600",
+                    textAlign: "center",
+                  }}
+                >
+                  {nftSinglePageDetails && (
+                    <Countdown
+                      date={moment().endOf("day").format("YYYY-MM-DD")}
+                      renderer={({
+                        days,
+                        hours,
+                        minutes,
+                        seconds,
+                        completed,
+                      }) => {
+                        return (
+                          <span>
+                            {days}D {hours}H {minutes}M {seconds}S
+                          </span>
+                        );
+                      }}
+                    />
+                  )}
+                </Typography>
+              </Stack>
+            )}
+        </Stack> */}
         <Stack direction="column" spacing={2}>
           <Stack direction="row" spacing={2}>
             <Stack

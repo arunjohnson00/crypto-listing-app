@@ -104,12 +104,23 @@ const SingleNftPage = () => {
     setOpenCaptcha(false);
     setVote({ ...vote, initial: false, completed: false, captcha: false });
   };
+  var voteLocal = JSON.parse(
+    localStorage.getItem(`vote_${location?.pathname?.split("/").pop()}`) as any
+  );
 
   const coinVoteHandler = () => {
     const successHandler = (res: any) => {
       setOpenCaptcha(false);
       setVote({ ...vote, initial: true, completed: false, captcha: false });
-
+      if (voteLocal === null) {
+        localStorage.setItem(
+          `vote_${location?.pathname?.split("/").pop()}`,
+          JSON.stringify({
+            time: new Date().getTime(),
+            status: true,
+          })
+        );
+      }
       setTimeout(function () {
         toast.success(
           <Box>
@@ -149,7 +160,11 @@ const SingleNftPage = () => {
       )
     );
   };
-
+  useEffect(() => {
+    if (new Date().getTime() - voteLocal?.time > 24 * 60 * 60 * 1000) {
+      localStorage.removeItem(`vote_${location?.pathname?.split("/").pop()}`);
+    }
+  }, [location, voteLocal]);
   return (
     <Fragment>
       <Grid container rowSpacing={5} columnSpacing={0}>
@@ -841,7 +856,8 @@ const SingleNftPage = () => {
                   /> */}
 
                     <Stack direction="column" alignItems="flex-start">
-                      {vote &&
+                      {voteLocal === null &&
+                      vote &&
                       vote.initial === false &&
                       vote.completed === false &&
                       vote.captcha === false ? (
@@ -953,7 +969,9 @@ const SingleNftPage = () => {
                           Submit
                         </LoadingButton>
                       ) : (
-                        vote.completed === true && (
+                        (voteLocal !== null ||
+                          voteLocal?.status === true ||
+                          vote.completed === true) && (
                           <Button
                             variant="contained"
                             sx={{

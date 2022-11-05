@@ -45,6 +45,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
     completed: false,
     captcha: false,
   });
+  const [voteSlug, setVoteSlug] = useState<any>();
   const [openCaptcha, setOpenCaptcha] = useState<any>(false);
   const [voteid, setVoteId] = useState<any>();
 
@@ -63,12 +64,24 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
     setOpenCaptcha(false);
     setVote({ ...vote, initial: false, completed: false, captcha: false });
   };
-
+  var voteLocal = JSON.parse(localStorage.getItem(`vote_${voteSlug}`) as any);
   const coinVoteHandler = (slug: any) => {
-    console.log(slug);
+    setVoteSlug(slug);
+
     const successHandler = (res: any) => {
       setOpenCaptcha(false);
       setVote({ ...vote, initial: true, completed: false, captcha: false });
+
+      if (voteLocal === null) {
+        localStorage.setItem(
+          `vote_${slug}`,
+          JSON.stringify({
+            time: new Date().getTime(),
+            status: true,
+          })
+        );
+      }
+
       setTimeout(function () {
         toast.success(
           <Box>
@@ -102,7 +115,11 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
 
     dispatch(coinVoteRequest(slug, successHandler, errorHandler));
   };
-
+  useEffect(() => {
+    if (new Date().getTime() - voteLocal?.time > 24 * 60 * 60 * 1000) {
+      localStorage.removeItem(`vote_${voteSlug}`);
+    }
+  }, [location, voteLocal]);
   return (
     <TableContainer
       component={Paper}
@@ -537,7 +554,10 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       <Box sx={{ minWidth: 50 }}>
                         <Typography variant="caption">
                           {" "}
-                          {data && data?.vote !== null ? (
+                          {vote.completed === true ? (
+                            voteid === data?.slug &&
+                            (parseInt(data?.vote) + 1).toLocaleString()
+                          ) : data && data?.vote !== null ? (
                             data?.vote?.toLocaleString()
                           ) : (
                             <Typography variant="caption">--</Typography>
@@ -553,11 +573,17 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                         }}
                         pt={1}
                       >
-                        {(vote &&
+                        {(JSON.parse(
+                          localStorage.getItem(`vote_${data?.slug}`) as any
+                        ) === null &&
+                          vote &&
                           vote.initial === false &&
                           vote.completed === false &&
                           vote.captcha === false) ||
-                        voteid !== data?.slug ? (
+                        (JSON.parse(
+                          localStorage.getItem(`vote_${data?.slug}`) as any
+                        ) === null &&
+                          voteid !== data?.slug) ? (
                           <Button
                             variant="contained"
                             sx={{
@@ -683,7 +709,12 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                             Submiting
                           </LoadingButton>
                         ) : (
-                          vote.completed === true && (
+                          (voteLocal !== null ||
+                            JSON.parse(
+                              localStorage.getItem(`vote_${data?.slug}`) as any
+                            ) !== null ||
+                            voteLocal?.status === true ||
+                            vote.completed === true) && (
                             <Button
                               variant="contained"
                               sx={{

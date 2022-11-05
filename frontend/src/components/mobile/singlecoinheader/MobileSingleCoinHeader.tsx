@@ -120,10 +120,25 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
     setVote({ ...vote, initial: false, completed: false, captcha: false });
   };
 
+  var voteLocal = JSON.parse(
+    localStorage.getItem(`vote_${location?.pathname?.split("/").pop()}`) as any
+  );
+
   const coinVoteHandler = () => {
     const successHandler = (res: any) => {
       setOpenCaptcha(false);
       setVote({ ...vote, initial: true, completed: false, captcha: false });
+
+      if (voteLocal === null) {
+        localStorage.setItem(
+          `vote_${location?.pathname?.split("/").pop()}`,
+          JSON.stringify({
+            time: new Date().getTime(),
+            status: true,
+          })
+        );
+      }
+
       setTimeout(function () {
         toast.success(
           <Box>
@@ -163,6 +178,12 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
       )
     );
   };
+
+  useEffect(() => {
+    if (new Date().getTime() - voteLocal?.time > 24 * 60 * 60 * 1000) {
+      localStorage.removeItem(`vote_${location?.pathname?.split("/").pop()}`);
+    }
+  }, [location, voteLocal]);
 
   useEffect(() => {
     coinData &&
@@ -815,7 +836,8 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                 spacing={1.5}
                 sx={{ alignItems: "center", justifyContent: "flex-end" }}
               >
-                {vote &&
+                {voteLocal === null &&
+                vote &&
                 vote.initial === false &&
                 vote.completed === false &&
                 vote.captcha === false ? (
@@ -928,7 +950,9 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                     Submit
                   </LoadingButton>
                 ) : (
-                  vote.completed === true && (
+                  (voteLocal !== null ||
+                    voteLocal?.status === true ||
+                    vote.completed === true) && (
                     <Button
                       variant="contained"
                       startIcon={<ThumbUpAltRoundedIcon />}

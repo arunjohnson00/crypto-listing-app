@@ -66,7 +66,7 @@ const WelcomePopupAds = () => {
   const localStorageCheck = JSON.parse(
     localStorage.getItem("welcomePopup") as any
   );
-  console.log(localStorageCheck);
+  // console.log(localStorageCheck);
   return (
     <div>
       {welcomePopupAds &&
