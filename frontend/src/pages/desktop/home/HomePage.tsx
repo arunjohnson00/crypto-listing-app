@@ -831,6 +831,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
                 tableData={tableData && tableData}
                 tableHeader={tableHeader}
                 variant="crypto_currencies"
+                setTableData={setTableData}
               />
             }
           </Stack>

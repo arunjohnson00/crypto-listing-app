@@ -77,7 +77,6 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
   const coinVoteHandler = (slug: any) => {
     setVoteSlug(slug);
 
-    console.log(slug);
     const successHandler = (res: any) => {
       setOpenCaptcha(false);
       setVote({ ...vote, initial: true, completed: false, captcha: false });
@@ -606,7 +605,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     <Stack direction="row" spacing={2} alignItems="center">
                       <Box sx={{ minWidth: 50 }}>
                         <Typography variant="caption">
-                          {vote.completed === true ? (
+                          {vote.completed === true && voteid === data?.slug ? (
                             voteid === data?.slug &&
                             (parseInt(data?.vote) + 1).toLocaleString()
                           ) : data && data?.vote !== null ? (
@@ -745,7 +744,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                               </Box>
                             </DialogContent>
                           </Dialog>
-                        ) : vote.initial === true ? (
+                        ) : vote.initial === true && voteid === data?.slug ? (
                           <LoadingButton
                             loading
                             variant="outlined"

@@ -594,7 +594,8 @@ const ListingTable = ({
                       <Stack direction="row" spacing={2} alignItems="center">
                         <Box sx={{ minWidth: 50 }}>
                           <Typography variant="caption">
-                            {vote.completed === true ? (
+                            {vote.completed === true &&
+                            voteid === data?.slug ? (
                               voteid === data?.slug &&
                               (parseInt(data?.vote) + 1).toLocaleString()
                             ) : data && data?.vote !== null ? (
@@ -731,7 +732,7 @@ const ListingTable = ({
                                 </Box>
                               </DialogContent>
                             </Dialog>
-                          ) : vote.initial === true ? (
+                          ) : vote.initial === true && voteid === data?.slug ? (
                             <LoadingButton
                               loading
                               variant="outlined"

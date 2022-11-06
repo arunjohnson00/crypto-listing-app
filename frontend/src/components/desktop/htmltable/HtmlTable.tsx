@@ -554,8 +554,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       <Box sx={{ minWidth: 50 }}>
                         <Typography variant="caption">
                           {" "}
-                          {vote.completed === true ? (
-                            voteid === data?.slug &&
+                          {vote.completed === true && voteid === data?.slug ? (
                             (parseInt(data?.vote) + 1).toLocaleString()
                           ) : data && data?.vote !== null ? (
                             data?.vote?.toLocaleString()
@@ -693,7 +692,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                               </Box>
                             </DialogContent>
                           </Dialog>
-                        ) : vote.initial === true ? (
+                        ) : vote.initial === true && voteid === data?.slug ? (
                           <LoadingButton
                             loading
                             variant="outlined"
