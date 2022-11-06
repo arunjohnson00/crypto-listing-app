@@ -596,7 +596,6 @@ const ListingTable = ({
                           <Typography variant="caption">
                             {vote.completed === true &&
                             voteid === data?.slug ? (
-                              voteid === data?.slug &&
                               (parseInt(data?.vote) + 1).toLocaleString()
                             ) : data && data?.vote !== null ? (
                               data?.vote?.toLocaleString()
