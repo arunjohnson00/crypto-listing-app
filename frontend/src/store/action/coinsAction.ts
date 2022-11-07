@@ -152,5 +152,21 @@ export const coinsCryptoCurrenciesMostVotedRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+export const coinsCryptoCurrenciesWatchListRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/f/v1/watchlist/create`,
+    method: "POST",
+    secure: true,
+    body: values,
+    // body: values,
+    fileUpload: true,
+    actionType: COINS.CRYPTO_CURRENCIES_WATCHLIST,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
 
 export const coinsCryptoCurrenciesTabRequest = COINS.CRYPTO_CURRENCIES_TAB;

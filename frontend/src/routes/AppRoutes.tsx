@@ -533,6 +533,26 @@ const AppRoutes = () => {
           />
         )}
 
+        {windowInnerWidth >= 900 ? (
+          <Route
+            path="/user-dashboard/watchlist"
+            element={
+              <PrivateRoute>
+                <UserDashboard />
+              </PrivateRoute>
+            }
+          />
+        ) : (
+          <Route
+            path="/user-dashboard/watchlist"
+            element={
+              <PrivateRoute>
+                <UserAdminReviewListingMobilePage />
+              </PrivateRoute>
+            }
+          />
+        )}
+
         <Route
           path="/user-dashboard/settings"
           element={

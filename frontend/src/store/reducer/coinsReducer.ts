@@ -11,6 +11,7 @@ const initialState = {
   biggest_gainers: "",
   biggest_loosers: "",
   most_visited: "",
+  crypto_currencies_watchlist: "",
 };
 const coinsReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -79,6 +80,13 @@ const coinsReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         most_visited: action?.payload,
+      };
+
+    case COINS.CRYPTO_CURRENCIES_WATCHLIST:
+      //console.log(action);
+      return {
+        ...state,
+        crypto_currencies_watchlist: action?.payload?.data,
       };
 
     default:

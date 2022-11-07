@@ -144,65 +144,32 @@ const SingleCoinPage = () => {
                 coinDetailFirstBlock !== undefined &&
                 coinDetailFirstBlock[0]?.name
               }
-          (
-          $${
+          ($${
             coinDetailFirstBlock &&
             coinDetailFirstBlock !== undefined &&
             coinDetailFirstBlock[0]?.symbol
-          }
-          ) Today's Price, Votes, Overview, Ratings, Historical Data, Faq,
-          Socials, News & More.`}
+          }) Votes Today, Price, Website, MarketCap & Info | CoinXHigh.Com.`}
             </title>
             <meta
               name="description"
-              content={`The live $${
-                coinDetailFirstBlock &&
-                coinDetailFirstBlock !== undefined &&
-                coinDetailFirstBlock[0]?.symbol
-              } price today is ${
-                coinDetailFirstBlock &&
-                coinDetailFirstBlock !== undefined &&
-                coinDetailFirstBlock[0]?.current_price
-              } USD with a 24-hour trading volume of $${
-                coinDetailOverview && coinDetailOverview[0]?.volume_24h
-              } USD. We update our BNB to USD price in real-time. BNB is ${
-                coinDetailOverview &&
-                coinDetailOverview[0]?.percent_change_24h !== null &&
-                Math.sign(
-                  parseFloat(coinDetailOverview[0]?.percent_change_24h)
-                ) === -1
-                  ? "Down "
-                  : coinDetailOverview &&
-                    coinDetailOverview[0]?.percent_change_24h !== null &&
-                    "Up "
-              } ${
-                coinDetailOverview &&
-                coinDetailOverview[0]?.percent_change_24h !== null &&
-                coinDetailOverview[0]?.percent_change_24h !== ""
-                  ? parseFloat(coinDetailOverview[0]?.percent_change_24h)
-                      .toFixed(2)
-                      .replace("-", "") + "%"
-                  : "--"
-              } ...`}
-            />
-
-            <meta name="robots" content="index, follow" />
-            <meta
-              property="og:site_name"
               content={`${
                 coinDetailFirstBlock &&
                 coinDetailFirstBlock !== undefined &&
                 coinDetailFirstBlock[0]?.name
               }
-          (
-          $${
+          ($${
             coinDetailFirstBlock &&
             coinDetailFirstBlock !== undefined &&
             coinDetailFirstBlock[0]?.symbol
-          }
-          ) Today's Price, Votes, Overview, Ratings, Historical Data, Faq,
-          Socials, News & More.`}
+          }) has ${
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock !== undefined &&
+                coinDetailFirstBlock[0]?.todays_vote
+              } votes today! Coinxhigh lets you Upvote, Rate and Review your favourite cryptocurrencies & NFT's.`}
             />
+
+            <meta name="robots" content="index, follow" />
+            <meta property="og:site_name" content="coinxhigh.com" />
             <meta
               property="og:title"
               content={`${
@@ -210,49 +177,29 @@ const SingleCoinPage = () => {
                 coinDetailFirstBlock !== undefined &&
                 coinDetailFirstBlock[0]?.name
               }
-          (
-          $${
+          ($${
             coinDetailFirstBlock &&
             coinDetailFirstBlock !== undefined &&
             coinDetailFirstBlock[0]?.symbol
-          }
-          ) Today's Price, Votes, Overview, Ratings, Historical Data, Faq,
-          Socials, News & More.`}
+          }) Votes Today, Price, Website, MarketCap & Info | CoinXHigh.Com.`}
             />
-            <meta property="og:locale" content="en" />
-            <meta property="og:type" content="website" />
 
             <meta
               property="og:description"
-              content={`The live $${
+              content={`${
                 coinDetailFirstBlock &&
                 coinDetailFirstBlock !== undefined &&
-                coinDetailFirstBlock[0]?.symbol
-              } price today is ${
+                coinDetailFirstBlock[0]?.name
+              }
+          ($${
+            coinDetailFirstBlock &&
+            coinDetailFirstBlock !== undefined &&
+            coinDetailFirstBlock[0]?.symbol
+          }) has ${
                 coinDetailFirstBlock &&
                 coinDetailFirstBlock !== undefined &&
-                coinDetailFirstBlock[0]?.current_price
-              } USD with a 24-hour trading volume of $${
-                coinDetailOverview && coinDetailOverview[0]?.volume_24h
-              } USD. We update our BNB to USD price in real-time. BNB is ${
-                coinDetailOverview &&
-                coinDetailOverview[0]?.percent_change_24h !== null &&
-                Math.sign(
-                  parseFloat(coinDetailOverview[0]?.percent_change_24h)
-                ) === -1
-                  ? "Down "
-                  : coinDetailOverview &&
-                    coinDetailOverview[0]?.percent_change_24h !== null &&
-                    "Up "
-              } ${
-                coinDetailOverview &&
-                coinDetailOverview[0]?.percent_change_24h !== null &&
-                coinDetailOverview[0]?.percent_change_24h !== ""
-                  ? parseFloat(coinDetailOverview[0]?.percent_change_24h)
-                      .toFixed(2)
-                      .replace("-", "") + "%"
-                  : "--"
-              } ...`}
+                coinDetailFirstBlock[0]?.todays_vote
+              } votes today! Coinxhigh lets you Upvote, Rate and Review your favourite cryptocurrencies & NFT's.`}
             />
 
             <meta

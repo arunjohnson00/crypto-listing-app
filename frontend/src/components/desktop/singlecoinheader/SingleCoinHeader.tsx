@@ -77,6 +77,7 @@ import { Link } from "react-router-dom";
 import {
   coinDetailFirstBlockRequest,
   coinMarketListRequest,
+  coinWatchListRequest,
 } from "../../../store/action/coinAction ";
 import AnimatedRating from "../animatedrating/AnimatedRating";
 import VotePopupAds from "../../ads/votepopupads/VotePopupAds";
@@ -235,7 +236,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
     };
     const errorHandler = (err: any) => {};
 
-    dispatch(addWatchListRequest(formData, successHandler, errorHandler));
+    dispatch(coinWatchListRequest(formData, successHandler, errorHandler));
   };
   useEffect(() => {
     coinData &&
@@ -549,7 +550,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     </Typography>
                     <Rating
                       name="size-large"
-                      defaultValue={1}
+                      defaultValue={0}
                       size="large"
                       max={1}
                       icon={<StarRoundedIcon sx={{ color: "#FAAF00" }} />}
@@ -989,13 +990,12 @@ const SingleCoinHeader = ({ coinData }: any) => {
                                             : item?.inactive_icon
                                         }`}
                                         className="badgezoom"
-                                        // sx={{
-                                        //   width: 35,
-                                        //   height: 35,
-                                        //   //mr: 0.5,
-                                        //   // mb: 0.5,
-                                        //   cursor: "pointer",
-                                        // }}
+                                        sx={{
+                                          width: 30,
+                                          height: 30,
+                                          //mr: 0.5,
+                                          // mb: 0.5,
+                                        }}
                                       />
                                     </Box>
                                     <Typography

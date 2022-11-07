@@ -21,7 +21,9 @@ const UserAdminWatchListListing = () => {
 
   return (
     <Fragment>
-      {tableData?.data?.length !== 0 ? (
+      {tableData &&
+      tableData?.response === true &&
+      tableData?.data?.data?.length !== 0 ? (
         <UserAdminHtmlTable
           tableData={tableData && tableData}
           tableHeader={tableHeader}

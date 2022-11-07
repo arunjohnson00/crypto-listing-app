@@ -43,6 +43,7 @@ export { coinVisitedCounterRequest } from "./coinAction ";
 export { coinlatestNewsRequest } from "./coinAction ";
 export { coinRecentlyAddedRequest } from "./coinAction ";
 export { coinReviewSubmitRequest } from "./coinAction ";
+export { coinWatchListRequest } from "./coinAction ";
 //Coins Page
 
 export { coinsRecentlyAddedRequest } from "./coinsAction";
@@ -55,6 +56,7 @@ export { coinsCryptoCurrenciesPresaleRequest } from "./coinsAction";
 export { coinsCryptoCurrenciesTodaysBestRequest } from "./coinsAction";
 export { coinsCryptoCurrenciesMostVotedRequest } from "./coinsAction";
 export { coinsCryptoCurrenciesTabRequest } from "./coinsAction";
+export { coinsCryptoCurrenciesWatchListRequest } from "./coinsAction";
 
 //NFT
 

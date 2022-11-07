@@ -93,7 +93,8 @@ const UserAdminTabs = () => {
             <Tab label="My Events" value="4" />
             <Tab label="My AirDrops" value="5" />
             <Tab label="My Ratings" value="6" />
-            {/* <Tab label="Watchlist" value="7" />
+            <Tab label="Watchlist" value="7" />
+            {/* 
             <Tab label="Promotion" value="8" /> */}
           </TabList>
           <Divider
