@@ -66,9 +66,9 @@ const InputSelectMultiple = ({
       style: {
         maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
         width: 250,
-        backgroundColor: "#010619",
+        backgroundColor: "#000000",
         borderRadius: 10,
-        border: "1.5px solid #05114c",
+        border: "1.5px solid #4b4b4b",
         color: "#FFFFFF",
 
         sx: {
@@ -134,13 +134,14 @@ const InputSelectMultiple = ({
           fontSize: "14px",
           fontWeight: "100",
           fontStyle: "normal",
-          background: "#010619",
+          background: "#000000",
           borderRadius: "7px",
           color: "#FFFFFF",
-          border: "1.5px solid #05114c",
+          border: "1.5px solid #4b4b4b",
           ".MuiSelect-icon": {
             color: "#FFFFFF",
           },
+          "& fieldset": { border: "none" },
         }}
         renderValue={(selected) => (
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
@@ -177,7 +178,7 @@ const InputSelectMultiple = ({
             >
               <Checkbox
                 checked={getInputSelectMultiplevalue.indexOf(option.id) > -1}
-                sx={{ color: "#FFFFFF" }}
+                sx={{ color: "#4b4b4b" }}
               />
 
               <ListItemText primary={option.name} />

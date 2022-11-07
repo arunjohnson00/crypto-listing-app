@@ -1,5 +1,12 @@
 import { Fragment, useState, useEffect } from "react";
-import { Grid, Stack, Typography, Box, CardMedia } from "@mui/material";
+import {
+  Grid,
+  Stack,
+  Typography,
+  Box,
+  CardMedia,
+  Pagination,
+} from "@mui/material";
 
 import FeaturedCoinCards from "../../../components/desktop/cards/featuredcoin/FeaturedCoinCards";
 import { useTheme } from "@mui/material/styles";
@@ -28,14 +35,21 @@ const PresaleListPage = ({ windowInnerWidth }: any) => {
   });
   const [value, setValue] = useState<any>(0);
 
+  const [page, setPage] = useState<any>(1);
+
+  const pageHandleChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setPage(value);
+  };
+
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
 
-    dispatch(presalePageListingRequest("noData", successHandler, errorHandler));
-  }, [dispatch]);
-
-  console.log(PresaleList);
+    dispatch(presalePageListingRequest(page, successHandler, errorHandler));
+  }, [dispatch, page]);
 
   return (
     <Fragment>
@@ -283,6 +297,52 @@ const PresaleListPage = ({ windowInnerWidth }: any) => {
                 ))}
           </Grid>
         )}
+
+        <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+          <Box
+            sx={{
+              width: "100%",
+              borderRadius: 5,
+              border: "1.5px solid #080b2c",
+              backgroundColor: "#01061b",
+            }}
+            py={1.3}
+            px={1}
+          >
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="center"
+              width="100%"
+            >
+              <Pagination
+                count={parseInt(PresaleList?.total)}
+                page={page}
+                onChange={pageHandleChange}
+                color="primary"
+                // variant="outlined"
+                sx={{
+                  ul: {
+                    "& .MuiPaginationItem-root": {
+                      "&.Mui-selected": {
+                        background: "#020E36",
+                        color: "#FFFFFF",
+                        // borderRadius: '50%',
+                      },
+                      background: "transparent",
+                      color: "#FFFFFF",
+                    },
+                  },
+                }}
+              />
+            </Stack>
+          </Box>
+          {/* <Divider
+                      variant="fullWidth"
+                      sx={{ borderColor: "#0D1436", borderBottomWidth: 2.5 }}
+                      flexItem
+                    /> */}
+        </Grid>
       </Grid>
       {/* <Grid xs={12} mt={7}>
         <Grid container spacing={5}>

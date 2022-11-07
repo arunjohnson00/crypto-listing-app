@@ -12,6 +12,7 @@ const initialState = {
   user_review_list: "",
   user_watchlist: "",
   user_announcements: "",
+  user_profile_picture: "",
 };
 const userReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -82,6 +83,13 @@ const userReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         user_announcements: action?.payload?.data,
+      };
+
+    case USER.USER_PROFILE_PICTURE:
+      //console.log(action);
+      return {
+        ...state,
+        user_profile_picture: action?.payload?.data,
       };
 
     default:

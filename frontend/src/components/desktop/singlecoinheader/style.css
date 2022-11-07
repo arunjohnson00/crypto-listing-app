@@ -1,12 +1,18 @@
 .badgezoom {
-  width: 35px;
-  height: 35px;
   animation: badgezoom 1s infinite;
 }
 
 @keyframes badgezoom {
-  to {
+  0% {
+    width: 35px;
+    height: 35px;
+  }
+  50% {
     width: 40px;
     height: 40px;
+  }
+  100% {
+    width: 35px;
+    height: 35px;
   }
 }

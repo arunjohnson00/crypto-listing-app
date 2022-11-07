@@ -8,7 +8,7 @@ export const presalePageListingRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/crypto-currencies-presale`,
+    url: `api/f/v1/crypto-currencies-presale?page=${values}`,
     method: "GET",
     secure: false,
     actionType: PRESALE.PRESALE_LISTINGS,

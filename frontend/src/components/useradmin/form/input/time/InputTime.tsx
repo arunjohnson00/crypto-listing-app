@@ -48,9 +48,9 @@ const InputTime = ({
               "& .MuiInputBase-root": {
                 borderRadius: "7px",
                 height: "43px",
-                background: "#010619",
+                background: "#000000",
                 color: "#878787e8",
-                border: "1.5px solid #05114c",
+                border: "1.5px solid #4b4b4b",
                 svg: { color: "#878787e8" },
                 input: { color: "#878787e8" },
                 label: { color: "#878787e8" },

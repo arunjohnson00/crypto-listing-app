@@ -911,10 +911,8 @@ const SingleCoinHeader = ({ coinData }: any) => {
 
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
-                spacing={0.5}
-                sx={{
-                  alignItems: "flex-start",
-                }}
+                spacing={1}
+                alignItems="center"
                 justifyContent={{
                   xs: "center",
                   sm: "center",

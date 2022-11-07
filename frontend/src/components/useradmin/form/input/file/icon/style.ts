@@ -5,12 +5,12 @@ export const useStyles = makeStyles({
   mainWrapper: {
     width: "345px",
     height: "75px",
-    background: "#010619",
+    background: "#000000",
     color: "#818181e8",
     borderRadius: "8px",
 
     padding: "9px",
-    border: "1.5px solid #090F2C",
+    border: "1.5px solid #4b4b4b",
   },
   outerWrapper: {
     display: "flex",
@@ -18,7 +18,7 @@ export const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "space-around",
     paddingTop: "3px",
-    background: "#010619",
+    background: "#000000",
     color: "#818181e8",
   },
   innerWrapper: {

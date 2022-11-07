@@ -181,10 +181,10 @@ const InputSelectCoin = ({
             id: `${id}`,
           }}
           sx={{
-            background: "#010619",
+            background: "#000000",
             borderRadius: "7px",
             color: "#525562",
-            border: "1.5px solid #05114c",
+            border: "1.5px solid #4b4b4b",
             height: height && height,
             minWidth: matches === true ? width : "auto",
             width: matches === true ? width : "auto",
@@ -205,6 +205,7 @@ const InputSelectCoin = ({
             },
 
             "&.MuiMenu-list ": { padding: 0 },
+            "& fieldset": { border: "none" },
           }}
           MenuProps={MenuProps}
           IconComponent={() => <ArrowDropDownIcon sx={{ color: "#FFFFFF" }} />}
@@ -212,9 +213,9 @@ const InputSelectCoin = ({
           <MenuItem
             value={""}
             sx={{
-              background: "#00182f",
+              background: "#00000",
               color: "#FFFFFF",
-              borderBottom: "1px solid #030b2a",
+              borderBottom: "1px solid #4b4b4b",
               textIndent: 5,
               "&:hover": {
                 backgroundColor: "#00004c",
@@ -247,9 +248,9 @@ const InputSelectCoin = ({
                     background:
                       selectedValue && selectedValue === list.id
                         ? "#08164e"
-                        : "#010619",
+                        : "#000000",
                     color: "#FFFFFF",
-                    borderBottom: "1px solid #030b2a",
+                    borderBottom: "1px solid #4b4b4b",
                     textIndent: 5,
                     "&:hover": {
                       backgroundColor: "#00004c",

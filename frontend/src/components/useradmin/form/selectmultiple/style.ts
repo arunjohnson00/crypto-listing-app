@@ -5,9 +5,9 @@ export const MenuProps = {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
       width: 174,
-      backgroundColor: "#010619",
+      backgroundColor: "#000000",
       borderRadius: 10,
-      border: "1.5px solid #05114c",
+      border: "1.5px solid #4b4b4b",
 
       sx: {
         "&& .Mui-selected": {

@@ -25,7 +25,7 @@ export const eventsCategoriesRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/event-categories`,
+    url: `api/f/v1/event-categories?page=${values}`,
     method: "GET",
     secure: false,
     actionType: EVENTS.EVENTS_CATEGORY,
@@ -40,7 +40,7 @@ export const eventsRecentlyAddedRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/recently-added-events`,
+    url: `api/f/v1/recently-added-events?page=${values}`,
     method: "GET",
     secure: false,
     actionType: EVENTS.EVENTS_RECENLTY_ADDED,
@@ -55,7 +55,7 @@ export const eventsUpcomingRequest = (
 ) => {
   const fetchOptions = {
     //url: `api/b/v1/exchange`,
-    url: `api/f/v1/upcoming-events`,
+    url: `api/f/v1/upcoming-events?page=${values}`,
     method: "GET",
     secure: false,
     actionType: EVENTS.EVENTS_UPCOMING,

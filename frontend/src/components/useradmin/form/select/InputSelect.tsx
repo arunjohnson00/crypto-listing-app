@@ -54,7 +54,7 @@ const InputSelect = ({
         sx={{
           height: "35px",
           width: "184px",
-          background: "#f6f6f6",
+          background: "#000000",
           borderRadius: "8px",
           color:
             getInputSelectvalue?.status === 1

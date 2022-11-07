@@ -150,9 +150,9 @@ const AutoCompleSelect = ({
           spacing={0}
           sx={{
             paddingY: 0,
-            backgroundColor: "#010619",
+            backgroundColor: "#000000",
             borderRadius: 0,
-            border: "1.5px solid #05114c",
+            border: "1.5px solid #4b4b4b",
             color: "#FFFFFF",
             height: 40,
           }}
@@ -190,10 +190,10 @@ const AutoCompleSelect = ({
           height: "39px",
 
           fontSize: ".8rem",
-          background: "#010619",
+          background: "#000000",
           borderRadius: "7px",
           color: "#525562",
-          border: "1px solid #090F2C",
+          border: "1px solid #4b4b4b",
           ".MuiSvgIcon-root": {
             color: "#FFFFFF",
           },

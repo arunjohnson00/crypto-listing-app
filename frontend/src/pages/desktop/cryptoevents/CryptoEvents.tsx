@@ -1,5 +1,14 @@
 import { Fragment, useState, useEffect } from "react";
-import { Grid, Stack, Typography, Divider, Tab, Tabs } from "@mui/material";
+import {
+  Grid,
+  Stack,
+  Typography,
+  Divider,
+  Tab,
+  Tabs,
+  Pagination,
+  Box,
+} from "@mui/material";
 
 import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
 import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
@@ -31,6 +40,8 @@ const CryptoEvents = () => {
   const [date, setDate] = useState<any>(new Date());
   const [value, setValue] = useState<any>(0);
   const [eventData, setEventData] = useState<any>();
+  const [eventDataTotal, setEventDataTotal] = useState<any>();
+  const [page, setPage] = useState<any>(1);
   const [filterCat, setFilterCat] = useState<any>("all");
   const [toggleSwitch, setToggleSwitch] = useState<any>(true);
   const eventsCategory = useSelector((data: any) => {
@@ -54,6 +65,14 @@ const CryptoEvents = () => {
     console.log(newValue);
     setFilterCat("");
     setDate(null);
+    setPage(1);
+  };
+
+  const pageHandleChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setPage(value);
   };
 
   const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,17 +89,36 @@ const CryptoEvents = () => {
               (item: any) => parseInt(item?.is_online) === 2
             )
           );
+
+      res && event.target.checked === false
+        ? setEventDataTotal(
+            Math.ceil(
+              parseInt(
+                res?.data?.data?.data?.filter(
+                  (item: any) => parseInt(item?.is_online) === 1
+                ).length
+              ) / 8
+            )
+          )
+        : setEventDataTotal(
+            Math.ceil(
+              parseInt(
+                res?.data?.data?.data?.filter(
+                  (item: any) => parseInt(item?.is_online) === 2
+                ).length
+              ) / 8
+            )
+          );
     };
+
     const errorHandler = (err: any) => {};
 
     value === 0 &&
-      dispatch(
-        eventsRecentlyAddedRequest("noData", successHandler, errorHandler)
-      );
+      dispatch(eventsRecentlyAddedRequest(page, successHandler, errorHandler));
     value === 1 &&
-      dispatch(eventsUpcomingRequest("noData", successHandler, errorHandler));
+      dispatch(eventsUpcomingRequest(page, successHandler, errorHandler));
     value === 2 &&
-      dispatch(eventsPastRequest("noData", successHandler, errorHandler));
+      dispatch(eventsPastRequest(page, successHandler, errorHandler));
   };
 
   const dateHandler = (newValue: any) => {
@@ -98,23 +136,37 @@ const CryptoEvents = () => {
             )
           )
         : setEventData(res?.data?.data?.data);
+      res &&
+        setEventDataTotal(
+          Math.ceil(
+            parseInt(
+              res?.data?.data?.data?.filter(
+                (item: any) =>
+                  moment(new Date(newValue)).isSame(
+                    moment(new Date(item?.event_date)),
+                    "day"
+                  ) === true
+              ).length
+            ) / 8
+          )
+        );
     };
     const errorHandler = (err: any) => {};
 
     value === 0 &&
       newValue &&
-      dispatch(
-        eventsRecentlyAddedRequest("noData", successHandler, errorHandler)
-      );
+      dispatch(eventsRecentlyAddedRequest(page, successHandler, errorHandler));
     value === 1 &&
       newValue &&
-      dispatch(eventsUpcomingRequest("noData", successHandler, errorHandler));
+      dispatch(eventsUpcomingRequest(page, successHandler, errorHandler));
     value === 2 &&
       newValue &&
-      dispatch(eventsPastRequest("noData", successHandler, errorHandler));
+      dispatch(eventsPastRequest(page, successHandler, errorHandler));
   };
+
   const categoryFilter = (cat: any) => {
     setDate(null);
+
     const successHandler = (res: any) => {
       res && cat !== "all"
         ? setEventData(
@@ -123,20 +175,28 @@ const CryptoEvents = () => {
             )
           )
         : setEventData(res?.data?.data?.data);
+      res &&
+        setEventDataTotal(
+          Math.ceil(
+            parseInt(
+              res?.data?.data?.data?.filter(
+                (item: any) => item?.category_slug === cat
+              ).length
+            ) / 8
+          )
+        );
     };
     const errorHandler = (err: any) => {};
 
     value === 0 &&
       cat &&
-      dispatch(
-        eventsRecentlyAddedRequest("noData", successHandler, errorHandler)
-      );
+      dispatch(eventsRecentlyAddedRequest(page, successHandler, errorHandler));
     value === 1 &&
       cat &&
-      dispatch(eventsUpcomingRequest("noData", successHandler, errorHandler));
+      dispatch(eventsUpcomingRequest(page, successHandler, errorHandler));
     value === 2 &&
       cat &&
-      dispatch(eventsPastRequest("noData", successHandler, errorHandler));
+      dispatch(eventsPastRequest(page, successHandler, errorHandler));
     setEventData(eventData?.filter((item: any) => item?.category_slug === cat));
     setFilterCat(cat);
   };
@@ -144,18 +204,17 @@ const CryptoEvents = () => {
   useEffect(() => {
     const successHandler = (res: any) => {
       res && setEventData(res?.data?.data?.data);
+      res && setEventDataTotal(Math.ceil(res?.data?.data?.total / 8));
     };
     const errorHandler = (err: any) => {};
 
     value === 0 &&
-      dispatch(
-        eventsRecentlyAddedRequest("noData", successHandler, errorHandler)
-      );
+      dispatch(eventsRecentlyAddedRequest(page, successHandler, errorHandler));
     value === 1 &&
-      dispatch(eventsUpcomingRequest("noData", successHandler, errorHandler));
+      dispatch(eventsUpcomingRequest(page, successHandler, errorHandler));
     value === 2 &&
-      dispatch(eventsPastRequest("noData", successHandler, errorHandler));
-  }, [dispatch, setValue, value]);
+      dispatch(eventsPastRequest(page, successHandler, errorHandler));
+  }, [dispatch, setValue, value, page]);
 
   useEffect(() => {
     const successHandler = (res: any) => {};
@@ -359,13 +418,51 @@ const CryptoEvents = () => {
                       </Grid>
                     ))}
 
-                  {/* <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                    <Divider
+                  <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                    <Box
+                      sx={{
+                        width: "100%",
+                        borderRadius: 5,
+                        border: "1.5px solid #080b2c",
+                        backgroundColor: "#01061b",
+                      }}
+                      py={1.3}
+                      px={1}
+                    >
+                      <Stack
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="center"
+                        width="100%"
+                      >
+                        <Pagination
+                          count={parseInt(eventDataTotal)}
+                          page={page}
+                          onChange={pageHandleChange}
+                          color="primary"
+                          // variant="outlined"
+                          sx={{
+                            ul: {
+                              "& .MuiPaginationItem-root": {
+                                "&.Mui-selected": {
+                                  background: "#020E36",
+                                  color: "#FFFFFF",
+                                  // borderRadius: '50%',
+                                },
+                                background: "transparent",
+                                color: "#FFFFFF",
+                              },
+                            },
+                          }}
+                        />
+                      </Stack>
+                    </Box>
+                    {/* <Divider
                       variant="fullWidth"
                       sx={{ borderColor: "#0D1436", borderBottomWidth: 2.5 }}
                       flexItem
-                    />
-                  </Grid> */}
+                    /> */}
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>

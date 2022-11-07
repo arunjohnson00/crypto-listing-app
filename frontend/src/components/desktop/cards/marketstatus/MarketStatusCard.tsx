@@ -10,6 +10,10 @@ const MarketStatusCard = () => {
   const cardData = useSelector((data: any) => {
     return data?.coinReducer?.coin_overview_block?.data;
   });
+
+  const fearGreedIndex = useSelector((data: any) => {
+    return data?.commonReducer?.fear_greed_index;
+  });
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
@@ -18,7 +22,6 @@ const MarketStatusCard = () => {
     // );
   }, [dispatch]);
 
-  console.log(cardData && cardData[0]?.percent_change_24h);
   return (
     <Grid item xs={12}>
       <Box
@@ -48,26 +51,64 @@ const MarketStatusCard = () => {
               variant="h6"
               sx={{ color: "#FFFFF5", fontWeight: "bold", lineHeight: 1 }}
             >
-              Market is down{" "}
+              Market is{" "}
               <span
                 style={{
                   color:
-                    cardData &&
-                    Math.sign(
-                      parseFloat(cardData && cardData[0]?.percent_change_24h)
-                    ) === -1
-                      ? "#ff0000"
-                      : "#00ff00",
+                    fearGreedIndex &&
+                    fearGreedIndex?.data[0]?.value_classification ===
+                      "Extreme Fear"
+                      ? "#EF2828"
+                      : fearGreedIndex &&
+                        fearGreedIndex?.data[0]?.value_classification === "Fear"
+                      ? "#EC840E"
+                      : fearGreedIndex &&
+                        fearGreedIndex?.data[0]?.value_classification ===
+                          "Neutral"
+                      ? "#A8CE08"
+                      : fearGreedIndex &&
+                        fearGreedIndex?.data[0]?.value_classification ===
+                          "Greed"
+                      ? "#1DAF03"
+                      : fearGreedIndex &&
+                        fearGreedIndex?.data[0]?.value_classification ===
+                          "Extreme Greed" &&
+                        "#008E49",
+                }}
+              >
+                {fearGreedIndex &&
+                  fearGreedIndex?.data[0]?.value_classification}
+              </span>
+              <span
+                style={{
+                  color:
+                    fearGreedIndex &&
+                    fearGreedIndex?.data[0]?.value_classification ===
+                      "Extreme Fear"
+                      ? "#EF2828"
+                      : fearGreedIndex &&
+                        fearGreedIndex?.data[0]?.value_classification === "Fear"
+                      ? "#EC840E"
+                      : fearGreedIndex &&
+                        fearGreedIndex?.data[0]?.value_classification ===
+                          "Neutral"
+                      ? "#A8CE08"
+                      : fearGreedIndex &&
+                        fearGreedIndex?.data[0]?.value_classification ===
+                          "Greed"
+                      ? "#1DAF03"
+                      : fearGreedIndex &&
+                        fearGreedIndex?.data[0]?.value_classification ===
+                          "Extreme Greed" &&
+                        "#008E49",
+
                   fontWeight: 700,
                   fontSize: "1.3rem",
                 }}
               >
-                {cardData &&
-                cardData[0]?.percent_change_24h !== null &&
-                cardData[0]?.percent_change_24h !== "" ? (
-                  parseFloat(cardData[0]?.percent_change_24h)
-                    .toFixed(2)
-                    .replace("-", "") + "%"
+                {" "}
+                {fearGreedIndex?.data[0] ? (
+                  fearGreedIndex && fearGreedIndex?.data[0]?.value
                 ) : (
                   <span style={{ color: "#7a7a7a" }}>--</span>
                 )}

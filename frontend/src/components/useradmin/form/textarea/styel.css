@@ -5,23 +5,24 @@ textarea {
 }
 
 .ql-toolbar.ql-snow {
-  background: #00030c;
-  border: 1.5px solid #05114c;
+  background: #000000;
+  border: 1.5px solid #4b4b4b;
   border-radius: 8px 8px 0px 0px;
 }
 
 .ql-container.ql-snow {
   color: #ffffff;
-  border: 1.5px solid #05114c;
+  border: 1.5px solid #4b4b4b;
 
   border-radius: 0px 0px 8px 8px;
 }
 .quill > .ql-container > .ql-editor {
   min-height: 250px;
+  background: #000000;
   resize: vertical;
 }
 .quill > .ql-container > .ql-editor.ql-blank::before {
   font-size: 0.8rem;
-  color: #252833;
+  color: #7b7b7b;
   font-style: normal;
 }

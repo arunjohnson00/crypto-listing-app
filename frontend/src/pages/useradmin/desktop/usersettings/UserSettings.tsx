@@ -15,18 +15,25 @@ import {
 } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";
 import { useDropzone } from "react-dropzone";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "./cropImage";
 import UserAdminTextInput from "../../../../components/useradmin/form/textinput/UserAdminTextInput";
 import MultiSlider from "../../../../components/useradmin/multislider/MultiSlider";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 
 import userIcon from "../../../../assets/userdashboard/user.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet-async";
+import { userProfilePictureChangeRequest } from "../../../../store/action/userAction";
 
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 const UserSettings = () => {
   const [open, setOpen] = useState(false);
+  const dispatch: any = useDispatch();
   const [profileImage, setProfileImage] = useState<any>(null);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<any>(null);
   const [croppedImage, setCroppedImage] = useState<any>(null);
@@ -109,6 +116,7 @@ const UserSettings = () => {
       // console.log("crop", croppedImage, profileImage);
       setCropWindow(false);
       setCroppedImage(croppedImage);
+      updateUserProfilePicture();
     } catch (e: any) {
       console.error(e);
     }
@@ -131,6 +139,47 @@ const UserSettings = () => {
           : authUser && authUser?.email,
     });
   }, []);
+
+  const updateUserProfilePicture = () => {
+    const formData = new FormData();
+    formData.append(
+      "avatar",
+      profileImage &&
+        croppedImage !== null &&
+        new File([croppedImage], "profile picture")
+    );
+    const successHandler = (res: any) => {
+      setTimeout(function () {
+        toast.success(
+          <Box>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <CheckCircleRoundedIcon sx={{ color: "#5CE32D", fontSize: 50 }} />
+              <Typography sx={{ fontSize: ".85rem" }}>
+                {res?.data?.data}
+              </Typography>
+            </Stack>
+          </Box>,
+          {
+            position: "top-right",
+            icon: false,
+            //theme: "colored",
+            className: "toast-success-container toast-success-container-after",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
+      }, 2000);
+    };
+    const errorHandler = (err: any) => {};
+
+    dispatch(
+      userProfilePictureChangeRequest(formData, successHandler, errorHandler)
+    );
+  };
 
   return (
     <Grid container spacing={1} px={{ xs: 1, sm: 1, md: 0 }} pb={7}>

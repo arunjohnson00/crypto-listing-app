@@ -47,6 +47,7 @@ const InputText = ({
             width: `${width ? width : matches === true ? "312px" : "100%"}`,
             paddingRight: `${InputProps && 0}`,
             fontSize: ".85rem",
+            "& fieldset": { border: "none" },
           },
           // "& .MuiInputAdornment-root": {
           //   color: "rgb(61 56 122)",

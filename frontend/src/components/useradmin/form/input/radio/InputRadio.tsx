@@ -59,7 +59,7 @@ const InputRadio = ({
       >
         <FormControlLabel
           value={"Presale"}
-          control={<BpRadio />}
+          control={<BpRadio sx={{ color: "#4b4b4b" }} />}
           label={
             <Typography
               sx={{
@@ -75,7 +75,7 @@ const InputRadio = ({
         />
         <FormControlLabel
           value="Launched"
-          control={<BpRadio />}
+          control={<BpRadio sx={{ color: "#4b4b4b" }} />}
           label={
             <Typography
               sx={{

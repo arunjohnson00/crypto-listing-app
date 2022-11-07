@@ -160,3 +160,20 @@ export const userAnnouncementsRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const userProfilePictureChangeRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/f/v1/change-profile-picture`,
+    method: "POST",
+    secure: true,
+    body: values,
+    // body: values,
+    fileUpload: true,
+    actionType: USER.USER_PROFILE_PICTURE,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

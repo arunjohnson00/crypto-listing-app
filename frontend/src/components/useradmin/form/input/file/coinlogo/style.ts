@@ -5,11 +5,11 @@ export const useStyles = makeStyles({
   mainWrapper: {
     maxWidth: "330px",
     height: "95px",
-    background: "#010619",
+    background: "#000000",
     borderRadius: "8px",
     color: "#818181e8",
     padding: "9px",
-    border: "1.5px solid #090F2C",
+    border: "1.5px solid #4b4b4b",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-around",
