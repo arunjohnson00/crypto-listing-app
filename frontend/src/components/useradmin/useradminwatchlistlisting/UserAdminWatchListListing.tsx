@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { userWatchListRequest } from "../../../store/action";
@@ -20,26 +20,28 @@ const UserAdminWatchListListing = () => {
   }, [dispatch, page]);
 
   return (
-    <Fragment>
-      {tableData &&
-      tableData?.response === true &&
-      tableData?.data?.data?.length !== 0 ? (
-        <UserAdminHtmlTable
-          tableData={tableData && tableData}
-          tableHeader={tableHeader}
-          variant="review"
-          section="review"
-          page={page}
-          setPage={setPage}
-          rowsPerPage={rowsPerPage}
-          setRowsPerPage={setRowsPerPage}
-        />
-      ) : (
-        <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
-          No data available !
-        </Typography>
-      )}
-    </Fragment>
+    <Box height="100vh">
+      <Fragment>
+        {tableData &&
+        tableData?.response === true &&
+        tableData?.data?.data?.length !== 0 ? (
+          <UserAdminHtmlTable
+            tableData={tableData && tableData}
+            tableHeader={tableHeader}
+            variant="review"
+            section="review"
+            page={page}
+            setPage={setPage}
+            rowsPerPage={rowsPerPage}
+            setRowsPerPage={setRowsPerPage}
+          />
+        ) : (
+          <Typography sx={{ color: "#FFFFFF", fontSize: ".85rem" }}>
+            No data available !
+          </Typography>
+        )}
+      </Fragment>
+    </Box>
   );
 };
 
