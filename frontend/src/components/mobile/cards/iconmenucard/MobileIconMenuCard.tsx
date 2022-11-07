@@ -241,7 +241,7 @@ const MobileIconMenuCard = () => {
         <Grid item xs={3}>
           <Link
             // to="/chart"
-            to="#"
+            to="/fear-greed-index"
             style={{
               textDecoration: "none",
               color: "inherit",
@@ -267,7 +267,7 @@ const MobileIconMenuCard = () => {
                 }}
                 variant="subtitle2"
               >
-                Chart
+                F&G Index
               </Typography>
             </Stack>
           </Link>

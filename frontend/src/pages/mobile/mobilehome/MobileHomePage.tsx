@@ -187,7 +187,11 @@ const MobileHomePage = () => {
     menu_card: true,
     video_list: true,
   });
-
+  const [vote, setVote] = useState<any>({
+    initial: false,
+    completed: false,
+    captcha: false,
+  });
   const [tableFilter, setTableFilter] = useState(false);
   const [htmlTablePreLoader, setHTMLTablePreLoader] = useState<any>({
     html_table: true,
@@ -259,7 +263,7 @@ const MobileHomePage = () => {
       dispatch(
         cryptoCurrenciesPresaleRequest("noData", successHandler, errorHandler)
       );
-  }, [dispatch, tabIndex, setHTMLTablePreLoader]);
+  }, [dispatch, tabIndex, setHTMLTablePreLoader, vote]);
 
   useEffect(() => {
     const successHandler = (res: any) => {
@@ -595,39 +599,13 @@ const MobileHomePage = () => {
             alignItems: "center",
           }}
         >
-          {htmlTablePreLoader?.html_table === true ? (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "#010822",
-                color: "#3D484F",
-                width: "100%",
-              }}
-              m={1}
-            >
-              <Skeleton
-                animation="wave"
-                variant="rectangular"
-                width={"100%"}
-                height={100}
-                sx={{
-                  px: 2,
-                  pb: 2,
-                  pt: 2,
-                  bgcolor: "rgb(245 245 245 / 11%)",
-                  borderRadius: "6px",
-                }}
-              />
-            </Box>
-          ) : (
-            <MobileHtmlTable
-              tableData={tableData && tableData}
-              tableHeader={tableHeader}
-              variant="crypto_currencies"
-            />
-          )}
+          <MobileHtmlTable
+            tableData={tableData && tableData}
+            tableHeader={tableHeader}
+            variant="crypto_currencies"
+            vote={vote}
+            setVote={setVote}
+          />
         </Stack>
       </Grid>
 

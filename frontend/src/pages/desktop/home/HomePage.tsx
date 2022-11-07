@@ -173,7 +173,11 @@ const HomePage = ({ windowInnerWidth }: any) => {
   // const timeAgo = new TimeAgo("en");
   const [feed, setFeed] = useState<any>();
   const [tableData, setTableData] = useState<any>();
-
+  const [vote, setVote] = useState<any>({
+    initial: false,
+    completed: false,
+    captcha: false,
+  });
   const [preLoader, setPreLoader] = useState<any>(false);
 
   const [htmlTablePreLoader, setHTMLTablePreLoader] = useState<any>({
@@ -237,6 +241,8 @@ const HomePage = ({ windowInnerWidth }: any) => {
     const successHandler = (res: any) => {
       setTableData(res?.data?.data);
       setPreLoader(false);
+
+      // console.log(res?.data?.data);
     };
     const errorHandler = (err: any) => {};
     // setPreLoader(true);
@@ -264,7 +270,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
       dispatch(
         cryptoCurrenciesPresaleRequest("noData", successHandler, errorHandler)
       );
-  }, [dispatch, tabIndex, setHTMLTablePreLoader]);
+  }, [dispatch, tabIndex, setHTMLTablePreLoader, vote]);
   console.log(tabIndex);
   return (
     <Fragment>
@@ -832,6 +838,8 @@ const HomePage = ({ windowInnerWidth }: any) => {
                 tableHeader={tableHeader}
                 variant="crypto_currencies"
                 setTableData={setTableData}
+                vote={vote}
+                setVote={setVote}
               />
             }
           </Stack>

@@ -24,7 +24,7 @@ const SocialCounterWithGraphCard = ({
   //     window.clearInterval(interval);
   //   };
   // }, [data]);
-  // console.log(coinData && coinData);
+  console.log(coinData && coinData);
   const percentageDiff = (a: any, b: any) => {
     return ((a - b) / a) * 100;
   };

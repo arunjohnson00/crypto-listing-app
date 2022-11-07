@@ -40,16 +40,18 @@ import "./style.css";
 import VotePopupAds from "../../ads/votepopupads/VotePopupAds";
 import ArrowIcon from "../../../assets/table/arrow.svg";
 
-const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
+const MobileHtmlTable = ({
+  tableData,
+  variant,
+  tableHeader,
+  vote,
+  setVote,
+}: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
   const scrollElement = useRef<any>(null);
   const dispatch: any = useDispatch();
   const location: any = useLocation();
-  const [vote, setVote] = useState<any>({
-    initial: false,
-    completed: false,
-    captcha: false,
-  });
+
   const [voteSlug, setVoteSlug] = useState<any>();
   const [openCaptcha, setOpenCaptcha] = useState<any>(false);
   const [scroll, setScroll] = useState<any>(false);
@@ -605,9 +607,7 @@ const MobileHtmlTable = ({ tableData, variant, tableHeader }: any) => {
                     <Stack direction="row" spacing={2} alignItems="center">
                       <Box sx={{ minWidth: 50 }}>
                         <Typography variant="caption">
-                          {vote.completed === true && voteid === data?.slug ? (
-                            (parseInt(data?.vote) + 1).toLocaleString()
-                          ) : data && data?.vote !== null ? (
+                          {data && data?.vote !== null ? (
                             data?.vote?.toLocaleString()
                           ) : (
                             <Typography variant="caption">--</Typography>

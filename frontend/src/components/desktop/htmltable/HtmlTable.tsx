@@ -35,16 +35,12 @@ import { coinVoteRequest } from "../../../store/action";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { defaultColor } from "../../../common/common";
 import VotePopupAds from "../../ads/votepopupads/VotePopupAds";
-const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
+const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
 
   const dispatch: any = useDispatch();
   const location: any = useLocation();
-  const [vote, setVote] = useState<any>({
-    initial: false,
-    completed: false,
-    captcha: false,
-  });
+
   const [voteSlug, setVoteSlug] = useState<any>();
   const [openCaptcha, setOpenCaptcha] = useState<any>(false);
   const [voteid, setVoteId] = useState<any>();
@@ -554,9 +550,7 @@ const HtmlTable = ({ tableData, variant, tableHeader }: any) => {
                       <Box sx={{ minWidth: 50 }}>
                         <Typography variant="caption">
                           {" "}
-                          {vote.completed === true && voteid === data?.slug ? (
-                            (parseInt(data?.vote) + 1).toLocaleString()
-                          ) : data && data?.vote !== null ? (
+                          {data && data?.vote !== null ? (
                             data?.vote?.toLocaleString()
                           ) : (
                             <Typography variant="caption">--</Typography>
