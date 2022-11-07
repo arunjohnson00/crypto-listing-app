@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { useLocation } from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
 import LoadingButton from "@mui/lab/LoadingButton";
 import {
   Grid,
@@ -80,6 +81,8 @@ import {
 import AnimatedRating from "../animatedrating/AnimatedRating";
 import VotePopupAds from "../../ads/votepopupads/VotePopupAds";
 
+import "./style.css";
+
 const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const SingleCoinHeader = ({ coinData }: any) => {
@@ -100,6 +103,16 @@ const SingleCoinHeader = ({ coinData }: any) => {
     completed: false,
     captcha: false,
   });
+  const [isMouseOver, setIsMouseOver] = useState<any>({ hover: false, id: "" });
+
+  const handleMouseEnter = (index: any) => {
+    setIsMouseOver({ isMouseOver, hover: true, id: index });
+  };
+
+  const handleMouseLeave = (index: any) => {
+    setIsMouseOver({ isMouseOver, hover: false, id: "" });
+  };
+
   const [openCaptcha, setOpenCaptcha] = useState<any>(false);
   const [copied, setCopied] = useState(false);
   // const [showMoreAnchorEl, setShowMoreAnchorEl] = useState<null | HTMLElement>(
@@ -909,28 +922,96 @@ const SingleCoinHeader = ({ coinData }: any) => {
               >
                 <Stack
                   direction="row"
-                  spacing={0}
+                  columnGap={1}
+                  rowGap={1}
                   alignItems="center"
                   sx={{ flexWrap: "wrap" }}
                 >
                   {coinData &&
                     coinData?.badges?.map((item: any, index: number) => (
-                      <Avatar
-                        variant="square"
+                      <Box
+                        onMouseEnter={() => handleMouseEnter(index)}
+                        onMouseLeave={() => handleMouseLeave(index)}
                         key={index}
-                        alt={item?.name}
-                        src={`${serverAPIUrl}public/uploads/badge_icons/${
-                          parseInt(item?.status) === 1
-                            ? item?.active_icon
-                            : item?.inactive_icon
-                        }`}
-                        sx={{
-                          width: 35,
-                          height: 35,
-                          mr: 0.5,
-                          mb: 0.5,
-                        }}
-                      />
+                      >
+                        <Stack direction="row" spacing={1} alignItems="center">
+                          {isMouseOver?.id !== index && (
+                            <Avatar
+                              variant="square"
+                              alt={item?.name}
+                              src={`${serverAPIUrl}public/uploads/badge_icons/${
+                                parseInt(item?.status) === 1
+                                  ? item?.active_icon
+                                  : item?.inactive_icon
+                              }`}
+                              sx={{
+                                width: 35,
+                                height: 35,
+                                mr: 0.5,
+                                mb: 0.5,
+                                cursor: "pointer",
+                              }}
+                            />
+                          )}
+                          {isMouseOver?.hover === true &&
+                            isMouseOver?.id === index && (
+                              <CSSTransition
+                                in={isMouseOver?.hover}
+                                timeout={350}
+                                classNames="display"
+                                unmountOnExit
+                              >
+                                <Box
+                                  sx={{
+                                    padding: 1,
+                                    height: 40,
+
+                                    borderRadius: 2,
+                                    border: "1.5px solid #1a2063",
+                                    backgroundColor: "#121139",
+                                    cursor: "pointer",
+                                    minWidth: 129,
+                                  }}
+                                >
+                                  <Stack
+                                    direction="row"
+                                    spacing={1}
+                                    alignItems="center"
+                                    height={40}
+                                  >
+                                    <Box sx={{ minWidth: 40 }}>
+                                      <Avatar
+                                        variant="square"
+                                        alt={item?.name}
+                                        src={`${serverAPIUrl}public/uploads/badge_icons/${
+                                          parseInt(item?.status) === 1
+                                            ? item?.active_icon
+                                            : item?.inactive_icon
+                                        }`}
+                                        className="badgezoom"
+                                        // sx={{
+                                        //   width: 35,
+                                        //   height: 35,
+                                        //   //mr: 0.5,
+                                        //   // mb: 0.5,
+                                        //   cursor: "pointer",
+                                        // }}
+                                      />
+                                    </Box>
+                                    <Typography
+                                      sx={{
+                                        color: "#FFFFFF",
+                                        fontSize: ".85rem",
+                                      }}
+                                    >
+                                      {item?.name}
+                                    </Typography>
+                                  </Stack>
+                                </Box>
+                              </CSSTransition>
+                            )}
+                        </Stack>
+                      </Box>
                     ))}
                 </Stack>
 
