@@ -431,7 +431,12 @@ const OnsiteEventsEdit = () => {
                       onChange={coinCheckboxHandler}
                       inputProps={{ "aria-label": "controlled" }}
                       name={"has_coin"}
-                      sx={{ color: "#FFFFFF" }}
+                      sx={{
+                        color: "#4b4b4b",
+                        "&.Mui-checked": {
+                          color: "#4b4b4b",
+                        },
+                      }}
                     />
                   }
                   label={
