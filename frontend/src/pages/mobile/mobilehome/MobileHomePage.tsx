@@ -357,7 +357,7 @@ const MobileHomePage = () => {
         <MobileIconMenuCard />
       </Grid>
 
-      {featuredCoinList?.length > 0 && (
+      {featuredCoinList && featuredCoinList?.length > 0 && (
         <Grid item xs={12} mt={1.5} mb={1.5}>
           <Stack
             direction="row"
@@ -406,7 +406,7 @@ const MobileHomePage = () => {
         )}
       </Grid> */}
 
-      {featuredCoinList?.length > 0 && (
+      {featuredCoinList && featuredCoinList?.length > 0 && (
         <Grid item xs={12}>
           <Stack
             direction="row"

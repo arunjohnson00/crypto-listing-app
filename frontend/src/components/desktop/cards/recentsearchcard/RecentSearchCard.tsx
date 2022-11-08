@@ -6,43 +6,43 @@ const serverAPIUrl = process.env.REACT_APP_API_URL;
 
 const RecentSearchCard = ({ item, index, saveSearchHandler }: any) => {
   return (
-    <Box
-      sx={{
-        backgroundColor: "#151720",
-        padding: 1.5,
-        borderRadius: 3,
-        maxWidth: 70,
-        minWidth: 70,
+    <Link
+      to={{
+        pathname: `/coin/${item?.coin_slug}`,
       }}
-      key={index}
-      my={1}
+      onClick={() => saveSearchHandler("item?.slug")}
+      target="_blank"
+      rel="noopener noreferrer"
+      state={{ coin_id: "item?.id" }}
+      style={{ textDecoration: "none", color: "#FFFFFF" }}
     >
-      <Stack
-        direction="column"
-        spacing={1}
-        alignItems="center"
-        justifyContent="center"
+      <Box
+        sx={{
+          backgroundColor: "#151720",
+          padding: 1.5,
+          borderRadius: 3,
+          maxWidth: 70,
+          minWidth: 70,
+        }}
+        key={index}
+        my={1}
       >
-        <Avatar
-          alt="Trending"
-          src={`${serverAPIUrl}public/uploads/coin_logo/${item?.coin_logo}`}
-          sx={{ width: 33, height: 33 }}
-        />
         <Stack
           direction="column"
-          spacing={0}
+          spacing={1}
           alignItems="center"
           justifyContent="center"
         >
-          <Link
-            to={{
-              pathname: `/coin/${item?.coin_slug}`,
-            }}
-            onClick={() => saveSearchHandler("item?.slug")}
-            target="_blank"
-            rel="noopener noreferrer"
-            state={{ coin_id: "item?.id" }}
-            style={{ textDecoration: "none", color: "#FFFFFF" }}
+          <Avatar
+            alt="Trending"
+            src={`${serverAPIUrl}public/uploads/coin_logo/${item?.coin_logo}`}
+            sx={{ width: 33, height: 33 }}
+          />
+          <Stack
+            direction="column"
+            spacing={0}
+            alignItems="center"
+            justifyContent="center"
           >
             <Typography
               sx={{
@@ -55,19 +55,20 @@ const RecentSearchCard = ({ item, index, saveSearchHandler }: any) => {
                 ? item?.coin_name.slice(0, 7) + "..."
                 : item?.coin_name}
             </Typography>
-          </Link>
-          <Typography
-            sx={{
-              fontSize: ".6rem",
-              color: "#767676",
-              fontWeight: 500,
-            }}
-          >
-            {item?.coin_symbol}
-          </Typography>
+
+            <Typography
+              sx={{
+                fontSize: ".6rem",
+                color: "#767676",
+                fontWeight: 500,
+              }}
+            >
+              {item?.coin_symbol}
+            </Typography>
+          </Stack>
         </Stack>
-      </Stack>
-    </Box>
+      </Box>
+    </Link>
   );
 };
 

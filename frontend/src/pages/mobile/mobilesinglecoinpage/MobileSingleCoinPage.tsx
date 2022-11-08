@@ -413,7 +413,7 @@ const MobileSingleCoinPage = () => {
           </Grid>
         </>
       )}
-      {featuredCoinList?.length > 0 && (
+      {featuredCoinList && featuredCoinList?.length > 0 && (
         <Box>
           <Grid item xs={12} mt={1.5} mb={1.5}>
             <Stack

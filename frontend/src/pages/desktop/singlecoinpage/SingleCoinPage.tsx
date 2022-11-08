@@ -378,7 +378,7 @@ const SingleCoinPage = () => {
         </>
       )}
 
-      {featuredCoinList?.length > 0 && (
+      {featuredCoinList && featuredCoinList?.length > 0 && (
         <Box>
           <Grid item xs={12} pt={5}>
             {" "}
