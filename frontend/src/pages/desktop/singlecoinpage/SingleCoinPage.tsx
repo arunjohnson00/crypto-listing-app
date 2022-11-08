@@ -12,6 +12,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Carousel from "react-multi-carousel";
+import { tableHeader } from "./helper";
 import "react-multi-carousel/lib/styles.css";
 import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
 import SingleCoinHeader from "../../../components/desktop/singlecoinheader/SingleCoinHeader";
@@ -28,9 +29,11 @@ import {
   coinVisitedCounterRequest,
   coinsRecentlyAddedRequest,
   coinRecentlyAddedRequest,
+  featuredCoinListRequest,
 } from "../../../store/action";
 import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsScroll";
 import DiscoverRecentCryptoCard from "../../../components/desktop/cards/discoverrecentcryptocard/DiscoverRecentCryptoCard";
+import MobileHtmlTable from "../../../components/mobile/htmltable/MobileHtmlTable";
 
 const responsive = {
   superLargeDesktop: {
@@ -75,7 +78,14 @@ const SingleCoinPage = () => {
   const [feed, setFeed] = useState<any>();
 
   const [requestStatus, setRequestStatus] = useState<any>(false);
-
+  const [vote, setVote] = useState<any>({
+    initial: false,
+    completed: false,
+    captcha: false,
+  });
+  const featuredCoinList = useSelector((data: any) => {
+    return data?.homeReducer?.featured_coin_list?.data;
+  });
   useEffect(() => {
     (location?.pathname === "/coin" || location?.pathname === "/coin/") &&
       navigate("/");
@@ -132,6 +142,21 @@ const SingleCoinPage = () => {
       )
     );
   }, [dispatch, location]);
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
+  }, [dispatch]);
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    vote?.completed === true &&
+      dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
+  }, [vote]);
 
   return (
     <Fragment>
@@ -351,6 +376,34 @@ const SingleCoinPage = () => {
             </Grid>
           </Grid>
         </>
+      )}
+
+      {featuredCoinList?.length > 0 && (
+        <Box>
+          <Grid item xs={12} pt={5}>
+            {" "}
+            <Typography variant="h6" sx={{ color: "#FFFFF5" }} mb={2}>
+              Promoted Coins
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Stack
+              direction="row"
+              spacing={3}
+              sx={{
+                alignItems: "center",
+              }}
+            >
+              <MobileHtmlTable
+                tableData={featuredCoinList && featuredCoinList}
+                tableHeader={tableHeader}
+                variant="featured_coins"
+                vote={vote}
+                setVote={setVote}
+              />
+            </Stack>
+          </Grid>
+        </Box>
       )}
     </Fragment>
   );

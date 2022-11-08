@@ -177,7 +177,15 @@ const MobileSingleCoinPage = () => {
     const errorHandler = (err: any) => {};
 
     dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
-  }, [dispatch, vote]);
+  }, [dispatch]);
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    vote?.completed === true &&
+      dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
+  }, [vote]);
 
   return (
     <Fragment>
@@ -405,44 +413,47 @@ const MobileSingleCoinPage = () => {
           </Grid>
         </>
       )}
+      {featuredCoinList?.length > 0 && (
+        <Box>
+          <Grid item xs={12} mt={1.5} mb={1.5}>
+            <Stack
+              direction="row"
+              sx={{ justifyContent: "space-between", alignItems: "center" }}
+            >
+              <Typography
+                variant="h5"
+                sx={{ fontSize: "1.1rem", color: "#FFD700" }}
+              >
+                Promoted Coins
+              </Typography>
+              <Link
+                to="/promoted-coins"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <MobileViewMoreBtn title="View more" />
+              </Link>
+            </Stack>
+          </Grid>
 
-      <Grid item xs={12} mt={1.5} mb={1.5}>
-        <Stack
-          direction="row"
-          sx={{ justifyContent: "space-between", alignItems: "center" }}
-        >
-          <Typography
-            variant="h5"
-            sx={{ fontSize: "1.1rem", color: "#FFD700" }}
-          >
-            Promoted Coins
-          </Typography>
-          <Link
-            to="/promoted-coins"
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            <MobileViewMoreBtn title="View more" />
-          </Link>
-        </Stack>
-      </Grid>
-
-      <Grid item xs={12}>
-        <Stack
-          direction="row"
-          spacing={3}
-          sx={{
-            alignItems: "center",
-          }}
-        >
-          <MobileHtmlTable
-            tableData={featuredCoinList && featuredCoinList}
-            tableHeader={tableHeader}
-            variant="featured_coins"
-            vote={vote}
-            setVote={setVote}
-          />
-        </Stack>
-      </Grid>
+          <Grid item xs={12}>
+            <Stack
+              direction="row"
+              spacing={3}
+              sx={{
+                alignItems: "center",
+              }}
+            >
+              <MobileHtmlTable
+                tableData={featuredCoinList && featuredCoinList}
+                tableHeader={tableHeader}
+                variant="featured_coins"
+                vote={vote}
+                setVote={setVote}
+              />
+            </Stack>
+          </Grid>
+        </Box>
+      )}
     </Fragment>
   );
 };
