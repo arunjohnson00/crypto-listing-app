@@ -128,6 +128,16 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
   const [showMoreAnchorEl, setShowMoreAnchorEl] = useState<null | HTMLElement>(
     null
   );
+
+  const [openToolTip, setOpenToolTip] = useState({ open: false, id: "" });
+
+  const handleTooltipClose = () => {
+    setOpenToolTip({ ...openToolTip, open: false, id: "" });
+  };
+
+  const handleTooltipOpen = (index: any) => {
+    setOpenToolTip({ ...openToolTip, open: true, id: index });
+  };
   const open = Boolean(showMoreAnchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setShowMoreAnchorEl(event.currentTarget);
@@ -1219,21 +1229,61 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
               >
                 {coinData &&
                   coinData?.badges?.map((item: any, index: number) => (
-                    <Avatar
-                      key={index}
-                      alt={item?.name}
-                      src={`${serverAPIUrl}public/uploads/badge_icons/${
-                        parseInt(item?.status) === 1
-                          ? item?.active_icon
-                          : item?.inactive_icon
-                      }`}
-                      sx={{
-                        width: 25,
-                        height: 25,
-                        mr: 0.5,
-                        mb: 0.5,
+                    <Tooltip
+                      arrow
+                      PopperProps={{
+                        disablePortal: false,
+                        modifiers: [
+                          {
+                            name: "offset",
+                            options: {
+                              offset: [0, -10],
+                            },
+                          },
+                        ],
                       }}
-                    />
+                      onClose={handleTooltipClose}
+                      open={
+                        parseInt(openToolTip?.id) === index
+                          ? openToolTip?.open
+                          : false
+                      }
+                      // disableFocusListener
+                      // disableHoverListener
+                      // disableTouchListener
+                      title={item?.name}
+                      componentsProps={{
+                        tooltip: {
+                          sx: {
+                            borderRadius: 2,
+                            border: "1.5px solid #1a2063",
+                            backgroundColor: "#121139",
+                            fontSize: ".65rem",
+                            cursor: "pointer",
+                            "& .MuiTooltip-arrow": {
+                              color: "#1a2063",
+                            },
+                          },
+                        },
+                      }}
+                    >
+                      <Avatar
+                        key={index}
+                        alt={item?.name}
+                        src={`${serverAPIUrl}public/uploads/badge_icons/${
+                          parseInt(item?.status) === 1
+                            ? item?.active_icon
+                            : item?.inactive_icon
+                        }`}
+                        sx={{
+                          width: 25,
+                          height: 25,
+                          mr: 0.5,
+                          mb: 0.5,
+                        }}
+                        onClick={() => handleTooltipOpen(index)}
+                      />
+                    </Tooltip>
                   ))}
               </Stack>
             </Stack>
@@ -1292,7 +1342,8 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                         coinSocialGraphTwitter?.data?.social_platform
                       } Followers`}
                       coinData={coinSocialGraphTwitter?.data?.followers?.slice(
-                        -9
+                        0,
+                        8
                       )}
                       // icon={
                       //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
@@ -1317,7 +1368,8 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                         coinSocialGraphTelegram?.data?.social_platform
                       } Followers`}
                       coinData={coinSocialGraphTelegram?.data?.followers?.slice(
-                        -9
+                        0,
+                        8
                       )}
                       // icon={
                       //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
@@ -1342,7 +1394,8 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                         coinSocialGraphReddit?.data?.social_platform
                       } Followers`}
                       coinData={coinSocialGraphReddit?.data?.followers?.slice(
-                        -9
+                        0,
+                        8
                       )}
                       // icon={
                       //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
@@ -1367,7 +1420,8 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                         coinSocialGraphFacebook?.data?.social_platform
                       } Followers`}
                       coinData={coinSocialGraphFacebook?.data?.followers?.slice(
-                        -9
+                        0,
+                        8
                       )}
                       // icon={
                       //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
@@ -1392,7 +1446,8 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                         coinSocialGraphGithub?.data?.social_platform
                       } Followers`}
                       coinData={coinSocialGraphGithub?.data?.followers?.slice(
-                        -9
+                        0,
+                        8
                       )}
                       // icon={
                       //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
@@ -1416,7 +1471,8 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                         coinSocialGraphDiscord?.data?.social_platform
                       } Followers`}
                       coinData={coinSocialGraphDiscord?.data?.followers?.slice(
-                        -9
+                        0,
+                        8
                       )}
                       // icon={
                       //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon

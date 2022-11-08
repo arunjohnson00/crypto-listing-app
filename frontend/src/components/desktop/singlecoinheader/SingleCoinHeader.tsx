@@ -988,7 +988,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
               <Stack
                 direction={{ xs: "row", sm: "row", md: "row" }}
                 spacing={1}
-                alignItems="center"
+                alignItems="baseline"
                 justifyContent={{
                   xs: "center",
                   sm: "center",
@@ -1446,7 +1446,10 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     coinSocialGraphTwitter &&
                     coinSocialGraphTwitter?.data?.social_platform
                   } Followers`}
-                  coinData={coinSocialGraphTwitter?.data?.followers?.slice(-9)}
+                  coinData={coinSocialGraphTwitter?.data?.followers?.slice(
+                    0,
+                    8
+                  )}
                   // icon={
                   //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
                   // }
@@ -1469,7 +1472,10 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     coinSocialGraphTelegram &&
                     coinSocialGraphTelegram?.data?.social_platform
                   } Followers`}
-                  coinData={coinSocialGraphTelegram?.data?.followers?.slice(-9)}
+                  coinData={coinSocialGraphTelegram?.data?.followers?.slice(
+                    0,
+                    8
+                  )}
                   // icon={
                   //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
                   // }
@@ -1492,7 +1498,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     coinSocialGraphReddit &&
                     coinSocialGraphReddit?.data?.social_platform
                   } Followers`}
-                  coinData={coinSocialGraphReddit?.data?.followers?.slice(-9)}
+                  coinData={coinSocialGraphReddit?.data?.followers?.slice(0, 8)}
                   // icon={
                   //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
                   // }
@@ -1515,7 +1521,10 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     coinSocialGraphFacebook &&
                     coinSocialGraphFacebook?.data?.social_platform
                   } Followers`}
-                  coinData={coinSocialGraphFacebook?.data?.followers?.slice(-9)}
+                  coinData={coinSocialGraphFacebook?.data?.followers?.slice(
+                    0,
+                    8
+                  )}
                   // icon={
                   //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
                   // }
@@ -1538,7 +1547,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     coinSocialGraphGithub &&
                     coinSocialGraphGithub?.data?.social_platform
                   } Followers`}
-                  coinData={coinSocialGraphGithub?.data?.followers?.slice(-9)}
+                  coinData={coinSocialGraphGithub?.data?.followers?.slice(0, 8)}
                   // icon={
                   //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
                   // }
@@ -1560,7 +1569,10 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     coinSocialGraphDiscord &&
                     coinSocialGraphDiscord?.data?.social_platform
                   } Followers`}
-                  coinData={coinSocialGraphDiscord?.data?.followers?.slice(-9)}
+                  coinData={coinSocialGraphDiscord?.data?.followers?.slice(
+                    0,
+                    8
+                  )}
                   // icon={
                   //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
                   // }

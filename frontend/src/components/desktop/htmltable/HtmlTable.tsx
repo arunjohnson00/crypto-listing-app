@@ -26,6 +26,7 @@ import {
   DialogContent,
   AvatarGroup,
   CardMedia,
+  Tooltip,
 } from "@mui/material";
 import VoteBtn from "../button/votebtn/VoteBtn";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -46,9 +47,25 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
   const [voteid, setVoteId] = useState<any>();
 
   const recaptchaRef: any = useRef<ReCAPTCHA>();
+
+  const [openToolTip, setOpenToolTip] = useState({
+    open: false,
+    id: "",
+    rowid: "",
+  });
+
+  const handleTooltipClose = () => {
+    setOpenToolTip({ ...openToolTip, open: false, id: "", rowid: "" });
+  };
+
+  const handleTooltipOpen = (i: any, index: any) => {
+    setOpenToolTip({ ...openToolTip, open: true, id: i, rowid: index });
+  };
+
   const tabIndex = useSelector((data: any) => {
     return data?.homeReducer?.crypto_currencies_tab;
   });
+
   const captchaHandler = (index: any) => {
     setVote({ ...vote, initial: false, completed: false, captcha: true });
     setOpenCaptcha(true);
@@ -739,23 +756,65 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
                     >
                       {data &&
                         data?.badges?.length > 0 &&
-                        data?.badges?.map((item: any, index: number) => (
-                          <Avatar
-                            key={index}
-                            alt={item?.name}
-                            src={`${serverAPIUrl}public/uploads/badge_icons/${
-                              parseInt(item?.status) === 1
-                                ? item?.active_icon
-                                : item?.inactive_icon
-                            }`}
-                            sx={{
-                              width: 25,
-                              height: 25,
-                              mr: 0.5,
-                              mb: 0.5,
-                              borderRadius: 0,
+                        data?.badges?.map((item: any, i: number) => (
+                          <Tooltip
+                            arrow
+                            PopperProps={{
+                              disablePortal: false,
+                              modifiers: [
+                                {
+                                  name: "offset",
+                                  options: {
+                                    offset: [0, -10],
+                                  },
+                                },
+                              ],
                             }}
-                          />
+                            onClose={handleTooltipClose}
+                            open={
+                              parseInt(openToolTip?.rowid) === index &&
+                              parseInt(openToolTip?.id) === i
+                                ? openToolTip?.open
+                                : false
+                            }
+                            // disableFocusListener
+                            // disableHoverListener
+                            // disableTouchListener
+                            title={item?.name}
+                            componentsProps={{
+                              tooltip: {
+                                sx: {
+                                  borderRadius: 2,
+                                  border: "1.5px solid #1a2063",
+                                  backgroundColor: "#121139",
+                                  fontSize: ".65rem",
+                                  cursor: "pointer",
+                                  "& .MuiTooltip-arrow": {
+                                    color: "#1a2063",
+                                  },
+                                },
+                              },
+                            }}
+                          >
+                            <Avatar
+                              key={index}
+                              alt={item?.name}
+                              src={`${serverAPIUrl}public/uploads/badge_icons/${
+                                parseInt(item?.status) === 1
+                                  ? item && item?.active_icon
+                                  : item && item?.inactive_icon
+                              }`}
+                              sx={{
+                                width: 25,
+                                height: 25,
+                                mr: 0.5,
+                                mb: 0.5,
+                                cursor: "pointer",
+                              }}
+                              onClick={() => handleTooltipOpen(i, index)}
+                              onMouseEnter={() => handleTooltipOpen(i, index)}
+                            />
+                          </Tooltip>
                         ))}
                     </Stack>
                   </TableCell>
