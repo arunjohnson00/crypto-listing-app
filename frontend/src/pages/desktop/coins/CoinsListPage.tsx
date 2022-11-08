@@ -303,8 +303,11 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
                 direction="row"
                 sx={{ justifyContent: "space-between", alignItems: "center" }}
               >
-                <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
-                  Featured Coin
+                <Typography
+                  variant="h5"
+                  sx={{ fontSize: "1.1rem", color: "#FFD700" }}
+                >
+                  Promoted Coins
                 </Typography>
                 <Typography
                   variant="body2"
@@ -432,7 +435,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
                         }`,
                       }}
                     >
-                      Featured Coins
+                      Promoted Coins
                     </Typography>
                   </Box>
 

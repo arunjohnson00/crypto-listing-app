@@ -21,7 +21,7 @@ import FeaturedCoinCards from "../../../components/desktop/cards/featuredcoin/Fe
 import MobileFeaturedCoinCards from "../../../components/mobile/cards/featuredcoin/MobileFeaturedCoinCards";
 import { Helmet } from "react-helmet";
 
-const FeaturedCoinPage = () => {
+const FeaturedCoinPage = ({ windowInnerWidth }: any) => {
   const dispatch: any = useDispatch();
   const theme = useTheme();
   const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
@@ -39,7 +39,7 @@ const FeaturedCoinPage = () => {
   return (
     <Fragment>
       <Helmet>
-        <title>Featured Coin | CoinXhigh.com</title>
+        <title>Promoted Coins | CoinXhigh.com</title>
         <meta
           name="description"
           content="CoinxHigh is the world's most prominent community-based platform for Crypto listing, Crypto events listing, NFT Listing, Crypto airdrop listing and more."
@@ -49,7 +49,7 @@ const FeaturedCoinPage = () => {
           property="og:site_name"
           content="Coin Vote, Crypto Events, NFT & Airdrop listing Platform for your favourite Crypto projects. | CoinXhigh.com"
         />
-        <meta property="og:title" content="Featured Coin | CoinXhigh.com" />
+        <meta property="og:title" content="Promoted Coins | CoinXhigh.com" />
         <meta property="og:locale" content="en" />
         <meta property="og:type" content="website" />
         <meta
@@ -76,9 +76,18 @@ const FeaturedCoinPage = () => {
         </Grid>
         <Grid item xs={12} pt={3}>
           <Stack direction="column" spacing={0.1}>
-            <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
-              Featured Coin
-            </Typography>
+            {windowInnerWidth <= 900 ? (
+              <Typography
+                variant="h5"
+                sx={{ fontSize: "1.1rem", color: "#FFD700" }}
+              >
+                Promoted Coins
+              </Typography>
+            ) : (
+              <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+                Promoted Coins
+              </Typography>
+            )}
             {/* <Typography variant="caption" sx={{ color: "#CDCED1" }}>
               A unique collection of master ....
             </Typography> */}

@@ -122,7 +122,7 @@ const HeaderAds = () => {
                       height="auto"
                       image={`${serverAPIUrl}public/uploads/banner_ads/${mainBannerAds?.data[random]?.banner_image}`}
                       alt={mainBannerAds?.data[random]?.banner_name}
-                      sx={{ objectFit: "unset" }}
+                      sx={{ objectFit: "unset", borderRadius: 1 }}
                     />
                   </a>
                 )}

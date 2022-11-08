@@ -285,10 +285,18 @@ const MobileHomePage = () => {
     dispatch(eventListRequest("noData", successHandler, errorHandler));
   }, [dispatch, setPreLoader]);
 
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
+  }, [vote]);
+
   const filterBtnHandler = () => {
     setTableFilter(!tableFilter);
   };
 
+  console.log(featuredCoinList);
   return (
     <Grid container rowSpacing={2}>
       <Helmet>
@@ -354,11 +362,14 @@ const MobileHomePage = () => {
           direction="row"
           sx={{ justifyContent: "space-between", alignItems: "center" }}
         >
-          <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
-            Featured Coin
+          <Typography
+            variant="h5"
+            sx={{ fontSize: "1.1rem", color: "#FFD700" }}
+          >
+            Promoted Coins
           </Typography>
           <Link
-            to="/featured-coin"
+            to="/promoted-coins"
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <MobileViewMoreBtn title="View more" />
@@ -366,7 +377,7 @@ const MobileHomePage = () => {
         </Stack>
       </Grid>
 
-      <Grid item xs={12}>
+      {/* <Grid item xs={12}>
         {featuredCoinList && (
           <Carousel
             // centerMode={true}
@@ -391,6 +402,24 @@ const MobileHomePage = () => {
               ))}
           </Carousel>
         )}
+      </Grid> */}
+
+      <Grid item xs={12}>
+        <Stack
+          direction="row"
+          spacing={3}
+          sx={{
+            alignItems: "center",
+          }}
+        >
+          <MobileHtmlTable
+            tableData={featuredCoinList && featuredCoinList}
+            tableHeader={tableHeader}
+            variant="featured_coins"
+            vote={vote}
+            setVote={setVote}
+          />
+        </Stack>
       </Grid>
 
       <Grid item xs={12} mt={1.5} mb={1.5}>
@@ -398,7 +427,10 @@ const MobileHomePage = () => {
           direction="row"
           sx={{ justifyContent: "space-between", alignItems: "center" }}
         >
-          <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+          <Typography
+            variant="h5"
+            sx={{ fontSize: "1.1rem", color: "#FFD700" }}
+          >
             Upcoming Events
           </Typography>
           <Link
@@ -506,7 +538,10 @@ const MobileHomePage = () => {
           direction="row"
           sx={{ justifyContent: "space-between", alignItems: "center" }}
         >
-          <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+          <Typography
+            variant="h5"
+            sx={{ fontSize: "1.1rem", color: "#FFD700" }}
+          >
             Videos
           </Typography>
           <Link
@@ -553,7 +588,10 @@ const MobileHomePage = () => {
           direction="row"
           sx={{ justifyContent: "space-between", alignItems: "center" }}
         >
-          <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+          <Typography
+            variant="h5"
+            sx={{ fontSize: "1.1rem", color: "#FFD700" }}
+          >
             CryptoCurrencies
           </Typography>
           <Link
@@ -634,7 +672,10 @@ const MobileHomePage = () => {
           direction="row"
           sx={{ justifyContent: "space-between", alignItems: "center" }}
         >
-          <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+          <Typography
+            variant="h5"
+            sx={{ fontSize: "1.1rem", color: "#FFD700" }}
+          >
             NFT Collections
           </Typography>
           <Link to="/nft" style={{ textDecoration: "none" }}>
@@ -687,7 +728,10 @@ const MobileHomePage = () => {
           direction="row"
           sx={{ justifyContent: "space-between", alignItems: "center" }}
         >
-          <Typography variant="h5" sx={{ color: "#FFFFF5" }}>
+          <Typography
+            variant="h5"
+            sx={{ fontSize: "1.1rem", color: "#FFD700" }}
+          >
             Happening Now
           </Typography>
           <Link to="/news" style={{ textDecoration: "none" }}>
@@ -797,11 +841,16 @@ const MobileHomePage = () => {
         >
           {" "}
           <Typography
-            variant="h5"
-            sx={{ fontWeight: "400", color: "#FFFFF5", textAlign: "center" }}
+            variant="h6"
+            sx={{
+              fontWeight: "400",
+              color: "#FFFFF5",
+              textAlign: "center",
+              fontSize: "1.1rem",
+            }}
           >
-            <span style={{ color: "#09e2b1" }}> 2 Million </span> registered
-            users <span style={{ color: "#09e2b1" }}> and counting</span>
+            <span style={{ color: "#09e2b1" }}> 2 Million </span> Registered
+            Users <span style={{ color: "#09e2b1" }}> And Counting</span>
           </Typography>
           <MobileBannerMaps />
         </Stack>

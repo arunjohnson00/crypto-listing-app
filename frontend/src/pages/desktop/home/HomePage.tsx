@@ -560,7 +560,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
                       lineHeight: 2,
                     }}
                   >
-                    Featured Coins
+                    Promoted Coins
                   </Typography>
                 </Box>
 

@@ -11,12 +11,12 @@ const MobileRecentSearchCard = ({ item, index, saveSearchHandler }: any) => {
         backgroundColor: "#151720",
         padding: 1.5,
         borderRadius: 3,
-        maxWidth: 62,
-        minWidth: 62,
+        maxWidth: 65,
+        minWidth: 65,
       }}
       key={index}
       my={1}
-      mr={1.5}
+      mr={0.5}
     >
       <Stack
         direction="column"
@@ -53,7 +53,7 @@ const MobileRecentSearchCard = ({ item, index, saveSearchHandler }: any) => {
                 textAlign: "center",
               }}
             >
-              {item?.coin_name.length > 7
+              {item?.coin_name.length > 9
                 ? item?.coin_name.slice(0, 7) + "..."
                 : item?.coin_name}
             </Typography>

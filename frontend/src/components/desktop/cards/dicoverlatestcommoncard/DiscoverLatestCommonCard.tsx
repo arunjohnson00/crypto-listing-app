@@ -32,44 +32,51 @@ const DiscoverLatestCommonCard = ({
         <Stack
           direction={{ xs: "column", sm: "column", md: "column" }}
           spacing={2}
+          justifyContent="space-between"
+          sx={{ minHeight: 180, maxHeight: 180 }}
         >
-          {image === null || image === undefined ? (
-            <Avatar
-              alt={title}
-              src={``}
-              sx={{
-                width: 35,
-                height: 35,
-                backgrounColor: defaultColor[index],
-              }}
-            >
-              {title && title[0]}
-            </Avatar>
-          ) : (
-            <Avatar
-              alt={title}
-              src={`${serverAPIUrl}public/uploads/${path}/${image}`}
-              sx={{ width: 35, height: 35 }}
-            />
-          )}
-
           <Stack
             direction={{ xs: "column", sm: "column", md: "column" }}
-            spacing={0.8}
+            spacing={2}
           >
-            <Typography
-              variant="body2"
-              sx={{ color: "#FFFFF5", fontWeight: 400 }}
-            >
-              {title}
-            </Typography>
+            {image === null || image === undefined ? (
+              <Avatar
+                alt={title}
+                src={``}
+                sx={{
+                  width: 35,
+                  height: 35,
+                  backgrounColor: defaultColor[index],
+                }}
+              >
+                {title && title[0]}
+              </Avatar>
+            ) : (
+              <Avatar
+                alt={title}
+                src={`${serverAPIUrl}public/uploads/${path}/${image}`}
+                sx={{ width: 35, height: 35 }}
+              />
+            )}
 
-            <Typography
-              variant="caption"
-              sx={{ color: "#FFFFF5", fontWeight: 600, fontSize: 11 }}
+            <Stack
+              direction={{ xs: "column", sm: "column", md: "column" }}
+              spacing={0.8}
             >
-              {subtitle}
-            </Typography>
+              <Typography
+                variant="body2"
+                sx={{ color: "#FFFFF5", fontWeight: 400 }}
+              >
+                {title}
+              </Typography>
+
+              <Typography
+                variant="caption"
+                sx={{ color: "#FFFFF5", fontWeight: 600, fontSize: 11 }}
+              >
+                {subtitle}
+              </Typography>
+            </Stack>
           </Stack>
           <Stack
             direction={{ xs: "row", sm: "row", md: "row" }}

@@ -354,10 +354,10 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="/featured-coin"
+          path="/promoted-coins"
           element={
             <PublicRoutes>
-              <FeaturedCoinPage />
+              <FeaturedCoinPage windowInnerWidth={windowInnerWidth} />
             </PublicRoutes>
           }
         />

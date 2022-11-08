@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { tableHeader } from "./helper";
 import NewsCardTop from "../../../components/desktop/cards/topnewscard/NewsCardTop";
 import LatestNewsHeading from "../../../components/desktop/Typography/headings/latestnews/LatestNewsHeading";
 import CoinSlider from "../../../components/desktop/coinslider/CoinSlider";
@@ -39,6 +40,9 @@ import {
 } from "../../../store/action";
 import MobileCoinSlider from "../../../components/mobile/coinslider/MobileCoinSlider";
 import DiscoverRecentCryptoCard from "../../../components/desktop/cards/discoverrecentcryptocard/DiscoverRecentCryptoCard";
+import MobileHtmlTable from "../../../components/mobile/htmltable/MobileHtmlTable";
+import MobileViewMoreBtn from "../../../components/mobile/button/viewmorebtn/MobileViewMoreBtn";
+import { Link } from "react-router-dom";
 
 const responsive = {
   superLargeDesktop: {
@@ -71,7 +75,14 @@ const MobileSingleCoinPage = () => {
   const dispatch: any = useDispatch();
   const navigate: any = useNavigate();
   const [requestStatus, setRequestStatus] = useState<any>(false);
-
+  const [vote, setVote] = useState<any>({
+    initial: false,
+    completed: false,
+    captcha: false,
+  });
+  const featuredCoinList = useSelector((data: any) => {
+    return data?.homeReducer?.featured_coin_list?.data;
+  });
   const coinDetailFirstBlock = useSelector((data: any) => {
     return data?.coinReducer?.coin_detail_first_block?.data;
   });
@@ -166,7 +177,7 @@ const MobileSingleCoinPage = () => {
     const errorHandler = (err: any) => {};
 
     dispatch(featuredCoinListRequest("noData", successHandler, errorHandler));
-  }, [dispatch]);
+  }, [dispatch, vote]);
 
   return (
     <Fragment>
@@ -351,7 +362,10 @@ const MobileSingleCoinPage = () => {
           </Grid>
           <Grid xs={12} pt={0}>
             {" "}
-            <Typography variant="h6" sx={{ color: "#FFFFF5" }} mb={1}>
+            <Typography
+              variant="h5"
+              sx={{ fontSize: "1.1rem", color: "#FFD700" }}
+            >
               Recently Added
             </Typography>
           </Grid>
@@ -391,6 +405,44 @@ const MobileSingleCoinPage = () => {
           </Grid>
         </>
       )}
+
+      <Grid item xs={12} mt={1.5} mb={1.5}>
+        <Stack
+          direction="row"
+          sx={{ justifyContent: "space-between", alignItems: "center" }}
+        >
+          <Typography
+            variant="h5"
+            sx={{ fontSize: "1.1rem", color: "#FFD700" }}
+          >
+            Promoted Coins
+          </Typography>
+          <Link
+            to="/promoted-coins"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <MobileViewMoreBtn title="View more" />
+          </Link>
+        </Stack>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Stack
+          direction="row"
+          spacing={3}
+          sx={{
+            alignItems: "center",
+          }}
+        >
+          <MobileHtmlTable
+            tableData={featuredCoinList && featuredCoinList}
+            tableHeader={tableHeader}
+            variant="featured_coins"
+            vote={vote}
+            setVote={setVote}
+          />
+        </Stack>
+      </Grid>
     </Fragment>
   );
 };

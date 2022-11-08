@@ -40,6 +40,12 @@ import "./style.css";
 import VotePopupAds from "../../ads/votepopupads/VotePopupAds";
 import ArrowIcon from "../../../assets/table/arrow.svg";
 
+import FacebookImage from "../../../assets/table/facebook.png";
+import InstagramImage from "../../../assets/table/instagram.png";
+import RedditImage from "../../../assets/table/reddit.png";
+import TelegramImage from "../../../assets/table/telegram.png";
+import TwitterImage from "../../../assets/table/twitter.png";
+
 const MobileHtmlTable = ({
   tableData,
   variant,
@@ -133,7 +139,13 @@ const MobileHtmlTable = ({
   return (
     <TableContainer
       component={Paper}
-      className={variant === "crypto_currencies" ? "tableFixHead" : ""}
+      className={
+        variant === "crypto_currencies"
+          ? "tableFixHead"
+          : variant === "featured_coins"
+          ? "tableFixHeadFeaturedCoin"
+          : ""
+      }
       ref={scrollElement}
     >
       <Table
@@ -150,7 +162,29 @@ const MobileHtmlTable = ({
           sx={{ backgroundColor: "#000000", color: "#686868", height: 50 }}
         >
           <TableRow sx={{ borderBottom: "2px solid black" }}>
-            {tabIndex !== 6
+            {variant === "featured_coins"
+              ? tableHeader?.featuredCoin?.map((item: any, index: number) => (
+                  <TableCell
+                    sx={{ color: "#686868", fontWeight: 500 }}
+                    key={index}
+                  >
+                    <Stack direction="row" spacing={0.5} alignItems="center">
+                      <Typography>{item}</Typography>
+                      {item === "Name" && (
+                        // <ArrowForwardIosRoundedIcon
+                        //   sx={{ color: "#686868", fontSize: ".9rem" }}
+                        // />
+                        <Avatar
+                          className="arrow_blink"
+                          src={ArrowIcon}
+                          sx={{ width: 30, height: 30 }}
+                          onClick={() => scrollLeft()}
+                        />
+                      )}
+                    </Stack>
+                  </TableCell>
+                ))
+              : tabIndex !== 6
               ? tableHeader?.cryptoCommon?.map((item: any, index: number) => (
                   <TableCell
                     sx={{ color: "#686868", fontWeight: 500 }}
@@ -814,6 +848,495 @@ const MobileHtmlTable = ({
                             }}
                           />
                         ))}
+                    </Stack>
+                  </TableCell>
+                </TableRow>
+              ))}
+
+            {/* <TableRow
+            sx={{
+              "&:last-child td, &:last-child th": { border: 0 },
+              borderBottom: "2px solid black",
+            }}
+          >
+            <TableCell component="th" scope="row" sx={{ color:"#FFFFFF" }}>
+              1
+            </TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>
+              <VoteBtn />
+            </TableCell>
+            <TableCell sx={{ color:"#FFFFFF" }}>Test</TableCell>
+          </TableRow> */}
+          </TableBody>
+        )}
+
+        {variant === "featured_coins" && (
+          <TableBody sx={{ backgroundColor: "#010822", color: "#FFFFFF" }}>
+            {tableData &&
+              tableData.slice(0, 10).map((data: any, index: number) => (
+                <TableRow
+                  sx={{
+                    "&:last-child td, &:last-child th": { border: 0 },
+
+                    borderBottom: "1px solid #031323",
+                    height: 20,
+                    "&:hover": {
+                      //backgroundColor: "red",
+                    },
+                  }}
+                  key={index}
+                >
+                  {/* <TableCell
+                    sx={{
+                      color: "#FFFFFF",
+                      border: 0,
+
+                      maxWidth: 1,
+                    }}
+                  >
+                    <Link
+                      to={{
+                        pathname: `/coin/${data?.slug}`,
+                      }}
+                      state={{ coin_id: data?.id }}
+                      style={{
+                        textDecoration: "none",
+                        color: "#686868",
+                      }}
+                    >
+                      {index + 1}
+                    </Link>
+                  </TableCell> */}
+                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                    <Link
+                      to={{
+                        pathname: `/coin/${data?.slug}`,
+                      }}
+                      state={{ coin_id: data?.id }}
+                      style={{
+                        textDecoration: "none",
+                        color: "#FFFFFF",
+                      }}
+                    >
+                      {data && data?.logo === null ? (
+                        <Avatar
+                          sx={{
+                            bgcolor: defaultColor[index],
+                            width: 34,
+                            height: 34,
+                          }}
+                        >
+                          <Typography sx={{ fontSize: ".6rem" }}>
+                            {data && data?.name[0]}
+                          </Typography>
+                        </Avatar>
+                      ) : (
+                        <Avatar
+                          alt={data && data?.name}
+                          src={`${serverAPIUrl}public/uploads/coin_logo/${data?.logo}`}
+                          //src="https://mui.com/static/images/avatar/1.jpg"
+                          sx={{ width: 34, height: 34 }}
+                        />
+                      )}
+                    </Link>
+                  </TableCell>
+                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                    <Stack direction="column">
+                      <Typography variant="caption">
+                        {" "}
+                        <Link
+                          to={{
+                            pathname: `/coin/${data?.slug}`,
+                          }}
+                          state={{ coin_id: data?.id }}
+                          style={{
+                            textDecoration: "none",
+                            color: "#FFFFFF",
+                          }}
+                        >
+                          {data && data?.name?.length > 13
+                            ? data?.name?.slice(0, 13) + "..."
+                            : data && data?.name}
+                        </Link>
+                      </Typography>
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          color: "#1dffc0",
+                          fontWeight: 400,
+                          fontSize: "0.7rem",
+                        }}
+                      >
+                        {"$"}
+                        {data?.symbol}
+                      </Typography>
+                    </Stack>
+                  </TableCell>
+                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                    {/* // <AvatarGroup total={24} max={2} variant="square">
+                      //   <Avatar
+                      //     variant="square"
+                      //     alt={data?.name}
+                      //     src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
+                      //     sx={{ width: 25, height: 25 }}
+                      //   />
+                      // </AvatarGroup> */}
+                    {/* {data && data?.network_icon !== null ? (
+                      <Avatar
+                        variant="square"
+                        alt={data?.name}
+                        src={`${serverAPIUrl}public/uploads/network_icons/${data?.network_icon}`}
+                        sx={{ width: 25, height: 25 }}
+                      />
+                    ) : (
+                     
+                      <Typography variant="caption">--</Typography>
+                    )} */}
+                    <Stack
+                      direction="row"
+                      spacing={0}
+                      alignItems="center"
+                      sx={{ flexWrap: "wrap" }}
+                    >
+                      {data &&
+                        data?.networks?.length > 0 &&
+                        data?.networks?.map((item: any, index: number) => (
+                          <Avatar
+                            variant="square"
+                            key={index}
+                            alt={item?.name}
+                            src={`${serverAPIUrl}public/uploads/network_icons/${item?.network_icon}`}
+                            sx={{ width: 25, height: 25 }}
+                          />
+                        ))}
+                    </Stack>
+                    {/* <Stack direction="column" spacing={0.2}>
+                      {data && data?.network_icon?.length !== 0 ? (
+                        data &&
+                        data?.network_icon?.map((item: any, index: number) => (
+                          <Avatar
+                            alt={data?.name}
+                            src={`${serverAPIUrl}public/uploads/network_icons/${item[index]}`}
+                            sx={{ width: 41, height: 11, borderRadius: 0 }}
+                          />
+                        ))
+                      ) : (
+                        <Typography variant="caption">--</Typography>
+                      )}
+                    </Stack> */}
+                  </TableCell>
+
+                  <TableCell sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}>
+                    <Typography variant="caption">
+                      <Link
+                        to={{
+                          pathname: `/coin/${data?.slug}`,
+                        }}
+                        state={{ coin_id: data?.id }}
+                        style={{
+                          textDecoration: "none",
+                          color: "#FFFFFF",
+                        }}
+                      >
+                        {moment(new Date(data?.created_at)).fromNow()}
+                      </Link>
+                    </Typography>
+                  </TableCell>
+                  <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
+                    <Stack direction="row" spacing={2} alignItems="center">
+                      <Box sx={{ minWidth: 50 }}>
+                        <Typography variant="caption">
+                          {data && data?.vote !== null ? (
+                            data?.vote?.toLocaleString()
+                          ) : (
+                            <Typography variant="caption">--</Typography>
+                          )}
+                        </Typography>
+                      </Box>
+                      <Stack
+                        direction={{ xs: "column", sm: "column", md: "row" }}
+                        spacing={1.5}
+                        sx={{
+                          alignItems: "center",
+                          justifyContent: "flex-start",
+                        }}
+                        pt={1}
+                      >
+                        {(JSON.parse(
+                          localStorage.getItem(`vote_${data?.slug}`) as any
+                        ) === null &&
+                          vote &&
+                          vote.initial === false &&
+                          vote.completed === false &&
+                          vote.captcha === false) ||
+                        (JSON.parse(
+                          localStorage.getItem(`vote_${data?.slug}`) as any
+                        ) === null &&
+                          voteid !== data?.slug) ? (
+                          <Button
+                            variant="contained"
+                            sx={{
+                              borderRadius: "50px",
+                              textTransform: "capitalize",
+                              fontSize: "0.675rem",
+                              height: 23,
+                            }}
+                            style={{
+                              background:
+                                "linear-gradient(to right, #5652DD 0%, #104EAB 100%)",
+                            }}
+                            onClick={() => captchaHandler(data && data?.slug)}
+                          >
+                            Vote
+                          </Button>
+                        ) : vote.captcha === true && voteid === data?.slug ? (
+                          <Dialog
+                            open={openCaptcha}
+                            // TransitionComponent={Transition}
+                            keepMounted
+                            onClose={captchaOnClose}
+                            aria-describedby="alert-dialog-slide-description"
+                            PaperProps={{
+                              style: {
+                                backgroundColor: "transparent",
+                                boxShadow: "none",
+                                overflow: "hidden",
+                              },
+                            }}
+                            sx={{
+                              backgroundColor: "none",
+                              borderRadius: 3,
+                              overflow: "hidden",
+                            }}
+                          >
+                            <DialogContent
+                              sx={{
+                                "&.MuiDialogContent-root": {
+                                  padding: 0,
+                                  backgroundColor: "none",
+                                  borderRadius: 3,
+                                  width: "100%",
+                                },
+                              }}
+                            >
+                              <Box
+                                p={4}
+                                sx={{
+                                  width: "auto",
+                                  height: "auto",
+                                  backgroundColor: "#000000",
+                                  border: "2px solid #121528",
+                                  borderRadius: 3,
+                                }}
+                              >
+                                <Stack
+                                  direction="column"
+                                  spacing={3}
+                                  alignItems="center"
+                                  justifyContent="center"
+                                >
+                                  <Typography
+                                    variant="body2"
+                                    sx={{
+                                      color: "#FFFFFF",
+                                      fontWeight: 400,
+                                      fontSize: "1rem",
+                                    }}
+                                  >
+                                    Vote for{" "}
+                                    <span
+                                      style={{
+                                        color: "#1FD47E",
+                                        fontWeight: 500,
+                                      }}
+                                    >
+                                      {data && data?.name}
+                                    </span>{" "}
+                                    & prove that you are not a robot
+                                  </Typography>
+                                  <ReCAPTCHA
+                                    sitekey="6LeV-IQhAAAAAMwIIrqVh_eqFPl-8IFn1QQWWrEU"
+                                    onChange={() =>
+                                      coinVoteHandler(data && data?.slug)
+                                    }
+                                    theme="dark"
+                                    ref={recaptchaRef}
+                                    onExpired={() => {
+                                      // here
+                                    }}
+                                  />
+
+                                  <VotePopupAds />
+                                  <Button
+                                    variant="contained"
+                                    sx={{
+                                      borderRadius: 10,
+                                      backgroundColor: "#00B6FC",
+                                      textTransform: "none",
+                                    }}
+                                    onClick={captchaOnClose}
+                                  >
+                                    Close this window
+                                  </Button>
+                                </Stack>
+                              </Box>
+                            </DialogContent>
+                          </Dialog>
+                        ) : vote.initial === true && voteid === data?.slug ? (
+                          <LoadingButton
+                            loading
+                            variant="outlined"
+                            sx={{
+                              color: "#FFFFFF",
+                              backgroundColor: "#FFFFFF",
+                              borderRadius: "50px",
+                              textTransform: "capitalize",
+                              fontSize: "0.675rem",
+                              height: 23,
+                            }}
+                          >
+                            Submiting
+                          </LoadingButton>
+                        ) : (
+                          (voteLocal !== null ||
+                            JSON.parse(
+                              localStorage.getItem(`vote_${data?.slug}`) as any
+                            ) !== null ||
+                            voteLocal?.status === true ||
+                            vote.completed === true) && (
+                            <Button
+                              variant="contained"
+                              sx={{
+                                borderRadius: "50px",
+                                textTransform: "capitalize",
+                                fontSize: "0.675rem",
+                                height: 23,
+                              }}
+                              style={{
+                                background:
+                                  "linear-gradient(to right, #5652DD 0%, #104EAB 100%)",
+                              }}
+                            >
+                              Voted
+                            </Button>
+                          )
+                        )}
+                      </Stack>
+                    </Stack>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 120 }}
+                  >
+                    <Stack
+                      direction="row"
+                      spacing={0}
+                      alignItems="center"
+                      sx={{ flexWrap: "wrap" }}
+                    >
+                      {data &&
+                        data?.badges?.length > 0 &&
+                        data?.badges?.map((item: any, index: number) => (
+                          <Avatar
+                            key={index}
+                            alt={item?.name}
+                            src={`${serverAPIUrl}public/uploads/badge_icons/${
+                              parseInt(item?.status) === 1
+                                ? item?.active_icon
+                                : item?.inactive_icon
+                            }`}
+                            sx={{
+                              width: 25,
+                              height: 25,
+                              mr: 0.5,
+                              mb: 0.5,
+                              borderRadius: 0,
+                            }}
+                          />
+                        ))}
+                    </Stack>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "#FFFFFF", border: 0, minWidth: 120 }}
+                  >
+                    <Stack direction="row" spacing={1}>
+                      {data?.communities[0]?.facebook_link !== null &&
+                        data?.communities?.length > 0 && (
+                          <a
+                            href={data && data?.communities[0]?.facebook_link}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <Avatar
+                              alt="Facebook"
+                              src={FacebookImage}
+                              sx={{ width: 20, height: 20, borderRadius: 0 }}
+                            />
+                          </a>
+                        )}
+                      {data?.communities[0]?.twitter_link !== null &&
+                        data?.communities?.length > 0 && (
+                          <a
+                            href={data && data?.communities[0]?.twitter_link}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <Avatar
+                              alt="Twitter"
+                              src={TwitterImage}
+                              sx={{ width: 20, height: 20, borderRadius: 0 }}
+                            />
+                          </a>
+                        )}
+                      {data?.communities[0]?.telegram_link !== null &&
+                        data?.communities?.length > 0 && (
+                          <a
+                            href={data && data?.communities[0]?.telegram_link}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <Avatar
+                              alt="Telegram"
+                              src={TelegramImage}
+                              sx={{ width: 20, height: 20, borderRadius: 0 }}
+                            />
+                          </a>
+                        )}
+                      {data?.communities[0]?.instagram_link !== null &&
+                        data?.communities?.length > 0 && (
+                          <a
+                            href={data && data?.communities[0]?.instagram_link}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <Avatar
+                              alt="Instagram"
+                              src={InstagramImage}
+                              sx={{ width: 20, height: 20, borderRadius: 0 }}
+                            />
+                          </a>
+                        )}
+                      {data?.communities[0]?.reddit_link !== null &&
+                        data?.communities?.length > 0 && (
+                          <a
+                            href={data && data?.communities[0]?.reddit_link}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <Avatar
+                              alt="Reddit"
+                              src={RedditImage}
+                              sx={{ width: 20, height: 20, borderRadius: 0 }}
+                            />
+                          </a>
+                        )}
                     </Stack>
                   </TableCell>
                 </TableRow>
