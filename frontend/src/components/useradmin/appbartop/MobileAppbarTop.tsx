@@ -23,6 +23,7 @@ import notificationIcon from "../../../assets/userdashboard/mobile/notification.
 import faqIcon from "../../../assets/userdashboard/mobile/faq.png";
 import MobileDrawer from "./MobileDrawer";
 import MobileMenu from "./MobileMenu";
+import { Link } from "react-router-dom";
 
 const MobileAppbarTop = () => {
   const [drawerState, setDrawerState] = useState({
@@ -78,29 +79,34 @@ const MobileAppbarTop = () => {
           <Box sx={{ flexGrow: 1 }} />
 
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-              onClick={notificationOpenHandler}
+            <Link
+              to="/user-dashboard/announcement"
+              style={{ textDecoration: "none" }}
             >
-              <Badge
-                badgeContent={""}
-                overlap="circular"
-                anchorOrigin={{ vertical: "top", horizontal: "right" }}
-                variant="dot"
-                color="error"
-                sx={
-                  {
-                    //   transform: "scale(.5) translate(50%, -50%)",
-                  }
-                }
+              <IconButton
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
+                // onClick={notificationOpenHandler}
               >
-                <NotificationsIcon
-                  sx={{ width: 27, height: 27, color: "#FFBF04" }}
-                />
-              </Badge>
-            </IconButton>
+                <Badge
+                  badgeContent={""}
+                  overlap="circular"
+                  anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                  variant="dot"
+                  color="error"
+                  sx={
+                    {
+                      //   transform: "scale(.5) translate(50%, -50%)",
+                    }
+                  }
+                >
+                  <NotificationsIcon
+                    sx={{ width: 27, height: 27, color: "#FFBF04" }}
+                  />
+                </Badge>
+              </IconButton>
+            </Link>
             <IconButton
               size="large"
               aria-label="show 17 new notifications"

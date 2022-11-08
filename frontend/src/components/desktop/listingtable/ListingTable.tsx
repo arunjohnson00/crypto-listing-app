@@ -586,7 +586,7 @@ const ListingTable = ({
                             color: "#FFFFFF",
                           }}
                         >
-                          {moment(new Date(data?.listed)).fromNow()}
+                          {data && moment(data?.listed).fromNow()}
                         </Link>
                       </Typography>
                     </TableCell>

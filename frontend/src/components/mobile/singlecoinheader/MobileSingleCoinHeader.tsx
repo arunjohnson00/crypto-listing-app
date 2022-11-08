@@ -697,8 +697,8 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                   </Stack>
 
                   <Typography variant="subtitle2" sx={{ color: "#00B96E" }}>
-                    {coinData && coinData?.approved_at !== null
-                      ? moment(new Date(coinData?.approved_at)).fromNow()
+                    {coinData && coinData?.created_at !== null
+                      ? moment(new Date(coinData?.created_at)).fromNow()
                       : "NA"}
                   </Typography>
                 </Stack>
