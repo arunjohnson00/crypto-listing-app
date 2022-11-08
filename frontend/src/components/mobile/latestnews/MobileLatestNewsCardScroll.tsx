@@ -82,6 +82,7 @@ const MobileLatestNewsCardScroll = () => {
             draggable={true}
             swipeable={true}
             minimumTouchDrag={10}
+            autoPlaySpeed={4000}
             keyBoardControl={true}
             shouldResetAutoplay={false}
           >

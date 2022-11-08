@@ -376,11 +376,12 @@ const MobileHomePage = () => {
             arrows={true}
             swipeable={true}
             partialVisible={true}
-            autoPlay={false}
+            autoPlay={true}
             draggable={true}
             minimumTouchDrag={10}
             keyBoardControl={true}
             shouldResetAutoplay={false}
+            autoPlaySpeed={3500}
           >
             {featuredCoinList &&
               featuredCoinList?.map((data: any, index: number) => (
@@ -527,9 +528,10 @@ const MobileHomePage = () => {
             arrows={true}
             swipeable={true}
             partialVisible={true}
-            autoPlay={false}
+            autoPlay={true}
             draggable={true}
             minimumTouchDrag={10}
+            autoPlaySpeed={4000}
             keyBoardControl={true}
             shouldResetAutoplay={false}
           >

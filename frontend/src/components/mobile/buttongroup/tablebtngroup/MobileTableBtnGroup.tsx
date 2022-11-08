@@ -67,7 +67,7 @@ const MobileTableBtnGroup = () => {
               maxHeight: 42,
             },
             "& .MuiTab-root.Mui-selected": {
-              color: "#FFFFFF",
+              color: "#FFD700",
               backgroundColor: "#040b29",
             },
           }}

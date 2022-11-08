@@ -42,10 +42,10 @@ const MobileNftCollectionCard = ({ data, index }: any) => {
       sx={{
         backgroundColor: "#01061A",
         border: "2px solid #090F2F",
-        borderTopLeftRadius: 52,
-        borderTopRightRadius: 52,
-        borderBottomLeftRadius: 52,
-        borderBottomRightRadius: 52,
+        borderTopLeftRadius: { xs: 20, sm: 20, md: 20 },
+        borderTopRightRadius: { xs: 20, sm: 20, md: 20 },
+        borderBottomLeftRadius: { xs: 20, sm: 20, md: 20 },
+        borderBottomRightRadius: { xs: 20, sm: 20, md: 20 },
         width: { xs: "100%", sm: "100%", md: "auto" },
       }}
     >
@@ -62,8 +62,8 @@ const MobileNftCollectionCard = ({ data, index }: any) => {
             alt={data && data?.title}
             variant="square"
             sx={{
-              borderTopLeftRadius: 52,
-              borderTopRightRadius: 52,
+              borderTopLeftRadius: { xs: 20, sm: 20, md: 20 },
+              borderTopRightRadius: { xs: 20, sm: 20, md: 20 },
               width: "100%",
               height: "100px",
             }}

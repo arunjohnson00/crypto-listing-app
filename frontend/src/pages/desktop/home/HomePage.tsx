@@ -271,7 +271,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
         cryptoCurrenciesPresaleRequest("noData", successHandler, errorHandler)
       );
   }, [dispatch, tabIndex, setHTMLTablePreLoader, vote]);
-  console.log(tabIndex);
+
   return (
     <Fragment>
       <Helmet>

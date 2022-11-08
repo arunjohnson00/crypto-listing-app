@@ -54,7 +54,7 @@ const TableBtnGroup = () => {
               paddingX: 1,
             },
             "& .MuiTab-root.Mui-selected": {
-              color: "#FFFFFF",
+              color: "#FFD700",
               backgroundColor: "#040b29",
             },
           }}

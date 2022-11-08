@@ -107,7 +107,7 @@ const MarketStatusCard = () => {
                 }}
               >
                 {" "}
-                {fearGreedIndex?.data[0] ? (
+                {fearGreedIndex && fearGreedIndex?.data[0] ? (
                   fearGreedIndex && fearGreedIndex?.data[0]?.value
                 ) : (
                   <span style={{ color: "#7a7a7a" }}>--</span>
