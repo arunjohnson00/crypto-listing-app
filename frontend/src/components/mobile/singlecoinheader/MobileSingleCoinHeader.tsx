@@ -73,7 +73,13 @@ import MobileSinglePageTab from "../singlepagetab/MobileSinglePageTab";
 import {
   coinDetailFirstBlockRequest,
   coinMarketListRequest,
+  coinSocialGraphDiscordRequest,
+  coinSocialGraphFacebookRequest,
+  coinSocialGraphGithubRequest,
+  coinSocialGraphRedditRequest,
   coinSocialGraphRequest,
+  coinSocialGraphTelegramRequest,
+  coinSocialGraphTwitterRequest,
 } from "../../../store/action/coinAction ";
 import MobileSocialCounterWithGraphCard from "../cards/socialcounterwithgraphcard/MobileSocialCounterWithGraphCard";
 import MobileAnimatedRating from "../animatedrating/MobileAnimatedRating";
@@ -88,6 +94,26 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
   const coinSocialGraph = useSelector((data: any) => {
     return data?.coinReducer?.coin_social_graph;
   });
+
+  const coinSocialGraphTwitter = useSelector((data: any) => {
+    return data?.coinReducer?.social_graph_twitter;
+  });
+  const coinSocialGraphTelegram = useSelector((data: any) => {
+    return data?.coinReducer?.social_graph_telegram;
+  });
+  const coinSocialGraphReddit = useSelector((data: any) => {
+    return data?.coinReducer?.social_graph_reddit;
+  });
+  const coinSocialGraphFacebook = useSelector((data: any) => {
+    return data?.coinReducer?.social_graph_facebook;
+  });
+  const coinSocialGraphGithub = useSelector((data: any) => {
+    return data?.coinReducer?.social_graph_github;
+  });
+  const coinSocialGraphDiscord = useSelector((data: any) => {
+    return data?.coinReducer?.social_graph_discord;
+  });
+
   const coinMarketLists = useSelector((data: any) => {
     return data?.coinReducer?.coin_market_list?.data;
   });
@@ -221,6 +247,58 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
       )
     );
   }, [vote]);
+
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+    dispatch(
+      coinSocialGraphTwitterRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+    dispatch(
+      coinSocialGraphTelegramRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+
+    dispatch(
+      coinSocialGraphRedditRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+
+    dispatch(
+      coinSocialGraphFacebookRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+
+    dispatch(
+      coinSocialGraphGithubRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+
+    dispatch(
+      coinSocialGraphDiscordRequest(
+        location?.pathname?.split("/").pop(),
+        successHandler,
+        errorHandler
+      )
+    );
+  }, [dispatch]);
+
   return (
     <Fragment>
       <Grid container>
@@ -1205,173 +1283,149 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                 sx={{ flexWrap: "wrap" }}
                 // height={500}
               >
-                {coinSocialGraph &&
-                  coinSocialGraph?.response === true &&
-                  coinSocialGraph?.data[0]?.twitter !== undefined &&
-                  coinSocialGraph?.data[0]?.twitter.length > 0 && (
+                {coinSocialGraphTwitter &&
+                  coinSocialGraphTwitter?.response === true &&
+                  coinSocialGraphTwitter?.data?.followers?.length > 0 && (
                     <MobileSocialCounterWithGraphCard
                       title={`${
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.twitter[0]?.social_platform
+                        coinSocialGraphTwitter &&
+                        coinSocialGraphTwitter?.data?.social_platform
                       } Followers`}
-                      coinData={
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.twitter[0]?.followers
-                          ?.split(",")
-                          .reverse()
-                      }
+                      coinData={coinSocialGraphTwitter?.data?.followers?.slice(
+                        -9
+                      )}
                       // icon={
                       //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
                       // }
 
                       icon={TwitterGraphImage}
                       url={
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.twitter[0]?.social_url
+                        coinSocialGraphTwitter &&
+                        coinSocialGraphTwitter?.data?.social_url
                       }
                       endColor="#43baff"
                       startColor="#00e8fd"
                     />
                   )}
 
-                {coinSocialGraph &&
-                  coinSocialGraph?.response === true &&
-                  coinSocialGraph?.data[0]?.telegram !== undefined &&
-                  coinSocialGraph?.data[0]?.telegram?.length > 0 && (
+                {coinSocialGraphTelegram &&
+                  coinSocialGraphTelegram?.response === true &&
+                  coinSocialGraphTelegram?.data?.followers?.length > 0 && (
                     <MobileSocialCounterWithGraphCard
                       title={`${
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.telegram[0]?.social_platform
+                        coinSocialGraphTelegram &&
+                        coinSocialGraphTelegram?.data?.social_platform
                       } Followers`}
-                      coinData={
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.telegram[0]?.followers
-                          .split(",")
-                          .reverse()
-                      }
+                      coinData={coinSocialGraphTelegram?.data?.followers?.slice(
+                        -9
+                      )}
                       // icon={
-                      //   coinSocialGraph &&
-                      //   coinSocialGraph?.data[0]?.telegram[0]?.social_icon
+                      //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
                       // }
+
                       icon={TelegramGraphImage}
                       url={
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.telegram[0]?.social_url
+                        coinSocialGraphTelegram &&
+                        coinSocialGraphTelegram?.data?.social_url
                       }
                       endColor="#2e67f6"
                       startColor="#13b0fc"
                     />
                   )}
 
-                {coinSocialGraph &&
-                  coinSocialGraph?.response === true &&
-                  coinSocialGraph?.data[0]?.reddit !== undefined &&
-                  coinSocialGraph?.data[0]?.reddit?.length > 0 && (
+                {coinSocialGraphReddit &&
+                  coinSocialGraphReddit?.response === true &&
+                  coinSocialGraphReddit?.data?.followers?.length > 0 && (
                     <MobileSocialCounterWithGraphCard
                       title={`${
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.reddit[0]?.social_platform
+                        coinSocialGraphReddit &&
+                        coinSocialGraphReddit?.data?.social_platform
                       } Followers`}
-                      coinData={
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.reddit[0]?.followers
-                          ?.split(",")
-                          .reverse()
-                      }
+                      coinData={coinSocialGraphReddit?.data?.followers?.slice(
+                        -9
+                      )}
                       // icon={
-                      //   coinSocialGraph && coinSocialGraph?.data[0]?.reddit[0]?.social_icon
+                      //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
                       // }
 
                       icon={RedditGraphImage}
                       url={
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.reddit[0]?.social_url
+                        coinSocialGraphReddit &&
+                        coinSocialGraphReddit?.data?.social_url
                       }
                       endColor="#ff6e4c"
                       startColor="#ff3708"
                     />
                   )}
 
-                {coinSocialGraph &&
-                  coinSocialGraph?.response === true &&
-                  coinSocialGraph?.data[0]?.facebook !== undefined &&
-                  coinSocialGraph?.data[0]?.facebook.length > 0 && (
+                {coinSocialGraphFacebook &&
+                  coinSocialGraphFacebook?.response === true &&
+                  coinSocialGraphFacebook?.data?.followers?.length > 0 && (
                     <MobileSocialCounterWithGraphCard
                       title={`${
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.facebook[0]?.social_platform
+                        coinSocialGraphFacebook &&
+                        coinSocialGraphFacebook?.data?.social_platform
                       } Followers`}
-                      coinData={
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.facebook[0]?.followers
-                          ?.split(",")
-                          .reverse()
-                      }
+                      coinData={coinSocialGraphFacebook?.data?.followers?.slice(
+                        -9
+                      )}
                       // icon={
-                      //   coinSocialGraph &&
-                      //   coinSocialGraph?.data[0]?.facebook[0]?.social_icon
+                      //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
                       // }
+
                       icon={FacebookGraphImage}
                       url={
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.facebook[0]?.social_url
+                        coinSocialGraphFacebook &&
+                        coinSocialGraphFacebook?.data?.social_url
                       }
                       endColor="#ff6e4c"
                       startColor="#ff3708"
                     />
                   )}
 
-                {coinSocialGraph &&
-                  coinSocialGraph?.response === true &&
-                  coinSocialGraph?.data[0]?.github !== undefined &&
-                  coinSocialGraph?.data[0]?.github.length > 0 && (
+                {coinSocialGraphGithub &&
+                  coinSocialGraphGithub?.response === true &&
+                  coinSocialGraphGithub?.data?.followers?.length > 0 && (
                     <MobileSocialCounterWithGraphCard
                       title={`${
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.github[0]?.social_platform
+                        coinSocialGraphGithub &&
+                        coinSocialGraphGithub?.data?.social_platform
                       } Followers`}
-                      coinData={
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.github[0]?.followers
-                          ?.split(",")
-                          .reverse()
-                      }
+                      coinData={coinSocialGraphGithub?.data?.followers?.slice(
+                        -9
+                      )}
                       // icon={
-                      //   coinSocialGraph && coinSocialGraph?.data[0]?.github[0]?.social_icon
+                      //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
                       // }
 
                       icon={GithubGraphImage}
                       url={
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.github[0]?.social_url
+                        coinSocialGraphGithub &&
+                        coinSocialGraphGithub?.data?.social_url
                       }
                       endColor="#ffffff"
                       startColor="#5C6BC0"
                     />
                   )}
-                {coinSocialGraph &&
-                  coinSocialGraph?.response === true &&
-                  coinSocialGraph?.data[0]?.discord !== undefined &&
-                  coinSocialGraph?.data[0]?.discord.length > 0 && (
+                {coinSocialGraphDiscord &&
+                  coinSocialGraphDiscord?.response === true &&
+                  coinSocialGraphDiscord?.data?.followers?.length > 0 && (
                     <MobileSocialCounterWithGraphCard
                       title={`${
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.discord[0]?.social_platform
+                        coinSocialGraphDiscord &&
+                        coinSocialGraphDiscord?.data?.social_platform
                       } Followers`}
-                      coinData={
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.discord[0]?.followers
-                          ?.split(",")
-                          .reverse()
-                      }
+                      coinData={coinSocialGraphDiscord?.data?.followers?.slice(
+                        -9
+                      )}
                       // icon={
-                      //   coinSocialGraph && coinSocialGraph?.data[0]?.discord[0]?.social_icon
+                      //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
                       // }
 
                       icon={DiscordGraphImage}
                       url={
-                        coinSocialGraph &&
-                        coinSocialGraph?.data[0]?.discord[0]?.social_url
+                        coinSocialGraphDiscord &&
+                        coinSocialGraphDiscord?.data?.social_url
                       }
                       endColor="#2415a2"
                       startColor="#404EED"

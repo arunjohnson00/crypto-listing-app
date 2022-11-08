@@ -138,7 +138,10 @@ const ListingTable = ({
   }, [location, voteLocal]);
   return (
     <Stack direction="column" spacing={2}>
-      <TableContainer component={Paper} className="tableFixHead">
+      <TableContainer
+        //component={Paper}
+        className="tableFixHead"
+      >
         <InfiniteScroll
           dataLength={tableData?.length} //This is important field to render the next data
           next={scrollHandler}

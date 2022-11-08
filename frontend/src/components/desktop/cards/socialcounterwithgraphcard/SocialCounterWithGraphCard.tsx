@@ -204,7 +204,7 @@ const SocialCounterWithGraphCard = ({
                   fontSize: ".85rem",
                 }}
               >
-                {coinData && parseInt(coinData[0]).toLocaleString()}
+                {coinData && parseInt(coinData?.slice(-1)).toLocaleString()}
               </Typography>
               {coinData && coinData?.length > 1 && (
                 <Typography
@@ -213,8 +213,8 @@ const SocialCounterWithGraphCard = ({
                       coinData &&
                       Math.sign(
                         percentageDiff(
-                          parseInt(coinData[1]),
-                          parseInt(coinData[0])
+                          parseInt(coinData?.slice(-2)),
+                          parseInt(coinData?.slice(-1))
                         )
                       ) === -1
                         ? "red"
@@ -228,8 +228,8 @@ const SocialCounterWithGraphCard = ({
                   {coinData &&
                     Math.sign(
                       percentageDiff(
-                        parseInt(coinData[1]),
-                        parseInt(coinData[0])
+                        parseInt(coinData?.slice(-2)),
+                        parseInt(coinData?.slice(-1))
                       )
                     ) !== -1 &&
                     "+"}

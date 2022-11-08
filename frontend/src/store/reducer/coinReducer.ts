@@ -20,6 +20,12 @@ const initialState = {
   coin_review_submit: "",
   coin_market_list: "",
   coin_watchlist: "",
+  social_graph_twitter: "",
+  social_graph_telegram: "",
+  social_graph_reddit: "",
+  social_graph_facebook: "",
+  social_graph_github: "",
+  social_graph_discord: "",
 };
 const coinReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -149,6 +155,47 @@ const coinReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         coin_watchlist: action?.payload?.data,
+      };
+
+    case COIN.SOCIAL_GRAPH_TWITTER:
+      //console.log(action);
+      return {
+        ...state,
+        social_graph_twitter: action?.payload?.data,
+      };
+
+    case COIN.SOCIAL_GRAPH_TELEGRAM:
+      //console.log(action);
+      return {
+        ...state,
+        social_graph_telegram: action?.payload?.data,
+      };
+
+    case COIN.SOCIAL_GRAPH_REDDIT:
+      //console.log(action);
+      return {
+        ...state,
+        social_graph_reddit: action?.payload?.data,
+      };
+
+    case COIN.SOCIAL_GRAPH_FACEBOOK:
+      //console.log(action);
+      return {
+        ...state,
+        social_graph_facebook: action?.payload?.data,
+      };
+
+    case COIN.SOCIAL_GRAPH_GITHUB:
+      //console.log(action);
+      return {
+        ...state,
+        social_graph_github: action?.payload?.data,
+      };
+    case COIN.SOCIAL_GRAPH_DISCORD:
+      //console.log(action);
+      return {
+        ...state,
+        social_graph_discord: action?.payload?.data,
       };
 
     default:

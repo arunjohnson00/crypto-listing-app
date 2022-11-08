@@ -311,3 +311,105 @@ export const coinWatchListRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const coinSocialGraphTwitterRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-social-graph/${values}/twitter`,
+    method: "GET",
+    secure: false,
+    //body: values,
+    fileUpload: false,
+    actionType: COIN.SOCIAL_GRAPH_TWITTER,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const coinSocialGraphTelegramRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-social-graph/${values}/telegram`,
+    method: "GET",
+    secure: false,
+    //body: values,
+    fileUpload: false,
+    actionType: COIN.SOCIAL_GRAPH_TELEGRAM,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const coinSocialGraphRedditRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-social-graph/${values}/reddit`,
+    method: "GET",
+    secure: false,
+    //body: values,
+    fileUpload: false,
+    actionType: COIN.SOCIAL_GRAPH_REDDIT,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const coinSocialGraphFacebookRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-social-graph/${values}/facebook`,
+    method: "GET",
+    secure: false,
+    //body: values,
+    fileUpload: false,
+    actionType: COIN.SOCIAL_GRAPH_FACEBOOK,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const coinSocialGraphGithubRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-social-graph/${values}/github`,
+    method: "GET",
+    secure: false,
+    //body: values,
+    fileUpload: false,
+    actionType: COIN.SOCIAL_GRAPH_GITHUB,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const coinSocialGraphDiscordRequest = (
+  values: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    //url: `api/b/v1/exchange`,
+    url: `api/f/v1/coin-social-graph/${values}/discord`,
+    method: "GET",
+    secure: false,
+    //body: values,
+    fileUpload: false,
+    actionType: COIN.SOCIAL_GRAPH_GITHUB,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};

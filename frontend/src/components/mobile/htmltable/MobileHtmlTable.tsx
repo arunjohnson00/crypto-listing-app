@@ -138,7 +138,7 @@ const MobileHtmlTable = ({
   }, [location, voteLocal]);
   return (
     <TableContainer
-      component={Paper}
+      // component={Paper}
       className={
         variant === "crypto_currencies"
           ? "tableFixHead"

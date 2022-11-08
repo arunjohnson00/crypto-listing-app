@@ -44,6 +44,14 @@ export { coinlatestNewsRequest } from "./coinAction ";
 export { coinRecentlyAddedRequest } from "./coinAction ";
 export { coinReviewSubmitRequest } from "./coinAction ";
 export { coinWatchListRequest } from "./coinAction ";
+export {
+  coinSocialGraphTwitterRequest,
+  coinSocialGraphDiscordRequest,
+  coinSocialGraphGithubRequest,
+  coinSocialGraphFacebookRequest,
+  coinSocialGraphRedditRequest,
+  coinSocialGraphTelegramRequest,
+} from "./coinAction ";
 //Coins Page
 
 export { coinsRecentlyAddedRequest } from "./coinsAction";

@@ -35,7 +35,6 @@ const MobileSocialCounterWithGraphCard = ({
       {
         name: "Coinxhigh",
         data: coinData && coinData,
-        //data: [1, 10, 2, 13, 7, 2, 8, 3],
       },
     ],
 
@@ -208,7 +207,7 @@ const MobileSocialCounterWithGraphCard = ({
                   fontSize: ".8rem",
                 }}
               >
-                {coinData && parseInt(coinData[0]).toLocaleString()}
+                {coinData && parseInt(coinData.slice(-1)).toLocaleString()}
               </Typography>
               {coinData && coinData?.length > 1 && (
                 <Typography
@@ -217,8 +216,8 @@ const MobileSocialCounterWithGraphCard = ({
                       coinData &&
                       Math.sign(
                         percentageDiff(
-                          parseInt(coinData[1]),
-                          parseInt(coinData[0])
+                          parseInt(coinData?.slice(-2)),
+                          parseInt(coinData?.slice(-1))
                         )
                       ) === -1
                         ? "red"
@@ -232,8 +231,8 @@ const MobileSocialCounterWithGraphCard = ({
                   {coinData &&
                     Math.sign(
                       percentageDiff(
-                        parseInt(coinData[1]),
-                        parseInt(coinData[0])
+                        parseInt(coinData?.slice(-2)),
+                        parseInt(coinData?.slice(-1))
                       )
                     ) !== -1 &&
                     "+"}

@@ -118,7 +118,7 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
   }, [location, voteLocal]);
   return (
     <TableContainer
-      component={Paper}
+      // component={Paper}
       className={variant === "crypto_currencies" ? "tableFixHead" : ""}
     >
       <Table

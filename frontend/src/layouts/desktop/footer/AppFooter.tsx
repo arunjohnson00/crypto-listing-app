@@ -152,7 +152,7 @@ const AppFooter = () => {
                   },
                 }}
               >
-                Recetly added coins
+                Recently added coins
               </Typography>
             </Link>
 
@@ -172,7 +172,7 @@ const AppFooter = () => {
                   },
                 }}
               >
-                Recetly added NFT
+                Recently added NFT
               </Typography>
             </Link>
 
