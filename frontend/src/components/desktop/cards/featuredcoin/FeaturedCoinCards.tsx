@@ -339,7 +339,11 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
             moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
               moment(cardData?.presale_end_date).format("YYYY-MM-DD")
             ) === true && (
-              <Stack direction="column" spacing={-1.5} alignItems="center">
+              <Stack
+                direction="row"
+                sx={{ alignItems: "center" }}
+                spacing={0.5}
+              >
                 <Stack direction="row" spacing={0.5} alignItems="center">
                   <span className="ripplefeaturedcoin"></span>
                   <Typography
