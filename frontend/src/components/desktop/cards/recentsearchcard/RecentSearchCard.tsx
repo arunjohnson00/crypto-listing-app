@@ -11,7 +11,7 @@ const RecentSearchCard = ({ item, index, saveSearchHandler }: any) => {
         pathname: `/coin/${item?.coin_slug}`,
       }}
       onClick={() => saveSearchHandler("item?.slug")}
-      target="_blank"
+      // target="_blank"
       rel="noopener noreferrer"
       state={{ coin_id: "item?.id" }}
       style={{ textDecoration: "none", color: "#FFFFFF" }}
