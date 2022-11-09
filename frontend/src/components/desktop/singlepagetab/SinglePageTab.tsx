@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
@@ -18,15 +18,23 @@ import CoinPageWidget from "../coinpagewidget/CoinPageWidget";
 import CoinPageEvents from "../coinpageevents/CoinPageEvents";
 import CoinPagePresale from "../coinpagepresale/CoinPagePresale";
 import CoinPageAirdrop from "../coinpageairdrop/CoinPageAirdrop";
+import { useLocation } from "react-router-dom";
 
 const SinglePageTab = ({ data }: any) => {
-  const [value, setValue] = useState("1");
-  const [tabValue, setTabValue] = useState("1");
+  const location = useLocation();
+  const [value, setValue] = useState<any>();
+  const [tabValue, setTabValue] = useState<any>();
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
     setTabValue(newValue);
   };
+
+  useEffect(() => {
+    setValue("1");
+    setTabValue("1");
+  }, [location]);
+
   return (
     <Box
       sx={{

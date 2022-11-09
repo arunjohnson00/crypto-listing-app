@@ -82,7 +82,7 @@ const CoinPageOverview = () => {
         errorHandler
       )
     );
-  }, []);
+  }, [location, dispatch]);
 
   useEffect(() => {
     const successHandler = (res: any) => {};
