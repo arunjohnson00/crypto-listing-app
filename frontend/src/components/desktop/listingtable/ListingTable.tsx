@@ -209,9 +209,17 @@ const ListingTable = ({
                   </TableCell>
                 )}
 
-                {location && location?.pathname !== "/coins/presales" && (
+                {location &&
+                  location?.pathname !== "/coins/presales" &&
+                  location?.pathname !== "/coins/recently-added" && (
+                    <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
+                      Market Cap
+                    </TableCell>
+                  )}
+
+                {location?.pathname === "/coins/recently-added" && (
                   <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
-                    Market Cap
+                    Listed
                   </TableCell>
                 )}
                 <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
@@ -227,9 +235,11 @@ const ListingTable = ({
                     7d
                   </TableCell>
                 )}
-                <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
-                  Listed
-                </TableCell>
+                {location?.pathname !== "/coins/recently-added" && (
+                  <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
+                    Listed
+                  </TableCell>
+                )}
                 <TableCell sx={{ color: "#FFFFF5", fontWeight: "bold" }}>
                   Votes
                 </TableCell>
@@ -419,9 +429,40 @@ const ListingTable = ({
                       </TableCell>
                     )}
 
-                    {location && location?.pathname !== "/coins/presales" && (
+                    {location &&
+                      location?.pathname !== "/coins/presales" &&
+                      location?.pathname !== "/coins/recently-added" && (
+                        <TableCell
+                          sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                        >
+                          <Typography variant="caption">
+                            <Link
+                              to={{
+                                pathname: `/coin/${data?.slug}`,
+                              }}
+                              state={{ coin_id: data?.id }}
+                              style={{
+                                textDecoration: "none",
+                                color: "#FFFFFF",
+                              }}
+                            >
+                              {data && data?.market_cap !== null ? (
+                                data &&
+                                "$" +
+                                  Math.floor(
+                                    Math.abs(data?.market_cap)
+                                  ).toLocaleString()
+                              ) : (
+                                <span style={{ color: "#7a7a7a" }}>--</span>
+                              )}
+                            </Link>
+                          </Typography>
+                        </TableCell>
+                      )}
+
+                    {location?.pathname === "/coins/recently-added" && (
                       <TableCell
-                        sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
+                        sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}
                       >
                         <Typography variant="caption">
                           <Link
@@ -434,15 +475,7 @@ const ListingTable = ({
                               color: "#FFFFFF",
                             }}
                           >
-                            {data && data?.market_cap !== null ? (
-                              data &&
-                              "$" +
-                                Math.floor(
-                                  Math.abs(data?.market_cap)
-                                ).toLocaleString()
-                            ) : (
-                              <span style={{ color: "#7a7a7a" }}>--</span>
-                            )}
+                            {data && moment(data?.listed).fromNow()}
                           </Link>
                         </Typography>
                       </TableCell>
@@ -589,24 +622,26 @@ const ListingTable = ({
                         </Link>
                       </TableCell>
                     )}
-                    <TableCell
-                      sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}
-                    >
-                      <Typography variant="caption">
-                        <Link
-                          to={{
-                            pathname: `/coin/${data?.slug}`,
-                          }}
-                          state={{ coin_id: data?.id }}
-                          style={{
-                            textDecoration: "none",
-                            color: "#FFFFFF",
-                          }}
-                        >
-                          {data && moment(data?.listed).fromNow()}
-                        </Link>
-                      </Typography>
-                    </TableCell>
+                    {location?.pathname !== "/coins/recently-added" && (
+                      <TableCell
+                        sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}
+                      >
+                        <Typography variant="caption">
+                          <Link
+                            to={{
+                              pathname: `/coin/${data?.slug}`,
+                            }}
+                            state={{ coin_id: data?.id }}
+                            style={{
+                              textDecoration: "none",
+                              color: "#FFFFFF",
+                            }}
+                          >
+                            {data && moment(data?.listed).fromNow()}
+                          </Link>
+                        </Typography>
+                      </TableCell>
+                    )}
                     <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                       <Stack direction="row" spacing={2} alignItems="center">
                         <Box sx={{ minWidth: 50 }}>

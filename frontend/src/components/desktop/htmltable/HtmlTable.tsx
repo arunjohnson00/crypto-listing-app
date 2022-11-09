@@ -152,7 +152,16 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
           sx={{ backgroundColor: "#000000", color: "#686868", height: 50 }}
         >
           <TableRow sx={{ borderBottom: "2px solid black" }}>
-            {tabIndex !== 6
+            {tabIndex === 4
+              ? tableHeader?.cryptoNew?.map((item: any, index: number) => (
+                  <TableCell
+                    sx={{ color: "#686868", fontWeight: 500 }}
+                    key={index}
+                  >
+                    {item}
+                  </TableCell>
+                ))
+              : tabIndex !== 6
               ? tableHeader?.cryptoCommon?.map((item: any, index: number) => (
                   <TableCell
                     sx={{ color: "#686868", fontWeight: 500 }}
@@ -376,7 +385,7 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
                     </TableCell>
                   )}
 
-                  {tabIndex !== 6 && (
+                  {tabIndex !== 6 && tabIndex !== 4 && (
                     <TableCell
                       sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
                     >
@@ -400,6 +409,27 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
                           ) : (
                             <span style={{ color: "#7a7a7a" }}>--</span>
                           )}
+                        </Link>
+                      </Typography>
+                    </TableCell>
+                  )}
+
+                  {tabIndex === 4 && (
+                    <TableCell
+                      sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}
+                    >
+                      <Typography variant="caption">
+                        <Link
+                          to={{
+                            pathname: `/coin/${data?.slug}`,
+                          }}
+                          state={{ coin_id: data?.id }}
+                          style={{
+                            textDecoration: "none",
+                            color: "#FFFFFF",
+                          }}
+                        >
+                          {moment(new Date(data?.listed)).fromNow()}
                         </Link>
                       </Typography>
                     </TableCell>
@@ -546,22 +576,26 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
                       </Link>
                     </TableCell>
                   )}
-                  <TableCell sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}>
-                    <Typography variant="caption">
-                      <Link
-                        to={{
-                          pathname: `/coin/${data?.slug}`,
-                        }}
-                        state={{ coin_id: data?.id }}
-                        style={{
-                          textDecoration: "none",
-                          color: "#FFFFFF",
-                        }}
-                      >
-                        {moment(new Date(data?.listed)).fromNow()}
-                      </Link>
-                    </Typography>
-                  </TableCell>
+                  {tabIndex !== 4 && (
+                    <TableCell
+                      sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}
+                    >
+                      <Typography variant="caption">
+                        <Link
+                          to={{
+                            pathname: `/coin/${data?.slug}`,
+                          }}
+                          state={{ coin_id: data?.id }}
+                          style={{
+                            textDecoration: "none",
+                            color: "#FFFFFF",
+                          }}
+                        >
+                          {moment(new Date(data?.listed)).fromNow()}
+                        </Link>
+                      </Typography>
+                    </TableCell>
+                  )}
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     <Stack direction="row" spacing={2} alignItems="center">
                       <Box sx={{ minWidth: 50 }}>

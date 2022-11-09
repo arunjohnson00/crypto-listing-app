@@ -378,7 +378,9 @@ const MobileFeaturedCoinCards = ({ cardData, index }: any) => {
                   >
                     {cardData && (
                       <Countdown
-                        date={moment().endOf("day").format("YYYY-MM-DD")}
+                        date={moment()
+                          .endOf("day")
+                          .format("YYYY-MM-DD HH:mm:ss")}
                         renderer={({
                           days,
                           hours,

@@ -143,7 +143,7 @@ const MobileSocialCounterWithGraphCard = ({
       //   ],
       // },
       tooltip: {
-        enabled: true,
+        enabled: false,
         x: {
           format: "dd/MM/yy HH:mm",
         },
@@ -216,8 +216,8 @@ const MobileSocialCounterWithGraphCard = ({
                       coinData &&
                       Math.sign(
                         percentageDiff(
-                          parseInt(coinData[1]),
-                          parseInt(coinData[0])
+                          parseInt(coinData[0]),
+                          parseInt(coinData[1])
                         )
                       ) === -1
                         ? "red"
@@ -231,16 +231,16 @@ const MobileSocialCounterWithGraphCard = ({
                   {coinData &&
                     Math.sign(
                       percentageDiff(
-                        parseInt(coinData[1]),
-                        parseInt(coinData[0])
+                        parseInt(coinData[0]),
+                        parseInt(coinData[1])
                       )
                     ) !== -1 &&
                     "+"}
                   {coinData &&
                     percentageDiff(
-                      parseInt(coinData[1]),
-                      parseInt(coinData[0])
-                    ).toFixed(2)}
+                      parseInt(coinData[0]),
+                      parseInt(coinData[1])
+                    ).toFixed(7)}
                   %
                 </Typography>
               )}

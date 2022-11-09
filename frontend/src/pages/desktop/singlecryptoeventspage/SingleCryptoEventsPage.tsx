@@ -584,9 +584,9 @@ const SingleCryptoEventsPage = () => {
                               >
                                 {singlePageData && (
                                   <Countdown
-                                    date={
-                                      new Date(singlePageData?.data?.end_date)
-                                    }
+                                    date={moment()
+                                      .endOf("day")
+                                      .format("YYYY-MM-DD HH:mm:ss")}
                                     renderer={({
                                       days,
                                       hours,

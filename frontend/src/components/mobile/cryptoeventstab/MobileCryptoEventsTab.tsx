@@ -93,7 +93,7 @@ const MobileCryptoEventsTab = ({
               },
             }}
           >
-            <Tab label="New" value="0" />
+            <Tab label="Recently Added" value="0" />
             <Divider
               sx={{ borderColor: "#2D2858", borderBottomWidth: "1px" }}
               orientation="vertical"
@@ -107,7 +107,7 @@ const MobileCryptoEventsTab = ({
               flexItem
               variant="middle"
             />
-            <Tab label="Past" value="2" />
+            <Tab label="Expired" value="2" />
           </TabList>
           <Divider sx={{ borderColor: "#2D2858", borderBottomWidth: "1px" }} />
         </Box>

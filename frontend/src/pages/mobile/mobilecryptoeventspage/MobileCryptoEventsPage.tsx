@@ -135,9 +135,9 @@ const MobileCryptoEventsPage = () => {
             <Typography variant="h6" sx={{ color: "#FFFFFF" }}>
               Crypto Events
             </Typography>
-            <IconButton aria-label="filter" onClick={filterBtnHandler}>
+            {/* <IconButton aria-label="filter" onClick={filterBtnHandler}>
               <FilterAltOutlinedIcon sx={{ color: "#03E2B1" }} />
-            </IconButton>
+            </IconButton> */}
           </Stack>
         </Grid>
 

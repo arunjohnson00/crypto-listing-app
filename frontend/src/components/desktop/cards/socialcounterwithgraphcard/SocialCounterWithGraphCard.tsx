@@ -213,8 +213,8 @@ const SocialCounterWithGraphCard = ({
                       coinData &&
                       Math.sign(
                         percentageDiff(
-                          parseInt(coinData[1]),
-                          parseInt(coinData[0])
+                          parseInt(coinData[0]),
+                          parseInt(coinData[1])
                         )
                       ) === -1
                         ? "red"
@@ -228,16 +228,16 @@ const SocialCounterWithGraphCard = ({
                   {coinData &&
                     Math.sign(
                       percentageDiff(
-                        parseInt(coinData[1]),
-                        parseInt(coinData[0])
+                        parseInt(coinData[0]),
+                        parseInt(coinData[1])
                       )
                     ) !== -1 &&
                     "+"}
                   {coinData &&
                     percentageDiff(
-                      parseInt(coinData[1]),
-                      parseInt(coinData[0])
-                    ).toFixed(2)}
+                      parseInt(coinData[0]),
+                      parseInt(coinData[1])
+                    ).toFixed(7)}
                   %
                 </Typography>
               )}

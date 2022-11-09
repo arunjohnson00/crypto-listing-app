@@ -18,7 +18,8 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import EventViewCard from "../cards/eventviewcard/EventViewCard";
 import { coinPresaleBlockRequest } from "../../../store/action";
 import moment from "moment";
-import { CountDownTimer } from "./countdown/CountDownTimer";
+import Countdown from "react-countdown";
+
 const CoinPagePresale = () => {
   const location: any = useLocation();
   const dispatch: any = useDispatch();
@@ -49,8 +50,6 @@ const CoinPagePresale = () => {
     );
   }, [dispatch]);
 
-  console.log(coinPresale);
-
   return (
     <Stack direction="column" spacing={5} mt={3}>
       {coinPresale && coinPresale?.response === true ? (
@@ -72,30 +71,51 @@ const CoinPagePresale = () => {
                         new Date()
                       ) === true && (
                         <Stack
-                          direction="row"
-                          sx={{ alignItems: "center" }}
-                          spacing={0.5}
+                          direction="column"
+                          sx={{ alignItems: "flex-start" }}
+                          spacing={0}
                         >
-                          <Typography
-                            variant="caption"
-                            sx={{
-                              color: "#FFFFF5",
-                              fontWeight: "300",
-                              fontSize: ".9rem",
-                            }}
+                          <Stack
+                            direction="row"
+                            spacing={0.5}
+                            alignItems="center"
                           >
-                            Presale Starts in
-                          </Typography>
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: "#FFFFFF",
+                                fontSize: "0.9rem",
+                              }}
+                            >
+                              Presale Starts in{" "}
+                            </Typography>
+                          </Stack>
                           <Typography
-                            variant="body2"
+                            variant="subtitle1"
                             sx={{
                               color: "#FFFFFF",
-                              fontWeight: "500",
-                              fontSize: ".1.1rem",
+
+                              fontSize: "1.1rem",
                             }}
                           >
-                            {CountDownTimer(
-                              moment(new Date(item?.presale_start_date))
+                            {item && (
+                              <Countdown
+                                date={new Date(item?.presale_start_date)}
+                                renderer={({
+                                  days,
+                                  hours,
+                                  minutes,
+                                  seconds,
+                                  completed,
+                                }) => {
+                                  return (
+                                    <span>
+                                      {days}Days {hours}Hours {minutes}Minutes{" "}
+                                      {seconds}Seconds
+                                    </span>
+                                  );
+                                }}
+                              />
                             )}
                           </Typography>
                         </Stack>
@@ -107,53 +127,134 @@ const CoinPagePresale = () => {
                         new Date(item?.presale_end_date)
                       ) === true && (
                         <Stack
-                          direction="row"
-                          sx={{ alignItems: "center" }}
-                          spacing={0.5}
+                          direction="column"
+                          sx={{ alignItems: "flex-start" }}
+                          spacing={0}
                         >
-                          <Typography
-                            variant="caption"
-                            sx={{
-                              color: "#FFFFF5",
-                              fontWeight: "300",
-                              fontSize: ".9rem",
-                            }}
+                          <Stack
+                            direction="row"
+                            spacing={0.5}
+                            alignItems="center"
                           >
-                            Presale Ends in
-                          </Typography>
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: "#FFFFFF",
+                                fontSize: "0.9rem",
+                              }}
+                            >
+                              Presale ends in{" "}
+                            </Typography>
+                          </Stack>
                           <Typography
-                            variant="body2"
+                            variant="subtitle1"
                             sx={{
                               color: "#FFFFFF",
-                              fontWeight: "500",
-                              fontSize: ".1.1rem",
+
+                              fontSize: "1.1rem",
                             }}
                           >
-                            {CountDownTimer(
-                              moment(new Date(item?.presale_end_date))
+                            {item && (
+                              <Countdown
+                                date={new Date(item?.presale_end_date)}
+                                renderer={({
+                                  days,
+                                  hours,
+                                  minutes,
+                                  seconds,
+                                  completed,
+                                }) => {
+                                  return (
+                                    <span>
+                                      {days}Days {hours}Hours {minutes}Minutes{" "}
+                                      {seconds}Seconds
+                                    </span>
+                                  );
+                                }}
+                              />
                             )}
                           </Typography>
                         </Stack>
                       )}
 
                     {item &&
-                      moment(new Date()).isAfter(
-                        new Date(new Date(item?.presale_end_date))
+                      moment(item?.presale_end_date).isBefore(
+                        new Date(),
+                        "day"
                       ) === true && (
                         <Stack
-                          direction="row"
-                          sx={{ alignItems: "center" }}
-                          spacing={0.5}
+                          direction="column"
+                          sx={{ alignItems: "flex-start" }}
+                          spacing={0}
                         >
                           <Typography
-                            variant="body2"
+                            variant="subtitle1"
                             sx={{
                               color: "#FFFFFF",
-                              fontWeight: "500",
-                              fontSize: ".1.1rem",
+
+                              fontSize: "1.1rem",
                             }}
                           >
-                            Presale is expired
+                            Presale ended
+                          </Typography>
+                        </Stack>
+                      )}
+                    {item &&
+                      moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                        moment(item?.presale_start_date).format("YYYY-MM-DD")
+                      ) === true &&
+                      moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                        moment(item?.presale_end_date).format("YYYY-MM-DD")
+                      ) === true && (
+                        <Stack
+                          direction="column"
+                          sx={{ alignItems: "flex-start" }}
+                          spacing={0}
+                        >
+                          <Stack
+                            direction="row"
+                            spacing={0.5}
+                            alignItems="center"
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: "#FFFFFF",
+                                fontSize: "0.9rem",
+                              }}
+                            >
+                              Presale ends in{" "}
+                            </Typography>
+                          </Stack>
+                          <Typography
+                            variant="subtitle1"
+                            sx={{
+                              color: "#FFFFFF",
+
+                              fontSize: "1.1rem",
+                            }}
+                          >
+                            {item && (
+                              <Countdown
+                                date={moment()
+                                  .endOf("day")
+                                  .format("YYYY-MM-DD HH:mm:ss")}
+                                renderer={({
+                                  days,
+                                  hours,
+                                  minutes,
+                                  seconds,
+                                  completed,
+                                }) => {
+                                  return (
+                                    <span>
+                                      {days}Days {hours}Hours {minutes}Minutes{" "}
+                                      {seconds}Seconds
+                                    </span>
+                                  );
+                                }}
+                              />
+                            )}
                           </Typography>
                         </Stack>
                       )}

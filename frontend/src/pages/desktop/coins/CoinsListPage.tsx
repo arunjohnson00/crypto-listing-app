@@ -36,7 +36,7 @@ import {
   coinsCryptoCurrenciesTabRequest,
   coinsCryptoCurrenciesMostVotedRequest,
 } from "../../../store/action";
-
+import { tableHeader } from "./helper";
 import FeaturedCoinLineTopImage from "../../../assets/home/feature-coin-line-top.png";
 import FeaturedCoinLineBottomImage from "../../../assets/home/feature-coin-line-bottom.png";
 import FeaturedCoinLineLeftImage from "../../../assets/home/feature-coin-line-left.png";
@@ -49,6 +49,9 @@ import MobileTableFilterBtn from "../../../components/mobile/buttongroup/tablefi
 import ListingTableFilterMenu from "../../../components/desktop/listingtable/tablefilterbtn/tablefiltermenu/ListingTableFilterMenu";
 import MobileListingTableFilterBtn from "../../../components/desktop/listingtable/tablefilterbtn/MobileListingTableFilterBtn";
 import { Helmet } from "react-helmet";
+import MobileHtmlTable from "../../../components/mobile/htmltable/MobileHtmlTable";
+import MobileViewMoreBtn from "../../../components/mobile/button/viewmorebtn/MobileViewMoreBtn";
+import { Link } from "react-router-dom";
 
 const responsiveFeatured: any = {
   superLargeDesktop: {
@@ -93,7 +96,11 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
     featured_coin_list: true,
     todays_performer: true,
   });
-
+  const [vote, setVote] = useState<any>({
+    initial: false,
+    completed: false,
+    captcha: false,
+  });
   const [htmlTablePreLoader, setHTMLTablePreLoader] = useState<any>({
     html_table: true,
   });
@@ -232,6 +239,16 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
       );
   }, [location, tableTabvalue, page]);
 
+  useEffect(() => {
+    const successHandler = (res: any) => {};
+    const errorHandler = (err: any) => {};
+
+    vote?.completed === true &&
+      dispatch(
+        coinsFeaturedCoinListRequest("noData", successHandler, errorHandler)
+      );
+  }, [vote]);
+
   return (
     <Fragment>
       <Helmet>
@@ -326,7 +343,7 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
                 paddingBottom: "23px",
               }}
             >
-              {featuredCoinList && (
+              {/* {featuredCoinList && (
                 <Carousel
                   // centerMode={true}
                   responsive={responsiveFeatured}
@@ -348,6 +365,81 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
                       </Box>
                     ))}
                 </Carousel>
+
+
+
+              )} */}
+
+              {/* {featuredCoinList && featuredCoinList?.length > 0 && (
+                <Grid item xs={12} mt={1.5} mb={1.5}>
+                  <Stack
+                    direction="row"
+                    sx={{
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Typography
+                      variant="h5"
+                      sx={{ fontSize: "1.1rem", color: "#FFD700" }}
+                    >
+                      Promoted Coins
+                    </Typography>
+                    <Link
+                      to="/promoted-coins"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      <MobileViewMoreBtn title="View more" />
+                    </Link>
+                  </Stack>
+                </Grid>
+              )} */}
+
+              {/* <Grid item xs={12}>
+        {featuredCoinList && (
+          <Carousel
+            // centerMode={true}
+            responsive={responsiveFeatured}
+            infinite={true}
+            removeArrowOnDeviceType={["tablet", "mobile"]}
+            arrows={true}
+            swipeable={true}
+            partialVisible={true}
+            autoPlay={true}
+            draggable={true}
+            minimumTouchDrag={10}
+            keyBoardControl={true}
+            shouldResetAutoplay={false}
+            autoPlaySpeed={3500}
+          >
+            {featuredCoinList &&
+              featuredCoinList?.map((data: any, index: number) => (
+                <Box key={index}>
+                  <MobileFeaturedCoinCards cardData={data} />
+                </Box>
+              ))}
+          </Carousel>
+        )}
+      </Grid> */}
+
+              {featuredCoinList && featuredCoinList?.length > 0 && (
+                <Grid item xs={12}>
+                  <Stack
+                    direction="row"
+                    spacing={3}
+                    sx={{
+                      alignItems: "center",
+                    }}
+                  >
+                    <MobileHtmlTable
+                      tableData={featuredCoinList && featuredCoinList}
+                      tableHeader={tableHeader}
+                      variant="featured_coins"
+                      vote={vote}
+                      setVote={setVote}
+                    />
+                  </Stack>
+                </Grid>
               )}
             </Grid>
           </Fragment>

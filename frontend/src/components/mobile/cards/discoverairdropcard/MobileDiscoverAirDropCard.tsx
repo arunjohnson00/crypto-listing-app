@@ -217,9 +217,9 @@ const MobileDiscoverAirDropCard = ({ item }: any) => {
                     >
                       {item && (
                         <Countdown
-                          date={moment(new Date(item?.start_date))
-                            .add(item?.no_of_days, "days")
-                            .format("YYYY-MM-DD")}
+                          date={moment()
+                            .endOf("day")
+                            .format("YYYY-MM-DD HH:mm:ss")}
                           renderer={({
                             days,
                             hours,

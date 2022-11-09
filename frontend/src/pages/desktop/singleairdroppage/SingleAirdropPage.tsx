@@ -668,21 +668,9 @@ const SingleAirdropPage = () => {
                                   >
                                     {airdropSinglePageDetails && (
                                       <Countdown
-                                        date={
-                                          new Date(
-                                            moment(
-                                              new Date(
-                                                airdropSinglePageDetails?.data?.start_date
-                                              )
-                                            )
-                                              .add(
-                                                airdropSinglePageDetails?.data
-                                                  ?.no_of_days,
-                                                "days"
-                                              )
-                                              .format("YYYY-MM-DD")
-                                          )
-                                        }
+                                        date={moment()
+                                          .endOf("day")
+                                          .format("YYYY-MM-DD HH:mm:ss")}
                                         renderer={({
                                           days,
                                           hours,

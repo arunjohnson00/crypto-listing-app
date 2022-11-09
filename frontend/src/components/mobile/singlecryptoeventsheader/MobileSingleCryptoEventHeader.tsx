@@ -252,6 +252,61 @@ const MobileSingleCryptoEventHeader = ({ data }: any) => {
                     )}
 
                   {data &&
+                    moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                      moment(data?.event_date).format("YYYY-MM-DD")
+                    ) === true &&
+                    moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                      moment(data?.end_date).format("YYYY-MM-DD")
+                    ) === true && (
+                      <Stack
+                        direction="column"
+                        sx={{ alignItems: "center" }}
+                        spacing={0.5}
+                      >
+                        <Typography
+                          sx={{
+                            fontSize: ".85rem",
+                            color: "#585F7E",
+                            fontWeight: 600,
+                            textAlign: "center",
+                          }}
+                        >
+                          Ends In
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#D1D10E",
+                            fontWeight: "500",
+                            fontSize: ".9rem",
+                          }}
+                        >
+                          {
+                            <Countdown
+                              date={moment()
+                                .endOf("day")
+                                .format("YYYY-MM-DD HH:mm:ss")}
+                              renderer={({
+                                days,
+                                hours,
+                                minutes,
+                                seconds,
+                                completed,
+                              }) => {
+                                return (
+                                  <span>
+                                    {days} Days {hours} Hours {minutes} Minutes{" "}
+                                    {seconds} Seconds
+                                  </span>
+                                );
+                              }}
+                            />
+                          }
+                        </Typography>
+                      </Stack>
+                    )}
+
+                  {data &&
                     moment(new Date()).isAfter(new Date(data?.end_date)) ===
                       true && (
                       <Stack

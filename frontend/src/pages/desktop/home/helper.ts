@@ -12,6 +12,18 @@ export const tableHeader = {
     "Votes",
     "Badges",
   ],
+  cryptoNew: [
+    "#",
+    "Coin",
+    "Name",
+    "Chain",
+    "Listed",
+    "Price",
+    "24h",
+    "7d",
+    "Votes",
+    "Badges",
+  ],
   cryptoPresale: [
     "#",
     "Coin",

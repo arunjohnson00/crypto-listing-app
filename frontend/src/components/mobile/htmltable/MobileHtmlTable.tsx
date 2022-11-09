@@ -185,7 +185,33 @@ const MobileHtmlTable = ({
                     key={index}
                   >
                     <Stack direction="row" spacing={0.5} alignItems="center">
-                      <Typography>{item}</Typography>
+                      <Typography sx={{ color: "#686868", fontWeight: 500 }}>
+                        {item}
+                      </Typography>
+                      {item === "Name" && (
+                        // <ArrowForwardIosRoundedIcon
+                        //   sx={{ color: "#686868", fontSize: ".9rem" }}
+                        // />
+                        <Avatar
+                          className="arrow_blink"
+                          src={ArrowIcon}
+                          sx={{ width: 30, height: 30 }}
+                          onClick={() => scrollLeft()}
+                        />
+                      )}
+                    </Stack>
+                  </TableCell>
+                ))
+              : tabIndex === 4
+              ? tableHeader?.cryptoNew?.map((item: any, index: number) => (
+                  <TableCell
+                    sx={{ color: "#686868", fontWeight: 500 }}
+                    key={index}
+                  >
+                    <Stack direction="row" spacing={0.5} alignItems="center">
+                      <Typography sx={{ color: "#686868", fontWeight: 500 }}>
+                        {item}
+                      </Typography>
                       {item === "Name" && (
                         // <ArrowForwardIosRoundedIcon
                         //   sx={{ color: "#686868", fontSize: ".9rem" }}
@@ -207,7 +233,9 @@ const MobileHtmlTable = ({
                     key={index}
                   >
                     <Stack direction="row" spacing={0.5} alignItems="center">
-                      <Typography>{item}</Typography>
+                      <Typography sx={{ color: "#686868", fontWeight: 500 }}>
+                        {item}
+                      </Typography>
                       {item === "Name" && (
                         // <ArrowForwardIosRoundedIcon
                         //   sx={{ color: "#686868", fontSize: ".9rem" }}
@@ -230,7 +258,9 @@ const MobileHtmlTable = ({
                     key={index}
                   >
                     <Stack direction="row" spacing={0.5} alignItems="center">
-                      <Typography>{item}</Typography>
+                      <Typography sx={{ color: "#686868", fontWeight: 500 }}>
+                        {item}
+                      </Typography>
                       {item === "Name" && (
                         // <ArrowForwardIosRoundedIcon
                         //   sx={{ color: "#686868", fontSize: ".9rem" }}
@@ -251,7 +281,9 @@ const MobileHtmlTable = ({
                     key={index}
                   >
                     <Stack direction="row" spacing={0.5} alignItems="center">
-                      <Typography>{item}</Typography>
+                      <Typography sx={{ color: "#686868", fontWeight: 500 }}>
+                        {item}
+                      </Typography>
                       {item === "Name" && (
                         // <ArrowForwardIosRoundedIcon
                         //   sx={{ color: "#686868", fontSize: ".9rem" }}
@@ -467,7 +499,7 @@ const MobileHtmlTable = ({
                     </TableCell>
                   )}
 
-                  {tabIndex !== 6 && (
+                  {tabIndex !== 6 && tabIndex !== 4 && (
                     <TableCell
                       sx={{ color: "#FFFFFF", border: 0, minWidth: 100 }}
                     >
@@ -491,6 +523,27 @@ const MobileHtmlTable = ({
                           ) : (
                             <span style={{ color: "#7a7a7a" }}>--</span>
                           )}
+                        </Link>
+                      </Typography>
+                    </TableCell>
+                  )}
+
+                  {tabIndex === 4 && (
+                    <TableCell
+                      sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}
+                    >
+                      <Typography variant="caption">
+                        <Link
+                          to={{
+                            pathname: `/coin/${data?.slug}`,
+                          }}
+                          state={{ coin_id: data?.id }}
+                          style={{
+                            textDecoration: "none",
+                            color: "#FFFFFF",
+                          }}
+                        >
+                          {moment(new Date(data?.listed)).fromNow()}
                         </Link>
                       </Typography>
                     </TableCell>
@@ -637,22 +690,26 @@ const MobileHtmlTable = ({
                       </Link>
                     </TableCell>
                   )}
-                  <TableCell sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}>
-                    <Typography variant="caption">
-                      <Link
-                        to={{
-                          pathname: `/coin/${data?.slug}`,
-                        }}
-                        state={{ coin_id: data?.id }}
-                        style={{
-                          textDecoration: "none",
-                          color: "#FFFFFF",
-                        }}
-                      >
-                        {moment(new Date(data?.listed)).fromNow()}
-                      </Link>
-                    </Typography>
-                  </TableCell>
+                  {tabIndex !== 4 && (
+                    <TableCell
+                      sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}
+                    >
+                      <Typography variant="caption">
+                        <Link
+                          to={{
+                            pathname: `/coin/${data?.slug}`,
+                          }}
+                          state={{ coin_id: data?.id }}
+                          style={{
+                            textDecoration: "none",
+                            color: "#FFFFFF",
+                          }}
+                        >
+                          {moment(new Date(data?.listed)).fromNow()}
+                        </Link>
+                      </Typography>
+                    </TableCell>
+                  )}
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     <Stack direction="row" spacing={2} alignItems="center">
                       <Box sx={{ minWidth: 50 }}>
