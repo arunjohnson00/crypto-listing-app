@@ -10,7 +10,10 @@ import {
   Tooltip,
   Divider,
   Button,
+  Link,
 } from "@mui/material";
+import moment from "moment";
+import Countdown from "react-countdown";
 import LaunchIcon from "@mui/icons-material/Launch";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -20,7 +23,7 @@ const MobileCoinPagePresale = () => {
   const location: any = useLocation();
   const dispatch: any = useDispatch();
   const coinPresale = useSelector((data: any) => {
-    return data?.coinReducer?.coin_presale_block?.data;
+    return data?.coinReducer?.coin_presale_block;
   });
 
   const [copyValue, setCopyValue] = useState<any>("");
@@ -48,123 +51,344 @@ const MobileCoinPagePresale = () => {
 
   return (
     <Stack direction="column" spacing={5} mt={3}>
-      <Box
-        sx={{
-          backgroundColor: "#020F44",
+      {coinPresale && coinPresale?.response === true ? (
+        coinPresale?.data?.map((item: any, index: number) => (
+          <Box
+            sx={{
+              backgroundColor: "#020F44",
 
-          border: "1px solid #1A2149",
-          borderRadius: 2,
-        }}
-      >
-        <Box m={4}>
-          <Stack direction="column" spacing={3} mt={3}>
-            <Stack direction="column" spacing={3}>
-              <Stack direction="column" spacing={0.2}>
-                <Typography sx={{ color: "#E5ECFF", fontSize: ".9rem" }}>
-                  Presale starts in
-                </Typography>
-                <Typography
-                  sx={{ color: "#E5ECFF", fontSize: "1.1rem", fontWeight: 600 }}
-                >
-                  12Days 22Hours 33Min 55Seconds
-                </Typography>
-              </Stack>
-              <Stack direction="column" spacing={0.2}>
-                <Typography sx={{ color: "#E5ECFF", fontSize: ".8rem" }}>
-                  Presale address
-                </Typography>
+              border: "1px solid #1A2149",
+              borderRadius: 2,
+            }}
+            key={index}
+          >
+            <Box m={4}>
+              <Stack direction="column" spacing={2} mt={3}>
+                <Stack direction="column" spacing={2}>
+                  <Stack direction="column" spacing={0.2}>
+                    {item &&
+                      moment(new Date(item?.presale_start_date)).isAfter(
+                        new Date()
+                      ) === true && (
+                        <Stack
+                          direction="column"
+                          sx={{ alignItems: "flex-start" }}
+                          spacing={0}
+                        >
+                          <Stack
+                            direction="row"
+                            spacing={0.5}
+                            alignItems="center"
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: "#FFFFFF",
+                                fontSize: "0.9rem",
+                              }}
+                            >
+                              Presale Starts in{" "}
+                            </Typography>
+                          </Stack>
+                          <Typography
+                            variant="subtitle1"
+                            sx={{
+                              color: "#FFFFFF",
 
-                <Stack
-                  direction={{ xs: "row", sm: "row", md: "row" }}
-                  sx={{ alignItems: "center" }}
-                  spacing={0.8}
-                >
-                  <a
-                    href="#"
-                    style={{
-                      color: "#8A93C9",
-                      textDecoration: "none",
-                    }}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                              fontSize: "1.1rem",
+                            }}
+                          >
+                            {item && (
+                              <Countdown
+                                date={new Date(item?.presale_start_date)}
+                                renderer={({
+                                  days,
+                                  hours,
+                                  minutes,
+                                  seconds,
+                                  completed,
+                                }) => {
+                                  return (
+                                    <span>
+                                      {days}Day {hours}Hrs {minutes}Min{" "}
+                                      {seconds}Sec
+                                    </span>
+                                  );
+                                }}
+                              />
+                            )}
+                          </Typography>
+                        </Stack>
+                      )}
+
+                    {item &&
+                      moment(new Date()).isBetween(
+                        new Date(item?.presale_start_date),
+                        new Date(item?.presale_end_date)
+                      ) === true && (
+                        <Stack
+                          direction="column"
+                          sx={{ alignItems: "flex-start" }}
+                          spacing={0}
+                        >
+                          <Stack
+                            direction="row"
+                            spacing={0.5}
+                            alignItems="center"
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: "#FFFFFF",
+                                fontSize: "0.9rem",
+                              }}
+                            >
+                              Presale ends in{" "}
+                            </Typography>
+                          </Stack>
+                          <Typography
+                            variant="subtitle1"
+                            sx={{
+                              color: "#FFFFFF",
+
+                              fontSize: "1.1rem",
+                            }}
+                          >
+                            {item && (
+                              <Countdown
+                                date={new Date(item?.presale_end_date)}
+                                renderer={({
+                                  days,
+                                  hours,
+                                  minutes,
+                                  seconds,
+                                  completed,
+                                }) => {
+                                  return (
+                                    <span>
+                                      {days}Day {hours}Hrs {minutes}Min{" "}
+                                      {seconds}Sec
+                                    </span>
+                                  );
+                                }}
+                              />
+                            )}
+                          </Typography>
+                        </Stack>
+                      )}
+
+                    {item &&
+                      moment(item?.presale_end_date).isBefore(
+                        new Date(),
+                        "day"
+                      ) === true && (
+                        <Stack
+                          direction="column"
+                          sx={{ alignItems: "flex-start" }}
+                          spacing={0}
+                        >
+                          <Typography
+                            variant="subtitle1"
+                            sx={{
+                              color: "#FFFFFF",
+
+                              fontSize: "1.1rem",
+                            }}
+                          >
+                            Presale ended
+                          </Typography>
+                        </Stack>
+                      )}
+                    {item &&
+                      moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                        moment(item?.presale_start_date).format("YYYY-MM-DD")
+                      ) === true &&
+                      moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
+                        moment(item?.presale_end_date).format("YYYY-MM-DD")
+                      ) === true && (
+                        <Stack
+                          direction="column"
+                          sx={{ alignItems: "flex-start" }}
+                          spacing={0}
+                        >
+                          <Stack
+                            direction="row"
+                            spacing={0.5}
+                            alignItems="center"
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: "#FFFFFF",
+                                fontSize: "0.9rem",
+                              }}
+                            >
+                              Presale ends in{" "}
+                            </Typography>
+                          </Stack>
+                          <Typography
+                            variant="subtitle1"
+                            sx={{
+                              color: "#FFFFFF",
+
+                              fontSize: "1.1rem",
+                            }}
+                          >
+                            {item && (
+                              <Countdown
+                                date={moment()
+                                  .endOf("day")
+                                  .format("YYYY-MM-DD HH:mm:ss")}
+                                renderer={({
+                                  days,
+                                  hours,
+                                  minutes,
+                                  seconds,
+                                  completed,
+                                }) => {
+                                  return (
+                                    <span>
+                                      {days}Day {hours}Hrs {minutes}Min{" "}
+                                      {seconds}Sec
+                                    </span>
+                                  );
+                                }}
+                              />
+                            )}
+                          </Typography>
+                        </Stack>
+                      )}
+                  </Stack>
+                  <Stack direction="column" spacing={0.2}>
+                    <Typography sx={{ color: "#E5ECFF", fontSize: ".8rem" }}>
+                      Presale address
+                    </Typography>
+
+                    <Stack
+                      direction={{ xs: "row", sm: "row", md: "row" }}
+                      sx={{ alignItems: "center" }}
+                      spacing={0.8}
+                    >
+                      <a
+                        href={
+                          item && item?.presale_link !== null
+                            ? item?.presale_link
+                            : "#"
+                        }
+                        style={{
+                          color: "#8A93C9",
+                          textDecoration: "none",
+                        }}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <Typography
+                          sx={{
+                            color: "#65B7C2",
+                            fontSize: ".75rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          {item && item?.presale_address !== null
+                            ? item?.presale_address.length > 34
+                              ? item?.presale_address.slice(0, 33) + "..."
+                              : item?.presale_address
+                            : "NA"}
+                        </Typography>
+                      </a>
+
+                      <CopyToClipboard
+                        options={{ message: "Copy" }}
+                        text={
+                          item && item?.presale_address !== null
+                            ? item?.presale_address
+                            : "NA"
+                        }
+                        onCopy={(e: any) => copyHandler(e)}
+                      >
+                        <IconButton sx={{ padding: 0 }}>
+                          <Tooltip
+                            title={`${copied ? "Copied" : "Copy this Token"}`}
+                          >
+                            <ContentCopyIcon
+                              sx={{
+                                color: `${copied ? "#19ffb0" : "#19ffb0"}`,
+                                fontSize: ".9rem",
+                              }}
+                            />
+                          </Tooltip>
+                        </IconButton>
+                      </CopyToClipboard>
+                    </Stack>
+                  </Stack>
+                </Stack>
+
+                <Stack direction="column" spacing={2}>
+                  <Stack direction="column" spacing={0.2}>
+                    <Typography sx={{ color: "#E5ECFF", fontSize: ".75rem" }}>
+                      Presale starts Date & Time {"(UTC)"}
+                    </Typography>
                     <Typography
                       sx={{
-                        color: "#65B7C2",
-                        fontSize: ".75rem",
+                        color: "#E5ECFF",
+                        fontSize: ".9rem",
                         fontWeight: 600,
                       }}
                     >
-                      0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c
+                      {moment(new Date(item?.presale_start_date)).format(
+                        "DD MMM YYYY HH:MM:SS A"
+                      )}
                     </Typography>
-                  </a>
+                  </Stack>
 
-                  <CopyToClipboard
-                    options={{ message: "Copy" }}
-                    text="0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
-                    onCopy={(e: any) => copyHandler(e)}
-                  >
-                    <IconButton sx={{ padding: 0 }}>
-                      <Tooltip
-                        title={`${copied ? "Copied" : "Copy this Token"}`}
-                      >
-                        <ContentCopyIcon
-                          sx={{
-                            color: `${copied ? "#19ffb0" : "#19ffb0"}`,
-                            fontSize: ".9rem",
-                          }}
-                        />
-                      </Tooltip>
-                    </IconButton>
-                  </CopyToClipboard>
+                  <Divider
+                    sx={{ borderBottomColor: "#111138", borderBottomWidth: 2 }}
+                    flexItem
+                    orientation="horizontal"
+                    variant="fullWidth"
+                  />
+                  <Stack direction="column" spacing={0.2}>
+                    <Typography sx={{ color: "#E5ECFF", fontSize: ".75rem" }}>
+                      Presale end Date & Time {"(UTC)"}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: "#E5ECFF",
+                        fontSize: ".9rem",
+                        fontWeight: 600,
+                      }}
+                    >
+                      {moment(new Date(item?.presale_end_date)).format(
+                        "DD MMM YYYY HH:MM:SS A"
+                      )}
+                    </Typography>
+                  </Stack>
+                  <Link href={item?.presale_link} target="_blank">
+                    <Button
+                      variant="contained"
+                      sx={{
+                        backgroundColor: "#6353E6",
+                        borderRadius: 3,
+                        textTransform: "capitalize",
+                        fontSize: ".8rem",
+                      }}
+                      endIcon={<LaunchIcon />}
+                    >
+                      Go to presale page
+                    </Button>
+                  </Link>
                 </Stack>
               </Stack>
-            </Stack>
-
-            <Stack direction="column" spacing={2}>
-              <Stack direction="column" spacing={0.2}>
-                <Typography sx={{ color: "#E5ECFF", fontSize: ".75rem" }}>
-                  Presale starts Date & Time {"(UTC)"}
-                </Typography>
-                <Typography
-                  sx={{ color: "#E5ECFF", fontSize: ".9rem", fontWeight: 600 }}
-                >
-                  19 Sept 2022 <span style={{ color: "#14EAE4" }}>09:48PM</span>
-                </Typography>
-                {/* <Divider
-                  sx={{ borderBottomColor: "#111138", borderBottomWidth: 2 }}
-                  flexItem
-                  orientation="horizontal"
-                  variant="fullWidth"
-                /> */}
-              </Stack>
-
-              <Stack direction="column" spacing={0.2}>
-                <Typography sx={{ color: "#E5ECFF", fontSize: ".75rem" }}>
-                  Presale end Date & Time {"(UTC)"}
-                </Typography>
-                <Typography
-                  sx={{ color: "#E5ECFF", fontSize: ".9rem", fontWeight: 600 }}
-                >
-                  19 Sept 2022 <span style={{ color: "#14EAE4" }}>09:48PM</span>
-                </Typography>
-              </Stack>
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "#6353E6",
-                  borderRadius: 3,
-                  textTransform: "capitalize",
-                  fontSize: ".8rem",
-                }}
-                endIcon={<LaunchIcon />}
-              >
-                Go to presale page
-              </Button>
-            </Stack>
-          </Stack>
-        </Box>
-      </Box>
+            </Box>
+          </Box>
+        ))
+      ) : (
+        <Stack direction="column" spacing={0.2} my={3}>
+          <Typography sx={{ color: "#FFFFFF", fontSize: "1.1rem" }}>
+            Data Not Available
+          </Typography>
+        </Stack>
+      )}
     </Stack>
   );
 };
