@@ -156,6 +156,7 @@ const MobileSocialCounterWithGraphCard = ({
         // backgroundColor: "#01061C",
         //border: "1px solid #0A1028",
         backgroundColor: "transparent",
+        flexGrow: 1,
         //borderRadius: 5,
       }}
       // px={2}
@@ -240,7 +241,7 @@ const MobileSocialCounterWithGraphCard = ({
                     percentageDiff(
                       parseInt(coinData[0]),
                       parseInt(coinData[1])
-                    ).toFixed(7)}
+                    ).toFixed(5)}
                   %
                 </Typography>
               )}
