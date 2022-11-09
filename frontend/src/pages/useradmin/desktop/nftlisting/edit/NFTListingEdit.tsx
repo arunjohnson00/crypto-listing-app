@@ -574,7 +574,7 @@ const NFTListingEdit = () => {
                     </Grid>
                   </Grid>
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={3}>
+                    <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={0}>
                       <Typography
                         variant="h6"
                         sx={{
@@ -599,7 +599,109 @@ const NFTListingEdit = () => {
                         />
                       </Grid>
                     </Grid>
+                    <Grid item xl={8} lg={8} md={8} sm={8} xs={12} mb={3}>
+                      <Stack
+                        direction={{ xs: "column", sm: "column", md: "row" }}
+                        spacing={{ xs: 0, sm: 0, md: 3 }}
+                        mb={2}
+                        mt={0}
+                        alignItems={{
+                          xs: "flex-start",
+                          sm: "flex-start",
+                          md: "center",
+                        }}
+                      >
+                        <Grid item xl={6} lg={6} md={6} sm={6} xs={12} pt={0}>
+                          <Typography
+                            variant="subtitle1"
+                            sx={{
+                              textAlign: "left",
+                              fontSize: ".9rem",
+                              fontWeight: 400,
+                              marginleft: 0,
+                              color: "#00ff95",
+                            }}
+                            mt={{ xs: 3, sm: 3, md: 5 }}
+                            mb={1}
+                          >
+                            Pre-Sale Mint Price
+                          </Typography>
+                          <InputText
+                            placeholder="Eg: 7"
+                            name="pre_sale_mint_price"
+                            id="pre_sale_mint_price"
+                            // width="auto"
+                            width={100}
+                            type="number"
+                            value={nftListingData?.pre_sale_mint_price}
+                            // InputProps={{
+                            //   endAdornment: (
+                            //     <Button
+                            //       variant="contained"
+                            //       sx={{
+                            //         background: "#0e155a",
+                            //         color: "#FFFFFF",
+                            //         boxShadow: "none",
+                            //         "&:hover": {
+                            //           backgroundColor: "#0e155a",
+                            //           color: "#FFFFFF",
+                            //           boxShadow: "none",
+                            //         },
+                            //       }}
+                            //     >
+                            //       ETH
+                            //     </Button>
+                            //   ),
+                            // }}
+                          />
+                        </Grid>
 
+                        <Grid item xl={6} lg={6} md={6} sm={6} xs={12} pt={0}>
+                          <Typography
+                            variant="subtitle1"
+                            sx={{
+                              textAlign: "left",
+                              fontSize: ".9rem",
+                              fontWeight: 400,
+                              marginleft: 0,
+                              color: "#00ff95",
+                            }}
+                            mt={{ xs: 3, sm: 3, md: 5 }}
+                            mb={1}
+                          >
+                            Public Mint Price
+                          </Typography>
+                          <InputText
+                            placeholder="Eg: 7"
+                            name="public_mint_price"
+                            id="public_mint_price"
+                            // width="auto"
+                            type="number"
+                            width={100}
+                            value={nftListingData?.public_mint_price}
+                            // InputProps={{
+                            //   endAdornment: (
+                            //     <Button
+                            //       variant="contained"
+                            //       sx={{
+                            //         background: "#0e155a",
+                            //         color: "#FFFFFF",
+                            //         boxShadow: "none",
+                            //         "&:hover": {
+                            //           backgroundColor: "#0e155a",
+                            //           color: "#FFFFFF",
+                            //           boxShadow: "none",
+                            //         },
+                            //       }}
+                            //     >
+                            //       ETH
+                            //     </Button>
+                            //   ),
+                            // }}
+                          />
+                        </Grid>
+                      </Stack>
+                    </Grid>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mb={3}>
                       <Typography
                         variant="subtitle1"
@@ -1226,110 +1328,6 @@ const NFTListingEdit = () => {
               </Grid>
 
               <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
-                <Grid item xl={8} lg={8} md={8} sm={8} xs={12} pt={0}>
-                  <Stack
-                    direction={{ xs: "column", sm: "column", md: "row" }}
-                    spacing={{ xs: 0, sm: 0, md: 3 }}
-                    mb={2}
-                    mt={0}
-                    alignItems={{
-                      xs: "flex-start",
-                      sm: "flex-start",
-                      md: "center",
-                    }}
-                  >
-                    <Grid item xl={6} lg={6} md={6} sm={6} xs={12} pt={0}>
-                      <Typography
-                        variant="subtitle1"
-                        sx={{
-                          textAlign: "left",
-                          fontSize: ".9rem",
-                          fontWeight: 400,
-                          marginleft: 0,
-                          color: "#00ff95",
-                        }}
-                        mt={{ xs: 3, sm: 3, md: 5 }}
-                        mb={1}
-                      >
-                        Pre-Sale Mint Price
-                      </Typography>
-                      <InputText
-                        placeholder="Eg: 7"
-                        name="pre_sale_mint_price"
-                        id="pre_sale_mint_price"
-                        // width="auto"
-                        width={100}
-                        type="number"
-                        value={nftListingData?.pre_sale_mint_price}
-                        // InputProps={{
-                        //   endAdornment: (
-                        //     <Button
-                        //       variant="contained"
-                        //       sx={{
-                        //         background: "#0e155a",
-                        //         color: "#FFFFFF",
-                        //         boxShadow: "none",
-                        //         "&:hover": {
-                        //           backgroundColor: "#0e155a",
-                        //           color: "#FFFFFF",
-                        //           boxShadow: "none",
-                        //         },
-                        //       }}
-                        //     >
-                        //       ETH
-                        //     </Button>
-                        //   ),
-                        // }}
-                      />
-                    </Grid>
-
-                    <Grid item xl={6} lg={6} md={6} sm={6} xs={12} pt={0}>
-                      <Typography
-                        variant="subtitle1"
-                        sx={{
-                          textAlign: "left",
-                          fontSize: ".9rem",
-                          fontWeight: 400,
-                          marginleft: 0,
-                          color: "#00ff95",
-                        }}
-                        mt={{ xs: 3, sm: 3, md: 5 }}
-                        mb={1}
-                      >
-                        Public Mint Price
-                      </Typography>
-                      <InputText
-                        placeholder="Eg: 7"
-                        name="public_mint_price"
-                        id="public_mint_price"
-                        // width="auto"
-                        type="number"
-                        width={100}
-                        value={nftListingData?.public_mint_price}
-                        // InputProps={{
-                        //   endAdornment: (
-                        //     <Button
-                        //       variant="contained"
-                        //       sx={{
-                        //         background: "#0e155a",
-                        //         color: "#FFFFFF",
-                        //         boxShadow: "none",
-                        //         "&:hover": {
-                        //           backgroundColor: "#0e155a",
-                        //           color: "#FFFFFF",
-                        //           boxShadow: "none",
-                        //         },
-                        //       }}
-                        //     >
-                        //       ETH
-                        //     </Button>
-                        //   ),
-                        // }}
-                      />
-                    </Grid>
-                  </Stack>
-                </Grid>
-
                 <Grid item xl={8} lg={8} md={8} sm={8} xs={12} pt={0}>
                   <Grid
                     item
