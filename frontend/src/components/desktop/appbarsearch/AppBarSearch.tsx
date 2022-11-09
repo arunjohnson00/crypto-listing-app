@@ -163,7 +163,7 @@ const AppBarSearch = () => {
   }, [dispatch, values, setValues]);
 
   const saveSearchHandler = (slug: any) => {
-    // Put the object into storage
+    handleClose();
     if (
       (localStorage.getItem("recent_search") as any) === null ||
       (localStorage.getItem("recent_search") as any) === undefined ||
@@ -384,7 +384,7 @@ const AppBarSearch = () => {
                             pathname: `/coin/${item?.coin_slug}`,
                           }}
                           onClick={() => saveSearchHandler(item?.coin_slug)}
-                          target="_blank"
+                          // target="_blank"
                           rel="noopener noreferrer"
                           state={{ coin_id: item?.coin_id }}
                           style={{ textDecoration: "none", color: "#FFFFFF" }}
@@ -512,10 +512,11 @@ const AppBarSearch = () => {
                             to={{
                               pathname: `/nft/${item?.nft_slug}`,
                             }}
-                            target="_blank"
+                            //target="_blank"
                             rel="noopener noreferrer"
                             state={{ coin_id: item?.nft_id }}
                             style={{ textDecoration: "none", color: "#FFFFFF" }}
+                            onClick={handleClose}
                           >
                             <Typography
                               sx={{ fontSize: ".8rem", fontWeight: 600 }}
@@ -621,10 +622,11 @@ const AppBarSearch = () => {
                             to={{
                               pathname: `/crypto-events/${item?.event_slug}`,
                             }}
-                            target="_blank"
+                            //target="_blank"
                             rel="noopener noreferrer"
                             state={{ coin_id: item?.event_id }}
                             style={{ textDecoration: "none", color: "#FFFFFF" }}
+                            onClick={handleClose}
                           >
                             <Typography
                               sx={{ fontSize: ".8rem", fontWeight: 600 }}
@@ -726,10 +728,11 @@ const AppBarSearch = () => {
                             to={{
                               pathname: `/airdrops/${item?.airdrops_slug}`,
                             }}
-                            target="_blank"
+                            // target="_blank"
                             rel="noopener noreferrer"
                             state={{ coin_id: item?.airdrops_id }}
                             style={{ textDecoration: "none", color: "#FFFFFF" }}
+                            onClick={handleClose}
                           >
                             <Typography
                               sx={{ fontSize: ".8rem", fontWeight: 600 }}
@@ -822,7 +825,7 @@ const AppBarSearch = () => {
                               pathname: `/coin/${item?.slug}`,
                             }}
                             onClick={() => saveSearchHandler(item?.slug)}
-                            target="_blank"
+                            // target="_blank"
                             rel="noopener noreferrer"
                             state={{ coin_id: item?.id }}
                             style={{ textDecoration: "none", color: "#FFFFFF" }}

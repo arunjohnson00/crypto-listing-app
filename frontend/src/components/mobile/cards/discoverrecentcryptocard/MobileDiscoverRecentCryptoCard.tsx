@@ -152,7 +152,7 @@ const MobileDiscoverRecentCryptoCard = ({ item }: any) => {
   return (
     <Link
       to={`/coin/${item && item?.slug}`}
-      target="_blank"
+      //target="_blank"
       style={{ textDecoration: "none" }}
     >
       <Box
@@ -168,10 +168,12 @@ const MobileDiscoverRecentCryptoCard = ({ item }: any) => {
         }}
         // px={2}
         mr={1}
+        pb={2}
       >
         <Box
-          mr={2}
+          //mr={2}
           // my={4}
+          pb={2}
         >
           <Stack
             direction={{ xs: "column" }}
@@ -309,8 +311,8 @@ const MobileDiscoverRecentCryptoCard = ({ item }: any) => {
                 textAlign: "center",
               }}
             >
-              {item && item?.name?.length >= 20
-                ? item && item?.name?.slice(0, 20) + "..."
+              {item && item?.name?.length >= 14
+                ? item && item?.name?.slice(0, 12) + "..."
                 : item && item?.name}
             </Typography>
 
@@ -336,7 +338,7 @@ const MobileDiscoverRecentCryptoCard = ({ item }: any) => {
             />
           </Stack> */}
           </Stack>
-          <Stack direction="row" justifyContent="center" pt={2} pb={2}>
+          {/* <Stack direction="row" justifyContent="center" pt={2} pb={2}>
             <IconButton aria-label="delete">
               <LanguageIcon sx={{ color: "#FFFFF5", fontSize: 19 }} />
             </IconButton>
@@ -346,7 +348,7 @@ const MobileDiscoverRecentCryptoCard = ({ item }: any) => {
             <IconButton aria-label="delete">
               <Twitter sx={{ color: "#FFFFF5", fontSize: 19 }} />
             </IconButton>
-          </Stack>
+          </Stack> */}
         </Box>
       </Box>
     </Link>
