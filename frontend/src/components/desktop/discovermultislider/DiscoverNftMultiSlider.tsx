@@ -57,7 +57,7 @@ const DiscoverNftMultiSlider = ({ data }: any) => {
             // "desktop",
             // "superLargeDesktop",
           ]}
-          customLeftArrow={<CustomLeftArrow />}
+          //customLeftArrow={<CustomLeftArrow />}
         >
           {data &&
             data?.map((item: any, index: number) => (

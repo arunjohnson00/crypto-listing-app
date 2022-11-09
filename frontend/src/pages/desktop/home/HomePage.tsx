@@ -380,7 +380,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
                   responsive={responsiveVideo}
                   infinite={true}
                   removeArrowOnDeviceType={["tablet", "mobile"]}
-                  arrows={false}
+                  arrows={true}
                   draggable={true}
                   swipeable={true}
                   autoPlay={true}
@@ -649,7 +649,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               responsive={responsiveCryptoEvents}
               infinite={true}
               removeArrowOnDeviceType={["tablet", "mobile"]}
-              arrows={false}
+              arrows={true}
               autoPlay={true}
               draggable={true}
               swipeable={true}

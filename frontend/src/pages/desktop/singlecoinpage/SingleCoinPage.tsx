@@ -7,11 +7,14 @@ import {
   Typography,
   Divider,
   Avatar,
+  IconButton,
 } from "@mui/material";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Carousel from "react-multi-carousel";
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
+import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
 import { tableHeader } from "./helper";
 import "react-multi-carousel/lib/styles.css";
 import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
@@ -346,7 +349,15 @@ const SingleCoinPage = () => {
                     infinite={true}
                     autoPlay={true}
                     showDots={false}
-                    arrows={false}
+                    arrows={true}
+                    // customRightArrow={
+                    //   <IconButton
+                    //     aria-label="delete"
+                    //     sx={{ position: "absolute", top: "50%", right: 0 }}
+                    //   >
+                    //     <ArrowForwardIosRoundedIcon sx={{ color: "#FFFFFF" }} />
+                    //   </IconButton>
+                    // }
                     removeArrowOnDeviceType={[
                       "tablet",
                       "mobile",

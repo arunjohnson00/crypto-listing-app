@@ -79,7 +79,7 @@ const LatestNewsCardScroll = () => {
             responsive={responsiveNewsSlider}
             infinite={true}
             removeArrowOnDeviceType={["tablet", "mobile"]}
-            arrows={false}
+            arrows={true}
             autoPlay={true}
             draggable={true}
             swipeable={true}
