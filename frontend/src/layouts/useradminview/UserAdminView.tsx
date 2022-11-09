@@ -44,7 +44,9 @@ const UserAdminView = ({ children }: any) => {
         )}
         <Box
           py={0}
-          width={matches === true ? "80%" : "100%"}
+          width={
+            matches === true ? (collapse === false ? "80%" : "95%") : "100%"
+          }
           sx={{ transition: "all .5s" }}
           height="100%"
         >
