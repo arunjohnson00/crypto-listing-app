@@ -255,7 +255,7 @@ const MobileSocialCounterWithGraphCard = ({
           options={chartData.options}
           series={chartData.series}
           type="line"
-          height={50}
+          height={90}
           width={110}
         />
       </Grid>

@@ -1345,7 +1345,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                       } Followers`}
                       coinData={coinSocialGraphTwitter?.data?.followers?.slice(
                         0,
-                        8
+                        50
                       )}
                       // icon={
                       //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
@@ -1371,7 +1371,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                       } Followers`}
                       coinData={coinSocialGraphTelegram?.data?.followers?.slice(
                         0,
-                        8
+                        50
                       )}
                       // icon={
                       //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
@@ -1397,7 +1397,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                       } Followers`}
                       coinData={coinSocialGraphReddit?.data?.followers?.slice(
                         0,
-                        8
+                        50
                       )}
                       // icon={
                       //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
@@ -1423,7 +1423,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                       } Followers`}
                       coinData={coinSocialGraphFacebook?.data?.followers?.slice(
                         0,
-                        8
+                        50
                       )}
                       // icon={
                       //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
@@ -1449,7 +1449,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                       } Followers`}
                       coinData={coinSocialGraphGithub?.data?.followers?.slice(
                         0,
-                        8
+                        50
                       )}
                       // icon={
                       //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
@@ -1474,7 +1474,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
                       } Followers`}
                       coinData={coinSocialGraphDiscord?.data?.followers?.slice(
                         0,
-                        8
+                        50
                       )}
                       // icon={
                       //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon

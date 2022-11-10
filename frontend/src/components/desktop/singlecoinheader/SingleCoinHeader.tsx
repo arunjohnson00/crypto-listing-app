@@ -295,7 +295,9 @@ const SingleCoinHeader = ({ coinData }: any) => {
 
   useEffect(() => {
     const successHandler = (res: any) => {};
-    const errorHandler = (err: any) => {};
+    const errorHandler = (err: any) => {
+      //console.log(err?.error?.message?.response?.data?.response, "test");
+    };
     dispatch(
       coinSocialGraphTwitterRequest(
         location?.pathname?.split("/").pop(),
@@ -1450,7 +1452,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   } Followers`}
                   coinData={coinSocialGraphTwitter?.data?.followers?.slice(
                     0,
-                    8
+                    50
                   )}
                   // icon={
                   //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
@@ -1476,7 +1478,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   } Followers`}
                   coinData={coinSocialGraphTelegram?.data?.followers?.slice(
                     0,
-                    8
+                    50
                   )}
                   // icon={
                   //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
@@ -1525,7 +1527,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   } Followers`}
                   coinData={coinSocialGraphFacebook?.data?.followers?.slice(
                     0,
-                    8
+                    50
                   )}
                   // icon={
                   //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
@@ -1573,7 +1575,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   } Followers`}
                   coinData={coinSocialGraphDiscord?.data?.followers?.slice(
                     0,
-                    8
+                    50
                   )}
                   // icon={
                   //   coinSocialGraph && coinSocialGraph?.data[0]?.twitter[0]?.social_icon
