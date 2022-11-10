@@ -313,6 +313,27 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
                 F&G Index
               </Typography>
             </Link>
+            <Link
+              to={{
+                pathname: `/videos`,
+              }}
+              state={{
+                scroll: false,
+              }}
+              style={{ textDecoration: "none", color: "#FFFFFF" }}
+              onClick={toggleDrawer}
+            >
+              {" "}
+              <Typography
+                sx={{
+                  p: 1,
+                  fontSize: ".8rem",
+                  color: "#FFFFFF",
+                }}
+              >
+                Videos
+              </Typography>
+            </Link>
             <Stack direction="column" spacing={3} width="100%" py={2}>
               {/* <ConnectWalletBtn /> */}
               <Stack

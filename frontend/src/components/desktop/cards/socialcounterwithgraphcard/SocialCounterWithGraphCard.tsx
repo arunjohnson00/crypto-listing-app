@@ -214,7 +214,7 @@ const SocialCounterWithGraphCard = ({
                       Math.sign(
                         percentageDiff(
                           parseInt(coinData[0]),
-                          parseInt(coinData[1])
+                          parseInt(coinData[7])
                         )
                       ) === -1
                         ? "red"
@@ -229,14 +229,14 @@ const SocialCounterWithGraphCard = ({
                     Math.sign(
                       percentageDiff(
                         parseInt(coinData[0]),
-                        parseInt(coinData[1])
+                        parseInt(coinData[7])
                       )
                     ) !== -1 &&
                     "+"}
                   {coinData &&
                     percentageDiff(
                       parseInt(coinData[0]),
-                      parseInt(coinData[1])
+                      parseInt(coinData[7])
                     ).toFixed(7)}
                   %
                 </Typography>

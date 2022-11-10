@@ -22,7 +22,7 @@ import { Helmet } from "react-helmet-async";
 const VideosPage = () => {
   const dispatch: any = useDispatch();
   const theme = useTheme();
-  const xsBreakPoint = useMediaQuery(theme.breakpoints.up("xs"));
+  const xsBreakPoint = useMediaQuery(theme.breakpoints.up("md"));
 
   const videoList = useSelector((data: any) => {
     return data?.homeReducer?.video_list?.data?.data;
@@ -88,14 +88,16 @@ const VideosPage = () => {
           <Grid container rowSpacing={2} columnSpacing={2}>
             {videoList &&
               videoList?.map((item: any, index: number) => (
-                <Grid item xs={12} sm={12} md={4} lg={4} xl={4} mt={0}>
+                <Grid item xs={6} sm={6} md={3} lg={3} xl={3} mt={0}>
                   <Box
                     key={index}
                     sx={{
                       // flexGrow: 1,
                       padding: 0,
-                      borderRadius: 0,
+                      borderRadius: 3,
                       backgroundColor: "#020419",
+                      border: "1px solid #243464",
+                      overflow: "hidden",
                     }}
                     width="100%"
                   >
@@ -111,14 +113,15 @@ const VideosPage = () => {
                     >
                       <Stack
                         direction={{ xs: "column", sm: "column", md: "column" }}
-                        spacing={2}
+                        spacing={0}
                         width="100%"
+                        height={xsBreakPoint === true ? 395 : 250}
                       >
                         <div>
                           <ReactPlayer
                             url={item && item?.v_url}
                             width={"auto"}
-                            height={250}
+                            height={xsBreakPoint === true ? 250 : 150}
                           />
                         </div>
                         <Stack
@@ -134,6 +137,7 @@ const VideosPage = () => {
                             sm: "flex-start",
                             md: "flex-start",
                           }}
+                          p={2}
                         >
                           <Link
                             href={item?.v_url}
@@ -146,7 +150,8 @@ const VideosPage = () => {
                               sx={{
                                 color: "#FFFFF5",
                                 fontWeight: 500,
-                                fontSize: "1.1rem",
+                                fontSize:
+                                  xsBreakPoint === true ? "1.1rem" : ".9rem",
                                 wordBreak: "break-all",
                               }}
                               textAlign={{
@@ -155,7 +160,14 @@ const VideosPage = () => {
                                 md: "left",
                               }}
                             >
-                              {item && item?.v_title}.
+                              {xsBreakPoint === true
+                                ? item && item?.v_title?.length > 80
+                                  ? item?.v_title?.slice(0, 80) + "..."
+                                  : item?.v_title
+                                : item?.v_title?.length > 40
+                                ? item?.v_title?.slice(0, 40) + "..."
+                                : item?.v_title}
+                              .
                             </Typography>
                           </Link>
 
@@ -164,23 +176,35 @@ const VideosPage = () => {
                             sx={{ color: "#939393", wordBreak: "break-all" }}
                             textAlign={{ xs: "left", sm: "left", md: "left" }}
                           >
-                            {item && item?.v_sub_title}.
+                            {xsBreakPoint === true
+                              ? item && item?.v_sub_title?.length > 150
+                                ? item?.v_sub_title?.slice(0, 150) + "..."
+                                : item?.v_sub_title
+                              : item?.v_sub_title?.length > 80
+                              ? item?.v_sub_title?.slice(0, 80) + "..."
+                              : item?.v_sub_title}
+                            .
                           </Typography>
                         </Stack>
                       </Stack>
-
-                      <Typography
-                        variant="h6"
-                        sx={{
-                          color: "#21C879",
-                          fontWeight: 500,
-                          fontSize: ".9rem",
-                        }}
+                      <Stack
+                        direction={{ xs: "row", sm: "row", md: "row" }}
+                        spacing={2}
+                        p={2}
                       >
-                        {moment(new Date(item?.created_at)).format(
-                          "DD MMM YYYY"
-                        )}
-                      </Typography>
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            color: "#21C879",
+                            fontWeight: 500,
+                            fontSize: ".9rem",
+                          }}
+                        >
+                          {moment(new Date(item?.created_at)).format(
+                            "DD MMM YYYY"
+                          )}
+                        </Typography>
+                      </Stack>
                     </Stack>
                   </Box>
                 </Grid>

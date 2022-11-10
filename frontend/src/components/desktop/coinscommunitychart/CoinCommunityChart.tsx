@@ -387,7 +387,7 @@ const CoinCommunityChart = ({
                           Math.sign(
                             percentageDiff(
                               parseInt(data && data?.data?.followers[0][1]),
-                              parseInt(data && data?.data?.followers[1][1])
+                              parseInt(data && data?.data?.followers[7][1])
                             )
                           ) === -1
                             ? "red"
@@ -403,7 +403,7 @@ const CoinCommunityChart = ({
                         Math.sign(
                           percentageDiff(
                             parseInt(data && data?.data?.followers[0][1]),
-                            parseInt(data && data?.data?.followers[1][1])
+                            parseInt(data && data?.data?.followers[7][1])
                           )
                         ) !== -1 &&
                         "+"}
@@ -411,7 +411,7 @@ const CoinCommunityChart = ({
                         data?.data?.followers?.length > 1 &&
                         percentageDiff(
                           parseInt(data && data?.data?.followers[0][1]),
-                          parseInt(data && data?.data?.followers[1][1])
+                          parseInt(data && data?.data?.followers[7][1])
                         ).toFixed(10) + "%"}
                     </Typography>
                   </Typography>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
@@ -1198,86 +1198,93 @@ const CoinListingEdit = () => {
                 </div>
               );
             })}
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={4}>
-              <Typography
-                variant="h6"
-                sx={{ textAlign: "left", color: "#D7DADB" }}
-                mb={0}
-              >
-                Exchange Details
-              </Typography>
-              <Typography
-                variant="caption"
-                sx={{ textAlign: "left", color: "#b4b4b4" }}
-                mb={2}
-              >
-                Provide exchange details where token is listed
-              </Typography>
-            </Grid>
 
-            {editCoin?.has_many_exchanges.length !== 0 &&
-            editCoin?.has_many_exchanges !== undefined ? (
-              editCoin?.has_many_exchanges.map(
-                (exchanges: any, index: number) => {
-                  return (
-                    <Grid
-                      item
-                      xl={12}
-                      lg={12}
-                      md={12}
-                      sm={12}
-                      xs={12}
-                      key={index}
-                    >
-                      <Stack
-                        direction={{ xs: "column", sm: "column", md: "row" }}
-                        spacing={3}
-                      >
-                        <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
-                          <Typography
-                            variant="subtitle1"
-                            sx={{
-                              textAlign: "left",
-                              fontSize: ".9rem",
-                              fontWeight: 400,
-                              color: "#00ff95",
+            {coinStatus !== "Presale" && (
+              <Fragment>
+                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} mt={4}>
+                  <Typography
+                    variant="h6"
+                    sx={{ textAlign: "left", color: "#D7DADB" }}
+                    mb={0}
+                  >
+                    Exchange Details
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{ textAlign: "left", color: "#b4b4b4" }}
+                    mb={2}
+                  >
+                    Provide exchange details where token is listed
+                  </Typography>
+                </Grid>
+
+                {editCoin?.has_many_exchanges.length !== 0 &&
+                editCoin?.has_many_exchanges !== undefined ? (
+                  editCoin?.has_many_exchanges.map(
+                    (exchanges: any, index: number) => {
+                      return (
+                        <Grid
+                          item
+                          xl={12}
+                          lg={12}
+                          md={12}
+                          sm={12}
+                          xs={12}
+                          key={index}
+                        >
+                          <Stack
+                            direction={{
+                              xs: "column",
+                              sm: "column",
+                              md: "row",
                             }}
-                            mb={1}
+                            spacing={3}
                           >
-                            Exchange {index + 1}
-                          </Typography>
-                          <InputSelectCoin
-                            name={`exchange_id[${index + 1}]`}
-                            id={`exchange_id_${index + 1}`}
-                            data={exchangeList}
-                            selectedValue={exchanges.exchange_id}
-                            height={40}
-                            width={300}
-                            title="Select Exchange"
-                            variant="exchange"
-                          />
-                        </Grid>
-                        <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
-                          <Typography
-                            variant="subtitle1"
-                            sx={{
-                              textAlign: "left",
-                              fontSize: ".9rem",
-                              fontWeight: 400,
-                              color: "#00ff95",
-                            }}
-                            mb={1}
-                          >
-                            Exchange URL {index + 1}
-                          </Typography>
-                          <InputText
-                            placeholder="Eg: https://www.binance.com/en/trade/BTC_USDT"
-                            name={`url[${index + 1}]`}
-                            id={`url_${index + 1}`}
-                            value={exchanges.url}
-                          />
-                        </Grid>
-                        {/* <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
+                            <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
+                              <Typography
+                                variant="subtitle1"
+                                sx={{
+                                  textAlign: "left",
+                                  fontSize: ".9rem",
+                                  fontWeight: 400,
+                                  color: "#00ff95",
+                                }}
+                                mb={1}
+                              >
+                                Exchange {index + 1}
+                              </Typography>
+                              <InputSelectCoin
+                                name={`exchange_id[${index + 1}]`}
+                                id={`exchange_id_${index + 1}`}
+                                data={exchangeList}
+                                selectedValue={exchanges.exchange_id}
+                                height={40}
+                                width={300}
+                                title="Select Exchange"
+                                variant="exchange"
+                              />
+                            </Grid>
+                            <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
+                              <Typography
+                                variant="subtitle1"
+                                sx={{
+                                  textAlign: "left",
+                                  fontSize: ".9rem",
+                                  fontWeight: 400,
+                                  color: "#00ff95",
+                                }}
+                                mb={1}
+                              >
+                                Exchange URL {index + 1}
+                              </Typography>
+                              <InputText
+                                placeholder="Eg: https://www.binance.com/en/trade/BTC_USDT"
+                                name={`url[${index + 1}]`}
+                                id={`url_${index + 1}`}
+                                value={exchanges.url}
+                              />
+                            </Grid>
+                            {/* <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                           <Typography
                             variant="subtitle1"
                             sx={{ textAlign: "left" }}
@@ -1292,92 +1299,93 @@ const CoinListingEdit = () => {
                             value={exchanges.explorer_link}
                           />
                         </Grid> */}
-                        <Grid
-                          item
-                          xl={2}
-                          lg={2}
-                          md={2}
-                          sm={2}
-                          xs={12}
-                          pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
-                        >
-                          {editCoin?.has_many_exchanges.length - 1 === index ? (
-                            <Link
-                              onClick={exchangeaddHandle}
-                              underline="none"
-                              sx={{ color: "#75ABCF", fontSize: ".8rem" }}
+                            <Grid
+                              item
+                              xl={2}
+                              lg={2}
+                              md={2}
+                              sm={2}
+                              xs={12}
+                              pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
                             >
-                              Add more +
-                            </Link>
-                          ) : (
-                            <IconButton
-                              aria-label="delete"
-                              size="large"
-                              onClick={() =>
-                                exchangeremoveHandle(exchanges?.id)
-                              }
-                            >
-                              <DeleteIcon
-                                fontSize="inherit"
-                                sx={{ color: "#fff9" }}
-                              />
-                            </IconButton>
-                          )}
+                              {editCoin?.has_many_exchanges.length - 1 ===
+                              index ? (
+                                <Link
+                                  onClick={exchangeaddHandle}
+                                  underline="none"
+                                  sx={{ color: "#75ABCF", fontSize: ".8rem" }}
+                                >
+                                  Add more +
+                                </Link>
+                              ) : (
+                                <IconButton
+                                  aria-label="delete"
+                                  size="large"
+                                  onClick={() =>
+                                    exchangeremoveHandle(exchanges?.id)
+                                  }
+                                >
+                                  <DeleteIcon
+                                    fontSize="inherit"
+                                    sx={{ color: "#fff9" }}
+                                  />
+                                </IconButton>
+                              )}
+                            </Grid>
+                          </Stack>
                         </Grid>
-                      </Stack>
-                    </Grid>
-                  );
-                }
-              )
-            ) : (
-              <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                <Stack
-                  direction={{ xs: "column", sm: "column", md: "row" }}
-                  spacing={3}
-                >
-                  <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
-                    <Typography
-                      variant="subtitle1"
-                      sx={{
-                        textAlign: "left",
-                        fontSize: ".9rem",
-                        fontWeight: 400,
-                        color: "#00ff95",
-                      }}
-                      mb={1}
+                      );
+                    }
+                  )
+                ) : (
+                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                    <Stack
+                      direction={{ xs: "column", sm: "column", md: "row" }}
+                      spacing={3}
                     >
-                      Exchange 1
-                    </Typography>
-                    <InputSelectCoin
-                      name={`exchange_id[1]`}
-                      id={`exchange_id_1`}
-                      data={exchangeList}
-                      height={40}
-                      width={300}
-                      title="Select Exchange"
-                      variant="exchange"
-                    />
-                  </Grid>
-                  <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
-                    <Typography
-                      variant="subtitle1"
-                      sx={{
-                        textAlign: "left",
-                        fontSize: ".9rem",
-                        fontWeight: 400,
-                        color: "#00ff95",
-                      }}
-                      mb={1}
-                    >
-                      Exchange URL 1
-                    </Typography>
-                    <InputText
-                      placeholder="Eg: https://www.binance.com/en/trade/BTC_USDT"
-                      name={`url[1]`}
-                      id={`url_1`}
-                    />
-                  </Grid>
-                  {/* <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
+                      <Grid item xl={2} lg={2} md={2} sm={2} xs={12}>
+                        <Typography
+                          variant="subtitle1"
+                          sx={{
+                            textAlign: "left",
+                            fontSize: ".9rem",
+                            fontWeight: 400,
+                            color: "#00ff95",
+                          }}
+                          mb={1}
+                        >
+                          Exchange 1
+                        </Typography>
+                        <InputSelectCoin
+                          name={`exchange_id[1]`}
+                          id={`exchange_id_1`}
+                          data={exchangeList}
+                          height={40}
+                          width={300}
+                          title="Select Exchange"
+                          variant="exchange"
+                        />
+                      </Grid>
+                      <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
+                        <Typography
+                          variant="subtitle1"
+                          sx={{
+                            textAlign: "left",
+                            fontSize: ".9rem",
+                            fontWeight: 400,
+                            color: "#00ff95",
+                          }}
+                          mb={1}
+                        >
+                          Exchange URL 1
+                        </Typography>
+                        <InputText
+                          placeholder="Eg: https://www.binance.com/en/trade/BTC_USDT"
+                          name={`url[1]`}
+                          id={`url_1`}
+                        />
+                      </Grid>
+                      {/* <Grid item xl={4} lg={4} md={4} sm={4} xs={12}>
                     <Typography
                       variant="subtitle1"
                       sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 400,color: "#00ff95", }}
@@ -1391,46 +1399,48 @@ const CoinListingEdit = () => {
                       id={`exchange_explorer_link_1`}
                     />
                   </Grid> */}
-                  <Grid
-                    item
-                    xl={2}
-                    lg={2}
-                    md={2}
-                    sm={2}
-                    xs={12}
-                    pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
-                  >
-                    <Link
-                      onClick={exchangeaddHandle}
-                      underline="none"
-                      sx={{ color: "#75ABCF", fontSize: ".8rem" }}
-                    >
-                      Add more +
-                    </Link>
+                      <Grid
+                        item
+                        xl={2}
+                        lg={2}
+                        md={2}
+                        sm={2}
+                        xs={12}
+                        pt={{ xs: 0, sm: 0, md: 4.5, lg: 4.5, xl: 4.5 }}
+                      >
+                        <Link
+                          onClick={exchangeaddHandle}
+                          underline="none"
+                          sx={{ color: "#75ABCF", fontSize: ".8rem" }}
+                        >
+                          Add more +
+                        </Link>
+                      </Grid>
+                    </Stack>
                   </Grid>
-                </Stack>
-              </Grid>
-            )}
+                )}
 
-            {exchangeCount.map((exchange, index) => {
-              return (
-                <div>
-                  <ExchangeDetails
-                    exchangeCount={exchangeCount}
-                    index={
-                      editCoin?.has_many_exchanges &&
-                      editCoin?.has_many_exchanges?.length !== 0 &&
-                      editCoin?.has_many_exchanges !== undefined
-                        ? editCoin?.has_many_exchanges.length - 1 + index
-                        : index
-                    }
-                    key={index}
-                    exchangeremoveHandle={exchangeremoveHandle}
-                    data={exchangeList}
-                  />
-                </div>
-              );
-            })}
+                {exchangeCount.map((exchange, index) => {
+                  return (
+                    <div>
+                      <ExchangeDetails
+                        exchangeCount={exchangeCount}
+                        index={
+                          editCoin?.has_many_exchanges &&
+                          editCoin?.has_many_exchanges?.length !== 0 &&
+                          editCoin?.has_many_exchanges !== undefined
+                            ? editCoin?.has_many_exchanges.length - 1 + index
+                            : index
+                        }
+                        key={index}
+                        exchangeremoveHandle={exchangeremoveHandle}
+                        data={exchangeList}
+                      />
+                    </div>
+                  );
+                })}
+              </Fragment>
+            )}
           </Box>
         </Grid>
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -1551,7 +1561,7 @@ const CoinListingEdit = () => {
                   mb={1}
                   pt={2}
                 >
-                  <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                  {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                     <Typography
                       variant="subtitle1"
                       sx={{
@@ -1582,7 +1592,7 @@ const CoinListingEdit = () => {
                       value={editCoin?.circulating_supply}
                       type="number"
                     />
-                  </Grid>
+                  </Grid> */}
                   <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                     <Typography
                       variant="subtitle1"
@@ -1606,7 +1616,7 @@ const CoinListingEdit = () => {
                     />
                   </Grid>
                 </Stack>
-                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
+                {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={1}>
                   <Typography
                     variant="subtitle1"
                     sx={{
@@ -1637,7 +1647,7 @@ const CoinListingEdit = () => {
                     value={editCoin?.market_cap}
                     type="number"
                   />
-                </Grid>
+                </Grid> */}
               </Grid>
             ) : (
               <Grid item xs={12} mb={5} mt={1}>

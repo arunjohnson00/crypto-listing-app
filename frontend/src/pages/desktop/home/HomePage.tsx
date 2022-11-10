@@ -927,7 +927,7 @@ const HomePage = ({ windowInnerWidth }: any) => {
               infinite={true}
               removeArrowOnDeviceType={["tablet", "mobile"]}
               arrows={true}
-              autoPlay={false}
+              autoPlay={true}
               draggable={true}
               swipeable={true}
               minimumTouchDrag={10}

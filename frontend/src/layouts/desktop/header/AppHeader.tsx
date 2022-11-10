@@ -147,6 +147,7 @@ const AppHeader = ({ windowInnerWidth }: any) => {
                 iconStatus={false}
                 path="/fear-greed-index"
               />
+              <AppBarNavBtn title="Videos" iconStatus={false} path="/videos" />
             </Stack>
           )}
         </AppBar>

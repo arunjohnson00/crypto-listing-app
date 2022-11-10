@@ -340,8 +340,7 @@ const MobileUserDashboard = () => {
                 icon={myoffersIcon}
                 title="Offer Zone"
                 //link="/user-dashboard/offer-zone"
-
-                link="#"
+                link="/user-dashboard/coming-soon"
                 color="#FFFFFF"
                 background="#000000"
                 border="transparent"
@@ -350,7 +349,8 @@ const MobileUserDashboard = () => {
               <MobileBottomMenuCard
                 icon={adsIcon}
                 title="My Ads"
-                link="/user-dashboard/ads"
+                // link="/user-dashboard/ads"
+                link="/user-dashboard/coming-soon"
                 color="#FFFFFF"
                 background="#000000"
                 border="transparent"

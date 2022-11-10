@@ -307,7 +307,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
         errorHandler
       )
     );
-  }, [dispatch]);
+  }, [dispatch, location]);
 
   return (
     <Fragment>

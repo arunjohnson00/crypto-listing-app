@@ -62,6 +62,7 @@ import VideosPage from "../pages/desktop/videos/VideosPage";
 import FeaturedCoinPage from "../pages/desktop/featuredcoin/FeaturedCoinPage";
 import Error404 from "../pages/error404/Error404";
 import PromotePage from "../pages/desktop/promote/PromotePage";
+import ComingSoon from "../pages/comingsoon/ComingSoon";
 
 const AppRoutes = () => {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
@@ -77,6 +78,15 @@ const AppRoutes = () => {
           element={
             <PublicRoutes>
               <Error404 />
+            </PublicRoutes>
+          }
+        />
+
+        <Route
+          path="/user-dashboard/coming-soon"
+          element={
+            <PublicRoutes>
+              <ComingSoon />
             </PublicRoutes>
           }
         />
