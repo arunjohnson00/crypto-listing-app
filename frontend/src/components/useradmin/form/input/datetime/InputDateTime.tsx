@@ -37,10 +37,10 @@ const InputDateTime = ({
                 fontSize: ".85rem",
                 minWidth: matches === true ? 311 : "auto",
                 background: "#000000",
-                color: "#878787e8",
+                color: "#FFFFFF",
                 border: "1.5px solid #4b4b4b",
                 svg: { color: "#878787e8" },
-                input: { color: "#878787e8" },
+                input: { color: "#FFFFFF" },
                 label: { color: "#878787e8" },
               },
             }}

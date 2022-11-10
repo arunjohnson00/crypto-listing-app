@@ -342,7 +342,7 @@ const SingleCoinHeader = ({ coinData }: any) => {
         errorHandler
       )
     );
-  }, [dispatch]);
+  }, [dispatch, location]);
 
   return (
     <Fragment>

@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import moment from "moment";
@@ -23,6 +23,7 @@ import {
   Button,
   Divider,
   Rating,
+  Tooltip,
 } from "@mui/material";
 
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -53,7 +54,19 @@ const UserAdminHtmlTable = ({
   const navigate: any = useNavigate();
   const dispatch: any = useDispatch();
   const formData = new FormData();
+  const [openToolTip, setOpenToolTip] = useState({
+    open: false,
+    id: "",
+    rowid: "",
+  });
 
+  const handleTooltipClose = () => {
+    setOpenToolTip({ ...openToolTip, open: false, id: "", rowid: "" });
+  };
+
+  const handleTooltipOpen = (i: any, index: any) => {
+    setOpenToolTip({ ...openToolTip, open: true, id: i, rowid: index });
+  };
   const handleDeleteClick = (id: any) => {
     const successHandler = (res: any) => {
       toast.success(
@@ -373,120 +386,68 @@ const UserAdminHtmlTable = ({
                       alignItems="center"
                       sx={{ flexWrap: "wrap" }}
                     >
-                      {data?.badges?.vote?.status === 1 ? (
-                        <Avatar
-                          alt={data?.badges?.vote?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.vote?.active_icon}`}
-                          sx={{
-                            width: 25,
-                            height: 25,
-                            mr: 0.5,
-                            mb: 0.5,
-                          }}
-                        />
-                      ) : (
-                        <Avatar
-                          alt={data?.badges?.vote?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.vote?.inactive_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      )}
-                      {data?.badges?.airdrop?.status === 1 ? (
-                        <Avatar
-                          alt={data?.badges?.airdrop?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.airdrop?.active_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      ) : (
-                        <Avatar
-                          alt={data?.badges?.airdrop?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.airdrop?.inactive_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      )}
-
-                      {data?.badges?.ama?.status === 1 ? (
-                        <Avatar
-                          alt={data?.badges?.ama?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.ama?.active_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      ) : (
-                        <Avatar
-                          alt={data?.badges?.ama?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.ama?.inactive_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      )}
-
-                      {data?.badges?.audit?.status === 1 ? (
-                        <Avatar
-                          alt={data?.badges?.audit?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.audit?.active_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      ) : (
-                        <Avatar
-                          alt={data?.badges?.audit?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.audit?.inactive_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      )}
-
-                      {data?.badges?.kyc?.status === 1 ? (
-                        <Avatar
-                          alt={data?.badges?.kyc?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.kyc?.active_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      ) : (
-                        <Avatar
-                          alt={data?.badges?.kyc?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.kyc?.inactive_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      )}
-                      {data?.badges?.liquidity?.status === 1 ? (
-                        <Avatar
-                          alt={data?.badges?.liquidity?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.liquidity?.active_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      ) : (
-                        <Avatar
-                          alt={data?.badges?.liquidity?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.liquidity?.inactive_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      )}
-
-                      {data?.badges?.ownership?.status === 1 ? (
-                        <Avatar
-                          alt={data?.badges?.ownership?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.ownership?.active_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      ) : (
-                        <Avatar
-                          alt={data?.badges?.ownership?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.ownership?.inactive_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      )}
-
-                      {data?.badges?.presale?.status === 1 ? (
-                        <Avatar
-                          alt={data?.badges?.presale?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.presale?.active_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      ) : (
-                        <Avatar
-                          alt={data?.badges?.presale?.name}
-                          src={`${serverAPIUrl}public/uploads/badges/${data?.badges?.presale?.inactive_icon}`}
-                          sx={{ width: 25, height: 25, mr: 0.5, mb: 0.5 }}
-                        />
-                      )}
+                      {data &&
+                        data?.badges?.length > 0 &&
+                        data?.badges?.map((item: any, i: number) => (
+                          <Tooltip
+                            arrow
+                            PopperProps={{
+                              disablePortal: false,
+                              modifiers: [
+                                {
+                                  name: "offset",
+                                  options: {
+                                    offset: [0, -10],
+                                  },
+                                },
+                              ],
+                            }}
+                            onClose={handleTooltipClose}
+                            open={
+                              parseInt(openToolTip?.rowid) === index &&
+                              parseInt(openToolTip?.id) === i
+                                ? openToolTip?.open
+                                : false
+                            }
+                            // disableFocusListener
+                            // disableHoverListener
+                            // disableTouchListener
+                            title={item?.name}
+                            componentsProps={{
+                              tooltip: {
+                                sx: {
+                                  borderRadius: 2,
+                                  border: "1.5px solid #1a2063",
+                                  backgroundColor: "#121139",
+                                  fontSize: ".65rem",
+                                  cursor: "pointer",
+                                  "& .MuiTooltip-arrow": {
+                                    color: "#1a2063",
+                                  },
+                                },
+                              },
+                            }}
+                          >
+                            <Avatar
+                              key={index}
+                              alt={item?.name}
+                              src={`${serverAPIUrl}public/uploads/badge_icons/${
+                                parseInt(item?.status) === 1
+                                  ? item && item?.active_icon
+                                  : item && item?.inactive_icon
+                              }`}
+                              sx={{
+                                width: 25,
+                                height: 25,
+                                mr: 0.5,
+                                mb: 0.5,
+                                cursor: "pointer",
+                              }}
+                              onClick={() => handleTooltipOpen(i, index)}
+                              onMouseEnter={() => handleTooltipOpen(i, index)}
+                            />
+                          </Tooltip>
+                        ))}
                     </Stack>
                   </TableCell>
                   <TableCell sx={{ color: "#E0B62A", border: 0, minWidth: 90 }}>

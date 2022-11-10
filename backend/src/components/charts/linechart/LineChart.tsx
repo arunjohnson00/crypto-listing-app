@@ -40,6 +40,35 @@ const LineChart = ({ lineChartData }: any) => {
   }, [lineChartData]);
 
   const linegraphFilterHandler = (e: any) => {
+    parseInt(e.target.value) === 365 &&
+      lineChartData &&
+      lineChartData?.three_sixty_five_days !== undefined &&
+      lineChartData?.three_sixty_five_days?.length !== 0 &&
+      updateData(Object.values(lineChartData?.three_sixty_five_days));
+
+    parseInt(e.target.value) === 365 &&
+      lineChartData &&
+      lineChartData?.three_sixty_five_days !== undefined &&
+      lineChartData?.three_sixty_five_days?.length !== 0 &&
+      updateAxisData({
+        ...axisData,
+        xAxis: Object.keys(lineChartData?.three_sixty_five_days),
+      });
+    parseInt(e.target.value) === 90 &&
+      lineChartData &&
+      lineChartData?.ninety_days !== undefined &&
+      lineChartData?.ninety_days?.length !== 0 &&
+      updateData(Object.values(lineChartData?.ninety_days));
+
+    parseInt(e.target.value) === 90 &&
+      lineChartData &&
+      lineChartData?.ninety_days !== undefined &&
+      lineChartData?.ninety_days?.length !== 0 &&
+      updateAxisData({
+        ...axisData,
+        xAxis: Object.keys(lineChartData?.ninety_days),
+      });
+
     parseInt(e.target.value) === 30 &&
       lineChartData &&
       lineChartData?.thirty_days !== undefined &&
@@ -238,6 +267,8 @@ const LineChart = ({ lineChartData }: any) => {
               <option value={7}>Last 7 days</option>
               <option value={15}>Last 15 days</option>
               <option value={30}>Last 30 days</option>
+              <option value={90}>Last 90 days</option>
+              <option value={365}>Last 365 days</option>
             </NativeSelect>
           </FormControl>
         </Grid>
