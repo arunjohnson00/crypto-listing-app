@@ -199,3 +199,7 @@ export const FEAR_GREED_INDEX = {
 export const PRESALE = {
   PRESALE_LISTINGS: "PRESALE_LISTINGS",
 };
+
+export const VIDEO = {
+  VIDEO_LIST: "VIDEO_LIST",
+};

@@ -195,3 +195,5 @@ export {
   searchAdsRequest,
   videoAdsRequest,
 } from "./adsAction";
+
+export { videoListPageRequest } from "./videoAction";

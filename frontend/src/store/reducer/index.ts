@@ -22,6 +22,7 @@ import airdropReducer from "./airdropReducer";
 import eventsReducer from "./eventsReducer";
 import presaleReducer from "./presaleReducer";
 import adsReducer from "./adsReducer";
+import videoReducer from "./videoReducer";
 
 const allReducers = combineReducers({
   commonReducer,
@@ -41,6 +42,7 @@ const allReducers = combineReducers({
   eventsReducer,
   presaleReducer,
   adsReducer,
+  videoReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

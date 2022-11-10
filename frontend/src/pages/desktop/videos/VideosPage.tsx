@@ -9,6 +9,7 @@ import {
   Box,
   Avatar,
   Link,
+  Pagination,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { useTheme } from "@mui/material/styles";
@@ -16,7 +17,7 @@ import moment from "moment";
 import ReactPlayer from "react-player";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
-import { videoListRequest } from "../../../store/action";
+import { videoListPageRequest, videoListRequest } from "../../../store/action";
 import { Helmet } from "react-helmet-async";
 
 const VideosPage = () => {
@@ -25,15 +26,24 @@ const VideosPage = () => {
   const xsBreakPoint = useMediaQuery(theme.breakpoints.up("md"));
 
   const videoList = useSelector((data: any) => {
-    return data?.homeReducer?.video_list?.data?.data;
+    return data?.videoReducer?.video_list;
   });
+
+  const [page, setPage] = useState<any>(1);
+
+  const pageHandleChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setPage(value);
+  };
 
   useEffect(() => {
     const successHandler = (res: any) => {};
     const errorHandler = (err: any) => {};
 
-    dispatch(videoListRequest("noData", successHandler, errorHandler));
-  }, [dispatch]);
+    dispatch(videoListPageRequest(page, successHandler, errorHandler));
+  }, [dispatch, page]);
 
   return (
     <Fragment>
@@ -84,133 +94,187 @@ const VideosPage = () => {
           </Stack>
         </Grid>
 
-        <Grid item xs={12} mt={3}>
-          <Grid container rowSpacing={2} columnSpacing={2}>
-            {videoList &&
-              videoList?.map((item: any, index: number) => (
-                <Grid item xs={6} sm={6} md={3} lg={3} xl={3} mt={0}>
-                  <Box
-                    key={index}
-                    sx={{
-                      // flexGrow: 1,
-                      padding: 0,
-                      borderRadius: 3,
-                      backgroundColor: "#020419",
-                      border: "1px solid #243464",
-                      overflow: "hidden",
-                    }}
-                    width="100%"
-                  >
-                    <Stack
-                      direction={{ xs: "column", sm: "column", md: "column" }}
-                      justifyContent="space-between"
-                      alignItems={{
-                        xs: "flex-end",
-                        sm: "flex-end",
-                        md: "flex-end",
+        {videoList?.response === true && (
+          <Grid item xs={12} mt={3}>
+            <Grid container rowSpacing={2} columnSpacing={2}>
+              {videoList &&
+                videoList?.data?.data?.map((item: any, index: number) => (
+                  <Grid item xs={6} sm={6} md={3} lg={3} xl={3} mt={0}>
+                    <Box
+                      key={index}
+                      sx={{
+                        // flexGrow: 1,
+                        padding: 0,
+                        borderRadius: 3,
+                        backgroundColor: "#020419",
+                        border: "1px solid #243464",
+                        overflow: "hidden",
                       }}
                       width="100%"
                     >
                       <Stack
                         direction={{ xs: "column", sm: "column", md: "column" }}
-                        spacing={0}
+                        justifyContent="space-between"
+                        alignItems={{
+                          xs: "flex-end",
+                          sm: "flex-end",
+                          md: "flex-end",
+                        }}
                         width="100%"
-                        height={xsBreakPoint === true ? 395 : 250}
                       >
-                        <div>
-                          <ReactPlayer
-                            url={item && item?.v_url}
-                            width={"auto"}
-                            height={xsBreakPoint === true ? 250 : 150}
-                          />
-                        </div>
                         <Stack
                           direction={{
                             xs: "column",
                             sm: "column",
                             md: "column",
                           }}
-                          spacing={0.6}
-                          // sx={{ maxWidth: 380 }}
-                          alignItems={{
-                            xs: "flex-start",
-                            sm: "flex-start",
-                            md: "flex-start",
-                          }}
-                          p={2}
+                          spacing={0}
+                          width="100%"
+                          height={xsBreakPoint === true ? 395 : 250}
                         >
-                          <Link
-                            href={item?.v_url}
-                            target="_blank"
-                            sx={{ textDecoration: "none" }}
+                          <div>
+                            <ReactPlayer
+                              url={item && item?.v_url}
+                              width={"auto"}
+                              height={xsBreakPoint === true ? 250 : 150}
+                            />
+                          </div>
+                          <Stack
+                            direction={{
+                              xs: "column",
+                              sm: "column",
+                              md: "column",
+                            }}
+                            spacing={0.6}
+                            // sx={{ maxWidth: 380 }}
+                            alignItems={{
+                              xs: "flex-start",
+                              sm: "flex-start",
+                              md: "flex-start",
+                            }}
+                            p={2}
                           >
-                            {" "}
+                            <Link
+                              href={item?.v_url}
+                              target="_blank"
+                              sx={{ textDecoration: "none" }}
+                            >
+                              {" "}
+                              <Typography
+                                variant="h6"
+                                sx={{
+                                  color: "#FFFFF5",
+                                  fontWeight: 500,
+                                  fontSize:
+                                    xsBreakPoint === true ? "1.1rem" : ".9rem",
+                                  wordBreak: "break-all",
+                                }}
+                                textAlign={{
+                                  xs: "left",
+                                  sm: "left",
+                                  md: "left",
+                                }}
+                              >
+                                {xsBreakPoint === true
+                                  ? item && item?.v_title?.length > 80
+                                    ? item?.v_title?.slice(0, 80) + "..."
+                                    : item?.v_title
+                                  : item?.v_title?.length > 40
+                                  ? item?.v_title?.slice(0, 40) + "..."
+                                  : item?.v_title}
+                                .
+                              </Typography>
+                            </Link>
+
                             <Typography
-                              variant="h6"
-                              sx={{
-                                color: "#FFFFF5",
-                                fontWeight: 500,
-                                fontSize:
-                                  xsBreakPoint === true ? "1.1rem" : ".9rem",
-                                wordBreak: "break-all",
-                              }}
-                              textAlign={{
-                                xs: "left",
-                                sm: "left",
-                                md: "left",
-                              }}
+                              variant="caption"
+                              sx={{ color: "#939393", wordBreak: "break-all" }}
+                              textAlign={{ xs: "left", sm: "left", md: "left" }}
                             >
                               {xsBreakPoint === true
-                                ? item && item?.v_title?.length > 80
-                                  ? item?.v_title?.slice(0, 80) + "..."
-                                  : item?.v_title
-                                : item?.v_title?.length > 40
-                                ? item?.v_title?.slice(0, 40) + "..."
-                                : item?.v_title}
+                                ? item && item?.v_sub_title?.length > 100
+                                  ? item?.v_sub_title?.slice(0, 100) + "..."
+                                  : item?.v_sub_title
+                                : item?.v_sub_title?.length > 50
+                                ? item?.v_sub_title?.slice(0, 50) + "..."
+                                : item?.v_sub_title}
                               .
                             </Typography>
-                          </Link>
-
+                          </Stack>
+                        </Stack>
+                        <Stack
+                          direction={{ xs: "row", sm: "row", md: "row" }}
+                          spacing={2}
+                          p={2}
+                        >
                           <Typography
-                            variant="caption"
-                            sx={{ color: "#939393", wordBreak: "break-all" }}
-                            textAlign={{ xs: "left", sm: "left", md: "left" }}
+                            variant="h6"
+                            sx={{
+                              color: "#21C879",
+                              fontWeight: 500,
+                              fontSize: ".9rem",
+                            }}
                           >
-                            {xsBreakPoint === true
-                              ? item && item?.v_sub_title?.length > 150
-                                ? item?.v_sub_title?.slice(0, 150) + "..."
-                                : item?.v_sub_title
-                              : item?.v_sub_title?.length > 80
-                              ? item?.v_sub_title?.slice(0, 80) + "..."
-                              : item?.v_sub_title}
-                            .
+                            {moment(new Date(item?.created_at)).format(
+                              "DD MMM YYYY"
+                            )}
                           </Typography>
                         </Stack>
                       </Stack>
-                      <Stack
-                        direction={{ xs: "row", sm: "row", md: "row" }}
-                        spacing={2}
-                        p={2}
-                      >
-                        <Typography
-                          variant="h6"
-                          sx={{
-                            color: "#21C879",
-                            fontWeight: 500,
-                            fontSize: ".9rem",
-                          }}
-                        >
-                          {moment(new Date(item?.created_at)).format(
-                            "DD MMM YYYY"
-                          )}
-                        </Typography>
-                      </Stack>
-                    </Stack>
-                  </Box>
-                </Grid>
-              ))}
+                    </Box>
+                  </Grid>
+                ))}
+            </Grid>
           </Grid>
-        </Grid>
+        )}
+
+        <Box
+          sx={{
+            width: "100%",
+            borderRadius: 5,
+            border: "1.5px solid #080b2c",
+            backgroundColor: "#01061b",
+          }}
+          py={1.3}
+          px={1}
+          mt={4}
+        >
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            width="100%"
+          >
+            <Pagination
+              count={Math.ceil(
+                parseInt(videoList?.data?.total) /
+                  parseInt(videoList?.data?.per_page)
+              )}
+              page={page}
+              onChange={pageHandleChange}
+              color="primary"
+              // variant="outlined"
+              sx={{
+                ul: {
+                  "& .MuiPaginationItem-root": {
+                    "&.Mui-selected": {
+                      background: "#020E36",
+                      color: "#FFFFFF",
+                      // borderRadius: '50%',
+                    },
+                    background: "transparent",
+                    color: "#FFFFFF",
+                  },
+                },
+              }}
+            />
+          </Stack>
+        </Box>
+        {/* <Divider
+                      variant="fullWidth"
+                      sx={{ borderColor: "#0D1436", borderBottomWidth: 2.5 }}
+                      flexItem
+                    /> */}
       </Grid>
     </Fragment>
   );
