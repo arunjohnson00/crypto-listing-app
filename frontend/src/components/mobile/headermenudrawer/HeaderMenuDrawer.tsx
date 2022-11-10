@@ -23,6 +23,7 @@ import AddAsset from "../button/addasset/AddAsset";
 import LoginHeaderBtn from "../button/loginheader/LoginHeaderBtn";
 import { logoutHandler } from "../../../utils/logoutHandler";
 import MyAccountHeaderBtn from "../button/myaccountheader/MyAccountHeaderBtn";
+import FearAndGreedIndexInfo from "../fgindexinfo/FearAndGreedIndexInfo";
 
 const CustomInputPopup = forwardRef(function CustomInput(
   props: InputUnstyledProps,
@@ -376,6 +377,7 @@ const HeaderMenuDrawer = ({ openDrawer, toggleDrawer }: any) => {
                 )}
               </Stack>
             </Stack>
+            <FearAndGreedIndexInfo />
           </Stack>
         </Stack>
       </Stack>
