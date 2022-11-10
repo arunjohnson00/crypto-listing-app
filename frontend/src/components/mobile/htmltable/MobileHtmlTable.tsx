@@ -328,6 +328,7 @@ const MobileHtmlTable = ({
                     }}
                   >
                     <Link
+                      target="_blank"
                       to={{
                         pathname: `/coin/${data?.slug}`,
                       }}
@@ -342,6 +343,7 @@ const MobileHtmlTable = ({
                   </TableCell>
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     <Link
+                      target="_blank"
                       to={{
                         pathname: `/coin/${data?.slug}`,
                       }}
@@ -378,6 +380,7 @@ const MobileHtmlTable = ({
                       <Typography variant="caption">
                         {" "}
                         <Link
+                          target="_blank"
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
@@ -453,6 +456,7 @@ const MobileHtmlTable = ({
                     >
                       <Typography variant="caption">
                         <Link
+                          target="_blank"
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
@@ -480,6 +484,7 @@ const MobileHtmlTable = ({
                     >
                       <Typography variant="caption">
                         <Link
+                          target="_blank"
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
@@ -505,6 +510,7 @@ const MobileHtmlTable = ({
                     >
                       <Typography variant="caption">
                         <Link
+                          target="_blank"
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
@@ -534,6 +540,7 @@ const MobileHtmlTable = ({
                     >
                       <Typography variant="caption">
                         <Link
+                          target="_blank"
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
@@ -551,6 +558,7 @@ const MobileHtmlTable = ({
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     <Typography variant="caption">
                       <Link
+                        target="_blank"
                         to={{
                           pathname: `/coin/${data?.slug}`,
                         }}
@@ -587,6 +595,7 @@ const MobileHtmlTable = ({
                   {tabIndex !== 6 && (
                     <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                       <Link
+                        target="_blank"
                         to={{
                           pathname: `/coin/${data?.slug}`,
                         }}
@@ -640,6 +649,7 @@ const MobileHtmlTable = ({
                   {tabIndex !== 6 && (
                     <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                       <Link
+                        target="_blank"
                         to={{
                           pathname: `/coin/${data?.slug}`,
                         }}
@@ -696,6 +706,7 @@ const MobileHtmlTable = ({
                     >
                       <Typography variant="caption">
                         <Link
+                          target="_blank"
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
@@ -1018,6 +1029,7 @@ const MobileHtmlTable = ({
                     }}
                   >
                     <Link
+                     target="_blank"
                       to={{
                         pathname: `/coin/${data?.slug}`,
                       }}
@@ -1032,6 +1044,7 @@ const MobileHtmlTable = ({
                   </TableCell> */}
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     <Link
+                      target="_blank"
                       to={{
                         pathname: `/coin/${data?.slug}`,
                       }}
@@ -1068,6 +1081,7 @@ const MobileHtmlTable = ({
                       <Typography variant="caption">
                         {" "}
                         <Link
+                          target="_blank"
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
@@ -1152,6 +1166,7 @@ const MobileHtmlTable = ({
                   <TableCell sx={{ color: "#FFFFFF", border: 0, minWidth: 90 }}>
                     <Typography variant="caption">
                       <Link
+                        target="_blank"
                         to={{
                           pathname: `/coin/${data?.slug}`,
                         }}

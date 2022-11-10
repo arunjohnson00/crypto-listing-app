@@ -270,6 +270,7 @@ const ListingTable = ({
                       }}
                     >
                       <Link
+                        target="_blank"
                         to={{
                           pathname: `/coin/${data?.slug}`,
                         }}
@@ -284,6 +285,7 @@ const ListingTable = ({
                     </TableCell>
                     <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                       <Link
+                        target="_blank"
                         to={{
                           pathname: `/coin/${data?.slug}`,
                         }}
@@ -320,6 +322,7 @@ const ListingTable = ({
                         <Typography variant="caption">
                           {" "}
                           <Link
+                            target="_blank"
                             to={{
                               pathname: `/coin/${data?.slug}`,
                             }}
@@ -381,6 +384,7 @@ const ListingTable = ({
                       >
                         <Typography variant="caption">
                           <Link
+                            target="_blank"
                             to={{
                               pathname: `/coin/${data?.slug}`,
                             }}
@@ -408,6 +412,7 @@ const ListingTable = ({
                       >
                         <Typography variant="caption">
                           <Link
+                            target="_blank"
                             to={{
                               pathname: `/coin/${data?.slug}`,
                             }}
@@ -437,6 +442,7 @@ const ListingTable = ({
                         >
                           <Typography variant="caption">
                             <Link
+                              target="_blank"
                               to={{
                                 pathname: `/coin/${data?.slug}`,
                               }}
@@ -466,6 +472,7 @@ const ListingTable = ({
                       >
                         <Typography variant="caption">
                           <Link
+                            target="_blank"
                             to={{
                               pathname: `/coin/${data?.slug}`,
                             }}
@@ -483,6 +490,7 @@ const ListingTable = ({
                     <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                       <Typography variant="caption">
                         <Link
+                          target="_blank"
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
@@ -519,6 +527,7 @@ const ListingTable = ({
                     {location && location?.pathname !== "/coins/presales" && (
                       <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                         <Link
+                          target="_blank"
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
@@ -572,6 +581,7 @@ const ListingTable = ({
                     {location && location?.pathname !== "/coins/presales" && (
                       <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                         <Link
+                          target="_blank"
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
@@ -628,6 +638,7 @@ const ListingTable = ({
                       >
                         <Typography variant="caption">
                           <Link
+                            target="_blank"
                             to={{
                               pathname: `/coin/${data?.slug}`,
                             }}

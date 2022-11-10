@@ -384,7 +384,7 @@ const AppBarSearch = () => {
                             pathname: `/coin/${item?.coin_slug}`,
                           }}
                           onClick={() => saveSearchHandler(item?.coin_slug)}
-                          // target="_blank"
+                          target="_blank"
                           rel="noopener noreferrer"
                           state={{ coin_id: item?.coin_id }}
                           style={{ textDecoration: "none", color: "#FFFFFF" }}
@@ -728,7 +728,7 @@ const AppBarSearch = () => {
                             to={{
                               pathname: `/airdrops/${item?.airdrops_slug}`,
                             }}
-                            // target="_blank"
+                            target="_blank"
                             rel="noopener noreferrer"
                             state={{ coin_id: item?.airdrops_id }}
                             style={{ textDecoration: "none", color: "#FFFFFF" }}
@@ -825,7 +825,7 @@ const AppBarSearch = () => {
                               pathname: `/coin/${item?.slug}`,
                             }}
                             onClick={() => saveSearchHandler(item?.slug)}
-                            // target="_blank"
+                            target="_blank"
                             rel="noopener noreferrer"
                             state={{ coin_id: item?.id }}
                             style={{ textDecoration: "none", color: "#FFFFFF" }}

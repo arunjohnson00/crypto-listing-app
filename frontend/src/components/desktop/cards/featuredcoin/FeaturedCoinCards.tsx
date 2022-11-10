@@ -111,6 +111,7 @@ const FeaturedCoinCards = ({ cardData, index }: any) => {
                   to={{
                     pathname: `/coin/${cardData?.slug}`,
                   }}
+                  target="_blank"
                   state={{ coin_id: cardData?.id }}
                   style={{
                     textDecoration: "none",

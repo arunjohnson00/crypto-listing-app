@@ -152,7 +152,7 @@ const DiscoverRecentCryptoCard = ({ item }: any) => {
   return (
     <Link
       to={`/coin/${item && item?.slug}`}
-      //target="_blank"
+      target="_blank"
       style={{ textDecoration: "none" }}
     >
       <Box

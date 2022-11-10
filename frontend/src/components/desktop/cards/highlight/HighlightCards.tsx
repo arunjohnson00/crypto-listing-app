@@ -111,6 +111,7 @@ const HighlightCards = ({ title, cardData, icon, variant }: any) => {
               title && title?.split(" ").join("-").toLowerCase()
             }`,
           }}
+          target="_blank"
           style={{ textDecoration: "none" }}
         >
           {" "}
@@ -196,6 +197,7 @@ const HighlightCards = ({ title, cardData, icon, variant }: any) => {
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
+                          target="_blank"
                           state={{ coin_id: data?.id }}
                           style={{ textDecoration: "none", color: "#FFFFFF" }}
                         >
@@ -336,6 +338,7 @@ const HighlightCards = ({ title, cardData, icon, variant }: any) => {
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
+                          target="_blank"
                           state={{ coin_id: data?.id }}
                           style={{ textDecoration: "none", color: "#FFFFFF" }}
                         >
@@ -476,6 +479,7 @@ const HighlightCards = ({ title, cardData, icon, variant }: any) => {
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
+                          target="_blank"
                           state={{ coin_id: data?.id }}
                           style={{ textDecoration: "none", color: "#FFFFFF" }}
                         >

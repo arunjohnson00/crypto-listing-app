@@ -7,6 +7,7 @@ const serverAPIUrl = process.env.REACT_APP_API_URL;
 const MobileRecentSearchCard = ({ item, index, saveSearchHandler }: any) => {
   return (
     <Link
+      target="_blank"
       to={{
         pathname: `/coin/${item?.coin_slug}`,
       }}

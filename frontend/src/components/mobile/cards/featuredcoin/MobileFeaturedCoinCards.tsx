@@ -60,6 +60,7 @@ const MobileFeaturedCoinCards = ({ cardData, index }: any) => {
   const serverAPIUrl = process.env.REACT_APP_API_URL;
   return (
     <Link
+      target="_blank"
       to={{
         pathname: `/coin/${cardData?.slug}`,
       }}
@@ -122,6 +123,7 @@ const MobileFeaturedCoinCards = ({ cardData, index }: any) => {
                   }}
                 >
                   <Link
+                    target="_blank"
                     to={{
                       pathname: `/coin/${cardData?.slug}`,
                     }}

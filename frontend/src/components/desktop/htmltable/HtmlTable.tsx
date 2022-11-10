@@ -214,6 +214,7 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
                     }}
                   >
                     <Link
+                      target="_blank"
                       to={{
                         pathname: `/coin/${data?.slug}`,
                       }}
@@ -228,6 +229,7 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
                   </TableCell>
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     <Link
+                      target="_blank"
                       to={{
                         pathname: `/coin/${data?.slug}`,
                       }}
@@ -264,6 +266,7 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
                       <Typography variant="caption">
                         {" "}
                         <Link
+                          target="_blank"
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
@@ -339,6 +342,7 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
                     >
                       <Typography variant="caption">
                         <Link
+                          target="_blank"
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
@@ -366,6 +370,7 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
                     >
                       <Typography variant="caption">
                         <Link
+                          target="_blank"
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
@@ -391,6 +396,7 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
                     >
                       <Typography variant="caption">
                         <Link
+                          target="_blank"
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
@@ -420,6 +426,7 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
                     >
                       <Typography variant="caption">
                         <Link
+                          target="_blank"
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
@@ -437,6 +444,7 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
                   <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                     <Typography variant="caption">
                       <Link
+                        target="_blank"
                         to={{
                           pathname: `/coin/${data?.slug}`,
                         }}
@@ -473,6 +481,7 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
                   {tabIndex !== 6 && (
                     <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                       <Link
+                        target="_blank"
                         to={{
                           pathname: `/coin/${data?.slug}`,
                         }}
@@ -526,6 +535,7 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
                   {tabIndex !== 6 && (
                     <TableCell sx={{ color: "#FFFFFF", border: 0 }}>
                       <Link
+                        target="_blank"
                         to={{
                           pathname: `/coin/${data?.slug}`,
                         }}
@@ -582,6 +592,7 @@ const HtmlTable = ({ tableData, variant, tableHeader, vote, setVote }: any) => {
                     >
                       <Typography variant="caption">
                         <Link
+                          target="_blank"
                           to={{
                             pathname: `/coin/${data?.slug}`,
                           }}
