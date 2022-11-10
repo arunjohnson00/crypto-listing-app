@@ -157,6 +157,14 @@ const AppRoutes = () => {
           }
         />
         <Route
+          path="/month-wise-users-count"
+          element={
+            <PrivateRoute>
+              <ViewFullList />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/live-ads-overview"
           element={
             <PrivateRoute>

@@ -1,4 +1,4 @@
-import { Grid, Typography, Stack } from "@mui/material";
+import { Grid, Typography, Stack, Box, Divider } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,7 +9,16 @@ import moment from "moment";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
 import DataTables from "../../components/tables/datatables/DataTables";
 import InputSearch from "../../components/form/input/search/InputSearch";
-import { listUserRequest, searchUserRequest } from "../../store/action";
+import {
+  listUserRequest,
+  monthWiseUserCounterRequest,
+  searchUserRequest,
+} from "../../store/action";
+import UserBarChart from "../../components/charts/userbarchart/UserBarChart";
+import { Item } from "../dashboard/style";
+import HtmlTables from "../../components/tables/htmltable/HtmlTables";
+import ComponentFooter from "../../components/footer/compfooter/ComponentFooter";
+import { gridColumnPositionsSelector } from "@mui/x-data-grid";
 
 const Users = () => {
   const userList = useSelector((usrList: any) => {
@@ -53,6 +62,24 @@ const Users = () => {
   }, [dispatch, dataTableParams, setDataTableParams]);
 
   const serverAPIUrl = process.env.REACT_APP_API_URL;
+
+  const monthwiseUserCount = useSelector((userData: any) => {
+    return userData?.usersReducer?.month_wise_user_count?.data;
+  });
+
+  useEffect(() => {
+    const successHandler = (res: any) => {
+      //console.log(res);
+    };
+
+    const errorHandler = (err: any) => {
+      //console.log(err);
+    };
+
+    dispatch(
+      monthWiseUserCounterRequest("emptyData", successHandler, errorHandler)
+    );
+  }, [dispatch]);
 
   const tableColumn = [
     {
@@ -168,11 +195,50 @@ const Users = () => {
     },
   ];
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={0} rowGap={3}>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <HorizonatalList />
       </Grid>
-
+      <Grid container rowGap={3} columnSpacing={3}>
+        {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+          <Typography variant="h5" sx={{ textAlign: "left" }}>
+            Users Data Chart
+          </Typography>
+        </Grid> */}
+        <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
+          <Box sx={{ background: "#FFFFFF", borderRadius: 1 }} p={2}>
+            <UserBarChart />
+          </Box>
+        </Grid>
+        <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
+          <Item>
+            <Box pt={2} pl={1}>
+              <Stack direction="column" spacing={0.5}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    textAlign: "left",
+                    paddingBottom: "5px",
+                    color: "#373163",
+                    fontSmooth: "always",
+                    fontSize: ".9rem",
+                    fontWeight: 700,
+                  }}
+                >
+                  Users Historical Data
+                </Typography>
+                <Divider
+                  orientation="horizontal"
+                  flexItem
+                  variant="fullWidth"
+                />
+              </Stack>
+              <HtmlTables rows={monthwiseUserCount && monthwiseUserCount} />
+              <ComponentFooter counter={false} path="/month-wise-users-count" />
+            </Box>
+          </Item>
+        </Grid>
+      </Grid>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Stack
           direction="row"

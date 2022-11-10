@@ -14,6 +14,7 @@ import {
   liveAdsOverviewRequest,
   incomingAdRequest,
   recentListingsRequest,
+  monthWiseUserCounterRequest,
 } from "../../store/action";
 import ago from "ts-ago";
 import HorizonatalList from "../../components/list/horizontal/HorizonatalList";
@@ -40,6 +41,15 @@ const ViewFullList = () => {
     x.id = i + 1;
     return x;
   });
+
+  const monthwiseUserCounter = useSelector((userMonthList: any) => {
+    return userMonthList?.usersReducer?.month_wise_user_count;
+  });
+  monthwiseUserCounter?.data?.map((x: any, i: any) => {
+    x.id = i + 1;
+    return x;
+  });
+
   const liveAdsOverView = useSelector((liveAds: any) => {
     return liveAds?.dashboardReducer?.live_ads_overview;
   });
@@ -52,7 +62,7 @@ const ViewFullList = () => {
   const incomingAds = useSelector((inAds: any) => {
     return inAds?.dashboardReducer?.incoming_ad_request;
   });
-  console.log(incomingAds);
+  // console.log(incomingAds);
   // incomingAds?.data?.map((x: any, i: any) => {
   //   x.id = i + 1;
   //   return x;
@@ -101,7 +111,10 @@ const ViewFullList = () => {
       ? liveAdsOverView?.data
       : location.pathname === "/recent-listings"
       ? recentListings?.data
-      : location.pathname === "/incoming-ad-request" && incomingAds?.data;
+      : location.pathname === "/incoming-ad-request"
+      ? incomingAds?.data
+      : location.pathname === "/month-wise-users-count" &&
+        monthwiseUserCounter?.data;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -124,6 +137,9 @@ const ViewFullList = () => {
     dispatch(incomingAdRequest(dataTableParams, successHandler, errorHandler));
     dispatch(
       recentListingsRequest(dataTableParams, successHandler, errorHandler)
+    );
+    dispatch(
+      monthWiseUserCounterRequest(dataTableParams, successHandler, errorHandler)
     );
   }, [dispatch, dataTableParams, setDataTableParams]);
 
@@ -490,6 +506,9 @@ const ViewFullList = () => {
                     {location.pathname === "/month-wise-coin-listing" &&
                       "Month wise coin listing"}
 
+                    {location.pathname === "/month-wise-users-count" &&
+                      "Month wise User Count"}
+
                     {location?.pathname === "/live-ads-overview" &&
                       "Live Ads Overview"}
 
@@ -539,6 +558,8 @@ const ViewFullList = () => {
               ? liveadsColumn
               : location?.pathname === "/recent-listings"
               ? recentListingColumn
+              : location.pathname === "/month-wise-users-count"
+              ? monthWiseColumn
               : location?.pathname === "/incoming-ad-request" &&
                 incomingAdsColumn
           }
@@ -550,8 +571,10 @@ const ViewFullList = () => {
               ? liveAdsOverView?.data
               : location.pathname === "/recent-listings"
               ? recentListings?.data
-              : location.pathname === "/incoming-ad-request" &&
-                incomingAds?.data
+              : location.pathname === "/incoming-ad-request"
+              ? incomingAds?.data
+              : location.pathname === "/month-wise-users-count" &&
+                monthwiseUserCounter?.data
           }
           setDataTableParams={setDataTableParams}
           dataTableParams={dataTableParams}
@@ -562,8 +585,10 @@ const ViewFullList = () => {
               ? liveAdsOverView?.data?.length
               : location.pathname === "/recent-listings"
               ? recentListings?.data?.length
-              : location.pathname === "/incoming-ad-request" &&
-                incomingAds?.total
+              : location.pathname === "/incoming-ad-request"
+              ? incomingAds?.total
+              : location.pathname === "/month-wise-users-count" &&
+                monthwiseUserCounter?.data?.length
           }
         />
       </Grid>

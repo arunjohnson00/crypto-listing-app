@@ -19,6 +19,7 @@ import "material-react-toastify/dist/ReactToastify.css";
 
 import HorizonatalList from "../../../components/list/horizontal/HorizonatalList";
 import { addVideoRequest } from "../../../store/action";
+import InputSelect from "../../../components/form/select/InputSelect";
 const VideosAdd = () => {
   const selectOptions = [
     { title: "Approved", value: 1 },
@@ -30,7 +31,7 @@ const VideosAdd = () => {
 
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [addVideosData, setAddVideos] = useState({
+  const [addVideosData, setAddVideos] = useState<any>({
     name: "",
     status: 1,
     url: "",
@@ -73,14 +74,14 @@ const VideosAdd = () => {
 
     const formData = new FormData();
 
-    formData.append("name", addVideosData.name);
+    // formData.append("name", addVideosData.name);
     formData.append("url", addVideosData.url);
-    formData.append("button_name", addVideosData.button_name);
-    formData.append("button_url", addVideosData.button_url);
+    // formData.append("button_name", addVideosData.button_name);
+    // formData.append("button_url", addVideosData.button_url);
     formData.append("title", addVideosData.title);
     formData.append("sub_title", addVideosData.sub_title);
 
-    formData.append("status", "1");
+    formData.append("status", addVideosData?.status);
 
     dispatch(addVideoRequest(formData, successHandler, errorHandler));
   };
@@ -153,7 +154,7 @@ const VideosAdd = () => {
           pt={3}
           pl={4}
         >
-          <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+          {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
             <Typography
               variant="subtitle1"
               sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
@@ -166,7 +167,7 @@ const VideosAdd = () => {
               placeholder="Enter video Name"
               inputTextHandler={(e: any) => videoNameHandler(e)}
             />
-          </Grid>
+          </Grid> */}
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography
@@ -211,7 +212,7 @@ const VideosAdd = () => {
               inputTextHandler={(e: any) => videoURLHandler(e)}
             />
           </Grid>
-
+          {/* 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography
               variant="subtitle1"
@@ -240,8 +241,24 @@ const VideosAdd = () => {
               placeholder="Enter Button URL"
               inputTextHandler={(e: any) => videoBtnURLHandler(e)}
             />
-          </Grid>
+          </Grid> */}
+          <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
+            <Typography
+              variant="subtitle1"
+              sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
+              mb={1}
+            >
+              Status
+            </Typography>
 
+            <InputSelect
+              selectOptions={selectOptions}
+              // currentStatus={newArrList[0].status}
+              setInputSelectValue={setAddVideos}
+              getInputSelectvalue={addVideosData}
+              // serverStatus={newArrList[0].status}
+            />
+          </Grid>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Stack spacing={2} sx={{ alignItems: "flex-end" }} pb={5} mr={5}>
               {loading ? (

@@ -48,7 +48,6 @@ const VideoEdit = () => {
     sub_title: "",
   });
 
-  console.log(editVideosData);
   // Display the key/value pairs
 
   const videoEditHandler = () => {
@@ -82,10 +81,10 @@ const VideoEdit = () => {
 
     const formData = new FormData();
     formData.append("id", editVideosData?.id);
-    formData.append("name", editVideosData?.name);
+    // formData.append("name", editVideosData?.name);
     formData.append("url", editVideosData?.url);
-    formData.append("button_name", editVideosData?.button_name);
-    formData.append("button_url", editVideosData?.button_url);
+    // formData.append("button_name", editVideosData?.button_name);
+    // formData.append("button_url", editVideosData?.button_url);
     formData.append("title", editVideosData?.title);
     formData.append("sub_title", editVideosData?.sub_title);
     formData.append("status", editVideosData?.status);
@@ -182,7 +181,7 @@ const VideoEdit = () => {
           pt={3}
           pl={4}
         >
-          <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+          {/* <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
             <Typography
               variant="subtitle1"
               sx={{ textAlign: "left", fontSize: ".9rem", fontWeight: 600 }}
@@ -196,7 +195,7 @@ const VideoEdit = () => {
               inputTextHandler={(e: any) => videoNameHandler(e)}
               value={editVideosData?.name}
             />
-          </Grid>
+          </Grid> */}
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography
@@ -244,7 +243,7 @@ const VideoEdit = () => {
               value={editVideosData?.url}
             />
           </Grid>
-
+          {/* 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography
               variant="subtitle1"
@@ -275,7 +274,7 @@ const VideoEdit = () => {
               inputTextHandler={(e: any) => videoBtnURLHandler(e)}
               value={editVideosData?.button_url}
             />
-          </Grid>
+          </Grid> */}
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12} pt={3}>
             <Typography

@@ -130,6 +130,8 @@ export { editUserRequest } from "./usersAction";
 export { updateUserRequest } from "./usersAction";
 export { viewUserRequest } from "./usersAction";
 export { searchUserRequest } from "./usersAction";
+export { monthWiseUserCounterRequest } from "./usersAction";
+export { userRegisterCountRequest } from "./usersAction";
 //Common Video Actions
 
 export { listVideoRequest } from "./videosAction";

@@ -179,8 +179,8 @@ const VideosPage = () => {
                                   ? item && item?.v_title?.length > 80
                                     ? item?.v_title?.slice(0, 80) + "..."
                                     : item?.v_title
-                                  : item?.v_title?.length > 40
-                                  ? item?.v_title?.slice(0, 40) + "..."
+                                  : item?.v_title?.length > 35
+                                  ? item?.v_title?.slice(0, 33) + "..."
                                   : item?.v_title}
                                 .
                               </Typography>
@@ -195,8 +195,8 @@ const VideosPage = () => {
                                 ? item && item?.v_sub_title?.length > 100
                                   ? item?.v_sub_title?.slice(0, 100) + "..."
                                   : item?.v_sub_title
-                                : item?.v_sub_title?.length > 50
-                                ? item?.v_sub_title?.slice(0, 50) + "..."
+                                : item?.v_sub_title?.length > 35
+                                ? item?.v_sub_title?.slice(0, 35) + "..."
                                 : item?.v_sub_title}
                               .
                             </Typography>

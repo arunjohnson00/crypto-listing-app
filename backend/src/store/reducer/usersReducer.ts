@@ -7,6 +7,8 @@ const initialState = {
   updateUsers: "",
   viewUsers: "",
   search_result: "",
+  user_register_count: "",
+  month_wise_user_count: "",
 };
 const usersReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -44,6 +46,18 @@ const usersReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         search_result: action?.payload?.data,
+      };
+
+    case USERS.USER_REGISTER_COUNT:
+      return {
+        ...state,
+        user_register_count: action?.payload?.data,
+      };
+
+    case USERS.MONTH_WISE_USER_COUNT:
+      return {
+        ...state,
+        month_wise_user_count: action?.payload?.data,
       };
 
     default:

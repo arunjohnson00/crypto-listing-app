@@ -96,3 +96,31 @@ export const searchUserRequest = (
   };
   return appRequest(fetchOptions, successHandler, errorHandler);
 };
+
+export const userRegisterCountRequest = (
+  pageData: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/b/v1/dashboard/users-register-count`,
+    method: "GET",
+    secure: true,
+    actionType: USERS.USER_REGISTER_COUNT,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
+
+export const monthWiseUserCounterRequest = (
+  pageData: any,
+  successHandler: any,
+  errorHandler: any
+) => {
+  const fetchOptions = {
+    url: `api/b/v1/dashboard/month-wise-users-count`,
+    method: "GET",
+    secure: true,
+    actionType: USERS.MONTH_WISE_USER_COUNT,
+  };
+  return appRequest(fetchOptions, successHandler, errorHandler);
+};
