@@ -2,12 +2,21 @@ import { useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import { Divider, Stack, IconButton } from "@mui/material";
+import {
+  Divider,
+  Stack,
+  IconButton,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import TuneOutlinedIcon from "@mui/icons-material/TuneOutlined";
 const PresaleFilterButtonGroup = ({ value, setValue }: any) => {
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
+
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
   return (
     <Box
       sx={{
@@ -53,12 +62,14 @@ const PresaleFilterButtonGroup = ({ value, setValue }: any) => {
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "space-around",
-            marginX: 0.5,
+            marginX: matches === true ? 0.5 : 0.3,
+            paddingX: matches === true ? 0.5 : 1,
             alignSelf: "center",
           },
           "& .MuiButtonBase-root": {
             // backgroundColor: "red",
             borderRadius: 8,
+            minWidth: matches === true ? "70px" : "55px",
           },
           "& .MuiButtonBase-root.MuiTab-root>.MuiTab-iconWrapper": {
             marginBottom: "2px",

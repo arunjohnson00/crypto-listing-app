@@ -42,7 +42,7 @@ const MobileUserDashboard = () => {
   const authUser = JSON.parse(localStorage.getItem("authUser") as any);
 
   return (
-    <Box height="100vh">
+    <Box height="auto">
       <Grid container rowSpacing={1} mb={5}>
         <Helmet>
           <title> Dashboard | CoinXhigh.com</title>

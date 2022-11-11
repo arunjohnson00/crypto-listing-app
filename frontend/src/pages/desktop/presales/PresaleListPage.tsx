@@ -25,14 +25,22 @@ import LatestNewsScroll from "../../../components/desktop/latestnews/LatestNewsS
 import { Helmet } from "react-helmet-async";
 import BreadCrumbs from "../../../components/desktop/breadcrumbs/BreadCrumbs";
 import { useDispatch, useSelector } from "react-redux";
-import { presalePageListingRequest } from "../../../store/action";
+import {
+  presalePageListingActiveRequest,
+  presalePageListingExpiredRequest,
+  presalePageListingRequest,
+  presalePageListingUpcomingRequest,
+} from "../../../store/action";
 import moment from "moment";
+import { useLocation } from "react-router-dom";
 
 const PresaleListPage = ({ windowInnerWidth }: any) => {
+  const location: any = useLocation();
   const dispatch: any = useDispatch();
   const PresaleList = useSelector((data: any) => {
     return data?.presaleReducer?.presale_listings?.data;
   });
+  const [presaleData, setPresaleData] = useState<any>();
   const [value, setValue] = useState<any>(0);
 
   const [page, setPage] = useState<any>(1);
@@ -45,11 +53,30 @@ const PresaleListPage = ({ windowInnerWidth }: any) => {
   };
 
   useEffect(() => {
-    const successHandler = (res: any) => {};
+    const successHandler = (res: any) => {
+      res && setPresaleData(res?.data);
+    };
     const errorHandler = (err: any) => {};
 
-    dispatch(presalePageListingRequest(page, successHandler, errorHandler));
-  }, [dispatch, page]);
+    value === 0 &&
+      dispatch(presalePageListingRequest(page, successHandler, errorHandler));
+    value === 1 &&
+      dispatch(
+        presalePageListingActiveRequest(page, successHandler, errorHandler)
+      );
+    value === 2 &&
+      dispatch(
+        presalePageListingUpcomingRequest(page, successHandler, errorHandler)
+      );
+    value === 3 &&
+      dispatch(
+        presalePageListingExpiredRequest(page, successHandler, errorHandler)
+      );
+  }, [dispatch, page, value]);
+
+  useEffect(() => {
+    setValue(0);
+  }, [location]);
 
   return (
     <Fragment>
@@ -226,77 +253,16 @@ const PresaleListPage = ({ windowInnerWidth }: any) => {
           </Grid>
         </Grid>
 
-        {value === 0 && (
+        {
           <Grid container spacing={2} py={3}>
-            {PresaleList &&
-              PresaleList?.data?.map((item: any, index: number) => (
+            {presaleData &&
+              presaleData.data?.map((item: any, index: number) => (
                 <Grid item xs={12} sm={12} md={4} lg={4} xl={4} key={index}>
                   <PresaleCards data={item} />
                 </Grid>
               ))}
           </Grid>
-        )}
-
-        {value === 1 && (
-          <Grid container spacing={2} py={3}>
-            {PresaleList &&
-              PresaleList?.data
-                ?.filter(
-                  (val: any) =>
-                    moment(new Date()).isBetween(
-                      new Date(val?.presale_start_date),
-                      new Date(val?.presale_end_date)
-                    ) === true ||
-                    (moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
-                      moment(val?.presale_start_date).format("YYYY-MM-DD")
-                    ) === true &&
-                      moment(moment(new Date()).format("YYYY-MM-DD")).isSame(
-                        moment(val?.presale_end_date).format("YYYY-MM-DD")
-                      ) === true)
-                )
-                .map((item: any, index: number) => (
-                  <Grid item xs={12} sm={12} md={4} lg={4} xl={4} key={index}>
-                    <PresaleCards data={item} />
-                  </Grid>
-                ))}
-          </Grid>
-        )}
-
-        {value === 2 && (
-          <Grid container spacing={2} py={3}>
-            {PresaleList &&
-              PresaleList?.data
-                ?.filter(
-                  (val: any) =>
-                    moment(new Date(val?.presale_start_date)).isAfter(
-                      new Date()
-                    ) === true
-                )
-                .map((item: any, index: number) => (
-                  <Grid item xs={12} sm={12} md={4} lg={4} xl={4} key={index}>
-                    <PresaleCards data={item} />
-                  </Grid>
-                ))}
-          </Grid>
-        )}
-
-        {value === 3 && (
-          <Grid container spacing={2} py={3}>
-            {PresaleList &&
-              PresaleList?.data
-                ?.filter(
-                  (val: any) =>
-                    moment(moment(new Date()).format("YYYY-MM-DD")).isAfter(
-                      moment(val?.presale_end_date).format("YYYY-MM-DD")
-                    ) === true
-                )
-                .map((item: any, index: number) => (
-                  <Grid item xs={12} sm={12} md={4} lg={4} xl={4} key={index}>
-                    <PresaleCards data={item} />
-                  </Grid>
-                ))}
-          </Grid>
-        )}
+        }
 
         <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
           <Box
@@ -316,7 +282,9 @@ const PresaleListPage = ({ windowInnerWidth }: any) => {
               width="100%"
             >
               <Pagination
-                count={parseInt(PresaleList?.total)}
+                count={Math.ceil(
+                  parseInt(presaleData?.total) / parseInt(presaleData?.per_page)
+                )}
                 page={page}
                 onChange={pageHandleChange}
                 color="primary"

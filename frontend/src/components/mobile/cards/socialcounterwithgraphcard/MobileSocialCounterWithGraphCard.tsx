@@ -189,8 +189,8 @@ const MobileSocialCounterWithGraphCard = ({
                   textTransform: "capitalize",
                 }}
               >
-                {title && title?.length >= 18
-                  ? title && title.slice(0, 15) + "..."
+                {title && title?.length >= 25
+                  ? title && title.slice(0, 23) + "..."
                   : title && title}
               </Typography>
             </a>

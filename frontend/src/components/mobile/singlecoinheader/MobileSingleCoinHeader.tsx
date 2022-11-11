@@ -1312,7 +1312,7 @@ const MobileSingleCoinHeader = ({ coinData }: any) => {
               direction={{ xs: "row", sm: "row", md: "row" }}
               sx={{ alignItems: "center" }}
               spacing={4}
-              py={2}
+              pt={3}
             >
               {/* <Stack direction="row" spacing={1} alignItems="center">
                 <Tooltip title="Delete">
