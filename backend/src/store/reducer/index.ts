@@ -37,6 +37,7 @@ import emailReducer from "./emailReducer";
 import adsReducer from "./adsReducer";
 import nftNetworksReducer from "./nftNetworksReducer";
 import adsListReducer from "./adsListReducer";
+import commonReducer from "./commonReducer";
 
 const allReducers = combineReducers({
   Auth,
@@ -70,6 +71,7 @@ const allReducers = combineReducers({
   adsReducer,
   nftNetworksReducer,
   adsListReducer,
+  commonReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

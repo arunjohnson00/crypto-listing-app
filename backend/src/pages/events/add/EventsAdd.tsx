@@ -144,7 +144,7 @@ const EventsAdd = () => {
     );
     // formData.append("category_id", addEventsData?.category_id);
     formData.append("title", addEventsData?.title);
-    formData.append("description", richText?.description);
+    // formData.append("description", richText?.description);
     formData.append("source_link", addEventsData?.source_link);
     //formData.append("reward_address_id", addEventsData?.reward_address_id);
     formData.append("address", addEventsData?.address);
@@ -505,7 +505,7 @@ const EventsAdd = () => {
                 Event Description
               </Typography>
               <InputTextArea
-                variant="richtextdescription"
+                //variant="richtextdescription"
                 name="description"
                 id="description"
                 placeholder=" Detailed event description. (e.g. exact time, location, more info…)"

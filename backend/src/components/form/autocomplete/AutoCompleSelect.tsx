@@ -11,7 +11,10 @@ import {
 import Autocomplete, { autocompleteClasses } from "@mui/material/Autocomplete";
 import SearchIcon from "@mui/icons-material/Search";
 
-import { allCoinRequest } from "../../../store/action";
+import {
+  allCoinRequest,
+  commonCoinAutoSearchRequest,
+} from "../../../store/action";
 import { allNftListingRequest } from "../../../store/action";
 import { airDropListSearchWithCoinSearchRequest } from "../../../store/action";
 import { eventsListSearchWithCoinSearchRequest } from "../../../store/action";
@@ -28,7 +31,9 @@ const AutoCompleSelect = ({
 
   const [opt, setOpt] = useState<any>();
   const [defaultVal, setDefaultval] = useState<any>();
+  const [inputVal, setInputval] = useState<any>();
 
+  console.log(inputVal);
   useEffect(() => {
     const successHandler = (res: any) => {
       setOpt(res?.data?.data && res?.data?.data);
@@ -36,12 +41,14 @@ const AutoCompleSelect = ({
     const errorHandler: any = (err: any) => {};
     variant &&
       variant === "coin" &&
-      dispatch(allCoinRequest("emptyData", successHandler, errorHandler));
+      dispatch(
+        commonCoinAutoSearchRequest(inputVal, successHandler, errorHandler)
+      );
 
     variant &&
       variant === "nft" &&
       dispatch(allNftListingRequest("emptyData", successHandler, errorHandler));
-  }, [dispatch]);
+  }, [dispatch, inputVal]);
 
   useEffect(() => {
     const defaultCoinFilter =
@@ -177,6 +184,7 @@ const AutoCompleSelect = ({
           {...params}
           placeholder="select coins"
           sx={{ fontSize: ".8rem" }}
+          onChange={(e: any) => setInputval(e?.target?.value)}
         />
       )}
     />

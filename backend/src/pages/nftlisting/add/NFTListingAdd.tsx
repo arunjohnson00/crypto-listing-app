@@ -161,7 +161,7 @@ const NFTListingAdd = () => {
     );
     formData.append("image", addCoinLogo.coinLogo);
     formData.append("status", coinPublishStatus.status);
-    formData.append("description", richText?.description);
+    // formData.append("description", richText?.description);
     const successHandler = (res: any) => {
       console.log(res);
       setLoading(true);
@@ -376,7 +376,7 @@ const NFTListingAdd = () => {
 
                     <Grid item xl={10} lg={10} md={10} sm={10} xs={12}>
                       <InputTextArea
-                        variant="richtextdescription"
+                        //  variant="richtextdescription"
                         placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."
                         name="description"
                         data={nftListingData}

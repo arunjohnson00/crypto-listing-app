@@ -250,3 +250,5 @@ export {
   addAdsListRequest,
   searchAdsListRequest,
 } from "./adsListAction";
+
+export { commonCoinAutoSearchRequest } from "./commonAction";

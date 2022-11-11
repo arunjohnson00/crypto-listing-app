@@ -336,7 +336,7 @@ const CoinListingEdit = () => {
       dateFormat(coinPublishStatus?.statusDateTime, "dd-mm-yyyy H:MM:ss")
     );
     formData.append("is_scheduled", coinPublishStatus?.is_scheduled);
-    formData.append("description", richText?.description);
+    // formData.append("description", richText?.description);
     const presaleStatus: any = coinStatus === "Presale" ? 1 : 0;
     formData.append("is_presale", presaleStatus);
 
@@ -587,7 +587,7 @@ const CoinListingEdit = () => {
                   </Typography>
 
                   <InputTextArea
-                    variant="richtextdescription"
+                    //variant="richtextdescription"
                     name="description"
                     id="description"
                     placeholder="Enter Detailed Project Details. Recommended word count 450 - 950."
