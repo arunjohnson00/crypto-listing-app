@@ -153,7 +153,13 @@ const UserAdminHtmlTable = ({
           );
         }
 
-        Swal.fire("Deleted!", "Your data has been deleted.", "success");
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your data has been deleted.",
+          icon: "success",
+          background: "#000825",
+          color: "#FFFFFF",
+        });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         //navigate(`${location.pathname}`);
         //navigate(0);
