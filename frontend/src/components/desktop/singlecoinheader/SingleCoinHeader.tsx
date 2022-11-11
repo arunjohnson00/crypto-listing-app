@@ -901,62 +901,66 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     }}
                   >
                     {" "}
-                    <Divider
-                      variant="middle"
-                      flexItem
-                      orientation={xsBreakPoint ? "horizontal" : "vertical"}
-                      sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
-                    />
-                    <Stack
-                      direction={{ xs: "column", sm: "column", md: "row" }}
-                      spacing={1}
-                    >
+                    {coinMarketLists && coinMarketLists?.length > 0 && (
+                      <Divider
+                        variant="middle"
+                        flexItem
+                        orientation={xsBreakPoint ? "horizontal" : "vertical"}
+                        sx={{ borderColor: "#342D61", borderRightWidth: 1 }}
+                      />
+                    )}
+                    {coinMarketLists && coinMarketLists?.length > 0 && (
                       <Stack
-                        direction={{ xs: "row", sm: "row", md: "row" }}
-                        sx={{ alignItems: "center", minWidth: 80 }}
-                        justifyContent={{
-                          xs: "center",
-                          sm: "center",
-                          md: "center",
-                          lg: "center",
-                        }}
+                        direction={{ xs: "column", sm: "column", md: "row" }}
                         spacing={1}
                       >
-                        <Typography
-                          variant="caption"
-                          sx={{
-                            color: "#787878",
-                            fontSize: "0.65rem",
+                        <Stack
+                          direction={{ xs: "row", sm: "row", md: "row" }}
+                          sx={{ alignItems: "center", minWidth: 80 }}
+                          justifyContent={{
+                            xs: "center",
+                            sm: "center",
+                            md: "center",
+                            lg: "center",
                           }}
+                          spacing={1}
                         >
-                          Available on
-                        </Typography>
-                        <Tooltip title="Delete">
-                          <Avatar
-                            src={ToolTipImage}
-                            sx={{ width: 9, height: 9 }}
-                          ></Avatar>
-                        </Tooltip>
-                      </Stack>
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: "#787878",
+                              fontSize: "0.65rem",
+                            }}
+                          >
+                            Available on
+                          </Typography>
+                          <Tooltip title="Delete">
+                            <Avatar
+                              src={ToolTipImage}
+                              sx={{ width: 9, height: 9 }}
+                            ></Avatar>
+                          </Tooltip>
+                        </Stack>
 
-                      <Stack direction="row" spacing={0.8}>
-                        {coinMarketLists &&
-                          coinMarketLists?.map((item: any, index: number) => (
-                            <a
-                              href={item?.url}
-                              target="_blank"
-                              rel="noreferrer"
-                              key={index}
-                            >
-                              <Avatar
-                                alt={item?.market}
-                                src={`${serverAPIUrl}public/uploads/exchange_icons/${item?.thumb_icon}`}
-                                sx={{ width: 22, height: 22 }}
-                              />
-                            </a>
-                          ))}
+                        <Stack direction="row" spacing={0.8}>
+                          {coinMarketLists &&
+                            coinMarketLists?.map((item: any, index: number) => (
+                              <a
+                                href={item?.url}
+                                target="_blank"
+                                rel="noreferrer"
+                                key={index}
+                              >
+                                <Avatar
+                                  alt={item?.market}
+                                  src={`${serverAPIUrl}public/uploads/exchange_icons/${item?.thumb_icon}`}
+                                  sx={{ width: 22, height: 22 }}
+                                />
+                              </a>
+                            ))}
+                        </Stack>
                       </Stack>
-                    </Stack>
+                    )}
                   </Stack>
                 </Stack>
               </Stack>
@@ -1652,7 +1656,8 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     spacing={1}
                     pt={1}
                   >
-                    {coinData?.website_url &&
+                    {coinData &&
+                      coinData?.website_url.length > 0 &&
                       coinData?.website_url
                         ?.slice(0, 2)
                         .map((item: any, index: number) => (
@@ -1743,7 +1748,8 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   flexWrap="wrap"
                   spacing={0}
                 >
-                  {coinData?.network &&
+                  {coinData &&
+                    coinData?.network.length > 0 &&
                     coinData?.network?.map((item: any, index: number) => (
                       <SingleCoinChip
                         key={index}
@@ -1817,7 +1823,8 @@ const SingleCoinHeader = ({ coinData }: any) => {
                 spacing={0}
                 pt={1}
               >
-                {coinData?.communities &&
+                {coinData &&
+                  coinData?.communities?.length > 0 &&
                   coinData?.communities?.map((item: any, index: number) => (
                     <SingleCoinChip
                       key={index}
@@ -1893,16 +1900,20 @@ const SingleCoinHeader = ({ coinData }: any) => {
                   }}
                 >
                   {" "}
-                  <SingleCoinChip
-                    src={SourcecodeImage}
-                    title="Source code"
-                    link={coinData && coinData?.source_code_url}
-                  />{" "}
-                  <SingleCoinChip
-                    src={WhitepaperImage}
-                    title="Whitepaper"
-                    link={coinData && coinData?.whitepaper_link}
-                  />
+                  {coinData && coinData?.source_code_url !== null && (
+                    <SingleCoinChip
+                      src={SourcecodeImage}
+                      title="Source code"
+                      link={coinData && coinData?.source_code_url}
+                    />
+                  )}{" "}
+                  {coinData && coinData?.whitepaper_link !== null && (
+                    <SingleCoinChip
+                      src={WhitepaperImage}
+                      title="Whitepaper"
+                      link={coinData && coinData?.whitepaper_link}
+                    />
+                  )}
                 </Stack>
                 <Stack
                   direction={{ xs: "column", sm: "column", md: "column" }}
@@ -1926,13 +1937,16 @@ const SingleCoinHeader = ({ coinData }: any) => {
                       lg: "flex-start",
                     }}
                   >
-                    <SingleCoinChip
-                      src={DocsImage}
-                      title="Docs"
-                      link={coinData && coinData?.docs_url}
-                    />
+                    {coinData && coinData?.docs_url !== null && (
+                      <SingleCoinChip
+                        src={DocsImage}
+                        title="Docs"
+                        link={coinData && coinData?.docs_url}
+                      />
+                    )}
 
-                    {coinData?.audit &&
+                    {coinData &&
+                      coinData?.audit?.length > 0 &&
                       coinData?.audit
                         ?.slice(0, 1)
                         .map((item: any, index: number) => (
@@ -2027,7 +2041,8 @@ const SingleCoinHeader = ({ coinData }: any) => {
                     spacing={1}
                     pt={1}
                   >
-                    {coinData?.chart_link &&
+                    {coinData &&
+                      coinData?.chart_link?.length > 0 &&
                       coinData?.chart_link
                         ?.slice(0, 2)
                         .map((item: any, index: number) => (

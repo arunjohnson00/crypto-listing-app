@@ -175,7 +175,7 @@ const OnsiteEventsAdd = () => {
     formData.append("address", addEventsData?.address);
     formData.append("twitter_account", addEventsData?.twitter_account);
     formData.append("telegram_url", addEventsData?.telegram_url);
-    formData.append("description", richText?.description);
+    // formData.append("description", richText?.description);
     formData.append("reddit_url", addEventsData?.reddit_url);
     formData.append("booking_url", addEventsData?.booking_url);
     formData.append("venue", addEventsData?.venue);
@@ -508,7 +508,7 @@ const OnsiteEventsAdd = () => {
                 Event Description
               </Typography>
               <InputTextArea
-                variant="richtextdescription"
+                // variant="richtextdescription"
                 name="description"
                 id="description"
                 placeholder=" Detailed event description. (e.g. exact time, location, more info…)"

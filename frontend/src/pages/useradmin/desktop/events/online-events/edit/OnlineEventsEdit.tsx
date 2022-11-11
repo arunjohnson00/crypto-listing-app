@@ -194,7 +194,7 @@ const OnlineEventsEdit = () => {
     );
     // formData.append("category_id", editEventsData?.category_id);
     formData.append("title", editEventsData?.title);
-    formData.append("description", richText?.description);
+    //formData.append("description", richText?.description);
     formData.append("source_link", editEventsData?.source_link);
     formData.append("coin_id", editEventsData?.coin_id);
     //formData.append("reward_address_id", editEventsData?.reward_address_id);
@@ -544,7 +544,7 @@ const OnlineEventsEdit = () => {
                 Event Description
               </Typography>
               <InputTextArea
-                variant="richtextdescription"
+                // variant="richtextdescription"
                 name="description"
                 id="description"
                 placeholder=" Detailed event description. (e.g. exact time, location, more info…)"

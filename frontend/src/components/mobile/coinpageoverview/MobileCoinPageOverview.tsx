@@ -46,256 +46,308 @@ const MobileCoinPageOverview = () => {
 
   return (
     <Stack direction="column" spacing={3}>
-      <Stack direction="row" spacing={1.5} alignItems="flex-start">
-        <Stack
-          direction="row"
-          spacing={1.5}
-          alignItems="center"
-          sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
-        >
-          <Typography
-            variant="body2"
-            sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
-          >
-            Website
-          </Typography>
-          <Tooltip title="Delete">
-            <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
-          </Tooltip>
-        </Stack>
-        <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
-          {coinDetailFirstBlock &&
-            coinDetailFirstBlock[0]?.website_url &&
-            coinDetailFirstBlock &&
-            coinDetailFirstBlock[0]?.website_url?.map(
-              (item: any, index: number) => (
-                <MobileSingleCoinChip
-                  key={index}
-                  src={LinkImage}
-                  title={item?.url}
-                  link={item?.url}
-                  variant="website"
-                />
-              )
-            )}
-        </Stack>
-      </Stack>
+      {coinDetailFirstBlock &&
+        coinDetailFirstBlock[0]?.website_url?.length > 0 && (
+          <Stack direction="row" spacing={1.5} alignItems="flex-start">
+            <Stack
+              direction="row"
+              spacing={1.5}
+              alignItems="center"
+              sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
+              >
+                Website
+              </Typography>
+              <Tooltip title="Delete">
+                <Avatar
+                  src={ToolTipImage}
+                  sx={{ width: 9, height: 9 }}
+                ></Avatar>
+              </Tooltip>
+            </Stack>
+            <Stack
+              direction="row"
+              alignItems="center"
+              sx={{ flexWrap: "wrap" }}
+            >
+              {coinDetailFirstBlock &&
+                coinDetailFirstBlock[0]?.website_url &&
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock[0]?.website_url?.map(
+                  (item: any, index: number) => (
+                    <MobileSingleCoinChip
+                      key={index}
+                      src={LinkImage}
+                      title={item?.url}
+                      link={item?.url}
+                      variant="website"
+                    />
+                  )
+                )}
+            </Stack>
+          </Stack>
+        )}
 
-      <Stack direction="row" spacing={1.5} alignItems="flex-start">
-        <Stack
-          direction="row"
-          spacing={1.5}
-          alignItems="center"
-          sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
-        >
-          <Typography
-            variant="body2"
-            sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
+      {coinDetailFirstBlock && coinDetailFirstBlock[0]?.network?.length > 0 && (
+        <Stack direction="row" spacing={1.5} alignItems="flex-start">
+          <Stack
+            direction="row"
+            spacing={1.5}
+            alignItems="center"
+            sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
           >
-            Explorers
-          </Typography>
-          <Tooltip title="Delete">
-            <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
-          </Tooltip>
+            <Typography
+              variant="body2"
+              sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
+            >
+              Explorers
+            </Typography>
+            <Tooltip title="Delete">
+              <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
+            </Tooltip>
+          </Stack>
+          <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
+            {coinDetailFirstBlock &&
+              coinDetailFirstBlock[0]?.network &&
+              coinDetailFirstBlock &&
+              coinDetailFirstBlock[0]?.network?.map(
+                (item: any, index: number) => (
+                  <MobileSingleCoinChip
+                    key={index}
+                    src={item?.logo}
+                    title={item?.name}
+                    link={item?.url}
+                    variant="explorer"
+                    //shape="square"
+                  />
+                )
+              )}
+          </Stack>
         </Stack>
-        <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
-          {coinDetailFirstBlock &&
-            coinDetailFirstBlock[0]?.network &&
-            coinDetailFirstBlock &&
-            coinDetailFirstBlock[0]?.network?.map(
-              (item: any, index: number) => (
-                <MobileSingleCoinChip
-                  key={index}
-                  src={item?.logo}
-                  title={item?.name}
-                  link={item?.url}
-                  variant="explorer"
-                  //shape="square"
-                />
-              )
-            )}
-        </Stack>
-      </Stack>
+      )}
 
-      <Stack direction="row" spacing={1.5} alignItems="flex-start">
-        <Stack
-          direction="row"
-          spacing={1.5}
-          alignItems="center"
-          sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
-        >
-          <Typography
-            variant="body2"
-            sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
-          >
-            Community
-          </Typography>
-          <Tooltip title="Delete">
-            <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
-          </Tooltip>
-        </Stack>
-        <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
-          {coinDetailFirstBlock &&
-            coinDetailFirstBlock[0]?.communities &&
-            coinDetailFirstBlock &&
-            coinDetailFirstBlock[0]?.communities?.map(
-              (item: any, index: number) => (
-                <MobileSingleCoinChip
-                  src={item?.logo}
-                  title={item?.name}
-                  link={item?.url}
-                  variant="communities"
-                />
-              )
-            )}
-        </Stack>
-      </Stack>
+      {coinDetailFirstBlock &&
+        coinDetailFirstBlock[0]?.communities?.length > 0 && (
+          <Stack direction="row" spacing={1.5} alignItems="flex-start">
+            <Stack
+              direction="row"
+              spacing={1.5}
+              alignItems="center"
+              sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
+              >
+                Community
+              </Typography>
+              <Tooltip title="Delete">
+                <Avatar
+                  src={ToolTipImage}
+                  sx={{ width: 9, height: 9 }}
+                ></Avatar>
+              </Tooltip>
+            </Stack>
+            <Stack
+              direction="row"
+              alignItems="center"
+              sx={{ flexWrap: "wrap" }}
+            >
+              {coinDetailFirstBlock &&
+                coinDetailFirstBlock[0]?.communities &&
+                coinDetailFirstBlock &&
+                coinDetailFirstBlock[0]?.communities?.map(
+                  (item: any, index: number) => (
+                    <MobileSingleCoinChip
+                      src={item?.logo}
+                      title={item?.name}
+                      link={item?.url}
+                      variant="communities"
+                    />
+                  )
+                )}
+            </Stack>
+          </Stack>
+        )}
 
-      <Stack direction="row" spacing={1.5} alignItems="flex-start">
-        <Stack
-          direction="row"
-          spacing={1.5}
-          alignItems="center"
-          sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
-        >
-          <Typography
-            variant="body2"
-            sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
-          >
-            Sourcecode
-          </Typography>
-          <Tooltip title="Delete">
-            <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
-          </Tooltip>
-        </Stack>
-        <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
-          <MobileSingleCoinChip
-            src={SourcecodeImage}
-            icon={true}
-            title="Source Code"
-            link={
-              coinDetailFirstBlock && coinDetailFirstBlock[0]?.source_code_url
-            }
-          />
-        </Stack>
-      </Stack>
-      <Stack direction="row" spacing={1.5} alignItems="flex-start">
-        <Stack
-          direction="row"
-          spacing={1.5}
-          alignItems="center"
-          sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
-        >
-          <Typography
-            variant="body2"
-            sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
-          >
-            Whitepaper
-          </Typography>
-          <Tooltip title="Delete">
-            <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
-          </Tooltip>
-        </Stack>
-        <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
-          <MobileSingleCoinChip
-            src={WhitepaperImage}
-            title="Whitepaper"
-            link={
-              coinDetailFirstBlock && coinDetailFirstBlock[0]?.whitepaper_link
-            }
-          />
-        </Stack>
-      </Stack>
-
-      <Stack direction="row" spacing={1.5} alignItems="flex-start">
-        <Stack
-          direction="row"
-          spacing={1.5}
-          alignItems="center"
-          sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
-        >
-          <Typography
-            variant="body2"
-            sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
-          >
-            Docs
-          </Typography>
-          <Tooltip title="Delete">
-            <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
-          </Tooltip>
-        </Stack>
-        <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
-          <MobileSingleCoinChip
-            src={DocsImage}
-            title="Docs"
-            link={coinDetailFirstBlock && coinDetailFirstBlock[0]?.docs_url}
-          />
-        </Stack>
-      </Stack>
-
-      <Stack direction="row" spacing={1.5} alignItems="flex-start">
-        <Stack
-          direction="row"
-          spacing={1.5}
-          alignItems="center"
-          sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
-        >
-          <Typography
-            variant="body2"
-            sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
-          >
-            Audit Report
-          </Typography>
-          <Tooltip title="Delete">
-            <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
-          </Tooltip>
-        </Stack>
-        <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
-          {coinDetailFirstBlock &&
-            coinDetailFirstBlock[0]?.audit?.map((item: any, index: number) => (
+      {coinDetailFirstBlock &&
+        coinDetailFirstBlock[0]?.source_code_url !== null && (
+          <Stack direction="row" spacing={1.5} alignItems="flex-start">
+            <Stack
+              direction="row"
+              spacing={1.5}
+              alignItems="center"
+              sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
+              >
+                Sourcecode
+              </Typography>
+              <Tooltip title="Delete">
+                <Avatar
+                  src={ToolTipImage}
+                  sx={{ width: 9, height: 9 }}
+                ></Avatar>
+              </Tooltip>
+            </Stack>
+            <Stack
+              direction="row"
+              alignItems="center"
+              sx={{ flexWrap: "wrap" }}
+            >
               <MobileSingleCoinChip
-                key={index}
-                src={item?.thumb_icon}
-                title={item.name}
-                link={item.url}
-                variant="audit"
+                src={SourcecodeImage}
+                icon={true}
+                title="Source Code"
+                link={
+                  coinDetailFirstBlock &&
+                  coinDetailFirstBlock[0]?.source_code_url
+                }
               />
-            ))}
-        </Stack>
-      </Stack>
+            </Stack>
+          </Stack>
+        )}
+      {coinDetailFirstBlock &&
+        coinDetailFirstBlock[0]?.whitepaper_link !== null && (
+          <Stack direction="row" spacing={1.5} alignItems="flex-start">
+            <Stack
+              direction="row"
+              spacing={1.5}
+              alignItems="center"
+              sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
+              >
+                Whitepaper
+              </Typography>
+              <Tooltip title="Delete">
+                <Avatar
+                  src={ToolTipImage}
+                  sx={{ width: 9, height: 9 }}
+                ></Avatar>
+              </Tooltip>
+            </Stack>
+            <Stack
+              direction="row"
+              alignItems="center"
+              sx={{ flexWrap: "wrap" }}
+            >
+              <MobileSingleCoinChip
+                src={WhitepaperImage}
+                title="Whitepaper"
+                link={
+                  coinDetailFirstBlock &&
+                  coinDetailFirstBlock[0]?.whitepaper_link
+                }
+              />
+            </Stack>
+          </Stack>
+        )}
 
-      <Stack direction="row" spacing={1.5} alignItems="flex-start">
-        <Stack
-          direction="row"
-          spacing={1.5}
-          alignItems="center"
-          sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
-        >
-          <Typography
-            variant="body2"
-            sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
+      {coinDetailFirstBlock && coinDetailFirstBlock[0]?.docs_url !== null && (
+        <Stack direction="row" spacing={1.5} alignItems="flex-start">
+          <Stack
+            direction="row"
+            spacing={1.5}
+            alignItems="center"
+            sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
           >
-            Chart
-          </Typography>
-          <Tooltip title="Delete">
-            <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
-          </Tooltip>
+            <Typography
+              variant="body2"
+              sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
+            >
+              Docs
+            </Typography>
+            <Tooltip title="Delete">
+              <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
+            </Tooltip>
+          </Stack>
+          <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
+            <MobileSingleCoinChip
+              src={DocsImage}
+              title="Docs"
+              link={coinDetailFirstBlock && coinDetailFirstBlock[0]?.docs_url}
+            />
+          </Stack>
         </Stack>
-        <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
-          {coinDetailFirstBlock &&
-            coinDetailFirstBlock[0]?.chart_link?.map(
-              (item: any, index: number) => (
-                <MobileSingleCoinChip
-                  key={index}
-                  src={item?.thumb_icon}
-                  title={item?.name}
-                  link={item?.url}
-                  variant="chart"
-                />
-              )
-            )}
+      )}
+
+      {coinDetailFirstBlock && coinDetailFirstBlock[0]?.audit.length > 0 && (
+        <Stack direction="row" spacing={1.5} alignItems="flex-start">
+          <Stack
+            direction="row"
+            spacing={1.5}
+            alignItems="center"
+            sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
+          >
+            <Typography
+              variant="body2"
+              sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
+            >
+              Audit Report
+            </Typography>
+            <Tooltip title="Delete">
+              <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
+            </Tooltip>
+          </Stack>
+          <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
+            {coinDetailFirstBlock &&
+              coinDetailFirstBlock[0]?.audit?.map(
+                (item: any, index: number) => (
+                  <MobileSingleCoinChip
+                    key={index}
+                    src={item?.thumb_icon}
+                    title={item.name}
+                    link={item.url}
+                    variant="audit"
+                  />
+                )
+              )}
+          </Stack>
         </Stack>
-      </Stack>
+      )}
+
+      {coinDetailFirstBlock && coinDetailFirstBlock[0]?.chart_link?.length > 0 && (
+        <Stack direction="row" spacing={1.5} alignItems="flex-start">
+          <Stack
+            direction="row"
+            spacing={1.5}
+            alignItems="center"
+            sx={{ flexGrow: 1, minWidth: 120, maxWidth: 120 }}
+          >
+            <Typography
+              variant="body2"
+              sx={{ color: "#787878", fontWeight: 400, fontSize: ".65rem" }}
+            >
+              Chart
+            </Typography>
+            <Tooltip title="Delete">
+              <Avatar src={ToolTipImage} sx={{ width: 9, height: 9 }}></Avatar>
+            </Tooltip>
+          </Stack>
+          <Stack direction="row" alignItems="center" sx={{ flexWrap: "wrap" }}>
+            {coinDetailFirstBlock &&
+              coinDetailFirstBlock[0]?.chart_link?.map(
+                (item: any, index: number) => (
+                  <MobileSingleCoinChip
+                    key={index}
+                    src={item?.thumb_icon}
+                    title={item?.name}
+                    link={item?.url}
+                    variant="chart"
+                  />
+                )
+              )}
+          </Stack>
+        </Stack>
+      )}
 
       <Stack direction="row" spacing={1.5} alignItems="flex-start">
         <Stack

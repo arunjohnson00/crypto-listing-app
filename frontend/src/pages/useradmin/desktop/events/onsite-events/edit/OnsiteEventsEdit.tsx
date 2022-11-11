@@ -206,7 +206,7 @@ const OnsiteEventsEdit = () => {
     editEventsData?.proof !== "" &&
       typeof editEventsData?.proof !== "string" &&
       formData.append("proof", editEventsData?.proof);
-    formData.append("description", richText?.description);
+    // formData.append("description", richText?.description);
     formData.append("telegram_url", editEventsData?.telegram_url);
     formData.append("reddit_url", editEventsData?.reddit_url);
     formData.append("website_url", editEventsData?.website_url);
@@ -558,7 +558,7 @@ const OnsiteEventsEdit = () => {
                 Event Description
               </Typography>
               <InputTextArea
-                variant="richtextdescription"
+                //variant="richtextdescription"
                 name="description"
                 id="description"
                 placeholder=" Detailed event description. (e.g. exact time, location, more info…)"
