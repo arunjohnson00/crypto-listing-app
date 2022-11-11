@@ -305,7 +305,9 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
             <CoinSlider />
           </Stack>
         </Grid> */}
-        {windowInnerWidth <= 900 ? (
+        {windowInnerWidth <= 900 &&
+        featuredCoinList &&
+        featuredCoinList.length > 0 ? (
           <Fragment>
             <Grid
               item
@@ -444,143 +446,146 @@ const CoinsListPage = ({ windowInnerWidth }: any) => {
             </Grid>
           </Fragment>
         ) : (
-          <Grid
-            item
-            xs={12}
-            sx={{
-              alignItems: "center",
-              paddingTop: "23px",
-              paddingBottom: "23px",
-            }}
-          >
-            <Stack
-              direction={{
-                xs: "column",
-                sm: "column",
-                md: "column",
-                lg: "row",
+          featuredCoinList &&
+          featuredCoinList.length > 0 && (
+            <Grid
+              item
+              xs={12}
+              sx={{
+                alignItems: "center",
+                paddingTop: "23px",
+                paddingBottom: "23px",
               }}
-              spacing={2}
-              alignItems={{ xs: "center" }}
             >
-              <Grid
-                xs={12}
-                sm={12}
-                md={12}
-                lg={0.4}
-                xl={0.4}
-                sx={{
-                  alignItems: "center",
+              <Stack
+                direction={{
+                  xs: "column",
+                  sm: "column",
+                  md: "column",
+                  lg: "row",
                 }}
+                spacing={2}
+                alignItems={{ xs: "center" }}
               >
-                <Stack
-                  direction={
-                    windowInnerWidth >= 1200 ? "column" : "row-reverse"
-                  }
+                <Grid
+                  xs={12}
+                  sm={12}
+                  md={12}
+                  lg={0.4}
+                  xl={0.4}
                   sx={{
-                    alignItems: "flex-end",
+                    alignItems: "center",
                   }}
-                  py={windowInnerWidth >= 1200 ? 0 : 1}
-                  spacing={2}
                 >
-                  {windowInnerWidth >= 1200 ? (
-                    <Avatar
-                      alt=""
-                      src={FeaturedCoinLineTopImage}
-                      sx={{
-                        borderRadius: 0,
-                        width: 20,
-                        height: 120,
-                      }}
-                    />
-                  ) : (
-                    <Avatar
-                      alt=""
-                      src={FeaturedCoinLineRightImage}
-                      sx={{
-                        borderRadius: 0,
-                        width: 120,
-                        height: 20,
-                      }}
-                    />
-                  )}
+                  <Stack
+                    direction={
+                      windowInnerWidth >= 1200 ? "column" : "row-reverse"
+                    }
+                    sx={{
+                      alignItems: "flex-end",
+                    }}
+                    py={windowInnerWidth >= 1200 ? 0 : 1}
+                    spacing={2}
+                  >
+                    {windowInnerWidth >= 1200 ? (
+                      <Avatar
+                        alt=""
+                        src={FeaturedCoinLineTopImage}
+                        sx={{
+                          borderRadius: 0,
+                          width: 20,
+                          height: 120,
+                        }}
+                      />
+                    ) : (
+                      <Avatar
+                        alt=""
+                        src={FeaturedCoinLineRightImage}
+                        sx={{
+                          borderRadius: 0,
+                          width: 120,
+                          height: 20,
+                        }}
+                      />
+                    )}
 
-                  <Box sx={{ width: "auto" }}>
-                    <Typography
-                      variant="h5"
+                    <Box sx={{ width: "auto" }}>
+                      <Typography
+                        variant="h5"
+                        sx={{
+                          color: "#FFFFFF",
+                          writingMode: `${
+                            windowInnerWidth &&
+                            windowInnerWidth >= 1200 &&
+                            "vertical-lr"
+                          }`,
+                          textOrientation: `${
+                            windowInnerWidth &&
+                            windowInnerWidth >= 1200 &&
+                            "mixed"
+                          }`,
+                          transform: `${
+                            windowInnerWidth &&
+                            windowInnerWidth >= 1200 &&
+                            "rotate(180deg)"
+                          }`,
+                        }}
+                      >
+                        Promoted Coins
+                      </Typography>
+                    </Box>
+
+                    {windowInnerWidth >= 1200 ? (
+                      <Avatar
+                        alt=""
+                        src={FeaturedCoinLineBottomImage}
+                        sx={{
+                          borderRadius: 0,
+                          width: 20,
+                          height: 110,
+                        }}
+                      />
+                    ) : (
+                      <Avatar
+                        alt=""
+                        src={FeaturedCoinLineLeftImage}
+                        sx={{
+                          borderRadius: 0,
+                          width: 110,
+                          height: 20,
+                        }}
+                      />
+                    )}
+                  </Stack>
+                </Grid>
+                <Grid xs={12} sm={12} md={12} lg={11.6} xl={11.6}>
+                  {
+                    <Stack
+                      direction={{
+                        xs: "column",
+                        sm: "column",
+                        md: "row",
+                        lg: "row",
+                      }}
+                      spacing={0}
                       sx={{
-                        color: "#FFFFFF",
-                        writingMode: `${
-                          windowInnerWidth &&
-                          windowInnerWidth >= 1200 &&
-                          "vertical-lr"
-                        }`,
-                        textOrientation: `${
-                          windowInnerWidth &&
-                          windowInnerWidth >= 1200 &&
-                          "mixed"
-                        }`,
-                        transform: `${
-                          windowInnerWidth &&
-                          windowInnerWidth >= 1200 &&
-                          "rotate(180deg)"
-                        }`,
+                        alignItems: "flex-start",
+                        flexWrap: "wrap",
+                        justifyContent: "flex-start",
                       }}
                     >
-                      Promoted Coins
-                    </Typography>
-                  </Box>
-
-                  {windowInnerWidth >= 1200 ? (
-                    <Avatar
-                      alt=""
-                      src={FeaturedCoinLineBottomImage}
-                      sx={{
-                        borderRadius: 0,
-                        width: 20,
-                        height: 110,
-                      }}
-                    />
-                  ) : (
-                    <Avatar
-                      alt=""
-                      src={FeaturedCoinLineLeftImage}
-                      sx={{
-                        borderRadius: 0,
-                        width: 110,
-                        height: 20,
-                      }}
-                    />
-                  )}
-                </Stack>
-              </Grid>
-              <Grid xs={12} sm={12} md={12} lg={11.6} xl={11.6}>
-                {
-                  <Stack
-                    direction={{
-                      xs: "column",
-                      sm: "column",
-                      md: "row",
-                      lg: "row",
-                    }}
-                    spacing={0}
-                    sx={{
-                      alignItems: "flex-start",
-                      flexWrap: "wrap",
-                      justifyContent: "flex-start",
-                    }}
-                  >
-                    {featuredCoinList &&
-                      featuredCoinList?.map((data: any, index: number) => (
-                        <Grid xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
-                          <FeaturedCoinCards cardData={data} />
-                        </Grid>
-                      ))}
-                  </Stack>
-                }
-              </Grid>
-            </Stack>
-          </Grid>
+                      {featuredCoinList &&
+                        featuredCoinList?.map((data: any, index: number) => (
+                          <Grid xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
+                            <FeaturedCoinCards cardData={data} />
+                          </Grid>
+                        ))}
+                    </Stack>
+                  }
+                </Grid>
+              </Stack>
+            </Grid>
+          )
         )}
       </Grid>
       <Grid item xs={12} mt={3}>
