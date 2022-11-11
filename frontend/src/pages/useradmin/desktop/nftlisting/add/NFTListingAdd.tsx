@@ -683,7 +683,7 @@ const NFTListingAdd = () => {
                           sx={{ textAlign: "left" }}
                           mb={1}
                         >
-                          <span style={{ color: "#234A84", fontWeight: 400 }}>
+                          <span style={{ color: "#FFD700", fontWeight: 400 }}>
                             {" "}
                             (Multiple selection allowed)
                           </span>

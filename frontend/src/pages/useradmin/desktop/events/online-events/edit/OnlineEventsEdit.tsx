@@ -750,7 +750,7 @@ const OnlineEventsEdit = () => {
                 Event Videos{" "}
                 <span
                   style={{
-                    color: "#138bc0",
+                    color: "#FFD700",
                     fontSize: ".85rem",
                     fontWeight: 400,
                   }}
@@ -915,7 +915,7 @@ const OnlineEventsEdit = () => {
                 Proof{" "}
                 <span
                   style={{
-                    color: "#138bc0",
+                    color: "#FFD700",
                     fontSize: ".85rem",
                     fontWeight: 400,
                   }}
@@ -946,7 +946,7 @@ const OnlineEventsEdit = () => {
                 Event Logo{" "}
                 <span
                   style={{
-                    color: "#138bc0",
+                    color: "#FFD700",
                     fontSize: ".85rem",
                     fontWeight: 400,
                   }}

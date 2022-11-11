@@ -742,7 +742,7 @@ const OnsiteEventsAdd = () => {
                 Event Videos{" "}
                 <span
                   style={{
-                    color: "#138bc0",
+                    color: "#FFD700",
                     fontSize: ".85rem",
                     fontWeight: 400,
                   }}
@@ -821,7 +821,7 @@ const OnsiteEventsAdd = () => {
                 Proof{" "}
                 <span
                   style={{
-                    color: "#138bc0",
+                    color: "#FFD700",
                     fontSize: ".85rem",
                     fontWeight: 400,
                   }}
@@ -851,7 +851,7 @@ const OnsiteEventsAdd = () => {
                 Event Logo{" "}
                 <span
                   style={{
-                    color: "#138bc0",
+                    color: "#FFD700",
                     fontSize: ".85rem",
                     fontWeight: 400,
                   }}
