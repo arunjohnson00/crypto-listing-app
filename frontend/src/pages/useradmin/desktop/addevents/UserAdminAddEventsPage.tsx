@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet-async";
 const UserAdminAddEventsPage = ({ windowInnerWidth }: any) => {
   const matches = useMediaQuery("(min-width:900px)");
   return (
-    <>
+    <Box height="100vh">
       {" "}
       <Helmet>
         <title>Add Events | CoinXhigh.com</title>
@@ -65,7 +65,7 @@ const UserAdminAddEventsPage = ({ windowInnerWidth }: any) => {
           />
         </Stack>
       </Box>
-    </>
+    </Box>
   );
 };
 

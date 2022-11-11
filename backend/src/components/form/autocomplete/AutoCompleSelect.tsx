@@ -39,11 +39,13 @@ const AutoCompleSelect = ({
       setOpt(res?.data?.data && res?.data?.data);
     };
     const errorHandler: any = (err: any) => {};
-    variant &&
-      variant === "coin" &&
-      dispatch(
-        commonCoinAutoSearchRequest(inputVal, successHandler, errorHandler)
-      );
+    variant && variant === "coin" && serverRef === undefined
+      ? dispatch(
+          commonCoinAutoSearchRequest(inputVal, successHandler, errorHandler)
+        )
+      : serverRef !== undefined &&
+        inputVal === "" &&
+        dispatch(allCoinRequest(inputVal, successHandler, errorHandler));
 
     variant &&
       variant === "nft" &&
