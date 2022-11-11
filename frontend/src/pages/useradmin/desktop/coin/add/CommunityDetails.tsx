@@ -27,7 +27,13 @@ const CommunityDetails = ({
             }}
             mb={1}
           >
-            Website URL {index + 2}
+            Website URL {index + 2}{" "}
+            <Typography variant="caption" sx={{ textAlign: "left" }} mb={1}>
+              <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                {" "}
+                (Optional)
+              </span>
+            </Typography>
           </Typography>
           <InputText
             placeholder="Enter official website url"

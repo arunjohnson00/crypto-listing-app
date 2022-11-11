@@ -23,7 +23,13 @@ const ChartDetails = ({ chartCount, chartremoveHandle, index, data }: any) => {
             }}
             mb={1}
           >
-            Chart Provider {index + 2}
+            Chart Provider {index + 2}{" "}
+            <Typography variant="caption" sx={{ textAlign: "left" }} mb={1}>
+              <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                {" "}
+                (Optional)
+              </span>
+            </Typography>
           </Typography>
           <InputSelectCoin
             name={`chart_provider[${index + 2}]`}
@@ -46,7 +52,13 @@ const ChartDetails = ({ chartCount, chartremoveHandle, index, data }: any) => {
             }}
             mb={1}
           >
-            Chart URL {index + 2}
+            Chart URL {index + 2}{" "}
+            <Typography variant="caption" sx={{ textAlign: "left" }} mb={1}>
+              <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                {" "}
+                (Optional)
+              </span>
+            </Typography>
           </Typography>
           <InputText
             placeholder="Eg: https://in.tradingview.com/chart/?symbol=BTC"

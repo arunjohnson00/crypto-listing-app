@@ -1146,7 +1146,17 @@ const CoinListingEdit = () => {
                       }}
                       mb={1}
                     >
-                      Block explorer URL 1
+                      Block explorer URL 1{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                          {" "}
+                          (Optional)
+                        </span>
+                      </Typography>
                     </Typography>
                     <InputText
                       placeholder="Eg: https://bscscan.com/token/0x2170ed0880ac9a755fd29b2688956bd959f933f8 "
@@ -1472,7 +1482,7 @@ const CoinListingEdit = () => {
                       }}
                       mb={1}
                     >
-                      Presale start Date & Time (UTC)
+                      Presale start Date
                     </Typography>
 
                     <InputDateTime
@@ -1494,7 +1504,7 @@ const CoinListingEdit = () => {
                       }}
                       mb={1}
                     >
-                      Presale end Date & Time (UTC)
+                      Presale end Date
                     </Typography>
 
                     <InputDateTime
@@ -1521,7 +1531,17 @@ const CoinListingEdit = () => {
                       }}
                       mb={1}
                     >
-                      Presale address
+                      Presale address{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                          {" "}
+                          (Optional)
+                        </span>
+                      </Typography>
                       {/* (Optional) */}
                     </Typography>
 
@@ -1699,7 +1719,17 @@ const CoinListingEdit = () => {
                       }}
                       mb={1}
                     >
-                      Circulating Supply (Optional)
+                      Circulating Supply{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                          {" "}
+                          (Optional)
+                        </span>
+                      </Typography>
                     </Typography>
 
                     <InputText
@@ -1751,7 +1781,17 @@ const CoinListingEdit = () => {
                       }}
                       mb={1}
                     >
-                      Marketcap (Optional)
+                      Marketcap{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                          {" "}
+                          (Optional)
+                        </span>
+                      </Typography>
                     </Typography>
 
                     <InputText
@@ -1811,7 +1851,17 @@ const CoinListingEdit = () => {
                     }}
                     mb={1}
                   >
-                    Source Code URL
+                    Source Code URL{" "}
+                    <Typography
+                      variant="caption"
+                      sx={{ textAlign: "left" }}
+                      mb={1}
+                    >
+                      <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                        {" "}
+                        (Optional)
+                      </span>
+                    </Typography>
                   </Typography>
                   <InputText
                     placeholder="Enter source code url"
@@ -1831,7 +1881,17 @@ const CoinListingEdit = () => {
                     }}
                     mb={1}
                   >
-                    Medium URL
+                    Medium URL{" "}
+                    <Typography
+                      variant="caption"
+                      sx={{ textAlign: "left" }}
+                      mb={1}
+                    >
+                      <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                        {" "}
+                        (Optional)
+                      </span>
+                    </Typography>
                   </Typography>
                   <InputText
                     placeholder="Enter Medium url"
@@ -1858,7 +1918,17 @@ const CoinListingEdit = () => {
                     }}
                     mb={1}
                   >
-                    Whitepaper URL
+                    Whitepaper URL{" "}
+                    <Typography
+                      variant="caption"
+                      sx={{ textAlign: "left" }}
+                      mb={1}
+                    >
+                      <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                        {" "}
+                        (Optional)
+                      </span>
+                    </Typography>
                   </Typography>
                   <InputText
                     placeholder="Enter Whitepaper url"
@@ -1878,7 +1948,17 @@ const CoinListingEdit = () => {
                     }}
                     mb={1}
                   >
-                    Docs URL
+                    Docs URL{" "}
+                    <Typography
+                      variant="caption"
+                      sx={{ textAlign: "left" }}
+                      mb={1}
+                    >
+                      <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                        {" "}
+                        (Optional)
+                      </span>
+                    </Typography>
                   </Typography>
                   <InputText
                     placeholder="Enter Docs url"
@@ -1934,7 +2014,17 @@ const CoinListingEdit = () => {
                           }}
                           mb={1}
                         >
-                          Audited By {index + 1}
+                          Audited By {index + 1}{" "}
+                          <Typography
+                            variant="caption"
+                            sx={{ textAlign: "left" }}
+                            mb={1}
+                          >
+                            <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                              {" "}
+                              (Optional)
+                            </span>
+                          </Typography>
                         </Typography>
                         <InputSelectCoin
                           name={`audited_by[${index + 1}]`}
@@ -1958,7 +2048,17 @@ const CoinListingEdit = () => {
                           }}
                           mb={1}
                         >
-                          Audit URL {index + 1}
+                          Audit URL {index + 1}{" "}
+                          <Typography
+                            variant="caption"
+                            sx={{ textAlign: "left" }}
+                            mb={1}
+                          >
+                            <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                              {" "}
+                              (Optional)
+                            </span>
+                          </Typography>
                         </Typography>
                         <InputText
                           placeholder="Enter Audit URL"
@@ -2018,7 +2118,17 @@ const CoinListingEdit = () => {
                       }}
                       mb={1}
                     >
-                      Audited By
+                      Audited By{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                          {" "}
+                          (Optional)
+                        </span>
+                      </Typography>
                     </Typography>
                     <InputSelectCoin
                       name="audited_by[1]"
@@ -2041,7 +2151,17 @@ const CoinListingEdit = () => {
                       }}
                       mb={1}
                     >
-                      Audit URL
+                      Audit URL{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                          {" "}
+                          (Optional)
+                        </span>
+                      </Typography>
                     </Typography>
                     <InputText
                       placeholder="Enter Audit URL"
@@ -2135,7 +2255,17 @@ const CoinListingEdit = () => {
                           }}
                           mb={1}
                         >
-                          Chart Provider {index + 1}
+                          Chart Provider {index + 1}{" "}
+                          <Typography
+                            variant="caption"
+                            sx={{ textAlign: "left" }}
+                            mb={1}
+                          >
+                            <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                              {" "}
+                              (Optional)
+                            </span>
+                          </Typography>
                         </Typography>
                         <InputSelectCoin
                           name={`chart_provider[${index + 1}]`}
@@ -2159,7 +2289,17 @@ const CoinListingEdit = () => {
                           }}
                           mb={1}
                         >
-                          Chart URL {index + 1}
+                          Chart URL {index + 1}{" "}
+                          <Typography
+                            variant="caption"
+                            sx={{ textAlign: "left" }}
+                            mb={1}
+                          >
+                            <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                              {" "}
+                              (Optional)
+                            </span>
+                          </Typography>
                         </Typography>
                         <InputText
                           placeholder="Eg: https://in.tradingview.com/chart/?symbol=BTC"
@@ -2219,7 +2359,17 @@ const CoinListingEdit = () => {
                       }}
                       mb={1}
                     >
-                      Chart Provider
+                      Chart Provider{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                          {" "}
+                          (Optional)
+                        </span>
+                      </Typography>
                     </Typography>
                     <InputSelectCoin
                       name="chart_provider[1]"
@@ -2242,7 +2392,17 @@ const CoinListingEdit = () => {
                       }}
                       mb={1}
                     >
-                      Chart URL
+                      Chart URL{" "}
+                      <Typography
+                        variant="caption"
+                        sx={{ textAlign: "left" }}
+                        mb={1}
+                      >
+                        <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                          {" "}
+                          (Optional)
+                        </span>
+                      </Typography>
                     </Typography>
                     <InputText
                       placeholder="Eg: https://in.tradingview.com/chart/?symbol=BTC"
@@ -2345,7 +2505,22 @@ const CoinListingEdit = () => {
                                 }}
                                 mb={1}
                               >
-                                Website URL {index + 1}
+                                Website URL {index + 1}{" "}
+                                <Typography
+                                  variant="caption"
+                                  sx={{ textAlign: "left" }}
+                                  mb={1}
+                                >
+                                  <span
+                                    style={{
+                                      color: "#FFD700",
+                                      fontWeight: 400,
+                                    }}
+                                  >
+                                    {" "}
+                                    (Optional)
+                                  </span>
+                                </Typography>
                               </Typography>
                               <InputText
                                 placeholder="Enter official website url"
@@ -2409,7 +2584,17 @@ const CoinListingEdit = () => {
                           }}
                           mb={1}
                         >
-                          Website URL
+                          Website URL{" "}
+                          <Typography
+                            variant="caption"
+                            sx={{ textAlign: "left" }}
+                            mb={1}
+                          >
+                            <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                              {" "}
+                              (Optional)
+                            </span>
+                          </Typography>
                         </Typography>
                         <InputText
                           placeholder="Enter official website url"
@@ -2473,7 +2658,19 @@ const CoinListingEdit = () => {
                         }}
                         mb={1}
                       >
-                        Coin Video URL
+                        Coin Video URL{" "}
+                        <Typography
+                          variant="caption"
+                          sx={{ textAlign: "left", color: "#FFFFFF" }}
+                          mb={1}
+                        >
+                          {" "}
+                          (Dont put channel url here){" "}
+                          <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                            {" "}
+                            (Optional)
+                          </span>
+                        </Typography>
                       </Typography>
                       <InputText
                         placeholder="Eg: https://www.youtube.com/watch?v=kt8rThtkf"
@@ -2854,7 +3051,22 @@ const CoinListingEdit = () => {
                                 }}
                                 mb={1}
                               >
-                                Select Platform {index + 1}
+                                Select Platform {index + 1}{" "}
+                                <Typography
+                                  variant="caption"
+                                  sx={{ textAlign: "left" }}
+                                  mb={1}
+                                >
+                                  <span
+                                    style={{
+                                      color: "#FFD700",
+                                      fontWeight: 400,
+                                    }}
+                                  >
+                                    {" "}
+                                    (Optional)
+                                  </span>
+                                </Typography>
                               </Typography>
                               <InputSelectCoin
                                 name={`social_platform[${index + 1}]`}
@@ -2880,7 +3092,22 @@ const CoinListingEdit = () => {
                                 }}
                                 mb={1}
                               >
-                                Social URL {index + 1}
+                                Social URL {index + 1}{" "}
+                                <Typography
+                                  variant="caption"
+                                  sx={{ textAlign: "left" }}
+                                  mb={1}
+                                >
+                                  <span
+                                    style={{
+                                      color: "#FFD700",
+                                      fontWeight: 400,
+                                    }}
+                                  >
+                                    {" "}
+                                    (Optional)
+                                  </span>
+                                </Typography>
                               </Typography>
                               <InputText
                                 placeholder="Enter social url"
@@ -2944,7 +3171,17 @@ const CoinListingEdit = () => {
                           }}
                           mb={1}
                         >
-                          Select Platform
+                          Select Platform{" "}
+                          <Typography
+                            variant="caption"
+                            sx={{ textAlign: "left" }}
+                            mb={1}
+                          >
+                            <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                              {" "}
+                              (Optional)
+                            </span>
+                          </Typography>
                         </Typography>
                         <InputSelectCoin
                           name="social_platform[1]"
@@ -2967,7 +3204,17 @@ const CoinListingEdit = () => {
                           }}
                           mb={1}
                         >
-                          Social URL
+                          Social URL{" "}
+                          <Typography
+                            variant="caption"
+                            sx={{ textAlign: "left" }}
+                            mb={1}
+                          >
+                            <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                              {" "}
+                              (Optional)
+                            </span>
+                          </Typography>
                         </Typography>
                         <InputText
                           placeholder="Enter social url"

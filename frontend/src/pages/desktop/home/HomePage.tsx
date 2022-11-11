@@ -276,27 +276,23 @@ const HomePage = ({ windowInnerWidth }: any) => {
     <Fragment>
       <Helmet>
         <title>
-          Coin Vote, Crypto Events, NFT & Airdrop listing Platform for your
-          favourite Crypto projects. | CoinXhigh.com
+          Coin Vote, Token listing Platform for your favourite Cryptocurrencies.
         </title>
         <meta
           name="description"
-          content="CoinxHigh is the world's most prominent community-based platform for Crypto listing, Crypto events listing, NFT Listing, Crypto airdrop listing and more."
+          content="CoinXHigh is the world's first and most prominent community-based platform for listing and voting cryptocurrencies, refer to our listing to know the top coins in trend."
         />
         <meta name="robots" content="index, follow" />
-        <meta
-          property="og:site_name"
-          content="Coin Vote, Crypto Events, NFT & Airdrop listing Platform for your favourite Crypto projects. | CoinXhigh.com"
-        />
+        <meta property="og:site_name" content="coinxhigh.com" />
         <meta
           property="og:title"
-          content="Coin Vote, Crypto Events, NFT & Airdrop listing Platform for your favourite Crypto projects. | CoinXhigh.com"
+          content="Coin Vote, Token listing Platform for your favourite Cryptocurrencies."
         />
         <meta property="og:locale" content="en" />
         <meta property="og:type" content="website" />
         <meta
           property="og:description"
-          content="CoinxHigh is the world's most prominent community-based platform for Crypto listing, Crypto events listing, NFT Listing, Crypto airdrop listing and more."
+          content="CoinXHigh is the world's first and most prominent community-based platform for listing and voting cryptocurrencies, refer to our listing to know the top coins in trend."
         />
         <meta
           property="og:image"

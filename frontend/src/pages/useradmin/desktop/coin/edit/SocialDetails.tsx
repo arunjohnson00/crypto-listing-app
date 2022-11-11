@@ -28,7 +28,13 @@ const SocialDetails = ({
             }}
             mb={1}
           >
-            Select Platform {index + 2}
+            Select Platform {index + 2}{" "}
+            <Typography variant="caption" sx={{ textAlign: "left" }} mb={1}>
+              <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                {" "}
+                (Optional)
+              </span>
+            </Typography>
           </Typography>
           <InputSelectCoin
             name={`social_platform[${index + 2}]`}
@@ -50,7 +56,13 @@ const SocialDetails = ({
             }}
             mb={1}
           >
-            Social URL {index + 2}
+            Social URL {index + 2}{" "}
+            <Typography variant="caption" sx={{ textAlign: "left" }} mb={1}>
+              <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                {" "}
+                (Optional)
+              </span>
+            </Typography>
           </Typography>
           <InputText
             placeholder="Enter social url"

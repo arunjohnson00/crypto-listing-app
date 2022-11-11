@@ -70,7 +70,13 @@ const NetworkDetails = ({
             }}
             mb={1}
           >
-            Block explorer URL {index + 2}
+            Block explorer URL {index + 2}{" "}
+            <Typography variant="caption" sx={{ textAlign: "left" }} mb={1}>
+              <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                {" "}
+                (Optional)
+              </span>
+            </Typography>
           </Typography>
           <InputText
             placeholder="Eg: https://bscscan.com/token/0x2170ed0880ac9a755fd29b2688956bd959f933f8 "

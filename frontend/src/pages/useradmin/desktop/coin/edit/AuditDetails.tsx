@@ -23,7 +23,13 @@ const AuditDetails = ({ auditCount, index, auditremoveHandle, data }: any) => {
             }}
             mb={1}
           >
-            Audited By {index + 2}
+            Audited By {index + 2}{" "}
+            <Typography variant="caption" sx={{ textAlign: "left" }} mb={1}>
+              <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                {" "}
+                (Optional)
+              </span>
+            </Typography>
           </Typography>
           <InputSelectCoin
             name={`audited_by[${index + 2}]`}
@@ -46,7 +52,13 @@ const AuditDetails = ({ auditCount, index, auditremoveHandle, data }: any) => {
             }}
             mb={1}
           >
-            Audit URL {index + 2}
+            Audit URL {index + 2}{" "}
+            <Typography variant="caption" sx={{ textAlign: "left" }} mb={1}>
+              <span style={{ color: "#FFD700", fontWeight: 400 }}>
+                {" "}
+                (Optional)
+              </span>
+            </Typography>
           </Typography>
           <InputText
             placeholder="Enter Audit URL"
